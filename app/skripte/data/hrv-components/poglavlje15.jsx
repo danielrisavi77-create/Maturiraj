@@ -1,0 +1,6296 @@
+﻿/**
+ * H15 — Maturiraj.hr — Maturiraj.hr
+ * Auto-generated from Maturiraj_Hrvatski_H15.html
+ * 
+ * Strategy: Hybrid HTML-in-JSX (Strategy C)
+ * - Body HTML rendered via dangerouslySetInnerHTML
+ * - Inline <style> blocks injected at mount
+ * - Inline <script> blocks executed at mount
+ * - All onclick/oninput/etc. handlers preserved
+ * - SEO via Next.js Metadata API (in page.jsx)
+ */
+'use client';
+
+import { useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+import ChapterWrapper from './ChapterWrapper';
+import { SHARED_LIT_CSS } from './shared-lit-styles';
+import CitatnikH15 from './H15_CitatnikTab';
+import PojmovnikH15 from './H15_PojmovnikTab';
+import { AuthorProfileH15Senoa, DiscereBannerPrimaryH15, VideoCardPrimaryH15, VideoCardSecondaryH15, VideoCardTertiaryH15, VideoCardQuaternaryH15 } from './H15_Additions';
+
+const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="read-progress-bar" id="rpbar"></div></div>
+<a class="skip-link" href="#main">Preskoči na sadržaj</a>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Natrag na vrh" title="Natrag na vrh">↑</button>
+
+
+<!-- Feedback / bug report modal (v3.6.1) -->
+<div class="modal-backdrop" id="fb-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="fb-modal-title" onclick="if(event.target===this)closeFeedbackModal()">
+  <div class="modal" role="document">
+    <button class="modal-close" onclick="closeFeedbackModal()" aria-label="Zatvori">✕</button>
+    <div class="modal-ico">📝</div>
+    <div class="modal-eye">PRIJAVA / PRIJEDLOG</div>
+    <div class="modal-title" id="fb-modal-title">Javi nam što ne valja</div>
+    <div class="modal-desc">Uočio si grešku u sadržaju, bug u aplikaciji ili imaš prijedlog? <strong>Opiši ovdje</strong> — čitamo svaku poruku.</div>
+
+    <div class="modal-msg" id="fb-msg"></div>
+
+    <form class="fb-form" id="fb-form" onsubmit="return submitFeedback(event)">
+      <!-- Tip -->
+      <label class="fb-label">Vrsta poruke</label>
+      <div class="fb-types" role="radiogroup" aria-label="Vrsta poruke">
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="content_error" checked><span>📖 Greška u sadržaju</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="bug"><span>🐛 Bug u aplikaciji</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="suggestion"><span>💡 Prijedlog</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="praise"><span>💚 Pohvala</span></label>
+      </div>
+
+      <!-- Poruka -->
+      <label class="fb-label" for="fb-message">Poruka <span class="fb-req">*</span></label>
+      <textarea id="fb-message" class="fb-textarea" required minlength="3" maxlength="5000" rows="5" placeholder="Opiši što si uočio — što detaljnije, lakše ćemo popraviti. Npr. 'U kvizu pitanje 3 ima grešku: točan odgovor je X, a ne Y.'"></textarea>
+      <div class="fb-counter"><span id="fb-char-count">0</span> / 5000</div>
+
+      <!-- Email (optional) -->
+      <label class="fb-label" for="fb-email">Tvoj e-mail <span class="fb-hint">(neobavezno — samo ako želiš odgovor)</span></label>
+      <input type="email" id="fb-email" class="modal-input" placeholder="tvoj@email.hr" autocomplete="email">
+
+      <button type="submit" class="modal-submit" id="fb-submit" style="width:100%;margin-top:14px">Pošalji →</button>
+      <div class="modal-small" style="margin-top:10px">Tvoj e-mail čuvamo samo za odgovor. Ne šaljemo ništa drugo.</div>
+    </form>
+  </div>
+</div>
+<div class="sb-overlay" id="overlay" onclick="closeSb()"></div>
+<button class="sb-hamburger" id="hamburger" onclick="openSb()" aria-label="Izbornik">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="shell">
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar" role="navigation" aria-label="Navigacija poglavlja">
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+        <path d="M16 3L29 9.5V22.5L16 29L3 22.5V9.5Z" stroke="#0F0605" stroke-width="1.5"/>
+        <path d="M16 3V29M3 9.5L29 22.5M29 9.5L3 22.5" stroke="#0F0605" stroke-width=".8" opacity=".5"/>
+        <circle cx="16" cy="16" r="2.5" fill="#0F0605" opacity=".7"/>
+      </svg>
+    </div>
+    <div>
+      <div class="sb-name">Maturiraj.hr</div>
+      <div class="sb-sub">HRVATSKI</div>
+    </div>
+    <button type="button" class="sb-hamburger" onclick="toggleSidebar()" aria-label="Zatvori izbornik">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="sb-prog-wrap">
+    <div class="sb-prog-label"><span>napredak</span><span id="sb-prog-pct">0%</span></div>
+    <div class="sb-prog-track"><div class="sb-prog-bar" id="sb-prog-bar" style="width:0%"></div></div>
+  </div>
+
+  <!-- ══ SVJETSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Svjetska književnost</div>
+  <a class="sb-item" data-code="h01" href="/skripte/hrv/h01"><span class="sb-dot"></span>H01 · Temelji i antika</a>
+  <a class="sb-item" data-code="h02" href="/skripte/hrv/h02"><span class="sb-dot"></span>H02 · Srednji vijek</a>
+  <a class="sb-item" data-code="h03" href="/skripte/hrv/h03"><span class="sb-dot"></span>H03 · Renesansa</a>
+  <a class="sb-item" data-code="h04" href="/skripte/hrv/h04"><span class="sb-dot"></span>H04 · Barok i klasicizam</a>
+  <a class="sb-item" data-code="h05" href="/skripte/hrv/h05"><span class="sb-dot"></span>H05 · Prosvjetiteljstvo</a>
+  <a class="sb-item" data-code="h06" href="/skripte/hrv/h06"><span class="sb-dot"></span>H06 · Romantizam</a>
+  <a class="sb-item" data-code="h07" href="/skripte/hrv/h07"><span class="sb-dot"></span>H07 · Realizam</a>
+  <a class="sb-item" data-code="h08" href="/skripte/hrv/h08"><span class="sb-dot"></span>H08 · Moderna</a>
+  <a class="sb-item" data-code="h09" href="/skripte/hrv/h09"><span class="sb-dot"></span>H09 · Avangarda i 20. st.</a>
+  <a class="sb-item" data-code="h10" href="/skripte/hrv/h10"><span class="sb-dot"></span>H10 · Postmoderna</a>
+
+  <!-- ══ HRVATSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Hrvatska književnost</div>
+  <a class="sb-item" data-code="h11" href="/skripte/hrv/h11"><span class="sb-dot"></span>H11 · Stari hrv. pisci</a>
+  <a class="sb-item" data-code="h12" href="/skripte/hrv/h12"><span class="sb-dot"></span>H12 · Marulić i hrv. rens.</a>
+  <a class="sb-item" data-code="h13" href="/skripte/hrv/h13"><span class="sb-dot"></span>H13 · Hrv. barok — Gundulić</a>
+  <a class="sb-item" data-code="h14" href="/skripte/hrv/h14"><span class="sb-dot"></span>H14 · Preporod</a>
+  <a class="sb-item" data-code="h15" href="/skripte/hrv/h15"><span class="sb-dot"></span>H15 · Šenoa i realizam</a>
+  <a class="sb-item" data-code="h16" href="/skripte/hrv/h16"><span class="sb-dot"></span>H16 · Krleža i moderna</a>
+
+  <!-- ══ STIL I IZRAZ ══ -->
+  <div class="sb-era">// Stil i izraz</div>
+  <a class="sb-item" data-code="h17" href="/skripte/hrv/h17"><span class="sb-dot"></span>H17 · Stilske figure</a>
+  <a class="sb-item" data-code="h18" href="/skripte/hrv/h18"><span class="sb-dot"></span>H18 · Versifikacija</a>
+
+  <!-- ══ JEZIKOSLOVLJE ══ -->
+  <div class="sb-era">// Jezikoslovlje</div>
+  <a class="sb-item" data-code="h19" href="/skripte/hrv/h19"><span class="sb-dot"></span>H19 · Fonetika i fonologija</a>
+  <a class="sb-item" data-code="h20" href="/skripte/hrv/h20"><span class="sb-dot"></span>H20 · Morfologija</a>
+  <a class="sb-item" data-code="h21" href="/skripte/hrv/h21"><span class="sb-dot"></span>H21 · Sintaksa</a>
+  <a class="sb-item" data-code="h22" href="/skripte/hrv/h22"><span class="sb-dot"></span>H22 · Leksikologija</a>
+  <a class="sb-item" data-code="h23" href="/skripte/hrv/h23"><span class="sb-dot"></span>H23 · Povijest hrv. jezika</a>
+  <a class="sb-item" data-code="h24" href="/skripte/hrv/h24"><span class="sb-dot"></span>H24 · Hrv. narječja</a>
+
+  <!-- ══ PRAVOPIS ══ -->
+  <div class="sb-era">// Pravopis</div>
+  <a class="sb-item" data-code="h25" href="/skripte/hrv/h25"><span class="sb-dot"></span>H25 · Pravopisna pravila</a>
+  <a class="sb-item" data-code="h26" href="/skripte/hrv/h26"><span class="sb-dot"></span>H26 · Interpunkcija</a>
+
+  <!-- ══ PISANJE ══ -->
+  <div class="sb-era">// Pisanje</div>
+  <a class="sb-item" data-code="h27" href="/skripte/hrv/h27"><span class="sb-dot"></span>H27 · Školski esej</a>
+  <a class="sb-item" data-code="h28" href="/skripte/hrv/h28"><span class="sb-dot"></span>H28 · Sažetak</a>
+
+  <!-- ══ DODATNO — obvezatna djela (deep-dive za esej 2026 + čitanje) ══ -->
+  <div class="sb-era sb-era-d">// Dodatno · obvezatna djela</div>
+  <div class="sb-d-meta">Deep-dive za esej (30 bod) + čitanje (20 bod)</div>
+
+  <a class="sb-item sb-d" data-code="d01" href="/skripte/hrv"><span class="sb-dot"></span>D01 · Sofoklo · Antigona</a>
+  <a class="sb-item sb-d" data-code="d02" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D02 · Petrarca · izbor</a>
+  <a class="sb-item sb-d" data-code="d03" href="/skripte/hrv"><span class="sb-dot"></span>D03 · Shakespeare · Hamlet</a>
+  <a class="sb-item sb-d" data-code="d04" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D04 · Calderón · Život je san</a>
+  <a class="sb-item sb-d" data-code="d05" href="/skripte/hrv"><span class="sb-dot"></span>D05 · Molière · Škrtac</a>
+  <a class="sb-item sb-d" data-code="d06" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D06 · Goethe · Werther</a>
+  <a class="sb-item sb-d" data-code="d07" href="/skripte/hrv"><span class="sb-dot"></span>D07 · Dostojevski · Zločin i kazna</a>
+  <a class="sb-item sb-d" data-code="d08" href="/skripte/hrv"><span class="sb-dot"></span>D08 · Kafka · Preobražaj</a>
+  <a class="sb-item sb-d" data-code="d09" href="/skripte/hrv"><span class="sb-dot"></span>D09 · Camus · Stranac</a>
+  <a class="sb-item sb-d" data-code="d10" href="/skripte/hrv"><span class="sb-dot"></span>D10 · Baudelaire · Cvjetovi zla</a>
+  <a class="sb-item sb-d" data-code="d11" href="/skripte/hrv"><span class="sb-dot"></span>D11 · Držić · Novela od Stanca</a>
+  <a class="sb-item sb-d" data-code="d12" href="/skripte/hrv"><span class="sb-dot"></span>D12 · Marulić · Judita</a>
+  <a class="sb-item sb-d" data-code="d13" href="/skripte/hrv"><span class="sb-dot"></span>D13 · Gundulić · Dubravka</a>
+  <a class="sb-item sb-d" data-code="d14" href="/skripte/hrv"><span class="sb-dot"></span>D14 · Mažuranić · Smail-aga</a>
+  <a class="sb-item sb-d active" data-code="d15" href="/skripte/hrv"><span class="sb-dot"></span>D15 · Šenoa · Prijan Lovro</a>
+  <a class="sb-item sb-d" data-code="d16" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D16 · Novak · Posljednji Stipančići</a>
+  <a class="sb-item sb-d" data-code="d17" href="/skripte/hrv"><span class="sb-dot"></span>D17 · Kranjčević · poezija</a>
+  <a class="sb-item sb-d" data-code="d18" href="/skripte/hrv"><span class="sb-dot"></span>D18 · Matoš · izbor</a>
+  <a class="sb-item sb-d" data-code="d19" href="/skripte/hrv"><span class="sb-dot"></span>D19 · Nazor · poezija</a>
+  <a class="sb-item sb-d" data-code="d20" href="/skripte/hrv"><span class="sb-dot"></span>D20 · Šimić · poezija</a>
+  <a class="sb-item sb-d" data-code="d21" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D21 · Krleža · Glembajevi</a>
+  <a class="sb-item sb-d" data-code="d22" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D22 · Marinković · Kiklop</a>
+
+  <div class="sb-footer" id="sb-footer">
+    <span id="sb-footer-pos">15 / 28</span> · <span id="sb-footer-title">šenoa · prijan lovro</span>
+    <br>maturiraj.hr · hrvatski · v2
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main" id="main" role="main">
+<div class="content-wrap">
+
+  <!-- BREADCRUMB -->
+  <div class="bc">
+    <a class="bc-link" href="/">Maturiraj.hr</a><span class="bc-sep">/</span>
+    <a class="bc-link" href="/skripte/hrv">Skripte</a><span class="bc-sep">/</span>
+    <a class="bc-link" href="/skripte/hrv">Hrvatski jezik</a><span class="bc-sep bc-tab-sep">/</span>
+    <span class="bc-cur">H15 · Šenoa · Prijan Lovro</span>
+    <span class="bc-sep bc-tab-sep">/</span>
+    <span class="bc-tab" id="bc-tab">Teorija</span>
+  </div>
+
+  <!-- COUNTDOWN + ACTIONS -->
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px">
+    <div class="countdown" style="margin-bottom:0">
+      ⏳ Do ispita HRV: <strong id="cd-days">—</strong> dana &nbsp;<span style="font-size:9px;color:var(--t3)">(15. 6. 2026.)</span>
+    </div>
+    <button class="fcb" onclick="window.print()" style="font-size:10px" title="Print / PDF (Ctrl+P)">🖨 Print</button>
+    <button class="fcb" onclick="navigator.share?navigator.share({title:'H15 · Šenoa · Prijan Lovro',url:window.location.href}):navigator.clipboard.writeText(window.location.href)" style="font-size:10px" title="Podijeli">📤 Dijeli</button>
+    <span style="font-family:var(--mono);font-size:9px;color:var(--t3);margin-left:auto">
+      <span class="kbd">←</span> <span class="kbd">→</span> tabovi · <span class="kbd">?</span> pomoć
+    </span>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-chapter">H15 &nbsp;·&nbsp; Hrvatska književnost &nbsp;·&nbsp; Realizam (19. st.) · Deep-dive</div>
+    <h1 class="hero-title">August Šenoa<br><span>i Prijan Lovro</span></h1>
+    <p class="hero-sub">
+      <strong>Otac hrvatskog realizma i njegov Werther.</strong> Šenoina pripovijetka <em>Prijan Lovro</em> (1873., <em>Vijenac</em>) — tragična priča o seoskom intelektualcu kojeg društvo guši. Uokvirena pripovijetka u 5 dijelova, spoj romantizma i realizma. <strong>Obvezatno djelo za cjelovito čitanje 2026.</strong>
+    </p>
+    <div class="hero-chips">
+      <span class="hchip br">▶ H15 deep-dive</span>
+      <span class="hchip go">📖 Prijan Lovro 1873.</span>
+      <span class="hchip te">🏛 Šenoino doba</span>
+      <span class="hchip pa">📖 Obvezatno čitanje</span>
+      <span class="hchip re">📚 Hrv. realizam</span>
+    </div>
+  </header>
+
+
+  <!-- ══ SOCIAL PROOF + COUNTDOWN ═════════════════
+       Playbook P5.1 + P5.2 — trust + urgency
+       Brojevi se renderiraju iz JS-a (vidi renderSocialProof)
+  ═══════════════════════════════════════════════════ -->
+  <div class="social-proof" id="social-proof" aria-label="Statistika platforme"></div>
+
+  <!-- Countdown se dinamički renderira iz JS-a -->
+  <div class="countdown" id="countdown" aria-label="Do mature" style="display:none"></div>
+
+  <!-- TABS -->
+  <div class="tabs" role="tablist" aria-label="Dijelovi poglavlja">
+    <button class="tab on" id="tab0" onclick="sw(0)" role="tab" aria-selected="true" aria-controls="l0">📖 Teorija<span class="tab-done" id="td0"></span></button>
+    <button class="tab" id="tab1" onclick="sw(1)" role="tab" aria-selected="false" aria-controls="l1">📖 5 dijelova<span class="tab-done" id="td1"></span></button>
+    <button class="tab" id="tab2" onclick="sw(2)" role="tab" aria-selected="false" aria-controls="l2">✍️ Esej alat<span class="tab-done" id="td2"></span></button>
+    <button class="tab" id="tab3" onclick="sw(3)" role="tab" aria-selected="false" aria-controls="l3">💬 Citatnik<span class="tab-done" id="td3"></span></button>
+    <button class="tab" id="tab4" onclick="sw(4)" role="tab" aria-selected="false" aria-controls="l4">📚 Pojmovnik<span class="tab-done" id="td4"></span></button>
+    <button class="tab" id="tab5" onclick="sw(5)" role="tab" aria-selected="false" aria-controls="l5">⚡ Drill<span class="tab-lock">PRO</span></button>
+    <button class="tab" id="tab6" onclick="sw(6)" role="tab" aria-selected="false" aria-controls="l6">🧠 Kviz<span class="tab-badge">20</span><span class="tab-done" id="td6"></span></button>
+    <button class="tab" id="tab7" onclick="sw(7)" role="tab" aria-selected="false" aria-controls="l7">✅ Checkpoint</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 0 · TEORIJA
+  ══════════════════════════════════════ -->
+  <div class="layer on" id="l0" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">August Šenoa</span>
+      <span class="pill p-br">Prijan Lovro 1873.</span>
+      <span class="pill p-go">★ Obvezatno čitanje 2026</span>
+      <span class="pill p-t">Pripovijetka · 5 dijelova</span>
+      <span class="pill p-r">Hrvatski realizam</span>
+    </div>
+
+    <!-- Soft kontekst hint — exam frequency -->
+    <div class="soft-hint">
+      <div class="soft-hint-ico">💡</div>
+      <div class="soft-hint-body">
+        Tema <b>August Šenoa / Prijan Lovro</b> pojavila se na MAT 2023. i MAT 2025. — Socijalni realizam, Lovrina tragedija i <b>Vjekoslav u ulozi krivca</b> su ključne esejske točke.
+      </div>
+    </div>
+
+    <!-- DIJAGNOSTIKA -->
+    <div class="box-int" style="margin-bottom:20px">
+      <div class="box-int-lbl">🎯 Brza dijagnostika H15 — 5 pitanja</div>
+      <div class="diag" data-state="intro" id="diag0" style="">
+      <style>#diag0[data-state="dismissed"]{display:none}
+
+/* ═══════════════════════════════════
+   CROSS-CHAPTER NAVIGATION
+═══════════════════════════════════ */
+.chapter-nav-wrap{
+  margin:48px auto 32px;
+  max-width:920px;
+  padding:0 20px;
+}
+.chapter-nav-hdr{
+  text-align:center;
+  margin-bottom:24px;
+}
+.chapter-nav-title{
+  font-family:var(--display);
+  font-size:20px;
+  font-weight:700;
+  color:var(--t1);
+  margin-bottom:6px;
+}
+.chapter-nav-sub{
+  font-family:var(--serif);
+  font-size:13px;
+  color:var(--t3);
+  font-style:italic;
+}
+.chapter-nav-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:28px;
+}
+.chapter-nav-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+  text-decoration:none;
+  color:inherit;
+  transition:all .25s ease;
+  cursor:pointer;
+}
+.chapter-nav-card:hover{
+  border-color:var(--gold);
+  background:linear-gradient(135deg, var(--ele), rgba(233,180,70,.06));
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+.chapter-nav-prev{text-align:left}
+.chapter-nav-next{text-align:right;flex-direction:row}
+.chapter-nav-next .chapter-nav-meta{flex:1}
+.chapter-nav-arrow{
+  font-size:24px;
+  color:var(--gold);
+  font-weight:700;
+  flex-shrink:0;
+}
+.chapter-nav-meta{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.chapter-nav-pill{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:var(--t3);
+  text-transform:uppercase;
+  font-weight:700;
+}
+.chapter-nav-pill-next{color:var(--gold)}
+.chapter-nav-name{
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:700;
+  color:var(--t1);
+}
+.chapter-nav-desc{
+  font-family:var(--serif);
+  font-size:12px;
+  color:var(--t2);
+  font-style:italic;
+}
+.chapter-nav-related{
+  padding:18px;
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+}
+.chapter-nav-related-ttl{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--gold);
+  margin-bottom:12px;
+  text-transform:uppercase;
+}
+.chapter-nav-related-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:8px;
+}
+.chapter-nav-mini{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r1);
+  text-decoration:none;
+  color:inherit;
+  transition:all .2s ease;
+  font-size:12.5px;
+}
+.chapter-nav-mini:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+.chapter-nav-mini-code{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:1px;
+  color:var(--gold);
+  font-weight:700;
+  background:rgba(233,180,70,.1);
+  padding:2px 6px;
+  border-radius:4px;
+}
+.chapter-nav-mini-name{
+  font-family:var(--serif);
+  color:var(--t2);
+}
+@media (max-width:640px){
+  .chapter-nav-grid{grid-template-columns:1fr}
+  .chapter-nav-next{flex-direction:row}
+}
+
+
+/* TIER INDICATOR — Workspace badge */
+.ws-tier-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--ele, #1f1414);
+  border: 1px solid var(--bd, #2c1f1f);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.ws-tier-indicator.ws-tier-free {
+  border-left: 3px solid var(--t3, #888);
+}
+
+.ws-tier-indicator.ws-tier-free.ws-tier-full {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233,180,70,0.06), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator.ws-tier-standard {
+  border-left: 3px solid var(--blue, #4a90d9);
+  background: linear-gradient(135deg, rgba(74,144,217,0.04), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator.ws-tier-pro {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233,180,70,0.06), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator .ws-tier-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ws-tier-indicator .ws-tier-text {
+  flex: 1;
+  font-size: 13px;
+  color: var(--t2, #c5b8aa);
+  line-height: 1.4;
+  font-family: var(--mono, monospace);
+}
+
+.ws-tier-indicator .ws-tier-text strong {
+  color: var(--t1, #f4ede5);
+}
+
+.ws-tier-indicator .ws-tier-cta {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.ws-tier-indicator .ws-tier-cta:hover {
+  background: var(--gold-hover, #d4a13e);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .ws-tier-indicator {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .ws-tier-indicator .ws-tier-text {
+    font-size: 12px;
+  }
+}
+
+/* TIER_SYSTEM_CSS_INJECTED */
+/* ═══════════════════════════════════════════════════
+   MATURIRAJ.HR — TIER SYSTEM CSS
+   Paywall modal + sidebar badge + tier indicators
+   ═══════════════════════════════════════════════════ */
+
+/* ───────── PAYWALL OVERLAY ───────── */
+.mt-paywall-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: mt-fade-in 0.2s ease;
+}
+
+@keyframes mt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ───────── PAYWALL MODAL ───────── */
+.mt-paywall-modal {
+  position: relative;
+  background: var(--bg2, #1a1a1a);
+  border: 1px solid var(--bd, #333);
+  border-radius: 18px;
+  max-width: 920px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  padding: 32px 28px;
+  animation: mt-slide-up 0.3s ease;
+}
+
+@keyframes mt-slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.mt-paywall-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--bd, #333);
+  color: var(--t2, #aaa);
+  font-size: 22px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.mt-paywall-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--t1, #fff);
+  border-color: var(--gold, #e9b446);
+}
+
+/* ───────── PAYWALL HEADER ───────── */
+.mt-paywall-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--bd, #333);
+}
+
+.mt-paywall-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.mt-paywall-title {
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--t1, #fff);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.mt-paywall-subtitle {
+  font-size: 14px;
+  color: var(--t2, #aaa);
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ───────── PAYWALL TIERS ───────── */
+.mt-paywall-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mt-paywall-tier {
+  position: relative;
+  padding: 24px 22px;
+  background: var(--ele, #222);
+  border: 2px solid var(--bd, #333);
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.mt-paywall-tier:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mt-paywall-tier-recommended {
+  border-color: var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233, 180, 70, 0.06), var(--ele, #222));
+  box-shadow: 0 0 0 4px rgba(233, 180, 70, 0.08);
+}
+
+.mt-paywall-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.mt-paywall-tier-name {
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--t1, #fff);
+}
+
+.mt-paywall-tier-standard .mt-paywall-tier-name {
+  color: var(--blue, #4a90d9);
+}
+
+.mt-paywall-tier-pro .mt-paywall-tier-name {
+  color: var(--gold, #e9b446);
+}
+
+.mt-paywall-tier-price {
+  font-family: var(--mono, monospace);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--t1, #fff);
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+.mt-paywall-tier-price span {
+  font-size: 14px;
+  color: var(--t3, #888);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.mt-paywall-tier-features {
+  list-style: none;
+  margin: 0 0 18px 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--t2, #ccc);
+}
+
+.mt-paywall-tier-features li {
+  padding: 4px 0;
+  padding-left: 4px;
+}
+
+.mt-paywall-tier-features li strong {
+  color: var(--t1, #fff);
+}
+
+/* ───────── CTA BUTTONS ───────── */
+.mt-paywall-cta {
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--blue, #4a90d9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.2px;
+}
+
+.mt-paywall-cta:hover {
+  background: var(--blue-hover, #3578bf);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(74, 144, 217, 0.3);
+}
+
+.mt-paywall-cta-pro {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+}
+
+.mt-paywall-cta-pro:hover {
+  background: var(--gold-hover, #d4a13e);
+  box-shadow: 0 6px 18px rgba(233, 180, 70, 0.3);
+}
+
+/* ───────── PAYWALL FOOTER ───────── */
+.mt-paywall-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--t3, #888);
+  padding-top: 18px;
+  border-top: 1px solid var(--bd, #333);
+}
+
+.mt-paywall-link {
+  color: var(--blue, #4a90d9);
+  text-decoration: none;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.mt-paywall-link:hover {
+  color: var(--gold, #e9b446);
+  text-decoration: underline;
+}
+
+.mt-paywall-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mt-paywall-divider {
+  margin: 0 8px;
+  color: var(--t3, #888);
+}
+
+/* ───────── SIDEBAR TIER BADGE ───────── */
+.mt-tier-badge {
+  margin: 12px;
+  padding: 10px 12px;
+  background: var(--ele, #222);
+  border: 1px solid var(--bd, #333);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mt-tier-badge-free {
+  border-left: 3px solid var(--t3, #888);
+}
+
+.mt-tier-badge-standard {
+  border-left: 3px solid var(--blue, #4a90d9);
+}
+
+.mt-tier-badge-pro {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233, 180, 70, 0.04), var(--ele, #222));
+}
+
+.mt-tier-badge-label {
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--t1, #fff);
+}
+
+.mt-tier-badge-cta {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mt-tier-badge-cta:hover {
+  background: var(--gold-hover, #d4a13e);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(233, 180, 70, 0.3);
+}
+
+/* ───────── MOBILE ───────── */
+@media (max-width: 720px) {
+  .mt-paywall-modal {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+  
+  .mt-paywall-title {
+    font-size: 20px;
+  }
+  
+  .mt-paywall-icon {
+    font-size: 40px;
+  }
+  
+  .mt-paywall-tiers {
+    grid-template-columns: 1fr;
+  }
+  
+  .mt-paywall-tier-price {
+    font-size: 28px;
+  }
+  
+  .mt-tier-badge {
+    margin: 8px;
+    padding: 8px 10px;
+  }
+  
+  .mt-tier-badge-cta {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}
+
+
+/* CHEAT-CARD (auto-injected) */
+.cheat-card{background:linear-gradient(135deg,rgba(233,180,70,0.04),var(--card,#1a1010));border:1px solid var(--gold,#e9b446);border-radius:14px;padding:18px 22px}
+.cheat-hdr{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdm,#2c1f1f)}
+.cheat-eye{font-family:var(--mono,monospace);font-size:10px;font-weight:800;color:var(--gold,#e9b446);letter-spacing:1.2px;margin-bottom:4px}
+.cheat-ttl{font-family:var(--serif,'Fraunces',serif);font-size:16px;font-weight:700;color:var(--t1,#f4ede5)}
+.cheat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.cheat-col-wide{grid-column:1/-1}
+
+  </style>
+        <div class="diag-intro">
+          <div class="diag-intro-icon">🎯</div>
+          <div class="diag-intro-body">
+            <h4>Provjeri gdje si s H15 — August Šenoa · Prijan Lovro · Hrvatski realizam</h4>
+            <p>5 pitanja (&lt;2 min). Na kraju: personalizirana preporuka gdje započeti učiti. Rezultat se ne sprema.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+            <button class="diag-btn diag-btn-primary" onclick="diag0Start()">▶ Pokreni dijagnostiku</button>
+            <button class="diag-btn diag-btn-ghost" onclick="diag0Skip()">Preskoči — odmah na sadržaj ↓</button>
+          </div>
+        </div>
+        <div class="diag-quiz" id="diag0-quiz">
+          <div class="diag-q" id="diag0-q"></div>
+          <div class="diag-opts" id="diag0-opts"></div>
+          <div class="diag-prog-wrap">
+            <div class="diag-prog-txt">Pitanje <span id="diag0-idx">1</span> / 5</div>
+            <div class="diag-bar"><div class="diag-prog-bar" id="diag0-bar" style="width:0%"></div></div>
+            <div class="diag-prog-num"><span id="diag0-correct">0</span> točno</div>
+          </div>
+        </div>
+        <div class="diag-result">
+          <div class="diag-res-msg" id="d0rtitle">Rezultat</div>
+          <div class="diag-rec" id="d0rdesc"></div>
+          <button class="fcb" onclick="diag0Reset()" style="margin-right:8px">↩ Ponovi</button>
+          <button class="fcb primary" id="d0rbtn" onclick="sw(1)">→ 5 dijelova pripovijetke</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEC 01: Hrvatski realizam — kontekst -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01 · Hrvatski realizam — književni pokret (1865.–1900.)</div><div class="sec-line"></div></div>
+
+    <p><strong>Realizam</strong> je europski književni pokret sredine 19. st. koji istiskuje romantizam. Cilj: vjeran, nepristran prikaz <em>svakodnevnog života</em> — psihologija likova, društvena kritika, detaljni opisi. U Hrvatskoj počinje s <strong>Augustom Šenoom</strong> i traje do moderne (~1900.).</p>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Obilježje</th><th>Romantizam (1. pol. 19. st.)</th><th>Realizam (2. pol. 19. st.)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cilj</strong></td><td>Emotivni izraz, nacionalno buđenje</td><td>Vjeran prikaz stvarnosti, psihologija</td></tr>
+          <tr><td><strong>Likovi</strong></td><td>Idealizirani, polarizirani (Dobro/Zlo)</td><td><strong>Složeni, psihološki razrađeni</strong></td></tr>
+          <tr><td><strong>Teme</strong></td><td>Nacionalna borba, priroda, strast</td><td><strong>Društvene nejednakosti, svakodnevica</strong></td></tr>
+          <tr><td><strong>Stil</strong></td><td>Patos, emocije, slikovitost</td><td>Detaljni opisi, objektivnost, analiza</td></tr>
+          <tr><td><strong>Žanrovi</strong></td><td>Spjev, oda, budnica</td><td><strong>Roman, pripovijetka, drama</strong></td></tr>
+          <tr><td><strong>Hrv. predstavnici</strong></td><td>Mažuranić, Preradović, Vraz</td><td><strong>Šenoa</strong>, Kovačić, Novak, Kumičić, Gjalski</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-warn" style="display:flex;gap:14px;align-items:flex-start">
+      <div class="bw-ico">📚</div>
+      <div class="bw-body">
+        <div class="bw-title">„Šenoino doba" — 1865.–1881.</div>
+        <div class="bw-txt"><strong>Šenoa toliko dominira</strong> hrv. književnošću sredinom 19. st. da se <em>cijelo razdoblje zove po njemu</em>. Od povratka u Zagreb 1865. do smrti 1881. Šenoa je urednik <em>Vijenca</em>, pisac, kritičar, gradski bilježnik. Proizvodi pripovijetke, romane, povjestice, kritike. <strong>Stvara hrv. književnu publiku.</strong></div>
+      </div>
+    </div>
+
+    <!-- SEC 02: Kronologija realizma i Šenoa -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02 · Kronologija — Šenoa i razvoj hrv. realizma</div><div class="sec-line"></div></div>
+
+    <div class="timeline">
+      <div class="tl-event milestone"><div class="tl-year">1838.</div><div class="tl-title">August Šenoa rođen u Zagrebu</div><div class="tl-desc">Otac Čeh (Alois Šenoa), majka Slovakinja. Obitelj se kasnije pohrvaćuje. Odrastao na Gornjem gradu.</div></div>
+      <div class="tl-event"><div class="tl-year">1857.–1858.</div><div class="tl-title">Šenoa studira pravo u Zagrebu</div><div class="tl-desc">Piše prve književne pokušaje. Počinje objavljivati pjesme u <em>Danici</em>.</div></div>
+      <div class="tl-event"><div class="tl-year">1859.–1865.</div><div class="tl-title">Studij prava u Pragu</div><div class="tl-desc">Tu se druži s češkim realistima, upoznaje cimera koji postaje model za <strong>prijana Lovru</strong>. Piše pjesme, povjestice, kritike.</div></div>
+      <div class="tl-event milestone"><div class="tl-year">1866.</div><div class="tl-title">★ Povratak u Zagreb · Šenoino doba počinje</div><div class="tl-desc">Šenoa postaje urednik Pozora, kasnije Vijenca. Gradski bilježnik, dramaturg HNK-a. Središte hrv. kulturnog života.</div></div>
+      <div class="tl-event"><div class="tl-year">1871.</div><div class="tl-title">Zlatarevo zlato objavljeno</div><div class="tl-desc">Prvi hrv. povijesni roman. Uzima temu iz stare zagrebačke povijesti (16. st.). Pokreće modu povijesnog romana.</div></div>
+      <div class="tl-event"><div class="tl-year">1872.</div><div class="tl-title">Povjestice — zbirka lirsko-epskih pjesama</div><div class="tl-desc">Smrt Petra Svačića, Propast Venecije, Kameni svatovi, Kugina kuća, Anka Neretkinja. Pjesnički pandan povijesnim romanima.</div></div>
+      <div class="tl-event milestone"><div class="tl-year">1873.</div><div class="tl-title">★ PRIJAN LOVRO objavljen u Vijencu</div><div class="tl-desc">„Praška novela" — Šenoa koristi uspomene iz Praga. Uokvirena pripovijetka o tragičnoj sudbini seoskog intelektualca. <strong>Obvezatno čitanje 2026.</strong></div></div>
+      <div class="tl-event"><div class="tl-year">1874.</div><div class="tl-title">Šenoa preuzima uredništvo Vijenca</div><div class="tl-desc">Vijenac postaje <em>glavno književno glasilo epohe</em>. Šenoa objavljuje sve nove hrv. autore: Kovačića, Gjalskog, Kumičića.</div></div>
+      <div class="tl-event"><div class="tl-year">1876.</div><div class="tl-title">Čuvaj se senjske ruke</div><div class="tl-desc">Povijesni roman o uskocima Senjskima. Još jedan povijesni bestseller.</div></div>
+      <div class="tl-event"><div class="tl-year">1877.</div><div class="tl-title">Seljačka buna</div><div class="tl-desc">Možda najvažniji Šenoin povijesni roman — o Matiji Gupcu i seljačkoj buni 1573.</div></div>
+      <div class="tl-event"><div class="tl-year">1881.</div><div class="tl-title">Smrt Augusta Šenoe (43 god.)</div><div class="tl-desc">Umire u 43. godini od neriješene kontuzije dobivene u potresu. Ostavlja nedovršen roman <em>Kletva</em> (dovršava Vjekoslav Klaić).</div></div>
+      <div class="tl-event"><div class="tl-year">1884.–1900.</div><div class="tl-title">Hrv. realizam nakon Šenoe</div><div class="tl-desc">Procvat — Ante Kovačić (U registraturi), Ksaver Šandor Gjalski, Josip Kozarac, Vjenceslav Novak (Posljednji Stipančići), Eugen Kumičić.</div></div>
+    </div>
+
+    <!-- SEC 03: August Šenoa — život i opus -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">03 · August Šenoa — život i opus</div><div class="sec-line"></div></div>
+
+    <div id="h15-react-author-senoa"></div>
+
+    <!-- SEC 04: Prijan Lovro — nastanak i karakter -->
+    <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Prijan Lovro (1873.) je <b>pripovijetka</b> (ne roman!) u 5 dijelova. Prati silazni luk glavnog lika: od ambicije i nade do poraza i odricanja. Tip ispitnog pitanja: zašto Lovro ne uspijeva? (Društvo vs. karakter)</div></div>
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">04 · Prijan Lovro — nastanak i karakter djela</div><div class="sec-line"></div></div>
+
+    <p>Pripovijetka je nastala <strong>1873.</strong> i objavljena u <em>Vijencu</em>. Poznata kao <strong>„praška novela"</strong> — Šenoa koristi uspomene iz svog studija u Pragu (1859.–1865.). <em>Autobiografski elementi</em>: Šenoin stvarni cimer u Pragu služi kao model za lik Lovre. Šenoa u djelu je <strong>pripovjedač</strong>, ne glavni lik.</p>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Element</th><th>Činjenica</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Godina nastanka</strong></td><td>Napisana i objavljena <strong>1873.</strong></td></tr>
+          <tr><td><strong>Mjesto objave</strong></td><td>Časopis <em>Vijenac</em> (Zagreb, glavno hrv. glasilo)</td></tr>
+          <tr><td><strong>Žanr</strong></td><td><strong>Pripovijetka / novela</strong> (kraća, više dijelova — bliska romanu)</td></tr>
+          <tr><td><strong>Tehnika pripovijedanja</strong></td><td><strong>Uokvirena pripovijetka</strong> (priča u priči)</td></tr>
+          <tr><td><strong>Struktura</strong></td><td><strong>5 dijelova</strong> — uvodni okvir + 4 dijela Lovrine priče</td></tr>
+          <tr><td><strong>Nadimak djela</strong></td><td>„Praška novela", „Werther hrvatske književnosti"</td></tr>
+          <tr><td><strong>Stilski pravac</strong></td><td><strong>Protorealizam</strong> — miks realizma (tematika, društvena kritika) + romantizma (opisi, emocije)</td></tr>
+          <tr><td><strong>Autobiografska dimenzija</strong></td><td>Lovro je baziran na Šenoinom stvarnom cimeru iz Praga. Šenoa u djelu je pripovjedač.</td></tr>
+          <tr><td><strong>Mjesto radnje</strong></td><td>Selo (okvir) → selo gdje Lovro živi → Zagreb → Prag → povratak</td></tr>
+          <tr><td><strong>Vrijeme radnje</strong></td><td>Sredina 19. st. — doba Šenoinog studija</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Što je protorealizam i zašto je Prijan Lovro protorealistički?</div>
+      <div class="box-key-txt">
+        <strong>Protorealizam</strong> = prijelazna faza između romantizma i pravog realizma (1860-e). Obilježja: <em>realistične teme i problemi</em>, ali <em>romantičarska stilska sredstva</em>. <br><br>
+        Prijan Lovro ima: <strong>realistične elemente</strong> — društvena tematika (siromaštvo, klase), psihološka karakterizacija, vjerodostojni likovi, autobiografska osnova. <strong>Romantičarske elemente</strong> — opisi prirode, patos, idealizirani junak, tragični kraj (samoubojstvo). <br><br>
+        <em>„Šenoa je utemeljitelj i najznačajniji predstavnik hrv. protorealizma."</em>
+      </div>
+    </div>
+
+    <!-- SEC 05: 5 dijelova pripovijetke -->
+    <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">5 dijelova Prijana Lovre: <b>Mladost → Ljubav → Karijera → Slom → Poraz</b> (općenito). Svaki dio je korak prema propasti. Na ispitu može doći ulomak iz bilo kojeg dijela — prepoznaj koji je i objašnjeni kontekst.</div></div>
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">05 · 5 dijelova pripovijetke — kompozicija</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Dio</th><th>Radnja</th><th>Funkcija</th></tr></thead>
+        <tbody>
+          <tr><td><strong>I. Uvodni okvir</strong></td><td>Šenoa dolazi kod prijatelja u berbu na selo. Susjedno društvo. Udovica Hrvatica traži priču. Šenoa počinje pričati o Lovri</td><td>Okvir — uvodi pripovjedača i motiv pripovijedanja</td></tr>
+          <tr><td><strong>II. Lovrino djetinjstvo</strong></td><td>Lovro odrasta u siromašnoj seoskoj obitelji. Roditelji žele da postane svećenik — školuju ga uz velike žrtve</td><td>Ekspozicija glavnog lika + društveni kontekst</td></tr>
+          <tr><td><strong>III. Škola i odustanak od svećenstva</strong></td><td>Lovro uvida da svećenstvo ne odgovara njegovom slobodnom duhu. Odustaje. Postaje učitelj kod grofa. Upoznaje <em>Malvinu</em> (prva ljubav, grofova kći) — ona ga odbija zbog klasnog porijekla</td><td>Prva borba s društvenim preprekama</td></tr>
+          <tr><td><strong>IV. Prag i Minka</strong></td><td>Lovro odlazi u Prag na studij. Tu se Šenoa i Lovro upoznaju kao cimeri. Lovro razmišlja oženiti se bogatom <em>Minkom</em> radi miraza — Šenoa mu otvara oči. Lovro se vraća kući</td><td>Središnji dio — tema novca i ljubavi</td></tr>
+          <tr><td><strong>V. Anđelija i tragedija</strong></td><td>Lovro se zaljubljuje u <em>Anđeliju</em>. Žele se vjenčati. Obitelj ga optužuje da je pohlepnik (hoće novac Minke). Anđelija odustaje. <strong>Lovro si prereže grkljan pred njom.</strong></td><td>Tragični kraj — razaranje idealista</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">💡 Kompozicijski ključevi</div>
+      <div class="box-signal-txt">
+        <strong>1. Uokvirena pripovijetka</strong> — priča u priči. Šenoa je <em>vanjski pripovjedač</em>, priča o Lovri koje je poznavao. Tehnika stvara <em>emocionalnu distancu</em> i autoritet svjedoka. <br>
+        <strong>2. Retrospektivna naracija</strong> — Lovrina priča se iznosi nakon njegove smrti. Čitatelj zna da priča neće dobro završiti — raste napetost. <br>
+        <strong>3. Psihosocijalni kontrasti</strong> — <em>želja vs. mogućnost</em> (glavni), grad vs. selo, duhovno vs. svjetovno, bogatstvo vs. siromaštvo. Šenoa gradi sukobe na tim osima.
+      </div>
+    </div>
+
+    <!-- SEC 06: Glavni likovi -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">06 · Glavni likovi — karakterizacija</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Lik</th><th>Opis</th><th>Karakterizacija</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Prijan Lovro</strong></td><td>Glavni lik, seoski mladić</td><td>Inteligentan, idealist, slobodouman; <em>želi biti ravnopravan građanin</em>; voli poeziju (iako sam ne piše); tragični junak; psihološki složen</td></tr>
+          <tr><td><strong>August (Šenoa)</strong></td><td>Pripovjedač, Lovrin prijatelj i cimer u Pragu</td><td>Razborit, svjetovan, kritičan; služi kao <em>Lovrin glas razuma</em>; svjedok njegove propasti</td></tr>
+          <tr><td><strong>Malvina</strong></td><td>Grofova kći (prva Lovrina ljubav)</td><td>Plemenitaška djevojka; <em>odbija Lovru zbog klasnog porijekla</em>; simbol nepremostivih društvenih granica</td></tr>
+          <tr><td><strong>Minka</strong></td><td>Bogata djevojka u Pragu (potencijalni brak iz računa)</td><td>Stara usidjelica; Lovro ju razmatra radi miraza; Šenoa ga odgovara (otac ima šest djece)</td></tr>
+          <tr><td><strong>Anđelija</strong></td><td>Posljednja Lovrina ljubav</td><td>Voli Lovru; <em>odustaje od braka</em> kad joj kažu da je Lovro u ljubavnom skandalu s Minkom; nevine žrtva spletki</td></tr>
+          <tr><td><strong>Lovrin otac</strong></td><td>Siromašan seljak</td><td>Tvrd, radišan; ulaže u sinovo školovanje velike žrtve; simbol seljačke ambicije za djecu</td></tr>
+          <tr><td><strong>Kanonik</strong></td><td>Crkveni autoritet koji školuje Lovru</td><td>Nastoji zadržati Lovru u svećenstvu; predstavlja institucionalne pritiske</td></tr>
+          <tr><td><strong>Udovica Hrvatica</strong></td><td>Slušateljica Šenoine priče (u okviru)</td><td>Lijepa, mlada, crnokosa, udovica; <em>potiče Šenou na pripovijedanje</em>; refleksivna strana okvirne priče</td></tr>
+          <tr><td><strong>Grof i obitelj</strong></td><td>Lovrini poslodavci (kod kojih je učitelj)</td><td>Primaju ga s toplinom i jednakosti; <em>ali sam Lovro se ne uklapa</em> zbog unutarnjeg stigme</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEC 07: Teme i ideje -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">07 · Teme i ideja djela</div><div class="sec-line"></div></div>
+
+    <div class="sc-grid">
+      <div class="sc">
+        <span class="sc-ico hchip go">TEMA 1</span>
+        <div class="sc-name">Propast intelektualca sa sela</div>
+        <div class="sc-desc">Težnja čovjeka da se iz <em>primitivne seoske sredine</em> uzdigne do ravnopravnog građanina. Lovrov put: siromah → svećenik (odustaje) → učitelj → student u Pragu → tragični kraj. Tema univerzalna: klasno propinjanje.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip br">TEMA 2</span>
+        <div class="sc-name">Sukob s malograđanskim društvom</div>
+        <div class="sc-desc">Društvo (plemstvo, crkva, građanstvo) <em>guši individualni talent</em>. Malvina ga odbija zbog klase; društvo ga optužuje za pohlepu. Šenoa kritizira <strong>institucije koje guše pojedinca</strong>.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip te">TEMA 3</span>
+        <div class="sc-name">Ljubav i novac — sukob ideala i stvarnosti</div>
+        <div class="sc-desc">Lovro sanja idealnu ljubav ali stvarnost traži novac. <em>Misao o ženidbi iz računa (Minka) razara njegov moralni integritet</em>. Šenoa propituje: može li idealist preživjeti u materijalističkom svijetu?</div>
+      </div>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Glavna ideja djela</div>
+      <div class="box-key-txt">
+        <strong>Tragedija idealista u malograđanskom društvu.</strong> Lovro je inteligentan, slobodouman, talentiran — ali <em>nijedna institucija (crkva, škola, plemstvo, brak) ne dopušta mu slobodan razvoj</em>. Njegov kraj (samoubojstvo) nije osobna slabost — <strong>to je sudbina koju mu društvo nameće</strong>. Šenoa kroz Lovru propituje <em>mogućnost društvene pravde u 19. st. Hrvatskoj</em>. Pripovijetka je <strong>socijalno-psihološka tragedija</strong>.
+      </div>
+    </div>
+
+    <!-- SEC 08: Stil i jezik -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">08 · Stil i jezik — kako Šenoa gradi priču</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Element</th><th>Obilježje u Prijanu Lovri</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Uokvirena pripovijetka</strong></td><td>Priča u priči — Šenoa (u okviru) priča udovici o Lovri. Tehnika stvara emocionalnu distancu i autoritet svjedoka.</td></tr>
+          <tr><td><strong>Retrospektivna naracija</strong></td><td>Lovrov život se pripovijeda nakon njegove smrti. Čitatelj zna kraj — napetost raste kroz slutnju.</td></tr>
+          <tr><td><strong>Psihološka karakterizacija</strong></td><td>Šenoa ulazi u <em>Lovrinu unutrašnjost</em> — misli, dvojbe, borbe. Obilježje realizma.</td></tr>
+          <tr><td><strong>Opisni pasaži</strong></td><td>Slikoviti opisi prirode, društva, interijera — s elementima romantičarske ljepote. Miks stilova.</td></tr>
+          <tr><td><strong>Dijalozi</strong></td><td>Razvijeni, življi, s različitim registrima po liku (seljak, plemić, student, kanonik).</td></tr>
+          <tr><td><strong>Hrvatski jezik</strong></td><td>Šenoa stabilizira hrv. književni jezik — štokavština ijekavica, ali s turcizmima, germanizmima i latinizmima primjerenima liku.</td></tr>
+          <tr><td><strong>Sociološka preciznost</strong></td><td>Svaki lik govori u skladu s klasom i obrazovanjem. Županikovski registar ↔ seljački govor.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="featured-quote" data-cit-cat="lovro">
+      <span class="fq-napamet">★ NAPAMET</span>
+      <div class="fq-mark">«</div>
+      <div class="fq-body">
+        <div class="fq-text">Inteligentan seoski mladić koji se bori i gubi u ratu s malograđanskim društvom.</div>
+        <div class="fq-meta">— Sinteza interpretacije Prijana Lovre · <strong>Ključna teza</strong> za esej / ulomak</div>
+      </div>
+      <button type="button" class="fq-copy" onclick="fqCopy(this,'Inteligentan seoski mladić koji se bori i gubi u ratu s malograđanskim društvom. — Sinteza interpretacije Prijana Lovre')">⎘</button>
+    </div>
+
+    <!-- SEC 09: Realizam vs. protorealizam -->
+    <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Realizam vs. romantizam u djelu: Šenoa zadržava <b>romantičarski sentimentalizam</b> (Lovro kao idealist), ali dodaje <b>realistiku socijalnu kritiku</b> (gladička birokratska Hrvatska). Zato se govori o <em>protoreaŠenoealizmu</em>.</div></div>
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">09 · Realizam i protorealizam — obilježja djela</div><div class="sec-line"></div></div>
+
+    <p>Prijan Lovro je na <em>granici romantizma i realizma</em>. Zato ga zovemo <strong>protorealističnim</strong>. Evo kako se obilježja obje pokreta očituju u djelu:</p>
+
+    <div class="sc-grid">
+      <div class="sc">
+        <span class="sc-ico hchip go">REALIZAM 1</span>
+        <div class="sc-name">Društvena kritika</div>
+        <div class="sc-desc">Tema klasnih nejednakosti, crkvenog institucionalizma, malograđanske moralnosti. Lovro <em>žrtva društva</em>, ne sudbine.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip br">REALIZAM 2</span>
+        <div class="sc-name">Psihološka karakterizacija</div>
+        <div class="sc-desc">Šenoa ulazi u Lovrinu <em>unutrašnju borbu</em> — dvojbe, strahovi, ambicije. Ne idealiziran, nego vjerodostojan.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip te">REALIZAM 3</span>
+        <div class="sc-name">Autobiografska osnova</div>
+        <div class="sc-desc">Lovro je bazen na stvarnom Šenoinom cimeru u Pragu. <em>„Sve što je Lovro doživio Šenoa je vjerodostojno prepričao."</em></div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip pa">ROMANTIZAM 1</span>
+        <div class="sc-name">Romantičarski opisi</div>
+        <div class="sc-desc">Krajolik, ljubavne scene, emotivne situacije — slikovite, s pjesničkim figurama. <em>Opisni pasaži su romantičarski.</em></div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip go">ROMANTIZAM 2</span>
+        <div class="sc-name">Idealizirani junak</div>
+        <div class="sc-desc">Lovro je <em>tragični idealist</em> — romantičarski tip junaka koji ne može živjeti u kompromisima. Nalik Wertheru.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip br">ROMANTIZAM 3</span>
+        <div class="sc-name">Patetični kraj</div>
+        <div class="sc-desc">Samoubojstvo iz ljubavi = tipično romantičarski motiv. Šenoa ne prikazuje hladno, nego patetično i emocionalno.</div>
+      </div>
+    </div>
+
+    <!-- SEC 10: Stilska sredstva -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">10 · Stilska sredstva — za analizu ulomka</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Sredstvo</th><th>Primjer / kontekst iz djela</th><th>Učinak</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Epitet</strong></td><td>„mutno popodne", „zlatna kapljica" (o vinu), „crnooka mlada gospođa" (udovica)</td><td>Slikovitost, atmosfera</td></tr>
+          <tr><td><strong>Opis (deskripcija)</strong></td><td>Detaljni opisi Lovrinog vanjskog izgleda, prostora, društva u berbi</td><td>Realistička tehnika — stvarnost kroz detalj</td></tr>
+          <tr><td><strong>Dijalog</strong></td><td>Karakteristični razgovori — župnikov politički ton, sudčev voćarski interes, sudinjina jednostavnost</td><td>Karakterizacija likova kroz govor</td></tr>
+          <tr><td><strong>Monolog / unutarnji govor</strong></td><td>Lovrove misli, dvojbe oko Minke, oklijevanja oko svećenstva</td><td>Psihološki realizam</td></tr>
+          <tr><td><strong>Kontrast</strong></td><td>Lovro (selo, siromaštvo) vs. Malvina (grad, plemstvo); ideali vs. stvarnost</td><td>Tematska gradnja sukoba</td></tr>
+          <tr><td><strong>Metafora</strong></td><td>„Werther hrvatske književnosti"; „rat s malograđanskim društvom"</td><td>Stvaranje asocijacija s europskom tradicijom</td></tr>
+          <tr><td><strong>Retrospekcija</strong></td><td>Šenoa priča o Lovri koji je već mrtav</td><td>Generira napetost, moralnu težinu svjedoka</td></tr>
+          <tr><td><strong>Okvirna priča</strong></td><td>Berba + udovica kao uvod; Lovrina priča kao unutarnja pripovijest</td><td>Distanca i autoritet pripovjedača</td></tr>
+          <tr><td><strong>Ironijske note</strong></td><td>Opisi seoskog društva (župnikove „Napoleonove misli", sudčevo hvaljenje voćke)</td><td>Šenoina socijalna ironija</td></tr>
+          <tr><td><strong>Aluzija</strong></td><td>„Werther" (Goethe), Napoleon, praški studentski život</td><td>Kulturni kontekst — Šenoa kao obrazovan pisac</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEC 11: Konekti -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">11 · H15 i ostalo gradivo — kako se spaja</div><div class="sec-line"></div></div>
+
+    <div class="sc-grid">
+      <div class="sc">
+        <span class="sc-ico hchip br">H14</span>
+        <div class="sc-name">H15 ← H14 (Preporod · Mažuranić)</div>
+        <div class="sc-desc">Mažuranić (romantizam, preporod) prethodi Šenoi (realizam). Razlika: Mažuranić = nacionalni spjev; Šenoa = individualna priča. Šenoa je <em>druga generacija</em> koja gradi na preporodnim temeljima, ali već piše u novom stilu.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip go">H16</span>
+        <div class="sc-name">H15 → H16 (Krleža i moderna)</div>
+        <div class="sc-desc">Krleža (moderna, 20. st.) je <em>nadogradnja realizma</em> Šenoe. Obojica kritiziraju malograđansko hrv. društvo — Šenoa blago, Krleža oštro. Lovro je prethodnik Filipa Latinovicza i glembajevske tragedije.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip te">D16</span>
+        <div class="sc-name">H15 ↔ D16 (Novak · Posljednji Stipančići)</div>
+        <div class="sc-desc">Novak piše nakon Šenoe (1899.), u razvijenom hrv. realizmu. <strong>Obje su tragedije propadanja</strong> — Lovro propada pojedinačno, Stipančići kao obitelj. ispitno djelo 2026.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip pa">H17</span>
+        <div class="sc-name">H15 → H17 (Stilske figure)</div>
+        <div class="sc-desc">Prijan Lovro ima miješane figure — realističnu deskripciju i romantičarski epitet. Dobar primjer za <em>protorealističku analizu ulomka</em>.</div>
+      </div>
+    </div>
+
+    <!-- SEC 12: Ključni kontrasti -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">12 · Psihosocijalni kontrasti — za interpretaciju</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Kontrast</th><th>Strana A</th><th>Strana B</th><th>Funkcija</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Želja ↔ Mogućnost</strong></td><td>Što Lovro žudi</td><td>Što društvo dopušta</td><td><em>Glavni sukob</em> — temelj tragedije</td></tr>
+          <tr><td><strong>Grad ↔ Selo</strong></td><td>Zagreb, Prag (obrazovanje)</td><td>Lovrino rodno selo (siromaštvo)</td><td>Socio-geografska napetost</td></tr>
+          <tr><td><strong>Duhovno ↔ Svjetovno</strong></td><td>Svećenstvo, crkva</td><td>Obrazovanje, književnost, ljubav</td><td>Institucionalni pritisak</td></tr>
+          <tr><td><strong>Bogatstvo ↔ Siromaštvo</strong></td><td>Plemstvo, Minka</td><td>Lovrina obitelj, sam Lovro</td><td>Klasna nejednakost</td></tr>
+          <tr><td><strong>Ideal ↔ Stvarnost</strong></td><td>Ljubav, sloboda, jednakost</td><td>Brak iz računa, staleška pravila</td><td>Moralna disonanca</td></tr>
+          <tr><td><strong>Malvina ↔ Anđelija</strong></td><td>Prva ljubav — odbija</td><td>Posljednja — odustaje</td><td>Dvije tragedije u životu Lovre</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEC 13: Šenoa na prstu -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">13 · Šenoa na prstu — 60 sekundi</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Pitanje</th><th>Odgovor</th></tr></thead>
+        <tbody>
+          <tr><td>Tko je autor Prijana Lovre?</td><td><strong>August Šenoa</strong> (1838.–1881.), Zagreb</td></tr>
+          <tr><td>Kada je nastala pripovijetka?</td><td>Objavljena <strong>1873.</strong> u časopisu <em>Vijenac</em></td></tr>
+          <tr><td>Koji je žanr djela?</td><td>Pripovijetka (novela) · uokvirena · protorealistička</td></tr>
+          <tr><td>Koji stilski pravac?</td><td><strong>Protorealizam</strong> — miks realizma i romantizma</td></tr>
+          <tr><td>Koliko dijelova?</td><td><strong>5 dijelova</strong> — uvodni okvir + 4 dijela Lovrine priče</td></tr>
+          <tr><td>Tko je pripovjedač?</td><td><strong>August Šenoa sam</strong> — u okvirnoj priči, kao Lovrin prijatelj</td></tr>
+          <tr><td>Zašto se zove „praška novela"?</td><td>Šenoa koristi uspomene iz svog studija u Pragu (1859.–1865.)</td></tr>
+          <tr><td>Tko je glavni lik?</td><td>Lovro — seoski intelektualac, Šenoin cimer u Pragu</td></tr>
+          <tr><td>Kako Lovro umire?</td><td>Samoubojstvom — britvom si prereže grkljan pred Anđelijom</td></tr>
+          <tr><td>Zašto se zove „Werther hrvatske književnosti"?</td><td>Tragedija mladog intelektualca koji si oduzima život — paralela s Goetheovim Wertherom</td></tr>
+          <tr><td>Koja je glavna tema?</td><td>Propast intelektualca sa sela u malograđanskom društvu</td></tr>
+          <tr><td>Što je „Šenoino doba"?</td><td>Razdoblje 1865.–1881. kada Šenoa dominira hrv. književnošću</td></tr>
+          <tr><td>Obvezatno čitanje 2026?</td><td><strong>★ DA</strong> — obvezatno djelo za cjelovito čitanje</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEC 14: Samoprocjena -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">14 · Samoprocjena — jesi li spreman/a?</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">✅ Označi što znaš — dobivaš live score</div>
+      <div class="box-int-txt">Ne „mislim da znam". Označi samo ono što stvarno znaš, i gdje si siguran/sigurna.</div>
+    </div>
+
+    <div id="sc-list"></div>
+    <div id="sc-score" style="margin-top:14px"></div>
+
+    <!-- SEC 15: Finalni pregled -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">15 · Finalni pregled — sve u 3 minute</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">⚡ Recap — sve ključno u 5 rečenica</div>
+      <div class="box-key-txt">
+        <strong>1.</strong> <strong>August Šenoa</strong> (1838.–1881.) je otac hrvatskog realizma i dominantna figura <em>Šenoinog doba</em> (1865.–1881.). <br>
+        <strong>2.</strong> <strong>Prijan Lovro</strong> (1873., Vijenac) je uokvirena pripovijetka u 5 dijelova — „praška novela" s autobiografskom osnovom. <br>
+        <strong>3.</strong> <strong>Radnja:</strong> Seoski mladić Lovro se bori protiv klasnih prepreka (crkva, plemstvo, siromaštvo); odustaje od svećenstva, odlazi u Prag, razmatra brak iz računa s Minkom; konačno se zaljubljuje u Anđeliju koja ga odbija — Lovro si oduzima život. <br>
+        <strong>4.</strong> <strong>Ideja:</strong> <em>tragedija idealista u malograđanskom društvu</em> — društvo guši talentirane pojedince. <br>
+        <strong>5.</strong> <strong>Stil:</strong> <em>protorealizam</em> — realistička tematika i psihologija, romantičarski opisi i patetični kraj. Djelo je zvano „<em>Werther hrvatske književnosti</em>".
+      </div>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">✍ Tri gotove teze za rad o Prijanu Lovri</div>
+      <div class="box-signal-txt">
+        <em>1. „Prijan Lovro je protorealistička pripovijetka — realistička tema (klasna nejednakost, društveni pritisak) obojena je romantičarskim stilskim sredstvima (patetični kraj, idealizirani junak), što ga čini tipičnim djelom Šenoinog doba na granici dva književna smjera."</em><br><br>
+        <em>2. „Lovrova tragedija nije osobna slabost, nego posljedica sustavnih društvenih ograničenja — crkva mu ne dopušta sloboduman duh, plemstvo odbija seoskog učitelja, a ljubavne veze propadaju zbog klasnih i materijalnih prepreka; Šenoa time pruža oštru kritiku malograđanskog hrv. društva."</em><br><br>
+        <em>3. „Tehnika uokvirene pripovijetke i retrospektivne naracije služi stvaranju <em>emocionalne distance</em> i <em>moralnog autoriteta</em> pripovjedača Šenoe — čitatelj unaprijed zna da Lovro neće preživjeti, što pojačava tragičnu napetost i pretvara priču u svjedočanstvo o jednoj izgubljenoj generaciji intelektualaca."</em>
+      </div>
+    </div>
+
+    <!-- SEC 16: Nasljeđe -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">16 · Nasljeđe djela i Šenoino doba</div><div class="sec-line"></div></div>
+
+    <div class="sc">
+      <div class="sc-name">📚 Prijan Lovro kao prekretnica hrv. proze</div>
+      <div class="sc-desc">Pripovijetka uvodi <strong>psihološki realizam</strong> u hrv. književnost. Prije Šenoe: romantičarski idealizirani junaci. Nakon Šenoe: složeni, vjerodostojni likovi. Djelo je <em>most između romantizma i punog realizma</em>.</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">🏛 Šenoino doba — 16 godina hegemonije</div>
+      <div class="sc-desc">Od 1865. do 1881. Šenoa je <strong>centralna figura</strong> hrv. književne kulture. Urednik Vijenca, pisac bestselera, kritičar, organizator. <em>Razvija hrv. književnu publiku</em> — sada knjige imaju tisuće čitatelja, ne samo stotine.</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">👥 Utjecaj na sljedbenike</div>
+      <div class="sc-desc">Nakon Šenoe dolaze <strong>Ante Kovačić, Josip Kozarac, Vjenceslav Novak, Eugen Kumičić, Ksaver Šandor Gjalski, Janko Leskovar</strong>. Svi su pisali u realističkom duhu — Šenoin prodor im je otvorio put. <em>Bez Šenoe nema Kiklopa, Glembajevih, Stipančića.</em></div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">📖 Prijan Lovro na maturi 2026.</div>
+      <div class="sc-desc"><strong>Obvezatno djelo za cjelovito čitanje.</strong> Može doći kao: (1) ulomak za analizu (uvodni okvir, Lovrina dvojba o Minki, tragični kraj), (2) pitanja o strukturi, žanru, likovima, (3) komparacija s Wertherom, Stipančićima, drugim realistima.</div>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🏆 3 razloga zašto je Prijan Lovro relevantan danas</div>
+      <div class="box-key-txt">
+        <strong>1. Psihološka realističnost:</strong> Lovrove dvojbe (ljubav vs. novac, ambicija vs. moral) univerzalne su i danas. Svaki talentirani mladić s ruba društva proživljava slične borbe. <br>
+        <strong>2. Društvena kritika:</strong> Tema institucionalnih ograničenja talenta — <em>još uvijek aktualna</em> u raspravama o obrazovanju i klasnoj mobilnosti. <br>
+        <strong>3. Književna forma:</strong> Uokvirena pripovijetka i retrospektivna naracija postaju <em>standard hrv. proze</em> — utječu na Krležu, Marinkovića, kasnije pisce.
+      </div>
+    </div>
+
+    <!-- SEC 17: Vjenceslav Novak / Posljednji Stipančići -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">17 · Vjenceslav Novak — Posljednji Stipančići (2026. ispitno djelo ★)</div><div class="sec-line"></div></div>
+
+    <div class="box-warn">
+      <div class="bw-ico">⚠️</div>
+      <div class="bw-body">
+        <div class="bw-title">VISOK RIZIK — 2026. ispitno djelo</div>
+        <div class="bw-txt">Posljednji Stipančići su ispitno djelo za maturu 2026. (~17% vjerojatnost esejskog zadatka = 30 bodova). Deep dive ostaje u <b>D16 · Novak · Posljednji Stipančići</b> — ova sekcija daje teorijski minimum za H15.</div>
+      </div>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">⚡ Vjenceslav Novak / Posljednji Stipančići — ključni podaci</div>
+      <div class="box-key-txt">
+        <b>Autor:</b> Vjenceslav Novak (1859.–1905.), Senj/Zagreb. <b>Djelo:</b> <em>Posljednji Stipančići</em> (roman, 1899.). <b>Žanr:</b> realistički roman, naturalistički elementi, roman o propadanju obitelji. <b>Smještaj:</b> Senj, kraj 19. st. <b>Protagonistkinja:</b> Lucija Stipančić.<br><br>
+        <b>Fabula:</b> Propast vlastelinske obitelji Stipančić u Senju. Sin Juraj postaje alkoholičar, kći Lucija ne uspijeva spasiti obitelj unatoč požrtvovnosti, unuk Amadeo simbolizira neuspjele pokušaje obnove. <b>Tema:</b> biološko nasljedstvo, degeneracija aristokracije, nemogućnost pobune protiv sudbine.<br><br>
+        <b>Ključne razlike vs. Prijan Lovro:</b> Šenoa (romantičarski realizam, individualni talent vs. društvo); Novak (naturalistički realizam, biologizam, propast kao neminovna sudbina).
+      </div>
+    </div>
+
+    <div class="sc-grid">
+      <div class="sc">
+        <span class="sc-ico si-go">PARALELA ŠENOA</span>
+        <div class="sc-name">Lovro vs. Stipančići — isti period, različit fokus</div>
+        <div class="sc-desc">Šenoin Lovro propada jer je <em>društvo okrutno prema talentu odozdo</em>. Novakov Stipančić propada jer je <em>biologija nemilosrdna prema degeneriranoj eliti odozgo</em>. Oba su realistička — ali Šenoa je optimistički realizam, Novak je pesimistički (naturalistički).</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico si-br">PARALELA KRLEŽA</span>
+        <div class="sc-name">Stipančići → Glembajevi — isti motiv 30 godina poslije</div>
+        <div class="sc-desc">Novak 1899. (Stipančići propadaju) → Krleža 1928. (Glembajevi propadaju). Obje obitelji su <em>žrtve vlastitog nasljedstva</em>. Novak = naturalistički fatalizam; Krleža = psihološko-socijalni fatalizam. <b>Ova paralela jača oba eseja.</b></div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico si-t">NCVVO STATUS</span>
+        <div class="sc-name">Stipančići na maturi 2026.</div>
+        <div class="sc-desc">★ <strong>ispitno djelo 2026.</strong> (D16). Može doći kao: (1) ulomak za analizu (Lucijine scene, Jurjeva degeneracija), (2) pitanje o liku/temama/žanru, (3) školski esej — puna obrada u <b>D16 · Novak · Posljednji Stipančići</b>.</div>
+      </div>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">🌍 EUROPSKA PARALELA — realizam i Dostojevski (→ H07)</div>
+      <div class="box-signal-txt">
+        Šenoa piše <em>Prijan Lovro</em> (1873.) u isto tiempo kad Dostojevski već ima <em>Zločin i kazna</em> (1866.) i <em>Idiot</em> (1868.) iza sebe. <b>Razlika koja nosi esejske bodove:</b> europski realizam (Dostojevski, Balzac, Dickens) ima globalnu publiku i gradi psihološki složene likove; Šenoa piše za <em>hrvatsku naciju koja se tek budi</em> — socijalna kritika je spojena s probuđivanjem narodne samosvijesti. → <b>H07 · Dostojevski / Zločin i kazna</b>
+      </div>
+    </div>
+
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">Pred-ispit cheat sheet</div><div class="sec-line"></div></div>
+
+    <div class="cheat-card cheat-card-printable" style="margin-top:24px">
+      <div class="cheat-hdr">
+        <div class="cheat-hdr-l">
+          <div class="cheat-eye">QUICK REFERENCE · 30 MIN PRIJE ISPITA</div>
+          <div class="cheat-ttl">Sve što moraš pamtiti — H15</div>
+        </div>
+        <button class="cheat-print" onclick="printCheatSheet(this)" aria-label="Ispiši cheat sheet">🖨️ Ispiši</button>
+      </div>
+      <div class="cheat-grid">
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Osnovni podaci</div>
+          <table class="cheat-tbl">
+            <tr><td><b>Autor</b></td><td>August Šenoa</td></tr>
+            <tr><td><b>Doba</b></td><td>Šenoino doba, 1865.–1881.</td></tr>
+            <tr><td><b>Djelo</b></td><td><em>Prijan Lovro</em>, pripovijetka</td></tr>
+            <tr><td><b>Objava</b></td><td>1873.</td></tr>
+            <tr><td><b>Poetika</b></td><td>protorealizam: realistična tema + romantičarski ton</td></tr>
+          </table>
+        </div>
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Glavni kontrasti</div>
+          <ul class="cheat-list">
+            <li><b>Želja vs. mogućnost</b> = psihosocijalna jezgra djela.</li>
+            <li><b>Lovro</b> = talent bez društvene potpore.</li>
+            <li><b>Anđelija</b> = ljubav i nemogući izlaz.</li>
+            <li><b>Malograđanstvo</b> = sustav koji guši pojedinca.</li>
+          </ul>
+        </div>
+        <div class="cheat-col cheat-col-warn">
+          <div class="cheat-col-ttl">Zamke</div>
+          <ul class="cheat-list cheat-list-warn">
+            <li>Ne svodi Lovrinu smrt samo na ljubavni problem.</li>
+            <li>Ne zaboravi okvirnu pripovijest i udovicu Hrvaticu.</li>
+            <li>Ne piši realizam bez objašnjenja protorealističkog prijelaza.</li>
+          </ul>
+        </div>
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Mini plan odgovora</div>
+          <ol class="cheat-steps">
+            <li><b>Postavi društvo:</b> školovanje, klasa, novac, položaj.</li>
+            <li><b>Objasni Lovru:</b> ideal, talent, prepreka, slom.</li>
+            <li><b>Dodaj poetiku:</b> realistična kritika + romantičarski patos.</li>
+            <li><b>Zaključi:</b> osobna tragedija pokazuje društveni kvar.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn off">← Početak</span>
+      <span class="nb-btn primary" onclick="sw(1)">📖 5 dijelova pripovijetke →</span>
+    </div>
+
+  
+    <div class="cheat-card" style="margin-top:24px">
+      <div class="cheat-hdr">
+        <div class="cheat-hdr-l">
+          <div class="cheat-eye">SLJEDEĆE</div>
+          <div class="cheat-ttl">Tab 1 · Šenoa — Prijan Lovro (5 dijelova)</div>
+        </div>
+      </div>
+      <div class="cheat-grid">
+        <div class="cheat-col cheat-col-wide" style="font-family:var(--serif,Fraunces,serif);font-size:13.5px;color:var(--t2,#c5b8aa);line-height:1.65">
+          <p style="margin:0">Sad imaš pregled hrvatskog realizma — <b>Tab 1</b> donosi <em>Prijana Lovru</em>. 5 dijelova, društvena podloga i analiza likova.</p>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /l0 -->
+
+  <div class="layer" id="l1" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-br">5 dijelova</span>
+      <span class="pill p-go">Uokvirena pripovijetka</span>
+      <span class="pill p-te">Likovi</span>
+      <span class="pill p-pa">Protorealizam</span>
+      <span class="pill p-r">Šenoino doba</span>
+    </div>
+
+    <p style="margin-bottom:20px">Šenoina pripovijetka koristi tehniku <strong>uokvirene priče</strong> — Šenoa je pripovjedač koji udovici Hrvatici priča sudbinu svog cimera iz Praga. Struktura ima <strong>5 dijelova</strong>: <em>uvodni okvir</em> (berba) + <em>4 kronološka dijela Lovrine priče</em> (djetinjstvo → škola → Prag → tragedija). Klikni na dio za detalje.</p>
+
+    <!-- TIP BAR -->
+    <div class="box-int" style="margin-bottom:18px">
+      <div class="box-int-lbl">🎬 Ključ razumijevanja: Lovrova putanja</div>
+      <div class="box-int-txt">Lovrina priča je <strong>gradualna propast idealista</strong>: započinje sa svijetlom budućnošću (talent, ambicija), završava tragedijom (samoubojstvo). Svaki dio donosi <em>novu prepreku</em> koju sustav postavlja — svećenstvo, plemstvo, novac, ljubav. Šenoa prikazuje <strong>kumulativni efekt</strong> društvenih ograničenja na talentiranog pojedinca.</div>
+    </div>
+
+    <!-- SCENE-LIST — 5 dijelova -->
+    <div class="scene-list">
+      <!-- I. Uvodni okvir -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr">
+          <div class="scene-num">I</div>
+          <div class="scene-ttl">I. Uvodni okvir — Berba na selu i udovica Hrvatica</div>
+          <div class="scene-arr">▶</div>
+        </div>
+        <div class="scene-body">
+          <div class="scene-why">
+            <b>Radnja:</b> <strong>August Šenoa</strong> (u ulozi pripovjedača) dolazi kod svog prijatelja vlastelina u <em>berbu</em>. Na imanju se okupilo susjedno društvo — <em>župnik, sudac, sudinja, lijepa mlada udovica Hrvatica u crnini</em>. Popodne je mutno, kišno. Svaki govori o svom: župnik o Napoleonu, sudac o svojoj krušci, sudinja o glačanju rublja. <strong>Udovica Hrvatica</strong> — crnokosa, uočljiva — traži Šenou da <em>ispriča neku priču</em>. Šenoa započinje priču o svom prijatelju <strong>Lovri</strong>, koji mu je bio cimer u Pragu.<br><br>
+            
+            <b>🎯 Ključni trenuci Uvodnog okvira:</b><br>
+            <table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px">
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700;width:130px">Dolazak</td><td style="padding:6px 10px;border:1px solid var(--bd)">Šenoa dolazi u berbu — prijatelj vlastelin ga poziva. <em>Atmosfera seoske dobrodošlice.</em></td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Društvo</td><td style="padding:6px 10px;border:1px solid var(--bd)">Okupljeni: <strong>župnik</strong> (političar), <strong>sudac</strong> (voćar), <strong>sudinja</strong> (kućnica), <strong>udovica Hrvatica</strong>. Galerija seoskog svijeta.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Mutno popodne</td><td style="padding:6px 10px;border:1px solid var(--bd)">Tmurno vrijeme + atmosfera. Prirodni okvir za priču koja slijedi.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Udovica traži priču</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Ključni trenutak okvira</strong> — udovica je katalizator. Traži da joj Šenoa ispriča nešto. <em>Kritizira hrv. književnost.</em></td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Šenoa počinje</td><td style="padding:6px 10px;border:1px solid var(--bd)">Odlučuje pričati o Lovri — njegovom cimeru u Pragu. <strong>Tu se aktivira glavna pripovijest.</strong></td></tr>
+            </table>
+            
+            <b>Ključni likovi u okviru:</b> August Šenoa (pripovjedač), udovica Hrvatica (slušateljica), župnik, sudac, sudinja, vlastelin-prijatelj.<br><br>
+            
+            <b>Ključni motivi okvira:</b><br>
+            • <em>Berba kao društveni prostor</em> — neformalno okupljanje gdje se priča<br>
+            • <em>Udovica u crnini</em> — tragična, privlačna, osjetljiva figura<br>
+            • <em>Mutno popodne</em> — atmosferski signal melodramatske priče<br>
+            • <em>Seoska galerija</em> — različiti tipovi likova u kratkim potezima<br>
+            • <em>Potreba za pričom</em> — okvir uspostavlja pripovijedanje kao društveni čin<br><br>
+            
+            <b>Stil i tehnika:</b><br>
+            • <strong>Uokvirena pripovijetka</strong> — klasična europska tehnika (Boccaccio, Chaucer, Goethe)<br>
+            • Opisi lica i obiteljskih prilika — <em>realistička karakterizacija</em><br>
+            • Blaga ironija u prikazu seoskog društva — <em>Šenoa se smješka likovima</em><br>
+            • Dijalozi s različitim registrima govora — <em>socio-lingvistička preciznost</em><br><br>
+            
+            <b>📜 Reprezentativan odlomak:</b><br>
+            <em>„Jednoga mutnoga popodneva bilo se skupilo baš vrlo društvance. Župnik, velik politik; sudac, bijesan voćar; sudinja, dobra duša premda ponešto spore pameti i — neka lijepa, crnooka mlada gospođa u crno zavita, udova susjednoga vlastelina..."</em><br><br>
+            
+            <b>Dramska funkcija:</b> <em>Ekspozicija okvira</em> — uvodi pripovjedača (Šenoa), slušateljicu (udovica), povod pričanja i atmosferu. Klasičan otvor uokvirene pripovijetke.<br><br>
+            
+            <b>🎯 Esejski signal:</b> Uvodni okvir nije sporedan — on je <strong>umjetnička izjava</strong>. Šenoa ulaže 5 stranica u atmosferu i društvo prije nego počne „pravu" priču. Zašto? Jer <em>okvir pruža autoritet i distancu</em>. Šenoa nije sveznajući pripovjedač — on je svjedok, prijatelj koji svjedoči o tragediji. To je <strong>realistička moralna pozicija</strong>: priča o Lovri je stvarnost, ne fikcija. Uočite i <em>udovicu Hrvaticu</em> — ona je nositeljica kritike („kritizira hrv. književnost"), a Šenoa njezinim pitanjem propituje što hrv. književnost treba biti: <strong>vjerodostojna, realistička, o životu kakav jest.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- II. Lovrino djetinjstvo -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr">
+          <div class="scene-num">II</div>
+          <div class="scene-ttl">II. Lovrino djetinjstvo — Siromaštvo i ambicija roditelja</div>
+          <div class="scene-arr">▶</div>
+        </div>
+        <div class="scene-body">
+          <div class="scene-why">
+            <b>Radnja:</b> Lovro se rađa u <strong>siromašnoj seljačkoj obitelji</strong>. Roditelji (otac i majka) su težaci; tu je sestra i svak. <em>Siromaštvo je materijalna stvarnost</em>. Ali Lovro je od djetinjstva bistar, inteligentan, pokazuje <em>ljubav prema knjizi i učenju</em>. Roditelji, unatoč oskudici, <strong>odlučuju ga školovati za svećenika</strong> — to je jedini put „gore" za seoskog dječaka. <em>Svećeništvo = izlaz iz siromaštva + društveni status.</em> Kanonik preuzima skrb nad Lovrom, školuje ga. Obitelj ulaže posljednje u tu ambiciju.<br><br>
+            
+            <b>🎯 Ključni trenuci Djetinjstva:</b><br>
+            <table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px">
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700;width:130px">Obiteljski kontekst</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Siromaštvo</strong>, težački život, borba za opstanak. Majka, otac, sestra, svak.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Lovrin talent</td><td style="padding:6px 10px;border:1px solid var(--bd)">Inteligencija, bistrina, <em>ljubav prema knjigama</em>. Dijete različito od okoline.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Odluka roditelja</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Svećenik</strong> — jedini put izlaska iz siromaštva za seoskog dječaka 19. st.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Kanonik preuzima</td><td style="padding:6px 10px;border:1px solid var(--bd)">Crkvena institucija postaje Lovrin mentor i pokrovitelj. <em>Institucionalni put.</em></td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Školovanje počinje</td><td style="padding:6px 10px;border:1px solid var(--bd)">Lovro odlazi iz sela u školu. Prva seoba — <em>prva promjena identiteta</em>.</td></tr>
+            </table>
+            
+            <b>Ključni likovi:</b> Lovro (mladi), otac, majka, sestra, svak, <strong>kanonik</strong>.<br><br>
+            
+            <b>Ključni motivi:</b><br>
+            • <em>Siromaštvo kao polazna točka</em> — Lovro nema ništa osim talenta<br>
+            • <em>Roditeljska žrtva</em> — ulaganje u školovanje znači odricanje<br>
+            • <em>Svećenstvo kao društvena mobilnost</em> — povijesno realna strategija seljaka<br>
+            • <em>Institucionalna skrbništvo</em> — kanonik kao pokrovitelj-disciplinar<br>
+            • <em>Prva seoba iz sela</em> — djelomičan gubitak identiteta<br><br>
+            
+            <b>Stil i tehnika:</b><br>
+            • Detaljni <strong>realistički opisi</strong> seoskog života<br>
+            • Psihološko ulaženje u unutrašnjost djeteta — <em>protorealistička tehnika</em><br>
+            • Pripovjedač komentira — <em>Šenoa osjeća empatiju s Lovrinom situacijom</em><br>
+            • Socio-ekonomska preciznost — sve je dokumentirano, ne idealizirano<br><br>
+            
+            <b>📜 Tematska formulacija:</b><br>
+            <em>„Na sreću ne stajaše dvor moga pobratima na osami..."</em> (iz okvira, ali aluzija na socijalnu realnost). Lovro je iz <em>sela u osami</em>, bez infrastrukture za uspjeh.<br><br>
+            
+            <b>Dramska funkcija:</b> <em>Ekspozicija glavnog lika</em> — uvodi Lovru kao tragičnog idealista i postavlja polazne društvene prepreke. Siromaštvo je prva prepreka; svećenstvo je prvi (neuspješan) pokušaj rješenja.<br><br>
+            
+            <b>🎯 Esejski signal:</b> Šenoa ovdje radi nešto važno — <strong>ne idealizira selo, ali ga ni ne demonizira</strong>. Lovrina obitelj je vrijedna, ambiciozna, žrtvuje se za sina. <em>Problem nije u obitelji, nego u društvu koje ne nudi putova osim svećenstva.</em> To je <strong>strukturna kritika</strong> koja je obilježje realizma. Lovro će propasti ne zato što su mu roditelji zli, nego zato što <em>sustav nema mjesta za takvog čovjeka</em>. Ova teza je ključna za interpretaciju cijelog djela.
+          </div>
+        </div>
+      </div>
+
+      <!-- III. Škola, odustanak, Malvina -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr">
+          <div class="scene-num">III</div>
+          <div class="scene-ttl">III. Škola — Odustanak od svećenstva, Malvina, učiteljstvo</div>
+          <div class="scene-arr">▶</div>
+        </div>
+        <div class="scene-body">
+          <div class="scene-why">
+            <b>Radnja:</b> Lovro dolazi u školu i počinje studij za svećenstvo. Ali — <strong>uviđa da mu svećenstvo ne odgovara</strong>. Njegov <em>slobodouman duh</em> ne može podnijeti disciplinske stege crkve. Voli poeziju (iako ne piše), mašta o širokom svijetu, razmišlja slobodno o vjeri i društvu. <strong>Odustaje od svećenstva.</strong> Kanonik je razočaran. Obitelj je u šoku — ulozi su bili veliki. Lovro nalazi novo zanimanje: postaje <strong>učitelj kod grofa</strong> (podučava grofova sina). Grofova obitelj ga prima <em>s toplinom i jednakosti</em> — ali Lovro se <em>sam ne uklapa</em>, osjeća stigmu seoskog porijekla. Ovdje se zaljubljuje u <strong>Malvinu</strong> — grofovu kćer. <em>Ona ga odbija jer je seljak.</em> Prvi veliki udarac.<br><br>
+            
+            <b>🎯 Ključni trenuci u Školi:</b><br>
+            <table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px">
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700;width:130px">Škola</td><td style="padding:6px 10px;border:1px solid var(--bd)">Lovro u bogosloviji. <strong>Sukob s disciplinom</strong> — njegov duh ne pristaje na stege.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Odustanak</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Prekretnica.</strong> Lovro napušta svećenstvo. Kanonik je razočaran. Obitelj iznevjerena.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Učitelj kod grofa</td><td style="padding:6px 10px;border:1px solid var(--bd)">Nalazi posao: podučava grofova sina. Dobar odnos s grofovom obitelji.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Unutarnji osjećaj stigme</td><td style="padding:6px 10px;border:1px solid var(--bd)">Iako ga primaju dobro, Lovro se <em>sam osjeća obilježen</em>. <strong>Internalizirana klasna razlika.</strong></td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Zaljubljivanje u Malvinu</td><td style="padding:6px 10px;border:1px solid var(--bd)">Grofova kćer. Prva ljubav. <em>Romantičarski idealizirana.</em></td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Odbijanje</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Malvina ga odbija — jer je seljak.</strong> Prvi veliki udarac. Klasa nadjačava osjećaj.</td></tr>
+            </table>
+            
+            <b>Ključni likovi:</b> Lovro (adolescent/mladić), <strong>kanonik</strong> (razočaran), <strong>grof i obitelj</strong> (prihvaćajući), <strong>Malvina</strong> (odbija), grofov sin (Lovrin učenik).<br><br>
+            
+            <b>Ključni motivi:</b><br>
+            • <em>Slobodoumnost protiv discipline</em> — duh vs. institucija<br>
+            • <em>Napuštanje unaprijed određenog puta</em> — prva pobuna<br>
+            • <em>Učiteljstvo kao privremeno rješenje</em> — nije jasan put<br>
+            • <em>Interna stigma</em> — internalizirano klasno osjećaj<br>
+            • <em>Neuzvraćena ljubav kao klasni sudar</em> — Malvina kao granica<br>
+            • <em>„Jednakost i sloboda bili su njegovi ideali"</em> — Lovrovi moralni aksiomi<br><br>
+            
+            <b>Stil i tehnika:</b><br>
+            • <strong>Psihološki realizam</strong> — ulaženje u Lovrove dvojbe, strahove<br>
+            • Romantičarski opis Malvine i ljubavnih osjećaja — <em>miks realizma/romantizma</em><br>
+            • Kontrast Lovro ↔ grofova obitelj — <em>vizualna klasna granica</em><br>
+            • Analitička karakterizacija kanonika i grofa — <em>likovi kao društvene tipove</em><br><br>
+            
+            <b>📜 Tematska formulacija:</b><br>
+            <em>„Bio je veliki intelektualac i idealist, jednakost i sloboda bili su njegovi ideali u koje je vjerovao."</em> Lovro nije samo pametan — on je <strong>ideološki idealist</strong>. Zato ne može pristati na kompromise.<br><br>
+            
+            <b>Dramska funkcija:</b> <em>Prva velika kriza</em> — odustanak od sigurnog puta + odbijanje ljubavi. Ovdje se Lovro prvi put sukobljava s činjenicom da svijet <em>ne priznaje njegovu vrijednost</em>.<br><br>
+            
+            <b>🎯 Esejski signal:</b> Malvinovo odbijanje nije ljubavna drama — to je <strong>simbol nepremostivih klasnih granica</strong>. Malvina ne odbija Lovra zato što je loš čovjek, nego zato što je <em>seljak</em>. Šenoa time oštro kritizira plemstvo kao sustav — <em>čak i kad je ljubazno, ono ne propušta</em>. Ovo je <strong>realistička kritika klasnog društva</strong>, ali izražena kroz romantičarski motiv „neuzvraćene ljubavi". Tipični <em>protorealizam</em>.
+          </div>
+        </div>
+      </div>
+
+      <!-- IV. Prag i Minka -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr">
+          <div class="scene-num">IV</div>
+          <div class="scene-ttl">IV. Prag i Minka — Studij, dvojba o braku iz računa</div>
+          <div class="scene-arr">▶</div>
+        </div>
+        <div class="scene-body">
+          <div class="scene-why">
+            <b>Radnja:</b> Nakon učiteljstva, Lovro <strong>odlazi u Prag na studij</strong>. Tu se smjestio i <strong>August Šenoa</strong> (pripovjedač) — postali su <em>cimeri</em>. Sprijateljili su se. Prag je intelektualna oaza — knjige, debate, studenti. Ali Lovrova ambicija i dalje ga muči. <em>Roditelji su u dugovima</em> zbog njegovog školovanja. Lovro razmišlja: <strong>oženiti bogatu djevojku radi miraza</strong>. Upoznaje <strong>Minku</strong> u Pragu — bogatu, ali <em>staru usidjelicu</em>. Razmišlja je li to rješenje. <strong>Šenoa mu otvara oči</strong> — Minka nije toliko bogata, otac ima <em>šestero djece</em> preko kojih dijeli imetak. Lovro odustaje. Jedan <em>debeli gospodin</em> u kavani savjetuje Lovri da traži bogatu djevojku u Splitu (živi sa stricem). Lovro se priprema povratiti u Hrvatsku.<br><br>
+            
+            <b>🎯 Ključni trenuci u Pragu:</b><br>
+            <table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px">
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700;width:130px">Dolazak u Prag</td><td style="padding:6px 10px;border:1px solid var(--bd)">Lovro se upisuje na sveučilište. <em>Strani grad, nove mogućnosti.</em></td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Cimerovanje sa Šenoom</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Ključno prijateljstvo.</strong> Šenoa postaje Lovrin svjedok i savjetnik. Autobiografska osnova.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Financijski pritisak</td><td style="padding:6px 10px;border:1px solid var(--bd)"><em>Roditelji u dugovima.</em> Lovro mora naći rješenje.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Ideja o Minki</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Moralna kriza.</strong> Razmatra brak iz računa — moralno iznevjerenje.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Šenoa otvara oči</td><td style="padding:6px 10px;border:1px solid var(--bd)">Saznaje da Minka nije bogata kako se činilo. Lovro odustaje — <em>spašen je za sada.</em></td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Debeli gospodin</td><td style="padding:6px 10px;border:1px solid var(--bd)">Savjet: traži djevojku u Splitu. <em>Ironijski element</em> — svođenje braka na posao.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Povratak</td><td style="padding:6px 10px;border:1px solid var(--bd)">Lovro završava studij, priprema se vratiti u Hrvatsku.</td></tr>
+            </table>
+            
+            <b>Ključni likovi:</b> Lovro, <strong>Šenoa</strong> (cimer, savjetnik), <strong>Minka</strong> (bogata usidjelica), debeli gospodin (ironijska figura).<br><br>
+            
+            <b>Ključni motivi:</b><br>
+            • <em>Prag kao intelektualni centar</em> — knjige, studenti, debate<br>
+            • <em>Cimerovanje kao intimno prijateljstvo</em> — baza za autoritet Šenoinog pripovijedanja<br>
+            • <em>Roditeljski dugovi</em> — materijalni pritisak zbog ambicije<br>
+            • <em>Ljubav vs. novac</em> — središnja moralna dilema djela<br>
+            • <em>Minka kao iskušenje</em> — nije zla, ali predstavlja kompromis<br>
+            • <em>Debeli gospodin</em> — satirična figura društvene cinične praktičnosti<br><br>
+            
+            <b>Stil i tehnika:</b><br>
+            • <strong>Dijalog Lovra i Šenoe</strong> — intimni, raspravni, prijateljski<br>
+            • Opisi praške kavane i studentskog života — <em>realistička urbana scena</em><br>
+            • Lovrin unutarnji monolog o Minki — <em>psihološki realizam</em><br>
+            • Blaga ironija u opisu debelog gospodina — <em>socijalna satira</em><br><br>
+            
+            <b>📜 Tematska formulacija:</b><br>
+            <em>„Lovro je u Pragu upoznao djevojku po imenu Minka, kroz razgovor je doznao da je ona bogata a to je upravo njemu trebalo, bogata djevojka koja će izbaviti njegove roditelje iz dugova."</em> Moralna kriza u jednoj rečenici.<br><br>
+            
+            <b>Dramska funkcija:</b> <em>Središnji dio</em> — Lovro se nalazi na moralnoj raskrsnici. Tema novca vs. ljubavi. Šenoa ga spašava ovaj put — ali <strong>pripovijest najavljuje</strong> da će se sljedeći put ta dilema ponoviti, i tada neće biti spasa.<br><br>
+            
+            <b>🎯 Esejski signal:</b> Ovaj dio pokazuje <strong>Lovrovu moralnu ranjivost</strong>. Činjenica da uopće razmatra brak iz računa znači da <em>društveni pritisak nagriza njegov idealizam</em>. Šenoa ga spašava privremeno, ali pokazuje da <em>ni idealist ne može beskonačno opstati pod financijskim pritiskom</em>. Ovdje se vidi <strong>realistička oštrina</strong> — Šenoa ne idealizira Lovra, pokazuje i njegove slabosti. To je ključna razlika od romantičarskog junaka: Lovro <em>nije savršen, ranljiv je</em>.
+          </div>
+        </div>
+      </div>
+
+      <!-- V. Anđelija i tragedija -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr">
+          <div class="scene-num">V</div>
+          <div class="scene-ttl">V. Anđelija i tragedija — Posljednja ljubav i samoubojstvo</div>
+          <div class="scene-arr">▶</div>
+        </div>
+        <div class="scene-body">
+          <div class="scene-why">
+            <b>Radnja:</b> Lovro se vraća u Hrvatsku. Položi sve ispite, čeka mjesto u nekoj gimnaziji. Dobiva <em>priliku</em>. Upoznaje <strong>Anđeliju</strong> — posljednju, najdublju ljubav. Žele se vjenčati. Anđelijin otac pristaje. Ali... <em>stižu glasine</em>: Lovro je bio u vezi s Minkom u Pragu radi njenog novca. <strong>Malograđanske spletke.</strong> Anđeliju upozoravaju: <em>„Lovro nema novca, uvučen je u ljubavni skandal"</em>. Ona <strong>odustaje</strong>. Lovro dolazi k njoj. Kada joj to sazna iz njezinih usta — <strong>britvom si prereže grkljan pred njom</strong>. Pripovjedač (Šenoa) tako <em>gubi prijatelja</em>, Anđelija ljubav, čitatelj nadu. <em>Kraj priče — povratak u okvir (berbu)</em>.<br><br>
+            
+            <b>🎯 Ključni trenuci tragedije:</b><br>
+            <table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px">
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700;width:130px">Povratak</td><td style="padding:6px 10px;border:1px solid var(--bd)">Lovro u Hrvatskoj, čeka posao u gimnaziji. <em>Konačno blizu cilja.</em></td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Anđelija</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Posljednja ljubav.</strong> Uzajamna, duboka. Anđelijin otac pristaje na brak.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Priprema vjenčanja</td><td style="padding:6px 10px;border:1px solid var(--bd)">Lovro misli da je napokon uspio. <em>Prvi trenutak nade u cijeloj priči.</em></td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Glasine</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Malograđanske spletke.</strong> Priča o Minki iz Praga — iskrivljena kao skandal.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Optužba za pohlepu</td><td style="padding:6px 10px;border:1px solid var(--bd)">Anđeliji kažu: Lovro nema novca, u skandalu je. <em>Njegova moralna slabost se koristi protiv njega.</em></td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Odustajanje</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Anđelija odustaje od braka.</strong> Ljubav ne preživljava društvene glasine.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">★ Samoubojstvo</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Vrhunac drame.</strong> Lovro saznaje iz Anđelijinih usta. Britvom si prereže grkljan <em>pred njom</em>.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">Povratak u okvir</td><td style="padding:6px 10px;border:1px solid var(--bd)">Šenoa završava priču. Udovica Hrvatica slušala je sudbinu propalog intelektualca.</td></tr>
+            </table>
+            
+            <b>Ključni likovi:</b> Lovro (na vrhuncu tragedije), <strong>Anđelija</strong> (posljednja ljubav), Anđelijin otac, <em>malograđanski krug</em> (anonimni tračari), Šenoa (svjedok).<br><br>
+            
+            <b>Ključni motivi:</b><br>
+            • <em>Anđelija kao simbol posljednje nade</em> — ime je aluzija na anđela<br>
+            • <em>Malograđanska spletka</em> — tipično realističko Šenoa<br>
+            • <em>Klevetanje kao oružje</em> — društvo koristi istine iskrivljeno<br>
+            • <em>Samoubojstvo pred voljenom osobom</em> — romantičarski patos<br>
+            • <em>Britva kao instrument</em> — svakodnevni predmet postaje smrtonosan<br>
+            • <em>Povratak u okvir</em> — čuva distancu i moralnu težinu<br><br>
+            
+            <b>Stil i tehnika:</b><br>
+            • <strong>Dramatski krešendo</strong> — tempo se ubrzava do vrhunca<br>
+            • Romantičarski intenzitet samoubojstva — patos, emocionalni vrhunac<br>
+            • Realistički detalj britve — <em>svakodnevica kao trag tragedije</em><br>
+            • Povratak u okvir = <em>hlađenje emocije</em>, moralni epilog<br>
+            • Suzdržan završetak — Šenoa ne moralizira, puk daje dojam težine<br><br>
+            
+            <b>📜 Tematska formulacija:</b><br>
+            <em>„Saznavši tu vijest iz Anđelijinih usta, Lovro si je pred njom britvom prerezao grkljan. I tako je pripovjedač izgubio prijatelja, Anđelija ljubav, a čitatelji još jednom nadu."</em><br><br>
+            
+            <b>Dramska funkcija:</b> <em>Kulminacija i rasplet</em> — svi prethodni pritisci (siromaštvo, klasa, novac, društvene spletke) kulminiraju u jednom trenu. <strong>Lovro bira smrt jer život više nije mogućan pod tim uvjetima.</strong><br><br>
+            
+            <b>🎯 Esejski signal:</b> Samoubojstvo Lovre je <strong>ne osobni slom, nego društveno ubojstvo</strong>. Lovro je mogao nastaviti — imao je posao, imao je talent. Ali svaki <em>pojedini</em> sloj društva (crkva, plemstvo, malograđanstvo) mu je pokazao da <em>nema mjesta</em>. Samoubojstvo pred Anđelijom je <strong>simbolički čin</strong> — on kaže: „Vidi što ste napravili". Šenoa tako zatvara priču kao <em>optužnicu protiv hrv. malograđanskog društva 19. st.</em> To je ključna ideološka poruka djela. <strong>Werther paralela:</strong> Goetheov Werther također si oduzima život zbog ljubavi (Lotte), ali ne zbog klase — kod Werthera je romantičarska individualna tragedija; kod Lovre je <em>socijalna tragedija</em>. To ga čini <strong>modernijim, realističkijim</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DUBINSKA ANALIZA -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">★ Stilska sredstva u Prijanu Lovri — za analizu ulomka</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Sredstvo</th><th>Primjer iz djela</th><th>Učinak / esejska primjena</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Uokvirena pripovijetka</strong></td><td>Berba + udovica Hrvatica → Lovrova priča → povratak u okvir</td><td>Distanca, moralni autoritet pripovjedača-svjedoka</td></tr>
+          <tr><td><strong>Retrospektivna naracija</strong></td><td>Šenoa priča o već mrtvom Lovri</td><td>Čitatelj zna kraj — gradi se tragična napetost kroz slutnju</td></tr>
+          <tr><td><strong>Psihološka karakterizacija</strong></td><td>Lovrove dvojbe o Minki, njegov osjećaj stigme kod grofa</td><td>Realistička tehnika — unutarnji život lika</td></tr>
+          <tr><td><strong>Realistička deskripcija</strong></td><td>Detaljni opisi seoskog berbanja, praške kavane, Lovrina izgleda</td><td>Stvarnost kroz detalj — obilježje realizma</td></tr>
+          <tr><td><strong>Romantičarski opis</strong></td><td>Opisi Anđelije, ljubavnih scena, prirode oko Praga</td><td>Emocionalni intenzitet — obilježje romantizma</td></tr>
+          <tr><td><strong>Kontrast</strong></td><td>Lovro (selo) ↔ Malvina (grad); želja ↔ mogućnost; ideal ↔ stvarnost</td><td>Tematska gradnja društvenih sukoba</td></tr>
+          <tr><td><strong>Ironija</strong></td><td>Župnik „velik politik", sudac „bijesan voćar", debeli gospodin u Pragu</td><td>Socijalna ironija — Šenoa blaga prema svojim likovima</td></tr>
+          <tr><td><strong>Dijalog s registrima</strong></td><td>Kanonik u crkvenom registru, Minka i Šenoa u studentskom, seljaci u seoskom</td><td>Socio-lingvistička autentičnost</td></tr>
+          <tr><td><strong>Aluzija</strong></td><td>Werther (Goethe), Napoleonove misli, Praški studentski svijet</td><td>Kulturni kontekst — Šenoa kao obrazovan pisac</td></tr>
+          <tr><td><strong>Simbolički predmeti</strong></td><td>Britva (smrt), knjige (Lovrov identitet), berba (zajednica)</td><td>Simbolistička dimenzija realizma</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3 RAZINE ČITANJA -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Sinteza — 3 razine čitanja Prijana Lovre</div><div class="sec-line"></div></div>
+
+    <div class="sc">
+      <div class="sc-name">📖 1. Konkretna razina — priča o mladiću</div>
+      <div class="sc-desc">Sudbina Lovre — od siromašne seoske obitelji, kroz obrazovanje i ljubavne neuspjehe, do samoubojstva. <strong>Realistička priča s detaljno razrađenim likovima i situacijama.</strong> Temelj razumijevanja djela.</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">🏛 2. Socijalna razina — kritika malograđanskog društva</div>
+      <div class="sc-desc">Priča predstavlja <em>mehanizme društvenog pritiska</em>. Crkva, plemstvo, građanstvo — svaki sloj ima svoju ulogu u Lovrinoj propasti. <strong>Šenoa optužuje strukturu koja guši talent.</strong> Realistička društvena kritika.</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">🎭 3. Univerzalna razina — tragedija idealista</div>
+      <div class="sc-desc">Lovro je <em>arhetip modernog intelektualca</em> — suviše osjetljiv, previše idealist za svoj svijet. Tema univerzalna: <strong>može li idealist preživjeti u materijalističkom društvu?</strong> Werther paralela — ali s društvenim umjesto osobnim uzrokom.</div>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Taktika za ispitni ulomak Prijana Lovre</div>
+      <div class="box-key-txt">
+        <strong>Korak 1:</strong> Identificiraj <em>iz kojeg je dijela</em> ulomak. Ključne riječi: <em>Okvir</em> (berba, udovica, župnik, sudac), <em>Djetinjstvo</em> (siromaštvo, kanonik, obitelj), <em>Škola</em> (svećenstvo, Malvina, grof), <em>Prag</em> (Minka, cimer, kavana), <em>Tragedija</em> (Anđelija, britva, spletke).<br>
+        <strong>Korak 2:</strong> Prepoznaj <em>tehniku</em> — uokvirena pripovijetka, retrospekcija, psihološki opis, dijalog, realistička deskripcija, romantičarska scena.<br>
+        <strong>Korak 3:</strong> Identificiraj <em>stilska sredstva</em> — kontrast, ironija, metafora, aluzija, epitet.<br>
+        <strong>Korak 4:</strong> Vezi s <em>protorealističkim obilježjima</em> — realistička tema + romantičarski stil.<br>
+        <strong>Korak 5:</strong> Interpretiraj <em>na 3 razine</em> — konkretna (priča), socijalna (kritika), univerzalna (tragedija idealista).
+      </div>
+    </div>
+
+    <!-- DISCERE TOUCHPOINT -->
+    <div id="h15-react-discere-banner-primary"></div>
+
+    
+    <!-- VIDEO RESURSI — v3.5 -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">Video resursi</div><div class="sec-line"></div></div>
+
+    <div class="prose">Kada ti tekst nije dovoljan — vizualni učenici često bolje pamte kroz video objašnjenja i predstave. Ovdje su pouzdani edukacijski resursi na YouTubeu.</div>
+
+    <div class="yt-grid">
+      <div id="h15-react-video-card-primary"></div>
+
+      <div id="h15-react-video-card-secondary"></div>
+
+      <div id="h15-react-video-card-tertiary"></div>
+
+      <div id="h15-react-video-card-quaternary"></div>
+    </div>
+
+    <div class="box-tip" style="margin-top:14px">
+      <div class="bt-ico">💡</div>
+      <div class="bt-body">
+        <div class="bt-title">Pro tip — kako koristiti</div>
+        <div class="bt-txt">Video je <strong>dodatak</strong>, ne zamjena. Pročitaj djelo + ovu skriptu, pa pogledaj video — tako pamtiš 3× bolje nego kroz bilo koji pojedinačni izvor.</div>
+      </div>
+    </div>
+
+<div class="nav-row">
+      <span class="nb-btn" onclick="sw(0)">← Teorija</span>
+      <span class="nb-btn primary" onclick="sw(2)">✍ Esej alat →</span>
+    </div>
+
+  </div><!-- /l1 -->
+
+  <div class="layer" id="l2" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-go">📖 Obvezatno čitanje 2026</span>
+      <span class="pill p-br">Analiza ulomka</span>
+      <span class="pill p-te">3 razine čitanja</span>
+      <span class="pill p-pa">Scanner</span>
+      <span class="pill p-r">Komparacije</span>
+    </div>
+
+    <!-- STATUS BOX -->
+    <div class="box-warn" style="margin-bottom:20px;display:flex;gap:14px;align-items:flex-start">
+      <div class="bw-ico">ℹ</div>
+      <div class="bw-body">
+        <div class="bw-title">Prijan Lovro — obvezatno čitanje, <u>ne</u> školski esej 2026.</div>
+        <div class="bw-txt">
+          <strong>Djelo je na popisu obvezatnih djela za cjelovito čitanje</strong> (I. ispitna cjelina — Čitanje književnoga teksta). <u>Nije</u> na popisu 21 djela za školski esej. Ipak, vrlo je <strong>vjerojatno da ti se pojavi kao ulomak</strong> s pitanjima o: likovima, strukturi, stilu, protorealizmu, Šenoinom dobu, uokvirenoj pripovijetki. <br><br>
+          Ovaj Tab daje ti: (1) <b>Scanner ulomka</b> (AI analiza), (2) <b>3 razine čitanja</b>, (3) <b>20 kratkih odgovora</b>, (4) <b>Strategija ulomka</b> — 5 koraka, (5) <b>Komparacije</b> s drugim djelima, (6) <b>Konektori</b>, (7) <b>5 čestih grešaka</b>, (8) <b>Checklist</b>.
+        </div>
+      </div>
+    </div>
+
+    <!-- ALAT TABS -->
+    <div class="alat-tabs">
+      <button class="alat-tab on" onclick="alTab(this,'at0')">🔍 Scanner ulomka</button>
+      <button class="alat-tab" onclick="alTab(this,'at1')">📊 3 razine čitanja</button>
+      <button class="alat-tab" onclick="alTab(this,'at2')">⚡ Strategija ulomka</button>
+      <button class="alat-tab" onclick="alTab(this,'at3')">💬 20 kratkih odgovora</button>
+      <button class="alat-tab" onclick="alTab(this,'at4')">🌐 Komparacije</button>
+      <button class="alat-tab" onclick="alTab(this,'at5')">🔗 Konektori</button>
+      <button class="alat-tab" onclick="alTab(this,'at6')">🚫 5 čestih grešaka</button>
+      <button class="alat-tab" onclick="alTab(this,'at7')">Checklist</button>
+    </div>
+
+    <!-- AT0: Scanner ulomka -->
+    <div class="alat-pane on" id="at0">
+      <div class="alat-card">
+        <h4>🔍 Scanner ulomka — AI analiza dijela iz Prijana Lovre</h4>
+        <p>Zalijepi ulomak iz Prijana Lovre koji moraš analizirati. Scanner će identificirati: <em>dio pripovijetke</em> (Okvir / Djetinjstvo / Škola / Prag / Tragedija), <em>likove</em>, <em>stilska sredstva</em>, <em>tehniku pripovijedanja</em>, i dati <em>esejsku preporuku</em>.</p>
+      </div>
+
+      <textarea id="scanner-in" oninput="scannerCount()" placeholder="Zalijepi ulomak iz Prijana Lovre ovdje..." style="width:100%;min-height:150px;padding:12px;background:var(--sur);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--txt);font-family:var(--serif);font-size:14px;resize:vertical"></textarea>
+
+      <div style="display:flex;gap:12px;align-items:center;margin-top:10px;flex-wrap:wrap">
+        <button class="fcb primary" onclick="scannerGo()">▶ Analiziraj ulomak</button>
+        <button class="fcb" onclick="scannerClear()">↩ Obriši</button>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t2);margin-left:auto">
+          <span id="scanner-chars">0</span> znakova · <span id="scanner-words">0</span> riječi
+        </div>
+      </div>
+
+      <div id="scanner-out"></div>
+    </div>
+
+    <!-- AT1: 3 razine čitanja -->
+    <div class="alat-pane" id="at1">
+      <div class="alat-card">
+        <h4>📊 3 razine čitanja djela — interpretativni alat</h4>
+        <p>Prijan Lovro funkcionira na <strong>tri istodobne razine</strong>. Za svaki ulomak ili pitanje, prođi kroz sve tri — bolji odgovor ima barem dvije razine u igri.</p>
+      </div>
+
+      <div class="sc" style="border-left:3px solid var(--blue-l)">
+        <div class="sc-name">📖 1. KONKRETNA razina — priča o mladiću</div>
+        <div class="sc-desc">
+          <strong>Što je:</strong> Doslovna razina — tragična biografija Lovre od siromašne obitelji do samoubojstva.<br><br>
+          <strong>Kada koristiti:</strong> Pitanja o radnji, likovima, mjestima, događajima.<br><br>
+          <strong>Ključni elementi:</strong> Lovro, kanonik, grof, Malvina, Prag, Minka, Šenoa-cimer, Anđelija, britva.<br><br>
+          <strong>Čuvar:</strong> Pamti <em>5 dijelova</em> kronološki (Okvir → Djetinjstvo → Škola → Prag → Tragedija).
+        </div>
+      </div>
+
+      <div class="sc" style="border-left:3px solid var(--gold)">
+        <div class="sc-name">🏛 2. SOCIJALNA razina — kritika malograđanskog društva</div>
+        <div class="sc-desc">
+          <strong>Što je:</strong> Društveno-kritička razina — djelo kao analiza mehanizama koji guše talentirane pojedince.<br><br>
+          <strong>Kada koristiti:</strong> Pitanja o realizmu, društvenoj tematici, klasnim odnosima, Šenoinoj ideologiji.<br><br>
+          <strong>Ključ:</strong> Svaka institucija (crkva, plemstvo, malograđanstvo) ima svoju ulogu u Lovrinoj propasti. <em>Nije Lovro slab — društvo je zlo.</em><br><br>
+          <strong>Šenoina teza:</strong> Hrv. društvo 19. st. <em>nije dopustilo</em> talentiranom seoskom dječaku da se uzdigne — time je ubilo vlastitu budućnost.
+        </div>
+      </div>
+
+      <div class="sc" style="border-left:3px solid var(--green)">
+        <div class="sc-name">🎭 3. UNIVERZALNA razina — tragedija idealista</div>
+        <div class="sc-desc">
+          <strong>Što je:</strong> Općeljudska razina — priča o moralnom idealistu koji ne može preživjeti u materijalističkom svijetu.<br><br>
+          <strong>Kada koristiti:</strong> Interpretacijska pitanja, komparacije s Wertherom, univerzalne teme.<br><br>
+          <strong>Ključ:</strong> „Werther hrvatske književnosti" — ali s <em>socijalnim umjesto individualnim</em> uzrokom. Lovro umire jer <em>svijet nije napravljen za idealiste</em>.<br><br>
+          <strong>Moderna paralela:</strong> Filip Latinovicz (Krleža), Stipančići (Novak), Meursault (Camus) — svi oni dijele Lovrovu poziciju „nepripadnika".
+        </div>
+      </div>
+
+      <div class="box-key" style="margin-top:14px">
+        <div class="box-key-lbl">🎯 Zlatno pravilo</div>
+        <div class="box-key-txt">
+          U dobrom odgovoru <strong>uvijek spoji barem 2 razine</strong>. Na primjer: „Samoubojstvo Lovre je konkretno reakcija na Anđelijino odustajanje (1), ali i <em>optužnica malograđanskom društvu koje ga je kleveturalo</em> (2), te <em>univerzalni simbol propasti idealista</em> (3)." <em>Tri razine u jednoj rečenici</em> = vrhunski odgovor.
+        </div>
+      </div>
+    </div>
+
+    <!-- AT2: Strategija ulomka — 5 koraka -->
+    <div class="alat-pane" id="at2">
+      <div class="alat-card">
+        <h4>⚡ Strategija analize ulomka — 5 koraka (3 minute)</h4>
+        <p>Sustavna metoda za analizu bilo kojeg ulomka iz Prijana Lovre.</p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Korak</th><th>Što radiš</th><th>Ključni pokazatelji</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Lokacija</strong><br>30 sek</td>
+              <td>Iz kojeg je dijela ulomak?</td>
+              <td>
+                <em>Okvir</em>: berba, udovica, župnik, sudac, mutno popodne<br>
+                <em>Djetinjstvo</em>: siromaštvo, kanonik, svećenstvo, seoska obitelj<br>
+                <em>Škola</em>: Malvina, grof, učiteljstvo, odustanak od svećenstva<br>
+                <em>Prag</em>: Minka, cimer, kavana, debeli gospodin, miraz<br>
+                <em>Tragedija</em>: Anđelija, britva, spletke, samoubojstvo
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2. Tehnika</strong><br>20 sek</td>
+              <td>Koja se tehnika koristi?</td>
+              <td>
+                Uokvirena pripovijetka · retrospekcija · psihološki opis · realistička deskripcija · romantičarska scena · dijalog s registrom · ironija
+              </td>
+            </tr>
+            <tr>
+              <td><strong>3. Likovi</strong><br>30 sek</td>
+              <td>Tko govori? Tko djeluje?</td>
+              <td>
+                Lovro, Šenoa-pripovjedač, Malvina, Minka, Anđelija, kanonik, otac, majka, grof, udovica Hrvatica, župnik, sudac
+              </td>
+            </tr>
+            <tr>
+              <td><strong>4. Stilska sredstva</strong><br>40 sek</td>
+              <td>Prepoznaj barem 2–3 figure</td>
+              <td>
+                Epitet, kontrast, ironija, aluzija (Werther), metafora („rat s malograđanstvom"), simbol (britva, knjige, berba)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>5. Interpretacija</strong><br>60 sek</td>
+              <td>Tri razine čitanja u 2–3 rečenice</td>
+              <td>
+                Konkretna (što se događa) + socijalna (društvena kritika) + univerzalna (tragedija idealista)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box-signal">
+        <div class="box-signal-lbl">💡 Primjer 5-korak analize</div>
+        <div class="box-signal-txt">
+          <strong>Ulomak:</strong> „Bio je veliki intelektualac i idealist, jednakost i sloboda bili su njegovi ideali u koje je vjerovao. Nije uspio upisati akademiju iako je to stvarno jako želio."<br><br>
+          <strong>1. Lokacija:</strong> Vjerojatno III. Škola — Lovro odustaje od svećenstva, gradi se njegova intelektualna karakterizacija.<br>
+          <strong>2. Tehnika:</strong> Naratorski komentar (karakterizacija) + naznaka društvene prepreke.<br>
+          <strong>3. Likovi:</strong> Lovro (u fokusu narativnog glasa).<br>
+          <strong>4. Sredstva:</strong> Apstraktna imenica („idealist"), paralelizam („jednakost i sloboda"), kontrast želja/neuspjeh.<br>
+          <strong>5. Interpretacija:</strong> Konkretno — Lovrina psihološka karakterizacija. Socijalno — akademija kao zatvorena institucija. Univerzalno — tip modernog idealista koji se ne uklapa u sustav.
+        </div>
+      </div>
+    </div>
+
+    <!-- AT3: 20 kratkih odgovora -->
+    <div class="alat-pane" id="at3">
+      <div class="alat-card">
+        <h4>💬 20 kratkih odgovora — najčešća pitanja o djelu</h4>
+        <p>Pitanja u I. ispitnoj cjelini traže točan odgovor — ne esej. Ovi odgovori su pripremljeni za tipične formulacije.</p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Pitanje</th><th>Kratki odgovor</th></tr></thead>
+          <tbody>
+            <tr><td>Tko je autor djela?</td><td>August Šenoa (1838.–1881.), Zagreb</td></tr>
+            <tr><td>Kada je pripovijetka objavljena?</td><td>1873., u časopisu <em>Vijenac</em></td></tr>
+            <tr><td>Koji je žanr?</td><td><strong>Pripovijetka (novela)</strong> — uokvirena, s 5 dijelova</td></tr>
+            <tr><td>Kojem stilu pripada?</td><td><strong>Protorealizam</strong> — spoj realizma i romantizma</td></tr>
+            <tr><td>Tko je pripovjedač?</td><td>August Šenoa sam — u ulozi Lovrinog prijatelja iz Praga</td></tr>
+            <tr><td>Zašto „praška novela"?</td><td>Šenoa koristi uspomene iz svog studija u Pragu (1859.–1865.)</td></tr>
+            <tr><td>Tko je glavni lik?</td><td>Lovro — seoski mladić, Šenoin cimer u Pragu</td></tr>
+            <tr><td>Tko je Malvina?</td><td>Grofova kći — prva ljubav, odbija Lovru zbog klasnog porijekla</td></tr>
+            <tr><td>Tko je Minka?</td><td>Bogata (naizgled) djevojka u Pragu — Lovro razmatra brak iz računa</td></tr>
+            <tr><td>Tko je Anđelija?</td><td>Posljednja ljubav — Lovro se ubije pred njom nakon njezinog odustajanja</td></tr>
+            <tr><td>Kako Lovro umire?</td><td>Samoubojstvom — britvom prereže grkljan pred Anđelijom</td></tr>
+            <tr><td>Zašto „Werther hrvatske književnosti"?</td><td>Paralela s Goetheovim Wertherom — samoubojstvo mladog intelektualca iz ljubavi</td></tr>
+            <tr><td>Koja je glavna tema?</td><td>Propast intelektualca sa sela u malograđanskom društvu</td></tr>
+            <tr><td>Koji su glavni kontrasti?</td><td>Želja ↔ mogućnost (glavni), grad ↔ selo, bogatstvo ↔ siromaštvo, ideal ↔ stvarnost</td></tr>
+            <tr><td>Što je Šenoino doba?</td><td>Razdoblje 1865.–1881. kada Šenoa dominira hrv. književnošću</td></tr>
+            <tr><td>Koji je glavni časopis Šenoinog doba?</td><td><em>Vijenac</em> — Šenoa urednik od 1874.</td></tr>
+            <tr><td>Koja Šenoina djela nisu novele?</td><td>Povijesni romani (Zlatarevo zlato, Seljačka buna), povjestice, drame</td></tr>
+            <tr><td>Što je uokvirena pripovijetka?</td><td>Priča u priči — vanjski pripovjedač uvodi unutarnju pripovijest</td></tr>
+            <tr><td>Što je protorealizam?</td><td>Prijelazna faza između romantizma i realizma — realistički sadržaj + romantičarski stil</td></tr>
+            <tr><td>Obvezatno za 2026.?</td><td><strong>Obvezatno za cjelovito čitanje</strong>. Nije ispitno djelo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AT4: Komparacije -->
+    <div class="alat-pane" id="at4">
+      <div class="alat-card">
+        <h4>🌐 Komparacije s drugim djelima</h4>
+        <p>Prijan Lovro se može usporediti s mnogim djelima iz hrv. i svjetske književnosti. Ovo su najkorisnije paralele.</p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Djelo</th><th>Zajedničko</th><th>Razlika</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Goethe · Patnje mladog Werthera</strong> (1774.)</td>
+              <td>Tragični mladi intelektualac; samoubojstvo zbog neostvarene ljubavi; epistolarno-refleksivna proza</td>
+              <td>Werther = individualna romantičarska drama; Lovro = <strong>socijalna tragedija</strong> (uzrok je društvo)</td>
+            </tr>
+            <tr>
+              <td><strong>Novak · Posljednji Stipančići</strong> (1899.)</td>
+              <td>Propast hrv. građanske obitelji; realistička tehnika; kritika malograđanstva; Novak kasniji Šenoa sljedbenik</td>
+              <td>Lovro = individualna sudbina; Stipančići = <strong>kolektivna propast obitelji</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Marinković · Kiklop</strong> (1965.)</td>
+              <td>Intelektualac-outsider; nemogućnost uklapanja; ironijski odnos s društvom</td>
+              <td>Kiklop = moderni roman s unutarnjim monologom; Prijan Lovro = klasična pripovijetka u 3. licu</td>
+            </tr>
+            <tr>
+              <td><strong>Krleža · Gospoda Glembajevi</strong> (1928.)</td>
+              <td>Kritika građansko-plemićkog društva; tragični kraj; dominantna figura malograđanske hipokrizije</td>
+              <td>Glembajevi = drama; Prijan Lovro = proza. Krleža = oštra kritika; Šenoa = blaža</td>
+            </tr>
+            <tr>
+              <td><strong>Šenoa · Zlatarevo zlato</strong> (1871.)</td>
+              <td>Isti autor, isto doba, ista tema klasnog sukoba; oba djela koriste povijesno-psihološku tehniku</td>
+              <td>Zlatarevo zlato = povijesni roman (16. st.); Prijan Lovro = <strong>suvremena priča 19. st.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Kovačić · U registraturi</strong> (1888.)</td>
+              <td>Propast idealista sa sela u gradu; oštra društvena kritika; seoski intelektualac u sukobu s birokracijom</td>
+              <td>Kovačić = razvijeni realizam, nemilosrdna kritika; Šenoa = protorealizam, blaži ton</td>
+            </tr>
+            <tr>
+              <td><strong>Mažuranić · Smrt Smail-age</strong> (1846.)</td>
+              <td>Hrv. klasika s tragičnim motivom; oba obvezatna za čitanje 2026.</td>
+              <td>Mažuranić = romantizam, spjev, nacionalni; Šenoa = <strong>protorealizam, pripovijetka, individualni</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box-signal">
+        <div class="box-signal-lbl">💡 Zlatni par komparacija</div>
+        <div class="box-signal-txt">
+          Ako ti traže <em>jednu usporedbu</em>, najlakše je <strong>Prijan Lovro ↔ Patnje mladog Werthera</strong> (oba tragični intelektualci, samoubojstvo) ili <strong>Prijan Lovro ↔ Posljednji Stipančići</strong> (obje propadanja u hrv. realizmu, esejska djela 2026.).
+        </div>
+      </div>
+    </div>
+
+    <!-- AT5: Konektori -->
+    <div class="alat-pane" id="at5">
+      <div class="alat-card">
+        <h4>🔗 Konektori i fraze — za pisanje kvalitetnih odgovora</h4>
+        <p>Kratki odgovori u I. cjelini nisu eseji, ali i dalje trebaju biti <em>povezani i argumentirani</em>. Koristi ove konektore.</p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Funkcija</th><th>Konektori / fraze</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Uvodi tezu</strong></td><td>„Šenoa prikazuje...", „Djelo postavlja...", „Pripovijetka gradi..."</td></tr>
+            <tr><td><strong>Primjer</strong></td><td>„Na primjer u dijelu...", „Reprezentativan je...", „Posebno je važno..."</td></tr>
+            <tr><td><strong>Uzrok-posljedica</strong></td><td>„Zbog toga...", „Posljedica je...", „Iz ovoga proizlazi..."</td></tr>
+            <tr><td><strong>Kontrast</strong></td><td>„Nasuprot tome...", „S druge strane...", „Za razliku od...", „Međutim..."</td></tr>
+            <tr><td><strong>Dodatak</strong></td><td>„Osim toga...", „Također...", „Još je jedno obilježje..."</td></tr>
+            <tr><td><strong>Interpretacija</strong></td><td>„To sugerira...", „Simboličko značenje je...", „Protorealistički gledano..."</td></tr>
+            <tr><td><strong>Zaključak</strong></td><td>„Stoga djelo...", „U konačnici...", „Šenoa tako...", „Zaključno..."</td></tr>
+            <tr><td><strong>Stilski termini</strong></td><td>„uokvirena pripovijetka", „retrospekcija", „protorealizam", „psihološka karakterizacija", „socijalna kritika", „Šenoino doba"</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AT6: 5 čestih grešaka -->
+    <div class="alat-pane" id="at6">
+      <div class="alat-card">
+        <h4>🚫 5 najčešćih grešaka — što izbjegavati</h4>
+        <p>Tipične greške u odgovorima o Prijanu Lovri. Prepoznaj ih u vlastitom pisanju.</p>
+      </div>
+
+      <div class="sc" style="border-left:3px solid var(--red-l)">
+        <div class="sc-name">❌ 1. „Prijan Lovro je roman"</div>
+        <div class="sc-desc">
+          <strong>Krivo.</strong> Djelo je <strong>pripovijetka (novela)</strong> — kraća od romana, s jednom glavnom radnjom. Šenoa piše romane (Zlatarevo zlato, Seljačka buna), ali Prijan Lovro je pripovijetka. Razlika: roman ima više paralelnih radnji, pripovijetka jednu glavnu.
+        </div>
+      </div>
+
+      <div class="sc" style="border-left:3px solid var(--red-l)">
+        <div class="sc-name">❌ 2. „Šenoa je glavni lik"</div>
+        <div class="sc-desc">
+          <strong>Krivo.</strong> Šenoa je <strong>pripovjedač</strong>, ne glavni lik. Glavni lik je <strong>Lovro</strong>. Šenoa je njegov prijatelj i svjedok. Uokvirena pripovijetka: Šenoa priča o Lovri u okviru (berba); Lovro je junak unutarnje priče.
+        </div>
+      </div>
+
+      <div class="sc" style="border-left:3px solid var(--red-l)">
+        <div class="sc-name">❌ 3. „Djelo je čisti realizam"</div>
+        <div class="sc-desc">
+          <strong>Krivo.</strong> Prijan Lovro je <strong>protorealizam</strong> — prijelazna faza. Ima realističke elemente (društvena tematika, psihologija) ALI i romantičarske (patetični kraj, idealizirani junak, opisi). Zato se Šenoa zove <em>„utemeljitelj i najznačajniji predstavnik hrv. protorealizma"</em>.
+        </div>
+      </div>
+
+      <div class="sc" style="border-left:3px solid var(--red-l)">
+        <div class="sc-name">❌ 4. „Lovro je slab čovjek jer se ubio"</div>
+        <div class="sc-desc">
+          <strong>Krivo i moralno neprikladno.</strong> Šenoina poanta je <strong>suprotna</strong> — Lovro nije slab, nego je <em>sustav zao</em>. Samoubojstvo je posljedica <em>strukturnih ograničenja</em>, ne osobne slabosti. Šenoa <em>ne osuđuje Lovru, osuđuje društvo</em>.
+        </div>
+      </div>
+
+      <div class="sc" style="border-left:3px solid var(--red-l)">
+        <div class="sc-name">❌ 5. Zbrka redoslijeda dijelova</div>
+        <div class="sc-desc">
+          <strong>Krivo.</strong> Učenici često miješaju: misle da Prag dolazi prije učiteljstva kod grofa, ili da Anđelija dolazi prije Minke. <strong>Točan redoslijed:</strong> Okvir → Djetinjstvo → Škola (Malvina) → Prag (Minka) → Tragedija (Anđelija). Zapamti: <em>O-D-Š-P-T</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- AT7: Checklist -->
+    <div class="alat-pane" id="at7">
+      <div class="alat-card">
+        <h4>✅ Checklist — što trebaš znati o Prijanu Lovri</h4>
+        <p>Prođi kroz sve stavke. Ako ne možeš označiti nešto, vrati se u Tab 0 ili Tab 1.</p>
+      </div>
+
+      <div id="cl-list"></div>
+      <div id="cl-score" style="margin-top:14px"></div>
+    </div>
+
+    <!-- DISCERE -->
+    <div class="discere-banner" style="margin-top:20px" onclick="window.location.href='#discere'">
+      <div class="discere-ico">📖</div>
+      <div class="discere-txt">
+        <div class="discere-ttl">Discere · Simulator ulomaka Prijana Lovre</div>
+        <div class="discere-sub">Neograničeni ulomci iz djela s AI analizom i evaluacijom odgovora · <strong>Pro plan</strong></div>
+      </div>
+      <div class="discere-arrow">→</div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(1)">← 5 dijelova</span>
+      <span class="nb-btn primary" onclick="sw(3)">💬 Citatnik →</span>
+    </div>
+
+  </div><!-- /l2 -->
+
+  <div class="layer" id="l3" role="tabpanel" tabindex="0"></div>
+
+  <div class="layer" id="l4" role="tabpanel" tabindex="0"></div>
+
+  <div class="layer" id="l5" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-br">20 flashcards</span>
+      <span class="pill p-go">3 razine matching</span>
+      <span class="pill p-te">Demo slobodan</span>
+      <span class="pill p-r">Puno PRO</span>
+    </div>
+
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01 · Flashcards · okreni karticu</div><div class="sec-line"></div></div>
+
+    <style>
+      .h15d-fc-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;margin:16px 0 24px}
+      .h15d-fc-counter{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase}
+      .h15d-fc-counter b{color:var(--bronze-l)}
+      .h15d-fc{width:100%;max-width:520px;min-height:220px;perspective:1500px;cursor:pointer}
+      .h15d-fc-inner{position:relative;width:100%;height:100%;min-height:220px;transition:transform .6s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+      .h15d-fc.flipped .h15d-fc-inner{transform:rotateY(180deg)}
+      .h15d-fc-front,.h15d-fc-back{position:absolute;inset:0;min-height:220px;padding:40px 32px;border-radius:var(--r4);backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--bdm)}
+      .h15d-fc-front{background:linear-gradient(135deg,var(--card),var(--ele))}
+      .h15d-fc-back{background:linear-gradient(135deg,rgba(220,50,47,.12),rgba(232,201,122,.05));border-color:var(--bd-br);transform:rotateY(180deg)}
+      .h15d-fc-cat{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--bronze);margin-bottom:12px}
+      .h15d-fc-term{font-family:var(--display);font-size:30px;font-weight:700;color:var(--t1);letter-spacing:1px}
+      .h15d-fc-hint{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:22px;letter-spacing:1px}
+      .h15d-fc-def{font-family:var(--serif);font-size:16px;line-height:1.65;color:var(--t1);max-width:420px}
+      .h15d-fc-controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+      .h15d-fcb{padding:10px 20px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--t2);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+      .h15d-fcb:hover{border-color:var(--bd-br);color:var(--bronze-l)}
+      .h15d-fcb.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));color:#F5E6D3;border-color:var(--bronze)}
+      .h15d-fcb.know{border-color:var(--bd-g);color:var(--green)}
+      .h15d-fcb.know:hover{background:var(--dim-g)}
+      .h15d-fcb.dont{border-color:var(--bd-r);color:var(--red)}
+      .h15d-fcb.dont:hover{background:var(--dim-r)}
+      .h15d-fc-stats{display:flex;gap:20px;margin-top:10px;font-family:var(--mono);font-size:11px}
+      .h15d-fc-stats span{color:var(--t3)}
+      .h15d-fc-stats b{color:var(--green)}
+      .h15d-fc-stats i{color:var(--red);font-style:normal}
+    </style>
+
+    <div class="h15d-fc-wrap">
+      <div class="h15d-fc-counter"><span id="h15d-fc-num"><b>1</b> / 20</span></div>
+      <div class="h15d-fc" id="h15d-fc-card" onclick="h15DrillFcFlip()">
+        <div class="h15d-fc-inner" id="h15d-fc-inner">
+          <div class="h15d-fc-front">
+            <div class="h15d-fc-cat" id="h15d-fc-cat-f">POJAM</div>
+            <div class="h15d-fc-term" id="h15d-fc-term">—</div>
+            <div class="h15d-fc-hint">Klikni za okretanje</div>
+          </div>
+          <div class="h15d-fc-back">
+            <div class="h15d-fc-cat" id="h15d-fc-cat-b">DEFINICIJA</div>
+            <div class="h15d-fc-def" id="h15d-fc-def">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="h15d-fc-controls">
+        <button class="h15d-fcb dont" onclick="h15DrillFcMark(0)">❌ Ne znam</button>
+        <button class="h15d-fcb know" onclick="h15DrillFcMark(1)">✅ Znam</button>
+        <button class="h15d-fcb" onclick="h15DrillFcSkip()">Preskoči ›</button>
+        <button class="h15d-fcb" onclick="h15DrillFcShuffleAndRender()">📌 Promiješaj</button>
+        <button class="h15d-fcb primary" onclick="h15DrillFcReset()">🔁 Reset</button>
+      </div>
+      <div class="h15d-fc-stats"><span>točno: <b id="h15d-fc-right">0</b></span><span>krivo: <i id="h15d-fc-wrong">0</i></span></div>
+    </div>
+
+    <!-- MATCHING GAME — potpuno funkcionalan -->
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">Matching game — spoji pojam s definicijom · 3 razine</div><div class="sec-line"></div></div>
+
+    <div id="mg-dynamic"></div>
+
+    <div class="box-signal" style="margin-top:16px">
+      <div class="box-signal-lbl">💡 Matching tip</div>
+      <div class="box-signal-txt">Počni s <strong>Lagano (4 para)</strong> za provjeru osnova, zatim napreduj na Teško (8 parova). Svako uspješno sparivanje gradi memorijsku vezu pojam–definicija.</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 6 · KVIZ
+  ══════════════════════════════════════ -->
+  <div class="layer" id="l6" role="tabpanel" tabindex="0">
+    <!-- DISCERE TOUCHPOINT 4 -->
+    <div class="discere-banner" id="discere-kviz" onclick="window.location.href='#discere'">
+      <div class="discere-ico">🏆</div>
+      <div class="discere-txt">
+        <div class="discere-ttl">Discere · Pravi ispit mode</div>
+        <div class="discere-sub">Ovaj kviz je priprema — u Discere treniraj s vremenskim pritiskom i točnim bodovanjem kao na maturi</div>
+      </div>
+      <div class="discere-arrow">→</div>
+    </div>
+    <div class="qz-wrap" id="qz-wrap"></div>
+    <!-- Score History -->
+    <div class="score-hist" id="score-hist" style="display:none">
+      <div class="score-hist-lbl">📊 Zadnjih 5 kvizova</div>
+      <div class="score-hist-rows" id="score-hist-rows"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 7 · CHECKPOINT
+  ══════════════════════════════════════ -->
+  <div class="layer" id="l7" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-br">10 tvrdnji</span>
+      <span class="pill p-go">Provjera znanja</span>
+    </div>
+
+    <p>Označi svaku tvrdnju koju <strong>stvarno znaš</strong> — ne samo prepoznaješ, nego možeš objasniti i primijeniti u eseju. Kada označiš svih 10, možeš prijeći na H16.</p>
+
+    <style>
+      .minirev{margin:16px 0 14px;padding:14px;border:1px solid var(--line,rgba(255,255,255,.12));border-radius:var(--r3,12px);background:linear-gradient(135deg,var(--panel,rgba(255,255,255,.03)) 0%,rgba(255,255,255,.01) 100%)}
+      .minirev-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+      .minirev-ttl{font-weight:800;color:var(--gold,#e9b446);font-size:14px}
+      .minirev-time{font-size:11px;color:var(--muted,#b8b8b8)}
+      .minirev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-bottom:10px}
+      .minirev-card{border:1px solid var(--line,rgba(255,255,255,.12));border-radius:10px;padding:9px;background:rgba(255,255,255,.02)}
+      .minirev-card-lbl{font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--bronze-l,#e0ba93);margin-bottom:4px;font-weight:700}
+      .minirev-card-val{font-size:12.5px;line-height:1.45;color:var(--txt,#ebebeb)}
+      .minirev-card-val b{color:var(--gold,#e9b446)}
+      .minirev-quotes{border:1px dashed var(--line,rgba(255,255,255,.12));border-radius:10px;padding:10px;background:rgba(255,255,255,.015)}
+      .minirev-quotes ol{margin:0;padding-left:18px}
+      .minirev-quotes li{margin:4px 0;font-size:12.5px;line-height:1.45}
+      .exam-prompt{position:relative;margin:0 0 16px;padding:13px;border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:var(--r3,12px);background:linear-gradient(135deg,var(--dim-r,rgba(192,66,68,.12)) 0%,rgba(224,82,82,.04) 100%)}
+      .exam-prompt::before{content:'NCVVO · SKOLSKI ESEJ';display:inline-block;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:999px;background:var(--bg,#0f0b10);color:var(--red-l,#f0a8a8);margin-bottom:8px}
+      .exam-prompt-ttl{font-size:14px;font-weight:800;color:var(--txt,#f3f3f3);margin-bottom:6px}
+      .exam-prompt-task{font-size:13px;line-height:1.55;color:var(--txt,#ececec);margin-bottom:8px}
+      .exam-prompt-tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+      .exam-tip{border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:10px;padding:8px 9px;background:rgba(15,8,9,.22);font-size:12.5px;line-height:1.45}
+    </style>
+
+    <div class="minirev">
+      <div class="minirev-head">
+        <div class="minirev-ttl">🧭 Mini-revizija — sve u 3 minute</div>
+        <div class="minirev-time">~3 min čitanja</div>
+      </div>
+      <div class="minirev-body">
+        <div class="minirev-grid">
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Djelo i korpus</div><div class="minirev-card-val"><b>Šenoa: Prijan Lovro</b> kao ključni prijelaz prema hrvatskom realizmu i društvenoj prozi.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Kontekst</div><div class="minirev-card-val"><b>Šenoino doba</b>: modernizacija, građanski sloj, socijalne razlike i pitanje položaja intelektualca.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Likovi i osi</div><div class="minirev-card-val"><b>Lovro i pripovjedački okvir</b> — individualna tragedija u sudaru s društvenim granicama.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Središnji sukob</div><div class="minirev-card-val"><b>Talent i želja vs društvena realnost</b>; psihološki i socijalni uzroci Lovrina sloma.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Pojmovi</div><div class="minirev-card-val"><b>protorealizam, uokvirena pripovijetka, karakterizacija, socijalna kritika, pripovjedač</b>.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Simboli</div><div class="minirev-card-val"><b>školovanje, grad, društveni status, bolest/slom</b> — motivi koji povezuju pojedinca i epohu.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Most</div><div class="minirev-card-val">› <b>H16 Krleža i moderna</b>: od šenoine društvene dijagnoze prema modernističkoj krizi identiteta.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Najveća greška</div><div class="minirev-card-val">Lovru čitati kao „žrtvu sudbine”. Na maturi treba pokazati <b>kako društvo i psihologija zajedno proizvode tragediju</b>.</div></div>
+        </div>
+        <div class="minirev-quotes">
+          <b style="display:block;font-family:var(--mono);font-size:9.5px;color:var(--bronze-l,#e0ba93);letter-spacing:1.5px;font-weight:700;text-transform:uppercase;margin-bottom:8px">3 citata/formulacije napamet</b>
+          <ol>
+            <li>„Prijan Lovro je protorealistična uokvirena pripovijetka.” <b>(školska formulacija)</b></li>
+            <li>„Lovrina sudbina je društveno i psihološki motivirana.” <b>(interpretacijska formulacija)</b></li>
+            <li>„Šenoa književnost pretvara u dijagnozu društva.” <b>(interpretacijska formulacija)</b></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-prompt">
+      <div class="exam-prompt-ttl">📌 Kako se Prijan Lovro može pojaviti na ispitu</div>
+      <div class="exam-prompt-task">Analiziraj kako Šenoa u <em>Prijanu Lovri</em> prikazuje odnos pojedinca i društva. Objasni funkciju pripovjedačkog okvira, socijalnog konteksta i psihološke razrade lika te pokaži zašto je djelo važan most prema realizmu.</div>
+      <div class="exam-prompt-tips">
+        <div class="exam-tip"><b>📌 Struktura eseja</b>Uvod (50-60 r.) · 3 razradna odlomka (~120 r. svaki: kontekst, analiza lika i kompozicije, književnopovijesni položaj) · zaključak (60-70 r.) = ~470 r.</div>
+        <div class="exam-tip"><b>📌 Citati</b>Koristi 2-3 citata/formulacije: jedan o okviru pripovijedanja, jedan o Lovrinu slomu, jedan o društvenoj kritici.</div>
+        <div class="exam-tip"><b>📌 Povezivanje</b>Poveži H15→H16: od šenoina protorealizma prema krležijanskom modernističkom raspadu građanskog svijeta.</div>
+        <div class="exam-tip"><b>📚 Pojmovi</b>Protorealizam · uokvirena pripovijetka · karakterizacija · socijalna kritika · pripovjedač.</div>
+      </div>
+    </div>
+
+    <div class="cp-grid" id="cp-list"></div>
+    <div class="cp-prog">
+      <div class="cp-prog-label">
+        <span>Usvojenost H15</span>
+        <span id="cp-pct">0 / 10</span>
+      </div>
+      <div class="cp-prog-track"><div class="cp-prog-bar" id="cp-bar" style="width:0%"></div></div>
+    </div>
+    <div class="cp-actions">
+      <button class="fcb" onclick="cpReset()">↩ Resetiraj</button>
+      <button class="fcb primary" onclick="sw(6)">🧠 Idi na kviz</button>
+    </div>
+
+    <div class="cp-summary" id="cp-summary-box" style="display:none">
+      <div class="cp-sum-pct" id="cp-sum-pct">0%</div>
+      <div class="cp-sum-txt" id="cp-sum-txt">Označi tvrdnje koje <strong>stvarno znaš</strong>.</div>
+    </div>
+
+    <div class="cp-final" id="cp-final">
+      <div class="cp-final-ico">🏆</div>
+      <div class="cp-final-title">H15 Završeno!</div>
+      <div class="cp-final-msg">Izvrsno! Savladao/la si Šenou i Prijan Lovro — uokvirenu pripovijetku, 5 dijelova, protorealizam i hrvatsko Šenoino doba.<br>Sljedeće: <strong>H16 · Krleža i moderna</strong>.</div>
+      <a href="Maturiraj_Hrvatski_H16.html?from=H15" class="reveal-lock-btn" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">→ H16 · Krleža i moderna</a>
+      <br><br>
+      <button class="nb-btn" onclick="cpReset()">↩ Resetiraj</button>
+    </div>
+
+    <!-- Writing practice widget -->
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">Vježba pisanja — rečenica o Prijanu Lovri</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">✍ Napiši jednu rečenicu o Prijanu Lovri koja bi mogla ući u odgovor/interpretaciju</div>
+      <div class="box-int-txt">Vježbaj oblikovanje esejskih rečenica. Cilj: precizna, tehnički točna rečenica s književnim pojmom, primjerom i argumentom. Minimum 20 riječi.</div>
+    </div>
+    <div class="wc-wrap">
+      <div class="wc-header">
+        <div class="wc-lbl">Vježbaj pisanje esejske rečenice</div>
+        <div class="wc-stats">
+          <div class="wc-stat" id="cpw-words"><span class="wc-stat-num">0</span><span class="wc-stat-lbl">Riječi</span></div>
+          <div class="wc-stat" id="cpw-terms"><span class="wc-stat-num">0</span><span class="wc-stat-lbl">Pojmova</span></div>
+        </div>
+      </div>
+      <div class="wc-body">
+        <textarea id="cp-writer" class="wc-ta" style="min-height:100px" placeholder="Npr: Šenoa u Prijanu Lovri (1873., Vijenac) gradi protorealističnu uokvirenu pripovijetku u 5 dijelova — kroz Lovrovu tragičnu sudbinu intelektualca sa sela koji se gubi u psihosocijalnim kontrastima (želja vs. mogućnost) — kritizira hrvatsko malograđansko društvo Šenoinog doba..." rows="4" oninput="cpWriterUpdate()"></textarea>
+        <div class="wc-prog" id="cpw-prog"><div class="wc-prog-bar" id="cpw-bar"></div></div>
+        <div class="wc-prog-lbl" id="cpw-lbl">CILJ 20 RIJEČI · 0 / 20</div>
+        <div class="wc-actions">
+          <button class="wc-btn" onclick="navigator.clipboard.writeText(document.getElementById('cp-writer').value)">⎘ Kopiraj</button>
+          <button class="wc-btn" onclick="document.getElementById('cp-writer').value='';cpWriterUpdate()">✕ Obriši</button>
+        </div>
+      </div>
+    </div>
+    <div id="cp-writer-fb" style="margin-top:10px"></div>
+
+    <div class="box-signal" style="margin-top:24px">
+      <div class="box-signal-lbl">📎 Poveznice između tabova H15</div>
+      <div class="box-signal-txt">
+        <b>Teorija (0)</b> → kontekst i pojmovi → <b>5 dijelova (1)</b> → detaljna analiza → <b>Esej alat (2)</b> → primjena u eseju → <b>Citatnik (3)</b> → gotovi citati → <b>Pojmovnik (4)</b> → precizni pojmovi → <b>Kviz (6)</b> → provjera → <b>Checkpoint (7)</b> → potvrda. <strong>Za ispit: počni s Kvizom (brza dijagnoza), zatim nadopuni slabe točke.</strong>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content-wrap -->
+  <!-- ═══════════════════════════════════
+       CROSS-CHAPTER NAVIGATION
+  ═══════════════════════════════════ -->
+  <div class="chapter-nav-wrap">
+    <div class="chapter-nav-hdr">
+      <div class="chapter-nav-title">📚 Sljedeća poglavlja</div>
+      <div class="chapter-nav-sub">Nastavi učiti — povezana poglavlja u Maturiraj knjižnici</div>
+    </div>
+    
+    <div class="chapter-nav-grid">
+      <a class="chapter-nav-card chapter-nav-prev" href="/skripte/hrv/h14">
+        <div class="chapter-nav-arrow">←</div>
+        <div class="chapter-nav-meta">
+          <div class="chapter-nav-pill">PRETHODNO</div>
+          <div class="chapter-nav-name">H14 · Narodni preporod</div>
+          <div class="chapter-nav-desc">Mažuranić · Smrt Smail-age Čengića</div>
+        </div>
+      </a>
+
+      <a class="chapter-nav-card chapter-nav-next" href="/skripte/hrv/h16">
+        <div class="chapter-nav-meta">
+          <div class="chapter-nav-pill chapter-nav-pill-next">SLJEDEĆE</div>
+          <div class="chapter-nav-name">H16 · Krleža · Glembajevi</div>
+          <div class="chapter-nav-desc">Moderna — 20. stoljeće</div>
+        </div>
+        <div class="chapter-nav-arrow">→</div>
+      </a>
+</div>
+
+    <div class="chapter-nav-related">
+      <div class="chapter-nav-related-ttl">🔗 Povezana poglavlja</div>
+      <div class="chapter-nav-related-grid">
+        <a class="chapter-nav-mini" href="/skripte/hrv/h13">
+          <span class="chapter-nav-mini-code">H13</span>
+          <span class="chapter-nav-mini-name">Gundulić · Dubravka</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h14">
+          <span class="chapter-nav-mini-code">H14</span>
+          <span class="chapter-nav-mini-name">Narodni preporod</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h16">
+          <span class="chapter-nav-mini-code">H16</span>
+          <span class="chapter-nav-mini-name">Krleža · Glembajevi</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h17">
+          <span class="chapter-nav-mini-code">H17</span>
+          <span class="chapter-nav-mini-name">Stilske figure</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══ MODULE FOOTER (v3.6) ══ -->
+  <footer class="mod-foot" role="contentinfo">
+    <div class="foot-line"><b>Maturiraj.hr</b> · Hrvatski · H15 Druga moderna — hrvatska književnost (1952.–1969.)</div>
+    <div class="foot-line">Autorski sadržaj · Usklađeno s <a href="https://www.ncvvo.hr/ispitni-katalozi-za-drzavnu-maturu-2025-2026/" target="_blank" rel="noopener noreferrer">NCVVO</a> ispitnim katalogom · Ažurirano <time datetime="2026-04-18">travanj 2026.</time></div>
+    <div class="foot-line foot-feedback">
+      <span class="foot-fb-q">Imaš prijedlog ili si uočio grešku?</span>
+      <button type="button" class="foot-fb-btn" onclick="openFeedbackModal()">📝 Prijavi →</button>
+      <span class="foot-fb-or">ili e-mail</span>
+      <a href="mailto:maturirajgreske@gmail.com" class="foot-fb-mail">maturirajgreske@gmail.com</a>
+    </div>
+  </footer>
+</main>
+</div><!-- /shell -->
+
+<!-- TIP BAR -->
+<div class="tip-bar" id="tip-bar">
+  <span class="tip-bar-close" onclick="document.getElementById('tip-bar').classList.remove('show')">✕</span>
+  <span id="tip-bar-txt">💡 <strong>Tip:</strong> Klikni na pjevanje za detalje i esejske signale.</span>
+</div>
+
+<!-- FROM BANNER -->
+<div class="from-banner" id="from-banner">
+  <span>📎</span><span id="from-txt">Dolaziš iz prethodnog poglavlja</span>
+</div>
+
+
+
+
+
+
+`;
+
+const CHAPTER_CSS_DELTA = `
+img,video,iframe,embed,object{max-width:100%;height:auto}
+
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes layerIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(220,50,47,.3)}50%{box-shadow:0 0 0 8px rgba(220,50,47,.0)}}
+
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+
+@keyframes diagFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1200px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;height:100%;z-index:180;
+    transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+    pointer-events:none}
+  .sidebar.mobile-open{transform:translateX(0)!important;pointer-events:auto}
+  .sb-hamburger{display:flex!important}
+  .main{width:100%!important;max-width:100%!important;flex:1!important}
+}
+
+.sb-item.sb-d .sb-dot{background:var(--gold);opacity:.5}
+
+.sb-item.sb-d:hover:not(.disabled){color:var(--gold);background:var(--dim-go)}
+
+.sb-item[data-star="2026"]{padding-right:58px;position:relative}
+
+.hero-sub strong{color:var(--t1)}
+
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+
+.hchip.re{background:var(--dim-r);color:var(--red);border:1px solid var(--bd-r)}
+
+.hchip.gr{background:var(--dim-g);color:var(--green);border:1px solid var(--bd-g)}
+
+.hchip.pa{background:var(--dim-pa);color:var(--parchment);border:1px solid var(--bd-pa)}
+
+.countdown strong{color:var(--bronze);font-size:13px}
+
+.tab-lock{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.5px;margin-left:5px;background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go);border-radius:3px;padding:1px 5px}
+
+.tab-done{display:inline-flex;align-items:center;justify-content:center;margin-left:5px;font-size:9px;color:var(--green);opacity:.9;font-weight:700}
+
+/* ══ TIP BAR ══ */
+.tip-bar{position:fixed;bottom:16px;right:16px;background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r3);padding:10px 14px;font-family:var(--mono);font-size:10px;color:var(--t2);max-width:260px;box-shadow:0 4px 20px rgba(0,0,0,.4);z-index:190;display:none;animation:fadeUp .3s ease;line-height:1.5}
+
+.tip-bar.show{display:block}
+
+.tip-bar-close{float:right;cursor:pointer;color:var(--t3);margin-left:8px;font-size:12px}
+
+.tip-bar strong{color:var(--gold)}
+
+/* ══ DISCERE BANNER ══ */
+.discere-banner{background:linear-gradient(135deg,rgba(220,50,47,.12),rgba(232,201,122,.08));border:1px solid var(--bd-br);border-radius:var(--r3);padding:14px 18px;margin:20px 0;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .18s}
+
+.discere-banner:hover{border-color:var(--bdl);background:linear-gradient(135deg,rgba(220,50,47,.18),rgba(232,201,122,.12))}
+
+.discere-ico{font-size:28px;flex-shrink:0}
+
+.discere-txt{flex:1}
+
+.discere-ttl{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin-bottom:3px}
+
+.discere-sub{font-family:var(--serif);font-size:12.5px;color:var(--t3);line-height:1.4}
+
+.discere-arrow{color:var(--bronze);font-size:18px;flex-shrink:0}
+
+/* ══ SCORE HISTORY ══ */
+.score-hist{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 18px;margin:16px 0}
+
+.score-hist-lbl{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+
+.score-hist-rows{display:flex;flex-direction:column;gap:6px}
+
+.score-hist-row{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px}
+
+.score-hist-bar{flex:1;height:6px;background:var(--bd);border-radius:3px;overflow:hidden}
+
+.score-hist-fill{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:3px;transition:width .5s ease}
+
+.score-hist-val{color:var(--gold);min-width:36px;text-align:right}
+
+.score-hist-date{color:var(--t3);font-size:9px;min-width:48px}
+
+/* ══ FROM BANNER ══ */
+.from-banner{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:8px 14px;margin-bottom:18px;font-family:var(--mono);font-size:10px;color:var(--gold);display:none}
+
+.from-banner.show{display:flex;align-items:center;gap:8px}
+
+
+/* ══ FEATURED QUOTE ══ */
+.fq{background:var(--ele);border-left:3px solid var(--bronze);border-radius:0 var(--r3) var(--r3) 0;padding:18px 22px;margin:22px 0;position:relative}
+
+.fq::before{content:'\\275D';position:absolute;top:8px;right:14px;font-size:32px;color:var(--bronze);opacity:.15;font-family:Georgia,serif;line-height:1}
+
+.fq-text{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--t1);line-height:1.7;margin-bottom:8px}
+
+.fq-source{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px}
+
+.fq-source span{color:var(--gold)}
+
+.box-warn-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+
+.box-signal-txt,.box-int-txt,.box-key-txt,.box-warn-txt,.bw-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+
+.box-signal-txt em,.box-int-txt em,.bw-txt em{color:var(--teal);font-style:italic}
+
+.tbl th{background:var(--ele);color:var(--t3);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:8px 12px;border:1px solid var(--bd);text-align:left}
+
+.tbl td{padding:9px 12px;border:1px solid var(--bd);color:var(--t2);vertical-align:top;line-height:1.5}
+
+.tbl tr:hover td{background:var(--hov);color:var(--t1)}
+
+.tbl td strong{color:var(--t1)}
+
+.tbl td em{color:var(--gold);font-style:italic}
+
+.tbl-wrap{overflow-x:auto;margin:16px 0;border-radius:var(--r2)}
+
+
+/* ══ SCENE CARDS (pjevanja) ══ */
+.scene-list{display:flex;flex-direction:column;gap:12px;margin:18px 0}
+
+.scene-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);overflow:hidden;cursor:pointer;transition:border-color .18s}
+
+.scene-card:hover{border-color:var(--bdl)}
+
+.scene-card.open{border-color:var(--bd-br)}
+
+.scene-hdr{display:flex;align-items:center;gap:12px;padding:12px 16px}
+
+.scene-num{font-family:var(--display);font-size:11px;font-weight:700;color:var(--bronze);min-width:28px}
+
+.scene-ttl{font-family:var(--serif);font-size:14px;color:var(--t1);font-weight:600;flex:1}
+
+.scene-tag{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+
+.scene-arr{color:var(--t3);font-size:12px;transition:transform .2s}
+
+.scene-card.open .scene-arr{transform:rotate(90deg)}
+
+.scene-body{display:none;padding:0 16px 14px;border-top:1px solid var(--bd)}
+
+.scene-card.open .scene-body{display:block;animation:diagFade .25s ease}
+
+.scene-quote{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--gold);background:var(--dim-go);border-left:2px solid var(--bd-go);padding:10px 14px;margin:12px 0;border-radius:0 var(--r2) var(--r2) 0}
+
+.scene-why{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.6;margin:10px 0}
+
+.scene-why b{color:var(--t1)}
+
+.scene-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+
+.scene-chip{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px}
+
+
+/* ══ QUICK NAV ══ */
+.qnav{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:20px 0}
+
+.qnav-btn{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:12px 14px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:4px}
+
+.qnav-btn:hover{border-color:var(--bdl);background:var(--hov);color:var(--t1)}
+
+.qnav-btn{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--bronze-l)}
+
+.qnav-btn span{font-family:var(--font);font-size:11px;font-weight:400;color:var(--t3);letter-spacing:0}
+
+
+/* ══ AUTHOR CARD ══ */
+.ac{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);padding:20px;margin:18px 0}
+
+.ac-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px}
+
+.ac-avatar{width:52px;height:52px;border-radius:var(--r3);background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:#0F0605;font-weight:700;flex-shrink:0}
+
+.ac-info{flex:1}
+
+.ac-name{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin-bottom:4px}
+
+.ac-dates{font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1px}
+
+.ac-role{font-size:12px;color:var(--t3);margin-top:2px}
+
+.ac-body{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+
+.ac-body strong{color:var(--t1)}
+
+.ac-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+
+.diag-intro-title{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin-bottom:8px}
+
+.diag-intro-desc{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:16px}
+
+.diag-q-num{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;margin-bottom:10px}
+
+.diag-q-text{font-family:var(--serif);font-size:15px;color:var(--t1);line-height:1.6;margin-bottom:16px}
+
+.diag-opt.correct{background:var(--dim-g);border-color:var(--bd-g);color:var(--green)}
+
+.diag-opt.wrong{background:var(--dim-r);border-color:var(--bd-r);color:var(--red)}
+
+.diag-prog{height:3px;background:var(--bd);margin-bottom:18px}
+
+
+/* ══ ALAT (esej) ══ */
+.alat-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+
+.alat-tab{font-family:var(--mono);font-size:10px;font-weight:700;padding:5px 12px;border-radius:var(--r1);background:var(--ele);border:1px solid var(--bd);color:var(--t3);cursor:pointer;transition:all .15s;letter-spacing:.5px}
+
+.alat-tab.on{background:var(--dim-go);border-color:var(--bd-go);color:var(--gold)}
+
+.alat-pane{display:none}
+.alat-pane.on{display:block;animation:layerIn .2s ease}
+
+.alat-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:16px 18px;margin:10px 0}
+
+.alat-card h4{font-family:var(--display);font-size:12px;font-weight:700;color:var(--bronze-l);margin-bottom:10px;letter-spacing:.5px}
+
+.alat-card p{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+
+.alat-card p strong{color:var(--t1)}
+
+.alat-card p em{color:var(--gold);font-style:italic}
+
+.alat-teza{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:12px 16px;margin:8px 0;font-family:var(--serif);font-size:14px;color:var(--t1);font-style:italic;cursor:pointer;transition:all .15s;position:relative}
+
+.alat-teza:hover{border-color:var(--gold)}
+
+.alat-teza::after{content:'📋';position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.5}
+
+.alat-teza.copied::after{content:'✓';color:var(--green);opacity:1}
+
+.wc-area{width:100%;background:var(--inp);border:1px solid var(--bd);border-radius:var(--r2);padding:12px;color:var(--t1);font-family:var(--serif);font-size:14px;resize:vertical;min-height:120px;line-height:1.6}
+
+.wc-area:focus{outline:none;border-color:var(--bdl)}
+
+.wc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--t3)}
+
+.wc-count{color:var(--gold)}
+
+
+/* ══ CITATNIK ══ */
+.cit-grid{display:flex;flex-direction:column;gap:10px;margin:18px 0}
+
+.cit-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 18px;transition:border-color .15s}
+
+.cit-card:hover{border-color:var(--bdl)}
+
+.cit-text{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t1);line-height:1.65;margin-bottom:8px}
+
+.cit-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+
+.cit-src{font-family:var(--mono);font-size:9.5px;color:var(--t3)}
+
+.cit-tags{display:flex;gap:5px;flex-wrap:wrap}
+
+.cit-tag{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:3px}
+
+.cit-star{cursor:pointer;font-size:14px;color:var(--t3);transition:color .15s}
+
+.cit-star.starred{color:var(--gold)}
+
+.cit-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+
+.cit-fbt{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:4px 10px;border-radius:var(--r1);background:var(--ele);border:1px solid var(--bd);color:var(--t3);cursor:pointer;transition:all .15s}
+
+.cit-fbt.on{background:var(--dim-br);border-color:var(--bd-br);color:var(--bronze-l)}
+
+
+/* ══ POJMOVNIK ══ */
+.poj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:18px 0}
+
+.poj-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 16px;cursor:pointer;transition:all .15s}
+
+.poj-card:hover{border-color:var(--bdl);background:var(--hov)}
+
+.poj-front{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+
+.poj-term{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin-bottom:6px}
+
+.poj-cat{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:3px}
+
+.poj-def{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.55;display:none}
+
+.poj-card.open .poj-def{display:block;margin-top:8px;padding-top:8px;border-top:1px solid var(--bd);animation:diagFade .2s ease}
+
+.poj-ex{font-family:var(--serif);font-size:12px;color:var(--teal);font-style:italic;margin-top:6px}
+
+
+/* ══ FLASHCARD ══ */
+.fc-wrap{perspective:1000px;margin:20px 0}
+
+.fc-inner{width:100%;height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative}
+
+.fc-inner.flipped{transform:rotateY(180deg)}
+
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r4);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center}
+
+.fc-front{background:var(--ele);border:1px solid var(--bdm)}
+
+.fc-back{background:var(--dim-go);border:1px solid var(--bd-go);transform:rotateY(180deg)}
+
+.fc-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:12px}
+
+.fc-cat{font-family:var(--mono);font-size:9px;color:var(--gold);margin-top:8px}
+
+.fc-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+
+.fc-btn{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:7px 16px;font-size:12px;font-family:var(--mono);font-weight:700;cursor:pointer;color:var(--t2);transition:all .15s}
+
+.fc-btn:hover{border-color:var(--bdl);color:var(--t1)}
+
+.fc-btn:disabled{opacity:.3;cursor:not-allowed}
+
+.fc-counter{font-family:var(--mono);font-size:11px;color:var(--t3)}
+
+.fc-cat-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bronze);margin-bottom:14px}
+
+
+/* ══ MATCH GAME ══ */
+.mg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+
+.mg-col{display:flex;flex-direction:column;gap:8px}
+
+.mg-item{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:10px 14px;font-family:var(--serif);font-size:13px;color:var(--t2);cursor:pointer;transition:all .15s;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center;line-height:1.4}
+
+.mg-item:hover:not(.matched):not(.wrong){border-color:var(--bdl);color:var(--t1);background:var(--hov)}
+
+.mg-item.selected{border-color:var(--bronze);background:var(--dim-br);color:var(--bronze-l)}
+
+.mg-item.matched{border-color:var(--bd-g);background:var(--dim-g);color:var(--green);cursor:default}
+
+.mg-item.wrong{border-color:var(--bd-r);background:var(--dim-r);color:var(--red);animation:shake .3s ease}
+
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+.mg-status{font-family:var(--mono);font-size:11px;color:var(--t3);margin-bottom:12px}
+
+
+/* ══ KVIZ ══ */
+.qz-wrap{padding:4px 0}
+
+.qz-start{text-align:center;padding:32px 20px}
+
+.qz-start-ico{font-size:40px;margin-bottom:12px}
+
+.qz-start h3{font-family:var(--display);font-size:18px;color:var(--t1);margin-bottom:8px}
+
+.qz-start p{font-family:var(--serif);font-size:14px;color:var(--t2);margin-bottom:20px;line-height:1.6}
+
+.qz-prog{height:4px;background:var(--bd);border-radius:2px;margin-bottom:20px}
+
+.qz-prog-fill{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:2px;transition:width .4s ease}
+
+.qz-num{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;margin-bottom:10px}
+
+.qz-opt:hover:not(:disabled){border-color:var(--bdl);color:var(--t1);background:var(--hov)}
+
+.qz-opt.correct{border-color:var(--bd-g);background:var(--dim-g);color:var(--green);cursor:default}
+
+.qz-opt.wrong{border-color:var(--bd-r);background:var(--dim-r);color:var(--red);cursor:default}
+
+.qz-expl{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:12px 16px;font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.6;margin-top:12px}
+
+.qz-expl strong{color:var(--gold)}
+
+.qz-result{text-align:center;padding:28px 20px}
+
+.qz-result-ico{font-size:48px;margin-bottom:12px}
+
+.qz-result h3{font-family:var(--display);font-size:22px;color:var(--t1);margin-bottom:8px}
+
+.qz-result-grade{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--gold);margin:10px 0}
+
+.qz-result p{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:18px}
+
+
+/* ══ CHECKPOINT ══ */
+.cp-list{display:flex;flex-direction:column;gap:8px;margin:18px 0}
+
+.cp-item:hover{border-color:var(--bdl)}
+
+.cp-item.done{border-color:var(--bd-g);background:var(--dim-g)}
+
+.cp-cb{width:20px;height:20px;border:2px solid var(--bd);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .15s;margin-top:1px}
+
+.cp-item.done .cp-cb{background:var(--green);border-color:var(--green);color:#0F0605}
+
+.cp-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5}
+
+.cp-item.done .cp-txt{color:var(--t1)}
+
+.cp-prog{margin-top:18px}
+
+.cp-prog-label{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px;margin-bottom:6px;display:flex;justify-content:space-between}
+
+.cp-prog-track{height:6px;background:var(--bd);border-radius:3px;overflow:hidden}
+
+.cp-prog-bar{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+.cp-final{text-align:center;padding:28px 20px;background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r4);margin:20px 0;display:none}
+
+.cp-final.show{display:block;animation:fadeUp .4s ease}
+
+.cp-final-ico{font-size:44px;margin-bottom:10px}
+
+.cp-final-title{font-family:var(--display);font-size:20px;color:var(--gold);margin-bottom:8px}
+
+.cp-final-msg{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65;margin-bottom:18px}
+
+.auth-txt em{color:var(--bronze-l)}
+
+.reveal-lock:hover{opacity:.85;transform:translateY(-1px)}
+
+.reveal-lock-btn:hover{opacity:.85;transform:translateY(-1px)}
+
+.fcb:hover{border-color:var(--bdl);color:var(--t1)}
+
+.fcb.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border-color:transparent;color:#0F0605}
+
+.fcb.primary:hover{opacity:.85}
+
+
+/* ══ MISC ══ */
+.nb{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;cursor:pointer;color:var(--bronze-l);text-decoration:underline;text-underline-offset:3px}
+
+.nb:hover{color:var(--gold)}
+
+p strong{color:var(--t1)}
+
+p em{color:var(--gold);font-style:italic}
+
+ul,ol{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.7;padding-left:20px;margin-bottom:12px}
+
+ul li,ol li{margin-bottom:4px}
+
+ul li strong,ol li strong{color:var(--t1)}
+
+.mid{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+
+.sc-desc b{color:var(--t1)}
+
+.sc-desc em{color:var(--teal);font-style:italic}
+
+.sc-kod{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:6px}
+
+
+/* ══ SC-GRID (icon grid za brzi pregled) ══ */
+.sc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}
+
+
+/* ══ FC-SCENE (H11 flashcard flip scene) ══ */
+.fc-scene{width:100%;max-width:100%;perspective:1000px;cursor:pointer;height:220px}
+
+.fc-scene .fc-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+
+.fc-scene.flipped .fc-inner{transform:rotateY(180deg)}
+
+.fc-scene .fc-front,.fc-scene .fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r4);padding:28px 32px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+
+.fc-scene .fc-front{background:linear-gradient(135deg,var(--ele),var(--card));border:1px solid var(--bdm)}
+
+.fc-scene .fc-back{background:linear-gradient(135deg,var(--card),var(--hov));border:1px solid var(--bd-go);transform:rotateY(180deg)}
+
+.fc-hint{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px}
+
+.fc-progress{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:400px}
+
+.fc-dot{width:8px;height:8px;border-radius:50%;background:var(--bd);transition:background .2s}
+
+.fc-dot.seen{background:var(--bronze)}
+
+.fc-dot.known{background:var(--green)}
+
+
+/* ══ TIMELINE ══ */
+.timeline{position:relative;padding:20px 0 10px 30px;margin:18px 0}
+
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--bronze) 0%,var(--gold) 50%,var(--parchment) 100%);border-radius:1px}
+
+.tl-event{position:relative;padding:10px 14px 14px 20px;margin-bottom:8px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);transition:border-color .15s}
+
+.tl-event:hover{border-color:var(--bdl)}
+
+.tl-event::before{content:'';position:absolute;left:-30px;top:16px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--bronze);box-shadow:0 0 8px rgba(220,50,47,.4)}
+
+.tl-event.milestone::before{background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px var(--gold)}
+
+.tl-year{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;color:var(--bronze);margin-bottom:3px}
+
+.tl-event.milestone .tl-year{color:var(--gold)}
+
+.tl-title{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--t1);margin-bottom:3px}
+
+.tl-desc{font-family:var(--serif);font-size:12.5px;color:var(--t2);line-height:1.5}
+
+.tl-desc em{color:var(--gold);font-style:italic}
+
+
+/* ══ KEYBOARD HINT ══ */
+.kbd{display:inline-block;padding:1px 6px;font-family:var(--mono);font-size:10px;font-weight:700;background:var(--card);border:1px solid var(--bdm);border-radius:3px;color:var(--t2);box-shadow:0 1px 0 var(--bg);margin:0 2px}
+
+.kbd-hint{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px;margin-top:8px;text-align:center}
+
+
+/* ══ READ PROGRESS BAR + BTT ══ */
+.read-progress{position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:400;pointer-events:none}
+
+.read-progress-bar{height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));width:0%;transition:width .15s ease;border-radius:0 2px 2px 0}
+
+.btt.show{opacity:1;pointer-events:auto}
+
+.btt:hover{color:var(--bronze);border-color:var(--bronze)}
+
+.nb-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--t2);cursor:pointer;padding:9px 14px;border:1px solid var(--bdm);border-radius:var(--r2);background:var(--ele);transition:all .15s;text-decoration:none}
+
+.nb-btn:hover{color:var(--t1);border-color:var(--bronze);background:var(--hov)}
+
+.nb-btn.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border-color:transparent;color:#0F0605;font-weight:700}
+
+.nb-btn.primary:hover{opacity:.85}
+
+.nb-btn.off{opacity:.3;cursor:not-allowed;pointer-events:none}
+
+
+/* ══ AUTHOR-CARD EXTENDED ══ */
+.author-card{border:1px solid var(--bdm);border-radius:var(--r4);overflow:hidden;margin:20px 0;background:var(--sur);transition:border-color .2s}
+
+.ac-header{padding:18px 22px 14px;background:linear-gradient(135deg,var(--ele),var(--card));border-bottom:1px solid var(--bdm);display:flex;align-items:flex-start;gap:16px}
+
+.ac-monogram{width:52px;height:52px;border-radius:var(--r3);background:linear-gradient(135deg,var(--bronze-d),var(--bronze));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:22px;font-weight:700;color:var(--gold);flex-shrink:0;box-shadow:0 4px 20px rgba(220,50,47,.3)}
+
+.ac-meta{flex:1;min-width:0}
+
+.ac-name{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:4px;letter-spacing:.3px}
+
+.ac-dates{font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1px}
+
+.ac-body{padding:18px 22px}
+
+.ac-body p{font-family:var(--serif);font-size:14.5px;color:var(--t2);line-height:1.65;margin-bottom:12px}
+
+.ac-body strong{color:var(--t1)}
+.ac-body em{color:var(--gold);font-style:italic}
+
+.ac-works{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd)}
+
+.ac-works-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+
+.ac-work-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd)}
+
+.ac-work-item:last-child{border-bottom:none;padding-bottom:0}
+
+.ac-badge{font-size:18px;flex-shrink:0;margin-top:1px}
+
+.ac-work-title{font-family:var(--display);font-size:12px;font-weight:700;color:var(--gold);margin-bottom:3px;letter-spacing:.5px}
+
+.ac-work-meta{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.5px;margin-bottom:5px}
+
+.ac-work-desc{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.5}
+
+.ac-work-desc strong{color:var(--t1)}
+
+
+/* ══ WC-WRAP (H11 esej writer) ══ */
+.wc-wrap{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);overflow:hidden;margin:16px 0}
+
+.wc-header{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.wc-lbl{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bronze-l)}
+
+.wc-stats{display:flex;gap:16px;flex-wrap:wrap}
+
+.wc-stat{text-align:center}
+
+.wc-stat-num{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);display:block}
+
+.wc-stat-lbl{font-family:var(--mono);font-size:8.5px;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+
+.wc-stat.ok .wc-stat-num{color:var(--green)}
+
+.wc-stat.critical .wc-stat-num{color:var(--red)}
+
+.wc-body{padding:14px 18px}
+
+.wc-ta{width:100%;min-height:200px;background:var(--inp);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--t1);font-family:var(--serif);font-size:14px;padding:12px;resize:vertical;line-height:1.65;box-sizing:border-box}
+
+.wc-ta:focus{outline:none;border-color:var(--bronze)}
+
+.wc-prog{height:5px;background:var(--bd);border-radius:3px;overflow:hidden;margin-top:12px}
+
+.wc-prog-bar{height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));border-radius:3px;transition:width .4s ease}
+
+.wc-prog.pass .wc-prog-bar{background:linear-gradient(90deg,var(--green),var(--teal))}
+
+.wc-prog-lbl{font-family:var(--mono);font-size:9px;color:var(--t3);margin-top:6px;text-align:right}
+
+.wc-actions{display:flex;gap:8px;margin-top:12px}
+
+.wc-btn{padding:8px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;border:1px solid var(--bdm);background:var(--ele);color:var(--t2);transition:all .15s}
+
+.wc-btn:hover{color:var(--t1);border-color:var(--bronze)}
+
+
+/* ══ QZ-SCORE (large) + QZ-WRONG ══ */
+.qz-score-big{font-family:var(--display);font-size:68px;font-weight:700;background:linear-gradient(135deg,var(--bronze),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px}
+
+.qz-grade{font-family:var(--display);font-size:18px;color:var(--t1);letter-spacing:1.5px;margin-bottom:6px}
+
+.qz-msg{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5;margin-bottom:20px}
+
+.qz-wrong-item{padding:10px 14px;border-bottom:1px solid var(--bd);margin-top:4px}
+
+.qz-wrong-q{font-family:var(--serif);font-size:13px;color:var(--t2);margin-bottom:4px}
+
+.qz-wrong-a{font-family:var(--mono);font-size:10px;color:var(--green)}
+
+
+/* ══ CP-GRID (H11 style) ══ */
+.cp-grid{display:flex;flex-direction:column;gap:8px;margin:18px 0 24px}
+
+.cp-box{width:24px;height:24px;border-radius:6px;border:2px solid var(--bdl);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transition:all .15s}
+
+.cp-item.done .cp-box{background:var(--green);border-color:var(--green);color:#0F0605}
+
+.bw-txt em{color:var(--red);font-style:italic}
+
+
+/* ══ DIAG-REC ══ */
+.diag-rec{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;padding:12px 14px;background:var(--bg);border-left:2px solid var(--bronze);border-radius:0 var(--r2) var(--r2) 0;margin-bottom:14px}
+
+.cp-sum-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5}
+
+.cp-sum-txt strong{color:var(--t1)}
+
+
+/* ══ PRINT ══ */
+@media print{
+  body{background:white!important;color:black!important}
+  body::before,body::after{display:none!important}
+  .sidebar,.tabs,.sb-hamburger,.tip-bar,.discere-banner,.reveal-lock-btn,.fcb{display:none!important}
+  .main{width:100%!important;max-width:100%!important;padding:0!important}
+  .content-wrap{max-width:100%!important;padding:10px!important}
+  .layer{display:block!important;page-break-after:always}
+  .box-key,.box-int,.box-warn,.box-signal,.sc,.fq,.ac{border:1px solid #666!important;background:#f5f5f5!important;color:black!important;break-inside:avoid}
+  .hero-title,.hero-chapter,h3,h4,.sec-badge,.tl-title,.pojm-term{color:black!important}
+  .tbl td,.tbl th{border-color:#888!important;color:black!important}
+  .featured-quote{background:#faf6ec!important;border-color:#d4b98c!important;color:black!important;break-inside:avoid}
+  .scene-card{border:1px solid #888!important;background:white!important}
+  .scene-card .scene-body{display:block!important}
+  .pojm-card .pojm-back{display:block!important}
+  .pojm-card .pojm-front{display:none!important}
+  a{color:black!important;text-decoration:none!important}
+  .qnav-btn,.countdown,.tip-bar,.diag{display:none!important}
+}
+
+
+/* ══ FEATURED-QUOTE (H11 pattern) ══ */
+.featured-quote{display:flex;gap:14px;padding:20px 22px;background:linear-gradient(135deg,rgba(212,185,140,.04),rgba(220,50,47,.02));border:1px solid var(--bdm);border-left:3px solid var(--parchment);border-radius:var(--r3);margin:14px 0;position:relative;word-break:break-word;overflow:hidden;transition:border-color .2s}
+
+.featured-quote:hover{border-color:var(--bd-pa);box-shadow:0 2px 12px rgba(212,185,140,.06)}
+
+.fq-mark{font-family:var(--display);font-size:52px;color:var(--parchment);opacity:.3;line-height:1;flex-shrink:0;margin-top:-8px}
+
+.fq-body{flex:1;min-width:0}
+
+.fq-text{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--t1);line-height:1.6;margin-bottom:8px}
+
+.fq-meta{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px}
+
+.fq-copy{background:none;border:1px solid var(--bd);border-radius:var(--r1);color:var(--t3);font-size:12px;padding:4px 8px;cursor:pointer;font-family:var(--mono);transition:all .15s;flex-shrink:0;align-self:flex-start}
+
+.fq-copy:hover{color:var(--gold);border-color:var(--bd-go);background:var(--dim-go)}
+
+.fq-copy.copied{color:var(--green);border-color:var(--bd-g);background:var(--dim-g)}
+
+.fq-napamet{position:absolute;top:-1px;right:40px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1px;color:var(--gold);background:var(--dim-go);border:1px solid var(--bd-go);border-radius:0 0 4px 4px;padding:2px 7px}
+
+.pojm-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+
+.pojm-card:hover,.pojm-card.flip{border-color:var(--bdm)}
+
+.pojm-card.flip{background:var(--card)}
+
+.pojm-front,.pojm-back{transition:all .25s ease}
+
+.pojm-card.flip .pojm-front{display:none}
+
+.pojm-card:not(.flip) .pojm-back{display:none}
+
+.pojm-term{font-family:var(--display);font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:.3px}
+
+.pojm-hint{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+
+.pojm-def{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.55}
+
+.pojm-def strong{color:var(--t1)}
+
+.pojm-def em{color:var(--gold)}
+
+.pojm-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+
+.pojm-filter.on,.pojm-filter:hover{color:var(--bronze-l);border-color:var(--bd-br);background:var(--dim-br)}
+
+
+/* ══ POJM MODE (grid/flashcard toggle) ══ */
+.pojm-mode-row{display:flex;gap:8px;margin-bottom:16px;align-items:center}
+
+.pojm-mode-btn{padding:7px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:20px;cursor:pointer;border:1px solid var(--bdm);background:none;color:var(--t3);transition:all .15s}
+
+.pojm-mode-btn.on{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));color:var(--gold);border-color:transparent}
+
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  .content-wrap{padding:24px 20px 100px}
+  .poj-grid{grid-template-columns:1fr}
+  .mg-grid{grid-template-columns:1fr}
+  .mg-col{flex-direction:row;flex-wrap:wrap}
+  .mg-item{flex:1;min-width:120px}
+}
+
+@media(max-width:600px){
+  .content-wrap{padding:16px 14px 90px}
+  .hero-title{font-size:22px}
+  .qnav{grid-template-columns:1fr 1fr}
+  .bc-tab,.bc-tab-sep{display:none}
+  .tabs{width:100%;max-width:100%;overflow-x:auto;padding:2px}
+  .tab{font-size:8px;padding:5px 6px;letter-spacing:0;min-height:38px;flex-shrink:0;white-space:nowrap}
+  .layer.on{padding-top:52px}
+  .fc-inner{height:170px}
+  .poj-grid{grid-template-columns:1fr}
+  .tbl-wrap{font-size:12px}
+  .diag-intro,.diag-quiz,.diag-result{padding:16px}
+  .pojm-grid{grid-template-columns:1fr!important}
+  .pojm-filter{padding:5px 9px;font-size:8.5px;letter-spacing:.5px}
+  #cit-filters .pojm-filter{padding:5px 9px;font-size:8.5px}
+  .featured-quote{padding:14px 12px;gap:10px;margin:10px 0}
+  .fq-mark{font-size:36px;margin-top:-2px;flex-shrink:0}
+  .fq-text{font-size:14px;line-height:1.5}
+  .fq-copy{display:none}
+}
+
+
+
+#diag0[data-state="dismissed"]{display:none}
+
+
+/* ═══════════════════════════════════
+   CROSS-CHAPTER NAVIGATION
+═══════════════════════════════════ */
+.chapter-nav-wrap{
+  margin:48px auto 32px;
+  max-width:920px;
+  padding:0 20px;
+}
+
+.chapter-nav-hdr{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.chapter-nav-title{
+  font-family:var(--display);
+  font-size:20px;
+  font-weight:700;
+  color:var(--t1);
+  margin-bottom:6px;
+}
+
+.chapter-nav-sub{
+  font-family:var(--serif);
+  font-size:13px;
+  color:var(--t3);
+  font-style:italic;
+}
+
+.chapter-nav-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:28px;
+}
+
+.chapter-nav-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+  text-decoration:none;
+  color:inherit;
+  transition:all .25s ease;
+  cursor:pointer;
+}
+
+.chapter-nav-card:hover{
+  border-color:var(--gold);
+  background:linear-gradient(135deg, var(--ele), rgba(233,180,70,.06));
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+
+.chapter-nav-prev{text-align:left}
+
+.chapter-nav-next{text-align:right;flex-direction:row}
+
+.chapter-nav-next .chapter-nav-meta{flex:1}
+
+.chapter-nav-arrow{
+  font-size:24px;
+  color:var(--gold);
+  font-weight:700;
+  flex-shrink:0;
+}
+
+.chapter-nav-meta{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.chapter-nav-pill{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:var(--t3);
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+.chapter-nav-pill-next{color:var(--gold)}
+
+.chapter-nav-name{
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:700;
+  color:var(--t1);
+}
+
+.chapter-nav-desc{
+  font-family:var(--serif);
+  font-size:12px;
+  color:var(--t2);
+  font-style:italic;
+}
+
+.chapter-nav-related{
+  padding:18px;
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+}
+
+.chapter-nav-related-ttl{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--gold);
+  margin-bottom:12px;
+  text-transform:uppercase;
+}
+
+.chapter-nav-related-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:8px;
+}
+
+.chapter-nav-mini{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r1);
+  text-decoration:none;
+  color:inherit;
+  transition:all .2s ease;
+  font-size:12.5px;
+}
+
+.chapter-nav-mini:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+.chapter-nav-mini-code{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:1px;
+  color:var(--gold);
+  font-weight:700;
+  background:rgba(233,180,70,.1);
+  padding:2px 6px;
+  border-radius:4px;
+}
+
+.chapter-nav-mini-name{
+  font-family:var(--serif);
+  color:var(--t2);
+}
+
+@media (max-width:640px){
+  .chapter-nav-grid{grid-template-columns:1fr}
+  .chapter-nav-next{flex-direction:row}
+}
+
+
+
+/* TIER INDICATOR — Workspace badge */
+.ws-tier-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--ele, #1f1414);
+  border: 1px solid var(--bd, #2c1f1f);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+
+.ws-tier-indicator.ws-tier-free {
+  border-left: 3px solid var(--t3, #888);
+}
+
+
+.ws-tier-indicator.ws-tier-free.ws-tier-full {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233,180,70,0.06), var(--ele, #1f1414));
+}
+
+
+.ws-tier-indicator.ws-tier-standard {
+  border-left: 3px solid var(--blue, #4a90d9);
+  background: linear-gradient(135deg, rgba(74,144,217,0.04), var(--ele, #1f1414));
+}
+
+
+.ws-tier-indicator.ws-tier-pro {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233,180,70,0.06), var(--ele, #1f1414));
+}
+
+
+.ws-tier-indicator .ws-tier-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+
+.ws-tier-indicator .ws-tier-text {
+  flex: 1;
+  font-size: 13px;
+  color: var(--t2, #c5b8aa);
+  line-height: 1.4;
+  font-family: var(--mono, monospace);
+}
+
+
+.ws-tier-indicator .ws-tier-text strong {
+  color: var(--t1, #f4ede5);
+}
+
+
+.ws-tier-indicator .ws-tier-cta {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+
+.ws-tier-indicator .ws-tier-cta:hover {
+  background: var(--gold-hover, #d4a13e);
+  transform: translateY(-1px);
+}
+
+
+@media (max-width: 720px) {
+  .ws-tier-indicator {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .ws-tier-indicator .ws-tier-text {
+    font-size: 12px;
+  }
+}
+
+
+/* TIER_SYSTEM_CSS_INJECTED */
+/* ═══════════════════════════════════════════════════
+   MATURIRAJ.HR — TIER SYSTEM CSS
+   Paywall modal + sidebar badge + tier indicators
+   ═══════════════════════════════════════════════════ */
+
+/* ───────── PAYWALL OVERLAY ───────── */
+.mt-paywall-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: mt-fade-in 0.2s ease;
+}
+
+
+@keyframes mt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* ───────── PAYWALL MODAL ───────── */
+.mt-paywall-modal {
+  position: relative;
+  background: var(--bg2, #1a1a1a);
+  border: 1px solid var(--bd, #333);
+  border-radius: 18px;
+  max-width: 920px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  padding: 32px 28px;
+  animation: mt-slide-up 0.3s ease;
+}
+
+
+@keyframes mt-slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+.mt-paywall-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--bd, #333);
+  color: var(--t2, #aaa);
+  font-size: 22px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+
+.mt-paywall-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--t1, #fff);
+  border-color: var(--gold, #e9b446);
+}
+
+
+/* ───────── PAYWALL HEADER ───────── */
+.mt-paywall-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--bd, #333);
+}
+
+
+.mt-paywall-subtitle {
+  font-size: 14px;
+  color: var(--t2, #aaa);
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+
+.mt-paywall-tier {
+  position: relative;
+  padding: 24px 22px;
+  background: var(--ele, #222);
+  border: 2px solid var(--bd, #333);
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+
+.mt-paywall-tier:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+.mt-paywall-tier-recommended {
+  border-color: var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233, 180, 70, 0.06), var(--ele, #222));
+  box-shadow: 0 0 0 4px rgba(233, 180, 70, 0.08);
+}
+
+
+.mt-paywall-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+
+.mt-paywall-tier-name {
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--t1, #fff);
+}
+
+
+.mt-paywall-tier-standard .mt-paywall-tier-name {
+  color: var(--blue, #4a90d9);
+}
+
+
+.mt-paywall-tier-pro .mt-paywall-tier-name {
+  color: var(--gold, #e9b446);
+}
+
+
+.mt-paywall-tier-price span {
+  font-size: 14px;
+  color: var(--t3, #888);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+
+.mt-paywall-tier-features {
+  list-style: none;
+  margin: 0 0 18px 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--t2, #ccc);
+}
+
+
+.mt-paywall-tier-features li {
+  padding: 4px 0;
+  padding-left: 4px;
+}
+
+
+.mt-paywall-tier-features li strong {
+  color: var(--t1, #fff);
+}
+
+
+/* ───────── CTA BUTTONS ───────── */
+.mt-paywall-cta {
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--blue, #4a90d9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.2px;
+}
+
+
+.mt-paywall-cta:hover {
+  background: var(--blue-hover, #3578bf);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(74, 144, 217, 0.3);
+}
+
+
+.mt-paywall-cta-pro {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+}
+
+
+.mt-paywall-cta-pro:hover {
+  background: var(--gold-hover, #d4a13e);
+  box-shadow: 0 6px 18px rgba(233, 180, 70, 0.3);
+}
+
+
+/* ───────── PAYWALL FOOTER ───────── */
+.mt-paywall-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--t3, #888);
+  padding-top: 18px;
+  border-top: 1px solid var(--bd, #333);
+}
+
+
+.mt-paywall-link {
+  color: var(--blue, #4a90d9);
+  text-decoration: none;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+
+.mt-paywall-link:hover {
+  color: var(--gold, #e9b446);
+  text-decoration: underline;
+}
+
+
+.mt-paywall-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+.mt-paywall-divider {
+  margin: 0 8px;
+  color: var(--t3, #888);
+}
+
+
+.mt-tier-badge-free {
+  border-left: 3px solid var(--t3, #888);
+}
+
+
+.mt-tier-badge-standard {
+  border-left: 3px solid var(--blue, #4a90d9);
+}
+
+
+.mt-tier-badge-pro {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233, 180, 70, 0.04), var(--ele, #222));
+}
+
+
+.mt-tier-badge-label {
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--t1, #fff);
+}
+
+
+.mt-tier-badge-cta:hover {
+  background: var(--gold-hover, #d4a13e);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(233, 180, 70, 0.3);
+}
+
+
+/* ───────── MOBILE ───────── */
+@media (max-width: 720px) {
+  .mt-paywall-modal {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+  
+  .mt-paywall-title {
+    font-size: 20px;
+  }
+  
+  .mt-paywall-icon {
+    font-size: 40px;
+  }
+  
+  .mt-paywall-tiers {
+    grid-template-columns: 1fr;
+  }
+  
+  .mt-paywall-tier-price {
+    font-size: 28px;
+  }
+  
+  .mt-tier-badge {
+    margin: 8px;
+    padding: 8px 10px;
+  }
+  
+  .mt-tier-badge-cta {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}
+`;
+const STYLES_CSS = SHARED_LIT_CSS + '\n' + CHAPTER_CSS_DELTA;
+const SCRIPTS_JS = `/* ══ SUPABASE CONFIG ══ */
+var SUPABASE_URL = 'https://your-project.supabase.co';
+var SUPABASE_ANON_KEY = 'your-anon-key-here';
+
+var CURRENT_CHAPTER = {
+  subject: 'hrvatski',
+  code: 'h15',
+  title: 'Šenoa · Prijan Lovro'
+};
+
+function printCheatSheet(trigger){
+  var card = trigger && trigger.closest ? trigger.closest('.cheat-card') : null;
+  if(card){
+    document.body.classList.add('print-cheat-targeted');
+    card.classList.add('printing-cheat-sheet');
+  }
+  document.body.classList.add('print-cheat-only');
+  setTimeout(function(){
+    window.print();
+    setTimeout(function(){
+      document.body.classList.remove('print-cheat-only','print-cheat-targeted');
+      if(card) card.classList.remove('printing-cheat-sheet');
+    }, 500);
+  }, 50);
+  if(typeof track === 'function') track('cheat_sheet_print', {chapter: CURRENT_CHAPTER.code}, 'engagement');
+}
+
+if(typeof window !== 'undefined'){
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('print-cheat-only','print-cheat-targeted');
+    document.querySelectorAll('.printing-cheat-sheet').forEach(function(card){card.classList.remove('printing-cheat-sheet')});
+  });
+}
+/* ══ COUNTDOWN — sljedeći maturalni rok ══
+   Konfigurabilno: promijeni datum ovdje za različite sezone.
+   Ljetni rok 2026: 8. lipnja 2026 (približno — NCVVO objavljuje točan datum)
+═════════════════════════════════════════════ */
+var MATURA_NEXT = new Date('2026-06-08T08:00:00+02:00');
+var MATURA_LABEL = 'Ljetna matura 2026';
+
+function daysToMatura(){
+  var now = new Date();
+  var ms = MATURA_NEXT - now;
+  return Math.max(0, Math.ceil(ms / (1000*60*60*24)));
+}
+
+function renderCountdown(targetId){
+  var el = document.getElementById(targetId);
+  if(!el) return;
+  var days = daysToMatura();
+  var urgency = days <= 60;
+  el.innerHTML = \`
+    <div class="cd-ico">⏰</div>
+    <div class="cd-body">
+      <div class="cd-label">\${urgency ? 'Peak urgency' : 'Do mature'}</div>
+      <div class="cd-main"><b>\${days}</b> \${days===1?'dan':(days<5?'dana':'dana')}</div>
+      <div class="cd-sub">\${MATURA_LABEL} · \${urgency ? 'svaki dan bez vježbe = izgubljeni bodovi' : 'još ima vremena — pametno uči'}</div>
+    </div>
+  \`;
+}
+
+/* ══ SOCIAL PROOF ══
+   Brojeve puni iz Supabase view-a u produkciji. Sad — placeholder "uskoro".
+═════════════════════════════════════════════ */
+var SOCIAL_PROOF = {
+  active_learners: null,
+  avg_rating: null,
+  review_count: null,
+  avg_improvement: null,
+  is_placeholder: true
+};
+
+function renderSocialProof(targetId, variant){
+  var el = document.getElementById(targetId);
+  if(!el) return;
+  variant = variant || 'full';
+
+  if(SOCIAL_PROOF.is_placeholder){
+    el.innerHTML = \`
+      <div class="sp-item">🇭🇷 <b>Besplatno</b> za sve maturante</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">📚 Usklađeno s <b>NCVVO</b> katalogom</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ Do mature <b>\${daysToMatura()}</b> dana</div>
+    \`;
+    return;
+  }
+
+  if(variant === 'compact'){
+    el.innerHTML = \`
+      <div class="sp-item">🔥 <b>\${SOCIAL_PROOF.active_learners}</b> uči trenutno</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ <b>\${daysToMatura()}</b> dana do mature</div>
+    \`;
+  } else {
+    el.innerHTML = \`
+      <div class="sp-item">🔥 <b>\${SOCIAL_PROOF.active_learners}</b> maturanata uči</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">⭐ <b>\${SOCIAL_PROOF.avg_rating}/5</b> (\${SOCIAL_PROOF.review_count} recenzija)</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">📈 prosječno <b>\${SOCIAL_PROOF.avg_improvement}</b> nakon 2 mj</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ <b>\${daysToMatura()}</b> dana do mature</div>
+    \`;
+  }
+}
+
+
+
+/* Character counter for feedback textarea */
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var ta = document.getElementById('fb-message');
+    var counter = document.getElementById('fb-char-count');
+    if(ta && counter){
+      ta.addEventListener('input', function(){
+        counter.textContent = ta.value.length;
+        counter.parentElement.classList.toggle('over', ta.value.length > 5000);
+      });
+    }
+  });
+})();
+
+/* ══ FEEDBACK MODAL (v3.6.1) ══ */
+function openFeedbackModal(){
+  var bd = document.getElementById('fb-modal-backdrop');
+  if(!bd) return;
+  var form = document.getElementById('fb-form');
+  if(form) form.reset();
+  var defaultRadio = document.querySelector('input[name="fb-type"][value="content_error"]');
+  if(defaultRadio) defaultRadio.checked = true;
+  var msg = document.getElementById('fb-msg');
+  if(msg){msg.className='modal-msg'; msg.textContent=''}
+  var counter = document.getElementById('fb-char-count');
+  if(counter) counter.textContent = '0';
+  var btn = document.getElementById('fb-submit');
+  if(btn){btn.disabled=false; btn.textContent='Pošalji →'}
+  if(form) form.style.display = 'flex';
+  bd.classList.add('show');
+  setTimeout(function(){
+    var ta = document.getElementById('fb-message');
+    if(ta) ta.focus();
+  }, 100);
+  if(typeof track === 'function') track('feedback_modal_open', {chapter: CURRENT_CHAPTER.code}, 'engagement');
+}
+
+function closeFeedbackModal(){
+  var bd = document.getElementById('fb-modal-backdrop');
+  if(bd) bd.classList.remove('show');
+}
+
+function submitFeedback(ev){
+  ev.preventDefault();
+  var msgEl = document.getElementById('fb-message');
+  var emailEl = document.getElementById('fb-email');
+  var btn = document.getElementById('fb-submit');
+  var fbMsg = document.getElementById('fb-msg');
+  var typeEl = document.querySelector('input[name="fb-type"]:checked');
+
+  var message = (msgEl && msgEl.value || '').trim();
+  var email = (emailEl && emailEl.value || '').trim().toLowerCase();
+  var feedbackType = (typeEl && typeEl.value) || 'general';
+
+  if(message.length < 3){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Poruka mora imati barem 3 znaka.'}
+    return false;
+  }
+  if(message.length > 5000){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Poruka ne smije biti dulja od 5000 znakova.'}
+    return false;
+  }
+  if(email && !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email)){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ E-mail adresa nije valjana.'}
+    return false;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Šaljem...';
+  if(fbMsg) fbMsg.className = 'modal-msg';
+
+  var payload = {
+    p_message: message,
+    p_feedback_type: feedbackType,
+    p_email: email || null,
+    p_subject: CURRENT_CHAPTER.subject,
+    p_chapter_code: CURRENT_CHAPTER.code,
+    p_tab_index: (function(){ try{ return JSON.parse(localStorage.getItem('mt.hrv.h15.tab') || '0') }catch(e){return 0} })(),
+    p_url: window.location.href,
+    p_viewport_width: window.innerWidth,
+    p_viewport_height: window.innerHeight
+  };
+
+  if(SUPABASE_URL.indexOf('your-project') >= 0){
+    setTimeout(function(){
+      if(fbMsg){fbMsg.className='modal-msg show success'; fbMsg.textContent='✓ Hvala! Poruka primljena.'}
+      var form = document.getElementById('fb-form');
+      if(form) form.style.display = 'none';
+      if(typeof track === 'function') track('feedback_submit', {type: feedbackType, offline: true}, 'engagement');
+      setTimeout(closeFeedbackModal, 2400);
+    }, 600);
+    return false;
+  }
+
+  fetch(SUPABASE_URL + '/rest/v1/rpc/submit_feedback', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).then(function(r){ return r.json() }).then(function(res){
+    if(res && res.success){
+      if(fbMsg){fbMsg.className='modal-msg show success'; fbMsg.textContent='✓ '+(res.message || 'Hvala! Primili smo tvoju poruku.')}
+      var form = document.getElementById('fb-form');
+      if(form) form.style.display = 'none';
+      if(typeof track === 'function') track('feedback_submit', {type: feedbackType, has_email: !!email}, 'engagement');
+      setTimeout(closeFeedbackModal, 2400);
+    } else {
+      if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ '+((res && res.message) || 'Nešto je pošlo krivo. Pokušaj ponovo ili pošalji e-mail direktno.')}
+      btn.disabled = false;
+      btn.textContent = 'Pošalji →';
+    }
+  }).catch(function(){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Greška u mreži. Pošalji e-mail na maturirajgreske@gmail.com'}
+    btn.disabled = false;
+    btn.textContent = 'Pošalji →';
+  });
+
+  return false;
+}
+const CITATI=[]; /* Legacy H12 array - dead code, replaced by CIT_DATA2 */
+
+const POJMOVI=[]; /* Legacy H12 array - dead code, replaced by POJM_DATA2 */
+
+const KVIZ_Q=[
+  {q:'Tko je autor pripovijetke Prijan Lovro?',o:['Ksaver Šandor Gjalski','Vjenceslav Novak','August Šenoa','Ante Kovačić'],t:2,e:'August Šenoa (1838.–1881.), rođen u Zagrebu, otac hrvatskog realizma. Po njemu se cijela epoha 1865.–1881. zove „Šenoino doba".'},
+  {q:'Kada je objavljen Prijan Lovro?',o:['1881. u Obzoru','1871. u časopisu Pozor','1873. u časopisu Vijenac','1846. u almanahu Iskra'],t:2,e:'Prijan Lovro objavljen je 1873. u Vijencu — glavnom časopisu Šenoinog doba. Šenoa je urednik Vijenca od 1874.'},
+  {q:'Koji je žanr Prijana Lovre?',o:['Povijesni roman','Spjev','Dramska pjesma','Pripovijetka (uokvirena, novela)'],t:3,e:'Prijan Lovro je pripovijetka (novela) — kraće prozno djelo s jednom glavnom radnjom. Šenoa piše i romane (Zlatarevo zlato, Seljačka buna), ali Prijan Lovro je pripovijetka.'},
+  {q:'Koliko dijelova ima pripovijetka?',o:['3 — početak, sredina, kraj','10 — po europskoj noveli','5 — uvodni okvir + 4 dijela Lovrine priče','7 — kao broj sakramenata'],t:2,e:'Pripovijetka ima 5 dijelova: I. Uvodni okvir (berba), II. Djetinjstvo, III. Škola/Malvina, IV. Prag/Minka, V. Tragedija/Anđelija. Akronim: O-D-Š-P-T.'},
+  {q:'Kojem stilskom pravcu pripada djelo?',o:['Protorealizam (prijelaz romantizam-realizam)','Moderna','Čisti realizam','Romantizam'],t:0,e:'Šenoa je „utemeljitelj i najznačajniji predstavnik hrv. protorealizma". Realističke teme + romantičarski stilski elementi.'},
+  {q:'Što je uokvirena pripovijetka?',o:['Priča u priči — vanjski pripovjedač uvodi unutarnju pripovijest','Priča bez kraja','Priča s ilustracijama','Priča pisana iz dva ugla'],t:0,e:'Uokvirena pripovijetka: u Prijanu Lovri Šenoa (okvir, berba) priča udovici o Lovri (unutarnja priča). Klasična europska tehnika.'},
+  {q:'Tko je pripovjedač u djelu?',o:['Sveznajući anonimni pripovjedač','Anđelija u retrospekciji','August Šenoa sam — kao Lovrin prijatelj','Lovro u 1. licu'],t:2,e:'Šenoa je pripovjedač u 1. licu — Lovrin cimer iz Praga. Realistička pozicija: svjedok, ne sveznajući.'},
+  {q:'Što znači „retrospektivna naracija" u Prijanu Lovri?',o:['Priča se piše unatrag','Šenoa priča o Lovri koji je već mrtav','Priča se događa u snu','Priča ima više vremenskih nivoa'],t:1,e:'Retrospekcija: Šenoa pripovijeda o već mrtvom Lovri. Čitatelj zna kraj — gradi se tragična napetost kroz slutnju.'},
+  {q:'Što je „praška novela"?',o:['Nadimak Prijana Lovre — nastao u Pragu','Tip drame iz Praga','Šenoin rani roman','Žanr češke književnosti'],t:0,e:'„Praška novela" — Šenoa koristi uspomene iz svog studija u Pragu (1859.–1865.). Lovro je baziran na stvarnom Šenoinom cimeru.'},
+  {q:'Gdje se odvija I. Uvodni okvir?',o:['Na seoskom imanju vlastelina, za vrijeme berbe','Na crkvenom imanju','U zagrebačkom HNK','U praškoj kavani'],t:0,e:'I. Uvodni okvir: Šenoa kod prijatelja u berbi. Susjedno društvo, mutno popodne, udovica Hrvatica traži priču.'},
+  {q:'Tko je Lovro u djelu?',o:['Mladi grof','Inteligentan seoski mladić, Šenoin cimer u Pragu','Šenoin učitelj iz Zagreba','Češki student koji se družio sa Šenoom'],t:1,e:'Lovro je glavni lik — siromašni seljak koji se kroz obrazovanje pokušava uzdići, ali ga društvo ne propušta. „Werther hrvatske književnosti".'},
+  {q:'Tko je Malvina i kakvu ulogu ima?',o:['Grofova kći, Lovrina prva ljubav koja ga odbija zbog klase','Lovrina sestra','Anđelijina majka','Šenoina supruga'],t:0,e:'Malvina je grofova kći. Lovro joj je učitelj brata. Ona ga odbija jer je seljak — simbol nepremostivih klasnih granica.'},
+  {q:'Tko je Minka?',o:['Bogata (naizgled) djevojka u Pragu — Lovro razmatra brak iz računa','Šenoina prva ljubav','Anđelijina sestra','Lovrina majka'],t:0,e:'Minka je „stara usidjelica" u Pragu. Lovro je razmatra radi miraza. Šenoa otvara oči — Minka nije bogata, otac ima 6 djece.'},
+  {q:'Kako Lovro umire?',o:['Pada s konja u Hrvatskoj','Britvom prereže grkljan pred Anđelijom','Otrovom u Pragu','Umre od bolesti'],t:1,e:'V. Tragedija: Anđelija odustaje od braka zbog malograđanskih spletki. Lovro se ubije pred njom — patetični vrhunac.'},
+  {q:'Tko je udovica Hrvatica?',o:['Lovrina majka','Malvinina rođakinja','Lijepa crnokosa slušateljica Šenoine priče u okviru','Šenoina supruga'],t:2,e:'Udovica Hrvatica u crnini je u uvodnom okviru — traži Šenou da ispriča priču. Kritizira hrv. književnost. Pokretač pripovijesti.'},
+  {q:'Koji je glavni psihosocijalni kontrast u djelu?',o:['Život ↔ smrt','Želja ↔ mogućnost','Sloboda ↔ tiranija','Dobro ↔ zlo'],t:1,e:'Šenoa je svjesno gradio fabulu na psihosocijalnim kontrastima. Glavni: želja-mogućnost. Sporedni: grad-selo, duhovno-svjetovno, bogatstvo-siromaštvo.'},
+  {q:'Što čini djelo „protorealističnim"?',o:['Jambski stih','Korištenje turcizama','Stari pravopis sa „kerv" i „serce"','Spoj realističke tematike i romantičarskih stilskih sredstava'],t:3,e:'Protorealizam: realističke teme (klasna nejednakost, psihologija) + romantičarski stil (patetični kraj, idealizirani junak, opisi).'},
+  {q:'Što simbolizira britva u djelu?',o:['Crkveni sakrament','Lovrinu mušku snagu','Sredstvo smrti i moralna optužba malograđanskog društva','Bogatstvo Lovre'],t:2,e:'Britva je svakodnevni predmet — postaje simbol tragedije. Lovrovo samoubojstvo pred Anđelijom je simbolička optužba društvu.'},
+  {q:'Kako se nazivaju kratke karakterizacije iz okvira („župnik velik politik; sudac bijesan voćar")?',o:['Slavenska antiteza','Hiperbola','Socijalna ironija s paralelizmom','Apostrofa'],t:2,e:'Šenoa koristi ironične paralelizme za karakterizaciju seoskog društva — blaga socijalna satira tipična za realističku prozu.'},
+  {q:'Zašto se djelo zove „Werther hrvatske književnosti"?',o:['Paralela s Goetheovim Wertherom — samoubojstvo mladog intelektualca iz ljubavi','Šenoa je preveo Werthera','Lovro čita Werthera','Werther je Lovrov uzor'],t:0,e:'Werther (Goethe, 1774.) — mladi intelektualac se ubija zbog ljubavi prema Lotte. Razlika: Werther = individualna; Lovro = socijalna tragedija.'},
+  {q:'Što je „Šenoino doba"?',o:['Doba njegovih studija u Pragu','Razdoblje 1865.–1881. kada Šenoa dominira hrv. književnošću','Doba bana Mažuranića','Razdoblje hrvatskog baroka'],t:1,e:'Šenoino doba: od povratka iz Praga 1865. do smrti 1881. Šenoa je urednik Vijenca, dominantna figura kulturnog života.'},
+  {q:'Koji je glavni časopis Šenoinog doba?',o:['Vijenac (Zagreb) — Šenoa urednik od 1874.','Hrvatska vila','Iskra (Zadar)','Danica ilirska'],t:0,e:'Vijenac je glavni časopis hrv. realizma. Tu su objavljena ključna djela — Prijan Lovro 1873., kasnije sva nova hrv. realista.'},
+  {q:'Koje je Šenoino djelo prvi hrvatski povijesni roman?',o:['Prijan Lovro (1873.)','Seljačka buna (1877.)','Čuvaj se senjske ruke (1876.)','Zlatarevo zlato (1871.)'],t:3,e:'Zlatarevo zlato je prvi hrv. povijesni roman. Pokreće modu povijesnog romana. Tema: Zagreb 16. st., zlatar Pavao Gregorijanec.'},
+  {q:'Tko nastavlja hrv. realizam nakon Šenoe?',o:['Krešić, Kožičić, Lucić, Hektorović','Mažuranić, Vraz, Preradović, Demeter','Kovačić, Novak, Kumičić, Gjalski, Kozarac, Leskovar','Krleža, Marinković, Šimić, Ujević'],t:2,e:'Hrv. realisti nakon Šenoe: Ante Kovačić (U registraturi), Vjenceslav Novak (Stipančići), Eugen Kumičić, Ksaver Šandor Gjalski, Josip Kozarac, Janko Leskovar.'},
+  {q:'Od čega je umro Šenoa?',o:['Od posljedica ozljede u zagrebačkom potresu 1880.','U dvoboju s vlastelinima','Od tuberkuloze u Pragu','Od starosti'],t:0,e:'Veliki zagrebački potres 1880. oštetio je Šenoinu kuću. Ozlijedio se, posljedice su ga vodile u smrt 1881. — u 43. godini. Ostavio je nedovršenu Kletvu.'},
+];
+
+const CP_ITEMS=[
+  'Znam godinu i mjesto objave Prijana Lovre (1873., časopis Vijenac).',
+  'Razumijem strukturu pripovijetke — uokvirena priča s 5 dijelova (Okvir → Djetinjstvo → Škola → Prag → Tragedija).',
+  'Razumijem što je protorealizam i mogu prepoznati realističke i romantičarske elemente u djelu.',
+  'Mogu opisati glavne likove: Lovro, Šenoa-pripovjedač, Malvina, Minka, Anđelija, kanonik, otac, udovica Hrvatica.',
+  'Razumijem tehnike pripovijedanja: uokvirena pripovijetka, retrospekcija, pripovjedač u 1. licu, psihološka karakterizacija.',
+  'Mogu identificirati psihosocijalne kontraste: želja ↔ mogućnost (glavni), grad ↔ selo, ideal ↔ stvarnost.',
+  'Znam zašto se djelo zove „praška novela" i „Werther hrvatske književnosti" te razumijem paralelu s Goetheom.',
+  'Razumijem 3 razine čitanja: konkretnu (priča), socijalnu (kritika društva), univerzalnu (tragedija idealista).',
+  'Znam kontekst Šenoinog doba: Vijenac, povijesni romani, „otac hrv. realizma", razdoblje 1865.–1881.',
+  'Mogu usporediti Prijan Lovro s Wertherom, Posljednjim Stipančićima, Kiklopom i drugim hrv. realistima (Kovačić, Kumičić, Gjalski).',
+];
+
+const DIAG0_Q=[
+  {q:'U kojoj godini je objavljena pripovijetka Prijan Lovro?',o:['1846.','1865.','1873.','1881.'],t:2},
+  {q:'Tko je autor Prijana Lovre?',o:['Ivan Mažuranić','August Šenoa','Ksaver Šandor Gjalski','Ante Kovačić'],t:1},
+  {q:'Koji je žanr djela?',o:['Roman','Drama','Uokvirena pripovijetka','Spjev'],t:2},
+  {q:'Tko je glavni lik?',o:['August Šenoa','Grof i njegov sin','Lovro','Kanonik'],t:2},
+  {q:'Kojem stilskom pravcu pripada djelo?',o:['Barok','Romantizam','Moderna','Protorealizam (prijelaz romantizma u realizam)'],t:3}
+];
+const TAB_NAMES=['Teorija','5 dijelova','Esej alat','Citatnik','Pojmovnik','Drill','Kviz','Checkpoint'];
+function sw(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('on',i===n);
+    t.setAttribute('aria-selected',i===n);
+  });
+  document.querySelectorAll('.layer').forEach((l,i)=>l.classList.toggle('on',i===n));
+  document.getElementById('bc-tab').textContent=TAB_NAMES[n];
+  if(n===6)qzInit();
+  if(n===5){
+    // init drill on first open
+    if(!document.getElementById('mg-dynamic').dataset.init){
+      document.getElementById('mg-dynamic').dataset.init='1';
+      mgInit('easy');
+      fcInit();
+    }
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeSb();
+}
+
+/* ═══════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════ */
+function openSb(){
+  document.getElementById('sidebar').classList.add('mobile-open');
+  document.getElementById('overlay').classList.add('show');
+}
+function closeSb(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+/* ═══════════════════════════════════
+   COUNTDOWN
+═══════════════════════════════════ */
+(function(){
+  // Datum ispita Hrv. jezik — ljetni rok 2025./2026.
+  // Dan 1 (test + sažetak): 15. lipnja 2026.
+  // Dan 2 (esej):           16. lipnja 2026.
+  // Izvor: NCVVO kalendar 2025./2026.
+  const now=new Date();
+  const todayLocal=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const dan1=new Date(2026,5,15); // 15. lipnja 2026. — lokalno (month je 0-indexed!)
+  const dan2=new Date(2026,5,16); // 16. lipnja 2026.
+  const target=todayLocal<=dan1?dan1:dan2; // Prikaži dan 1, pa dan 2
+  const diff=Math.round((target-todayLocal)/(1000*60*60*24));
+  const el=document.getElementById('cd-days');
+  const cw=el?el.closest('.countdown'):null;
+  if(!el)return;
+  if(diff>0){
+    el.textContent=diff;
+    if(cw&&diff<=30)cw.style.borderColor='var(--bronze-d)';
+    if(cw&&diff<=14)cw.style.borderColor='var(--bronze)';
+    if(cw&&diff<=7){cw.style.borderColor='var(--red)';cw.style.color='var(--red)';}
+  } else if(diff===0){
+    el.textContent='DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else if(Math.round((dan2-todayLocal)/(1000*60*60*24))===0){
+    el.textContent='Esej DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else {
+    el.textContent='prošlo';
+  }
+})();
+/* ══ SOCIAL PROOF + COUNTDOWN WIDGET ══ */
+(function(){
+  renderSocialProof('social-proof', 'full');
+  var daysLeft = daysToMatura();
+  if(daysLeft <= 60){
+    var cd = document.getElementById('countdown');
+    if(cd){cd.style.display='flex';renderCountdown('countdown');}
+  }
+})();
+
+
+
+/* ═══════════════════════════════════
+   SCENES (pjevanja)
+═══════════════════════════════════ */
+function togScene(card){
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.scene-card').forEach(c=>c.classList.remove('open'));
+  if(!wasOpen)card.classList.add('open');
+}
+
+/* ═══════════════════════════════════
+   DIAG0
+═══════════════════════════════════ */
+let d0idx=0,d0score=0;
+function diag0Skip(){
+  document.getElementById('diag0').dataset.state='dismissed';
+}
+function diag0Start(){
+  d0idx=0;d0score=0;
+  document.getElementById('diag0').dataset.state='quiz';
+  d0Show();
+}
+function d0Show(){
+  if(d0idx>=DIAG0_Q.length){diag0End();return;}
+  const q=DIAG0_Q[d0idx];
+  document.getElementById('d0fill').style.width=((d0idx/DIAG0_Q.length)*100)+'%';
+  document.getElementById('d0num').textContent=\`Pitanje \${d0idx+1} / \${DIAG0_Q.length}\`;
+  document.getElementById('d0text').textContent=q.q;
+  const opts=document.getElementById('d0opts');
+  opts.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='diag-opt';btn.textContent=o;
+    btn.onclick=()=>{
+      opts.querySelectorAll('.diag-opt').forEach(b=>b.onclick=null);
+      if(i===q.t){btn.classList.add('correct');d0score++;}
+      else{btn.classList.add('wrong');opts.querySelectorAll('.diag-opt')[q.t].classList.add('correct');}
+      setTimeout(()=>{d0idx++;d0Show();},900);
+    };
+    opts.appendChild(btn);
+  });
+}
+function diag0End(){
+  document.getElementById('diag0').dataset.state='result';
+  const pct=Math.round(d0score/DIAG0_Q.length*100);
+  let msg='', btnTxt='', btnTab=1;
+  if(pct>=80){
+    msg='<strong>Odlično!</strong> Osnove H15 imaš savladane. Preporučujem Esej alat — tamo su 3 razine čitanja i komparacije s Wertherom i Stipančićima.';
+    btnTxt='✍ Esej alat →'; btnTab=2;
+  } else if(pct>=60){
+    msg='<strong>Dobro!</strong> Nekoliko rupa postoji — provjeri 5 dijelova pripovijetke za detalje o svakom dijelu i interpretaciji.';
+    btnTxt='📖 5 dijelova pripovijetke →'; btnTab=1;
+  } else {
+    msg='<strong>Kreni od osnova.</strong> Preporučujem: Teorija (Sec 01-07) + Pojmovnik (Tab 4). Alegorijska shema i dvanaesterac su ključni — zapis ih napamet.';
+    btnTxt='📖 Teorija →'; btnTab=0;
+  }
+  document.getElementById('d0rtitle').textContent=\`\${d0score} / \${DIAG0_Q.length} — \${pct}%\`;
+  document.getElementById('d0rdesc').innerHTML=msg;
+  const btn=document.getElementById('d0rbtn');
+  if(btn){btn.textContent=btnTxt;btn.onclick=()=>sw(btnTab);}
+}
+function diag0Reset(){document.getElementById('diag0').dataset.state='intro';}
+
+/* ═══════════════════════════════════
+   CITATNIK
+═══════════════════════════════════ */
+const CAT_COLORS={alegorija:'p-go',vjera:'p-t',judita:'p-br',holofern:'p-r',domoljublje:'p-g',stih:'p-pa'};
+let citStars={};
+try{citStars=JSON.parse(localStorage.getItem('mt.hrv.h15.cit_stars')||'{}')}catch(e){}
+let citActive='sve';
+
+function renderCitati(){
+  const grid=document.getElementById('cit-grid');
+  if(!grid)return;
+  const show=citActive==='sve'?CITATI:CITATI.filter(c=>c.tags.includes(citActive));
+  grid.innerHTML=show.map((c,i)=>{
+    const idx=CITATI.indexOf(c);
+    const starred=citStars[idx]?'starred':'';
+    const tagsHTML=c.tags.map(tg=>\`<span class="cit-tag \${CAT_COLORS[tg]||'p-pa'}">\${tg}</span>\`).join('');
+    return \`<div class="cit-card">
+      <div class="cit-text">\${c.t}</div>
+      <div class="cit-meta">
+        <span class="cit-src">\${c.s}</span>
+        <div class="cit-tags">\${tagsHTML}<span class="cit-star \${starred}" onclick="togStar(\${idx},this)">★</span></div>
+      </div>
+    </div>\`;
+  }).join('');
+}
+function togStar(i,el){
+  citStars[i]=!citStars[i];
+  el.classList.toggle('starred',!!citStars[i]);
+  try{localStorage.setItem('mt.hrv.h15.cit_stars',JSON.stringify(citStars))}catch(e){}
+}
+function citFilter(btn,kat){
+  document.querySelectorAll('.cit-fbt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  citActive=kat;
+  renderCitati();
+}
+renderCitati();
+
+/* ═══════════════════════════════════
+   POJMOVNIK
+═══════════════════════════════════ */
+let pojActive='sve';
+function renderPojmovi(){
+  const grid=document.getElementById('poj-grid');
+  if(!grid)return;
+  const show=pojActive==='sve'?POJMOVI:POJMOVI.filter(p=>p.kat===pojActive);
+  const catCls={stih:'p-pa',stil:'p-t',ep:'p-br',hum:'p-go',aleg:'p-r'};
+  grid.innerHTML=show.map(p=>\`
+    <div class="poj-card" onclick="this.classList.toggle('open')">
+      <div class="poj-front">
+        <div class="poj-term">\${p.t}</div>
+        <span class="poj-cat \${catCls[p.kat]||'p-pa'}">\${p.kat}</span>
+      </div>
+      <div class="poj-def">\${p.d}\${p.e?\`<div class="poj-ex">Primjer: \${p.e}</div>\`:''}</div>
+    </div>
+  \`).join('');
+}
+function pojFilter(btn,kat){
+  document.querySelectorAll('#poj-filter .cit-fbt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');pojActive=kat;renderPojmovi();
+}
+renderPojmovi();
+
+/* ═══════════════════════════════════
+   ESEJ ALAT
+═══════════════════════════════════ */
+function alTab(btn,pane){
+  document.querySelectorAll('.alat-tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.alat-pane').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(pane).classList.add('on');
+}
+function cpyTeza(el){
+  navigator.clipboard.writeText(el.textContent.trim()).catch(()=>{});
+  el.classList.add('copied');
+  setTimeout(()=>el.classList.remove('copied'),1500);
+}
+
+/* ═══════════════════════════════════
+   SCANNER — Analiza ulomka Dubravke
+═══════════════════════════════════ */
+function scannerCount(){
+  const ta = document.getElementById('scanner-in');
+  if(!ta) return;
+  const txt = ta.value;
+  const chars = document.getElementById('scanner-chars');
+  const words = document.getElementById('scanner-words');
+  if(chars) chars.textContent = txt.length;
+  if(words) words.textContent = txt.trim() ? txt.trim().split(/\\s+/).length : 0;
+}
+
+function scannerClear(){
+  const ta = document.getElementById('scanner-in');
+  const out = document.getElementById('scanner-out');
+  if(ta){ ta.value=''; scannerCount(); }
+  if(out) out.innerHTML = '';
+}
+
+function scannerGo(){
+  const ta = document.getElementById('scanner-in');
+  const out = document.getElementById('scanner-out');
+  if(!ta || !out) return;
+  const txt = ta.value.trim();
+  if(!txt){
+    out.innerHTML = '<div class="box-warn" style="margin-top:10px"><div class="bw-body"><div class="bw-txt">Zalijepi ulomak iz Prijana Lovre prije analize.</div></div></div>';
+    return;
+  }
+  const tl = txt.toLowerCase();
+  
+  // Detekcija likova
+  const likovi = [];
+  if(/lovr/.test(tl)) likovi.push('Lovro');
+  if(/šenoa|pripovjedač|august/.test(tl)) likovi.push('Šenoa (pripovjedač)');
+  if(/malvin/.test(tl)) likovi.push('Malvina (grofova kći)');
+  if(/mink/.test(tl)) likovi.push('Minka (bogata djevojka, Prag)');
+  if(/anđeli/.test(tl)) likovi.push('Anđelija (posljednja ljubav)');
+  if(/kanonik/.test(tl)) likovi.push('Kanonik');
+  if(/grof/.test(tl)) likovi.push('Grof i obitelj');
+  if(/udovic|hrvatic/.test(tl)) likovi.push('Udovica Hrvatica (okvir)');
+  if(/župnik|sudac|sudinj/.test(tl)) likovi.push('Seosko društvo (okvir)');
+  if(/otac|majk|sestr|svak/.test(tl)) likovi.push('Lovrina obitelj');
+  
+  // Detekcija dijela pripovijetke
+  let dio = '';
+  if(/berb|udovic|hrvatic|mutno|popodne|župnik|sudac|neka\\s+lijepa|crnook/.test(tl)) dio = 'I. Uvodni okvir (berba, udovica Hrvatica, seosko društvo)';
+  else if(/siromaš|seljak|kanonik|svećen|škola\\s+za|djet/.test(tl)) dio = 'II. Djetinjstvo (siromaštvo, svećenički put)';
+  else if(/malvin|grof|učitelj|odusta|bogosl|ideali|slobod/.test(tl)) dio = 'III. Škola (odustanak, Malvina, učiteljstvo)';
+  else if(/prag|mink|cimer|kavan|miraz|bogat|debel/.test(tl)) dio = 'IV. Prag i Minka (studij, brak iz računa)';
+  else if(/anđel|britv|grklj|samoubo|optuž|skandal|kleveta/.test(tl)) dio = 'V. Tragedija (Anđelija, samoubojstvo)';
+  
+  // Detekcija stilskih sredstava
+  const stila = [];
+  if(/naprimjer|velik\\s+politik|bijesan\\s+voćar|dobra\\s+duša|ironij/.test(tl)) stila.push('Ironija / socijalna satira');
+  if(/mutno|zlatn|crnook|crno\\s+zavit|lijep|detaljni/.test(tl)) stila.push('Epitet / deskripcija');
+  if(/selo\\s+grad|siromaš|bogat|želj|mogu/.test(tl)) stila.push('Kontrast / psihosocijalni sukob');
+  if(/werther|napoleon|boccac/.test(tl)) stila.push('Aluzija (kulturna)');
+  if(/britv|knjig|berb|pisma/.test(tl)) stila.push('Simbolički predmet');
+  if(/mislij|razmišlj|dvoum|sumnj|tuga/.test(tl)) stila.push('Unutarnji monolog / psihološka karakterizacija');
+  
+  // Detekcija 3 razina čitanja
+  const razine = [];
+  if(/lovr|šenoa|anđel|mink|malvin|radnj/.test(tl)) razine.push('Konkretna (priča o Lovri)');
+  if(/društv|klas|siromaš|bogat|malograđan|klevet|institucij/.test(tl)) razine.push('Socijalna (kritika malograđanskog društva)');
+  if(/idealist|tragedij|propas|moral|idealizir|werther/.test(tl)) razine.push('Univerzalna (tragedija idealista)');
+  
+  // Stilska epoha
+  let stil = '';
+  if(/psiholo|društv|realist|detaljni\\s+opis/.test(tl)) stil = 'Realistički elementi (psihologija, društvena kritika)';
+  else if(/ljubav|samoubo|patetič|idealizir|krajol/.test(tl)) stil = 'Romantičarski elementi (patos, ideal, emocija)';
+  else stil = 'Mješoviti (protorealistički — provjeri obje strane)';
+  
+  // Render
+  let h = '<div class="box-int" style="margin-top:10px"><div class="box-int-lbl">📊 Rezultat analize ulomka</div><div class="box-int-txt">';
+  h += '<p><b>📖 Vjerojatni dio pripovijetke:</b> ' + (dio || '<em>Nedovoljno signala — provjeri kontekst</em>') + '</p>';
+  h += '<p><b>🎭 Likovi u ulomku:</b> ' + (likovi.length ? likovi.join(', ') : '<em>Nisu eksplicitno imenovani</em>') + '</p>';
+  h += '<p><b>✒ Stilska sredstva:</b> ' + (stila.length ? stila.join(', ') : '<em>Nisu prepoznata bazična sredstva</em>') + '</p>';
+  h += '<p><b>🎨 Stilsko obilježje:</b> ' + stil + '</p>';
+  h += '<p><b>📊 Razine čitanja:</b> ' + (razine.length ? '<br>• ' + razine.join('<br>• ') : '<em>Nema eksplicitnih oznaka</em>') + '</p>';
+  h += '<p style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd)"><b>🎯 Esejska primjena:</b> Za analizu ovog ulomka: (1) identificiraj iz kojeg je dijela, (2) opiši tehniku pripovijedanja (okvir/retrospekcija/psihološki opis), (3) izdvoj 2-3 stilska sredstva s konkretnim primjerom, (4) poveži na barem dvije razine (konkretna/socijalna/univerzalna), (5) reci kako ulomak svjedoči o protorealizmu (spoj realističke teme i romantičarskog stila).</p>';
+  h += '</div></div>';
+  out.innerHTML = h;
+}
+
+
+/* Scanner */
+function scannerUpdate(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  const txt=ta.value;
+  const words=txt.trim()?txt.trim().split(/\\s+/).length:0;
+  const lines=txt.split('\\n').filter(function(l){return l.trim().length>0;}).length;
+  // Estimate syllables (Croatian: count vowels a,e,i,o,u)
+  const syl=words>0?Math.round(txt.replace(/[^aeiouAEIOUčšžđćČŠŽĐĆ]/g,'').length/Math.max(words,1)*10)/10:0;
+  const we=document.getElementById('sc-words');if(we)we.querySelector('.wc-stat-num').textContent=words;
+  const le=document.getElementById('sc-lines');if(le)le.querySelector('.wc-stat-num').textContent=lines;
+  const se=document.getElementById('sc-syl');if(se)se.querySelector('.wc-stat-num').textContent=syl||'—';
+  try{localStorage.setItem('mt.hrv.h15.wc_text',txt);}catch(e){}
+}
+(function(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  try{const sv=localStorage.getItem('mt.hrv.h15.wc_text');if(sv){ta.value=sv;scannerUpdate();}}catch(e){}
+})();
+
+function scanJudita(){
+  const txt=document.getElementById('scanner-in').value.trim();
+  const out=document.getElementById('scanner-out');
+  if(!txt||txt.length<10){out.innerHTML='<div class="box-warn"><div class="box-warn-lbl">⚠ Prazan unos</div><div class="box-warn-txt">Unesite barem jedan stih Judite za analizu.</div></div>';return;}
+  
+  let findings=[];
+  if(/\\d{1,2}\\s*\\+\\s*\\d{1,2}|šest|cezur/i.test(txt))findings.push('🎵 <strong>Metrička napomena:</strong> Tekst sadrži reference na broj slogova ili cezuru — provjeri je li stih dvanaesterac (6+6).');
+  if(/judita|udova|lijepa|lipos/i.test(txt))findings.push('👤 <strong>Judita kao lik:</strong> Ovaj ulomak govori o Juditi. Korisni argumenti: psihologizacija, individualnost, alegorijska dimenzija (= Hrvatska).');
+  if(/holofern|vojvoda|neprijatel|tursk/i.test(txt))findings.push('⚔️ <strong>Holofern / neprijatelj:</strong> Ovaj ulomak govori o antagonistu. Argumenti: oholost (hybris), alegorija Turaka, moć bez vjere.');
+  if(/moli|Gospod|Bog|Isus|vjera|Krist/i.test(txt))findings.push('✝️ <strong>Vjera / molitva:</strong> Religijska dimenzija. Marulić = kršćanski humanist. Bog kao jedini izvor prave moći.');
+  if(/Betulija|grad|zid|opsad/i.test(txt))findings.push('🏰 <strong>Betulija:</strong> Alegorija hrv. gradova pod opsadom. Veza: konkretna geografska situacija Dalmacije 1501.');
+  if(/slav|pobijed|radost|trijumf/i.test(txt))findings.push('🏆 <strong>Trijumf:</strong> Ovaj ulomak vjerojatno je iz V. ili VI. pjevanja — pobjeda i moralna pouka.');
+  if(/invokacij|Ki hoće|slišati|čudesa/i.test(txt))findings.push('📖 <strong>Invokacija:</strong> Početak epa — zaziv čitatelja. Epska konvencija (usp. Homer, Vergilije).');
+  if(findings.length===0)findings.push('ℹ️ <strong>Opća napomena:</strong> Ulomak analiziran. Za detalje: provjeri pjevanje iz kojeg potječe (koristite Tab 1 — 5 pjevanja), identificiraj likove i stilska sredstva.');
+  
+  out.innerHTML=\`<div class="box-int">
+    <div class="box-int-lbl">🔍 Analiza ulomka</div>
+    \${findings.map(f=>\`<div class="box-signal-txt" style="margin-bottom:8px">• \${f}</div>\`).join('')}
+    <div style="margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--t3)">Napomena: automatska analiza. Za dublje tumačenje koristite Tab 2 (Esej alat) i Tab 3 (Citatnik).</div>
+  </div>\`;
+}
+
+/* ═══════════════════════════════════
+   KVIZ
+═══════════════════════════════════ */
+let qzIdx=0,qzScore=0,qzAnswered=[];
+function qzInit(){
+  const w=document.getElementById('qz-wrap');
+  if(!w||w.dataset.init==='1')return;
+  w.dataset.init='1';
+  qzRender();
+}
+function qzRender(){
+  const w=document.getElementById('qz-wrap');
+  if(!w)return;
+  w.innerHTML=\`<div class="qz-wrap" id="qz-inner"></div>\`;
+  qzIdx=0;qzScore=0;
+  const el=document.getElementById('qz-inner');
+  el.innerHTML=\`<div class="qz-start">
+    <div class="qz-start-ico">🧠</div>
+    <h3>25 pitanja · H15 Šenoa · Prijan Lovro</h3>
+    <p>Pitanja pokrivaju cijelo poglavlje H15: August Šenoa, Prijan Lovro, hrv. realizam, Šenoino doba, 5 dijelova pripovijetke. Na kraju dobivaš ocjenu i objašnjenja.</p>
+    <button class="fcb primary" onclick="qzStart()">Započni kviz →</button>
+  </div>\`;
+}
+function qzStart(){
+  qzIdx=0;qzScore=0;qzAnswered=[];
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzShowQ(el){
+  if(qzIdx>=KVIZ_Q.length){qzEnd(el);return;}
+  const q=KVIZ_Q[qzIdx];
+  const pct=Math.round((qzIdx/KVIZ_Q.length)*100);
+  el.innerHTML=\`
+    <div class="qz-prog"><div class="qz-prog-fill" style="width:\${pct}%"></div></div>
+    <div class="qz-num">Pitanje \${qzIdx+1} / \${KVIZ_Q.length}</div>
+    <div class="qz-q">\${q.q}</div>
+    <div class="qz-opts">\${q.o.map((o,i)=>\`<button class="qz-opt" onclick="qzAns(this,\${i})">\${o}</button>\`).join('')}</div>
+    <div class="qz-expl" id="qz-expl" style="display:none"></div>
+    <div style="text-align:right;margin-top:12px"><button class="fcb qz-next" id="qz-next" onclick="qzNext()" style="display:none">Sljedeće →</button></div>
+  \`;
+}
+function qzAns(btn,i){
+  if(document.querySelector('.qz-opt.correct,.qz-opt.wrong'))return;
+  const opts=document.querySelectorAll('.qz-opt');
+  opts.forEach(b=>b.disabled=true);
+  const q=KVIZ_Q[qzIdx];
+  const ok=(i===q.t);
+  if(ok){btn.classList.add('correct');qzScore++;}
+  else{btn.classList.add('wrong');opts[q.t].classList.add('correct');}
+  if(!qzAnswered)qzAnswered=[];
+  qzAnswered.push({q:q.q,ok,correct:q.o[q.t]});
+  const expl=document.getElementById('qz-expl');
+  expl.style.display='block';
+  expl.innerHTML=\`<strong>\${ok?'✓ Točno!':'✗ Netočno.'}</strong> \${q.e}\`;
+  document.getElementById('qz-next').style.display='inline-flex';
+}
+function qzNext(){
+  qzIdx++;
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzEnd(el){
+  const pct=Math.round(qzScore/KVIZ_Q.length*100);
+  let grade,msg,ico;
+  if(pct>=90){grade='ODLIČAN';msg='Spreman/na si za maturu iz H15.';ico='🏆';}
+  else if(pct>=75){grade='VRLO DOBAR';msg='Solidno znanje. Provjeri pogreške u Pojmovniku.';ico='💪';}
+  else if(pct>=60){grade='DOBAR';msg='Ponoviti: 5 dijelova pripovijetke i protorealistički kontekst.';ico='📚';}
+  else if(pct>=45){grade='DOVOLJAN';msg='Osnove su tu — trebaš više vježbe.';ico='🔁';}
+  else{grade='NEDOVOLJAN';msg='Vrati se na Teoriju i ponovi korak po korak.';ico='🎯';}
+
+  let wrongHtml='';
+  if(qzAnswered&&qzAnswered.length){
+    const wrong=qzAnswered.filter(a=>!a.ok);
+    if(wrong.length>0){
+      wrongHtml=\`<div style="margin-top:24px;text-align:left">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:12px">Promašena pitanja (\${wrong.length})</div>
+        \${wrong.map(a=>\`<div class="qz-wrong-item">
+          <div class="qz-wrong-q">\${a.q}</div>
+          <div class="qz-wrong-a">Točan odgovor: <b>\${a.correct}</b></div>
+        </div>\`).join('')}
+      </div>\`;
+    }
+  }
+
+  el.innerHTML=\`<div class="qz-result" style="text-align:center;padding:40px 24px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r4)">
+    <div style="font-size:48px;margin-bottom:8px">\${ico}</div>
+    <div class="qz-score-big">\${pct}%</div>
+    <div class="qz-grade">\${grade}</div>
+    <div class="qz-msg">\${qzScore} / \${KVIZ_Q.length} točnih · \${msg}</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="fcb primary" onclick="qzStart()">🔁 Ponovo</button>
+      <button class="fcb" onclick="sw(4)">📚 Pojmovnik</button>
+      <button class="fcb" onclick="sw(7)">Checkpoint</button>
+    </div>
+    \${wrongHtml}
+  </div>\`;
+
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+}
+
+/* ═══════════════════════════════════
+   CHECKPOINT
+═══════════════════════════════════ */
+let CP_STATE={done:{}};
+try{const s=localStorage.getItem('mt.hrv.h15.cp');if(s)CP_STATE=JSON.parse(s);}catch(e){}
+
+const CP_HINTS=['Tab 0','Tab 0','Tab 4','Tab 0','Tab 4','Tab 1','Tab 0','Tab 2','Tab 0','Tab 2'];
+function cpRender(){
+  const list=document.getElementById('cp-list');
+  if(!list)return;
+  list.innerHTML=CP_ITEMS.map((item,i)=>\`
+    <div class="cp-item\${CP_STATE.done[i]?' done':''}" onclick="cpToggle(\${i})" style="display:flex;align-items:flex-start;gap:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 16px;cursor:pointer;transition:all .15s">
+      <div class="cp-box">\${CP_STATE.done[i]?'✓':''}</div>
+      <div class="cp-txt" style="flex:1;font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5">\${item}</div>
+      <span class="cp-hint">\${CP_HINTS[i]||''}</span>
+    </div>
+  \`).join('');
+  cpUpdateProgress();
+}
+function cpToggle(i){
+  CP_STATE.done[i]=!CP_STATE.done[i];
+  try{localStorage.setItem('mt.hrv.h15.cp',JSON.stringify(CP_STATE));}catch(e){}
+  cpRender();
+}
+function cpUpdateProgress(){
+  const done=Object.values(CP_STATE.done).filter(Boolean).length;
+  const total=CP_ITEMS.length;
+  const pct=Math.round(done/total*100);
+  document.getElementById('cp-pct').textContent=\`\${done} / \${total}\`;
+  document.getElementById('cp-bar').style.width=pct+'%';
+  document.getElementById('sb-prog-bar').style.width=pct+'%';
+  document.getElementById('sb-prog-pct').textContent=pct+'%';
+  const fin=document.getElementById('cp-final');
+  if(fin)fin.classList.toggle('show',done===total);
+  // Update summary
+  const sumBox=document.getElementById('cp-summary-box');
+  const sumPct=document.getElementById('cp-sum-pct');
+  const sumTxt=document.getElementById('cp-sum-txt');
+  if(sumBox&&done>0){
+    sumBox.style.display='flex';
+    sumPct.textContent=pct+'%';
+    let msg;
+    if(pct===100)msg='<strong>Kompletan!</strong> Sve je savladano — spreman/na si za maturu.';
+    else if(pct>=70)msg='<strong>Odlično!</strong> Neoznačene tvrdnje su tvoje slabe točke — fokusiraj se na njih.';
+    else if(pct>=40)msg='<strong>Napredak!</strong> Nastavak: provjeri 5 dijelova i Esej alat za neoznačene stavke.';
+    else msg='Još je posla. Počni s Teorijom (Tab 0) i prođi sve sekcije.';
+    sumTxt.innerHTML=msg;
+  }
+}
+function cpReset(){
+  CP_STATE={done:{}};
+  try{localStorage.removeItem('mt.hrv.h15.cp');}catch(e){}
+  cpRender();
+}
+cpRender();
+
+/* ═══════════════════════════════════
+   KVIZ INIT on tab 6
+═══════════════════════════════════ */
+// Already handled in sw()
+
+/* ═══════════════════════════════════
+   MARK TAB (completion badge)
+═══════════════════════════════════ */
+let TAB_DONE={};
+try{TAB_DONE=JSON.parse(localStorage.getItem('mt.hrv.h15.tab_done')||'{}')}catch(e){}
+
+function markTab(n){
+  TAB_DONE[n]=true;
+  try{localStorage.setItem('mt.hrv.h15.tab_done',JSON.stringify(TAB_DONE))}catch(e){}
+  const el=document.getElementById('td'+n);
+  if(el)el.textContent='✓';
+}
+function restoreTabDone(){
+  Object.keys(TAB_DONE).forEach(n=>{
+    const el=document.getElementById('td'+n);
+    if(el&&TAB_DONE[n])el.textContent='✓';
+  });
+}
+restoreTabDone();
+
+// Mark tab on dwell (8s)
+let tabTimer=null;
+const origSw=sw;
+window.sw=function(n){
+  origSw(n);
+  clearTimeout(tabTimer);
+  tabTimer=setTimeout(()=>{
+    if(n!==5)markTab(n); // don't auto-mark PRO locked
+  },8000);
+  // Show relevant tip
+  showTip(n);
+};
+
+/* ═══════════════════════════════════
+   TIP BAR
+═══════════════════════════════════ */
+const TIPS=[
+  '💡 <strong>Tab 0 tip:</strong> Povezuj djelo s realizmom — Lovro = tragični idealist, društvo = malograđanska prepreka, samoubojstvo = krajnja nemogućnost kompromisa.',
+  '💡 <strong>Tab 1 tip:</strong> Klikni na dio pripovijetke za detalje radnje, likova i esejskih signala.',
+  '💡 <strong>Tab 2 tip:</strong> Klikni na tezu da je kopiraš u clipboard — iskoristi za školski esej.',
+  '💡 <strong>Tab 3 tip:</strong> ⭐ označi citate koje ćeš učiti — spremaju se u lokalni profil.',
+  '💡 <strong>Tab 4 tip:</strong> Prebaci na Flashcard mode — ← → za navigaciju, Space za okret.',
+  '💡 <strong>Tab 5 tip:</strong> Počni s Lagano (4 para) matchinga, pa Srednje (6), pa Teško (8).',
+  '💡 <strong>Tab 6 tip:</strong> Nakon kviza provjeri objašnjenja pogrešaka — više uči kroz njih.',
+  '💡 <strong>Tab 7 tip:</strong> Označi samo tvrdnje koje STVARNO znaš — ne varaj sebe.'
+];
+let tipShown={};
+function showTip(n){
+  if(tipShown[n])return;
+  const bar=document.getElementById('tip-bar');
+  const txt=document.getElementById('tip-bar-txt');
+  if(!bar||!txt)return;
+  txt.innerHTML=TIPS[n]||TIPS[0];
+  bar.classList.add('show');
+  tipShown[n]=true;
+  clearTimeout(bar._timer);
+  bar._timer=setTimeout(()=>bar.classList.remove('show'),5000);
+}
+// Show tip for initial tab
+setTimeout(()=>showTip(0),3000);
+
+/* ═══════════════════════════════════
+   FROM BANNER (?from= URL param)
+═══════════════════════════════════ */
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const from=params.get('from');
+  if(from){
+    const names={H11:'H11 · Stari hrv. pisci',H12:'H12 · Marulić · Judita',H13:'H13 · Gundulić · Dubravka',H14:'H14 · Preporod · Mažuranić'};
+    const el=document.getElementById('from-banner');
+    const txt=document.getElementById('from-txt');
+    if(el&&txt){
+      txt.textContent='📎 Nastaviš učenje iz '+(names[from]||from)+' → H15 · Šenoa · Prijan Lovro';
+      el.classList.add('show');
+      // Move banner to top of content
+      const cw=document.querySelector('.content-wrap');
+      if(cw)cw.insertBefore(el,cw.firstChild);
+      setTimeout(()=>el.classList.remove('show'),8000);
+    }
+  }
+})();
+
+/* ═══════════════════════════════════
+   SCORE HISTORY (kviz)
+═══════════════════════════════════ */
+function loadScoreHistory(){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h15.kviz_hist')||'[]');
+    const cont=document.getElementById('score-hist');
+    const rows=document.getElementById('score-hist-rows');
+    if(!cont||!rows||hist.length===0)return;
+    cont.style.display='block';
+    rows.innerHTML=hist.slice(-5).reverse().map(h=>{
+      const pct=Math.round(h.score/h.total*100);
+      const d=new Date(h.date);
+      const ds=d.toLocaleDateString('hr',{day:'2-digit',month:'2-digit'});
+      return \`<div class="score-hist-row">
+        <span class="score-hist-date">\${ds}</span>
+        <div class="score-hist-bar"><div class="score-hist-fill" style="width:\${pct}%"></div></div>
+        <span class="score-hist-val">\${h.score}/\${h.total}</span>
+      </div>\`;
+    }).join('');
+  }catch(e){}
+}
+
+function saveScoreHistory(score,total){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h15.kviz_hist')||'[]');
+    hist.push({score,total,date:new Date().toISOString()});
+    localStorage.setItem('mt.hrv.h15.kviz_hist',JSON.stringify(hist.slice(-10)));
+    loadScoreHistory();
+  }catch(e){}
+}
+
+// Upgrade qzEnd to save history
+const origQzEnd=qzEnd;
+window.qzEnd=function(el){
+  origQzEnd(el);
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+};
+
+// Load history on init
+loadScoreHistory();
+
+/* ═══════════════════════════════════
+   MATCH GAME — Funkcionalan (3 razine)
+═══════════════════════════════════ */
+const MATCH_DATA={
+  // EASY — Likovi i njihove uloge
+  easy:[
+    {a:'Lovro',b:'Glavni lik — seoski intelektualac'},
+    {a:'August Šenoa',b:'Pripovjedač i Lovrin cimer u Pragu'},
+    {a:'Malvina',b:'Grofova kći — prva ljubav, odbija Lovru'},
+    {a:'Anđelija',b:'Posljednja ljubav — odustaje zbog spletki'},
+  ],
+  // MEDIUM — Stilska sredstva i tehnike s primjerima
+  medium:[
+    {a:'Uokvirena pripovijetka',b:'Berba na selu + priča o Lovri (priča u priči)'},
+    {a:'Ironija',b:'„Župnik velik politik; sudac bijesan voćar; sudinja dobra duša"'},
+    {a:'Psihosocijalni kontrast',b:'Glavni: želja ↔ mogućnost · Sporedni: grad ↔ selo'},
+    {a:'Aluzija',b:'„Werther hrvatske književnosti" — Goethe paralela'},
+    {a:'Simbol',b:'Britva = sredstvo smrti i moralna optužba društva'},
+    {a:'Retrospekcija',b:'Šenoa priča o Lovri koji je već mrtav — gradi tragičnu napetost'},
+  ],
+  // HARD — Šenoino doba + povijest hrv. realizma
+  hard:[
+    {a:'1873.',b:'Godina objave Prijana Lovre u Vijencu'},
+    {a:'Vijenac',b:'Glavni časopis Šenoinog doba (Šenoa urednik od 1874.)'},
+    {a:'Šenoino doba',b:'Razdoblje 1865.-1881. — Šenoa dominira hrv. književnošću'},
+    {a:'Protorealizam',b:'Prijelazna faza — realističke teme + romantičarski stil'},
+    {a:'Ante Kovačić',b:'Realist nakon Šenoe — U registraturi (1888.)'},
+    {a:'Vjenceslav Novak',b:'Posljednji Stipančići (1899.) — ispitno djelo 2026.'},
+    {a:'Potres 1880.',b:'Šenoa ozlijeđen — umire 1881. od posljedica'},
+    {a:'Vjekoslav Klaić',b:'Dovršio Šenoinu Kletvu nakon njegove smrti'},
+  ],
+};
+
+let mgLevel='easy',mgSelLeft=null,mgSelRight=null,mgMatched=0,mgPairs=[];
+
+function mgInit(level){
+  mgLevel=level||'easy';
+  const pairs=MATCH_DATA[mgLevel];
+  mgMatched=0;mgSelLeft=null;mgSelRight=null;
+  mgPairs=pairs.map((p,i)=>({...p,id:i}));
+  
+  // Shuffle BOTH sides independently for harder challenge
+  const leftItems=[...mgPairs].sort(()=>Math.random()-.5);
+  const rightItems=[...mgPairs].sort(()=>Math.random()-.5);
+  
+  const themes={
+    easy:'🎭 Likovi Prijana Lovre',
+    medium:'✒ Stilska sredstva + tehnike',
+    hard:'🏛 Šenoino doba + realizam (napredno)'
+  };
+  const labels={easy:'Lagano',medium:'Srednje',hard:'Teško'};
+  const activeClass=(lvl)=>mgLevel===lvl?'primary':'';
+  
+  const el=document.getElementById('mg-dynamic');
+  if(!el)return;
+  el.innerHTML=\`
+    <div class="mg-status" id="mg-status">
+      <strong>\${themes[mgLevel]}</strong> · \${mgPairs.length} parova · \${labels[mgLevel]}
+    </div>
+    <div class="mg-grid">
+      <div class="mg-col" id="mg-left">
+        \${leftItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="left" onclick="mgClick(this)">\${p.a}</div>\`).join('')}
+      </div>
+      <div class="mg-col" id="mg-right">
+        \${rightItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="right" onclick="mgClick(this)">\${p.b}</div>\`).join('')}
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="fcb \${activeClass('easy')}" onclick="mgInit('easy')" style="margin:3px" title="Likovi Dubravke">🎭 Lagano (4)</button>
+      <button class="fcb \${activeClass('medium')}" onclick="mgInit('medium')" style="margin:3px" title="Stilska sredstva + primjeri">✒ Srednje (6)</button>
+      <button class="fcb \${activeClass('hard')}" onclick="mgInit('hard')" style="margin:3px" title="Kontekst i uzori">🏛 Teško (8)</button>
+    </div>
+    <div style="text-align:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--t3)">
+      Svaka razina testira drugu vještinu — ne samo više parova
+    </div>
+  \`;
+}
+
+function mgClick(el){
+  if(el.classList.contains('matched')||el.classList.contains('wrong'))return;
+  const side=el.dataset.side;
+  
+  if(side==='left'){
+    document.querySelectorAll('#mg-left .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelLeft=el;
+  } else {
+    document.querySelectorAll('#mg-right .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelRight=el;
+  }
+  
+  if(mgSelLeft&&mgSelRight){
+    const match=mgSelLeft.dataset.id===mgSelRight.dataset.id;
+    if(match){
+      mgSelLeft.classList.add('matched');mgSelLeft.classList.remove('selected');
+      mgSelRight.classList.add('matched');mgSelRight.classList.remove('selected');
+      mgMatched++;
+      if(mgMatched===mgPairs.length){
+        document.getElementById('mg-status').innerHTML=\`<span style="color:var(--green)">✓ Sve spareno! Odlično!</span>\`;
+        markTab(5);
+      }
+    } else {
+      mgSelLeft.classList.add('wrong');mgSelRight.classList.add('wrong');
+      setTimeout(()=>{
+        mgSelLeft.classList.remove('wrong','selected');
+        mgSelRight.classList.remove('wrong','selected');
+        mgSelLeft=null;mgSelRight=null;
+      },600);
+      return;
+    }
+    mgSelLeft=null;mgSelRight=null;
+  }
+}
+
+/* ═══════════════════════════════════
+  FLASHCARDS — H11/H12/H13/H14 style (H15 sadržaj)
+═══════════════════════════════════ */
+const FC_DATA=[
+  {t:'Pripovijetka',d:'Kraće prozno djelo s jednom glavnom radnjom. Prijan Lovro = pripovijetka (ne roman, ne novela).',kat:'zanr'},
+  {t:'Praška novela',d:'Nadimak Prijana Lovre. Nastao u Pragu (Šenoa studira 1859.-1865.). Autobiografska osnova.',kat:'zanr'},
+  {t:'Werther hrv. književnosti',d:'Drugi nadimak djela. Aluzija na Goethea. Razlika: Werther = individualna tragedija; Lovro = socijalna tragedija.',kat:'zanr'},
+  {t:'Vijenac',d:'Glavni časopis Šenoinog doba. Šenoa urednik od 1874. Tu objavljen Prijan Lovro 1873.',kat:'zanr'},
+  {t:'Uokvirena pripovijetka',d:'Priča u priči. Šenoa (okvir, berba) priča udovici o Lovri. Klasična europska tehnika.',kat:'tehnika'},
+  {t:'Retrospekcija',d:'Pripovijedanje prošlih događaja. Šenoa priča o Lovri koji je već mrtav — gradi tragičnu napetost.',kat:'tehnika'},
+  {t:'Pripovjedač-svjedok',d:'Šenoa nije sveznajući — on je svjedok i prijatelj. Realistička pozicija, ne moralni sudac.',kat:'tehnika'},
+  {t:'Lovro',d:'Glavni lik. Inteligentan seoski idealist, ljubitelj poezije. Bori se i gubi u ratu s malograđanskim društvom.',kat:'likovi'},
+  {t:'Šenoa (u djelu)',d:'Pripovjedač, Lovrin cimer u Pragu. Razborit, savjetnik, svjedok njegove propasti.',kat:'likovi'},
+  {t:'Malvina',d:'Grofova kći, prva ljubav. Odbija Lovru zbog klasnog porijekla — simbol nepremostivih staleških granica.',kat:'likovi'},
+  {t:'Minka',d:'Bogata (naizgled) djevojka u Pragu. Lovro je razmatra radi miraza. Šenoa otvara oči — otac ima 6 djece.',kat:'likovi'},
+  {t:'Anđelija',d:'Posljednja Lovrina ljubav. Odustaje zbog malograđanskih spletki. Lovro se ubija pred njom.',kat:'likovi'},
+  {t:'Realizam',d:'Europski književni pokret 2. polovice 19. st. Vjeran prikaz svakodnevnog života, psihologija, društvena kritika.',kat:'realizam'},
+  {t:'Protorealizam',d:'Prijelazna faza romantizam-realizam. Realističke teme + romantičarska stilska sredstva. Šenoa = utemeljitelj.',kat:'realizam'},
+  {t:'Psihosocijalni kontrasti',d:'Šenoin ključ djela: glavni želja-mogućnost; sporedni grad-selo, duhovno-svjetovno, bogatstvo-siromaštvo.',kat:'realizam'},
+  {t:'Šenoino doba',d:'Razdoblje 1865.-1881. kada Šenoa dominira hrv. književnošću. Period nazvan po njemu.',kat:'senoa'},
+  {t:'Otac hrv. realizma',d:'Šenoin nadimak. Postavlja temelje hrv. realizmu — psihologija, društvena kritika, vjerodostojnost.',kat:'senoa'},
+  {t:'Ante Kovačić — U registraturi',d:'Realist nakon Šenoe. Tema slična Lovri — propast seoskog intelektualca u gradu, ali oštrija kritika.',kat:'autori'},
+  {t:'Vjenceslav Novak — Posljednji Stipančići',d:'Realist 1899. ispitno djelo 2026. Propast hrv. građanske obitelji.',kat:'autori'},
+  {t:'„Boj se onoga..." vs. „Bio je veliki idealist..."',d:'Mažuranić = romantizam, kletva u stihu. Šenoa = realizam, karakterizacija u prozi. Stilska razlika preporod-realizam.',kat:'kontekst'},
+];
+
+var H15_DRILL_FC_CARDS = FC_DATA.map(function(item){
+  return {
+    cat: String(item.kat || 'pojam').toUpperCase(),
+    term: String(item.t || ''),
+    def: String(item.d || '')
+  };
+});
+
+var h15dFcIdx=0,h15dFcKnown=0,h15dFcUnknown=0,h15dFcOrder=[];
+var H15_DRILL_SS_KEY='mt.hrv.h15.drill.fc';
+var H15_DRILL_FC_FREE_LIMIT=5;
+
+function h15DrillBeep(f,d,v,t){
+  try{
+    var c=new(window.AudioContext||window.webkitAudioContext)();
+    var o=c.createOscillator();
+    var g=c.createGain();
+    o.connect(g);g.connect(c.destination);
+    o.frequency.value=f;o.type=t||'sine';
+    g.gain.setValueAtTime(v||0.08,c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+d);
+    o.start(c.currentTime);o.stop(c.currentTime+d);
+  }catch(e){}
+}
+
+function h15DrillSoundOk(){h15DrillBeep(660,.1,.08,'sine');setTimeout(function(){h15DrillBeep(880,.14,.07,'sine')},110)}
+function h15DrillSoundNg(){h15DrillBeep(200,.18,.08,'sawtooth')}
+function h15DrillSoundDone(){[440,550,660,880].forEach(function(f,i){setTimeout(function(){h15DrillBeep(f,.18,.07,'sine')},i*90)})}
+
+function h15DrillSave(){
+  try{sessionStorage.setItem(H15_DRILL_SS_KEY,JSON.stringify({idx:h15dFcIdx,known:h15dFcKnown,unknown:h15dFcUnknown,order:h15dFcOrder,ts:Date.now()}))}catch(e){}
+}
+
+function h15DrillRestore(){
+  try{
+    var raw=sessionStorage.getItem(H15_DRILL_SS_KEY);if(!raw)return false;
+    var s=JSON.parse(raw);
+    if(!s||!Array.isArray(s.order)||s.order.length!==H15_DRILL_FC_CARDS.length)return false;
+    h15dFcIdx=s.idx||0;h15dFcKnown=s.known||0;h15dFcUnknown=s.unknown||0;h15dFcOrder=s.order;
+    var r=document.getElementById('h15d-fc-right');if(r)r.textContent=h15dFcKnown;
+    var w=document.getElementById('h15d-fc-wrong');if(w)w.textContent=h15dFcUnknown;
+    return true;
+  }catch(e){return false}
+}
+
+function h15DrillFcShuffle(){
+  h15dFcOrder=H15_DRILL_FC_CARDS.map(function(_,i){return i});
+  for(var i=h15dFcOrder.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=h15dFcOrder[i];h15dFcOrder[i]=h15dFcOrder[j];h15dFcOrder[j]=t}
+}
+
+function h15DrillFcIsPaid(){
+  var attrTier=(document.body.getAttribute('data-tier')||'').toLowerCase();
+  var detected=(typeof detectTier==='function')?String(detectTier()||'').toLowerCase():'';
+  var t=attrTier||detected||'free';
+  return t==='standard'||t==='pro';
+}
+
+function h15DrillFcShowPaywall(){
+  var wrap=document.querySelector('.h15d-fc-wrap');
+  if(!wrap)return;
+  var existing=document.getElementById('h15d-fc-paywall');
+  if(existing){if(existing.scrollIntoView)existing.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  var chapter=(typeof CURRENT_CHAPTER!=='undefined'&&CURRENT_CHAPTER.code)||'h15';
+  var html='<div id="h15d-fc-paywall" class="drill-paywall" data-feature="drill-flashcards">'+
+           '<div class="drill-paywall-ico">🔒</div>'+
+           '<div class="drill-paywall-title">15 više kartica + Matching + Spaced repetition</div>'+
+           '<div class="drill-paywall-sub">Drill je aktivno učenje — 4× efikasnije od pasivnog čitanja. Svih 20 kartica + 9 pair matchingov.</div>'+
+           '<a class="pro-gate-btn" href="/pricing?ctx=drill_flashcards_'+chapter+'">Otključaj — 9,99€/mj</a>'+
+           '<div class="pro-gate-meta">Otkaži bilo kad · Free trial 7 dana</div>'+
+           '</div>';
+  wrap.insertAdjacentHTML('afterend',html);
+  if(typeof track==='function'){track('paywall_impression',{feature:'drill-flashcards',chapter:chapter,at_card:h15dFcIdx},'conversion');}
+}
+
+function h15DrillFcRender(){
+  if(h15dFcOrder.length===0)h15DrillFcShuffle();
+
+  if(!h15DrillFcIsPaid() && h15dFcIdx >= H15_DRILL_FC_FREE_LIMIT){
+    var termL=document.getElementById('h15d-fc-term');
+    var catFL=document.getElementById('h15d-fc-cat-f');
+    var defL=document.getElementById('h15d-fc-def');
+    var catBL=document.getElementById('h15d-fc-cat-b');
+    var numL=document.getElementById('h15d-fc-num');
+    if(termL)termL.textContent='Otključaj svih 20 kartica';
+    if(catFL)catFL.textContent='FREE TIER — 5 / 20';
+    if(defL)defL.textContent='Pridruži se Standard planu za svih 20 flashcards + Matching igru + Spaced Repetition. Učenje je 4× brže s aktivnim drillom.';
+    if(catBL)catBL.textContent='UPGRADE';
+    if(numL)numL.innerHTML='<b>'+H15_DRILL_FC_FREE_LIMIT+'</b> / 20 · <span style="color:var(--gold)">Free limit</span>';
+    h15DrillFcShowPaywall();
+    return;
+  }
+
+  if(h15dFcIdx>=h15dFcOrder.length){
+    var t=document.getElementById('h15d-fc-term');
+    var d=document.getElementById('h15d-fc-def');
+    var cf=document.getElementById('h15d-fc-cat-f');
+    var cb=document.getElementById('h15d-fc-cat-b');
+    var num=document.getElementById('h15d-fc-num');
+    if(t)t.textContent='Gotovo! ✅';
+    if(cf)cf.textContent='REZULTAT';
+    if(d)d.textContent='Točno: '+h15dFcKnown+' / Krivo: '+h15dFcUnknown+'. Klikni Reset za novi krug.';
+    if(cb)cb.textContent='REZULTAT';
+    if(num)num.innerHTML='<b>'+h15dFcOrder.length+'</b> / '+h15dFcOrder.length;
+    h15DrillSoundDone();
+    return;
+  }
+
+  var c=H15_DRILL_FC_CARDS[h15dFcOrder[h15dFcIdx]];
+  var card=document.getElementById('h15d-fc-card');if(card)card.classList.remove('flipped');
+  var catf=document.getElementById('h15d-fc-cat-f');
+  var catb=document.getElementById('h15d-fc-cat-b');
+  var term=document.getElementById('h15d-fc-term');
+  var def=document.getElementById('h15d-fc-def');
+  var num2=document.getElementById('h15d-fc-num');
+  if(catf)catf.textContent=c.cat;
+  if(catb)catb.textContent='DEFINICIJA';
+  if(term)term.textContent=c.term;
+  if(def)def.textContent=c.def;
+  if(num2)num2.innerHTML='<b>'+(h15dFcIdx+1)+'</b> / '+h15dFcOrder.length;
+}
+
+function h15DrillFcFlip(){var card=document.getElementById('h15d-fc-card');if(card)card.classList.toggle('flipped')}
+
+function h15DrillFcMark(known){
+  if(known){h15dFcKnown++;h15DrillSoundOk();}
+  else{h15dFcUnknown++;h15DrillSoundNg();}
+  var r=document.getElementById('h15d-fc-right');if(r)r.textContent=h15dFcKnown;
+  var w=document.getElementById('h15d-fc-wrong');if(w)w.textContent=h15dFcUnknown;
+  h15dFcIdx++;
+  h15DrillSave();
+  setTimeout(h15DrillFcRender,180);
+}
+
+function h15DrillFcSkip(){h15dFcIdx++;h15DrillSave();h15DrillFcRender()}
+
+function h15DrillFcShuffleAndRender(){
+  h15DrillFcShuffle();
+  h15dFcIdx=0;
+  h15DrillSave();
+  h15DrillFcRender();
+}
+
+function h15DrillFcReset(){
+  h15dFcIdx=0;h15dFcKnown=0;h15dFcUnknown=0;
+  h15DrillFcShuffle();
+  try{sessionStorage.removeItem(H15_DRILL_SS_KEY)}catch(e){}
+  var r=document.getElementById('h15d-fc-right');if(r)r.textContent=0;
+  var w=document.getElementById('h15d-fc-wrong');if(w)w.textContent=0;
+  h15DrillFcRender();
+}
+
+function h15DrillInit(){if(!h15DrillRestore())h15DrillFcShuffle();h15DrillFcRender()}
+
+function fcInit(){ h15DrillInit(); }
+function fcRender(){ h15DrillFcRender(); }
+function fcFlip(){ h15DrillFcFlip(); }
+function fcNav(dir){
+  if(dir>0){h15DrillFcSkip();return;}
+  if(dir<0 && h15dFcIdx>0){h15dFcIdx--;h15DrillSave();h15DrillFcRender();}
+}
+
+/* ═══════════════════════════════════
+   INTERSECTION OBSERVER (IntersectionObserver)
+═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   READ PROGRESS BAR + BTT
+═══════════════════════════════════ */
+(function(){
+  const bar=document.getElementById('rpbar');
+  const btt=document.getElementById('btt');
+  function update(){
+    const el=document.documentElement;
+    const scrolled=el.scrollTop||document.body.scrollTop;
+    const total=(el.scrollHeight||document.body.scrollHeight)-el.clientHeight;
+    const pct=total>0?Math.min(100,Math.round(scrolled/total*100)):0;
+    if(bar)bar.style.width=pct+'%';
+    if(btt)btt.classList.toggle('show',scrolled>300);
+  }
+  document.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+/* ═══════════════════════════════════
+   SELFCHECK (Samoprocjena Tab 0)
+═══════════════════════════════════ */
+const SC_QS = [
+  {q: 'Znam godinu i mjesto objave Prijana Lovre (1873., časopis Vijenac).', k: 'kontekst'},
+  {q: 'Mogu opisati strukturu pripovijetke (uokvirena, 5 dijelova) i što je uvodni okvir.', k: 'struktura'},
+  {q: 'Razumijem protorealizam — kako se realistički i romantičarski elementi spajaju u djelu.', k: 'žanr'},
+  {q: 'Mogu opisati glavne likove (Lovro, Šenoa-pripovjedač, Malvina, Minka, Anđelija, roditelji) i njihove funkcije.', k: 'likovi'},
+  {q: 'Znam kontekst Šenoinog doba: Vijenac, povijesni romani, „otac hrv. realizma", utjecaj na generaciju realista.', k: 'kontekst'}
+];
+
+function scRender() {
+  const el = document.getElementById('sc-qs');
+  if (!el) return;
+  el.innerHTML = SC_QS.map((q,i) => \`
+    <div style="display:flex;align-items:flex-start;gap:10px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:10px 14px">
+      <input type="checkbox" id="sc\${i}" style="margin-top:3px;accent-color:var(--bronze);width:16px;height:16px;flex-shrink:0">
+      <label for="sc\${i}" style="font-family:var(--serif);font-size:13.5px;color:var(--t2);cursor:pointer;line-height:1.5">\${q.q}</label>
+    </div>
+  \`).join('');
+}
+
+function scCheck() {
+  const checked = SC_QS.map((_,i) => document.getElementById('sc'+i)?.checked).filter(Boolean).length;
+  const pct = Math.round(checked / SC_QS.length * 100);
+  const el = document.getElementById('sc-result');
+  if (!el) return;
+  let msg, color;
+  if (pct >= 100) { msg = '🏆 Odlično! Spreman/na si za sve što NCVVO može pitati iz H15.'; color = 'var(--green)'; }
+  else if (pct >= 60) { msg = '📖 Dobro! Provjeri neoznačene stavke — one su tvoje slabe točke.'; color = 'var(--gold)'; }
+  else { msg = '📚 Još je posla. Počni s Teorijom i 6 pjevanjima — te sekcije su najvažnije.'; color = 'var(--red)'; }
+  el.style.display = 'block';
+  el.innerHTML = \`<div class="box-int" style="border-color:\${color}20">
+    <div style="font-family:var(--display);font-size:18px;color:\${color};margin-bottom:8px">\${checked} / \${SC_QS.length} · \${pct}%</div>
+    <div style="font-family:var(--serif);font-size:14px;color:var(--t2)">\${msg}</div>
+  </div>\`;
+}
+
+function scReset() {
+  SC_QS.forEach((_,i) => { const el=document.getElementById('sc'+i); if(el) el.checked=false; });
+  const r = document.getElementById('sc-result');
+  if (r) r.style.display = 'none';
+}
+
+scRender();
+
+/* ═══════════════════════════════════
+   CHECKLIST (Esej alat AT7)
+═══════════════════════════════════ */
+const CL_ITEMS = [
+  'Znam godinu i mjesto objave Prijana Lovre (1873., Vijenac).',
+  'Razumijem strukturu pripovijetke — uokvirena priča s 5 dijelova (Okvir → Djetinjstvo → Škola → Prag → Tragedija).',
+  'Razumijem što je protorealizam i mogu prepoznati realističke i romantičarske elemente u djelu.',
+  'Mogu opisati glavne likove: Lovro, Šenoa-pripovjedač, Malvina, Minka, Anđelija, kanonik, otac, udovica Hrvatica.',
+  'Razumijem tehniku uokvirene pripovijetke i retrospektivne naracije — i zašto ih Šenoa koristi.',
+  'Mogu identificirati psihosocijalne kontraste: želja ↔ mogućnost, grad ↔ selo, ideal ↔ stvarnost, bogatstvo ↔ siromaštvo.',
+  'Znam zašto se djelo zove „praška novela" i „Werther hrvatske književnosti".',
+  'Razumijem 3 razine čitanja: konkretnu (priča), socijalnu (kritika društva), univerzalnu (tragedija idealista).',
+  'Znam kontekst Šenoinog doba: Vijenac, povijesni romani, „otac hrv. realizma", razdoblje 1865.–1881.',
+  'Mogu usporediti Prijan Lovro s Wertherom, Posljednjim Stipančićima, Kiklopom i drugim hrv. realistima.',
+];
+let clDone = {};
+try { clDone = JSON.parse(localStorage.getItem('mt.hrv.h15.cl') || '{}'); } catch(e) {}
+
+function clRender() {
+  const el = document.getElementById('cl-list');
+  if (!el) return;
+  el.innerHTML = CL_ITEMS.map((item, i) => \`
+    <div class="cp-item\${clDone[i] ? ' done' : ''}" onclick="clToggle(\${i})" style="cursor:pointer">
+      <div class="cp-cb">\${clDone[i] ? '✓' : ''}</div>
+      <div class="cp-txt">\${item}</div>
+    </div>
+  \`).join('');
+}
+function clToggle(i) {
+  clDone[i] = !clDone[i];
+  try { localStorage.setItem('mt.hrv.h15.cl', JSON.stringify(clDone)); } catch(e) {}
+  clRender();
+}
+clRender();
+
+/* ═══════════════════════════════════
+   CHECKPOINT WRITER
+═══════════════════════════════════ */
+function cpWriterUpdate(){
+  const ta=document.getElementById('cp-writer');
+  const fb=document.getElementById('cp-writer-fb');
+  if(!ta)return;
+  const txt=ta.value;
+  const words=txt.trim()?txt.trim().split(/\\s+/).length:0;
+  try{localStorage.setItem('mt.hrv.h15.cp_writer',txt);}catch(e){}
+  // Count literary terms
+  const tl=txt.toLowerCase();
+  const terms=['pripovijetk','novel','uokvir','okvir','retrospekc','protorealiz','realiz','šenoin','vijenac','prag','lovr','šenoa','malvin','mink','anđelij','kanonik','udovic','kontrast','psihosocijal','psiholo','simbol','ironij','aluzij','werther','goethe','društv','klas','idealist','tragedij'];
+  const found=[];
+  if(/pripovijetk|novel|uokvir|okvir|retrospekc|tehnik|pripovjedač/.test(tl))found.push('✅ Žanr/tehnika');
+  if(/lovr|šenoa|malvin|mink|anđelij|kanonik|udovic|grof/.test(tl))found.push('✅ Lik');
+  if(/protorealiz|realiz|romantizam|šenoin|vijenac|prag|1873|1881/.test(tl))found.push('✅ Kontekst');
+  if(/kontrast|psihosocijal|želj.*moguć|grad.*selo|ideal.*stvarn/.test(tl))found.push('✅ Psihosocijalni kontrast');
+  if(/simbol|ironij|aluzij|werther|goethe|epitet|metafor/.test(tl))found.push('✅ Stilsko sredstvo');
+  if(/idealist|tragedij|propast|malograđan|društv|klas|inteligen|samoubo/.test(tl))found.push('✅ Tema/ideja');
+  // Update stats
+  const ww=document.getElementById('cpw-words');if(ww)ww.querySelector('.wc-stat-num').textContent=words;
+  const wt=document.getElementById('cpw-terms');if(wt)wt.querySelector('.wc-stat-num').textContent=found.length;
+  // Progress bar
+  const pct=Math.min(100,Math.round(words/20*100));
+  const bar=document.getElementById('cpw-bar');const prog=document.getElementById('cpw-prog');
+  const lbl=document.getElementById('cpw-lbl');
+  if(bar)bar.style.width=pct+'%';
+  if(prog)prog.classList.toggle('pass',words>=20);
+  if(lbl)lbl.textContent='CILJ 20 · '+words+' / 20'+(words>=20?' ✓':'');
+  if(!fb||words===0){if(fb)fb.innerHTML='';return;}
+  const quality=words>=20?(words>=40?'<span style="color:var(--green)">Odlična duljina</span>':'<span style="color:var(--gold)">Dobra duljina</span>'):'<span style="color:var(--red)">Previše kratko</span>';
+  fb.innerHTML=\`<div class="box-int" style="padding:10px 14px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">\${found.map(f=>\`<span style="font-family:var(--mono);font-size:10px;color:var(--green)">\${f}</span>\`).join('')||'<span style="font-family:var(--mono);font-size:10px;color:var(--t3)">Nema prepoznatih pojmova</span>'}</div>
+    <div style="font-family:var(--mono);font-size:10px">\${quality} · \${found.length}/6 književnih pojmova</div>
+  </div>\`;
+}
+(function(){
+  const ta=document.getElementById('cp-writer');
+  if(!ta)return;
+  try{const sv=localStorage.getItem('mt.hrv.h15.cp_writer');if(sv){ta.value=sv;cpWriterUpdate();}}catch(e){}
+})();
+
+/* ═══════════════════════════════════
+   CITATNIK v2 (H11 featured-quote pattern)
+═══════════════════════════════════ */
+const CIT_DATA2 = [
+  // === I. UVODNI OKVIR (6) ===
+  {cat:'okvir',napamet:true,
+   text:'Jednoga mutnoga popodneva bilo se skupilo baš vrlo društvance. Župnik, velik politik; sudac, bijesan voćar; sudinja, dobra duša premda ponešto spore pameti...',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, I. Uvodni okvir · Galerija seoskog društva s blagom ironijom'},
+  {cat:'okvir',
+   text:'Neka lijepa, crnooka mlada gospođa u crno zavita, udova susjednoga vlastelina, kako mi poslije rekoše.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, I. Uvodni okvir · Karakterizacija udovice Hrvatice — ključna slušateljica'},
+  {cat:'okvir',
+   text:'Velečasni gospodin župnik stao je naširoko razvijati Napoleonove misli, poglaviti gospodin sudac dokazivao ushićenim glasom kako mu je rodila kruška...',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, I. Uvodni okvir · Socijalna ironija u prikazu seoskog društva'},
+  {cat:'okvir',
+   text:'Na sreću ne stajaše dvor moga pobratima na osami, bijaše susjeda dosta i kako je moj prijatelj bio veseljak...',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, I. Uvodni okvir · Atmosfera berbe — društveni prostor za pripovijedanje'},
+  {cat:'okvir',
+   text:'Pripovijetka započinje okvirnom pričom u kojoj pripovjedač August Šenoa dolazi na selo tijekom berbe.',
+   meta:'— Strukturna analiza · I. Uvodni okvir uspostavlja autoritet pripovjedača-svjedoka'},
+  {cat:'okvir',
+   text:'Kroz razgovor s udovicom Hrvaticom o književnosti stvara se prirodan uvod u glavnu priču o Lovri.',
+   meta:'— Strukturna analiza · Kritika hrv. književnosti kroz dijalog s udovicom · Uvod glavne priče'},
+
+  // === II. DJETINJSTVO (5) ===
+  {cat:'djetinjstvo',
+   text:'On je svoj život podigao od siromašnog seljaka pa sve do učenog čovjeka.',
+   meta:'— Sinteza Lovrinog uspona · Tema društvene mobilnosti kroz obrazovanje'},
+  {cat:'djetinjstvo',
+   text:'Dolazi iz siromašne obitelji i živi na selu. Roditelji mu žele omogućiti bolji život od onog koji su oni imali pa mu predlažu da postane svećenik.',
+   meta:'— Karakterizacija Lovre · Roditeljska žrtva i institucionalni put svećenstva'},
+  {cat:'djetinjstvo',
+   text:'Likovi: Lovro, August, kanonik, otac, majka, sestra, svak, Malvina, Anđelija, Minka sa obitelji...',
+   meta:'— Popis glavnih likova djela · Lovro u središtu obiteljske mreže'},
+  {cat:'djetinjstvo',
+   text:'Šenoa kroz lik Lovre progovara o važnosti obrazovanja i osobnog integriteta.',
+   meta:'— Tematska interpretacija · Obrazovanje kao centralni motiv djela'},
+  {cat:'djetinjstvo',
+   text:'Siromaštvo predstavlja prepreku koja ograničava mogućnosti napredovanja u društvu.',
+   meta:'— Socio-ekonomska tematika · Prva strukturna prepreka za Lovru'},
+
+  // === III. ŠKOLA / MALVINA (6) ===
+  {cat:'skola',napamet:true,
+   text:'Bio je veliki intelektualac i idealist, jednakost i sloboda bili su njegovi ideali u koje je vjerovao.',
+   meta:'— Karakterizacija Lovre · Ideološki temelj lika · Razlog tragedije'},
+  {cat:'skola',
+   text:'Kada se školovao za svećenika uvidio je da to nije za njega jer je svećenstvo sputavalo njegov slobodni duh.',
+   meta:'— Karakterizacija Lovre · Sukob slobodoumnosti i institucionalne discipline'},
+  {cat:'skola',
+   text:'Imao je veće ambicije od stvarnosti u kojoj ih nije mogao ostvariti.',
+   meta:'— Tragična formula · Nesrazmjer želje i mogućnosti — glavni Šenoin kontrast'},
+  {cat:'skola',
+   text:'Volio je čitati poeziju, iako sam nije pisao pjesme.',
+   meta:'— Karakterizacija Lovre · Prijemljiv za književnost, ne kreativni autor — receptivni intelektualac'},
+  {cat:'skola',
+   text:'Odustao je od svećenstva i postao je učitelj jednom mladom grofu.',
+   meta:'— Životni preokret · Druga karijera nakon prve odluke'},
+  {cat:'skola',
+   text:'Iako ga je grofova obitelj primila s jednakosti i toplinom, nikako se nije mogao uklopiti jer se osjećao kao da je obilježen zbog svog seoskog podrijetla.',
+   meta:'— Psihološka karakterizacija · Internalizirana klasna stigma — nije objektivna nego subjektivna'},
+
+  // === IV. PRAG / MINKA (6) ===
+  {cat:'prag',napamet:true,
+   text:'Lovro je u Pragu upoznao djevojku po imenu Minka, kroz razgovor je doznao da je ona bogata a to je upravo njemu trebalo, bogata djevojka koja će izbaviti njegove roditelje iz dugova.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, IV. Prag · Lovrova moralna kriza · Tema novca vs. ljubavi'},
+  {cat:'prag',
+   text:'I on je imao na umu da se oženi tom djevojkom sve dok mu Šenoa nije otvorio oči i rekao da je to stara usidjelica koja neće donijeti miraz udajom...',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, IV. Prag · Šenoa kao razboriti svjedok i savjetnik'},
+  {cat:'prag',
+   text:'Otac ima još šestero djece na koje treba podijeliti svoje bogatstvo.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, IV. Prag · Konkretna razloga zašto Minka nije rješenje'},
+  {cat:'prag',
+   text:'Poslije tog saznanja Lovro je odustao od nje.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, IV. Prag · Lovro privremeno spašen od moralnog kompromisa'},
+  {cat:'prag',
+   text:'Nakon završenog trećeg tečaja sveučilišta Lovro odluči otići u Zlatni Prag.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, IV. Prag · Prag kao intelektualna meta'},
+  {cat:'prag',
+   text:'Dok su jednog dana Lovro i Šenoa bili u jednoj kavani priđe im jedan debeli čovjek... savjetova mu neka ide u Split jer on pozna jednu mladu djevojku koja živi sa stricem a bogata je.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, IV. Prag · Debeli gospodin — satirična figura cinične praktičnosti'},
+
+  // === V. TRAGEDIJA / ANĐELIJA (6) ===
+  {cat:'tragedija',napamet:true,
+   text:'Saznavši tu vijest iz Anđelijinih usta, Lovro si je pred njom britvom prerezao grkljan.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, V. Tragedija · Vrhunac drame · Samoubojstvo pred voljenom osobom'},
+  {cat:'tragedija',
+   text:'I tako je pripovjedač izgubio prijatelja, Anđelija ljubav, a čitatelji još jednom nadu u bilo koji uspjeh povezan s ljubavlju, završetkom školovanja i Hrvatskom.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, V. Tragedija · Trostruki gubitak — moralni epilog djela'},
+  {cat:'tragedija',
+   text:'Trebali su i oni pred oltar, no Anđeliju su upozorili da Lovro nema novaca i da je uvučen u ljubavni skandal.',
+   meta:'— Šenoa, <em>Prijan Lovro</em>, V. Tragedija · Malograđanske spletke kao oružje uništenja'},
+  {cat:'tragedija',
+   text:'Okrutna realistična novela, u kojoj je on glavni lik, donosi priču o još jednoj propasti još jednog intelektualca sa sela koji se bori i gubi u tzv. ratu s malograđanskim društvom.',
+   meta:'— Sinteza interpretacije · Žanrovska klasifikacija + tematska poanta'},
+  {cat:'tragedija',
+   text:'Plemenitaška djevojka ne prihvaća njegovu ljubav jer je seljak, u nevolji se želi oženiti bogatom djevojkom te ga zbog toga optužuju za pohlepnika, a on se ubije.',
+   meta:'— Sinteza tragične putanje · Tri prepreke koje vode u samoubojstvo'},
+  {cat:'tragedija',
+   text:'Eto nam prijana Lovre. Okrutna realistična novela.',
+   meta:'— Suvremena interpretacija · Klasifikacija djela kao realističke novele s okrutnim tonom'},
+
+  // === LOVRO — psihološka karakterizacija (4) ===
+  {cat:'lovro',
+   text:'Lovro je glavni lik priče. Dolazi iz siromašne obitelji i živi na selu.',
+   meta:'— Karakterizacija · Glavni lik s preciziranim socijalnim porijeklom'},
+  {cat:'lovro',
+   text:'Lovro - glavni je lik priče.',
+   meta:'— Strukturna napomena · Lovro u središtu unutarnje pripovijesti, Šenoa pripovjedač'},
+  {cat:'lovro',
+   text:'Nije uspio upisati akademiju iako je to stvarno jako želio.',
+   meta:'— Tragična formula · Sustavni neuspjeh u institucionalnom putu'},
+  {cat:'lovro',
+   text:'Dosta pažnje je u noveli posvećeno karakterizaciji glavnog lika, kako vanjskoj (opisi Lovrinog izgleda i prostora u kojima obitava i živi), tako i unutarnjoj, psihološkoj.',
+   meta:'— Strukturna analiza · Šenoina protorealistička tehnika karakterizacije — vanjska + unutarnja'},
+
+  // === TEME / IDEJE (4) ===
+  {cat:'tema',napamet:true,
+   text:'Tema ovog djela je težnja čovjeka da se iz primitivne, seoske sredine uzdigne do ravnopravnog građanina.',
+   meta:'— Tematska formulacija · Glavna teza za bilo koji odgovor o djelu'},
+  {cat:'tema',napamet:true,
+   text:'Šenoa je fabulu gradio na psihosocijalnim kontrastima. Glavni kontrast je želja - mogućnost, a sporedni su grad - selo, duhovno - svjetovno, bogatstvo - siromaštvo.',
+   meta:'— Strukturni ključ djela · Šenoin svjesni kompozicijski princip'},
+  {cat:'tema',napamet:true,
+   text:'Inteligentan seoski mladić koji se bori i gubi u ratu s malograđanskim društvom.',
+   meta:'— Najsažetija definicija · Uvodna teza za odgovore'},
+  {cat:'tema',
+   text:'Djelo kritizira društvene institucije koje guše individualni razvoj talentiranih pojedinaca.',
+   meta:'— Tematska interpretacija · Realistička socijalna kritika'},
+
+  // === KONTEKST (3) ===
+  {cat:'kontekst',napamet:true,
+   text:'Šenoa je bio i utemeljitelj i najznačajniji predstavnik protorealizma. Upravo zato se ono i zove „Šenoino doba".',
+   meta:'— Književno-povijesna interpretacija · Šenoina pozicija u hrv. književnosti'},
+  {cat:'kontekst',
+   text:'Ima odlike djela iz književnog realizma, ali i romantizma. Kombinacija ova dva književna smjera odlika je protorealizma.',
+   meta:'— Stilska klasifikacija · Definicija protorealizma kao spoja dvaju pokreta'},
+  {cat:'kontekst',
+   text:'Prijan Lovro pripovijetka je nazvana i „praška novela", nastala dok je Šenoa studirao u Pragu, napisana 1873. godine.',
+   meta:'— Bibliografska činjenica · Nadimak djela i okolnosti nastanka'},
+];
+
+let cit2Active = 'all';
+
+function renderCit2() {
+  const el = document.getElementById('cit-grid2');
+  if (!el) return;
+  const show = cit2Active === 'all' ? CIT_DATA2 : CIT_DATA2.filter(c => c.cat === cit2Active);
+  el.innerHTML = show.map((c,i) => buildCitHTML(c,i)).join('');
+}
+
+function citFilter2(cat, btn) {
+  document.querySelectorAll('#cit-filter-row .cit-fbt').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  cit2Active = cat;
+  // Handle 'stars' filter — show only starred items
+  if(cat === 'stars'){
+    try{
+      const stars = JSON.parse(localStorage.getItem('mt.hrv.h15.cit_stars')||'[]');
+      const el = document.getElementById('cit-grid2');
+      if(!el) return;
+      const show = CIT_DATA2.filter((c,i)=>stars.includes(i));
+      if(show.length===0){
+        el.innerHTML = '<div class="box-int" style="margin-top:12px"><div class="box-int-txt">Još nemaš označenih citata. Klikni ⭐ na citatu da ga dodaš u favorite.</div></div>';
+        return;
+      }
+      el.innerHTML = show.map((c,i)=>buildCitHTML(c,i)).join('');
+      return;
+    }catch(e){}
+  }
+  renderCit2();
+}
+
+function buildCitHTML(c, i){
+  const safe = (s)=>s.replace(/\\\\/g,'\\\\\\\\').replace(/'/g,"\\\\'");
+  return \`<div class="featured-quote" data-cit-cat="\${c.cat}">
+      \${c.napamet ? '<span class="fq-napamet">★ NAPAMET</span>' : ''}
+      <div class="fq-mark">«</div>
+      <div class="fq-body">
+        <div class="fq-text">\${c.text}</div>
+        <div class="fq-meta">\${c.meta}</div>
+      </div>
+      <button type="button" class="fq-copy" onclick="fqCopy(this,'\${safe(c.text)} — \${safe(c.meta.replace(/<[^>]+>/g,''))}')">⎘</button>
+    </div>\`;
+}
+
+function fqCopy(btn, text) {
+  navigator.clipboard.writeText(text).catch(() => {});
+  btn.classList.add('copied');
+  btn.textContent = '✓';
+  setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '⎘'; }, 1500);
+}
+
+renderCit2();
+
+/* ═══════════════════════════════════
+   POJMOVNIK v2 (H11 pojm-card pattern)
+═══════════════════════════════════ */
+const POJM_DATA2 = [
+  // === ŽANR / FORMA (10) ===
+  {kat:'zanr',term:'Pripovijetka',def:'<strong>Kraće prozno djelo</strong> s jednom glavnom radnjom. Razlikuje se od romana (više linija) i novele (kraća, jača poanta). Prijan Lovro je pripovijetka.'},
+  {kat:'zanr',term:'Novela',def:'<strong>Kraća pripovijetka</strong> s jakom centralnom poantom i ograničenim brojem likova. „Praška novela" = Prijan Lovro (po nastanku u Pragu).'},
+  {kat:'zanr',term:'Roman',def:'<strong>Dugo prozno djelo</strong> s više paralelnih radnji i likova. Šenoa piše romane (Zlatarevo zlato, Seljačka buna), ALI Prijan Lovro <em>nije roman</em>.'},
+  {kat:'zanr',term:'Povijesni roman',def:'<strong>Roman s povijesnim sadržajem.</strong> Šenoa pokreće hrv. povijesni roman: <em>Zlatarevo zlato</em> (1871., 16. st.), <em>Seljačka buna</em> (1877., 1573.), <em>Čuvaj se senjske ruke</em> (1876.).'},
+  {kat:'zanr',term:'Povjestica',def:'<strong>Lirsko-epska pjesma</strong> na motivima narodnih predaja, povijesti, političkih prilika. Šenoa: <em>Smrt Petra Svačića, Propast Venecije, Kameni svatovi, Kugina kuća, Anka Neretkinja</em>.'},
+  {kat:'zanr',term:'Praška novela',def:'<strong>Nadimak Prijana Lovre.</strong> Nastao u Pragu (Šenoa studira 1859.–1865.). Autobiografska osnova — Šenoin cimer model za lik Lovre.'},
+  {kat:'zanr',term:'Werther hrvatske književnosti',def:'<strong>Drugi nadimak djela.</strong> Aluzija na Goetheova <em>Patnje mladog Werthera</em> (1774.). Razlika: Werther = individualna tragedija; Lovro = <em>socijalna tragedija</em>.'},
+  {kat:'zanr',term:'Vijenac',def:'<strong>Glavni časopis Šenoinog doba</strong> (Zagreb). Pokrenut 1869. Šenoa urednik od 1874. Tu je objavljen Prijan Lovro (1873.) i mnoga djela hrv. realista.'},
+  {kat:'zanr',term:'Šenoino doba',def:'<strong>Razdoblje 1865.–1881.</strong> kada Šenoa dominira hrv. književnošću. Od povratka iz Praga do smrti. Stvara hrv. književnu publiku, otvara put realistima.'},
+  {kat:'zanr',term:'Drama',def:'Šenoa piše i drame: <em>Ljubica</em>, <em>Kanarinčeva ljubavnica</em>. Manje važan dio opusa od proze, ali pokazuje žanrovsku širinu.'},
+
+  // === TEHNIKE PRIPOVIJEDANJA (10) ===
+  {kat:'tehnika',term:'Uokvirena pripovijetka',def:'<strong>Priča u priči</strong> — vanjski pripovjedač uvodi unutarnju pripovijest. U Prijanu Lovri: Šenoa (okvir, berba) priča udovici o Lovri (unutarnja priča). Klasična europska tehnika (Boccaccio, Chaucer, Goethe).'},
+  {kat:'tehnika',term:'Okvirna priča',def:'<strong>Vanjski sloj uokvirene pripovijetke.</strong> U Prijanu Lovri: berba kod prijatelja vlastelina, susjedno društvo, udovica Hrvatica koja traži priču. Stvara <em>autoritet svjedoka</em>.'},
+  {kat:'tehnika',term:'Retrospekcija',def:'<strong>Pripovijedanje prošlih događaja.</strong> Šenoa priča o Lovri koji je već mrtav — čitatelj zna kraj, raste tragična napetost kroz slutnju.'},
+  {kat:'tehnika',term:'Pripovjedač u 1. licu',def:'<strong>Šenoa kao Ja-pripovjedač.</strong> U Prijanu Lovri Šenoa je <em>sam pripovjedač</em>, ne sveznajući. Realističnu poziciju — svjedok, prijatelj, ne moralni sudac.'},
+  {kat:'tehnika',term:'Sveznajući pripovjedač',def:'Pripovjedač koji zna sve o likovima. Šenoa <em>nije</em> sveznajući u Prijanu Lovri — on je svjedok. To je realistička tehnika za razliku od romantičarske.'},
+  {kat:'tehnika',term:'Karakterizacija — vanjska',def:'<strong>Opisi izgleda, prostora, navike.</strong> U Prijanu Lovri: opisi Lovrinog izgleda, kavane u Pragu, seoskog dvora. Realistička tehnika.'},
+  {kat:'tehnika',term:'Karakterizacija — unutarnja',def:'<strong>Psihološko ulaženje u lik.</strong> Lovrove dvojbe o Minki, osjećaj stigme kod grofa, moralna kriza. <em>Obilježje protorealizma.</em>'},
+  {kat:'tehnika',term:'Unutarnji monolog',def:'<strong>Misli lika prikazane neposredno.</strong> Lovrove dileme o Anđeliji i Minki. Tehnika koja ulazi u modernu prozu (Krleža, Marinković).'},
+  {kat:'tehnika',term:'Dijalog',def:'<strong>Razgovor likova.</strong> U Prijanu Lovri dijalozi su slojeviti — različiti registri govora po klasi (kanonik, grof, seljaci, studenti).'},
+  {kat:'tehnika',term:'Deskripcija',def:'<strong>Detaljni opis</strong> mjesta, ljudi, atmosfere. Šenoa koristi opise za realističku autentičnost (berba) i romantičarsku ljepotu (priroda).'},
+
+  // === STILSKA SREDSTVA (10) ===
+  {kat:'stil',term:'Epitet',def:'Pridjev koji opisuje karakter. U Prijanu Lovri: <em>„mutno popodne", „zlatna kapljica" (vino), „crnooka mlada gospođa" (udovica)</em>.'},
+  {kat:'stil',term:'Kontrast / antiteza',def:'Suprotstavljanje. <strong>Glavni:</strong> želja ↔ mogućnost. <strong>Sporedni:</strong> grad ↔ selo, duhovno ↔ svjetovno, bogatstvo ↔ siromaštvo, ideal ↔ stvarnost.'},
+  {kat:'stil',term:'Ironija',def:'Kaže jedno, misli drugo. Šenoa: <em>župnik „velik politik", sudac „bijesan voćar"</em>. Socijalna ironija — blaga prema svojim likovima.'},
+  {kat:'stil',term:'Aluzija',def:'Upućivanje na drugo djelo/događaj. <em>Werther</em> (Goethe), <em>Napoleonove misli</em>, praški studentski svijet. Šenoa kao obrazovan pisac.'},
+  {kat:'stil',term:'Metafora',def:'Preneseno značenje. <em>„Werther hrvatske književnosti", „rat s malograđanskim društvom"</em>. Često sintetska — interpretacija djela.'},
+  {kat:'stil',term:'Simbol',def:'Predmet/lik s prenesenim značenjem. <strong>Britva</strong> = sredstvo smrti i moralna optužba. <strong>Knjige</strong> = Lovrov identitet. <strong>Berba</strong> = zajednica.'},
+  {kat:'stil',term:'Personifikacija',def:'Apstraktnom pojmu/predmetu se daje ljudska osobina. Manje izraženo u Prijanu Lovri — više u Šenoinim povjesticama.'},
+  {kat:'stil',term:'Hiperbola',def:'Pretjerivanje. U Prijanu Lovri umjereno — Šenoa preferira realističnu mjeru. Više u opisima ljubavnih scena (romantičarski sloj).'},
+  {kat:'stil',term:'Apostrofa',def:'Oslovljavanje (osobe, prirode, apstrakcije). U Prijanu Lovri rijetka — više u dijalozima.'},
+  {kat:'stil',term:'Paralelizam',def:'<strong>Niz srodnih konstrukcija.</strong> „Jednakost i sloboda" (Lovrovi ideali). „Župnik velik politik; sudac bijesan voćar; sudinja dobra duša" — paralelno gradiranje.'},
+
+  // === LIKOVI / RADNJA (10) ===
+  {kat:'likovi',term:'Lovro (Prijan Lovro)',def:'<strong>Glavni lik.</strong> Inteligentan seoski mladić, idealist, slobodouman. Voli poeziju (ne piše). <em>Tragični junak</em> — bori se i gubi u ratu s malograđanskim društvom.'},
+  {kat:'likovi',term:'August Šenoa (u djelu)',def:'<strong>Pripovjedač</strong>, Lovrin prijatelj i cimer u Pragu. Razborit, kritičan svjedok. <em>Lovrin glas razuma</em> — pokušava ga spasiti od greške s Minkom.'},
+  {kat:'likovi',term:'Malvina',def:'<strong>Grofova kći.</strong> Prva Lovrina ljubav. <em>Odbija ga zbog klasnog porijekla.</em> Simbol nepremostivih društvenih granica.'},
+  {kat:'likovi',term:'Minka',def:'<strong>Bogata (naizgled) djevojka u Pragu.</strong> Stara usidjelica. Lovro je razmatra radi miraza. Šenoa otkriva: otac ima 6 djece, podijeljeni imetak.'},
+  {kat:'likovi',term:'Anđelija',def:'<strong>Lovrova posljednja ljubav.</strong> Voli ga uzajamno, otac pristaje na brak. <em>Odustaje zbog malograđanskih spletki o Minki.</em> Pred njom Lovro počini samoubojstvo.'},
+  {kat:'likovi',term:'Kanonik',def:'<strong>Crkveni autoritet</strong> koji preuzima skrb nad mladim Lovrom za svećeničko obrazovanje. Razočaran kad Lovro odustane.'},
+  {kat:'likovi',term:'Lovrov otac',def:'<strong>Siromašan seljak.</strong> Tvrd, radišan; ulaže posljednje u Lovrino školovanje. Simbol seljačke ambicije za djecu.'},
+  {kat:'likovi',term:'Udovica Hrvatica',def:'<strong>Slušateljica priče u okviru.</strong> Lijepa, mlada, crnokosa, u crnini. Traži Šenou da ispriča priču. <em>Kritizira hrv. književnost.</em>'},
+  {kat:'likovi',term:'Grof i obitelj',def:'<strong>Lovrini poslodavci.</strong> Lovro im je učitelj sina. Primaju ga s toplinom, ali se on sam ne uklapa zbog internalizirane stigme.'},
+  {kat:'likovi',term:'Debeli gospodin',def:'<strong>Satirični lik u Pragu.</strong> Savjetuje Lovri da ide u Split tražiti bogatu djevojku. <em>Predstavlja cinizam društva</em> — brak kao posao.'},
+
+  // === REALIZAM (10) ===
+  {kat:'realizam',term:'Realizam',def:'<strong>Europski književni pokret 2. polovice 19. st.</strong> Cilj: vjeran prikaz svakodnevnog života, psihologija likova, društvena kritika. Nasljeđuje romantizam.'},
+  {kat:'realizam',term:'Hrvatski realizam',def:'<strong>1865.–1900.</strong> Počinje sa Šenoom (Šenoino doba), nastavlja se s Kovačićem, Kumičićem, Novakom, Gjalskim, Kozarcom, Leskovarom.'},
+  {kat:'realizam',term:'Protorealizam',def:'<strong>Prijelazna faza</strong> između romantizma i razvijenog realizma (1860-e). Realističke teme + romantičarska stilska sredstva. <em>Šenoa = utemeljitelj i najznačajniji predstavnik.</em>'},
+  {kat:'realizam',term:'Psihološka karakterizacija',def:'<strong>Realistička tehnika</strong> — ulaženje u unutarnji život lika, prikaz dvojbi, motiva, strahova. U Prijanu Lovri: Lovrove dvojbe o Minki.'},
+  {kat:'realizam',term:'Društvena kritika',def:'<strong>Obilježje realizma</strong> — analiza i kritika socijalnih nejednakosti, institucija, klasnih odnosa. Šenoa kritizira <em>malograđansko hrv. društvo 19. st.</em>'},
+  {kat:'realizam',term:'Vjerodostojnost',def:'<strong>Realistička vrijednost</strong> — likovi i situacije moraju biti uvjerljivi, životni. Lovro je baziran na stvarnoj osobi (Šenoinom cimeru).'},
+  {kat:'realizam',term:'Tipizacija',def:'<strong>Lik kao društveni tip</strong> — predstavlja širi sloj/kategoriju. Lovro = tip seoskog intelektualca. Kanonik = tip crkvene institucije. Debeli gospodin = tip cinika.'},
+  {kat:'realizam',term:'Detaljnost / detaljizam',def:'<strong>Realistička tehnika</strong> — kroz konkretni detalj se ostvaruje stvarnost. Šenoa: detaljni opisi seoskog dvora, praške kavane, Lovrinog izgleda.'},
+  {kat:'realizam',term:'Pripovjedač-svjedok',def:'<strong>Realistička pozicija</strong> — pripovjedač nije sveznajući, nego svjedok. Šenoa u Prijanu Lovri = prijatelj koji svjedoči, ne moralni sudac.'},
+  {kat:'realizam',term:'Socijalna mobilnost',def:'<strong>Tema realizma</strong> — pokušaj uspona iz nižeg sloja u viši. Lovro želi biti „ravnopravni građanin" — i propada u tom pokušaju.'},
+
+  // === ŠENOINO DOBA (8) ===
+  {kat:'senoa',term:'Otac hrvatskog realizma',def:'<strong>Šenoin nadimak.</strong> Postavlja temelje hrv. realizmu — psihološka karakterizacija, društvena kritika, vjerodostojnost. Bez Šenoe nema kasnijeg realizma.'},
+  {kat:'senoa',term:'Pučki ban (vs. književnik)',def:'Mažuranić je bio „pučki ban" — političar; <em>Šenoa je „pučki književnik"</em> — pisac za široku publiku. Stvorio je hrv. književnu publiku 19. st.'},
+  {kat:'senoa',term:'Gradski bilježnik',def:'<strong>Šenoina službena dužnost</strong> u Zagrebu. Radi po danu, piše vikendima i noću. Život produktivnog gradskog intelektualca.'},
+  {kat:'senoa',term:'Dramaturg HNK',def:'Šenoa je bio <strong>dramaturg Hrvatskog narodnog kazališta</strong>. Sudjeluje u izboru repertoara, kritici, organizaciji. Centralna figura kulturnog života.'},
+  {kat:'senoa',term:'Urednik Vijenca',def:'Šenoa je <strong>urednik Vijenca od 1874.</strong> Objavljuje sve nove hrv. autore (Kovačić, Gjalski, Kumičić). Vijenac postaje glavno glasilo epohe.'},
+  {kat:'senoa',term:'Potres 1880.',def:'<strong>Veliki zagrebački potres</strong> oštetio je Šenoinu kuću. On se ozlijedio, posljedice su ga vodile u smrt 1881. Tragedija autora u 43. godini.'},
+  {kat:'senoa',term:'Kletva (nedovršeno djelo)',def:'<strong>Šenoin posljednji roman</strong> — nije dovršio zbog smrti. Dovršio ga <em>Vjekoslav Klaić</em>. Primjer kako Šenoina smrt ostavlja prazninu.'},
+  {kat:'senoa',term:'Mirogoj',def:'<strong>Zagrebačko groblje</strong> gdje je Šenoa pokopan. Postaje mjesto kulturnog hodočašća. Šenoina ulica u Zagrebu nosi njegovo ime.'},
+
+  // === HRV. REALISTI (7) ===
+  {kat:'autori',term:'Ante Kovačić',def:'<strong>1854.–1889.</strong> Hrv. realist nakon Šenoe. Glavno djelo: <em>U registraturi</em> (1888.). Tema slična Lovri — propast seoskog intelektualca u gradu, ali oštrija kritika.'},
+  {kat:'autori',term:'Vjenceslav Novak',def:'<strong>1859.–1905.</strong> Hrv. realist. Glavno djelo: <em>Posljednji Stipančići</em> (1899., D16). ispitno djelo 2026. Propast hrv. građanske obitelji.'},
+  {kat:'autori',term:'Eugen Kumičić',def:'<strong>1850.–1904.</strong> Hrv. realist. <em>Začuđeni svatovi, Olga i Lina, Urota Zrinsko-Frankopanska</em>. Više publicistički, naturalističke tendencije.'},
+  {kat:'autori',term:'Ksaver Šandor Gjalski',def:'<strong>1854.–1935.</strong> Hrv. realist. <em>Pod starim krovovima</em> (zbirka pripovjedaka). Tema propasti staroga plemstva.'},
+  {kat:'autori',term:'Josip Kozarac',def:'<strong>1858.–1906.</strong> Hrv. realist. <em>Mrtvi kapitali, Tena, Tri dana kod sina</em>. Slavonski realizam — tema gospodarskog propadanja.'},
+  {kat:'autori',term:'Janko Leskovar',def:'<strong>1861.–1949.</strong> Hrv. realist s elementima moderne. <em>Misao na vječnost, Propali dvori</em>. Psihološki dublji od ostalih.'},
+  {kat:'autori',term:'Dimitrije Demeter',def:'<strong>1811.–1872.</strong> Šenoin prethodnik. Urednik Vijenca prije Šenoe. Pisac drama (<em>Teuta</em>). Spaja preporod i Šenoino doba.'},
+];
+
+let pojm2Active = 'all';
+
+function renderPojm2() {
+  const grid = document.getElementById('pojm-grid2');
+  if (!grid) return;
+  const show = pojm2Active === 'all' ? POJM_DATA2 : POJM_DATA2.filter(p => p.kat === pojm2Active);
+  grid.innerHTML = show.map(p => \`
+    <div class="pojm-card" data-cat="\${p.kat}" onclick="this.classList.toggle('flip')">
+      <div class="pojm-front">
+        <div class="pojm-term">\${p.term}</div>
+        <div class="pojm-hint">→ klikni</div>
+      </div>
+      <div class="pojm-back">
+        <div class="pojm-def">\${p.def}</div>
+      </div>
+    </div>
+  \`).join('');
+}
+
+function pojmFilter2(cat, btn) {
+  document.querySelectorAll('.pojm-filter').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  pojm2Active = cat;
+  renderPojm2();
+  // Also update flashcard array if in FC mode
+  if(pj2Data.length === 0 || pojm2Active !== cat) pj2Build();
+}
+
+renderPojm2();
+
+/* ═══════════════════════════════════
+   POJMOVNIK FLASHCARD MODE (H11 pj2*)
+═══════════════════════════════════ */
+let pj2Idx=0, pj2Data=[], pj2Seen={};
+
+function pj2Build(){
+  const src = pojm2Active==='all' ? POJM_DATA2 : POJM_DATA2.filter(p=>p.kat===pojm2Active);
+  pj2Data = src;
+  pj2Idx = 0;
+  pj2Seen = {};
+  pj2Render();
+}
+
+function pj2Render(){
+  if(!pj2Data.length) return;
+  const p = pj2Data[pj2Idx];
+  const scene = document.getElementById('fc-scene2');
+  const inner = document.getElementById('fc-inner2');
+  if(scene) scene.classList.remove('flipped');
+  if(inner) inner.style.transform='';
+
+  const cat = document.getElementById('fc-cat2');
+  const term = document.getElementById('fc-term2');
+  const def = document.getElementById('fc-def2');
+  const counter = document.getElementById('fc-counter2');
+  const prev = document.getElementById('fc-prev2');
+  const next = document.getElementById('fc-next2');
+
+  if(cat) cat.textContent = p.kat.toUpperCase();
+  if(term) term.textContent = p.term;
+  if(def) def.innerHTML = p.def;
+  if(counter) counter.textContent = (pj2Idx+1)+' / '+pj2Data.length;
+  if(prev) prev.disabled = pj2Idx === 0;
+  if(next) next.disabled = pj2Idx === pj2Data.length-1;
+
+  pj2Seen[pj2Idx] = true;
+  pj2RenderDots();
+}
+
+function pj2RenderDots(){
+  const prog = document.getElementById('fc-progress2');
+  if(!prog || pj2Data.length > 20) return;
+  prog.innerHTML = pj2Data.map((_,i)=>\`<div class="fc-dot\${pj2Seen[i]?' seen':''}\${i===pj2Idx?' known':''}"></div>\`).join('');
+}
+
+function pj2Flip(){
+  const scene = document.getElementById('fc-scene2');
+  if(scene) scene.classList.toggle('flipped');
+}
+
+function pj2Next(){
+  if(pj2Idx < pj2Data.length-1){ pj2Idx++; pj2Render(); }
+}
+
+function pj2Prev(){
+  if(pj2Idx > 0){ pj2Idx--; pj2Render(); }
+}
+
+function setPojmMode2(mode){
+  const gw = document.getElementById('grid-wrap2');
+  const fw = document.getElementById('fc-wrap2');
+  const mb1 = document.getElementById('mode-grid');
+  const mb2 = document.getElementById('mode-fc');
+  if(mode==='fc'){
+    if(gw) gw.style.display='none';
+    if(fw){ fw.style.display='flex'; }
+    if(mb1) mb1.classList.remove('on');
+    if(mb2) mb2.classList.add('on');
+    pj2Build();
+    document.onkeydown = function(e){
+      if(e.key==='ArrowRight') pj2Next();
+      else if(e.key==='ArrowLeft') pj2Prev();
+      else if(e.key===' '||e.key==='Enter'){ e.preventDefault(); pj2Flip(); }
+    };
+  } else {
+    if(gw) gw.style.display='';
+    if(fw) fw.style.display='none';
+    if(mb1) mb1.classList.add('on');
+    if(mb2) mb2.classList.remove('on');
+    document.onkeydown = null;
+  }
+}
+
+/* ═══════════════════════════════════
+   KEYBOARD SHORTCUTS
+═══════════════════════════════════ */
+(function(){
+  let helpShown=false;
+  document.addEventListener('keydown', function(e){
+    // Ignore when typing in inputs/textareas
+    const target=e.target.tagName;
+    if(target==='INPUT'||target==='TEXTAREA'||e.target.isContentEditable)return;
+    
+    const activeTab=Array.from(document.querySelectorAll('.tab')).findIndex(t=>t.classList.contains('on'));
+    
+    // Arrow navigation between tabs
+    if(e.key==='ArrowRight'&&activeTab<7){
+      e.preventDefault();
+      sw(activeTab+1);
+    } else if(e.key==='ArrowLeft'&&activeTab>0){
+      e.preventDefault();
+      sw(activeTab-1);
+    }
+    // Number keys 1-8 for direct tab access
+    else if(/^[1-8]$/.test(e.key)){
+      e.preventDefault();
+      sw(parseInt(e.key)-1);
+    }
+    // ? for help
+    else if(e.key==='?'){
+      e.preventDefault();
+      if(helpShown){
+        document.getElementById('kbd-help')?.remove();
+        helpShown=false;
+        return;
+      }
+      const help=document.createElement('div');
+      help.id='kbd-help';
+      help.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--ele);border:1px solid var(--gold);border-radius:var(--r3);padding:24px 28px;z-index:500;box-shadow:0 8px 40px rgba(0,0,0,.6);max-width:90vw';
+      help.innerHTML=\`
+        <h3 style="margin-bottom:12px;color:var(--gold);font-family:var(--display)">⌨ Kratice</h3>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-family:var(--serif);font-size:13px">
+          <span><span class="kbd">←</span> <span class="kbd">→</span></span><span>Prethodni / Sljedeći tab</span>
+          <span><span class="kbd">1</span> – <span class="kbd">8</span></span><span>Skok direktno na tab</span>
+          <span><span class="kbd">?</span></span><span>Prikaži / sakrij ovu pomoć</span>
+          <span><span class="kbd">Esc</span></span><span>Zatvori dialog / izađi iz polja</span>
+          <span><span class="kbd">Ctrl</span>+<span class="kbd">P</span></span><span>Print / PDF</span>
+        </div>
+        <div style="margin-top:14px;text-align:right">
+          <button class="fcb" onclick="document.getElementById('kbd-help').remove();">Zatvori</button>
+        </div>
+      \`;
+      document.body.appendChild(help);
+      helpShown=true;
+    }
+    // Escape closes help/sidebar
+    else if(e.key==='Escape'){
+      document.getElementById('kbd-help')?.remove();
+      helpShown=false;
+      closeSb();
+    }
+  });
+})();
+
+if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+      }
+    });
+  },{threshold:0.1});
+  
+  document.querySelectorAll('.scene-card,.ac,.box-key,.fq,.tbl-wrap').forEach(el=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(12px)';
+    el.style.transition='opacity .4s ease, transform .4s ease';
+    obs.observe(el);
+  });
+}
+
+function toggleSidebar(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay');if(s)s.classList.toggle('mobile-open');if(o)o.classList.toggle('show')}
+;
+/* TIER_SYSTEM_JS_INJECTED */
+/**
+ * Maturiraj.hr — Tier Helper Module
+ * 
+ * Globalni JS modul za upravljanje tier sustavom (Free / Standard / Pro).
+ * Koristi se u svim chapterima i pricing page-u.
+ * 
+ * 🚨 PRODUCTION TODO:
+ * - Tier provjera mora ići preko Supabase (auth.uid() → user_subscriptions tablica)
+ * - Trenutno mock kroz localStorage 'mt.pro_mode' = 'free' | 'standard' | 'pro'
+ * - Dnevni limiti se moraju validirati na backendu
+ * 
+ * Verzija: 1.0
+ * Autor: Maturiraj.hr team
+ */
+
+(function(window) {
+  'use strict';
+
+  // ════════════════════════════════════════════════
+  // CONFIG — Tier Definicija
+  // ════════════════════════════════════════════════
+  
+  const TIER_CONFIG = {
+    free: {
+      name: 'Free',
+      label: '🆓 Free',
+      price: 0,
+      color: 'var(--t3, #888)',
+      features: {
+        // TEORIJA — sve free
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve free
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — limited
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: 1,            // 1 esej max
+        max_summaries: 1,         // 1 sažetak max
+        all_essay_models: false,  // 1 vidljiv
+        all_summary_models: false,
+        export_workspace: false,  // bez exporta
+        // SIMULATORI — 0 demo
+        discere_simulators: false,
+        max_simulators: 0,
+        // PLAN UČENJA — pregled
+        study_plan_preview: true,
+        study_plan_full: false,
+        // STATS
+        streak_tracking: false,
+        heatmap: false,
+        progress_analytics: false,
+        // PARENT
+        parent_dashboard: false,
+        // AI — sve zaključano
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    standard: {
+      name: 'Standard',
+      label: '⭐ Standard',
+      price: 9.99,
+      color: 'var(--blue, #4a90d9)',
+      features: {
+        // TEORIJA — sve
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — full
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,           // unlimited
+        max_summaries: -1,        // unlimited
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        // SIMULATORI — svi (70 ispita)
+        discere_simulators: true,
+        max_simulators: -1,
+        // PLAN UČENJA — full
+        study_plan_preview: true,
+        study_plan_full: true,
+        // STATS
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        // PARENT
+        parent_dashboard: true,
+        // AI — sve zaključano (Standard NEMA AI!)
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    pro: {
+      name: 'Pro',
+      label: '💎 Pro',
+      price: 19.99,
+      color: 'var(--gold, #e9b446)',
+      features: {
+        // Sve iz Standard
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,
+        max_summaries: -1,
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        discere_simulators: true,
+        max_simulators: -1,
+        study_plan_preview: true,
+        study_plan_full: true,
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        parent_dashboard: true,
+        // AI — sve unlocked (PRO ONLY)
+        ai_chat: true,
+        ai_feedback: true,
+        ai_personal_plan: true,
+        // PRIJEMNI — Pro only
+        prijemni: true,
+      },
+      ai_limits: {
+        feedback_per_day: 20,    // 2B odluka
+        chat_per_day: 30,        // 2B odluka
+        plan_refresh_per_week: 1,
+      }
+    }
+  };
+
+  // ════════════════════════════════════════════════
+  // STORAGE KEYS
+  // ════════════════════════════════════════════════
+  
+  const STORAGE_KEYS = {
+    tier: 'mt.pro_mode',
+    daily_usage: 'mt.daily_usage',
+    weekly_usage: 'mt.weekly_usage',
+  };
+
+  // ════════════════════════════════════════════════
+  // CORE API
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća trenutni tier korisnika.
+   * @returns {'free' | 'standard' | 'pro'}
+   */
+  function getTier() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.tier);
+      if (stored === 'pro' || stored === 'standard') return stored;
+      return 'free';
+    } catch (e) {
+      return 'free';
+    }
+  }
+
+  /**
+   * Postavlja tier (mock — produkcija ovo radi preko Supabase).
+   */
+  function setTier(tier) {
+    if (!['free', 'standard', 'pro'].includes(tier)) {
+      console.error('[tier_helper] Invalid tier:', tier);
+      return false;
+    }
+    try {
+      if (tier === 'free') {
+        localStorage.removeItem(STORAGE_KEYS.tier);
+      } else {
+        localStorage.setItem(STORAGE_KEYS.tier, tier);
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Toggle tier (free → standard → pro → free)
+   * Koristi se u dev mode-u.
+   */
+  function toggleTier() {
+    const current = getTier();
+    const next = current === 'free' ? 'standard' : (current === 'standard' ? 'pro' : 'free');
+    setTier(next);
+    return next;
+  }
+
+  /**
+   * Provjerava ima li korisnik feature.
+   * @param {string} feature - npr 'ai_feedback', 'all_simulators'
+   * @returns {boolean}
+   */
+  function hasFeature(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return false;
+    return config.features[feature] === true;
+  }
+
+  /**
+   * Vraća konfiguraciju tier-a (label, cijena, boja).
+   * @param {string} tier - opcionalno; ako nije zadan, vraća za current.
+   */
+  function getTierConfig(tier) {
+    return TIER_CONFIG[tier || getTier()] || TIER_CONFIG.free;
+  }
+
+  /**
+   * Vraća vrijednost numeričkog limita feature-a.
+   * @param {string} feature - npr 'max_essays', 'max_simulators'
+   * @returns {number} -1 = unlimited, 0 = nema, X = točno X
+   */
+  function getLimit(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return 0;
+    const val = config.features[feature];
+    if (val === true) return -1; // unlimited
+    if (val === false) return 0;
+    return val;
+  }
+
+  /**
+   * Vraća AI limit (feedback / chat / plan).
+   * @param {string} type - 'feedback' | 'chat' | 'plan'
+   */
+  function getAILimit(type) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config || !config.ai_limits) return 0;
+    
+    const map = {
+      feedback: 'feedback_per_day',
+      chat: 'chat_per_day',
+      plan: 'plan_refresh_per_week'
+    };
+    return config.ai_limits[map[type]] || 0;
+  }
+
+  // ════════════════════════════════════════════════
+  // USAGE TRACKING
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća današnju potrošnju feature-a.
+   */
+  function getDailyUsage(feature) {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (!stored) return 0;
+      const data = JSON.parse(stored);
+      if (data.date !== today) return 0;
+      return data.usage[feature] || 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Inkrementira potrošnju feature-a.
+   */
+  function incrementDailyUsage(feature) {
+    const today = new Date().toISOString().split('T')[0];
+    let data = { date: today, usage: {} };
+    
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.date === today) data = parsed;
+      }
+    } catch (e) {}
+    
+    data.usage[feature] = (data.usage[feature] || 0) + 1;
+    
+    try {
+      localStorage.setItem(STORAGE_KEYS.daily_usage, JSON.stringify(data));
+    } catch (e) {}
+    
+    return data.usage[feature];
+  }
+
+  /**
+   * Provjerava može li korisnik koristiti AI feature (limit + tier check).
+   * @returns {{ allowed: boolean, reason: string, used: number, limit: number }}
+   */
+  function canUseAI(type) {
+    const tier = getTier();
+    const limit = getAILimit(type);
+    const used = getDailyUsage('ai_' + type);
+    
+    if (limit === 0) {
+      return {
+        allowed: false,
+        reason: 'tier_locked',
+        tier_required: 'pro',
+        used: 0,
+        limit: 0
+      };
+    }
+    
+    if (used >= limit) {
+      return {
+        allowed: false,
+        reason: 'daily_limit_reached',
+        tier_required: tier,
+        used,
+        limit
+      };
+    }
+    
+    return {
+      allowed: true,
+      reason: 'ok',
+      used,
+      limit
+    };
+  }
+
+  // ════════════════════════════════════════════════
+  // PAYWALL MODAL
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Prikazuje paywall modal.
+   * @param {object} options
+   * @param {string} options.feature - naziv feature-a
+   * @param {string} options.requiredTier - 'standard' | 'pro'
+   * @param {string} options.reason - razlog (free_limit / tier_locked / daily_limit)
+   */
+  function showPaywall(options) {
+    const opts = options || {};
+    const requiredTier = opts.requiredTier || 'standard';
+    const reason = opts.reason || 'feature_locked';
+    const feature = opts.feature || 'Ovaj feature';
+    
+    // Remove existing modal
+    const existing = document.getElementById('mt-paywall-modal');
+    if (existing) existing.remove();
+    
+    const reasonText = {
+      free_limit: 'Iskoristio si Free limit za ovaj feature.',
+      tier_locked: 'Ovaj feature je dostupan u Standard ili Pro pretplati.',
+      daily_limit: 'Iskoristio si svoj dnevni limit. Vrati se sutra ili upgradaj na viši tier.',
+      feature_locked: 'Ovaj feature zahtijeva pretplatu.'
+    };
+    
+    const modal = document.createElement('div');
+    modal.id = 'mt-paywall-modal';
+    modal.className = 'mt-paywall-overlay';
+    modal.innerHTML = \`
+      <div class="mt-paywall-modal" onclick="event.stopPropagation()">
+        <button type="button" class="mt-paywall-close" onclick="MT.Tier.closePaywall()" aria-label="Zatvori">×</button>
+        
+        <div class="mt-paywall-header">
+          <div class="mt-paywall-icon">\${requiredTier === 'pro' ? '💎' : '⭐'}</div>
+          <div class="mt-paywall-title">\${feature}</div>
+          <div class="mt-paywall-subtitle">\${reasonText[reason] || reasonText.feature_locked}</div>
+        </div>
+        
+        <div class="mt-paywall-tiers">
+          \${requiredTier !== 'pro' ? \`
+          <div class="mt-paywall-tier mt-paywall-tier-standard \${requiredTier === 'standard' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'standard' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">⭐ Standard</div>
+            <div class="mt-paywall-tier-price">9,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Cijela teorija + kvizovi</li>
+              <li>✅ Svi Discere simulatori (70 ispita)</li>
+              <li>✅ Sve modelne eseje (9) + sažetke (10)</li>
+              <li>✅ Neograničeno u Workspace</li>
+              <li>✅ Parent dashboard</li>
+              <li>✅ Streak + heatmap + analitika</li>
+              <li>❌ Bez AI features</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta" onclick="MT.Tier.subscribe('standard')">
+              Pretplati se na Standard
+            </button>
+          </div>
+          \` : ''}
+          
+          <div class="mt-paywall-tier mt-paywall-tier-pro \${requiredTier === 'pro' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'pro' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">💎 Pro</div>
+            <div class="mt-paywall-tier-price">19,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Sve iz Standard</li>
+              <li>✅ <strong>🤖 AI Profesor (chat) — 30/dan</strong></li>
+              <li>✅ <strong>🤖 AI Feedback za eseje + sažetke — 20/dan</strong></li>
+              <li>✅ <strong>Personalizirani plan učenja</strong></li>
+              <li>✅ <strong>Prijemni priprema</strong></li>
+              <li>✅ Priority AI queue</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta mt-paywall-cta-pro" onclick="MT.Tier.subscribe('pro')">
+              Pretplati se na Pro
+            </button>
+          </div>
+        </div>
+        
+        <div class="mt-paywall-footer">
+          <a href="/pretplata" class="mt-paywall-link">Vidi sve tier opcije →</a>
+          <span class="mt-paywall-divider">·</span>
+          <button type="button" class="mt-paywall-link mt-paywall-link-btn" onclick="MT.Tier.toggleTierDevMode()">
+            🧪 Dev: Toggle tier (trenutno: \${getTier().toUpperCase()})
+          </button>
+        </div>
+      </div>
+    \`;
+    
+    modal.addEventListener('click', closePaywall);
+    document.body.appendChild(modal);
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePaywall() {
+    const modal = document.getElementById('mt-paywall-modal');
+    if (modal) {
+      modal.remove();
+      document.body.style.overflow = '';
+    }
+  }
+
+  function subscribe(tier) {
+    // 🚨 PRODUCTION TODO: Stripe Checkout integration
+    // Plan: Stripe Checkout Session → success_url: /pretplata/success?tier=X
+    // Backend writes to Supabase user_subscriptions, then redirects back
+    
+    // For now: mock behavior — set tier, close paywall, reload
+    if (confirm(\`🚧 Pretplata u izradi (Stripe checkout uskoro).\\n\\nMock: Postaviti tier na \${tier === 'pro' ? 'Pro 19,99€' : 'Standard 9,99€'}/mj?\\n\\nKliknite OK za mock pretplatu.\`)) {
+      setTier(tier);
+      closePaywall();
+      location.reload();
+    }
+  }
+
+  function toggleTierDevMode() {
+    const next = toggleTier();
+    alert(\`🧪 Dev mode — tier postavljen na: \${next.toUpperCase()}\`);
+    closePaywall();
+    location.reload();
+  }
+
+  // ════════════════════════════════════════════════
+  // SIDEBAR TIER BADGE
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Injectsa tier badge u sidebar (ako postoji).
+   */
+  function injectSidebarBadge() {
+    const sidebar = document.querySelector('.sidebar') || document.querySelector('nav.sb');
+    if (!sidebar) return;
+    
+    // Check if already exists
+    if (document.getElementById('mt-tier-badge')) return;
+    
+    const tier = getTier();
+    const config = getTierConfig(tier);
+    
+    const badge = document.createElement('div');
+    badge.id = 'mt-tier-badge';
+    badge.className = 'mt-tier-badge mt-tier-badge-' + tier;
+    badge.innerHTML = \`
+      <div class="mt-tier-badge-label">\${config.label}</div>
+      \${tier === 'free' ? '<button type="button" class="mt-tier-badge-cta" onclick="MT.Tier.openPricing()">Upgrade →</button>' : ''}
+    \`;
+    
+    // Insert at top of sidebar
+    const firstChild = sidebar.firstElementChild;
+    if (firstChild) {
+      sidebar.insertBefore(badge, firstChild);
+    } else {
+      sidebar.appendChild(badge);
+    }
+  }
+
+  function openPricing() {
+    location.href = '/pretplata';
+  }
+
+  // ════════════════════════════════════════════════
+  // PUBLIC API
+  // ════════════════════════════════════════════════
+  
+  window.MT = window.MT || {};
+  window.MT.Tier = {
+    // Core
+    getTier,
+    setTier,
+    toggleTier,
+    getTierConfig,
+    
+    // Features
+    hasFeature,
+    getLimit,
+    getAILimit,
+    
+    // Usage
+    getDailyUsage,
+    incrementDailyUsage,
+    canUseAI,
+    
+    // Paywall
+    showPaywall,
+    closePaywall,
+    subscribe,
+    toggleTierDevMode,
+    
+    // UI
+    injectSidebarBadge,
+    openPricing,
+    
+    // Config (read-only)
+    CONFIG: TIER_CONFIG
+  };
+
+  // Auto-inject sidebar badge on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectSidebarBadge);
+  } else {
+    injectSidebarBadge();
+  }
+
+})(window);
+;
+/* UPDATE_PROGRESS_INJECTED */
+
+function updateProgress(pct){
+  var p=Math.max(5,pct);
+  var pb=document.getElementById('prog-bar'); if(pb) pb.style.width=p+'%';
+  var pct2=document.getElementById('prog-pct'); if(pct2) pct2.textContent=p+'%';
+  var hp=document.getElementById('hero-pb'); if(hp) hp.style.width=p+'%';
+  var hl=document.getElementById('hero-prog-lbl'); if(hl) hl.textContent=p+'% završeno';
+  try { localStorage.setItem('mt.hrv.h15.prog', p); } catch(e){}
+}
+;
+/* CIT_SEARCH_INJECTED */
+
+function citSearch(query){
+  var q = (query || '').toLowerCase().trim();
+  var quotes = document.querySelectorAll('.featured-quote');
+  var visible = 0;
+  quotes.forEach(function(qt){
+    var text = qt.textContent.toLowerCase();
+    var match = !q || text.indexOf(q) !== -1;
+    qt.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+}
+/* ══ SIDEBAR ACTIVATION ══ */
+var PUBLISHED_CHAPTERS = {
+  h01: true, h02: true, h03: true, h04: true, h05: true,
+  h06: true, h07: true, h08: true, h09: true, h10: true,
+  h11: true, h12: true, h13: true, h14: true, h15: true, h16: true,
+  h17: true, h18: true,
+  h19: true, h20: true, h21: true, h22: true, h23: true, h24: true,
+  h25: true, h26: true, h27: true, h28: true,
+  d01: false, d02: false, d03: false, d04: true,  d05: false,
+  d06: false, d07: false, d08: false, d09: false, d10: true,
+  d11: false, d12: false, d13: false, d14: false, d15: false,
+  d16: false, d17: false, d18: false, d19: false, d20: false,
+  d21: false, d22: false
+};
+var CHAPTER_TITLES = {
+  h01:'temelji i antika', h02:'srednji vijek', h03:'renesansa',
+  h04:'barok i klasicizam', h05:'prosvjetiteljstvo', h06:'romantizam',
+  h07:'realizam', h08:'moderna', h09:'avangarda i 20. st.', h10:'postmoderna',
+  h11:'stari hrv. pisci', h12:'Marulić i hrv. rens.', h13:'hrv. barok — Gundulić',
+  h14:'preporod', h15:'Šenoa i realizam', h16:'Krleža i moderna',
+  h17:'stilske figure', h18:'versifikacija',
+  h19:'fonetika i fonologija', h20:'morfologija', h21:'sintaksa',
+  h22:'leksikologija', h23:'povijest hrv. jezika', h24:'hrv. narječja',
+  h25:'pravopisna pravila', h26:'interpunkcija',
+  h27:'školski esej', h28:'sažetak',
+  d01:'Antigona', d02:'Petrarca · izbor', d03:'Hamlet', d04:'Život je san',
+  d05:'Škrtac', d06:'Werther', d07:'Zločin i kazna', d08:'Preobražaj',
+  d09:'Stranac', d10:'Cvjetovi zla', d11:'Novela od Stanca', d12:'Judita',
+  d13:'Dubravka', d14:'Smail-aga', d15:'Prijan Lovro', d16:'Posljednji Stipančići',
+  d17:'Kranjčević · poezija', d18:'Matoš · izbor', d19:'Nazor · poezija',
+  d20:'Šimić · poezija', d21:'Glembajevi', d22:'Kiklop'
+};
+function initSidebar(){
+  var currentCode = (CURRENT_CHAPTER && CURRENT_CHAPTER.code) || '';
+  var items = document.querySelectorAll('.sb-item[data-code]');
+  items.forEach(function(item){ item.classList.remove('active','completed','disabled'); });
+  var currentIdx = -1;
+  var totalMain = 28;
+  items.forEach(function(item){
+    var code = item.getAttribute('data-code');
+    var isCurrent = code === currentCode;
+    var isPublished = PUBLISHED_CHAPTERS[code] === true;
+    if(isCurrent){
+      item.classList.add('active');
+      item.setAttribute('aria-current','page');
+      if(code.indexOf('h')===0){ currentIdx = parseInt(code.slice(1),10); }
+    }
+    if(!isPublished && !isCurrent){
+      item.classList.add('disabled');
+      item.setAttribute('aria-disabled','true');
+      item.setAttribute('title','Klikni da te obavijestimo kad izađe');
+      item.removeAttribute('href');
+      item.addEventListener('click', function(e){
+        e.preventDefault();
+        var title = (item.textContent||'').replace(/^[hd]\d\d\s·\s/i,'').trim();
+        /* poglavlje u izradi — signup uklonjen */
+        return false;
+      });
+    } else if (isPublished) {
+      /* Only mark completed if user finished all checkpoints for this chapter */
+      try {
+        var cpKey = 'mt.hrv.' + code + '.cp';
+        var cpRaw = localStorage.getItem(cpKey);
+        if (cpRaw) {
+          var cpArr = JSON.parse(cpRaw);
+          if (Array.isArray(cpArr) && cpArr.length > 0 && cpArr.every(function(v){ return v === true; })) {
+            item.classList.add('completed');
+          }
+        }
+      } catch(e) {}
+    }
+  });
+  var footPos = document.getElementById('sb-footer-pos');
+  var footTitle = document.getElementById('sb-footer-title');
+  if(footPos){
+    if(currentCode.indexOf('d')===0){ footPos.textContent = currentCode.toUpperCase() + ' · dodatno'; }
+    else if(currentIdx > 0){ footPos.textContent = String(currentIdx).padStart(2,'0') + ' / ' + totalMain; }
+  }
+  if(footTitle){ footTitle.textContent = CHAPTER_TITLES[currentCode] || ''; }
+  var doneH = Object.keys(PUBLISHED_CHAPTERS).filter(function(k){ return k.indexOf('h')===0 && PUBLISHED_CHAPTERS[k]; }).length;
+  var pct = Math.round((doneH / totalMain) * 100);
+  var progBar = document.getElementById('prog-bar');
+  var progPct = document.getElementById('prog-pct');
+  if(progBar) progBar.style.width = pct + '%';
+  if(progPct) progPct.textContent = pct + '%';
+}
+function detectTier(){
+  var override = null;
+  try { override = localStorage.getItem('mt.user.tier'); } catch(e){}
+  return override || 'free';
+}
+function applyTier(){
+  var tier = detectTier();
+  document.body.setAttribute('data-tier', tier);
+  document.querySelectorAll('.pro-gate').forEach(function(gate){
+    var feat = gate.getAttribute('data-feature') || 'generic';
+    var btn = gate.querySelector('.pro-gate-btn');
+    if(btn && !btn.href.includes('ctx=')){
+      var sep = btn.href.indexOf('?') >= 0 ? '&' : '?';
+      btn.href = btn.href + sep + 'ctx=' + feat + '_' +
+                 ((typeof CURRENT_CHAPTER !== 'undefined' && CURRENT_CHAPTER.code) || 'unknown');
+    }
+    if(tier === 'free'){
+      track('paywall_impression', { feature: feat,
+        chapter: (typeof CURRENT_CHAPTER !== 'undefined' && CURRENT_CHAPTER.code) || '' }, 'conversion');
+    }
+  });
+}
+function setTierLegacy(t){ try { localStorage.setItem('mt.user.tier', t); } catch(e){} applyTier(); }
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', function(){ initSidebar(); applyTier(); });
+} else {
+  initSidebar();
+  applyTier();
+}
+`;
+
+
+export default function H15Chapter() {
+  useEffect(() => {
+    let roots = [];
+    const mount = (id, el) => {
+      const node = document.getElementById(id);
+      if (!node) return;
+      const root = createRoot(node);
+      root.render(el);
+      roots.push(root);
+    };
+
+    const raf = requestAnimationFrame(() => {
+      mount('h15-react-discere-banner-primary', <DiscereBannerPrimaryH15 />);
+      mount('h15-react-video-card-primary', <VideoCardPrimaryH15 />);
+      mount('h15-react-video-card-secondary', <VideoCardSecondaryH15 />);
+      mount('h15-react-video-card-tertiary', <VideoCardTertiaryH15 />);
+      mount('h15-react-video-card-quaternary', <VideoCardQuaternaryH15 />);
+      mount('h15-react-author-senoa', <AuthorProfileH15Senoa />);
+      mount('l3', <CitatnikH15 />);
+      mount('l4', <PojmovnikH15 />);
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      setTimeout(() => roots.forEach((r) => r?.unmount()), 0);
+    };
+  }, []);
+
+  return (
+    <ChapterWrapper
+      chapterId="H15"
+      bodyHtml={BODY_HTML}
+      stylesCss={STYLES_CSS}
+      scriptsJs={SCRIPTS_JS}
+    />
+  );
+}
+
+export const HRV_POGAVLJE_15 = null

@@ -1,0 +1,5806 @@
+﻿/**
+ * H11 — Maturiraj.hr — Hrvatski H11 · Stari hrv. pisci · Renesansa
+ * Auto-generated from Maturiraj_Hrvatski_H11.html
+ * 
+ * Strategy: Hybrid HTML-in-JSX (Strategy C)
+ * - Body HTML rendered via dangerouslySetInnerHTML
+ * - Inline <style> blocks injected at mount
+ * - Inline <script> blocks executed at mount
+ * - All onclick/oninput/etc. handlers preserved
+ * - SEO via Next.js Metadata API (in page.jsx)
+ */
+'use client';
+import { useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+
+import ChapterWrapper from './ChapterWrapper';
+import { SHARED_LIT_CSS } from './shared-lit-styles';
+import CitatnikH11 from './H11_CitatnikTab';
+import PojmovnikH11 from './H11_PojmovnikTab';
+import {
+  AccordionEsejTezeH11,
+  AuthorProfileHektorovicH11,
+  AuthorProfileKrnaruticH11,
+  AuthorProfileMarinDrzicH11,
+  AuthorProfileMarulicH11,
+  AuthorProfilePetrarkistiH11,
+  AuthorProfileZoranicH11,
+  NcvvoAuthBoxH11,
+  VideoCardPrimaryH11,
+  VideoCardSecondaryH11,
+  VideoCardTertiaryH11,
+  VideoCardQuaternaryH11,
+  CompareMarulićDržić,
+  EssayTipoviPitanjaH11,
+  EssayWriterNovelaH11,
+  HeroQuoteMarulić,
+  PopKulturaDržić,
+  StatCardsNovelaStan,
+  TimelineHrRenesansa,
+} from './H11_Additions';
+
+const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="read-progress-bar" id="rpbar"></div></div>
+<a class="skip-link" href="#main">Preskoči na sadržaj</a>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Natrag na vrh">↑</button>
+
+
+<!-- Feedback / bug report modal (v3.6.1) -->
+<div class="modal-backdrop" id="fb-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="fb-modal-title" onclick="if(event.target===this)closeFeedbackModal()">
+  <div class="modal" role="document">
+    <button class="modal-close" onclick="closeFeedbackModal()" aria-label="Zatvori">✕</button>
+    <div class="modal-ico">📝</div>
+    <div class="modal-eye">PRIJAVA / PRIJEDLOG</div>
+    <div class="modal-title" id="fb-modal-title">Javi nam što ne valja</div>
+    <div class="modal-desc">Uočio si grešku u sadržaju, bug u aplikaciji ili imaš prijedlog? <strong>Opiši ovdje</strong> — čitamo svaku poruku.</div>
+
+    <div class="modal-msg" id="fb-msg"></div>
+
+    <form class="fb-form" id="fb-form" onsubmit="return submitFeedback(event)">
+      <!-- Tip -->
+      <label class="fb-label">Vrsta poruke</label>
+      <div class="fb-types" role="radiogroup" aria-label="Vrsta poruke">
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="content_error" checked><span>📖 Greška u sadržaju</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="bug"><span>🐛 Bug u aplikaciji</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="suggestion"><span>💡 Prijedlog</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="praise"><span>💚 Pohvala</span></label>
+      </div>
+
+      <!-- Poruka -->
+      <label class="fb-label" for="fb-message">Poruka <span class="fb-req">*</span></label>
+      <textarea id="fb-message" class="fb-textarea" required minlength="3" maxlength="5000" rows="5" placeholder="Opiši što si uočio — što detaljnije, lakše ćemo popraviti. Npr. 'U kvizu pitanje 3 ima grešku: točan odgovor je X, a ne Y.'"></textarea>
+      <div class="fb-counter"><span id="fb-char-count">0</span> / 5000</div>
+
+      <!-- Email (optional) -->
+      <label class="fb-label" for="fb-email">Tvoj e-mail <span class="fb-hint">(neobavezno — samo ako želiš odgovor)</span></label>
+      <input type="email" id="fb-email" class="modal-input" placeholder="tvoj@email.hr" autocomplete="email">
+
+      <button type="submit" class="modal-submit" id="fb-submit" style="width:100%;margin-top:14px">Pošalji →</button>
+      <div class="modal-small" style="margin-top:10px">Tvoj e-mail čuvamo samo za odgovor. Ne šaljemo ništa drugo.</div>
+    </form>
+  </div>
+</div>
+<div class="sb-overlay" id="overlay" onclick="closeSidebar()"></div>
+<div class="sb-hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Otvori izbornik"><span></span><span></span><span></span></div>
+
+<div class="shell">
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar" role="navigation" aria-label="Navigacija poglavlja">
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+        <path d="M16 3L29 9.5V22.5L16 29L3 22.5V9.5Z" stroke="#0F0605" stroke-width="1.5"/>
+        <path d="M16 3V29M3 9.5L29 22.5M29 9.5L3 22.5" stroke="#0F0605" stroke-width=".8" opacity=".5"/>
+        <circle cx="16" cy="16" r="2.5" fill="#0F0605" opacity=".7"/>
+      </svg>
+    </div>
+    <div>
+      <div class="sb-name">Maturiraj.hr</div>
+      <div class="sb-sub">HRVATSKI</div>
+    </div>
+    <button type="button" class="sb-hamburger" onclick="toggleSidebar()" aria-label="Zatvori izbornik">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="sb-prog-wrap">
+    <div class="sb-prog-label"><span>napredak</span><span id="prog-pct">0%</span></div>
+    <div class="sb-prog-track"><div class="sb-prog-bar" id="prog-bar" style="width:0%"></div></div>
+  </div>
+
+  <!-- ══ SVJETSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Svjetska književnost</div>
+  <a class="sb-item" data-code="h01" href="/skripte/hrv/h01"><span class="sb-dot"></span>H01 · Temelji i antika</a>
+  <a class="sb-item" data-code="h02" href="/skripte/hrv/h02"><span class="sb-dot"></span>H02 · Srednji vijek</a>
+  <a class="sb-item" data-code="h03" href="/skripte/hrv/h03"><span class="sb-dot"></span>H03 · Renesansa</a>
+  <a class="sb-item" data-code="h04" href="/skripte/hrv/h04"><span class="sb-dot"></span>H04 · Barok i klasicizam</a>
+  <a class="sb-item" data-code="h05" href="/skripte/hrv/h05"><span class="sb-dot"></span>H05 · Prosvjetiteljstvo</a>
+  <a class="sb-item" data-code="h06" href="/skripte/hrv/h06"><span class="sb-dot"></span>H06 · Romantizam</a>
+  <a class="sb-item" data-code="h07" href="/skripte/hrv/h07"><span class="sb-dot"></span>H07 · Realizam</a>
+  <a class="sb-item" data-code="h08" href="/skripte/hrv/h08"><span class="sb-dot"></span>H08 · Moderna</a>
+  <a class="sb-item" data-code="h09" href="/skripte/hrv/h09"><span class="sb-dot"></span>H09 · Avangarda i 20. st.</a>
+  <a class="sb-item" data-code="h10" href="/skripte/hrv/h10"><span class="sb-dot"></span>H10 · Postmoderna</a>
+
+  <!-- ══ HRVATSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Hrvatska književnost</div>
+  <a class="sb-item" data-code="h11" href="/skripte/hrv/h11"><span class="sb-dot"></span>H11 · Stari hrv. pisci</a>
+  <a class="sb-item" data-code="h12" href="/skripte/hrv/h12"><span class="sb-dot"></span>H12 · Marulić i hrv. rens.</a>
+  <a class="sb-item" data-code="h13" href="/skripte/hrv/h13"><span class="sb-dot"></span>H13 · Hrv. barok — Gundulić</a>
+  <a class="sb-item" data-code="h14" href="/skripte/hrv/h14"><span class="sb-dot"></span>H14 · Preporod</a>
+  <a class="sb-item" data-code="h15" href="/skripte/hrv/h15"><span class="sb-dot"></span>H15 · Šenoa i realizam</a>
+  <a class="sb-item" data-code="h16" href="/skripte/hrv/h16"><span class="sb-dot"></span>H16 · Krleža i moderna</a>
+
+  <!-- ══ STIL I IZRAZ ══ -->
+  <div class="sb-era">// Stil i izraz</div>
+  <a class="sb-item" data-code="h17" href="/skripte/hrv/h17"><span class="sb-dot"></span>H17 · Stilske figure</a>
+  <a class="sb-item" data-code="h18" href="/skripte/hrv/h18"><span class="sb-dot"></span>H18 · Versifikacija</a>
+
+  <!-- ══ JEZIKOSLOVLJE ══ -->
+  <div class="sb-era">// Jezikoslovlje</div>
+  <a class="sb-item" data-code="h19" href="/skripte/hrv/h19"><span class="sb-dot"></span>H19 · Fonetika i fonologija</a>
+  <a class="sb-item" data-code="h20" href="/skripte/hrv/h20"><span class="sb-dot"></span>H20 · Morfologija</a>
+  <a class="sb-item" data-code="h21" href="/skripte/hrv/h21"><span class="sb-dot"></span>H21 · Sintaksa</a>
+  <a class="sb-item" data-code="h22" href="/skripte/hrv/h22"><span class="sb-dot"></span>H22 · Leksikologija</a>
+  <a class="sb-item" data-code="h23" href="/skripte/hrv/h23"><span class="sb-dot"></span>H23 · Povijest hrv. jezika</a>
+  <a class="sb-item" data-code="h24" href="/skripte/hrv/h24"><span class="sb-dot"></span>H24 · Hrv. narječja</a>
+
+  <!-- ══ PRAVOPIS ══ -->
+  <div class="sb-era">// Pravopis</div>
+  <a class="sb-item" data-code="h25" href="/skripte/hrv/h25"><span class="sb-dot"></span>H25 · Pravopisna pravila</a>
+  <a class="sb-item" data-code="h26" href="/skripte/hrv/h26"><span class="sb-dot"></span>H26 · Interpunkcija</a>
+
+  <!-- ══ PISANJE ══ -->
+  <div class="sb-era">// Pisanje</div>
+  <a class="sb-item" data-code="h27" href="/skripte/hrv/h27"><span class="sb-dot"></span>H27 · Školski esej</a>
+  <a class="sb-item" data-code="h28" href="/skripte/hrv/h28"><span class="sb-dot"></span>H28 · Sažetak</a>
+
+  <!-- ══ DODATNO — obvezatna djela (deep-dive za esej 2026 + čitanje) ══ -->
+  <div class="sb-era sb-era-d">// Dodatno · obvezatna djela</div>
+  <div class="sb-d-meta">Deep-dive za esej (30 bod) + čitanje (20 bod)</div>
+
+  <a class="sb-item sb-d" data-code="d01" href="/skripte/hrv"><span class="sb-dot"></span>D01 · Sofoklo · Antigona</a>
+  <a class="sb-item sb-d" data-code="d02" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D02 · Petrarca · izbor</a>
+  <a class="sb-item sb-d" data-code="d03" href="/skripte/hrv"><span class="sb-dot"></span>D03 · Shakespeare · Hamlet</a>
+  <a class="sb-item sb-d" data-code="d04" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D04 · Calderón · Život je san</a>
+  <a class="sb-item sb-d" data-code="d05" href="/skripte/hrv"><span class="sb-dot"></span>D05 · Molière · Škrtac</a>
+  <a class="sb-item sb-d" data-code="d06" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D06 · Goethe · Werther</a>
+  <a class="sb-item sb-d" data-code="d07" href="/skripte/hrv"><span class="sb-dot"></span>D07 · Dostojevski · Zločin i kazna</a>
+  <a class="sb-item sb-d" data-code="d08" href="/skripte/hrv"><span class="sb-dot"></span>D08 · Kafka · Preobražaj</a>
+  <a class="sb-item sb-d" data-code="d09" href="/skripte/hrv"><span class="sb-dot"></span>D09 · Camus · Stranac</a>
+  <a class="sb-item sb-d" data-code="d10" href="/skripte/hrv"><span class="sb-dot"></span>D10 · Baudelaire · Cvjetovi zla</a>
+  <a class="sb-item sb-d" data-code="d11" href="/skripte/hrv"><span class="sb-dot"></span>D11 · Držić · Novela od Stanca</a>
+  <a class="sb-item sb-d" data-code="d12" href="/skripte/hrv"><span class="sb-dot"></span>D12 · Marulić · Judita</a>
+  <a class="sb-item sb-d" data-code="d13" href="/skripte/hrv"><span class="sb-dot"></span>D13 · Gundulić · Dubravka</a>
+  <a class="sb-item sb-d" data-code="d14" href="/skripte/hrv"><span class="sb-dot"></span>D14 · Mažuranić · Smail-aga</a>
+  <a class="sb-item sb-d" data-code="d15" href="/skripte/hrv"><span class="sb-dot"></span>D15 · Šenoa · Prijan Lovro</a>
+  <a class="sb-item sb-d" data-code="d16" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D16 · Novak · Posljednji Stipančići</a>
+  <a class="sb-item sb-d" data-code="d17" href="/skripte/hrv"><span class="sb-dot"></span>D17 · Kranjčević · poezija</a>
+  <a class="sb-item sb-d" data-code="d18" href="/skripte/hrv"><span class="sb-dot"></span>D18 · Matoš · izbor</a>
+  <a class="sb-item sb-d" data-code="d19" href="/skripte/hrv"><span class="sb-dot"></span>D19 · Nazor · poezija</a>
+  <a class="sb-item sb-d" data-code="d20" href="/skripte/hrv"><span class="sb-dot"></span>D20 · Šimić · poezija</a>
+  <a class="sb-item sb-d" data-code="d21" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D21 · Krleža · Glembajevi</a>
+  <a class="sb-item sb-d" data-code="d22" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D22 · Marinković · Kiklop</a>
+
+  <div class="sb-footer" id="sb-footer">
+    <span id="sb-footer-pos">11 / 28</span> · <span id="sb-footer-title">stari hrv. pisci</span>
+    <br>maturiraj.hr · hrvatski · v2
+  </div>
+</nav>
+
+  <!-- MAIN -->
+  <main class="main" id="main">
+    <div class="content-wrap">
+
+      <!-- BREADCRUMB -->
+      <nav class="bc" aria-label="Breadcrumb">
+        <a class="bc-link" href="/">Maturiraj.hr</a>
+        <span class="bc-sep">/</span>
+        <a class="bc-link" href="/skripte/hrv">Skripte</a>
+        <span class="bc-sep">/</span>
+        <a class="bc-link" href="/skripte/hrv">Hrvatski</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-cur">H11 · Stari hrv. pisci</span>
+        <span class="bc-sep bc-tab-sep">/</span>
+        <span class="bc-tab" id="bc-tab">Teorija</span>
+      </nav>
+
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-chapter">H11 &nbsp;·&nbsp; Hrvatska književnost &nbsp;·&nbsp; Renesansa (15.–16. st.)</div>
+        <h1 class="hero-title">Stari hrv. pisci<br><span>renesansa i petrarkizam</span></h1>
+        <div class="hero-sub">
+          Hrvatska renesansa (15.–16. st.) nastaje pod utjecajem talijanske due blizine i trgovinskih veza — kulturna središta su <strong>Split, Hvar, Zadar i Dubrovnik</strong>. Ovo je doba „prvoga": <em>prvi hrv. ep, prvi hrv. roman, prva hrv. svjetovna drama, prvi hrv. pisac poznat van granica</em>. Ključna figura: <strong>Marin Držić</strong> (Novela od Stanca — <b>obvezatno 2026.</b>). Pojmovi: <em>petrarkizam, pastorala, humanizam, dvostruko rimovani dvanaesterac, začinjavci</em>.
+        </div>
+        <div class="hero-progress" id="hero-progress" style="margin-bottom:14px;display:none">
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.5px;margin-bottom:5px">
+            <span>NAPREDAK POGLAVLJA</span>
+            <span id="hero-prog-pct">0%</span>
+          </div>
+          <div style="height:4px;background:var(--bd);border-radius:2px;overflow:hidden">
+            <div id="hero-prog-bar" style="height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--gold));border-radius:2px;width:0%;transition:width .6s ease"></div>
+          </div>
+        </div>
+        <div class="hero-chips">
+          <span class="hchip br">▶ H11 renesansa</span>
+          <span class="hchip go">★ Novela od Stanca 2026</span>
+          <span class="hchip te">📜 15.–16. st.</span>
+          <span class="hchip pa">Split · Hvar · Dubrovnik</span>
+        </div>
+      </header>
+
+
+  <!-- ══ SOCIAL PROOF + COUNTDOWN ═════════════════
+       Playbook P5.1 + P5.2 — trust + urgency
+       Brojevi se renderiraju iz JS-a (vidi renderSocialProof)
+  ═══════════════════════════════════════════════════ -->
+  <div class="social-proof" id="social-proof" aria-label="Statistika platforme"></div>
+
+  <!-- Countdown se dinamički renderira iz JS-a -->
+  <div class="countdown" id="countdown" aria-label="Do mature" style="display:none"></div>
+
+      <!-- TABS -->
+      <div class="tabs" role="tablist" aria-label="Dijelovi poglavlja">
+        <button class="tab on" onclick="sw(0)" role="tab" aria-selected="true" aria-controls="l0">📖 Teorija</button>
+        <button class="tab" onclick="sw(1)" role="tab" aria-selected="false" aria-controls="l1">📖 Pisci renesanse</button>
+        <button class="tab" onclick="sw(2)" role="tab" aria-selected="false" aria-controls="l2">✍️ Esej alat</button>
+        <button class="tab" onclick="sw(3)" role="tab" aria-selected="false" aria-controls="l3">💬 Citatnik</button>
+        <button class="tab" onclick="sw(4)" role="tab" aria-selected="false" aria-controls="l4">📚 Pojmovnik</button>
+        <button class="tab" onclick="sw(5)" role="tab" aria-selected="false" aria-controls="l5">⚡ Drill<span class="tab-lock">PRO</span></button>
+        <button class="tab" onclick="sw(6)" role="tab" aria-selected="false" aria-controls="l6">🧠 Kviz<span class="tab-badge">30</span></button>
+        <button class="tab" onclick="sw(7)" role="tab" aria-selected="false" aria-controls="l7">✅ Checkpoint</button>
+      </div>
+
+      <!-- ════════════════════════
+
+      <!-- ════════════════════════
+           TAB 0 · TEORIJA
+           ════════════════════════ -->
+      <div class="layer on" id="l0" role="tabpanel" tabindex="0">
+        <div class="tags">
+          <span class="pill p-br">epoha</span>
+          <span class="pill p-go">renesansa</span>
+          <span class="pill p-r">15.–16. st.</span>
+          <span class="pill p-t">petrarkizam · humanizam · pastorala</span>
+        </div>
+
+        <div class="featured-quote">
+          <div class="fq-mark">«</div>
+          <div class="fq-body">
+            <div class="fq-text">Historiju tuj svedoh na versih, po običaju naših začinjavac i jošće po zakonu onih starih poet.</div>
+            <div class="fq-meta">— Marko Marulić, <em>Judita</em> (posveta), 1501. · temeljna rečenica hrv. književnosti</div>
+          </div>
+          <button type="button" class="fq-copy" onclick="fqCopy(this)" aria-label="Kopiraj">⎘</button>
+        </div>
+
+        <div id="h11-react-hero-quote-marulic"></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🧭 Kontekst: Zašto upravo Dalmacija i Dubrovnik?</div>
+          <div class="box-int-txt">
+            Hrvatska renesansa nije nastala u kontinentalnoj Hrvatskoj — nego na <strong>obali i otocima</strong>. Razlog: <em>geografska blizina Italije</em>, razvijene trgovačke i kulturne veze. Gradovi <b>Split, Šibenik, Hvar, Zadar i Dubrovnik</b> bili su prozor u renesansnu Europu. Dubrovnik kao slobodna republika imao je poseban status — vlastela s dovoljno slobodnog vremena i prihoda da podupire kazalište i književnost. „Hrv. jezik" u to doba <em>nije bio normiran</em> — pisalo se na govorima pojedinih gradova (<b>čakavski, štokavski, dubrovački idiom</b>).
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎯 Brza dijagnostika H11 — 10 pitanja</div>
+          <div class="box-int-txt">Provjeri znaš li osnove hrv. renesansne književnosti prije nego kreneš s detaljima.</div>
+        </div>
+
+        <!-- BRZA NAVIGACIJA -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:0 0 22px">
+          <button onclick="sw(1)" class="qnav-btn">📖 PISCI I DJELA<span>Marulić, Držić, Zoranić...</span></button>
+          <button onclick="sw(2)" class="qnav-btn">✍ ESEJ ALAT<span>Teze, modeli, TIPS</span></button>
+          <button onclick="sw(3)" class="qnav-btn">💬 CITATNIK<span>50 citata · ★ Napamet</span></button>
+          <button onclick="sw(4)" class="qnav-btn">📚 POJMOVNIK<span>70 pojmova · flashcard</span></button>
+          <button onclick="sw(6)" class="qnav-btn">🧠 KVIZ<span>30 pitanja · sve teme</span></button>
+          <button onclick="sw(7)" class="qnav-btn">CHECKPOINT<span>Provjeri znanje</span></button>
+        </div>
+
+        <!-- Soft kontekst hint — exam frequency -->
+        <div class="soft-hint">
+          <div class="soft-hint-ico">💡</div>
+          <div class="soft-hint-body">
+            Tema <b>Marin Držić / Novela od Stanca</b> pojavila se na MAT 2023. i MAT 2025. — farsa i <b>opreka mlado–staro</b> su stalni esejski motivi za obvezatno djelo D11.
+          </div>
+        </div>
+
+        <div class="diag" id="diag" data-state="intro">
+          <div class="diag-intro">
+            <div class="diag-intro-icon">🎯</div>
+            <div class="diag-intro-body">
+              <div class="diag-intro-title">Brza dijagnostika — 10 pitanja</div>
+              <div class="diag-intro-desc">10 pitanja koja pokrivaju sve ključne pisce i pojmove H11. Dobit ćeš personaliziranu preporuku — gdje početi i na što se fokusirati.</div>
+              <button type="button" class="diag-btn diag-btn-primary" onclick="diagStart()">▶ Pokreni dijagnostiku</button>
+              <button type="button" class="diag-btn diag-btn-ghost" onclick="diagSkip()">Preskoči — odmah na sadržaj ↓</button>
+            </div>
+          </div>
+          <div class="diag-quiz">
+            <div class="diag-bar">
+              <div class="diag-prog-txt">Pitanje <span id="diag-idx">1</span> / 10</div>
+              <div class="diag-prog-wrap"><div class="diag-prog-bar" id="diag-prog-bar" style="width:0%"></div></div>
+              <div class="diag-prog-num"><span id="diag-correct">0</span> točno</div>
+            </div>
+            <div class="diag-topic" id="diag-topic">—</div>
+            <div class="diag-q" id="diag-q">—</div>
+            <div class="diag-opts" id="diag-opts"></div>
+          </div>
+          <div class="diag-result">
+            <div class="diag-res" id="diag-res">
+              <div style="font-size:38px;margin-bottom:8px" id="diag-res-ico">📊</div>
+              <div class="diag-res-msg" id="diag-res-msg"></div>
+              <div id="diag-res-bar" style="height:4px;background:var(--bd);border-radius:2px;margin:8px 0;overflow:hidden"><div id="diag-res-fill" style="height:100%;border-radius:2px;width:0%;transition:width .7s ease;background:var(--gold)"></div></div>
+              <div class="diag-rec" id="diag-rec"></div>
+              <button type="button" class="diag-btn diag-btn-ghost" style="margin-top:12px" onclick="diagRestart()">🔁 Ponovi dijagnostiku</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="h11-react-auth-box"></div>
+
+        <!-- SEC 01 -->
+
+        <!-- MUST-KNOW QUICK REF -->
+        <div style="background:linear-gradient(135deg,rgba(220,50,47,.08),rgba(232,201,122,.05));border:1px solid var(--bd-br);border-left:4px solid var(--bronze);border-radius:var(--r4);padding:18px 22px;margin:20px 0">
+          <div style="font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bronze);margin-bottom:12px">⚡ MUST-KNOW — Minimalni set za maturu</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.5">
+            <div><b style="color:var(--gold)">Marulić</b> · Split · 1450.–1524.<br>Judita 1501./1521. · 6 pjevanja · 2126 dvanaesteraca<br><em>Oloferno = Turci; Judita = Hrvatska</em></div>
+            <div><b style="color:var(--gold)">Marin Držić</b> · Dubrovnik · 1508.–1567.<br>Novela od Stanca 1550. · 1 čin 7 prizora<br><em>farsa · mlado vs staro · obvezatno 2026.</em></div>
+            <div><b style="color:var(--gold)">Hektorović</b> · Hvar · 1487.–1572.<br>Ribanje 1556. · ep/putopis/ekloga/poslanica<br><em>bugarštice · realizam · Hvar→Brač→Šolta</em></div>
+            <div><b style="color:var(--gold)">Zoranić</b> · Zadar · ~1508.–1569.<br>Planine ~1543./1569. · 24 poglavlja · proza+stih<br><em>Perivoj od Slave · rasuta bašćina · prvi hrv. roman</em></div>
+            <div><b style="color:var(--gold)">Menčetić</b> · Dubrovnik · 1457.–1527.<br>Blažen čas i hip · I. gen. petrarkizma<br><em>svi stadiji ljubavi · dvostruki dvanaesterac</em></div>
+            <div><b style="color:var(--gold)">Lucić</b> · Hvar · 1485.–1553.<br>Robinja 1530. · Jur nijedna na svit vila<br><em>II. gen. petrarkizma · osmesterac · prva hrv. drama</em></div>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01 · Obilježja hrvatske renesanse</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">⚡ 5 temeljnih obilježja za maturu</div>
+          <div class="box-key-txt">
+            <b>(1) Humanizam</b> — čovjek (ne Bog) u centru. Zanimanje za antiku, latinsku i grčku književnost. Pisci su obrazovani u Italiji. <b>(2) Narodni jezik</b> — piše se na <em>narodnom, a ne latinskom</em> jeziku (iako Marulić piše i na latinskom). <b>(3) Petrarkizam</b> — dominantan lirski pravac: ljubavna lirika po uzoru na Petrarcu, motivi nesretne ljubavi, „gospoja". <b>(4) Pastorala</b> — idealizirani seosko-pastirski prostor kao scena za ljubavne radnje i filozofske razgovore. <b>(5) Dvostruko rimovani dvanaesterac</b> — standardni stih hrv. renesanse.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">OBILJEŽJE</div><div class="cv b">OPIS</div><div class="cv b">PRIMJER iz hrv. renesanse</div></div>
+          <div class="cr"><div class="ck go">Humanizam</div><div class="cv">Filozofija koja čovjeka stavlja u središte, orijentacija na antičke uzore</div><div class="cv">Marulić u Italiji uči od Vergilija i Cicerona → piše <em>Davidiadu</em> na latinskom + <em>Juditu</em> na hrvatskom</div></div>
+          <div class="cr"><div class="ck t">Petrarkizam</div><div class="cv">Ljubavna lirika po uzoru na Petrarcu — nesretna ljubav, gospoja, Amor</div><div class="cv">Menčetić: <em>Blažen čas i hip</em> (prepjev Petrarce u dvanaesterac); Lucić: <em>Jur nijedna na svit vila</em></div></div>
+          <div class="cr"><div class="ck re">Pastorala</div><div class="cv">Idiličan pejzaž, pastiri/ribari, ljubavni razgovori, beg od civilizacije</div><div class="cv">Džore Držić: <em>Radmio i Ljubmir</em>; Hektorović: <em>Ribanje</em> kao ribarska ekloga</div></div>
+          <div class="cr"><div class="ck pa">Narodni jezik</div><div class="cv">Pisanje na lokalnom idiomu, a ne latinskom — demokratizacija književnosti</div><div class="cv">Judita = splitska čakavština; Novela od Stanca = dubrovački idiom; Planine = čakavsko-štokavski</div></div>
+          <div class="cr"><div class="ck g">Dvostruki 12-rac</div><div class="cv">12-slożni stih, cesura po 6., rima AA BB ili AB AB — standardni stih epohe</div><div class="cv">Judita, Ribanje, Robinja, Vazetje Sigeta, Novela od Stanca — svi koriste ovaj stih</div></div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🌍 Europski uzori hrv. pisaca</div>
+          <div class="box-int-txt">
+            <b>Marulić</b> → Vergilije (<em>Eneida</em>), Horacije, Biblija. Piše u tradiciji rimskog epa.<br>
+            <b>Menčetić, Džore Držić</b> → Francesco Petrarca (<em>Kanconijer</em>). Čisti petrarkistički repertoar bez formalne discipline soneta.<br>
+            <b>Lucić</b> → Petrarca + neoplatonisti (Ficino, Bembo). Ljubav kao duhovna snaga.<br>
+            <b>Zoranić</b> → Jacopo Sannazaro (<em>L'Arcadia</em>), Boccaccio (<em>Ameto</em>). Pastoralni roman kao žanr.<br>
+            <b>Marin Držić</b> → Plautus (<em>Aulularija</em> → <em>Skup</em>), talijanska commedia dell'arte, Boccaccio (<em>Dekameron</em> kao uzor za situacijsku komiku).<br>
+            <b>Hektorović</b> → Vergilije (<em>Ekloge</em>, <em>Georgike</em>) za idilični ton, ali ga nadilazi realizmom.
+          </div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">⚠️</div>
+          <div class="bw-body">
+            <div class="bw-title">Turska opasnost kao stalni kontekst</div>
+            <div class="bw-txt">Sva renesansna književnost nastaje u sjeni <strong>turske opasnosti</strong>. Marulić u Juditi alegorički potiče otpor; Hektorović opisuje opustjele krajeve; čak i Zoranićev putopis nosi tugu za „rasutom bašćinom". Ne zaboravi ovaj kontekst u eseju — <em>to je lokalna specifičnost hrv. renesanse</em> koja je razlikuje od talijanske.</div>
+          </div>
+        </div>
+
+        <!-- SEC 02 -->
+
+        <div class="box-key">
+          <div class="box-key-lbl">🔑 Humanizam — 3 aspekta koji ulaze u esej</div>
+          <div class="box-key-txt">
+            <b>(1) Obrazovni humanizam:</b> Pisci su studirani na antici — čitaju Cicerona, Vergilija, Horacija. Marulić piše latinskim i citira antičke autore. Humanizam nije ateizam — to je orijentacija na antičku mudrost u kršćanskom okviru.<br>
+            <b>(2) Kulturni humanizam:</b> Vjera da književnost može prenijeti vrijednosti i oblikovati zajednicu. Marulić piše Juditu za „sunarodnjake" — kao moralni i politički apel. Hektorović bilježi bugarštice jer smatra da su kulturna vrijednost.<br>
+            <b>(3) Demokratski humanizam:</b> Hektorović sjedi s ribarima kao jednakima — ne promatrač nego sugovornik. To je humanistički program: ni jedan čovjek nije samo „objekt" nego potencijalni sugovornik i nosač vrijednosti.
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02 · Kronološki pregled</div><div class="sec-line"></div></div>
+
+        <div id="h11-react-timeline-renesansa"></div>
+        <div style="display:none">
+
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-dot">1</div>
+            <div class="tl-body">
+              <div class="tl-year">1450.–1524.</div>
+              <div class="tl-title">Marko Marulić — „otac hr. književnosti"</div>
+              <div class="tl-desc">Split. Ep <em>Judita</em> dovršena <strong>1501.</strong>, tiskana 1521. — prvi veliki ep na hrvatskom. Alegorija otpora Turcima. Piše i latinsku prozu (Institucija, Davidijada).</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">2</div>
+            <div class="tl-body">
+              <div class="tl-year">1487.–1572.</div>
+              <div class="tl-title">Petar Hektorović — realistični putopisac</div>
+              <div class="tl-desc">Hvar. <em>Ribanje i ribarsko prigovaranje</em> (1556.) — <strong>prvi hrv. realistički opis putovanja</strong>. Zapisuje narodne pjesme i bugarštice.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">3</div>
+            <div class="tl-body">
+              <div class="tl-year">~1508.–1569.</div>
+              <div class="tl-title">Petar Zoranić — prvi hrv. romanopisac</div>
+              <div class="tl-desc">Zadar. <em>Planine</em> (nastale oko 1543., tisk. 1569.) — <strong>prvi hrv. roman</strong>. Alegorija lošeg stanja hrv. književnosti (<em>Perivoj od Slave</em>).</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">4</div>
+            <div class="tl-body">
+              <div class="tl-year">1457.–1527. / 1461.–1501.</div>
+              <div class="tl-title">Menčetić i Džore Držić — petrarkisti I. generacije</div>
+              <div class="tl-desc">Dubrovnik. Sačuvano u <em>Zborniku Nikše Ranjine</em> (1507.) — 820 pjesama. Menčetić: ljubav od prvog pogleda do razočaranja. Džore Držić: idealizacija ljubavi kao fenomena.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">5</div>
+            <div class="tl-body">
+              <div class="tl-year">1485.–1553.</div>
+              <div class="tl-title">Hanibal Lucić — prva hrv. svjetovna drama</div>
+              <div class="tl-desc">Hvar. <em>Robinja</em> (1530.) — <strong>prva hrv. drama s razrađenom radnjom</strong>. Likovi: robinja (kći bana Vlaska), vitez Derenčin.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">6</div>
+            <div class="tl-body">
+              <div class="tl-year">1508.–1567.</div>
+              <div class="tl-title">Marin Držić — „Vidra" — najveći hrv. dramaturg</div>
+              <div class="tl-desc">Dubrovnik. <em>Novela od Stanca</em> (1550.) — farsa, pokladna igra. <em>Dundo Maroje</em> (1551.) — najstarija hrv. prozna drama. <em>Skup</em> (1556.) — komedija po uzoru na Plauta. <strong>Obvezatno 2026.</strong></div>
+            </div>
+          </div>
+        </div>
+
+          <div class="tl-item">
+            <div class="tl-dot">★</div>
+            <div class="tl-body">
+              <div class="tl-year">1550.–1556.</div>
+              <div class="tl-title">Marin Držić — zlatno desetljeće hrv. komedije</div>
+              <div class="tl-desc">U samo 6 godina Držić piše sve što ga čini besmrtnim: <em>Novela od Stanca</em> (1550.), <em>Dundo Maroje</em> (1551.), <em>Skup</em> i <em>Tripče de Utolče</em> (1556.). <strong>Najprodorniji dramski period u hrv. renesansi.</strong></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">★</div>
+            <div class="tl-body">
+              <div class="tl-year">1556.–1569.</div>
+              <div class="tl-title">Hektorović i Zoranić — kasni cvat Dalmacije</div>
+              <div class="tl-desc"><em>Ribanje</em> (1556.) i <em>Planine</em> (tisk. 1569.) izlaze iz tiska gotovo istovremeno. Hvarska i zadarska škola daju svoja ključna djela. Patriotski ton je naglašeniji.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">6</div>
+            <div class="tl-body">
+              <div class="tl-year">1566.–1584.</div>
+              <div class="tl-title">Kraj generacije — Siget i Vazetje</div>
+              <div class="tl-desc">1566.: opsada i pad Sigeta. Marin Držić umire 1567. u Veneciji. 1584.: Krnarutić tiska <em>Vazetje Sigeta</em>. <strong>Krug se zatvara: počelo s alegorijom (Judita, 1501.) — završava povijesnim epom (Vazetje, 1584.).</strong></div>
+            </div>
+          </div>
+
+        <!-- SEC 03 -->
+
+        <!-- Datumska tablica — kompletna kronologija -->
+
+
+        <div class="box-key">
+          <div class="box-key-lbl">⚡ Brzi datumski podsjetnik — sve u jednom retku</div>
+          <div class="box-key-txt" style="font-size:12.5px;line-height:2">
+            <b>1450.</b> Marulić r. · <b>1457.</b> Menčetić r. · <b>1461.</b> Džore Držić r. · <b>1485.</b> Lucić r. · <b>1487.</b> Hektorović r. · <b>~1508.</b> Zoranić r. · <b>1508.</b> Marin Držić r. · <b>1515.</b> Krnarutić r. ·
+            <b>1501.</b> Judita dovršena · <b>1507.</b> Ranjinin zbornik + Institucija · <b>1521.</b> Judita tiskana · <b>1526.</b> Bitka kod Mohača ·
+            <b>1530.</b> Robinja (Lucić) · <b>1548.</b> Pomet-družina · <b>1550.</b> Novela od Stanca ★ · <b>1551.</b> Dundo Maroje · <b>1556.</b> Ribanje + Skup · <b>1566.</b> Siget + Kosmografska poslanica · <b>1567.</b> Marin Držić † · <b>~1543./1569.</b> Planine · <b>1584.</b> Vazetje Sigeta
+          </div>
+        </div>
+
+        </div>
+
+        <!-- SEC 02b — Europski kontekst renesanse -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02a · Europski kontekst — što se događalo u Europi</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🌍 Renesansa u Europi — 5 ključnih događaja</div>
+          <div class="box-int-txt">
+            Hrv. renesansa ne nastaje u vakuumu — ona je odgovor na europska gibanja koja su transformirala kulturu 15.–16. st. Svaki od ovih događaja ima odjek u hrv. književnosti.
+          </div>
+        </div>
+
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-dot">1</div>
+            <div class="tl-body">
+              <div class="tl-year">1440-e</div>
+              <div class="tl-title">Gutenbergov tiskarski stroj</div>
+              <div class="tl-desc">Tisak knjiga postaje moguć. <em>Judita</em> (tiskana 1521.) i <em>Planine</em> (tiskane 1569.) su hrv. primjeri. <b>Bez tiska — nema masovne književnosti.</b> Marulićeva <em>Institucija</em> je prevedena i tiskana diljem Europe upravo zahvaljujući tisku.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">2</div>
+            <div class="tl-body">
+              <div class="tl-year">1453.</div>
+              <div class="tl-title">Pad Konstantinopola — grčki učenjaci bježe na Zapad</div>
+              <div class="tl-desc">Grčki humanisti donose manuscripte antičke književnosti u Italiju. Procvat studija grčkog i latinskog. <b>Hrv. pisci u Italiji imaju pristup antičkim tekstovima</b> — to oblikuje Marulića i Lucića.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">3</div>
+            <div class="tl-body">
+              <div class="tl-year">1492.</div>
+              <div class="tl-title">Otkriće Amerike — geografska revolucija</div>
+              <div class="tl-desc">Zemlja je veća nego što se mislilo — nova spoznaja pomiče granice mogućeg. Humanisti pitaju: <em>što još ne znamo?</em> Duh istraživanja i curiositas (znatiželja) postaje intelektualni ideal — odjek u Hektorovićevom putopisu.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">4</div>
+            <div class="tl-body">
+              <div class="tl-year">1517.</div>
+              <div class="tl-title">Lutherova Reforma — kriza Crkve</div>
+              <div class="tl-desc">Martin Luther prikovava 95 teza. Europa se dijeli na katolike i protestante. <b>Hrv. pisci ostaju katolički</b> — ali Reformacija potiče pisanje na narodnim jezicima (Luther piše i prevodi na njemački). Marulić je čak pozvan da pomiri Reformaciju s katolicizmom.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">5</div>
+            <div class="tl-body">
+              <div class="tl-year">1526./1527.</div>
+              <div class="tl-title">Bitka kod Mohača + osmansko napredovanje</div>
+              <div class="tl-desc">Ugarska propada, Hrvatska ostaje kao <em>reliquiae reliquiarum</em> (ostaci ostataka). Turska opasnost nije apstraktna — to je egzistencijalna prijetnja. <b>Svaki hrv. pisac 16. st. piše u sjeni ovog poraza.</b> Zoranićeva „rasuta bašćina" je odgovor na Mohač.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">🧠 Filozofija renesanse — što su pisci čitali</div>
+          <div class="box-key-txt">
+            <b>Neoplatonizam</b> (Ficino, Pico della Mirandola): ljubav kao duhovna snaga prema Bogu. Utjecaj na Lucića — ljubav nije samo tjelesna. <b>Stoicizam</b>: mudraci vladaju strastima. Utjecaj na Marulića — Judita pobjeđuje zahvaljujući samokontroli i vjeri. <b>Aristotelova poetika</b>: tragedija, komedija, katarza — uvodi se u kazalište. Utjecaj na Držića — Skup je aristotelova komedija. <b>Ciceron</b>: retorika kao temelj humanističkog obrazovanja. Svi pisci educated u latinskom po Ciceronu. <b>Vergilijev rustični ideal</b>: priroda kao mjesto oporavka duše — Planine i Ribanje kao hrv. „Arcadia".
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔎 Tri faze hrv. renesanse — razvoj i specifičnosti</div>
+          <div class="box-int-txt">
+            <b>FAZA 1 (1450.–1520.) — Humanistički temelji:</b> Marulić piše i na latinskom i na hrvatskom. Menčetić i Džore Držić razvijaju petrarkizam u Dubrovniku. Pretežno <em>lirska i epska</em> faza — kazalište još nije razvijeno.<br><br>
+            <b>FAZA 2 (1520.–1560.) — Procvat i diversifikacija:</b> Lucić piše prvu dramu s radnjom (1530.). Hektorović i Zoranić daju putopis/roman. Marin Držić stvara komedije — hrv. kazalište u punom zamahu. Turska opasnost naglašenija (Mohač, 1526.).<br><br>
+            <b>FAZA 3 (1560.–1584.) — Sumrak i komemoracija:</b> Marin Držić umire u Veneciji (1567.) kao politički izgnanik. Krnarutić piše Vazetje Sigeta (1584.) — komemoracija Zrinskog. Barok čeka iza ugla.
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📅 Ključni datumi — sve na jednom mjestu</div>
+          <div class="box-key-txt" style="font-size:13px;line-height:1.9">
+            <b>1450.–1524.</b> Marko Marulić, Split ·
+            <b>1457.–1527.</b> Šiško Menčetić, Dubrovnik ·
+            <b>1461.–1501.</b> Džore Držić, Dubrovnik ·
+            <b>1485.–1553.</b> Hanibal Lucić, Hvar ·
+            <b>1487.–1572.</b> Petar Hektorović, Hvar ·
+            <b>~1508.–1569.</b> Petar Zoranić, Zadar ·
+            <b>1508.–1567.</b> Marin Držić, Dubrovnik ·
+            <b>1515.–1573.</b> Brne Krnarutić, Zadar<br>
+            <b>1501.</b> Judita dovršena (tiskana 1521.) ·
+            <b>1507.</b> Ranjinin zbornik (počinje sakupljati Nikša Ranjina) ·
+            <b>1507.</b> Marulić: Institucija ·
+            <b>1517.</b> Marulić: Davidijada ·
+            <b>1522.</b> Marulić: Poslanica papi Hadrijanu VI. ·
+            <b>1530.</b> Lucić: Robinja (praizvedba) ·
+            <b>1548.</b> Pomet-družina — Pomet (izvedba, djelo izgubljeno) ·
+            <b>1550.</b> Marin Držić: Novela od Stanca ·
+            <b>1551.</b> Marin Držić: Dundo Maroje · Njarnjas-družina ·
+            <b>1556.</b> Hektorović: Ribanje · Marin Držić: Skup ·
+            <b>1566.</b> Marin Držić: Kosmografska poslanica ·
+            <b>~1543./1569.</b> Zoranić: Planine ·
+            <b>1584.</b> Krnarutić: Vazetje Sigeta grada
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">03 · Petrarkizam — ljubavna lirika</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">💛 Što je petrarkizam</div>
+          <div class="box-int-txt">
+            <strong>Petrarkizam</strong> je pjesnički pravac po uzoru na Francesca Petrarcu (<em>Kanconijer</em>, 14. st.). Obilježja: <em>nesretna ljubav, idealizirana „gospoja" koja odbija pjesnika, bol i slast ljubavi, Amor/Kupido kao okrutni bog</em>. Hrv. petrarkisti <b>NE pišu sonete</b> — pišu <em>dvostruko rimovane dvanaesterce</em>. Dijele se na <b>dvije generacije</b>.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">I. gen.</div><div class="cv"><b>Šiško Menčetić, Džore Držić</b> — Dubrovnik, <em>Ranjinin zbornik</em>. Čisto petrarkistički motivi, bez soneta. Menčetić: put ljubavi od prvog pogleda do razočaranja. Džore Držić: analizira ljubav kao apstrakciju, idealizira ženu.</div></div>
+          <div class="cr"><div class="ck go">II. gen.</div><div class="cv"><b>Hanibal Lucić</b> — Hvar. Zadržava petrarkistički izraz, ali proširuje prema <em>neoplatonizmu</em>. Interes za sudbinu čovjeka. Pjesma <em>Jur nijedna na svit vila</em> — osmerci u 10 strofa (ne dvanaesterci!).</div></div>
+          <div class="cr"><div class="ck t">RAZLIKA</div><div class="cv"><b>HR vs. IT petrarkizam</b>: Hrv. petrarkisti ne pišu sonete, pišu dvanaesterce. Manje formalna disciplina, više melodioznosti. Turska opasnost kao kontekstualni sloj kojeg nema u IT.</div></div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">⚠️ Najčešća zamka na maturi</div>
+            <div class="box-signal-txt"><b>Hrv. petrarkisti NE pišu sonete.</b> Petrarcu pišu sonete — hrv. petrarkisti pišu dvostruko rimovane dvanaesterce. Iznimka: Lucić u <em>Jur nijedna na svit vila</em> piše osmerce. Oba slučaja su <em>alternativa sonetu</em>, ne sonet.</div>
+          </div>
+        </div>
+
+        <!-- Primjeri stihova s analizom -->
+        <div class="box-int">
+          <div class="box-int-lbl">🔬 Menčetić — analiza stiha <em>Blažen čas i hip</em></div>
+          <div class="box-int-txt">
+            <em style="color:var(--gold)">„Blažen čas i hip ki te rodi i mati,<br>blažena kolipka ka te povi u sviti,<br>blažena ti ženska ka te doji i goji<br>i blažen taj zraci ki s tobom se smoji."</em><br><br>
+            <b>Analiza:</b> Anafora (<em>blažen/blažena</em> — ponavljanje u početku stiha) pojačava euforiju prvog pogleda. Dvostruko rimovani dvanaesterac (cesura po 6. slogu). Lirski subjekt slavi apsolutno sve što je vezano uz „gospoju" — od poroda do dojenja. <em>Senzualni idealizam</em> — gospoja je tjelesno opisana, ali idealizirana. Ovo je Menčetićev prepjev Petrarcinog soneta u hrv. dvanaesterac.
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔬 Lucić — analiza stiha <em>Jur nijedna na svit vila</em></div>
+          <div class="box-int-txt">
+            <em style="color:var(--gold)">„Jur nijedna na svit vila<br>ljuvenim me ognjem gori,<br>ka bi meni povoljna bila,<br>da mi srce sav dan gori."</em><br><br>
+            <b>Analiza:</b> <strong>Osmesterac</strong> (8 slogova) — odmak od dvanaesterca. Ukrštena rima (ABAB) u prvim 4, obgrljena (ABBA) u sljedećim 4 stihovima svake strofe. <em>Neoplatonistički ton</em> — nijedno zemaljsko biće ne može zadovoljiti lirski subjekt, jer on traži nezemaljsku savršenost. Lucić je dalje od senzualnosti Menčetića — bliže duhovnom idealu. <b>Razlika I. vs. II. gen.:</b> Menčetić žudi za konkretnom gospojom; Lucić tuguje što ne postoji savršena.
+          </div>
+        </div>
+
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:110px">KATEGORIJA</div><div class="cv b">I. GENERACIJA<br><small>Menčetić, Džore Držić · kraj 15. st.</small></div><div class="cv b">II. GENERACIJA<br><small>Lucić · poč. 16. st.</small></div></div>
+          <div class="cr"><div class="ck go" style="min-width:110px">Centar</div><div class="cv">Dubrovnik</div><div class="cv">Hvar</div></div>
+          <div class="cr"><div class="ck t" style="min-width:110px">Ton</div><div class="cv">Senzualan, emotivan, strastven — svi stadiji ljubavnog bola</div><div class="cv">Filozofičan, neoplatonistički — ljubav kao duhovna snaga</div></div>
+          <div class="cr"><div class="ck re" style="min-width:110px">Stih</div><div class="cv">Dvostruko rimovani dvanaesterac</div><div class="cv">Osmesterac (Lucić) — iznimka pravila</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:110px">Gospoja</div><div class="cv">Idealizirana ali žuđena — tjelesnost je prisutna u opisu</div><div class="cv">Apstraktni ideal — savršenstvo koje na zemlji ne postoji</div></div>
+          <div class="cr"><div class="ck g" style="min-width:110px">Uzori</div><div class="cv">Petrarca (Kanconijer) — direktan prijevod/adaptacija</div><div class="cv">Petrarca + neoplatonisti (Ficino, Bembo) — složenija sinteza</div></div>
+          <div class="cr"><div class="ck br" style="min-width:110px">Drama</div><div class="cv">Džore Držić: <em>Radmio i Ljubmir</em> — prva pastoralna drama</div><div class="cv">Lucić: <em>Robinja</em> — prva hrv. drama s razrađenom radnjom</div></div>
+          <div class="cr"><div class="ck go" style="min-width:110px">Ključna razlika</div><div class="cv">Ljubav kao iskustvo koje se opisuje — autobiografski ton</div><div class="cv">Ljubav kao filozofski koncept koji se analizira — objektivni ton</div></div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🧠 Neoplatonizam u lirici — što to znači u praksi</div>
+          <div class="box-int-txt">
+            Neoplatonizam (Ficino, Pico della Mirandola) tvrdi da je <strong>Ljepota emanacija Boga</strong> — što je nešto ljepše, to je bliže Božanskom Savršenstvu. Posljedica za ljubavnu liriku: <em>gospoja nije samo lijepa žena — ona je odraz Božanske Ljepote</em>. Lirski subjekt koji voli gospoju zapravo teži prema Bogu.<br><br>
+            <b>U Menčetića:</b> gospoja je žuđena kao žena — senzualnost je prisutna. <b>U Lucića:</b> gospoja je nedostižna jer ne može biti savršena — ni jedna zemaljska žena nije savršena kao Božanska Ljepota. Lucić tuguje što savršena gospoja <em>ne postoji</em>, ne što ga odbija. <em>To je razlika između senzualnog i duhovnog petrarkizma.</em>
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">📊 Petrarca vs. hrv. petrarkisti — što je preuzeto, što izmijenjeno</div>
+          <div class="box-int-txt">
+            <b>Preuzeto od Petrarce:</b> tematika nesretne ljubavi, motiv „gospoje", Amor/Kupido kao okrutni bog, usporedba ljepote s prirodom, antiteze (bol i slast ljubavi), kontradikcija osjećaja (<em>„volim i mrzim"</em>).<br>
+            <b>Izmijenjeno u hrv. kontekstu:</b> stih — <em>dvostruko rimovani dvanaesterac</em> umjesto soneta; jezik — lokalni idiomi umjesto toskanskog; ton — nešto melodiozniji, manje formalan; kontekst — u pozadini turska opasnost koje u Petrarce nema.<br>
+            <b>Specifičnost I. gen.:</b> Menčetić i Džore Držić se razlikuju (<em>senzualnost vs. idealizacija</em>) — hrv. petrarkizam nije jedinstven.<br>
+            <b>Specifičnost II. gen.:</b> Lucić uvodi neoplatonizam i mijenja stih (osmesterac) — evolucija, ne kopija.
+          </div>
+        </div>
+
+        <!-- SEC 04 -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">04 · Žanrovi hrv. renesanse</div><div class="sec-line"></div></div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">ŽAN.</span>
+            <div class="sc-name">Ep (epos)</div>
+            <div class="sc-desc"><em>Judita</em> (Marulić) — biblijsko-kršćanski ep. <em>Vazetje Sigeta grada</em> (Krnarutić) — prvi hrv. <strong>povijesni ep</strong>. Karakteristike: dvostruko rimovani dvanaesterci, 4–6 pjevanja, uzori Vergilije i Homerovi epovi.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">ŽAN.</span>
+            <div class="sc-name">Roman i putopis</div>
+            <div class="sc-desc"><em>Planine</em> (Zoranić) — <strong>prvi hrv. roman</strong>, mješavina proze i stiha. <em>Ribanje</em> (Hektorović) — putopis / ribarska ekloga / poslanica. Oba imaju alegorijsku dimenziju i patriotski ton.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">ŽAN.</span>
+            <div class="sc-name">Pastorala</div>
+            <div class="sc-desc">Idilični prostori, pastiri koji govore o ljubavi. <em>Radmio i Ljubmir</em> (Džore Držić) — <strong>prva hrv. pastoralna drama</strong>. Pisana u dvostruko rim. dvanaestercima. Uzor: Ekloge Vergilija.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">ŽAN.</span>
+            <div class="sc-name">Komedija i farsa</div>
+            <div class="sc-desc"><em>Novela od Stanca</em> — <strong>farsa/pokladna igra</strong> (1 čin, 7 prizora). <em>Dundo Maroje</em> — prva hrv. prozna komedija (5 činova). <em>Skup</em> — plautovska komedija.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">ŽAN.</span>
+            <div class="sc-name">Svjetovna drama</div>
+            <div class="sc-desc"><em>Robinja</em> (Lucić) — <strong>prva hrv. drama s razrađenom radnjom</strong> i individualnim likovima. Tematizira tursku opasnost i trgovinu robljem. 3 čina, dvanaesterci.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip gr">ŽAN.</span>
+            <div class="sc-name">Lirika / Zbornik</div>
+            <div class="sc-desc"><em>Ranjinin zbornik</em> (1507.) — rukopisna zbirka 820 pjesama. Sakupio Nikša Ranjina. Autori: Menčetić, Džore Držić, Vetranović i dr. <strong>Svi pišu dvostruko rim. dvanaesterce</strong>.</div>
+          </div>
+        </div>
+
+        <!-- SEC 05 -->
+
+        <!-- SEC 04b — Epika i drama — detaljni usporedni pregled -->
+        <!-- Žanrovi — tablica s primjerima -->
+        <div class="tbl">
+          <div class="cr"><div class="ck br">ŽANR</div><div class="cv b">DEFINICIJA</div><div class="cv b">HRV. PRIMJER</div><div class="cv b">KLJUČNI POJMOVI</div></div>
+          <div class="cr"><div class="ck go">Ep</div><div class="cv">Dugo narativno djelo u stihu, junak koji ostvaruje veliku misiju, invokacija muze, in medias res</div><div class="cv">Marulić: <em>Judita</em> (6 pjev., 2126 dvanaest.)</div><div class="cv">invokacija, in medias res, epski pripovijedač, alegorija</div></div>
+          <div class="cr"><div class="ck t">Farsa</div><div class="cv">Kratka komična drama namijenjena pokladama — tipski likovi, gruba situacijska komika, bez moralne pouke</div><div class="cv">Držić: <em>Novela od Stanca</em> (1 čin, 7 prizora)</div><div class="cv">pokladna igra, komika situacije, tipski lik, karnevalska sloboda</div></div>
+          <div class="cr"><div class="ck re">Komedija</div><div class="cv">Dramsko djelo s komičnim zapletom, razrađenim likovima, sretan kraj</div><div class="cv">Držić: <em>Dundo Maroje</em> (5 čin., proza), <em>Skup</em> (5 čin.)</div><div class="cv">commedia erudita, commedia dell'arte, zaplet, rasplet</div></div>
+          <div class="cr"><div class="ck pa">Roman</div><div class="cv">Duže prozno (ili mješovito) narativno djelo s više likova i zapleta; u renesansi — žanrovski hibrid</div><div class="cv">Zoranić: <em>Planine</em> (~24 pogl., proza+stih)</div><div class="cv">pastoralni roman, alter ego, alegorija, žanrovski hibrid</div></div>
+          <div class="cr"><div class="ck g">Putopis / ekloga</div><div class="cv">Opis stvarnog putovanja + idilični ton pastirskog/ribarskog prostora</div><div class="cv">Hektorović: <em>Ribanje</em> (ribarska ekloga + putopis + poslanica)</div><div class="cv">ekloga, poslanica, bugarštica, dokumentarni realizam</div></div>
+          <div class="cr"><div class="ck br">Drama s radnjom</div><div class="cv">Drama s razrađenim zapletom, individualnim likovima i moralnom porukom</div><div class="cv">Lucić: <em>Robinja</em> (3 čina, 1530.)</div><div class="cv">individualizirani lik, sukob, rasplet, didaktika</div></div>
+          <div class="cr"><div class="ck te">Petrarkistička lirika</div><div class="cv">Ljubavna lirska zbirka/pjesma, gospoja, nesretna ljubav, petrarkistički motivi</div><div class="cv">Menčetić: <em>Blažen čas i hip</em>; Lucić: <em>Jur nijedna na svit vila</em></div><div class="cv">petrarkizam, gospoja, Amor, dvostruki dvanaest., osmesterac</div></div>
+          <div class="cr"><div class="ck go">Povijesni ep</div><div class="cv">Ep koji opjevava stvarni povijesni događaj (bitku, junaštvo) bez alegorije</div><div class="cv">Krnarutić: <em>Vazetje Sigeta grada</em> (1584.)</div><div class="cv">povijesni ep, Nikola Šubić Zrinski, Siget 1566., žrtva za domovinu</div></div>
+        </div>
+
+
+        <div class="box-key">
+          <div class="box-key-lbl">📖 Primjeri stihova za svaki žanr</div>
+          <div class="box-key-txt" style="font-size:13px;line-height:1.9">
+            <b>Ep (Judita):</b> <em style="color:var(--gold)">„Libar Marka Marula Splićanina u kom se uzdarži istorija svete udovice Judit u versih harvacki složena..."</em> — epska invokacija i dvostruki dvanaesterac.<br>
+            <b>Farsa (Novela od Stanca):</b> Dijalog bez pripovijedača — sve je situacija i razgovor. Dvostruki dvanaesterci daju ritmičnost čak i komičnim scenama.<br>
+            <b>Petrarkistička lirika:</b> <em style="color:var(--gold)">„Blažen čas i hip ki te rodi i mati..."</em> — anafora, idealizacija, dvostruki dvanaesterac.<br>
+            <b>Roman (Planine):</b> Mješavina proze i stiha — pripovijedanje se izmjenjuje s umješenim lirskim pjesmama vila i pastira.<br>
+            <b>Putopis / ekloga (Ribanje):</b> Konkretni topografski opisi (Hvar, Brač, Šolta) + dijalozi ribara + bugarštice. Realizam bez alegorije.<br>
+            <b>Drama s radnjom (Robinja):</b> Dijalozi koji razvijaju zaplet — Robinja i Derenčin razgovaraju, Turčin pregovara. Prva hrv. drama s pravim sukobom i rasplatom.
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">04a · Epika vs. drama — ključni kontrast</div><div class="sec-line"></div></div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:90px">ASPEKT</div><div class="cv b">EPIKA (Judita, Planine, Ribanje)</div><div class="cv b">DRAMA (Novela, Dundo, Robinja)</div></div>
+          <div class="cr"><div class="ck go" style="min-width:90px">Pripovijedač</div><div class="cv">Epski pripovijedač / lirski subjekt / alter ego pisca</div><div class="cv">Nema pripovijedača — dijalog i scenska uputa (didaskalija)</div></div>
+          <div class="cr"><div class="ck t" style="min-width:90px">Tempo</div><div class="cv">Sporiji — opis, meditacija, alegorija u prvom planu</div><div class="cv">Brži — situacijska komika, kratke replike, akcija</div></div>
+          <div class="cr"><div class="ck re" style="min-width:90px">Publika</div><div class="cv">Čitatelj (privatno čitanje ili pjevano/recitacija)</div><div class="cv">Gledatelj — predstava na pokladnim svečanostima</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:90px">Moral</div><div class="cv">Eksplicitni (Judita), alegorijski (Planine) ili odsutan (Ribanje)</div><div class="cv">Odsutan u farsi — prikazuje, ne prosuđuje</div></div>
+          <div class="cr"><div class="ck g" style="min-width:90px">Stih/proza</div><div class="cv">Uglavnom stih (dvanaesterac); Planine = mješavina</div><div class="cv">Stih (Novela, Robinja) ili proza (Dundo, Skup)</div></div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">📌</div>
+          <div class="bw-body">
+            <div class="bw-title">Što se ne ispituje — ali korisno znati</div>
+            <div class="bw-txt">NCVVO ne ispituje detaljne biografije pisaca ni puni tekst djela (samo ulomke). Ali za esej je korisno znati: <b>Lucićeva Robinja</b> nije obvezatna, ali je primjer prve hrv. drame s individualnim likovima — dobra za usporedni argument. <b>Vazetje Sigeta</b> (Krnarutić) nije obvezatno, ali je jedini hrv. <em>povijesni ep</em> — dobra za kontekstualizaciju. <em>Kosmografska poslanica</em> nije obvezatna, ali otkriva Držića kao politički angažiranog intelektualca — dobra za argumentaciju o Držićevoj kompleksnosti.</div>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">05 · Usporedna tablica pisaca</div><div class="sec-line"></div></div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:80px">PISAC</div><div class="cv"><b>Marko Marulić</b> · Split · 1450.–1524. · „otac hrv. književnosti"<br><em>Judita</em> (1501.) — ep, 6 pjevanja, 2126 dvanaesteraca; alegorija otpora Turcima. <em>Davidijada</em>, <em>Institucija</em> — latinska proza.</div></div>
+          <div class="cr"><div class="ck go" style="min-width:80px">PISAC</div><div class="cv"><b>Petar Hektorović</b> · Hvar · 1487.–1572.<br><em>Ribanje i ribarsko prigovaranje</em> (1556.) — ep/putopis/ekloga/poslanica. Zapisuje bugarštice i narodne pjesme. Put Hvar–Brač–Šolta.</div></div>
+          <div class="cr"><div class="ck t" style="min-width:80px">PISAC</div><div class="cv"><b>Petar Zoranić</b> · Zadar · ~1508.–1569.<br><em>Planine</em> (nastale oko 1543., tisk. 1569.) — prvi hrv. roman. 24 poglavlja, mješavina proze i stiha. <em>Perivoj od Slave</em> — alegorija hrv. književnosti. Motiv „rasute bašćine".</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:80px">PISAC</div><div class="cv"><b>Hanibal Lucić</b> · Hvar · 1485.–1553.<br><em>Jur nijedna na svit vila</em> — lirika u osmercima, 10 strofa. <em>Robinja</em> (1530.) — prva hrv. svjetovna drama, 3 čina.</div></div>
+          <div class="cr"><div class="ck re" style="min-width:80px">PISAC</div><div class="cv"><b>Marin Držić</b> · Dubrovnik · 1508.–1567. · zvan „Vidra"<br><em>Novela od Stanca</em> (1550.) — farsa/pokladna igra, 1 čin 7 prizora, dvanaesterci. <em>Dundo Maroje</em> (1551.) — prozna komedija, 5 činova. <em>Skup</em> (1556.) — po Plautu. <strong>★ OBVEZATNO 2026.</strong></div></div>
+        </div>
+
+        <!-- SEC 05a — Književna središta -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">05a · Književna središta hrv. renesanse</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🗺️ Geografija hrv. renesanse</div>
+          <div class="box-int-txt">
+            Hrv. renesansa nije mogla nastati u kontinentalnoj Hrvatskoj — politička situacija bila je neprijateljska (Turci, građanske borbe). <strong>Procvjetala je u 5 obalnih i otočnih gradova</strong>, svaki sa specifičnim profilom.
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">SPLIT</span>
+            <div class="sc-name">Marulićev Split</div>
+            <div class="sc-desc">Domovina Marka Marulića (1450.–1524.) i kolijevka <em>Judite</em>. Splitska humanistička škola odgojila je Marulića. Splitska čakavština je književni jezik Judite. <b>Razlikovni element:</b> kombinacija humanističke obrazovanosti (latinska proza) i narodnog jezika (Judita).</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">DUBROVNIK</span>
+            <div class="sc-name">Dubrovačka renesansa</div>
+            <div class="sc-desc"><strong>Centar hrv. renesansne književnosti</strong>. Slobodna republika s ekonomskim viškom omogućava pokroviteljstvo umjetnosti. Dom Menčetića, Džore Držića, Marina Držića. Razvija se kazališni život — <em>Pomet-družina, Njarnjas-družina</em> izvode komedije.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">HVAR</span>
+            <div class="sc-name">Hvarska škola</div>
+            <div class="sc-desc">Otočni kulturni centar. Domovina Petra Hektorovića (1487.–1572.) i Hanibala Lucića (1485.–1553.). Hvarska čakavština. Hektorović gradi Tvrdalj — utvrdu i kulturno središte. Lucić piše prvu hrv. svjetovnu dramu (<em>Robinja</em>).</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">ZADAR</span>
+            <div class="sc-name">Zadarski krug</div>
+            <div class="sc-desc">Sjeverni dalmatinski centar. Domovina Petra Zoranića (~1508.–1569.) i Brne Krnarutića (1515.–1573.). Tema turske opasnosti je naglašena (Vazetje Sigeta grada). Mješavina čakavštine i štokavštine.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">ŠIBENIK</span>
+            <div class="sc-name">Šibenska tradicija</div>
+            <div class="sc-desc">Manji ali važan centar. Pisci poput Šižgorića (latinski humanizam) i pjesnici 16. st. Manje produktivan u nacionalnoj književnosti, ali važan za latinski humanizam.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip gr">KORČULA · BRAČ</span>
+            <div class="sc-name">Otočni glasovi</div>
+            <div class="sc-desc">Manji otoci s lokalnom književnom produkcijom. Petar Hektorović u <em>Ribanju</em> spominje Brač i Šoltu — pejzaž centralne Dalmacije postaje književni prostor.</div>
+          </div>
+        </div>
+
+        <!-- SEC 05b — Dubrovačko kazalište -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">05b · Dubrovačko kazalište 16. st.</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">🎭 Kazališni život u Dubrovačkoj Republici</div>
+          <div class="box-key-txt">
+            Dubrovnik 16. st. je <strong>kazališni grad</strong>. Komedije i farse izvode se na pokladnim svečanostima, na vjenčanjima, u privatnim kućama vlastele. Glavna mjesta: <em>Knežev dvor, Pred Dvorom, Dominikanska crkva</em>. Glume <b>amaterske družine vlastele i obrtnika</b>: <em>Pomet-družina</em> (1548.) izvodi izgubljenu Pometovu komediju, kasnije <em>Njarnjas-družina</em> (1551.) izvodi <em>Dunda Maroja</em>. <em>Bez stalnog kazališta</em> — sve je prigodno i karnevalsko.
+          </div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">🎪</div>
+          <div class="bw-body">
+            <div class="bw-title">Pokladne svečanosti — kontekst Novele od Stanca</div>
+            <div class="bw-txt">Poklade su <strong>razdoblje karnevalske slobode</strong> prije korizme. Hijerarhija se preokreće, smiju se sve šale, dopušteno je ono što inače nije. <em>Novela od Stanca</em> je <b>pokladna igra</b> — pisana za baš taj kontekst. Dubrovački mladići varaju Stanca jer im to <em>karnevalske slobode</em> dopuštaju. Bez razumijevanja poklada — Novela djeluje grubo. S razumijevanjem — to je farsalna karnevalska komedija.</div>
+          </div>
+        </div>
+
+        <!-- SEC 06 -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">06 · Hrv. renesansa vs. talijanska renesansa</div><div class="sec-line"></div></div>
+
+        <div id="h11-react-compare-marulic-drzic"></div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">TEMA</div><div class="cv b">Hrv. renesansa</div><div class="cv b">Talijanska renesansa</div></div>
+          <div class="cr"><div class="ck go">Stih</div><div class="cv">Dvostruko rimovani dvanaesterac (AA BB ili AB AB)</div><div class="cv">Sonet (14 stihova), tercine, ottava rima</div></div>
+          <div class="cr"><div class="ck t">Lirika</div><div class="cv">Petrarkistički motivi <em>bez</em> soneta — melodiozniji, narodniji</div><div class="cv">Sonet po Petrarci — stroga formalna disciplina</div></div>
+          <div class="cr"><div class="ck pa">Kontekst</div><div class="cv">Turska opasnost, patriotski apeli, „rasuta bašćina"</div><div class="cv">Građanski humanizam, Medici, politika gradova-država</div></div>
+          <div class="cr"><div class="ck re">Jezik</div><div class="cv">Čakavski, štokavski, dubrovački idiom — nije normiran</div><div class="cv">Toskansko narječje — Dante, Petrarca, Boccaccio kao norme</div></div>
+          <div class="cr"><div class="ck g">Dramu</div><div class="cv">Farsa i komedija — Držić; pastorala — Džore Držić, Lucić</div><div class="cv">Commedia erudita, pastorala — Ariosto, Tasso</div></div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">💡 Ključna razlika: Marulić vs. Držić</div>
+            <div class="box-signal-txt">Marulić piše <b>ep s biblijsko-kršćanskim temama</b>, namijenjen evangelizaciji i borbi protiv Turaka. Držić piše <b>komediju i farsu</b>, namijenjen dubrovačkim pokladnim svečanostima — komentar lokalnog društva, opreka starosti i mladosti. Oba su „oci" hrv. književnosti u različitim žanrovima.</div>
+          </div>
+        </div>
+
+        <!-- SEC 07 — Jezik hrv. renesanse -->
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:110px">ASPEKT</div><div class="cv b">TALIJANSKA RENESANSA</div><div class="cv b">HRVATSKA RENESANSA</div></div>
+          <div class="cr"><div class="ck go" style="min-width:110px">Kontekst</div><div class="cv">Procvat, ekonomski rast, gradovi-države, Medici kao mecene</div><div class="cv">Turska prijetnja, gubitak teritorija, nema centralnog mecenata</div></div>
+          <div class="cr"><div class="ck t" style="min-width:110px">Ton</div><div class="cv">Optimistički — čovjek je mjera svih stvari, sloboda, ljepota</div><div class="cv">Melankoličan, patriotski, ekzistencijalno ugrožen</div></div>
+          <div class="cr"><div class="ck re" style="min-width:110px">Lirika</div><div class="cv">Sonet (14 stihova, stroga shema) — od Petrarce do Tassa</div><div class="cv">Dvostruki dvanaesterac (tradicija začinjavaca), iznimno osmesterac</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:110px">Jezik</div><div class="cv">Toskansko narječje → standardni talijanski (Dante, Petrarca, Boccaccio)</div><div class="cv">Lokalni idiomi: čakavski (Split, Hvar), štokavski (Zadar), dubrovački</div></div>
+          <div class="cr"><div class="ck g" style="min-width:110px">Kazalište</div><div class="cv">Svilene dvorane, stalna kazališta, profesionalni glumci</div><div class="cv">Pokladne svečanosti, amaterske družine vlastele, bez stalnog kazališta</div></div>
+          <div class="cr"><div class="ck br" style="min-width:110px">Dominantna tema</div><div class="cv">Humanizam, neoplatonizam, ljepota, znanje, individua</div><div class="cv">Turska opasnost, domoljublje, rasuta bašćina, ljubav i bol</div></div>
+          <div class="cr"><div class="ck go" style="min-width:110px">Europski doseg</div><div class="cv">Vodeći centar — sav ostali europski humanizam gleda na Italiju</div><div class="cv">Jedina iznimka: Marulić — <em>Institucija</em> prevedena na sve europske jezike</div></div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">⚖️ Zajednički imenitelji — što je stvarno preuzeto</div>
+          <div class="box-int-txt">
+            Unatoč razlikama, hrv. renesansa dijeli s talijanskom: <b>(1) humanistički latinitet</b> — pisci obrazovani na antičkim tekstovima (Vergilije, Ovidije, Ciceron). <b>(2) Petrarkistički repertoar</b> — motivi ljubavne lirike su isti (gospoja, Amor, nesretna ljubav). <b>(3) Pastorala</b> — idiličan pejzaž kao literarni prostor. <b>(4) Uzori iz antike</b> — Plaut za dramu, Vergilije za ep, Sannazaro za roman. <em>Hrv. renesansa je kreativna recepcija, ne kopija — svaki žanr se prilagođava lokalnoj tradiciji i kontekstu.</em>
+          </div>
+        </div>
+
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Gotove rečenice za usporedbu hrv. i tal. renesanse u eseju</div>
+          <div class="box-key-txt">
+            <em>„Talijanska renesansa slavi čovjeka kao mjeru svih stvari; hrvatska renesansa ne može slaviti — ona tuguje. Dok Italija cvjeta u ekonomskoj i kulturnoj slobodi, Hrvatska umire u podijeljenom teritoriju i stalnoj turskoj prijetnji. Ta razlika nije slabost hrv. renesanse — to je njezina autentičnost."</em><br><br>
+            <em>„Petrarcu piše sonete jer ima slobodu forme i publike. Hrv. petrarkisti pišu dvostruke dvanaesterce jer nadograđuju vlastitu začinjavačku tradiciju. Oba su petrarkisti — ali različitih tradicija."</em><br><br>
+            <em>„Jedina hrv. renesansna figura poznata u Europi je Marulić — i to ne po Juditi (hrv.) nego po Instituciji (lat.). Što govori o statusu hrv. u europskom humanizmu 16. st."</em>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">07 · Jezik hrvatske renesanse</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🗣️ Nije bio „jedan" hrvatski — tri idioma</div>
+          <div class="box-int-txt">
+            U 15.–16. st. <strong>ne postoji normirani hrvatski standard</strong>. Pisci pišu lokalnim govorima — onim koji im je zavičajni. Tri idioma su prisutna u renesansnoj književnosti: <b>čakavski</b> (Split, Hvar, dalmatinski otoci), <b>štokavski</b> (Zadar, kontinentalna Dalmacija) i <b>dubrovački idiom</b> (koji je mješavina štokavice s čakavskim i talijanskim elementima). Svaki pisac je ujedno i svjedok svog lokalnog govora.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:110px">IDIOM</div><div class="cv b">PISCI</div><div class="cv b">KARAKTERISTIKE</div></div>
+          <div class="cr"><div class="ck go" style="min-width:110px">Čakavski</div><div class="cv">Marulić (Split), Hektorović (Hvar), Lucić (Hvar)</div><div class="cv"><em>Judita</em> pisana splitskom čakavštinom. Marulić u posveti navodi: „versih harvacki složena". Stariji, arhaičniji govor — bliže latinskom leksiku.</div></div>
+          <div class="cr"><div class="ck t" style="min-width:110px">Štokavski</div><div class="cv">Zoranić (Zadar), Krnarutić (Zadar)</div><div class="cv">Mješavina čakavsko-štokavska u Zoranićevim <em>Planinama</em>. Zadarski pisci na granici dijalekata.</div></div>
+          <div class="cr"><div class="ck re" style="min-width:110px">Dubrovački idiom</div><div class="cv">Menčetić, Džore Držić, Marin Držić</div><div class="cv">Štokavska osnova s čakavskim i talijanskim elementima. <strong>Postaje de facto književni standard</strong> — Dubrovnik kao kulturni centar nameće svoj idiom kao „prestižni govor".</div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">⚡ Zašto to znaš za maturu</div>
+          <div class="box-key-txt">
+            Ispit može pitati <b>na kojem je jeziku/narječju napisano određeno djelo</b> ili usporediti jezičnu situaciju hrv. renesanse s kasnijim standardiziranjem. Ključne tvrdnje: <em>Judita</em> = splitska čakavština; <em>Ranjinin zbornik</em> = dubrovački idiom; <em>Dundo Maroje</em> = prozna dubrovačka štokavica. Sve su to <b>lokalni govori</b>, nije „standardni" hrv. — standardizacija dolazi tek u 19. st. s Preporodom (Vuk Stefanović Karadžić, Gaj, Babukić).
+          </div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">⚡</div>
+          <div class="bw-body">
+            <div class="bw-title">Latinski vs. narodni jezik — ključna napetost</div>
+            <div class="bw-txt">Humanisti 15.–16. st. pišu <strong>i latinski i narodni jezik</strong>. Marulić je savršen primjer: <em>Institucija</em> na latinskom (za europsku publiku), <em>Judita</em> na hrvatskom (za domaću). <b>Paradoks:</b> Marulić je poznatiji u Europi po latinskim djelima. U hrv. književnoj povijesti — Judita je „temelj". Isti autor, dva identiteta.</div>
+          </div>
+        </div>
+
+        <!-- SEC 08 — Ključni međuodnosi pisaca -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">08 · Međuodnosi — tko se oslanja na koga</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔗 Književni lanac hrv. renesanse</div>
+          <div class="box-int-txt">
+            Hrv. renesansni pisci nisu izolirani — čitaju jedni druge, citiraju zajedničke uzore, grade tradiciju. Razumijevanje ovih veza pomaže u esejskim argumentima.
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">VEZA</span>
+            <div class="sc-name">Marulić → Začinjavci</div>
+            <div class="sc-desc">Marulić izrijekom kaže da nastavlja tradiciju <em>začinjavaca</em> (hrv. srednovjekovnih pjesnika-svećenika) — preuzima od njih dvostruko rimovani dvanaesterac. <b>Kontinuitet tradicije</b>: renesansa ne briše srednji vijek, nego ga integrira.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">VEZA</span>
+            <div class="sc-name">Menčetić + Džore Držić → Lucić</div>
+            <div class="sc-desc">I. generacija petrarkista (Dubrovnik) utire put II. generaciji. Lucić preuzima petrarkistički osjećajni repertoar, ali ga <em>neoplatonizira</em> i mijenja stih (osmesterac umjesto dvanaesterca). <b>Evolucija unutar tradicije</b>.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">VEZA</span>
+            <div class="sc-name">Džore Držić → Marin Držić</div>
+            <div class="sc-desc">Isti prezimen, isti grad — Džore je Marinov stric (ili daleki rod). Džore piše prvu hrv. pastoralnu dramu (<em>Radmio i Ljubmir</em>). Marin razvija dramu daleko složenije — farsa, komedija, satirična dimenzija. <b>Obiteljski + književni lanac</b>.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">VEZA</span>
+            <div class="sc-name">Zoranić → Perivoj od Slave → manifesti 19. st.</div>
+            <div class="sc-desc">Zoranićev poziv na gradnju hrv. književnosti u <em>Planinama</em> (1543.) anticipira <b>Ilirski preporod</b> (1835.) za skoro 300 godina. <em>Motiv rasute bašćine</em> vraća se u rodoljubnoj poeziji Preporoda. <b>Zoranić kao preteča</b>.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">VEZA</span>
+            <div class="sc-name">Hektorović — izolirani realist</div>
+            <div class="sc-desc">Hektorović nema izravnih nastavljača u 16. st. — njegov <em>realizam</em> je prenapredna za svoje doba. Ali <b>bilježenje usm. tradicije</b> (bugarštice) utječe na romantičare koji 300 god. kasnije traže narodnu baštinu. <b>Budući, ne sadašnji utjecaj</b>.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip gr">VEZA</span>
+            <div class="sc-name">Svi pisci → Turska opasnost</div>
+            <div class="sc-desc">Jedini zajednički tema svih pisaca hrv. renesanse je <em>turska opasnost</em>. Marulić (alegorija), Hektorović (opis opustjelih krajeva), Zoranić (rasuta bašćina), Lucić (Robinja o ropstvu). <b>Lokalna specifičnost koja hrv. renesansu razlikuje od talijanske</b>.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip br">VEZA</span>
+            <div class="sc-name">Marulić → Europska književnost</div>
+            <div class="sc-desc">Marulić je <em>jedini hrv. renesansni pisac poznat u Europi za života</em>. <b>Institucija</b> (lat.) prevedena na sve europske jezike — 16 izdanja do 1600. Erasmo Roterdamski ga citira. To je most između hrv. i europske renesanse koji svi ostali hrv. pisci nemaju.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">VEZA</span>
+            <div class="sc-name">Marin Držić → Europska komedija</div>
+            <div class="sc-desc">Dok je za života bio nepoznat izvan Dubrovnika, Marin Držić je u 20. st. <em>„rehabilitiran"</em> kao jedan od prvih modernih europskih komediografa. Česte usporedbe s Moliéreom (koji piše 100 god. poslije). <b>Lokalni pisac s europskim značajem</b> — ali to su prepoznali tek kasniji generacije.</div>
+          </div>
+        </div>
+
+
+
+        <!-- SEC 09 — Matura savjeti -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">09 · Kako H11 izgleda na ispitu</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">📝 Što NCVVO može pitati iz H11</div>
+          <div class="box-int-txt">
+            <b>Čitanje književnog teksta:</b> Ulomak iz Novele od Stanca (obvezatno!), eventualno ulomak iz Judite ili Planina. 5 pitanja višestrukoga izbora — razumijevanje, preneseno značenje, stilska sredstva.<br>
+            <b>Teorija i povijest književnosti:</b> Definicija petrarkizma, bugarštica, pastorala, farsa, dvostruki dvanaesterac. Tko je autor kojeg djela. Koje je književno razdoblje.<br>
+            <b>Školski esej:</b> Za 2026. esej NE može biti o Juditi (nije na popisu). Ali Novela od Stanca <em>nije</em> na popisu eseja — esej je o: Calderón, Goethe, Krleža, Marinković, Novak, Petrarca. H11 se može koristiti za <em>kontekstualizaciju</em> (usporedba s Marulićem ili Zoranićem unutar eseja o drugom djelu).
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip go">ISPIT</span>
+            <div class="sc-name">Pitanja koja se ponavljaju</div>
+            <div class="sc-desc"><em>Tko je autor Judite?</em> <em>Što je bugarštica?</em> <em>Pišu li hrv. petrarkisti sonete?</em> <em>Što je Perivoj od Slave?</em> <em>Što je farsa?</em> <em>Kada je Novela od Stanca praizvedena?</em> <em>Tko je „otac hrv. književnosti"?</em> — sve ovo se pojavljuje redovito.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">ISPIT</span>
+            <div class="sc-name">Česte zamke</div>
+            <div class="sc-desc"><em>Džore Držić ≠ Marin Držić.</em> <em>Hrv. petrarkisti ne pišu sonete.</em> <em>Judita nije tiskana 1501. nego 1521.</em> <em>Planine nisu roman u modernom smislu — žanrovski su hibrid.</em> <em>Hektorović nije dubrovački pisac — on je hvarski.</em></div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip br">ISPIT</span>
+            <div class="sc-name">Ulomak iz Novele — što gledati</div>
+            <div class="sc-desc">Kojeg je prizora? Koje opreke su aktivne (mlado–staro, vlastela–seljak)? Koji je ton (komičan, ironičan, blago tragičan)? Stilska sredstva: <em>dvanaesterac, dijalog, dramska ironija, komika situacije</em>. Veza s cjelinom.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">ISPIT</span>
+            <div class="sc-name">Za napredni odgovor</div>
+            <div class="sc-desc">Poveži H11 s ostalim poglavljima: Novela od Stanca i Kafka (apsurd prijevare), Marulić i Mažuranić (ep i domoljublje), petrarkizam i modernistička lirika (Šimić, Ujević — odmak od petrarkizma). <em>Interdisciplinarni odgovor = veći broj bodova.</em></div>
+          </div>
+        </div>
+
+
+
+        <!-- SEC 09b — Ključni kontrasti za esej -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">09a · Ključni kontrasti hrv. renesanse</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">⚖️ 8 kontrasta koji ulaze u svaki esej</div>
+          <div class="box-int-txt">
+            Ispit voli usporedbu. Svaki od ovih kontrasta može biti <strong>teza eseja, argument ili zaključna misao</strong>. Zapamti ih kao parove.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:130px">KONTRAST</div><div class="cv b">STRANA A</div><div class="cv b">STRANA B</div></div>
+          <div class="cr"><div class="ck go" style="min-width:130px">Alegorija vs. realizam</div><div class="cv">Marulić (<em>Judita</em>): stvarnost kodirana u biblijsku priču</div><div class="cv">Hektorović (<em>Ribanje</em>): stvarnost prikazana izravno — more, ribari, bugarštice</div></div>
+          <div class="cr"><div class="ck t" style="min-width:130px">Moral vs. bez morala</div><div class="cv">Marulić: eksplicitan kršćanski moral — pobožnost pobjeđuje; Lucić: ljubav vodi k Bogu</div><div class="cv">Držić (<em>Novela</em>): farsa prikazuje, ne prosuđuje — nema moralne pouke</div></div>
+          <div class="cr"><div class="ck re" style="min-width:130px">Ep vs. drama</div><div class="cv">Marulić (<em>Judita</em>): epska forma, narativni pripovijedač, alegorija</div><div class="cv">Držić (<em>Novela</em>): dramska forma, dijalog, situacijska komika</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:130px">Latin vs. narodni jezik</div><div class="cv">Marulić pišu latinskim za europsku publiku (<em>Institucija</em>)</div><div class="cv">Marulić piše hrvatskim za domću publiku (<em>Judita</em>) — isti autor, dva identiteta</div></div>
+          <div class="cr"><div class="ck g" style="min-width:130px">Ljubav vs. domoljublje</div><div class="cv">Menčetić, Lucić: ljubavna tematika kao primarna</div><div class="cv">Zoranić (<em>Planine</em>): ljubav i domoljublje su nerazdvojivi — osobna tuga = nacionalna tuga</div></div>
+          <div class="cr"><div class="ck br">Ideal vs. stvarnost</div><div class="cv">Pastoralni ideal: vile, ribari, idiličan krajoliz, ljubavni razgovori</div><div class="cv">Turska stvarnost: rasuta bašćina, opustjeli otoci, ropstvo (Lucić, <em>Robinja</em>)</div></div>
+          <div class="cr"><div class="ck go">Sonet vs. dvanaesterac</div><div class="cv">Petrarca: sonet (14 stihova, toscanski idiom, stroga shema)</div><div class="cv">Hrv. petrarkisti: dvostruki dvanaesterac (tradicija začinjavaca, lokalni idiom)</div></div>
+          <div class="cr"><div class="ck t">Mlado vs. staro</div><div class="cv">Mladići: lukavost, gradski kod, pokladna sloboda</div><div class="cv">Stanec: naivnost, tuga, seoska jednostavnost — žrtva karnevala</div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Rečenice za esej koje koriste kontraste</div>
+          <div class="box-key-txt">
+            <em>„Za razliku od Marulića koji kodira domoljubni apel u biblijsku alegoriju, Hektorović bilježi stvarnost izravno — oba su odgovori na istu prijetnju, ali suprotnih poetičkih strategija."</em><br>
+            <em>„Dok Marulić u Juditi nudi eksplicitnu moralnu poruku (pobožnost pobjeđuje), Držić u Noveli od Stanca odbija moralizirati — farsa prikazuje, ne prosuđuje."</em><br>
+            <em>„Zoranić u Planinama spaja ono što drugi hrv. renesansni pisci drže odvojenima: ljubavnu melankoliju i patriotski bol — u njemu su to iste emocije s različitim imenima."</em>
+          </div>
+        </div>
+
+        <!-- SEC 10 — Primjeri ispitnih pitanja s odgovorima -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">10 · Primjeri ispitnih pitanja s odgovorima</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">✅ Vježbaj odgovoriti točno i precizno</div>
+          <div class="box-int-txt">
+            Ova pitanja su tipični oblici kakvi se pojavljuju u testu teorije i povijesti književnosti. Klikni svako pitanje da vidiš model odgovora.
+          </div>
+        </div>
+
+        <div class="scenes">
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">P1</div>
+              <div class="scene-ttl">Što je petrarkizam i po čemu se hrv. petrarkisti razlikuju od talijanskih?</div>
+              <div class="scene-meta">TEORIJA</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Petrarkizam je lirski pravac inspiriran Petrarcinim Kanconijerom — ljubavna lirika s motivima nesretne ljubavi, idealizirane gospoje, Amora, antiteza boli i slasti. Hrv. petrarkisti preuzimaju tematiku, ali MIJENJAJU FORMU: umjesto Petrarcinog soneta (14 stihova), pišu dvostruko rimovane dvanaesterce. Iznimka: Lucić u „Jur nijedna na svit vila" piše osmerce. Razlog: sonet je nastao iz talijanske lirike — u hrv. tradiciji ne postoji sonetna tradicija, postoji tradicija dvanaesterca (od začinjavaca).</div>
+              <div class="scene-why"><b>Ključni pojmovi za odgovor:</b> petrarkizam, sonet, dvostruko rimovani dvanaesterac, osmesterac (Lucić), I. generacija (Menčetić, Džore Držić), II. generacija (Lucić — neoplatonizacija), Ranjinin zbornik.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">P2</div>
+              <div class="scene-ttl">Zašto se Marin Držić naziva „Vidrom" i kako je to povezano s njegovim literarnim likom?</div>
+              <div class="scene-meta">PISAC</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Nadimak „Vidra" (tal. Anguilla) Marin Držić je dobio kao student u Sieni — vjerojatno zbog lukavosti i sposobnosti izvlačenja iz neugodnih situacija (vidra je poznata po klizavosti). Ironično, taj nadimak savršeno opisuje i njegov literarni lik: Držić je čovjek koji se cijeli život izvlačio — iz financijskih problema, iz sukoba s vlastelom, iz kazališnih skandala. Na kraju ipak ne uspijeva — umire sam u Veneciji 1567. Kosmografska poslanica (1566.) je posljednji pokušaj „izvlačenja" — revolucija koja se nije zbila.</div>
+              <div class="scene-why"><b>Ključni pojmovi:</b> Vidra/Anguilla, Siena, Kosmografska poslanica, Cosimo de' Medici, politički angažman, 1567. Venecija.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">P3</div>
+              <div class="scene-ttl">Što je bugarštica i zašto je Hektorovićevo Ribanje važno za hrv. usm. tradiciju?</div>
+              <div class="scene-meta">ŽANR</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Bugarštica je vrsta hrv. epske narodne pjesme koja se odlikuje dugim stihovima (15–16 slogova) i tužnim, elegičnim tonom (bugarkinja = tuga). Starija je od kasnijih deseteračkih epskih pjesama. Hektorović u Ribanju bilježi dvije bugarštice koje mu pjevaju ribari Nikola Zet i Paskoje Debeli: „Kraljević Marko i brat mu Andrijaš" i „Radosav Siverinac i Vlatko udinski vojvoda". Ovo je NAJSTARIJI ZAPIS bugarštica u hrv. književnosti — bez Hektorovića, te bi pjesme bile zauvijek izgubljene. Ribanje je tako književno djelo I kulturnopovijesni dokument.</div>
+              <div class="scene-why"><b>Ključni pojmovi:</b> bugarštica, 15–16 slogova, Nikola Zet, Paskoje Debeli, Kraljević Marko, najstariji zapis, kulturni arhiv.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">P4</div>
+              <div class="scene-ttl">Objasni alegoriju u Juditi Marka Marulića.</div>
+              <div class="scene-meta">DJELO</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Judita je biblijska priča o udovici Juditi koja ubija asirskog vojvodu Holoferna kako bi oslobodila židovski grad Betuliju. Marulić tu priču koristi alegorijski: Holoferno = turska vojska/sultan; Judita = Hrvatska/kršćanski narod; Betulija = hrv. gradovi pod opsadom; Bog Izraelov = kršćanski Bog koji pomaže slabijima; pobjeda Judite = nada u oslobođenje. Alegorija funkcionira jer su strukturne paralele jasne — i Judita i Hrvatska su „slabija strana" koja pobjeđuje uz Božju pomoć. Marulić ne mora ništa reći eksplicitno — čitatelji 16. st. odmah prepoznaju paralelu.</div>
+              <div class="scene-why"><b>Ključni pojmovi:</b> alegorija, Holoferno = Turci, Judita = Hrvatska, Betulija = hrv. gradovi, 6 pjevanja, 2126 dvanaesteraca, splitska čakavština.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">P5</div>
+              <div class="scene-ttl">Što je Perivoj od Slave i zašto je važan za hrv. književnopovijesnu svijest?</div>
+              <div class="scene-meta">DJELO</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Perivoj od Slave je epizoda u Zoranićevim Planinama gdje protagonist Zoran ulazi u alegorijski vrt s četiri vile: Latinkom (latinska književnost), Grkinjom (grčka), Kaldejkom (istočnjačka) i Hrvaticom (hrvatska). Svaka čuva jabučnjak koji simbolizira stanje njezine književnosti. Hrvatska vila ima najmanje i najlošije jabuke — to je Zoranićeva alegorija za loše stanje hrv. književnosti 1543. Važnost: ovo je PRVI EKSPLICITNI KNJIŽEVNI MANIFEST NA HRVATSKOM — Zoranić poziva na gradnju hrv. nacionalne književnosti 300 godina prije Ilirskog preporoda. Ta ideja anticipira Gajevo buđenje nacionalne svijesti u 19. st.</div>
+              <div class="scene-why"><b>Ključni pojmovi:</b> Perivoj od Slave, 4 vile, jabuke = književnost, Hrvatska vila, manifest, rasuta bašćina, anticipacija Preporoda.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">P6</div>
+              <div class="scene-ttl">Po čemu se Novela od Stanca razlikuje od Dunda Maroja?</div>
+              <div class="scene-meta">USPOREDBA</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Novela od Stanca (1550.): farsa, 1 čin, 7 prizora, dvostruko rimovani dvanaesterci, pokladna igra, tipski likovi (Stanec = naivni seljak, mladići = lukava vlastela), bez moralne pouke, situacijska komika. Dundo Maroje (1551.): renesansna komedija, 2 prologa + 5 činova, proza, razrađeni likovi (Dundo, Maro, Laura, Pomet, Negromant), filozofski okvir (nazbilji vs. nahvao), radnja u Rimu, kraj nedostaje (Kombol). Zajedničko: dubrovački idiom, Marin Držić kao autor, komičan odnos prema novcu i ljubavi.</div>
+              <div class="scene-why"><b>Ključni razlike:</b> farsa vs. komedija, stih vs. proza, 1 čin vs. 5 činova, tipski vs. razvijeni likovi, Dubrovnik vs. Rim, bez filozofije vs. Negromant.</div>
+            </div>
+          </details>
+        </div>
+
+
+        <!-- SEC 11 — Svi ključni likovi -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">11 · Svi ključni likovi hrv. renesanse</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">👤 Likovi koje trebas znati za maturu</div>
+          <div class="box-int-txt">
+            Ispit može pitati o liku iz bilo kojeg obvezatnog dijela. Ova tablica je brza referenca — autor, djelo, funkcija lika, ključni citat ili opis.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:100px">LIK</div><div class="cv b">DJELO / AUTOR</div><div class="cv b">FUNKCIJA / TIP</div><div class="cv b">KLJUČNO</div></div>
+          <div class="cr"><div class="ck go" style="min-width:100px">Judita</div><div class="cv">Marulić, <em>Judita</em></div><div class="cv">Heroina — Božje oruđe; udovica; pobožna, hrabra, lijepa</div><div class="cv">Alegorija: Hrvatska koja uz Božju pomoć pobjeđuje Turke</div></div>
+          <div class="cr"><div class="ck re" style="min-width:100px">Holoferno</div><div class="cv">Marulić, <em>Judita</em></div><div class="cv">Antagonist — asirski vojvoda; okrutan, arogantan, žudan</div><div class="cv">Alegorija: turska vojska/sultan; njegova žudnja = propast</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:100px">Abra</div><div class="cv">Marulić, <em>Judita</em></div><div class="cv">Juditina sluškinja — vjerna pratiteljica; skriva glavu</div><div class="cv">Simbol narodne vjere u Juditino vodstvo</div></div>
+          <div class="cr"><div class="ck g" style="min-width:100px">Ozija</div><div class="cv">Marulić, <em>Judita</em></div><div class="cv">Starješina Betulije — kolebljiv, spreman predati grad</div><div class="cv">Kontrast Juditi: on čeka, ona djeluje</div></div>
+          <div class="cr"><div class="ck br" style="min-width:100px">Stanec</div><div class="cv">Držić, <em>Novela od Stanca</em></div><div class="cv">Tip „naivnog seljaka" — star, tužan, iz Trebinja</div><div class="cv">★ Žrtva karnevala; žudi za mladošću; tragični element farse</div></div>
+          <div class="cr"><div class="ck go" style="min-width:100px">Vlaho, Miho, Dživo</div><div class="cv">Držić, <em>Novela od Stanca</em></div><div class="cv">Dubrovački mladići-vlastela — lukavci, traže zabavu</div><div class="cv">Tip „lukave vlastele"; bez moralne osude</div></div>
+          <div class="cr"><div class="ck t" style="min-width:100px">Dundo Maroje</div><div class="cv">Držić, <em>Dundo Maroje</em></div><div class="cv">Škrti otac — dolazi u Rim po sina Mara i novac</div><div class="cv">Tip „škrtog oca"; pohlepa vs. roditeljska ljubav</div></div>
+          <div class="cr"><div class="ck re" style="min-width:100px">Pomet (sluga)</div><div class="cv">Držić, <em>Dundo Maroje</em></div><div class="cv">Lukavi sluga — najinteligentniji lik drame</div><div class="cv">Nasljeđe commedia dell'arte (Arlecchino); pobjeđuje lukavošću</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:100px">Negromant</div><div class="cv">Držić, <em>Dundo Maroje</em> (prolog)</div><div class="cv">Čarobnjak — filozofski uvod drame</div><div class="cv">„Nazbilji" vs. „nahvao" — autorski glas</div></div>
+          <div class="cr"><div class="ck g" style="min-width:100px">Zoran</div><div class="cv">Zoranić, <em>Planine</em></div><div class="cv">Alter ego pisca — putnik koji liječi ljubavnu bol</div><div class="cv">Pasivni promatrač; pati za Jagom; vidi Perivoj od Slave</div></div>
+          <div class="cr"><div class="ck br" style="min-width:100px">Hrvatska vila</div><div class="cv">Zoranić, <em>Planine</em> (Perivoj od Slave)</div><div class="cv">Alegorija hrv. književnosti — tužna, sramežljiva</div><div class="cv">Jabuke = stanje hrv. književnosti; ključna za manifest</div></div>
+          <div class="cr"><div class="ck go" style="min-width:100px">Nikola Zet + Paskoje Debeli</div><div class="cv">Hektorović, <em>Ribanje</em></div><div class="cv">Ribari — sugovornici, pjevači bugarštica</div><div class="cv">Mudrost svakodnevice; demokratizacija humanizma</div></div>
+          <div class="cr"><div class="ck t" style="min-width:100px">Robinja</div><div class="cv">Lucić, <em>Robinja</em></div><div class="cv">Zarobljena kći bana — žrtva turskog ropstva</div><div class="cv">Prva individualizirana lik u hrv. drami; ima ime i povijest</div></div>
+          <div class="cr"><div class="ck re" style="min-width:100px">Derenčin</div><div class="cv">Lucić, <em>Robinja</em></div><div class="cv">Hrv. vitez koji otkupljuje robinju</div><div class="cv">Ljubav pobjeđuje pohlepu; moralni hero drame</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:100px">Skup</div><div class="cv">Držić, <em>Skup</em></div><div class="cv">Stari škrtac — čuva blago, želi udati kćer za bogatog</div><div class="cv">Po Plautovom Euklion; kritika pohlepe kao društv. vrijednosti</div></div>
+        </div>
+
+
+        <!-- SEC 12 — Kratki profili pisaca -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">12 · Kratki profili — pisac na prstu</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">⚡ Svaki pisac u 3 rečenice</div>
+          <div class="box-int-txt">Idealno za ponavljanje uoči ispita. Svaka kartica = minimum koji trebaš znati.</div>
+        </div>
+
+        <div class="scenes">
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">M</div><div class="scene-ttl">Marko Marulić — <em>otac hrv. književnosti</em></div><div class="scene-meta">SPLIT · 1450.–1524.</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Splitski humanist. Judita (1501./1521.): ep, 6 pjevanja, 2126 dvanaesteraca, splitska čakavština. Alegorija: Holoferno = Turci, Judita = Hrvatska, Betulija = hrv. gradovi. Institucija (1507., latinski) prevedena na sve europske jezike.</div>
+              <div class="scene-why"><b>Na prstu:</b> Split · Judita 1501./1521. · 6 pjev. · 2126 dvanaest. · alegorija Holoferno=Turci · Institucija (lat.) · otac hrv. knj.</div>
+            </div>
+          </details>
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">D</div><div class="scene-ttl">Marin Držić — <em>Vidra · ★ obvezatno 2026.</em></div><div class="scene-meta">DUBROVNIK · 1508.–1567.</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Dubrovački komediograf (nadimak „Vidra"). Novela od Stanca (1550.): farsa, 1 čin, 7 prizora, dvanaesterci, ★ obvezatno. Dundo Maroje (1551.): najstarija hrv. prozna drama, 5 čin., kraj nedostaje (Kombol). Skup (1556.): po Plautovoj Aululariji. Kosmografska poslanica (1566.): tajna poruka Medicijima. Umire sam u Veneciji 1567.</div>
+              <div class="scene-why"><b>Na prstu:</b> Dubrovnik · Vidra · Novela 1550. ★ · 1 čin 7 prizora · Dundo 1551. proza · Skup Plaut · Kosmografska · Venecija 1567.</div>
+            </div>
+          </details>
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">H</div><div class="scene-ttl">Petar Hektorović — <em>ribarski humanist</em></div><div class="scene-meta">HVAR · 1487.–1572.</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Hvarski vlastelin, graditelj Tvrdalja (UNESCO). Ribanje (1556.): trodnevno putovanje Hvar→Brač→Šolta, bilježi bugarštice (Nikola Zet, Paskoje Debeli) — najstariji zapis. Žanr: ep + putopis + ekloga + poslanica. Za razliku od Marulića ne alegorijizira — bilježi stvarnost.</div>
+              <div class="scene-why"><b>Na prstu:</b> Hvar · Tvrdalj · Ribanje 1556. · bugarštice · Nikola Zet · 3 dana · realizam ne alegorija.</div>
+            </div>
+          </details>
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">Z</div><div class="scene-ttl">Petar Zoranić — <em>prvi hrv. romanopisac</em></div><div class="scene-meta">ZADAR · ~1508.–1569.</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Zadarski humanist. Planine (~1543./1569.): prvi hrv. roman, žanrovski hibrid (pastorala + putopis + alegorija + lirika), 24 poglavlja. Protagonist Zoran (alter ego). Perivoj od Slave: 4 vile, Hrvatska vila s najlošijim jabukama = alegorija lošeg stanja hrv. knj. Rasuta bašćina = razdrobljena domovina.</div>
+              <div class="scene-why"><b>Na prstu:</b> Zadar · Planine ~1543./1569. · prvi hrv. roman · Zoran · Perivoj od Slave · Hrvatska vila · rasuta bašćina · manifest.</div>
+            </div>
+          </details>
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">Men</div><div class="scene-ttl">Šiško Menčetić — <em>I. generacija petrarkizma</em></div><div class="scene-meta">DUBROVNIK · 1457.–1527.</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Dubrovački vlastelin, najzastupljeniji u Ranjininom zborniku (1507.). Dvostruki dvanaesterci (ne soneti!). Senzualan ton — opisuje sve stadije ljubavi. Blažen čas i hip: anafora, idealizacija gospoje, petrarkistički euforizam.</div>
+              <div class="scene-why"><b>Na prstu:</b> Dubrovnik · I. gen. · Ranjinin zbornik · Blažen čas i hip · dvanaesterac · senzualan · anafora.</div>
+            </div>
+          </details>
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">L</div><div class="scene-ttl">Hanibal Lucić — <em>II. generacija, prva hrv. drama</em></div><div class="scene-meta">HVAR · 1485.–1553.</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Hvarski vlastelin. Robinja (1530.): prva hrv. drama s razrađenom radnjom, 3 čina, tema ropstva (Derenčin otkupljuje robinju). Jur nijedna na svit vila: osmesterci, neoplatonizam, II. gen. petrarkizma. Razlika od Menčetića: manje senzualnosti, više filozofije.</div>
+              <div class="scene-why"><b>Na prstu:</b> Hvar · Robinja 1530. · prva hrv. drama · Derenčin · Jur nijedna · osmesterac · II. gen. · neoplatonizam.</div>
+            </div>
+          </details>
+        </div>
+
+
+        <!-- SEC 13 — Nasljeđe hrv. renesanse -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">13 · Nasljeđe hrv. renesanse u kasnijim epohama</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔗 Od renesanse prema modernom hrv. kazalištu i književnosti</div>
+          <div class="box-int-txt">
+            Hrv. renesansa nije završila s Krnarutićem (1584.) — ona je postavila temelje na kojima se gradi cijela kasnija hrv. literatura. Ova veza je korisna za esejski kontekst.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:110px">RENESANSNI IZVOR</div><div class="cv b">KASNIJA EPOHA / PISAC</div><div class="cv b">VEZA</div></div>
+          <div class="cr"><div class="ck go" style="min-width:110px">Zoranić — Perivoj od Slave (1543.)</div><div class="cv">Ilirski preporod — Gaj, Babukić (1835.)</div><div class="cv">Zoranić poziva na gradnju hrv. književnosti — 300 godina kasnije Preporod to ostvaruje. Isti apel, drugačija epoha.</div></div>
+          <div class="cr"><div class="ck t" style="min-width:110px">Hektorović — bugarštice (1556.)</div><div class="cv">Vuk Stefanović Karadžić — sakuplja epske pjesme (19. st.)</div><div class="cv">Hektorović je zapisao narodne bugarštice 300 god. prije romantičara. Prvi arhivar hrv. usmene tradicije.</div></div>
+          <div class="cr"><div class="ck re" style="min-width:110px">Držić — pohlepa i komedija (16. st.)</div><div class="cv">Krleža — Glembajevi, gospodska dekadencija (20. st.)</div><div class="cv">Oba kritiziraju moralnu dekadencu imućnog sloja — Držić komedijom, Krleža tragedijom. 400 god. tradicije.</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:110px">Marulić — Judita, alegorija (1501.)</div><div class="cv">Mažuranić — Smrt Smail-age (1846.)</div><div class="cv">Oba pišu ep o borbi s neprijateljem kao moralnoj dužnosti. Oba koriste ep kao politički i patriotski instrument.</div></div>
+          <div class="cr"><div class="ck g" style="min-width:110px">Krnarutić — Vazetje Sigeta (1584.)</div><div class="cv">Ivan Gundulić — Osman (17. st.) · Goethe — Zriny (19. st.)</div><div class="cv">Sigetska tema kao motiv hrv. heroizma koji traje kroz stoljeća — od Krnarutića do europskih pisaca koji slavljeni Zrinskog.</div></div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">💡 Zašto ovo znaš za maturu</div>
+            <div class="box-signal-txt">Kad pišeš esej o Krleži, Mažuraniću ili suvremenom piscu — možeš referencirati hrv. renesansu kao izvor tradicije. Primjer: <em>„Krležina kritika dubrovačke vlastele u Glembajevima nasljeđuje Držićevu satiričnu dimenziju — ali Držić se smije, Krleža tuguje. Isti predmet, 400 godina i žanrovski preokret."</em></div>
+          </div>
+        </div>
+
+
+        <!-- SEC 14 — Finalni pregled za ponavljanje -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">14 · Finalni pregled — sve u 5 minuta</div><div class="sec-line"></div></div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">TEMA</div><div class="cv b">KLJUČNA TVRDNJA</div><div class="cv b">KLJUČNI POJAM</div></div>
+          <div class="cr"><div class="ck go">Marulić — Judita</div><div class="cv">Alegorija hrv. otpora: Holoferno = Turci, Judita = Hrvatska. 6 pjev., 2126 dvanaest., splitska čakavština, 1501./1521.</div><div class="cv">Alegorija, ep, invokacija, začinjavci, dvostruki dvanaesterac</div></div>
+          <div class="cr"><div class="ck t">Menčetić — Blažen čas</div><div class="cv">I. gen. petrarkizma. Dvostruki dvanaesterac (ne sonet!). Anafora, senzualna idealizacija gospoje.</div><div class="cv">Petrarkizam, I. gen., dvanaesterac, anafora, gospoja</div></div>
+          <div class="cr"><div class="ck re">Džore Držić — lirika</div><div class="cv">I. gen. petrarkizma, filozofičniji od Menčetića. Radmio i Ljubmir = prva hrv. pastoralna drama.</div><div class="cv">I. gen., neoplatonizam, pastoralna drama ≠ Marin Držić!</div></div>
+          <div class="cr"><div class="ck pa">Lucić — Robinja + lirika</div><div class="cv">Robinja (1530.): prva hrv. drama s razrađenom radnjom, tema ropstva, moral. Jur nijedna: osmesterac, II. gen.</div><div class="cv">II. gen., osmesterac, prva hrv. drama, neoplatonizam</div></div>
+          <div class="cr"><div class="ck g">Hektorović — Ribanje</div><div class="cv">Trodnevni putopis Hvar→Brač→Šolta. Bilježi bugarštice (Nikola Zet). Realizam ne alegorija. Ep+putopis+ekloga+poslanica.</div><div class="cv">Bugarštica, realizam, otium, Tvrdalj, Nikola Zet</div></div>
+          <div class="cr"><div class="ck br">Zoranić — Planine</div><div class="cv">Prvi hrv. roman (~1543./1569.). Perivoj od Slave: Hrvatska vila = loše jabuke = loše stanje hrv. knj. Rasuta bašćina = domovina pod Turcima.</div><div class="cv">Perivoj od Slave, rasuta bašćina, književni manifest, alter ego</div></div>
+          <div class="cr"><div class="ck go">Marin Držić — Novela od Stanca ★</div><div class="cv">Farsa, 1 čin, 7 prizora, 1550. Poklade kao dramski uvjet. Stanec = naivni seljak. Bez moralne osude. ★ OBVEZATNO 2026.</div><div class="cv">Farsa, pokladna igra, komika situacije, dramska ironija, Vidra</div></div>
+          <div class="cr"><div class="ck t">Krnarutić — Vazetje Sigeta</div><div class="cv">Prvi hrv. povijesni ep (1584.). Opsada Sigeta 1566., Zrinski. Bez alegorije — direktni opis stvarnog događaja.</div><div class="cv">Povijesni ep, Nikola Šubić Zrinski, Siget 1566.</div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">⚡ 5 zamki koje SVAKI student pogriješi</div>
+          <div class="box-key-txt">
+            <b>ZAMKA 1:</b> Hrv. petrarkisti PIŠU sonete — <em>NE, pišu dvostruke dvanaesterce</em>.<br>
+            <b>ZAMKA 2:</b> Džore Držić = Marin Držić — <em>NE, Džore je petrarkist (†1501.), Marin je komediograf (†1567.)</em>.<br>
+            <b>ZAMKA 3:</b> Judita je tiskana 1501. — <em>NE, dovršena 1501., tiskana 1521.</em><br>
+            <b>ZAMKA 4:</b> Planine su „pravi" roman — <em>NE, žanrovski su hibrid (pastorala+putopis+alegorija+lirika)</em>.<br>
+            <b>ZAMKA 5:</b> Hektorović je dubrovački pisac — <em>NE, Hektorović je hvarski, Tvrdalj je u Starom Gradu na Hvaru</em>.
+          </div>
+        </div>
+
+
+        <!-- SEC 15 — Renesansa i hrv. identitet -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">15 · Renesansa i gradnja hrv. književnog identiteta</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🇭🇷 Od lokalnih govora prema književnoj tradiciji</div>
+          <div class="box-int-txt">
+            U 15.–16. st. ne postoji „hrv. književnost" kao svjesna kategorija — postoje <em>lokalne književne produkcije</em> u Splitu, Hvaru, Zadru, Dubrovniku. Svaka govori lokalnim idiomom, svaka ima vlastitu publiku. Ono što ih veže: <b>zajednički stih (dvanaesterac), zajednički pritisak (Turci), zajednički uzori (Petrarca, Vergilije, Sannazaro)</b>.<br><br>
+            Svjesna gradnja <em>hrv. književnog identiteta</em> počinje s Zoranićevim <b>Perivojem od Slave</b> (1543.) — to je prvi tekst koji eksplicitno govori o „hrvatskoj književnosti" kao kategoriji koja zaostaje i mora biti izgrađena. Ovo je ključni moment koji hrv. renesansu čini više od zbroja lokalnih produkcija — čini je <em>početkom nacionalne književne svijesti</em>.
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">IDENTITET</span>
+            <div class="sc-name">Jezik kao politika</div>
+            <div class="sc-desc">Pisati na „harvacki" (Marulić u posveti Judite) nije samo stilski izbor — to je politički čin. Marulić kaže: hrv. jezik je dovoljan za visoku književnost. U doba kad se sav intelektualni život odvijao na latinskom, to je manifestna gesta.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">IDENTITET</span>
+            <div class="sc-name">Tradicija začinjavaca</div>
+            <div class="sc-desc">Hrv. renesansni pisci ne grade iz ničega — oni nadgraduju tradiciju <em>začinjavaca</em> (srednij. hrv. pjesnika-svećenika). Marulić ih izrijekom spominje. Dvostruki dvanaesterac je stariji od renesanse — renesansa ga samo uzdigne na europsku razinu.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">IDENTITET</span>
+            <div class="sc-name">Regionalnost kao bogatstvo</div>
+            <div class="sc-desc">Četiri idioma (splitska čakavština, hvarska čakavština, zadarska mješavina, dubrovački idiom) nisu slabost hrv. renesanse — to je njezino bogatstvo. Svaki pisac donosi autentičan glas svog kraja. <em>Nema jedne hrv. renesanse — ima ih četiri</em>, i sve su jednako vrijedne.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">IDENTITET</span>
+            <div class="sc-name">Domoljublje kao književni motor</div>
+            <div class="sc-desc">Turska opasnost nije samo historijska okolnost — ona je <em>energija koja pokreće pisanje</em>. Marulić piše Juditu jer Hrvatska treba uzdahnuti. Zoranić piše Planine jer Hrvatska treba se probuditi. Krnarutić piše Vazetje jer Hrvatska treba sjetiti se Zrinskog. <b>Bez prijetnje nema motivacije</b> — hrv. renesansa je paradoksalni cvijet na rubu provalije.</div>
+          </div>
+        </div>
+
+        <div class="featured-quote" style="margin:24px 0">
+          <div class="fq-mark">«</div>
+          <div class="fq-body">
+            <div class="fq-text">Libar Marka Marula Splićanina u kom se uzdarži istorija svete udovice Judit u versih harvacki složena, kako ona ubi vojvodu Oloferna posridu vojske njegove i oslobodi puk israelski od velike pogibili.</div>
+            <div class="fq-meta">— naslov Judite u originalnoj posveti, 1501. · puni Marulićev naslov otkriva sve: junakinju, žanr (stihovi), jezik (harvacki), temu (oslobođenje) i alegoriju</div>
+          </div>
+          <button type="button" class="fq-copy" onclick="fqCopy(this)">⎘</button>
+        </div>
+
+
+
+        <!-- SEC 16 — H11 i ostalo gradivo -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">16 · H11 i ostalo gradivo — kako se spaja</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔗 H11 u kontekstu cijelog hrv. i europskog programa</div>
+          <div class="box-int-txt">
+            Ispit nije samo H11 — hrv. renesansa je dio većeg mozaika koji uključuje europsku renesansu (Petrarca, Calderón, Goethe) i hrv. modernizam (Krleža, Marinković). Ovi konekti su korisni za esejski kontekst.
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">→ PETRARCA</span>
+            <div class="sc-name">Menčetić i Lucić ← Petrarca</div>
+            <div class="sc-desc">Petrarca = izvorni majstor sonetne forme i petrarkizma. Hrv. učenici u eseju o Petrarci mogu usporediti: talijanski sonet vs. hrv. dvanaesterac, ljubav kao senzualna strast (Menčetić) vs. duhovna težnja (Lucić koji ide dalje od Petrarce prema neoplatonizmu).</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">→ CALDERÓN</span>
+            <div class="sc-name">Držić ← Calderón</div>
+            <div class="sc-desc">Calderón (<em>Život je san</em>) i Držić su suvremenici. Calderón pita: je li život stvaran ili iluzija? Držić u Noveli od Stanca prikazuje iluziju (Stanec vjeruje da se podmladio). Oboje koriste dramatsku obmanu — Calderón filozofski, Držić komički.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">→ GOETHE</span>
+            <div class="sc-name">Marulić ← Goethe (Faust)</div>
+            <div class="sc-desc">Faust žudi za spoznajom i potpisuje pakt s đavlom. Marulić žudi za spoznajom ali ostaje unutar kršćanskog okvira — bez pakta. Oba su humanisti, ali Faust je moderni (sekularni), Marulić je renesansni (kršćanski). Kontrast koji pokazuje razvoj humanizma kroz 300 godina.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">→ KRLEŽA</span>
+            <div class="sc-name">Držić ← Krleža</div>
+            <div class="sc-desc">Skup i Dundo Maroje kritiziraju pohlepu imućnih Dubrovčana. Krleža u Gospodi Glembajevima kritizira pohlepu hrv. građanstva. Oboje koriste dramsku formu kao socijalni skalpel. Razlika: Držić se smije (komedija), Krleža tuguje (tragedija). 400 godina i žanrovski preokret.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">→ MARINKOVIĆ</span>
+            <div class="sc-name">Hektorović ← Marinković</div>
+            <div class="sc-desc">Hektorović bilježi svakodnevicu ribarskog života; Marinković u novelama bilježi svakodnevicu dalmatinskih likova 20. st. Oba su realistični prikazi jadranskog identiteta — ali kroz potpuno različite epohe i forme. <em>Kontinuitet dalmatinskog realizma kao hrv. književna konstanta.</em></div>
+          </div>
+        </div>
+
+        <!-- SEC 17 — Samoprocjena -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">17 · Samoprocjena — jesi li spreman/a?</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎯 10 pitanja bez multiple choice — odgovori glasno ili u pismu</div>
+          <div class="box-int-txt">
+            Za razliku od kviza, ova pitanja traže <strong>formulirani odgovor</strong> — kao na pravom ispitu. Ako možeš odgovoriti u 2–3 rečenice bez gledanja bilješki, spreman/a si.
+          </div>
+        </div>
+
+        <div class="scenes">
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">1</div><div class="scene-ttl">Što je alegorija u Juditi? Nabroji barem 3 alegorijske paralele.</div><div class="scene-meta">DJELO</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Model odgovora: Alegorija je dvostruko čitanje teksta — biblijska priča i suvremena hrv. stvarnost istovremeno. Holoferno = turska vojska/sultan. Judita = Hrvatska/kršćanski narod. Betulija = hrv. gradovi pod opsadom. Bog Izraelov = kršćanski Bog koji pomaže. Juditina pobjeda = nada u oslobođenje od Turaka.</div>
+              <div class="scene-why"><b>Provjeri:</b> Jesu li ti paralele bile trenutačne? Ako da — spreman/a si za ovo pitanje.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">2</div><div class="scene-ttl">Objasni zašto je pokladni kontekst ključan za Novelu od Stanca.</div><div class="scene-meta">DJELO ★</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Model odgovora: Poklade su karnevalski period slobode prije korizme — hijerarhija se privremeno preokreće, dopušteno je ono što inače nije. Bez pokladnih sloboda mladići ne bi pristupili seljaku Stancu niti bi prevara bila prihvaćena kao komičan čin. Poklade legitimiraju farsu — bez njih Novela postaje moralno problematičnom situacijom, a ne komedijom.</div>
+              <div class="scene-why"><b>Provjeri:</b> Jesi li naveo/la karnevalsku slobodu + legitimaciju prevare + dramski uvjet?</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">3</div><div class="scene-ttl">Po čemu se hrv. petrarkisti razlikuju od Petrarce?</div><div class="scene-meta">TEORIJA</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Model odgovora: Petrarca piše sonete (14 stihova, stroga shema). Hrv. petrarkisti pišu dvostruko rimovane dvanaesterce (tradicija začinjavaca). Iznimka: Lucić u Jur nijedna na svit vila piše osmerce. Tematika je preuzeta — gospoja, Amor, nesretna ljubav, antiteze — ali forma je adaptirana lokalnoj tradiciji.</div>
+              <div class="scene-why"><b>Provjeri:</b> Jesi li rekao/la: NE soneti → DA dvanaesterci → Lucić osmesterac → tematika ista?</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">4</div><div class="scene-ttl">Što je Perivoj od Slave i zašto je književnopovijesno važan?</div><div class="scene-meta">DJELO</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Model odgovora: Perivoj od Slave je epizoda u Zoranićevim Planinama. 4 vile čuvaju jabučnjake: Latinka (latinska knj.), Grkinja (grčka), Kaldejka (istočnjačka), Hrvatska vila (hrv. knj.). Hrvatska ima najlošije jabuke = loše stanje hrv. književnosti. Važnost: to je 1543. — prvi eksplicitni poziv na gradnju hrv. književne tradicije, 300 godina prije Ilirskog preporoda.</div>
+              <div class="scene-why"><b>Provjeri:</b> Jesi li naveo/la 4 vile, jabuke kao alegoriju i datum (1543.) u kontekstu Preporoda?</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum"><div class="scene-num">5</div><div class="scene-ttl">Zašto je Hektorovićevo Ribanje važno kao kulturni dokument?</div><div class="scene-meta">DJELO</div></summary>
+            <div class="scene-body">
+              <div class="scene-quote">Model odgovora: Hektorović u Ribanju bilježi bugarštice koje mu pjevaju ribari Nikola Zet i Paskoje Debeli. To je najstariji zapis bugarštica u hrv. književnosti — bez Hektorovića, te bi epske narodne pjesme (Kraljević Marko i brat mu Andrijaš) bile zauvijek izgubljene. Ribanje je istovremeno književno djelo (ep/putopis/ekloga/poslanica) i kulturnopovijesni arhiv.</div>
+              <div class="scene-why"><b>Provjeri:</b> Jesi li naveo/la bugarštica + Nikola Zet + najstariji zapis + arhivski karakter Ribanja?</div>
+            </div>
+          </details>
+        </div>
+
+
+        <div class="box-key">
+          <div class="box-key-lbl">📚 Preporučeno čitanje za A ocjenu</div>
+          <div class="box-key-txt">
+            Ako imaš vremena ući dublje — ove sekcije daju razliku između B i A odgovora:<br>
+            <b>Teorija:</b> Sec 04 (Žanrovi s primjerima) + Sec 06 (Hrv. vs. tal. renesansa) — za teorijsko pitanje na ispitu.<br>
+            <b>Judita:</b> Tab 1 (★ Judita · alegorijska shema) + Tab 2 (01 · teze, kartica Judita) — za kontekstualni argument.<br>
+            <b>Novela:</b> Tab 1 (★ Novela · 7 prizora) + Tab 2 (01 · teze, kartica Napredni) — za dubinsku analizu.<br>
+            <b>Kontekst:</b> Sec 02a (Europski kontekst) + Sec 16 (H11 i ostalo gradivo) — za usporedbu s europskom renesansom.<br>
+            <b>Pojmovnik:</b> Tab 4, filter „Likovi" — za brzo ponavljanje svih ključnih likova.
+          </div>
+        </div>
+
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">📎 Poveznice između tabova</div>
+            <div class="box-signal-txt">Svaki tab gradi na prethodnom: <b>Teorija (0)</b> → kontekst i pojmovi → <b>Pisci renesanse (1)</b> → detaljni opisi → <b>Esej alat (2)</b> → primjena u eseju → <b>Citatnik (3)</b> → gotove fraze → <b>Pojmovnik (4)</b> → precizni pojmovi → <b>Kviz (6)</b> → provjera → <b>Checkpoint (7)</b> → potvrda. Za ispit: počni s Kvizom (brza dijagnoza), zatim nadopuni slabe točke u Teoriji ili Pisci renesanse.</div>
+          </div>
+        </div>
+
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">Pred-ispit cheat sheet</div><div class="sec-line"></div></div>
+
+    <div class="cheat-card cheat-card-printable" style="margin-top:24px">
+      <div class="cheat-hdr">
+        <div class="cheat-hdr-l">
+          <div class="cheat-eye">QUICK REFERENCE · 30 MIN PRIJE ISPITA</div>
+          <div class="cheat-ttl">Sve što moraš pamtiti — H11</div>
+        </div>
+        <button class="cheat-print" onclick="printCheatSheet(this)" aria-label="Ispiši cheat sheet">🖨️ Ispiši</button>
+      </div>
+      <div class="cheat-grid">
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Datumi & djela</div>
+          <table class="cheat-tbl">
+            <tr><td><b>1501.</b></td><td>Marulić piše <em>Juditu</em></td></tr>
+            <tr><td><b>1521.</b></td><td><em>Judita</em> tiskana u Veneciji</td></tr>
+            <tr><td><b>1536.</b></td><td>Zoranić dovršava <em>Planine</em></td></tr>
+            <tr><td><b>1550.</b></td><td>Držić izvodi <em>Novelu od Stanca</em></td></tr>
+            <tr><td><b>1568.</b></td><td>Hektorovićevo <em>Ribanje</em></td></tr>
+          </table>
+        </div>
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Autori koje vežeš odmah</div>
+          <ul class="cheat-list">
+            <li><b>Marulić</b> = ep, humanizam, hrvatski jezik</li>
+            <li><b>Zoranić</b> = alegorijski roman, Perivoj od Slave</li>
+            <li><b>Držić</b> = komedija, farsa, Dubrovnik</li>
+            <li><b>Hektorović</b> = putopisno-ribarsko djelo</li>
+            <li><b>Lucić</b> = petrarkistička ljubavna lirika</li>
+          </ul>
+        </div>
+        <div class="cheat-col cheat-col-warn">
+          <div class="cheat-col-ttl">Zamke</div>
+          <ul class="cheat-list cheat-list-warn">
+            <li>Ne svodi renesansu samo na ljubavnu liriku.</li>
+            <li>Ne miješaj <em>Juditu</em> i <em>Planine</em>: ep vs. roman.</li>
+            <li>Držić nije moralist kao Marulić; smijehom prikazuje društvo.</li>
+          </ul>
+        </div>
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Mini plan odgovora</div>
+          <ol class="cheat-steps">
+            <li><b>Prepoznaj žanr:</b> ep, roman, drama, lirika.</li>
+            <li><b>Veži autora:</b> grad, djelo, ključni pojam.</li>
+            <li><b>Daj kontekst:</b> humanizam, petrarkizam, Turci, Dubrovnik.</li>
+            <li><b>Zaključi funkciju:</b> identitet, moral, smijeh ili domovina.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="cheat-card" style="margin-top:24px">
+      <div class="cheat-hdr">
+        <div class="cheat-hdr-l">
+          <div class="cheat-eye">SLJEDEĆE</div>
+          <div class="cheat-ttl">Tab 1 · Pisci renesanse</div>
+        </div>
+      </div>
+      <div class="cheat-grid">
+        <div class="cheat-col cheat-col-wide" style="font-family:var(--serif,Fraunces,serif);font-size:13.5px;color:var(--t2,#c5b8aa);line-height:1.65">
+          <p style="margin:0">Sad kad znaš kontekst hrvatske renesanse — <b>Tab 1</b> donosi konkretne pisce: <em>Marulić, Hektorović, Lucić</em>. Svaki s djelom, primjerom i ulomkom za analizu.</p>
+        </div>
+      </div>
+    </div>
+
+        <div id="h11-react-popkultura-drzic"></div>
+
+        <div class="nav-row">
+          <span class="nb off">← Početak</span>
+          <span class="nb primary" onclick="sw(1)">🎭 Pisci renesanse →</span>
+        </div>
+
+    </div>
+
+      <!-- ════════════════════════
+           TAB 1 · PISCI RENESANSE
+           ════════════════════════ -->
+      <div class="layer" id="l1" role="tabpanel" tabindex="0">
+        <div class="tags">
+          <span class="pill p-go">★ Novela od Stanca 2026</span>
+          <span class="pill p-br">Marulić · Hektorović · Zoranić</span>
+          <span class="pill p-t">petrarkisti · Lucić · Držić</span>
+        </div>
+
+        <!-- MARKO MARULIĆ -->
+        <div id="h11-react-author-marulic"></div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">✍ Za esej — Marulić</div>
+            <div class="box-signal-txt"><b>Teza:</b> „Marulić u Juditi koristi biblijsku alegoriju kao politički instrument — Holoferno je Turčin, a Judita je Hrvatska koja uz Božju pomoć pobjeđuje." <b>Ključni pojmovi:</b> alegorija, ep, 6 pjevanja, 2126 dvanaesteraca, splitska čakavština, začinjavci, invokacija, humanizam. <b>Kontekst:</b> Marulić je jedini hrv. renesansni pisac poznat u Europi za života — Institucija (lat.) prevedena na sve europske jezike. Za maturu: razlika između Judite (hrv., alegorijska) i Institucije (lat., moralno-teološka).</div>
+          </div>
+        </div>
+
+        <!-- ★ JUDITA — alegorijska shema -->
+        <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Judita je pisana u <b>dvanaestercima</b> (12-slogovni stih) i ima <b>6 pjevanja</b> — upravo ta formalna obilježja pitaju na ispitu. Alegorija: Betulija = Hrvatska, Holoferno = Turci.</div></div>
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Judita · alegorijska shema</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">⚔️ Biblijska priča → hrvatska alegorija</div>
+          <div class="box-int-txt">
+            Judita je <strong>biblijska priča</strong> iz Knjige o Juditi (deuterokanonska knjiga Starog zavjeta). U doba kad asirska vojska pod Holofernom opsjeda židovski grad Betuliju, udovica Judita ulazi u Holofernov logor, zavede ga, opija i — dok spava — odsiječe mu glavu. Židovi pobjeđuju. <strong>Marulić tu priču pretvara u alegoriju hrvatske borbe protiv Turaka</strong> — ne mijenja sižetski plan, samo „prebacuje" suvremeni kontekst preko biblijskog teksta.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:140px">BIBLIJA</div><div class="cv b">SUVREMENA HR</div><div class="cv b">ALEGORIJSKO ZNAČENJE</div></div>
+          <div class="cr"><div class="ck go" style="min-width:140px">Holoferno</div><div class="cv">Sultan / turska vojska</div><div class="cv">Sila izvana koja prijeti istrebljenjem</div></div>
+          <div class="cr"><div class="ck t" style="min-width:140px">Judita</div><div class="cv">Hrvatska / hrv. narod</div><div class="cv">Slabija strana koja uz Božju pomoć pobjeđuje</div></div>
+          <div class="cr"><div class="ck re" style="min-width:140px">Betulija</div><div class="cv">Hrvatski gradovi pod opsadom</div><div class="cv">Ugroženi prostor koji se brani</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:140px">Bog Izraelov</div><div class="cv">Kršćanski Bog</div><div class="cv">Čimbenik bez kojeg pobjeda nije moguća</div></div>
+          <div class="cr"><div class="ck g" style="min-width:140px">Židovi</div><div class="cv">Kršćani / Hrvati</div><div class="cv">Bogom izabran narod koji opstaje</div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📖 6 pjevanja Judite — struktura</div>
+          <div class="box-key-txt">
+            <b>I. pjevanje:</b> <em>Holofernov pohod</em> — Holoferno krene u rat protiv naroda koji ne priznaju njegovog kralja. Pljačka i rušenje.<br>
+            <b>II. pjevanje:</b> <em>Opsada Betulije</em> — Holofernova vojska opkoljava grad. Židovi su bez vode. Očaj.<br>
+            <b>III. pjevanje:</b> <em>Juditina odluka</em> — udovica Judita kritizira židovske vođe zbog gubitka vjere. Odluči sama djelovati.<br>
+            <b>IV. pjevanje:</b> <em>Judita ulazi u Holofernov logor</em> — odjevena u svečano ruho, lijepa, zavodljiva. Holoferno je očaran.<br>
+            <b>V. pjevanje:</b> <em>Gozba i ubojstvo</em> — Holoferno se opije, zaspi. Judita mu odsijeca glavu njegovim mačem.<br>
+            <b>VI. pjevanje:</b> <em>Pobjeda</em> — Judita se vraća u Betuliju s Holofernovom glavom. Židovi napadaju razbježalu asirsku vojsku. Trijumf.
+          </div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">📚</div>
+          <div class="bw-body">
+            <div class="bw-title">Stih i forma — što ispit pita</div>
+            <div class="bw-txt"><strong>2126 dvostruko rimovanih dvanaesteraca</strong>. Prijenosna rima (rima se prenosi iz jednog stiha u drugi). Marulić u posveti izrijekom kaže da prati <em>„začinjavce"</em> (hrv. srednjovjekovne pjesnike-svećenike) i <em>„stare poete"</em> (antičke epičare poput Vergilija). Kombinira <b>narodnu tradiciju + antičku formu + biblijski sadržaj</b> — to je Marulićev humanistički sintez.</div>
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">LIK</span>
+            <div class="sc-name">Judita — junakinja</div>
+            <div class="sc-desc"><strong>Udovica</strong> (kontekst: muž preminuo). Plemenita, lijepa, pobožna, hrabra. <em>Marulić ju oblikuje kao kršćanski ideal</em> — žena koja djeluje samo s Božjom pomoći. Njezina ljepota nije profana, nego sredstvo Božjeg plana.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">LIK</span>
+            <div class="sc-name">Holoferno — antagonist</div>
+            <div class="sc-desc"><strong>Asirski vojvoda</strong>. Okrutan, oholo siguran u sebe, voli ženu i vino. <em>Nije karikiran zlikovac</em> — Marulić ga prikazuje kao realnu opasnost. Njegova slabost (žudnja prema Juditi) postaje njegova propast.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">LIK</span>
+            <div class="sc-name">Sluškinja Abra</div>
+            <div class="sc-desc"><em>Juditina pratiteljica</em>. Tiha, vjerna, skriva odsječenu glavu nakon ubojstva. Predstavlja narodnu vjeru u Juditino vodstvo.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">LIK</span>
+            <div class="sc-name">Ozija — vođa Betulije</div>
+            <div class="sc-desc"><em>Židovski starješina</em>. Predstavlja kolebljivost — spreman je predati grad. Judita ga kritizira zbog gubitka vjere. <b>Kontrast Juditi:</b> dok je on neodlučan, ona djeluje.</div>
+          </div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">💡 Zašto je Judita „prvo" hrv. književnosti</div>
+            <div class="box-signal-txt">Judita NIJE prvo djelo hrv. književnosti — postoji srednjovjekovna tradicija (<em>Bašćanska ploča</em> 1100., crkvene pjesme začinjavaca, <em>Vinodolski zakonik</em> 1288.). Ali je <strong>prvi veliki ep na hrvatskom</strong> koji ostvaruje europsku razinu — usporediv s Petrarcom, Boccacciom, Vergilijom. Marulić njime pokazuje da hrv. jezik može nositi visoku književnost. <em>To ga čini „ocem hrv. književnosti"</em>.</div>
+          </div>
+        </div>
+
+        <!-- PETAR HEKTOROVIĆ -->
+        <div id="h11-react-author-hektorovic"></div>
+
+
+        <!-- ★ RIBANJE — struktura + kulturna vrijednost -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Ribanje · trodnevno putovanje</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🐟 Trodnevno putovanje — kompozicija Ribanja</div>
+          <div class="box-int-txt">
+            <em>Ribanje i ribarsko prigovaranje</em> organizirano je kao <strong>trodnevno putovanje</strong> od Hvara prema Braču i Šolti. Svaki dan donosi nove krajolike, razgovore i književne dokumente (pjesme, bugarštice). Pripovjedač Petar s ribarima Nikolom Zetom i Paskojom Debeljem — <b>trojica su jedini likovi</b>. Nema alegorije: plovidba, razgovor i more su dovoljno.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:80px">DAN 1</div><div class="cv"><b>Hvar → Brač</b> · Pripovjedač kreće s ribarima. Opis hvarske obale, jutarnji mir, prve mreže. Ribari pjevaju <em>Naš gospodin poljem jizdi</em> (narodna pjesma) i <em>I kliče devojka</em>. Petar ih zapisuje.</div></div>
+          <div class="cr"><div class="ck go" style="min-width:80px">DAN 2</div><div class="cv"><b>Brač</b> · Obilaže otok. Ribari pjevaju bugarštice: <em>Kraljević Marko i brat mu Andrijaš</em>, <em>Radosav Siverinac i Vlatko udinski vojvoda</em>. Opis krajolika — pustošenja od Turaka vidljiva i na otocima.</div></div>
+          <div class="cr"><div class="ck t" style="min-width:80px">DAN 3</div><div class="cv"><b>Brač → Šolta → Hvar</b> · Povratak. Petar piše poslanicu Bartučeviću — sintetizira putovanje kao književno i prijateljsko iskustvo. Opis mora, ribe, ugode plovidbe.</div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📚 Bugarštice koje Hektorović bilježi</div>
+          <div class="box-key-txt">
+            <b>Kraljević Marko i brat mu Andrijaš</b> — epska bugarštica o poznatom junaku. Hektorović je bilježi u obliku u kojemu je pjevao ribar Nikola Zet — <em>ovo je najstariji zapis pjesme o Marku Kraljeviću</em>.<br>
+            <b>Radosav Siverinac i Vlatko udinski vojvoda</b> — epska bugarštica o manje poznatim junacima. Vrijednost: sačuvava regionalni ep koji bi inače bio zaboravljen.<br>
+            <b>Naš gospodin poljem jizdi</b> — lirska narodna pjesma. Kratka, melodiozna, biblijski motiv.<br>
+            <em>Bugarštice su dugi epski stihovi (15–16 slogova) — stariji od kasnijih deseteračkih epskih pjesama.</em>
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">ŽANR</div><div class="cv b">Kao EP</div><div class="cv">Ispjevano u dvostruko rimovanim dvanaestercima. Trodijelna kompozicija (3 dana = 3 „pjevanja"). Uzor: Vergilijeve Georgjike i pastoralna tradicija.</div></div>
+          <div class="cr"><div class="ck go">ŽANR</div><div class="cv b">Kao PUTOPIS</div><div class="cv">Konkretni geografski detalji: Hvar, Brač, Šolta, uvale, grebeni. Opisuje pustošenja od Turaka — realizam koji nedostaje u epskim idealizacijama.</div></div>
+          <div class="cr"><div class="ck t">ŽANR</div><div class="cv b">Kao EKLOGA</div><div class="cv">Pastirski / ribarski idiličan ton — ribari razgovaraju o životnim pitanjima kao Vergilijevi pastiri. Idealizacija jednostavnog ribarskog života.</div></div>
+          <div class="cr"><div class="ck pa">ŽANR</div><div class="cv b">Kao POSLANICA</div><div class="cv">Posvećeno plemiću Jeronimu Bartučeviću — forma pisma prijatelju koji nije mogao prisustvovati putovanju. Humanistička tradicija epistolarnog žanra.</div></div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">💡 Hektorović vs. Marulić — ključna razlika za esej</div>
+            <div class="box-signal-txt">Marulić transformira stvarnost u alegoriju (Judita = Hrvatska). Hektorović prikazuje stvarnost <b>kakva jest</b> — more, ribari, razgovori, bugarštice. Oba su renesansni pisci, ali različitih poetika: <em>alegorijski idealizam</em> vs. <em>dokumentarni realizam</em>. Ovo je odlična esejska teza za usporedbu.</div>
+          </div>
+        </div>
+
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">✍ Za esej — Hektorović</div>
+            <div class="box-signal-txt"><b>Teza:</b> „Hektorovićevo Ribanje je demokratizacija humanizma — realizam, bugarštice i razgovor s ribarima kao jednakima." <b>Ključni pojmovi:</b> ep/putopis/ekloga/poslanica, bugarštica, otium, realizam nasuprot alegoriji, Tvrdalj. <b>Usporedni argument:</b> za razliku od Marulića koji alegorijizira, Hektorović bilježi — dva humanistička pristupa istoj stvarnosti.</div>
+          </div>
+        </div>
+
+        <!-- Hektorović kulturni kontekst -->
+        <div class="box-int">
+          <div class="box-int-lbl">🏰 Tvrdalj — Hektorovićev humanistički projekt</div>
+          <div class="box-int-txt">
+            Hektorović nije samo pisao — on je i <strong>gradio</strong>. Tvrdalj u Starom Gradu na Hvaru je utvrda-palača koju je dao sagraditi kao <em>humanističko utočište</em> — s knjižnicom, ribnjacima, vrtovima i latinskim natpisima na zidovima. <b>Danas je UNESCO svjetska baština.</b> Hektorović je primao posjetitelje, razgovarao s njima, sakupljao knjige. Tvrdalj je materijalizacija humanističkog ideala: lijepo, korisno, misaono. Isti ideal koji prožima Ribanje — <em>razgovor s ribarima kao jednakima, more kao prostor slobode, putovanje kao spoznaja</em>.
+          </div>
+        </div>
+
+
+        <!-- Hektorović — filozofija Ribanja -->
+        <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Ribanje i ribarsko prigovaranje jedini je primjer <b>opisnog spjeva</b> u hrv. renesansi — 3 dana, Stari Grad, Filip i Paskoje. Na ispitu pazi na <b>demokratizaciju humanizma</b> (ribari kao nositelji humanističke mudrosti).</div></div>
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Hektorović · filozofija Ribanja</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🧠 Što Hektorović zapravo govori kroz Ribanje</div>
+          <div class="box-int-txt">
+            Na površini, Ribanje je <em>trodnevni ribarski izlazak s prijateljem</em>. Ali Hektorović je humanist — svaki detalj nosi refleksiju. <strong>Tri filozofska sloja Ribanja:</strong>
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">SLOJ 1</span>
+            <div class="sc-name">Demokratizacija humanizma</div>
+            <div class="sc-desc">Hektorović sjedi s ribarima kao jednakima — razgovara, pjeva s njima, bilježi njihove pjesme. To je <b>humanistička gesta</b>: narod nije objekt proučavanja, on je <em>sugovornik</em>. Marulić ne bi sjedio s ribarima; Hektorović jest. <em>Razlika između učenog i živog humanizma.</em></div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">SLOJ 2</span>
+            <div class="sc-name">Otium vs. negotium</div>
+            <div class="sc-desc">Latinski humanistički ideal: <em>otium</em> (slobodno vrijeme za razmišljanje i kulturu) vs. <em>negotium</em> (posao, obveze). Ribanje je savršen <b>otium</b> — Hektorović odlazi od poslova hvarske vlastele u slobodan prostor mora. More kao metafora slobodne misli.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">SLOJ 3</span>
+            <div class="sc-name">Književnost kao arhiv pamćenja</div>
+            <div class="sc-desc">Hektorović bilježi bugarštice jer zna da će se izgubiti — <b>pisanje kao čin spašavanja</b>. To je moderni kulturnopovijesni instinkt u 16. st. tijelu humanista. Bez Ribanja, bugarštice o Marku Kraljeviću bile bi zauvijek izgubljene.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">SLOJ 4</span>
+            <div class="sc-name">Krajolik kao filozofski prostor</div>
+            <div class="sc-desc">Hvar, Brač, Šolta — ne samo geografija nego i <em>simbolički prostori slobode</em>. Hektorović opisuje uvale, grebene, boje mora u jutarnje i večernje svjetlo. <b>Natura est optima gubernatrix</b> — priroda je najbolji vodič. Humanistički pastoralni ideal u konkretnoj dalmatinskoj stvarnosti.</div>
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">💬 Razgovor između Petra i ribara — što se zapravo govori</div>
+          <div class="box-int-txt">
+            Hektorović i ribari ne razgovaraju samo o ribama — oni raspravljaju o <b>prirodi, Bogu, vremenu, starosti i sreći</b>. Nikola Zet i Paskoje Debeli nisu nepismeni seljaci — oni su mudraci svakodnevice koji znaju stvari koje Hektorović ne zna (morske putove, vremenske znakove, pjesme). <em>Razmjena znanja</em> je egalitarna: Hektorović donosi latinsku naobrazbu, ribari donose živu usm. tradiciju. Djelo govori: <strong>sva znanja su vrijedna, ne samo ona iz knjiga</strong>.
+          </div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">🌊</div>
+          <div class="bw-body">
+            <div class="bw-title">Ribanje i pustošenja od Turaka</div>
+            <div class="bw-txt">U idilu ribarske izlake Hektorović bilježi i tužne detalje: opustjela sela na obali, napušteni posjedi, tragovi turskih napada. <em>Ovi detalji nisu alegorija</em> — oni su <strong>dokumentarni svjedoci</strong> o tome što je turska opasnost učinila dalmatinskim otocima. U kontekstu: Marulić alegorijom poziva na otpor (Judita = nada); Hektorović šutnjom opisuje posljedice (prazna sela = gubitak). <b>Oba su odgovori na istu stvarnost — ali različitih poetičkih strategija.</b></div>
+          </div>
+        </div>
+
+        <!-- PETAR ZORANIĆ -->
+        <div id="h11-react-author-zoranic"></div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">✍ Za esej — Zoranić</div>
+            <div class="box-signal-txt"><b>Teza:</b> „Planine su književni manifest: Perivoj od Slave je prvi eksplicitni poziv na gradnju hrv. književnosti, 300 godina prije Preporoda." <b>Ključni pojmovi:</b> Perivoj od Slave, 4 vile, Hrvatska vila, jabuke, rasuta bašćina, alter ego, žanrovski hibrid. <b>Usporedni argument:</b> Zoranić i Marulić oba govore o domovini pod prijetnjom — ali Marulić alegorijom poziva na borbu, Zoranić elegijom poziva na buđenje književnosti.</div>
+          </div>
+        </div>
+
+        <!-- ★ PLANINE — struktura + Perivoj od Slave -->
+        <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Planine Petra Zoranića (1536.) — prvi hrv. roman i ujedno <b>žanrovski hibrid</b>: pastoralni roman + putopis + alegorija + lirika. Na ispitu pazi na <b>lik Zorana</b> i <b>Perivoj od Slave</b> kao alegoriju hrv. književnosti.</div></div>
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Planine · prvi hrv. roman</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🏔️ Žanrovska hibridnost — što je <em>Planine</em>?</div>
+          <div class="box-int-txt">
+            Planine se nazivaju <strong>prvim hrvatskim romanom</strong>, ali su u stvari <em>žanrovski hibrid</em>: spajaju <b>pastoralni roman</b> (lik Zoran traži lijek za neuzvraćenu ljubav), <b>putopis</b> (opis stvarnih dalmatinskih krajeva), <b>alegoriju</b> (Perivoj od Slave) i <b>lirsku zbirku</b> (umetnute pjesme vila i pastira). Mješavina proze i stiha. <em>24 poglavlja</em>. Uzori: Sannazaro <em>L'Arcadia</em>, Boccaccio <em>Ameto</em>.
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📖 Putovanje Zorana — kompozicija</div>
+          <div class="box-key-txt">
+            Glavni lik <strong>Zoran</strong> (alter ego pisca) pati od neuzvraćene ljubavi prema <em>Jagi</em>. Da bi „izliječio" srce, kreće na putovanje kroz zadarsko zaleđe, Dinaru i Velebit. Putovanje traje 7 dana. Na putu susreće: <b>vile</b> (poetska, mitološka bića), <b>pastire</b> (koji pjevaju i pripovijedaju), <b>simbolične krajolike</b> (rijeke, vrhove, šume). Svaki susret donosi novu pjesmu, priču ili filozofski razgovor o ljubavi i prirodi.
+          </div>
+        </div>
+
+        <!-- PERIVOJ OD SLAVE — interactive scene -->
+        <div class="box-warn">
+          <div class="bw-ico">🌳</div>
+          <div class="bw-body">
+            <div class="bw-title">Perivoj od Slave — najpoznatija epizoda</div>
+            <div class="bw-txt">U tek <strong>jednom</strong> od 24 poglavlja, ali književno-povijesno najvažnijem, Zoran ulazi u <em>Perivoj od Slave</em> — alegorijski vrt u kojem 4 vile čuvaju jabučnjake. Svaka vila predstavlja nacionalnu književnost. <b>Hrvatica</b> ima najmanje i najlošije jabuke — alegorija nezavidnog stanja hrv. književnosti u Zoranićevo doba.</div>
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:120px">VILA</div><div class="cv b">PREDSTAVLJA</div><div class="cv b">JABUKE / KNJIŽEVNOST</div></div>
+          <div class="cr"><div class="ck go" style="min-width:120px">Latinka</div><div class="cv">Latinska književnost (Vergilije, Horacije, Ovidije)</div><div class="cv">Najveće, najljepše jabuke — antička tradicija u punoj snazi</div></div>
+          <div class="cr"><div class="ck t" style="min-width:120px">Grkinja</div><div class="cv">Grčka književnost (Homer, Sofoklo, Euripid)</div><div class="cv">Stare, ali još uvijek dostojanstvene jabuke — drevna baština</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:120px">Kaldejka</div><div class="cv">Kaldejska / istočnjačka tradicija</div><div class="cv">Egzotične jabuke — daleka mudrost</div></div>
+          <div class="cr"><div class="ck re" style="min-width:120px">★ Hrvatica</div><div class="cv">Hrvatska književnost</div><div class="cv"><strong>Najmanje, najlošije jabuke — sram i tuga</strong></div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">💔 Hrvatičina jadikovka — interpretacija</div>
+          <div class="box-key-txt">
+            Hrvatica plače jer je njezino voće <em>siromašno i malobrojno</em>. Razlog: <b>hrv. književnost je zapostavljena</b> — pisci pišu na latinskom (Marulić!), tuđim jezicima, ne razvijaju vlastiti književni standard. Zoranić ovim postavlja <strong>prvi eksplicitan književni manifest na hrvatskom</strong>: <em>treba pisati hrvatski, treba graditi nacionalnu književnost</em>. To je revolucionarna teza za 1543. godinu — pretječe Preporod (1830.) za 300 godina.
+          </div>
+        </div>
+
+        <!-- Rasuta bašćina -->
+        <div class="box-warn">
+          <div class="bw-ico">🇭🇷</div>
+          <div class="bw-body">
+            <div class="bw-title">„Rasuta bašćina" — drugi ključni motiv</div>
+            <div class="bw-txt">Uz Perivoj od Slave, Planine sadrže motiv <strong>„rasute bašćine"</strong> — <em>razdrobljene, opustošene domovine</em>. Hrvatska je u 16. st. politički razbijena (Mletačka Dalmacija, Habsburška Hrvatska, dijelovi pod Turcima). Zoranić to oplakuje — <em>domovina koja ne može zaštititi sama sebe</em>. Motiv je <b>patriotski, ne nostalgiški</b> — Zoranić poziva na buđenje. Ovo je čest izrazni motiv hrv. književnosti sve do 19. st.</div>
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">LIK</span>
+            <div class="sc-name">Zoran — putnik i pisac</div>
+            <div class="sc-desc"><em>Alter ego Petra Zoranića</em>. Mlad, obrazovan, zaljubljen u Jagu (koja ga ne voli). Putuje da bi „izliječio" patnju. <b>Pasivni promatrač</b> — više sluša nego govori. Funkcija: kanal kroz koji čitatelj doživljava krajolike, pjesme i alegoriju.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">LIK</span>
+            <div class="sc-name">Vile — poetska bića</div>
+            <div class="sc-desc"><em>Mitološka stvorenja</em> hrv. usmene tradicije, ali Zoranić ih spaja s antičkom mitologijom (Kaldejka, Latinka). Pjevaju, pripovijedaju, daju savjete. <b>Simbol pjesničke inspiracije</b> — pjesnik treba slušati vile da bi pisao.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">LIK</span>
+            <div class="sc-name">Pastiri — narodni glas</div>
+            <div class="sc-desc"><em>Pripovjedači narodnih priča</em> i pjevači narodnih pjesama. Zoranić ih spušta s razine niskog na ravnopravnost s vilama. <b>Demokratizacija književnosti</b> — narodno usmeno blago zaslužuje književnu pažnju jednako kao klasici.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">LIK</span>
+            <div class="sc-name">Hrvatica — alegorijska figura</div>
+            <div class="sc-desc"><em>Vila</em> u Perivoju od Slave. Predstavlja hrvatsku književnost. Tužna, sramežljiva, jadikuje nad svojim siromašnim jabukama. <b>Pojavljuje se samo nakratko</b>, ali je <em>najznačajniji lik djela</em> u kontekstu književne povijesti.</div>
+          </div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">💡 Zašto Planine nisu „pravi" roman?</div>
+            <div class="box-signal-txt">U modernom smislu roman ima <em>jedinstven sižetski tok, razrađene likove, psihološku dubinu</em>. Planine to nemaju — to su <b>epizodno povezana putovanja kroz pejzaž s umetnutim pričama i pjesmama</b>. Nazivaju se „prvim hrv. romanom" jer u 16. st. roman još nije bio strogo žanrovski definiran — Boccacciov <em>Ameto</em> i Sannazaro <em>L'Arcadia</em> imaju sličnu strukturu. <em>Planine su prvi hrv. proza-stihovi naracijski tekst veće duljine</em> — i po tome zaslužuju mjesto „prvog romana".</div>
+          </div>
+        </div>
+
+
+
+        <!-- ★ PETRARKISTI — dubinska analiza -->
+        <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Petrarkisti: <b>Menčetić i Džore Držić</b> su začetnici — pišu na štokavskom s toskanskim uzorima. Ključne figure: <b>oksimoron</b> (slatka bol), <b>antiteza</b>, <b>hiperbola</b>. Gospoja je nedostižna i idealizirana — nikad individua.</div></div>
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Petrarkisti · ljubavna lirika dubrovačke škole</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">💝 Petrarkistički ciklus ljubavi — kako funkcionira</div>
+          <div class="box-int-txt">
+            Petrarkistička ljubavna lirika nije zbirka slučajnih pjesama — ona prati <strong>ciklus ljubavnog iskustva</strong>: od prvog pogleda do razočaranja ili prihvaćanja boli. Svi motivi su standardizirani i prepoznatljivi, ali kombinacija i intenzitet razlikuje pojedinog pjesnika. Ključni je subjekt uvijek <em>muški lirski glas koji pati</em> — gospoja je objekt, ne subjekt.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">MOTIV</div><div class="cv b">OPIS</div><div class="cv b">PRIMJER u hrv. petrarkizmu</div></div>
+          <div class="cr"><div class="ck go">Gospoja</div><div class="cv">Idealizirana žena — lijepa, nedostupna, okrutna ili ravnodušna. Nije karakterizirana psihološki — to je simbol, ne osoba.</div><div class="cv">Menčetić: „gospoja" koja ne uzvrača; Lucić: savršeno biće koje ne postoji na zemlji.</div></div>
+          <div class="cr"><div class="ck t">Amor / Kupido</div><div class="cv">Bog ljubavi koji rani srce strelom — ljubav kao bol, ne kao radost. Lirski subjekt je žrtva Amorove okrutnosti.</div><div class="cv">Sveprisutan u I. generaciji — Menčetić i Džore Držić ga često prizivaju.</div></div>
+          <div class="cr"><div class="ck re">Antiteze</div><div class="cv">Ljubav kao spoj suprotnosti: <em>„volim i mrzim", „živi i umire", „toplina i led"</em>. Paradoksalni opis osjećaja.</div><div class="cv">Standardni repertoar svih petrarkista — Menčetić posebno razvija antiteze boli i slasti.</div></div>
+          <div class="cr"><div class="ck pa">Petrarkistički krajolik</div><div class="cv">Priroda odražava emocionalno stanje lirskog subjekta — proljeće = nada, jesen/zima = tuga.</div><div class="cv">Lucić: more i vjetar kao metafore ljubavne nemirnosti.</div></div>
+          <div class="cr"><div class="ck g">Kanconijer</div><div class="cv">Zbirka lirskih pjesama organizirana kao narativ ljubavnog iskustva — po uzoru na Petrarcu.</div><div class="cv">Ranjinin zbornik (1507.) — de facto kanconijer hrv. petrarkizma, 820 pjesama.</div></div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">⚖️ Menčetić vs. Džore Držić — 6 razlika na prstu</div>
+          <div class="box-int-txt">
+            <b>(1) Senzualnost:</b> Menčetić veća, Džore manja (idealizacija). <b>(2) Psihologija:</b> Menčetić opisuje sve faze ljubavi; Džore ostaje u filozofijskom opisu. <b>(3) Stih:</b> oba pišu dvanaesterce. <b>(4) Dramska produkcija:</b> Džore piše i pastoralne drame (<em>Radmio i Ljubmir</em>); Menčetić samo lirika. <b>(5) Ton:</b> Menčetić topliji, emotivniji; Džore hladniji, analitičniji. <b>(6) Prezime:</b> Džore Držić ≠ Marin Držić — isti grad (Dubrovnik), ali različite epohe (Džore: 1461.–1501.; Marin: 1508.–1567.).
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">💡 Što znati o Ranjininom zborniku za maturu</div>
+          <div class="box-key-txt">
+            <b>Tko:</b> Nikša Ranjina, dubrovački vlastelin, počeo sakupljati 1507. <b>Što:</b> 820 ljubavnih pjesama, uglavnom petrarkistička lirika. <b>Zašto važno:</b> bez njega ne znamo gotovo ništa o Menčetiću i Džori Držiću — svi rukopisi njihovih pjesama su u Ranjininom zborniku. <b>Autori:</b> Menčetić (najveći broj), Džore Držić, Vetranović, Hispanije, Krstičević, anonimni. <b>Zamka:</b> Ranjinin zbornik NIJE Menčetićeva zbirka — on je antologija više autora, samo što je Menčetić najzastupljeniji.
+          </div>
+        </div>
+
+        <!-- ★ MENČETIĆ — analiza -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Menčetić · analiza petrarkističke pjesme</div><div class="sec-line"></div></div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">KORAK</div><div class="cv b">ŠTO GLEDATI</div><div class="cv b">U MENČETIĆA</div></div>
+          <div class="cr"><div class="ck go">1. Stih</div><div class="cv">Broji slogove, identificiraj cesuru, provjeri rimu</div><div class="cv">Dvostruki dvanaesterac (12 sloga, cesura po 6), dvostruka ili prijenosna rima</div></div>
+          <div class="cr"><div class="ck t">2. Lirski subjekt</div><div class="cv">Tko govori? Kakav ton? Što osjeća?</div><div class="cv">Muški glas koji pati od neuzvraćene ljubavi; strastveni, emotivni ton</div></div>
+          <div class="cr"><div class="ck re">3. Gospoja</div><div class="cv">Kako opisana? Prisutna ili odsutna?</div><div class="cv">Idealizirana, nedostupna; rijetko konkretna — ona je ideal</div></div>
+          <div class="cr"><div class="ck pa">4. Stilska sredstva</div><div class="cv">Anafora, metafora, antiteza, apostrofa</div><div class="cv">Anafora (<em>Blažen... blažena... blažena</em>), antiteze boli/slasti</div></div>
+          <div class="cr"><div class="ck g">5. Interpretacija</div><div class="cv">Što pjesma govori o ljubavi?</div><div class="cv">Ljubav kao bolan ali neophodan dio života; gospoja veličana bez obzira na bol</div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Model kratke analize Blažen čas i hip</div>
+          <div class="box-key-txt">
+            <em>„Menčetićeva pjesma <b>Blažen čas i hip</b> primjer je čistog petrarkizma u dvostruko rimovanim dvanaestercima. Lirski subjekt slavi sve što je vezano uz gospoju kroz <b>anaforično ponavljanje</b> (Blažen... blažena... blažena...), pojačavajući euforiju prvog pogleda. Gospoja nije psihološki opisana — ona je simbol Savršene Ljepote. <b>Senzualnost bez tjelesnosti</b> karakteristična je za Menčetićev petrarkizam: gospoja je žuđena ali idealizirana."</em>
+          </div>
+        </div>
+
+        <!-- ★ DŽORE DRŽIĆ -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Džore Držić · lirika i prva pastoralna drama</div><div class="sec-line"></div></div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">LIRIKA</span>
+            <div class="sc-name">Džore kao petrarkist</div>
+            <div class="sc-desc">Dvostruki dvanaesterci kao Menčetić, ali <b>ton filozofičniji</b>. Ljubav je apstraktni fenomen koji uzdiže dušu — neoplatonistički utjecaj koji anticipira Lucića. Džore je most između senzualnog Menčetića i duhovnog Lucića.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">DRAMA</span>
+            <div class="sc-name">Radmio i Ljubmir</div>
+            <div class="sc-desc">Prva hrv. <strong>pastoralna drama</strong> (kraj 15. st.). Dva pastira razgovaraju o ljubavi. Kratka, bez razvijenog zapleta — ali <em>prva hrv. drama s dijalogom i scenskom situacijom</em>. Preteča Lucićeve Robinje.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">ZAMKA</span>
+            <div class="sc-name">Džore ≠ Marin Držić</div>
+            <div class="sc-desc"><b>Džore</b>: 1461.–1501., lirika + pastoralna drama, I. gen. <b>Marin</b>: 1508.–1567., farse + komedije, Novela od Stanca ★. Isti prezimen, isti grad, <em>50 godina razlike i potpuno različiti opusi</em>.</div>
+          </div>
+        </div>
+
+        <!-- ★ RANJININ ZBORNIK — detaljna analiza -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Ranjinin zbornik · 820 pjesama</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">📜 Što je Ranjinin zbornik i zašto je važan</div>
+          <div class="box-int-txt">
+            <em>Ranjinin zbornik</em> (rukopisna zbirka) počeo je sakupljati dubrovački vlastelin <strong>Nikša Ranjina 1507.</strong> Sadrži <strong>820 pjesama</strong> uglavnom ljubavne tematike. Ovo je <b>temeljni izvor za proučavanje hrv. petrarkizma</b> — bez njega ne bismo znali gotovo ništa o Menčetiću i Džori Držiću. Autori čije je autorstvo potvrđeno: <em>Šiško Menčetić, Džore Držić, Mavar Vetranović, Mate Hispanije, Marin Krstičević</em>.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:110px">KRITERIJ</div><div class="cv b">Šiško Menčetić (1457.–1527.)</div><div class="cv b">Džore Držić (1461.–1501.)</div></div>
+          <div class="cr"><div class="ck go" style="min-width:110px">Ljubav</div><div class="cv">Svi stadiji: prvi pogled, žudnja, bol, razočaranje, odbacivanje. <em>Naglašena senzualnost.</em></div><div class="cv">Idealizacija ljubavi kao apstraktnog fenomena. <em>Manje senzualnosti, više filozofije.</em></div></div>
+          <div class="cr"><div class="ck t" style="min-width:110px">Gospoja</div><div class="cv">„Gospoja" je predmet žudnje — konkretna i tjelesna, iako ne opisana realističko.</div><div class="cv">„Gospoja" je simbol savršenstva — neoplatonistički ideal, više ideja nego osoba.</div></div>
+          <div class="cr"><div class="ck re" style="min-width:110px">Ton</div><div class="cv">Strastveniji, emotivniji, više sentimentalan.</div><div class="cv">Hladniji, analitičniji, filozofskiji.</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:110px">Najp. pjesma</div><div class="cv"><em>Blažen čas i hip</em> — prepjev Petrarcinog soneta u dvanaesterac</div><div class="cv">Nema jedne dominantne — prepoznatljiv po stilu analize osjećaja</div></div>
+          <div class="cr"><div class="ck g" style="min-width:110px">Dramaturgia</div><div class="cv">Samo lirika — nema dramskih radova</div><div class="cv">Lirika + <em>Radmio i Ljubmir</em> (prva hrv. pastoralna drama, kraj 15. st.)</div></div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">⚠️</div>
+          <div class="bw-body">
+            <div class="bw-title">Džore Držić ≠ Marin Držić</div>
+            <div class="bw-txt"><strong>Džore Držić</strong> (1461.–1501.) je petrarkistički pjesnik, autor prve hrv. pastoralne drame — <b>I. generacija</b>. <strong>Marin Držić</strong> (1508.–1567.) je komediograf, autor Novele od Stanca — <b>živi 50 godina poslije</b>. Isti prezimen, isti grad, ali različite epohe i žanrovi. Ova je zamka jedna od najčešćih na maturi!</div>
+          </div>
+        </div>
+
+        <!-- PETRARKISTI -->
+        <div id="h11-react-author-petrarkisti"></div>
+
+        <!-- MARIN DRŽIĆ -->
+        <div id="h11-react-author-marin-drzic"></div>
+
+
+        <div class="box-int">
+          <div class="box-int-lbl">🏛️ Rim kao dramski prostor — zašto Dundo Maroje nije smješten u Dubrovnik</div>
+          <div class="box-int-txt">
+            Pitanje koje se pojavljuje na maturi: <em>„Zašto Držić smješta radnju Dunda Maroja u Rim a ne u Dubrovnik?"</em> Odgovor je višedimenzionalan: <b>(1) Kazališna tradicija</b> — antičke komedije (Plaut, Terencije) odvijale su se u gradovima, ne u Dubrovniku. <b>(2) Satirička distanca</b> — lakše je kritizirati dubrovačku pohlepu kada je priča smještena daleko, u Rim. <b>(3) Realna pozadina</b> — dubrovački trgovci stvarno su posloveli i živjeli u Rimu. Maro troši novac u Rimu jer dubrovački bogataši šalju sinove u inozemstvo. <b>(4) Karnevalski odmak</b> — Rim je slobodniji od Dubrovnika za scensku "slobodu" govora i ponašanja.
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">💬 Lik Pometa — lukavost kao filozofija</div>
+          <div class="box-key-txt">
+            Pomet, sluga u Dundu Maroju, je <strong>najinteligentniji lik cijele drame</strong>. Dok Dundo (stari škrtac), Maro (mladi rasipnik) i Laura (pragmatična ljubavnica) slijepo slijede svoje strasti, Pomet ih sve koristi za vlastito dobro — a ipak ostaje simpatičan. Njegova filozofija je jednostavna: <em>biti pametan u glupom svijetu</em>. Pomet je preteča modernog antiheroja — moralno fleksibilan ali neodoljivo vitalan. U terminima Negromanta: Pomet je „nazbiljan" u jedinom smislu koji mu je dostupan — snalazi se.
+          </div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">✍ Za esej — Marin Držić ★ OBVEZATNO 2026.</div>
+            <div class="box-signal-txt"><b>Teza 1:</b> „Pokladni kontekst je dramski uvjet — bez poklada nema farse." <b>Teza 2:</b> „Mlado pobjeđuje staro lukavošću, ne snagom." <b>Teza 3:</b> „Novela je socijalna dijagnoza Dubrovnika — bez moralne osude." <b>Ključni pojmovi:</b> farsa, pokladna igra, 1 čin 7 prizora, dvostruki dvanaesterac, komika situacije, dramska ironija, tipski likovi, commedia dell'arte. <b>Pazi:</b> Novela od Stanca je FARSA (1 čin), Dundo Maroje je KOMEDIJA (5 činova). Novela = stihovi; Dundo = proza.</div>
+          </div>
+        </div>
+
+        <!-- ★ NOVELA OD STANCA — prizori -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Novela od Stanca · 7 prizora</div><div class="sec-line"></div></div>
+
+        <div id="h11-react-stat-novela-stan"></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎭 Razgovor s djelom — klikni za detalje</div>
+          <div class="box-int-txt">
+            Novela od Stanca ima <strong>1 čin podijeljen u 7 prizora</strong>. Svaki prizor je ključan korak u prevari Stanca. Klikni na prizor za detaljnu analizu — dramska funkcija, ključni dijalozi, zašto je važan za esej.
+          </div>
+        </div>
+
+        <div class="scenes">
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">I.</div>
+              <div class="scene-ttl">Stanac dolazi u Dubrovnik — <em>uvodna ekspozicija</em></div>
+              <div class="scene-meta">EKSPOZICIJA</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Stanac, stari seljak iz Trebinja, dolazi u Dubrovnik prodavati kozliće za poklade. Tugaljiv je — žali se na starost, na to da mu nedavno umrla žena, da je sam u svijetu.</div>
+              <div class="scene-why"><b>Dramska funkcija:</b> Postavlja Stanca kao <em>ranjivog protagonista</em>. Publika upoznaje njegov karakter prije nego ga mladići ugledaju. <b>Ključ za esej:</b> Stanac nije zao — on je naivan i tugaljiv. To čini prevaru još komičnijom (i moralno ambivalentnom).</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">II.</div>
+              <div class="scene-ttl">Mladići ugledaju Stanca — <em>idejna iskra prevare</em></div>
+              <div class="scene-meta">ZAPLET</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Mladi dubrovački vlastelini Vlaho, Miho i Dživo prolaze pokladnom noći Dubrovnikom. Vide Stanca kako tuguje. Smišljaju kako da ga zabave i zabave sebe — odluče ga uvjeriti da postoji <em>voda od mladosti</em>.</div>
+              <div class="scene-why"><b>Dramska funkcija:</b> Početak komedije — pokladna noć kao kontekst legitimira igru. <b>Ključ za esej:</b> Prevara je <em>spontana, ne planirana</em>. Karneval je oslobađajući — vlastela u svakodnevici ne bi varala seljaka, ali u poklade smije sve. <b>Bez poklada nema farse.</b></div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">III.</div>
+              <div class="scene-ttl">Mladići pristupaju Stancu — <em>obmana počinje</em></div>
+              <div class="scene-meta">RAZVOJ</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Mladići, predstavljajući se kao učeni ljudi, govore Stancu o čudesnoj „vodi od mladosti" koja postoji u Dubrovniku. Stanac nesumnjičavo sluša — voli ideju da bi mogao biti mlad.</div>
+              <div class="scene-why"><b>Dramska funkcija:</b> Ulazak u prevaru. <b>Ključ za esej:</b> Stanac <em>želi vjerovati</em> — to je tragičan element unutar komedije. Čovjek koji žudi za podmlatkom je univerzalan. Mladići znaju što prodaju, Stanac kupuje — <b>opreka pamet vs. naivnost</b> u punoj snazi.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">IV.</div>
+              <div class="scene-ttl">Stanac prihvaća — <em>prevara dobiva oblik</em></div>
+              <div class="scene-meta">RAZVOJ</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Mladići uvjeravaju Stanca da legne i pije „vodu od mladosti". Vežu ga, opijaju, spaljuju mu bradu. Sve ovo glumi se kao „magija podmlađivanja".</div>
+              <div class="scene-why"><b>Dramska funkcija:</b> Komika fizičkog tipa — farsalna rituala. <b>Ključ za esej:</b> Vidimo <em>okrutnost komike</em>. Mladići uživaju, Stanac trpi — ali u žanru farse to je legitimno. Farsa ne pita za moral, samo za smijeh. Usporedi s Plautovom komedijom — slična okrutnost.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">V.</div>
+              <div class="scene-ttl">Mladići odlaze — <em>vrhunac obmane</em></div>
+              <div class="scene-meta">VRHUNAC</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Mladići odlaze, ostavljajući svezanog Stanca. Imaju ono što su htjeli — zabavu pokladne noći. Stanac ostaje sam, pijan, opaljene brade, vezan.</div>
+              <div class="scene-why"><b>Dramska funkcija:</b> Vrhunac komike — Stanac kao predmet smijeha. <b>Ključ za esej:</b> Tipičan farsalni preokret — <em>vlastela nestaju, žrtva ostaje</em>. Klasna asimetrija je naglašena: oni se vraćaju u svoje kuće, on ostaje na trgu.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">VI.</div>
+              <div class="scene-ttl">Stanac dolazi k sebi — <em>spoznaja</em></div>
+              <div class="scene-meta">PREOKRET</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Stanac se osvijesti, vidi da je opaljen i opljačkan. Razumije da ga nema „voda mladosti", da su ga prevarili. Tuga se vraća — ali ne više za umrlu ženu, nego za vlastitu naivnost.</div>
+              <div class="scene-why"><b>Dramska funkcija:</b> Spoznaja žrtve. <b>Ključ za esej:</b> Trenutak kad farsa nakratko dotiče tragediju. Stanac shvaća da je gubitnik <em>i poklada i života</em>. Ali Držić ne dopušta da farsa postane drama — Stanac jadikuje, ali ne osuđuje.</div>
+            </div>
+          </details>
+
+          <details class="scene">
+            <summary class="scene-sum">
+              <div class="scene-num">VII.</div>
+              <div class="scene-ttl">Završetak — <em>prihvaćanje sudbine</em></div>
+              <div class="scene-meta">ZAVRŠNICA</div>
+            </summary>
+            <div class="scene-body">
+              <div class="scene-quote">Stanac ostaje sam s tugom, ali se priprema za povratak u Trebinje — sa spoznajom, ali bez gorčine. Karneval prolazi, normalan život se vraća.</div>
+              <div class="scene-why"><b>Dramska funkcija:</b> Otvoren završetak farse — bez moralne pouke, ali s implicitnom opomenom: <em>ne vjeruj svemu što ti grad obeća</em>. <b>Ključ za esej:</b> Držić ne sudi — prikazuje. To je njegova književna snaga. Za razliku od Marulića (alegorija s jasnom porukom), Držić je <b>moralno otvoren</b> — to je modernost njegove poetike.</div>
+            </div>
+          </details>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">🎯 Likovi Novele od Stanca — sažeti vodič</div>
+          <div class="box-key-txt">
+            <b>Stanac</b> — <em>tip „glupog seljaka"</em> iz kazališne tradicije. Star, naivan, tugaljiv. Iz Trebinja (= izvan Dubrovačke Republike). Žrtva karnevalske igre.<br>
+            <b>Vlaho, Miho, Dživo</b> — <em>dubrovački mladići, vlastela</em>. Lukavi, dosadni u poklade, traže zabavu. Tipični likovi commedie dell'arte — <em>nisu individue, nego funkcije</em>.<br>
+            <b>Anica</b> (sporedan lik) — <em>djevojka koju mladići spominju</em> kao mamac. Pokazuje da je u igri i ljubavna komponenta, ali Stanac na nju ne pristaje.
+          </div>
+        </div>
+
+
+        <!-- ★ DUNDO MAROJE — razrada -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Dundo Maroje · prva hrv. prozna drama</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🏛️ Dundo Maroje — zašto je važan za maturu</div>
+          <div class="box-int-txt">
+            Dundo Maroje nije obvezatno djelo 2026., ali je <strong>najstarija poznata hrvatska prozna drama</strong> i Držićevo najambicioznije djelo. Pitanja o njemu mogu se pojaviti u cjelini „Teorija i povijest književnosti". Ključno: <em>radnja u Rimu, prozni jezik, dva prologa, Kombolov završetak</em>.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">ASPEKT</div><div class="cv b">Novela od Stanca</div><div class="cv b">Dundo Maroje</div></div>
+          <div class="cr"><div class="ck go">Žanr</div><div class="cv">Farsa / pokladna igra</div><div class="cv">Renesansna komedija (commedia erudita)</div></div>
+          <div class="cr"><div class="ck t">Forma</div><div class="cv">1 čin, 7 prizora, dvanaesterci</div><div class="cv">2 prologa + 5 činova, proza</div></div>
+          <div class="cr"><div class="ck re">Radnja</div><div class="cv">Dubrovnik, jedna pokladna noć</div><div class="cv">Rim — Dundo traži sina Mara koji troši novac s Laurom</div></div>
+          <div class="cr"><div class="ck pa">Likovi</div><div class="cv">Tipovi: Stanac, 3 mladića</div><div class="cv">Kompleksniji: Dundo, Maro, Laura, sluga Pomet, Negromant (prolog)</div></div>
+          <div class="cr"><div class="ck g">Posebnost</div><div class="cv">Pokladni kontekst, klasna satira</div><div class="cv">Prolog Negromanta — filozofski uvod; kraj nedostaje, Kombol ga dopunio</div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">🎭 Lik Negromanta — filozofski uvod Dunda Maroja</div>
+          <div class="box-key-txt">
+            Jedan od dva prologa (<em>Pomet-prolog</em> i <em>Negromant-prolog</em>) govori lik Negromanta — čarobnjaka koji uvodi radnju. Negromant govori o <b>„nazbiljima i nahvao ljudima"</b>: nazbilji su oni koji žive razumno i pošteno; nahvao su oni koji žive bez razuma, u pohlepi i strasti. Ovaj filozofski dualizam prožima cijelu dramu — Dundo (pohlepa), Maro (rasipništvo), Pomet (lukavost koja preživljava). <em>Taj filozofski okvir razlikuje Dunda od jednostavne farse.</em>
+          </div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">📋</div>
+          <div class="bw-body">
+            <div class="bw-title">Kombolov dodatak — kraj koji nedostaje</div>
+            <div class="bw-txt">Sačuvani rukopis Dunda Maroja nema kraj. Književni povjesničar <strong>Mihovil Kombol</strong> (20. st.) napisao je završetak koji se koristio u kazališnim produkcijama. Ovo je jedinstven slučaj u hrv. književnosti — <em>autor dopunjava djelo drugog autora 400 godina poslije</em>. Na maturi: znati da kraj nedostaje i da ga je Kombol dopunio.</div>
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🗺️ Zašto je radnja Dunda Maroja smještena u Rimu?</div>
+          <div class="box-int-txt">
+            Dubrovački pisci koji su studirali u Italiji dobro poznaju talijanske gradove. Rim kao pozornica ima više funkcija: <b>(1) Egzotičnost</b> — Rim je daleko i slobodniji za satiričan komentar bez direktnih dubrovačkih aluzija. <b>(2) Tradicija</b> — rimske komedije (Plaut, Terencije) odvijaju se u gradovima — Držić slijedi tu tradiciju. <b>(3) Ironija</b> — Rim je središte kršćanstva, a Dundo Maroje je priča o pohlepi i rasipništvu. Kontrast između svetog grada i profanih likova je namjeran.
+          </div>
+        </div>
+
+        <!-- BRNE KRNARUTIĆ -->
+        <div id="h11-react-author-krnarutic"></div>
+
+
+        <!-- ★ SKUP — razrada -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Skup · plautovska komedija</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">💰 Skup — Držić i Plautov nasljeđe</div>
+          <div class="box-int-txt">
+            <em>Skup</em> (praizvedena 1556.) je <strong>plautovska komedija</strong> — Držić izravno preuzima zaplet iz Plautove <em>Aulularije</em> (<em>Lonac</em>). Stari škrtac <b>Skup</b> (= Plautov Euklion) fanatično čuva blago, želi udati kćer <b>Adrianu</b> za starog i bogatog <b>Zlatikuma</b>, ali je ona potajno zaručena za mladog <b>Kamila</b>. Holding sve aluzije na dubrovačku stvarnost — Držić transformira rimsku komediju u komentar 16. st. Dubrovnika.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:100px">LIK u Skupu</div><div class="cv b">Funkcija / tip</div><div class="cv b">Analogija u Plautu</div></div>
+          <div class="cr"><div class="ck go" style="min-width:100px">Skup</div><div class="cv">Stari škrtac koji ne vjeruje nikome, sakriva blago, živi u strahu</div><div class="cv">Euklion u <em>Aululariji</em> — isti karakter, ista opsesija blagom</div></div>
+          <div class="cr"><div class="ck t" style="min-width:100px">Adriana</div><div class="cv">Skupova kći — žrtva očeve pohlepe; voli Kamila, ne može ga oženiti</div><div class="cv">Fedria u <em>Aululariji</em> — ista situacija</div></div>
+          <div class="cr"><div class="ck re" style="min-width:100px">Zlatikum</div><div class="cv">Bogati starac kojeg Skup želi za zeta — simbol pohlepe i braka iz interesa</div><div class="cv">Megador u <em>Aululariji</em></div></div>
+          <div class="cr"><div class="ck pa" style="min-width:100px">Kamilo</div><div class="cv">Mladi zaljubljenac — pravi ljubavnik Adriane; pobjeđuje zahvaljujući lukavosti</div><div class="cv">Likovi mladih zaljubljenika u Plautovim komedijama</div></div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">💡 Zašto Skup nije samo kopija Plautove Aulularije</div>
+          <div class="box-key-txt">
+            Plaut je pisao za rimsku publiku 2. st. pr. Kr. — Držić piše za dubrovačku vlastelu 16. st. Razlike: <b>(1)</b> Držić dodaje dubrovačke aluzije — ulice, kafane, likovi zvuče kao stvarni dubrovčani. <b>(2)</b> Pohlepa u Skupu nije samo osobna mana — ona je kritika dubrovačke merkantilne kulture u kojoj je novac vrhovni bog. <b>(3)</b> Mladi par (Kamilo i Adriana) je humaniziran — imaju pravo glasa, nisu samo sredstvo zapleta. <b>(4)</b> Dubrovački idiom 16. st. daje komediji lokalni teksturni sloj koji Plaut nema.
+          </div>
+        </div>
+
+        <!-- ★ ROBINJA — razrada -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Robinja · prva hrv. drama s razrađenom radnjom</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎭 Robinja — zašto je revolucionarna za hrv. književnost</div>
+          <div class="box-int-txt">
+            Hanibal Lucić: <em>Robinja</em> (praizvedena 1530., tiskana 1638.) je <strong>prva hrv. drama s razrađenom radnjom, zapletom i rasplatom</strong> te individualnim likovima. Prethodne hrv. drame (Džore Držić: <em>Radmio i Ljubmir</em>) imaju dijalog ali ne i pravi dramski zaplet. Lucić uvodi: <em>prepoznatljive individualne likove, stvarni dramski sukob, moralni problem</em>.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:90px">ELEMENT</div><div class="cv b">OPIS</div><div class="cv b">ZNAČAJ</div></div>
+          <div class="cr"><div class="ck go" style="min-width:90px">Likovi</div><div class="cv"><b>Robinja</b> — kći bana Vlaska, zarobljena i prodana. <b>Derenčin</b> — mladi hrv. vitez koji je otkupljuje. <b>Turčin</b> — vlasnik robinje.</div><div class="cv">Individualizirani, a ne tipovi. Robinja ima ime, identitet, povijest — nije samo funkcija.</div></div>
+          <div class="cr"><div class="ck t" style="min-width:90px">Tema</div><div class="cv">Turska opasnost i <b>trgovina robljem</b> — stvarni problemi hrv. primorja 16. st.</div><div class="cv">Jedina hrv. renesansna drama koja direktno (ne alegorijski) tematizira tursku opasnost.</div></div>
+          <div class="cr"><div class="ck re" style="min-width:90px">Forma</div><div class="cv">3 čina, dvostruko rimovani dvanaesterci.</div><div class="cv">Trodijelna struktura = uvod, zaplet, rasplet. Modernija od Džore Držićeve jednočinke.</div></div>
+          <div class="cr"><div class="ck pa" style="min-width:90px">Moral</div><div class="cv">Derenčin otkupljuje robinju — <b>ljubav pobjeđuje pohlepu</b>.</div><div class="cv">Eksplicitna moralna poruka — razlika od Držićeve Novele koja je bez morala.</div></div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">⚖️ Lucić vs. Držić — dramske poetike</div>
+            <div class="box-signal-txt"><b>Lucić (Robinja):</b> individualizirani likovi, realni problem (ropstvo), eksplicitni moral, 3 čina, teme iz hrv. stvarnosti. <b>Držić (Novela):</b> tipski likovi, farsalni problem (poklade), bez morala, 1 čin, teme iz dubrovačke svakodnevice. Oba su suvremeni (16. st.), oba pišu dvostruke dvanaesterce — ali su dramski antipodi.</div>
+          </div>
+        </div>
+
+
+        <!-- ★ VAZETJE SIGETA — razrada -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Vazetje Sigeta grada · povijesni ep</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">⚔️ Brne Krnarutić i opsada Sigeta 1566.</div>
+          <div class="box-int-txt">
+            <em>Vazetje Sigeta grada</em> (1584.) Brne Krnarutića je <strong>prvi hrv. povijesni ep</strong> — za razliku od Judite koja je alegorija, Vazetje opisuje <em>stvarni povijesni događaj</em>: <b>opsadu i pad tvrđave Siget 1566.</b> Kapetan Sigeta, <strong>Nikola Šubić Zrinski</strong>, odbijao je vojsku Sulejmana Veličanstvenog s nekoliko tisuća branitelja. Kad je obrana postala nemoguća, Zrinski je izabrao slavnu smrt — otvorio je vrata i s odabranim borcima junački pao. <em>Sulejman umire tijekom opsade</em> — povijesna ironija koja ulazi u ep.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">ELEMENT</div><div class="cv b">OPIS</div></div>
+          <div class="cr"><div class="ck go">Autor</div><div class="cv">Brne Krnarutić (1515.–1573.), zadarski vlastelin i humanist. Suvremen događaju koji opisuje (rođen 1515., Siget 1566.).</div></div>
+          <div class="cr"><div class="ck t">Datum tiska</div><div class="cv">1584. — 18 godina nakon pada Sigeta. Krnarutić je tada već mrtav (†1573.); djelo je posmrtno tiskano.</div></div>
+          <div class="cr"><div class="ck re">Stih</div><div class="cv">Dvostruko rimovani dvanaesterci — standardni stih hrv. renesanse.</div></div>
+          <div class="cr"><div class="ck pa">Junaci</div><div class="cv"><b>Nikola Šubić Zrinski</b> — kapetan Sigeta, hrv. junak par excellence. <b>Sulejman Veličanstveni</b> — osmanski sultan, umire za opsade. Krnarutić opisuje obojicu — i hrv. heroizam i tursku vojnu moć.</div></div>
+          <div class="cr"><div class="ck g">Razlika od Judite</div><div class="cv">Judita je alegorija (biblijska priča = hrv. borba); Vazetje je direktno — opisuje stvarni napad, stvarne ljude, stvarnu tvrđavu. Bez alegorijskog sloja.</div></div>
+          <div class="cr"><div class="ck br">Tradicija</div><div class="cv">Vazetje Sigeta ima produžetak: Petar Zrinski prevodi epos na hrv. (17. st.); Ivan Gundulić nastavlja epsku tradiciju u <em>Osmanu</em> (17. st.). Sigetska tema je konstanta hrv. književnosti.</div></div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">📌</div>
+          <div class="bw-body">
+            <div class="bw-title">Vazetje Sigeta — za kontekst, ne za esej</div>
+            <div class="bw-txt">Vazetje Sigeta nije obvezatno djelo za esej ni za čitanje na maturi. Ali je <b>korisno za kontekstualizaciju</b>: kad pišeš o Marulićevoj Juditi ili Zoranićevoj rasutoj bašćini, možeš ga navesti kao primjer — <em>„Isti domoljubni motiv proteže se od Marulića (1501.) do Krnarutića (1584.) — hrv. renesansa je generacijski odgovor na tursku prijetnju."</em></div>
+          </div>
+        </div>
+
+        <!-- ★ MARIN DRŽIĆ — kompletna kronologija -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Marin Držić · kompletni opus</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📅 Sva Držićeva djela — kronološki</div>
+          <div class="box-key-txt" style="font-size:13px;line-height:1.9">
+            <b>~1548.</b> <em>Tirena</em> — pastoralna drama u stihu; Pomet-družina. Izgubljen izvornik, rekonstrukcija.<br>
+            <b>1548./1549.</b> <em>Pripovijes kako se Venere božica užeže u ljubav lijepoga Adona u komediju stavljena</em> — mitološka drama.<br>
+            <b>1550.</b> <em>Novela od Stanca</em> ★ — farsa, 1 čin, 7 prizora, dvanaesterci. <b>Obvezatno 2026.</b><br>
+            <b>1551.</b> <em>Dundo Maroje</em> — 2 prologa + 5 čin., proza. Njarnjas-družina. Kraj nedostaje (Kombol).<br>
+            <b>1551.–1555.</b> <em>Mande</em> — izgubljena komedija. Isti likovi kao Dundo Maroje.<br>
+            <b>1554.</b> <em>Arkulin</em> — komedija, sačuvana.<br>
+            <b>1556.</b> <em>Skup</em> — 5 čin., proza, po Plautovoj Aululariji.<br>
+            <b>1556.</b> <em>Tripče de Utolče</em> — farsa, žena vara muža.<br>
+            <b>1556.</b> <em>Džuho Kerpeta</em> — izgubljena farsa.<br>
+            <b>1566.</b> <em>Kosmografska poslanica Cosimu de' Mediciju</em> — tajna politička poruka, traženje pomoći za prevrat u Dubrovniku.<br>
+            <b>1566./1567.</b> Marin Držić umire u Veneciji — sam, bez novca, prevrat se nikad nije zbio.
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">FAZA 1</span>
+            <div class="sc-name">Pastoralne drame (1548.–1550.)</div>
+            <div class="sc-desc">Tirena, Venus i Adon — pastoralne drame u stihovima po uzoru na talijanske pastoralie. Mladi Držić eksperimentira s formom. <b>Manje poznato, manje ispitivano</b> — za kontekst razvoja Držićeva opusa.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">FAZA 2</span>
+            <div class="sc-name">Farse i komedije (1550.–1556.)</div>
+            <div class="sc-desc">Novela od Stanca, Dundo Maroje, Skup, Arkulin — Držić na vrhuncu. Forma se mijenja: od stiha prema prozi (Dundo, Skup), od pokladne farse prema razvijenu komičnom zapletu. <b>Ovo je kanonski Držić.</b></div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">FAZA 3</span>
+            <div class="sc-name">Politička aktivnost (1566.)</div>
+            <div class="sc-desc">Kosmografska poslanica otkriva Držića koji više nije samo komediograf — on je politički angažiran intelektualac. <b>Planira prevrat, traži stranog mecenu.</b> Prevrat ne uspijeva, Držić umire kao stranac u Veneciji.</div>
+          </div>
+        </div>
+
+
+        <!-- ★ LUCIĆ — analiza Robinje -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Lucić · Robinja — analiza scene</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎭 Ključna scena Robinje — što gledati na ispitu</div>
+          <div class="box-int-txt">
+            Robinja je trodijelna drama u dvanaestercima. Ključni dramski trenutak: <strong>scena otkupa</strong> — Derenčin pregovara s Turčinom za slobodu Robinje. Ovo je jedina hrv. renesansna scena koja direktno tematizira <em>tursko ropstvo kao stvarni, ne alegorijski problem</em>.
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">Čin I</span>
+            <div class="sc-name">Ekspozicija — tko je Robinja</div>
+            <div class="sc-desc">Robinja se predstavlja: kći bana Vlaska, zarobljena u turskom napadu. Ima ime, podrijetlo, povijest — <b>nije bezimena žrtva</b>. To je Lucićeva dramatička inovacija: lik s identitetom, ne samo dramska funkcija. Pjeva i jadikuje nad svojom sudbinom.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">Čin II</span>
+            <div class="sc-name">Susret — Derenčin i Turčin</div>
+            <div class="sc-desc">Mladi hrv. vitez Derenčin ugleda Robinju i zaljubi se. Pregovara s Turčinom za otkup. Turčin hoće novac — <b>ropstvo kao ekonomska transakcija</b>. Lucić ovdje opisuje stvarnost: Turci prodaju zarobljenike, hrv. plemstvo ih otkupljuje. Bez alegorije.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">Čin III</span>
+            <div class="sc-name">Otkup — ljubav pobjeđuje pohlepu</div>
+            <div class="sc-desc">Derenčin plati otkup. Robinja je slobodna. Moral je eksplicitan: <b>ljubav i čast pobjeđuju pohlepu</b>. Razlika od Novele od Stanca: Lucić ima moralnu poruku, Držić nema. Oba su renesansni pisci — ali suprotnih dramskih poetika.</div>
+          </div>
+        </div>
+
+        <div class="box-warn">
+          <div class="bw-ico">⚠️</div>
+          <div class="bw-body">
+            <div class="bw-title">Robinja na maturi — što se pita</div>
+            <div class="bw-txt">Robinja nije obvezatno djelo za esej 2026. Ali može se pojaviti u: <b>(1)</b> teorijskom pitanju (<em>„Što je prva hrv. drama s razrađenom radnjom?"</em> — odgovor: Robinja, Lucić, 1530.). <b>(2)</b> usporednom pitanju (<em>„Usporedi Lucićevu i Držićevu dramu"</em>). <b>(3)</b> kontekstualnom eseju o turskoj opasnosti kao temi hrv. renesanse.</div>
+          </div>
+        </div>
+
+        <!-- ★ KRNARUTIĆ — detalji -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Krnarutić · Vazetje — ključni pojmovi</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">⚔️ Vazetje Sigeta — sve na jednom mjestu</div>
+          <div class="box-key-txt">
+            <b>Autor:</b> Brne Krnarutić (1515.–1573.), Zadar. <b>Djelo:</b> <em>Vazetje Sigeta grada</em> (tiskano 1584. — posmrtno). <b>Tema:</b> opsada tvrđave Siget 1566. i heroinska smrt Nikole Šubića Zrinskog. <b>Stih:</b> dvostruko rimovani dvanaesterci. <b>Žanr:</b> <em>prvi hrv. povijesni ep</em> — razlika od Judite (alegorija) je u tome što Vazetje opisuje <em>stvarni, nedavni događaj</em> bez alegorijskog sloja. <b>Važno:</b> Sulejman Veličanstveni umire za opsade — dramatična ironija. <b>Tradicija:</b> Petar Zrinski prevodi na hrv. (17. st.) → Gundulić (<em>Osman</em>, 17. st.) nastavlja epsku tradiciju → Sigetska tema ulazi u moderno hrv. kazalište (Goethe: <em>Zriny</em>). <b>Za maturu:</b> Vazetje nije obvezatno, ali korisno za kontekstualizaciju Judite i Zoranića.
+          </div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">🔗 Krnarutić i Zoranić — zadarski krug</div>
+            <div class="box-signal-txt">Oba su zadarski humanisti s jakim patriotskim tonom. <b>Zoranić</b> (Planine, ~1543.) tematizira tursku opasnost alegorijski (rasuta bašćina). <b>Krnarutić</b> (Vazetje, 1584.) tematizira je direktno — <em>opis konkretne bitke, konkretnih junaka</em>. Zadarski krug zatvara krug hrv. renesanse: Marulić ga otvara alegorijom (Judita, 1501.), Krnarutić ga zatvara povijesnim epom (Vazetje, 1584.). <em>83 godine hrv. renesansne književnosti — od nade do komemoracije.</em></div>
+          </div>
+        </div>
+
+
+        <!-- Dramatičarska evolucija -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Evolucija hrv. drame u 16. st.</div><div class="sec-line"></div></div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">FAZA</div><div class="cv b">PISAC / DJELO</div><div class="cv b">NOVOST</div><div class="cv b">OGRANIČENJE</div></div>
+          <div class="cr"><div class="ck go">1. Pastoralna drama</div><div class="cv">Džore Držić: <em>Radmio i Ljubmir</em> (kraj 15. st.)</div><div class="cv">Prva hrv. drama s dijalogom i scenskim postavom.</div><div class="cv">Nema razrađene radnje — samo razgovor pastira.</div></div>
+          <div class="cr"><div class="ck t">2. Drama s radnjom</div><div class="cv">Lucić: <em>Robinja</em> (1530.)</div><div class="cv">Zaplet, rasplet, individualizirani likovi, 3 čina.</div><div class="cv">Tema realna (ropstvo) ali dramatska forma još jednostavna.</div></div>
+          <div class="cr"><div class="ck re">3. Farsa ★</div><div class="cv">Marin Držić: <em>Novela od Stanca</em> (1550.)</div><div class="cv">Situacijska komika, dramska ironija, bez morala.</div><div class="cv">1 čin, tipski ne individualizirani likovi.</div></div>
+          <div class="cr"><div class="ck pa">4. Renesansna komedija</div><div class="cv">Marin Držić: <em>Dundo Maroje</em> (1551.)</div><div class="cv">Proza, 5 činova, filozofski okvir (Negromant).</div><div class="cv">Kraj nedostaje. Kompleksnost zahtijeva obrazovanu publiku.</div></div>
+          <div class="cr"><div class="ck g">5. Plautovska komedija</div><div class="cv">Marin Držić: <em>Skup</em> (1556.)</div><div class="cv">Adaptacija antike za dubrovački kontekst. Kritika pohlepe.</div><div class="cv">Bliže antičkom predlošku — manje originalno od Dunda.</div></div>
+        </div>
+
+        <div class="box-signal">
+          <div>
+            <div class="box-signal-lbl">💡 Što evolucija hrv. drame pokazuje</div>
+            <div class="box-signal-txt">Za samo ~60 godina hrv. drama prošla je put od kratkog pastoralnog dijaloga do složene prozne komedije s filozofskim prolozima. <b>Marin Držić je najbrži razvoj</b> — u 6 godina (1550.–1556.) napisao farsu, komediju i plautovsku adaptaciju. Taj razvoj usporediv je s europskim kazalištima, ali događa se u jednom gradu, s amaterskim družinama, bez stalnog kazališta.</div>
+          </div>
+        </div>
+
+        <!-- Sintetički pregled Tab 1 -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Sinteza · Epika, lirika, drama — tko piše što</div><div class="sec-line"></div></div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">ŽANR</div><div class="cv b">PISAC</div><div class="cv b">DJELO</div><div class="cv b">ZA ESEJ — KLJUČNA TEZA</div></div>
+          <div class="cr"><div class="ck go">Ep</div><div class="cv">Marulić</div><div class="cv"><em>Judita</em> (1501./1521.)</div><div class="cv">Alegorija turske prijetnje. Judita = Hrvatska. Biblijska forma + kršćanski humanizam.</div></div>
+          <div class="cr"><div class="ck go">Ep</div><div class="cv">Krnarutić</div><div class="cv"><em>Vazetje Sigeta</em> (1584.)</div><div class="cv">Povijesni ep bez alegorije. Zrinski kao hrv. heroj. Zatvara krug hrv. renesanse.</div></div>
+          <div class="cr"><div class="ck t">Putopis / ekloga</div><div class="cv">Hektorović</div><div class="cv"><em>Ribanje</em> (1556.)</div><div class="cv">Dokumentarni realizam. Bugarštice. Demokratizacija humanizma.</div></div>
+          <div class="cr"><div class="ck re">Roman</div><div class="cv">Zoranić</div><div class="cv"><em>Planine</em> (~1543./1569.)</div><div class="cv">Književni manifest. Perivoj od Slave. Rasuta bašćina. Ljubav = domoljublje.</div></div>
+          <div class="cr"><div class="ck pa">Lirika — I. gen.</div><div class="cv">Menčetić, Džore Držić</div><div class="cv">Ranjinin zbornik (1507.)</div><div class="cv">Petrarkizam bez soneta. Dvanaesterci. Senzualnost (Menčetić) vs. idealizacija (Džore).</div></div>
+          <div class="cr"><div class="ck g">Lirika — II. gen.</div><div class="cv">Lucić</div><div class="cv"><em>Jur nijedna na svit vila</em></div><div class="cv">Osmesterac. Neoplatonizam. Ljubav kao duhovna snaga prema Bogu.</div></div>
+          <div class="cr"><div class="ck br">Drama — prva</div><div class="cv">Džore Držić</div><div class="cv"><em>Radmio i Ljubmir</em> (kraj 15. st.)</div><div class="cv">Prva hrv. pastoralna drama. Kratka, bez razvijene radnje.</div></div>
+          <div class="cr"><div class="ck go">Drama s radnjom</div><div class="cv">Lucić</div><div class="cv"><em>Robinja</em> (1530.)</div><div class="cv">Prva hrv. drama s razrađenom radnjom. Ropstvo kao tema. Eksplicitan moral.</div></div>
+          <div class="cr"><div class="ck t">Farsa ★</div><div class="cv">Marin Držić</div><div class="cv"><em>Novela od Stanca</em> (1550.)</div><div class="cv">Pokladna igra. 1 čin, 7 prizora. Mlado vs. staro. Bez moralne osude. ★ OBVEZATNO.</div></div>
+          <div class="cr"><div class="ck re">Komedija</div><div class="cv">Marin Držić</div><div class="cv"><em>Dundo Maroje</em> (1551.)</div><div class="cv">Prva hrv. prozna drama. 5 čin. Rim. Nazbilji vs. nahvao. Kraj nedostaje.</div></div>
+          <div class="cr"><div class="ck pa">Plautovska komed.</div><div class="cv">Marin Držić</div><div class="cv"><em>Skup</em> (1556.)</div><div class="cv">Po Aululariji. Pohlepa kao društv. vrijednost. Škrtac Skup vs. zaljubljenici.</div></div>
+        </div>
+
+        <!-- Brzi sažetak Tab 1 -->
+        <div class="box-key">
+          <div class="box-key-lbl">🔑 Brzi sažetak — što znati na prstu</div>
+          <div class="box-key-txt">
+            <b>Marulić</b>: Judita (ep, 1501., alegorija, 6 pjev., 2126 dvanaest.) · Institucija (lat., prevedena) · Davidijada (lat. ep)<br>
+            <b>Hektorović</b>: Ribanje (1556., ep/putopis/ekloga/poslanica, bugarštice, Hvar→Brač→Šolta)<br>
+            <b>Zoranić</b>: Planine (~1543./1569., prvi hrv. roman, 24 pogl., Perivoj od Slave, rasuta bašćina)<br>
+            <b>Menčetić</b>: Blažen čas i hip · I. gen. petrarkizam · senzualan<br>
+            <b>Džore Držić</b>: idealizacija ljubavi · I. gen. petrarkizam · Radmio i Ljubmir (prva pastoralna drama)<br>
+            <b>Lucić</b>: Robinja (1530., prva hrv. drama s razrađenom radnjom, 3 čina, tema ropstva, moral: ljubav pobjeđuje pohlepu) · Jur nijedna na svit vila (osmerci, neoplatonizam, II. gen.)<br>
+            <b>Marin Držić</b>: Novela od Stanca (1550., ★ obvezatno, farsa, 1 čin 7 prizora) · Dundo Maroje (1551., najstarija hrv. prozna drama) · Skup (po Plautu) · Kosmografska poslanica (1566.)<br>
+            <b>Krnarutić</b>: Vazetje Sigeta grada (1584., prvi hrv. povijesni ep, opsada Sigeta 1566.)
+          </div>
+        </div>
+
+        
+    <!-- VIDEO RESURSI — v3.5 -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">Video resursi</div><div class="sec-line"></div></div>
+
+    <div class="prose">Kada ti tekst nije dovoljan — vizualni učenici često bolje pamte kroz video objašnjenja i predstave. Ovdje su pouzdani edukacijski resursi na YouTubeu.</div>
+
+    <div class="yt-grid">
+      <div id="h11-react-video-card-primary"></div>
+
+      <div id="h11-react-video-card-secondary"></div>
+
+      <div id="h11-react-video-card-tertiary"></div>
+
+      <div id="h11-react-video-card-quaternary"></div>
+    </div>
+
+    <div class="box-tip" style="margin-top:14px">
+      <div class="bt-ico">💡</div>
+      <div class="bt-body">
+        <div class="bt-title">Pro tip — kako koristiti</div>
+        <div class="bt-txt">Video je <strong>dodatak</strong>, ne zamjena. Pročitaj djelo + ovu skriptu, pa pogledaj video — tako pamtiš 3× bolje nego kroz bilo koji pojedinačni izvor.</div>
+      </div>
+    </div>
+
+<div class="nav-row">
+          <span class="nb" onclick="sw(0)">← 📖 Teorija</span>
+          <span class="nb primary" onclick="sw(2)">✍ Esej alat →</span>
+        </div>
+      </div>
+
+      <!-- ════════════════════════
+           TAB 2 · ESEJ ALAT
+           ════════════════════════ -->
+      <div class="layer" id="l2" role="tabpanel" tabindex="0">
+        <div class="tags">
+          <span class="pill p-go">★ Novela od Stanca 2026</span>
+          <span class="pill p-br">6 teza</span>
+          <span class="pill p-r">model uvoda</span>
+          <span class="pill p-t">440+ riječi · brojač</span>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">✍ Kako se piše esej o Noveli od Stanca</div>
+          <div class="box-int-txt">
+            Esej na maturi = <b>min. 440 riječi</b>, <b>uvod-razrada-zaključak</b>, <em>jasna središnja tvrdnja</em>, barem <b>1 citat ili parafraza</b>, barem <b>1 književnoteorijski pojam</b>. Ovdje imaš <b>6 probranih teza</b>, <b>model uvoda i razrade</b>, <b>checklist</b> i <b>brojač riječi</b>.
+          </div>
+        </div>
+
+        <!-- SEC 01 — 6 teza -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01 · 6 teza za esej o Noveli od Stanca</div><div class="sec-line"></div></div>
+
+        <div id="h11-react-esej-teze"></div>
+        <div id="h11-react-esej-tipovi"></div>
+        <div id="h11-react-esej-writer"></div>
+        <div style="display:none">
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">TEZA 1</span>
+            <div class="sc-name">Pokladni kontekst kao dramski uvjet</div>
+            <div class="sc-desc">Novela od Stanca nije moguća bez poklada. <em>Pokladne slobode</em> dopuštaju prevaru i preokret društvenih uloga — u karnevalu je dopušteno ono što inače nije. Bez poklada, zlodjelo mladića ne bi imalo ni dramsku legitimnost ni komičnu olakšicu. <b>Poklade = dramski uvjet + filozofski okvir</b>.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">TEZA 2</span>
+            <div class="sc-name">Opreka mlado–staro kao os radnje</div>
+            <div class="sc-desc">Stanac je žrtva <em>zbog starosti</em> — naivan, pun nade u podmladak, lako prevaren. Mladići pobjeđuju <b>lukavošću</b>, ne fizičkom silom. Renesansa slavi vitalnost i pamet kao vrline — starost bez mudrosti postaje komična. <em>Mlado = pobjeđuje. Staro = gubi.</em> Bez moralne osude — to je farsa.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip t">TEZA 3</span>
+            <div class="sc-name">Komentar dubrovačkog društva</div>
+            <div class="sc-desc">Dubrovački mladići = vlastela; Stanac = seljak iz Trebinja. <b>Klasna nadmoć</b> iskazuje se kroz intelektualnu prijevaru, ne nasilje. Držić koristi komediju kao <em>ogledalo dubrovačkog društva</em> — kako vlastela zaista gleda na seljaka. Satira bez eksplicitnog suda.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">TEZA 4</span>
+            <div class="sc-name">Farsa kao žanr — poetika komedije</div>
+            <div class="sc-desc">Novela je <b>farsa</b>: kratka (1 čin), likovi su tipovi a ne individue, komika situacijska. Razlikuje se od <em>Dunda Maroja</em> (složenija, psihologiziranija). Žanrovski uzori: talijanska commedia dell'arte, Plaut. <em>Farsa ne zahtijeva moral — zahtijeva smijeh.</em></div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">TEZA 5</span>
+            <div class="sc-name">Jezik i stil — dubrovački idiom</div>
+            <div class="sc-desc">Novela je pisana <b>dvostruko rimovanim dvanaestercima</b> — standardni stih hrv. renesanse. Jezik je <em>dubrovački idiom</em> 16. st. Stanac govori drukčije od dubrovačkih mladića — jezična razlika prati klasnu. <b>Stil prati karakter</b> — kao kod Marulića gdje čakavski daje ep lokalnu autentičnost.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip gr">TEZA 6</span>
+            <div class="sc-name">Voda mladosti — mitski motiv</div>
+            <div class="sc-desc">„Voda od mladosti" je renesansni mitski motiv — <em>Fontana della giovinezza</em>. Mladići ga koriste kao instrument prevare, ali Stanac ga prima doslovno. <b>Naivnost vs. sofisticiranost</b>. Motiv otkriva i Stančevu duboku želju za podmlatkom — <em>tragedija unutar komedije</em>: čovjek koji zaista želi biti mlad.</div>
+          </div>
+        </div>
+
+        <!-- SEC 02 — Model uvoda -->
+
+        <!-- SEC 01a — Teze 7-9 za napredni esej -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01a · Teze 7–9 za napredni esej</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎓 Za A ocjenu — složenije interpretacijske teze</div>
+          <div class="box-int-txt">
+            Ove teze zahtijevaju dublje poznavanje konteksta i žanra. Korisne za napredne učenike koji žele ići iznad standardnih odgovora.
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">TEZA 7</span>
+            <div class="sc-name">Dramska ironija kao motor komike</div>
+            <div class="sc-desc">Publika zna što Stanec ne zna — nema „vode od mladosti". Taj jaz između publicnog i Stančeva znanja je mehanizam smijeha, ali i mehanizam empatije: <b>smijemo se, ali i žalimo</b>. Teza: Novela od Stanca koristi dramsku ironiju kao etički instrument — smijeh nije samo zabava, on je moralna refleksija.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">TEZA 8</span>
+            <div class="sc-name">Novela od Stanca kao komentar kapitala</div>
+            <div class="sc-desc">Dubrovnik 16. st. je merkantilni grad — novac, trgvina i poslovni um su ključne vrijednosti. Stanec dolazi bez kapitala (ni materijalnog ni socijalnog). Mladići imaju oboje. Teza: <b>Novela od Stanca nije samo komedija — to je ekonomska analiza Dubrovnika u formi farse</b>. Ko ima kapital, pobjeđuje.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">TEZA 9</span>
+            <div class="sc-name">Farsa i moderno kazalište</div>
+            <div class="sc-desc">Farsa 16. st. je preteča modernog teatra apsurda (Beckett, Ionesco) — oboje prikazuju bez osude, oba nemaju jasnu moralnu pouku, oba su komična i tragična istovremeno. Teza: <b>Držić anticipira moderno kazalište 400 godina unaprijed</b> — njegova neuzimljivost prema moralnoj osudi je modernistička crta koja ga razlikuje od suvremenih pisaca.</div>
+          </div>
+        </div>
+
+        <!-- SEC 01b — Teze za esej o Juditi -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01b · 4 teze za esej o Juditi</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">📖 Kad esejsko pitanje dođe iz Judite</div>
+          <div class="box-int-txt">
+            Judita nije obvezatno djelo za esej 2026. (<em>esej se piše o: Calderón, Goethe, Krleža, Marinković, Novak, Petrarca</em>), ali može se pojaviti u <strong>pitanjima čitanja ili teorije književnosti</strong>. Ove teze korisne su i za usporedni argument u eseju kad pišeš o Držiću ili Zoraniću.
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">TEZA A</span>
+            <div class="sc-name">Judita — alegorijska poetika</div>
+            <div class="sc-desc">Marulić ne prikazuje suvremenu stvarnost direktno — on je <em>kodira u biblijsku priču</em>. Alegorija kao zaštita (cenzura turskih vlasti) i kao poetski postupak. <b>Argument:</b> alegorija je Marulićev odgovor na nemoć — kad se ne može boriti mačem, bori se perom i simbolom.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">TEZA B</span>
+            <div class="sc-name">Judita kao heroina i Božje oruđe</div>
+            <div class="sc-desc">Judita ne pobjeđuje snagom nego <em>vjernošću i Božjom pomoći</em>. To je kršćanski ideal: slabiji može pobijediti jačeg uz Božju pomoć. <b>Argument:</b> lik Judite je utjelovljenje hrv. nade — ne militar, nego moralna snaga.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">TEZA C</span>
+            <div class="sc-name">Forma kao poruka — stih i tradicija</div>
+            <div class="sc-desc">2126 dvostruko rimovanih dvanaesteraca nije slučajno — Marulić time kaže: <em>nastavljam tradiciju začinjavaca, ali je uzdižem na europsku razinu</em>. <b>Argument:</b> forma nije samo estetika — ona je manifest kontinuiteta i ambicije.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">TEZA D</span>
+            <div class="sc-name">Judita u europskom kontekstu</div>
+            <div class="sc-desc">Marulić je <em>jedini hrv. pisac poznat u Europi za života</em> — <em>Institucija</em> prevedena na sve europske jezike. <b>Argument:</b> Judita je lokalna; Institucija je europska. Marulić je svjestan obje publike i piše za obje na različitim jezicima.</div>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Uvod eseja o Juditi (model)</div>
+          <div class="box-key-txt">
+            <em>„Marko Marulić (1450.–1524.), splitski humanist i najpoznatiji hrv. pisac 16. st. u europskim krugovima, u epu <b>Judita</b> (dovršena 1501., tiskana 1521.) daje prvu veliku hrv. književnu alegoriju turske opasnosti. U 6 pjevanja i 2126 dvostruko rimovanih dvanaesteraca na splitskoj čakavštini, Marulić prepriča biblijsku priču o Juditi i Holofernu kao <em>poziv na otpor</em> — Oloferno su Turci, Judita je Hrvatska, Bog Izraelov je kršćanski Bog koji pomaže slabijima. U ovom eseju pokazat ću kako Marulić koristi <b>alegoriju kao poetičko i političko oruđe</b> — istovremeno književni postupak i domoljubni manifest."</em>
+          </div>
+        </div>
+
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02 · Model uvoda eseja</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Primjer uvoda (za Tezu 2 — mlado vs. staro)</div>
+          <div class="box-key-txt">
+            <em>„Marin Držić (1508.–1567.), dubrovački dramaturg poznat kao <b>„Vidra\\"</b> i najveći hrv. komediograf, napisao je komediju <b>Novela od Stanca</b> (praizvedena 1550.) kao pokladnu igru — kratku farsu u jednom činu namijenjenoj dubrovačkim karnevalskim svečanostima. U djelu koje se odvija jedne pokladne noći, mladi dubrovački vlastelini nasamare Stanca, starog seljaka iz Trebinja, uvjeravajući ga da ga je voda podmladila. Na taj način Držić postavlja temeljnu dramatsku opreku: <em>mlado vs. staro</em>, vlastela vs. seljak, pamet vs. naivnost. U ovom eseju pokazat ću kako Novela od Stanca nije samo zabavna farsa — nego <b>precizni komentar dubrovačkog društva i pokladnog karnevalskog koda</b> u kojemu je prevara legitimna, a naivnost kažnjiva.\\"</em>
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎯 Anatomija dobrog uvoda — 5 obaveznih elemenata</div>
+          <div class="box-int-txt">
+            <b>(1)</b> <em>Autor + datacija + djelo</em> — „Marin Držić (1508.–1567.), <em>Novela od Stanca</em> (praizvedena 1550.)". <b>(2)</b> <em>Kontekst</em> — pokladna igra, farsa, dubrovačka tradicija. <b>(3)</b> <em>Suženje na temu</em> — „opreka mlado–staro". <b>(4)</b> <em>Središnja tvrdnja</em> — jedna jasna rečenica s tezom. <b>(5)</b> <em>Najava strukture</em> — „u ovom eseju pokazat ću…". <b>Ne počinji s općenitostima. Počinji autorom + djelom + tezom.</b>
+          </div>
+        </div>
+
+        <!-- SEC 03 — Model razrade -->
+
+        <!-- SEC 02a — Esejski modeli za Zoranića i Hektorovića -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02a · Model eseja za Zoranića i Hektorovića</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Uvod eseja o Planinama (model)</div>
+          <div class="box-key-txt">
+            <em>„Petar Zoranić (~1508.–1569.), zadarski humanist, u djelu <b>Planine</b> (nastale oko 1543., tiskane 1569.) stvara <em>prvi hrv. roman</em> — žanrovski hibrid koji spaja pastoralni roman, putopis, alegoriju i liriku. Protagonist Zoran putuje zadarskim zaleđem kako bi izliječio neuzv. ljubav, ali Zoranić ga iskorištava za nešto veće: kroz epizodu <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić piše <em>prvi eksplicitni manifest hrv. književnosti</em> — 300 godina prije Preporoda. Pokazat ću kako su <b>ljubavna tematika i domoljubni apel</b> u Planinama nerazdvojivi — osobna bol postaje metafora nacionalne tuge."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Uvod eseja o Ribanju (model)</div>
+          <div class="box-key-txt">
+            <em>„Petar Hektorović (1487.–1572.), hvarski humanist i graditelj Tvrdalja, u djelu <b>Ribanje i ribarsko prigovaranje</b> (1556.) stvara iznimno djelo hrv. renesanse — trodnevno putovanje od Hvara prema Braču i Šolti koje istovremeno jest ep, putopis, ribarska ekloga i poslanica. Za razliku od Marulića koji transformira stvarnost u alegoriju, Hektorović bilježi stvarnost <em>kakva jest</em> — more je stvarno, ribari su stvarni, bugarštice su stvarne. Pokazat ću kako je <b>Hektorovićev dokumentarni realizam</b> revolucionarna novost u hrv. renesansnoj književnosti i zašto je Ribanje dragocjen kulturnopovijesni dokument koji sačuva hrv. usm. tradiciju."</em>
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎯 Usporedna teza — Marulić i Zoranić</div>
+          <div class="box-int-txt">
+            <em>„I Marko Marulić u Juditi i Petar Zoranić u Planinama pišu o turskoj prijetnji i domovini — ali iz potpuno različitih poetičkih pozicija. Marulić kodira apel u biblijsku alegoriju (Oloferno = Turci, Judita = Hrvatska); Zoranić ga iskazuje kroz lirsku tugu i alegoriju književnosti (rasuta bašćina, Perivoj od Slave). Oba su jednako politični pisci — samo različitih sredstava. Marulić poziva na borbu mačem (Božjom pomoći); Zoranić poziva na borbu perom (gradnjom hrv. književnosti)."</em>
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎯 Usporedna teza — Hektorović i Marulić</div>
+          <div class="box-int-txt">
+            <em>„Dok Marulić u Juditi transformira stvarnost u alegoriju, Hektorović u Ribanju odbija alegoriju i prikazuje stvarnost neposredno. Ova razlika nije slučajna — to su dvije legitimne humanističke poetike. Marulić je „učeni humanist" koji piše za obrazovanu publiku koja čita simbole; Hektorović je „praktični humanist" koji piše za prijatelja Bartučevića i bilježi ono što vidi i čuje. Oba su jednako vrijedno — Judita je kulturni monument, Ribanje je kulturni arhiv."</em>
+          </div>
+        </div>
+
+
+        <!-- SEC 02c — Puni model eseja Teza 2 -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02b · Puni model eseja — Teza 2</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Uvod (Teza 2 — mlado vs. staro)</div>
+          <div class="box-key-txt">
+            <em>„Marin Držić (1508.–1567.), najznačajniji hrv. renesansni dramatičar, u farsi <b>Novela od Stanca</b> (praizvedena 1550.) postavlja jedan od vječnih dramskih sukoba — <b>sudar mladosti i starosti</b>. Stanec, stari seljak iz Trebinja, dolazi u Dubrovnik obilježen tugom i naivnošću; dubrovački mladići — vlastela — dolaze s lukavošću i energijom. Njihov susret u pokladnoj noći nije slučajan — on je dramska slika jednog zakona: u Dubrovniku 16. st., kao i posvuda, <em>pobjeda pripada onima koji znaju pravila igre</em>. U ovom eseju pokazat ću kako Držić koristi opreku mlado–staro kao okvir za širu društvenu sliku."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Razrada — Odlomak 1 (Stanac kao tip)</div>
+          <div class="box-key-txt">
+            <em>„Stanec nije individualizirani lik s psihološkom dubinom — on je <b>tip „naivnog seljaka"</b> iz kazališne tradicije commedia dell'arte. To što ga ne poznajemo dublje nije Držićev propust — to je žanrovski zahtjev farse. Stanec funkcionira kao nosač opreke: sve što je staro, naivno, ruralno i neiskusno. <b>Njegova tuga za pokojnom ženom na početku</b> jedini je humanizujući detalj — i upravo on objašnjava zašto tako lako prihvaća mit o „vodi od mladosti". Čovjek koji je izgubio svoju ženu i koji stari bez nje — on <em>zaista želi</em> biti mlad. Farsa iskorištava tu čovjekovu slabost bez grižnje savjesti."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Razrada — Odlomak 2 (Mladići kao tip)</div>
+          <div class="box-key-txt">
+            <em>„Nasuprot Stancu, dubrovački mladići — Vlaho, Miho i Dživo — predstavljaju sve što Stanec nije: mladi su, urbani, obrazovani, lukavi. Ali ni oni nisu individualizirani — to su tipovi „lukave vlastele". Njihova prevara nije spontana zlonamjerna odluka; to je <b>karnevalska igra</b> koja u pokladno doba postaje legitimna. Važan je detalj: <em>kada odlaze, odlaze u toplinu svojih domova</em> — Stanec ostaje svežan na trgu. Taj kontrast Držić ne komentira; on ga samo prikazuje. I u toj šutnji leži sva oštrość <b>društvene kritike bez moralne pouke</b>."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Zaključak</div>
+          <div class="box-key-txt">
+            <em>„Novela od Stanca nije priča o dobrima i zlima — to je priča o tome kako <b>zakoni društva funkcioniraju bez moralne korekture</b>. Mladi pobjeđuju jer posjeduju ono što stari gube: energiju, znanje, pristup. Stanec gubi jer je stranac u gradu koji ne prašta naivnost. Marin Držić ne osuđuje ni jedne ni druge — on nam prikazuje igru i govori: <em>evo kako to ide</em>. Za razliku od Marulića koji u Juditi eksplicitno poziva na otpor i vjeru, ili Zoranića koji u Planinama tuguje za rasutom bašćinom, Držić se samo smije — ali taj smijeh, pažljivo osluškivan, boli."</em>
+          </div>
+        </div>
+
+
+        <!-- SEC 02d — Puni model eseja Zoranić -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02c · Puni model eseja — Zoranić (ako dođe)</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Uvod (Teza: Planine kao književni manifest)</div>
+          <div class="box-key-txt">
+            <em>„Petar Zoranić (~1508.–1569.), zadarski humanist, u žanrovski hibridnom djelu <b>Planine</b> (nastale oko 1543., tiskane 1569.) postiže nešto što nitko prije njega nije pokušao u hrv. književnosti: piše <em>manifest za gradnju nacionalne književne tradicije</em>. Kroz alegoriju <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić govori neposredno i rezolutno — <em>hrv. književnost kasni za Europom i to mora biti promijenjeno</em>. U ovom eseju pokazat ću kako Zoranić u Planinama spaja <b>osobnu melankoliju, patriotski apel i književnopovijesnu refleksiju</b> u djelo koje anticipira Ilirski preporod za 300 godina."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Razrada — Perivoj od Slave kao ključna epizoda</div>
+          <div class="box-key-txt">
+            <em>„Ključna epizoda Planina je <b>Perivoj od Slave</b> — alegorijski vrt u kojemu četiri vile čuvaju jabučnjake koji simboliziraju nacionalne književnosti. Latina, Grkinja i Kaldejka imaju bujne, lijepe jabuke; Hrvatska vila stoji <em>sramežljivo i tužno</em> s najmalobrojnijim i najlošijim voćem. Ovaj prizor nije dekorativna alegorija — to je <b>književna dijagnoza</b> Zoranićeva doba: hrv. pisci pišu latinskim, zanemaruju vlastiti jezik, nema sustavne kulturne politike. Zoranić ne samo da opisuje problem — on poziva na buđenje. <em>Taj poziv dolazi 1543., puna tri vijeka prije Ilirskog preporoda.</em>"</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Razrada — Rasuta bašćina i ljubavni gubitak</div>
+          <div class="box-key-txt">
+            <em>„Uz književni manifest, Planine nose i drugi bol: <b>rasuta bašćina</b> — rascjepkana domovina pod turskom prijetnjom. Zoranova ljubavna melankolija (ne može oženiti Jagu) i patriotska tuga (ne može zaštititi domovinu) imaju isti emocionalni patos — oboje su gubitci nad kojima nemamo moć. Ova <em>paralela privatnog i javnog bola</em> nije slučajna: Zoranić govori da je osobna nemoć odraz nacionalne nemoći. Time Planine postaju <b>i ljubavni roman i politički esej</b> — žanrovski hibrid koji je jedino mogući odgovor na složenu stvarnost 16. st. Dalmacije."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Zaključak</div>
+          <div class="box-key-txt">
+            <em>„Zoranić nije Marulić — ne poziva na oružje niti slavi junaštvo. On tuguje, svjedoči i poziva na budnost. U Planinama je ljubavna tuga samo metafora šire tuge: za domovinom koja se raspada i za književnošću koja zaostaje za Europom. <b>Perivoj od Slave nije samo lijepa alegorija — to je najhrabrija rečenica hrv. renesanse</b>: priznati da zaostajemo i reći: mora biti bolje. To je gesta koja hrv. renesansnu književnost čini aktualnom čak i danas — kad god nacija prepozna vlastitu zaostalost, ona u Zoraniću prepoznaje prvog koji je to glasno rekao."</em>
+          </div>
+        </div>
+
+
+        <!-- SEC 02e — Model eseja Hektorović -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02d · Model eseja — Hektorović i demokratizacija humanizma</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Teza + model argumenta</div>
+          <div class="box-key-txt">
+            <b>Teza:</b> <em>„Hektorovićevo Ribanje nije idila — to je humanistički program u ribarskoj odori: demokratizacija spoznaje, arhiviranje kulture i proslava slobodnog razgovora kao najviše vrijednosti."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Model argumenta (TIPS)</div>
+          <div class="box-key-txt">
+            <b>T:</b> <em>„Hektorović u Ribanju demokratizira humanistički ideal — pokazuje da mudrost nije privilegija školovane vlastele."</em><br>
+            <b>I:</b> <em>„Ribari Nikola Zet i Paskoje Debeli pjevaju bugarštice koje Hektorović vjerno bilježi — oni nisu obiekt njegova promatranja, oni su <em>njegovi sugovornici</em>."</em><br>
+            <b>P:</b> <em>„Hektorović ne samo da sluša ribare — on ih smatra čuvarima kulturnog blaga koje Marulić i Zoranić, s latinskom i talijanskom naobrazbom, ne bi ni prepoznali kao vrijednost."</em><br>
+            <b>S:</b> <em>„Time Ribanje postaje više od putopisa — to je <b>manifest pluralizma humanizma</b>: i latinski ep i narodna bugarštica su jednako vrijedni dokumenti jedne civilizacije."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Zaključak</div>
+          <div class="box-key-txt">
+            <em>„Hektorović ostaje usamljen u hrv. renesansi — nema izravnih nastavljača koji bi preuzeli njegov dokumentarni realizam. Ali <b>posredno utječe na sve buduće bilježitelje hrv. usmene tradicije</b> — od Kaćića Miošića (18. st.) do Vuka Stefanovića Karadžića (19. st.) koji romantičarski sakuplja narodne pjesme. Hektorović je napravio to 300 godina ranije, bez teorijskog okvira, samo iz humanističke ljubavi prema stvarnom. I upravo ta <em>nekonceptualizirana autentičnost</em> čini Ribanje najmodernijim djelom hrv. renesanse."</em>
+          </div>
+        </div>
+
+
+        <!-- SEC 02f — Uvod za 3 tipa eseja -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02e · Uvod za 3 tipa</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 TIP A: Djelo iz H11 kao glavni predmet eseja</div>
+          <div class="box-key-txt">
+            <em>„[Autor], [djelo] ([godina]), [žanr], jedno je od temeljnih djela hrv. renesanse. [Kratki opis djela u 1 rečenici]. U ovom eseju pokazat ću kako [teza — specifična tvrdnja o djelu]."</em><br>
+            Primjer: <em>„Marin Držić, Novela od Stanca (1550.), farsa, jedno je od temeljnih djela hrv. renesanse. Trodnevna pokladna igra u kojoj mladići varaju starog seljaka Stanca obnavlja stari pitanje: tko pobjeđuje u gradu koji ne prašta naivnost? U ovom eseju pokazat ću kako Držić koristi pokladni kontekst kao dramski uvjet koji čini prevaru komičnom, legitimnom i društveno relevantnom."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 TIP B: H11 pisac kao usporedni kontekst u eseju o drugom djelu</div>
+          <div class="box-key-txt">
+            <em>„[Autor s popisa eseja], [djelo], [tema]. Isti [tema] prisutan je i u hrv. renesansi — [hrv. pisac] u [djelu] [kako tretira temu]. Za razliku od [hrv. pisca], [autor s popisa] [razlika]. Ta usporedba otkriva [ono što usporedba otkriva]."</em><br>
+            Primjer: <em>„Francesco Petrarca u Kanconijeru istražuje ljubav kao izvor i strasti i duhovnog uzleta. Isti poetički problem obrađuju i hrv. petrarkisti — Šiško Menčetić preuzima Petrarcinog motiva ali ih piše dvostrukim dvanaestercima umjesto sonetima. Za razliku od Petrarce koji razvija strogu formalnu disciplinu soneta, Menčetić prilagođava petrarkistički repertoar lokalnoj začinjavačkoj tradiciji."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 TIP C: Usporedba dvaju pisaca iz H11</div>
+          <div class="box-key-txt">
+            <em>„[Pisac A] u [djelu A] i [Pisac B] u [djelu B] oba se bave [zajedničkom temom]. Međutim, njihovi pristup su dijametralno različiti: [Pisac A] [pristup A], dok [Pisac B] [pristup B]. U ovom eseju argumentirat ću da [teza koja objašnjava zašto su ta dva pristupa oba legitimna odgovori na isti problem]."</em><br>
+            Primjer: <em>„Marko Marulić u Juditi i Petar Zoranić u Planinama oba govore o turskoj opasnosti i domovini u krizi. Međutim, njihovi pristupi su dijametralno različiti: Marulić alegorijom poziva na oružanu borbu, Zoranić elegijom poziva na buđenje književnosti. U ovom eseju argumentirat ću da su oba pristupa legitimni odgovori na istu prijetnju — jedan mobilizira mač, drugi pero."</em>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">03 · Model razrade — argumentacijski odlomak</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Primjer odlomka razrade (Teza 3 — komentar društva)</div>
+          <div class="box-key-txt">
+            <em>„Novela od Stanca nije samo zabavna farsa — ona je <b>precizni komentar dubrovačkog društva 16. st.</b> Stanac, seljak iz trebinjskog zaleđa, dolazi u Dubrovnik naivan i pun nade. Dubrovački mladići, vlastela kojoj je karnevalska prevara zabava a ne zločin, iskorištavaju ga s lakoćom. Držić ne osuđuje eksplicitno — ali <em>samo prikazivanje</em> dovoljno je da publika vidi klasnu dinamiku. Kao što Machiavelli opisuje politiku kakva jest (a ne kakva bi trebala biti), Držić prikazuje društvo kakvo jest — <b>u kojemu pamet pobjeđuje naivnost, a klasna pozicija određuje tko smije varati koga</b>. Usporedimo li Novelu s <em>Dundom Marojom</em> — u Marojeu je sukob unutar same vlastele. U Noveli seljak gubi jer nema ni klasu ni pamet. Žanr farse to opravdava: farsa ne zahtijeva moral, zahtijeva smijeh.\\"</em>
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔧 Struktura odlomka razrade — TIPS formula</div>
+          <div class="box-int-txt">
+            <b>T</b> — <em>Topic sentence</em>: jasna mikro-teza odlomka (jedna rečenica).<br>
+            <b>I</b> — <em>Ilustracija</em>: konkretan primjer iz teksta ili parafraza.<br>
+            <b>P</b> — <em>Pojašnjenje</em>: što ilustracija dokazuje u odnosu na tezu.<br>
+            <b>S</b> — <em>Sinteza</em>: veza s drugim djelom, autorom ili književnoteorijskim pojmom.<br>
+            <em>3 odlomka razrade × ~150 riječi = 450+ riječi ukupno</em>.
+          </div>
+        </div>
+
+        <!-- SEC 04b — Checklist -->
+
+        <!-- SEC 03b — Ključni prizori za esej -->
+
+        <!-- SEC 03c — TIPS formula + napredni argumentacijski lanac -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">03a · TIPS formula — razrada argumenta</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔧 TIPS — Teza, Ilustracija, Pojašnjenje, Sinteza</div>
+          <div class="box-int-txt">
+            Svaki argumentacijski odlomak u eseju slijedi ovu strukturu. <b>T</b> = tvrdnja (što tvrdim). <b>I</b> = ilustracija (dokaz iz teksta). <b>P</b> = pojašnjenje (zašto taj dokaz potvrđuje tvrdnju). <b>S</b> = sinteza (kako se ovo veže na tezu eseja).
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br" style="min-width:50px">T</div><div class="cv b">Teza odlomka</div><div class="cv"><em>„Pokladni kontekst u Noveli od Stanca nije dekor — on je dramski uvjet koji čini prevaru mogućom i legitimnom."</em></div></div>
+          <div class="cr"><div class="ck go" style="min-width:50px">I</div><div class="cv b">Ilustracija</div><div class="cv"><em>„U II. prizoru mladići ugledaju Stanca i spontano odlučuju varati ga — poklade su im to dopustile: u karnevalsko doba vriječe se norme."</em></div></div>
+          <div class="cr"><div class="ck t" style="min-width:50px">P</div><div class="cv b">Pojašnjenje</div><div class="cv"><em>„Da nije poklada, vlastela ne bi pristupila seljaku niti bi prevara bila prihvaćena kao komičan čin — bila bi moralno problematična."</em></div></div>
+          <div class="cr"><div class="ck re" style="min-width:50px">S</div><div class="cv b">Sinteza</div><div class="cv"><em>„Time Držić pokazuje da je farsa žanr koji ovisi o kontekstu — bez karnevala nema komedije, bez komedije nema Novele od Stanca."</em></div></div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔗 Napredni argumentacijski lanac (3 odlomka)</div>
+          <div class="box-int-txt">
+            Napredni esej ima <strong>tri međusobno povezana argumenta</strong> koji grade prema zaključku. Svaki argument je korak naprijed, ne zasebna tema.<br><br>
+            <b>Odlomak 1 (kontekst):</b> Pokladni kontekst čini prevaru mogućom → uspostavi kontekst.<br>
+            <b>Odlomak 2 (opreke):</b> Klasna i dobna asimetrija pojačava komički učinak → dodaj društvenu dimenziju.<br>
+            <b>Odlomak 3 (žanr):</b> Farsa kao žanr ne traži moral — Držić prikazuje, ne prosuđuje → podigne argument na razinu poetike.<br><br>
+            <em>Svaki odlomak počinje konektorom: „Uz pokladni kontekst...", „Nadalje, klasna razlika...", „Konačno, žanr farse..."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Model razrade — Odlomak 2 (klasna dinamika)</div>
+          <div class="box-key-txt">
+            <em>„Uz pokladni kontekst, Novela od Stanca otkriva i <b>klasnu asimetriju</b> dubrovačkog društva 16. st. Mladići — vlastela — dolaze iz privilegiranog urbanog okruženja i posjeduju „gradski kod": znanje o pravilima igre, imenima i mjestima. Stanec — seljak iz Trebinja — dolazi bez tog znanja i upravo to ga čini lakom metom. Kada mladići <em>vežu ga, opale mu bradu i odlaze u toplinu svojih domova</em>, a Stanec ostaje sam na trgu, Držić nam ne mora ništa reći eksplicitno — slika sama govori. <b>Dubrovnik 16. st. nagrađuje pamet i poznanstvo, ne dobrotu i naivnost.</b> Ovo nije moralna osuda — to je precizna socijalna dijagnoza u formi farse."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Model razrade — Odlomak 3 (poetika farse)</div>
+          <div class="box-key-txt">
+            <em>„Konačno, da bismo razumjeli Novelu od Stanca, moramo razumjeti što je <b>farsa kao žanr</b>. Farsa ne traži moralnu pouku — to je komedija situacije, ne karaktera. Stanec nije moralno loš čovjek koji zaslužuje kaznu; on je samo naivan u pogrešnom trenutku na pogrešnom mjestu. Mladići nisu moralno dobri ni loši — oni su tipovi koji iskorištavaju trenutak. <em>Držić ne sudi — prikazuje.</em> I upravo ta <b>moralna otvorenost</b> razlikuje Novelu od Stanca od Marulićeve Judite (eksplicitan kršćanski moral) i Zoranićevih Planina (patriotski apel). Držić je, od svih hrv. renesansnih pisaca, najslobodniji od didaktike — i upravo zato najbliži modernom kazalištu."</em>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">03b · Ključni prizori — što citirati u eseju</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎭 7 prizora Novele od Stanca — esejska vrijednost</div>
+          <div class="box-int-txt">
+            Ispit može dati <strong>ulomak iz Novele od Stanca</strong> i tražiti analizu. Svaki prizor ima svoju dramsku funkciju — zapamti barem 3 za esej. Korisno: uvijek poveži prizor s <em>ključnom oprekama</em> (mlado–staro, vlastela–seljak, poklade–realnost).
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">I–II</span>
+            <div class="sc-name">Ekspozicija + iskra</div>
+            <div class="sc-desc"><b>Esejska vrijednost:</b> Stanac kao simpatičan, tužan lik — <em>ne zlikovac</em>. Publika zna da će biti prevarena. Napetost je dramatska ironija: <b>mi znamo, Stanac ne zna</b>. Argument: farsa ne mora imati zlog protagonista — samo naivnog.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">III–IV</span>
+            <div class="sc-name">Obmana u akciji</div>
+            <div class="sc-desc"><b>Esejska vrijednost:</b> Stanac <em>želi vjerovati</em> u vodu od mladosti — to je tragična dimenzija unutar komedije. Citirati: <em>„Voda od mladosti"</em> kao renesansni mitski motiv (Fontana della giovinezza). Argument: farsa može sadržavati i dublje antropološke motive.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">V–VI</span>
+            <div class="sc-name">Vrhunac + spoznaja</div>
+            <div class="sc-desc"><b>Esejska vrijednost:</b> Klasna asimetrija je naglašena — mladići odlaze u toplinu svojih kuća, Stanac ostaje svežan na trgu. <b>Argument o društvenoj kritici:</b> Držić ne osuđuje eksplicitno, ali prikaz je dovoljan.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">VII</span>
+            <div class="sc-name">Otvoreni završetak</div>
+            <div class="sc-desc"><b>Esejska vrijednost:</b> Bez moralne pouke — to je Držićeva <em>modernistička</em> crta. Usporedi s Marulićem: <em>Judita</em> ima eksplicitnu poruku (Božja pomoć pobjeđuje). Novela nema — publika sama zaključuje. Argument: žanr određuje moralnu poziciju autora.</div>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Analitički okvir za ulomak iz Novele</div>
+          <div class="box-key-txt">
+            Kad dobiješ ulomak iz Novele od Stanca, prođi ovim koracima:<br>
+            <b>1. Koji prizor je ovo?</b> (I–VII) — odredi mjesto u radnji.<br>
+            <b>2. Koje opreke su aktivne?</b> (mlado–staro? vlastela–seljak? poklade–realnost?)<br>
+            <b>3. Koji je ton?</b> (komičan? ironičan? blago tragičan?)<br>
+            <b>4. Koja stilska sredstva?</b> (dijalog, komika situacije, dvanaesterac, dramska ironija)<br>
+            <b>5. Veza s cjelinom:</b> Kako ovaj prizor pridonosi ukupnoj tezi drame?<br>
+            <em>Ovo je TIPS formula prilagođena za dramski tekst.</em>
+          </div>
+        </div>
+
+
+        <!-- SEC 04a — Česta esejska pitanja -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">04a · H11 u eseju o drugom djelu</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">📋 H11 kao kontekst za eseje o drugim djelima</div>
+          <div class="box-int-txt">
+            Esej za maturu 2026. nije o Noveli od Stanca niti o Juditi direktno — ali hrv. renesansa može biti <strong>kontekstualni argument</strong> kad pišeš o djelima s popisa. Evo kako:
+          </div>
+        </div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">PETRARCA</span>
+            <div class="sc-name">Esej o Petrarci → H11 kontekst</div>
+            <div class="sc-desc">Ako pišeš o Petrarci (<em>Kanconijer</em>), H11 ti daje hrv. recepciju: <b>Menčetić i Džore Držić preuzimaju petrarkistički repertoar, ali pišu dvanaesterce umjesto soneta</b>. Argument: Petrarkin utjecaj se prilagođava lokalnoj tradiciji — hrv. petrarkisti su kreativni prevoditelji, ne kopisti.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">CALDERÓN</span>
+            <div class="sc-name">Esej o Calderónu → H11 kontekst</div>
+            <div class="sc-desc">Calderón (<em>Život je san</em>) i Držić su suvremenici renesansno-baroknog prijelaza. Argument: <b>Calderón pita što je stvarnost; Držić prikazuje iluziju (Stanec vjeruje da se podmladio)</b>. Oba koriste dramatsku obmanu kao filozofski alat — ali u suprotnim smjerovima.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">GOETHE</span>
+            <div class="sc-name">Esej o Goetheu → H11 kontekst</div>
+            <div class="sc-desc">Goethe (<em>Faust</em>) kao renesansni humanist koji želi znati sve — usporedi s Marulićevom <em>curiositas</em>. Argument: <b>i Faust i Marulić streme spoznaji, ali Faust je moderan (faustovski pakt), Marulić je kršćanski humanist koji ne napušta vjeru</b>. Kontrast koji pokazuje razvoj humanizma.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">KRLEŽA</span>
+            <div class="sc-name">Esej o Krleži → H11 kontekst</div>
+            <div class="sc-desc">Krleža (<em>Gospoda Glembajevi</em>) kao moderni nasljednik Držića. Argument: <b>i Držić (Skup, Dundo Maroje) i Krleža kritiziraju pohlepu i moralnu dekadencu hrvatskog imućnog sloja</b> — ali Držić to radi komedijom, Krleža tragedijom. 400 godina razvoja žanra.</div>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">💡 Kako umetnuti H11 u esej o drugom djelu</div>
+          <div class="box-key-txt">
+            <b>Formula:</b> <em>„[Djelo s popisa] bavi se [temom], što je prisutno i u hrv. renesansnoj književnosti — [pisac] u [djelu] [veza s temom]. Za razliku od [pisce], [autor s popisa] [razlika]."</em><br><br>
+            <b>Primjer:</b> <em>„Goetheov Faust bavi se žudnjom za spoznajom, što je temeljno humanistički motiv prisutan i u hrv. renesansi. Marulić u <em>Instituciji</em> i <em>Davidijadi</em> stoji pred istim humanističkim idealom — ali za razliku od Fausta koji sklapa pakt s đavlom, Marulić spoznaji pristupa kroz kršćanski intelektualni okvir koji ga štiti od Faustova pada."</em>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">04b · Checklist prije predaje</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">✅ 10-točka checklist</div>
+          <div class="box-key-txt">
+            <b>□ 1.</b> Uvod sadrži: autora, naslov, godinu, žanr i jasnu tezu?<br>
+            <b>□ 2.</b> Teza je argumentabilna i specifična — ne trivijalna ("Novela od Stanca je komedija")?<br>
+            <b>□ 3.</b> Svaki odlomak razrade slijedi TIPS: Tvrdnja → Ilustracija → Pojašnjenje → Sinteza?<br>
+            <b>□ 4.</b> Razrada ima min. 2–3 argumenata koji međusobno grade prema zaključku?<br>
+            <b>□ 5.</b> Barem jedan citat ili parafraza iz teksta s interpretacijom?<br>
+            <b>□ 6.</b> Barem 3–4 književnoteorijska pojma (farsa, pokladna igra, dvanaesterac, alegorija...)?<br>
+            <b>□ 7.</b> Odlomci su vezani konektorima: „Uz to...", „Za razliku od...", „Konačno..."?<br>
+            <b>□ 8.</b> Zaključak sinteza argumenata + širi kontekst ili usporedba s drugim djelom?<br>
+            <b>□ 9.</b> Esej ima min. 440 riječi? (provjeri brojačem ispod)<br>
+            <b>□ 10.</b> Nema prepričavanja bez interpretacijske tvrdnje uz njega?
+          </div>
+        </div>
+
+        <!-- SEC 05 — Model zaključka -->
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">05 · Model zaključka</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Primjer zaključka (za Tezu 1 — pokladni kontekst)</div>
+          <div class="box-key-txt">
+            <em>„Novela od Stanca Marina Držića nije samo pokladna zabava — ona je <b>precizni xray dubrovačkog društva 16. st.</b> smještena u karnevalski okvir koji tu preciznost čini mogućom i legitimnom. Stanec gubi jer je star, naivan i stranac u gradu koji nagrađuje pamet i poznanstvo. Pokladni kontekst nije dekor — on je <b>dramski uvjet i filozofski okvir</b> cijele farse. Upravo zato Novela od Stanca ostaje živim tekstom: ne govori o pokladama — govori o <em>tome tko pobjeđuje i zašto</em>. Dok Marulić u Juditi poziva na otpor alegorijom, a Zoranić u Planinama tuguje nad rasutom bašćinom, Držić se smije — ali taj smijeh bolno točno pogađa.\\"</em>
+          </div>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🎯 Anatomija dobrog zaključka — 3 elementa</div>
+          <div class="box-int-txt">
+            <b>(1) Povratak na tezu</b> — reforumuliraj središnju tvrdnju novim riječima (ne kopiraj uvod doslovno). <b>(2) Sinteza argumenata</b> — jednom rečenicom sažmi što su ti argumenti dokazali. <b>(3) Širi kontekst</b> — smjesti djelo u širu perspektivu: renesansa, hrv. književnost, usporedi s drugim piscem ili djelom. <em>Zaključak ne uvodi nove argumente — zatvara ono što je otvoreno.</em>
+          </div>
+        </div>
+
+        <!-- SEC 06 — Greške koje treba izbjegavati -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">06 · 5 grešaka koje uništavaju esej</div><div class="sec-line"></div></div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip re">GREŠKA 1</span>
+            <div class="sc-name">Prepričavanje radnje</div>
+            <div class="sc-desc">„U Noveli od Stanca mladići prevare Stanca..." — to nije analiza, to je sažetak. <strong>Svaka rečenica mora argumentirati tezu</strong>, ne opisivati što se događa. Ispit traži interpretaciju, ne prepričavanje.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">GREŠKA 2</span>
+            <div class="sc-name">Nepovezani argumenti</div>
+            <div class="sc-desc">Tri odlomka koji ne razgovaraju međusobno. Svaki argument mora <em>graditi prema zaključku</em>. Koristiti konektore: <b>„Nadalje...", „Uz to...", „Što je još važnije..."</b> — ne pisati tri odvojena eseja unutar jednog.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">GREŠKA 3</span>
+            <div class="sc-name">Nema književnoteorijskih pojmova</div>
+            <div class="sc-desc">Ako ne upotrijebite <em>farsa, pokladna igra, dvostruko rimovani dvanaesterac, komika situacije, tipski lik</em> — esej zvuči amaterski. Pojmovi su signal da razumiješ žanr i tradiciju. Barem 3–4 po eseju.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">GREŠKA 4</span>
+            <div class="sc-name">Opći uvod bez autora i naslova</div>
+            <div class="sc-desc">„Književnost je oduvijek bila ogledalo društva..." — gubi bodove odmah. <strong>Počni s autorom, naslovom, godinom</strong>. Svaki sekund čitateljevog strpljenja je bitan. NCVVO vrednuje preciznost, ne filozofske uvodne pasuse.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">GREŠKA 5</span>
+            <div class="sc-name">Zaključak = kopija uvoda</div>
+            <div class="sc-desc">Zaključak koji samo kopira uvod dobiva 0 bodova za tu sastavnicu. <em>Zaključak mora sintetizirati, ne ponavljati</em>. Dodaj širi kontekst ili usporedi s drugim djelom — npr. „Za razliku od Marulića koji alegorijski potiče otpor, Držić se smije..."</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">SAVJET</span>
+            <div class="sc-name">Stilska sredstva u Noveli</div>
+            <div class="sc-desc">Irony (Stanac misli da se podmladio — publika zna da laže), <em>komika situacije</em> (ne karaktera — Stanac je tip, ne individua), <em>dijalog</em> kao jedino dramsko sredstvo u farsi, <b>dvostruko rimovani dvanaesterac</b> daje ritmičnost i muzikalnost čak i komičnim scenama.</div>
+          </div>
+        </div>
+
+        <!-- SEC 05 — Usporedna analiza za napredni esej -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">07 · Usporedi — Marulić, Držić, Zoranić</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">⚖️ Kad esejsko pitanje traži usporedbu</div>
+          <div class="box-int-txt">
+            Interpretacijski esej može biti i <strong>usporedni</strong> — npr. <em>„Usporedi kako Marulić i Držić prikazuju dubrovačko/splitsko društvo"</em> ili <em>„Kako Marulić i Zoranić koriste alegoriju u službi domoljublja"</em>. Tablica ispod daje brzu mapu razlika i sličnosti.
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr">
+            <div class="ck br" style="min-width:100px">KRITERIJ</div>
+            <div class="cv"><b style="color:var(--bronze-l)">Marulić</b></div>
+            <div class="cv"><b style="color:var(--gold)">Držić</b></div>
+            <div class="cv"><b style="color:var(--teal)">Zoranić</b></div>
+          </div>
+          <div class="cr">
+            <div class="ck go" style="min-width:100px">Žanr</div>
+            <div class="cv">Ep (Judita), latinska proza</div>
+            <div class="cv">Farsa/komedija (Novela, Dundo)</div>
+            <div class="cv">Roman (Planine) — mješavina proze i stiha</div>
+          </div>
+          <div class="cr">
+            <div class="ck t" style="min-width:100px">Turska tema</div>
+            <div class="cv"><em>Eksplicitna alegorija</em> — Oloferno = Turci, poziv na otpor</div>
+            <div class="cv"><em>Odsutna</em> — farsa je društvena satira, ne politički apel</div>
+            <div class="cv"><em>Emocionalna</em> — „rasuta bašćina", tuga za domovinom</div>
+          </div>
+          <div class="cr">
+            <div class="ck re" style="min-width:100px">Alegorija</div>
+            <div class="cv"><b>Transparentna</b> — Bog, heroj, neprijatelj jasno su mapirani</div>
+            <div class="cv"><b>Nema</b> — Novela je doslovna slika pokladne noći</div>
+            <div class="cv"><b>Višeslojna</b> — Perivoj od Slave, jabuke, vile = hrv. književnost</div>
+          </div>
+          <div class="cr">
+            <div class="ck pa" style="min-width:100px">Moral</div>
+            <div class="cv">Eksplicitni kršćanski moral — pobožnost pobjeđuje</div>
+            <div class="cv">Bez moralne osude — farsa prikazuje, ne prosuđuje</div>
+            <div class="cv">Patriotski apel — poziv na buđenje književnosti i domovine</div>
+          </div>
+          <div class="cr">
+            <div class="ck g" style="min-width:100px">Publika</div>
+            <div class="cv">Europski humanistički kružoci (latinskim) + Hrvatska (Juditom)</div>
+            <div class="cv">Dubrovačka vlastela na pokladnim svečanostima</div>
+            <div class="cv">Obrazovani čitatelji, zadarski plemićki krug</div>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📝 Rečenica za usporedni esej</div>
+          <div class="box-key-txt">
+            „Dok Marulić u <em>Juditi</em> koristi <b>biblijsku alegoriju</b> kao eksplicitan poziv na otpor turskoj prijetnji, Zoranić u <em>Planinama</em> istu temu obrađuje kroz <b>elegičnu alegoriju rasute bašćine</b> — oba pisca govore o istoj opasnosti, ali iz različite emocionalne i žanrovske pozicije. Marin Držić pak tu temu potpuno izostavljuje: njegova je komedija <b>socijalna satira</b> dubrovačke svakodnevice, ne politički manifest."
+          </div>
+        </div>
+
+        <!-- SEC 08 — Stilska sredstva u renesansnoj književnosti -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">08 · Stilska sredstva u hrv. renesansi</div><div class="sec-line"></div></div>
+
+        <div class="sc-grid">
+          <div class="sc">
+            <span class="sc-ico hchip br">STIL</span>
+            <div class="sc-name">Alegorija</div>
+            <div class="sc-desc">Tekst ima doslovno i skriveno značenje. <em>Judita</em>: Holoferno = Turci. <em>Planine</em>: Perivoj od Slave = hrv. književnost. <b>Tipično za Marulića i Zoranića</b> — manje kod Hektorovića i Držića.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip go">STIL</span>
+            <div class="sc-name">Dvostruko rimovani dvanaesterac</div>
+            <div class="sc-desc">Standardni stih hrv. renesanse. 12 slogova, cesura po 6. Rima: AA BB ili AB AB. Koriste svi osim Lucića (osmesterac u lirici) i Zoranića (mješavina proze i stiha u romanu).</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip te">STIL</span>
+            <div class="sc-name">Petrarkistički motivi</div>
+            <div class="sc-desc">„Gospoja" idealizirana, ljubav kao bol i slast, Amor/Kupido, usporedba ljepote s prirodom. <b>Standardni repertoar</b> koji svi hrv. petrarkisti dijele — razlikuju se po <em>intenzitetu senzualnosti</em> (Menčetić) ili <em>idealizaciji</em> (Džore Držić).</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip pa">STIL</span>
+            <div class="sc-name">Komika situacije (farsa)</div>
+            <div class="sc-desc">Ne komika karaktera — Stanac je <em>tip</em>, ne individua. Smijeh dolazi iz situacije (vara ga, opijaju, vežu) a ne iz psihološke dubine lika. <b>Tipično za Držića</b> — razlika od Shakespeareove psihološke komedije.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip re">STIL</span>
+            <div class="sc-name">Patriotska jadikovka</div>
+            <div class="sc-desc">Emocionalni apel na stanje domovine — <em>Planine</em> (rasuta bašćina), <em>Judita</em> (allegorijski poziv), <em>Vazetje Sigeta</em> (glorifikacija žrtve). Specifičan ton hrv. renesanse — nema analogije u talijanskoj.</div>
+          </div>
+          <div class="sc">
+            <span class="sc-ico hchip gr">STIL</span>
+            <div class="sc-name">Realistični opis (Hektorović)</div>
+            <div class="sc-desc">Konkretni detalji puta, krajolika, ribareva razgovora — bez alegorije. Inovativnost: <em>stvarnost je dovoljan književni predmet</em>. Anticipira realizam 19. st. ali ostaje osamljeni glas u hrv. renesansi.</div>
+          </div>
+        </div>
+
+        <!-- SEC 07 — Word counter -->
+
+        <!-- SEC 11 — Konektori i prijelazne rečenice -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">09 · Konektori i prijelazne rečenice</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔗 Gotove fraze za uvezivanje argumenata</div>
+          <div class="box-int-txt">
+            Esej bez konektora zvuči kao lista, ne kao argumentacija. Ove fraze pomažu da prijelazi između odlomaka budu logični i elegantni.
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">➕ Dodavanje / pojačavanje</div>
+          <div class="box-key-txt">
+            <em>„Uz to..."</em> · <em>„Osim toga..."</em> · <em>„Što je još važnije..."</em> · <em>„Nadalje, ..."</em> · <em>„K tome, ..."</em> · <em>„Tome valja dodati..."</em> · <em>„Jednako značajno je..."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">⚖️ Kontrast / suprotnost</div>
+          <div class="box-key-txt">
+            <em>„Za razliku od [X], [Y]..."</em> · <em>„Dok [X], [Y]..."</em> · <em>„Međutim, ..."</em> · <em>„S druge strane, ..."</em> · <em>„Suprotno od toga, ..."</em> · <em>„No, [Y] ukazuje na drugačije..."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">🔑 Zaključivanje / sinteza</div>
+          <div class="box-key-txt">
+            <em>„Iz navedenog je vidljivo..."</em> · <em>„Ovi primjeri potvrđuju tezu da..."</em> · <em>„Stoga možemo zaključiti..."</em> · <em>„Time [autor] pokazuje..."</em> · <em>„Konačno, ..."</em> · <em>„Sve navedeno ukazuje na..."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📖 Uvođenje dokaza iz teksta</div>
+          <div class="box-key-txt">
+            <em>„To potvrđuje [prizor/stih/lik] u kojemu..."</em> · <em>„Primjer za to je [prizor X] kada..."</em> · <em>„Lik [X] to ilustrira kada..."</em> · <em>„Karakteristično je da [autor] u [prizoru/sceni]..."</em> · <em>„[Autor] to postiže kroz [stilsko sredstvo] —..."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">🌍 Uključivanje konteksta (H11 u tuđem eseju)</div>
+          <div class="box-key-txt">
+            <em>„Ovaj motiv prisutan je i u hrv. renesansi — [Marulić/Zoranić/Držić] u [djelu]..."</em> · <em>„Usporedba s [hrv. piscem] otkriva..."</em> · <em>„Tradicija koja seže od [hrv. pisac] do [autor s popisa]..."</em> · <em>„[Autor s popisa] i [hrv. pisac] dijele isti poetički problem, ali mu pristupaju različito..."</em>
+          </div>
+        </div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">💡 Konkretni primjeri konektora u H11 eseju</div>
+          <div class="box-key-txt">
+            <em>„Uz pokladni kontekst kao dramski uvjet, valja razmotriti i klasnu dinamiku Novele..."</em><br>
+            <em>„Za razliku od Marulića koji alegorijom kodira domoljubni apel, Zoranić ga iskazuje kroz elegičnu tugu rasute bašćine..."</em><br>
+            <em>„Nadalje, Hektorovićev dokumentarni realizam — koji bilježi bugarštice ribarâ — govori o posve drugačijem humanizmu od Marulićevog..."</em><br>
+            <em>„Konačno, Novela od Stanca nije moralna pouka nego socijalna dijagnoza — i upravo ta razlika u odnosu na Juditu i Planine čini Držića modernistom avant la lettre."</em>
+          </div>
+        </div>
+
+
+        <!-- SEC 12 — Napredni zaključak — 3 pisca uspoređena -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">10 · Napredni zaključak — usporedba 3 pisca</div><div class="sec-line"></div></div>
+
+        <div class="box-key">
+          <div class="box-key-lbl">📄 Model zaključka koji uspoređuje Marulića, Zoranića i Držića</div>
+          <div class="box-key-txt">
+            <em>„Hrv. renesansna književnost nema jednu poetiku — ima tri. <b>Marulić</b> alegorijom traži ono čega nema: Božju intervenciju, Juditinu hrabrost, poraz Turaka. <b>Zoranić</b> elegijom oplakuje ono što se gubi: domovinu, književnu tradiciju, identitet. <b>Držić</b> smijehom prikazuje ono što jest: grad bez morala, pobjedu lukavosti, poraz naivnosti. Tri pisca, tri poetike, jedna stvarnost — Hrvatska 16. st. Ovo je bogatstvo hrv. renesanse: da na istu prijetnju i isti gubitak odgovori alegorijom, elegijom i smijehom. I upravo ta trostrukost čini hrv. renesansu ne provincijskim odjecima talijanske, nego originalnom književnom epohom s vlastitim glasom."</em>
+          </div>
+        </div>
+
+
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔍 Stilska sredstva po piscima — brza referenca</div>
+          <div class="box-int-txt">
+            <b>Marulić:</b> alegorija (Judita=Hrvatska), epska invokacija, dvostruki dvanaesterac, simile (usporedbe iz prirode i Biblije), apostrofa Bogu.<br>
+            <b>Menčetić:</b> anafora (Blažen... blažena...), antiteza (bol i slast), hiperbola (ljepota gospoje nadilazi sve), personifikacija Amora, usporedbe ljepote s prirodom.<br>
+            <b>Držić (Novela):</b> dramska ironija (publika zna, Stanec ne zna), komika situacije (ne karaktera), dijalog kao jedini dramski instrument, dvostruki dvanaesterac koji daje ritmičnost čak i komičnim scenama.<br>
+            <b>Zoranić:</b> alegorija (vile=nacionalne književnosti, jabuke=stanje književnosti), pastoralni opis, lirska jadikovka, simbolika putovanja (liječenje ljubavne boli = potraga za nacionalnim identitetom).<br>
+            <b>Hektorović:</b> dokumentarni opis (detalji plovidbe, toponimi, ribarski razgovor), metafora mora kao slobodnog prostora, realizam bez alegorijskog sloja.
+          </div>
+        </div>
+
+        <!-- SEC 09b — Stilska sredstva: analitički model -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">11 · Analiza stilskog sredstva</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">🔬 Formula za analizu stilskog sredstva u eseju</div>
+          <div class="box-int-txt">
+            Ne pisat: <em>„Menčetić koristi anaforu."</em> — to je samo identifikacija.<br>
+            Pisat: <em>„Menčetić koristi anaforu (Blažen... blažena... blažena...) — <b>ponavljanjem pojačava emotivni intenzitet euforije</b> prvog pogleda, čineći gospoju sveprisutnom u svim sferama lirskog subjektovog iskustva."</em> — to je analiza.<br><br>
+            <b>Formula:</b> [Stilsko sredstvo] + [primjer iz teksta] + [efekt na čitatelja ili značenje u kontekstu].
+          </div>
+        </div>
+
+        <div class="tbl">
+          <div class="cr"><div class="ck br">STILSKO SREDSTVO</div><div class="cv b">PRIMJER IZ H11</div><div class="cv b">ŠTO POSTIŽE</div></div>
+          <div class="cr"><div class="ck go">Anafora</div><div class="cv"><em>„Blažen čas i hip... blažena kolipka... blažena ti ženska..."</em> (Menčetić)</div><div class="cv">Pojačava emocionalni intenzitet — gospoja je sveprisutna u svakom aspektu lirskog iskustva</div></div>
+          <div class="cr"><div class="ck t">Alegorija</div><div class="cv">Holoferno = Turci; Judita = Hrvatska (Marulić, <em>Judita</em>)</div><div class="cv">Kodira politički apel u biblijsku naraciju — zaobilazi cenzuru i daje priči vječnost</div></div>
+          <div class="cr"><div class="ck re">Dramska ironija</div><div class="cv">Publika zna da nema „vode od mladosti"; Stanec ne zna (Držić, <em>Novela</em>)</div><div class="cv">Stvara komiku i empatiju istovremeno — publika se smije, ali i žali Stanca</div></div>
+          <div class="cr"><div class="ck pa">Antiteza</div><div class="cv"><em>„volim i mrzim"</em>, bol i slast ljubavi (petrarkistička lirika)</div><div class="cv">Prikazuje paradoks ljubavnog iskustva — unutarnji raskorak kao temelj petrarkizma</div></div>
+          <div class="cr"><div class="ck g">Metafora</div><div class="cv">Jabuke = stanje nacionalnih književnosti (Zoranić, <em>Perivoj od Slave</em>)</div><div class="cv">Apstraktni pojam (stanje književnosti) postaje konkretan i vidljiv kroz sliku</div></div>
+          <div class="cr"><div class="ck br">Apostrofa</div><div class="cv">Lirski subjekt direktno govori Amoru, gospoji ili Bogu u petrarkizmu</div><div class="cv">Monolog postaje živ — lirski subjekt komunicira s apstraktnim entitetom, pojačava drama</div></div>
+        </div>
+
+
+        <!-- SEC 13 — Zaokružujući zaključak poglavlja -->
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">12 · Zašto je hrv. renesansa važna danas</div><div class="sec-line"></div></div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">💡 Za napredni esejski zaključak — relevantnost hrv. renesanse</div>
+          <div class="box-int-txt">
+            Hrv. renesansa nije mrtva prošlost — ona postavlja pitanja koja su aktualna i danas. Svaki pisac ostavlja poruku koja nadilazi 16. st.:<br><br>
+            <b>Marulić pita:</b> <em>Kako se boriti kad si slabiji? — Alegorijom, vjerom, kulturom.</em><br>
+            <b>Zoranić pita:</b> <em>Što je nacionalna književnost? — Nešto što se mora svjesno graditi, ne čeka samo na se.</em><br>
+            <b>Hektorović pita:</b> <em>Čije je znanje vrijedno? — Svačije, i onoga koji je učen i onoga koji zna put mora.</em><br>
+            <b>Držić pita:</b> <em>Tko pobjeđuje u gradu koji nagrađuje pamet? — Uvijek isti: lukavi, urbani, privilegirani.</em><br>
+            <b>Menčetić i Lucić pitaju:</b> <em>Što je ljubav — strast ili put prema Bogu? — Oboje, ovisno o tome koliko si spreman ići.</em><br><br>
+            Ova pitanja nemaju rok trajanja. I upravo zato hrv. renesansa nije gradivo — ona je razgovor koji traje.
+          </div>
+        </div>
+
+
+        <div class="box-key">
+          <div class="box-key-lbl">🎯 Savjet za dan ispita — H11</div>
+          <div class="box-key-txt">
+            Ujutro na dan ispita: (1) Poglej Must-Know kartice (Tab 0, vrh). (2) Ponovi 5 zamki (Tab 0, Sec 14). (3) Pročitaj Top 10 citata (Tab 3, dno) — barem 2–3 nauči napamet. (4) Prođi kroz Checkpoint (Tab 7) — ako si sve označio/la, spreman/a si. Sretno!
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <span class="nb" onclick="sw(1)">← 🎭 Pisci renesanse</span>
+          <span class="nb primary" onclick="sw(3)">💬 Citatnik →</span>
+        </div>
+      </div>
+
+      <!-- ════════════════════════
+           TAB 3 · CITATNIK
+           ════════════════════════ -->
+      <div class="layer" id="l3" role="tabpanel" tabindex="0"></div>
+      <div class="layer" id="l4" role="tabpanel" tabindex="0"></div>
+      <div class="layer" id="l5" role="tabpanel" tabindex="0">
+        <div class="tags">
+          <span class="pill p-br">flashcards</span>
+          <span class="pill p-go">spari</span>
+          <span class="pill p-r">brzo učenje</span>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">💡 Drill — aktivno učenje</div>
+          <div class="box-int-txt">
+            <strong>Flashcards</strong> za pojmove + <strong>matching</strong> (pojam › objašnjenje). Brže od pasivnog čitanja, direktno priprema za teoriju i kviz.
+          </div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01 · Flashcards · okreni karticu</div><div class="sec-line"></div></div>
+
+        <style>
+          .h11d-fc-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;margin:16px 0 24px}
+          .h11d-fc-counter{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase}
+          .h11d-fc-counter b{color:var(--bronze-l)}
+          .h11d-fc{width:100%;max-width:520px;min-height:220px;perspective:1500px;cursor:pointer}
+          .h11d-fc-inner{position:relative;width:100%;height:100%;min-height:220px;transition:transform .6s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+          .h11d-fc.flipped .h11d-fc-inner{transform:rotateY(180deg)}
+          .h11d-fc-front,.h11d-fc-back{position:absolute;inset:0;min-height:220px;padding:40px 32px;border-radius:var(--r4);backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--bdm)}
+          .h11d-fc-front{background:linear-gradient(135deg,var(--card),var(--ele))}
+          .h11d-fc-back{background:linear-gradient(135deg,rgba(220,50,47,.12),rgba(232,201,122,.05));border-color:var(--bd-br);transform:rotateY(180deg)}
+          .h11d-fc-cat{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--bronze);margin-bottom:12px}
+          .h11d-fc-term{font-family:var(--display);font-size:30px;font-weight:700;color:var(--t1);letter-spacing:1px}
+          .h11d-fc-hint{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:22px;letter-spacing:1px}
+          .h11d-fc-def{font-family:var(--serif);font-size:16px;line-height:1.65;color:var(--t1);max-width:420px}
+          .h11d-fc-controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+          .h11d-fcb{padding:10px 20px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--t2);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+          .h11d-fcb:hover{border-color:var(--bd-br);color:var(--bronze-l)}
+          .h11d-fcb.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));color:#F5E6D3;border-color:var(--bronze)}
+          .h11d-fcb.know{border-color:var(--bd-g);color:var(--green)}
+          .h11d-fcb.know:hover{background:var(--dim-g)}
+          .h11d-fcb.dont{border-color:var(--bd-r);color:var(--red)}
+          .h11d-fcb.dont:hover{background:var(--dim-r)}
+          .h11d-fc-stats{display:flex;gap:20px;margin-top:10px;font-family:var(--mono);font-size:11px}
+          .h11d-fc-stats span{color:var(--t3)}
+          .h11d-fc-stats b{color:var(--green)}
+          .h11d-fc-stats i{color:var(--red);font-style:normal}
+        </style>
+
+        <div class="h11d-fc-wrap">
+          <div class="h11d-fc-counter"><span id="h11d-fc-num"><b>1</b> / 20</span></div>
+          <div class="h11d-fc" id="h11d-fc-card" onclick="h11DrillFcFlip()">
+            <div class="h11d-fc-inner" id="h11d-fc-inner">
+              <div class="h11d-fc-front">
+                <div class="h11d-fc-cat" id="h11d-fc-cat-f">PITANJE</div>
+                <div class="h11d-fc-term" id="h11d-fc-term">—</div>
+                <div class="h11d-fc-hint">Klikni za okretanje</div>
+              </div>
+              <div class="h11d-fc-back">
+                <div class="h11d-fc-cat" id="h11d-fc-cat-b">TOČAN ODGOVOR</div>
+                <div class="h11d-fc-def" id="h11d-fc-def">—</div>
+              </div>
+            </div>
+          </div>
+          <div class="h11d-fc-controls">
+            <button class="h11d-fcb dont" onclick="h11DrillFcMark(0)">❌ Ne znam</button>
+            <button class="h11d-fcb know" onclick="h11DrillFcMark(1)">✅ Znam</button>
+            <button class="h11d-fcb" onclick="h11DrillFcSkip()">Preskoči ›</button>
+            <button class="h11d-fcb" onclick="h11DrillFcShuffle()">📌 Promiješaj</button>
+            <button class="h11d-fcb primary" onclick="h11DrillFcReset()">🔁 Reset</button>
+          </div>
+          <div class="h11d-fc-stats"><span>točno: <b id="h11d-fc-right">0</b></span><span>krivo: <i id="h11d-fc-wrong">0</i></span></div>
+        </div>
+
+        <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02 · Spari · djelo › autor</div><div class="sec-line"></div></div>
+
+        <style>
+          .mg-intro{font-family:var(--serif);font-size:14px;color:var(--t2);margin-bottom:16px}
+          .mg-board{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:18px 0}
+          .mg-col{display:flex;flex-direction:column;gap:8px}
+          .mg-col-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;text-align:center;margin-bottom:4px}
+          .mg-item{padding:12px 16px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r2);font-family:var(--serif);font-size:14px;color:var(--t1);cursor:pointer;transition:all .18s;text-align:center;line-height:1.4;min-height:48px;display:flex;align-items:center;justify-content:center}
+          .mg-item:hover{border-color:var(--bd-br);transform:translateX(2px)}
+          .mg-item.sel{border-color:var(--bronze);background:var(--dim-br);color:var(--bronze-l);font-weight:600}
+          .mg-item.ok{border-color:var(--green);background:var(--dim-g);color:var(--green);opacity:.6;pointer-events:none}
+          .mg-item.err{border-color:var(--red);background:var(--dim-r);color:var(--red);animation:shake .4s}
+          @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+          .mg-stats{display:flex;gap:20px;justify-content:center;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--t3)}
+          .mg-stats b{color:var(--green)}
+          .mg-done{text-align:center;padding:22px;background:var(--dim-g);border:1px solid var(--bd-g);border-radius:var(--r3);font-family:var(--display);font-size:16px;color:var(--green);font-weight:700;letter-spacing:1px}
+        </style>
+
+        <div class="mg-intro">Klikni jedan element s lijeve strane, pa njegov par s desne. Pogrešne veze se resetiraju.</div>
+
+        <div class="pro-gate" data-feature="drill-matching">
+          <div class="mg-board" id="mg-board"></div>
+          <div class="mg-stats"><span>spareno: <b id="mg-score">0</b> / <span id="mg-total">9</span></span></div>
+          <div class="pro-gate-overlay">
+            <div class="pro-gate-fade"></div>
+            <div class="pro-gate-cta">
+              <div class="pro-gate-label">9 <b>pair matching</b> vježbi — djelo › autor · pojam › epoha · stil › autor</div>
+              <a class="pro-gate-btn" href="/pricing?ctx=drill_matching_h11">Otključaj — 9,99€/mj</a>
+              <div class="pro-gate-meta">Otkaži bilo kad · Free trial 7 dana</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <span class="nb" onclick="sw(4)">← 📚 Pojmovnik</span>
+          <span class="nb primary" onclick="sw(6)">🧠 Kviz →</span>
+        </div>
+      </div>
+
+      <!-- ════════════════════════
+           TAB 6 · KVIZ
+           ════════════════════════ -->
+      <div class="layer" id="l6" role="tabpanel" tabindex="0">
+        <div class="box-int">
+          <div class="box-int-lbl">🧠 Kviz — H11 Stari hrv. pisci</div>
+          <div class="box-int-txt">30 pitanja koja pokrivaju sve pisce, pojmove i datume. Klikni opciju — odmah vidiš je li točna i zašto.</div>
+        </div>
+
+        <div class="qz-wrap" id="qz">
+          <div class="qz-header">
+            <div class="qz-lbl">🧠 Kviz — Stari hrv. pisci</div>
+            <div class="qz-score" id="qz-score">0 / 30</div>
+          </div>
+          <div class="qz-body" id="qz-body">
+            <div class="qz-q" id="qz-q">—</div>
+            <div class="qz-opts" id="qz-opts"></div>
+            <div class="qz-fb" id="qz-fb"></div>
+            <div class="qz-nav">
+              <button class="qz-btn" onclick="qzPrev()" id="qz-prev" disabled>← Preth.</button>
+              <div style="flex:1;display:flex;align-items:center;gap:8px">
+                <div class="qz-prog-wrap"><div class="qz-prog-bar" id="qz-prog" style="width:5%"></div></div>
+                <span id="qz-idx-lbl" style="font-family:var(--mono);font-size:10px;color:var(--t3);white-space:nowrap">1/30</span>
+              </div>
+              <button class="qz-btn primary" onclick="qzNext()" id="qz-next">Sljedeće →</button>
+            </div>
+          </div>
+          <div class="qz-end" id="qz-end" style="display:none">
+            <div id="qz-end-ico" style="font-size:44px;margin-bottom:8px">🎉</div>
+            <div class="qz-end-score" id="qz-end-score">—</div>
+            <div id="qz-grade-track" style="height:6px;background:var(--bd);border-radius:3px;margin:10px 0 8px;overflow:hidden">
+              <div id="qz-grade-fill" style="height:100%;border-radius:3px;width:0%;transition:width .8s ease;background:var(--gold)"></div>
+            </div>
+            <div class="qz-end-sub" id="qz-end-sub">—</div>
+            <div id="qz-end-wrong" style="margin-top:12px;text-align:left"></div>
+            <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+              <button class="qz-btn primary" onclick="qzRestart()">🔁 Ponovi</button>
+              <button class="qz-btn" onclick="sw(0)">📖 Teorija</button>
+              <button class="qz-btn" onclick="sw(7)">✅ Checkpoint</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <span class="nb" onclick="sw(5)">← ⚡ Drill</span>
+          <span class="nb primary" onclick="sw(7)">✅ Checkpoint →</span>
+        </div>
+      </div>
+
+      <!-- ════════════════════════
+           TAB 7 · CHECKPOINT
+           ════════════════════════ -->
+      <div class="layer" id="l7" role="tabpanel" tabindex="0">
+        <div class="tags">
+          <span class="pill p-g">završetak poglavlja</span>
+          <span class="pill p-go">self-check</span>
+        </div>
+
+        <div class="box-int">
+          <div class="box-int-lbl">💡 Provjera — što zaista znaš?</div>
+          <div class="box-int-txt">
+            Označi stavke koje si <em>stvarno</em> usvojio. Ne žuri — ako nešto nisi siguran, vrati se na odgovarajući tab. <strong>Cilj: svih 10 označeno prije prelaska na H12 — Marulić i hrv. renesansa.</strong>
+          </div>
+        </div>
+
+        <div class="cp-summary">
+          <div class="cp-sum-txt">Napredak · <b id="cp-done">0</b> / 10 stavki</div>
+          <div class="cp-actions" style="margin-top:18px;display:flex;gap:10px;justify-content:center">
+            <button type="button" class="fcb" onclick="cpReset()" style="padding:8px 16px;background:var(--inp,#0F0605);border:1px solid var(--bdl,#2c1f1f);border-radius:8px;color:var(--t2,#c5b8aa);font-family:var(--mono,monospace);font-size:11px;letter-spacing:0.8px;cursor:pointer">🔁 Resetiraj</button>
+            <button type="button" class="fcb primary" onclick="sw(6)" style="padding:8px 16px;background:var(--gold,#e9b446);color:#0F0605;border:none;border-radius:8px;font-family:var(--mono,monospace);font-size:11px;font-weight:800;letter-spacing:0.8px;cursor:pointer">🧠 Idi na kviz</button>
+          </div>
+          <div class="cp-sum-pct" id="cp-pct">0%</div>
+        </div>
+
+        <style>
+          .minirev{margin:16px 0 14px;padding:14px;border:1px solid var(--line,rgba(255,255,255,.12));border-radius:var(--r3,12px);background:linear-gradient(135deg,var(--panel,rgba(255,255,255,.03)) 0%,rgba(255,255,255,.01) 100%)}
+          .minirev-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+          .minirev-ttl{font-weight:800;color:var(--gold,#e9b446);font-size:14px}
+          .minirev-time{font-size:11px;color:var(--muted,#b8b8b8)}
+          .minirev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-bottom:10px}
+          .minirev-card{border:1px solid var(--line,rgba(255,255,255,.12));border-radius:10px;padding:9px;background:rgba(255,255,255,.02)}
+          .minirev-card-lbl{font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--bronze-l,#e0ba93);margin-bottom:4px;font-weight:700}
+          .minirev-card-val{font-size:12.5px;line-height:1.45;color:var(--txt,#ebebeb)}
+          .minirev-card-val b{color:var(--gold,#e9b446)}
+          .minirev-quotes{border:1px dashed var(--line,rgba(255,255,255,.12));border-radius:10px;padding:10px;background:rgba(255,255,255,.015)}
+          .minirev-quotes ol{margin:0;padding-left:18px}
+          .minirev-quotes li{margin:4px 0;font-size:12.5px;line-height:1.45}
+          .exam-prompt{position:relative;margin:0 0 16px;padding:13px;border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:var(--r3,12px);background:linear-gradient(135deg,var(--dim-r,rgba(192,66,68,.12)) 0%,rgba(224,82,82,.04) 100%)}
+          .exam-prompt::before{content:'NCVVO · SKOLSKI ESEJ';display:inline-block;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:999px;background:var(--bg,#0f0b10);color:var(--red-l,#f0a8a8);margin-bottom:8px}
+          .exam-prompt-ttl{font-size:14px;font-weight:800;color:var(--txt,#f3f3f3);margin-bottom:6px}
+          .exam-prompt-task{font-size:13px;line-height:1.55;color:var(--txt,#ececec);margin-bottom:8px}
+          .exam-prompt-tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+          .exam-tip{border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:10px;padding:8px 9px;background:rgba(15,8,9,.22);font-size:12.5px;line-height:1.45}
+        </style>
+
+        <div class="minirev">
+          <div class="minirev-head">
+            <div class="minirev-ttl">🧭 Mini-revizija — sve u 3 minute</div>
+            <div class="minirev-time">~3 min čitanja</div>
+          </div>
+          <div class="minirev-body">
+            <div class="minirev-grid">
+              <div class="minirev-card"><div class="minirev-card-lbl">📌 Djelo i korpus</div><div class="minirev-card-val"><b>Judita</b>, <b>Novela od Stanca</b>, <b>Planine</b> i <b>Ribanje</b> kao jezgra starih hrv. pisaca.</div></div>
+              <div class="minirev-card"><div class="minirev-card-lbl">📌 Kontekst</div><div class="minirev-card-val"><b>Hrvatska renesansa</b>: humanizam, dubrovački i dalmatinski kulturni krug, otvaranje prema antici i Europi.</div></div>
+              <div class="minirev-card"><div class="minirev-card-lbl">📌 Ključne figure</div><div class="minirev-card-val"><b>Marulić, Držić, Zoranić, Hektorović, Lucić</b> — različiti žanrovi iste epohe.</div></div>
+              <div class="minirev-card"><div class="minirev-card-lbl">📌 Središnji obrazac</div><div class="minirev-card-val"><b>Moralna poruka + društvena kritika</b>: od biblijsko-domoljubne alegorije do komičkog razotkrivanja mana.</div></div>
+              <div class="minirev-card"><div class="minirev-card-lbl">📌 Pojmovi</div><div class="minirev-card-val"><b>petrarkizam, alegorija, farsa, pastorala, bugarštica, humanizam</b>.</div></div>
+              <div class="minirev-card"><div class="minirev-card-lbl">📌 Simboli</div><div class="minirev-card-val"><b>Judita/Holoferno, Perivoj od Slave, more i putovanje</b> — nosive slike za esejsku argumentaciju.</div></div>
+              <div class="minirev-card"><div class="minirev-card-lbl">📌 Most</div><div class="minirev-card-val">› <b>H12 Marulić i hrv. renesansa</b>: dubinski fokus na Juditu, stih i alegorijsko čitanje.</div></div>
+              <div class="minirev-card"><div class="minirev-card-lbl">📌 Najveća greška</div><div class="minirev-card-val">Nabrajati autore bez funkcije. Na maturi se boduje <b>što i zašto dokazuješ</b>, ne puki popis podataka.</div></div>
+            </div>
+            <div class="minirev-quotes">
+              <b style="display:block;font-family:var(--mono);font-size:9.5px;color:var(--bronze-l,#e0ba93);letter-spacing:1.5px;font-weight:700;text-transform:uppercase;margin-bottom:8px">3 citata/formulacije napamet</b>
+              <ol>
+                <li>„U versih harvacki složena.” <b>(Marulić, Judita)</b></li>
+                <li>„Marulić je otac hrvatske književnosti.” <b>(školska formulacija)</b></li>
+                <li>„Novela od Stanca razotkriva društvene maske kroz smijeh.” <b>(interpretacijska formulacija)</b></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="exam-prompt">
+          <div class="exam-prompt-ttl">📌 Kako se stari hrv. pisci i renesansa mogu pojaviti na ispitu</div>
+          <div class="exam-prompt-task">Analiziraj kako hrvatska renesansna književnost oblikuje odnos između moralne poruke i društvene kritike. U argumentaciji usporedi barem dva autora (npr. Marulića i Držića) te objasni kako žanr i stil podupiru glavnu tezu.</div>
+          <div class="exam-prompt-tips">
+            <div class="exam-tip"><b>📌 Struktura eseja</b>Uvod (50-60 r.) · 3 razradna odlomka (~120 r. svaki: kontekst, analiza djela, usporedba autora) · zaključak (60-70 r.) = ~470 r.</div>
+            <div class="exam-tip"><b>📌 Citati</b>Koristi 2-3 citata/formulacije: Marulić (Judita) + Držić (Novela) + jedan primjer iz Planina ili Ribanja.</div>
+            <div class="exam-tip"><b>📌 Povezivanje</b>Naglasak na most H11→H12: opći pregled epohe pretvori u preciznu analizu Judite.</div>
+            <div class="exam-tip"><b>📚 Pojmovi</b>Humanizam · petrarkizam · alegorija · farsa · pastorala · renesansni kontekst.</div>
+          </div>
+        </div>
+
+        <div class="pro-gate" data-feature="checkpoint-tracking">
+          <div class="cp-grid" id="cp-grid">
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Znam tko je Marin Držić, zašto se zove „Vidra" i kada je živio (1508.–1567.)</div>
+            <span class="cp-hint">Tab 1</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Mogu opisati radnju Novele od Stanca i objasniti što je farsa / pokladna igra</div>
+            <span class="cp-hint">Tab 1</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Znam opreke u Noveli od Stanca: mlado–staro, vlastela–seljak, grad–selo</div>
+            <span class="cp-hint">Tab 2</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Mogu napisati uvod eseja o Noveli od Stanca s autorom, naslovom i središnjom tvrdnjom</div>
+            <span class="cp-hint">Tab 2</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Znam da je Marko Marulić „otac hrv. književnosti" i da je Judita ep s alegorijskim smislom (Oloferno = Turci)</div>
+            <span class="cp-hint">Tab 0</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Mogu objasniti što je petrarkizam i zašto hrv. petrarkisti NE pišu sonete</div>
+            <span class="cp-hint">Tab 0</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Znam razliku između I. i II. generacije petrarkista (Menčetić/Džore Držić vs. Lucić)</div>
+            <span class="cp-hint">Tab 1</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Mogu objasniti što je Perivoj od Slave u Zoranićevim Planinama i što alegorički znači</div>
+            <span class="cp-hint">Tab 4</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Znam što je bugarštica i zašto je Hektorovićevo Ribanje važno za hrv. usm. tradiciju</div>
+            <span class="cp-hint">Tab 4</span>
+          </div>
+          <div class="cp-item" onclick="cpToggle(this)">
+            <div class="cp-box">?</div>
+            <div>Uspio/la sam napisati esej od 440+ riječi o Noveli od Stanca ili sam zadovoljan/na svojom tezom i argumentima</div>
+            <span class="cp-hint">Tab 2</span>
+          </div>
+          </div>
+          <div class="pro-gate-overlay">
+            <div class="pro-gate-fade"></div>
+            <div class="pro-gate-cta">
+              <div class="pro-gate-label"><b>Checkpoint tracking</b> kroz sva 28+22 poglavlja · napredak se sprema · graf spremnosti za maturu</div>
+              <a class="pro-gate-btn" href="/pricing?ctx=checkpoint_h11">Otključaj — 9,99€/mj</a>
+              <div class="pro-gate-meta">Otkaži bilo kad · Free trial 7 dana</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cp-final" id="cp-final">
+          <div class="cp-final-ico">🎉</div>
+          <div class="cp-final-title">H11 Završeno!</div>
+          <div class="cp-final-msg">Odlično! Usvojena je hrvatska renesansna književnost — od Marulićeve Judite do Držićeve Novele. Sljedeće: <strong>H12 · Marulić i hrvatska renesansa</strong> — dubinska analiza Judite, stih, alegorija, humanizam.</div>
+          <div class="cp-actions">
+            <a href="/skripte/hrv/h12" class="reveal-lock-btn" style="text-decoration:none">→ H12 Marulić</a>
+            <button class="nb" onclick="cpReset()">🔁 Resetiraj</button>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <span class="nb" onclick="sw(6)">← 🧠 Kviz</span>
+          <span class="nb" onclick="sw(0)">🔁 Ponovi H11</span>
+        </div>
+      </div>
+
+    </div><!-- /content-wrap -->
+  <!-- ══ MODULE FOOTER (v3.6) ══ -->
+  <footer class="mod-foot" role="contentinfo">
+    <div class="foot-line"><b>Maturiraj.hr</b> · Hrvatski · H11 Stari hrv. pisci — renesansa</div>
+    <div class="foot-line">Autorski sadržaj · Usklađeno s <a href="https://www.ncvvo.hr/ispitni-katalozi-za-drzavnu-maturu-2025-2026/" target="_blank" rel="noopener noreferrer">NCVVO</a> ispitnim katalogom · Ažurirano <time datetime="2026-04-18">travanj 2026.</time></div>
+    <div class="foot-line foot-feedback">
+      <span class="foot-fb-q">Imaš prijedlog ili si uočio grešku?</span>
+      <button type="button" class="foot-fb-btn" onclick="openFeedbackModal()">📝 Prijavi →</button>
+      <span class="foot-fb-or">ili e-mail</span>
+      <a href="mailto:maturirajgreske@gmail.com" class="foot-fb-mail">maturirajgreske@gmail.com</a>
+    </div>
+  </footer>
+</main>
+</div><!-- /shell -->
+
+
+
+
+
+
+
+`;
+
+const CHAPTER_CSS_DELTA = `--red:#C04244;--bd-r:rgba(192,66,68,.22);--dim-r:rgba(192,66,68,.10);
+  --green:#6B9464;--bd-g:rgba(107,148,100,.22);--dim-g:rgba(107,148,100,.09);
+  --sienna:#A85940;--bd-s:rgba(168,89,64,.22);--dim-s:rgba(168,89,64,.10);
+  --t1:#F5E6D3;--t2:#B09684;--t3:#6B5A4E;--t4:#3A2A22;
+img,video,iframe,embed,object{max-width:100%;height:auto}
+html{font-size:16px;scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+  background-size:80px 80px;pointer-events:none;z-index:0;
+  pointer-events:none;z-index:0;
+.shell,.sidebar,.main{position:relative;z-index:1}
+.main{flex:1;min-width:0;max-width:100%}
+@keyframes layerIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  width:var(--sb);min-width:var(--sb);flex-shrink:0;background:var(--sur);
+@media(max-width:1200px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;height:100%;z-index:180;
+    transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+    pointer-events:none}
+  .sidebar.mobile-open{transform:translateX(0)!important;pointer-events:auto}
+  .sb-hamburger{display:flex!important}
+  .main{width:100%!important;max-width:100%!important;flex:1!important}
+  display:none;position:fixed;top:6px;left:6px;z-index:300;
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:150;backdrop-filter:blur(3px)}
+  content:'★ 2026';position:absolute;right:10px;
+  font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.5px;
+  color:var(--gold);background:var(--dim-go);border:1px solid var(--bd-go);
+  border-radius:3px;padding:2px 5px;
+.sb-item.sb-d .sb-dot{background:var(--gold);opacity:.5}
+.content-wrap{max-width:860px;width:100%;margin:0 auto;padding:32px 44px 120px;animation:fadeUp .4s ease both;box-sizing:border-box}
+.hero{margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--bdm);position:relative}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;width:60px;height:2px;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:1px}
+.hero-chapter{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--bronze);opacity:.8;margin-bottom:10px}
+.hero-title{font-family:var(--display);font-size:28px;font-weight:700;color:var(--t1);letter-spacing:.3px;line-height:1.15;margin-bottom:10px}
+.hero-sub{font-family:var(--serif);font-size:15px;color:var(--t2);line-height:1.65;margin-bottom:18px}
+.hero-sub strong{color:var(--t1)}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.hchip{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:4px}
+.hchip.br{background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+.hchip.go{background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go)}
+.hchip.te{background:var(--dim-t);color:var(--teal);border:1px solid var(--bd-t)}
+.hchip.re{background:var(--dim-r);color:var(--red);border:1px solid var(--bd-r)}
+.hchip.gr{background:var(--dim-g);color:var(--green);border:1px solid var(--bd-g)}
+.hchip.pa{background:var(--dim-pa);color:var(--parchment);border:1px solid var(--bd-pa)}
+/* ══ COUNTDOWN ══ */
+.countdown{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--t3);padding:7px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);display:inline-flex;align-items:center;gap:8px;margin-bottom:20px}
+.countdown strong{color:var(--bronze);font-size:13px}
+.tabs{display:flex;gap:0;margin-bottom:20px;background:var(--sur);border:1px solid var(--bdm);border-radius:var(--r2);padding:3px;width:100%;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;-ms-overflow-style:none}
+.tab{padding:7px 16px;font-size:11px;font-weight:600;color:var(--t2);cursor:pointer;border-radius:5px;transition:all .18s;white-space:nowrap;font-family:var(--mono);position:relative;z-index:1;background:transparent;border:none;line-height:normal;min-height:44px}
+.tab.on{background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));color:#0F0605;font-weight:700;box-shadow:0 2px 18px rgba(220,50,47,.35),inset 0 1px 0 rgba(255,255,255,.1)}
+.tab-lock{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.5px;margin-left:5px;background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go);border-radius:3px;padding:1px 5px}
+/* ══ LAYERS ══ */
+.layer{display:none!important;scroll-margin-top:50px}
+.layer.on{display:block!important;animation:layerIn .28s cubic-bezier(.4,0,.2,1) both}
+/* ══ PILLS / TAGS ══ */
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}
+.pill{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center}
+.p-br{background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+.p-go{background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go)}
+.p-r{background:var(--dim-r);color:var(--red);border:1px solid var(--bd-r)}
+.p-t{background:var(--dim-t);color:var(--teal);border:1px solid var(--bd-t)}
+.p-g{background:var(--dim-g);color:var(--green);border:1px solid var(--bd-g)}
+.p-pa{background:var(--dim-pa);color:var(--parchment);border:1px solid var(--bd-pa)}
+/* ══ FEATURED QUOTE ══ */
+.featured-quote:hover{border-color:var(--bd-pa);box-shadow:0 2px 12px rgba(212,185,140,.06)}
+.featured-quote{display:flex;gap:14px;padding:20px 22px;background:linear-gradient(135deg,rgba(212,185,140,.04),rgba(220,50,47,.02));border:1px solid var(--bdm);border-left:3px solid var(--parchment);border-radius:var(--r3);margin:20px 0;position:relative;word-break:break-word;overflow:hidden;transition:border-color .2s}
+.fq-mark{font-family:var(--display);font-size:52px;color:var(--parchment);opacity:.3;line-height:1;flex-shrink:0;margin-top:-8px}
+.fq-body{flex:1;min-width:0}
+.fq-text{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--t1);line-height:1.6;margin-bottom:8px}
+.fq-meta{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px}
+.fq-copy{background:none;border:1px solid var(--bd);border-radius:var(--r1);color:var(--t3);font-size:12px;padding:4px 8px;cursor:pointer;font-family:var(--mono);transition:all .15s;flex-shrink:0;align-self:flex-start}
+.fq-copy:hover{color:var(--gold);border-color:var(--bd-go);background:var(--dim-go)}
+.fq-copy.copied{color:var(--green);border-color:var(--bd-g);background:var(--dim-g)}
+.fq-copy:hover{color:var(--t1);border-color:var(--bdm)}
+/* ══ BOX COMPONENTS ══ */
+.box-int{background:var(--ele);border:1px solid var(--bd);border-left:4px solid var(--teal);border-radius:var(--r3);padding:18px 20px;margin:16px 0}
+.box-int-lbl{font-family:var(--display);font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--bronze);margin-bottom:10px}
+.box-int-txt{font-family:var(--serif);font-size:14px;color:var(--t1);line-height:1.7}
+.box-int-txt strong{color:var(--t1)}
+.box-int-txt em{color:var(--gold);font-style:italic}
+.box-int-txt b{color:var(--t1)}
+.box-key{background:linear-gradient(135deg,rgba(232,201,122,.06),rgba(220,50,47,.03));border:1px solid var(--bd-go);border-left:4px solid var(--gold);border-radius:var(--r3);padding:18px 20px;margin:16px 0}
+.box-key-lbl{font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.box-key-txt{font-family:var(--serif);font-size:13.5px;color:var(--t1);line-height:1.7}
+.box-key-txt b{color:var(--t1)}
+.box-key-txt em{color:var(--gold);font-style:italic}
+.box-warn{display:flex;gap:12px;padding:16px 18px;background:linear-gradient(135deg,rgba(192,66,68,.06),rgba(220,50,47,.03));border:1px solid var(--bd-r);border-radius:var(--r3);margin:16px 0}
+.bw-ico{font-size:22px;flex-shrink:0}
+.bw-body{flex:1;min-width:0}
+.bw-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6}
+.bw-txt strong{color:var(--t1)}
+.bw-txt em{color:var(--red);font-style:italic}
+.box-signal{display:flex;gap:12px;padding:14px 18px;background:linear-gradient(135deg,rgba(107,148,100,.05),rgba(107,142,127,.04));border:1px solid var(--bd-g);border-left:4px solid var(--green);border-radius:var(--r3);margin:16px 0}
+.box-signal-lbl{font-family:var(--display);font-size:8.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
+.box-signal-txt{font-family:var(--serif);font-size:13.5px;color:var(--t2);line-height:1.55}
+.box-signal-txt b{color:var(--t1)}
+/* ══ SEC HEADER ══ */
+.sec-hdr{display:flex;align-items:center;gap:12px;margin:32px 0 18px}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(220,50,47,.3),rgba(220,50,47,.05))}
+.sec-badge{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bronze-l);white-space:nowrap;padding:4px 12px;background:var(--dim-br);border:1px solid var(--bd-br);border-radius:20px}
+.tl{margin:18px 0;position:relative}
+.tl::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:1px;background:var(--bdm)}
+.tl-item{display:flex;gap:16px;margin-bottom:18px;position:relative}
+.tl-dot{width:28px;height:28px;border-radius:50%;background:var(--ele);border:2px solid var(--bronze);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono);font-size:8px;font-weight:700;color:var(--bronze);z-index:1}
+.tl-body{flex:1;min-width:0;padding-top:4px}
+.tl-year{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--bronze);letter-spacing:1.5px;margin-bottom:3px}
+.tl-title{font-family:var(--display);font-size:13px;font-weight:700;color:var(--t1);margin-bottom:4px;letter-spacing:.3px}
+.tl-desc{font-family:var(--serif);font-size:13.5px;color:var(--t2);line-height:1.55}
+.tl-desc strong{color:var(--t1)}
+.tl-desc em{color:var(--gold);font-style:italic}
+/* ══ COMPARISON TABLE (tbl) ══ */
+.tbl{border:1px solid var(--bdm);border-radius:var(--r3);margin:16px 0;width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cr{display:flex;border-bottom:1px solid var(--bd);min-width:0}
+.cr:last-child{border-bottom:none}
+.ck{padding:10px 14px;font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;min-width:100px;flex-shrink:0;display:flex;align-items:center}
+.ck.br{background:var(--dim-br);color:var(--bronze-l);border-right:1px solid var(--bd-br)}
+.ck.go{background:var(--dim-go);color:var(--gold);border-right:1px solid var(--bd-go)}
+.ck.t{background:var(--dim-t);color:var(--teal);border-right:1px solid var(--bd-t)}
+.ck.g{background:var(--dim-g);color:var(--green);border-right:1px solid var(--bd-g)}
+.ck.re{background:var(--dim-r);color:var(--red);border-right:1px solid var(--bd-r)}
+.ck.pa{background:var(--dim-pa);color:var(--parchment);border-right:1px solid var(--bd-pa)}
+.cv{padding:10px 14px;font-family:var(--serif);font-size:13.5px;color:var(--t2);line-height:1.55;flex:1;min-width:120px}
+.cv b{color:var(--t1)}
+.cv em{color:var(--gold);font-style:italic}
+/* ══ QUICK NAV ══ */
+.qnav-btn{padding:10px 12px;background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r2);font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.5px;color:var(--t2);cursor:pointer;text-align:left;transition:all .18s;display:flex;flex-direction:column;gap:3px}
+.qnav-btn:hover{border-color:var(--bd-br);color:var(--bronze-l);transform:translateY(-2px);box-shadow:0 4px 14px rgba(220,50,47,.1)}
+.qnav-btn span{font-family:var(--serif);font-size:11px;color:var(--t3);font-weight:400;letter-spacing:0;text-transform:none}
+/* ══ SC GRID (concept cards) ══ */
+.sc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}
+.sc{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:16px;transition:all .2s;position:relative;overflow:hidden}
+.sc:hover{border-color:var(--bd-br);transform:translateY(-2px);box-shadow:0 4px 20px rgba(220,50,47,.08)}
+.sc-ico{margin-bottom:10px;display:inline-block}
+.sc-name{font-family:var(--display);font-size:14px;font-weight:700;color:var(--t1);margin-bottom:8px;letter-spacing:.3px}
+.sc-desc{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.55}
+.sc-desc strong{color:var(--t1)}
+.sc-desc em{color:var(--gold);font-style:italic}
+.sc-desc b{color:var(--t1)}
+/* ══ AUTHOR CARD (za Djela tab) ══ */
+.author-card{border:1px solid var(--bdm);border-radius:var(--r4);overflow:hidden;margin:20px 0;background:var(--sur);transition:border-color .2s}
+.ac-header{padding:18px 22px 14px;background:linear-gradient(135deg,var(--ele),var(--card));border-bottom:1px solid var(--bdm);display:flex;align-items:flex-start;gap:16px}
+.ac-monogram{width:52px;height:52px;border-radius:var(--r3);background:linear-gradient(135deg,var(--bronze-d),var(--bronze));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:22px;font-weight:700;color:var(--gold);flex-shrink:0;box-shadow:0 4px 20px rgba(220,50,47,.3)}
+.ac-meta{flex:1;min-width:0}
+.ac-name{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:4px;letter-spacing:.3px}
+.ac-dates{font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1.5px;margin-bottom:6px}
+.ac-tags{display:flex;gap:6px;flex-wrap:wrap}
+.ac-body{padding:18px 22px}
+.ac-body p{font-family:var(--serif);font-size:14.5px;color:var(--t2);line-height:1.65;margin-bottom:12px}
+.ac-body p:last-child{margin-bottom:0}
+.ac-body strong{color:var(--t1)}
+.ac-body em{color:var(--gold);font-style:italic}
+.ac-body b{color:var(--t1)}
+.ac-works{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd)}
+.ac-works-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.ac-work-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.ac-work-item:last-child{border-bottom:none;padding-bottom:0}
+.ac-work-title{font-family:var(--display);font-size:12px;font-weight:700;color:var(--gold);margin-bottom:3px;letter-spacing:.3px}
+.ac-work-meta{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.5px;margin-bottom:5px}
+.ac-work-desc{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.5}
+.ac-work-desc strong{color:var(--t1)}
+.ac-badge{width:28px;height:28px;border-radius:var(--r1);background:var(--ele);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.ac-star{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r1);font-family:var(--mono);font-size:9px;font-weight:700;color:var(--gold);letter-spacing:.5px;margin-top:6px}
+/* ══ GLOSS ══ */
+.gloss{position:relative;color:var(--gold);cursor:help;border-bottom:1px dashed var(--bd-go);display:inline}
+.gloss-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--bdm);border-radius:var(--r2);padding:10px 14px;font-size:12.5px;font-family:var(--serif);color:var(--t2);line-height:1.5;width:240px;z-index:50;font-style:normal;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.gloss:hover .gloss-tip,.gloss:focus .gloss-tip{display:block}
+.gloss-tip b{color:var(--t1)}
+/* ══ AUTH BOX ══ */
+/* ══ POJMOVNIK CARDS ══ */
+.pojm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:16px 0}
+.pojm-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.pojm-card:hover,.pojm-card.flip{border-color:var(--bdm)}
+.pojm-card.flip{background:var(--card)}
+.pojm-front,.pojm-back{transition:all .25s ease}
+.pojm-card.flip .pojm-front{display:none}
+.pojm-card:not(.flip) .pojm-back{display:none}
+.pojm-term{font-family:var(--display);font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:.3px}
+.pojm-hint{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+.pojm-def{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.55}
+.pojm-def strong{color:var(--t1)}
+.pojm-def em{color:var(--gold)}
+.pojm-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pojm-filter{padding:6px 14px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:20px;cursor:pointer;border:1px solid var(--bd);background:none;color:var(--t3);transition:all .15s}
+.pojm-filter.on,.pojm-filter:hover{color:var(--bronze-l);border-color:var(--bd-br);background:var(--dim-br)}
+/* ══ ESEJ ALAT ══ */
+.esej-alat{margin:16px 0}
+.wc-wrap{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);overflow:hidden;margin:16px 0}
+.wc-header{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.wc-lbl{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bronze)}
+.wc-stats{display:flex;gap:16px;flex-wrap:wrap}
+.wc-stat{text-align:center}
+.wc-stat-num{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);display:block}
+.wc-stat-lbl{font-family:var(--mono);font-size:8.5px;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+.wc-stat.ok .wc-stat-num{color:var(--green)}
+.wc-stat.critical .wc-stat-num{color:var(--red)}
+.wc-body{padding:14px 18px}
+.wc-ta{width:100%;min-height:200px;background:var(--inp);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--t1);font-family:var(--serif);font-size:15px;line-height:1.65;padding:14px;resize:vertical;outline:none;transition:border-color .15s}
+.wc-ta:focus{border-color:var(--bronze)}
+.wc-prog{height:5px;background:var(--bd);border-radius:3px;overflow:hidden;margin-top:12px}
+.wc-prog-bar{height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));border-radius:3px;transition:width .4s;width:0%}
+.wc-prog.pass .wc-prog-bar{background:linear-gradient(90deg,var(--green),var(--teal))}
+.wc-prog-lbl{font-family:var(--mono);font-size:9px;color:var(--t3);margin-top:6px;text-align:right}
+.wc-btn{padding:8px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;transition:all .15s;border:1px solid var(--bdm);background:var(--ele);color:var(--t2)}
+.wc-btn:hover{color:var(--t1);border-color:var(--bronze)}
+.qz-wrap{background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r4);overflow:hidden;margin:16px 0}
+.qz-header{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
+.qz-lbl{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.qz-score{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.qz-body{padding:18px}
+.qz-q{font-family:var(--serif);font-size:15px;color:var(--t1);line-height:1.6;margin-bottom:16px}
+.qz-opts{display:flex;flex-direction:column;gap:8px}
+.qz-opt{padding:11px 16px;background:var(--sur);border:1px solid var(--bd);border-radius:var(--r2);cursor:pointer;font-family:var(--serif);font-size:14px;color:var(--t2);transition:all .15s;text-align:left}
+.qz-opt:hover:not(:disabled){border-color:var(--bronze);color:var(--t1);background:var(--dim-br);transform:translateX(4px)}
+.qz-opt.correct{border-color:var(--green);background:var(--dim-g);color:var(--t1)}
+.qz-opt.wrong{border-color:var(--red);background:var(--dim-r);color:var(--t1)}
+.qz-fb{padding:12px 16px;border-radius:var(--r2);margin-top:12px;font-family:var(--serif);font-size:14px;line-height:1.55;display:none}
+.qz-fb.show{display:block}
+.qz-fb.ok{background:var(--dim-g);border:1px solid var(--bd-g);color:var(--t1)}
+.qz-fb.fail{background:var(--dim-r);border:1px solid var(--bd-r);color:var(--t1)}
+.qz-nav{display:flex;gap:10px;justify-content:space-between;margin-top:16px;align-items:center}
+.qz-btn{padding:9px 20px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;transition:all .15s;border:1px solid var(--bdm);background:var(--ele);color:var(--t2)}
+.qz-btn.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border-color:transparent;color:var(--gold)}
+.qz-btn:hover{color:var(--t1);border-color:var(--bronze)}
+.qz-prog-wrap{flex:1;height:4px;background:var(--bd);border-radius:2px;overflow:hidden}
+.qz-prog-bar{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));transition:width .3s}
+.qz-end{text-align:center;padding:24px 18px}
+.qz-end-score{font-family:var(--display);font-size:48px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.qz-end-sub{font-family:var(--serif);font-size:15px;color:var(--t2);margin-bottom:16px}
+/* ══ NAV ROW ══ */
+/* nav-row → covered in main 560px block */
+.fq-napamet{position:absolute;top:-1px;right:40px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1px;color:var(--gold);background:var(--dim-go);border:1px solid var(--bd-go);border-radius:0 0 4px 4px;padding:2px 7px}
+/* ══ CONNECT NEXT CARD ══ */
+.cn-card{display:flex;align-items:center;gap:16px;padding:18px 22px;background:linear-gradient(135deg,var(--ele),var(--card));border:1px solid var(--bdm);border-radius:var(--r4);margin-top:32px;text-decoration:none;transition:border-color .15s,transform .15s;cursor:pointer}
+.cn-card:hover{border-color:var(--bronze);transform:translateY(-2px)}
+.cn-ico{font-size:28px;flex-shrink:0}
+.cn-body{flex:1;min-width:0}
+.cn-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:4px}
+.cn-title{font-family:var(--display);font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px;letter-spacing:.3px}
+.cn-desc{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.45}
+.cn-arrow{font-size:20px;color:var(--bronze);flex-shrink:0}
+/* ══ REVEAL LOCK ══ */
+.reveal-lock{background:linear-gradient(135deg,var(--ele),var(--card));border:1px solid var(--bd-go);border-radius:var(--r4);padding:28px 24px;text-align:center;margin:16px 0}
+.reveal-lock-eye{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.reveal-lock-title{font-family:var(--display);font-size:20px;font-weight:700;color:var(--t1);letter-spacing:.3px;line-height:1.3;margin-bottom:8px}
+.reveal-lock-desc{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:18px}
+.rli-list{text-align:left;margin-bottom:18px}
+.rli{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd)}
+.rli:last-child{border-bottom:none}
+.rli-ico{font-size:16px;flex-shrink:0}
+.rli-desc{font-family:var(--serif);font-size:12.5px;color:var(--t2);line-height:1.4}
+.reveal-lock-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));color:#0F0605;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:var(--r2);border:none;cursor:pointer;text-decoration:none;transition:opacity .15s}
+.reveal-lock-btn:hover{opacity:.9}
+.drill-wrap{background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r4);padding:16px;margin:16px 0}
+.drill-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.drill-lbl{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:1px;color:var(--gold);text-transform:uppercase}
+.drill-count{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.drill-card{background:var(--sur);border:1px solid var(--bd);border-radius:var(--r3);padding:16px;min-height:180px;cursor:pointer}
+.drill-side-lbl{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;color:var(--t3);margin-bottom:8px;text-transform:uppercase}
+.drill-side-txt{font-family:var(--serif);font-size:15px;line-height:1.6;color:var(--t1)}
+.drill-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;margin-top:12px}
+/* ══ BTT ══ */
+.btt{position:fixed;bottom:24px;right:24px;z-index:100;width:40px;height:40px;background:var(--sur);border:1px solid var(--bdm);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--t2);transition:all .15s}
+.btt:hover{color:var(--bronze);border-color:var(--bronze)}
+/* ══ PROGRESS BAR ══ */
+.read-progress{position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:300}
+.read-progress-bar{height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));width:0%;box-shadow:0 0 6px rgba(220,50,47,.5);transition:width .1s linear;animation:shimmer 2s linear infinite;background-size:200% 100%}
+/* ══ RESPONSIVE ══ */
+  /* sidebar handled by 1200px breakpoint above */
+  .main{width:100%;max-width:100%;flex:1}
+  /* hamburger handled above */
+  .content-wrap{padding:52px 20px 80px}
+  .hero{margin-bottom:20px}
+  .sc-grid{grid-template-columns:1fr!important}
+  .pojm-grid{grid-template-columns:1fr!important}
+  .wc-stats{grid-template-columns:repeat(2,1fr)}
+  .featured-quote{padding:18px 16px;gap:12px}
+  .fq-mark{font-size:52px}
+  /* Tablice — scroll wrapper */
+  .tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r3)}
+  .tbl .cr{display:flex;min-width:540px}
+  .tbl .ck{min-width:120px!important;flex-shrink:0}
+  .tbl .cv{flex:1;min-width:140px}
+  /* ── Layout ── */
+  .content-wrap{padding:52px 14px 80px}
+  .hero{margin-bottom:16px}
+  .hero-chapter{font-size:9px;letter-spacing:2px}
+  .hero-title{font-size:18px;line-height:1.2}
+  .hero-sub{font-size:13px;line-height:1.55}
+  .bc-tab,.bc-tab-sep{display:none}
+  /* ── Tabs sticky ── */
+  .tabs{position:fixed;top:0;left:0;right:0;width:100%;border-radius:0;padding:2px 4px 2px 50px;border:none;border-bottom:1px solid var(--bdm);background:rgba(15,6,5,.97);z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+  .tab{font-size:8px;padding:5px 6px;letter-spacing:0;min-height:38px;flex-shrink:0;white-space:nowrap}
+  /* ── Box spacing ── */
+  .box-int,.box-key,.box-warn,.box-signal{padding:12px 14px}
+  .box-int-lbl,.box-key-lbl{font-size:10px;letter-spacing:.8px}
+  .box-int-txt,.box-key-txt,.bw-txt{font-size:12.5px;line-height:1.6}
+  /* ── Tablice ── */
+  .tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r3)}
+  .tbl .cr{min-width:460px;display:flex}
+  .tbl .ck{min-width:100px!important;flex-shrink:0;font-size:11px}
+  .tbl .cv{flex:1;min-width:130px;font-size:12px}
+  /* ── sc-grid ── */
+  .sc-grid{grid-template-columns:1fr!important;gap:8px}
+  .sc{padding:14px}
+  .sc-name{font-size:13px}
+  .sc-desc{font-size:12px}
+  /* ── featured-quote ── */
+  .featured-quote{padding:14px 12px;gap:10px;margin:14px 0}
+  .fq-mark{font-size:36px;margin-top:-2px;flex-shrink:0}
+  .fq-text{font-size:14px;line-height:1.5}
+  .fq-meta{font-size:9.5px}
+  .fq-copy{display:none}
+  .fq-body{min-width:0}
+  /* ── Author cards ── */
+  .ac-header{flex-direction:column;gap:10px}
+  .ac-tags{flex-wrap:wrap;gap:4px}
+  .ac-works{grid-template-columns:1fr}
+  /* ── Sekcijski headeri ── */
+  .sec-hdr{margin:20px 0 12px}
+  .sec-badge{font-size:7.5px;letter-spacing:1.2px;padding:3px 9px}
+  .sec-line{flex:1}
+  /* ── Tags/pills ── */
+  .tags{flex-wrap:wrap;gap:4px;margin-bottom:12px}
+  .pill{font-size:8px;padding:3px 7px}
+  /* ── Timeline ── */
+  .tl-item{gap:10px}
+  .tl-dot{width:30px;height:30px;font-size:11px;flex-shrink:0}
+  .tl-title{font-size:12px}
+  .tl-desc{font-size:12px}
+  /* ── Scene (details/accordion) ── */
+  .scene-sum{grid-template-columns:auto 1fr;gap:8px;padding:11px 12px}
+  .scene-meta{display:none}
+  .scene-num{font-size:14px;min-width:24px}
+  .scene-ttl{font-size:13px}
+  .scene-body{padding:0 12px 12px}
+  .scene-quote{font-size:12px;padding:10px 12px}
+  .scene-why{font-size:11.5px}
+  /* ── nav-row ── */
+  .nav-row{flex-direction:column;gap:6px;margin-top:20px;padding-top:16px}
+  .nav-row .nb{width:100%;justify-content:center;text-align:center}
+  /* ── Pojmovnik filters ── */
+  .pojm-filters{gap:4px;flex-wrap:wrap}
+  .pojm-filter{padding:5px 9px;font-size:8.5px;letter-spacing:.5px}
+  #cit-filters{gap:4px;flex-wrap:wrap}
+  #cit-filters .pojm-filter{padding:5px 9px;font-size:8.5px}
+  .pojm-grid{grid-template-columns:1fr!important}
+  .pojm-card{font-size:13px}
+  /* ── Flashcard (nova varijanta) ── */
+  #fc-display{margin:12px 0}
+  #fc-card{padding:20px 14px;min-height:130px;gap:10px}
+  #fc-term{font-size:17px}
+  #fc-def{font-size:12px}
+  #fc-eye{font-size:8px}
+  /* ── Word counter ── */
+  .wc-stats{grid-template-columns:repeat(2,1fr);gap:6px}
+  .wc-stat-num{font-size:17px}
+  .wc-stat-lbl{font-size:9px}
+  .wc-ta{font-size:13px}
+  /* ── Dijagnostika ── */
+  .diag-intro,.diag-quiz,.diag-result{padding:16px}
+  .diag-q{font-size:14px;line-height:1.5}
+  .diag-opt{font-size:13px;padding:11px 13px}
+  .diag-intro-title{font-size:15px}
+  .diag-prog-txt{font-size:11px}
+  /* ── Kviz ── */
+  .qz-lbl{font-size:10px}
+  .qz-q{font-size:13.5px;line-height:1.5}
+  .qz-opt{font-size:13px;padding:11px 13px}
+  .qz-exp{font-size:12px}
+  .qz-end{padding:18px 14px}
+  .qz-score{font-size:38px}
+  /* ── Checkpoint ── */
+  .cp-item{padding:12px 12px;font-size:13px;gap:10px}
+  .cp-box{width:22px;height:22px}
+  .cp-summary{padding:12px 14px}
+  .cp-sum-txt{font-size:13px}
+  .cp-sum-pct{font-size:20px}
+  .cp-final{padding:18px 14px}
+  .cp-final-title{font-size:17px}
+  .cp-final-msg{font-size:13px}
+  /* ── Reveal lock ── */
+  .reveal-lock{padding:24px 16px}
+  .reveal-lock-title{font-size:16px}
+  .reveal-lock-desc{font-size:13px}
+  .rli-list{gap:8px}
+  .rli{padding:12px}
+  /* ── Ostalo ── */
+  .countdown{font-size:9px;padding:5px 10px}
+  .countdown strong{font-size:11px}
+  .hchip{font-size:8.5px;padding:3px 8px}
+  .hero-chips{gap:5px}
+/* ══ FLASHCARD MODE ══ */
+.pojm-mode-row{display:flex;gap:8px;margin-bottom:16px;align-items:center}
+.pojm-mode-btn{padding:7px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:20px;cursor:pointer;border:1px solid var(--bdm);background:none;color:var(--t3);transition:all .15s}
+.pojm-mode-btn.on{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));color:var(--gold);border-color:transparent}
+.fc-wrap{display:none;flex-direction:column;align-items:center;gap:20px;margin:16px 0}
+.fc-wrap.on{display:flex}
+.fc-counter{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px}
+.fc-scene{width:100%;max-width:100%;perspective:1000px;cursor:pointer;height:220px}
+.fc-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.fc-scene.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r4);padding:28px 32px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.fc-front{background:linear-gradient(135deg,var(--ele),var(--card));border:1px solid var(--bdm)}
+.fc-back{background:linear-gradient(135deg,var(--card),var(--hov));border:1px solid var(--bd-go);transform:rotateY(180deg)}
+.fc-cat{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bronze);margin-bottom:12px}
+.fc-term{font-family:var(--display);font-size:22px;font-weight:700;color:var(--t1);letter-spacing:.4px;line-height:1.2;margin-bottom:8px}
+.fc-hint{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px}
+.fc-def{font-family:var(--serif);font-size:15px;color:var(--t1);line-height:1.6}
+.fc-def strong{color:var(--gold)}
+.fc-def em{color:var(--bronze-l);font-style:italic}
+.fc-nav{display:flex;gap:12px;align-items:center}
+.fc-btn{padding:10px 22px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;border:1px solid var(--bdm);background:var(--ele);color:var(--t2);transition:all .15s}
+.fc-btn:hover:not(:disabled){color:var(--t1);border-color:var(--bronze)}
+.fc-btn:disabled{opacity:.25;cursor:default}
+.fc-btn.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));color:var(--gold);border-color:transparent}
+.fc-progress{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:400px}
+.fc-dot{width:10px;height:10px;border-radius:50%;background:var(--bd);transition:background .2s}
+.fc-dot.seen{background:var(--bronze)}
+.fc-dot.current{background:var(--gold);box-shadow:0 0 6px rgba(232,201,122,.5)}
+/* ══ INTERACTIVE SCENES — prizori ══ */
+.scenes{display:flex;flex-direction:column;gap:8px;margin:18px 0 22px}
+.scene{background:var(--card);border:1px solid var(--bdm);border-radius:var(--r2);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.scene:hover{border-color:var(--bd-br)}
+.scene[open]{border-color:var(--bd-go);box-shadow:0 2px 8px rgba(232,201,122,.08)}
+.scene-sum{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;cursor:pointer;list-style:none;user-select:none}
+.scene-sum::-webkit-details-marker{display:none}
+.scene-sum::after{content:'▾';font-family:var(--mono);font-size:14px;color:var(--t3);transition:transform .2s;margin-left:8px}
+.scene[open] .scene-sum::after{transform:rotate(180deg);color:var(--gold)}
+.scene-num{font-family:var(--display);font-size:18px;font-weight:700;color:var(--bronze-l);min-width:32px;letter-spacing:.5px}
+.scene[open] .scene-num{color:var(--gold)}
+.scene-ttl{font-family:var(--serif);font-size:14.5px;color:var(--t1);font-weight:600;line-height:1.4}
+.scene-ttl em{color:var(--bronze-l);font-style:italic;font-weight:400}
+.scene-meta{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:1.5px;padding:3px 8px;background:var(--ele);border:1px solid var(--bdm);border-radius:10px;text-transform:uppercase;white-space:nowrap}
+.scene-body{padding:0 16px 16px}
+.scene-quote{padding:12px 14px;background:var(--sur);border-left:3px solid var(--gold);border-radius:0 var(--r2) var(--r2) 0;font-family:var(--serif);font-size:13.5px;line-height:1.55;color:var(--t1);font-style:italic;margin-bottom:10px}
+.scene-why{font-family:var(--serif);font-size:13px;line-height:1.6;color:var(--t2)}
+.scene-why b{color:var(--t1)}
+.cp-grid{display:flex;flex-direction:column;gap:8px;margin:18px 0 24px}
+.cp-item{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r3);cursor:pointer;transition:all .2s;font-family:var(--serif);font-size:14.5px;color:var(--t1);line-height:1.5}
+.cp-item:hover{border-color:var(--bd-br);transform:translateX(4px)}
+.cp-box{width:24px;height:24px;border-radius:6px;border:2px solid var(--bdl);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent;transition:all .2s;background:var(--inp)}
+.cp-item.done{border-color:var(--bd-g);background:var(--dim-g)}
+.cp-item.done .cp-box{background:var(--green);border-color:var(--green);color:#0F0605;font-weight:700}
+.cp-hint{font-family:var(--mono);font-size:10px;color:var(--t3);margin-left:auto;text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
+.cp-summary{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:linear-gradient(135deg,var(--dim-go),rgba(232,201,122,.03));border:1px solid var(--bd-go);border-radius:var(--r3);margin:20px 0 24px}
+.cp-sum-txt{font-family:var(--serif);font-size:14.5px;color:var(--t1)}
+.cp-sum-txt b{color:var(--gold)}
+.cp-sum-pct{font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);letter-spacing:1px}
+.cp-final{padding:26px;background:linear-gradient(135deg,var(--dim-g),rgba(107,148,100,.04));border:1px solid var(--bd-g);border-radius:var(--r4);text-align:center;display:none;margin-top:20px}
+.cp-final.show{display:block;animation:fadeUp .5s ease}
+.cp-final-ico{font-size:48px;margin-bottom:8px}
+.cp-final-title{font-family:var(--display);font-size:20px;font-weight:700;color:var(--green);letter-spacing:1px;margin-bottom:6px}
+.cp-final-msg{font-family:var(--serif);font-size:14.5px;color:var(--t1);margin-bottom:18px;line-height:1.6}
+.cp-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+/* cp-item → covered in main 560px block */
+.diag{margin:18px 0;border:1px solid var(--bd-go);border-radius:var(--r4);background:linear-gradient(135deg,var(--dim-go),rgba(232,201,122,.02));overflow:hidden;position:relative}
+.diag::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),var(--bronze))}
+.diag-intro,.diag-quiz,.diag-result{display:none;padding:22px 26px;animation:diagFade .35s ease}
+.diag[data-state="intro"] .diag-intro{display:block}
+.diag[data-state="quiz"] .diag-quiz{display:block}
+.diag[data-state="result"] .diag-result{display:block}
+.diag[data-state="dismissed"]{display:none}
+@keyframes diagFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.diag-intro{display:flex;align-items:flex-start;gap:12px}
+.diag-intro-icon{font-size:32px;margin-bottom:10px}
+.diag-intro-title{font-family:var(--display);font-size:18px;font-weight:700;color:var(--bronze-l);letter-spacing:.8px;margin-bottom:8px}
+.diag-intro-desc{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.55;margin-bottom:16px}
+.diag-intro-body{flex:1}
+.diag-btn{padding:10px 18px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;transition:all .18s;border:1px solid transparent;margin-right:8px;margin-top:4px}
+.diag-btn-primary{background:linear-gradient(135deg,var(--gold),var(--bronze));color:var(--bg);border-color:var(--gold)}
+.diag-btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,201,122,.3)}
+.diag-btn-ghost{background:transparent;color:var(--t3);border-color:var(--bd)}
+.diag-btn-ghost:hover{color:var(--t1);border-color:var(--bd-br)}
+.diag-bar{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.diag-prog-txt{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px;white-space:nowrap}
+.diag-prog-wrap{flex:1;height:4px;background:var(--bd);border-radius:2px;overflow:hidden}
+.diag-prog-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--bronze));width:0%;transition:width .3s ease}
+.diag-prog-num{font-family:var(--mono);font-size:10px;color:var(--t3);white-space:nowrap}
+.diag-topic{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bronze);margin-bottom:8px}
+.diag-q{font-family:var(--display);font-size:16px;font-weight:600;color:var(--t1);line-height:1.45;margin-bottom:14px;letter-spacing:.2px}
+.diag-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.diag-opt{padding:11px 16px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--t1);font-family:var(--serif);font-size:13.5px;text-align:left;cursor:pointer;transition:all .15s;line-height:1.45}
+.diag-opt:disabled{cursor:default;transform:none}
+.diag-opt:hover{border-color:var(--bd-br);background:var(--hov)}
+.diag-opt.correct{background:var(--dim-g);border-color:var(--green);color:var(--t1)}
+.diag-opt.wrong{background:var(--dim-r);border-color:var(--red);opacity:.85}
+.diag-res-msg{font-family:var(--display);font-size:20px;font-weight:700;color:var(--gold);margin-bottom:10px}
+.diag-rec{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;padding:12px 14px;background:var(--bg);border-left:2px solid var(--bronze);border-radius:0 var(--r2) var(--r2) 0;margin-bottom:14px}
+  .sidebar,.btt,.read-progress,.sb-hamburger,.sb-overlay,.wc-actions,.qz-nav,.reveal-lock{display:none!important}
+  .layer{display:block!important}
+  body{background:#fff;color:#000}
+  .content-wrap{padding:16px;max-width:100%}
+/* CHEAT-CARD (auto-injected) */
+.cheat-card{background:linear-gradient(135deg,rgba(233,180,70,0.04),var(--card,#1a1010));border:1px solid var(--gold,#e9b446);border-radius:14px;padding:18px 22px}
+.cheat-hdr{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdm,#2c1f1f)}
+.cheat-eye{font-family:var(--mono,monospace);font-size:10px;font-weight:800;color:var(--gold,#e9b446);letter-spacing:1.2px;margin-bottom:4px}
+.cheat-ttl{font-family:var(--serif,'Fraunces',serif);font-size:16px;font-weight:700;color:var(--t1,#f4ede5)}
+.cheat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.cheat-col-wide{grid-column:1/-1}
+}`;
+const H11_TEORIJA_EMBED_FIX_CSS = `
+#l0 .featured-quote{display:flex;gap:14px;padding:20px 22px;background:linear-gradient(135deg,rgba(212,185,140,.04),rgba(220,50,47,.02));border:1px solid var(--bdm,#473a35);border-left:3px solid var(--parchment,#d4b98c);border-radius:var(--r3,12px);margin:20px 0;position:relative;word-break:break-word;overflow:hidden;transition:border-color .2s}
+#l0 .featured-quote:hover{border-color:var(--bd-pa,#7f6c5c);box-shadow:0 2px 12px rgba(212,185,140,.06)}
+#l0 .fq-mark{font-family:var(--display,serif);font-size:52px;color:var(--parchment,#d4b98c);opacity:.3;line-height:1;flex-shrink:0;margin-top:-8px}
+#l0 .fq-body{flex:1;min-width:0}
+#l0 .fq-text{font-family:var(--serif,serif);font-size:16px;font-style:italic;color:var(--t1,#f5e6d3);line-height:1.6;margin-bottom:8px}
+#l0 .fq-meta{font-family:var(--mono,monospace);font-size:10px;color:var(--t3,#6b5a4e);letter-spacing:.5px}
+#l0 .fq-copy{background:none;border:1px solid var(--bd,#3a2a22);border-radius:var(--r1,8px);color:var(--t3,#6b5a4e);font-size:12px;padding:4px 8px;cursor:pointer;font-family:var(--mono,monospace);transition:all .15s;flex-shrink:0;align-self:flex-start}
+#l0 .qnav-btn{padding:10px 12px;background:var(--ele,#1f1614);border:1px solid var(--bdm,#473a35);border-radius:var(--r2,10px);font-family:var(--mono,monospace);font-size:9.5px;font-weight:700;letter-spacing:.5px;color:var(--t2,#b09684);cursor:pointer;text-align:left;transition:all .18s;display:flex;flex-direction:column;gap:3px}
+#l0 .qnav-btn:hover{border-color:var(--bd-br,#8a6a55);color:var(--bronze-l,#e2b188);transform:translateY(-2px);box-shadow:0 4px 14px rgba(220,50,47,.1)}
+#l0 .qnav-btn span{font-family:var(--serif,serif);font-size:11px;color:var(--t3,#6b5a4e);font-weight:400;letter-spacing:0;text-transform:none}
+#l0 .tl{margin:18px 0;position:relative}
+#l0 .tl::before{content:'';position:absolute;left:13px;top:10px;bottom:10px;width:2px;background:linear-gradient(180deg,var(--bdm,#473a35),transparent)}
+#l0 .tl-item{display:flex;gap:16px;margin-bottom:18px;position:relative}
+#l0 .tl-dot{width:28px;height:28px;border-radius:50%;background:var(--ele,#1f1614);border:2px solid var(--bronze,#c28b6a);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono,monospace);font-size:8px;font-weight:700;color:var(--bronze,#c28b6a);z-index:1}
+#l0 .tl-body{flex:1;min-width:0}
+#l0 .tl-year{font-family:var(--mono,monospace);font-size:9px;font-weight:700;color:var(--bronze,#c28b6a);letter-spacing:1.5px;margin-bottom:3px}
+#l0 .tl-title{font-family:var(--display,serif);font-size:13px;font-weight:700;color:var(--t1,#f5e6d3);margin-bottom:4px;letter-spacing:.3px}
+#l0 .tl-desc{font-family:var(--serif,serif);font-size:13.5px;color:var(--t2,#b09684);line-height:1.55}
+#l0 .scenes{display:flex;flex-direction:column;gap:8px;margin:18px 0 22px}
+#l0 .scene{background:var(--card,#1a1010);border:1px solid var(--bdm,#473a35);border-radius:var(--r2,10px);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+#l0 .scene:hover{border-color:var(--bd-br,#8a6a55)}
+#l0 .scene[open]{border-color:var(--bd-go,#9f865d);box-shadow:0 2px 8px rgba(232,201,122,.08)}
+#l0 .scene-sum{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;cursor:pointer;list-style:none;user-select:none}
+#l0 .scene-sum::-webkit-details-marker{display:none}
+#l0 .scene-sum::after{content:'▾';font-family:var(--mono,monospace);font-size:14px;color:var(--t3,#6b5a4e);transition:transform .2s;margin-left:8px}
+#l0 .scene[open] .scene-sum::after{transform:rotate(180deg);color:var(--gold,#e8c97a)}
+#l0 .scene-num{font-family:var(--display,serif);font-size:18px;font-weight:700;color:var(--bronze-l,#e2b188);min-width:32px;letter-spacing:.5px}
+#l0 .scene-ttl{font-family:var(--serif,serif);font-size:14.5px;color:var(--t1,#f5e6d3);font-weight:600;line-height:1.4}
+#l0 .scene-meta{font-family:var(--mono,monospace);font-size:9px;color:var(--t3,#6b5a4e);letter-spacing:1.5px;padding:3px 8px;background:var(--ele,#1f1614);border:1px solid var(--bdm,#473a35);border-radius:10px;text-transform:uppercase;white-space:nowrap}
+#l0 .scene-body{padding:0 16px 16px}
+#l0 .scene-quote{padding:12px 14px;background:var(--sur,#201814);border-left:3px solid var(--gold,#e8c97a);border-radius:0 var(--r2,10px) var(--r2,10px) 0;font-family:var(--serif,serif);font-size:13.5px;line-height:1.55;color:var(--t1,#f5e6d3);font-style:italic;margin-bottom:10px}
+#l0 .scene-why{font-family:var(--serif,serif);font-size:13px;line-height:1.6;color:var(--t2,#b09684)}
+`;
+const H11_PISCI_EMBED_FIX_CSS = `
+#l1 .sec-hdr{display:flex;align-items:center;gap:12px;margin:32px 0 18px}
+#l1 .sec-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--bdm,#473a35),transparent)}
+#l1 .sec-badge{padding:6px 12px;border:1px solid var(--bdm,#473a35);border-radius:999px;background:var(--ele,#1f1614);font-family:var(--mono,monospace);font-size:10px;letter-spacing:1px;color:var(--bronze-l,#e2b188);text-transform:uppercase}
+#l1 .author-card{border:1px solid var(--bdm,#473a35);border-radius:var(--r4,14px);overflow:hidden;margin:20px 0;background:var(--sur,#201814)}
+#l1 .ac-header{padding:18px 22px 14px;background:linear-gradient(135deg,var(--ele,#1f1614),var(--card,#1a1010));border-bottom:1px solid var(--bdm,#473a35);display:flex;align-items:flex-start;gap:16px}
+#l1 .ac-monogram{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-family:var(--display,serif);font-weight:700;color:var(--gold,#e8c97a);background:rgba(232,201,122,.08);border:1px solid var(--bd-go,#9f865d);flex-shrink:0}
+#l1 .ac-meta{flex:1;min-width:0}
+#l1 .ac-name{font-family:var(--display,serif);font-size:20px;line-height:1.2;color:var(--t1,#f5e6d3)}
+#l1 .ac-dates{font-family:var(--mono,monospace);font-size:10px;letter-spacing:1.2px;color:var(--t3,#6b5a4e);margin-top:4px}
+#l1 .ac-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+#l1 .ac-body{padding:18px 22px}
+#l1 .ac-body p{margin:0 0 12px}
+#l1 .ac-works{margin-top:10px}
+#l1 .ac-works-lbl{font-family:var(--mono,monospace);font-size:10px;letter-spacing:1.2px;color:var(--bronze,#c28b6a);text-transform:uppercase;margin-bottom:6px}
+#l1 .ac-work-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd,#3a2a22)}
+#l1 .ac-work-item:last-child{border-bottom:none}
+#l1 .ac-badge{flex:0 0 auto;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:var(--ele,#1f1614);border:1px solid var(--bdm,#473a35)}
+#l1 .ac-work-title{font-family:var(--display,serif);font-size:16px;color:var(--t1,#f5e6d3)}
+#l1 .ac-work-meta{font-family:var(--mono,monospace);font-size:10px;letter-spacing:.6px;color:var(--t3,#6b5a4e);margin-top:2px}
+#l1 .ac-work-desc{font-family:var(--serif,serif);font-size:13.5px;line-height:1.55;color:var(--t2,#b09684);margin-top:4px}
+#l1 .sc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}
+#l1 .sc{background:var(--ele,#1f1614);border:1px solid var(--bd,#3a2a22);border-radius:var(--r3,12px);padding:16px}
+#l1 .sc-name{font-family:var(--display,serif);font-size:15px;color:var(--t1,#f5e6d3);margin:10px 0 6px}
+#l1 .sc-desc{font-family:var(--serif,serif);font-size:13.5px;line-height:1.6;color:var(--t2,#b09684)}
+#l1 .scenes{display:flex;flex-direction:column;gap:8px;margin:18px 0 22px}
+#l1 .scene{background:var(--card,#1a1010);border:1px solid var(--bdm,#473a35);border-radius:var(--r2,10px);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+#l1 .scene:hover{border-color:var(--bd-br,#8a6a55)}
+#l1 .scene[open]{border-color:var(--bd-go,#9f865d);box-shadow:0 2px 8px rgba(232,201,122,.08)}
+#l1 .scene-sum{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;cursor:pointer;list-style:none;user-select:none}
+#l1 .scene-sum::-webkit-details-marker{display:none}
+#l1 .scene-sum::after{content:'▾';font-family:var(--mono,monospace);font-size:14px;color:var(--t3,#6b5a4e);transition:transform .2s;margin-left:8px}
+#l1 .scene[open] .scene-sum::after{transform:rotate(180deg);color:var(--gold,#e8c97a)}
+#l1 .scene-num{font-family:var(--display,serif);font-size:18px;font-weight:700;color:var(--bronze-l,#e2b188);min-width:32px;letter-spacing:.5px}
+#l1 .scene-ttl{font-family:var(--serif,serif);font-size:14.5px;color:var(--t1,#f5e6d3);font-weight:600;line-height:1.4}
+#l1 .scene-meta{font-family:var(--mono,monospace);font-size:9px;color:var(--t3,#6b5a4e);letter-spacing:1.5px;padding:3px 8px;background:var(--ele,#1f1614);border:1px solid var(--bdm,#473a35);border-radius:10px;text-transform:uppercase;white-space:nowrap}
+#l1 .scene-body{padding:0 16px 16px}
+#l1 .scene-quote{padding:12px 14px;background:var(--sur,#201814);border-left:3px solid var(--gold,#e8c97a);border-radius:0 var(--r2,10px) var(--r2,10px) 0;font-family:var(--serif,serif);font-size:13.5px;line-height:1.55;color:var(--t1,#f5e6d3);font-style:italic;margin-bottom:10px}
+#l1 .scene-why{font-family:var(--serif,serif);font-size:13px;line-height:1.6;color:var(--t2,#b09684)}
+`;
+const STYLES_CSS = SHARED_LIT_CSS + '\n' + H11_TEORIJA_EMBED_FIX_CSS + '\n' + H11_PISCI_EMBED_FIX_CSS + '\n' + CHAPTER_CSS_DELTA;
+const SCRIPTS_JS = `/* ══ FORCE FRESH STATE ══ */
+
+/* ══ SUPABASE CONFIG ══ */
+var SUPABASE_URL = 'https://your-project.supabase.co';
+var SUPABASE_ANON_KEY = 'your-anon-key-here';
+
+var CURRENT_CHAPTER = {
+  subject: 'hrvatski',
+  code: 'h11',
+  title: 'Stari hrv. pisci — hrvatska renesansa'
+};
+
+function printCheatSheet(trigger){
+  var card = trigger && trigger.closest ? trigger.closest('.cheat-card') : null;
+  if(card){
+    document.body.classList.add('print-cheat-targeted');
+    card.classList.add('printing-cheat-sheet');
+  }
+  document.body.classList.add('print-cheat-only');
+  setTimeout(function(){
+    window.print();
+    setTimeout(function(){
+      document.body.classList.remove('print-cheat-only','print-cheat-targeted');
+      if(card) card.classList.remove('printing-cheat-sheet');
+    }, 500);
+  }, 50);
+  if(typeof track === 'function') track('cheat_sheet_print', {chapter: CURRENT_CHAPTER.code}, 'engagement');
+}
+
+if(typeof window !== 'undefined'){
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('print-cheat-only','print-cheat-targeted');
+    document.querySelectorAll('.printing-cheat-sheet').forEach(function(card){card.classList.remove('printing-cheat-sheet')});
+  });
+}
+/* ══ COUNTDOWN — sljedeći maturalni rok ══
+   Konfigurabilno: promijeni datum ovdje za različite sezone.
+   Ljetni rok 2026: 8. lipnja 2026 (približno — NCVVO objavljuje točan datum)
+═════════════════════════════════════════════ */
+var MATURA_NEXT = new Date('2026-06-08T08:00:00+02:00');
+var MATURA_LABEL = 'Ljetna matura 2026';
+
+function daysToMatura(){
+  var now = new Date();
+  var ms = MATURA_NEXT - now;
+  return Math.max(0, Math.ceil(ms / (1000*60*60*24)));
+}
+
+function renderCountdown(targetId){
+  var el = document.getElementById(targetId);
+  if(!el) return;
+  var days = daysToMatura();
+  var urgency = days <= 60;
+  el.innerHTML = \`
+    <div class="cd-ico">⏰</div>
+    <div class="cd-body">
+      <div class="cd-label">\${urgency ? 'Peak urgency' : 'Do mature'}</div>
+      <div class="cd-main"><b>\${days}</b> \${days===1?'dan':(days<5?'dana':'dana')}</div>
+      <div class="cd-sub">\${MATURA_LABEL} · \${urgency ? 'svaki dan bez vježbe = izgubljeni bodovi' : 'još ima vremena — pametno uči'}</div>
+    </div>
+  \`;
+}
+
+/* ══ SOCIAL PROOF ══
+   Brojeve puni iz Supabase view-a u produkciji. Sad — placeholder "uskoro".
+═════════════════════════════════════════════ */
+var SOCIAL_PROOF = {
+  active_learners: null,
+  avg_rating: null,
+  review_count: null,
+  avg_improvement: null,
+  is_placeholder: true
+};
+
+function renderSocialProof(targetId, variant){
+  var el = document.getElementById(targetId);
+  if(!el) return;
+  variant = variant || 'full';
+
+  if(SOCIAL_PROOF.is_placeholder){
+    el.innerHTML = \`
+      <div class="sp-item">🇭🇷 <b>Besplatno</b> za sve maturante</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">📚 Usklađeno s <b>NCVVO</b> katalogom</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ Do mature <b>\${daysToMatura()}</b> dana</div>
+    \`;
+    return;
+  }
+
+  if(variant === 'compact'){
+    el.innerHTML = \`
+      <div class="sp-item">🔥 <b>\${SOCIAL_PROOF.active_learners}</b> uči trenutno</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ <b>\${daysToMatura()}</b> dana do mature</div>
+    \`;
+  } else {
+    el.innerHTML = \`
+      <div class="sp-item">🔥 <b>\${SOCIAL_PROOF.active_learners}</b> maturanata uči</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">⭐ <b>\${SOCIAL_PROOF.avg_rating}/5</b> (\${SOCIAL_PROOF.review_count} recenzija)</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">📈 prosječno <b>\${SOCIAL_PROOF.avg_improvement}</b> nakon 2 mj</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ <b>\${daysToMatura()}</b> dana do mature</div>
+    \`;
+  }
+}
+
+
+
+/* Character counter for feedback textarea */
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var ta = document.getElementById('fb-message');
+    var counter = document.getElementById('fb-char-count');
+    if(ta && counter){
+      ta.addEventListener('input', function(){
+        counter.textContent = ta.value.length;
+        counter.parentElement.classList.toggle('over', ta.value.length > 5000);
+      });
+    }
+  });
+})();
+
+/* ══ FEEDBACK MODAL (v3.6.1) ══ */
+function openFeedbackModal(){
+  var bd = document.getElementById('fb-modal-backdrop');
+  if(!bd) return;
+  var form = document.getElementById('fb-form');
+  if(form) form.reset();
+  var defaultRadio = document.querySelector('input[name="fb-type"][value="content_error"]');
+  if(defaultRadio) defaultRadio.checked = true;
+  var msg = document.getElementById('fb-msg');
+  if(msg){msg.className='modal-msg'; msg.textContent=''}
+  var counter = document.getElementById('fb-char-count');
+  if(counter) counter.textContent = '0';
+  var btn = document.getElementById('fb-submit');
+  if(btn){btn.disabled=false; btn.textContent='Pošalji →'}
+  if(form) form.style.display = 'flex';
+  bd.classList.add('show');
+  setTimeout(function(){
+    var ta = document.getElementById('fb-message');
+    if(ta) ta.focus();
+  }, 100);
+  if(typeof track === 'function') track('feedback_modal_open', {chapter: CURRENT_CHAPTER.code}, 'engagement');
+}
+
+function closeFeedbackModal(){
+  var bd = document.getElementById('fb-modal-backdrop');
+  if(bd) bd.classList.remove('show');
+}
+
+function submitFeedback(ev){
+  ev.preventDefault();
+  var msgEl = document.getElementById('fb-message');
+  var emailEl = document.getElementById('fb-email');
+  var btn = document.getElementById('fb-submit');
+  var fbMsg = document.getElementById('fb-msg');
+  var typeEl = document.querySelector('input[name="fb-type"]:checked');
+
+  var message = (msgEl && msgEl.value || '').trim();
+  var email = (emailEl && emailEl.value || '').trim().toLowerCase();
+  var feedbackType = (typeEl && typeEl.value) || 'general';
+
+  if(message.length < 3){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Poruka mora imati barem 3 znaka.'}
+    return false;
+  }
+  if(message.length > 5000){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Poruka ne smije biti dulja od 5000 znakova.'}
+    return false;
+  }
+  if(email && !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email)){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ E-mail adresa nije valjana.'}
+    return false;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Šaljem...';
+  if(fbMsg) fbMsg.className = 'modal-msg';
+
+  var payload = {
+    p_message: message,
+    p_feedback_type: feedbackType,
+    p_email: email || null,
+    p_subject: CURRENT_CHAPTER.subject,
+    p_chapter_code: CURRENT_CHAPTER.code,
+    p_tab_index: (function(){ try{ return JSON.parse(localStorage.getItem('mt.hrv.h11.tab') || '0') }catch(e){return 0} })(),
+    p_url: window.location.href,
+    p_viewport_width: window.innerWidth,
+    p_viewport_height: window.innerHeight
+  };
+
+  if(SUPABASE_URL.indexOf('your-project') >= 0){
+    setTimeout(function(){
+      if(fbMsg){fbMsg.className='modal-msg show success'; fbMsg.textContent='✓ Hvala! Poruka primljena.'}
+      var form = document.getElementById('fb-form');
+      if(form) form.style.display = 'none';
+      if(typeof track === 'function') track('feedback_submit', {type: feedbackType, offline: true}, 'engagement');
+      setTimeout(closeFeedbackModal, 2400);
+    }, 600);
+    return false;
+  }
+
+  fetch(SUPABASE_URL + '/rest/v1/rpc/submit_feedback', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).then(function(r){ return r.json() }).then(function(res){
+    if(res && res.success){
+      if(fbMsg){fbMsg.className='modal-msg show success'; fbMsg.textContent='✓ '+(res.message || 'Hvala! Primili smo tvoju poruku.')}
+      var form = document.getElementById('fb-form');
+      if(form) form.style.display = 'none';
+      if(typeof track === 'function') track('feedback_submit', {type: feedbackType, has_email: !!email}, 'engagement');
+      setTimeout(closeFeedbackModal, 2400);
+    } else {
+      if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ '+((res && res.message) || 'Nešto je pošlo krivo. Pokušaj ponovo ili pošalji e-mail direktno.')}
+      btn.disabled = false;
+      btn.textContent = 'Pošalji →';
+    }
+  }).catch(function(){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Greška u mreži. Pošalji e-mail na maturirajgreske@gmail.com'}
+    btn.disabled = false;
+    btn.textContent = 'Pošalji →';
+  });
+
+  return false;
+}
+(function(){
+  // Osiguraj čist početni state - sve osim l0 mora biti skriveno
+  document.addEventListener('DOMContentLoaded', function(){
+    var layers = document.querySelectorAll('[role="tabpanel"]');
+    layers.forEach(function(l, i){
+      if(i === 0){
+        l.classList.add('on');
+      } else {
+        l.classList.remove('on');
+      }
+    });
+    var tabs = document.querySelectorAll('[role="tab"]');
+    tabs.forEach(function(t, i){
+      if(i === 0){
+        t.classList.add('on');
+        t.setAttribute('aria-selected','true');
+      } else {
+        t.classList.remove('on');
+        t.setAttribute('aria-selected','false');
+      }
+    });
+  });
+})();
+
+
+/* ══ KEYBOARD NAV ══ */
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT') return;
+  var tabs=document.querySelectorAll('[role="tab"]');
+  var cur=-1;
+  tabs.forEach(function(t,i){if(t.classList.contains('on'))cur=i;});
+  if(cur===-1) return;
+  if(e.key==='ArrowRight'&&cur<tabs.length-1){sw(cur+1);e.preventDefault();}
+  if(e.key==='ArrowLeft'&&cur>0){sw(cur-1);e.preventDefault();}
+});
+
+
+/* ══ SOCIAL PROOF + COUNTDOWN WIDGET ══ */
+(function(){
+  renderSocialProof('social-proof', 'full');
+  var daysLeft = daysToMatura();
+  if(daysLeft <= 60){
+    var cd = document.getElementById('countdown');
+    if(cd){cd.style.display='flex';renderCountdown('countdown');}
+  }
+})();
+
+
+
+
+/* ══ DIAG DATA ══ */
+var DIAG_Q = [
+  {topic:'Marulić',q:'Koja je godina dovršetka epa Judita?',opts:['1501.','1521.','1507.','1550.'],ans:0,exp:'Judita je dovršena 1501., tiskana 1521. — dvadeset godina poslije.'},
+  {topic:'Držić',q:'Koji je žanr Novele od Stanca?',opts:['Farsa / pokladna igra','Pastoralna drama','Povijesni ep','Ljubavna lirika'],ans:0,exp:'Novela od Stanca je farsa i pokladna igra — 1 čin, 7 prizora, dvanaesterci.'},
+  {topic:'Petrarkizam',q:'Pišu li hrv. petrarkisti sonete?',opts:['Ne — pišu dvostruko rim. dvanaesterce','Da — po uzoru na Petrarcu','Da — Menčetić piše sonete','Samo Lucić piše sonete'],ans:0,exp:'Hrv. petrarkisti NE pišu sonete nego dvostruko rimovane dvanaesterce. Lucić piše osmerce — ali i to nije sonet.'},
+  {topic:'Zoranić',q:'Što je Perivoj od Slave u Planinama?',opts:['Alegorija hrv. književnosti kroz 4 vile','Opis planinarskog puta','Ljubavna priča o Zoranu','Katalog starih pisaca'],ans:0,exp:'4 vile (Latinka, Kaldejka, Grkinja, Hrvatica) = 4 nac. književnosti. Hrvatica se žali na loše jabuke.'},
+  {topic:'Hektorović',q:'Što Hektorović zapisuje u Ribanju?',opts:['Bugarštice i narodne pjesme ribarâ','Latinske epigrame','Ljubavne petrarkističke sonete','Alegorijske pastorale'],ans:0,exp:'Hektorović bilježi bugarštice i narodne pjesme koje pjevaju ribari — dragocjen izvor za hrv. usm. tradiciju.'},
+  {topic:'Marulić',q:'Tko je u Juditi alegorijski prikaz turske sile?',opts:['Holoferno','Ozija','Abra','David'],ans:0,exp:'Holoferno = turska vojska/sultan. Judita = Hrvatska. Betulija = hrv. gradovi pod opsadom.'},
+  {topic:'Držić',q:'Odakle dolazi Stanac u Noveli od Stanca?',opts:['Iz Trebinja','Iz Splita','Iz Zadra','Iz Hvara'],ans:0,exp:'Stanac je stari seljak iz Trebinja — dolazi u Dubrovnik prodavati kozliće za poklade.'},
+  {topic:'Književnost',q:'Koji je autor prvog hrvatskog romana?',opts:['Petar Zoranić','Petar Hektorović','Hanibal Lucić','Brne Krnarutić'],ans:0,exp:'Petar Zoranić autor je Planina (~1543./1569.) — prvog hrv. romana (mješavina proze i stiha, 24 poglavlja).'},
+  {topic:'Petrarkizam',q:'Koja je razlika između I. i II. generacije hrv. petrarkista?',opts:['I. gen. = čisti petrarkizam; II. gen. = neoplatonizacija','I. gen. piše sonete; II. gen. piše dvanaesterce','I. gen. je iz Splita; II. gen. iz Dubrovnika','I. gen. piše na latinskom; II. gen. na hrvatskom'],ans:0,exp:'I. gen. (Menčetić, Džore Držić) = čisti petrarkistički motivi. II. gen. (Lucić) = neoplatonizacija, širi interes za čovjeka.'},
+  {topic:'Kontekst',q:'Zašto hrv. renesansa procvjetava upravo u Dalmaciji i na otocima?',opts:['Geografska blizina Italije i razvijene trgovačke veze','Turci nisu dopirali do primorja','Habsburzi su financirali kulturu','Katolička Crkva tiskala je knjige u Splitu'],ans:0,exp:'Geografska blizina Italije, razvijene trgovačke veze i slobodna dubrovačka republika — to su uvjeti koji su omogućili procvat hrv. renesanse na obali.'}
+];
+var DIAG_N=DIAG_Q.length;
+var diagIdx=0, diagScore=0;
+function diagStart(){
+  document.getElementById('diag').setAttribute('data-state','quiz');
+  diagIdx=0;diagScore=0;
+  diagRender();
+}
+function diagSkip(){document.getElementById('diag').setAttribute('data-state','dismissed');}
+function diagRestart(){diagIdx=0;diagScore=0;document.getElementById('diag').setAttribute('data-state','quiz');diagRender();}
+function diagRender(){
+  var q=DIAG_Q[diagIdx];
+  document.getElementById('diag-idx').textContent=diagIdx+1;
+  var progEl=document.getElementById('diag-prog-bar');
+  if(progEl) progEl.style.width=(diagIdx/DIAG_N*100)+'%';
+  var progNum=document.getElementById('diag-correct');
+  if(progNum) progNum.textContent=diagScore;
+  document.getElementById('diag-topic').textContent=q.topic;
+  document.getElementById('diag-q').textContent=q.q;
+  var opts=document.getElementById('diag-opts');
+  opts.innerHTML='';
+  q.opts.forEach(function(o,i){
+    var b=document.createElement('button');
+    b.className='diag-opt';b.textContent=o;
+    b.onclick=function(){diagAnswer(i,q,b)};
+    opts.appendChild(b);
+  });
+}
+function diagAnswer(i,q,btn){
+  document.querySelectorAll('.diag-opt').forEach(function(b){b.disabled=true});
+  var correct=i===q.ans;
+  if(correct){diagScore++;btn.classList.add('correct');}
+  else{btn.classList.add('wrong');document.querySelectorAll('.diag-opt')[q.ans].classList.add('correct');}
+  setTimeout(function(){
+    if(diagIdx<DIAG_N-1){diagIdx++;diagRender();}
+    else{diagShowResult();}
+  },900);
+}
+function diagShowResult(){
+  document.getElementById('diag').setAttribute('data-state','result');
+  var pct=Math.round(diagScore/DIAG_N*100);
+  var data=[
+    {ico:'📚',col:'var(--bronze)',msg:'Ponovi osnove — kreni s Teorijom i Pisci renesanse.'},
+    {ico:'💪',col:'var(--sienna)',msg:'Dobro! Fokusiraj se na Držića, Zoranića i petrarkiste.'},
+    {ico:'🌟',col:'var(--gold)',msg:'Jako dobro! Provjeri pojmovnik i citate za maturu.'},
+    {ico:'🏆',col:'var(--green)',msg:'Odlično! Spreman/na si za maturu iz H11!'}
+  ];
+  var d=data[pct<40?0:pct<70?1:pct<90?2:3];
+  var ico=document.getElementById('diag-res-ico');
+  var fill=document.getElementById('diag-res-fill');
+  var msg=document.getElementById('diag-res-msg');
+  var rec=document.getElementById('diag-rec');
+  if(ico)ico.textContent=d.ico;
+  if(fill){fill.style.background=d.col;setTimeout(function(){fill.style.width=pct+'%';},100);}
+  if(msg)msg.innerHTML='<strong style="color:'+d.col+'">'+diagScore+'/'+DIAG_N+'</strong> <span style="color:var(--t3)">('+pct+'%)</span>';
+  if(rec)rec.textContent=d.msg;
+}
+
+/* ══ TAB SWITCH ══ */
+var TAB_NAMES = ['Teorija','Pisci renesanse','Esej alat','Citatnik','Pojmovnik','Drill','Kviz','Checkpoint'];
+function sw(n){
+  var tabs=document.querySelectorAll('[role="tab"]');
+  var layers=document.querySelectorAll('[role="tabpanel"]');
+  tabs.forEach(function(t,i){
+    t.classList.toggle('on',i===n);
+    t.setAttribute('aria-selected',i===n?'true':'false');
+  });
+  layers.forEach(function(l,i){l.classList.toggle('on',i===n);});
+  var bc=document.getElementById('bc-tab');
+  if(bc)bc.textContent=TAB_NAMES[n]||'';
+  var isMob=window.innerWidth<=900;
+  window.scrollTo({top:isMob?48:0,behavior:'smooth'});
+  if(tabs[n])tabs[n].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  if(n===5)applyDrillGate();
+}
+
+
+/* ══ MOBILE SIDEBAR ══ */
+function toggleSidebar(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay');if(s)s.classList.toggle('mobile-open');if(o)o.classList.toggle('show');}
+function closeSidebar(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay');if(s)s.classList.remove('mobile-open');if(o)o.classList.remove('show');}
+
+/* ══ READ PROGRESS ══ */
+(function(){
+  var bar=document.getElementById('rpbar');if(!bar)return;
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=h.scrollHeight-h.clientHeight>0?(h.scrollTop/(h.scrollHeight-h.clientHeight)*100):0;
+    bar.style.width=pct+'%';
+  },{passive:true});
+})();
+
+/* ══ POJMOVNIK FILTER ══ */
+function pojmFilter(cat,btn){
+  document.querySelectorAll('.pojm-filters .pojm-filter').forEach(function(b){b.classList.remove('on')});
+  if(btn)btn.classList.add('on');
+  document.querySelectorAll('#pojm-grid .pojm-card').forEach(function(el){
+    var d=el.getAttribute('data-cat')||'';
+    var match=cat==='all'||d===cat||d.split(' ').indexOf(cat)>-1;
+    el.style.display=match?'':'none';
+  });
+}
+/* ══ CITATNIK FILTER ══ */
+function citFilter(cat,btn){
+  document.querySelectorAll('#cit-filters .pojm-filter').forEach(function(b){b.classList.remove('on')});
+  if(btn)btn.classList.add('on');
+  document.querySelectorAll('#cit-grid .featured-quote').forEach(function(q){
+    var cc=q.getAttribute('data-cit-cat')||'';
+    var match=cat==='all'||cc===cat||cc.split(' ').indexOf(cat)>-1;
+    q.style.display=match?'':'none';
+  });
+}
+/* ══ FQ COPY ══ */
+function fqCopy(btn){
+  var fq=btn.closest('.featured-quote');
+  var txt=fq?(fq.querySelector('.fq-text')||{}).textContent||'':'';
+  var meta=fq?(fq.querySelector('.fq-meta')||{}).textContent||'':'';
+  var q=txt&&meta?('\\u201e'+txt.trim()+'\\u201c '+meta.trim()):txt.trim();
+  var ok=function(){btn.textContent='\\u2713';btn.classList.add('copied');setTimeout(function(){btn.textContent='\\u2358';btn.classList.remove('copied');},1500);};
+  var bad=function(){btn.textContent='\\u2717';setTimeout(function(){btn.textContent='\\u2358';},1200);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(q).then(ok).catch(bad);
+  } else {
+    try{var t=document.createElement('textarea');t.value=q;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);ok();}catch(e){bad();}
+  }
+}
+/* ══ WORD COUNTER ══ */
+function wcUpdate(){
+  var ta=document.getElementById('wc-ta');if(!ta)return;
+  var txt=ta.value;
+  var words=txt.trim()?txt.trim().split(/\\s+/).length:0;
+  var chars=txt.length;
+  var paras=txt.split(/\\n\\n+/).filter(function(p){return p.trim().length>10;}).length;
+  var readMin=Math.max(0,Math.round(words/200));
+  // Update stats
+  var we=document.getElementById('wc-words');if(we)we.querySelector('.wc-stat-num').textContent=words;
+  var ce=document.getElementById('wc-chars');if(ce)ce.querySelector('.wc-stat-num').textContent=chars;
+  var pe=document.getElementById('wc-para');if(pe)pe.querySelector('.wc-stat-num').textContent=paras;
+  var re=document.getElementById('wc-read');if(re)re.querySelector('.wc-stat-num').textContent=readMin+' min';
+  // Progress bar
+  var pct=Math.min(100,Math.round(words/440*100));
+  var bar=document.getElementById('wc-bar');
+  var prog=document.getElementById('wc-prog');
+  var lbl=document.getElementById('wc-lbl');
+  if(bar)bar.style.width=pct+'%';
+  if(prog)prog.classList.toggle('pass',words>=440);
+  if(lbl)lbl.textContent='CILJ 440 · '+words+' / 440'+(words>=440?' ✓ Dostignuto!':'');
+  // Stat coloring
+  if(we)we.classList.toggle('ok',words>=440);
+  if(we)we.classList.toggle('critical',words>0&&words<200);
+  // LocalStorage
+  try{localStorage.setItem('mt.hrv.h11.wc_text',txt);}catch(e){}
+}function wcCopy(){
+  var ta=document.getElementById('wc-ta');if(!ta||!ta.value)return;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(function(){
+      var btns=document.querySelectorAll('.wc-actions .wc-btn');
+      btns.forEach(function(b){if(b.textContent.indexOf('Kopiraj')>-1){var o=b.textContent;b.textContent='✓ Kopirano';setTimeout(function(){b.textContent=o},1400)}});
+    }).catch(function(){});
+  }
+}
+
+/* ══ KVIZ ══ */
+var QZ_DATA=[
+  {q:'Koji je nadimak Marina Držića?',opts:['Vidra','Lav','Orao','Sokol'],ans:0,exp:'Marin Držić zvao se „Vidra" — nadimak koji je koristio u Dubrovniku.'},
+  {q:'Koja je godina praizvedbe Novele od Stanca?',opts:['1550.','1501.','1556.','1530.'],ans:0,exp:'Novela od Stanca praizvedena je 1550. godine u Dubrovniku.'},
+  {q:'Koliko činova i prizora ima Novela od Stanca?',opts:['1 čin, 7 prizora','3 čina, 15 prizora','5 činova','2 prologa i 5 činova'],ans:0,exp:'Novela od Stanca ima 1 čin s 7 prizora — najkraće Držićevo dramsko djelo.'},
+  {q:'Tko je „otac hrvatske književnosti"?',opts:['Marko Marulić','Marin Držić','Petar Hektorović','Hanibal Lucić'],ans:0,exp:'Marko Marulić iz Splita naziva se „ocem hrvatske književnosti".'},
+  {q:'U koliko je pjevanja napisana Judita i koliko ima stihova?',opts:['6 pjevanja, 2126 dvanaesteraca','4 pjevanja, 1056 dvanaesteraca','14 pjevanja, 6765 heksametara','3 pjevanja, 800 stihova'],ans:0,exp:'Judita: 6 pjevanja, 2126 dvostruko rimovanih dvanaesteraca.'},
+  {q:'Koji je standardni stih hrv. renesanse?',opts:['Dvostruko rimovani dvanaesterac','Sonet','Deseterac','Heksametar'],ans:0,exp:'Dvostruko rimovani dvanaesterac je stih koji koriste Marulić, Hektorović, Menčetić i Držić.'},
+  {q:'Što je Perivoj od Slave u Planinama Petra Zoranića?',opts:['Alegorija hrv. književnosti kroz 4 vile','Opis planinarenja','Ljubavna priča o Zoranu','Katalog pisaca'],ans:0,exp:'4 vile (Latinka, Kaldejka, Grkinju, Hrvatica) = 4 nac. književnosti. Hrvatica se žali na loše stanje hrv. knj.'},
+  {q:'Koja je najstarija poznata hrvatska prozna drama?',opts:['Dundo Maroje','Novela od Stanca','Robinja','Skup'],ans:0,exp:'Dundo Maroje (1551.) najstarija je poznata hrvatska prozna drama.'},
+  {q:'Što je bugarštica?',opts:['Vrsta hrv. narodne epske pjesme u dugom stihu','Ljubavna lirika po Petrarci','Pastoralna drama','Kratka komična igra'],ans:0,exp:'Bugarštica je vrsta hrv. narodne epske pjesme u dugom stihu (15–16 slogova). Hektorović ih bilježi u Ribanju.'},
+  {q:'Koji je autor prvog hrvatskog romana?',opts:['Petar Zoranić','Petar Hektorović','Hanibal Lucić','Šiško Menčetić'],ans:0,exp:'Petar Zoranić autor je Planina — prvog hrv. romana (nastale ~1543., tiskane 1569.).'},
+  {q:'Tko je žrtva prevare u Noveli od Stanca i odakle dolazi?',opts:['Stanac, seljak iz Trebinja','Dundo Maroje iz Dubrovnika','Skup, stari škrtac','Perivoj, putnik'],ans:0,exp:'Stanac je stari seljak iz Trebinja — žrtva dubrovačkih mladića koji ga uvjeravaju da ga je voda podmladila.'},
+  {q:'Gdje se odvija radnja komedije Dundo Maroje?',opts:['U Rimu','U Dubrovniku','U Splitu','U Veneciji'],ans:0,exp:'Radnja Dunda Maroja odvija se u Rimu — neobično za hrv. dramu 16. st.'},
+  {q:'Koja je drama Hanibala Lucića — prva hrv. drama s razrađenom radnjom?',opts:['Robinja','Radmio i Ljubmir','Novela od Stanca','Skup'],ans:0,exp:'Robinja Hanibala Lucića (praizvedena 1530.) — prva hrv. drama s razrađenom radnjom, zapletom i rasplatom.'},
+  {q:'Što je Ranjinin zbornik?',opts:['Rukopisna zbirka 820 hrv. petrarkističkih pjesama','Ep o bitci kod Sigeta','Putopis kroz Dalmaciju','Plautovska komedija'],ans:0,exp:'Ranjinin zbornik prikupljao je Nikša Ranjina od 1507. — 820 pjesama Menčetića, Džore Držića i dr.'},
+  {q:'Pišu li hrvatski petrarkisti sonete?',opts:['Ne — pišu dvostruko rim. dvanaesterce','Da — po uzoru na Petrarcu','Da, Menčetić piše sonete','Lucić jedini piše sonete'],ans:0,exp:'Hrv. petrarkisti NE pišu sonete — pišu dvostruko rimovane dvanaesterce. Iznimka: Lucić piše osmerce (ne sonete!).'},
+  {q:'Zašto je Ribanje i ribarsko prigovaranje Hektorovića važno kao kulturno-historijski dokument?',opts:['Zapisuje bugarštice i narodne pjesme ribarâ','Opisuje prvu hrv. mornaričku bitku','Prevodi talijanske renesansne sonete','Sadrži prvu hrv. ljubavnu novelu'],ans:0,exp:'Hektorović zapisuje bugarštice i narodne pjesme — dragocjen izvor za proučavanje hrv. usmene tradicije.'},
+  {q:'Što u Juditi alegorički predstavlja vojvoda Oloferno?',opts:['Tursku vojsku i opasnost za Hrvatsku','Mletačku vlast nad Splitom','Vlastelu koja ugnjetava seljake','Rimskog cara'],ans:0,exp:'Oloferno = turska vojska; Judita = Hrvatska uz Božju pomoć. Ep poziva na otpor Turcima.'},
+  {q:'Koja je ključna opreka u Noveli od Stanca?',opts:['Mlado vs. staro, vlastela vs. seljak','Bogatstvo vs. siromaštvo','Kršćanstvo vs. Islam','Sloboda vs. ropstvo'],ans:0,exp:'Novela od Stanca temelji se na opreci mlado–staro i vlastela (grad) vs. seljak (Stanac iz Trebinja).'},
+  {q:'Kada je Marulićeva Judita bila dovršena, a kada tiskana?',opts:['Dovršena 1501., tiskana 1521.','Dovršena i tiskana 1501.','Dovršena 1521., tiskana 1521.','Dovršena 1507., tiskana 1521.'],ans:0,exp:'Judita je dovršena 1501., ali tiskana tek 1521. — dvadeset godina poslije.'},
+  {q:'Po čemu se Hektorovićevo Ribanje razlikuje od Marulićeve Judite i Zoranićevih Planina?',opts:['Nema alegorije — realističan je opis putovanja','Pisano je sonetima','Tematizira kršćansku vjeru','Prikazuje dubrovačko društvo'],ans:0,exp:'Hektorović ne alegorijizira — bilježi stvarni put, krajoliz, ljude i pjesme. Realizam nasuprot alegoriji Marulića i Zoranića.'},
+  {q:'Što je „Institucija" Marka Marulića?',opts:['Latinska moralno-teološka proza prevedena na sve europske jezike','Hrvatski ep o biblijskoj heroini','Dubrovačka farsa o gradskom životu','Petrarkistička zbirka ljubavnih pjesama'],ans:0,exp:'De institutione bene vivendi (1507.) je latinska proza. Prevedena na sve europske jezike — Marulić je zbog nje poznat u Europi, ne samo zbog Judite.'},
+  {q:'Koji motiv iz Zoranićevih Planina opisuje razdrobljenu hrvatsku domovinu pod Turcima?',opts:['Rasuta bašćina','Perivoj od Slave','Voda od mladosti','Judita i Holoferno'],ans:0,exp:'„Rasuta bašćina" — alegorija razdrobljene hrv. domovine. Zoranić 300 god. prije Preporoda potiče na buđenje nacionalne svijesti.'},
+  {q:'Što je commedia dell\\u2019arte i kako utječe na Držića?',opts:['Tal. tradicija tipiziranih likova — Stanac je tip "glupog seljaka"','Žanr pastoralnih drama iz Dubrovnika','Latinski humanistički ep','Petrarkistički zbornik'],ans:0,exp:'Commedia dell\\u2019arte = tal. kazalište tipova. Stanac je tip "naivnog seljaka", mladići su "lukava vlastela" — tipovi, ne individue.'},
+  {q:'Koja je ključna razlika između Novele od Stanca i Dunda Maroja?',opts:['Novela je farsa (1 čin), Dundo je složena prozna komedija (5 činova)','Novela je na latinskom, Dundo na hrvatskom','Novela je pisana u Hvaru, Dundo u Splitu','Novela ima više likova od Dunda Maroja'],ans:0,exp:'Novela od Stanca: 1 čin, 7 prizora, dvanaesterci. Dundo Maroje: 2 prologa + 5 činova, proza. Novela je farsa, Dundo razrađena komedija.'},
+  {q:'Koji je stih karakterističan za II. generaciju hrv. petrarkizma (Hanibal Lucić)?',opts:['Osmesterac u 10 strofa s ukrštenom + obgrljenom rimom','Dvostruko rimovani dvanaesterac','Sonet (14 stihova)','Heksametar po uzoru na Vergilija'],ans:0,exp:'Lucić u „Jur nijedna na svit vila" piše osmerce u 10 strofa — iznimka od uobičajenog dvanaesterca. Ukrštena rima u prve 4, obgrljena u sljedeće 4 stiha svake strofe.'},
+  {q:'Što su Njarnjas-družina i Pomet-družina?',opts:['Dubrovačke amaterske kazališne trupe koje su izvodile Držićeve komedije','Latinski humanistički kružoci u Splitu','Grupe petrarkista koji su sakupljali pjesme','Kneževi savjetnici u Dubrovačkoj Republici'],ans:0,exp:'Pomet-družina (1548.) izvela izgubljenu komediju Pomet. Njarnjas-družina (1551.) izvela Dunda Maroja. Obje amaterske vlastelinske trupe bez stalnog kazališta.'},
+  {q:'Zašto Zoranić Planine naziva „prvim hrv. romanom" iako je žanrovski hibrid?',opts:['Jer je to prvi hrv. prozni narativni tekst veće duljine s mješavinom proze i stiha','Jer ima strogo jedinstveni sižetski tok','Jer je preveden na talijanski','Jer Zoranić izrijekom piše da je to roman'],ans:0,exp:'Planine su žanrovski hibrid (putopis + pastorala + alegorija + lirika), ali su prvi hrv. proza-stihovi narativni tekst veće duljine. U 16. st. roman još nije bio strogo definiran.'},
+  {q:'Koji od sljedećih pisaca NE pripada dubrovačkom književnom krugu?',opts:['Petar Hektorović','Šiško Menčetić','Džore Držić','Marin Držić'],ans:0,exp:'Petar Hektorović je iz Hvara, ne Dubrovnika. Menčetić, Džore Držić i Marin Držić su dubrovački. Hektorović je hvarski krug.'},
+  {q:'Koji je bio motiv Marina Držića za pisanje tajne Kosmografske poslanice Cosimu de\\u2019 Mediciju?',opts:['Tražio je vojnu pomoć za rušenje dubrovačke oligarhije','Tražio je novac za tisak komedija','Nudilo mu se mjesto dvorskog pisca u Firenci','Opisivao je dubrovačku filozofiju slobode'],ans:0,exp:'Kosmografska poslanica (1566.) je tajna politička poruka — Držić traži medicinsku vojnu intervenciju za prevrat u Dubrovniku. Otkriva ga kao politički angažiranog intelektualca.'},
+  {q:'Kako se zove Zoranićev putnik-protagonist u Planinama?',opts:['Zoran','Marko','Nikola','Perivoj'],ans:0,exp:'Zoran — alter ego pisca Petra Zoranića. Pati od neuzvraćene ljubavi prema Jagi i putuje zadarskim zaleđem.'}
+];
+/* == H11 DRILL (H10 parity: visuals + paywall + logic) == */
+function h11DrillBeep(f,d,v,t){try{var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=f;o.type=t||'sine';g.gain.setValueAtTime(v||0.08,c.currentTime);g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+d);o.start(c.currentTime);o.stop(c.currentTime+d)}catch(e){}}
+function h11DrillSoundOk(){h11DrillBeep(660,.1,.08,'sine');setTimeout(function(){h11DrillBeep(880,.14,.07,'sine')},110)}
+function h11DrillSoundNg(){h11DrillBeep(200,.18,.08,'sawtooth')}
+function h11DrillSoundDone(){[440,550,660,880].forEach(function(f,i){setTimeout(function(){h11DrillBeep(f,.18,.07,'sine')},i*90)})}
+
+var H11_DRILL_FC_FREE_LIMIT = 5;
+function h11DrillFcIsPaid(){
+  var t=(document.body.getAttribute('data-tier')||'free');
+  return t==='standard'||t==='pro';
+}
+function h11DrillFcShowPaywall(){
+  var wrap=document.querySelector('.h11d-fc-wrap');
+  if(!wrap)return;
+  var existing=document.getElementById('h11d-fc-paywall');
+  if(existing){existing.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  var chapter=(typeof CURRENT_CHAPTER!=='undefined'&&CURRENT_CHAPTER.code)||'h11';
+  var html='<div id="h11d-fc-paywall" class="drill-paywall" data-feature="drill-flashcards">'+
+           '<div class="drill-paywall-ico">🔒</div>'+
+           '<div class="drill-paywall-title">15 više kartica + Matching + Spaced repetition</div>'+
+           '<div class="drill-paywall-sub">Drill je aktivno učenje — 4× efikasnije od pasivnog čitanja. Svih 20 kartica + 9 pair matchingov.</div>'+
+           '<a class="pro-gate-btn" href="/pricing?ctx=drill_flashcards_'+chapter+'">Otključaj — 9,99€/mj</a>'+
+           '<div class="pro-gate-meta">Otkaži bilo kad · Free trial 7 dana</div>'+
+           '</div>';
+  wrap.insertAdjacentHTML('afterend',html);
+  if(typeof track==='function'){
+    track('paywall_impression',{feature:'drill-flashcards',chapter:chapter,at_card:h11dFcIdx},'conversion');
+  }
+}
+
+var H11_DRILL_FC_CARDS = QZ_DATA.slice(0,20).map(function(item){
+  return {cat:'PITANJE',term:item.q,def:'<b>Točno:</b> '+item.opts[item.ans]+'<br><br>'+item.exp};
+});
+var h11dFcIdx=0,h11dFcKnown=0,h11dFcUnknown=0,h11dFcOrder=[];
+var H11_DRILL_SS_KEY='mt.hrv.h11.drill';
+
+function h11DrillSave(){
+  try{sessionStorage.setItem(H11_DRILL_SS_KEY,JSON.stringify({idx:h11dFcIdx,known:h11dFcKnown,unknown:h11dFcUnknown,order:h11dFcOrder,ts:Date.now()}))}catch(e){}
+}
+function h11DrillRestore(){
+  try{
+    var raw=sessionStorage.getItem(H11_DRILL_SS_KEY);if(!raw)return false;
+    var s=JSON.parse(raw);
+    if(!s||!Array.isArray(s.order)||s.order.length!==H11_DRILL_FC_CARDS.length)return false;
+    h11dFcIdx=s.idx||0;h11dFcKnown=s.known||0;h11dFcUnknown=s.unknown||0;h11dFcOrder=s.order;
+    var r=document.getElementById('h11d-fc-right');if(r)r.textContent=h11dFcKnown;
+    var w=document.getElementById('h11d-fc-wrong');if(w)w.textContent=h11dFcUnknown;
+    return true;
+  }catch(e){return false}
+}
+function h11DrillFcShuffle(){
+  h11dFcOrder=H11_DRILL_FC_CARDS.map(function(_,i){return i});
+  for(var i=h11dFcOrder.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=h11dFcOrder[i];h11dFcOrder[i]=h11dFcOrder[j];h11dFcOrder[j]=t}
+}
+function h11DrillFcRender(){
+  if(h11dFcOrder.length===0)h11DrillFcShuffle();
+  if(!h11DrillFcIsPaid() && h11dFcIdx >= H11_DRILL_FC_FREE_LIMIT){
+    var term=document.getElementById('h11d-fc-term'),cf=document.getElementById('h11d-fc-cat-f'),def=document.getElementById('h11d-fc-def'),cb=document.getElementById('h11d-fc-cat-b'),num=document.getElementById('h11d-fc-num');
+    if(term)term.textContent='Otključaj svih 20 kartica';
+    if(cf)cf.textContent='FREE TIER — 5 / 20';
+    if(def)def.textContent='Pridruži se Standard planu za svih 20 flashcards + Matching igru + Spaced Repetition. Učenje je 4× brže s aktivnim drillom.';
+    if(cb)cb.textContent='UPGRADE';
+    if(num)num.innerHTML='<b>'+H11_DRILL_FC_FREE_LIMIT+'</b> / 20 · <span style="color:var(--gold)">Free limit</span>';
+    h11DrillFcShowPaywall();
+    return;
+  }
+  if(h11dFcIdx>=h11dFcOrder.length){
+    var t=document.getElementById('h11d-fc-term'),d=document.getElementById('h11d-fc-def'),cf2=document.getElementById('h11d-fc-cat-f'),cb2=document.getElementById('h11d-fc-cat-b');
+    if(t)t.textContent='Gotovo! ✅';
+    if(cf2)cf2.textContent='RESULT';
+    if(d)d.textContent='Točno: '+h11dFcKnown+' / Krivo: '+h11dFcUnknown+'. Klikni Reset za novi krug.';
+    if(cb2)cb2.textContent='REZULTAT';
+    return;
+  }
+  var c=H11_DRILL_FC_CARDS[h11dFcOrder[h11dFcIdx]];
+  var card=document.getElementById('h11d-fc-card'); if(card) card.classList.remove('flipped');
+  var catf=document.getElementById('h11d-fc-cat-f'),catb=document.getElementById('h11d-fc-cat-b'),term2=document.getElementById('h11d-fc-term'),def2=document.getElementById('h11d-fc-def'),num2=document.getElementById('h11d-fc-num');
+  if(catf)catf.textContent=c.cat;
+  if(catb)catb.textContent='TOČAN ODGOVOR';
+  if(term2)term2.textContent=c.term;
+  if(def2)def2.innerHTML=c.def;
+  if(num2)num2.innerHTML='<b>'+(h11dFcIdx+1)+'</b> / '+h11dFcOrder.length;
+}
+function h11DrillFcFlip(){var card=document.getElementById('h11d-fc-card');if(card)card.classList.toggle('flipped')}
+function h11DrillFcMark(known){
+  if(known){h11dFcKnown++;h11DrillSoundOk();}
+  else{h11dFcUnknown++;h11DrillSoundNg();}
+  var r=document.getElementById('h11d-fc-right');if(r)r.textContent=h11dFcKnown;
+  var w=document.getElementById('h11d-fc-wrong');if(w)w.textContent=h11dFcUnknown;
+  h11dFcIdx++;
+  h11DrillSave();
+  setTimeout(h11DrillFcRender,180);
+}
+function h11DrillFcSkip(){h11dFcIdx++;h11DrillSave();h11DrillFcRender()}
+function h11DrillFcReset(){
+  h11dFcIdx=0;h11dFcKnown=0;h11dFcUnknown=0;
+  h11DrillFcShuffle();
+  try{sessionStorage.removeItem(H11_DRILL_SS_KEY)}catch(e){}
+  var r=document.getElementById('h11d-fc-right');if(r)r.textContent=0;
+  var w=document.getElementById('h11d-fc-wrong');if(w)w.textContent=0;
+  h11DrillFcRender();
+  if(typeof track==='function') track('drill_reset',{},'engagement');
+}
+function h11DrillInit(){
+  if(!h11DrillRestore()) h11DrillFcShuffle();
+  h11DrillFcRender();
+}
+
+var H11_MG_PAIRS=[
+  {l:'Judita',r:'Marko Marulić'},
+  {l:'Planine',r:'Petar Zoranić'},
+  {l:'Ribanje i ribarsko prigovaranje',r:'Petar Hektorović'},
+  {l:'Novela od Stanca',r:'Marin Držić (farsa)'},
+  {l:'Dundo Maroje',r:'Marin Držić (komedija)'},
+  {l:'Skup',r:'Marin Držić (renesansna komedija)'},
+  {l:'Robinja',r:'Hanibal Lucić (drama)'},
+  {l:'Jur nijedna na svit vila',r:'Hanibal Lucić (lirika)'},
+  {l:'Ranjinin zbornik',r:'Nikša Ranjina'}
+];
+var h11dMgSelected=null,h11dMgDone=0;
+
+function h11MatchInit(){
+  var board=document.getElementById('mg-board');
+  if(!board)return;
+  h11dMgDone=0;h11dMgSelected=null;
+  var score=document.getElementById('mg-score'),total=document.getElementById('mg-total');
+  if(score)score.textContent=0;
+  if(total)total.textContent=H11_MG_PAIRS.length;
+
+  var left=H11_MG_PAIRS.map(function(p,i){return {text:p.l,key:i,side:'l'}});
+  var right=H11_MG_PAIRS.map(function(p,i){return {text:p.r,key:i,side:'r'}});
+  for(var i=right.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=right[i];right[i]=right[j];right[j]=t}
+
+  var html='<div class="mg-col"><div class="mg-col-label">Djelo</div>';
+  left.forEach(function(it){html+='<button class="mg-item" data-key="'+it.key+'" data-side="l">'+it.text+'</button>'});
+  html+='</div><div class="mg-col"><div class="mg-col-label">Autor</div>';
+  right.forEach(function(it){html+='<button class="mg-item" data-key="'+it.key+'" data-side="r">'+it.text+'</button>'});
+  html+='</div>';
+  board.innerHTML=html;
+  board.querySelectorAll('.mg-item').forEach(function(el){el.addEventListener('click',function(){h11MatchClick(el)})});
+}
+function h11MatchClick(el){
+  if(el.classList.contains('ok'))return;
+  if(!h11dMgSelected){h11dMgSelected=el;el.classList.add('sel');return;}
+  if(h11dMgSelected===el){el.classList.remove('sel');h11dMgSelected=null;return;}
+  if(h11dMgSelected.dataset.side===el.dataset.side){h11dMgSelected.classList.remove('sel');h11dMgSelected=el;el.classList.add('sel');return;}
+
+  if(h11dMgSelected.dataset.key===el.dataset.key){
+    h11dMgSelected.classList.remove('sel');
+    h11dMgSelected.classList.add('ok');
+    el.classList.add('ok');
+    h11dMgDone++;
+    h11DrillSoundOk();
+    var score=document.getElementById('mg-score');if(score)score.textContent=h11dMgDone;
+    h11dMgSelected=null;
+    if(h11dMgDone===H11_MG_PAIRS.length){
+      h11DrillSoundDone();
+      setTimeout(function(){
+        var board=document.getElementById('mg-board'); if(!board)return;
+        board.insertAdjacentHTML('afterend','<div class="mg-done" id="mg-done">✅ SVI PAROVI SPARENI!</div>');
+        setTimeout(function(){var d=document.getElementById('mg-done');if(d)d.remove()},3500);
+      },400);
+    }
+  } else {
+    el.classList.add('err');
+    h11dMgSelected.classList.add('err');
+    h11DrillSoundNg();
+    var s=h11dMgSelected;
+    setTimeout(function(){s.classList.remove('err','sel');el.classList.remove('err')},450);
+    h11dMgSelected=null;
+  }
+}
+
+var h11DrillInited=false;
+function applyDrillGate(){
+  var board=document.getElementById('mg-board');
+  if(!h11DrillInited){
+    h11DrillInit();
+    h11MatchInit();
+    h11DrillInited=true;
+    return;
+  }
+  h11DrillFcRender();
+  if(board && board.children.length===0){
+    h11MatchInit();
+  }
+}
+
+var QZ_SHUFFLED=[];
+var qzIdx=0,qzScore=0,qzAnswered=[],qzStarted=false;
+var QZ_TOTAL=Math.min(20, QZ_DATA.length);
+function qzShuffle(){
+  QZ_SHUFFLED=QZ_DATA.slice();
+  for(var i=QZ_SHUFFLED.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=QZ_SHUFFLED[i];QZ_SHUFFLED[i]=QZ_SHUFFLED[j];QZ_SHUFFLED[j]=t;
+  }
+  QZ_SHUFFLED=QZ_SHUFFLED.slice(0,QZ_TOTAL);
+}
+function qzShowIntro(){
+  qzStarted=false;
+  qzIdx=0;
+  qzScore=0;
+  qzAnswered=[];
+  document.getElementById('qz-body').style.display='block';
+  document.getElementById('qz-end').style.display='none';
+  document.getElementById('qz-q').textContent='20 pitanja bez vremenskog limita. Klikni „Započni kviz” i prođi cijelo gradivo H11.';
+  document.getElementById('qz-opts').innerHTML='';
+  document.getElementById('qz-fb').className='qz-fb';
+  document.getElementById('qz-fb').textContent='';
+  document.getElementById('qz-score').textContent='0 / '+QZ_TOTAL;
+  document.getElementById('qz-idx-lbl').textContent='0/'+QZ_TOTAL;
+  document.getElementById('qz-prog').style.width='0%';
+  document.getElementById('qz-prev').disabled=true;
+  var next=document.getElementById('qz-next');
+  next.disabled=false;
+  next.textContent='Započni kviz →';
+}
+function qzStart(){
+  qzShuffle();
+  qzStarted=true;
+  qzIdx=0;
+  qzScore=0;
+  qzAnswered=[];
+  document.getElementById('qz-next').textContent='Sljedeće →';
+  qzRender();
+}
+function qzRender(){
+  var q=QZ_SHUFFLED[qzIdx];
+  document.getElementById('qz-q').textContent=q.q;
+  var opts=document.getElementById('qz-opts');opts.innerHTML='';
+  q.opts.forEach(function(o,i){
+    var btn=document.createElement('button');btn.className='qz-opt';btn.textContent=String.fromCharCode(65+i)+') '+o;
+    btn.onclick=function(){qzAnswer(i,q)};opts.appendChild(btn);
+  });
+  document.getElementById('qz-fb').className='qz-fb';document.getElementById('qz-fb').textContent='';
+  document.getElementById('qz-score').textContent=qzScore+' / '+QZ_SHUFFLED.length;
+  document.getElementById('qz-idx-lbl').textContent=(qzIdx+1)+'/'+QZ_SHUFFLED.length;
+  document.getElementById('qz-prog').style.width=(((qzIdx+1)/QZ_SHUFFLED.length)*100)+'%';
+  document.getElementById('qz-prev').disabled=qzIdx===0;
+  document.getElementById('qz-next').disabled=true;
+  if(qzAnswered[qzIdx]!==undefined){
+    var ans=qzAnswered[qzIdx];
+    Array.prototype.forEach.call(opts.querySelectorAll('.qz-opt'),function(b,i){
+      if(i===q.ans)b.classList.add('correct');
+      if(i===ans&&ans!==q.ans)b.classList.add('wrong');
+      b.disabled=true;
+    });
+    var fb=document.getElementById('qz-fb');
+    fb.className='qz-fb show '+(ans===q.ans?'ok':'fail');
+    fb.textContent=(ans===q.ans?'✓ Točno! ':'✗ Netočno. ')+q.exp;
+    document.getElementById('qz-next').disabled=false;
+  }
+}
+function qzAnswer(i,q){
+  if(qzAnswered[qzIdx]!==undefined)return;
+  qzAnswered[qzIdx]=i;
+  var correct=i===q.ans;
+  if(correct){
+    qzScore++;
+    h11DrillSoundOk();
+  } else {
+    h11DrillSoundNg();
+  }
+  var opts=document.getElementById('qz-opts');
+  Array.prototype.forEach.call(opts.querySelectorAll('.qz-opt'),function(b,j){
+    if(j===q.ans)b.classList.add('correct');
+    if(j===i&&!correct)b.classList.add('wrong');b.disabled=true;
+  });
+  var fb=document.getElementById('qz-fb');
+  fb.className='qz-fb show '+(correct?'ok':'fail');
+  fb.textContent=(correct?'✓ Točno! ':'✗ Netočno. ')+q.exp;
+  document.getElementById('qz-score').textContent=qzScore+' / '+QZ_SHUFFLED.length;
+  document.getElementById('qz-next').disabled=false;
+}
+function qzNext(){
+  if(!qzStarted){qzStart();return;}
+  if(qzAnswered[qzIdx]===undefined)return;
+  if(qzIdx<QZ_SHUFFLED.length-1){qzIdx++;qzRender();}else{qzShowEnd();}
+}
+function qzPrev(){if(qzStarted&&qzIdx>0){qzIdx--;qzRender();}}
+function qzShowEnd(){
+  h11DrillSoundDone();
+  document.getElementById('qz-body').style.display='none';
+  var end=document.getElementById('qz-end');end.style.display='block';
+  var pct=Math.round(qzScore/QZ_SHUFFLED.length*100);
+  var data=[
+    {ico:'📚',col:'var(--bronze)',msg:'Ponovi gradivo — kreni od Tab 0 Teorija i fokusiraj se na pisce i žanrove.'},
+    {ico:'💪',col:'var(--sienna)',msg:'Solidno! Fokusiraj se na petrarkizam, Zoranića i Hektorovića.'},
+    {ico:'🌟',col:'var(--gold)',msg:'Odlično! Spreman/na si za maturu iz H11.'},
+    {ico:'🏆',col:'var(--green)',msg:'Savršeno! Sve si usvojio/la. Nastavi s ostalim poglavljima!'}
+  ];
+  var d=data[pct<40?0:pct<70?1:pct<90?2:3];
+  var ico=document.getElementById('qz-end-ico');
+  var fill=document.getElementById('qz-grade-fill');
+  if(ico)ico.textContent=d.ico;
+  if(fill){fill.style.background=d.col;setTimeout(function(){fill.style.width=pct+'%';},80);}
+  document.getElementById('qz-end-score').textContent=qzScore+'/'+QZ_SHUFFLED.length+' ('+pct+'%)';
+  document.getElementById('qz-end-sub').textContent=d.msg;
+  var wrong=qzAnswered.filter(function(ans,i){return ans!==QZ_SHUFFLED[i].ans;});
+  var wrongWrap=document.getElementById('qz-end-wrong');
+  if(wrongWrap){
+    if(!wrong.length){
+      wrongWrap.innerHTML='';
+    } else {
+      var html='<div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Promašena pitanja</div>';
+      QZ_SHUFFLED.forEach(function(q,i){
+        if(qzAnswered[i]===q.ans)return;
+        html+='<div style="padding:10px 12px;background:var(--card);border:1px solid var(--bdm);border-left:3px solid var(--red);border-radius:var(--r2);margin-bottom:7px">'+
+          '<div style="font-family:var(--serif);font-size:13px;color:var(--t1);margin-bottom:4px">'+q.q+'</div>'+
+          '<div style="font-family:var(--serif);font-size:12px;color:var(--t2)">Točno: <b style="color:var(--gold)">'+q.opts[q.ans]+'</b></div>'+
+        '</div>';
+      });
+      wrongWrap.innerHTML=html;
+    }
+  }
+}
+function qzRestart(){
+  qzShowIntro();
+}
+qzShowIntro();
+
+/* ══ FLASHCARD MODE — handled by setPojmMode/fcFlip ══ */
+
+/* ══ CHECKPOINT ══ */
+var CP_STATE=[];
+(function cpInit(){
+  try{var s=localStorage.getItem('mt.hrv.h11.cp');if(s)CP_STATE=JSON.parse(s);}catch(e){}
+  if(!CP_STATE.length)CP_STATE=new Array(document.querySelectorAll('#cp-grid .cp-item').length).fill(false);
+  document.querySelectorAll('#cp-grid .cp-item').forEach(function(el,i){if(CP_STATE[i])el.classList.add('done');});
+  cpUpdateSummary();
+})();
+function cpToggle(el){
+  var items=Array.prototype.slice.call(document.querySelectorAll('#cp-grid .cp-item'));
+  var i=items.indexOf(el);
+  if(i===-1)return;
+  el.classList.toggle('done');CP_STATE[i]=el.classList.contains('done');
+  try{localStorage.setItem('mt.hrv.h11.cp',JSON.stringify(CP_STATE));}catch(e){}
+  cpUpdateSummary();
+}
+function cpUpdateSummary(){
+  var total=Math.max(1,CP_STATE.length);
+  var done=CP_STATE.filter(Boolean).length;
+  var pct=Math.round(done/total*100);
+  var d=document.getElementById('cp-done');if(d)d.textContent=done;
+  var p=document.getElementById('cp-pct');if(p)p.textContent=pct+'%';
+  var f=document.getElementById('cp-final');if(f)f.classList.toggle('show',done===total);
+  // Ažuriraj hero progress bar
+  var hpb=document.getElementById('hero-prog-bar');
+  var hpct=document.getElementById('hero-prog-pct');
+  var hp=document.getElementById('hero-progress');
+  if(done>0 && hp){hp.style.display='block';}
+  if(hpb)hpb.style.width=pct+'%';
+  if(hpct)hpct.textContent=pct+'%';
+}
+function cpReset(){
+  CP_STATE=new Array(document.querySelectorAll('#cp-grid .cp-item').length).fill(false);
+  try{localStorage.removeItem('mt.hrv.h11.cp');}catch(e){}
+  document.querySelectorAll('#cp-grid .cp-item').forEach(function(el){el.classList.remove('done')});
+  cpUpdateSummary();
+}
+
+/* ══ POJMOVNIK MODE + FLASHCARDS ══ */
+var FC_DATA=(function(){
+  var cards=[];
+  document.querySelectorAll('#pojm-grid .pojm-card').forEach(function(card){
+    var term=card.querySelector('.pojm-term');
+    var def=card.querySelector('.pojm-def');
+    var cat=card.getAttribute('data-cat')||'';
+    if(term&&def)cards.push({term:term.textContent.trim(),def:def.innerHTML,cat:cat});
+  });
+  return cards;
+})();
+var fcIdx=0,fcSeen={};
+function setPojmMode(mode){
+  var gw=document.getElementById('grid-wrap');
+  var fw=document.getElementById('fc-wrap');
+  var mb1=document.getElementById('mode-grid');
+  var mb2=document.getElementById('mode-fc');
+  if(mode==='fc'){
+    if(gw)gw.style.display='none';
+    if(fw)fw.classList.add('on');
+    if(mb1)mb1.classList.remove('on');
+    if(mb2)mb2.classList.add('on');
+    fcIdx=0;fcSeen={};fcRender();
+    document.onkeydown=function(e){
+      if(e.key==='ArrowRight')fcNext();
+      else if(e.key==='ArrowLeft')fcPrev();
+      else if(e.key===' '||e.key==='Enter'){e.preventDefault();fcFlip();}
+    };
+  }else{
+    if(gw)gw.style.display='';
+    if(fw)fw.classList.remove('on');
+    if(mb1)mb1.classList.add('on');
+    if(mb2)mb2.classList.remove('on');
+    document.onkeydown=null;
+  }
+}
+function fcRender(){
+  if(!FC_DATA.length)return;
+  var d=FC_DATA[fcIdx];
+  var scene=document.getElementById('fc-scene');
+  if(scene)scene.classList.remove('flipped');
+  var el=function(id){return document.getElementById(id);};
+  var cats={kontekst:'Kontekst',knjiz:'Književnost',stih:'Stihovi / forma',djelo:'Djelo',lik:'Lik'};
+  if(el('fc-cat'))el('fc-cat').textContent=cats[d.cat]||d.cat;
+  if(el('fc-term'))el('fc-term').textContent=d.term;
+  if(el('fc-def'))el('fc-def').innerHTML=d.def;
+  if(el('fc-counter'))el('fc-counter').textContent=(fcIdx+1)+' / '+FC_DATA.length;
+  if(el('fc-prev'))el('fc-prev').disabled=fcIdx===0;
+  if(el('fc-next'))el('fc-next').disabled=fcIdx===FC_DATA.length-1;
+  fcSeen[fcIdx]=true;
+  fcRenderDots();
+}
+function fcFlip(){var s=document.getElementById('fc-scene');if(s)s.classList.toggle('flipped');}
+function fcNext(){if(fcIdx<FC_DATA.length-1){fcIdx++;fcRender();}}
+function fcPrev(){if(fcIdx>0){fcIdx--;fcRender();}}
+function fcRenderDots(){
+  var prog=document.getElementById('fc-progress');if(!prog)return;
+  prog.innerHTML='';
+  FC_DATA.forEach(function(_,i){
+    var d=document.createElement('div');
+    d.className='fc-dot'+(fcSeen[i]?' seen':'')+(i===fcIdx?' current':'');
+    prog.appendChild(d);
+  });
+}
+
+/* ══ BTT ══ */
+
+
+/* ══ BTT ══ */
+(function(){
+  var btt=document.getElementById('btt');
+  if(!btt)return;
+  window.addEventListener('scroll',function(){btt.classList.toggle('show',window.scrollY>300);},{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+function fcPrev_2(){if(fcIdx>0){fcIdx--;fcRender();}}
+function fcRenderDots_2(){
+  var prog=document.getElementById('fc-progress');if(!prog)return;
+  prog.innerHTML='';
+  FC_DATA.forEach(function(_,i){
+    var d=document.createElement('div');
+    d.className='fc-dot'+(fcSeen[i]?' seen':'')+(i===fcIdx?' current':'');
+    prog.appendChild(d);
+  });
+}
+
+/* ══ BTT ══ */
+
+
+
+function wcClear(){
+  var ta=document.getElementById('wc-ta');
+  if(ta&&confirm('Obrisati tekst eseja?')){ta.value='';wcUpdate();}
+}
+;
+/* TIER_SYSTEM_JS_INJECTED */
+/**
+ * Maturiraj.hr — Tier Helper Module
+ * 
+ * Globalni JS modul za upravljanje tier sustavom (Free / Standard / Pro).
+ * Koristi se u svim chapterima i pricing page-u.
+ * 
+ * 🚨 PRODUCTION TODO:
+ * - Tier provjera mora ići preko Supabase (auth.uid() → user_subscriptions tablica)
+ * - Trenutno mock kroz localStorage 'mt.pro_mode' = 'free' | 'standard' | 'pro'
+ * - Dnevni limiti se moraju validirati na backendu
+ * 
+ * Verzija: 1.0
+ * Autor: Maturiraj.hr team
+ */
+
+(function(window) {
+  'use strict';
+
+  // ════════════════════════════════════════════════
+  // CONFIG — Tier Definicija
+  // ════════════════════════════════════════════════
+  
+  const TIER_CONFIG = {
+    free: {
+      name: 'Free',
+      label: '🆓 Free',
+      price: 0,
+      color: 'var(--t3, #888)',
+      features: {
+        // TEORIJA — sve free
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve free
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — limited
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: 1,            // 1 esej max
+        max_summaries: 1,         // 1 sažetak max
+        all_essay_models: false,  // 1 vidljiv
+        all_summary_models: false,
+        export_workspace: false,  // bez exporta
+        // SIMULATORI — 0 demo
+        discere_simulators: false,
+        max_simulators: 0,
+        // PLAN UČENJA — pregled
+        study_plan_preview: true,
+        study_plan_full: false,
+        // STATS
+        streak_tracking: false,
+        heatmap: false,
+        progress_analytics: false,
+        // PARENT
+        parent_dashboard: false,
+        // AI — sve zaključano
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    standard: {
+      name: 'Standard',
+      label: '⭐ Standard',
+      price: 9.99,
+      color: 'var(--blue, #4a90d9)',
+      features: {
+        // TEORIJA — sve
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — full
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,           // unlimited
+        max_summaries: -1,        // unlimited
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        // SIMULATORI — svi (70 ispita)
+        discere_simulators: true,
+        max_simulators: -1,
+        // PLAN UČENJA — full
+        study_plan_preview: true,
+        study_plan_full: true,
+        // STATS
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        // PARENT
+        parent_dashboard: true,
+        // AI — sve zaključano (Standard NEMA AI!)
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    pro: {
+      name: 'Pro',
+      label: '💎 Pro',
+      price: 19.99,
+      color: 'var(--gold, #e9b446)',
+      features: {
+        // Sve iz Standard
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,
+        max_summaries: -1,
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        discere_simulators: true,
+        max_simulators: -1,
+        study_plan_preview: true,
+        study_plan_full: true,
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        parent_dashboard: true,
+        // AI — sve unlocked (PRO ONLY)
+        ai_chat: true,
+        ai_feedback: true,
+        ai_personal_plan: true,
+        // PRIJEMNI — Pro only
+        prijemni: true,
+      },
+      ai_limits: {
+        feedback_per_day: 20,    // 2B odluka
+        chat_per_day: 30,        // 2B odluka
+        plan_refresh_per_week: 1,
+      }
+    }
+  };
+
+  // ════════════════════════════════════════════════
+  // STORAGE KEYS
+  // ════════════════════════════════════════════════
+  
+  const STORAGE_KEYS = {
+    tier: 'mt.pro_mode',
+    daily_usage: 'mt.daily_usage',
+    weekly_usage: 'mt.weekly_usage',
+  };
+
+  // ════════════════════════════════════════════════
+  // CORE API
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća trenutni tier korisnika.
+   * @returns {'free' | 'standard' | 'pro'}
+   */
+  function getTier() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.tier);
+      if (stored === 'pro' || stored === 'standard') return stored;
+      return 'free';
+    } catch (e) {
+      return 'free';
+    }
+  }
+
+  /**
+   * Postavlja tier (mock — produkcija ovo radi preko Supabase).
+   */
+  function setTier(tier) {
+    if (!['free', 'standard', 'pro'].includes(tier)) {
+      console.error('[tier_helper] Invalid tier:', tier);
+      return false;
+    }
+    try {
+      if (tier === 'free') {
+        localStorage.removeItem(STORAGE_KEYS.tier);
+      } else {
+        localStorage.setItem(STORAGE_KEYS.tier, tier);
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Toggle tier (free → standard → pro → free)
+   * Koristi se u dev mode-u.
+   */
+  function toggleTier() {
+    const current = getTier();
+    const next = current === 'free' ? 'standard' : (current === 'standard' ? 'pro' : 'free');
+    setTier(next);
+    return next;
+  }
+
+  /**
+   * Provjerava ima li korisnik feature.
+   * @param {string} feature - npr 'ai_feedback', 'all_simulators'
+   * @returns {boolean}
+   */
+  function hasFeature(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return false;
+    return config.features[feature] === true;
+  }
+
+  /**
+   * Vraća konfiguraciju tier-a (label, cijena, boja).
+   * @param {string} tier - opcionalno; ako nije zadan, vraća za current.
+   */
+  function getTierConfig(tier) {
+    return TIER_CONFIG[tier || getTier()] || TIER_CONFIG.free;
+  }
+
+  /**
+   * Vraća vrijednost numeričkog limita feature-a.
+   * @param {string} feature - npr 'max_essays', 'max_simulators'
+   * @returns {number} -1 = unlimited, 0 = nema, X = točno X
+   */
+  function getLimit(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return 0;
+    const val = config.features[feature];
+    if (val === true) return -1; // unlimited
+    if (val === false) return 0;
+    return val;
+  }
+
+  /**
+   * Vraća AI limit (feedback / chat / plan).
+   * @param {string} type - 'feedback' | 'chat' | 'plan'
+   */
+  function getAILimit(type) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config || !config.ai_limits) return 0;
+    
+    const map = {
+      feedback: 'feedback_per_day',
+      chat: 'chat_per_day',
+      plan: 'plan_refresh_per_week'
+    };
+    return config.ai_limits[map[type]] || 0;
+  }
+
+  // ════════════════════════════════════════════════
+  // USAGE TRACKING
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća današnju potrošnju feature-a.
+   */
+  function getDailyUsage(feature) {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (!stored) return 0;
+      const data = JSON.parse(stored);
+      if (data.date !== today) return 0;
+      return data.usage[feature] || 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Inkrementira potrošnju feature-a.
+   */
+  function incrementDailyUsage(feature) {
+    const today = new Date().toISOString().split('T')[0];
+    let data = { date: today, usage: {} };
+    
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.date === today) data = parsed;
+      }
+    } catch (e) {}
+    
+    data.usage[feature] = (data.usage[feature] || 0) + 1;
+    
+    try {
+      localStorage.setItem(STORAGE_KEYS.daily_usage, JSON.stringify(data));
+    } catch (e) {}
+    
+    return data.usage[feature];
+  }
+
+  /**
+   * Provjerava može li korisnik koristiti AI feature (limit + tier check).
+   * @returns {{ allowed: boolean, reason: string, used: number, limit: number }}
+   */
+  function canUseAI(type) {
+    const tier = getTier();
+    const limit = getAILimit(type);
+    const used = getDailyUsage('ai_' + type);
+    
+    if (limit === 0) {
+      return {
+        allowed: false,
+        reason: 'tier_locked',
+        tier_required: 'pro',
+        used: 0,
+        limit: 0
+      };
+    }
+    
+    if (used >= limit) {
+      return {
+        allowed: false,
+        reason: 'daily_limit_reached',
+        tier_required: tier,
+        used,
+        limit
+      };
+    }
+    
+    return {
+      allowed: true,
+      reason: 'ok',
+      used,
+      limit
+    };
+  }
+
+  // ════════════════════════════════════════════════
+  // PAYWALL MODAL
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Prikazuje paywall modal.
+   * @param {object} options
+   * @param {string} options.feature - naziv feature-a
+   * @param {string} options.requiredTier - 'standard' | 'pro'
+   * @param {string} options.reason - razlog (free_limit / tier_locked / daily_limit)
+   */
+  function showPaywall(options) {
+    const opts = options || {};
+    const requiredTier = opts.requiredTier || 'standard';
+    const reason = opts.reason || 'feature_locked';
+    const feature = opts.feature || 'Ovaj feature';
+    
+    // Remove existing modal
+    const existing = document.getElementById('mt-paywall-modal');
+    if (existing) existing.remove();
+    
+    const reasonText = {
+      free_limit: 'Iskoristio si Free limit za ovaj feature.',
+      tier_locked: 'Ovaj feature je dostupan u Standard ili Pro pretplati.',
+      daily_limit: 'Iskoristio si svoj dnevni limit. Vrati se sutra ili upgradaj na viši tier.',
+      feature_locked: 'Ovaj feature zahtijeva pretplatu.'
+    };
+    
+    const modal = document.createElement('div');
+    modal.id = 'mt-paywall-modal';
+    modal.className = 'mt-paywall-overlay';
+    modal.innerHTML = \`
+      <div class="mt-paywall-modal" onclick="event.stopPropagation()">
+        <button type="button" class="mt-paywall-close" onclick="MT.Tier.closePaywall()" aria-label="Zatvori">×</button>
+        
+        <div class="mt-paywall-header">
+          <div class="mt-paywall-icon">\${requiredTier === 'pro' ? '💎' : '⭐'}</div>
+          <div class="mt-paywall-title">\${feature}</div>
+          <div class="mt-paywall-subtitle">\${reasonText[reason] || reasonText.feature_locked}</div>
+        </div>
+        
+        <div class="mt-paywall-tiers">
+          \${requiredTier !== 'pro' ? \`
+          <div class="mt-paywall-tier mt-paywall-tier-standard \${requiredTier === 'standard' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'standard' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">⭐ Standard</div>
+            <div class="mt-paywall-tier-price">9,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Cijela teorija + kvizovi</li>
+              <li>✅ Svi Discere simulatori (70 ispita)</li>
+              <li>✅ Sve modelne eseje (9) + sažetke (10)</li>
+              <li>✅ Neograničeno u Workspace</li>
+              <li>✅ Parent dashboard</li>
+              <li>✅ Streak + heatmap + analitika</li>
+              <li>❌ Bez AI features</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta" onclick="MT.Tier.subscribe('standard')">
+              Pretplati se na Standard
+            </button>
+          </div>
+          \` : ''}
+          
+          <div class="mt-paywall-tier mt-paywall-tier-pro \${requiredTier === 'pro' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'pro' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">💎 Pro</div>
+            <div class="mt-paywall-tier-price">19,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Sve iz Standard</li>
+              <li>✅ <strong>🤖 AI Profesor (chat) — 30/dan</strong></li>
+              <li>✅ <strong>🤖 AI Feedback za eseje + sažetke — 20/dan</strong></li>
+              <li>✅ <strong>Personalizirani plan učenja</strong></li>
+              <li>✅ <strong>Prijemni priprema</strong></li>
+              <li>✅ Priority AI queue</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta mt-paywall-cta-pro" onclick="MT.Tier.subscribe('pro')">
+              Pretplati se na Pro
+            </button>
+          </div>
+        </div>
+        
+        <div class="mt-paywall-footer">
+          <a href="/pretplata" class="mt-paywall-link">Vidi sve tier opcije →</a>
+          <span class="mt-paywall-divider">·</span>
+          <button type="button" class="mt-paywall-link mt-paywall-link-btn" onclick="MT.Tier.toggleTierDevMode()">
+            🧪 Dev: Toggle tier (trenutno: \${getTier().toUpperCase()})
+          </button>
+        </div>
+      </div>
+    \`;
+    
+    modal.addEventListener('click', closePaywall);
+    document.body.appendChild(modal);
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePaywall() {
+    const modal = document.getElementById('mt-paywall-modal');
+    if (modal) {
+      modal.remove();
+      document.body.style.overflow = '';
+    }
+  }
+
+  function subscribe(tier) {
+    // 🚨 PRODUCTION TODO: Stripe Checkout integration
+    alert(\`🚧 Pretplata u izradi.\\n\\nUskoro: Stripe Checkout za \${tier === 'pro' ? 'Pro 19,99€' : 'Standard 9,99€'}/mj\\n\\n(Mock: postavljen tier na \${tier.toUpperCase()})\`);
+    setTier(tier);
+    closePaywall();
+    location.reload();
+  }
+
+  function toggleTierDevMode() {
+    const next = toggleTier();
+    alert(\`🧪 Dev mode — tier postavljen na: \${next.toUpperCase()}\`);
+    closePaywall();
+    location.reload();
+  }
+
+  // ════════════════════════════════════════════════
+  // SIDEBAR TIER BADGE
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Injectsa tier badge u sidebar (ako postoji).
+   */
+  function injectSidebarBadge() {
+    const sidebar = document.querySelector('.sidebar') || document.querySelector('nav.sb');
+    if (!sidebar) return;
+    
+    // Check if already exists
+    if (document.getElementById('mt-tier-badge')) return;
+    
+    const tier = getTier();
+    const config = getTierConfig(tier);
+    
+    const badge = document.createElement('div');
+    badge.id = 'mt-tier-badge';
+    badge.className = 'mt-tier-badge mt-tier-badge-' + tier;
+    badge.innerHTML = \`
+      <div class="mt-tier-badge-label">\${config.label}</div>
+      \${tier === 'free' ? '<button type="button" class="mt-tier-badge-cta" onclick="MT.Tier.openPricing()">Upgrade →</button>' : ''}
+    \`;
+    
+    // Insert at top of sidebar
+    const firstChild = sidebar.firstElementChild;
+    if (firstChild) {
+      sidebar.insertBefore(badge, firstChild);
+    } else {
+      sidebar.appendChild(badge);
+    }
+  }
+
+  function openPricing() {
+    location.href = '/pretplata';
+  }
+
+  // ════════════════════════════════════════════════
+  // PUBLIC API
+  // ════════════════════════════════════════════════
+  
+  window.MT = window.MT || {};
+  window.MT.Tier = {
+    // Core
+    getTier,
+    setTier,
+    toggleTier,
+    getTierConfig,
+    
+    // Features
+    hasFeature,
+    getLimit,
+    getAILimit,
+    
+    // Usage
+    getDailyUsage,
+    incrementDailyUsage,
+    canUseAI,
+    
+    // Paywall
+    showPaywall,
+    closePaywall,
+    subscribe,
+    toggleTierDevMode,
+    
+    // UI
+    injectSidebarBadge,
+    openPricing,
+    
+    // Config (read-only)
+    CONFIG: TIER_CONFIG
+  };
+
+  // Auto-inject sidebar badge on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectSidebarBadge);
+  } else {
+    injectSidebarBadge();
+  }
+
+})(window);
+;
+/* UPDATE_PROGRESS_INJECTED */
+
+function updateProgress(pct){
+  var p=Math.max(5,pct);
+  var pb=document.getElementById('prog-bar'); if(pb) pb.style.width=p+'%';
+  var pct2=document.getElementById('prog-pct'); if(pct2) pct2.textContent=p+'%';
+  var hp=document.getElementById('hero-pb'); if(hp) hp.style.width=p+'%';
+  var hl=document.getElementById('hero-prog-lbl'); if(hl) hl.textContent=p+'% završeno';
+  try { localStorage.setItem('mt.hrv.h11.prog', p); } catch(e){}
+}
+;
+/* CIT_SEARCH_INJECTED */
+
+function citSearch(query){
+  var q = (query || '').toLowerCase().trim();
+  var quotes = document.querySelectorAll('.featured-quote');
+  var visible = 0;
+  quotes.forEach(function(qt){
+    var text = qt.textContent.toLowerCase();
+    var match = !q || text.indexOf(q) !== -1;
+    qt.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+}
+/* ══ SIDEBAR ACTIVATION ══ */
+var PUBLISHED_CHAPTERS = {
+  h01: true, h02: true, h03: true, h04: true, h05: true,
+  h06: true, h07: true, h08: true, h09: true, h10: true,
+  h11: true, h12: true, h13: true, h14: true, h15: true, h16: true,
+  h17: true, h18: true,
+  h19: true, h20: true, h21: true, h22: true, h23: true, h24: true,
+  h25: true, h26: true, h27: true, h28: true,
+  d01: false, d02: false, d03: false, d04: true,  d05: false,
+  d06: false, d07: false, d08: false, d09: false, d10: true,
+  d11: false, d12: false, d13: false, d14: false, d15: false,
+  d16: false, d17: false, d18: false, d19: false, d20: false,
+  d21: false, d22: false
+};
+var CHAPTER_TITLES = {
+  h01:'temelji i antika', h02:'srednji vijek', h03:'renesansa',
+  h04:'barok i klasicizam', h05:'prosvjetiteljstvo', h06:'romantizam',
+  h07:'realizam', h08:'moderna', h09:'avangarda i 20. st.', h10:'postmoderna',
+  h11:'stari hrv. pisci', h12:'Marulić i hrv. rens.', h13:'hrv. barok — Gundulić',
+  h14:'preporod', h15:'Šenoa i realizam', h16:'Krleža i moderna',
+  h17:'stilske figure', h18:'versifikacija',
+  h19:'fonetika i fonologija', h20:'morfologija', h21:'sintaksa',
+  h22:'leksikologija', h23:'povijest hrv. jezika', h24:'hrv. narječja',
+  h25:'pravopisna pravila', h26:'interpunkcija',
+  h27:'školski esej', h28:'sažetak',
+  d01:'Antigona', d02:'Petrarca · izbor', d03:'Hamlet', d04:'Život je san',
+  d05:'Škrtac', d06:'Werther', d07:'Zločin i kazna', d08:'Preobražaj',
+  d09:'Stranac', d10:'Cvjetovi zla', d11:'Novela od Stanca', d12:'Judita',
+  d13:'Dubravka', d14:'Smail-aga', d15:'Prijan Lovro', d16:'Posljednji Stipančići',
+  d17:'Kranjčević · poezija', d18:'Matoš · izbor', d19:'Nazor · poezija',
+  d20:'Šimić · poezija', d21:'Glembajevi', d22:'Kiklop'
+};
+function initSidebar(){
+  var currentCode = (CURRENT_CHAPTER && CURRENT_CHAPTER.code) || '';
+  var items = document.querySelectorAll('.sb-item[data-code]');
+  items.forEach(function(item){ item.classList.remove('active','completed','disabled'); });
+  var currentIdx = -1;
+  var totalMain = 28;
+  items.forEach(function(item){
+    var code = item.getAttribute('data-code');
+    var isCurrent = code === currentCode;
+    var isPublished = PUBLISHED_CHAPTERS[code] === true;
+    if(isCurrent){
+      item.classList.add('active');
+      item.setAttribute('aria-current','page');
+      if(code.indexOf('h')===0){ currentIdx = parseInt(code.slice(1),10); }
+    }
+    if(!isPublished && !isCurrent){
+      item.classList.add('disabled');
+      item.setAttribute('aria-disabled','true');
+      item.setAttribute('title','Klikni da te obavijestimo kad izađe');
+      item.removeAttribute('href');
+      item.addEventListener('click', function(e){
+        e.preventDefault();
+        var title = (item.textContent||'').replace(/^[hd]\d\d\s·\s/i,'').trim();
+        /* poglavlje u izradi — signup uklonjen */
+        return false;
+      });
+    } else if (isPublished) {
+      /* Only mark completed if user finished all checkpoints for this chapter */
+      try {
+        var cpKey = 'mt.hrv.' + code + '.cp';
+        var cpRaw = localStorage.getItem(cpKey);
+        if (cpRaw) {
+          var cpArr = JSON.parse(cpRaw);
+          if (Array.isArray(cpArr) && cpArr.length > 0 && cpArr.every(function(v){ return v === true; })) {
+            item.classList.add('completed');
+          }
+        }
+      } catch(e) {}
+    }
+  });
+  var footPos = document.getElementById('sb-footer-pos');
+  var footTitle = document.getElementById('sb-footer-title');
+  if(footPos){
+    if(currentCode.indexOf('d')===0){ footPos.textContent = currentCode.toUpperCase() + ' · dodatno'; }
+    else if(currentIdx > 0){ footPos.textContent = String(currentIdx).padStart(2,'0') + ' / ' + totalMain; }
+  }
+  if(footTitle){ footTitle.textContent = CHAPTER_TITLES[currentCode] || ''; }
+  var doneH = Object.keys(PUBLISHED_CHAPTERS).filter(function(k){ return k.indexOf('h')===0 && PUBLISHED_CHAPTERS[k]; }).length;
+  var pct = Math.round((doneH / totalMain) * 100);
+  var progBar = document.getElementById('prog-bar');
+  var progPct = document.getElementById('prog-pct');
+  if(progBar) progBar.style.width = pct + '%';
+  if(progPct) progPct.textContent = pct + '%';
+}
+function detectTier(){
+  var override = null;
+  try { override = localStorage.getItem('mt.user.tier'); } catch(e){}
+  return override || 'free';
+}
+function applyTier(){
+  var tier = detectTier();
+  document.body.setAttribute('data-tier', tier);
+  document.querySelectorAll('.pro-gate').forEach(function(gate){
+    var feat = gate.getAttribute('data-feature') || 'generic';
+    var btn = gate.querySelector('.pro-gate-btn');
+    if(btn && !btn.href.includes('ctx=')){
+      var sep = btn.href.indexOf('?') >= 0 ? '&' : '?';
+      btn.href = btn.href + sep + 'ctx=' + feat + '_' +
+                 ((typeof CURRENT_CHAPTER !== 'undefined' && CURRENT_CHAPTER.code) || 'unknown');
+    }
+    if(tier === 'free' && typeof track === 'function'){
+      track('paywall_impression', { feature: feat,
+        chapter: (typeof CURRENT_CHAPTER !== 'undefined' && CURRENT_CHAPTER.code) || '' }, 'conversion');
+    }
+  });
+  applyDrillGate();
+}
+
+/* H10 parity: explicit pro-gate overlay toggle by tier */
+var _origApplyTier = typeof applyTier === 'function' ? applyTier : null;
+function applyGateState(){
+  var tier = (document.body.getAttribute('data-tier') || 'free');
+  var hidden = tier === 'standard' || tier === 'pro';
+  document.querySelectorAll('.pro-gate-overlay').forEach(function(ov){
+    ov.setAttribute('data-gate-state', hidden ? 'hidden' : 'visible');
+  });
+}
+applyTier = function(){
+  if(_origApplyTier) _origApplyTier.apply(this, arguments);
+  applyGateState();
+};
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', applyGateState);
+} else {
+  applyGateState();
+}
+
+function setTierLegacy(t){ try { localStorage.setItem('mt.user.tier', t); } catch(e){} applyTier(); }
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', function(){ initSidebar(); applyTier(); });
+} else {
+  initSidebar();
+  applyTier();
+}
+`;
+
+
+export default function H11Chapter() {
+  useEffect(() => {
+    let roots = [];
+    const raf = requestAnimationFrame(() => {
+      const sw = typeof window !== 'undefined' && typeof window.sw === 'function' ? window.sw : () => {};
+      const heroQuote = document.getElementById('h11-react-hero-quote-marulic');
+      if (heroQuote) {
+        const rootHeroQuote = createRoot(heroQuote);
+        rootHeroQuote.render(<HeroQuoteMarulić />);
+        roots.push(rootHeroQuote);
+      }
+      const timeline = document.getElementById('h11-react-timeline-renesansa');
+      if (timeline) {
+        const rootTimeline = createRoot(timeline);
+        rootTimeline.render(<TimelineHrRenesansa />);
+        roots.push(rootTimeline);
+      }
+      const compare = document.getElementById('h11-react-compare-marulic-drzic');
+      if (compare) {
+        const rootCompare = createRoot(compare);
+        rootCompare.render(<CompareMarulićDržić />);
+        roots.push(rootCompare);
+      }
+      const popKultura = document.getElementById('h11-react-popkultura-drzic');
+      if (popKultura) {
+        const rootPop = createRoot(popKultura);
+        rootPop.render(<PopKulturaDržić />);
+        roots.push(rootPop);
+      }
+      const statNovela = document.getElementById('h11-react-stat-novela-stan');
+      if (statNovela) {
+        const rootStat = createRoot(statNovela);
+        rootStat.render(<StatCardsNovelaStan />);
+        roots.push(rootStat);
+      }
+      const esejTeze = document.getElementById('h11-react-esej-teze');
+      if (esejTeze) {
+        const rootEsej = createRoot(esejTeze);
+        rootEsej.render(<AccordionEsejTezeH11 />);
+        roots.push(rootEsej);
+      }
+      const esejTipovi = document.getElementById('h11-react-esej-tipovi');
+      if (esejTipovi) {
+        const rootTipovi = createRoot(esejTipovi);
+        rootTipovi.render(<EssayTipoviPitanjaH11 />);
+        roots.push(rootTipovi);
+      }
+      const esejWriter = document.getElementById('h11-react-esej-writer');
+      if (esejWriter) {
+        const rootWriter = createRoot(esejWriter);
+        rootWriter.render(<EssayWriterNovelaH11 />);
+        roots.push(rootWriter);
+      }
+      const authorMarulic = document.getElementById('h11-react-author-marulic');
+      if (authorMarulic) {
+        const rootAuthorMarulic = createRoot(authorMarulic);
+        rootAuthorMarulic.render(<AuthorProfileMarulicH11 />);
+        roots.push(rootAuthorMarulic);
+      }
+      const authorHektorovic = document.getElementById('h11-react-author-hektorovic');
+      if (authorHektorovic) {
+        const rootAuthorHektorovic = createRoot(authorHektorovic);
+        rootAuthorHektorovic.render(<AuthorProfileHektorovicH11 />);
+        roots.push(rootAuthorHektorovic);
+      }
+      const authorZoranic = document.getElementById('h11-react-author-zoranic');
+      if (authorZoranic) {
+        const rootAuthorZoranic = createRoot(authorZoranic);
+        rootAuthorZoranic.render(<AuthorProfileZoranicH11 />);
+        roots.push(rootAuthorZoranic);
+      }
+      const authorPetrarkisti = document.getElementById('h11-react-author-petrarkisti');
+      if (authorPetrarkisti) {
+        const rootAuthorPetrarkisti = createRoot(authorPetrarkisti);
+        rootAuthorPetrarkisti.render(<AuthorProfilePetrarkistiH11 />);
+        roots.push(rootAuthorPetrarkisti);
+      }
+      const authorMarinDrzic = document.getElementById('h11-react-author-marin-drzic');
+      if (authorMarinDrzic) {
+        const rootAuthorMarinDrzic = createRoot(authorMarinDrzic);
+        rootAuthorMarinDrzic.render(<AuthorProfileMarinDrzicH11 />);
+        roots.push(rootAuthorMarinDrzic);
+      }
+      const authorKrnarutic = document.getElementById('h11-react-author-krnarutic');
+      if (authorKrnarutic) {
+        const rootAuthorKrnarutic = createRoot(authorKrnarutic);
+        rootAuthorKrnarutic.render(<AuthorProfileKrnaruticH11 />);
+        roots.push(rootAuthorKrnarutic);
+      }
+      const authBox = document.getElementById('h11-react-auth-box');
+      if (authBox) {
+        const rootAuthBox = createRoot(authBox);
+        rootAuthBox.render(<NcvvoAuthBoxH11 />);
+        roots.push(rootAuthBox);
+      }
+      const videoCardPrimary = document.getElementById('h11-react-video-card-primary');
+      if (videoCardPrimary) {
+        const rootVideoCardPrimary = createRoot(videoCardPrimary);
+        rootVideoCardPrimary.render(<VideoCardPrimaryH11 />);
+        roots.push(rootVideoCardPrimary);
+      }
+      const videoCardSecondary = document.getElementById('h11-react-video-card-secondary');
+      if (videoCardSecondary) {
+        const rootVideoCardSecondary = createRoot(videoCardSecondary);
+        rootVideoCardSecondary.render(<VideoCardSecondaryH11 />);
+        roots.push(rootVideoCardSecondary);
+      }
+      const videoCardTertiary = document.getElementById('h11-react-video-card-tertiary');
+      if (videoCardTertiary) {
+        const rootVideoCardTertiary = createRoot(videoCardTertiary);
+        rootVideoCardTertiary.render(<VideoCardTertiaryH11 />);
+        roots.push(rootVideoCardTertiary);
+      }
+      const videoCardQuaternary = document.getElementById('h11-react-video-card-quaternary');
+      if (videoCardQuaternary) {
+        const rootVideoCardQuaternary = createRoot(videoCardQuaternary);
+        rootVideoCardQuaternary.render(<VideoCardQuaternaryH11 />);
+        roots.push(rootVideoCardQuaternary);
+      }
+      const l3 = document.getElementById('l3');
+      if (l3) {
+        const rootL3 = createRoot(l3);
+        rootL3.render(<CitatnikH11 onBack={() => sw(2)} onNext={() => sw(4)} />);
+        roots.push(rootL3);
+      }
+      const l4 = document.getElementById('l4');
+      if (l4) {
+        const rootL4 = createRoot(l4);
+        rootL4.render(<PojmovnikH11 onBack={() => sw(3)} onNext={() => sw(5)} />);
+        roots.push(rootL4);
+      }
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      setTimeout(() => roots.forEach(r => r?.unmount()), 0);
+    };
+  }, []);
+  return (
+    <ChapterWrapper
+      chapterId="H11"
+      bodyHtml={BODY_HTML}
+      stylesCss={STYLES_CSS}
+      scriptsJs={SCRIPTS_JS}
+    />
+  );
+}
+
+export const HRV_POGAVLJE_11 = null

@@ -1,0 +1,6147 @@
+﻿/**
+ * H19 — H19 · Fonetika i fonologija — Maturiraj.hr
+ * Auto-generated from Maturiraj_Hrvatski_H19.html
+ * 
+ * Strategy: Hybrid HTML-in-JSX (Strategy C)
+ * - Body HTML rendered via dangerouslySetInnerHTML
+ * - Inline <style> blocks injected at mount
+ * - Inline <script> blocks executed at mount
+ * - All onclick/oninput/etc. handlers preserved
+ * - SEO via Next.js Metadata API (in page.jsx)
+ */
+'use client';
+
+import ChapterWrapper from './ChapterWrapper';
+import { SHARED_LANG_CSS } from './shared-lang-styles';
+
+const BODY_HTML = `<a class="skip-link" href="#main">Preskoči na sadržaj</a>
+<noscript>
+    <div style="padding:24px;text-align:center;background:#dc322f;color:white;font-family:system-ui">
+      <strong>JavaScript je potreban za rad ove stranice.</strong><br>
+      Maturiraj.hr koristi interaktivne značajke (kviz, AI tutor, parser). Molim te omogući JavaScript u postavkama preglednika.
+    </div>
+  </noscript>
+<div class="read-progress" aria-hidden="true"><div class="read-progress-bar" id="rpbar"></div></div>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Natrag na vrh" title="Natrag na vrh">↑</button>
+
+
+<!-- Feedback / bug report modal (v3.6.1) -->
+<div class="modal-backdrop" id="fb-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="fb-modal-title" onclick="if(event.target===this)closeFeedbackModal()">
+  <div class="modal" role="document">
+    <button class="modal-close" onclick="closeFeedbackModal()" aria-label="Zatvori">✕</button>
+    <div class="modal-ico">📝</div>
+    <div class="modal-eye">PRIJAVA / PRIJEDLOG</div>
+    <div class="modal-title" id="fb-modal-title">Javi nam što ne valja</div>
+    <div class="modal-desc">Uočio si grešku u sadržaju, bug u aplikaciji ili imaš prijedlog? <strong>Opiši ovdje</strong> — čitamo svaku poruku.</div>
+
+    <div class="modal-msg" id="fb-msg"></div>
+
+    <form class="fb-form" id="fb-form" onsubmit="return submitFeedback(event)">
+      <!-- Tip -->
+      <label class="fb-label">Vrsta poruke</label>
+      <div class="fb-types" role="radiogroup" aria-label="Vrsta poruke">
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="content_error" checked><span>📖 Greška u sadržaju</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="bug"><span>🐛 Bug u aplikaciji</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="suggestion"><span>💡 Prijedlog</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="praise"><span>💚 Pohvala</span></label>
+      </div>
+
+      <!-- Poruka -->
+      <label class="fb-label" for="fb-message">Poruka <span class="fb-req">*</span></label>
+      <textarea id="fb-message" class="fb-textarea" required minlength="3" maxlength="5000" rows="5" placeholder="Opiši što si uočio — što detaljnije, lakše ćemo popraviti. Npr. 'U kvizu pitanje 3 ima grešku: točan odgovor je X, a ne Y.'"></textarea>
+      <div class="fb-counter"><span id="fb-char-count">0</span> / 5000</div>
+
+      <!-- Email (optional) -->
+      <label class="fb-label" for="fb-email">Tvoj e-mail <span class="fb-hint">(neobavezno — samo ako želiš odgovor)</span></label>
+      <input type="email" id="fb-email" class="modal-input" placeholder="tvoj@email.hr" autocomplete="email">
+
+      <button type="submit" class="modal-submit" id="fb-submit" style="width:100%;margin-top:14px">Pošalji →</button>
+      <div class="modal-small" style="margin-top:10px">Tvoj e-mail čuvamo samo za odgovor. Ne šaljemo ništa drugo.</div>
+    </form>
+  </div>
+</div>
+<div class="sb-overlay" id="overlay" onclick="closeSb()"></div>
+<button class="sb-hamburger" id="hamburger" onclick="openSb()" aria-label="Izbornik">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="shell">
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar" role="navigation" aria-label="Navigacija poglavlja">
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+        <path d="M16 3L29 9.5V22.5L16 29L3 22.5V9.5Z" stroke="#0F0605" stroke-width="1.5"/>
+        <path d="M16 3V29M3 9.5L29 22.5M29 9.5L3 22.5" stroke="#0F0605" stroke-width=".8" opacity=".5"/>
+        <circle cx="16" cy="16" r="2.5" fill="#0F0605" opacity=".7"/>
+      </svg>
+    </div>
+    <div>
+      <div class="sb-name">Maturiraj.hr</div>
+      <div class="sb-sub">HRVATSKI</div>
+    </div>
+    <button type="button" class="sb-hamburger" onclick="toggleSidebar()" aria-label="Zatvori izbornik">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="sb-prog-wrap">
+    <div class="sb-prog-label"><span>napredak</span><span id="sb-prog-pct">0%</span></div>
+    <div class="sb-prog-track"><div class="sb-prog-bar" id="sb-prog-bar" style="width:0%"></div></div>
+  </div>
+
+  <!-- ══ SVJETSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Svjetska književnost</div>
+  <a class="sb-item" data-code="h01" href="/skripte/hrv/h01"><span class="sb-dot"></span>H01 · Temelji i antika</a>
+  <a class="sb-item" data-code="h02" href="/skripte/hrv/h02"><span class="sb-dot"></span>H02 · Srednji vijek</a>
+  <a class="sb-item" data-code="h03" href="/skripte/hrv/h03"><span class="sb-dot"></span>H03 · Renesansa</a>
+  <a class="sb-item" data-code="h04" href="/skripte/hrv/h04"><span class="sb-dot"></span>H04 · Barok i klasicizam</a>
+  <a class="sb-item" data-code="h05" href="/skripte/hrv/h05"><span class="sb-dot"></span>H05 · Prosvjetiteljstvo</a>
+  <a class="sb-item" data-code="h06" href="/skripte/hrv/h06"><span class="sb-dot"></span>H06 · Romantizam</a>
+  <a class="sb-item" data-code="h07" href="/skripte/hrv/h07"><span class="sb-dot"></span>H07 · Realizam</a>
+  <a class="sb-item" data-code="h08" href="/skripte/hrv/h08"><span class="sb-dot"></span>H08 · Moderna</a>
+  <a class="sb-item" data-code="h09" href="/skripte/hrv/h09"><span class="sb-dot"></span>H09 · Avangarda i 20. st.</a>
+  <a class="sb-item" data-code="h10" href="/skripte/hrv/h10"><span class="sb-dot"></span>H10 · Postmoderna</a>
+
+  <!-- ══ HRVATSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Hrvatska književnost</div>
+  <a class="sb-item" data-code="h11" href="/skripte/hrv/h11"><span class="sb-dot"></span>H11 · Stari hrv. pisci</a>
+  <a class="sb-item" data-code="h12" href="/skripte/hrv/h12"><span class="sb-dot"></span>H12 · Marulić i hrv. rens.</a>
+  <a class="sb-item" data-code="h13" href="/skripte/hrv/h13"><span class="sb-dot"></span>H13 · Hrv. barok — Gundulić</a>
+  <a class="sb-item" data-code="h14" href="/skripte/hrv/h14"><span class="sb-dot"></span>H14 · Preporod</a>
+  <a class="sb-item" data-code="h15" href="/skripte/hrv/h15"><span class="sb-dot"></span>H15 · Šenoa i realizam</a>
+  <a class="sb-item" data-code="h16" href="/skripte/hrv/h16"><span class="sb-dot"></span>H16 · Krleža i moderna</a>
+
+  <!-- ══ STIL I IZRAZ ══ -->
+  <div class="sb-era">// Stil i izraz</div>
+  <a class="sb-item" data-code="h17" href="/skripte/hrv/h17"><span class="sb-dot"></span>H17 · Stilske figure</a>
+  <a class="sb-item" data-code="h18" href="/skripte/hrv/h18"><span class="sb-dot"></span>H18 · Versifikacija</a>
+
+  <!-- ══ JEZIKOSLOVLJE ══ -->
+  <div class="sb-era">// Jezikoslovlje</div>
+  <a class="sb-item" aria-current="page" data-code="h19" href="/skripte/hrv/h19"><span class="sb-dot"></span>H19 · Fonetika i fonologija</a>
+  <a class="sb-item" data-code="h20" href="/skripte/hrv/h20"><span class="sb-dot"></span>H20 · Morfologija</a>
+  <a class="sb-item" data-code="h21" href="/skripte/hrv/h21"><span class="sb-dot"></span>H21 · Sintaksa</a>
+  <a class="sb-item" data-code="h22" href="/skripte/hrv/h22"><span class="sb-dot"></span>H22 · Leksikologija</a>
+  <a class="sb-item" data-code="h23" href="/skripte/hrv/h23"><span class="sb-dot"></span>H23 · Povijest hrv. jezika</a>
+  <a class="sb-item" data-code="h24" href="/skripte/hrv/h24"><span class="sb-dot"></span>H24 · Hrv. narječja</a>
+
+  <!-- ══ PRAVOPIS ══ -->
+  <div class="sb-era">// Pravopis</div>
+  <a class="sb-item" data-code="h25" href="/skripte/hrv/h25"><span class="sb-dot"></span>H25 · Pravopisna pravila</a>
+  <a class="sb-item" data-code="h26" href="/skripte/hrv/h26"><span class="sb-dot"></span>H26 · Interpunkcija</a>
+
+  <!-- ══ PISANJE ══ -->
+  <div class="sb-era">// Pisanje</div>
+  <a class="sb-item" data-code="h27" href="/skripte/hrv/h27"><span class="sb-dot"></span>H27 · Školski esej</a>
+  <a class="sb-item" data-code="h28" href="/skripte/hrv/h28"><span class="sb-dot"></span>H28 · Sažetak</a>
+
+  <!-- ══ DODATNO — obvezatna djela (deep-dive za esej 2026 + čitanje) ══ -->
+  <div class="sb-era sb-era-d">// Dodatno · obvezatna djela</div>
+  <div class="sb-d-meta">Deep-dive za esej (30 bod) + čitanje (20 bod)</div>
+
+  <a class="sb-item sb-d" data-code="d01" href="/skripte/hrv"><span class="sb-dot"></span>D01 · Sofoklo · Antigona</a>
+  <a class="sb-item sb-d" data-code="d02" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D02 · Petrarca · izbor</a>
+  <a class="sb-item sb-d" data-code="d03" href="/skripte/hrv"><span class="sb-dot"></span>D03 · Shakespeare · Hamlet</a>
+  <a class="sb-item sb-d" data-code="d04" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D04 · Calderón · Život je san</a>
+  <a class="sb-item sb-d" data-code="d05" href="/skripte/hrv"><span class="sb-dot"></span>D05 · Molière · Škrtac</a>
+  <a class="sb-item sb-d" data-code="d06" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D06 · Goethe · Werther</a>
+  <a class="sb-item sb-d" data-code="d07" href="/skripte/hrv"><span class="sb-dot"></span>D07 · Dostojevski · Zločin i kazna</a>
+  <a class="sb-item sb-d" data-code="d08" href="/skripte/hrv"><span class="sb-dot"></span>D08 · Kafka · Preobražaj</a>
+  <a class="sb-item sb-d" data-code="d09" href="/skripte/hrv"><span class="sb-dot"></span>D09 · Camus · Stranac</a>
+  <a class="sb-item sb-d" data-code="d10" href="/skripte/hrv"><span class="sb-dot"></span>D10 · Baudelaire · Cvjetovi zla</a>
+  <a class="sb-item sb-d" data-code="d11" href="/skripte/hrv"><span class="sb-dot"></span>D11 · Držić · Novela od Stanca</a>
+  <a class="sb-item sb-d" data-code="d12" href="/skripte/hrv"><span class="sb-dot"></span>D12 · Marulić · Judita</a>
+  <a class="sb-item sb-d" data-code="d13" href="/skripte/hrv"><span class="sb-dot"></span>D13 · Gundulić · Dubravka</a>
+  <a class="sb-item sb-d" data-code="d14" href="/skripte/hrv"><span class="sb-dot"></span>D14 · Mažuranić · Smail-aga</a>
+  <a class="sb-item sb-d" data-code="d15" href="/skripte/hrv"><span class="sb-dot"></span>D15 · Šenoa · Prijan Lovro</a>
+  <a class="sb-item sb-d" data-code="d16" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D16 · Novak · Posljednji Stipančići</a>
+  <a class="sb-item sb-d" data-code="d17" href="/skripte/hrv"><span class="sb-dot"></span>D17 · Kranjčević · poezija</a>
+  <a class="sb-item sb-d" data-code="d18" href="/skripte/hrv"><span class="sb-dot"></span>D18 · Matoš · izbor</a>
+  <a class="sb-item sb-d" data-code="d19" href="/skripte/hrv"><span class="sb-dot"></span>D19 · Nazor · poezija</a>
+  <a class="sb-item sb-d" data-code="d20" href="/skripte/hrv"><span class="sb-dot"></span>D20 · Šimić · poezija</a>
+  <a class="sb-item sb-d" data-code="d21" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D21 · Krleža · Glembajevi</a>
+  <a class="sb-item sb-d" data-code="d22" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D22 · Marinković · Kiklop</a>
+
+  <div class="sb-footer" id="sb-footer">
+    <span id="sb-footer-pos">19 / 28</span> · <span id="sb-footer-title">fonetika i fonologija</span>
+    <br>maturiraj.hr · hrvatski · v2
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main" id="main" role="main">
+<div class="content-wrap">
+
+  <!-- BREADCRUMB -->
+  <div class="bc">
+    <a class="bc-link" href="/">Maturiraj.hr</a><span class="bc-sep">/</span>
+    <a class="bc-link" href="/skripte/hrv">Skripte</a><span class="bc-sep">/</span>
+    <a class="bc-link" href="/skripte/hrv">Hrvatski jezik</a><span class="bc-sep bc-tab-sep">/</span>
+    <span class="bc-cur">H19 · Fonetika i fonologija</span>
+    <span class="bc-sep bc-tab-sep">/</span>
+    <span class="bc-tab" id="bc-tab">Teorija</span>
+  </div>
+
+  <!-- COUNTDOWN + ACTIONS -->
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px">
+    <div class="countdown" style="margin-bottom:0">
+      ⏳ Do ispita HRV: <strong id="cd-days">—</strong> dana &nbsp;<span style="font-size:9px;color:var(--t3)">(15. 6. 2026.)</span>
+    </div>
+    <button class="fcb" onclick="window.print()" style="font-size:10px" title="Print / PDF (Ctrl+P)">🖨 Print</button>
+    <button class="fcb" onclick="navigator.share?navigator.share({title:'H19 · Fonetika i fonologija',url:window.location.href}):navigator.clipboard.writeText(window.location.href)" style="font-size:10px" title="Podijeli">📤 Dijeli</button>
+    <span style="font-family:var(--mono);font-size:9px;color:var(--t3);margin-left:auto">
+      <span class="kbd">←</span> <span class="kbd">→</span> tabovi · <span class="kbd">?</span> pomoć
+    </span>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-chapter">H19 &nbsp;·&nbsp; Jezikoslovlje &nbsp;·&nbsp; Fonetika i fonologija</div>
+    <h1 class="hero-title">Fonetika i fonologija<br><span>glasovi, naglasci, IPA</span></h1>
+    <p class="hero-sub">
+      <strong>Sustavni priručnik hrv. glasovnog sustava.</strong> <em>30 hrvatskih fonema</em> (5 samoglasnika + 25 suglasnika), <em>7 glasovnih promjena</em> (jotacija, palatalizacija, vokalizacija l...), <em>4 hrv. naglaska</em>, <em>IPA abeceda</em>. <strong>Fonemski scanner</strong> — upišeš riječ, dobiješ analizu + IPA, <strong>referentna tablica</strong> za brzu provjeru.
+    </p>
+    <div class="hero-chips">
+      <span class="hchip br">🔤 30 fonema</span>
+      <span class="hchip go">🔄 7 glasovnih promjena</span>
+      <span class="hchip te">🎵 4 naglaska</span>
+      <span class="hchip pa">🔬 Fonemski scanner</span>
+      <span class="hchip re">🌐 IPA transkripcija</span>
+    </div>
+  </header>
+
+
+  <!-- ══ SOCIAL PROOF + COUNTDOWN ═════════════════
+       Playbook P5.1 + P5.2 — trust + urgency
+       Brojevi se renderiraju iz JS-a (vidi renderSocialProof)
+  ═══════════════════════════════════════════════════ -->
+  <div class="social-proof" id="social-proof" aria-label="Statistika platforme"></div>
+
+  <!-- Countdown se dinamički renderira iz JS-a -->
+  <div class="countdown" id="countdown" aria-label="Do mature" style="display:none"></div>
+
+  <!-- TABS -->
+  <div class="tabs" role="tablist" aria-label="Dijelovi poglavlja">
+    <button class="tab on" id="tab0" onclick="sw(0)" role="tab" aria-selected="true" aria-controls="l0">📖 Teorija<span class="tab-done" id="td0"></span></button>
+    <button class="tab" id="tab1" onclick="sw(1)" role="tab" aria-selected="false" aria-controls="l1">🔤 Glasovi<span class="tab-done" id="td1"></span></button>
+    <button class="tab" id="tab2" onclick="sw(2)" role="tab" aria-selected="false" aria-controls="l2">🔄 Glasovne promjene<span class="tab-done" id="td2"></span></button>
+    <button class="tab" id="tab3" onclick="sw(3)" role="tab" aria-selected="false" aria-controls="l3">🎵 Slog i naglasak<span class="tab-done" id="td3"></span></button>
+    <button class="tab" id="tab4" onclick="sw(4)" role="tab" aria-selected="false" aria-controls="l4">📚 Pojmovnik<span class="tab-done" id="td4"></span></button>
+    <button class="tab" id="tab5" onclick="sw(5)" role="tab" aria-selected="false" aria-controls="l5">🔬 Scanner<span class="tab-done" id="td5"></span></button>
+    <button class="tab" id="tab6" onclick="sw(6)" role="tab" aria-selected="false" aria-controls="l6">🧠 Kviz<span class="tab-badge">25</span><span class="tab-done" id="td6"></span></button>
+    <button class="tab" id="tab7" onclick="sw(7)" role="tab" aria-selected="false" aria-controls="l7">📊 Referentna tablica</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 0 · TEORIJA
+  ══════════════════════════════════════ -->
+  <div class="layer on" id="l0" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">Fonetika ↔ Fonologija</span>
+      <span class="pill p-br">30 hrv. fonema</span>
+      <span class="pill p-go">IPA osnove</span>
+      <span class="pill p-t">Fonem · alofon · grafem</span>
+      <span class="pill p-r">Jezični sustav</span>
+    </div>
+
+    <!-- DIJAGNOSTIKA -->
+    <div class="box-int" style="margin-bottom:20px">
+      <div class="box-int-lbl">🎯 Brza dijagnostika H19 — 5 pitanja</div>
+      <div class="box-int-txt">Procjeni koliko znaš o hrv. glasovnom sustavu prije nego što kreneš s gradivom. Nema poena — samo orijentacija.</div>
+    </div>
+
+    <div class="diag-wrap" id="diag0" data-state="intro">
+      
+      <!-- INTRO STATE -->
+      <div class="diag-intro">
+        <div class="diag-icon">🎯</div>
+        <div class="diag-intro-title">Brza dijagnostika</div>
+        <div class="diag-intro-desc">5 pitanja · ~2 min · provjeri koliko znaš osnova fonetike i fonologije prije učenja.</div>
+        <div class="diag-intro-actions">
+          <button class="nb-btn primary" onclick="diag0Start()">🚀 Započni dijagnostiku</button>
+          <button class="nb-btn" onclick="diag0Skip()">Preskoči</button>
+        </div>
+      </div>
+      
+      <!-- QUIZ STATE -->
+      <div class="diag-quiz">
+        <div class="diag-header">
+          <div class="diag-lbl">Fonetika i fonologija — dijagnostika</div>
+          <div class="diag-progress-wrap"><div class="diag-progress-bar" id="d0fill"></div></div>
+          <div class="diag-meta"><span id="d0num">Pitanje 1 / 5</span> · <span id="d0correct">0 točno</span></div>
+        </div>
+        <div class="diag-body">
+          <div class="diag-q" id="d0text"></div>
+          <div class="diag-opts" id="d0opts"></div>
+        </div>
+      </div>
+      
+      <!-- RESULT STATE -->
+      <div class="diag-result">
+        <div class="diag-result-inner">
+          <div class="diag-result-icon">✨</div>
+          <div class="diag-result-title" id="d0rtitle"></div>
+          <div class="diag-result-desc" id="d0rdesc"></div>
+          <div class="diag-result-actions">
+            <button class="nb-btn primary" id="d0rbtn">Nastavi →</button>
+            <button class="nb-btn" onclick="diag0Reset()">🔁 Ponovi</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- 1. ŠTO JE FONETIKA, ŠTO FONOLOGIJA -->
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">1. Fonetika ↔ fonologija — razlika</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📚 Dvije povezane ali različite discipline</div>
+      <div class="box-int-txt">
+        Hrvatski jezični sustav se proučava na nekoliko razina. Fonetika i fonologija proučavaju <strong>najnižu razinu — razinu glasova</strong>. Razlikuju se po tome <em>što točno</em> proučavaju.
+      </div>
+    </div>
+
+    <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0">
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(74,144,217,.08),transparent);border:1px solid rgba(74,144,217,.25)">
+        <div class="box-key-lbl" style="color:var(--blue)">🔊 FONETIKA</div>
+        <div class="box-key-txt">
+          <strong>Fizička strana glasova</strong> — kako se proizvode, prenose, čuju.<br><br>
+          <strong>Pitanja fonetike:</strong><br>
+          • Kako se glas [t] artikulira?<br>
+          • Gdje je mjesto tvorbe (zubi, nepce, usne)?<br>
+          • Kako zvuči akustički?<br><br>
+          <strong>Znanost o:</strong> izgovoru, akustici, sluhu.
+        </div>
+      </div>
+
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.25)">
+        <div class="box-key-lbl" style="color:var(--gold)">🧠 FONOLOGIJA</div>
+        <div class="box-key-txt">
+          <strong>Funkcionalna strana glasova</strong> — kako glasovi razlikuju značenje u jeziku.<br><br>
+          <strong>Pitanja fonologije:</strong><br>
+          • Koja je razlika <em>pas</em> vs. <em>bas</em>?<br>
+          • Što čini /p/ različitim fonemom od /b/?<br>
+          • Kako se glasovi kombiniraju?<br><br>
+          <strong>Znanost o:</strong> fonemima, opreci, distribuciji.
+        </div>
+      </div>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">💡 Jednostavno pravilo</div>
+      <div class="box-signal-txt">
+        <strong>Fonetika</strong> = kako glas zvuči (fizika zvuka).<br>
+        <strong>Fonologija</strong> = što glas znači (funkcija u jeziku).<br><br>
+        <em>Primjer:</em> Za fonetiku je [p] u „pas" i [p] u „spavati" IDENTIČAN glas (oba su bilabijalni ploziv). Za fonologiju su OBA alofona istog fonema /p/, ali različito aspirirana.
+      </div>
+    </div>
+
+    <!-- 2. FONEM, ALOFON, GRAFEM -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">2. Fonem · alofon · grafem — 3 razine</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🔑 Kritično razlikovanje</div>
+      <div class="box-int-txt">
+        Ovo je <strong>najvažniji koncept u fonologiji</strong>. Razumij razliku između tri razine i većina pitanja o glasovima ti postaje jasna.
+      </div>
+    </div>
+
+    <div class="scene-grid" style="margin:18px 0">
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">1</div>
+          <div class="scene-ttl">
+            <div class="scene-name">FONEM · /p/</div>
+            <div class="scene-sub">Najmanja razlikovna jedinica u jeziku</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Fonem</strong> je <em>apstraktna</em> jezična jedinica koja razlikuje značenje. Piše se između <strong>kosih crta</strong>: /p/, /b/, /t/, /d/.</p>
+          <p><strong>Test minimalnog para:</strong> ako zamjena jednog glasa promijeni značenje, imamo dva različita fonema.</p>
+          <p><strong>Primjeri minimalnih parova u hrv.:</strong></p>
+          <ul>
+            <li><strong>pas — bas</strong>: /p/ vs. /b/ razlikuju značenje → dva fonema</li>
+            <li><strong>koš — kos</strong>: /š/ vs. /s/ → dva fonema</li>
+            <li><strong>lice — lipe</strong>: /c/ vs. /p/ → dva fonema</li>
+          </ul>
+          <p><strong>Hrvatski standard ima 30 fonema</strong>: 5 samoglasnika (/a/ /e/ /i/ /o/ /u/) + 25 suglasnika.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">2</div>
+          <div class="scene-ttl">
+            <div class="scene-name">ALOFON · [pʰ], [p]</div>
+            <div class="scene-sub">Konkretna, izgovorna varijanta fonema</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Alofon</strong> je <em>konkretna</em> izgovorna realizacija fonema. Piše se između <strong>uglatih zagrada</strong>: [p], [pʰ], [b̥].</p>
+          <p>Jedan fonem može imati <strong>više alofona</strong> koji zvuče malo drugačije, ali NE razlikuju značenje.</p>
+          <p><strong>Primjer u engleskom:</strong> /p/ ima alofone:</p>
+          <ul>
+            <li>[pʰ] — aspirirani (s dahom): <em>pin</em></li>
+            <li>[p] — neaspirirani: <em>spin</em></li>
+          </ul>
+          <p>Za englesku fonologiju to je ISTI fonem /p/, samo različito ostvaren.</p>
+          <p><strong>U hrvatskom:</strong> fonem /n/ u „banka" izgovara se kao [ŋ] (velarni nazal), ali i dalje je alofon fonema /n/ — ne razlikuje značenje.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">3</div>
+          <div class="scene-ttl">
+            <div class="scene-name">GRAFEM · &lt;p&gt;</div>
+            <div class="scene-sub">Pisani znak za glas — razina pravopisa</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Grafem</strong> je <em>pisana</em> jedinica — slovo ili skupina slova koja predstavlja fonem. Piše se između <strong>šiljastih zagrada</strong>: &lt;p&gt;, &lt;b&gt;, &lt;nj&gt;, &lt;lj&gt;.</p>
+          <p><strong>Hrvatski pravopis je FONEMSKI</strong> (ili „piši kao što govoriš") — postoji <em>uglavnom</em> 1:1 odnos fonem-grafem.</p>
+          <p><strong>Iznimke (1 fonem = 2 slova):</strong></p>
+          <ul>
+            <li>&lt;nj&gt; = 1 fonem /ɲ/ (kao u „konj")</li>
+            <li>&lt;lj&gt; = 1 fonem /ʎ/ (kao u „ljeto")</li>
+            <li>&lt;dž&gt; = 1 fonem /dʒ/ (kao u „džep")</li>
+          </ul>
+          <p><strong>Hrv. abeceda ima 30 slova</strong>, ali 27 različitih grafema (jer <em>nj</em>, <em>lj</em>, <em>dž</em> su dvoslovi).</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="box-warn">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--gold)">⚠ Tipična NCVVO greška</div>
+        <div class="bw-txt">Zabuna <strong>fonem</strong> vs. <strong>slovo/grafem</strong>. Hrvatski ima <strong>30 fonema</strong> (glasova) i <strong>30 slova</strong> (u abecedi), ali to nije 1:1 — <em>nj</em>, <em>lj</em>, <em>dž</em> su dvoslovi koji predstavljaju po 1 fonem. Znači u riječi „njuška" imamo <strong>5 fonema</strong> (/ɲ/, /u/, /š/, /k/, /a/) iako ima <strong>6 slova</strong>.</div>
+      </div>
+    </div>
+
+    <!-- 3. 30 HRVATSKIH FONEMA — PREGLED -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">3. 30 hrvatskih fonema — pregled</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📖 Sustav hrv. fonema</div>
+      <div class="box-int-txt">
+        Hrvatski standardni jezik ima <strong>30 fonema</strong>. U Tabu 1 (Glasovi) ih analiziramo u detalje s artikulacijskim tablicama i IPA simbolima. Ovdje je brzi pregled.
+      </div>
+    </div>
+
+    <div class="grid-2" style="display:grid;grid-template-columns:1fr 2fr;gap:14px;margin:16px 0">
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.3)">
+        <div class="box-key-lbl" style="color:var(--gold)">🅰 SAMOGLASNICI · 5</div>
+        <div class="box-key-txt" style="font-size:15px;line-height:2">
+          <strong>/a/ /e/ /i/ /o/ /u/</strong><br>
+          + slogotvorno /r/<br><br>
+          <em style="font-size:12px;color:var(--t3)">Artikuliraju se bez prepreke — zrak slobodno prolazi kroz usnu šupljinu.</em>
+        </div>
+      </div>
+
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(74,144,217,.08),transparent);border:1px solid rgba(74,144,217,.25)">
+        <div class="box-key-lbl" style="color:var(--blue)">🅱 SUGLASNICI · 25</div>
+        <div class="box-key-txt" style="font-size:13px;line-height:1.8">
+          <strong>Plozivi (6):</strong> p b t d k g<br>
+          <strong>Frikativi (6):</strong> f s z š ž h<br>
+          <strong>Afrikate (5):</strong> c č ć dž đ<br>
+          <strong>Nazali (3):</strong> m n nj<br>
+          <strong>Likvidi (3):</strong> l lj r<br>
+          <strong>Aproksimanti (2):</strong> j v<br><br>
+          <em style="font-size:12px;color:var(--t3)">Artikuliraju se s preprekom — zrak nailazi na suglasničku prepreku.</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">🎯 Zašto je ovo važno za maturu</div>
+      <div class="box-signal-txt">
+        NCVVO često traži da prepoznaš <strong>koliko glasova ima neka riječ</strong> (ne slova!), da klasificiraš glas po kategoriji (npr. „je li /š/ frikativ ili afrikata?"), ili da prepoznaš koji su fonemi prisutni u minimalnom paru.
+      </div>
+    </div>
+
+    <!-- 4. IPA ABECEDA — OSNOVE -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">4. IPA — međunarodna fonetska abeceda</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🌐 Univerzalni fonetski zapis</div>
+      <div class="box-int-txt">
+        <strong>IPA</strong> (International Phonetic Alphabet) je sustav za <em>precizno</em> zapisivanje izgovora bilo kojeg jezika. Svaki glas ima jedinstveni simbol. Koristi se u rječnicima, jezičnoj nastavi, lingvistici.
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Hrv. slovo</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">IPA</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Napomena</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Primjer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">c</td><td style="padding:8px 10px">[t͡s]</td><td style="padding:8px 10px">afrikata</td><td style="padding:8px 10px">cesta [t͡sɛsta]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">č</td><td style="padding:8px 10px">[t͡ʃ]</td><td style="padding:8px 10px">tvrdo č</td><td style="padding:8px 10px">čaj [t͡ʃai]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">ć</td><td style="padding:8px 10px">[t͡ɕ]</td><td style="padding:8px 10px">meko ć</td><td style="padding:8px 10px">ćup [t͡ɕup]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">dž</td><td style="padding:8px 10px">[d͡ʒ]</td><td style="padding:8px 10px">tvrdo dž</td><td style="padding:8px 10px">džep [d͡ʒɛp]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">đ</td><td style="padding:8px 10px">[d͡ʑ]</td><td style="padding:8px 10px">meko đ</td><td style="padding:8px 10px">đak [d͡ʑak]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">lj</td><td style="padding:8px 10px">[ʎ]</td><td style="padding:8px 10px">palatal. l</td><td style="padding:8px 10px">ljeto [ʎɛto]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">nj</td><td style="padding:8px 10px">[ɲ]</td><td style="padding:8px 10px">palatal. n</td><td style="padding:8px 10px">njuška [ɲuʃka]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">š</td><td style="padding:8px 10px">[ʃ]</td><td style="padding:8px 10px">frikativ</td><td style="padding:8px 10px">škola [ʃkola]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">ž</td><td style="padding:8px 10px">[ʒ]</td><td style="padding:8px 10px">frikativ</td><td style="padding:8px 10px">žena [ʒɛna]</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">h</td><td style="padding:8px 10px">[x]</td><td style="padding:8px 10px">velar. frikat.</td><td style="padding:8px 10px">hlad [xlad]</td></tr>
+          <tr><td style="padding:8px 10px">j</td><td style="padding:8px 10px">[j]</td><td style="padding:8px 10px">aproksimant</td><td style="padding:8px 10px">jama [jama]</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-warn">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--blue)">🔎 Sitna dijakritika koju ćeš vidjeti</div>
+        <div class="bw-txt">
+          • <strong>[t͡s]</strong> s lukom iznad = <em>afrikata</em> (slog spojen)<br>
+          • <strong>[ʰ]</strong> = aspiracija (dah)<br>
+          • <strong>[ː]</strong> = dužina (dugi samoglasnik)<br>
+          • <strong>[ˈ]</strong> = naglasak na slijedećem slogu
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. MAPA TABOVA -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">5. Kako koristiti ovo poglavlje</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🗺 Mapa 8 tabova H19</div>
+      <div class="box-int-txt">
+        Poglavlje je organizirano <strong>od teorije prema vježbi</strong>. Preporučujem slijedan red, ali <em>Scanner</em> (Tab 5) možeš koristiti u bilo kojem trenutku kao alat za provjeru.
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:16px 0">
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer" onclick="sw(1)">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1px">TAB 1</div>
+        <div style="font-weight:700;margin:4px 0">🔤 Glasovi</div>
+        <div style="font-size:11px;color:var(--t3)">30 fonema · IPA tablice · audio demo</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer" onclick="sw(2)">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1px">TAB 2</div>
+        <div style="font-weight:700;margin:4px 0">🔄 Glasovne promjene</div>
+        <div style="font-size:11px;color:var(--t3)">7 glavnih: jotacija, palatalizacija...</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer" onclick="sw(3)">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1px">TAB 3</div>
+        <div style="font-weight:700;margin:4px 0">🎵 Slog i naglasak</div>
+        <div style="font-size:11px;color:var(--t3)">4 hrv. naglaska · audio demo</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer" onclick="sw(4)">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1px">TAB 4</div>
+        <div style="font-weight:700;margin:4px 0">📚 Pojmovnik</div>
+        <div style="font-size:11px;color:var(--t3)">~55 pojmova · grid/flashcard</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer" onclick="sw(5)">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1px">TAB 5 ★</div>
+        <div style="font-weight:700;margin:4px 0">🔬 Scanner</div>
+        <div style="font-size:11px;color:var(--t3)">Riječ → fonemi, slogovi, IPA</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer" onclick="sw(6)">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1px">TAB 6</div>
+        <div style="font-weight:700;margin:4px 0">🧠 Kviz</div>
+        <div style="font-size:11px;color:var(--t3)">25 pitanja · provjera znanja</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer" onclick="sw(7)">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1px">TAB 7</div>
+        <div style="font-weight:700;margin:4px 0">📊 Referentna tablica</div>
+        <div style="font-size:11px;color:var(--t3)">A4 printabilni cheat sheet</div>
+      </div>
+    </div>
+
+    <!-- RECAP -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">📌 RECAP — što moraš zapamtiti</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Ključne točke iz Tab 0</div>
+      <div class="box-key-txt">
+        <strong>1. Fonetika vs. fonologija:</strong> fonetika = fizika glasa (kako zvuči); fonologija = funkcija glasa (što znači).<br><br>
+        <strong>2. Tri razine:</strong><br>
+        • <strong>Fonem</strong> /p/ — apstraktna razlikovna jedinica (kose crte)<br>
+        • <strong>Alofon</strong> [pʰ] — konkretna izgovorna realizacija (uglate zagrade)<br>
+        • <strong>Grafem</strong> &lt;p&gt; — pisani znak (šiljate zagrade)<br><br>
+        <strong>3. Hrv. standard:</strong> 30 fonema = 5 samoglasnika + 25 suglasnika.<br><br>
+        <strong>4. Dvoslovi:</strong> <em>nj</em>, <em>lj</em>, <em>dž</em> su 1 fonem ali 2 slova — pazi kod brojanja.<br><br>
+        <strong>5. IPA:</strong> univerzalan fonetski zapis, koristi se u rječnicima i lingvistici.
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(7)">← Referentna tablica</span>
+      <span class="nb-btn primary" onclick="sw(1)">🔤 Glasovi →</span>
+    </div>
+
+  
+    <div class="cheat-card" style="margin-top:24px">
+      <div class="cheat-hdr">
+        <div class="cheat-hdr-l">
+          <div class="cheat-eye">SLJEDEĆE</div>
+          <div class="cheat-ttl">Tab 1 · Glasovi i fonetika</div>
+        </div>
+      </div>
+      <div class="cheat-grid">
+        <div class="cheat-col cheat-col-wide" style="font-family:var(--serif,Fraunces,serif);font-size:13.5px;color:var(--t2,#c5b8aa);line-height:1.65">
+          <p style="margin:0">Teorija ti daje pretpovijest — <b>Tab 1</b> ulazi u glasove. Vokali, konsonanti, sonanti, šumnici. Svaka kategorija s primjerima.</p>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /l0 -->
+
+  <div class="layer" id="l1" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">🔤 30 hrv. fonema</span>
+      <span class="pill p-br">5 samoglasnika + 25 suglasnika</span>
+      <span class="pill p-go">IPA simboli</span>
+      <span class="pill p-t">🔊 Audio demo</span>
+      <span class="pill p-r">Artikulacijske tablice</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Cilj ovog taba</div>
+      <div class="box-int-txt">
+        Upoznaj <strong>sve 30 hrvatskih fonema</strong> kroz artikulacijske tablice. Klikaj <strong>🔊 Izgovori</strong> za audio demo riječi (Web Speech API). Razumijevanje mjesta i načina tvorbe je ključno za razumijevanje glasovnih promjena u <strong>Tab 2</strong>.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         1. SAMOGLASNICI (5)
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">1. Samoglasnici · 5 fonema</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🅰 Samoglasnici — bez prepreke u usnoj šupljini</div>
+      <div class="box-int-txt">
+        Samoglasnici (vokali) su glasovi koji se izgovaraju <strong>bez prepreke</strong> u usnoj šupljini. Zrak slobodno prolazi. Klasificiraju se po <strong>poziciji jezika</strong> (prednji/srednji/stražnji) i <strong>visini jezika</strong> (otvoreni/zatvoreni).
+      </div>
+    </div>
+
+    <!-- VOKAL TRAPEZOID — vizualizacija samoglasnika -->
+    <div style="margin:20px 0;padding:24px;background:linear-gradient(135deg, rgba(233,180,70,.04) 0%, transparent 100%);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="text-align:center;font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:2px;margin-bottom:14px">VOKAL TRAPEZOID — STANDARDNA FONETSKA VIZUALIZACIJA</div>
+      <svg viewBox="0 0 500 280" style="width:100%;max-width:500px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+        <!-- Trapezoid frame -->
+        <path d="M 80 30 L 420 30 L 360 250 L 140 250 Z" fill="none" stroke="rgba(233,180,70,.3)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        
+        <!-- Axis labels — top -->
+        <text x="80" y="20" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="monospace" font-size="11">PREDNJI</text>
+        <text x="250" y="20" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="monospace" font-size="11">SREDNJI</text>
+        <text x="420" y="20" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="monospace" font-size="11">STRAŽNJI</text>
+        
+        <!-- Axis labels — left -->
+        <text x="60" y="40" text-anchor="end" fill="rgba(255,255,255,.5)" font-family="monospace" font-size="10">zatvoren</text>
+        <text x="60" y="100" text-anchor="end" fill="rgba(255,255,255,.5)" font-family="monospace" font-size="10">sr.-zatv.</text>
+        <text x="60" y="160" text-anchor="end" fill="rgba(255,255,255,.5)" font-family="monospace" font-size="10">sr.-otv.</text>
+        <text x="60" y="220" text-anchor="end" fill="rgba(255,255,255,.5)" font-family="monospace" font-size="10">otvoren</text>
+        
+        <!-- Vowels -->
+        <!-- i [i] — prednji, zatvoren -->
+        <g style="cursor:pointer" onclick="speakWord('riba')">
+          <circle cx="100" cy="50" r="22" fill="rgba(233,180,70,.15)" stroke="var(--gold)" stroke-width="2"/>
+          <text x="100" y="48" text-anchor="middle" fill="var(--gold)" font-family="serif" font-size="20" font-weight="700">i</text>
+          <text x="100" y="62" text-anchor="middle" fill="rgba(233,180,70,.7)" font-family="monospace" font-size="9">[i]</text>
+        </g>
+        
+        <!-- u [u] — stražnji, zatvoren -->
+        <g style="cursor:pointer" onclick="speakWord('ruka')">
+          <circle cx="400" cy="50" r="22" fill="rgba(233,180,70,.15)" stroke="var(--gold)" stroke-width="2"/>
+          <text x="400" y="48" text-anchor="middle" fill="var(--gold)" font-family="serif" font-size="20" font-weight="700">u</text>
+          <text x="400" y="62" text-anchor="middle" fill="rgba(233,180,70,.7)" font-family="monospace" font-size="9">[u]</text>
+        </g>
+        
+        <!-- e [ɛ] — prednji, sr.-otvoren -->
+        <g style="cursor:pointer" onclick="speakWord('sestra')">
+          <circle cx="135" cy="160" r="22" fill="rgba(233,180,70,.15)" stroke="var(--gold)" stroke-width="2"/>
+          <text x="135" y="158" text-anchor="middle" fill="var(--gold)" font-family="serif" font-size="20" font-weight="700">e</text>
+          <text x="135" y="172" text-anchor="middle" fill="rgba(233,180,70,.7)" font-family="monospace" font-size="9">[ɛ]</text>
+        </g>
+        
+        <!-- o [ɔ] — stražnji, sr.-otvoren -->
+        <g style="cursor:pointer" onclick="speakWord('voda')">
+          <circle cx="365" cy="160" r="22" fill="rgba(233,180,70,.15)" stroke="var(--gold)" stroke-width="2"/>
+          <text x="365" y="158" text-anchor="middle" fill="var(--gold)" font-family="serif" font-size="20" font-weight="700">o</text>
+          <text x="365" y="172" text-anchor="middle" fill="rgba(233,180,70,.7)" font-family="monospace" font-size="9">[ɔ]</text>
+        </g>
+        
+        <!-- a [a] — srednji, otvoren -->
+        <g style="cursor:pointer" onclick="speakWord('mama')">
+          <circle cx="250" cy="220" r="22" fill="rgba(233,180,70,.15)" stroke="var(--gold)" stroke-width="2"/>
+          <text x="250" y="218" text-anchor="middle" fill="var(--gold)" font-family="serif" font-size="20" font-weight="700">a</text>
+          <text x="250" y="232" text-anchor="middle" fill="rgba(233,180,70,.7)" font-family="monospace" font-size="9">[a]</text>
+        </g>
+      </svg>
+      <div style="text-align:center;margin-top:12px;font-size:11px;color:var(--t3)">💡 Klikni na samoglasnik za audio izgovor • Položaj prikazuje gdje se jezik nalazi u ustima</div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:12px;text-align:left;color:var(--gold);min-width:70px">Slovo</th>
+            <th style="padding:12px;text-align:left;color:var(--gold)">IPA</th>
+            <th style="padding:12px;text-align:left;color:var(--gold)">Pozicija</th>
+            <th style="padding:12px;text-align:left;color:var(--gold)">Visina</th>
+            <th style="padding:12px;text-align:left;color:var(--gold)">Primjer</th>
+            <th style="padding:12px;text-align:center;color:var(--gold)">🔊</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;font-size:18px;font-weight:700">a</td><td style="padding:10px">[a]</td><td style="padding:10px">srednji</td><td style="padding:10px">otvoren</td><td style="padding:10px">m<strong>a</strong>ma, p<strong>a</strong>s</td><td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('mama')">🔊</button></td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;font-size:18px;font-weight:700">e</td><td style="padding:10px">[ɛ]</td><td style="padding:10px">prednji</td><td style="padding:10px">srednje-otvoren</td><td style="padding:10px">s<strong>e</strong>stra, m<strong>e</strong>d</td><td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('sestra')">🔊</button></td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;font-size:18px;font-weight:700">i</td><td style="padding:10px">[i]</td><td style="padding:10px">prednji</td><td style="padding:10px">zatvoren</td><td style="padding:10px">r<strong>i</strong>ba, p<strong>i</strong>ti</td><td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('riba')">🔊</button></td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;font-size:18px;font-weight:700">o</td><td style="padding:10px">[ɔ]</td><td style="padding:10px">stražnji</td><td style="padding:10px">srednje-otvoren</td><td style="padding:10px">v<strong>o</strong>da, k<strong>o</strong>st</td><td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('voda')">🔊</button></td></tr>
+          <tr><td style="padding:10px;font-size:18px;font-weight:700">u</td><td style="padding:10px">[u]</td><td style="padding:10px">stražnji</td><td style="padding:10px">zatvoren</td><td style="padding:10px">r<strong>u</strong>ka, k<strong>u</strong>ća</td><td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('ruka')">🔊</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">✨ Slogotvorno r</div>
+      <div class="box-signal-txt">
+        U hrvatskom je <strong>r</strong> poseban suglasnik — može biti <em>slogotvoran</em>, tj. tvoriti slog BEZ samoglasnika. Primjeri: <strong>pr̩st</strong>, <strong>kr̩v</strong>, <strong>tr̩g</strong>, <strong>sr̩ce</strong> (svi jednosložni zahvaljujući slogotvornom r). Zato se kaže da hrv. ima „5 samoglasnika + slogotvorno r".
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         2. SUGLASNICI (25) — PO NAČINU TVORBE
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">2. Suglasnici · 25 fonema — po načinu tvorbe</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🅱 Suglasnici — s preprekom</div>
+      <div class="box-int-txt">
+        Suglasnici (konsonanti) su glasovi s <strong>preprekom</strong> u usnoj šupljini. 25 hrv. suglasnika klasificira se prema <strong>načinu tvorbe</strong> (6 grupa) i <strong>mjestu tvorbe</strong>.
+      </div>
+    </div>
+
+    <!-- GRUPE SUGLASNIKA — 6 scene-cards -->
+
+    <div class="scene-grid" style="margin:18px 0">
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">1</div>
+          <div class="scene-ttl">
+            <div class="scene-name">PLOZIVI · 6 fonema</div>
+            <div class="scene-sub">p b · t d · k g — zatvor + nagli prekid</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Plozivi</strong> (prekidni, eksplozivi) — potpuni zatvor u usnoj šupljini, zatim naglo otvaranje. Zvuk „pucka".</p>
+          <p><strong>3 para</strong> (zvučni ↔ bezvučni):</p>
+          <ul style="list-style:none;padding:0">
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>p</strong> [p] — bilabijalni, bezvučni · <em>pas</em><br><strong>b</strong> [b] — bilabijalni, zvučni · <em>bas</em></span>
+              <span><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('pas bas')">🔊</button></span>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>t</strong> [t] — dentalni, bezvučni · <em>tata</em><br><strong>d</strong> [d] — dentalni, zvučni · <em>dama</em></span>
+              <span><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('tata dama')">🔊</button></span>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>k</strong> [k] — velarni, bezvučni · <em>kost</em><br><strong>g</strong> [g] — velarni, zvučni · <em>gost</em></span>
+              <span><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('kost gost')">🔊</button></span>
+            </li>
+          </ul>
+          <p style="margin-top:10px"><strong>Minimalni parovi koji dokazuju fonemski status:</strong> pas-bas, kost-gost.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">2</div>
+          <div class="scene-ttl">
+            <div class="scene-name">FRIKATIVI · 6 fonema</div>
+            <div class="scene-sub">f · s z · š ž · h — tjesnac + trenje</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Frikativi</strong> (tjesnačni) — zrak prolazi kroz tjesnac između artikulatora, stvara se trenje („šum"). NEMA potpunog zatvora.</p>
+          <ul style="list-style:none;padding:0">
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>f</strong> [f] — labiodentalni, bezvučni · <em>film</em> (nema zvučnog para u hrv.)</span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('film')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>s</strong> [s] — alveolarni, bezvučni · <em>sunce</em><br><strong>z</strong> [z] — alveolarni, zvučni · <em>zub</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('sunce zub')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>š</strong> [ʃ] — postalveol., bezvučni · <em>škola</em><br><strong>ž</strong> [ʒ] — postalveol., zvučni · <em>žena</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('škola žena')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>h</strong> [x] — velarni, bezvučni · <em>hrast</em> (nema zvučnog para u hrv. std.)</span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('hrast')">🔊</button>
+            </li>
+          </ul>
+          <p><strong>⚠ Pazi:</strong> <em>f</em> i <em>h</em> nemaju zvučne parove u hrvatskom standardu. To je jedna od iznimaka kod <strong>jednačenja po zvučnosti</strong> (Tab 2).</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--green);color:#fff">3</div>
+          <div class="scene-ttl">
+            <div class="scene-name">AFRIKATE · 5 fonema</div>
+            <div class="scene-sub">c · č ć · dž đ — ploziv + frikativ spojeni</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Afrikate</strong> (sliveni glasovi) — zatvor + nagli otvor u tjesnac. Zvuk spojenog ploziva i frikativa ([t+s] = [t͡s] = c).</p>
+          <ul style="list-style:none;padding:0">
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>c</strong> [t͡s] — alveolarni, bezvučni · <em>cesta</em> (nema zvučnog para)</span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('cesta')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>č</strong> [t͡ʃ] — postalveol., bezvučni · <em>čaj</em> (tvrdo)<br><strong>dž</strong> [d͡ʒ] — postalveol., zvučni · <em>džep</em> (tvrdo)</span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('čaj džep')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>ć</strong> [t͡ɕ] — palatalni, bezvučni · <em>ćup</em> (meko)<br><strong>đ</strong> [d͡ʑ] — palatalni, zvučni · <em>đak</em> (meko)</span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('ćup đak')">🔊</button>
+            </li>
+          </ul>
+          <p><strong>⚠ Najčešće zamjene:</strong> <em>č</em> ↔ <em>ć</em> i <em>dž</em> ↔ <em>đ</em>. Pravilo: <strong>tvrdo č/dž</strong> vs. <strong>meko ć/đ</strong>. Tvrdo se tvori straga, meko naprijed (palatalno).</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--red);color:#fff">4</div>
+          <div class="scene-ttl">
+            <div class="scene-name">NAZALI · 3 fonema</div>
+            <div class="scene-sub">m · n · nj — zrak kroz nos</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Nazali</strong> (nosni glasovi) — zatvor u usnoj šupljini + spuštena resičica (uvula) → zrak izlazi <strong>kroz nos</strong>. Svi nazali su <strong>zvučni</strong>.</p>
+          <ul style="list-style:none;padding:0">
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>m</strong> [m] — bilabijalni · <em>mama</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('mama')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>n</strong> [n] — dentalni/alveolarni · <em>noć</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('noć')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>nj</strong> [ɲ] — palatalni (meki n) · <em>njuška, konj</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('njuška konj')">🔊</button>
+            </li>
+          </ul>
+          <p><strong>💡 Alofon:</strong> fonem /n/ prije /k/ ili /g/ izgovara se kao <strong>[ŋ]</strong> (velarni nazal): „banka" = [baŋka], „tango" = [taŋgo]. To je <em>alofon</em>, ne poseban fonem.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">5</div>
+          <div class="scene-ttl">
+            <div class="scene-name">LIKVIDI · 3 fonema</div>
+            <div class="scene-sub">l · lj · r — tekući glasovi</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Likvidi</strong> (tekući glasovi) — zrak teče oko preprekom djelomično suženih artikulatora. Svi likvidi su <strong>zvučni</strong>.</p>
+          <ul style="list-style:none;padding:0">
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>l</strong> [l] — alveolarni, lateralni · <em>lav, sol</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('lav sol')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>lj</strong> [ʎ] — palatalni, lateralni (meki l) · <em>ljeto, polje</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('ljeto polje')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>r</strong> [r] — alveolarni, treptaj · <em>ruka, rada</em> (može biti slogotvorno: pr̩st)</span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('ruka prst')">🔊</button>
+            </li>
+          </ul>
+          <p><strong>⚠ Pazi:</strong> <em>lj</em> je 1 fonem /ʎ/ (ne l+j). U riječi „ljeto" nije „l-j-e-t-o" nego „ʎ-e-t-o" (4 fonema, 5 slova).</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#9b59b6;color:#fff">6</div>
+          <div class="scene-ttl">
+            <div class="scene-name">APROKSIMANTI · 2 fonema</div>
+            <div class="scene-sub">j · v — minimalna prepreka</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>Aproksimanti</strong> — artikulatori se približavaju, ali prepreka je <strong>minimalna</strong>. Zvuče slično samoglasnicima, ali imaju „neki šum".</p>
+          <ul style="list-style:none;padding:0">
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>j</strong> [j] — palatalni · <em>jama, moj</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('jama moj')">🔊</button>
+            </li>
+            <li style="padding:8px 12px;background:var(--ele);border-radius:var(--r1);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>v</strong> [ʋ] — labiodentalni · <em>voda, hvala</em></span>
+              <button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('voda hvala')">🔊</button>
+            </li>
+          </ul>
+          <p><strong>💡 Važna iznimka:</strong> hrv. <strong>v</strong> se ponaša drugačije od ostalih suglasnika u glasovnim promjenama. Primjerice, NE jednači se po zvučnosti u nekim pozicijama (ovca → ovca, NE „ofca").</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════
+         3. KLASIFIKACIJA PO MJESTU TVORBE
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">3. Mjesto tvorbe · gdje nastaje prepreka</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📍 Gdje se glas tvori</div>
+      <div class="box-int-txt">
+        Ista klasifikacija, različit kut. <strong>Mjesto tvorbe</strong> = gdje u ustima se prepreka stvara. Od usana (<em>naprijed</em>) do grla (<em>natrag</em>).
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Mjesto</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Gdje</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Suglasnici</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700">Bilabijalni</td><td style="padding:8px 10px">obje usne</td><td style="padding:8px 10px">p, b, m</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700">Labiodentalni</td><td style="padding:8px 10px">donja usna + gornji zubi</td><td style="padding:8px 10px">f, v</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700">Dentalni</td><td style="padding:8px 10px">vrh jezika + zubi</td><td style="padding:8px 10px">t, d</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700">Alveolarni</td><td style="padding:8px 10px">vrh jezika + alveole (iza zubi)</td><td style="padding:8px 10px">s, z, c, n, l, r</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700">Postalveolarni</td><td style="padding:8px 10px">tijelo jezika + iza alveola</td><td style="padding:8px 10px">š, ž, č, dž</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700">Palatalni</td><td style="padding:8px 10px">sredina jezika + tvrdo nepce</td><td style="padding:8px 10px">ć, đ, nj, lj, j</td></tr>
+          <tr><td style="padding:8px 10px;font-weight:700">Velarni</td><td style="padding:8px 10px">stražnji dio jezika + meko nepce</td><td style="padding:8px 10px">k, g, h</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         4. ZVUČNOST (parovi)
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">4. Zvučnost · zvučni ↔ bezvučni parovi</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎵 Vibracija glasnica</div>
+      <div class="box-int-txt">
+        <strong>Zvučni</strong> glasovi imaju vibraciju glasnica (stavi prst na grlo — osjetit ćeš treperenje). <strong>Bezvučni</strong> nemaju. Ova opreka je <strong>ključna za Tab 2</strong> (glasovne promjene, posebno <em>jednačenje po zvučnosti</em>).
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:14px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:12px;text-align:center;color:var(--gold)">Bezvučni</th>
+            <th style="padding:12px;text-align:center;color:var(--gold)">Zvučni</th>
+            <th style="padding:12px;text-align:left;color:var(--gold)">Primjer minimalnog para</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">p</td><td style="padding:10px;text-align:center;font-weight:700">b</td><td style="padding:10px">pas ↔ bas</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">t</td><td style="padding:10px;text-align:center;font-weight:700">d</td><td style="padding:10px">tuga ↔ duga</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">k</td><td style="padding:10px;text-align:center;font-weight:700">g</td><td style="padding:10px">kost ↔ gost</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">s</td><td style="padding:10px;text-align:center;font-weight:700">z</td><td style="padding:10px">sima ↔ zima</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">š</td><td style="padding:10px;text-align:center;font-weight:700">ž</td><td style="padding:10px">škola ↔ žica (različite riječi)</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">č</td><td style="padding:10px;text-align:center;font-weight:700">dž</td><td style="padding:10px">čep ↔ džep</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">ć</td><td style="padding:10px;text-align:center;font-weight:700">đ</td><td style="padding:10px">ćud ↔ đak</td></tr>
+          <tr><td style="padding:10px;text-align:center;font-weight:700">f, h</td><td style="padding:10px;text-align:center;color:var(--t3)">—</td><td style="padding:10px;color:var(--t3)"><em>nemaju zvučnih parova u hrv. std.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">⚡ Zapamti: 7 parova zvučnost</div>
+      <div class="box-key-txt" style="font-family:var(--mono);font-size:15px;line-height:2">
+        <strong>p-b · t-d · k-g · s-z · š-ž · č-dž · ć-đ</strong><br>
+        <em style="font-size:12px;color:var(--t3)">f, h — nemaju parove</em><br>
+        <em style="font-size:12px;color:var(--t3)">Nazali, likvidi, aproksimanti (m, n, nj, l, lj, r, j, v) — svi zvučni, nemaju bezvučne parove</em>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5. PALATALNOST (tvrdi vs. meki)
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">5. Palatalnost · tvrdi ↔ meki parovi</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">👅 Pozicija jezika</div>
+      <div class="box-int-txt">
+        Neki hrv. suglasnici imaju <strong>palatalni par</strong> — verziju koja se tvori <strong>naprijed</strong>, s jezikom bliže tvrdom nepcu. To je važno za <strong>jotaciju</strong> i <strong>palatalizaciju</strong> u Tab 2.
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:14px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:12px;text-align:center;color:var(--gold)">Nepalatalni (tvrdi)</th>
+            <th style="padding:12px;text-align:center;color:var(--gold)">Palatalni (meki)</th>
+            <th style="padding:12px;text-align:left;color:var(--gold)">Primjer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">n</td><td style="padding:10px;text-align:center;font-weight:700">nj</td><td style="padding:10px">noć ↔ njuška</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">l</td><td style="padding:10px;text-align:center;font-weight:700">lj</td><td style="padding:10px">luk ↔ ljut</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;text-align:center;font-weight:700">č</td><td style="padding:10px;text-align:center;font-weight:700">ć</td><td style="padding:10px">čep ↔ ćup</td></tr>
+          <tr><td style="padding:10px;text-align:center;font-weight:700">dž</td><td style="padding:10px;text-align:center;font-weight:700">đ</td><td style="padding:10px">džep ↔ đak</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">🎯 Zašto je ovo kritično za Tab 2</div>
+      <div class="box-signal-txt">
+        <strong>Jotacija</strong> i <strong>palatalizacija</strong> se definiraju kao „nepalatalni glas postaje palatalni". Bez razumijevanja tvrdih/mekih parova, te promjene ostaju apstraktne. Primjer: <em>list → lišće</em> — <strong>t</strong> (nepalatalni) postaje <strong>ć</strong> (palatalni) pod utjecajem /j/.
+      </div>
+    </div>
+
+    <!-- RECAP -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">📌 RECAP — 30 fonema na jednom mjestu</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Ključne točke Tab 1</div>
+      <div class="box-key-txt">
+        <strong>SAMOGLASNICI (5):</strong> a, e, i, o, u + slogotvorno r<br><br>
+        <strong>SUGLASNICI (25) — 6 grupa:</strong><br>
+        • Plozivi (6): <strong>p b · t d · k g</strong><br>
+        • Frikativi (6): <strong>f · s z · š ž · h</strong><br>
+        • Afrikate (5): <strong>c · č ć · dž đ</strong><br>
+        • Nazali (3): <strong>m · n · nj</strong><br>
+        • Likvidi (3): <strong>l · lj · r</strong><br>
+        • Aproksimanti (2): <strong>j · v</strong><br><br>
+        <strong>7 PAROVA PO ZVUČNOSTI:</strong> p-b · t-d · k-g · s-z · š-ž · č-dž · ć-đ<br>
+        <strong>4 PAROVA PO PALATALNOSTI:</strong> n-nj · l-lj · č-ć · dž-đ<br>
+        <strong>DVOSLOVI (1 fonem, 2 slova):</strong> nj /ɲ/ · lj /ʎ/ · dž /d͡ʒ/
+      </div>
+    </div>
+
+    
+    <!-- VIDEO RESURSI — v3.5 -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">Video resursi</div><div class="sec-line"></div></div>
+
+    <div class="prose">Kada ti tekst nije dovoljan — vizualni učenici često bolje pamte kroz video objašnjenja i predstave. Ovdje su pouzdani edukacijski resursi na YouTubeu.</div>
+
+    <div class="yt-grid">
+      <a class="yt-card" href="https://www.youtube.com/results?search_query=fonetika+fonologija+glasovi+naglasci+hrvatski+jezik+matura" target="_blank" rel="noopener noreferrer">
+        <div class="yt-thumb">
+          <div class="yt-play">▶</div>
+        </div>
+        <div class="yt-body">
+          <div class="yt-lang"><span class="yt-flag">🇭🇷</span> HR</div>
+          <div class="yt-title">Fonetika i fonologija — glasovi, naglasci</div>
+        </div>
+      </a>
+
+      <a class="yt-card" href="https://www.youtube.com/results?search_query=glasovne+promjene+jotacija+palatalizacija+sibilarizacija" target="_blank" rel="noopener noreferrer">
+        <div class="yt-thumb">
+          <div class="yt-play">▶</div>
+        </div>
+        <div class="yt-body">
+          <div class="yt-lang"><span class="yt-flag">🇭🇷</span> HR</div>
+          <div class="yt-title">Glasovne promjene — jotacija, palatalizacija</div>
+        </div>
+      </a>
+
+      <a class="yt-card" href="https://www.youtube.com/results?search_query=Croatian+phonology+phonetics+explained+sounds" target="_blank" rel="noopener noreferrer">
+        <div class="yt-thumb">
+          <div class="yt-play">▶</div>
+        </div>
+        <div class="yt-body">
+          <div class="yt-lang"><span class="yt-flag">🇬🇧</span> EN</div>
+          <div class="yt-title">Croatian phonology — sounds explained</div>
+        </div>
+      </a>
+
+      <a class="yt-card" href="https://www.youtube.com/results?search_query=IPA+phonetics+vowels+consonants+articulation+chart" target="_blank" rel="noopener noreferrer">
+        <div class="yt-thumb">
+          <div class="yt-play">▶</div>
+        </div>
+        <div class="yt-body">
+          <div class="yt-lang"><span class="yt-flag">🎬</span> EN</div>
+          <div class="yt-title">IPA phonetics — vowels &amp; consonants</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="box-tip" style="margin-top:14px">
+      <div class="bt-ico">💡</div>
+      <div class="bt-body">
+        <div class="bt-title">Pro tip — kako koristiti</div>
+        <div class="bt-txt">Video je <strong>dodatak</strong>, ne zamjena. Pročitaj djelo + ovu skriptu, pa pogledaj video — tako pamtiš 3× bolje nego kroz bilo koji pojedinačni izvor.</div>
+      </div>
+    </div>
+
+<div class="nav-row">
+      <span class="nb-btn" onclick="sw(0)">← Teorija</span>
+      <span class="nb-btn primary" onclick="sw(2)">🔄 Glasovne promjene →</span>
+    </div>
+
+  </div><!-- /l1 -->
+
+  <div class="layer" id="l2" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">🔄 7 glasovnih promjena</span>
+      <span class="pill p-br">Jotacija · Palatalizacija</span>
+      <span class="pill p-go">Sibilarizacija</span>
+      <span class="pill p-t">Jednačenja</span>
+      <span class="pill p-r">★ NCVVO favourit</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Najvažniji tab u H19</div>
+      <div class="box-int-txt">
+        Glasovne promjene su <strong>#1 fonološka tema</strong> na maturi. NCVVO najčešće traži: prepoznaj koja se promjena dogodila, objasni pravilo, napiši primjer. <strong>Razumij uzrok</strong> (kontekst koji pokreće promjenu) + <strong>rezultat</strong> (što se mijenja).
+      </div>
+    </div>
+
+    <!-- PREGLED 7 PROMJENA -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">Pregled · 7 glavnih glasovnih promjena</div><div class="sec-line"></div></div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">#</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Promjena</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Formula</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Primjer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">1</td><td style="padding:8px 10px"><strong>Jotacija</strong></td><td style="padding:8px 10px">C + j → palatalni C</td><td style="padding:8px 10px">list + je → lišće</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">2</td><td style="padding:8px 10px"><strong>1. palatalizacija</strong></td><td style="padding:8px 10px">k,g,h + e/i → č,ž,š</td><td style="padding:8px 10px">vuk → vuče (vokativ)</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">3</td><td style="padding:8px 10px"><strong>2. palatalizacija (sibilarizacija)</strong></td><td style="padding:8px 10px">k,g,h + i → c,z,s</td><td style="padding:8px 10px">vojnik → vojnici</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">4</td><td style="padding:8px 10px"><strong>Vokalizacija l</strong></td><td style="padding:8px 10px">-l na kraju sloga → -o</td><td style="padding:8px 10px">čital → čitao</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">5</td><td style="padding:8px 10px"><strong>Nepostojano a</strong></td><td style="padding:8px 10px">a se gubi u kosim pad.</td><td style="padding:8px 10px">pas → psa</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">6</td><td style="padding:8px 10px"><strong>Alternacije ije/je/e/i</strong> (jatovi)</td><td style="padding:8px 10px">refleksi praslav. ě</td><td style="padding:8px 10px">svijet → svjetlost</td></tr>
+          <tr><td style="padding:8px 10px">7</td><td style="padding:8px 10px"><strong>Jednačenje po zvučnosti</strong></td><td style="padding:8px 10px">zvučnost se izjednači</td><td style="padding:8px 10px">izpasti → ispasti</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         7 SCENE-CARDS
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">Detalji svake promjene · klikni kartu</div><div class="sec-line"></div></div>
+
+    <div class="scene-grid" style="margin:18px 0">
+
+      <!-- 1. JOTACIJA -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">1</div>
+          <div class="scene-ttl">
+            <div class="scene-name">JOTACIJA</div>
+            <div class="scene-sub">Suglasnik + j → palatalni suglasnik</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> kad nepalatalni suglasnik (t, d, s, z, n, l, k, g, h...) dođe u dodir s <strong>j</strong> (praslav. *j ili morfološki j), spoje se u <strong>palatalni</strong> suglasnik.</p>
+
+          <p><strong>🔑 Uzorci jotacije:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Početno</th><th style="padding:8px;text-align:left">Rezultat</th><th style="padding:8px;text-align:left">Primjer</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">t + j</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>ć</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">brat + ja → braća; list + je → lišće</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">d + j</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>đ</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">mlad + ji → mlađi; grozd + je → grožđe</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">s + j</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>š</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">nos + ji → nošnja; klas + je → klasje (izuzetak!)</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">z + j</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>ž</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">voziti → vožnja; gaziti → gažen</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">n + j</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>nj</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">kon + ji → konji; branitelj</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">l + j</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>lj</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">polje, zdravlje, snoplje</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">k + j</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>č</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">jak + ji → jači; pljesk + ati → pljeskati</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">g + j</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>ž</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">drag + ji → draži; bog + je → božje</td></tr>
+                <tr><td style="padding:6px 8px">h + j</td><td style="padding:6px 8px"><strong>š</strong></td><td style="padding:6px 8px">suh + ji → suši; tih + ji → tiši</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>⚠ Gdje se jotacija javlja:</strong> komparativi (-ji), zbirne imenice (-je), tvorba glag. imenica (-anje, -enje), neki padeži i vidski parovi.</p>
+
+          <p><strong>💡 Tipično pitanje NCVVO:</strong> „Koja se glasovna promjena dogodila u paru <em>list → lišće</em>?" → <strong>Jotacija</strong> (t + j → ć, plus s + j → š).</p>
+        </div>
+      </div>
+
+      <!-- 2. 1. PALATALIZACIJA -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">2</div>
+          <div class="scene-ttl">
+            <div class="scene-name">1. PALATALIZACIJA</div>
+            <div class="scene-sub">Velari k, g, h + e/i → č, ž, š</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> velari <strong>k, g, h</strong> kad dođu pred prednje samoglasnike <strong>e</strong> ili <strong>i</strong> (u nekim pozicijama), mijenjaju se u odgovarajuće palatale <strong>č, ž, š</strong>.</p>
+
+          <p><strong>🔑 Tri para promjena:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Velari</th><th style="padding:8px;text-align:left">Palatali</th><th style="padding:8px;text-align:left">Primjer</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>k</strong> + e/i</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>č</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">vuk → vuče (vok.); junak → junače; pek-em → peče</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>g</strong> + e/i</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>ž</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">bog → bože (vok.); drug → druže; mog-u → može</td></tr>
+                <tr><td style="padding:6px 8px"><strong>h</strong> + e/i</td><td style="padding:6px 8px"><strong>š</strong></td><td style="padding:6px 8px">duh → duše; prah → praše; suh → sušenje</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>⚠ Gdje se javlja:</strong></p>
+          <ul>
+            <li><strong>Vokativ m.r. jd.</strong>: junak → junače, bog → bože</li>
+            <li><strong>3. l. pl. prezenta glagola</strong>: peče, reče, može (od peći, reći, moći)</li>
+            <li><strong>Tvorba imenica nastavkom -ec, -ečak</strong>: vučić, knjižica, prašak</li>
+          </ul>
+
+          <p><strong>🎯 Mnemotehnika:</strong> <em>"KGH + E/I → ČŽŠ"</em> — prve tri velarne suglasnike preimenuju se u prve tri palatalne: k→č, g→ž, h→š.</p>
+        </div>
+      </div>
+
+      <!-- 3. 2. PALATALIZACIJA / SIBILARIZACIJA -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--green);color:#fff">3</div>
+          <div class="scene-ttl">
+            <div class="scene-name">2. PALATALIZACIJA (sibilarizacija)</div>
+            <div class="scene-sub">Velari k, g, h + i → c, z, s</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> velari <strong>k, g, h</strong> kad dođu pred <strong>i</strong> u određenim padežima, mijenjaju se u zubne sibilante <strong>c, z, s</strong>. Ova promjena je MLAĐA od 1. palatalizacije.</p>
+
+          <p><strong>🔑 Tri para:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Velari</th><th style="padding:8px;text-align:left">Sibilanti</th><th style="padding:8px;text-align:left">Primjer</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>k</strong> + i</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>c</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">vojnik → vojnici; junak → junaci; Maroka → Maroci</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>g</strong> + i</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>z</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">Ribnjak → Ribnjazi; rog → rozi (arhaično); noga → nozi (loc.)</td></tr>
+                <tr><td style="padding:6px 8px"><strong>h</strong> + i</td><td style="padding:6px 8px"><strong>s</strong></td><td style="padding:6px 8px">orah → orasi; trbuh → trbusi; uha → usi (staro)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>⚠ Gdje se javlja:</strong></p>
+          <ul>
+            <li><strong>N, V mn. m.r.</strong>: vojnik-i → vojnici, orah-i → orasi</li>
+            <li><strong>DL jd. ž.r. imenica</strong>: noga → nozi, ruka → ruci</li>
+            <li><strong>Imperativ glagola</strong>: peci (od peći), reci (od reći)</li>
+          </ul>
+
+          <p><strong>⚡ Kritična razlika 1. vs. 2. palatalizacija:</strong></p>
+          <ul>
+            <li><strong>1. palatalizacija</strong> → č, ž, š (pred e ili i, u <em>starijim</em> kontekstima)</li>
+            <li><strong>2. palatalizacija</strong> → c, z, s (pred i, u <em>mlađim</em> kontekstima — padeži, imperativ)</li>
+          </ul>
+
+          <p><strong>🎯 Mnemotehnika:</strong> <em>"KGH + I → CZS"</em> — mlađa promjena, zubni sibilanti.</p>
+        </div>
+      </div>
+
+      <!-- 4. VOKALIZACIJA L -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--red);color:#fff">4</div>
+          <div class="scene-ttl">
+            <div class="scene-name">VOKALIZACIJA L</div>
+            <div class="scene-sub">-l na kraju sloga → -o</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> <strong>l</strong> na <strong>kraju sloga</strong> (pred suglasnikom ili na kraju riječi) prelazi u <strong>o</strong>. Ako je u otvorenom slogu (pred samoglasnikom), ostaje <strong>l</strong>.</p>
+
+          <p><strong>🔑 Tipični kontekst:</strong> glagolski pridjev radni muškog roda.</p>
+
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Muški rod (l → o)</th><th style="padding:8px;text-align:left">Ženski rod (l ostaje)</th><th style="padding:8px;text-align:left">Srednji rod (l ostaje)</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">čita<strong>o</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">čita<strong>l</strong>a</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">čita<strong>l</strong>o</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">dirna<strong>o</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">dirna<strong>l</strong>a</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">dirna<strong>l</strong>o</td></tr>
+                <tr><td style="padding:6px 8px">htje<strong>o</strong></td><td style="padding:6px 8px">htje<strong>l</strong>a</td><td style="padding:6px 8px">htje<strong>l</strong>o</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>🔑 Drugi konteksti:</strong></p>
+          <ul>
+            <li><strong>Imenice na -l</strong>: posa<strong>o</strong> (ne „posal"), stranc → stranca (ali anđeo, ne anđel)</li>
+            <li><strong>Pridjevi</strong>: bije<strong>o</strong> - bije<strong>l</strong>a - bije<strong>l</strong>o</li>
+            <li><strong>Tuđice često NE prolaze vokalizaciju</strong>: general, kanal (ostaje l)</li>
+          </ul>
+
+          <p><strong>⚠ Iznimke:</strong> stol, sol, val, bal, stil — ovdje je l NA KRAJU sloga ali je <strong>korijenski</strong>, ne iz procesa vokalizacije.</p>
+
+          <p><strong>🎯 Provjera:</strong> ako u ženskom ili srednjem rodu stoji „-la/-lo", a u muškom „-o" — radi se o vokalizaciji. (čitao-čitala, imao-imala)</p>
+        </div>
+      </div>
+
+      <!-- 5. NEPOSTOJANO A -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">5</div>
+          <div class="scene-ttl">
+            <div class="scene-name">NEPOSTOJANO A</div>
+            <div class="scene-sub">a se gubi u kosim padežima</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> samoglasnik <strong>a</strong> u zadnjem slogu imenice nestaje u kosim padežima (svima osim nominativa i akuzativa neživog, te genitiva množine).</p>
+
+          <p><strong>🔑 Primjeri:</strong></p>
+
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">N jd. (s a)</th><th style="padding:8px;text-align:left">G jd. (bez a)</th><th style="padding:8px;text-align:left">DL jd.</th><th style="padding:8px;text-align:left">G mn. (s a)</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>pas</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">psa</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">psu</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pasa</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px"><strong>bora<strong>c</strong></strong></td><td style="padding:6px 8px">borca</td><td style="padding:6px 8px">borcu</td><td style="padding:6px 8px">boraca</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px"><strong>momak</strong></td><td style="padding:6px 8px">momka</td><td style="padding:6px 8px">momku</td><td style="padding:6px 8px">momaka</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px"><strong>starac</strong></td><td style="padding:6px 8px">starca</td><td style="padding:6px 8px">starcu</td><td style="padding:6px 8px">staraca</td></tr>
+                <tr><td style="padding:6px 8px"><strong>vjetar</strong></td><td style="padding:6px 8px">vjetra</td><td style="padding:6px 8px">vjetru</td><td style="padding:6px 8px">vjetara</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>⚠ Zašto „nepostojano"?</strong> Jer se a u nekim padežima POJAVLJUJE, a u drugima NESTAJE. Nije pravo a, nego ostatak praslavenskih poluglasa (jor ъ, jer ь).</p>
+
+          <p><strong>🎯 Kako prepoznati:</strong> ako imenica ima <strong>a</strong> u zadnjem slogu u N jd., a u G jd. se to a gubi → nepostojano a. Uvijek se pojavljuje i u <strong>G mn.</strong></p>
+
+          <p><strong>💡 Javlja se i u pridjevima:</strong> dobar → dobra, dobro (kratki oblik) — „a" u „dobar" je nepostojano.</p>
+        </div>
+      </div>
+
+      <!-- 6. ALTERNACIJE IJE/JE/E/I (JATOVI) -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#9b59b6;color:#fff">6</div>
+          <div class="scene-ttl">
+            <div class="scene-name">ALTERNACIJE IJE/JE/E/I (JATOVI)</div>
+            <div class="scene-sub">Refleksi praslavenskog glasa *ě</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> praslavenski glas <strong>*ě (jat)</strong> u hrvatskom se različito reflektira ovisno o slogu: <strong>ije</strong> (dugi slog), <strong>je</strong> (kratki), <strong>e</strong> ili <strong>i</strong> (u određenim pozicijama).</p>
+
+          <p><strong>🔑 Najvažniji primjer:</strong></p>
+
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Oblik</th><th style="padding:8px;text-align:left">Slog</th><th style="padding:8px;text-align:left">Refleks *ě</th><th style="padding:8px;text-align:left">Primjer</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">Imenica</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">dugi</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>ije</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">svijet, cvijet, dijete, mlijeko</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">Izvedenica</td><td style="padding:6px 8px">kratki</td><td style="padding:6px 8px"><strong>je</strong></td><td style="padding:6px 8px">svjetlost, cvjetić, djetešce, mljeko (ne-hrv.)</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">Pred j, lj, nj, o, io</td><td style="padding:6px 8px">bilo koji</td><td style="padding:6px 8px"><strong>i</strong></td><td style="padding:6px 8px">dijete → dijecu? NE → <em>djeca</em>; htio (od htjeti)</td></tr>
+                <tr><td style="padding:6px 8px">Pred određenim suglas.</td><td style="padding:6px 8px">specifično</td><td style="padding:6px 8px"><strong>e</strong></td><td style="padding:6px 8px">gdje se staro *ě pretvara u e kod izmjena</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>🎯 Klasični primjeri u jednoj obitelji riječi:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px;line-height:1.8">
+            <li><strong>svijet</strong> (dugo, ije) → <strong>svjetlost</strong> (kratko, je) → <strong>svjetiljka</strong> (je)</li>
+            <li><strong>cvijet</strong> (ije) → <strong>cvjetić</strong> (je) → <strong>cvjetni</strong> (je)</li>
+            <li><strong>dijete</strong> (ije) → <strong>djeca</strong> (je) → <strong>dječji</strong> (je) → <strong>dječak</strong> (je)</li>
+            <li><strong>mlijeko</strong> (ije) → <strong>mljekar</strong> (je) → <strong>mliječan</strong> (ije — dugi slog)</li>
+            <li><strong>lijep</strong> (ije) → <strong>ljepota</strong> (je) → <strong>ljepši</strong> (je, jotacija lj+j=lj)</li>
+          </ul>
+
+          <p><strong>⚠ NCVVO greška:</strong> pisanje „svjet" umjesto „svijet" ili „mljeko" umjesto „mlijeko" — uvijek provjeri je li slog dug ili kratak.</p>
+        </div>
+      </div>
+
+      <!-- 7. JEDNAČENJE PO ZVUČNOSTI -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#e67e22;color:#fff">7</div>
+          <div class="scene-ttl">
+            <div class="scene-name">JEDNAČENJE PO ZVUČNOSTI</div>
+            <div class="scene-sub">Zvučnost se izjednačuje na granici morfema</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> kad se u morfološkoj vezi (na granici prefiksa + korijena ili korijena + sufiksa) sretnu <strong>zvučni i bezvučni</strong> suglasnik, mijenjaju zvučnost — <strong>drugi diktira prvome</strong>.</p>
+
+          <p><strong>🔑 7 parova zvučnosti (iz Tab 1):</strong> p-b, t-d, k-g, s-z, š-ž, č-dž, ć-đ</p>
+
+          <p><strong>🔑 Primjeri:</strong></p>
+
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Osnovni oblik</th><th style="padding:8px;text-align:left">Napiše se</th><th style="padding:8px;text-align:left">Objašnjenje</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">iz + pasti</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>ispasti</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">z (zv.) → s (bezv.), jer pasti počinje bezvučnim p</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">od + kud</td><td style="padding:6px 8px"><strong>otkud</strong></td><td style="padding:6px 8px">d (zv.) → t (bezv.), jer slijedi k (bezv.)</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">pod + pisati</td><td style="padding:6px 8px"><strong>potpisati</strong></td><td style="padding:6px 8px">d → t (pred p)</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">srb + ski</td><td style="padding:6px 8px"><strong>srpski</strong></td><td style="padding:6px 8px">b (zv.) → p (bezv.), jer slijedi s (bezv.)</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">top + ba</td><td style="padding:6px 8px"><strong>tozba</strong> (staro)</td><td style="padding:6px 8px">p (bezv.) → b (zv.) pred b (zv.) — rijetko</td></tr>
+                <tr><td style="padding:6px 8px">vrat + ba</td><td style="padding:6px 8px"><strong>vradžba</strong></td><td style="padding:6px 8px">t → d pred b; č prelazi u dž</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>⚠ IZNIMKE — jednačenje se NE provodi:</strong></p>
+          <ul>
+            <li><strong>Ako je prvi član iz riječi koja se osamostalila</strong>: podšef (ne potšef), nadzor (ne natzor — da se ne izgubi značenje)</li>
+            <li><strong>Pred sonantima</strong> (v, j, m, n, nj, l, lj, r) — nema promjene: zvono (ne svono), dno (ne tno)</li>
+            <li><strong>v ne izaziva jednačenje</strong>: ovca (ne „ofca")</li>
+          </ul>
+
+          <p><strong>🎯 Tipično NCVVO pitanje:</strong> „Kako se piše: <em>od + knjige</em>?" → <strong>otknjige</strong>? NE. U izgovoru jest [otkɲige], ali u pismu <strong>od knjige</strong> (jer su to dvije odvojene riječi). Jednačenje se piše SAMO unutar jedne riječi.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ZAŠTO JE OVO VAŽNO -->
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">🎯 Strategija za NCVVO pitanja</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">📝 Kako prepoznati koja se promjena dogodila</div>
+      <div class="box-key-txt">
+        <strong>1. Pronađi osnovni oblik</strong> (korijen, infinitiv) vs. oblik u primjeru.<br>
+        <strong>2. Usporedi slovo po slovo.</strong> Što je drugačije?<br>
+        <strong>3. Identificiraj promjenu prema tipu:</strong><br>
+        &nbsp;&nbsp;• k/g/h → č/ž/š (pred e/i) → <strong>1. palatalizacija</strong><br>
+        &nbsp;&nbsp;• k/g/h → c/z/s (pred i, u padežima) → <strong>2. palatalizacija</strong><br>
+        &nbsp;&nbsp;• bilo koji C + j → palatalni C → <strong>jotacija</strong><br>
+        &nbsp;&nbsp;• -l → -o (kraj sloga) → <strong>vokalizacija l</strong><br>
+        &nbsp;&nbsp;• a nestaje u G/D/L → <strong>nepostojano a</strong><br>
+        &nbsp;&nbsp;• ije ↔ je ↔ e/i → <strong>alternacija jatova</strong><br>
+        &nbsp;&nbsp;• zvučni/bezvučni mijenjan u pismu → <strong>jednačenje zvučnosti</strong>
+      </div>
+    </div>
+
+    <div class="box-warn">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--gold)">⚠ Česte konfuzije</div>
+        <div class="bw-txt">
+          <strong>1. palatalizacija vs. jotacija</strong>: obje daju slične rezultate (č, ž, š), ali kontekst je različit. 1. palat. je pred e/i (bez j), jotacija zahtijeva j.<br><br>
+          <strong>1. vs. 2. palatalizacija</strong>: 1. → č, ž, š (vuk → vuče); 2. → c, z, s (vojnik → vojnici). 2. palat. je mlađa.<br><br>
+          <strong>Nepostojano a vs. regularno a</strong>: provjeri G jd. — ako a nestaje, nepostojano je.<br><br>
+          <strong>Jednačenje u izgovoru vs. pismu</strong>: u izgovoru se uvijek jednači (od knjige → [otkɲige]), u pismu samo unutar riječi (podpis → potpis).
+        </div>
+      </div>
+    </div>
+
+    <!-- RECAP -->
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">📌 RECAP — 7 promjena u 7 rečenica</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Sve glasovne promjene na jednom mjestu</div>
+      <div class="box-key-txt" style="line-height:2">
+        <strong>1. Jotacija</strong>: C + j → palatalni C (list → lišće, brat → braća)<br>
+        <strong>2. 1. palatalizacija</strong>: k/g/h + e/i → č/ž/š (vuk → vuče)<br>
+        <strong>3. 2. palatalizacija</strong>: k/g/h + i → c/z/s (vojnik → vojnici)<br>
+        <strong>4. Vokalizacija l</strong>: -l na kraju sloga → -o (čital → čitao)<br>
+        <strong>5. Nepostojano a</strong>: a nestaje u kosim padežima (pas → psa)<br>
+        <strong>6. Alternacije jatova</strong>: ije / je / e / i — refleksi *ě (svijet → svjetlost)<br>
+        <strong>7. Jednačenje po zvučnosti</strong>: zvučnost se izjednačuje (iz + pasti → ispasti)
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         INTERAKTIVNA VJEŽBA GLASOVNIH PROMJENA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🎮 Vježba · prepoznaj koja se promjena dogodila</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Aktivni trening — 8 parova</div>
+      <div class="box-int-txt">
+        Prikazuje se par riječi <strong>osnovni → izvedeni oblik</strong>. Klikni koja se glasovna promjena dogodila. Instant feedback i kratko objašnjenje.
+      </div>
+    </div>
+
+    <div id="gp-exercise" style="margin:16px 0"></div>
+    <div id="gp-result" style="display:none;margin-top:18px"></div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(1)">← Glasovi</span>
+      <span class="nb-btn primary" onclick="sw(3)">🎵 Slog i naglasak →</span>
+    </div>
+
+  </div><!-- /l2 -->
+
+  <div class="layer" id="l3" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">🎵 Slog i naglasak</span>
+      <span class="pill p-br">4 hrvatska naglaska</span>
+      <span class="pill p-go">🔊 Audio demo</span>
+      <span class="pill p-t">Distribucija</span>
+      <span class="pill p-r">Interaktivna vježba</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Zašto je ovo važno</div>
+      <div class="box-int-txt">
+        Hrvatski je <strong>prozodijski složen jezik</strong> — ima 4 različita naglaska koji razlikuju značenje (<em>pȁs</em> vs. <em>pâs</em>). NCVVO često pita da prepoznaš naglasak, objasniš pravila distribucije ili identificiraš slog. Audio demo ti pomaže čuti razlike.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         1. SLOG
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">1. Slog · osnovna prozodijska jedinica</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📖 Što je slog</div>
+      <div class="box-int-txt">
+        <strong>Slog</strong> je najmanja izgovorna cjelina oko <strong>jednog nukleusa</strong> (najčešće samoglasnika). Hrvatski slog može imati <em>inicijalu</em> (suglasnik prije nukleusa) i <em>kodu</em> (suglasnik nakon).<br><br>
+        <strong>Struktura sloga:</strong> (C) + V + (C) — npr. riječ <em>kruh</em> = 1 slog: <strong>k</strong> (inicijala) + <strong>u</strong> (nukleus) + <strong>h</strong> (koda).
+      </div>
+    </div>
+
+    <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0">
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(80,200,120,.08),transparent);border:1px solid rgba(80,200,120,.25)">
+        <div class="box-key-lbl" style="color:var(--green)">🟢 OTVORENI SLOG</div>
+        <div class="box-key-txt">
+          Završava <strong>samoglasnikom</strong>.<br><br>
+          <strong>Primjeri</strong> (podjela •):<br>
+          • ma•ma (ma-ma)<br>
+          • ku•ća (ku-ća)<br>
+          • o•ko (o-ko)<br>
+          • ri•je•ka (ri-je-ka)<br><br>
+          <em style="font-size:12px;color:var(--t3)">Klasični, „tečni" tip sloga — u hrv. najčešći.</em>
+        </div>
+      </div>
+
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(224,82,82,.08),transparent);border:1px solid rgba(224,82,82,.25)">
+        <div class="box-key-lbl" style="color:var(--red)">🔴 ZATVORENI SLOG</div>
+        <div class="box-key-txt">
+          Završava <strong>suglasnikom</strong>.<br><br>
+          <strong>Primjeri</strong> (podjela •):<br>
+          • pas (pas)<br>
+          • maj•ka (maj-ka)<br>
+          • vrt (vrt)<br>
+          • kruh (kruh)<br><br>
+          <em style="font-size:12px;color:var(--t3)">Često jednosložne riječi ili slogovi s grupom suglasnika.</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">✨ Slogotvorno r — poseban slučaj</div>
+      <div class="box-signal-txt">
+        U hrvatskom <strong>r</strong> može biti nukleus sloga BEZ samoglasnika! Tada kažemo da je <strong>slogotvorno</strong> (vokalno) i piše se <strong>r̩</strong>.<br><br>
+        <strong>Primjeri:</strong> <em>pr̩st</em> (1 slog), <em>kr̩v</em> (1), <em>vr̩t</em> (1), <em>sr̩•ce</em> (2), <em>tr̩•gov•ka</em> (3).<br><br>
+        <strong>⚠ Pravilo:</strong> r je slogotvorno kad je <strong>između dva suglasnika</strong> ili na početku/kraju bez samoglasnika.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         2. 4 HRVATSKA NAGLASKA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">2. Četiri hrvatska naglaska · klasična štokavska akcentuacija</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎵 Prozodijski sustav</div>
+      <div class="box-int-txt">
+        Hrvatski standard razlikuje <strong>2 dimenzije naglaska</strong>: <em>dužinu</em> (kratki/dugi) i <em>ton</em> (silazni/uzlazni). Kombinacija daje <strong>4 naglaska</strong>. Sve imaju standardizirane znakove.
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:12px;text-align:left;color:var(--gold)">Naglasak</th>
+            <th style="padding:12px;text-align:center;color:var(--gold)">Znak</th>
+            <th style="padding:12px;text-align:center;color:var(--gold)">Dužina</th>
+            <th style="padding:12px;text-align:center;color:var(--gold)">Ton</th>
+            <th style="padding:12px;text-align:left;color:var(--gold)">Primjer</th>
+            <th style="padding:12px;text-align:center;color:var(--gold)">🔊</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:10px;font-weight:700;color:var(--red)">Kratkosilazni</td>
+            <td style="padding:10px;text-align:center;font-size:20px">◌̏</td>
+            <td style="padding:10px;text-align:center">kratki</td>
+            <td style="padding:10px;text-align:center">silazni ↓</td>
+            <td style="padding:10px">p<strong>ȉ</strong>vo, ž<strong>ȅ</strong>na, k<strong>ȕ</strong>ća</td>
+            <td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('pivo žena kuća')">🔊</button></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:10px;font-weight:700;color:var(--bronze)">Dugosilazni</td>
+            <td style="padding:10px;text-align:center;font-size:20px">◌̂</td>
+            <td style="padding:10px;text-align:center">dugi</td>
+            <td style="padding:10px;text-align:center">silazni ↓</td>
+            <td style="padding:10px">m<strong>â</strong>ma, r<strong>â</strong>d, p<strong>â</strong>s</td>
+            <td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('mama rad pas')">🔊</button></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:10px;font-weight:700;color:var(--blue)">Kratkouzlazni</td>
+            <td style="padding:10px;text-align:center;font-size:20px">◌̀</td>
+            <td style="padding:10px;text-align:center">kratki</td>
+            <td style="padding:10px;text-align:center">uzlazni ↑</td>
+            <td style="padding:10px">k<strong>ù</strong>ća, s<strong>è</strong>stra, z<strong>è</strong>mlja</td>
+            <td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('kuća sestra zemlja')">🔊</button></td>
+          </tr>
+          <tr>
+            <td style="padding:10px;font-weight:700;color:var(--gold)">Dugouzlazni</td>
+            <td style="padding:10px;text-align:center;font-size:20px">◌́</td>
+            <td style="padding:10px;text-align:center">dugi</td>
+            <td style="padding:10px;text-align:center">uzlazni ↑</td>
+            <td style="padding:10px">r<strong>ú</strong>ka, k<strong>ú</strong>piti, n<strong>á</strong>rod</td>
+            <td style="padding:10px;text-align:center"><button class="nb-btn" style="padding:4px 10px;font-size:11px" onclick="speakWord('ruka kupiti narod')">🔊</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4 scene-cards za svaki naglasak -->
+
+    <div class="scene-grid" style="margin:18px 0">
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--red);color:#fff">1</div>
+          <div class="scene-ttl">
+            <div class="scene-name">KRATKOSILAZNI · ◌̏</div>
+            <div class="scene-sub">kratki + silazni — „dvostruki akut"</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📍 Karakteristike:</strong> kratko trajanje, ton pada od visokog prema niskom. Na pisanom jeziku označava se dvostrukim akutom: <strong>◌̏</strong> (pȉvo).</p>
+
+          <p><strong>🔑 Primjeri po kategoriji:</strong></p>
+          <ul>
+            <li><strong>Imenice:</strong> kȕća (ne sve!), žȅna, ribȁ (ne!), pȉvo, mȁjka, cvȉjet</li>
+            <li><strong>Pridjevi:</strong> lȉjep, blȉzak, vȕčji, pȕn</li>
+            <li><strong>Glagoli:</strong> pȉti, rȅći, dȍći</li>
+            <li><strong>Zamjenice:</strong> jȃ, tȉ, ȍn (ali ovo je dugosilazni!)</li>
+          </ul>
+
+          <p><strong>⚠ Distribucija:</strong> <em>Silazni naglasci (kratkosilazni + dugosilazni) u hrv. standardu stoje SAMO NA PRVOM SLOGU riječi.</em> Ovo je važno pravilo!</p>
+
+          <p><strong>💡 Naziv:</strong> u starijim gramatikama zvan „kratki silazni", „oxitonon" ili „dvostruki akut". Francuski lingvisti ga zovu <em>grave court</em>.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">2</div>
+          <div class="scene-ttl">
+            <div class="scene-name">DUGOSILAZNI · ◌̂</div>
+            <div class="scene-sub">dugi + silazni — „cirkumfleks"</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📍 Karakteristike:</strong> dugo trajanje, ton pada od visokog prema niskom. Znak: <strong>◌̂</strong> (cirkumfleks, „kapa"). Često kod jednosložnih riječi s dugim vokalom.</p>
+
+          <p><strong>🔑 Primjeri po kategoriji:</strong></p>
+          <ul>
+            <li><strong>Jednosložne imenice:</strong> mâma (nije jednosl.!), pâs, râd, glâs, tâst</li>
+            <li><strong>Dvosložne imenice:</strong> râmenica, tôranj, sûnce (ne — kratkosilazni)</li>
+            <li><strong>Pridjevi:</strong> mlâd, nôv, lôš, strâšan</li>
+            <li><strong>Glagoli:</strong> hvâliti, plâkati (aorist: bjê — od biti)</li>
+          </ul>
+
+          <p><strong>⚠ Distribucija:</strong> <em>SAMO NA PRVOM SLOGU</em>. Kao i kratkosilazni, dugosilazni ne može stajati na drugom ili kasnijem slogu u standardu.</p>
+
+          <p><strong>💡 Česta greška:</strong> mnogi štokavski dijalekti imaju dugosilazne naglaske i na drugim slogovima, ali standard to NE DOZVOLJAVA.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">3</div>
+          <div class="scene-ttl">
+            <div class="scene-name">KRATKOUZLAZNI · ◌̀</div>
+            <div class="scene-sub">kratki + uzlazni — „grave akut"</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📍 Karakteristike:</strong> kratko trajanje, ton raste od niskog prema visokom. Znak: <strong>◌̀</strong> (grave akut, „obrnut crtica").</p>
+
+          <p><strong>🔑 Primjeri po kategoriji:</strong></p>
+          <ul>
+            <li><strong>Imenice:</strong> kùća (ne — kratkosilazni!), sèstra, zèmlja, prèdmet, knjìževnost</li>
+            <li><strong>Pridjevi:</strong> sjèveran, prèhladan, tìhan</li>
+            <li><strong>Glagoli:</strong> dolàziti, pìsati, vìdjeti</li>
+            <li><strong>Tuđice:</strong> kòmpas, bìskup, bolònjez</li>
+          </ul>
+
+          <p><strong>⚠ Distribucija:</strong> <em>Uzlazni naglasci (kratko- i dugouzlazni) mogu stajati NA BILO KOJEM SLOGU OSIM ZADNJEG.</em></p>
+
+          <p><strong>💡 Nastanak uzlaznih:</strong> uzlazni naglasci su mlađi, nastali povlačenjem silaznih s kasnijih slogova prema ranijima (novoštokavska metateza).</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">4</div>
+          <div class="scene-ttl">
+            <div class="scene-name">DUGOUZLAZNI · ◌́</div>
+            <div class="scene-sub">dugi + uzlazni — „akut"</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📍 Karakteristike:</strong> dugo trajanje, ton raste od niskog prema visokom. Znak: <strong>◌́</strong> (akut, „naglasak").</p>
+
+          <p><strong>🔑 Primjeri po kategoriji:</strong></p>
+          <ul>
+            <li><strong>Imenice:</strong> rúka, národ, sveštènīk (sad standard: svéčenīk), glàva (N), glávu (A mn.)</li>
+            <li><strong>Pridjevi:</strong> dóbar, vèlīk, stárī</li>
+            <li><strong>Glagoli:</strong> kúpiti, vráćati, čúvati, plíviti</li>
+            <li><strong>Slogotvorno r:</strong> ŕ̩ (pŕst u nekim sredinama ali standardno pr̩̂st — dugosilazni)</li>
+          </ul>
+
+          <p><strong>⚠ Distribucija:</strong> <em>BILO KOJI SLOG OSIM ZADNJEG.</em> Najviše se javlja na drugim i trećim slogovima višesložnih riječi.</p>
+
+          <p><strong>💡 Duljina:</strong> dugouzlazni je često refleks praslavenskog <em>dugog akuta</em> — stara pozicija koja se sačuvala.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════
+         3. PRAVILA DISTRIBUCIJE
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">3. Pravila distribucije · gdje može stajati naglasak</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Kritična pravila za NCVVO</div>
+      <div class="box-int-txt">
+        Hrvatski standard ima <strong>stroga pravila</strong> o tome gdje može stajati naglasak. Razlikujte jednosložne, dvosložne i višesložne riječi.
+      </div>
+    </div>
+
+    <div class="scene-grid">
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">📐</div>
+          <div class="scene-ttl">
+            <div class="scene-name">Pravila po tipu riječi</div>
+            <div class="scene-sub">4 jasna pravila za NCVVO</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>🔑 Pravilo 1 — Jednosložne riječi:</strong></p>
+          <ul>
+            <li>Samo <strong>silazni naglasci</strong> (kratko- ili dugosilazni)</li>
+            <li>Primjeri: pȁs (kratkosilazni), pâs (dugosilazni), mâr, vâl, sôl</li>
+            <li><strong>Nikad uzlazni</strong> (jer nema drugog sloga na koji bi se „podigao")</li>
+          </ul>
+
+          <p><strong>🔑 Pravilo 2 — Silazni naglasci SAMO na prvom slogu:</strong></p>
+          <ul>
+            <li>Kratkosilazni (◌̏) i dugosilazni (◌̂) ne mogu stajati na drugom ili kasnijem slogu u hrv. standardu</li>
+            <li>NE: „kutȉja" (sredina), NE: „narôd" (sredina)</li>
+            <li>DA: „kùtija" (kratkouzlazni na prvom), DA: „národ" (dugouzlazni na prvom)</li>
+          </ul>
+
+          <p><strong>🔑 Pravilo 3 — Uzlazni naglasci NIKAD na zadnjem slogu:</strong></p>
+          <ul>
+            <li>Kratkouzlazni (◌̀) i dugouzlazni (◌́) mogu stajati na bilo kojem slogu OSIM zadnjeg</li>
+            <li>Višesložne riječi s uzlaznim naglaskom na prvom ili srednjem slogu</li>
+            <li>Primjeri: kùća, sestrà (NE — „sèstra"), predsjèdnīk (prva dvosložne s uzlaznim)</li>
+          </ul>
+
+          <p><strong>🔑 Pravilo 4 — Svaka riječ ima SAMO JEDAN naglasak:</strong></p>
+          <ul>
+            <li>Višesložne riječi uvijek imaju točno 1 naglašeni slog</li>
+            <li>Ostali slogovi mogu imati <strong>zanaglasnu dužinu</strong> (bez naglaska, ali s produženjem samoglasnika)</li>
+            <li>Enklitike (se, mi, te, ga, je) gube vlastiti naglasak i pripadaju prethodnoj naglašenoj riječi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-warn">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--gold)">⚠ Razlika standard vs. dijalekt</div>
+        <div class="bw-txt">
+          Ova pravila vrijede za <strong>hrvatski standardni jezik</strong>. U dijalektima (posebno čakavskim i kajkavskim, ali i u nekim štokavskim) često se pojavljuju silazni naglasci na drugom i kasnijim slogovima (npr. „kutȉja" u razgovornom), ali to nije u skladu sa standardom.
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         4. ZANAGLASNA DUŽINA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">4. Zanaglasna dužina · produženi slog BEZ naglaska</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📏 Što je zanaglasna dužina</div>
+      <div class="box-int-txt">
+        Nakon naglašenog sloga, <strong>sljedeći slog može biti dug</strong> — ali ne naglašen. To je <strong>zanaglasna dužina</strong>, označava se <strong>crtom iznad</strong> (makron): <em>ā, ē, ī, ō, ū</em>.
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Riječ</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Naglasak + dužina</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Objašnjenje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">narod</td><td style="padding:8px 10px"><strong>ná</strong>rōd</td><td style="padding:8px 10px">dugouzlazni na 1. slogu + zanaglasna dužina na 2.</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">zemljaci</td><td style="padding:8px 10px">zèml<strong>jā</strong>ci (G jd.)</td><td style="padding:8px 10px">kratkouzlazni + zanaglasna dužina</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px">knjige (G jd.)</td><td style="padding:8px 10px"><strong>knjî</strong>gē</td><td style="padding:8px 10px">dugosilazni + zanaglasna dužina</td></tr>
+          <tr><td style="padding:8px 10px">zadnji slog duži</td><td style="padding:8px 10px"><strong>dù</strong>gī</td><td style="padding:8px 10px">kratkouzlazni + zanaglasna dužina na kraju</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">💡 Zašto je važno</div>
+      <div class="box-signal-txt">
+        Zanaglasne dužine razlikuju mnoge padeže: <em>ženē</em> (G jd., duga) vs. <em>žene</em> (N mn., kratka) — obje se pišu „žene", ali dužina razlikuje. To se zove <strong>kvantitativna opozicija</strong>.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5. INTERAKTIVNA VJEŽBA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">5. Vježba · prepoznaj naglasak</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Vježbaj prepoznavanje</div>
+      <div class="box-int-txt">
+        Prikazuje se riječ s naglašenim slogom <strong>podebljan</strong>. Klikni koji je naglasak — čuj audio i sravni s vlastitim osjećajem. 10 pitanja.
+      </div>
+    </div>
+
+    <div id="acc-exercise" style="margin:16px 0"></div>
+
+    <div id="acc-result" style="display:none;margin-top:18px"></div>
+
+    <!-- RECAP -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">📌 RECAP — 4 naglaska + 3 pravila</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Ključne točke Tab 3</div>
+      <div class="box-key-txt" style="line-height:1.9">
+        <strong>SLOG:</strong> otvoreni (ma•ma), zatvoreni (pas), slogotvorno r (pr̩st).<br><br>
+        <strong>4 HRV. NAGLASKA:</strong><br>
+        • Kratkosilazni ◌̏ — pȉvo (kratki, silazni)<br>
+        • Dugosilazni ◌̂ — mâma (dugi, silazni)<br>
+        • Kratkouzlazni ◌̀ — kùća (kratki, uzlazni)<br>
+        • Dugouzlazni ◌́ — rúka (dugi, uzlazni)<br><br>
+        <strong>3 KRITIČNA PRAVILA:</strong><br>
+        • Jednosložne → samo silazni<br>
+        • Silazni → SAMO na 1. slogu<br>
+        • Uzlazni → NIKAD na zadnjem slogu<br><br>
+        <strong>ZANAGLASNA DUŽINA:</strong> produženi slog <em>bez</em> naglaska (ná-rōd, knjî-gē).
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(2)">← Glasovne promjene</span>
+      <span class="nb-btn primary" onclick="sw(4)">📚 Pojmovnik →</span>
+    </div>
+
+  </div><!-- /l3 -->
+
+  <div class="layer" id="l4" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">📚 Pojmovnik</span>
+      <span class="pill p-br">55 pojmova</span>
+      <span class="pill p-go">7 kategorija</span>
+      <span class="pill p-t">Klikni za definiciju</span>
+      <span class="pill p-r">Filtriraj po temi</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📚 Pojmovnik — svi pojmovi Fonetike i fonologije</div>
+      <div class="box-int-txt">
+        <strong>55 pojmova u 7 kategorija</strong> — sve što trebaš znati za NCVVO pitanja o fonetici. Klikni karticu za definiciju. Filtriraj po kategoriji ispod.<br><br>
+        <strong>⭐ Kritični pojmovi</strong> (najčešće pitani): fonem, alofon, minimalni par, jotacija, palatalizacija, 4 naglaska, jat, IPA.
+      </div>
+    </div>
+
+    <!-- KATEGORIJE FILTER -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">🔍 Filtriraj po kategoriji</div><div class="sec-line"></div></div>
+
+    <div class="pojm-filter" style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <button class="pojm-fbt on" onclick="pojmFilter2('all', this)">Svi (55)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('glasovi', this)">🔤 Glasovi (10)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('klasifikacija', this)">🧩 Klasifikacija (8)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('promjene', this)">🔄 Promjene (10)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('slog', this)">🎵 Slog (6)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('naglasak', this)">🎶 Naglasak (10)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('povijest', this)">📜 Povijest (6)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('meta', this)">🌐 Metajezik (5)</button>
+    </div>
+
+    <!-- POJM GRID (renderira renderPojm2) -->
+    <div id="pojm-grid2" class="pojm-grid-wrap"></div>
+
+    <!-- DISCERE -->
+    <div class="discere-banner" style="margin-top:24px" onclick="window.location.href='#discere'">
+      <div class="discere-ico">🧠</div>
+      <div class="discere-txt">
+        <div class="discere-ttl">Discere · AI profesor fonetike</div>
+        <div class="discere-sub">Pitaj AI bilo koji fonetski pojam + interaktivne vježbe + spaced repetition · <strong>Pro plan</strong></div>
+      </div>
+      <div class="discere-arrow">→</div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(3)">← Slog i naglasak</span>
+      <span class="nb-btn primary" onclick="sw(5)">🔬 Scanner →</span>
+    </div>
+
+  </div><!-- /l4 -->
+
+  <div class="layer" id="l5" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">🔬 Scanner</span>
+      <span class="pill p-br">Riječ → analiza</span>
+      <span class="pill p-go">IPA + slogovi</span>
+      <span class="pill p-t">Detekcija promjena</span>
+      <span class="pill p-r">★ Glavni alat</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🔬 Glavni interaktivni alat H19</div>
+      <div class="box-int-txt">
+        Upiši bilo koju hrvatsku riječ — Scanner će ti pokazati:<br>
+        <strong>1. Foneme po slovu</strong> s klasifikacijom (tip, mjesto tvorbe, zvučnost)<br>
+        <strong>2. Slogovnu strukturu</strong> (broj slogova + podjela)<br>
+        <strong>3. IPA transkripciju</strong> (tehnički fonetski zapis)<br>
+        <strong>4. Mogućih glasovnih promjena</strong> (heuristički)<br>
+        <strong>5. 🔊 Audio izgovor</strong> (Web Speech API)
+      </div>
+    </div>
+
+    <!-- SCANNER INPUT -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">✍ Upiši riječ za analizu</div><div class="sec-line"></div></div>
+
+    <div style="padding:18px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);margin:16px 0">
+      <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+        <input type="text" id="scan-input" placeholder="npr. ljepota, svijet, vojnici, čitao..." 
+               style="flex:1;min-width:200px;padding:12px 14px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r1);color:var(--t1);font-family:var(--display);font-size:16px;outline:none"
+               oninput="scanWord()" 
+               onkeydown="if(event.key==='Enter')scanWord()">
+        <button class="nb-btn primary" onclick="scanWord()">🔬 Analiziraj</button>
+      </div>
+      
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;padding-top:4px">PRIMJERI:</span>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="scanExample('ljepota')">ljepota</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="scanExample('svijet')">svijet</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="scanExample('vojnici')">vojnici</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="scanExample('čitao')">čitao</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="scanExample('lišće')">lišće</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="scanExample('prst')">prst</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="scanExample('njuška')">njuška</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="scanExample('ispasti')">ispasti</button>
+      </div>
+    </div>
+
+    <!-- SCAN RESULTS -->
+    <div id="scan-results"></div>
+
+    <!-- BOX: HOW TO USE -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">💡 Kako koristiti Scanner</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Strategija za NCVVO pitanja</div>
+      <div class="box-key-txt">
+        <strong>Za pitanja o broju fonema:</strong> Upiši riječ i pogledaj „Fonemi" tablicu — to je tvoj odgovor (ne broj slova!).<br><br>
+        <strong>Za pitanja o slogovima:</strong> Broj slogova = broj samoglasnika + slogotvorno r.<br><br>
+        <strong>Za glasovne promjene:</strong> Upiši osnovni oblik i onda modificiranu formu — usporedi razlike.<br><br>
+        <strong>⚠ Scanner je alat za samoprovjeru</strong>, ne autoritet. IPA transkripcija je približna. Za izuzetke uvijek provjeri s rječnikom.
+      </div>
+    </div>
+
+    <div class="box-warn">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--gold)">🔒 Napredne funkcije · Pro plan</div>
+        <div class="bw-txt">Scanner je besplatan za osnovnu analizu. <strong>Pro plan</strong> dodaje: analizu cijele rečenice, detekciju svih 7 glasovnih promjena s objašnjenjima, AI profesor koji odgovara na sva fonetska pitanja, spremanje analiza u osobni notebook.</div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(4)">← Pojmovnik</span>
+      <span class="nb-btn primary" onclick="sw(6)">🧠 Kviz →</span>
+    </div>
+
+  </div><!-- /l5 -->
+
+  <div class="layer" id="l6" role="tabpanel" tabindex="0">
+    <!-- DISCERE TOUCHPOINT 4 -->
+    <div class="discere-banner" id="discere-kviz" onclick="window.location.href='#discere'">
+      <div class="discere-ico">🏆</div>
+      <div class="discere-txt">
+        <div class="discere-ttl">Discere · Pravi ispit mode</div>
+        <div class="discere-sub">Ovaj kviz je priprema — u Discere treniraj s vremenskim pritiskom i točnim bodovanjem kao na maturi</div>
+      </div>
+      <div class="discere-arrow">→</div>
+    </div>
+    <div class="qz-wrap" id="qz-wrap"></div>
+    <!-- Score History -->
+    <div class="score-hist" id="score-hist" style="display:none">
+      <div class="score-hist-lbl">📊 Zadnjih 5 kvizova</div>
+      <div class="score-hist-rows" id="score-hist-rows"></div>
+    </div>
+
+    <div class="nav-row" style="margin-top:20px">
+      <span class="nb-btn" onclick="sw(5)">← Scanner</span>
+      <span class="nb-btn primary" onclick="sw(7)">📊 Referentna tablica →</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+      TAB 7 · REFERENTNA TABLICA
+  ══════════════════════════════════════ -->
+  <div class="layer" id="l7" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">📊 Referentna tablica</span>
+      <span class="pill p-br">A4 printabilno</span>
+      <span class="pill p-go">Cheat sheet</span>
+      <span class="pill p-t">Sve na jednom mjestu</span>
+      <span class="pill p-r">🖨 Print-friendly</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📊 Brzi pregled cijelog H19 poglavlja</div>
+      <div class="box-int-txt">
+        Sve ključne tablice H19 na jednom mjestu. <strong>Otvori i isprintaj</strong> (Ctrl/⌘ + P) za cheat sheet tijekom učenja. Idealno za brzu provjeru prije ispita ili kao „spremačica" (ako je dozvoljena).
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin:16px 0;flex-wrap:wrap">
+      <button class="nb-btn primary" onclick="window.print()">🖨 Printaj A4</button>
+      <button class="nb-btn" onclick="sw(0)">📖 Natrag na Teoriju</button>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         1. IPA TABLICA — 30 HRVATSKIH FONEMA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">1. IPA tablica · 30 hrv. fonema</div><div class="sec-line"></div></div>
+
+    <!-- Samoglasnici -->
+    <h4 style="margin:16px 0 8px 0;color:var(--gold);font-family:var(--display);font-size:15px">🅰 Samoglasnici · 5 fonema</h4>
+    <div class="table-wrap" style="overflow-x:auto;margin:8px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:8px;text-align:center;color:var(--gold)">Slovo</th>
+            <th style="padding:8px;text-align:center;color:var(--gold)">IPA</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Pozicija jezika</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Visina jezika</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Primjer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;text-align:center;font-weight:700;font-size:14px">a</td><td style="padding:6px 8px;text-align:center">[a]</td><td style="padding:6px 8px">srednji</td><td style="padding:6px 8px">otvoren</td><td style="padding:6px 8px">mama</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;text-align:center;font-weight:700;font-size:14px">e</td><td style="padding:6px 8px;text-align:center">[ɛ]</td><td style="padding:6px 8px">prednji</td><td style="padding:6px 8px">sr.-otvoren</td><td style="padding:6px 8px">sestra</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;text-align:center;font-weight:700;font-size:14px">i</td><td style="padding:6px 8px;text-align:center">[i]</td><td style="padding:6px 8px">prednji</td><td style="padding:6px 8px">zatvoren</td><td style="padding:6px 8px">riba</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;text-align:center;font-weight:700;font-size:14px">o</td><td style="padding:6px 8px;text-align:center">[ɔ]</td><td style="padding:6px 8px">stražnji</td><td style="padding:6px 8px">sr.-otvoren</td><td style="padding:6px 8px">voda</td></tr>
+          <tr><td style="padding:6px 8px;text-align:center;font-weight:700;font-size:14px">u</td><td style="padding:6px 8px;text-align:center">[u]</td><td style="padding:6px 8px">stražnji</td><td style="padding:6px 8px">zatvoren</td><td style="padding:6px 8px">ruka</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);padding:4px 8px;background:var(--ele);border-radius:var(--r1);display:inline-block;margin-top:4px">+ slogotvorno r̩ · pr̩st, sr̩ce</div>
+
+    <!-- Suglasnici -->
+    <h4 style="margin:20px 0 8px 0;color:var(--gold);font-family:var(--display);font-size:15px">🅱 Suglasnici · 25 fonema</h4>
+    <div class="table-wrap" style="overflow-x:auto;margin:8px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:8px;text-align:center;color:var(--gold)">Slovo</th>
+            <th style="padding:8px;text-align:center;color:var(--gold)">IPA</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Tip</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Mjesto</th>
+            <th style="padding:8px;text-align:center;color:var(--gold)">Zvučnost</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Par</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(74,144,217,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">p</td><td style="padding:6px 8px;text-align:center">[p]</td><td style="padding:6px 8px">ploziv</td><td style="padding:6px 8px">bilabijalni</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px">b</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(74,144,217,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">b</td><td style="padding:6px 8px;text-align:center">[b]</td><td style="padding:6px 8px">ploziv</td><td style="padding:6px 8px">bilabijalni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px">p</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(74,144,217,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">t</td><td style="padding:6px 8px;text-align:center">[t]</td><td style="padding:6px 8px">ploziv</td><td style="padding:6px 8px">dentalni</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px">d</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(74,144,217,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">d</td><td style="padding:6px 8px;text-align:center">[d]</td><td style="padding:6px 8px">ploziv</td><td style="padding:6px 8px">dentalni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px">t</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(74,144,217,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">k</td><td style="padding:6px 8px;text-align:center">[k]</td><td style="padding:6px 8px">ploziv</td><td style="padding:6px 8px">velarni</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px">g</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(74,144,217,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">g</td><td style="padding:6px 8px;text-align:center">[g]</td><td style="padding:6px 8px">ploziv</td><td style="padding:6px 8px">velarni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px">k</td></tr>
+          
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(224,82,82,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">f</td><td style="padding:6px 8px;text-align:center">[f]</td><td style="padding:6px 8px">frikativ</td><td style="padding:6px 8px">labiodentalni</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(224,82,82,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">s</td><td style="padding:6px 8px;text-align:center">[s]</td><td style="padding:6px 8px">frikativ</td><td style="padding:6px 8px">alveolarni</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px">z</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(224,82,82,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">z</td><td style="padding:6px 8px;text-align:center">[z]</td><td style="padding:6px 8px">frikativ</td><td style="padding:6px 8px">alveolarni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px">s</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(224,82,82,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">š</td><td style="padding:6px 8px;text-align:center">[ʃ]</td><td style="padding:6px 8px">frikativ</td><td style="padding:6px 8px">postalveol.</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px">ž</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(224,82,82,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">ž</td><td style="padding:6px 8px;text-align:center">[ʒ]</td><td style="padding:6px 8px">frikativ</td><td style="padding:6px 8px">postalveol.</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px">š</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(224,82,82,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">h</td><td style="padding:6px 8px;text-align:center">[x]</td><td style="padding:6px 8px">frikativ</td><td style="padding:6px 8px">velarni</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(80,200,120,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">c</td><td style="padding:6px 8px;text-align:center">[t͡s]</td><td style="padding:6px 8px">afrikata</td><td style="padding:6px 8px">alveolarni</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(80,200,120,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">č</td><td style="padding:6px 8px;text-align:center">[t͡ʃ]</td><td style="padding:6px 8px">afrikata</td><td style="padding:6px 8px">postalveol.</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px">dž</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(80,200,120,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">ć</td><td style="padding:6px 8px;text-align:center">[t͡ɕ]</td><td style="padding:6px 8px">afrikata</td><td style="padding:6px 8px">palatalni</td><td style="padding:6px 8px;text-align:center;color:var(--red)">bezv.</td><td style="padding:6px 8px">đ</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(80,200,120,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">dž</td><td style="padding:6px 8px;text-align:center">[d͡ʒ]</td><td style="padding:6px 8px">afrikata</td><td style="padding:6px 8px">postalveol.</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px">č</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(80,200,120,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">đ</td><td style="padding:6px 8px;text-align:center">[d͡ʑ]</td><td style="padding:6px 8px">afrikata</td><td style="padding:6px 8px">palatalni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px">ć</td></tr>
+          
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(233,180,70,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">m</td><td style="padding:6px 8px;text-align:center">[m]</td><td style="padding:6px 8px">nazal</td><td style="padding:6px 8px">bilabijalni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(233,180,70,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">n</td><td style="padding:6px 8px;text-align:center">[n]</td><td style="padding:6px 8px">nazal</td><td style="padding:6px 8px">alveolarni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(233,180,70,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">nj</td><td style="padding:6px 8px;text-align:center">[ɲ]</td><td style="padding:6px 8px">nazal</td><td style="padding:6px 8px">palatalni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(155,89,182,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">l</td><td style="padding:6px 8px;text-align:center">[l]</td><td style="padding:6px 8px">likvid</td><td style="padding:6px 8px">alveolarni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(155,89,182,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">lj</td><td style="padding:6px 8px;text-align:center">[ʎ]</td><td style="padding:6px 8px">likvid</td><td style="padding:6px 8px">palatalni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(155,89,182,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">r</td><td style="padding:6px 8px;text-align:center">[r]</td><td style="padding:6px 8px">likvid</td><td style="padding:6px 8px">alveolarni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          
+          <tr style="border-bottom:1px solid var(--bd);background:rgba(230,126,34,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">j</td><td style="padding:6px 8px;text-align:center">[j]</td><td style="padding:6px 8px">aproksimant</td><td style="padding:6px 8px">palatalni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+          <tr style="background:rgba(230,126,34,.03)"><td style="padding:6px 8px;text-align:center;font-weight:700">v</td><td style="padding:6px 8px;text-align:center">[ʋ]</td><td style="padding:6px 8px">aproksimant</td><td style="padding:6px 8px">labiodentalni</td><td style="padding:6px 8px;text-align:center;color:var(--green)">zv.</td><td style="padding:6px 8px;color:var(--t3)">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;font-family:var(--mono);font-size:10px">
+      <span style="padding:4px 10px;background:rgba(74,144,217,.1);border-left:3px solid var(--blue);border-radius:var(--r1)">Plozivi</span>
+      <span style="padding:4px 10px;background:rgba(224,82,82,.1);border-left:3px solid var(--red);border-radius:var(--r1)">Frikativi</span>
+      <span style="padding:4px 10px;background:rgba(80,200,120,.1);border-left:3px solid var(--green);border-radius:var(--r1)">Afrikate</span>
+      <span style="padding:4px 10px;background:rgba(233,180,70,.1);border-left:3px solid var(--gold);border-radius:var(--r1)">Nazali</span>
+      <span style="padding:4px 10px;background:rgba(155,89,182,.1);border-left:3px solid #9b59b6;border-radius:var(--r1)">Likvidi</span>
+      <span style="padding:4px 10px;background:rgba(230,126,34,.1);border-left:3px solid #e67e22;border-radius:var(--r1)">Aproksimanti</span>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         2. 7 GLASOVNIH PROMJENA — CHEAT SHEET
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">2. 7 glasovnih promjena · cheat sheet</div><div class="sec-line"></div></div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:12px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:center;color:var(--gold)">#</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Promjena</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Formula</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Primjeri</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Gdje se javlja</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:8px;text-align:center;color:var(--blue);font-weight:700">1</td>
+            <td style="padding:8px;font-weight:700">Jotacija</td>
+            <td style="padding:8px">C + j → palatalni C<br><span style="color:var(--t3);font-size:10px">t→ć, d→đ, s→š, z→ž, n→nj, l→lj, k→č, g→ž, h→š</span></td>
+            <td style="padding:8px">list → lišće<br>brat → braća<br>mlad → mlađi</td>
+            <td style="padding:8px;font-size:10px;color:var(--t2)">komparativi, zbirne im. na -je, glag. im. na -anje</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:8px;text-align:center;color:var(--bronze);font-weight:700">2</td>
+            <td style="padding:8px;font-weight:700">1. palatalizacija</td>
+            <td style="padding:8px">k, g, h + e/i → č, ž, š</td>
+            <td style="padding:8px">vuk → vuče (vok.)<br>bog → bože<br>duh → duše</td>
+            <td style="padding:8px;font-size:10px;color:var(--t2)">vokativ m.r., 3. l. mn. prezent, izvedenice</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:8px;text-align:center;color:var(--green);font-weight:700">3</td>
+            <td style="padding:8px;font-weight:700">Sibilarizacija (2. palat.)</td>
+            <td style="padding:8px">k, g, h + i → c, z, s</td>
+            <td style="padding:8px">vojnik → vojnici<br>rog → rozi<br>orah → orasi</td>
+            <td style="padding:8px;font-size:10px;color:var(--t2)">N/V mn. m.r., DL jd. ž.r., imperativ (peci)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:8px;text-align:center;color:var(--red);font-weight:700">4</td>
+            <td style="padding:8px;font-weight:700">Vokalizacija l</td>
+            <td style="padding:8px">-l na kraju sloga → -o</td>
+            <td style="padding:8px">čital → čitao<br>radil → radio<br>posal → posao</td>
+            <td style="padding:8px;font-size:10px;color:var(--t2)">glag. pridjev radni m.r., imenice na -l</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:8px;text-align:center;color:var(--gold);font-weight:700">5</td>
+            <td style="padding:8px;font-weight:700">Nepostojano a</td>
+            <td style="padding:8px">a se gubi u kosim padežima<br><span style="color:var(--t3);font-size:10px">ostaje u N jd. i G mn.</span></td>
+            <td style="padding:8px">pas → psa → pasa (G mn.)<br>borac → borca → boraca<br>vjetar → vjetra</td>
+            <td style="padding:8px;font-size:10px;color:var(--t2)">muški rod, pridjevi kratkog oblika</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:8px;text-align:center;color:#9b59b6;font-weight:700">6</td>
+            <td style="padding:8px;font-weight:700">Alternacije jatova</td>
+            <td style="padding:8px">*ě → ije / je / e / i<br><span style="color:var(--t3);font-size:10px">dugi slog = ije, kratki = je</span></td>
+            <td style="padding:8px">svijet → svjetlost<br>dijete → djeca<br>lijep → ljepota</td>
+            <td style="padding:8px;font-size:10px;color:var(--t2)">refleks praslav. *ě (jat)</td>
+          </tr>
+          <tr>
+            <td style="padding:8px;text-align:center;color:#e67e22;font-weight:700">7</td>
+            <td style="padding:8px;font-weight:700">Jednačenje po zvučnosti</td>
+            <td style="padding:8px">zvučnost se izjednači<br><span style="color:var(--t3);font-size:10px">drugi diktira prvome</span></td>
+            <td style="padding:8px">iz + pasti → ispasti<br>od + kud → otkud<br>srb + ski → srpski</td>
+            <td style="padding:8px;font-size:10px;color:var(--t2)">granica prefiksa/korijena, izgovor (ne uvijek pismo)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-warn" style="margin-top:12px">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--gold)">⚠ Kritične razlike</div>
+        <div class="bw-txt" style="font-size:12px">
+          <strong>1. palatalizacija (č/ž/š)</strong> ≠ <strong>Sibilarizacija (c/z/s)</strong>: 1. daje palatale pred e/i, 2. sibilante samo pred i u određenim padežima.<br>
+          <strong>Jotacija</strong> ≠ <strong>1. palatalizacija</strong>: jotacija zahtijeva glas <em>j</em>, palatalizacija ne.<br>
+          <strong>Jednačenje u izgovoru</strong>: uvijek [otkɲige]. <strong>U pismu</strong>: samo unutar iste riječi (otpis), ne između riječi (od knjige).
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         3. 4 HRVATSKA NAGLASKA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">3. 4 hrvatska naglaska · sustav</div><div class="sec-line"></div></div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:12px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Naglasak</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Znak</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Dužina</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Ton</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Primjeri</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Distribucija</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:10px;font-weight:700;color:var(--red)">Kratkosilazni</td>
+            <td style="padding:10px;text-align:center;font-size:22px">◌̏</td>
+            <td style="padding:10px;text-align:center">kratki</td>
+            <td style="padding:10px;text-align:center">silazni ↓</td>
+            <td style="padding:10px;font-size:13px">pȉvo, žȅna, kȕća</td>
+            <td style="padding:10px;font-size:11px;color:var(--t2)">samo 1. slog</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:10px;font-weight:700;color:var(--bronze)">Dugosilazni</td>
+            <td style="padding:10px;text-align:center;font-size:22px">◌̂</td>
+            <td style="padding:10px;text-align:center">dugi</td>
+            <td style="padding:10px;text-align:center">silazni ↓</td>
+            <td style="padding:10px;font-size:13px">mâma, râd, pâs</td>
+            <td style="padding:10px;font-size:11px;color:var(--t2)">samo 1. slog</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bd)">
+            <td style="padding:10px;font-weight:700;color:var(--blue)">Kratkouzlazni</td>
+            <td style="padding:10px;text-align:center;font-size:22px">◌̀</td>
+            <td style="padding:10px;text-align:center">kratki</td>
+            <td style="padding:10px;text-align:center">uzlazni ↑</td>
+            <td style="padding:10px;font-size:13px">kùća, sèstra, zèmlja</td>
+            <td style="padding:10px;font-size:11px;color:var(--t2)">bilo koji slog osim zadnjeg</td>
+          </tr>
+          <tr>
+            <td style="padding:10px;font-weight:700;color:var(--gold)">Dugouzlazni</td>
+            <td style="padding:10px;text-align:center;font-size:22px">◌́</td>
+            <td style="padding:10px;text-align:center">dugi</td>
+            <td style="padding:10px;text-align:center">uzlazni ↑</td>
+            <td style="padding:10px;font-size:13px">rúka, národ, kúpiti</td>
+            <td style="padding:10px;font-size:11px;color:var(--t2)">bilo koji slog osim zadnjeg</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-key" style="margin-top:12px">
+      <div class="box-key-lbl">⚡ 3 pravila distribucije</div>
+      <div class="box-key-txt" style="font-size:13px;line-height:1.9">
+        <strong>1.</strong> Jednosložne riječi → <strong>SAMO silazni</strong> (pȁs, pâs, mâr, vâl).<br>
+        <strong>2.</strong> Silazni naglasci → <strong>SAMO na 1. slogu</strong> (ne „kutȉja", ne „narôd").<br>
+        <strong>3.</strong> Uzlazni naglasci → <strong>NIKAD na zadnjem slogu</strong>.<br>
+        <strong>+</strong> Svaka riječ ima <strong>točno 1 naglasak</strong> + moguće zanaglasne dužine (makron ā).
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         4. POVIJESNI PREGLED
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">4. Povijesni pregled hrv. glasovnog sustava</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📜 Evolucija hrv. fonologije</div>
+      <div class="box-int-txt">Suvremeni hrv. sustav je rezultat tisuću godina razvoja od praslavenskog do modernog standarda.</div>
+    </div>
+
+    <!-- Timeline -->
+    <div style="position:relative;padding:20px 0;margin:16px 0">
+      <div style="position:absolute;left:20px;top:30px;bottom:30px;width:2px;background:var(--bd)"></div>
+
+      <!-- 1. Praslavenski -->
+      <div style="position:relative;padding-left:60px;margin-bottom:20px">
+        <div style="position:absolute;left:13px;top:6px;width:16px;height:16px;background:var(--gold);border-radius:50%;border:3px solid var(--bg)"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:2px">~2000 pr. Kr. — 8. st.</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:4px 0">Praslavenski jezik</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Rekonstruirani prajezik svih Slavena. Imao je glas <strong>*ě (jat)</strong> koji će kasnije dati različite reflekse u hrv. (ije/je/e/i). Imao je i poluglasove jer (<strong>ь</strong>) i jor (<strong>ъ</strong>) koji postaju nepostojano a.</div>
+      </div>
+
+      <!-- 2. Staroslavenski -->
+      <div style="position:relative;padding-left:60px;margin-bottom:20px">
+        <div style="position:absolute;left:13px;top:6px;width:16px;height:16px;background:var(--blue);border-radius:50%;border:3px solid var(--bg)"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:2px">9. st.</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:4px 0">Staroslavenski jezik · Ćiril i Metod</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Prvi pisani slavenski jezik. Ćiril i Metod osmišljavaju <strong>glagoljicu</strong>. Slavenski jezici se počinju pisano fiksirati, razlike među dijalektima sve veće.</div>
+      </div>
+
+      <!-- 3. 1. palatalizacija -->
+      <div style="position:relative;padding-left:60px;margin-bottom:20px">
+        <div style="position:absolute;left:13px;top:6px;width:16px;height:16px;background:var(--bronze);border-radius:50%;border:3px solid var(--bg)"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:2px">STARIJA PROMJENA</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:4px 0">1. palatalizacija (k,g,h → č,ž,š)</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">U praslavenskom razdoblju — kad velari dođu pred prednje vokale, palataliziraju se. Rezultat: vuk→vuče (vok.), bog→bože.</div>
+      </div>
+
+      <!-- 4. 2. palatalizacija -->
+      <div style="position:relative;padding-left:60px;margin-bottom:20px">
+        <div style="position:absolute;left:13px;top:6px;width:16px;height:16px;background:var(--green);border-radius:50%;border:3px solid var(--bg)"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:2px">MLAĐA PROMJENA</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:4px 0">Sibilarizacija / 2. palatalizacija (k,g,h → c,z,s)</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Kasnije — velari pred i u novim padežnim oblicima prelaze u sibilante. Rezultat: vojnik→vojnici, orah→orasi.</div>
+      </div>
+
+      <!-- 5. Reflekscija jata -->
+      <div style="position:relative;padding-left:60px;margin-bottom:20px">
+        <div style="position:absolute;left:13px;top:6px;width:16px;height:16px;background:#9b59b6;border-radius:50%;border:3px solid var(--bg)"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:2px">15. — 17. st.</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:4px 0">Refleksija jata · podjela narječja</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Praslavensko <strong>*ě</strong> dobiva različite reflekse po regijama: <strong>ikavski</strong> (svit), <strong>ekavski</strong> (svet), <strong>ijekavski</strong> (svijet). Hrv. narječja: štokavsko, čakavsko, kajkavsko.</div>
+      </div>
+
+      <!-- 6. Novoštokavska metateza -->
+      <div style="position:relative;padding-left:60px;margin-bottom:20px">
+        <div style="position:absolute;left:13px;top:6px;width:16px;height:16px;background:var(--red);border-radius:50%;border:3px solid var(--bg)"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:2px">16. — 18. st.</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:4px 0">Novoštokavska metateza naglasaka</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Silazni naglasci s nepočetnih slogova povlače se na prethodni slog i postaju <strong>uzlazni</strong>. Rađa se 4-naglasni sustav. Temelj hrv. standarda.</div>
+      </div>
+
+      <!-- 7. Hrv. preporod -->
+      <div style="position:relative;padding-left:60px;margin-bottom:20px">
+        <div style="position:absolute;left:13px;top:6px;width:16px;height:16px;background:var(--gold);border-radius:50%;border:3px solid var(--bg)"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:2px">19. st.</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:4px 0">Hrvatski preporod · standardizacija</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Ljudevit Gaj i ilirski pokret standardiziraju hrv. književni jezik na osnovu <strong>štokavskog ijekavskog</strong>. Ustanovljena latinička abeceda s dijakritikama (č, ć, š, ž, đ).</div>
+      </div>
+
+      <!-- 8. Moderno stanje -->
+      <div style="position:relative;padding-left:60px">
+        <div style="position:absolute;left:13px;top:6px;width:16px;height:16px;background:var(--t1);border-radius:50%;border:3px solid var(--bg)"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:2px">20. — 21. st.</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:4px 0">Hrvatski standardni jezik</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">30 fonema, 4 naglaska, fonološko-morfološki pravopis. Obuhvaća sve navedene glasovne promjene kao <em>sinkronijske alternacije</em>.</div>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5. NCVVO CHEAT SHEET — FINAL
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">5. Final NCVVO cheat sheet</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Sve što moraš znati za maturu iz H19</div>
+      <div class="box-key-txt" style="line-height:1.9">
+        <strong>BROJEVI:</strong> 30 fonema, 5 samoglasnika, 25 suglasnika, 7 glasovnih promjena, 4 naglaska, 3 dvoslova (nj, lj, dž).<br><br>
+        
+        <strong>KLASIFIKACIJA SUGLASNIKA (6 grupa):</strong><br>
+        Plozivi · Frikativi · Afrikate · Nazali · Likvidi · Aproksimanti<br><br>
+        
+        <strong>7 PAROVA ZVUČNOSTI:</strong><br>
+        p-b · t-d · k-g · s-z · š-ž · č-dž · ć-đ &nbsp;(f, h nemaju parove)<br><br>
+        
+        <strong>4 PAROVA PALATALNOSTI:</strong><br>
+        n-nj · l-lj · č-ć · dž-đ<br><br>
+        
+        <strong>7 GLASOVNIH PROMJENA:</strong><br>
+        1. Jotacija (C+j→palatalni)<br>
+        2. 1. palatalizacija (k,g,h + e/i → č,ž,š)<br>
+        3. Sibilarizacija (k,g,h + i → c,z,s)<br>
+        4. Vokalizacija l (-l → -o)<br>
+        5. Nepostojano a (pas → psa)<br>
+        6. Alternacije jatova (ije/je/e/i)<br>
+        7. Jednačenje zvučnosti (iz+pasti → ispasti)<br><br>
+        
+        <strong>NAGLASCI:</strong> Kratkosilazni ◌̏ · Dugosilazni ◌̂ (oba samo 1. slog) · Kratkouzlazni ◌̀ · Dugouzlazni ◌́ (nikad zadnji slog)
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(6)">← Kviz</span>
+      <span class="nb-btn primary" onclick="sw(0)">🔄 Ponovi od Teorije</span>
+    </div>
+
+  </div><!-- /l7 -->
+
+
+  </div><!-- /content-wrap -->
+  <!-- ═══════════════════════════════════
+       CROSS-CHAPTER NAVIGATION
+  ═══════════════════════════════════ -->
+  <div class="chapter-nav-wrap">
+    <div class="chapter-nav-hdr">
+      <div class="chapter-nav-title">📚 Sljedeća poglavlja</div>
+      <div class="chapter-nav-sub">Nastavi učiti — povezana poglavlja u sustavu hrvatskoga jezika</div>
+    </div>
+    
+    <div class="chapter-nav-grid">
+      <a class="chapter-nav-card chapter-nav-prev" href="/skripte/hrv/h18">
+        <div class="chapter-nav-arrow">←</div>
+        <div class="chapter-nav-meta">
+          <div class="chapter-nav-pill">PRETHODNO</div>
+          <div class="chapter-nav-name">H18 · Versifikacija</div>
+          <div class="chapter-nav-desc">Stih, metar, rima u hrv. književnosti</div>
+        </div>
+      </a>
+
+      <a class="chapter-nav-card chapter-nav-next" href="/skripte/hrv/h20">
+        <div class="chapter-nav-meta">
+          <div class="chapter-nav-pill chapter-nav-pill-next">SLJEDEĆE</div>
+          <div class="chapter-nav-name">H20 · Morfologija</div>
+          <div class="chapter-nav-desc">Vrste riječi, sklonidbe i sprezanja</div>
+        </div>
+        <div class="chapter-nav-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="chapter-nav-related">
+      <div class="chapter-nav-related-ttl">🔗 Povezana poglavlja</div>
+      <div class="chapter-nav-related-grid">
+        <a class="chapter-nav-mini" href="/skripte/hrv/h20">
+          <span class="chapter-nav-mini-code">H20</span>
+          <span class="chapter-nav-mini-name">Morfologija</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h21">
+          <span class="chapter-nav-mini-code">H21</span>
+          <span class="chapter-nav-mini-name">Sintaksa</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h22">
+          <span class="chapter-nav-mini-code">H22</span>
+          <span class="chapter-nav-mini-name">Leksikologija</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h23">
+          <span class="chapter-nav-mini-code">H23</span>
+          <span class="chapter-nav-mini-name">Povijest hrv. jezika</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══ MODULE FOOTER (v3.6) ══ -->
+  <footer class="mod-foot" role="contentinfo">
+    <div class="foot-line"><b>Maturiraj.hr</b> · Hrvatski · H19 Fonologija</div>
+    <div class="foot-line">Autorski sadržaj · Usklađeno s <a href="https://www.ncvvo.hr/ispitni-katalozi-za-drzavnu-maturu-2025-2026/" target="_blank" rel="noopener noreferrer">NCVVO</a> ispitnim katalogom · Ažurirano <time datetime="2026-04-18">travanj 2026.</time></div>
+    <div class="foot-line foot-feedback">
+      <span class="foot-fb-q">Imaš prijedlog ili si uočio grešku?</span>
+      <button type="button" class="foot-fb-btn" onclick="openFeedbackModal()">📝 Prijavi →</button>
+      <span class="foot-fb-or">ili e-mail</span>
+      <a href="mailto:maturirajgreske@gmail.com" class="foot-fb-mail">maturirajgreske@gmail.com</a>
+    </div>
+  </footer>
+</main>
+</div><!-- /shell -->
+
+<!-- TIP BAR -->
+<div class="tip-bar" id="tip-bar">
+  <span class="tip-bar-close" onclick="document.getElementById('tip-bar').classList.remove('show')">✕</span>
+  <span id="tip-bar-txt">💡 <strong>Tip:</strong> Klikni na pjevanje za detalje i esejske signale.</span>
+</div>
+
+<!-- FROM BANNER -->
+<div class="from-banner" id="from-banner">
+  <span>📎</span><span id="from-txt">Dolaziš iz prethodnog poglavlja</span>
+</div>
+
+
+
+
+`;
+
+const CHAPTER_CSS_DELTA = `
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes layerIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(220,50,47,.3)}50%{box-shadow:0 0 0 8px rgba(220,50,47,.0)}}
+
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+
+@keyframes diagFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1200px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;height:100%;z-index:180;
+    transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+    pointer-events:none}
+  .sidebar.mobile-open{transform:translateX(0)!important;pointer-events:auto}
+  .sb-hamburger{display:flex!important}
+  .main{width:100%!important;max-width:100%!important;flex:1!important}
+}
+
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+
+/* ══ PRINT ══ */
+@media print{
+  body{background:white!important;color:black!important}
+  body::before,body::after{display:none!important}
+  .sidebar,.tabs,.sb-hamburger,.tip-bar,.discere-banner,.reveal-lock-btn,
+  .main{width:100%!important;max-width:100%!important;padding:0!important}
+  .content-wrap{max-width:100%!important;padding:10px!important}
+  .layer{display:block!important;page-break-after:always}
+  .box-key,.box-int,.box-warn,.box-signal,.sc,.fq,.ac{border:1px solid #666!important;background:#f5f5f5!important;color:black!important;break-inside:avoid}
+  .hero-title,.hero-chapter,h3,h4,.sec-badge,.tl-title,.pojm-term{color:black!important}
+  .tbl td,.tbl th{border-color:#888!important;color:black!important}
+  .featured-quote{background:#faf6ec!important;border-color:#d4b98c!important;color:black!important;break-inside:avoid}
+  .scene-card{border:1px solid #888!important;background:white!important}
+  .scene-card .scene-body{display:block!important}
+  .pojm-card .pojm-back{display:block!important}
+  .pojm-card .pojm-front{display:none!important}
+  a{color:black!important;text-decoration:none!important}
+  .qnav-btn,.countdown,.tip-bar,.diag{display:none!important}
+}
+
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  .content-wrap{padding:24px 20px 100px}
+  .poj-grid{grid-template-columns:1fr}
+  .mg-grid{grid-template-columns:1fr}
+  .mg-col{flex-direction:row;flex-wrap:wrap}
+  .mg-item{flex:1;min-width:120px}
+}
+
+@media(max-width:600px){
+  .content-wrap{padding:16px 14px 90px}
+  .hero-title{font-size:22px}
+  .qnav{grid-template-columns:1fr 1fr}
+  .bc-tab,.bc-tab-sep{display:none}
+  .tabs{width:100%;max-width:100%;overflow-x:auto;padding:2px}
+  .tab{font-size:8px;padding:5px 6px;letter-spacing:0;min-height:38px;flex-shrink:0;white-space:nowrap}
+  .layer.on{padding-top:52px}
+  .fc-inner{height:170px}
+  .poj-grid{grid-template-columns:1fr}
+  .tbl-wrap{font-size:12px}
+  .diag-intro,.diag-quiz,.diag-result{padding:16px}
+  .pojm-grid{grid-template-columns:1fr!important}
+  .pojm-filter{padding:5px 9px;font-size:8.5px;letter-spacing:.5px}
+  #cit-filters .pojm-filter{padding:5px 9px;font-size:8.5px}
+  .featured-quote{padding:14px 12px;gap:10px;margin:10px 0}
+  .fq-mark{font-size:36px;margin-top:-2px;flex-shrink:0}
+  .fq-text{font-size:14px;line-height:1.5}
+  .fq-copy{display:none}
+}
+
+
+/* === H19 POJMOVNIK CUSTOM CSS === */
+.pojm-fbt{font-family:var(--display);font-size:12px;font-weight:600;padding:7px 13px;border-radius:20px;background:transparent;border:1.5px solid var(--bd);color:var(--t2);cursor:pointer;transition:all .2s ease;letter-spacing:.2px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+
+.pojm-fbt:hover{border-color:var(--gold);color:var(--t1);transform:translateY(-1px)}
+
+.pojm-fbt.on{background:var(--gold);border-color:var(--gold);color:#0F0605;box-shadow:0 2px 8px rgba(233,180,70,.25);font-weight:700}
+
+.pojm-fbt.on:hover{background:var(--gold);color:#0F0605;transform:translateY(-1px)}
+
+@media (max-width:480px){
+  .pojm-fbt{font-size:11px;padding:6px 10px}
+}
+
+
+/* pojm-grid cards */
+.pojm-grid-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:16px 0}
+
+.pojm-card-h19{padding:14px 16px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer;transition:all .2s;position:relative}
+
+.pojm-card-h19:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+
+.pojm-card-h19 .pc-kat{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--bronze);text-transform:uppercase;margin-bottom:6px}
+
+.pojm-card-h19 .pc-term{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin-bottom:6px;line-height:1.3}
+
+.pojm-card-h19 .pc-def{font-size:12px;line-height:1.5;color:var(--t2);display:none}
+
+.pojm-card-h19.open .pc-def{display:block;margin-top:8px;padding-top:8px;border-top:1px solid var(--bd)}
+
+.pojm-card-h19 .pc-hint{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:1px}
+
+.pojm-card-h19.open .pc-hint{display:none}
+
+
+/* === PRINT CSS (za A4 ispis Tab 7) === */
+@media print {
+  body { background: white !important; color: black !important; }
+  .sidebar, .tabs, nav, footer, .tab-done, .tab-badge, .nav-row, 
+  .discere-banner, .from-banner, .countdown, .progress-ring,
+  .tip-bar, button, .nb-btn { display: none !important; }
+  .layer { display: block !important; background: white !important; }
+  .layer:not(#l7) { display: none !important; }
+  main, .content-wrap { width: 100% !important; max-width: 100% !important; padding: 0 !important; margin: 0 !important; background: white !important; }
+  table { page-break-inside: avoid; background: white !important; }
+  .box-int, .box-key, .box-warn, .box-signal { background: #f9f9f9 !important; color: black !important; border: 1px solid #ccc !important; }
+  h1, h2, h3, h4, .sec-badge { color: black !important; }
+  .pill { background: white !important; color: black !important; border: 1px solid #ccc !important; }
+  * { box-shadow: none !important; }
+  @page { size: A4; margin: 1.5cm; }
+}
+
+.hero::before{
+  content:'';position:absolute;top:-50%;right:-20%;width:80%;height:200%;
+  background:radial-gradient(ellipse at center, rgba(233,180,70,.06) 0%, transparent 70%);
+  pointer-events:none;z-index:0
+}
+
+.hero > *{position:relative;z-index:1}
+
+.hchip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(233,180,70,.15)}
+
+.hchip::after{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+  transition:left .6s ease;
+}
+
+.hchip:hover::after{left:100%}
+
+.scene-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--gold), var(--bronze));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .4s ease;
+}
+
+.scene-card:hover::before{transform:scaleX(1)}
+
+.scene-card.open::before{transform:scaleX(1)}
+
+.box-warn .bw-body{border-left:3px solid var(--red)!important}
+
+
+/* Tablice — modernize */
+table{border-radius:var(--r2);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+
+thead tr{background:linear-gradient(135deg, var(--ele) 0%, var(--bg) 100%)!important}
+
+table tbody tr{transition:background .15s ease}
+
+table tbody tr:hover{background:rgba(233,180,70,.04)!important}
+
+.pill:hover{transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,.15)}
+
+
+/* Pojm cards — premium */
+.pojm-card-h19{
+  position:relative;
+  overflow:hidden;
+  transition:all .25s ease;
+  background:linear-gradient(135deg, var(--ele) 0%, transparent 100%);
+}
+
+.pojm-card-h19::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;
+  width:3px;height:100%;
+  background:var(--gold);
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .3s ease;
+}
+
+.pojm-card-h19:hover::before,
+.pojm-card-h19.open::before{transform:scaleY(1)}
+
+
+/* Audio button — distinct style */
+button[onclick*="speakWord"]{
+  background:linear-gradient(135deg, rgba(74,144,217,.1) 0%, rgba(74,144,217,.05) 100%)!important;
+  border:1px solid rgba(74,144,217,.3)!important;
+  transition:all .2s ease;
+}
+
+button[onclick*="speakWord"]:hover{
+  background:linear-gradient(135deg, rgba(74,144,217,.2) 0%, rgba(74,144,217,.1) 100%)!important;
+  border-color:var(--blue)!important;
+  transform:scale(1.05);
+}
+
+
+/* Input field — premium */
+input#scan-input{
+  transition:all .25s ease;
+  background:linear-gradient(135deg, var(--bg) 0%, var(--ele) 100%);
+}
+
+input#scan-input:focus{
+  border-color:var(--gold)!important;
+  box-shadow:0 0 0 3px rgba(233,180,70,.15);
+}
+
+.tab::after{
+  content:'';
+  position:absolute;
+  bottom:-1px;left:50%;
+  width:0;height:2px;
+  background:var(--gold);
+  transition:all .3s ease;
+  transform:translateX(-50%);
+}
+
+.tab:hover::after,.tab.on::after{width:80%}
+
+
+/* Stats cards — glow effect */
+[style*="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))"] > div{
+  transition:all .25s ease;
+  cursor:default;
+}
+
+[style*="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))"] > div:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 16px rgba(233,180,70,.15);
+  border-color:var(--gold)!important;
+}
+
+
+/* Timeline dots — pulse */
+@keyframes pulse-dot{
+  0%,100%{box-shadow:0 0 0 0 rgba(233,180,70,.4)}
+  50%{box-shadow:0 0 0 8px rgba(233,180,70,0)}
+}
+
+[style*="border-radius:50%"][style*="background:var(--gold)"]{
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+
+
+/* Selection color */
+::selection{background:var(--gold);color:#0F0605}
+
+
+/* Tag pills — animated */
+.tags .pill{animation:tagFadeIn .4s ease backwards}
+
+.tags .pill:nth-child(1){animation-delay:.05s}
+
+.tags .pill:nth-child(2){animation-delay:.1s}
+
+.tags .pill:nth-child(3){animation-delay:.15s}
+
+.tags .pill:nth-child(4){animation-delay:.2s}
+
+.tags .pill:nth-child(5){animation-delay:.25s}
+
+@keyframes tagFadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes layerFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+
+/* Mobile improvements */
+@media (max-width:768px){
+  .sec-badge{font-size:11px;padding:8px 14px}
+  .scene-card{padding:14px}
+  .box-int,.box-key,.box-warn,.box-signal{padding:14px}
+}
+
+
+/* ═══════════════════════════════════════════
+   H19 V2 — VIZUALNA POBOLJŠANJA · MISSING CLASSES
+   ═══════════════════════════════════════════ */
+
+/* ─── SCENE CARDS (collapsible — Tab 1, 2, itd.) ─── */
+.scene-grid{
+  display:grid;
+  gap:12px;
+  margin:18px 0;
+}
+
+.scene-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 18px;
+}
+
+.scene-badge{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-family:var(--mono);
+  font-size:14px;
+  flex-shrink:0;
+  color:#fff;
+  background:var(--bronze);
+  box-shadow:0 2px 8px rgba(220,50,47,.25);
+}
+
+.scene-name{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:15px;
+  color:var(--t1);
+  letter-spacing:.5px;
+  line-height:1.3;
+}
+
+.scene-sub{
+  font-size:12.5px;
+  color:var(--t2);
+  margin-top:3px;
+  font-family:var(--serif);
+  font-style:italic;
+}
+
+.scene-arrow{
+  color:var(--t3);
+  font-size:18px;
+  transition:transform .25s ease;
+  flex-shrink:0;
+  font-weight:700;
+}
+
+.scene-card.open .scene-arrow{
+  transform:rotate(180deg);
+  color:var(--bronze);
+}
+
+@keyframes sceneFadeIn{
+  from{opacity:0; transform:translateY(-4px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+.scene-body p{
+  margin:0 0 10px;
+  line-height:1.7;
+}
+
+.scene-body strong{color:var(--t1)}
+
+.scene-body em{color:var(--gold); font-style:italic}
+
+.scene-body ul{
+  margin:8px 0 8px 22px;
+  padding:0;
+  list-style:disc;
+}
+
+.scene-body ul li{
+  margin-bottom:5px;
+  line-height:1.6;
+}
+
+
+/* ─── DIAGNOSTIC TEST (Tab 0) ─── */
+.diag-wrap{
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-left:3px solid var(--bronze);
+  border-radius:var(--r3);
+  padding:22px 24px;
+  margin:20px 0;
+  box-shadow:0 4px 16px rgba(0,0,0,.1);
+}
+
+.diag-header{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:18px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--bd);
+}
+
+.diag-lbl{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--bronze);
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.diag-progress-wrap{
+  width:100%;
+  height:4px;
+  background:var(--bg);
+  border-radius:2px;
+  overflow:hidden;
+}
+
+.diag-progress-bar{
+  height:100%;
+  background:linear-gradient(90deg, var(--bronze) 0%, var(--bronze-l) 100%);
+  width:0%;
+  transition:width .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 0 8px rgba(220,50,47,.4);
+}
+
+.diag-meta{
+  font-size:11.5px;
+  color:var(--t3);
+  font-family:var(--mono);
+  letter-spacing:.3px;
+}
+
+.diag-meta strong{color:var(--bronze)}
+
+.diag-body{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.diag-q{
+  font-family:var(--display);
+  font-size:17px;
+  color:var(--t1);
+  line-height:1.5;
+  padding:6px 0;
+  font-weight:600;
+  letter-spacing:.3px;
+}
+
+.diag-opt:disabled{cursor:default}
+
+.diag-result.show{display:block}
+
+.diag-result-inner{
+  padding:18px 20px;
+  background:var(--bg);
+  border:1px solid var(--bd);
+  border-left:3px solid var(--bronze);
+  border-radius:var(--r2);
+  text-align:center;
+}
+
+.diag-result-title{
+  font-family:var(--display);
+  font-weight:700;
+  color:var(--bronze);
+  font-size:18px;
+  margin-bottom:8px;
+  letter-spacing:.5px;
+}
+
+.diag-result-desc{
+  font-size:13px;
+  color:var(--t2);
+  line-height:1.6;
+  font-family:var(--serif);
+  margin-bottom:14px;
+}
+
+
+/* ─── SIDEBAR DJELA (D01-D22) ─── */
+.sb-era-d{
+  color:var(--gold) !important;
+  margin-top:14px !important;
+  padding-bottom:2px !important;
+}
+
+
+/* ─── BOX WARNING TITLE ─── */
+.bw-ttl{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.2px;
+  font-weight:700;
+  margin-bottom:6px;
+  text-transform:uppercase;
+}
+
+
+/* ─── UTILITY GRID ─── */
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:16px 0;
+}
+
+@media (max-width:720px){
+  .grid-2{grid-template-columns:1fr}
+}
+
+
+/* ─── TABLE WRAP (responsive scroll) ─── */
+.table-wrap{
+  overflow-x:auto;
+  margin:16px 0;
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+  background:var(--ele);
+}
+
+.table-wrap table{
+  margin:0 !important;
+  border:none !important;
+  border-radius:0 !important;
+}
+
+.table-wrap::-webkit-scrollbar{height:6px}
+
+.table-wrap::-webkit-scrollbar-track{background:var(--bg)}
+
+.table-wrap::-webkit-scrollbar-thumb{background:var(--bd); border-radius:3px}
+
+
+/* ─── MOBILE POLISH ─── */
+@media (max-width:640px){
+  .scene-head{padding:12px 14px}
+  .scene-body{padding:0 14px 14px; padding-top:12px}
+  .scene-badge{width:28px; height:28px; font-size:12px}
+  .scene-name{font-size:14px}
+  .diag-wrap{padding:16px}
+  .diag-q{font-size:15px}
+  .diag-opt{padding:10px 14px; font-size:13px}
+}
+
+
+/* ─── PRINT POLISH ─── */
+@media print{
+  .scene-card{break-inside:avoid; cursor:default}
+  .scene-body{display:block !important}
+  .scene-arrow{display:none}
+  .diag-wrap{break-inside:avoid}
+}
+
+
+
+/* ═══════════════════════════════════════════
+   H19 V2 — TYPOGRAPHY & POLISH
+   ═══════════════════════════════════════════ */
+
+/* Better headings inside content */
+.layer h2:not([class]){
+  font-family:var(--display);
+  font-size:22px;
+  color:var(--gold);
+  font-weight:700;
+  margin:24px 0 12px;
+  letter-spacing:.5px;
+}
+
+.layer h3:not([class]){
+  font-family:var(--display);
+  font-size:18px;
+  color:var(--bronze);
+  font-weight:700;
+  margin:20px 0 10px;
+  letter-spacing:.3px;
+}
+
+
+/* Better paragraph spacing inside layers */
+.layer p{
+  margin:8px 0 12px;
+  line-height:1.7;
+  color:var(--t2);
+}
+
+.layer p strong{color:var(--t1)}
+
+.layer p em{color:var(--gold); font-style:italic}
+
+
+/* Tables — improved consistency */
+.layer table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+  margin:14px 0;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+  overflow:hidden;
+}
+
+.layer table th{
+  background:var(--bg);
+  color:var(--gold);
+  padding:10px 14px;
+  text-align:left;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-weight:700;
+  border-bottom:2px solid var(--bdm);
+}
+
+.layer table td{
+  padding:9px 14px;
+  border-bottom:1px solid var(--bd);
+  color:var(--t1);
+  vertical-align:top;
+  line-height:1.55;
+}
+
+.layer table tr:last-child td{border-bottom:none}
+
+.layer table tr:hover td{background:rgba(220,50,47,.04)}
+
+.layer table strong{color:var(--bronze)}
+
+.layer table em{color:var(--t2); font-style:italic}
+
+
+/* Lists — improved styling */
+.layer ul:not([class]){
+  margin:10px 0 14px 22px;
+  padding:0;
+  list-style:disc;
+}
+
+.layer ul:not([class]) li{
+  margin-bottom:5px;
+  line-height:1.6;
+  color:var(--t2);
+}
+
+.layer ul:not([class]) li strong{color:var(--t1)}
+
+.layer ul:not([class]) li em{color:var(--gold); font-style:italic}
+
+.layer ol:not([class]){
+  margin:10px 0 14px 24px;
+  padding:0;
+}
+
+.layer ol:not([class]) li{
+  margin-bottom:6px;
+  line-height:1.6;
+  color:var(--t2);
+}
+
+
+/* Inline code */
+.layer code:not([class]){
+  background:var(--ele);
+  border:1px solid var(--bd);
+  padding:2px 7px;
+  border-radius:4px;
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--bronze-l);
+}
+
+
+/* Better focus states (a11y) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[onclick]:focus-visible{
+  outline:2px solid var(--bronze);
+  outline-offset:2px;
+  border-radius:4px;
+}
+
+
+/* Scrollbar polish (custom) */
+::-webkit-scrollbar{width:8px; height:8px}
+
+::-webkit-scrollbar-track{background:var(--bg)}
+
+::-webkit-scrollbar-thumb{
+  background:var(--bd);
+  border-radius:4px;
+}
+
+::-webkit-scrollbar-thumb:hover{background:var(--bdm)}
+
+
+/* Smooth element animations (unless reduced motion) */
+@media (prefers-reduced-motion: no-preference){
+  .scene-card, .pojm-card, .box-int, .diag-wrap{
+    will-change:transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+
+/* Selection color */
+::selection{
+  background:rgba(220,50,47,.3);
+  color:var(--t1);
+}
+
+
+/* Better hr */
+hr:not([class]){
+  border:none;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--bd) 20%, var(--bd) 80%, transparent);
+  margin:24px 0;
+}
+
+
+/* Responsive improvements */
+@media (max-width:640px){
+  .layer h2:not([class]){font-size:19px}
+  .layer h3:not([class]){font-size:16px}
+  .layer p{font-size:14px}
+  .layer table{font-size:12px}
+  .layer table th, .layer table td{padding:7px 10px}
+}
+
+
+
+/* ═══════════════════════════════════════════
+   H19 DIAGNOSTIC — STATE MACHINE
+   ═══════════════════════════════════════════ */
+
+/* Hide all states by default — show only active */
+.diag-wrap > .diag-intro,
+.diag-wrap > .diag-quiz,
+.diag-wrap > .diag-result{
+  display:none;
+  animation:diagFadeIn .35s cubic-bezier(.4,0,.2,1);
+}
+
+.diag-wrap[data-state="intro"] > .diag-intro{display:block}
+
+.diag-wrap[data-state="quiz"] > .diag-quiz{display:block}
+
+.diag-wrap[data-state="result"] > .diag-result{display:block}
+
+.diag-wrap[data-state="dismissed"]{display:none !important}
+
+
+@keyframes diagFadeIn{
+  from{opacity:0; transform:translateY(8px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+.diag-icon{
+  font-size:42px;
+  margin-bottom:10px;
+  animation:diagPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes diagPulse{
+  0%, 100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+
+.diag-intro-actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+
+/* RESULT STATE */
+.diag-result-icon{
+  font-size:38px;
+  margin-bottom:10px;
+  animation:diagPulse 2.4s ease-in-out infinite;
+}
+
+.diag-result-actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+
+/* QUIZ STATE — already styled but improve */
+.diag-quiz .diag-header{
+  margin-bottom:18px;
+}
+
+.diag-quiz .diag-q{
+  margin-bottom:14px;
+}
+
+
+/* Mobile */
+@media (max-width:640px){
+  .diag-icon, .diag-result-icon{font-size:36px}
+  .diag-intro-title{font-size:18px}
+  .diag-intro-desc{font-size:12.5px}
+  .diag-intro-actions, .diag-result-actions{flex-direction:column}
+  .diag-intro-actions .nb-btn, .diag-result-actions .nb-btn{width:100%}
+}
+
+@media (max-width:640px){
+  .chapter-nav-grid{
+    grid-template-columns:1fr;
+  }
+  .chapter-nav-next{
+    flex-direction:row;
+  }
+}
+
+
+@media (max-width: 720px) {
+  .ws-tier-indicator {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .ws-tier-indicator .ws-tier-text {
+    font-size: 12px;
+  }
+}
+
+
+@keyframes mt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+@keyframes mt-slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* ───────── MOBILE ───────── */
+@media (max-width: 720px) {
+  .mt-paywall-modal {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+  
+  .mt-paywall-title {
+    font-size: 20px;
+  }
+  
+  .mt-paywall-icon {
+    font-size: 40px;
+  }
+  
+  .mt-paywall-tiers {
+    grid-template-columns: 1fr;
+  }
+  
+  .mt-paywall-tier-price {
+    font-size: 28px;
+  }
+  
+  .mt-tier-badge {
+    margin: 8px;
+    padding: 8px 10px;
+  }
+  
+  .mt-tier-badge-cta {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}
+`;
+const STYLES_CSS = SHARED_LANG_CSS + '\n' + CHAPTER_CSS_DELTA;
+const SCRIPTS_JS = `/* ══ SUPABASE CONFIG ══ */
+var SUPABASE_URL = 'https://your-project.supabase.co';
+var SUPABASE_ANON_KEY = 'your-anon-key-here';
+
+var CURRENT_CHAPTER = {
+  subject: 'hrvatski',
+  code: 'h19',
+  title: 'Fonetika i fonologija'
+};
+/* ══ COUNTDOWN — sljedeći maturalni rok ══
+   Konfigurabilno: promijeni datum ovdje za različite sezone.
+   Ljetni rok 2026: 8. lipnja 2026 (približno — NCVVO objavljuje točan datum)
+═════════════════════════════════════════════ */
+var MATURA_NEXT = new Date('2026-06-08T08:00:00+02:00');
+var MATURA_LABEL = 'Ljetna matura 2026';
+
+function daysToMatura(){
+  var now = new Date();
+  var ms = MATURA_NEXT - now;
+  return Math.max(0, Math.ceil(ms / (1000*60*60*24)));
+}
+
+function renderCountdown(targetId){
+  var el = document.getElementById(targetId);
+  if(!el) return;
+  var days = daysToMatura();
+  var urgency = days <= 60;
+  el.innerHTML = \`
+    <div class="cd-ico">⏰</div>
+    <div class="cd-body">
+      <div class="cd-label">\${urgency ? 'Peak urgency' : 'Do mature'}</div>
+      <div class="cd-main"><b>\${days}</b> \${days===1?'dan':(days<5?'dana':'dana')}</div>
+      <div class="cd-sub">\${MATURA_LABEL} · \${urgency ? 'svaki dan bez vježbe = izgubljeni bodovi' : 'još ima vremena — pametno uči'}</div>
+    </div>
+  \`;
+}
+
+/* ══ SOCIAL PROOF ══
+   Brojeve puni iz Supabase view-a u produkciji. Sad — placeholder "uskoro".
+═════════════════════════════════════════════ */
+var SOCIAL_PROOF = {
+  active_learners: null,
+  avg_rating: null,
+  review_count: null,
+  avg_improvement: null,
+  is_placeholder: true
+};
+
+function renderSocialProof(targetId, variant){
+  var el = document.getElementById(targetId);
+  if(!el) return;
+  variant = variant || 'full';
+
+  if(SOCIAL_PROOF.is_placeholder){
+    el.innerHTML = \`
+      <div class="sp-item">🇭🇷 <b>Besplatno</b> za sve maturante</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">📚 Usklađeno s <b>NCVVO</b> katalogom</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ Do mature <b>\${daysToMatura()}</b> dana</div>
+    \`;
+    return;
+  }
+
+  if(variant === 'compact'){
+    el.innerHTML = \`
+      <div class="sp-item">🔥 <b>\${SOCIAL_PROOF.active_learners}</b> uči trenutno</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ <b>\${daysToMatura()}</b> dana do mature</div>
+    \`;
+  } else {
+    el.innerHTML = \`
+      <div class="sp-item">🔥 <b>\${SOCIAL_PROOF.active_learners}</b> maturanata uči</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">⭐ <b>\${SOCIAL_PROOF.avg_rating}/5</b> (\${SOCIAL_PROOF.review_count} recenzija)</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">📈 prosječno <b>\${SOCIAL_PROOF.avg_improvement}</b> nakon 2 mj</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ <b>\${daysToMatura()}</b> dana do mature</div>
+    \`;
+  }
+}
+
+
+
+/* Character counter for feedback textarea */
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var ta = document.getElementById('fb-message');
+    var counter = document.getElementById('fb-char-count');
+    if(ta && counter){
+      ta.addEventListener('input', function(){
+        counter.textContent = ta.value.length;
+        counter.parentElement.classList.toggle('over', ta.value.length > 5000);
+      });
+    }
+  });
+})();
+
+/* ══ FEEDBACK MODAL (v3.6.1) ══ */
+function openFeedbackModal(){
+  var bd = document.getElementById('fb-modal-backdrop');
+  if(!bd) return;
+  var form = document.getElementById('fb-form');
+  if(form) form.reset();
+  var defaultRadio = document.querySelector('input[name="fb-type"][value="content_error"]');
+  if(defaultRadio) defaultRadio.checked = true;
+  var msg = document.getElementById('fb-msg');
+  if(msg){msg.className='modal-msg'; msg.textContent=''}
+  var counter = document.getElementById('fb-char-count');
+  if(counter) counter.textContent = '0';
+  var btn = document.getElementById('fb-submit');
+  if(btn){btn.disabled=false; btn.textContent='Pošalji →'}
+  if(form) form.style.display = 'flex';
+  bd.classList.add('show');
+  setTimeout(function(){
+    var ta = document.getElementById('fb-message');
+    if(ta) ta.focus();
+  }, 100);
+  if(typeof track === 'function') track('feedback_modal_open', {chapter: CURRENT_CHAPTER.code}, 'engagement');
+}
+
+function closeFeedbackModal(){
+  var bd = document.getElementById('fb-modal-backdrop');
+  if(bd) bd.classList.remove('show');
+}
+
+function submitFeedback(ev){
+  ev.preventDefault();
+  var msgEl = document.getElementById('fb-message');
+  var emailEl = document.getElementById('fb-email');
+  var btn = document.getElementById('fb-submit');
+  var fbMsg = document.getElementById('fb-msg');
+  var typeEl = document.querySelector('input[name="fb-type"]:checked');
+
+  var message = (msgEl && msgEl.value || '').trim();
+  var email = (emailEl && emailEl.value || '').trim().toLowerCase();
+  var feedbackType = (typeEl && typeEl.value) || 'general';
+
+  if(message.length < 3){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Poruka mora imati barem 3 znaka.'}
+    return false;
+  }
+  if(message.length > 5000){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Poruka ne smije biti dulja od 5000 znakova.'}
+    return false;
+  }
+  if(email && !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email)){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ E-mail adresa nije valjana.'}
+    return false;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Šaljem...';
+  if(fbMsg) fbMsg.className = 'modal-msg';
+
+  var payload = {
+    p_message: message,
+    p_feedback_type: feedbackType,
+    p_email: email || null,
+    p_subject: CURRENT_CHAPTER.subject,
+    p_chapter_code: CURRENT_CHAPTER.code,
+    p_tab_index: (function(){ try{ return JSON.parse(localStorage.getItem('mt.hrv.h19.tab') || '0') }catch(e){return 0} })(),
+    p_url: window.location.href,
+    p_viewport_width: window.innerWidth,
+    p_viewport_height: window.innerHeight
+  };
+
+  if(SUPABASE_URL.indexOf('your-project') >= 0){
+    setTimeout(function(){
+      if(fbMsg){fbMsg.className='modal-msg show success'; fbMsg.textContent='✓ Hvala! Poruka primljena.'}
+      var form = document.getElementById('fb-form');
+      if(form) form.style.display = 'none';
+      if(typeof track === 'function') track('feedback_submit', {type: feedbackType, offline: true}, 'engagement');
+      setTimeout(closeFeedbackModal, 2400);
+    }, 600);
+    return false;
+  }
+
+  fetch(SUPABASE_URL + '/rest/v1/rpc/submit_feedback', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).then(function(r){ return r.json() }).then(function(res){
+    if(res && res.success){
+      if(fbMsg){fbMsg.className='modal-msg show success'; fbMsg.textContent='✓ '+(res.message || 'Hvala! Primili smo tvoju poruku.')}
+      var form = document.getElementById('fb-form');
+      if(form) form.style.display = 'none';
+      if(typeof track === 'function') track('feedback_submit', {type: feedbackType, has_email: !!email}, 'engagement');
+      setTimeout(closeFeedbackModal, 2400);
+    } else {
+      if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ '+((res && res.message) || 'Nešto je pošlo krivo. Pokušaj ponovo ili pošalji e-mail direktno.')}
+      btn.disabled = false;
+      btn.textContent = 'Pošalji →';
+    }
+  }).catch(function(){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Greška u mreži. Pošalji e-mail na maturirajgreske@gmail.com'}
+    btn.disabled = false;
+    btn.textContent = 'Pošalji →';
+  });
+
+  return false;
+}
+
+
+const KVIZ_Q=[
+  {q:'Koliko fonema ima hrvatski standardni jezik?',o:['27 (iste kao slova abecede)','25 (samo suglasnici se broje)','30 (5 samoglasnika + 25 suglasnika)','32 (po dijakritičkim znakovima)'],t:2,e:'Hrv. standard ima 30 fonema: 5 samoglasnika (a, e, i, o, u) + 25 suglasnika. Slova u abecedi ima također 30, ali dvoslovi nj, lj, dž su 1 fonem zapisan s 2 slova.'},
+  {q:'Koji je od navedenih glasova afrikata?',o:['č','m','t','s'],t:0,e:'Afrikate su sliveni glasovi (ploziv + frikativ): c [t͡s], č [t͡ʃ], ć [t͡ɕ], dž [d͡ʒ], đ [d͡ʑ]. Glas t je ploziv, s frikativ, m nazal.'},
+  {q:'Kako se klasificira glas „nj"?',o:['Afrikata, palatalni, 2 fonema','Frikativ, palatalni, 2 fonema','Nazal, palatalni, 1 fonem (dvoslov)','Ploziv, dentalni, 1 fonem'],t:2,e:'nj /ɲ/ je palatalni nazal — 1 fonem zapisan dvoslovom. Izlazi kroz nos (nazal), tvori se na tvrdom nepcu (palatalni).'},
+  {q:'U kojoj se skupini suglasnika nalazi glas „j"?',o:['Frikativi','Aproksimanti','Nazali','Afrikate'],t:1,e:'j [j] je aproksimant — glas s minimalnom preprekom, između suglasnika i samoglasnika. Palatalni i zvučni. U hrv. su aproksimanti samo j i v.'},
+  {q:'Koja dva glasa NEMAJU zvučne parove u hrvatskom standardu?',o:['f i h','m i n','p i t','s i š'],t:0,e:'f [f] i h [x] nemaju zvučnih parova u hrv. std. To je bitno za jednačenje po zvučnosti — f ne izaziva promjenu, h također ima posebnosti. Svi ostali parovi: p-b, t-d, k-g, s-z, š-ž, č-dž, ć-đ.'},
+  {q:'Koja se glasovna promjena dogodila u paru list → lišće?',o:['1. palatalizacija','Sibilarizacija','Vokalizacija l','Jotacija (t+j → ć, s+j → š)'],t:3,e:'Jotacija: suglasnik + j → palatalni suglasnik. U „lišće" vidimo t+j→ć i s+j→š. Kontekst: zbirne imenice na -je (list+je → lišće).'},
+  {q:'Koja se promjena dogodila u paru vuk → vuče (vokativ)?',o:['Jotacija','1. palatalizacija (k + e → č)','Sibilarizacija (2. palatalizacija)','Nepostojano a'],t:1,e:'1. palatalizacija: velari k, g, h + prednji vokali e/i → palatali č, ž, š. U vokativu jednine m.r. (junak→junače, bog→bože, duh→duše).'},
+  {q:'Koja se promjena dogodila u paru vojnik → vojnici?',o:['Jotacija','Sibilarizacija (2. palatalizacija: k + i → c)','1. palatalizacija','Alternacija jata'],t:1,e:'Sibilarizacija (2. palatalizacija): velari k, g, h + i → sibilanti c, z, s. Javlja se u N/V mn. m.r. (vojnik→vojnici), DL jd. ž.r. (noga→nozi), imperativ (peci).'},
+  {q:'Koja se promjena dogodila u paru čital → čitao (pridjev radni m.r.)?',o:['Jotacija','Jednačenje po zvučnosti','Vokalizacija l (l → o na kraju sloga)','Nepostojano a'],t:2,e:'Vokalizacija l: l na kraju sloga prelazi u o. Tipično kod gl. pridjeva radnog m.r. U ž.r. i sr.r. l ostaje: čitala, čitalo.'},
+  {q:'Kako će glasiti genitiv jednine riječi „pas"?',o:['pasi (mn. nastavak)','psa (a je nepostojano)','pasu (dodaje se u)','pasa (a se zadržava)'],t:1,e:'Nepostojano a: a koje je u N jd. nestaje u kosim padežima. Pas → psa (G), psu (D). Ali u G mn. se opet pojavljuje: pasa.'},
+  {q:'Kako se pravilno piše: iz + pasti?',o:['ispasti (jednačenje z → s)','izpasti (ostaje kako se piše)','jspasti (prelazi u j)','iz-pasti (s crticom)'],t:0,e:'Jednačenje po zvučnosti: zvučni z pred bezvučnim p prelazi u bezvučni s. Isti mehanizam: srb+ski→srpski, pod+pisati→potpisati.'},
+  {q:'Koja je ključna razlika između 1. i 2. palatalizacije?',o:['1. daje č/ž/š, 2. daje c/z/s (sibilante)','1. je pred e, 2. pred u','Nema razlike — iste su promjene','1. se javlja samo u imenicama, 2. u glagolima'],t:0,e:'1. palatalizacija (starija): k/g/h + e/i → č/ž/š (vuk→vuče). 2. palatalizacija / sibilarizacija (mlađa): k/g/h + i → c/z/s (vojnik→vojnici). 2. zahtijeva specifične padeže/oblike.'},
+  {q:'Kojim se znakom označava kratkosilazni naglasak?',o:['◌̀ (grave akut)','◌́ (akut)','◌̂ (cirkumfleks / „kapa")','◌̏ (dvostruki akut)'],t:3,e:'Kratkosilazni: ◌̏ (pȉvo, žȅna). Dugosilazni: ◌̂ (mâma). Kratkouzlazni: ◌̀ (kùća). Dugouzlazni: ◌́ (rúka).'},
+  {q:'Koji je naglasak u riječi „rúka"?',o:['Dugouzlazni ◌́','Dugosilazni ◌̂','Kratkouzlazni ◌̀','Kratkosilazni ◌̏'],t:0,e:'Dugouzlazni: dugi slog s uzlaznim tonom. Primjeri: rúka, národ, kúpiti. Znak: akut ◌́.'},
+  {q:'Na kojem slogu može stajati silazni naglasak u hrvatskom standardu?',o:['Samo na srednjem slogu','Samo na zadnjem slogu','Samo na prvom slogu','Na bilo kojem slogu'],t:2,e:'Silazni naglasci (kratkosilazni i dugosilazni) u hrv. standardu stoje SAMO NA PRVOM SLOGU. U dijalektima (čakavski, kajkavski) mogu biti i na drugim.'},
+  {q:'Na kojem slogu NIKAD ne može biti uzlazni naglasak?',o:['Na prvom slogu','Na zadnjem slogu','Nema ograničenja','Na pretposljednjem slogu'],t:1,e:'Uzlazni naglasci (kratkouzlazni i dugouzlazni) NIKAD nisu na zadnjem slogu. Mogu biti na prvom, drugom ili bilo kojem unutarnjem.'},
+  {q:'Što je zanaglasna dužina?',o:['Drugi naglasak u dugačkoj riječi','Tip naglaska na zadnjem slogu','Naglasak na slogotvornom r','Produženi slog nakon naglašenog, bez naglaska'],t:3,e:'Zanaglasna dužina: slog nakon naglašenog je dug, ali bez naglaska. Znak: makron (crta) ā, ē, ī, ō, ū. Primjer: ná-rōd, knjî-gē. Razlikuje padeže: ženē (G jd.) vs. žene (N mn.).'},
+  {q:'Što je otvoreni slog?',o:['Slog koji sadrži slogotvorno r','Slog koji počinje samoglasnikom','Slog koji završava samoglasnikom','Slog bez suglasnika'],t:2,e:'Otvoreni slog = završava samoglasnikom (ma•ma, ku•ća, o•ko). Zatvoreni = završava suglasnikom (pas, maj•ka, kruh). U hrv. su otvoreni slogovi najčešći.'},
+  {q:'Koliko slogova ima riječ „prst"?',o:['1 slog (slogotvorno r kao nukleus)','2 sloga (pr + st)','3 sloga (p + r + st)','0 slogova (samo suglasnici)'],t:0,e:'„Prst" = 1 slog. Slogotvorno r̩ može tvoriti slog bez samoglasnika kad je između suglasnika. Ostali primjeri: kr̩v, vr̩t (1 slog), sr̩•ce (2 sloga).'},
+  {q:'Što je nukleus sloga u hrvatskom?',o:['Naglašeni samoglasnik','Prvi suglasnik u slogu','Uvijek samoglasnik','Samoglasnik ili slogotvorno r'],t:3,e:'Nukleus = središnji element sloga. U hrv. je to najčešće samoglasnik (a, e, i, o, u), ali može biti i slogotvorno r (kao u pr̩st, sr̩ce).'},
+  {q:'Što je fonem?',o:['Samoglasnik na početku riječi','Najmanja razlikovna jedinica u jeziku','Pisani znak za glas','Konkretna izgovorna varijanta'],t:1,e:'Fonem je apstraktna jezična jedinica koja RAZLIKUJE ZNAČENJE. Test minimalnog para: pas-bas dokazuje da su /p/ i /b/ različiti fonemi. Grafem = pisani znak (različito!), alofon = konkretna izgovorna varijanta.'},
+  {q:'Koliko fonema ima riječ „njuška"?',o:['6 (n, j, u, š, k, a)','7 (svako slovo = fonem)','5 (nj, u, š, k, a)','4 (nj, u, ška)'],t:2,e:'Njuška ima 6 slova ali samo 5 fonema — jer je nj dvoslov (1 fonem zapisan s 2 slova). Fonemi: nj /ɲ/, u /u/, š /ʃ/, k /k/, a /a/.'},
+  {q:'Što je jat (*ě)?',o:['Naziv za kratkosilazni naglasak','Glas iz staroturskog koji se izgubio','Poseban znak u staroj glagoljici','Praslavenski glas koji ima različite reflekse u hrv. (ije, je, e, i)'],t:3,e:'Jat je praslavenski glas *ě. U hrv. standardu (ijekavski) reflektira se kao: ije (svijet — dugi slog), je (svjetlost — kratki slog), e ili i u specifičnim pozicijama. Uzrok svih alternacija ije/je/e/i.'},
+  {q:'Što je IPA?',o:['Instrument za Prepoznavanje Alofona','International Phonetic Alphabet — međunarodna fonetska abeceda','Informatički Protokol Audio','Irski Pravopisni Autoritet'],t:1,e:'IPA = International Phonetic Alphabet. Univerzalni sustav za precizan zapis izgovora bilo kojeg jezika. Koristi se u rječnicima, jezičnoj nastavi, lingvistici. Svaki glas ima jedinstven simbol.'},
+  {q:'Na kojem principu je temeljen hrvatski pravopis?',o:['Ideografskom (kao u kineskom)','Fonetskom (1:1 fonem-grafem bez iznimki)','Etimološkom (kao u francuskom)','Fonološko-morfološkom („piši kao što govoriš")'],t:3,e:'Hrv. pravopis je fonološko-morfološki — uglavnom 1:1 odnos fonem-grafem („piši kao što govoriš"), ali s morfološkim izuzecima (npr. podšef ne potšef da se sačuva prefiks pod-).'},
+];
+
+const CP_ITEMS=[
+  'Razumijem razliku između fonetike (fizika glasa) i fonologije (funkcija glasa u jeziku).',
+  'Znam 3 razine: fonem /p/ (apstraktna razlikovna jedinica), alofon [pʰ] (konkretna realizacija), grafem <p> (pisani znak).',
+  'Znam da hrv. ima 30 fonema = 5 samoglasnika (a, e, i, o, u) + 25 suglasnika u 6 grupa.',
+  'Prepoznajem dvoslove nj, lj, dž — 1 fonem zapisan s 2 slova (njuška = 5 fonema, ne 6).',
+  'Znam 6 grupa suglasnika: plozivi, frikativi, afrikate, nazali, likvidi, aproksimanti.',
+  'Razumijem 7 parova zvučnosti (p-b, t-d, k-g, s-z, š-ž, č-dž, ć-đ) — kritično za jednačenje po zvučnosti.',
+  'Znam svih 7 glasovnih promjena: jotacija, 1. palatalizacija, sibilarizacija, vokalizacija l, nepostojano a, alternacije jatova, jednačenje zvučnosti.',
+  'Razlikujem 1. palatalizaciju (k,g,h + e/i → č,ž,š) od sibilarizacije (k,g,h + i → c,z,s).',
+  'Znam 4 hrvatska naglaska sa znakovima: kratkosilazni ◌̏, dugosilazni ◌̂, kratkouzlazni ◌̀, dugouzlazni ◌́.',
+  'Razumijem pravila distribucije: silazni samo na 1. slogu, uzlazni nikad na zadnjem.',
+];
+
+const DIAG0_Q=[
+  {q:'Koja znanstvena disciplina proučava funkciju glasova u jeziku (kako razlikuju značenje)?',o:['Fonetika','Fonologija','Morfologija','Sintaksa'],t:1},
+  {q:'Koliko fonema ima hrvatski standardni jezik?',o:['25','27','30','32'],t:2},
+  {q:'Koja od navedenih skupina slova u hrvatskom predstavlja 1 fonem iako ima 2 slova?',o:['st, sv, kr','nj, lj, dž','br, dr, tr','ck, pn, nk'],t:1},
+  {q:'Minimalni par "pas" — "bas" razlikuju koji fonemi?',o:['/a/ i /e/','/p/ i /b/','/s/ i /z/','/p/ i /s/'],t:1},
+  {q:'Kako se u zapisu označava fonem (apstraktna jedinica)?',o:['Uglate zagrade [p]','Kose crte /p/','Šiljaste zagrade <p>','Obične zagrade (p)'],t:1}
+];
+const TAB_NAMES=['Teorija','Glasovi','Glasovne promjene','Slog i naglasak','Pojmovnik','Scanner','Kviz','Referentna tablica'];
+function sw(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('on',i===n);
+    t.setAttribute('aria-selected',i===n);
+  });
+  document.querySelectorAll('.layer').forEach((l,i)=>l.classList.toggle('on',i===n));
+  const _bc=document.getElementById('bc-tab');if(_bc)_bc.textContent=TAB_NAMES[n];
+  if(n===6)qzInit();
+  if(n===5){
+    // init drill on first open (safe — mg-dynamic may not exist in H19 since Tab 5 is now Scanner)
+    const _mg=document.getElementById('mg-dynamic');
+    if(_mg&&!_mg.dataset.init){
+      _mg.dataset.init='1';
+      if(typeof mgInit==='function')mgInit('easy');
+      if(typeof fcInit==='function')fcInit();
+    }
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeSb();
+}
+
+/* ═══════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════ */
+function openSb(){
+  document.getElementById('sidebar').classList.add('mobile-open');
+  document.getElementById('overlay').classList.add('show');
+}
+function closeSb(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+/* ═══════════════════════════════════
+   COUNTDOWN
+═══════════════════════════════════ */
+(function(){
+  // Datum ispita Hrv. jezik — ljetni rok 2025./2026.
+  // Dan 1 (test + sažetak): 15. lipnja 2026.
+  // Dan 2 (esej):           16. lipnja 2026.
+  // Izvor: NCVVO kalendar 2025./2026.
+  const now=new Date();
+  const todayLocal=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const dan1=new Date(2026,5,15); // 15. lipnja 2026. — lokalno (month je 0-indexed!)
+  const dan2=new Date(2026,5,16); // 16. lipnja 2026.
+  const target=todayLocal<=dan1?dan1:dan2; // Prikaži dan 1, pa dan 2
+  const diff=Math.round((target-todayLocal)/(1000*60*60*24));
+  const el=document.getElementById('cd-days');
+  const cw=el?el.closest('.countdown'):null;
+  if(!el)return;
+  if(diff>0){
+    el.textContent=diff;
+    if(cw&&diff<=30)cw.style.borderColor='var(--bronze-d)';
+    if(cw&&diff<=14)cw.style.borderColor='var(--bronze)';
+    if(cw&&diff<=7){cw.style.borderColor='var(--red)';cw.style.color='var(--red)';}
+  } else if(diff===0){
+    el.textContent='DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else if(Math.round((dan2-todayLocal)/(1000*60*60*24))===0){
+    el.textContent='Esej DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else {
+    el.textContent='prošlo';
+  }
+})();
+/* ══ SOCIAL PROOF + COUNTDOWN WIDGET ══ */
+(function(){
+  renderSocialProof('social-proof', 'full');
+  var daysLeft = daysToMatura();
+  if(daysLeft <= 60){
+    var cd = document.getElementById('countdown');
+    if(cd){cd.style.display='flex';renderCountdown('countdown');}
+  }
+})();
+
+
+
+/* ═══════════════════════════════════
+   SCENES (pjevanja)
+═══════════════════════════════════ */
+function speakVerse(text, rate){
+  if(!('speechSynthesis' in window)){
+    alert('Vaš preglednik ne podržava audio čitanje (Web Speech API). Isprobaj Chrome, Edge ili Safari.');
+    return;
+  }
+  // Cancel any ongoing speech
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'hr-HR';
+  u.rate = rate || 0.85;
+  u.pitch = 1.0;
+  u.volume = 1.0;
+  // Try to find Croatian voice
+  const voices = window.speechSynthesis.getVoices();
+  const hrVoice = voices.find(v => v.lang && v.lang.startsWith('hr')) || voices.find(v => v.lang && v.lang.startsWith('sr')) || voices.find(v => v.lang && v.lang.startsWith('sl'));
+  if(hrVoice) u.voice = hrVoice;
+  window.speechSynthesis.speak(u);
+}
+// Trigger voice list load
+if('speechSynthesis' in window){
+  window.speechSynthesis.getVoices();
+  if(window.speechSynthesis.onvoiceschanged !== undefined){
+    window.speechSynthesis.onvoiceschanged = function(){};
+  }
+}
+
+
+
+/* WEB SPEECH API — fonetski audio demo */
+function speakWord(text){
+  if(!('speechSynthesis' in window)){
+    alert('Tvoj preglednik ne podržava audio izgovor. Pokušaj u Chrome ili Safari.');
+    return;
+  }
+  // Stop any ongoing speech
+  window.speechSynthesis.cancel();
+  
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'hr-HR';
+  utter.rate = 0.85;
+  utter.pitch = 1.0;
+  
+  // Try to find Croatian voice
+  const voices = window.speechSynthesis.getVoices();
+  const hrVoice = voices.find(v => v.lang.startsWith('hr'));
+  if(hrVoice) utter.voice = hrVoice;
+  
+  window.speechSynthesis.speak(utter);
+}
+
+// Preload voices (some browsers need this)
+if('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined){
+  window.speechSynthesis.onvoiceschanged = function(){};
+}
+
+
+
+/* ═══════════════════════════════════
+   TAB 3 · INTERAKTIVNA VJEŽBA NAGLASAKA
+═══════════════════════════════════ */
+
+const ACC_WORDS = [
+  {word:'pȉvo', display:'pȉvo', speak:'pivo', answer:'kratkosilazni', slog:'pȉ-vo'},
+  {word:'mâma', display:'mâma', speak:'mama', answer:'dugosilazni', slog:'mâ-ma'},
+  {word:'kùća', display:'kùća', speak:'kuća', answer:'kratkouzlazni', slog:'kù-ća'},
+  {word:'rúka', display:'rúka', speak:'ruka', answer:'dugouzlazni', slog:'rú-ka'},
+  {word:'žȅna', display:'žȅna', speak:'žena', answer:'kratkosilazni', slog:'žȅ-na'},
+  {word:'râd', display:'râd', speak:'rad', answer:'dugosilazni', slog:'râd (jednosl.)'},
+  {word:'sèstra', display:'sèstra', speak:'sestra', answer:'kratkouzlazni', slog:'sè-stra'},
+  {word:'národ', display:'národ', speak:'narod', answer:'dugouzlazni', slog:'ná-rod'},
+  {word:'kôst', display:'kôst', speak:'kost', answer:'dugosilazni', slog:'kôst (jednosl.)'},
+  {word:'knjìževnost', display:'knjìževnost', speak:'književnost', answer:'kratkouzlazni', slog:'knjì-žev-nost'}
+];
+
+let accIdx = 0;
+let accScore = 0;
+let accTotal = ACC_WORDS.length;
+
+function renderAccExercise(){
+  const cont = document.getElementById('acc-exercise');
+  if(!cont) return;
+  
+  if(accIdx >= accTotal){
+    renderAccResult();
+    return;
+  }
+  
+  const item = ACC_WORDS[accIdx];
+  cont.innerHTML = \`
+    <div style="padding:18px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">PITANJE \${accIdx+1} / \${accTotal}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${accScore}</div>
+      </div>
+      
+      <div style="text-align:center;margin:20px 0">
+        <div style="font-family:var(--display);font-size:40px;font-weight:700;color:var(--t1);margin-bottom:4px">\${item.display}</div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--t3)">podjela: \${item.slog}</div>
+        <button class="nb-btn" style="margin-top:12px" onclick="speakWord('\${item.speak}')">🔊 Slušaj</button>
+      </div>
+      
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:12px;letter-spacing:1px">KOJI JE NAGLASAK?</div>
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button class="acc-opt" onclick="accAnswer('kratkosilazni', this)" style="padding:14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;transition:all .2s;color:var(--t1);font-family:var(--display);font-size:13px">
+          <div style="font-size:20px;margin-bottom:4px;color:var(--red)">◌̏</div>
+          Kratkosilazni
+        </button>
+        <button class="acc-opt" onclick="accAnswer('dugosilazni', this)" style="padding:14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;transition:all .2s;color:var(--t1);font-family:var(--display);font-size:13px">
+          <div style="font-size:20px;margin-bottom:4px;color:var(--bronze)">◌̂</div>
+          Dugosilazni
+        </button>
+        <button class="acc-opt" onclick="accAnswer('kratkouzlazni', this)" style="padding:14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;transition:all .2s;color:var(--t1);font-family:var(--display);font-size:13px">
+          <div style="font-size:20px;margin-bottom:4px;color:var(--blue)">◌̀</div>
+          Kratkouzlazni
+        </button>
+        <button class="acc-opt" onclick="accAnswer('dugouzlazni', this)" style="padding:14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;transition:all .2s;color:var(--t1);font-family:var(--display);font-size:13px">
+          <div style="font-size:20px;margin-bottom:4px;color:var(--gold)">◌́</div>
+          Dugouzlazni
+        </button>
+      </div>
+      
+      <div id="acc-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function accAnswer(chosen, btn){
+  const item = ACC_WORDS[accIdx];
+  const correct = chosen === item.answer;
+  if(correct) accScore++;
+  
+  // Disable all options + color
+  document.querySelectorAll('.acc-opt').forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+    b.style.opacity = '0.6';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  // Also highlight correct if wrong
+  if(!correct){
+    document.querySelectorAll('.acc-opt').forEach(b => {
+      if(b.textContent.toLowerCase().includes(item.answer)){
+        b.style.opacity = '1';
+        b.style.borderColor = 'var(--green)';
+        b.style.background = 'rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  // Feedback
+  const fb = document.getElementById('acc-feedback');
+  if(fb){
+    const msg = correct 
+      ? '<strong style="color:var(--green)">✓ Točno!</strong> ' + item.display + ' je ' + item.answer + '.'
+      : '<strong style="color:var(--red)">✗ Netočno.</strong> Točan odgovor: <strong>' + item.answer + '</strong>. (' + item.display + ')';
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+        <div style="font-size:13px;line-height:1.6">\${msg}</div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="accNext()">\${accIdx < accTotal - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function accNext(){
+  accIdx++;
+  renderAccExercise();
+}
+
+function renderAccResult(){
+  const cont = document.getElementById('acc-exercise');
+  const res = document.getElementById('acc-result');
+  if(!cont || !res) return;
+  
+  cont.style.display = 'none';
+  res.style.display = 'block';
+  
+  const pct = Math.round((accScore / accTotal) * 100);
+  let msg, color, emoji;
+  if(pct === 100){ emoji='🏆'; msg='Savršeno! Svi naglasci prepoznati.'; color='var(--gold)'; }
+  else if(pct >= 80){ emoji='🎯'; msg='Odlično! Naglasci su ti jasni.'; color='var(--green)'; }
+  else if(pct >= 60){ emoji='📖'; msg='Dobro, ali ima prostora za napredovanje.'; color='var(--blue)'; }
+  else if(pct >= 40){ emoji='📚'; msg='Ponovi tablicu 4 naglaska i slušaj audio.'; color='var(--bronze)'; }
+  else{ emoji='⚠'; msg='Vrati se na tablicu 4 naglaska — vježbaj slušanjem.'; color='var(--red)'; }
+  
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${accScore} / \${accTotal} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="accReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+function accReset(){
+  accIdx = 0;
+  accScore = 0;
+  const res = document.getElementById('acc-result');
+  const cont = document.getElementById('acc-exercise');
+  if(res) res.style.display = 'none';
+  if(cont) cont.style.display = '';
+  renderAccExercise();
+}
+
+// Init on DOMContentLoaded
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderAccExercise, 150);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderAccExercise, 150);
+  }
+}
+
+
+/* ═══════════════════════════════════
+   H19 POJMOVNIK DATA + RENDERER
+═══════════════════════════════════ */
+
+const POJM_DATA2 = [
+  // === 1. GLASOVI (10) ===
+  {kat:'glasovi', term:'Fonem', def:'Najmanja razlikovna (distinktivna) jedinica u jeziku. Apstraktna jedinica, piše se /p/, /t/, /š/ između kosih crta. Razlikuje značenje (pas vs. bas).'},
+  {kat:'glasovi', term:'Alofon', def:'Konkretna izgovorna realizacija fonema. Piše se [p], [pʰ] između uglatih zagrada. Različiti alofoni NE razlikuju značenje (npr. /n/ u „banka" se izgovara [ŋ]).'},
+  {kat:'glasovi', term:'Grafem', def:'Pisani znak (slovo) kojim zapisujemo fonem. Piše se <p>, <nj> između šiljastih zagrada. Hrvatski ima 30 slova ali 27 grafema (nj, lj, dž su dvoslovi).'},
+  {kat:'glasovi', term:'Samoglasnik', def:'Glas koji se izgovara bez prepreke u usnoj šupljini. Hrvatski ima 5 samoglasnika: a, e, i, o, u. Tvori nukleus sloga.'},
+  {kat:'glasovi', term:'Suglasnik', def:'Glas koji se izgovara s preprekom u usnoj šupljini. Hrvatski ima 25 suglasnika podijeljenih u 6 grupa po načinu tvorbe.'},
+  {kat:'glasovi', term:'Slogotvorno r', def:'Suglasnik r koji u hrv. može biti nukleus sloga bez samoglasnika. Piše se r̩. Primjeri: pr̩st, kr̩v, vr̩t, sr̩ce.'},
+  {kat:'glasovi', term:'Dvoslov', def:'Dva slova koja zajedno predstavljaju jedan fonem. U hrv.: nj /ɲ/, lj /ʎ/, dž /d͡ʒ/.'},
+  {kat:'glasovi', term:'Nukleus sloga', def:'Središnji element sloga — najčešće samoglasnik (u hrv. može biti i slogotvorno r). Svaki slog ima točno jedan nukleus.'},
+  {kat:'glasovi', term:'Artikulacija', def:'Način proizvodnje glasa — kako se artikulatori (jezik, usne, nepce) koriste za stvaranje zvuka. Opisuje se mjestom i načinom tvorbe.'},
+  {kat:'glasovi', term:'Mjesto tvorbe', def:'Gdje u usnoj šupljini se stvara prepreka pri izgovoru suglasnika. Od usana (bilabijalni) do grla (velarni): bilabijalni, labiodentalni, dentalni, alveolarni, postalveolarni, palatalni, velarni.'},
+
+  // === 2. KLASIFIKACIJA (8) ===
+  {kat:'klasifikacija', term:'Ploziv', def:'Suglasnik tvoren potpunim zatvorom + naglim otvaranjem. „Zvuk pucketanja". Hrv.: p, b, t, d, k, g (3 para po zvučnosti).'},
+  {kat:'klasifikacija', term:'Frikativ', def:'Suglasnik tvoren tjesnacom + trenjem zraka. „Šum". Hrv.: f, s, z, š, ž, h.'},
+  {kat:'klasifikacija', term:'Afrikata', def:'Sliveni glas — ploziv + frikativ spojeni u jednu jedinicu. U IPA se piše s lukom: [t͡s]. Hrv.: c, č, ć, dž, đ.'},
+  {kat:'klasifikacija', term:'Nazal', def:'Suglasnik koji se izgovara s izlaskom zraka kroz nos (spuštena uvula). Hrv.: m, n, nj. Svi su zvučni.'},
+  {kat:'klasifikacija', term:'Likvid', def:'Tekući glas — l, lj, r. Zrak teče oko djelomično suženih artikulatora. Svi su zvučni.'},
+  {kat:'klasifikacija', term:'Aproksimant', def:'Glas s minimalnom preprekom — između suglasnika i samoglasnika. Hrv.: j, v.'},
+  {kat:'klasifikacija', term:'Bilabijalni', def:'Mjesto tvorbe — obje usne. Hrv.: p, b, m.'},
+  {kat:'klasifikacija', term:'Palatalni', def:'Mjesto tvorbe — tvrdo nepce. Hrv.: ć, đ, nj, lj, j.'},
+
+  // === 3. GLASOVNE PROMJENE (10) ===
+  {kat:'promjene', term:'Jotacija', def:'Suglasnik + j → palatalni suglasnik. Primjeri: t+j→ć (list→lišće), d+j→đ (mlad→mlađi), n+j→nj, l+j→lj.'},
+  {kat:'promjene', term:'Palatalizacija (1.)', def:'Velari k, g, h + prednji vokali e, i → palatali č, ž, š. Starija promjena. Primjer: vuk → vuče (vokativ).'},
+  {kat:'promjene', term:'Sibilarizacija (2. palatalizacija)', def:'Velari k, g, h + i → sibilanti c, z, s. Mlađa promjena. Primjeri: vojnik→vojnici, orah→orasi.'},
+  {kat:'promjene', term:'Vokalizacija l', def:'l na kraju sloga → o. Najčešće kod gl. pridjeva radnog m.r.: čital→čitao. Ali ostaje u ž.r. i sr.r. (čitala, čitalo).'},
+  {kat:'promjene', term:'Nepostojano a', def:'Samoglasnik a koji se pojavljuje u N jd. (i G mn.), a nestaje u kosim padežima. Primjer: pas → psa (G), ali pasa (G mn.).'},
+  {kat:'promjene', term:'Alternacije jatova', def:'Refleksi praslav. *ě (jat) u hrv. — ije (dugi slog), je (kratki), e ili i. Primjer: svijet → svjetlost → svjetlo.'},
+  {kat:'promjene', term:'Jednačenje po zvučnosti', def:'Zvučnost se izjednačuje na granici morfema — drugi diktira prvome. Primjeri: iz+pasti→ispasti, od+kud→otkud.'},
+  {kat:'promjene', term:'Jednačenje po mjestu tvorbe', def:'Suglasnik se prilagođava mjestu tvorbe susjednog. Primjer: s+č→š (rašćupati), z+š→ž.'},
+  {kat:'promjene', term:'Minimalni par', def:'Dvije riječi koje se razlikuju u samo jednom fonemu i imaju različito značenje. Primjeri: pas-bas, koš-kos, lice-lipe. Dokaz fonemskog statusa.'},
+  {kat:'promjene', term:'Refleks', def:'Rezultat razvoja starijeg glasa u suvremenom jeziku. Primjer: hrv. ije je refleks praslav. *ě u dugom slogu.'},
+
+  // === 4. SLOG (6) ===
+  {kat:'slog', term:'Slog', def:'Najmanja izgovorna cjelina organizirana oko jednog nukleusa. Struktura: (C) + V + (C). Primjer: „kruh" = k (inic.) + u (nukl.) + h (koda).'},
+  {kat:'slog', term:'Otvoreni slog', def:'Slog koji završava samoglasnikom (nema kodu). Primjeri: ma•ma, ku•ća, o•ko. Najčešći tip sloga u hrv.'},
+  {kat:'slog', term:'Zatvoreni slog', def:'Slog koji završava suglasnikom (ima kodu). Primjeri: pas, maj•ka, vrt, kruh.'},
+  {kat:'slog', term:'Inicijala', def:'Suglasnik (ili grupa suglasnika) na početku sloga, prije nukleusa. Primjer: u „kruh" inicijala je „k".'},
+  {kat:'slog', term:'Koda', def:'Suglasnik (ili grupa) na kraju sloga, nakon nukleusa. Primjer: u „pas" koda je „s". U otvorenim slogovima koda ne postoji.'},
+  {kat:'slog', term:'Slogotvorno r (vokalno r)', def:'r koje tvori slog bez samoglasnika — postaje nukleus. Pojavljuje se između suglasnika ili na rubu. Primjeri: pr̩st, kr̩v, sr̩ce.'},
+
+  // === 5. NAGLASAK (10) ===
+  {kat:'naglasak', term:'Naglasak', def:'Isticanje jednog sloga u riječi po jačini, visini ili dužini. Hrv. ima 4 tipa. Svaka riječ ima točno jedan naglasak.'},
+  {kat:'naglasak', term:'Kratkosilazni naglasak', def:'Kratki + silazni ton. Znak: ◌̏ (dvostruki akut). Primjeri: pȉvo, žȅna, kȕća. Stoji samo na prvom slogu.'},
+  {kat:'naglasak', term:'Dugosilazni naglasak', def:'Dugi + silazni ton. Znak: ◌̂ (cirkumfleks). Primjeri: mâma, râd, pâs. Stoji samo na prvom slogu.'},
+  {kat:'naglasak', term:'Kratkouzlazni naglasak', def:'Kratki + uzlazni ton. Znak: ◌̀ (grave akut). Primjeri: kùća, sèstra. Može na bilo kojem slogu osim zadnjeg.'},
+  {kat:'naglasak', term:'Dugouzlazni naglasak', def:'Dugi + uzlazni ton. Znak: ◌́ (akut). Primjeri: rúka, národ. Može na bilo kojem slogu osim zadnjeg.'},
+  {kat:'naglasak', term:'Zanaglasna dužina', def:'Produženi samoglasnik na slogu NAKON naglašenog — bez naglaska. Znak: makron (crta). Primjer: ná-rōd, knjî-gē.'},
+  {kat:'naglasak', term:'Silazni naglasak', def:'Naglasak u kojem ton pada od visokog prema niskom. Hrv. ima 2 silazna: kratkosilazni i dugosilazni. U standardu SAMO na 1. slogu.'},
+  {kat:'naglasak', term:'Uzlazni naglasak', def:'Naglasak u kojem ton raste od niskog prema visokom. Hrv. ima 2 uzlazna: kratkouzlazni i dugouzlazni. NIKAD na zadnjem slogu.'},
+  {kat:'naglasak', term:'Enklitika', def:'Nenaglašena riječ koja se prislanja uz prethodnu naglašenu. Primjer: „dao mi je" (mi, je su enklitike). Ne smije biti na početku rečenice.'},
+  {kat:'naglasak', term:'Proklitika', def:'Nenaglašena riječ koja se prislanja uz sljedeću naglašenu. Primjer: prijedlozi (u, na, za) i veznici (a, i).'},
+
+  // === 6. POVIJEST (6) ===
+  {kat:'povijest', term:'Praslavenski jezik', def:'Rekonstruirani prajezik svih slavenskih jezika (oko 2. tis. pr. Kr. — 8. st.). Iz njega se razvili svi slavenski jezici, uključujući hrvatski.'},
+  {kat:'povijest', term:'Staroslavenski jezik', def:'Prvi pisani slavenski jezik (9. st.). Ćiril i Metod ga koriste za prijevode. Osnova svih slavenskih književnih jezika.'},
+  {kat:'povijest', term:'Jat (*ě)', def:'Praslavenski samoglasnik koji u hrv. ima više refleksa: ije (svijet), je (svjetlost), e (sveta) ili i (svitanje). Uzrok svih „jatova" u hrv.'},
+  {kat:'povijest', term:'Novoštokavska metateza naglasaka', def:'Povijesna promjena u novoštokavskim govorima: silazni naglasci s nepočetnih slogova povukli su se na prethodni slog i postali uzlazni. Temelj hrv. standarda.'},
+  {kat:'povijest', term:'Štokavsko narječje', def:'Jedno od tri hrv. narječja (prema upitnoj zamjenici „što"). Temelj hrv. standarda. Podijeljeno na ikavsko (svit), ekavsko (svet), ijekavsko (svijet) — standardno je ijekavsko.'},
+  {kat:'povijest', term:'Čakavsko i kajkavsko narječje', def:'Dva druga hrv. narječja (prema upitnim zamjenicama „ča" i „kaj"). Imaju drugačiji naglasni sustav — silazni mogu biti i na drugim slogovima.'},
+
+  // === 7. METAJEZIK (5) ===
+  {kat:'meta', term:'IPA', def:'International Phonetic Alphabet — međunarodna fonetska abeceda. Univerzalni sustav za precizan zapis izgovora svih jezika svijeta.'},
+  {kat:'meta', term:'Fonetska transkripcija', def:'Zapis stvarnog, konkretnog izgovora između uglatih zagrada. Primjer: [d͡ʒɛp] (izgovor riječi „džep"). Prikazuje alofone.'},
+  {kat:'meta', term:'Fonološka transkripcija', def:'Zapis apstraktnih fonema između kosih crta. Primjer: /d͡ʒep/. Prikazuje samo distinktivne razlike, bez detalja izgovora.'},
+  {kat:'meta', term:'Kvantitativna opozicija', def:'Razlika među glasovima prema dužini (kratki vs. dugi). U hrv. važna za razlikovanje padeža: žene (N mn., kratka) vs. ženē (G jd., duga).'},
+  {kat:'meta', term:'Distinktivna opozicija', def:'Fonološka razlika koja mijenja značenje. Primjer: /p/ vs. /b/ u paru pas-bas — dokaz da su to različiti fonemi.'},
+];
+
+let pojm2Active = 'all';
+let pojm2Mode = 'grid';
+let pj2Data = [];
+let pj2Idx = 0;
+let pj2Seen = {};
+
+function renderPojm2(){
+  const grid = document.getElementById('pojm-grid2');
+  if(!grid) return;
+  const show = pojm2Active === 'all' ? POJM_DATA2 : POJM_DATA2.filter(p => p.kat === pojm2Active);
+  
+  const KAT_LABELS = {
+    'glasovi':'Glasovi',
+    'klasifikacija':'Klasifikacija',
+    'promjene':'Glasovne promjene',
+    'slog':'Slog',
+    'naglasak':'Naglasak',
+    'povijest':'Povijest',
+    'meta':'Metajezik'
+  };
+  
+  grid.innerHTML = show.map(p => \`
+    <div class="pojm-card-h19" onclick="this.classList.toggle('open')">
+      <div class="pc-kat">\${KAT_LABELS[p.kat] || p.kat}</div>
+      <div class="pc-term">\${p.term}</div>
+      <div class="pc-hint">→ klikni za definiciju</div>
+      <div class="pc-def">\${p.def}</div>
+    </div>
+  \`).join('');
+}
+
+function pojmFilter2(cat, btn){
+  document.querySelectorAll('.pojm-filter .pojm-fbt').forEach(b => b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  pojm2Active = cat;
+  renderPojm2();
+}
+
+// Auto-init
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderPojm2, 150);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderPojm2, 150);
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 5 · FONEMSKI SCANNER (engine)
+═══════════════════════════════════ */
+
+// Fonemska baza — hrv. slovo → IPA + klasifikacija
+const PHONEME_DB = {
+  // Samoglasnici
+  'a':{ipa:'a', tip:'samoglasnik', mjesto:'srednji', visina:'otvoren', zvucnost:'zvučan'},
+  'e':{ipa:'ɛ', tip:'samoglasnik', mjesto:'prednji', visina:'sr.-otvoren', zvucnost:'zvučan'},
+  'i':{ipa:'i', tip:'samoglasnik', mjesto:'prednji', visina:'zatvoren', zvucnost:'zvučan'},
+  'o':{ipa:'ɔ', tip:'samoglasnik', mjesto:'stražnji', visina:'sr.-otvoren', zvucnost:'zvučan'},
+  'u':{ipa:'u', tip:'samoglasnik', mjesto:'stražnji', visina:'zatvoren', zvucnost:'zvučan'},
+  
+  // Plozivi
+  'p':{ipa:'p', tip:'ploziv', mjesto:'bilabijalni', zvucnost:'bezvučan', par:'b'},
+  'b':{ipa:'b', tip:'ploziv', mjesto:'bilabijalni', zvucnost:'zvučan', par:'p'},
+  't':{ipa:'t', tip:'ploziv', mjesto:'dentalni', zvucnost:'bezvučan', par:'d'},
+  'd':{ipa:'d', tip:'ploziv', mjesto:'dentalni', zvucnost:'zvučan', par:'t'},
+  'k':{ipa:'k', tip:'ploziv', mjesto:'velarni', zvucnost:'bezvučan', par:'g'},
+  'g':{ipa:'g', tip:'ploziv', mjesto:'velarni', zvucnost:'zvučan', par:'k'},
+  
+  // Frikativi
+  'f':{ipa:'f', tip:'frikativ', mjesto:'labiodentalni', zvucnost:'bezvučan', par:null},
+  's':{ipa:'s', tip:'frikativ', mjesto:'alveolarni', zvucnost:'bezvučan', par:'z'},
+  'z':{ipa:'z', tip:'frikativ', mjesto:'alveolarni', zvucnost:'zvučan', par:'s'},
+  'š':{ipa:'ʃ', tip:'frikativ', mjesto:'postalveolarni', zvucnost:'bezvučan', par:'ž'},
+  'ž':{ipa:'ʒ', tip:'frikativ', mjesto:'postalveolarni', zvucnost:'zvučan', par:'š'},
+  'h':{ipa:'x', tip:'frikativ', mjesto:'velarni', zvucnost:'bezvučan', par:null},
+  
+  // Afrikate
+  'c':{ipa:'t͡s', tip:'afrikata', mjesto:'alveolarni', zvucnost:'bezvučan', par:null},
+  'č':{ipa:'t͡ʃ', tip:'afrikata', mjesto:'postalveolarni', zvucnost:'bezvučan', par:'dž'},
+  'ć':{ipa:'t͡ɕ', tip:'afrikata', mjesto:'palatalni', zvucnost:'bezvučan', par:'đ'},
+  'dž':{ipa:'d͡ʒ', tip:'afrikata', mjesto:'postalveolarni', zvucnost:'zvučan', par:'č'},
+  'đ':{ipa:'d͡ʑ', tip:'afrikata', mjesto:'palatalni', zvucnost:'zvučan', par:'ć'},
+  
+  // Nazali
+  'm':{ipa:'m', tip:'nazal', mjesto:'bilabijalni', zvucnost:'zvučan'},
+  'n':{ipa:'n', tip:'nazal', mjesto:'alveolarni', zvucnost:'zvučan'},
+  'nj':{ipa:'ɲ', tip:'nazal', mjesto:'palatalni', zvucnost:'zvučan'},
+  
+  // Likvidi
+  'l':{ipa:'l', tip:'likvid', mjesto:'alveolarni', zvucnost:'zvučan'},
+  'lj':{ipa:'ʎ', tip:'likvid', mjesto:'palatalni', zvucnost:'zvučan'},
+  'r':{ipa:'r', tip:'likvid', mjesto:'alveolarni', zvucnost:'zvučan'},
+  
+  // Aproksimanti
+  'j':{ipa:'j', tip:'aproksimant', mjesto:'palatalni', zvucnost:'zvučan'},
+  'v':{ipa:'ʋ', tip:'aproksimant', mjesto:'labiodentalni', zvucnost:'zvučan'}
+};
+
+const VOWELS = ['a', 'e', 'i', 'o', 'u'];
+const DIGRAPHS = ['dž', 'lj', 'nj'];
+
+// Tokenize word into phonemes (handles digraphs)
+function tokenizePhonemes(word){
+  word = word.toLowerCase().trim();
+  const tokens = [];
+  let i = 0;
+  while(i < word.length){
+    const digraph = word.substr(i, 2);
+    if(DIGRAPHS.includes(digraph)){
+      tokens.push(digraph);
+      i += 2;
+    } else {
+      tokens.push(word[i]);
+      i++;
+    }
+  }
+  return tokens;
+}
+
+// Detect syllables
+function findSyllables(tokens){
+  // Syllable nucleus: vowel OR slogotvorno r (r between consonants)
+  const nuclei = [];
+  for(let i = 0; i < tokens.length; i++){
+    const t = tokens[i];
+    if(VOWELS.includes(t)){
+      nuclei.push(i);
+    } else if(t === 'r'){
+      // Slogotvorno r: between consonants, or at start before consonant, or at end after consonant
+      const prev = tokens[i-1];
+      const next = tokens[i+1];
+      const prevIsCons = prev && !VOWELS.includes(prev);
+      const nextIsCons = !next || !VOWELS.includes(next);
+      if(prevIsCons && nextIsCons){
+        nuclei.push(i);
+      } else if(!prev && nextIsCons){
+        // Rare: starts with r+consonant (e.g., 'rtanj' — not a real word but)
+        nuclei.push(i);
+      } else if(prevIsCons && !next){
+        // ends with Cr (e.g., 'prst' ends at r? no, ends at t. 'smrt' — m,r,t, r is between)
+        nuclei.push(i);
+      }
+    }
+  }
+  
+  if(nuclei.length === 0) return [{text: tokens.join(''), tokens, nucleus: -1}];
+  
+  // Split into syllables — each syllable owns its nucleus + surrounding consonants
+  // Rule: consonants between two nuclei go with the FOLLOWING nucleus (max onset principle)
+  const syllables = [];
+  for(let s = 0; s < nuclei.length; s++){
+    const nuc = nuclei[s];
+    const startBoundary = s === 0 ? 0 : Math.floor((nuclei[s-1] + nuc) / 2) + 1;
+    const endBoundary = s === nuclei.length - 1 ? tokens.length : Math.floor((nuc + nuclei[s+1]) / 2);
+    
+    // Better rule: for CC between nuclei, send last C to next syllable (CV-CV preferred)
+    // But for simplicity: all consonants after nucleus go with next syllable (except at word end)
+    let start, end;
+    if(s === 0){
+      start = 0;
+    } else {
+      // Start after previous nucleus's end
+      const prevNuc = nuclei[s-1];
+      const consBetween = nuc - prevNuc - 1;
+      if(consBetween === 0){
+        start = nuc;
+      } else if(consBetween === 1){
+        start = nuc; // single C goes to next: pi.sa → pi.sa
+      } else {
+        // Multiple C — split in middle (prefer CV.CV with rest attached)
+        start = prevNuc + 1 + Math.floor(consBetween / 2);
+      }
+    }
+    
+    if(s === nuclei.length - 1){
+      end = tokens.length;
+    } else {
+      const nextNuc = nuclei[s+1];
+      const consBetween = nextNuc - nuc - 1;
+      if(consBetween === 0){
+        end = nuc + 1;
+      } else if(consBetween === 1){
+        end = nuc + 1; // single C goes to next: pi.sa
+      } else {
+        end = nuc + 1 + Math.floor(consBetween / 2);
+      }
+    }
+    
+    const sylTokens = tokens.slice(start, end);
+    let text = sylTokens.join('');
+    // Mark slogotvorno r
+    if(tokens[nuc] === 'r' && !VOWELS.includes(tokens[nuc-1]) && (!tokens[nuc+1] || !VOWELS.includes(tokens[nuc+1]))){
+      // Replace r with r̩ in display
+      const nucInSyl = nuc - start;
+      const chars = text.split('');
+      if(chars[nucInSyl] === 'r') chars[nucInSyl] = 'r̩';
+      text = chars.join('');
+    }
+    
+    syllables.push({text, tokens: sylTokens, nucleus: tokens[nuc], slogotvorno: tokens[nuc] === 'r' && !VOWELS.includes(tokens[nuc-1]) && (!tokens[nuc+1] || !VOWELS.includes(tokens[nuc+1]))});
+  }
+  
+  return syllables;
+}
+
+// Build IPA transcription
+function toIPA(tokens){
+  return tokens.map(t => {
+    const p = PHONEME_DB[t];
+    return p ? p.ipa : t;
+  }).join('');
+}
+
+// Detect glasovne promjene (heuristic)
+function detectChanges(word, tokens){
+  const hints = [];
+  const w = word.toLowerCase();
+  
+  // 1. Jotacija hints — palatals after typical contexts
+  if(/[čćšžđ]/.test(w) && (w.includes('lj') || w.includes('nj') || w.endsWith('je') || w.endsWith('ći') || w.endsWith('đi'))){
+    if(/[ćđ]/.test(w)) hints.push({name:'Jotacija (moguća)', detail:'Prisutan palatalni suglasnik (ć/đ/š/ž) — često rezultat jotacije t+j→ć, d+j→đ, s+j→š, z+j→ž.', tab:2});
+  }
+  
+  // 2. Vokalizacija l — words ending in -ao (often glagolski pridjev radni)
+  if(/[^aeiou]ao$/.test(w) || w.endsWith('io') && w.length > 3){
+    hints.push({name:'Vokalizacija l (vjerojatna)', detail:'Završetak -ao / -io tipičan je za glag. pridjev radni m.r. (čital→čitao, radil→radio).', tab:2});
+  }
+  
+  // 3. Sibilarizacija (2. palatalizacija) — words ending in -ci, -zi, -si (N mn. m.r.)
+  if(/[cz s]i$/.test(w) && w.length > 3){
+    hints.push({name:'Sibilarizacija (moguća)', detail:'Završetak -ci/-zi/-si može biti rezultat sibilarizacije: k+i→ci (vojnik→vojnici), g+i→zi (rog→rozi), h+i→si (orah→orasi).', tab:2});
+  }
+  
+  // 4. Palatalizacija 1 — often in vocatives, 3pl prezent
+  if(/[čžš]e$/.test(w) || /[čžš]em$/.test(w)){
+    hints.push({name:'1. palatalizacija (moguća)', detail:'Završetak -če/-že/-še može biti rezultat 1. palatalizacije: k/g/h + e → č/ž/š (vuk→vuče, bog→bože).', tab:2});
+  }
+  
+  // 5. Alternacija jatova
+  if(w.includes('ije') || w.includes('je') && !w.startsWith('je')){
+    if(/ij[ae]/.test(w) || /[bcdfghjklmnprstvzž]je/.test(w)){
+      hints.push({name:'Refleks jata (ije/je)', detail:'Prisutnost „ije" ili „je" nakon suglasnika tipičan je refleks praslav. *ě (jat). Dugi slog = ije (svijet), kratki = je (svjetlost).', tab:2});
+    }
+  }
+  
+  // 6. Jednačenje po zvučnosti — look for clusters that suggest previous jednačenje
+  if(/[ptkščfs][ptkšč]/.test(w)){
+    hints.push({name:'Jednačenje po zvučnosti (moguće)', detail:'Susjedni bezvučni suglasnici mogu biti rezultat jednačenja (npr. iz+pasti→ispasti, srb+ski→srpski).', tab:2});
+  }
+  
+  // 7. Slogotvorno r detected
+  for(let i = 0; i < tokens.length; i++){
+    if(tokens[i] === 'r'){
+      const prev = tokens[i-1];
+      const next = tokens[i+1];
+      if(prev && !VOWELS.includes(prev) && (!next || !VOWELS.includes(next))){
+        hints.push({name:'Slogotvorno r', detail:'r u poziciji između suglasnika (ili na rubu) — tvori slog bez samoglasnika. Piše se r̩ u IPA.', tab:3});
+        break;
+      }
+    }
+  }
+  
+  return hints;
+}
+
+// Main scanner function
+function scanWord(){
+  const input = document.getElementById('scan-input');
+  const out = document.getElementById('scan-results');
+  if(!input || !out) return;
+  
+  const word = input.value.trim();
+  if(!word){
+    out.innerHTML = '';
+    return;
+  }
+  
+  // Validate — only Croatian letters
+  if(!/^[a-zčćđšžA-ZČĆĐŠŽ]+$/.test(word)){
+    out.innerHTML = \`<div class="box-warn"><div class="bw-body"><div class="bw-txt">Samo hrv. slova (a-ž), bez razmaka ili brojeva.</div></div></div>\`;
+    return;
+  }
+  
+  const tokens = tokenizePhonemes(word);
+  const syllables = findSyllables(tokens);
+  const ipa = toIPA(tokens);
+  const changes = detectChanges(word, tokens);
+  
+  // Count stats
+  const vowelCount = tokens.filter(t => VOWELS.includes(t)).length;
+  const slogotvornoR = tokens.some((t, i) => t === 'r' && (!tokens[i-1] || !VOWELS.includes(tokens[i-1])) && (!tokens[i+1] || !VOWELS.includes(tokens[i+1])));
+  const syllCount = syllables.length;
+  const phonemeCount = tokens.length;
+  const letterCount = word.length;
+  
+  // Build output
+  out.innerHTML = \`
+    <!-- RESULT: WORD HEADER -->
+    <div style="padding:18px;background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.3);border-radius:var(--r2);margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:2px">ANALIZA RIJEČI</div>
+          <div style="font-family:var(--display);font-size:32px;font-weight:700;color:var(--gold);margin-top:4px">\${word}</div>
+        </div>
+        <button class="nb-btn" onclick="speakWord('\${word}')" style="padding:10px 16px">🔊 Slušaj</button>
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:20px">
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);text-align:center">
+        <div style="font-family:var(--display);font-size:24px;font-weight:700;color:var(--blue)">\${letterCount}</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px">SLOVA</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);text-align:center">
+        <div style="font-family:var(--display);font-size:24px;font-weight:700;color:var(--gold)">\${phonemeCount}</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px">FONEMA</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);text-align:center">
+        <div style="font-family:var(--display);font-size:24px;font-weight:700;color:var(--green)">\${syllCount}</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px">SLOGOVA</div>
+      </div>
+      <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);text-align:center">
+        <div style="font-family:var(--display);font-size:24px;font-weight:700;color:var(--bronze)">\${vowelCount}\${slogotvornoR ? '+r̩' : ''}</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px">SAMOGLAS.</div>
+      </div>
+    </div>
+
+    <!-- SYLLABLES -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">📐 Slogovi — \${syllCount}</div><div class="sec-line"></div></div>
+    <div style="padding:16px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin:12px 0">
+      <div style="font-family:var(--display);font-size:24px;font-weight:600;color:var(--t1);text-align:center;letter-spacing:1px">
+        \${syllables.map((s, i) => \`<span style="color:var(--gold)">\${s.text}</span>\${i < syllables.length-1 ? '<span style="color:var(--t3);margin:0 4px">•</span>' : ''}\`).join('')}
+      </div>
+      \${slogotvornoR ? '<div style="font-family:var(--mono);font-size:11px;color:var(--bronze);text-align:center;margin-top:8px">⚡ r̩ = slogotvorno r</div>' : ''}
+    </div>
+
+    <!-- IPA -->
+    <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">🌐 IPA transkripcija</div><div class="sec-line"></div></div>
+    <div style="padding:16px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin:12px 0;text-align:center">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:2px;margin-bottom:6px">FONOLOŠKA</div>
+      <div style="font-family:var(--mono);font-size:22px;color:var(--t1)">/\${ipa}/</div>
+    </div>
+
+    <!-- PHONEMES TABLE -->
+    <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">🔤 Fonemi po redoslijedu</div><div class="sec-line"></div></div>
+    <div class="table-wrap" style="overflow-x:auto;margin:12px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:center;color:var(--gold)">#</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Slovo</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">IPA</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Tip</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Mjesto</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Zvučnost</th>
+          </tr>
+        </thead>
+        <tbody>
+          \${tokens.map((t, i) => {
+            const p = PHONEME_DB[t] || {ipa:t, tip:'?', mjesto:'?', zvucnost:'?'};
+            const isVowel = p.tip === 'samoglasnik';
+            const isDigraph = DIGRAPHS.includes(t);
+            return \`<tr style="border-bottom:1px solid var(--bd);\${isVowel ? 'background:rgba(233,180,70,.05)' : ''}">
+              <td style="padding:8px;text-align:center;color:var(--t3)">\${i+1}</td>
+              <td style="padding:8px;text-align:center;font-size:18px;font-weight:700;color:var(--t1)">\${t}\${isDigraph ? '<span style="font-size:9px;color:var(--bronze);display:block">(dvoslov)</span>' : ''}</td>
+              <td style="padding:8px;text-align:center;font-family:var(--mono);font-size:14px;color:var(--blue)">[\${p.ipa}]</td>
+              <td style="padding:8px;color:var(--t2)">\${p.tip}</td>
+              <td style="padding:8px;color:var(--t2)">\${p.mjesto || '-'}</td>
+              <td style="padding:8px;text-align:center;color:\${p.zvucnost === 'zvučan' ? 'var(--green)' : 'var(--red)'}">\${p.zvucnost || '-'}</td>
+            </tr>\`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DIGRAPHS INFO -->
+    \${letterCount !== phonemeCount ? \`
+      <div class="box-signal" style="margin:12px 0">
+        <div class="box-signal-lbl">💡 Pazi — slova ≠ fonemi</div>
+        <div class="box-signal-txt">
+          Riječ ima <strong>\${letterCount} slova</strong> ali <strong>\${phonemeCount} fonema</strong>. Razlika je zbog dvoslova (<em>nj</em>, <em>lj</em>, <em>dž</em>) koji su 1 fonem zapisan s 2 slova.
+        </div>
+      </div>
+    \` : ''}
+
+    <!-- DETECTED CHANGES -->
+    \${changes.length > 0 ? \`
+      <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">🔄 Moguće glasovne promjene (\${changes.length})</div><div class="sec-line"></div></div>
+      <div style="margin:12px 0">
+        \${changes.map(c => \`
+          <div style="padding:14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--gold);border-radius:var(--r1);margin-bottom:8px;cursor:pointer" onclick="sw(\${c.tab})">
+            <div style="display:flex;justify-content:space-between;align-items:start;gap:10px">
+              <div style="flex:1">
+                <div style="font-family:var(--display);font-weight:700;color:var(--t1);margin-bottom:4px">\${c.name}</div>
+                <div style="font-size:12px;color:var(--t2);line-height:1.5">\${c.detail}</div>
+              </div>
+              <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);white-space:nowrap">→ Tab \${c.tab}</div>
+            </div>
+          </div>
+        \`).join('')}
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--t3);text-align:center;margin-top:8px">⚠ Heuristička detekcija — uvijek provjeri s osnovnim oblikom</div>
+    \` : ''}
+  \`;
+}
+
+function scanExample(word){
+  const input = document.getElementById('scan-input');
+  if(input){
+    input.value = word;
+    scanWord();
+    input.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 2 · INTERAKTIVNA VJEŽBA GLASOVNIH PROMJENA
+═══════════════════════════════════ */
+
+const GP_PAIRS = [
+  {pair:['list', 'lišće'], answer:'jotacija', explain:'Jotacija: t+j → ć, s+j → š (zbirna imenica na -je)'},
+  {pair:['vuk', 'vuče'], answer:'1palat', explain:'1. palatalizacija: k + e → č (vokativ jednine m.r.)'},
+  {pair:['vojnik', 'vojnici'], answer:'sibilar', explain:'Sibilarizacija (2. palat.): k + i → c (N mn. m.r.)'},
+  {pair:['čital', 'čitao'], answer:'vokal', explain:'Vokalizacija l: -l na kraju sloga → -o (gl. pridjev radni m.r.)'},
+  {pair:['pas', 'psa'], answer:'nepost', explain:'Nepostojano a: a se gubi u kosim padežima (ali se vraća u G mn.: pasa)'},
+  {pair:['svijet', 'svjetlost'], answer:'jat', explain:'Alternacija jata: ije (dugi slog) → je (kratki slog) — refleks praslav. *ě'},
+  {pair:['bog', 'bože'], answer:'1palat', explain:'1. palatalizacija: g + e → ž (vokativ jednine m.r.)'},
+  {pair:['iz+pasti', 'ispasti'], answer:'jednacenje', explain:'Jednačenje po zvučnosti: zvučni z → bezvučni s pred bezvučnim p'},
+];
+
+let gpIdx = 0;
+let gpScore = 0;
+
+function renderGpExercise(){
+  const cont = document.getElementById('gp-exercise');
+  if(!cont) return;
+  
+  if(gpIdx >= GP_PAIRS.length){
+    renderGpResult();
+    return;
+  }
+  
+  const item = GP_PAIRS[gpIdx];
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">PITANJE \${gpIdx+1} / \${GP_PAIRS.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${gpScore}</div>
+      </div>
+      
+      <div style="text-align:center;margin:24px 0;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap">
+        <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--t1);padding:14px 24px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r1)">\${item.pair[0]}</div>
+        <div style="font-size:24px;color:var(--gold)">→</div>
+        <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);padding:14px 24px;background:var(--bg);border:1.5px solid var(--gold);border-radius:var(--r1);box-shadow:0 2px 8px rgba(233,180,70,.15)">\${item.pair[1]}</div>
+      </div>
+      
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJA SE GLASOVNA PROMJENA DOGODILA?</div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">
+        <button class="gp-opt" data-ans="jotacija" onclick="gpAnswer('jotacija', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--blue);font-weight:700;margin-bottom:2px">1. Jotacija</div>
+          <div style="font-size:10px;color:var(--t3)">C + j → palatalni</div>
+        </button>
+        <button class="gp-opt" data-ans="1palat" onclick="gpAnswer('1palat', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--bronze);font-weight:700;margin-bottom:2px">2. 1. palatalizacija</div>
+          <div style="font-size:10px;color:var(--t3)">k,g,h + e/i → č,ž,š</div>
+        </button>
+        <button class="gp-opt" data-ans="sibilar" onclick="gpAnswer('sibilar', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--green);font-weight:700;margin-bottom:2px">3. Sibilarizacija</div>
+          <div style="font-size:10px;color:var(--t3)">k,g,h + i → c,z,s</div>
+        </button>
+        <button class="gp-opt" data-ans="vokal" onclick="gpAnswer('vokal', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--red);font-weight:700;margin-bottom:2px">4. Vokalizacija l</div>
+          <div style="font-size:10px;color:var(--t3)">-l → -o</div>
+        </button>
+        <button class="gp-opt" data-ans="nepost" onclick="gpAnswer('nepost', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--gold);font-weight:700;margin-bottom:2px">5. Nepostojano a</div>
+          <div style="font-size:10px;color:var(--t3)">a se gubi</div>
+        </button>
+        <button class="gp-opt" data-ans="jat" onclick="gpAnswer('jat', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:#9b59b6;font-weight:700;margin-bottom:2px">6. Alternacija jata</div>
+          <div style="font-size:10px;color:var(--t3)">ije/je/e/i</div>
+        </button>
+        <button class="gp-opt" data-ans="jednacenje" onclick="gpAnswer('jednacenje', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:#e67e22;font-weight:700;margin-bottom:2px">7. Jednačenje zvuč.</div>
+          <div style="font-size:10px;color:var(--t3)">izjednač. zvučnost</div>
+        </button>
+      </div>
+      
+      <div id="gp-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function gpAnswer(chosen, btn){
+  const item = GP_PAIRS[gpIdx];
+  const correct = chosen === item.answer;
+  if(correct) gpScore++;
+  
+  document.querySelectorAll('.gp-opt').forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+    b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.gp-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity = '1';
+        b.style.borderColor = 'var(--green)';
+        b.style.background = 'rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('gp-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="gpNext()">\${gpIdx < GP_PAIRS.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function gpNext(){
+  gpIdx++;
+  renderGpExercise();
+}
+
+function renderGpResult(){
+  const cont = document.getElementById('gp-exercise');
+  const res = document.getElementById('gp-result');
+  if(!cont || !res) return;
+  
+  cont.style.display = 'none';
+  res.style.display = 'block';
+  
+  const pct = Math.round((gpScore / GP_PAIRS.length) * 100);
+  let msg, color, emoji;
+  if(pct === 100){ emoji='🏆'; msg='Savršeno! Sve glasovne promjene prepoznate.'; color='var(--gold)'; }
+  else if(pct >= 75){ emoji='🎯'; msg='Odlično! Razlike među promjenama su ti jasne.'; color='var(--green)'; }
+  else if(pct >= 50){ emoji='📖'; msg='Dobro, ali ima prostora — provjeri scene-cards iznad.'; color='var(--blue)'; }
+  else{ emoji='⚠'; msg='Vrati se na scene-cards i ponovi pravila glasovnih promjena.'; color='var(--red)'; }
+  
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${gpScore} / \${GP_PAIRS.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="gpReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+function gpReset(){
+  gpIdx = 0;
+  gpScore = 0;
+  const res = document.getElementById('gp-result');
+  const cont = document.getElementById('gp-exercise');
+  if(res) res.style.display = 'none';
+  if(cont) cont.style.display = '';
+  renderGpExercise();
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderGpExercise, 200);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderGpExercise, 200);
+  }
+}
+
+
+function togScene(card){
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.scene-card').forEach(c=>c.classList.remove('open'));
+  if(!wasOpen)card.classList.add('open');
+}
+
+/* ═══════════════════════════════════
+   DIAG0
+═══════════════════════════════════ */
+let d0idx=0,d0score=0;
+function diag0Skip(){
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='dismissed';
+}
+function diag0Start(){
+  d0idx=0;d0score=0;
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='quiz';
+  d0Show();
+}
+function d0Show(){
+  if(d0idx>=DIAG0_Q.length){diag0End();return;}
+  const q=DIAG0_Q[d0idx];
+  const fill=document.getElementById('d0fill');
+  if(fill)fill.style.width=(((d0idx+1)/DIAG0_Q.length)*100)+'%';
+  const num=document.getElementById('d0num');
+  if(num)num.textContent=\`Pitanje \${d0idx+1} / \${DIAG0_Q.length}\`;
+  const cnt=document.getElementById('d0correct');
+  if(cnt)cnt.textContent=\`\${d0score} točno\`;
+  const text=document.getElementById('d0text');
+  if(text)text.textContent=q.q;
+  const opts=document.getElementById('d0opts');
+  if(!opts)return;
+  opts.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='diag-opt';btn.textContent=o;
+    btn.onclick=()=>{
+      opts.querySelectorAll('.diag-opt').forEach(b=>b.onclick=null);
+      if(i===q.t){btn.classList.add('correct');d0score++;}
+      else{btn.classList.add('wrong');opts.querySelectorAll('.diag-opt')[q.t].classList.add('correct');}
+      setTimeout(()=>{d0idx++;d0Show();},900);
+    };
+    opts.appendChild(btn);
+  });
+}
+function diag0End(){
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='result';
+  const pct=Math.round(d0score/DIAG0_Q.length*100);
+  let msg='', btnTxt='', btnTab=1;
+  if(pct>=80){
+    msg='<strong>Odlično!</strong> Osnove H19 imaš savladane. Preporučujem Referentnu tablicu — pregled hrv. fonetike kroz 8 ključnih razdoblja.';
+    btnTxt='📊 Referentna tablica →'; btnTab=7;
+  } else if(pct>=60){
+    msg='<strong>Dobro!</strong> Nekoliko rupa postoji — provjeri Tab 1-4 za detalje o glasovima, glasovnim promjenama, naglascima i pojmovima.';
+    btnTxt='🔤 Glasovi →'; btnTab=1;
+  } else {
+    msg='<strong>Kreni od osnova.</strong> Preporučujem: Teorija (Tab 0) + Glasovi (Tab 1). 30 fonema, 7 glasovnih promjena i 4 naglaska su ključni — sigurno ih nauči napamet.';
+    btnTxt='📖 Teorija →'; btnTab=0;
+  }
+  document.getElementById('d0rtitle').textContent=\`\${d0score} / \${DIAG0_Q.length} — \${pct}%\`;
+  document.getElementById('d0rdesc').innerHTML=msg;
+  const btn=document.getElementById('d0rbtn');
+  if(btn){btn.textContent=btnTxt;btn.onclick=()=>sw(btnTab);}
+}
+function diag0Reset(){const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='intro';}
+
+/* ═══════════════════════════════════
+   CITATNIK
+═══════════════════════════════════ */
+const CAT_COLORS={alegorija:'p-go',vjera:'p-t',judita:'p-br',holofern:'p-r',domoljublje:'p-g',stih:'p-pa'};
+let citStars={};
+try{citStars=JSON.parse(localStorage.getItem('mt.hrv.h19.cit_stars')||'{}')}catch(e){}
+let citActive='sve';
+
+function togStar(i,el){
+  citStars[i]=!citStars[i];
+  el.classList.toggle('starred',!!citStars[i]);
+  try{localStorage.setItem('mt.hrv.h19.cit_stars',JSON.stringify(citStars))}catch(e){}
+}
+/* citFilter removed (H18 leftover, renderCitati undefined) */
+
+/* ═══════════════════════════════════
+   POJMOVNIK
+═══════════════════════════════════ */
+let pojActive='sve';
+/* pojFilter removed (H18 leftover) */
+
+/* ═══════════════════════════════════
+   ESEJ ALAT
+═══════════════════════════════════ */
+function alTab(btn,pane){
+  document.querySelectorAll('.alat-tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.alat-pane').forEach(p=>p.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  const p=document.getElementById(pane);
+  if(p)p.classList.add('on');
+}
+function cpyTeza(el){
+  navigator.clipboard.writeText(el.textContent.trim()).catch(()=>{});
+  el.classList.add('copied');
+  setTimeout(()=>el.classList.remove('copied'),1500);
+}
+
+/* Scanner */
+function scannerUpdate(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  const txt=ta.value;
+  const words=txt.trim()?txt.trim().split(/\\s+/).length:0;
+  const lines=txt.split('\\n').filter(function(l){return l.trim().length>0;}).length;
+  const syl=words>0?Math.round(txt.replace(/[^aeiouAEIOUčšžđćČŠŽĐĆ]/g,'').length/Math.max(words,1)*10)/10:0;
+  const we=document.getElementById('sc-words');
+  if(we){const wn=we.querySelector('.wc-stat-num');if(wn)wn.textContent=words;}
+  const le=document.getElementById('sc-lines');
+  if(le){const ln=le.querySelector('.wc-stat-num');if(ln)ln.textContent=lines;}
+  const se=document.getElementById('sc-syl');
+  if(se){const sn=se.querySelector('.wc-stat-num');if(sn)sn.textContent=syl||'—';}
+  try{localStorage.setItem('mt.hrv.h19.wc_text',txt);}catch(e){}
+}
+(function(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  try{const sv=localStorage.getItem('mt.hrv.h19.wc_text');if(sv){ta.value=sv;scannerUpdate();}}catch(e){}
+})();
+
+/* ═══════════════════════════════════
+   KVIZ
+═══════════════════════════════════ */
+let qzIdx=0,qzScore=0,qzAnswered=[];
+function qzInit(){
+  const w=document.getElementById('qz-wrap');
+  if(!w||w.dataset.init==='1')return;
+  w.dataset.init='1';
+  qzRender();
+}
+function qzRender(){
+  const w=document.getElementById('qz-wrap');
+  if(!w)return;
+  w.innerHTML=\`<div class="qz-wrap" id="qz-inner"></div>\`;
+  qzIdx=0;qzScore=0;
+  const el=document.getElementById('qz-inner');
+  el.innerHTML=\`<div class="qz-start" style="text-align:center;padding:40px 24px;background:linear-gradient(135deg, rgba(233,180,70,.05) 0%, transparent 100%);border:1px solid var(--bd);border-radius:var(--r2)">
+    <div style="font-size:56px;margin-bottom:16px">🧠</div>
+    <h3 style="font-family:var(--display);font-size:22px;font-weight:700;color:var(--t1);margin:0 0 12px 0">25 pitanja · H19 Fonetika i fonologija</h3>
+    <p style="font-size:14px;line-height:1.6;color:var(--t2);max-width:560px;margin:0 auto 24px">Pitanja pokrivaju sve teme: <strong>klasifikacija glasova, glasovne promjene, naglasci, slog, pojmovnik</strong>. Svako pitanje daje <em>konkretan primjer</em> — analiziraj, prepoznaj, objasni. Na kraju dobivaš ocjenu i objašnjenja.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">🔤 5 klasifikacija</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">🔄 7 promjena</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">🎵 5 naglasci</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">📚 8 pojmova</div>
+    </div>
+    <button class="nb-btn primary" style="font-size:14px;padding:14px 28px" onclick="qzStart()">Započni kviz →</button>
+  </div>\`;
+}
+function qzStart(){
+  qzIdx=0;qzScore=0;qzAnswered=[];
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzShowQ(el){
+  if(qzIdx>=KVIZ_Q.length){qzEnd(el);return;}
+  const q=KVIZ_Q[qzIdx];
+  const pct=Math.round((qzIdx/KVIZ_Q.length)*100);
+  el.innerHTML=\`
+    <div class="qz-prog"><div class="qz-prog-fill" style="width:\${pct}%"></div></div>
+    <div class="qz-num">Pitanje \${qzIdx+1} / \${KVIZ_Q.length}</div>
+    <div class="qz-q">\${q.q}</div>
+    <div class="qz-opts">\${q.o.map((o,i)=>\`<button class="qz-opt" onclick="qzAns(this,\${i})">\${o}</button>\`).join('')}</div>
+    <div class="qz-expl" id="qz-expl" style="display:none"></div>
+    <div style="text-align:right;margin-top:12px"><button class="nb-btn primary qz-next" id="qz-next" onclick="qzNext()" style="display:none">Sljedeće →</button></div>
+  \`;
+}
+function qzAns(btn,i){
+  if(document.querySelector('.qz-opt.correct,.qz-opt.wrong'))return;
+  const opts=document.querySelectorAll('.qz-opt');
+  opts.forEach(b=>b.disabled=true);
+  const q=KVIZ_Q[qzIdx];
+  const ok=(i===q.t);
+  if(ok){btn.classList.add('correct');qzScore++;}
+  else{btn.classList.add('wrong');opts[q.t].classList.add('correct');}
+  if(!qzAnswered)qzAnswered=[];
+  qzAnswered.push({q:q.q,ok,correct:q.o[q.t]});
+  const expl=document.getElementById('qz-expl');
+  expl.style.display='block';
+  expl.innerHTML=\`<strong>\${ok?'✓ Točno!':'✗ Netočno.'}</strong> \${q.e}\`;
+  document.getElementById('qz-next').style.display='inline-flex';
+}
+function qzNext(){
+  qzIdx++;
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzEnd(el){
+  const pct=Math.round(qzScore/KVIZ_Q.length*100);
+  let grade,msg,ico;
+  if(pct>=90){grade='ODLIČAN';msg='Spreman/na si za maturu iz H19 — razumiješ sve glasovne promjene, naglaske i IPA.';ico='🏆';}
+  else if(pct>=75){grade='VRLO DOBAR';msg='Solidno znanje. Provjeri neispravne odgovore i ponovi Tab 1-4.';ico='💪';}
+  else if(pct>=60){grade='DOBAR';msg='Ponoviti: 7 glasovnih promjena (jotacija, palatalizacija, sibilarizacija, vokalizacija l, nepostojano a, alternacija jata, jednačenje zvučnosti).';ico='📚';}
+  else if(pct>=45){grade='DOVOLJAN';msg='Osnove su tu — trebaš više vježbe.';ico='🔁';}
+  else{grade='NEDOVOLJAN';msg='Vrati se na Teoriju i ponovi korak po korak.';ico='🎯';}
+
+  let wrongHtml='';
+  if(qzAnswered&&qzAnswered.length){
+    const wrong=qzAnswered.filter(a=>!a.ok);
+    if(wrong.length>0){
+      wrongHtml=\`<div style="margin-top:24px;text-align:left">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:12px">Promašena pitanja (\${wrong.length})</div>
+        \${wrong.map(a=>\`<div class="qz-wrong-item">
+          <div class="qz-wrong-q">\${a.q}</div>
+          <div class="qz-wrong-a">Točan odgovor: <b>\${a.correct}</b></div>
+        </div>\`).join('')}
+      </div>\`;
+    }
+  }
+
+  el.innerHTML=\`<div class="qz-result" style="text-align:center;padding:40px 24px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r4)">
+    <div style="font-size:48px;margin-bottom:8px">\${ico}</div>
+    <div class="qz-score-big">\${pct}%</div>
+    <div class="qz-grade">\${grade}</div>
+    <div class="qz-msg">\${qzScore} / \${KVIZ_Q.length} točnih · \${msg}</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="nb-btn primary" onclick="qzStart()">🔁 Ponovo</button>
+      <button class="nb-btn" onclick="sw(4)">📦 Strofa</button>
+      <button class="nb-btn" onclick="sw(7)">📊 Referentna tablica</button>
+    </div>
+    \${wrongHtml}
+  </div>\`;
+
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+}
+
+/* ═══════════════════════════════════
+   CHECKPOINT
+═══════════════════════════════════ */
+let CP_STATE={done:{}};
+try{const s=localStorage.getItem('mt.hrv.h19.cp');if(s)CP_STATE=JSON.parse(s);}catch(e){}
+
+const CP_HINTS=['Tab 0','Tab 0','Tab 4','Tab 0','Tab 1','Tab 1','Tab 0','Tab 2','Tab 4','Tab 2'];
+function cpRender(){
+  const list=document.getElementById('cp-list');
+  if(!list)return;
+  list.innerHTML=CP_ITEMS.map((item,i)=>\`
+    <div class="cp-item\${CP_STATE.done[i]?' done':''}" onclick="cpToggle(\${i})" style="display:flex;align-items:flex-start;gap:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 16px;cursor:pointer;transition:all .15s">
+      <div class="cp-box">\${CP_STATE.done[i]?'✓':''}</div>
+      <div class="cp-txt" style="flex:1;font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5">\${item}</div>
+      <span class="cp-hint">\${CP_HINTS[i]||''}</span>
+    </div>
+  \`).join('');
+  cpUpdateProgress();
+}
+function cpToggle(i){
+  CP_STATE.done[i]=!CP_STATE.done[i];
+  try{localStorage.setItem('mt.hrv.h19.cp',JSON.stringify(CP_STATE));}catch(e){}
+  cpRender();
+}
+function cpUpdateProgress(){
+  const done=Object.values(CP_STATE.done).filter(Boolean).length;
+  const total=CP_ITEMS.length;
+  const pct=Math.round(done/total*100);
+  (document.getElementById('cp-pct')||{}).textContent=\`\${done} / \${total}\`;
+  (document.getElementById('cp-bar')||{style:{}}).style.width=pct+'%';
+  (document.getElementById('sb-prog-bar')||{style:{}}).style.width=pct+'%';
+  (document.getElementById('sb-prog-pct')||{}).textContent=pct+'%';
+  const fin=document.getElementById('cp-final');
+  if(fin)fin.classList.toggle('show',done===total);
+  // Update summary
+  const sumBox=document.getElementById('cp-summary-box');
+  const sumPct=document.getElementById('cp-sum-pct');
+  const sumTxt=document.getElementById('cp-sum-txt');
+  if(sumBox&&done>0){
+    sumBox.style.display='flex';
+    sumPct.textContent=pct+'%';
+    let msg;
+    if(pct===100)msg='<strong>Kompletan!</strong> Sve je savladano — spreman/na si za maturu.';
+    else if(pct>=70)msg='<strong>Odlično!</strong> Neoznačene tvrdnje su tvoje slabe točke — fokusiraj se na njih.';
+    else if(pct>=40)msg='<strong>Napredak!</strong> Nastavak: vježbaj na metričkom scanneru (Tab 5) i radi kviz ponovno dok ne dobiješ 80%+.';
+    else msg='Još je posla. Počni s Teorijom (Tab 0) i prođi sve sekcije.';
+    sumTxt.innerHTML=msg;
+  }
+}
+function cpReset(){
+  CP_STATE={done:{}};
+  try{localStorage.removeItem('mt.hrv.h19.cp');}catch(e){}
+  cpRender();
+}
+cpRender();
+
+/* ═══════════════════════════════════
+   KVIZ INIT on tab 6
+═══════════════════════════════════ */
+// Already handled in sw()
+
+/* ═══════════════════════════════════
+   MARK TAB (completion badge)
+═══════════════════════════════════ */
+let TAB_DONE={};
+try{TAB_DONE=JSON.parse(localStorage.getItem('mt.hrv.h19.tab_done')||'{}')}catch(e){}
+
+function markTab(n){
+  TAB_DONE[n]=true;
+  try{localStorage.setItem('mt.hrv.h19.tab_done',JSON.stringify(TAB_DONE))}catch(e){}
+  const el=document.getElementById('td'+n);
+  if(el)el.textContent='✓';
+}
+function restoreTabDone(){
+  Object.keys(TAB_DONE).forEach(n=>{
+    const el=document.getElementById('td'+n);
+    if(el&&TAB_DONE[n])el.textContent='✓';
+  });
+}
+restoreTabDone();
+
+// Mark tab on dwell (8s)
+let tabTimer=null;
+const origSw=sw;
+window.sw=function(n){
+  origSw(n);
+  clearTimeout(tabTimer);
+  tabTimer=setTimeout(()=>{
+    if(n!==5)markTab(n); // don't auto-mark PRO locked
+  },8000);
+  // Show relevant tip
+  showTip(n);
+};
+
+/* ═══════════════════════════════════
+   TIP BAR
+═══════════════════════════════════ */
+const TIPS=[
+  '💡 <strong>Tab 0 tip:</strong> Razumijevanje fonem ↔ alofon ↔ grafem najbolje gradi temelje za sve druge tabove.',
+  '💡 <strong>Tab 1 tip:</strong> Klikni 🔊 na svakom glasu — sluh je najbolji način da zapamtiš klasifikaciju.',
+  '💡 <strong>Tab 2 tip:</strong> 7 glasovnih promjena = #1 NCVVO tema. Vježbaj u Scanneru s konkretnim parovima riječi.',
+  '💡 <strong>Tab 3 tip:</strong> Naglasci se uče SLUŠANJEM. Koristi audio demo + interaktivnu vježbu, ne samo teoriju.',
+  '💡 <strong>Tab 4 tip:</strong> Filtriraj pojmovnik po kategoriji prije ispita — fokusiraj se na slabe točke.',
+  '💡 <strong>Tab 5 tip:</strong> Scanner je tvoj najbolji alat — upiši sumnjive riječi i provjeri analize prije ispita.',
+  '💡 <strong>Tab 6 tip:</strong> Pažljivo čitaj odgovore — razlika između 1. i 2. palatalizacije je čest test zamka.',
+  '💡 <strong>Tab 7 tip:</strong> Printaj cheat sheet (Ctrl/⌘ + P) za fizičku referencu tijekom učenja.'
+];
+let tipShown={};
+function showTip(n){
+  if(tipShown[n])return;
+  const bar=document.getElementById('tip-bar');
+  const txt=document.getElementById('tip-bar-txt');
+  if(!bar||!txt)return;
+  txt.innerHTML=TIPS[n]||TIPS[0];
+  bar.classList.add('show');
+  tipShown[n]=true;
+  clearTimeout(bar._timer);
+  bar._timer=setTimeout(()=>bar.classList.remove('show'),5000);
+}
+// Show tip for initial tab
+setTimeout(()=>showTip(0),3000);
+
+/* ═══════════════════════════════════
+   FROM BANNER (?from= URL param)
+═══════════════════════════════════ */
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const from=params.get('from');
+  if(from){
+    const names={H11:'H11 · Stari hrv. pisci',H12:'H12 · Marulić · Judita',H13:'H13 · Gundulić · Dubravka',H14:'H14 · Preporod · Mažuranić',H15:'H15 · Šenoa · Prijan Lovro',H16:'H16 · Krleža · Glembajevi',H17:'H17 · Stilske figure'};
+    const el=document.getElementById('from-banner');
+    const txt=document.getElementById('from-txt');
+    if(el&&txt){
+      txt.textContent='📎 Nastaviš učenje iz '+(names[from]||from)+' → H19 · Fonetika i fonologija';
+      el.classList.add('show');
+      // Move banner to top of content
+      const cw=document.querySelector('.content-wrap');
+      if(cw)cw.insertBefore(el,cw.firstChild);
+      setTimeout(()=>el.classList.remove('show'),8000);
+    }
+  }
+})();
+
+/* ═══════════════════════════════════
+   SCORE HISTORY (kviz)
+═══════════════════════════════════ */
+function loadScoreHistory(){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h19.kviz_hist')||'[]');
+    const cont=document.getElementById('score-hist');
+    const rows=document.getElementById('score-hist-rows');
+    if(!cont||!rows||hist.length===0)return;
+    cont.style.display='block';
+    rows.innerHTML=hist.slice(-5).reverse().map(h=>{
+      const pct=Math.round(h.score/h.total*100);
+      const d=new Date(h.date);
+      const ds=d.toLocaleDateString('hr',{day:'2-digit',month:'2-digit'});
+      return \`<div class="score-hist-row">
+        <span class="score-hist-date">\${ds}</span>
+        <div class="score-hist-bar"><div class="score-hist-fill" style="width:\${pct}%"></div></div>
+        <span class="score-hist-val">\${h.score}/\${h.total}</span>
+      </div>\`;
+    }).join('');
+  }catch(e){}
+}
+
+function saveScoreHistory(score,total){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h19.kviz_hist')||'[]');
+    hist.push({score,total,date:new Date().toISOString()});
+    localStorage.setItem('mt.hrv.h19.kviz_hist',JSON.stringify(hist.slice(-10)));
+    loadScoreHistory();
+  }catch(e){}
+}
+
+// Upgrade qzEnd to save history
+const origQzEnd=qzEnd;
+window.qzEnd=function(el){
+  origQzEnd(el);
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+};
+
+// Load history on init
+loadScoreHistory();
+
+/* ═══════════════════════════════════
+   MATCH GAME — Funkcionalan (3 razine)
+═══════════════════════════════════ */
+const MATCH_DATA={
+  easy:[
+    {a:'Samoglasnik',b:'5 fonema u hrv. (a, e, i, o, u)'},
+    {a:'Suglasnik',b:'25 fonema u hrv. (6 grupa)'},
+    {a:'Dvoslov',b:'1 fonem zapisan s 2 slova (nj, lj, dž)'},
+    {a:'Slogotvorno r',b:'r kao nukleus sloga (pr̩st, sr̩ce)'},
+  ],
+  medium:[
+    {a:'Plozivi',b:'p, b, t, d, k, g — zatvor + nagli prekid'},
+    {a:'Frikativi',b:'f, s, z, š, ž, h — tjesnac + trenje'},
+    {a:'Afrikate',b:'c, č, ć, dž, đ — ploziv + frikativ spojeni'},
+    {a:'Nazali',b:'m, n, nj — zrak izlazi kroz nos'},
+    {a:'Likvidi',b:'l, lj, r — tekući glasovi'},
+    {a:'Aproksimanti',b:'j, v — minimalna prepreka'},
+  ],
+  hard:[
+    {a:'list → lišće',b:'Jotacija (t+j → ć, s+j → š)'},
+    {a:'vuk → vuče',b:'1. palatalizacija (k+e → č)'},
+    {a:'vojnik → vojnici',b:'Sibilarizacija (k+i → c)'},
+    {a:'čital → čitao',b:'Vokalizacija l (l → o)'},
+    {a:'pas → psa',b:'Nepostojano a'},
+    {a:'svijet → svjetlost',b:'Alternacija jata (ije → je)'},
+    {a:'iz+pasti → ispasti',b:'Jednačenje po zvučnosti'},
+    {a:'pȉvo · mâma · kùća · rúka',b:'4 hrv. naglaska: ◌̏ ◌̂ ◌̀ ◌́'},
+  ],
+};
+
+let mgLevel='easy',mgSelLeft=null,mgSelRight=null,mgMatched=0,mgPairs=[];
+
+function mgInit(level){
+  mgLevel=level||'easy';
+  const pairs=MATCH_DATA[mgLevel];
+  mgMatched=0;mgSelLeft=null;mgSelRight=null;
+  mgPairs=pairs.map((p,i)=>({...p,id:i}));
+  
+  // Shuffle BOTH sides independently for harder challenge
+  const leftItems=[...mgPairs].sort(()=>Math.random()-.5);
+  const rightItems=[...mgPairs].sort(()=>Math.random()-.5);
+  
+  const themes={
+    easy:'🔤 Klasifikacija (4 osnovna)',
+    medium:'📚 Suglasnici po grupama (6)',
+    hard:'🔄 Glasovne promjene + naglasci (8)'
+  };
+  const labels={easy:'Lagano',medium:'Srednje',hard:'Teško'};
+  const activeClass=(lvl)=>mgLevel===lvl?'primary':'';
+  
+  const el=document.getElementById('mg-dynamic');
+  if(!el)return;
+  el.innerHTML=\`
+    <div class="mg-status" id="mg-status">
+      <strong>\${themes[mgLevel]}</strong> · \${mgPairs.length} parova · \${labels[mgLevel]}
+    </div>
+    <div class="mg-grid">
+      <div class="mg-col" id="mg-left">
+        \${leftItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="left" onclick="mgClick(this)">\${p.a}</div>\`).join('')}
+      </div>
+      <div class="mg-col" id="mg-right">
+        \${rightItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="right" onclick="mgClick(this)">\${p.b}</div>\`).join('')}
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="fcb \${activeClass('easy')}" onclick="mgInit('easy')" style="margin:3px" title="Likovi Dubravke">🎭 Lagano (4)</button>
+      <button class="fcb \${activeClass('medium')}" onclick="mgInit('medium')" style="margin:3px" title="Stilska sredstva + primjeri">✒ Srednje (6)</button>
+      <button class="fcb \${activeClass('hard')}" onclick="mgInit('hard')" style="margin:3px" title="Kontekst i uzori">🏛 Teško (8)</button>
+    </div>
+    <div style="text-align:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--t3)">
+      Svaka razina testira drugu vještinu — ne samo više parova
+    </div>
+  \`;
+}
+
+function mgClick(el){
+  if(el.classList.contains('matched')||el.classList.contains('wrong'))return;
+  const side=el.dataset.side;
+  
+  if(side==='left'){
+    document.querySelectorAll('#mg-left .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelLeft=el;
+  } else {
+    document.querySelectorAll('#mg-right .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelRight=el;
+  }
+  
+  if(mgSelLeft&&mgSelRight){
+    const match=mgSelLeft.dataset.id===mgSelRight.dataset.id;
+    if(match){
+      mgSelLeft.classList.add('matched');mgSelLeft.classList.remove('selected');
+      mgSelRight.classList.add('matched');mgSelRight.classList.remove('selected');
+      mgMatched++;
+      if(mgMatched===mgPairs.length){
+        document.getElementById('mg-status').innerHTML=\`<span style="color:var(--green)">✓ Sve spareno! Odlično!</span>\`;
+        markTab(5);
+      }
+    } else {
+      mgSelLeft.classList.add('wrong');mgSelRight.classList.add('wrong');
+      setTimeout(()=>{
+        mgSelLeft.classList.remove('wrong','selected');
+        mgSelRight.classList.remove('wrong','selected');
+        mgSelLeft=null;mgSelRight=null;
+      },600);
+      return;
+    }
+    mgSelLeft=null;mgSelRight=null;
+  }
+}
+
+/* ═══════════════════════════════════
+   FLASHCARDS — funkcionalan demo
+═══════════════════════════════════ */
+const FC_DATA=[
+  // === FONEMI (5) ===
+  {t:'Fonem',d:'Najmanja razlikovna (distinktivna) jedinica u jeziku. Apstraktna jedinica, piše se /p/ između kosih crta. Razlikuje značenje (pas vs. bas).',kat:'fonem'},
+  {t:'Alofon',d:'Konkretna izgovorna realizacija fonema. Piše se [pʰ]. Različiti alofoni NE razlikuju značenje. Primjer: /n/ u „banka" = [ŋ].',kat:'fonem'},
+  {t:'Grafem',d:'Pisani znak (slovo) za fonem. Hrv. ima 30 slova ali 27 grafema (nj, lj, dž = dvoslovi).',kat:'fonem'},
+  {t:'Minimalni par',d:'Dvije riječi koje se razlikuju u samo jednom fonemu i imaju različito značenje (pas-bas, koš-kos). Dokaz fonemskog statusa.',kat:'fonem'},
+  {t:'Slogotvorno r',d:'r u hrv. može tvoriti slog bez samoglasnika (pr̩st, kr̩v, sr̩ce). Pojavljuje se između suglasnika.',kat:'fonem'},
+  
+  // === KLASIFIKACIJA (4) ===
+  {t:'Ploziv',d:'Suglasnik tvoren potpunim zatvorom + naglim otvaranjem. Hrv.: p, b, t, d, k, g (3 para po zvučnosti).',kat:'klas'},
+  {t:'Afrikata',d:'Sliveni glas — ploziv + frikativ spojeni. IPA s lukom: [t͡s]. Hrv.: c, č, ć, dž, đ.',kat:'klas'},
+  {t:'Nazal',d:'Suglasnik s izlaskom zraka kroz nos. Hrv.: m, n, nj. Svi su zvučni.',kat:'klas'},
+  {t:'Aproksimant',d:'Glas s minimalnom preprekom — između suglasnika i samoglasnika. Hrv.: j, v.',kat:'klas'},
+  
+  // === GLASOVNE PROMJENE (7) ===
+  {t:'Jotacija',d:'Suglasnik + j → palatalni suglasnik. Primjeri: t+j→ć (list→lišće), d+j→đ (mlad→mlađi).',kat:'promjene'},
+  {t:'1. palatalizacija',d:'k, g, h + e/i → č, ž, š. Primjer: vuk → vuče (vokativ), bog → bože.',kat:'promjene'},
+  {t:'Sibilarizacija (2. palat.)',d:'k, g, h + i → c, z, s. Primjeri: vojnik → vojnici, orah → orasi.',kat:'promjene'},
+  {t:'Vokalizacija l',d:'-l na kraju sloga → -o. Tipično kod gl. pridjeva radnog m.r.: čital → čitao.',kat:'promjene'},
+  {t:'Nepostojano a',d:'a se gubi u kosim padežima. Primjer: pas → psa (G), psu (D), ali pasa (G mn.).',kat:'promjene'},
+  {t:'Alternacije jatova',d:'Refleksi praslav. *ě: ije (dugi slog), je (kratki). Primjer: svijet → svjetlost.',kat:'promjene'},
+  {t:'Jednačenje po zvučnosti',d:'Zvučnost se izjednači — drugi diktira prvome. Primjer: iz+pasti → ispasti.',kat:'promjene'},
+  
+  // === NAGLASCI (4) ===
+  {t:'Kratkosilazni ◌̏',d:'Kratki + silazni. Primjeri: pȉvo, žȅna, kȕća. Stoji SAMO na prvom slogu.',kat:'naglasak'},
+  {t:'Dugosilazni ◌̂',d:'Dugi + silazni. Primjeri: mâma, râd, pâs. Stoji SAMO na prvom slogu.',kat:'naglasak'},
+  {t:'Kratkouzlazni ◌̀',d:'Kratki + uzlazni. Primjeri: kùća, sèstra, zèmlja. Bilo koji slog OSIM zadnjeg.',kat:'naglasak'},
+  {t:'Dugouzlazni ◌́',d:'Dugi + uzlazni. Primjeri: rúka, národ, kúpiti. Bilo koji slog OSIM zadnjeg.',kat:'naglasak'},
+];
+
+let fcIdx=0,fcFlipped=false;
+
+function fcInit(){
+  fcIdx=0;fcFlipped=false;
+  fcRender();
+}
+
+function fcRender(){
+  const card=document.getElementById('fc-card-dyn');
+  const counter=document.getElementById('fc-counter-dyn');
+  if(!card)return;
+  const item=FC_DATA[fcIdx];
+  const catCls={stih:'p-pa',ep:'p-br',aleg:'p-r',stil:'p-t',hum:'p-go'};
+  card.querySelector('.fc-term').textContent=item.t;
+  card.querySelector('.fc-def').textContent=item.d;
+  card.querySelector('.fc-cat').textContent=item.kat+' · klikni za definiciju';
+  card.querySelector('.fc-back .fc-cat').textContent=item.kat;
+  card.classList.remove('flipped');
+  fcFlipped=false;
+  if(counter)counter.textContent=\`\${fcIdx+1} / \${FC_DATA.length}\`;
+  (document.getElementById('fc-prev-dyn')||{}).disabled=(fcIdx===0);
+  (document.getElementById('fc-next-dyn')||{}).disabled=(fcIdx===FC_DATA.length-1);
+}
+
+function fcFlip(){
+  const card=document.getElementById('fc-card-dyn');
+  if(!card)return;
+  fcFlipped=!fcFlipped;
+  card.classList.toggle('flipped',fcFlipped);
+}
+
+function fcNav(dir){
+  fcIdx=Math.max(0,Math.min(FC_DATA.length-1,fcIdx+dir));
+  fcRender();
+}
+
+/* ═══════════════════════════════════
+   INTERSECTION OBSERVER (IntersectionObserver)
+═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   READ PROGRESS BAR + BTT
+═══════════════════════════════════ */
+(function(){
+  const bar=document.getElementById('rpbar');
+  const btt=document.getElementById('btt');
+  function update(){
+    const el=document.documentElement;
+    const scrolled=el.scrollTop||document.body.scrollTop;
+    const total=(el.scrollHeight||document.body.scrollHeight)-el.clientHeight;
+    const pct=total>0?Math.min(100,Math.round(scrolled/total*100)):0;
+    if(bar)bar.style.width=pct+'%';
+    if(btt)btt.classList.toggle('show',scrolled>300);
+  }
+  document.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+/* ═══════════════════════════════════
+   SELFCHECK (Samoprocjena Tab 0)
+═══════════════════════════════════ */
+const SC_QS = [
+  {q: 'Razumijem razliku: fonetika = fizika glasa (kako zvuči), fonologija = funkcija glasa (što znači).', k: 'razlika'},
+  {q: 'Razumijem 3 razine: fonem /p/ (apstraktno), alofon [p] (konkretno), grafem <p> (pisano).', k: 'razine'},
+  {q: 'Znam da hrv. ima 30 fonema — 5 samoglasnika (a, e, i, o, u) + 25 suglasnika.', k: 'fonemi'},
+  {q: 'Prepoznajem da su nj, lj, dž dvoslovi — 1 fonem zapisan s 2 slova.', k: 'dvoslovi'},
+  {q: 'Razumijem osnove IPA (int. fonetska abeceda) — npr. č = [t͡ʃ], š = [ʃ], nj = [ɲ].', k: 'ipa'}
+];
+
+function scRender() {
+  const el = document.getElementById('sc-qs');
+  if (!el) return;
+  el.innerHTML = SC_QS.map((q,i) => \`
+    <div style="display:flex;align-items:flex-start;gap:10px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:10px 14px">
+      <input type="checkbox" id="sc\${i}" style="margin-top:3px;accent-color:var(--bronze);width:16px;height:16px;flex-shrink:0">
+      <label for="sc\${i}" style="font-family:var(--serif);font-size:13.5px;color:var(--t2);cursor:pointer;line-height:1.5">\${q.q}</label>
+    </div>
+  \`).join('');
+}
+
+function scCheck() {
+  const checked = SC_QS.map((_,i) => document.getElementById('sc'+i)?.checked).filter(Boolean).length;
+  const pct = Math.round(checked / SC_QS.length * 100);
+  const el = document.getElementById('sc-result');
+  if (!el) return;
+  let msg, color;
+  if (pct >= 100) { msg = '🏆 Odlično! Spreman/na si za sve što NCVVO može pitati iz H19 — metričku analizu bilo koje pjesme.'; color = 'var(--green)'; }
+  else if (pct >= 60) { msg = '📖 Dobro! Provjeri neoznačene stavke — one su tvoje slabe točke.'; color = 'var(--gold)'; }
+  else { msg = '📚 Još je posla. Počni s Teorijom i 6 pjevanjima — te sekcije su najvažnije.'; color = 'var(--red)'; }
+  el.style.display = 'block';
+  el.innerHTML = \`<div class="box-int" style="border-color:\${color}20">
+    <div style="font-family:var(--display);font-size:18px;color:\${color};margin-bottom:8px">\${checked} / \${SC_QS.length} · \${pct}%</div>
+    <div style="font-family:var(--serif);font-size:14px;color:var(--t2)">\${msg}</div>
+  </div>\`;
+}
+
+function scReset() {
+  SC_QS.forEach((_,i) => { const el=document.getElementById('sc'+i); if(el) el.checked=false; });
+  const r = document.getElementById('sc-result');
+  if (r) r.style.display = 'none';
+}
+
+scRender();
+
+/* ═══════════════════════════════════
+   CHECKLIST (Esej alat AT7)
+═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   CHECKPOINT WRITER
+═══════════════════════════════════ */
+function buildCitHTML(c, i){
+  const safe = (s)=>s.replace(/\\\\/g,'\\\\\\\\').replace(/'/g,"\\\\'");
+  return \`<div class="featured-quote" data-cit-cat="\${c.cat}">
+      \${c.napamet ? '<span class="fq-napamet">★ NAPAMET</span>' : ''}
+      <div class="fq-mark">«</div>
+      <div class="fq-body">
+        <div class="fq-text">\${c.text}</div>
+        <div class="fq-meta">\${c.meta}</div>
+      </div>
+      <button type="button" class="fq-copy" onclick="fqCopy(this,'\${safe(c.text)} — \${safe(c.meta.replace(/<[^>]+>/g,''))}')">⎘</button>
+    </div>\`;
+}
+
+function fqCopy(btn, text) {
+  navigator.clipboard.writeText(text).catch(() => {});
+  btn.classList.add('copied');
+  btn.textContent = '✓';
+  setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '⎘'; }, 1500);
+}
+
+/* ═══════════════════════════════════
+   POJMOVNIK FLASHCARD MODE (H11 pj2*)
+═══════════════════════════════════ */
+
+
+function pj2Render(){
+  if(!pj2Data.length) return;
+  const p = pj2Data[pj2Idx];
+  const scene = document.getElementById('fc-scene2');
+  const inner = document.getElementById('fc-inner2');
+  if(scene) scene.classList.remove('flipped');
+  if(inner) inner.style.transform='';
+
+  const cat = document.getElementById('fc-cat2');
+  const term = document.getElementById('fc-term2');
+  const def = document.getElementById('fc-def2');
+  const counter = document.getElementById('fc-counter2');
+  const prev = document.getElementById('fc-prev2');
+  const next = document.getElementById('fc-next2');
+
+  if(cat) cat.textContent = p.kat.toUpperCase();
+  if(term) term.textContent = p.term;
+  if(def) def.innerHTML = p.def;
+  if(counter) counter.textContent = (pj2Idx+1)+' / '+pj2Data.length;
+  if(prev) prev.disabled = pj2Idx === 0;
+  if(next) next.disabled = pj2Idx === pj2Data.length-1;
+
+  pj2Seen[pj2Idx] = true;
+  pj2RenderDots();
+}
+
+function pj2RenderDots(){
+  const prog = document.getElementById('fc-progress2');
+  if(!prog || pj2Data.length > 20) return;
+  prog.innerHTML = pj2Data.map((_,i)=>\`<div class="fc-dot\${pj2Seen[i]?' seen':''}\${i===pj2Idx?' known':''}"></div>\`).join('');
+}
+
+function pj2Next(){
+  if(pj2Idx < pj2Data.length-1){ pj2Idx++; pj2Render(); }
+}
+
+function pj2Prev(){
+  if(pj2Idx > 0){ pj2Idx--; pj2Render(); }
+}
+
+/* ═══════════════════════════════════
+   KEYBOARD SHORTCUTS
+═══════════════════════════════════ */
+(function(){
+  let helpShown=false;
+  document.addEventListener('keydown', function(e){
+    // Ignore when typing in inputs/textareas
+    const target=e.target.tagName;
+    if(target==='INPUT'||target==='TEXTAREA'||e.target.isContentEditable)return;
+    
+    const activeTab=Array.from(document.querySelectorAll('.tab')).findIndex(t=>t.classList.contains('on'));
+    
+    // Arrow navigation between tabs
+    if(e.key==='ArrowRight'&&activeTab<7){
+      e.preventDefault();
+      sw(activeTab+1);
+    } else if(e.key==='ArrowLeft'&&activeTab>0){
+      e.preventDefault();
+      sw(activeTab-1);
+    }
+    // Number keys 1-8 for direct tab access
+    else if(/^[1-8]$/.test(e.key)){
+      e.preventDefault();
+      sw(parseInt(e.key)-1);
+    }
+    // ? for help
+    else if(e.key==='?'){
+      e.preventDefault();
+      if(helpShown){
+        document.getElementById('kbd-help')?.remove();
+        helpShown=false;
+        return;
+      }
+      const help=document.createElement('div');
+      help.id='kbd-help';
+      help.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--ele);border:1px solid var(--gold);border-radius:var(--r3);padding:24px 28px;z-index:500;box-shadow:0 8px 40px rgba(0,0,0,.6);max-width:90vw';
+      help.innerHTML=\`
+        <h3 style="margin-bottom:12px;color:var(--gold);font-family:var(--display)">⌨ Kratice</h3>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-family:var(--serif);font-size:13px">
+          <span><span class="kbd">←</span> <span class="kbd">→</span></span><span>Prethodni / Sljedeći tab</span>
+          <span><span class="kbd">1</span> – <span class="kbd">8</span></span><span>Skok direktno na tab</span>
+          <span><span class="kbd">?</span></span><span>Prikaži / sakrij ovu pomoć</span>
+          <span><span class="kbd">Esc</span></span><span>Zatvori dialog / izađi iz polja</span>
+          <span><span class="kbd">Ctrl</span>+<span class="kbd">P</span></span><span>Print / PDF</span>
+        </div>
+        <div style="margin-top:14px;text-align:right">
+          <button class="fcb" onclick="document.getElementById('kbd-help').remove();">Zatvori</button>
+        </div>
+      \`;
+      document.body.appendChild(help);
+      helpShown=true;
+    }
+    // Escape closes help/sidebar
+    else if(e.key==='Escape'){
+      document.getElementById('kbd-help')?.remove();
+      helpShown=false;
+      closeSb();
+    }
+  });
+})();
+
+if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+      }
+    });
+  },{threshold:0.1});
+  
+  document.querySelectorAll('.scene-card,.ac,.box-key,.fq,.tbl-wrap').forEach(el=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(12px)';
+    el.style.transition='opacity .4s ease, transform .4s ease';
+    obs.observe(el);
+  });
+}
+
+function toggleSidebar(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay');if(s)s.classList.toggle('mobile-open');if(o)o.classList.toggle('show')}
+;
+/* TIER_SYSTEM_JS_INJECTED */
+/**
+ * Maturiraj.hr — Tier Helper Module
+ * 
+ * Globalni JS modul za upravljanje tier sustavom (Free / Standard / Pro).
+ * Koristi se u svim chapterima i pricing page-u.
+ * 
+ * 🚨 PRODUCTION TODO:
+ * - Tier provjera mora ići preko Supabase (auth.uid() → user_subscriptions tablica)
+ * - Trenutno mock kroz localStorage 'mt.pro_mode' = 'free' | 'standard' | 'pro'
+ * - Dnevni limiti se moraju validirati na backendu
+ * 
+ * Verzija: 1.0
+ * Autor: Maturiraj.hr team
+ */
+
+(function(window) {
+  'use strict';
+
+  // ════════════════════════════════════════════════
+  // CONFIG — Tier Definicija
+  // ════════════════════════════════════════════════
+  
+  const TIER_CONFIG = {
+    free: {
+      name: 'Free',
+      label: '🆓 Free',
+      price: 0,
+      color: 'var(--t3, #888)',
+      features: {
+        // TEORIJA — sve free
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve free
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — limited
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: 1,            // 1 esej max
+        max_summaries: 1,         // 1 sažetak max
+        all_essay_models: false,  // 1 vidljiv
+        all_summary_models: false,
+        export_workspace: false,  // bez exporta
+        // SIMULATORI — 0 demo
+        discere_simulators: false,
+        max_simulators: 0,
+        // PLAN UČENJA — pregled
+        study_plan_preview: true,
+        study_plan_full: false,
+        // STATS
+        streak_tracking: false,
+        heatmap: false,
+        progress_analytics: false,
+        // PARENT
+        parent_dashboard: false,
+        // AI — sve zaključano
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    standard: {
+      name: 'Standard',
+      label: '⭐ Standard',
+      price: 9.99,
+      color: 'var(--blue, #4a90d9)',
+      features: {
+        // TEORIJA — sve
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — full
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,           // unlimited
+        max_summaries: -1,        // unlimited
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        // SIMULATORI — svi (70 ispita)
+        discere_simulators: true,
+        max_simulators: -1,
+        // PLAN UČENJA — full
+        study_plan_preview: true,
+        study_plan_full: true,
+        // STATS
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        // PARENT
+        parent_dashboard: true,
+        // AI — sve zaključano (Standard NEMA AI!)
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    pro: {
+      name: 'Pro',
+      label: '💎 Pro',
+      price: 19.99,
+      color: 'var(--gold, #e9b446)',
+      features: {
+        // Sve iz Standard
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,
+        max_summaries: -1,
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        discere_simulators: true,
+        max_simulators: -1,
+        study_plan_preview: true,
+        study_plan_full: true,
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        parent_dashboard: true,
+        // AI — sve unlocked (PRO ONLY)
+        ai_chat: true,
+        ai_feedback: true,
+        ai_personal_plan: true,
+        // PRIJEMNI — Pro only
+        prijemni: true,
+      },
+      ai_limits: {
+        feedback_per_day: 20,    // 2B odluka
+        chat_per_day: 30,        // 2B odluka
+        plan_refresh_per_week: 1,
+      }
+    }
+  };
+
+  // ════════════════════════════════════════════════
+  // STORAGE KEYS
+  // ════════════════════════════════════════════════
+  
+  const STORAGE_KEYS = {
+    tier: 'mt.pro_mode',
+    daily_usage: 'mt.daily_usage',
+    weekly_usage: 'mt.weekly_usage',
+  };
+
+  // ════════════════════════════════════════════════
+  // CORE API
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća trenutni tier korisnika.
+   * @returns {'free' | 'standard' | 'pro'}
+   */
+  function getTier() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.tier);
+      if (stored === 'pro' || stored === 'standard') return stored;
+      return 'free';
+    } catch (e) {
+      return 'free';
+    }
+  }
+
+  /**
+   * Postavlja tier (mock — produkcija ovo radi preko Supabase).
+   */
+  function setTier(tier) {
+    if (!['free', 'standard', 'pro'].includes(tier)) {
+      console.error('[tier_helper] Invalid tier:', tier);
+      return false;
+    }
+    try {
+      if (tier === 'free') {
+        localStorage.removeItem(STORAGE_KEYS.tier);
+      } else {
+        localStorage.setItem(STORAGE_KEYS.tier, tier);
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Toggle tier (free → standard → pro → free)
+   * Koristi se u dev mode-u.
+   */
+  function toggleTier() {
+    const current = getTier();
+    const next = current === 'free' ? 'standard' : (current === 'standard' ? 'pro' : 'free');
+    setTier(next);
+    return next;
+  }
+
+  /**
+   * Provjerava ima li korisnik feature.
+   * @param {string} feature - npr 'ai_feedback', 'all_simulators'
+   * @returns {boolean}
+   */
+  function hasFeature(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return false;
+    return config.features[feature] === true;
+  }
+
+  /**
+   * Vraća konfiguraciju tier-a (label, cijena, boja).
+   * @param {string} tier - opcionalno; ako nije zadan, vraća za current.
+   */
+  function getTierConfig(tier) {
+    return TIER_CONFIG[tier || getTier()] || TIER_CONFIG.free;
+  }
+
+  /**
+   * Vraća vrijednost numeričkog limita feature-a.
+   * @param {string} feature - npr 'max_essays', 'max_simulators'
+   * @returns {number} -1 = unlimited, 0 = nema, X = točno X
+   */
+  function getLimit(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return 0;
+    const val = config.features[feature];
+    if (val === true) return -1; // unlimited
+    if (val === false) return 0;
+    return val;
+  }
+
+  /**
+   * Vraća AI limit (feedback / chat / plan).
+   * @param {string} type - 'feedback' | 'chat' | 'plan'
+   */
+  function getAILimit(type) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config || !config.ai_limits) return 0;
+    
+    const map = {
+      feedback: 'feedback_per_day',
+      chat: 'chat_per_day',
+      plan: 'plan_refresh_per_week'
+    };
+    return config.ai_limits[map[type]] || 0;
+  }
+
+  // ════════════════════════════════════════════════
+  // USAGE TRACKING
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća današnju potrošnju feature-a.
+   */
+  function getDailyUsage(feature) {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (!stored) return 0;
+      const data = JSON.parse(stored);
+      if (data.date !== today) return 0;
+      return data.usage[feature] || 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Inkrementira potrošnju feature-a.
+   */
+  function incrementDailyUsage(feature) {
+    const today = new Date().toISOString().split('T')[0];
+    let data = { date: today, usage: {} };
+    
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.date === today) data = parsed;
+      }
+    } catch (e) {}
+    
+    data.usage[feature] = (data.usage[feature] || 0) + 1;
+    
+    try {
+      localStorage.setItem(STORAGE_KEYS.daily_usage, JSON.stringify(data));
+    } catch (e) {}
+    
+    return data.usage[feature];
+  }
+
+  /**
+   * Provjerava može li korisnik koristiti AI feature (limit + tier check).
+   * @returns {{ allowed: boolean, reason: string, used: number, limit: number }}
+   */
+  function canUseAI(type) {
+    const tier = getTier();
+    const limit = getAILimit(type);
+    const used = getDailyUsage('ai_' + type);
+    
+    if (limit === 0) {
+      return {
+        allowed: false,
+        reason: 'tier_locked',
+        tier_required: 'pro',
+        used: 0,
+        limit: 0
+      };
+    }
+    
+    if (used >= limit) {
+      return {
+        allowed: false,
+        reason: 'daily_limit_reached',
+        tier_required: tier,
+        used,
+        limit
+      };
+    }
+    
+    return {
+      allowed: true,
+      reason: 'ok',
+      used,
+      limit
+    };
+  }
+
+  // ════════════════════════════════════════════════
+  // PAYWALL MODAL
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Prikazuje paywall modal.
+   * @param {object} options
+   * @param {string} options.feature - naziv feature-a
+   * @param {string} options.requiredTier - 'standard' | 'pro'
+   * @param {string} options.reason - razlog (free_limit / tier_locked / daily_limit)
+   */
+  function showPaywall(options) {
+    const opts = options || {};
+    const requiredTier = opts.requiredTier || 'standard';
+    const reason = opts.reason || 'feature_locked';
+    const feature = opts.feature || 'Ovaj feature';
+    
+    // Remove existing modal
+    const existing = document.getElementById('mt-paywall-modal');
+    if (existing) existing.remove();
+    
+    const reasonText = {
+      free_limit: 'Iskoristio si Free limit za ovaj feature.',
+      tier_locked: 'Ovaj feature je dostupan u Standard ili Pro pretplati.',
+      daily_limit: 'Iskoristio si svoj dnevni limit. Vrati se sutra ili upgradaj na viši tier.',
+      feature_locked: 'Ovaj feature zahtijeva pretplatu.'
+    };
+    
+    const modal = document.createElement('div');
+    modal.id = 'mt-paywall-modal';
+    modal.className = 'mt-paywall-overlay';
+    modal.innerHTML = \`
+      <div class="mt-paywall-modal" onclick="event.stopPropagation()">
+        <button type="button" class="mt-paywall-close" onclick="MT.Tier.closePaywall()" aria-label="Zatvori">×</button>
+        
+        <div class="mt-paywall-header">
+          <div class="mt-paywall-icon">\${requiredTier === 'pro' ? '💎' : '⭐'}</div>
+          <div class="mt-paywall-title">\${feature}</div>
+          <div class="mt-paywall-subtitle">\${reasonText[reason] || reasonText.feature_locked}</div>
+        </div>
+        
+        <div class="mt-paywall-tiers">
+          \${requiredTier !== 'pro' ? \`
+          <div class="mt-paywall-tier mt-paywall-tier-standard \${requiredTier === 'standard' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'standard' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">⭐ Standard</div>
+            <div class="mt-paywall-tier-price">9,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Cijela teorija + kvizovi</li>
+              <li>✅ Svi Discere simulatori (70 ispita)</li>
+              <li>✅ Sve modelne eseje (9) + sažetke (10)</li>
+              <li>✅ Neograničeno u Workspace</li>
+              <li>✅ Parent dashboard</li>
+              <li>✅ Streak + heatmap + analitika</li>
+              <li>❌ Bez AI features</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta" onclick="MT.Tier.subscribe('standard')">
+              Pretplati se na Standard
+            </button>
+          </div>
+          \` : ''}
+          
+          <div class="mt-paywall-tier mt-paywall-tier-pro \${requiredTier === 'pro' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'pro' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">💎 Pro</div>
+            <div class="mt-paywall-tier-price">19,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Sve iz Standard</li>
+              <li>✅ <strong>🤖 AI Profesor (chat) — 30/dan</strong></li>
+              <li>✅ <strong>🤖 AI Feedback za eseje + sažetke — 20/dan</strong></li>
+              <li>✅ <strong>Personalizirani plan učenja</strong></li>
+              <li>✅ <strong>Prijemni priprema</strong></li>
+              <li>✅ Priority AI queue</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta mt-paywall-cta-pro" onclick="MT.Tier.subscribe('pro')">
+              Pretplati se na Pro
+            </button>
+          </div>
+        </div>
+        
+        <div class="mt-paywall-footer">
+          <a href="/pretplata" class="mt-paywall-link">Vidi sve tier opcije →</a>
+          <span class="mt-paywall-divider">·</span>
+          <button type="button" class="mt-paywall-link mt-paywall-link-btn" onclick="MT.Tier.toggleTierDevMode()">
+            🧪 Dev: Toggle tier (trenutno: \${getTier().toUpperCase()})
+          </button>
+        </div>
+      </div>
+    \`;
+    
+    modal.addEventListener('click', closePaywall);
+    document.body.appendChild(modal);
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePaywall() {
+    const modal = document.getElementById('mt-paywall-modal');
+    if (modal) {
+      modal.remove();
+      document.body.style.overflow = '';
+    }
+  }
+
+  function subscribe(tier) {
+    // 🚨 PRODUCTION TODO: Stripe Checkout integration
+    // Plan: Stripe Checkout Session → success_url: /pretplata/success?tier=X
+    // Backend writes to Supabase user_subscriptions, then redirects back
+    
+    // For now: mock behavior — set tier, close paywall, reload
+    if (confirm(\`🚧 Pretplata u izradi (Stripe checkout uskoro).\\n\\nMock: Postaviti tier na \${tier === 'pro' ? 'Pro 19,99€' : 'Standard 9,99€'}/mj?\\n\\nKliknite OK za mock pretplatu.\`)) {
+      setTier(tier);
+      closePaywall();
+      location.reload();
+    }
+  }
+
+  function toggleTierDevMode() {
+    const next = toggleTier();
+    alert(\`🧪 Dev mode — tier postavljen na: \${next.toUpperCase()}\`);
+    closePaywall();
+    location.reload();
+  }
+
+  // ════════════════════════════════════════════════
+  // SIDEBAR TIER BADGE
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Injectsa tier badge u sidebar (ako postoji).
+   */
+  function injectSidebarBadge() {
+    const sidebar = document.querySelector('.sidebar') || document.querySelector('nav.sb');
+    if (!sidebar) return;
+    
+    // Check if already exists
+    if (document.getElementById('mt-tier-badge')) return;
+    
+    const tier = getTier();
+    const config = getTierConfig(tier);
+    
+    const badge = document.createElement('div');
+    badge.id = 'mt-tier-badge';
+    badge.className = 'mt-tier-badge mt-tier-badge-' + tier;
+    badge.innerHTML = \`
+      <div class="mt-tier-badge-label">\${config.label}</div>
+      \${tier === 'free' ? '<button type="button" class="mt-tier-badge-cta" onclick="MT.Tier.openPricing()">Upgrade →</button>' : ''}
+    \`;
+    
+    // Insert at top of sidebar
+    const firstChild = sidebar.firstElementChild;
+    if (firstChild) {
+      sidebar.insertBefore(badge, firstChild);
+    } else {
+      sidebar.appendChild(badge);
+    }
+  }
+
+  function openPricing() {
+    location.href = '/pretplata';
+  }
+
+  // ════════════════════════════════════════════════
+  // PUBLIC API
+  // ════════════════════════════════════════════════
+  
+  window.MT = window.MT || {};
+  window.MT.Tier = {
+    // Core
+    getTier,
+    setTier,
+    toggleTier,
+    getTierConfig,
+    
+    // Features
+    hasFeature,
+    getLimit,
+    getAILimit,
+    
+    // Usage
+    getDailyUsage,
+    incrementDailyUsage,
+    canUseAI,
+    
+    // Paywall
+    showPaywall,
+    closePaywall,
+    subscribe,
+    toggleTierDevMode,
+    
+    // UI
+    injectSidebarBadge,
+    openPricing,
+    
+    // Config (read-only)
+    CONFIG: TIER_CONFIG
+  };
+
+  // Auto-inject sidebar badge on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectSidebarBadge);
+  } else {
+    injectSidebarBadge();
+  }
+
+})(window);
+;
+/* UPDATE_PROGRESS_INJECTED */
+
+function updateProgress(pct){
+  var p=Math.max(5,pct);
+  var pb=document.getElementById('prog-bar'); if(pb) pb.style.width=p+'%';
+  var pct2=document.getElementById('prog-pct'); if(pct2) pct2.textContent=p+'%';
+  var hp=document.getElementById('hero-pb'); if(hp) hp.style.width=p+'%';
+  var hl=document.getElementById('hero-prog-lbl'); if(hl) hl.textContent=p+'% završeno';
+  try { localStorage.setItem('mt.hrv.h19.prog', p); } catch(e){}
+}
+/* ══ SIDEBAR ACTIVATION ══ */
+var PUBLISHED_CHAPTERS = {
+  h01: true, h02: true, h03: true, h04: true, h05: true,
+  h06: true, h07: true, h08: true, h09: true, h10: true,
+  h11: true, h12: true, h13: true, h14: true, h15: true, h16: true,
+  h17: true, h18: true,
+  h19: true, h20: true, h21: true, h22: true, h23: true, h24: true,
+  h25: true, h26: true, h27: true, h28: true,
+  d01: false, d02: false, d03: false, d04: true,  d05: false,
+  d06: false, d07: false, d08: false, d09: false, d10: true,
+  d11: false, d12: false, d13: false, d14: false, d15: false,
+  d16: false, d17: false, d18: false, d19: false, d20: false,
+  d21: false, d22: false
+};
+var CHAPTER_TITLES = {
+  h01:'temelji i antika', h02:'srednji vijek', h03:'renesansa',
+  h04:'barok i klasicizam', h05:'prosvjetiteljstvo', h06:'romantizam',
+  h07:'realizam', h08:'moderna', h09:'avangarda i 20. st.', h10:'postmoderna',
+  h11:'stari hrv. pisci', h12:'Marulić i hrv. rens.', h13:'hrv. barok — Gundulić',
+  h14:'preporod', h15:'Šenoa i realizam', h16:'Krleža i moderna',
+  h17:'stilske figure', h18:'versifikacija',
+  h19:'fonetika i fonologija', h20:'morfologija', h21:'sintaksa',
+  h22:'leksikologija', h23:'povijest hrv. jezika', h24:'hrv. narječja',
+  h25:'pravopisna pravila', h26:'interpunkcija',
+  h27:'školski esej', h28:'sažetak',
+  d01:'Antigona', d02:'Petrarca · izbor', d03:'Hamlet', d04:'Život je san',
+  d05:'Škrtac', d06:'Werther', d07:'Zločin i kazna', d08:'Preobražaj',
+  d09:'Stranac', d10:'Cvjetovi zla', d11:'Novela od Stanca', d12:'Judita',
+  d13:'Dubravka', d14:'Smail-aga', d15:'Prijan Lovro', d16:'Posljednji Stipančići',
+  d17:'Kranjčević · poezija', d18:'Matoš · izbor', d19:'Nazor · poezija',
+  d20:'Šimić · poezija', d21:'Glembajevi', d22:'Kiklop'
+};
+function initSidebar(){
+  var currentCode = (CURRENT_CHAPTER && CURRENT_CHAPTER.code) || '';
+  var items = document.querySelectorAll('.sb-item[data-code]');
+  items.forEach(function(item){ item.classList.remove('active','completed','disabled'); });
+  var currentIdx = -1;
+  var totalMain = 28;
+  items.forEach(function(item){
+    var code = item.getAttribute('data-code');
+    var isCurrent = code === currentCode;
+    var isPublished = PUBLISHED_CHAPTERS[code] === true;
+    if(isCurrent){
+      item.classList.add('active');
+      item.setAttribute('aria-current','page');
+      if(code.indexOf('h')===0){ currentIdx = parseInt(code.slice(1),10); }
+    }
+    if(!isPublished && !isCurrent){
+      item.classList.add('disabled');
+      item.setAttribute('aria-disabled','true');
+      item.setAttribute('title','Klikni da te obavijestimo kad izađe');
+      item.removeAttribute('href');
+      item.addEventListener('click', function(e){
+        e.preventDefault();
+        var title = (item.textContent||'').replace(/^[hd]\d\d\s·\s/i,'').trim();
+        /* poglavlje u izradi — signup uklonjen */
+        return false;
+      });
+    } else if (isPublished) {
+      /* Only mark completed if user finished all checkpoints for this chapter */
+      try {
+        var cpKey = 'mt.hrv.' + code + '.cp';
+        var cpRaw = localStorage.getItem(cpKey);
+        if (cpRaw) {
+          var cpArr = JSON.parse(cpRaw);
+          if (Array.isArray(cpArr) && cpArr.length > 0 && cpArr.every(function(v){ return v === true; })) {
+            item.classList.add('completed');
+          }
+        }
+      } catch(e) {}
+    }
+  });
+  var footPos = document.getElementById('sb-footer-pos');
+  var footTitle = document.getElementById('sb-footer-title');
+  if(footPos){
+    if(currentCode.indexOf('d')===0){ footPos.textContent = currentCode.toUpperCase() + ' · dodatno'; }
+    else if(currentIdx > 0){ footPos.textContent = String(currentIdx).padStart(2,'0') + ' / ' + totalMain; }
+  }
+  if(footTitle){ footTitle.textContent = CHAPTER_TITLES[currentCode] || ''; }
+  var doneH = Object.keys(PUBLISHED_CHAPTERS).filter(function(k){ return k.indexOf('h')===0 && PUBLISHED_CHAPTERS[k]; }).length;
+  var pct = Math.round((doneH / totalMain) * 100);
+  var progBar = document.getElementById('prog-bar');
+  var progPct = document.getElementById('prog-pct');
+  if(progBar) progBar.style.width = pct + '%';
+  if(progPct) progPct.textContent = pct + '%';
+}
+function detectTier(){
+  var override = null;
+  try { override = localStorage.getItem('mt.user.tier'); } catch(e){}
+  return override || 'free';
+}
+function applyTier(){
+  var tier = detectTier();
+  document.body.setAttribute('data-tier', tier);
+  document.querySelectorAll('.pro-gate').forEach(function(gate){
+    var feat = gate.getAttribute('data-feature') || 'generic';
+    var btn = gate.querySelector('.pro-gate-btn');
+    if(btn && !btn.href.includes('ctx=')){
+      var sep = btn.href.indexOf('?') >= 0 ? '&' : '?';
+      btn.href = btn.href + sep + 'ctx=' + feat + '_' +
+                 ((typeof CURRENT_CHAPTER !== 'undefined' && CURRENT_CHAPTER.code) || 'unknown');
+    }
+    if(tier === 'free'){
+      track('paywall_impression', { feature: feat,
+        chapter: (typeof CURRENT_CHAPTER !== 'undefined' && CURRENT_CHAPTER.code) || '' }, 'conversion');
+    }
+  });
+}
+function setTierLegacy(t){ try { localStorage.setItem('mt.user.tier', t); } catch(e){} applyTier(); }
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', function(){ initSidebar(); applyTier(); });
+} else {
+  initSidebar();
+  applyTier();
+}
+`;
+
+
+export default function H19Chapter() {
+  return (
+    <ChapterWrapper
+      chapterId="H19"
+      bodyHtml={BODY_HTML}
+      stylesCss={STYLES_CSS}
+      scriptsJs={SCRIPTS_JS}
+    />
+  );
+}
+
+export const HRV_POGAVLJE_19 = null

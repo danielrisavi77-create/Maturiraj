@@ -1,0 +1,13105 @@
+﻿/**
+ * H20 — H20 · Morfologija — Maturiraj.hr
+ * Auto-generated from Maturiraj_Hrvatski_H20.html
+ * 
+ * Strategy: Hybrid HTML-in-JSX (Strategy C)
+ * - Body HTML rendered via dangerouslySetInnerHTML
+ * - Inline <style> blocks injected at mount
+ * - Inline <script> blocks executed at mount
+ * - All onclick/oninput/etc. handlers preserved
+ * - SEO via Next.js Metadata API (in page.jsx)
+ */
+'use client';
+
+import { useEffect, useRef } from 'react';
+
+export const metadata = {
+  code: 'H20',
+  title: 'H20 · Morfologija — Maturiraj.hr',
+  description: 'H20 Morfologija — sustavni prikaz oblika riječi, 10 vrsta riječi, 7 padeža, glagolski oblici, tvorba. Maturiraj.hr matura iz hrvatskog 2026.',
+  canonical: 'https://maturiraj.hr/hrvatski/h20-morfologija',
+  ogImage: 'https://maturiraj.hr/og/h20.png',
+};
+
+const BODY_HTML = `<noscript>
+    <div style="padding:24px;text-align:center;background:#dc322f;color:white;font-family:system-ui">
+      <strong>JavaScript je potreban za rad ove stranice.</strong><br>
+      Maturiraj.hr koristi interaktivne značajke (kviz, AI tutor, parser). Molim te omogući JavaScript u postavkama preglednika.
+    </div>
+  </noscript>
+<div class="read-progress" aria-hidden="true"><div class="read-progress-bar" id="rpbar"></div></div>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Natrag na vrh" title="Natrag na vrh">↑</button>
+
+<div class="sb-overlay" id="overlay" onclick="closeSb()"></div>
+<button class="sb-hamburger" id="hamburger" onclick="openSb()" aria-label="Izbornik">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="shell">
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar" role="navigation" aria-label="Navigacija poglavlja">
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+        <path d="M16 3L29 9.5V22.5L16 29L3 22.5V9.5Z" stroke="#0F0605" stroke-width="1.5"/>
+        <path d="M16 3V29M3 9.5L29 22.5M29 9.5L3 22.5" stroke="#0F0605" stroke-width=".8" opacity=".5"/>
+        <circle cx="16" cy="16" r="2.5" fill="#0F0605" opacity=".7"/>
+      </svg>
+    </div>
+    <div>
+      <div class="sb-name">Maturiraj.hr</div>
+      <div class="sb-sub">HRVATSKI</div>
+    </div>
+    <button type="button" class="sb-hamburger" onclick="toggleSidebar()" aria-label="Zatvori izbornik">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="sb-prog-wrap">
+    <div class="sb-prog-label"><span>napredak</span><span id="sb-prog-pct">0%</span></div>
+    <div class="sb-prog-track"><div class="sb-prog-bar" id="sb-prog-bar" style="width:0%"></div></div>
+  </div>
+
+  <!-- ══ SVJETSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Svjetska književnost</div>
+  <a class="sb-item" data-code="h01" href="/skripte/hrv/h01"><span class="sb-dot"></span>H01 · Temelji i antika</a>
+  <a class="sb-item" data-code="h02" href="/skripte/hrv/h02"><span class="sb-dot"></span>H02 · Srednji vijek</a>
+  <a class="sb-item" data-code="h03" href="/skripte/hrv/h03"><span class="sb-dot"></span>H03 · Renesansa</a>
+  <a class="sb-item" data-code="h04" href="/skripte/hrv/h04"><span class="sb-dot"></span>H04 · Barok i klasicizam</a>
+  <a class="sb-item" data-code="h05" href="/skripte/hrv/h05"><span class="sb-dot"></span>H05 · Prosvjetiteljstvo</a>
+  <a class="sb-item" data-code="h06" href="/skripte/hrv/h06"><span class="sb-dot"></span>H06 · Romantizam</a>
+  <a class="sb-item" data-code="h07" href="/skripte/hrv/h07"><span class="sb-dot"></span>H07 · Realizam</a>
+  <a class="sb-item" data-code="h08" href="/skripte/hrv/h08"><span class="sb-dot"></span>H08 · Moderna</a>
+  <a class="sb-item" data-code="h09" href="/skripte/hrv/h09"><span class="sb-dot"></span>H09 · Avangarda i 20. st.</a>
+  <a class="sb-item" data-code="h10" href="/skripte/hrv/h10"><span class="sb-dot"></span>H10 · Postmoderna</a>
+
+  <!-- ══ HRVATSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Hrvatska književnost</div>
+  <a class="sb-item" data-code="h11" href="/skripte/hrv/h11"><span class="sb-dot"></span>H11 · Stari hrv. pisci</a>
+  <a class="sb-item" data-code="h12" href="/skripte/hrv/h12"><span class="sb-dot"></span>H12 · Marulić i hrv. rens.</a>
+  <a class="sb-item" data-code="h13" href="/skripte/hrv/h13"><span class="sb-dot"></span>H13 · Hrv. barok — Gundulić</a>
+  <a class="sb-item" data-code="h14" href="/skripte/hrv/h14"><span class="sb-dot"></span>H14 · Preporod</a>
+  <a class="sb-item" data-code="h15" href="/skripte/hrv/h15"><span class="sb-dot"></span>H15 · Šenoa i realizam</a>
+  <a class="sb-item" data-code="h16" href="/skripte/hrv/h16"><span class="sb-dot"></span>H16 · Krleža i moderna</a>
+
+  <!-- ══ STIL I IZRAZ ══ -->
+  <div class="sb-era">// Stil i izraz</div>
+  <a class="sb-item" data-code="h17" href="/skripte/hrv/h17"><span class="sb-dot"></span>H17 · Stilske figure</a>
+  <a class="sb-item" data-code="h18" href="/skripte/hrv/h18"><span class="sb-dot"></span>H18 · Versifikacija</a>
+
+  <!-- ══ JEZIKOSLOVLJE ══ -->
+  <div class="sb-era">// Jezikoslovlje</div>
+  <a class="sb-item" data-code="h19" href="/skripte/hrv/h19"><span class="sb-dot"></span>H19 · Fonetika i fonologija</a>
+  <a class="sb-item active" aria-current="page" data-code="h20" href="/skripte/hrv/h20"><span class="sb-dot"></span>H20 · Morfologija</a>
+  <a class="sb-item" data-code="h21" href="/skripte/hrv/h21"><span class="sb-dot"></span>H21 · Sintaksa</a>
+  <a class="sb-item" data-code="h22" href="/skripte/hrv/h22"><span class="sb-dot"></span>H22 · Leksikologija</a>
+  <a class="sb-item" data-code="h23" href="/skripte/hrv/h23"><span class="sb-dot"></span>H23 · Povijest hrv. jezika</a>
+  <a class="sb-item" data-code="h24" href="/skripte/hrv/h24"><span class="sb-dot"></span>H24 · Hrv. narječja</a>
+
+  <!-- ══ PRAVOPIS ══ -->
+  <div class="sb-era">// Pravopis</div>
+  <a class="sb-item" data-code="h25" href="/skripte/hrv/h25"><span class="sb-dot"></span>H25 · Pravopisna pravila</a>
+  <a class="sb-item" data-code="h26" href="/skripte/hrv/h26"><span class="sb-dot"></span>H26 · Interpunkcija</a>
+
+  <!-- ══ PISANJE ══ -->
+  <div class="sb-era">// Pisanje</div>
+  <a class="sb-item" data-code="h27" href="/skripte/hrv/h27"><span class="sb-dot"></span>H27 · Školski esej</a>
+  <a class="sb-item" data-code="h28" href="/skripte/hrv/h28"><span class="sb-dot"></span>H28 · Sažetak</a>
+
+  <!-- ══ DODATNO — obvezatna djela (deep-dive za esej 2026 + čitanje) ══ -->
+  <div class="sb-era sb-era-d">// Dodatno · obvezatna djela</div>
+  <div class="sb-d-meta">Deep-dive za esej (30 bod) + čitanje (20 bod)</div>
+
+  <a class="sb-item sb-d" data-code="d01" href="/skripte/hrv"><span class="sb-dot"></span>D01 · Sofoklo · Antigona</a>
+  <a class="sb-item sb-d" data-code="d02" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D02 · Petrarca · izbor</a>
+  <a class="sb-item sb-d" data-code="d03" href="/skripte/hrv"><span class="sb-dot"></span>D03 · Shakespeare · Hamlet</a>
+  <a class="sb-item sb-d" data-code="d04" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D04 · Calderón · Život je san</a>
+  <a class="sb-item sb-d" data-code="d05" href="/skripte/hrv"><span class="sb-dot"></span>D05 · Molière · Škrtac</a>
+  <a class="sb-item sb-d" data-code="d06" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D06 · Goethe · Werther</a>
+  <a class="sb-item sb-d" data-code="d07" href="/skripte/hrv"><span class="sb-dot"></span>D07 · Dostojevski · Zločin i kazna</a>
+  <a class="sb-item sb-d" data-code="d08" href="/skripte/hrv"><span class="sb-dot"></span>D08 · Kafka · Preobražaj</a>
+  <a class="sb-item sb-d" data-code="d09" href="/skripte/hrv"><span class="sb-dot"></span>D09 · Camus · Stranac</a>
+  <a class="sb-item sb-d" data-code="d10" href="/skripte/hrv"><span class="sb-dot"></span>D10 · Baudelaire · Cvjetovi zla</a>
+  <a class="sb-item sb-d" data-code="d11" href="/skripte/hrv"><span class="sb-dot"></span>D11 · Držić · Novela od Stanca</a>
+  <a class="sb-item sb-d" data-code="d12" href="/skripte/hrv"><span class="sb-dot"></span>D12 · Marulić · Judita</a>
+  <a class="sb-item sb-d" data-code="d13" href="/skripte/hrv"><span class="sb-dot"></span>D13 · Gundulić · Dubravka</a>
+  <a class="sb-item sb-d" data-code="d14" href="/skripte/hrv"><span class="sb-dot"></span>D14 · Mažuranić · Smail-aga</a>
+  <a class="sb-item sb-d" data-code="d15" href="/skripte/hrv"><span class="sb-dot"></span>D15 · Šenoa · Prijan Lovro</a>
+  <a class="sb-item sb-d" data-code="d16" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D16 · Novak · Posljednji Stipančići</a>
+  <a class="sb-item sb-d" data-code="d17" href="/skripte/hrv"><span class="sb-dot"></span>D17 · Kranjčević · poezija</a>
+  <a class="sb-item sb-d" data-code="d18" href="/skripte/hrv"><span class="sb-dot"></span>D18 · Matoš · izbor</a>
+  <a class="sb-item sb-d" data-code="d19" href="/skripte/hrv"><span class="sb-dot"></span>D19 · Nazor · poezija</a>
+  <a class="sb-item sb-d" data-code="d20" href="/skripte/hrv"><span class="sb-dot"></span>D20 · Šimić · poezija</a>
+  <a class="sb-item sb-d" data-code="d21" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D21 · Krleža · Glembajevi</a>
+  <a class="sb-item sb-d" data-code="d22" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D22 · Marinković · Kiklop</a>
+
+  <div class="sb-footer" id="sb-footer">
+    <span id="sb-footer-pos">20 / 28</span> · <span id="sb-footer-title">morfologija</span>
+    <br>maturiraj.hr · hrvatski · v2
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main" role="main">
+<div class="content-wrap">
+
+  <!-- BREADCRUMB -->
+  <div class="bc">
+    <a class="bc-link" href="/">Maturiraj.hr</a><span class="bc-sep">/</span>
+    <a class="bc-link" href="/skripte/hrv">Skripte</a><span class="bc-sep">/</span>
+    <a class="bc-link" href="/skripte/hrv">Hrvatski jezik</a><span class="bc-sep bc-tab-sep">/</span>
+    <span class="bc-cur">H20 · Morfologija</span>
+    <span class="bc-sep bc-tab-sep">/</span>
+    <span class="bc-tab" id="bc-tab">Teorija</span>
+  </div>
+
+  <!-- COUNTDOWN + ACTIONS -->
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px">
+    <div class="countdown" style="margin-bottom:0">
+      ⏳ Do ispita HRV: <strong id="cd-days">—</strong> dana &nbsp;<span style="font-size:9px;color:var(--t3)">(15. 6. 2026.)</span>
+    </div>
+    <button class="fcb" onclick="window.print()" style="font-size:10px" title="Print / PDF (Ctrl+P)">🖨 Print</button>
+    <button class="fcb" onclick="navigator.share?navigator.share({title:'H20 · Morfologija',url:window.location.href}):navigator.clipboard.writeText(window.location.href)" style="font-size:10px" title="Podijeli">📤 Dijeli</button>
+    <span style="font-family:var(--mono);font-size:9px;color:var(--t3);margin-left:auto">
+      <span class="kbd">←</span> <span class="kbd">→</span> tabovi · <span class="kbd">?</span> pomoć
+    </span>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-chapter">H20 &nbsp;·&nbsp; Jezikoslovlje &nbsp;·&nbsp; Morfologija</div>
+    <h1 class="hero-title">Morfologija<br><span>oblici riječi i tvorba</span></h1>
+    <p class="hero-sub">
+      <strong>Sustavni prikaz oblika riječi.</strong> <em>10 vrsta riječi</em> (5 promjenjivih + 5 nepromjenjivih), <em>7 padeža</em> (NADIVLA), <em>3 deklinacije</em> (a/e/i), <em>7 glagolskih vremena</em>, <em>tvorba riječi</em>. <strong>Morfo Scanner</strong> — upišeš riječ, dobiješ morfeme + vrstu + padež, <strong>Padežni decliner</strong> sa 21 iznimkom, <strong>AI tutor</strong> i <em>25 kviz pitanja</em>.
+    </p>
+    <div class="hero-chips">
+      <span class="hchip br">📖 10 vrsta riječi</span>
+      <span class="hchip go">7 padeža</span>
+      <span class="hchip te">Sklanjanje + konjugacija</span>
+      <span class="hchip pa">🔬 Morfo Scanner</span>
+      <span class="hchip re">★ NCVVO temeljna tema</span>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <div class="tabs" role="tablist" aria-label="Dijelovi poglavlja">
+    <button class="tab on" id="tab0" onclick="sw(0)" role="tab" aria-selected="true" aria-controls="l0">📖 Teorija<span class="tab-done" id="td0"></span></button>
+    <button class="tab" id="tab1" onclick="sw(1)" role="tab" aria-selected="false" aria-controls="l1">📚 Promjenjive<span class="tab-done" id="td1"></span></button>
+    <button class="tab" id="tab2" onclick="sw(2)" role="tab" aria-selected="false" aria-controls="l2">🔧 Nepromjenjive<span class="tab-done" id="td2"></span></button>
+    <button class="tab" id="tab3" onclick="sw(3)" role="tab" aria-selected="false" aria-controls="l3">📐 Kategorije<span class="tab-done" id="td3"></span></button>
+    <button class="tab" id="tab4" onclick="sw(4)" role="tab" aria-selected="false" aria-controls="l4">📚 Pojmovnik<span class="tab-done" id="td4"></span></button>
+    <button class="tab" id="tab5" onclick="sw(5)" role="tab" aria-selected="false" aria-controls="l5">🔬 Scanner<span class="tab-done" id="td5"></span></button>
+    <button class="tab" id="tab6" onclick="sw(6)" role="tab" aria-selected="false" aria-controls="l6">🧠 Kviz<span class="tab-badge">25</span><span class="tab-done" id="td6"></span></button>
+    <button class="tab" id="tab7" onclick="sw(7)" role="tab" aria-selected="false" aria-controls="l7">📊 Referentna tablica</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 0 · TEORIJA
+  ══════════════════════════════════════ -->
+  <div class="layer on" id="l0" role="tabpanel" tabindex="0">
+    <!-- ═══════════════════════════════════
+         20 NAJČEŠĆIH NCVVO GREŠAKA · MORFOLOGIJA
+    ═══════════════════════════════════ -->
+    <div class="sec-hdr" style="margin-top:36px"><div class="sec-line"></div><div class="sec-badge">⚠️ 20 najčešćih NCVVO grešaka</div><div class="sec-line"></div></div>
+    
+    <div style="padding:14px 16px;background:rgba(224,82,82,.04);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r2);margin:14px 0">
+      <div style="font-size:13px;line-height:1.6;color:var(--t2)">
+        <strong style="color:var(--red)">Sustavni popis stvarnih grešaka iz prošlih NCVVO mature.</strong> Svaka točka pokriva grešku koja se godinama ponavlja — pogledaj prije mature i izbjegavaj ih svjesno.
+      </div>
+    </div>
+    
+    <div style="display:grid;gap:8px;margin:16px 0">
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">1.</span>Brkanje fonema i slova ("nj/lj/dž = 1 fonem, 2 slova")</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Hrvatski ima <strong>30 fonema</strong> ali <strong>27 slova</strong> u abecedi. Slova nj, lj, dž predstavljaju 1 fonem (ali su pisana s 2 grafema). <em>"djeca"</em> = 4 fonema /dʲ/-/e/-/t͡s/-/a/, ne 5.</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">2.</span>Brojanje "10 vrsta riječi" — kriva podjela 5+5</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Promjenjive (5):</strong> imenice, pridjevi, zamjenice, brojevi, glagoli. <strong>Nepromjenjive (5):</strong> prilozi, prijedlozi, veznici, uzvici, čestice. Često ljudi zaborave ČESTICE (npr. li, ne, da, neka).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">3.</span>Padež "po prijedlogu" umjesto "po pitanju"</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Mnogi prijedlozi traže razne padeže ovisno o značenju! Npr. <em>"u školu"</em> (A — kuda ide?) vs. <em>"u školi"</em> (L — gdje je?). <strong>Postavi PITANJE</strong> da pronađeš pravi padež, ne gledaj samo prijedlog.</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">4.</span>Glagolski vid: brkanje svršenog/nesvršenog</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Svršeni</strong> = radnja gotova (pisati → napisati, doći, kupiti). <strong>Nesvršeni</strong> = radnja u tijeku ili se ponavlja (pisati, dolaziti, kupovati). Trik: dodaj "često" — ako paše, nesvršeni je.</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">5.</span>Krivo prepoznavanje futura I vs. futura II</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Futur I:</strong> ću/ćeš/će + infinitiv → "Pisat ću sutra." (radnja u budućnosti). <strong>Futur II:</strong> "budem/budeš + glag. pridjev radni" → "Kad budem došao..." (uzročno-vremenska zavisna).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">6.</span>Komparativ "ljepši" vs. "ljepiji"</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Komparativ tvori se sufiksima <strong>-ji, -iji, -ši</strong>. Lijep + ji → ljepši (sa palatalizacijom). Mlad + i → mlađi. Dobar → bolji (supletivno!). Pravilo: ako pridjev završava na -k/-g/-h ili -lo/-ko, koristi -iji.</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">7.</span>Zamjenice — uzvratna ("se/sebe/sebi") krivo svrstana</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Zamjenica „<strong>se / sebe / sebi</strong>" je <strong>POVRATNA</strong> (refleksivna), NE osobna. Odnosi se na subjekt rečenice. „Ja sebe vidim u ogledalu" — sebe pokazuje na ja. Ima 6 vrsta zamjenica (osobne, povratna, posvojne, pokazne, upitne/odnosne, neodređene).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">8.</span>Brkanje aorista i imperfekta</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Aorist:</strong> svršeni glagol u prošlosti (rekoh, dođe, doznade) — naglasak na <strong>jednokratnoj</strong> prošloj radnji. <strong>Imperfekt:</strong> nesvršeni u prošlosti (rekoše, dolazaše) — radnja koja je <strong>trajala</strong>. Oba zastarjela u govoru, ali na maturi se traže!</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">9.</span>Brojevi: glavni vs. redni vs. zbirni</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Glavni:</strong> dva, tri, deset (koliko ima?). <strong>Redni:</strong> drugi, treći, deseti (koji po redu?). <strong>Zbirni:</strong> dvoje, troje, desetoro (koliko ih je u skupini, miješan rod). Plus brojevne imenice (dvojica, trojica) i brojevni pridjevi (dvostruk).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">10.</span>Pridjev: opisni / posvojni / odnosni</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Opisni:</strong> opisuje svojstvo (lijep, mali, brz). <strong>Posvojni:</strong> govori čije je nešto (Ivanov, mamin, sestrin). <strong>Odnosni:</strong> odnos prema imenici (drveni, školski, hrvatski). Samo opisni se komparira!</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">11.</span>Imperativ — krivo prepoznavanje glagolskog načina</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Glagolski načini: <strong>indikativ</strong> (pišem, pisao sam — tvrdnja), <strong>imperativ</strong> (piši, pišimo — zapovijed), <strong>kondicional I/II</strong> (pisao bih, bio bih pisao — uvjet/mogućnost). Ne brkati s vremenima!</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">12.</span>Tvorba: izvođenje vs. slaganje vs. preobrazba</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Izvođenje</strong> = prefiks/sufiks (lijep → ljepota, pisati → napisati). <strong>Slaganje</strong> = 2 korijena + spojnik (knjig-o-vodstvo). <strong>Preobrazba</strong> = vrsta riječi se mijenja BEZ izmjene oblika (teško [pril.] → teško [im.]).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">13.</span>"Ne pišem" — gdje ide čestica „ne"?</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Čestica „ne" piše se <strong>odvojeno</strong> uz glagol: ne pišem, ne idem, ne razumijem. <strong>Iznimke:</strong> nemam, nemoj, nisam, nećeš, neću, neće (sa pomoćnim glagolima i htjeti). „Nemarno" je pridjev — piše se zajedno (čestica + osnova).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">14.</span>Vokativ — kad se piše, kad ne</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Vokativ (V)</strong> = oslovljavanje. „Ivane, dođi!" Često se odvaja zarezom. Nekoliko imenica nema vokativ (npr. neki tehnički nazivi). Muški rod V uzima nastavak <strong>-e/-u</strong> (Ivan-e!, Mario-u!).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">15.</span>Glagolski rod: aktiv vs. pasiv</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Aktiv:</strong> subjekt vrši radnju (Marija piše knjigu). <strong>Pasiv:</strong> subjekt trpi radnju (Knjiga je pisana / Knjiga se piše). Pasiv tvori se s glag. pridjevom trpnim ili česticom „se".</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">16.</span>Imenske riječi: muški rod na -a (npr. „papa, sluga")</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Neke imenice <strong>muškog roda završavaju na -a</strong>: papa, sluga, Luka, Petrica. Sklanjaju se po e-deklinaciji (kao žene), ali zadržavaju muški rod ("papa je došao", ne "papa je došla").</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">17.</span>Pridjevi: određeni vs. neodređeni vid</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)"><strong>Neodređeni</strong> (kratki): nov, lijep, dobar — općenito. <strong>Određeni</strong> (dugi): novi, lijepi, dobri — poznat. „Vidim novog dječaka" (neodr.) vs. „Vidim novoga dječaka" (određeni).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">18.</span>Glagolske imenice (-nje, -će) — ne kao dva posebne vrste</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Glagolske imenice (čitanje, pisanje, gledanje) tvore se sufiksom -<strong>nje</strong> ili -<strong>će</strong> (učenje, sukobiće). To su <strong>imenice</strong> (ne glagoli), ali iz glagolskog korijena. Sklanjaju se po a-deklinaciji (sr.r.).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">19.</span>Brojanje "kategorija promjenjivih" — broj/lice/vid/...</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Imenice imaju 3 (rod, broj, padež). Pridjevi imaju 4 (rod, broj, padež, stupanj komparacije + vid određeni/neodređeni). Glagoli imaju 7 (lice, broj, vrijeme, način, vid, rod, prijelaznost).</div>
+      </details>
+      
+      <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:13.5px"><span style="color:var(--red);margin-right:8px">20.</span>"Ja, ti, on" — i u vokativu? NE!</summary>
+        <div style="margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--t2)">Osobne zamjenice <strong>nemaju vokativ</strong> (jer ne možeš oslovljavati zamjenicu). Samo „ti" se može tretirati kao oslovljavanje, ali striktno gramatički je 2. lice nominativa, ne vokativ.</div>
+      </details>
+      
+    </div>
+
+    " role="tabpanel" tabindex="0">
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Što učiš u H20</div>
+      <div class="box-int-txt">
+        <strong>Morfologija</strong> je grana gramatike koja proučava <strong>oblike riječi</strong> — kako se riječi mijenjaju (sklanjaju, konjugiraju) i kako se tvore (od korijena, prefiksa, sufiksa). Na maturi je ovo <strong>#1 jezična tema</strong> — većina gramatičkih pitanja temelji se na morfologiji.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         1. ŠTO JE MORFOLOGIJA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">1. Što je morfologija</div><div class="sec-line"></div></div>
+
+    <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0">
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(74,144,217,.08),transparent);border:1px solid rgba(74,144,217,.25)">
+        <div class="box-key-lbl" style="color:var(--blue)">📐 FONETIKA (H19)</div>
+        <div class="box-key-txt">
+          Proučava <strong>glasove</strong> (fonem, alofon, grafem).<br><br>
+          Pitanje: <em>Koliko fonema ima riječ?</em><br>
+          Pitanje: <em>Koja se glasovna promjena dogodila?</em>
+        </div>
+      </div>
+
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.25)">
+        <div class="box-key-lbl" style="color:var(--gold)">📚 MORFOLOGIJA (H20)</div>
+        <div class="box-key-txt">
+          Proučava <strong>oblike riječi</strong> (morfem, korijen, sufiks).<br><br>
+          Pitanje: <em>Koja je vrsta riječi?</em><br>
+          Pitanje: <em>Koji je padež / vrijeme / rod?</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         2. MORFEM — OSNOVNA JEDINICA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">2. Morfem · najmanja značenjska jedinica</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🧩 Što je morfem</div>
+      <div class="box-int-txt">
+        <strong>Morfem</strong> je najmanja jezična jedinica <strong>s vlastitim značenjem</strong> (ili gramatičkom funkcijom). Riječ se sastoji od više morfema. Primjer: <em>ljep-ot-a</em> = 3 morfema.
+      </div>
+    </div>
+
+    <div class="scene-grid" style="margin:16px 0">
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">1</div>
+          <div class="scene-ttl">
+            <div class="scene-name">KORIJEN (osnova)</div>
+            <div class="scene-sub">Nosi glavno, leksičko značenje</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> <strong>korijen</strong> je središnji dio riječi koji nosi osnovno značenje. Nađeš ga tako što nađeš što je zajedničko srodnim riječima.</p>
+          <p><strong>🔑 Primjeri:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px;line-height:1.9">
+            <li><strong>ljep-</strong>: <em>ljepota, ljepši, ljepotica, uljepšati, ljepotan</em></li>
+            <li><strong>knji-</strong>/<strong>knjig-</strong>: <em>knjiga, knjižnica, knjigovodstvo, knjižurina</em></li>
+            <li><strong>pis-</strong>: <em>pisati, pismo, napisati, pisac, potpis</em></li>
+            <li><strong>voz-</strong>: <em>voziti, vozač, vozilo, prevoziti, izvoz</em></li>
+          </ul>
+          <p><strong>💡 Napomena:</strong> korijen se može pojavljivati u različitim varijantama (alternantama) zbog glasovnih promjena: <em>ruka → ruci → ručni</em> (r-u-k / r-u-c / r-u-č — sve ista osnova).</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">2</div>
+          <div class="scene-ttl">
+            <div class="scene-name">PREFIKS (predmetak)</div>
+            <div class="scene-sub">Dodaje se ISPRED korijena</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> <strong>prefiks</strong> je morfem koji se dodaje <strong>ispred korijena</strong> i mijenja značenje riječi. Hrvatski prefiksi dolaze iz prijedloga ili slavenskih osnova.</p>
+
+          <p><strong>🔑 Najčešći hrv. prefiksi:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px;line-height:1.9">
+            <li><strong>na-</strong>: napisati, naći, napasti (početak/dovršenje)</li>
+            <li><strong>do-</strong>: doći, dovršiti (dolazak/završetak)</li>
+            <li><strong>iz-</strong>: izaći, izvaditi (iznutra prema van)</li>
+            <li><strong>pre-</strong>: prelaziti, prepisati (ponavljanje)</li>
+            <li><strong>uz-</strong>: uzeti, uzdignuti (prema gore)</li>
+            <li><strong>pod-</strong>: podcrtati, podpisati (dolje)</li>
+            <li><strong>nad-</strong>: nadvisiti, nadoknaditi (iznad)</li>
+            <li><strong>protu-</strong>: protuotrov, protudokaz (nasuprot)</li>
+            <li><strong>ne-</strong>: nesretan, nerazumljiv (negacija)</li>
+          </ul>
+
+          <p><strong>⚠ Pazi — jednačenje po zvučnosti u prefiksima:</strong> iz + pasti → ispasti, od + kud → otkud, pod + pisati → potpisati (Tab H19.2).</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">3</div>
+          <div class="scene-ttl">
+            <div class="scene-name">SUFIKS (dometak)</div>
+            <div class="scene-sub">Dodaje se IZA korijena, prije nastavka</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> <strong>sufiks</strong> je morfem koji se dodaje <strong>iza korijena</strong> i stvara novu riječ (drugu vrstu ili drugo značenje). Najproduktivniji način tvorbe riječi u hrvatskom.</p>
+
+          <p><strong>🔑 Tvorbeni sufiksi po vrstama riječi:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px;line-height:1.9">
+            <li><strong>Imenice:</strong> -ost (ljepota → ljepost), -ica (učenica), -telj (učitelj), -ač (vozač), -ar (knjižar)</li>
+            <li><strong>Pridjevi:</strong> -an (hladan), -ski (školski), -ov/-ev (očev), -ji (pasji)</li>
+            <li><strong>Glagoli:</strong> -ati, -iti, -nuti, -avati, -ovati (infinitivni nastavci)</li>
+            <li><strong>Prilozi:</strong> -o (brzo), -ski (junački)</li>
+          </ul>
+
+          <p><strong>💡 Razlika sufiks ≠ nastavak:</strong></p>
+          <p><em>sufiks</em> mijenja vrstu ili značenje riječi (tvoren je morfem), <em>nastavak</em> označava gramatičku kategoriju (padež, broj, lice).</p>
+          <p>Primjer: <strong>ljep-ot-a</strong> — <em>-ot-</em> je sufiks (od pridjeva tvori imenicu), <em>-a</em> je nastavak (N jd.).</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--red);color:#fff">4</div>
+          <div class="scene-ttl">
+            <div class="scene-name">NASTAVAK (gramatički morfem)</div>
+            <div class="scene-sub">Označava padež, broj, lice, rod</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Pravilo:</strong> <strong>nastavak</strong> je gramatički morfem na kraju riječi koji označava <strong>gramatičke kategorije</strong> (padež, broj, lice, vrijeme, rod).</p>
+
+          <p><strong>🔑 Primjeri — imenice (padežni nastavci):</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Oblik</th><th style="padding:8px;text-align:left">Osnova + nastavak</th><th style="padding:8px;text-align:left">Gram. kategorija</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">žen-<strong>a</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">žen- + -a</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">N jd. ž.r.</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">žen-<strong>e</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">žen- + -e</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">G jd. ž.r.</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">žen-<strong>ama</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">žen- + -ama</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">DI mn. ž.r.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>🔑 Primjeri — glagoli (lični nastavci):</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px;line-height:1.7">
+            <li>piš-<strong>em</strong> (1. l. jd.) · piš-<strong>eš</strong> (2. l.) · piš-<strong>e</strong> (3. l.)</li>
+            <li>piš-<strong>emo</strong> (1. l. mn.) · piš-<strong>ete</strong> (2. l.) · piš-<strong>u</strong> (3. l.)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPGRADE: GRANE GRAMATIKE DIAGRAM -->
+    <div class="sec-hdr" style="margin-top:16px"><div class="sec-line"></div><div class="sec-badge">🗺️ Gdje je morfologija u hrvatskom jeziku?</div><div class="sec-line"></div></div>
+    
+    <div style="padding:24px;background:linear-gradient(135deg,rgba(233,180,70,.04),transparent);border:1px solid var(--bd);border-radius:var(--r2);margin:16px 0;text-align:center">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);margin-bottom:16px">HIJERARHIJA JEZIČNIH RAZINA</div>
+      
+      <div style="display:flex;flex-direction:column;gap:8px;max-width:600px;margin:0 auto">
+        <!-- Level 1 -->
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);text-align:left">
+          <div style="flex-shrink:0;width:36px;height:36px;background:rgba(74,144,217,.15);border:1.5px solid var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px">🔊</div>
+          <div style="flex:1">
+            <div style="font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px">Fonetika / fonologija <span style="font-family:var(--mono);font-size:10px;color:var(--blue);margin-left:6px">H19</span></div>
+            <div style="font-size:11px;color:var(--t3)">Glasovi — od najmanjih dijelova (fonemi)</div>
+          </div>
+        </div>
+        <div style="font-size:14px;color:var(--t3)">↓</div>
+        
+        <!-- Level 2 - MORFOLOGIJA (highlighted) -->
+        <div style="display:flex;align-items:center;gap:12px;padding:14px;background:rgba(233,180,70,.12);border:2px solid var(--gold);border-radius:var(--r1);text-align:left;box-shadow:0 4px 16px rgba(233,180,70,.15)">
+          <div style="flex-shrink:0;width:36px;height:36px;background:rgba(233,180,70,.25);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px">📚</div>
+          <div style="flex:1">
+            <div style="font-family:var(--display);font-weight:700;color:var(--gold);font-size:15px">MORFOLOGIJA <span style="font-family:var(--mono);font-size:10px;color:var(--gold);margin-left:6px">H20 · OVDJE SI</span></div>
+            <div style="font-size:11px;color:var(--t2)">Oblici riječi — kako se riječi mijenjaju (sklanjanje, konjugacija, tvorba)</div>
+          </div>
+        </div>
+        <div style="font-size:14px;color:var(--t3)">↓</div>
+        
+        <!-- Level 3 -->
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);text-align:left">
+          <div style="flex-shrink:0;width:36px;height:36px;background:rgba(74,144,217,.1);border:1.5px solid var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px">🔗</div>
+          <div style="flex:1">
+            <div style="font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px">Sintaksa <span style="font-family:var(--mono);font-size:10px;color:var(--blue);margin-left:6px">H21</span></div>
+            <div style="font-size:11px;color:var(--t3)">Rečenica — kako se riječi slažu u rečenice</div>
+          </div>
+        </div>
+        <div style="font-size:14px;color:var(--t3)">↓</div>
+        
+        <!-- Level 4 -->
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);text-align:left">
+          <div style="flex-shrink:0;width:36px;height:36px;background:rgba(176,107,33,.1);border:1.5px solid var(--bronze);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px">📖</div>
+          <div style="flex:1">
+            <div style="font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px">Leksikologija / semantika <span style="font-family:var(--mono);font-size:10px;color:var(--bronze);margin-left:6px">H22+</span></div>
+            <div style="font-size:11px;color:var(--t3)">Značenje riječi — rječnik, idiomi, semantička polja</div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top:20px;padding:12px 16px;background:rgba(80,200,120,.06);border-left:3px solid var(--green);border-radius:var(--r1);text-align:left;max-width:600px;margin-left:auto;margin-right:auto">
+        <strong style="color:var(--green)">💡 Zašto ovo redom?</strong> Svaka sljedeća razina gradi na prethodnoj. Morfologija = "srednji katić" — ne ide bez fonetike (glasovi tvore morfeme), a nije potpuna bez sintakse (riječi slažu se u rečenice).
+      </div>
+    </div>
+
+    <!-- UPGRADE: ANIMIRANI 4-MORFEMA BREAKDOWN -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🧬 4 tipa morfema — vizualno</div><div class="sec-line"></div></div>
+    
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);margin:16px 0">
+      <div style="text-align:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);margin-bottom:8px">ANALIZA RIJEČI: „NEPREISPISANOSTI"</div>
+        <div style="font-family:var(--display);font-size:34px;font-weight:700;color:var(--gold);margin-bottom:4px">nepreispisanosti</div>
+        <div style="font-size:11px;color:var(--t3);font-style:italic">odabrana riječ jer ima SVA 4 tipa morfema — savršen primjer</div>
+      </div>
+      
+      <div style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px;margin:20px 0">
+        <span style="display:inline-flex;flex-direction:column;align-items:center;padding:10px 14px;background:rgba(74,144,217,.15);border:1.5px solid var(--blue);border-radius:var(--r1);min-width:80px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--blue);letter-spacing:1.5px;margin-bottom:4px">PREFIKS</span>
+          <span style="font-family:var(--display);font-weight:700;color:var(--blue);font-size:18px">ne-</span>
+          <span style="font-size:9px;color:var(--t3);margin-top:2px">negacija</span>
+        </span>
+        <span style="color:var(--gold);font-size:20px;font-weight:700">+</span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;padding:10px 14px;background:rgba(74,144,217,.15);border:1.5px solid var(--blue);border-radius:var(--r1);min-width:80px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--blue);letter-spacing:1.5px;margin-bottom:4px">PREFIKS</span>
+          <span style="font-family:var(--display);font-weight:700;color:var(--blue);font-size:18px">pre-</span>
+          <span style="font-size:9px;color:var(--t3);margin-top:2px">prekomjerno</span>
+        </span>
+        <span style="color:var(--gold);font-size:20px;font-weight:700">+</span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;padding:10px 14px;background:rgba(74,144,217,.15);border:1.5px solid var(--blue);border-radius:var(--r1);min-width:80px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--blue);letter-spacing:1.5px;margin-bottom:4px">PREFIKS</span>
+          <span style="font-family:var(--display);font-weight:700;color:var(--blue);font-size:18px">is-</span>
+          <span style="font-size:9px;color:var(--t3);margin-top:2px">iz (pred s)</span>
+        </span>
+        <span style="color:var(--gold);font-size:20px;font-weight:700">+</span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;padding:10px 14px;background:rgba(233,180,70,.18);border:2px solid var(--gold);border-radius:var(--r1);min-width:90px;box-shadow:0 2px 12px rgba(233,180,70,.2)">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:1.5px;margin-bottom:4px">KORIJEN</span>
+          <span style="font-family:var(--display);font-weight:700;color:var(--gold);font-size:18px">pis</span>
+          <span style="font-size:9px;color:var(--t3);margin-top:2px">pisati</span>
+        </span>
+        <span style="color:var(--gold);font-size:20px;font-weight:700">+</span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;padding:10px 14px;background:rgba(176,107,33,.15);border:1.5px solid var(--bronze);border-radius:var(--r1);min-width:80px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--bronze);letter-spacing:1.5px;margin-bottom:4px">SUFIKS</span>
+          <span style="font-family:var(--display);font-weight:700;color:var(--bronze);font-size:18px">-an-</span>
+          <span style="font-size:9px;color:var(--t3);margin-top:2px">trp. pridjev</span>
+        </span>
+        <span style="color:var(--gold);font-size:20px;font-weight:700">+</span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;padding:10px 14px;background:rgba(176,107,33,.15);border:1.5px solid var(--bronze);border-radius:var(--r1);min-width:80px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--bronze);letter-spacing:1.5px;margin-bottom:4px">SUFIKS</span>
+          <span style="font-family:var(--display);font-weight:700;color:var(--bronze);font-size:18px">-ost-</span>
+          <span style="font-size:9px;color:var(--t3);margin-top:2px">apstraktna</span>
+        </span>
+        <span style="color:var(--gold);font-size:20px;font-weight:700">+</span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;padding:10px 14px;background:rgba(224,82,82,.15);border:1.5px solid var(--red);border-radius:var(--r1);min-width:80px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:1.5px;margin-bottom:4px">NASTAVAK</span>
+          <span style="font-family:var(--display);font-weight:700;color:var(--red);font-size:18px">-i</span>
+          <span style="font-size:9px;color:var(--t3);margin-top:2px">G jd.</span>
+        </span>
+      </div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px">
+        <div style="padding:12px 14px;background:var(--bg);border:1px solid var(--bd);border-left:3px solid var(--blue);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--blue);letter-spacing:1.5px;margin-bottom:4px">PREFIKS</div>
+          <div style="font-size:12.5px;color:var(--t2);line-height:1.5">Morfem <strong>ispred korijena</strong>. Mijenja značenje. Može ih biti više (ne-pre-is-). Dolazi iz prijedloga (u-, na-, do-) ili slavenskih osnova (ne-, pre-, raz-).</div>
+        </div>
+        <div style="padding:12px 14px;background:var(--bg);border:1px solid var(--bd);border-left:3px solid var(--gold);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1.5px;margin-bottom:4px">KORIJEN</div>
+          <div style="font-size:12.5px;color:var(--t2);line-height:1.5"><strong>Središte</strong> riječi. Nosi <strong>leksičko značenje</strong>. Zajednički je srodnim riječima: <em>pis-</em> (pisati, pisac, zapis, potpis, opis...).</div>
+        </div>
+        <div style="padding:12px 14px;background:var(--bg);border:1px solid var(--bd);border-left:3px solid var(--bronze);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1.5px;margin-bottom:4px">SUFIKS</div>
+          <div style="font-size:12.5px;color:var(--t2);line-height:1.5"><strong>Tvorbeni</strong> morfem iza korijena. Tvori <strong>nove riječi</strong>. Ne mijenja se kroz oblike (-ost u „ljepota, ljepotu, ljepotom" je isti).</div>
+        </div>
+        <div style="padding:12px 14px;background:var(--bg);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:1.5px;margin-bottom:4px">NASTAVAK</div>
+          <div style="font-size:12.5px;color:var(--t2);line-height:1.5"><strong>Gramatički</strong> morfem na kraju. <strong>Mijenja se</strong> kroz oblike: padež (-a, -e, -om), lice (-m, -š), rod. To je ključna razlika od sufiksa!</div>
+        </div>
+      </div>
+      
+      <div style="margin-top:16px;padding:12px 16px;background:rgba(233,180,70,.06);border-left:3px solid var(--gold);border-radius:var(--r1)">
+        <strong style="color:var(--gold)">🎯 Zlatno pravilo:</strong> <em>Sufiks se NE mijenja. Nastavak DA.</em> To je 90% pitanja iz morfeme na maturi.
+      </div>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Primjer — potpuna analiza riječi</div>
+      <div class="box-key-txt" style="font-family:var(--mono);font-size:14px;line-height:2">
+        <strong>ne + pre + pisa + n + ost + i</strong> (od <em>nepreispisanosti</em>, G jd.)<br>
+        <span style="color:var(--blue)">ne-</span> → prefiks (negacija)<br>
+        <span style="color:var(--blue)">pre-</span> → prefiks (ponavljanje)<br>
+        <span style="color:var(--gold)">pis-</span> → korijen (pisati)<br>
+        <span style="color:var(--bronze)">-a-n-</span> → sufiks (tvori pridjev)<br>
+        <span style="color:var(--bronze)">-ost-</span> → sufiks (od pridjeva tvori imenicu)<br>
+        <span style="color:var(--red)">-i</span> → nastavak (G jd. i-vrste)
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         3. 10 VRSTA RIJEČI — PREGLED
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">3. 10 vrsta riječi — brzi pregled</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📚 Podjela riječi</div>
+      <div class="box-int-txt">
+        Hrvatski razlikuje <strong>10 vrsta riječi</strong>, podijeljenih u 2 velike skupine: <strong>promjenjive</strong> (mijenjaju oblik — sklanjaju se ili konjugiraju) i <strong>nepromjenjive</strong> (oblik ostaje isti).
+      </div>
+    </div>
+
+    <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0">
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.3)">
+        <div class="box-key-lbl" style="color:var(--gold)">🔄 PROMJENJIVE RIJEČI · 5</div>
+        <div class="box-key-txt" style="line-height:1.9">
+          <strong>1. Imenice</strong> — biće, stvar, pojam (žena, stol, ljubav)<br>
+          <strong>2. Pridjevi</strong> — svojstvo (lijep, velik, crveni)<br>
+          <strong>3. Zamjenice</strong> — zamjena imenice (ja, on, ovaj)<br>
+          <strong>4. Brojevi</strong> — količina, redoslijed (pet, drugi)<br>
+          <strong>5. Glagoli</strong> — radnja/stanje (pisati, trčati)<br><br>
+          <em style="font-size:12px;color:var(--t3)">Imenice, pridjevi, zamjenice, brojevi → sklanjaju se (padeži).<br>Glagoli → konjugiraju se (vremena, lica).</em>
+        </div>
+      </div>
+
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(74,144,217,.08),transparent);border:1px solid rgba(74,144,217,.3)">
+        <div class="box-key-lbl" style="color:var(--blue)">🔒 NEPROMJENJIVE RIJEČI · 5</div>
+        <div class="box-key-txt" style="line-height:1.9">
+          <strong>6. Prilozi</strong> — opisuju glagol (brzo, ovdje, sutra)<br>
+          <strong>7. Prijedlozi</strong> — odnosi u rečenici (u, na, iza)<br>
+          <strong>8. Veznici</strong> — spajaju riječi/rečenice (i, ili, jer)<br>
+          <strong>9. Uzvici</strong> — izražavaju emociju (ah, uf, bok)<br>
+          <strong>10. Čestice</strong> — izražavaju stav (ne, da, li, evo)<br><br>
+          <em style="font-size:12px;color:var(--t3)">Oblik ostaje uvijek isti — ne mijenjaju se.</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         4. PROMJENJIVE vs NEPROMJENJIVE — TEST
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">4. Brzi test · prepoznavanje promjenjivosti</div><div class="sec-line"></div></div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">💡 Kako brzo provjeriti</div>
+      <div class="box-signal-txt">
+        Postavi riječ u <strong>drugi padež</strong> ili <strong>drugo lice</strong>. Ako se oblik mijenja → promjenjiva. Ako ostaje isti → nepromjenjiva.<br><br>
+        <strong>Primjer:</strong><br>
+        • <em>stol</em> → u stolu (G), stolu (D) → <strong>promjenjiva</strong> (imenica)<br>
+        • <em>brzo</em> → još brzo, uvijek brzo → <strong>nepromjenjiva</strong> (prilog)<br>
+        • <em>pisati</em> → pišem, pišeš, piše → <strong>promjenjiva</strong> (glagol)<br>
+        • <em>u</em> → uvijek „u" (u školi, u kući) → <strong>nepromjenjiva</strong> (prijedlog)
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5. MAPA POGLAVLJA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">5. Mapa poglavlja · 8 tabova</div><div class="sec-line"></div></div>
+
+    <div class="scene-grid" style="margin:16px 0">
+      <div class="scene-card" onclick="sw(1)" style="cursor:pointer">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">1</div>
+          <div class="scene-ttl">
+            <div class="scene-name">📚 Promjenjive riječi</div>
+            <div class="scene-sub">Imenice, pridjevi, zamjenice, brojevi, glagoli — s tablicama sklanjanja</div>
+          </div>
+          <div class="scene-arrow">→</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="sw(2)" style="cursor:pointer">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">2</div>
+          <div class="scene-ttl">
+            <div class="scene-name">🔧 Nepromjenjive riječi</div>
+            <div class="scene-sub">Prilozi, prijedlozi, veznici, uzvici, čestice + interaktivna vježba</div>
+          </div>
+          <div class="scene-arrow">→</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="sw(3)" style="cursor:pointer">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">3</div>
+          <div class="scene-ttl">
+            <div class="scene-name">📐 Gramatičke kategorije</div>
+            <div class="scene-sub">Rod · broj · 7 padeža · lice · vrijeme · vid · padežni decliner + 2 vježbe</div>
+          </div>
+          <div class="scene-arrow">→</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="sw(4)" style="cursor:pointer">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--red);color:#fff">4</div>
+          <div class="scene-ttl">
+            <div class="scene-name">📚 Pojmovnik</div>
+            <div class="scene-sub">60 morfoloških pojmova u 7 kategorija s filtriranjem</div>
+          </div>
+          <div class="scene-arrow">→</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="sw(5)" style="cursor:pointer">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#9b59b6;color:#fff">5</div>
+          <div class="scene-ttl">
+            <div class="scene-name">🔬 Morfo Scanner ★</div>
+            <div class="scene-sub">Analiziraj riječ → korijen · sufiks · prefiks · vrsta · kategorije · osnovni oblik</div>
+          </div>
+          <div class="scene-arrow">→</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="sw(6)" style="cursor:pointer">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#e67e22;color:#fff">6</div>
+          <div class="scene-ttl">
+            <div class="scene-name">🧠 Kviz</div>
+            <div class="scene-sub">25 pitanja s instant feedbackom — matura-ready trening</div>
+          </div>
+          <div class="scene-arrow">→</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="sw(7)" style="cursor:pointer">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--green);color:#fff">7</div>
+          <div class="scene-ttl">
+            <div class="scene-name">📊 Referentna tablica</div>
+            <div class="scene-sub">A4 printabilni cheat sheet — sve na jednom mjestu za brzu provjeru</div>
+          </div>
+          <div class="scene-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGNOSTIC -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🎯 Brza dijagnostika · 5 pitanja</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">Testiraj svoje polazište</div>
+      <div class="box-int-txt">
+        5 pitanja da procijeniš svoju razinu morfologije prije nego počneš. Odgovori iskreno — rezultati se ne spremaju nigdje.
+      </div>
+    </div>
+
+    <div id="diag0" data-state="intro" style="margin:16px 0">
+      <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:2px;margin-bottom:8px">DIJAGNOSTIKA</div>
+        <div style="font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:14px">Koliko znaš morfologiju prije učenja?</div>
+        <button class="nb-btn primary" onclick="diag0Start()">Započni · 5 pitanja</button>
+        <button class="nb-btn" onclick="diag0Skip()" style="margin-left:8px">Preskoči</button>
+      </div>
+    </div>
+
+    <!-- RECAP -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">📌 RECAP — Tab 0 ključne točke</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Što si naučio u ovom tabu</div>
+      <div class="box-key-txt">
+        <strong>MORFOLOGIJA</strong> = grana gramatike o oblicima riječi.<br><br>
+        
+        <strong>4 TIPA MORFEMA:</strong><br>
+        • Korijen — osnovno značenje (ljep-, pis-, voz-)<br>
+        • Prefiks — ispred (na-, do-, iz-, pre-, ne-)<br>
+        • Sufiks — iza (-ost, -ica, -telj, -ski)<br>
+        • Nastavak — gramatička kategorija (-a, -e, -om, -em)<br><br>
+        
+        <strong>10 VRSTA RIJEČI u 2 skupine:</strong><br>
+        • 5 <strong>promjenjivih</strong>: imenice, pridjevi, zamjenice, brojevi, glagoli<br>
+        • 5 <strong>nepromjenjivih</strong>: prilozi, prijedlozi, veznici, uzvici, čestice
+      </div>
+    </div>
+
+    
+    <!-- UPGRADE: NAJČEŠĆE GREŠKE NA MATURI -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">⚠️ Najčešće greške na maturi · TOP 8</div><div class="sec-line"></div></div>
+    
+    <div style="padding:18px;background:linear-gradient(135deg,rgba(224,82,82,.04),transparent);border:1px solid var(--bd);border-left:3px solid var(--red);border-radius:var(--r2);margin:16px 0">
+      <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px">
+        <strong>Realne zamke iz NCVVO testova</strong> — napraviš ovih 8 grešaka, izgubiš 4-6 bodova. Pažljivo prouči svaku.
+      </div>
+      
+      <div style="display:grid;gap:10px">
+        
+        <!-- Mistake 1 -->
+        <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span><span style="display:inline-block;background:var(--red);color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;margin-right:8px">1</span> "Svoj" vs. "njegov" — pripadnost</span>
+            <span style="color:var(--t3)">▾</span>
+          </summary>
+          <div style="margin-top:10px;font-size:13px;line-height:1.65;color:var(--t2)">
+            ❌ <em>"Ivan je uzeo njegov auto."</em> — ako je auto Ivanov, ovo je pogrešno!<br>
+            ✅ <em>"Ivan je uzeo svoj auto."</em> — povratno-posvojna (subjektovo)<br>
+            ✅ <em>"Ivan je uzeo njegov auto."</em> — auto je nečiji DRUGI (npr. Marka)<br><br>
+            <strong style="color:var(--gold)">Pravilo:</strong> kad pripadnost pripada SUBJEKTU rečenice → <strong>svoj</strong>. Kad pripada nekom drugom → <strong>njegov/njezin/njihov</strong>.
+          </div>
+        </details>
+        
+        <!-- Mistake 2 -->
+        <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span><span style="display:inline-block;background:var(--red);color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;margin-right:8px">2</span> Akuzativ vs. lokativ — kretanje vs. mirovanje</span>
+            <span style="color:var(--t3)">▾</span>
+          </summary>
+          <div style="margin-top:10px;font-size:13px;line-height:1.65;color:var(--t2)">
+            Isti prijedlozi (u, na, pod, nad), ali RAZLIČITI padeži:<br>
+            ❌ <em>"Idem u školi."</em> (lokativ za smjer) — pogrešno!<br>
+            ✅ <em>"Idem u školu."</em> — A (kamo? = kretanje)<br>
+            ✅ <em>"Bio sam u školi."</em> — L (gdje? = mirovanje)<br><br>
+            <strong style="color:var(--gold)">Test:</strong> pitaj "kamo?" → A. Pitaj "gdje?" → L.
+          </div>
+        </details>
+        
+        <!-- Mistake 3 -->
+        <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span><span style="display:inline-block;background:var(--red);color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;margin-right:8px">3</span> Paukal — uz brojeve 2, 3, 4</span>
+            <span style="color:var(--t3)">▾</span>
+          </summary>
+          <div style="margin-top:10px;font-size:13px;line-height:1.65;color:var(--t2)">
+            ❌ <em>"Tri prijatelji su došli."</em> (N mn.) — pogrešno!<br>
+            ✅ <em>"Tri prijatelja su došla."</em> — paukal (= G jd.)<br>
+            ✅ <em>"Pet prijatelja je došlo."</em> — G mn. (uz 5+)<br><br>
+            <strong style="color:var(--gold)">Pravilo:</strong> 2/3/4 + G jd. · 5+ + G mn. Slaže se i pridjev (tri <strong>velika</strong> stola, ne "veliki").
+          </div>
+        </details>
+        
+        <!-- Mistake 4 -->
+        <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span><span style="display:inline-block;background:var(--red);color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;margin-right:8px">4</span> "Ne" — čestica ili veznik?</span>
+            <span style="color:var(--t3)">▾</span>
+          </summary>
+          <div style="margin-top:10px;font-size:13px;line-height:1.65;color:var(--t2)">
+            "<strong>Ne</strong>" je UVIJEK <strong>niječna čestica</strong> — bez obzira na kontekst.<br><br>
+            ❌ "Ne" = veznik (čak i u "ni... ni..." = veznik je <strong>ni/niti</strong>, ne "ne")<br>
+            ✅ "Ne radim" — ne (čestica) + radim (glagol)<br>
+            ✅ "Ni Ivan, ni Ana" — <strong>ni</strong> je veznik (ne "ne")<br><br>
+            <strong style="color:var(--gold)">Slično:</strong> "da" može biti čestica ILI veznik (ovisno o kontekstu). "Da, dolazim" — čestica. "Mislim da dolazi" — veznik.
+          </div>
+        </details>
+        
+        <!-- Mistake 5 -->
+        <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span><span style="display:inline-block;background:var(--red);color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;margin-right:8px">5</span> Sufiks vs. nastavak — razlika</span>
+            <span style="color:var(--t3)">▾</span>
+          </summary>
+          <div style="margin-top:10px;font-size:13px;line-height:1.65;color:var(--t2)">
+            U "ljepota / ljepote / ljepotom" → "<strong>-ot-</strong>" je SUFIKS (uvijek isti), "<strong>-a / -e / -om</strong>" je NASTAVAK (mijenja se).<br><br>
+            <strong style="color:var(--gold)">Pravilo:</strong> sufiks NE mijenja se kroz padeže. Nastavak DA. Test → sklanjaj riječ. Što ostaje isto = sufiks. Što se mijenja na kraju = nastavak.
+          </div>
+        </details>
+        
+        <!-- Mistake 6 -->
+        <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span><span style="display:inline-block;background:var(--red);color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;margin-right:8px">6</span> Glagolski vid — svršeni/nesvršeni</span>
+            <span style="color:var(--t3)">▾</span>
+          </summary>
+          <div style="margin-top:10px;font-size:13px;line-height:1.65;color:var(--t2)">
+            <strong>Pisati</strong> (nesvršeni) → <strong>napisati</strong> (svršeni). Razlika: završena radnja.<br><br>
+            ✅ "Pisao sam pismo." (radnja u tijeku, ne znamo je li završeno)<br>
+            ✅ "Napisao sam pismo." (završena radnja, gotovo je)<br><br>
+            <strong style="color:var(--gold)">Trik:</strong> svršeni se ne može u prezentu izraziti SADAŠNJOST radnje (samo budućnost). Probaj: "napišem" → ne znači sadašnjost!
+          </div>
+        </details>
+        
+        <!-- Mistake 7 -->
+        <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span><span style="display:inline-block;background:var(--red);color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;margin-right:8px">7</span> Vokativ — palatalizacija</span>
+            <span style="color:var(--t3)">▾</span>
+          </summary>
+          <div style="margin-top:10px;font-size:13px;line-height:1.65;color:var(--t2)">
+            ❌ "<em>Ivane!</em>" — gdje je palatalizacija? — N "Ivan" → V "Ivan<strong>e</strong>" (samo dodavanje -e)<br>
+            ✅ "<strong>Vuče!</strong>" — od "vuk" (k → č + e) — 1. palatalizacija<br>
+            ✅ "<strong>Bože!</strong>" — od "Bog" (g → ž + e) — 1. palatalizacija<br>
+            ✅ "<strong>Junače!</strong>" — od "junak" (k → č + e)<br><br>
+            <strong style="color:var(--gold)">Pravilo:</strong> 1. palatalizacija (k/g/h → č/ž/š) događa se PRED -e u V jd. m.r. (ne uvijek).
+          </div>
+        </details>
+        
+        <!-- Mistake 8 -->
+        <details style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <summary style="cursor:pointer;font-family:var(--display);font-weight:700;color:var(--t1);font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span><span style="display:inline-block;background:var(--red);color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;margin-right:8px">8</span> Posvojni vs. odnosni pridjevi</span>
+            <span style="color:var(--t3)">▾</span>
+          </summary>
+          <div style="margin-top:10px;font-size:13px;line-height:1.65;color:var(--t2)">
+            ❌ "<em>Ivanova kuća</em>" pisano malim slovom — pogrešno!<br>
+            ✅ "<strong>Ivanova</strong> kuća" — POSVOJNI pridjev na -ov / -ev / -in piše se VELIKIM (od osobnog imena)<br>
+            ✅ "<strong>ivanovski</strong> stil" — ODNOSNI pridjev na -ski piše se MALIM<br><br>
+            <strong style="color:var(--gold)">Pravilo:</strong> posvojni pridjev (čiji?) od osobnog imena = veliko slovo. Odnosni (kakav?) = malo slovo.
+          </div>
+        </details>
+        
+      </div>
+    </div>
+
+    <!-- UPGRADE: MNEMOTEHNIKE -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🧠 Mnemotehnike · za pamćenje napamet</div><div class="sec-line"></div></div>
+    
+    <div style="padding:18px;background:linear-gradient(135deg,rgba(80,200,120,.04),transparent);border:1px solid var(--bd);border-left:3px solid var(--green);border-radius:var(--r2);margin:16px 0">
+      <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px">
+        Brze mnemotehnike koje će ti pomoći zapamtiti napamet ono što se često traži.
+      </div>
+      
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        
+        <div style="padding:14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--green);margin-bottom:6px">7 PADEŽA</div>
+          <div style="font-family:var(--display);font-size:18px;font-weight:700;color:var(--gold);margin-bottom:8px;letter-spacing:.5px">NADIVLA</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.6">
+            <strong>N</strong>ominativ · <strong>A</strong>kuzativ · <strong>D</strong>ativ · <strong>I</strong>nstrumental · <strong>V</strong>okativ · <strong>L</strong>okativ · gen<strong>A</strong>tiv (G)<br>
+            <em style="font-size:11px;color:var(--t3)">Logički redoslijed: po važnosti u rečenici</em>
+          </div>
+        </div>
+        
+        <div style="padding:14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--green);margin-bottom:6px">10 VRSTA RIJEČI</div>
+          <div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px">5 + 5</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.6">
+            <strong>Promjenjive (5):</strong> <em>I</em>menica, <em>P</em>ridjev, <em>Z</em>amjenica, <em>B</em>roj, <em>G</em>lagol<br>
+            <strong>Nepromjenjive (5):</strong> <em>P</em>rilog, <em>P</em>rijedlog, <em>V</em>eznik, <em>U</em>zvik, <em>Č</em>estica<br>
+            <em style="font-size:11px;color:var(--t3)">"5 promjenjivih ima oblike, 5 nepromjenjivih je fiksno"</em>
+          </div>
+        </div>
+        
+        <div style="padding:14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--green);margin-bottom:6px">PRIJEDLOZI UZ G</div>
+          <div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px">"Iz Doma" rule</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.6">
+            <strong>OD-DO-IZ-BEZ-KOD</strong> + ostali (preko, pokraj, poslije, prije, radi, zbog, protiv...)<br>
+            <em style="font-size:11px;color:var(--t3)">G ima najviše prijedloga od svih padeža</em>
+          </div>
+        </div>
+        
+        <div style="padding:14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--green);margin-bottom:6px">7 GLAG. VREMENA</div>
+          <div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px">3+1+3</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.6">
+            <strong>Prošlost (4):</strong> aorist · imperfekt · perfekt · pluskvamperfekt<br>
+            <strong>Sadašnjost (1):</strong> prezent<br>
+            <strong>Budućnost (2):</strong> futur I · futur II<br>
+            <em style="font-size:11px;color:var(--t3)">"Aorist i imperfekt = književni"</em>
+          </div>
+        </div>
+        
+        <div style="padding:14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--green);margin-bottom:6px">3 DEKLINACIJE</div>
+          <div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px">a / e / i</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.6">
+            <strong>a-vrsta:</strong> m.r. + sr.r. (G jd. -a)<br>
+            <strong>e-vrsta:</strong> ž.r. (G jd. -e)<br>
+            <strong>i-vrsta:</strong> ž.r. na suglasnik (G jd. -i)<br>
+            <em style="font-size:11px;color:var(--t3)">"Slijedi G jd. — taj nastavak ti kaže vrstu"</em>
+          </div>
+        </div>
+        
+        <div style="padding:14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1)">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--green);margin-bottom:6px">ZAMJENICE</div>
+          <div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px">7 vrsta</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.6">
+            <strong>O</strong>sobne · <strong>P</strong>ovratne · <strong>P</strong>osvojne · <strong>P</strong>ovratno-posvojna · <strong>P</strong>okazne · <strong>U</strong>pitne/odnosne · <strong>N</strong>eodređene<br>
+            <em style="font-size:11px;color:var(--t3)">"OPPP-PUN" — 5 P + U + N</em>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    
+    <div class="nav-row" style="justify-content:flex-end">
+      <span class="nb-btn primary" onclick="sw(1)">📚 Promjenjive riječi →</span>
+    </div>
+
+  
+    <div class="cheat-card" style="margin-top:24px">
+      <div class="cheat-hdr">
+        <div class="cheat-hdr-l">
+          <div class="cheat-eye">SLJEDEĆE</div>
+          <div class="cheat-ttl">Tab 1 · Promjenjive vrste riječi</div>
+        </div>
+      </div>
+      <div class="cheat-grid">
+        <div class="cheat-col cheat-col-wide" style="font-family:var(--serif,Fraunces,serif);font-size:13.5px;color:var(--t2,#c5b8aa);line-height:1.65">
+          <p style="margin:0">Sad kad znaš morfologiju — <b>Tab 1</b> donosi promjenjive vrste: imenice, zamjenice, pridjevi, brojevi, glagoli. Svaka s tablicom oblika i primjerima.</p>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /l0 -->
+
+  <div class="layer" id="l1" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa hchip">📚 5 vrsta promjenjivih</span>
+      <span class="pill p-br hchip">Imenice · Pridjevi · Zamjenice</span>
+      <span class="pill p-go hchip">Brojevi · Glagoli</span>
+      <span class="pill p-t hchip">Sklanjanje + konjugacija</span>
+      <span class="pill p-r hchip">★ Interaktivna vježba</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Cilj ovog taba</div>
+      <div class="box-int-txt">
+        5 <strong>promjenjivih vrsta riječi</strong> u hrvatskom. Imenice, pridjevi, zamjenice i brojevi <strong>sklanjaju se</strong> (7 padeža). Glagoli <strong>konjugiraju se</strong> (vremena, lica). Klikni scene-card za detalje.<br><br>
+        <strong>Na kraju:</strong> interaktivna vježba „Prepoznaj vrstu riječi" s rečenicama iz hrv. književnosti.
+      </div>
+    </div>
+
+    <!-- PREGLED 5 VRSTA -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">Pregled · 5 promjenjivih vrsta</div><div class="sec-line"></div></div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:14px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Vrsta</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Pitanje</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Mijenja</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Primjeri</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--gold)">Imenica</td><td style="padding:8px 10px">tko/što?</td><td style="padding:8px 10px">padež, broj</td><td style="padding:8px 10px">žena, stol, ljubav</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--blue)">Pridjev</td><td style="padding:8px 10px">kakav? čiji?</td><td style="padding:8px 10px">rod, broj, padež, stupanj</td><td style="padding:8px 10px">lijep, velik, majčin</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--bronze)">Zamjenica</td><td style="padding:8px 10px">(zamjenjuje drugu riječ)</td><td style="padding:8px 10px">padež, broj, rod, lice</td><td style="padding:8px 10px">ja, ti, on, ovaj, moj</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--green)">Broj</td><td style="padding:8px 10px">koliko? koji po redu?</td><td style="padding:8px 10px">padež (dijelom), rod</td><td style="padding:8px 10px">pet, drugi, dvoje</td></tr>
+          <tr><td style="padding:8px 10px;font-weight:700;color:var(--red)">Glagol</td><td style="padding:8px 10px">što radi? što se događa?</td><td style="padding:8px 10px">lice, broj, vrijeme, način, vid</td><td style="padding:8px 10px">pisati, trčati, doći</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5 SCENE-CARDS ZA SVAKU VRSTU
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">Detalji · klikni karticu</div><div class="sec-line"></div></div>
+
+    <div class="scene-grid" style="margin:16px 0">
+
+      <!-- 1. IMENICE -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">1</div>
+          <div class="scene-ttl">
+            <div class="scene-name">IMENICE</div>
+            <div class="scene-sub">Biće, stvar, pojam · rod + broj + padež + 3 deklinacijske vrste</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> imenice imenuju <strong>bića</strong> (čovjek, pas), <strong>stvari</strong> (stol, knjiga), <strong>pojmove</strong> (ljubav, sloboda), <strong>mjesta</strong> (Zagreb, škola) i <strong>vremena</strong> (dan, travanj).</p>
+
+          <p><strong>🔑 Gramatičke kategorije imenica:</strong></p>
+          <ul>
+            <li><strong>Rod</strong> (3): muški, ženski, srednji</li>
+            <li><strong>Broj</strong> (2): jednina, množina</li>
+            <li><strong>Padež</strong> (7): N, G, D, A, V, L, I</li>
+          </ul>
+
+          <p><strong>🔑 Vrste imenica (po značenju):</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Vrsta</th><th style="padding:8px;text-align:left">Što označava</th><th style="padding:8px;text-align:left">Primjeri</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Opće</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">cijelu skupinu, vrstu</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">grad, rijeka, pas</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Vlastite</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">jedinstveno biće/mjesto</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">Zagreb, Ivan, Sava</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Konkretne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">opipljivo, vidljivo</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">stol, voda, dijete</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Apstraktne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pojam, osjećaj</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">ljubav, sreća, istina</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Zbirne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">skupinu kao cjelinu</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">lišće, granje, djeca</td></tr>
+                <tr><td style="padding:6px 8px"><strong>Gradivne</strong></td><td style="padding:6px 8px">tvar bez obzira na količinu</td><td style="padding:6px 8px">zlato, voda, mlijeko</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>🔑 3 DEKLINACIJSKE VRSTE (osnova za sklanjanje):</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead>
+                <tr style="background:var(--ele)">
+                  <th style="padding:8px;text-align:left">Vrsta</th>
+                  <th style="padding:8px;text-align:center">N jd. završava</th>
+                  <th style="padding:8px;text-align:left">Rod</th>
+                  <th style="padding:8px;text-align:left">Primjeri</th>
+                  <th style="padding:8px;text-align:left">G jd.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd);font-weight:700">a-vrsta</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd);text-align:center">suglasnik / -o / -e</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">m.r. + sr.r.</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">stol, grad, selo, more</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>-a</strong> (stola, grada)</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd);font-weight:700">e-vrsta</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd);text-align:center">-a</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pretežno ž.r.</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">žena, knjiga, Ivana</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>-e</strong> (žene, knjige)</td></tr>
+                <tr><td style="padding:6px 8px;font-weight:700">i-vrsta</td><td style="padding:6px 8px;text-align:center">suglasnik</td><td style="padding:6px 8px">ž.r.</td><td style="padding:6px 8px">kost, ljubav, stvar, noć</td><td style="padding:6px 8px"><strong>-i</strong> (kosti, ljubavi)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>💡 Kako prepoznati deklinacijsku vrstu:</strong> pogledaj <strong>G jd.</strong> — ako završava na -a, a-vrsta; na -e, e-vrsta; na -i, i-vrsta.</p>
+
+          <p><strong>⚠ Iznimke:</strong></p>
+          <ul>
+            <li><strong>Sudac, vladar</strong> — m.r. a-vrsta (iako završavaju suglasnikom)</li>
+            <li><strong>Tata, papa</strong> — m.r. iako završava na -a (po značenju, sklanja se po e-vrsti)</li>
+            <li><strong>Noć, stvar</strong> — i-vrsta ž.r. (iako završava suglasnikom)</li>
+          </ul>
+        
+          
+          <p style="margin-top:18px"><strong>🏛 3 IMENSKE VRSTE (deklinacije):</strong></p>
+          <p style="font-size:13px;color:var(--t2)">Imenice se sklanjaju po jednoj od 3 deklinacije, ovisno o nastavku u N-jd.</p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)">
+                <th style="padding:8px;text-align:left;color:var(--gold)">Vrsta</th>
+                <th style="padding:8px;text-align:left;color:var(--gold)">N-jd nastavak</th>
+                <th style="padding:8px;text-align:left;color:var(--gold)">Rod</th>
+                <th style="padding:8px;text-align:left;color:var(--gold)">Primjeri</th>
+              </tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--bd)">
+                  <td style="padding:8px;color:var(--blue);font-weight:700">a-deklinacija</td>
+                  <td style="padding:8px">∅ (m.r.) ili -o, -e (s.r.)</td>
+                  <td style="padding:8px">muški + srednji</td>
+                  <td style="padding:8px;font-style:italic">grad, prozor, selo, more, dijete</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--bd)">
+                  <td style="padding:8px;color:var(--bronze);font-weight:700">e-deklinacija</td>
+                  <td style="padding:8px">-a</td>
+                  <td style="padding:8px">ženski (najveći broj imenica)</td>
+                  <td style="padding:8px;font-style:italic">žena, knjiga, škola, ulica</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px;color:var(--green);font-weight:700">i-deklinacija</td>
+                  <td style="padding:8px">∅ (na suglasnik)</td>
+                  <td style="padding:8px">ženski (manji broj)</td>
+                  <td style="padding:8px;font-style:italic">stvar, ljubav, kost, riječ, peć</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p style="margin-top:14px"><strong>📝 Tablica padežnih nastavaka:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11.5px">
+              <thead><tr style="background:var(--ele)">
+                <th style="padding:6px 8px;text-align:left;color:var(--gold)">Padež</th>
+                <th style="padding:6px 8px;text-align:center;color:var(--blue)">a-dek (m.r.)<br><em style="font-size:10px;font-style:italic">grad</em></th>
+                <th style="padding:6px 8px;text-align:center;color:var(--blue)">a-dek (s.r.)<br><em style="font-size:10px;font-style:italic">selo</em></th>
+                <th style="padding:6px 8px;text-align:center;color:var(--bronze)">e-dek<br><em style="font-size:10px;font-style:italic">žena</em></th>
+                <th style="padding:6px 8px;text-align:center;color:var(--green)">i-dek<br><em style="font-size:10px;font-style:italic">stvar</em></th>
+              </tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:5px 8px"><strong>N</strong></td><td style="padding:5px 8px;text-align:center">grad</td><td style="padding:5px 8px;text-align:center">selo</td><td style="padding:5px 8px;text-align:center">žena</td><td style="padding:5px 8px;text-align:center">stvar</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:5px 8px"><strong>G</strong></td><td style="padding:5px 8px;text-align:center">grad-<strong>a</strong></td><td style="padding:5px 8px;text-align:center">sel-<strong>a</strong></td><td style="padding:5px 8px;text-align:center">žen-<strong>e</strong></td><td style="padding:5px 8px;text-align:center">stvar-<strong>i</strong></td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:5px 8px"><strong>D</strong></td><td style="padding:5px 8px;text-align:center">grad-<strong>u</strong></td><td style="padding:5px 8px;text-align:center">sel-<strong>u</strong></td><td style="padding:5px 8px;text-align:center">žen-<strong>i</strong></td><td style="padding:5px 8px;text-align:center">stvar-<strong>i</strong></td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:5px 8px"><strong>A</strong></td><td style="padding:5px 8px;text-align:center">grad</td><td style="padding:5px 8px;text-align:center">selo</td><td style="padding:5px 8px;text-align:center">žen-<strong>u</strong></td><td style="padding:5px 8px;text-align:center">stvar</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:5px 8px"><strong>V</strong></td><td style="padding:5px 8px;text-align:center">grad-<strong>e</strong>!</td><td style="padding:5px 8px;text-align:center">sel-<strong>o</strong>!</td><td style="padding:5px 8px;text-align:center">žen-<strong>o</strong>!</td><td style="padding:5px 8px;text-align:center">stvar-<strong>i</strong>!</td></tr>
+                <tr style="border-bottom:1px solid var(--bd)"><td style="padding:5px 8px"><strong>L</strong></td><td style="padding:5px 8px;text-align:center">grad-<strong>u</strong></td><td style="padding:5px 8px;text-align:center">sel-<strong>u</strong></td><td style="padding:5px 8px;text-align:center">žen-<strong>i</strong></td><td style="padding:5px 8px;text-align:center">stvar-<strong>i</strong></td></tr>
+                <tr><td style="padding:5px 8px"><strong>I</strong></td><td style="padding:5px 8px;text-align:center">grad-<strong>om</strong></td><td style="padding:5px 8px;text-align:center">sel-<strong>om</strong></td><td style="padding:5px 8px;text-align:center">žen-<strong>om</strong></td><td style="padding:5px 8px;text-align:center">stvar-<strong>ju/i</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p style="margin-top:14px"><strong>💡 Mnemotehnika:</strong> ime <strong>a-deklinacija</strong> dolazi od <strong>genitiva jednine</strong> nastavka (-<strong>a</strong>): grad-<strong>a</strong>, sel-<strong>a</strong>. Slično za e-dek (žen-<strong>e</strong>) i i-dek (stvar-<strong>i</strong>). Padežni decliner u Tab 5 automatski deklinira po pravoj vrsti.</p>
+</div>
+      </div>
+
+      <!-- 2. PRIDJEVI -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">2</div>
+          <div class="scene-ttl">
+            <div class="scene-name">PRIDJEVI</div>
+            <div class="scene-sub">Svojstvo · određeni/neodređeni · komparacija</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> pridjevi označavaju <strong>svojstva, osobine ili pripadnost</strong>. Slažu se u rodu, broju i padežu s imenicom uz koju stoje.</p>
+
+          <p><strong>🔑 Vrste pridjeva:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Vrsta</th><th style="padding:8px;text-align:left">Što izražava</th><th style="padding:8px;text-align:left">Primjeri</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Opisni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">svojstvo, osobinu</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">lijep, velik, hladan</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Posvojni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pripadnost</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">majčin, očev, Anin</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Gradivni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">građu, materijal</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">drven, zlatan, staklen</td></tr>
+                <tr><td style="padding:6px 8px"><strong>Vremenski</strong> / <strong>Mjesni</strong></td><td style="padding:6px 8px">vrijeme / mjesto</td><td style="padding:6px 8px">jučerašnji, gornji</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>🔑 OPREKA: Određeni vs. neodređeni oblik (samo opisni pridjevi!)</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Oblik</th><th style="padding:8px;text-align:left">Značenje</th><th style="padding:8px;text-align:left">Primjer</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Neodređeni</strong> (kraći)</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">Kakav? (prvi put spominjemo)</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>Vidim <strong>lijep</strong> stol.</em></td></tr>
+                <tr><td style="padding:6px 8px"><strong>Određeni</strong> (duži, -i)</td><td style="padding:6px 8px">Koji? (već poznato)</td><td style="padding:6px 8px"><em>Vidim <strong>lijepi</strong> stol.</em> (onaj već spomenut)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>💡 Provjera:</strong> pitaj „kakav?" → neodređeni. Pitaj „koji?" → određeni.</p>
+
+          <p><strong>🔑 KOMPARACIJA (stupnjevanje) — 3 stupnja:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px;line-height:1.9">
+            <li><strong>Pozitiv</strong> (osnovni): lijep · velik · dobar</li>
+            <li><strong>Komparativ</strong> (-ji, -iji): ljepši · veći · bolji</li>
+            <li><strong>Superlativ</strong> (naj- + komparativ): najljepši · najveći · najbolji</li>
+          </ul>
+
+          <p><strong>⚠ Nepravilna komparacija:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li>dobar → bolji → najbolji</li>
+            <li>zao → gori → najgori</li>
+            <li>velik → veći → najveći</li>
+            <li>malen → manji → najmanji</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. ZAMJENICE -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">3</div>
+          <div class="scene-ttl">
+            <div class="scene-name">ZAMJENICE</div>
+            <div class="scene-sub">7 vrsta · zamjenjuju druge riječi (imenice, pridjeve)</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> zamjenice <strong>zamjenjuju</strong> druge riječi (imenice, pridjeve, brojeve) bez da imenuju. Upućuju, ukazuju, pitaju, povezuju.</p>
+
+          <p><strong>🔑 7 vrsta zamjenica:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Vrsta</th><th style="padding:8px;text-align:left">Funkcija</th><th style="padding:8px;text-align:left">Primjeri</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>1. Osobne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">osoba/stvar</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">ja, ti, on/ona/ono, mi, vi, oni/one/ona</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>2. Povratne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">odnosi se na subjekt</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">sebe / se, sobom</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>3. Posvojne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pripadnost</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">moj, tvoj, njegov/njezin, naš, vaš, njihov</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>4. Povratno-posvojna</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pripadnost subjektu</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">svoj (u svim licima)</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>5. Pokazne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">upućuju</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">ovaj, taj, onaj · ovakav, takav, onakav</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>6. Upitne / Odnosne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pitaju / povezuju</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">tko, što, koji, čiji, kakav</td></tr>
+                <tr><td style="padding:6px 8px"><strong>7. Neodređene</strong></td><td style="padding:6px 8px">neodređeno</td><td style="padding:6px 8px">netko, nešto, neki, ičiji, svatko, svi</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>💡 Kritična razlika — posvojne vs. povratno-posvojna:</strong></p>
+          <p><em>„Ivan je uzeo <strong>svoju</strong> knjigu"</em> (Ivanovu) vs. <em>„Ivan je uzeo <strong>njegovu</strong> knjigu"</em> (nečiju drugu).</p>
+
+          <p><strong>🔑 Sklanjanje osobnih zamjenica (naglašeni/nenaglašeni oblici):</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px">
+              <thead>
+                <tr style="background:var(--ele)">
+                  <th style="padding:6px;text-align:left">Padež</th><th style="padding:6px;text-align:center">JA</th><th style="padding:6px;text-align:center">TI</th><th style="padding:6px;text-align:center">ON</th><th style="padding:6px;text-align:center">ONA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding:4px 6px;border-bottom:1px solid var(--bd)">N</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">ja</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">ti</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">on</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">ona</td></tr>
+                <tr><td style="padding:4px 6px;border-bottom:1px solid var(--bd)">G</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">mene / me</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">tebe / te</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">njega / ga</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">nje / je</td></tr>
+                <tr><td style="padding:4px 6px;border-bottom:1px solid var(--bd)">D</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">meni / mi</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">tebi / ti</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">njemu / mu</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">njoj / joj</td></tr>
+                <tr><td style="padding:4px 6px;border-bottom:1px solid var(--bd)">A</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">mene / me</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">tebe / te</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">njega / ga</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">nju / ju</td></tr>
+                <tr><td style="padding:4px 6px;border-bottom:1px solid var(--bd)">L</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">meni</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">tebi</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">njemu</td><td style="padding:4px 6px;border-bottom:1px solid var(--bd);text-align:center">njoj</td></tr>
+                <tr><td style="padding:4px 6px">I</td><td style="padding:4px 6px;text-align:center">mnom(e)</td><td style="padding:4px 6px;text-align:center">tobom</td><td style="padding:4px 6px;text-align:center">njim(e)</td><td style="padding:4px 6px;text-align:center">njom(e)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:11px;color:var(--t3)">⚠ Nenaglašeni oblici (me, te, ga, mu...) su <em>enklitike</em> — ne mogu stajati na početku rečenice.</p>
+        </div>
+      </div>
+
+      <!-- 4. BROJEVI -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--green);color:#fff">4</div>
+          <div class="scene-ttl">
+            <div class="scene-name">BROJEVI</div>
+            <div class="scene-sub">Glavni · redni · zbirni · dijelni</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> brojevi označavaju <strong>količinu</strong>, <strong>redoslijed</strong>, <strong>skupinu</strong> ili <strong>dio</strong>.</p>
+
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Vrsta</th><th style="padding:8px;text-align:left">Pitanje</th><th style="padding:8px;text-align:left">Primjeri</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Glavni</strong> (osnovni)</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">koliko?</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">jedan, dva, pet, sto, tisuću</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Redni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">koji po redu?</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">prvi, drugi, peti, stoti</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Zbirni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">skupina mješovitog roda</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">dvoje, troje, petero</td></tr>
+                <tr><td style="padding:6px 8px"><strong>Dijelni</strong> (brojne imenice)</td><td style="padding:6px 8px">dio cjeline</td><td style="padding:6px 8px">polovica, trećina, četvrtina</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>⚠ Sklanjanje brojeva — samo DJELOMIČNO:</strong></p>
+          <ul>
+            <li><strong>Jedan</strong>, <strong>dva</strong>, <strong>tri</strong>, <strong>četiri</strong> → sklanjaju se</li>
+            <li><strong>Pet i više</strong> → NE sklanjaju se (ostaju isti u svim padežima)</li>
+            <li><strong>Redni brojevi</strong> (prvi, drugi...) → sklanjaju se kao pridjevi</li>
+            <li><strong>Zbirni brojevi</strong> (dvoje, troje...) → djelomično sklanjaju</li>
+          </ul>
+
+          <p><strong>💡 Sintaktička posebnost:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li>Uz <strong>2, 3, 4</strong> → imenica je u <strong>paukalu</strong> (kao G jd.): <em>dva stola, tri prijatelja</em></li>
+            <li>Uz <strong>5+</strong> → imenica u <strong>G mn.</strong>: <em>pet stolova, deset prijatelja</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5. GLAGOLI -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--red);color:#fff">5</div>
+          <div class="scene-ttl">
+            <div class="scene-name">GLAGOLI</div>
+            <div class="scene-sub">Radnja · stanje · zbivanje · konjugacija + vid + stanje</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> glagoli izražavaju <strong>radnju</strong> (trčati), <strong>stanje</strong> (spavati) ili <strong>zbivanje</strong> (padati). Konjugiraju se po licu, broju, vremenu, načinu.</p>
+
+          <p><strong>🔑 Gramatičke kategorije glagola:</strong></p>
+          <ul>
+            <li><strong>Lice</strong> (3): 1., 2., 3.</li>
+            <li><strong>Broj</strong> (2): jednina, množina</li>
+            <li><strong>Vrijeme</strong>: prezent, perfekt, aorist, imperfekt, pluskvamperfekt, futur I, futur II</li>
+            <li><strong>Način</strong>: indikativ, imperativ, kondicional I/II</li>
+            <li><strong>Vid</strong> (2): svršeni (perfektivni), nesvršeni (imperfektivni)</li>
+            <li><strong>Stanje</strong> (2): aktiv, pasiv</li>
+          </ul>
+
+          <p><strong>🔑 GLAGOLSKI VID — kritično za maturu:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Vid</th><th style="padding:8px;text-align:left">Značenje</th><th style="padding:8px;text-align:left">Primjeri</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Nesvršeni</strong> (imperfektivni)</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">radnja u tijeku, traje</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pisati, čitati, trčati</td></tr>
+                <tr><td style="padding:6px 8px"><strong>Svršeni</strong> (perfektivni)</td><td style="padding:6px 8px">radnja završena / jednokratna</td><td style="padding:6px 8px">napisati, pročitati, dotrčati</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>💡 Najčešći prefiksi za perfektivizaciju:</strong> <em>na-, pro-, po-, do-, u-, iz-</em>: pisati→napisati, čitati→pročitati, raditi→uraditi.</p>
+
+          <p><strong>🔑 KONJUGACIJA — 5 glagolskih vrsta:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:6px;text-align:left">Vrsta</th><th style="padding:6px;text-align:left">Infinitiv završava na</th><th style="padding:6px;text-align:left">Prezent 1. l. jd.</th><th style="padding:6px;text-align:left">Primjer</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px;border-bottom:1px solid var(--bd);font-weight:700">I.</td><td style="padding:6px;border-bottom:1px solid var(--bd)">-ti</td><td style="padding:6px;border-bottom:1px solid var(--bd)">-em / -am / -im</td><td style="padding:6px;border-bottom:1px solid var(--bd)">čitati → čitam</td></tr>
+                <tr><td style="padding:6px;border-bottom:1px solid var(--bd);font-weight:700">II.</td><td style="padding:6px;border-bottom:1px solid var(--bd)">-nuti</td><td style="padding:6px;border-bottom:1px solid var(--bd)">-nem</td><td style="padding:6px;border-bottom:1px solid var(--bd)">kliknuti → kliknem</td></tr>
+                <tr><td style="padding:6px;border-bottom:1px solid var(--bd);font-weight:700">III.</td><td style="padding:6px;border-bottom:1px solid var(--bd)">-jeti / -iti</td><td style="padding:6px;border-bottom:1px solid var(--bd)">-im</td><td style="padding:6px;border-bottom:1px solid var(--bd)">vidjeti → vidim</td></tr>
+                <tr><td style="padding:6px;border-bottom:1px solid var(--bd);font-weight:700">IV.</td><td style="padding:6px;border-bottom:1px solid var(--bd)">-ati (dati, znati)</td><td style="padding:6px;border-bottom:1px solid var(--bd)">-am</td><td style="padding:6px;border-bottom:1px solid var(--bd)">dati → dam</td></tr>
+                <tr><td style="padding:6px;font-weight:700">V.</td><td style="padding:6px">-ći / nepravilni</td><td style="padding:6px">-em (nepravilno)</td><td style="padding:6px">ići → idem, reći → rečem</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>🔑 PREZENT — nastavci (1. vrsta glagola):</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:6px;text-align:center">Lice</th><th style="padding:6px;text-align:left">Jednina</th><th style="padding:6px;text-align:left">Množina</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px;border-bottom:1px solid var(--bd);text-align:center"><strong>1.</strong></td><td style="padding:6px;border-bottom:1px solid var(--bd)">čitam (ja)</td><td style="padding:6px;border-bottom:1px solid var(--bd)">čitamo (mi)</td></tr>
+                <tr><td style="padding:6px;border-bottom:1px solid var(--bd);text-align:center"><strong>2.</strong></td><td style="padding:6px;border-bottom:1px solid var(--bd)">čitaš (ti)</td><td style="padding:6px;border-bottom:1px solid var(--bd)">čitate (vi)</td></tr>
+                <tr><td style="padding:6px;text-align:center"><strong>3.</strong></td><td style="padding:6px">čita (on/ona)</td><td style="padding:6px">čitaju (oni)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>💡 Napomena:</strong> Detaljnije o vremenima i načinima → Tab 3 Gramatičke kategorije. Cjeloviti pregled svih oblika → Tab 7 Referentna tablica.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════
+         INTERAKTIVNA VJEŽBA · IDENTIFY WORD CLASS
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🎮 Vježba · prepoznaj vrstu riječi</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Aktivni trening — 8 rečenica</div>
+      <div class="box-int-txt">
+        Rečenica je pred tobom — <strong>klikni na označenu riječ</strong> i odaberi koja je vrsta. Primjeri iz hrv. književnosti (Krleža, Marulić, Šenoa) i svakodnevnog jezika.
+      </div>
+    </div>
+
+    <div id="wc-exercise" style="margin:16px 0"></div>
+    <div id="wc-result" style="display:none;margin-top:18px"></div>
+
+    <!-- RECAP -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">📌 RECAP — Tab 1</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 5 promjenjivih vrsta riječi</div>
+      <div class="box-key-txt" style="line-height:1.9">
+        <strong>1. IMENICE</strong> — biće/stvar/pojam · 3 roda · 2 broja · 7 padeža · 3 deklinacijske vrste (a/e/i)<br>
+        <strong>2. PRIDJEVI</strong> — svojstvo · 4 vrste (opisni/posvojni/gradivni/vremenski) · određeni/neodređeni · komparacija (pozitiv/komparativ/superlativ)<br>
+        <strong>3. ZAMJENICE</strong> — 7 vrsta: osobne, povratne, posvojne, povratno-posvojna, pokazne, upitne/odnosne, neodređene<br>
+        <strong>4. BROJEVI</strong> — 4 vrste: glavni, redni, zbirni, dijelni · djelomično sklanjanje<br>
+        <strong>5. GLAGOLI</strong> — radnja/stanje · 5 konjugacijskih vrsta · VID (svršeni/nesvršeni) · vremena · načini · stanja
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(0)">← Teorija</span>
+      <span class="nb-btn primary" onclick="sw(2)">🔧 Nepromjenjive riječi →</span>
+    </div>
+
+  </div><!-- /l1 -->
+
+  <div class="layer" id="l2" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa hchip">🔧 5 vrsta nepromjenjivih</span>
+      <span class="pill p-br hchip">Prilozi · Prijedlozi</span>
+      <span class="pill p-go hchip">Veznici · Uzvici · Čestice</span>
+      <span class="pill p-t hchip">Oblik uvijek isti</span>
+      <span class="pill p-r hchip">★ Interaktivna vježba</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Cilj ovog taba</div>
+      <div class="box-int-txt">
+        5 <strong>nepromjenjivih vrsta riječi</strong> — oblik im ostaje <strong>uvijek isti</strong>, ne sklanjaju se i ne konjugiraju. Svaka ima jasnu funkciju u rečenici.<br><br>
+        <strong>Na kraju:</strong> vježba „Detection mode" — u rečenici nađi sve nepromjenjive riječi.
+      </div>
+    </div>
+
+    <!-- PREGLED 5 VRSTA -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">Pregled · 5 nepromjenjivih vrsta</div><div class="sec-line"></div></div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:14px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Vrsta</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Funkcija</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Primjeri</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--blue)">Prilog</td><td style="padding:8px 10px">opisuje glagol, pridjev, drugi prilog</td><td style="padding:8px 10px">brzo, ovdje, sutra, vrlo</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--bronze)">Prijedlog</td><td style="padding:8px 10px">izražava odnose u rečenici</td><td style="padding:8px 10px">u, na, iz, pred, prema, s</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--green)">Veznik</td><td style="padding:8px 10px">povezuje riječi i rečenice</td><td style="padding:8px 10px">i, ili, a, jer, da, kad</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--red)">Uzvik</td><td style="padding:8px 10px">izražava emociju ili zvuk</td><td style="padding:8px 10px">ah, uf, ajme, mjau, bum</td></tr>
+          <tr><td style="padding:8px 10px;font-weight:700;color:var(--gold)">Čestica</td><td style="padding:8px 10px">izražava stav, potvrdu, negaciju</td><td style="padding:8px 10px">ne, da, li, evo, neka</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5 SCENE-CARDS ZA SVAKU VRSTU
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">Detalji · klikni karticu</div><div class="sec-line"></div></div>
+
+    <div class="scene-grid" style="margin:16px 0">
+
+      <!-- 1. PRILOZI -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">1</div>
+          <div class="scene-ttl">
+            <div class="scene-name">PRILOZI</div>
+            <div class="scene-sub">Opisuju glagol, pridjev, drugi prilog · 5 vrsta po značenju</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> prilozi <strong>pobliže označavaju</strong> glagol (<em>brzo trči</em>), pridjev (<em>jako lijep</em>) ili drugi prilog (<em>vrlo brzo</em>). Ne mijenjaju oblik, ali se <strong>mogu stupnjevati</strong> (brzo → brže → najbrže).</p>
+
+          <p><strong>🔑 5 VRSTA PRILOGA po značenju:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Vrsta</th><th style="padding:8px;text-align:left">Pitanje</th><th style="padding:8px;text-align:left">Primjeri</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Način</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">kako?</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">brzo, polako, tiho, lijepo, junački</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Mjesto</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">gdje? kamo? odakle?</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">ovdje, ondje, gore, dolje, naprijed, kući</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Vrijeme</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">kada? odkad? dokad?</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">sada, danas, jučer, sutra, prije, poslije</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Količina</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">koliko?</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">mnogo, malo, dovoljno, vrlo, jako, previše</td></tr>
+                <tr><td style="padding:6px 8px"><strong>Uzrok</strong></td><td style="padding:6px 8px">zašto?</td><td style="padding:6px 8px">zato, stoga, otuda</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>🔑 Stupnjevanje priloga</strong> (samo načina + količine):</p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li>brzo → brže → najbrže</li>
+            <li>dobro → bolje → najbolje</li>
+            <li>mnogo → više → najviše</li>
+          </ul>
+
+          <p><strong>⚠ Pazi — prilozi vs. pridjevi:</strong></p>
+          <p>Prilog opisuje <strong>glagol</strong> ili <strong>drugu nepromjenjivu vrstu</strong>. Pridjev opisuje <strong>imenicu</strong>.</p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li><em>Trči <strong>brzo</strong>.</em> (prilog — kako trči?)</li>
+            <li><em>To je <strong>brzi</strong> vlak.</em> (pridjev — kakav vlak?)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. PRIJEDLOZI -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">2</div>
+          <div class="scene-ttl">
+            <div class="scene-name">PRIJEDLOZI</div>
+            <div class="scene-sub">Izražavaju odnose · dolaze uz padeže (G, D, A, L, I)</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> prijedlozi <strong>izražavaju odnose</strong> između riječi — prostorne (gdje?), vremenske (kada?), načinske (kako?), uzročne (zašto?). Dolaze uz <strong>određene padeže</strong>.</p>
+
+          <p><strong>🔑 PRIJEDLOZI PO PADEŽIMA:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead>
+                <tr style="background:var(--ele)">
+                  <th style="padding:8px;text-align:left">Padež</th>
+                  <th style="padding:8px;text-align:left">Prijedlozi</th>
+                  <th style="padding:8px;text-align:left">Primjeri</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>G (Genitiv)</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">od, do, iz, bez, kod, preko, pokraj, poslije, prije, radi, zbog, protiv</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>od kuće, bez vode, kod prijatelja</em></td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>D (Dativ)</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">k (ka), prema, nasuprot, usprkos</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>prema školi, k prijatelju</em></td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>A (Akuzativ)</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">u, na, po, za, pod, nad, pred, kroz, niz, uz, o</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>u školu, na stol, za sat</em></td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>L (Lokativ)</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">u, na, po, pri, o</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>u školi, na stolu, o knjizi</em></td></tr>
+                <tr><td style="padding:6px 8px"><strong>I (Instrumental)</strong></td><td style="padding:6px 8px">s (sa), za, pod, nad, pred, među</td><td style="padding:6px 8px"><em>s prijateljem, pod stolom, pred kućom</em></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>⚠ Ključno — isti prijedlog, različit padež:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li><strong>U</strong> + A (kamo?): <em>Idem u školu.</em></li>
+            <li><strong>U</strong> + L (gdje?): <em>Nalazim se u školi.</em></li>
+            <li><strong>Na</strong> + A: <em>Stavi na stol.</em></li>
+            <li><strong>Na</strong> + L: <em>Knjiga je na stolu.</em></li>
+          </ul>
+          <p><strong>💡 Pravilo:</strong> prijedlozi uz A označavaju <strong>kretanje</strong> (kamo?), uz L <strong>mirovanje</strong> (gdje?).</p>
+
+          <p><strong>🔑 Tvorbeni tipovi prijedloga:</strong></p>
+          <ul>
+            <li><strong>Pravi</strong> (izvorni): u, na, za, iz, pred...</li>
+            <li><strong>Padežni</strong> (od imenica): radi, zbog, pomoću, uslijed</li>
+            <li><strong>Nepravi</strong> (od priloga): blizu, kraj, pokraj, unutar</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. VEZNICI -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--green);color:#fff">3</div>
+          <div class="scene-ttl">
+            <div class="scene-name">VEZNICI</div>
+            <div class="scene-sub">Povezuju riječi i rečenice · nezavisni vs. zavisni</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> veznici <strong>povezuju</strong> pojedine riječi u rečenici ili čitave rečenice. Dva glavna tipa: <strong>nezavisni</strong> (povezuju ravnopravne dijelove) i <strong>zavisni</strong> (uvode zavisnu rečenicu).</p>
+
+          <p><strong>🔑 NEZAVISNI VEZNICI</strong> (povezuju ravnopravne dijelove):</p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Odnos</th><th style="padding:8px;text-align:left">Veznici</th><th style="padding:8px;text-align:left">Primjer</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Sastavni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">i, pa, te, ni, niti</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>Ivan <strong>i</strong> Ana idu.</em></td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Rastavni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">ili, ili-ili, bilo-bilo</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>Piši <strong>ili</strong> čitaj.</em></td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Suprotni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">a, ali, no, nego, već</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>Brz, <strong>ali</strong> nepažljiv.</em></td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Isključni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">samo, jedino, osim</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><em>Svi, <strong>osim</strong> njega.</em></td></tr>
+                <tr><td style="padding:6px 8px"><strong>Zaključni</strong></td><td style="padding:6px 8px">dakle, stoga, zato, prema tome</td><td style="padding:6px 8px"><em>Kišilo je, <strong>stoga</strong> nismo izašli.</em></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>🔑 ZAVISNI VEZNICI</strong> (uvode zavisnu rečenicu):</p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Tip rečenice</th><th style="padding:8px;text-align:left">Veznici</th><th style="padding:8px;text-align:left">Primjer</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Izrična</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">da</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">Znam <strong>da</strong> dolaziš.</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Vremenska</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">kad, dok, čim, prije nego, poslije nego</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Kad</strong> dođem, javit ću se.</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Uzročna</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">jer, zato što, budući da, s obzirom da</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">Spavao sam <strong>jer</strong> sam bio umoran.</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Namjerna</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">da, kako bi, neka</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">Učim <strong>da</strong> uspijem.</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Pogodbena</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">ako, kad bi, li</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Ako</strong> dođeš, upoznat ćemo se.</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Dopusna</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">iako, premda, mada</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Iako</strong> je kišilo, izašli smo.</td></tr>
+                <tr><td style="padding:6px 8px"><strong>Poredbena</strong></td><td style="padding:6px 8px">kao, nego, kao što</td><td style="padding:6px 8px">Trčao je <strong>kao</strong> da bježi.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:11px;color:var(--t3)">💡 Detaljnije o rečenicama i veznicima → H21 Sintaksa.</p>
+        </div>
+      </div>
+
+      <!-- 4. UZVICI -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--red);color:#fff">4</div>
+          <div class="scene-ttl">
+            <div class="scene-name">UZVICI</div>
+            <div class="scene-sub">Izražavaju emocije, raspoloženja ili zvukove</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> uzvici su riječi kojima izražavamo <strong>emocije</strong>, <strong>raspoloženja</strong>, <strong>pozdrave</strong> ili oponašamo <strong>zvukove</strong>. Stoje obično odvojeno u rečenici (često s uskličnikom ili zarezom).</p>
+
+          <p><strong>🔑 VRSTE UZVIKA:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Tip</th><th style="padding:8px;text-align:left">Izražavaju</th><th style="padding:8px;text-align:left">Primjeri</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Emocionalni</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">osjećaje, stanja</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">ah, oh, uf, jao, joj, ajme, vau</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Onomatopejski</strong> (zvukovi)</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">oponašaju zvukove</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">mjau, vau-vau, bum, tras, kvak</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Za dozivanje / životinje</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">dozivanje, tjeranje</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">hej, ej, pssst, mic, ištr</td></tr>
+                <tr><td style="padding:6px 8px"><strong>Pozdravi</strong></td><td style="padding:6px 8px">(neki su i uzvici)</td><td style="padding:6px 8px">bok, halo, ciao</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>💡 Zapamti:</strong></p>
+          <ul>
+            <li>Uzvici često stoje na početku rečenice: <em>„<strong>Ah</strong>, kako je lijepo!"</em></li>
+            <li>Mogu biti cijela rečenica: <em>„<strong>Uf!</strong>"</em></li>
+            <li>Onomatopejski uzvici često postaju glagoli (tvorbene osnove): <em>kvak → kvakati, bum → bumkati</em></li>
+          </ul>
+
+          <p><strong>⚠ Razlika uzvik vs. čestica:</strong></p>
+          <p>Uzvik izražava <strong>emociju</strong> (oh, ah). Čestica izražava <strong>stav prema iskazu</strong> (da, ne, možda, li).</p>
+        </div>
+      </div>
+
+      <!-- 5. ČESTICE -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">5</div>
+          <div class="scene-ttl">
+            <div class="scene-name">ČESTICE</div>
+            <div class="scene-sub">Izražavaju stav — niječne, potvrdne, upitne, usklične, pokazne</div>
+          </div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> čestice (ili <em>riječce</em>) su <strong>funkcionalne nepromjenjive riječi</strong> koje izražavaju <strong>stav govornika</strong> prema sadržaju iskaza — potvrdu, negaciju, pitanje, uzvik, pokazivanje.</p>
+
+          <p><strong>🔑 VRSTE ČESTICA:</strong></p>
+          <div class="table-wrap" style="overflow-x:auto;margin:10px 0">
+            <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+              <thead><tr style="background:var(--ele)"><th style="padding:8px;text-align:left">Vrsta</th><th style="padding:8px;text-align:left">Funkcija</th><th style="padding:8px;text-align:left">Primjeri</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Niječne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">izriču negaciju</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">ne, ni</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Potvrdne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">potvrđuju iskaz</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">da, jest, zaista, doista</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Upitne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">označavaju pitanje</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">li, zar, pa</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Usklične</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pojačavaju iskaz</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">baš, pa, čak</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Pokazne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">pokazuju</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">evo, eto, eno</td></tr>
+                <tr><td style="padding:6px 8px;border-bottom:1px solid var(--bd)"><strong>Modalne</strong></td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">izražavaju modalnost</td><td style="padding:6px 8px;border-bottom:1px solid var(--bd)">možda, sigurno, vjerojatno</td></tr>
+                <tr><td style="padding:6px 8px"><strong>Poticajne</strong></td><td style="padding:6px 8px">poziv, zapovijed</td><td style="padding:6px 8px">neka, nek, hajde</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>⚠ Ključne zamke:</strong></p>
+          <ul>
+            <li><strong>„Ne"</strong> može biti <em>čestica</em> (Ne idem.) ili dio glagola (negirani prezent).</li>
+            <li><strong>„Li"</strong> je upitna čestica koja stoji <strong>iza</strong> riječi na koju se odnosi: <em>„Jesi <strong>li</strong> došao?"</em></li>
+            <li><strong>„Evo"</strong> je pokazna čestica (<em>Evo knjige.</em>) — NIJE prijedlog!</li>
+            <li><strong>„Da"</strong> može biti <em>čestica</em> (potvrda: Da, razumijem) ili <em>veznik</em> (zavisni: Znam da dolaziš).</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- KRITIČNE RAZLIKE -->
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">⚠ Kritične razlike · najčešće zamke</div><div class="sec-line"></div></div>
+
+    <div class="box-warn">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--gold)">⚠ NCVVO zamke</div>
+        <div class="bw-txt" style="font-size:12px">
+          <strong>1. Prilog vs. pridjev</strong>: prilog opisuje glagol (trči brzo), pridjev opisuje imenicu (brzi vlak).<br><br>
+          <strong>2. Prijedlog vs. prilog</strong>: prijedlog dolazi UZ imenicu/zamjenicu (u školu), prilog ne traži imenicu (idem kući → „kući" je prilog, ne prijedlog).<br><br>
+          <strong>3. „Da" — veznik ili čestica?</strong><br>
+          &nbsp;&nbsp;• Čestica: <em>„Da, razumijem."</em> (potvrđuje)<br>
+          &nbsp;&nbsp;• Veznik: <em>„Znam <strong>da</strong> dolaziš."</em> (uvodi zavisnu rečenicu)<br><br>
+          <strong>4. „Kao" — veznik ili prijedlog?</strong><br>
+          &nbsp;&nbsp;• Veznik: <em>„Trčao je kao da bježi."</em> (povezuje rečenice)<br>
+          &nbsp;&nbsp;• U rjeđim slučajevima prijedlog (s A).<br><br>
+          <strong>5. „Uz" — prijedlog ili prilog?</strong> Uvijek prijedlog (uz imenicu: „uz stol").<br><br>
+          <strong>6. Veznik „ne" ne postoji</strong> — „ne" je uvijek čestica (negacija).
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         INTERAKTIVNA VJEŽBA · DETECTION MODE
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🎮 Vježba · Detection mode · 6 rečenica</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Aktivni trening — prepoznaj nepromjenjive</div>
+      <div class="box-int-txt">
+        Rečenica je pred tobom — <strong>klikni na označenu riječ</strong> i odaberi koja je vrsta nepromjenjive riječi. 6 rečenica s tipičnim zamkama.
+      </div>
+    </div>
+
+    <div id="np-exercise" style="margin:16px 0"></div>
+    <div id="np-result" style="display:none;margin-top:18px"></div>
+
+    <!-- RECAP -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">📌 RECAP — Tab 2</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 5 nepromjenjivih vrsta</div>
+      <div class="box-key-txt" style="line-height:1.9">
+        <strong>1. PRILOZI</strong> — opisuju glagol/pridjev/prilog · 5 vrsta: način, mjesto, vrijeme, količina, uzrok · stupnjevanje (brzo-brže-najbrže)<br>
+        <strong>2. PRIJEDLOZI</strong> — izražavaju odnose · dolaze UZ padeže (G, D, A, L, I) · U+A (kamo?) vs. U+L (gdje?)<br>
+        <strong>3. VEZNICI</strong> — povezuju · nezavisni (i, ili, a, ali) + zavisni (da, kad, jer, iako, ako, kao)<br>
+        <strong>4. UZVICI</strong> — emocije (ah, uf, jao), zvukovi (mjau, bum), dozivanje (hej, pssst)<br>
+        <strong>5. ČESTICE</strong> — stav: niječne (ne, ni), potvrdne (da), upitne (li, zar), usklične, pokazne (evo), modalne, poticajne
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(1)">← Promjenjive riječi</span>
+      <span class="nb-btn primary" onclick="sw(3)">📐 Kategorije →</span>
+    </div>
+
+  </div><!-- /l2 -->
+     <div class="layer" id="l3" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa hchip">📐 Gramatičke kategorije</span>
+      <span class="pill p-br hchip">Rod · broj · 7 padeža</span>
+      <span class="pill p-go hchip">Lice · vrijeme · vid</span>
+      <span class="pill p-t hchip">★ Padežni decliner</span>
+      <span class="pill p-r hchip">Tvorba riječi</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Najvažniji tab H20</div>
+      <div class="box-int-txt">
+        Gramatičke kategorije su <strong>#1 NCVVO tema</strong>. Ovdje učiš: rod, broj, 7 padeža (s padežnim declinerom!), glagolske kategorije (vrijeme, način, vid) i tvorbu riječi.<br><br>
+        <strong>Interaktivni alati:</strong> padežni decliner, padežni quiz, konjugacijski quiz.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         1. ROD
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">1. Rod · muški, ženski, srednji</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📖 Što je rod</div>
+      <div class="box-int-txt">
+        <strong>Rod</strong> je gramatička kategorija koja dijeli imenice u 3 skupine: <strong>muški</strong>, <strong>ženski</strong>, <strong>srednji</strong>. U hrvatskom se rod često podudara s biološkim spolom, ali ne uvijek (npr. „stol" je m.r., „knjiga" je ž.r., iako su stvari).
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:14px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Rod</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Tipičan N jd. završetak</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Primjeri</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Pokazna zamj. u N jd.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--blue)">Muški (m.r.)</td><td style="padding:8px 10px">suglasnik · -o (rjeđe)</td><td style="padding:8px 10px">stol, grad, auto, strah, čovjek</td><td style="padding:8px 10px">ovaj, taj, onaj</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;font-weight:700;color:var(--red)">Ženski (ž.r.)</td><td style="padding:8px 10px">-a (najčešće) · suglasnik</td><td style="padding:8px 10px">žena, knjiga, stvar, noć, ljubav</td><td style="padding:8px 10px">ova, ta, ona</td></tr>
+          <tr><td style="padding:8px 10px;font-weight:700;color:var(--green)">Srednji (sr.r.)</td><td style="padding:8px 10px">-o · -e</td><td style="padding:8px 10px">selo, more, dijete, mlijeko, polje</td><td style="padding:8px 10px">ovo, to, ono</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-warn">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--gold)">⚠ Iznimke — riječi koje zbunjuju</div>
+        <div class="bw-txt" style="font-size:12px">
+          <strong>• M.r. na -a:</strong> tata, djed, papa, vojvoda (sklanjaju se kao ž.r., ali rod m.r.)<br>
+          <strong>• Ž.r. na suglasnik:</strong> noć, stvar, ljubav, kost, glad (i-vrsta)<br>
+          <strong>• Imenice oba roda:</strong> kolega (može biti m. ili ž. ovisno o osobi)<br>
+          <strong>• Hipokoristici (odmiljala imena):</strong> Ivo, Mato (m.r. iako završavaju na -o)
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         2. BROJ
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">2. Broj · jednina i množina</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📖 Što je broj</div>
+      <div class="box-int-txt">
+        <strong>Broj</strong> je gramatička kategorija s 2 vrijednosti: <strong>jednina (jd.)</strong> — 1 biće/stvar, i <strong>množina (mn.)</strong> — 2 ili više.<br><br>
+        Praslavenski je imao i <strong>dvojinu</strong> (za 2 entiteta), ali je u hrv. uglavnom nestala. Ostaci: oči, uši, ruke, noge.
+      </div>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">💡 Posebnosti broja u hrvatskom</div>
+      <div class="box-signal-txt">
+        <strong>Imenice koje imaju SAMO jedninu:</strong> gradivne (zlato, voda, mlijeko), apstraktne (ljubav, sreća), zbirne (lišće, granje), vlastite imenice.<br><br>
+        <strong>Imenice koje imaju SAMO množinu</strong> (pluralia tantum): vrata, kola, pluća, leđa, naočale, hlače, škare, novine, usta.<br><br>
+        <strong>Ostaci dvojine:</strong> uz brojeve 2, 3, 4 imenice često idu u <em>paukalu</em> (kao G jd.): <em>dva stola</em>, <em>tri prijatelja</em>, <em>četiri stolice</em>.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         3. 7 PADEŽA
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">3. 7 padeža · sustav hrv. deklinacije</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Centralna tema morfologije</div>
+      <div class="box-int-txt">
+        Hrvatski ima <strong>7 padeža</strong> (N, G, D, A, V, L, I). Svaki padež ima <strong>pitanja</strong>, <strong>značenja</strong> i <strong>prijedloge</strong> koji ga traže. Na maturi je prepoznavanje padeža #1 zadatak.
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:14px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">#</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Padež</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Pitanja</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Primjer (žena)</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Prijedlozi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 10px;color:var(--blue);font-weight:700">1</td><td style="padding:6px 10px"><strong>Nominativ (N)</strong></td><td style="padding:6px 10px">tko? što?</td><td style="padding:6px 10px">žena, žene</td><td style="padding:6px 10px" style="color:var(--t3)">— (nema prijedloga)</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 10px;color:var(--red);font-weight:700">2</td><td style="padding:6px 10px"><strong>Genitiv (G)</strong></td><td style="padding:6px 10px">koga? čega?</td><td style="padding:6px 10px">žene, žena</td><td style="padding:6px 10px">od, do, iz, bez, kod, preko, protiv</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 10px;color:var(--bronze);font-weight:700">3</td><td style="padding:6px 10px"><strong>Dativ (D)</strong></td><td style="padding:6px 10px">komu? čemu?</td><td style="padding:6px 10px">ženi, ženama</td><td style="padding:6px 10px">k(a), prema, nasuprot</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 10px;color:var(--green);font-weight:700">4</td><td style="padding:6px 10px"><strong>Akuzativ (A)</strong></td><td style="padding:6px 10px">koga? što?</td><td style="padding:6px 10px">ženu, žene</td><td style="padding:6px 10px">u, na, za, pod, nad, pred, kroz</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 10px;color:var(--gold);font-weight:700">5</td><td style="padding:6px 10px"><strong>Vokativ (V)</strong></td><td style="padding:6px 10px">(dozivanje!)</td><td style="padding:6px 10px">ženo! žene!</td><td style="padding:6px 10px" style="color:var(--t3)">— (nema prijedloga)</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 10px;color:#9b59b6;font-weight:700">6</td><td style="padding:6px 10px"><strong>Lokativ (L)</strong></td><td style="padding:6px 10px">o kome? o čemu?</td><td style="padding:6px 10px">(o) ženi, ženama</td><td style="padding:6px 10px">u, na, o, po, pri</td></tr>
+          <tr><td style="padding:6px 10px;color:#e67e22;font-weight:700">7</td><td style="padding:6px 10px"><strong>Instrumental (I)</strong></td><td style="padding:6px 10px">s kim? s čim?</td><td style="padding:6px 10px">ženom, ženama</td><td style="padding:6px 10px">s(a), za, pod, nad, pred, među</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Mnemotehnika za pamćenje padeža</div>
+      <div class="box-key-txt">
+        <strong>N-G-D-A-V-L-I</strong> → <em>„Noge gleda dobra Ana, vidi lijep ijest"</em><br>
+        Ili kraće: <strong>NADIVLA</strong> (redoslijed slova zamijenjen u pamtljivu riječ)
+      </div>
+    </div>
+
+    <!-- PADEŽI — detaljne scene cards -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">Detalji svakog padeža · klikni karticu</div><div class="sec-line"></div></div>
+
+    <div class="scene-grid" style="margin:14px 0">
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">N</div>
+          <div class="scene-ttl"><div class="scene-name">NOMINATIV · 1. padež</div><div class="scene-sub">Osnovni oblik · subjekt rečenice · „tko? što?"</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Funkcija:</strong> N je osnovni oblik riječi — tako kako stoji u rječniku. U rečenici je najčešće <strong>subjekt</strong> (vršitelj radnje).</p>
+          <p><strong>🔑 Značenja:</strong></p>
+          <ul>
+            <li><strong>Subjekt:</strong> <em>Ivan čita knjigu.</em> (tko čita? — Ivan)</li>
+            <li><strong>Imenski dio predikata:</strong> <em>Moja sestra je liječnica.</em></li>
+            <li><strong>Apozicija:</strong> <em>Zagreb, glavni grad Hrvatske, ima milijun stanovnika.</em></li>
+          </ul>
+          <p><strong>⚠ Bez prijedloga:</strong> N NIKAD ne dolazi uz prijedlog.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--red);color:#fff">G</div>
+          <div class="scene-ttl"><div class="scene-name">GENITIV · 2. padež</div><div class="scene-sub">Pripadnost · dio · nedostatak · „koga? čega?"</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Funkcija:</strong> G izražava pripadnost, dio cjeline, nedostatak, vrijeme/mjesto — najfleksibilniji padež.</p>
+          <p><strong>🔑 Glavna značenja:</strong></p>
+          <ul>
+            <li><strong>Posvojni G (pripadnost):</strong> <em>knjiga <strong>učenika</strong></em></li>
+            <li><strong>Dioni G (dio):</strong> <em>litra <strong>vode</strong>, krajičak <strong>kruha</strong></em></li>
+            <li><strong>Vremenski G:</strong> <em>drugog <strong>svibnja</strong>, dvadesetog <strong>stoljeća</strong></em></li>
+            <li><strong>Uz negaciju:</strong> <em>Nema <strong>vode</strong>. Nema <strong>novca</strong>.</em></li>
+            <li><strong>Uz brojeve 5+:</strong> <em>pet <strong>jabuka</strong>, dvadeset <strong>studenata</strong></em></li>
+          </ul>
+          <p><strong>🔑 Prijedlozi uz G:</strong> od, do, iz, bez, kod, preko, pokraj, poslije, prije, radi, zbog, protiv, između</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">D</div>
+          <div class="scene-ttl"><div class="scene-name">DATIV · 3. padež</div><div class="scene-sub">Namjena · smjer · „komu? čemu?"</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Funkcija:</strong> D označava <strong>primatelja</strong> radnje ili <strong>cilj kretanja</strong>.</p>
+          <p><strong>🔑 Glavna značenja:</strong></p>
+          <ul>
+            <li><strong>Neizravni objekt (primatelj):</strong> <em>Dao sam <strong>prijatelju</strong> knjigu.</em></li>
+            <li><strong>Smjer kretanja:</strong> <em>Idem <strong>kući</strong>. Prema <strong>moru</strong>.</em></li>
+            <li><strong>Emocionalni (korist/šteta):</strong> <em>Čestitam <strong>ti</strong>!</em></li>
+          </ul>
+          <p><strong>🔑 Prijedlozi uz D:</strong> k (ka), prema, nasuprot, usprkos, unatoč</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--green);color:#fff">A</div>
+          <div class="scene-ttl"><div class="scene-name">AKUZATIV · 4. padež</div><div class="scene-sub">Izravni objekt · cilj kretanja · „koga? što?"</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Funkcija:</strong> A je padež <strong>izravnog objekta</strong> (ono na koga/što radnja djeluje direktno).</p>
+          <p><strong>🔑 Glavna značenja:</strong></p>
+          <ul>
+            <li><strong>Izravni objekt:</strong> <em>Čitam <strong>knjigu</strong>. Vidim <strong>Ivana</strong>.</em></li>
+            <li><strong>Cilj kretanja (s prijedlozima):</strong> <em>Idem u <strong>školu</strong>. Stavljam na <strong>stol</strong>.</em></li>
+            <li><strong>Vremenska odrednica:</strong> <em>Cijelu <strong>noć</strong> sam učio.</em></li>
+          </ul>
+          <p><strong>🔑 Prijedlozi uz A:</strong> u, na, po, za, pod, nad, pred, kroz, niz, uz, o</p>
+          <p><strong>⚠ Razlika A vs. L:</strong> uz iste prijedloge (u, na, po, pred) A označava KRETANJE (kamo?), L MIROVANJE (gdje?).</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--gold);color:#0F0605">V</div>
+          <div class="scene-ttl"><div class="scene-name">VOKATIV · 5. padež</div><div class="scene-sub">Dozivanje, obraćanje · „Ivane! Majko!"</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Funkcija:</strong> V je padež <strong>dozivanja</strong> i <strong>obraćanja</strong>. Nema drugu sintaktičku funkciju u rečenici.</p>
+          <p><strong>🔑 Tipični V oblici:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li>Ivan → <strong>Ivane!</strong> (1. palatalizacija: N → Ivan-e)</li>
+            <li>čovjek → <strong>čovječe!</strong> (k → č + -e)</li>
+            <li>Bog → <strong>Bože!</strong> (g → ž + -e)</li>
+            <li>majka → <strong>majko!</strong> (ž.r. → -o)</li>
+            <li>gospodin → <strong>gospodine!</strong></li>
+          </ul>
+          <p><strong>⚠ Bez prijedloga:</strong> V stoji izolirano, često s uskličnikom ili zarezom.</p>
+          <p><strong>💡 Napomena:</strong> V je najčešće identičan s N u srednjem rodu (selo! djete!) i u množini.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#9b59b6;color:#fff">L</div>
+          <div class="scene-ttl"><div class="scene-name">LOKATIV · 6. padež</div><div class="scene-sub">Mjesto · tema · „o kome? o čemu?"</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Funkcija:</strong> L označava <strong>mjesto</strong> (gdje?) ili <strong>temu</strong> (o čemu?). UVIJEK s prijedlogom.</p>
+          <p><strong>🔑 Glavna značenja:</strong></p>
+          <ul>
+            <li><strong>Mjesto (gdje?):</strong> <em>u <strong>školi</strong>, na <strong>stolu</strong>, pri <strong>ispitu</strong></em></li>
+            <li><strong>Tema razgovora:</strong> <em>Govorimo o <strong>knjizi</strong>. Razmišljam o <strong>putovanju</strong>.</em></li>
+            <li><strong>Vremenska (rjeđe):</strong> <em>u <strong>proljeće</strong>, po <strong>noći</strong></em></li>
+          </ul>
+          <p><strong>🔑 Prijedlozi uz L:</strong> u, na, o, po, pri</p>
+          <p><strong>⚠ Razlika A vs. L:</strong> vidi AKUZATIV iznad — A = kretanje, L = mirovanje.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#e67e22;color:#fff">I</div>
+          <div class="scene-ttl"><div class="scene-name">INSTRUMENTAL · 7. padež</div><div class="scene-sub">Sredstvo · društvo · „s kim? s čim?"</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Funkcija:</strong> I označava <strong>sredstvo</strong> kojim se radnja vrši ili <strong>društvo</strong> u kojem se događa.</p>
+          <p><strong>🔑 Glavna značenja:</strong></p>
+          <ul>
+            <li><strong>Sredstvo (bez prijedloga!):</strong> <em>Pišem <strong>olovkom</strong>. Udaram <strong>čekićem</strong>.</em></li>
+            <li><strong>Društvo (s prijedlogom s/sa):</strong> <em>Šetam se s <strong>prijateljem</strong>.</em></li>
+            <li><strong>Način:</strong> <em>Radio je <strong>radošću</strong>.</em></li>
+            <li><strong>Mjesto/vrijeme:</strong> <em>cijelim <strong>putem</strong>, <strong>noću</strong></em></li>
+          </ul>
+          <p><strong>🔑 Prijedlozi uz I:</strong> s (sa), za, pod, nad, pred, među</p>
+          <p><strong>⚠ Zamka:</strong> razlika „s" (društvo) vs. bez prijedloga (sredstvo). <em>Rezao je s nožem</em> (društvo — s nekim) vs. <em>Rezao je nožem</em> (sredstvo).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         PADEŽNI DECLINER — INTERAKTIVNI ALAT
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🔬 Padežni decliner · interaktivni alat</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Interaktivno sklanjanje</div>
+      <div class="box-int-txt">
+        Upiši bilo koju hrv. imenicu — dobit ćeš <strong>sklanjanje kroz sva 7 padeža</strong> u jednini i množini. Decliner koristi algoritam + bazu ~30 iznimki.<br><br>
+        <strong>Napomena:</strong> za regularne imenice decliner radi vrlo točno. Za rijetke ili stilistički specifične oblike provjeri u rječniku.
+      </div>
+    </div>
+
+    <div style="padding:18px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);margin:16px 0">
+      <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+        <input type="text" id="decl-input" placeholder="npr. stol, žena, knjiga, selo, pas, dijete..." 
+               style="flex:1;min-width:200px;padding:12px 14px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r1);color:var(--t1);font-family:var(--display);font-size:16px;outline:none"
+               onkeydown="if(event.key==='Enter')declineNoun()">
+        <button class="nb-btn primary" onclick="declineNoun()">📐 Sklanjaj</button>
+      </div>
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0;flex-wrap:wrap;gap:8px">
+        <button class="nb-btn" style="padding:5px 10px;font-size:11px" onclick="declHistory()">📜 Povijest</button>
+        <button class="nb-btn" style="padding:5px 10px;font-size:11px" onclick="declClear()">🔄 Resetiraj</button>
+      </div>
+      <div id="decl-history" style="display:none;margin:10px 0;padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);font-family:var(--mono);font-size:11px"></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;padding-top:4px">PRIMJERI:</span>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('stol')">stol</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('žena')">žena</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('knjiga')">knjiga</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('selo')">selo</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('pas')">pas</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('dijete')">dijete</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('noga')">noga</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('čovjek')">čovjek</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="declineExample('noć')">noć</button>
+              <button class="nb-btn" style="padding:3px 9px;font-size:11px;border-color:var(--bronze)" onclick="declineExample('oko')" title="Supletivna mn. 'oči'">oko★</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px;border-color:var(--bronze)" onclick="declineExample('kost')" title="i-vrsta ž.r.">kost★</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px;border-color:var(--bronze)" onclick="declineExample('ime')" title="n-osnova">ime★</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px;border-color:var(--blue);color:var(--blue)" onclick="declRandom()" title="Iznenadi me!">🎲 Random</button>
+</div>
+    </div>
+
+    <div id="decl-results"></div>
+
+    <!-- ═══════════════════════════════════
+         4. GLAGOLSKE KATEGORIJE
+    ═══════════════════════════════════ -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">4. Glagolske kategorije · vrijeme, način, vid</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📖 Pregled</div>
+      <div class="box-int-txt">
+        Glagoli imaju <strong>6 gramatičkih kategorija</strong>: lice (3), broj (2), vrijeme (7), način (4), vid (2), stanje (2). Ovdje učimo vremena i načine.
+      </div>
+    </div>
+
+    <!-- 7 VREMENA -->
+    <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">7 glagolskih vremena</div><div class="sec-line"></div></div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:14px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:8px;text-align:left;color:var(--gold)">Vrijeme</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Tvorba</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Primjer (1. l. jd. „čitati")</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Funkcija</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">1. Prezent</td><td style="padding:6px 8px">osnova + lični nastavak</td><td style="padding:6px 8px">čit-<strong>am</strong></td><td style="padding:6px 8px">sadašnja radnja</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">2. Perfekt</td><td style="padding:6px 8px">prezent „biti" + gl. prid. radni</td><td style="padding:6px 8px"><strong>sam čitao/la</strong></td><td style="padding:6px 8px">prošla radnja (najčešći)</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">3. Aorist</td><td style="padding:6px 8px">osnova + -h, -še, -smo...</td><td style="padding:6px 8px">čit-<strong>ah</strong></td><td style="padding:6px 8px">prošla završena radnja (književno)</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">4. Imperfekt</td><td style="padding:6px 8px">osnova + -jah, -jaše...</td><td style="padding:6px 8px">čit-<strong>ah</strong> (traje)</td><td style="padding:6px 8px">prošla radnja u tijeku (arhaično)</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">5. Pluskvamperfekt</td><td style="padding:6px 8px">imperfekt „biti" + gl. prid. r.</td><td style="padding:6px 8px"><strong>bijah čitao</strong></td><td style="padding:6px 8px">predprošla radnja (rijetko)</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">6. Futur I</td><td style="padding:6px 8px">inf. + nenaglašeni „htjeti"</td><td style="padding:6px 8px">čita<strong>t ću</strong></td><td style="padding:6px 8px">buduća radnja</td></tr>
+          <tr><td style="padding:6px 8px;font-weight:700">7. Futur II</td><td style="padding:6px 8px">prezent „biti" + gl. prid. r.</td><td style="padding:6px 8px"><strong>budem čitao</strong></td><td style="padding:6px 8px">pretbuduća (u zavisnim)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4 NAČINA -->
+    <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">4 glagolska načina</div><div class="sec-line"></div></div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:14px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:8px;text-align:left;color:var(--gold)">Način</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Funkcija</th>
+            <th style="padding:8px;text-align:left;color:var(--gold)">Primjer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">1. Indikativ</td><td style="padding:6px 8px">stvarna, objektivna radnja</td><td style="padding:6px 8px"><em>Čitam knjigu.</em></td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">2. Imperativ</td><td style="padding:6px 8px">zapovijed, molba</td><td style="padding:6px 8px"><em>Čitaj! Čitajmo!</em></td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px;font-weight:700">3. Kondicional I</td><td style="padding:6px 8px">pogodba, uvjet, želja (sada)</td><td style="padding:6px 8px"><em>Čitao <strong>bih</strong>.</em></td></tr>
+          <tr><td style="padding:6px 8px;font-weight:700">4. Kondicional II</td><td style="padding:6px 8px">neostvariva pogodba u prošlosti</td><td style="padding:6px 8px"><em>Bio <strong>bih</strong> čitao.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- VID I STANJE -->
+    <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0">
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(224,82,82,.05),transparent);border:1px solid rgba(224,82,82,.25)">
+        <div class="box-key-lbl" style="color:var(--red)">🎯 VID · svršeni vs. nesvršeni</div>
+        <div class="box-key-txt" style="line-height:1.8">
+          <strong>Nesvršeni</strong> (traje, ponavlja se):<br>
+          <em>pisati, čitati, trčati, spavati</em><br><br>
+          <strong>Svršeni</strong> (završen, jednokratan):<br>
+          <em>na<strong>pisati</strong>, pro<strong>čitati</strong>, do<strong>trčati</strong>, pre<strong>spavati</strong></em><br><br>
+          <em style="font-size:11px">Prefiksi perfektiviziraju: na-, pro-, po-, do-, u-, iz-, pre-</em>
+        </div>
+      </div>
+
+      <div class="box-key" style="background:linear-gradient(135deg,rgba(74,144,217,.05),transparent);border:1px solid rgba(74,144,217,.25)">
+        <div class="box-key-lbl" style="color:var(--blue)">🎯 STANJE · aktiv vs. pasiv</div>
+        <div class="box-key-txt" style="line-height:1.8">
+          <strong>Aktiv</strong> (subjekt = vršitelj):<br>
+          <em>Ivan <strong>čita</strong> knjigu.</em><br><br>
+          <strong>Pasiv</strong> (subjekt = objekt radnje):<br>
+          <em>Knjiga <strong>je pročitana</strong> (od Ivana).</em><br><br>
+          <em style="font-size:11px">Tvorba pasiva: „biti" + trpni pridjev</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5. TVORBA RIJEČI
+    ═══════════════════════════════════ -->
+
+ <!-- UPGRADE: SKLANJANJE PRIDJEVA -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">🎨 Sklanjanje pridjeva — 2 tipa deklinacije</div><div class="sec-line"></div></div>
+    
+    <div style="padding:18px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);margin:12px 0">
+      <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:16px">
+        Pridjevi se sklanjaju u <strong>2 tipa</strong>: <strong>određeni</strong> (s članom, opisna/odnosna uloga) i <strong>neodređeni</strong> (bez člana, opis nepoznatog). Razlika je samo u G, D, L jednine muškog i srednjeg roda.
+      </div>
+      
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px;margin:8px 0">
+          <thead>
+            <tr style="background:var(--bg);border-bottom:2px solid var(--bd)">
+              <th style="padding:8px 10px;text-align:left;color:var(--gold);font-size:11px">Padež</th>
+              <th style="padding:8px 10px;text-align:center;color:var(--gold);font-size:11px" colspan="2">NEODREĐENI · „dobar dan"</th>
+              <th style="padding:8px 10px;text-align:center;color:var(--gold);font-size:11px" colspan="2">ODREĐENI · „dobri dan"</th>
+            </tr>
+            <tr style="background:var(--ele);border-bottom:1px solid var(--bd)">
+              <th style="padding:6px 8px;font-size:10px;color:var(--t3)">&nbsp;</th>
+              <th style="padding:6px 8px;font-size:10px;color:var(--t3);text-align:center">m.r. jd.</th>
+              <th style="padding:6px 8px;font-size:10px;color:var(--t3);text-align:center">sr.r. jd.</th>
+              <th style="padding:6px 8px;font-size:10px;color:var(--t3);text-align:center">m.r. jd.</th>
+              <th style="padding:6px 8px;font-size:10px;color:var(--t3);text-align:center">sr.r. jd.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:7px 10px;color:var(--blue);font-weight:700">N</td><td style="padding:7px 10px;text-align:center">dobar</td><td style="padding:7px 10px;text-align:center">dobro</td><td style="padding:7px 10px;text-align:center;color:var(--gold)">dobri</td><td style="padding:7px 10px;text-align:center;color:var(--gold)">dobro</td></tr>
+            <tr style="border-bottom:1px solid var(--bd);background:rgba(233,180,70,.04)"><td style="padding:7px 10px;color:var(--red);font-weight:700">G</td><td style="padding:7px 10px;text-align:center"><strong>dobr-a</strong></td><td style="padding:7px 10px;text-align:center"><strong>dobr-a</strong></td><td style="padding:7px 10px;text-align:center;color:var(--gold)"><strong>dobr-og(a)</strong></td><td style="padding:7px 10px;text-align:center;color:var(--gold)"><strong>dobr-og(a)</strong></td></tr>
+            <tr style="border-bottom:1px solid var(--bd);background:rgba(233,180,70,.04)"><td style="padding:7px 10px;color:var(--bronze);font-weight:700">D</td><td style="padding:7px 10px;text-align:center"><strong>dobr-u</strong></td><td style="padding:7px 10px;text-align:center"><strong>dobr-u</strong></td><td style="padding:7px 10px;text-align:center;color:var(--gold)"><strong>dobr-om(u)</strong></td><td style="padding:7px 10px;text-align:center;color:var(--gold)"><strong>dobr-om(u)</strong></td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:7px 10px;color:var(--green);font-weight:700">A</td><td style="padding:7px 10px;text-align:center">dobar / dobra</td><td style="padding:7px 10px;text-align:center">dobro</td><td style="padding:7px 10px;text-align:center;color:var(--gold)">dobri / dobrog(a)</td><td style="padding:7px 10px;text-align:center;color:var(--gold)">dobro</td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:7px 10px;color:var(--gold);font-weight:700">V</td><td style="padding:7px 10px;text-align:center">dobri!</td><td style="padding:7px 10px;text-align:center">dobro!</td><td style="padding:7px 10px;text-align:center;color:var(--gold)">dobri!</td><td style="padding:7px 10px;text-align:center;color:var(--gold)">dobro!</td></tr>
+            <tr style="border-bottom:1px solid var(--bd);background:rgba(233,180,70,.04)"><td style="padding:7px 10px;color:#9b59b6;font-weight:700">L</td><td style="padding:7px 10px;text-align:center"><strong>dobr-u</strong></td><td style="padding:7px 10px;text-align:center"><strong>dobr-u</strong></td><td style="padding:7px 10px;text-align:center;color:var(--gold)"><strong>dobr-om(e)</strong></td><td style="padding:7px 10px;text-align:center;color:var(--gold)"><strong>dobr-om(e)</strong></td></tr>
+            <tr><td style="padding:7px 10px;color:#e67e22;font-weight:700">I</td><td style="padding:7px 10px;text-align:center">dobr-im</td><td style="padding:7px 10px;text-align:center">dobr-im</td><td style="padding:7px 10px;text-align:center;color:var(--gold)">dobr-im</td><td style="padding:7px 10px;text-align:center;color:var(--gold)">dobr-im</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div style="margin-top:14px;padding:12px 14px;background:rgba(233,180,70,.06);border-left:3px solid var(--gold);border-radius:var(--r1)">
+        <strong style="color:var(--gold)">⚡ Ključna razlika (žuto označeno):</strong> samo u <strong>G jd., D jd., L jd.</strong> m.r. i sr.r. razlikuju se oblici. Ostali padeži su identični. Posvojni pridjevi (očev, majčin) sklanjaju se samo kao <strong>neodređeni</strong>.
+      </div>
+      
+      <div style="margin-top:12px;padding:12px 14px;background:rgba(74,144,217,.05);border-left:3px solid var(--blue);border-radius:var(--r1)">
+        <strong style="color:var(--blue)">💡 Kad koristiti koji?</strong><br>
+        <strong>Neodređeni:</strong> kad uvodiš nešto novo — <em>„Ušao je <strong>dobar</strong> čovjek."</em><br>
+        <strong>Određeni:</strong> kad se referiraš na poznato — <em>„Ušao je <strong>onaj dobri</strong> čovjek."</em><br>
+        <em>Test:</em> „Kakav?" → neodređeni. „Koji?" → određeni.
+      </div>
+    </div>
+
+    <!-- UPGRADE: SKLANJANJE BROJEVA -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">🔢 Sklanjanje brojeva — posebna pravila</div><div class="sec-line"></div></div>
+    
+    <div style="padding:18px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);margin:12px 0">
+      <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:16px">
+        Brojevi se djelomično sklanjaju. Pravila ovise o <strong>tipu broja</strong> (glavni, redni, zbirni).
+      </div>
+      
+      <!-- Glavni brojevi -->
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin:12px 0 8px">1. GLAVNI BROJEVI (jedan, dva, tri, četiri, pet+)</div>
+      <div style="padding:12px 14px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r1);font-size:12.5px;line-height:1.7;color:var(--t2)">
+        <strong>Jedan</strong> — sklanja se kao pridjev (jedan, jednog, jednom...)<br>
+        <strong>Dva, tri, četiri</strong> — sklanjaju se djelomično (posebna paradigma): <em>G: dvaju, D: dvama, I: dvama</em><br>
+        <strong>Pet, šest, sedam...</strong> — <strong>NE sklanjaju se</strong> (osim u književnom stilu: <em>pet ljudi, s pet ljudi</em>, a ne „petima")
+      </div>
+      
+      <!-- Redni brojevi -->
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin:14px 0 8px">2. REDNI BROJEVI (prvi, drugi, treći...)</div>
+      <div style="padding:12px 14px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r1);font-size:12.5px;line-height:1.7;color:var(--t2)">
+        Sklanjaju se <strong>kao pridjevi</strong> (određeni oblik): <em>prvi → prvog, prvom, s prvim</em><br>
+        Imaju rod, broj, padež: <em>prva djevojka, prvog dječaka, prvoj učenici</em>
+      </div>
+      
+      <!-- Zbirni brojevi -->
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin:14px 0 8px">3. ZBIRNI BROJEVI (dvoje, troje, četvero...)</div>
+      <div style="padding:12px 14px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r1);font-size:12.5px;line-height:1.7;color:var(--t2)">
+        Koriste se za <strong>mješovite skupine</strong> (m.r. + ž.r.): <em>dvoje djece, troje prijatelja</em><br>
+        Sklanjaju se kao imenice e-vrste: <em>dvoje → dvoga, dvoma</em>
+      </div>
+      
+      <!-- PAUKAL -->
+      <div style="margin-top:16px;padding:14px;background:rgba(224,82,82,.06);border-left:3px solid var(--red);border-radius:var(--r1)">
+        <strong style="color:var(--red);display:block;margin-bottom:6px">⚠ PAUKAL — najčešća greška na maturi!</strong>
+        <div style="font-size:12.5px;line-height:1.6;color:var(--t2)">
+          Uz brojeve <strong>2, 3, 4</strong> (i one koji završavaju na 2, 3, 4 — npr. 22, 33) imenice idu u <strong>G jd.</strong> (ne N mn.!).<br><br>
+          ✅ <em>dva <strong>stola</strong></em> (G jd.) · ✅ <em>tri <strong>prijatelja</strong></em> (G jd.) · ✅ <em>četiri <strong>žene</strong></em><br>
+          ❌ <em>dva stolovi</em> · ❌ <em>tri prijatelji</em><br><br>
+          Uz brojeve <strong>5+</strong> imenice idu u <strong>G mn.</strong>: ✅ <em>pet <strong>stolova</strong></em> (G mn.), <em>deset <strong>ljudi</strong></em>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPGRADE: STUPNJEVANJE PRILOGA -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">📈 Stupnjevanje priloga (usporedba)</div><div class="sec-line"></div></div>
+    
+    <div style="padding:18px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);margin:12px 0">
+      <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px">
+        Samo <strong>prilozi načina</strong> i neki <strong>količine</strong> mogu se stupnjevati. Prilozi mjesta, vremena, uzroka — NE.
+      </div>
+      
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+          <thead>
+            <tr style="background:var(--bg);border-bottom:2px solid var(--bd)">
+              <th style="padding:8px;text-align:left;color:var(--gold)">Pozitiv</th>
+              <th style="padding:8px;text-align:left;color:var(--gold)">Komparativ</th>
+              <th style="padding:8px;text-align:left;color:var(--gold)">Superlativ</th>
+              <th style="padding:8px;text-align:left;color:var(--gold)">Tvorba</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">brzo</td><td style="padding:6px 8px;color:var(--gold)">brž-<strong>e</strong></td><td style="padding:6px 8px;color:var(--gold)"><strong>naj</strong>-brže</td><td style="padding:6px 8px;color:var(--t3);font-size:11px">-e (jotacija: z → ž)</td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">lijepo</td><td style="padding:6px 8px;color:var(--gold)">ljepš-e</td><td style="padding:6px 8px;color:var(--gold)">naj-ljepše</td><td style="padding:6px 8px;color:var(--t3);font-size:11px">nepravilno</td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">dobro</td><td style="padding:6px 8px;color:var(--gold)">bolj-e</td><td style="padding:6px 8px;color:var(--gold)">naj-bolje</td><td style="padding:6px 8px;color:var(--t3);font-size:11px">supletivno</td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">loše</td><td style="padding:6px 8px;color:var(--gold)">gor-e</td><td style="padding:6px 8px;color:var(--gold)">naj-gore</td><td style="padding:6px 8px;color:var(--t3);font-size:11px">supletivno</td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:6px 8px">mnogo</td><td style="padding:6px 8px;color:var(--gold)">više</td><td style="padding:6px 8px;color:var(--gold)">naj-više</td><td style="padding:6px 8px;color:var(--t3);font-size:11px">supletivno</td></tr>
+            <tr><td style="padding:6px 8px">malo</td><td style="padding:6px 8px;color:var(--gold)">manj-e</td><td style="padding:6px 8px;color:var(--gold)">naj-manje</td><td style="padding:6px 8px;color:var(--t3);font-size:11px">supletivno</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div style="margin-top:12px;padding:10px 14px;background:rgba(80,200,120,.05);border-left:3px solid var(--green);border-radius:var(--r1);font-size:12px;color:var(--t2);line-height:1.5">
+        <strong style="color:var(--green)">💡 Pravilo:</strong> <em>pozitiv</em> + <strong>-e</strong> (ili nastavak) + <em>komparativ</em>. <em>Komparativ</em> + <strong>naj-</strong> = <em>superlativ</em>.<br>
+        Nepravilni: <strong>dobro → bolje → najbolje</strong>, <strong>loše → gore → najgore</strong> (uči napamet!)
+      </div>
+    </div>
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">5. Tvorba riječi · 5 vrsta</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📖 Kako nastaju nove riječi</div>
+      <div class="box-int-txt">
+        Hrvatski stvara nove riječi na <strong>5 načina</strong>: <strong>izvođenje</strong> (prefiksi + sufiksi), <strong>slaganje</strong> (dvije osnove), <strong>preobrazba</strong> (promjena vrste riječi), <strong>srastanje</strong> (dvije riječi → jedna) i <strong>kraćenje</strong> (skraćenice). Najproduktivnije: izvođenje i slaganje.
+      </div>
+    </div>
+
+    <div class="scene-grid">
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--blue);color:#fff">1</div>
+          <div class="scene-ttl"><div class="scene-name">IZVOĐENJE (derivacija)</div><div class="scene-sub">Prefiks + korijen + sufiks · najproduktivniji način</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> dodavanjem prefiksa i/ili sufiksa na korijen stvara se nova riječ.</p>
+          <p><strong>🔑 Tipovi:</strong></p>
+          <ul>
+            <li><strong>Prefiksalna:</strong> <em>pisati → napisati, raditi → odraditi</em></li>
+            <li><strong>Sufiksalna:</strong> <em>lijep → ljepota, rad → radnik</em></li>
+            <li><strong>Prefiksalno-sufiksalna:</strong> <em>brzina → ubrzanje, pisati → ispisivanje</em></li>
+          </ul>
+          <p><strong>🔑 Česti tvorbeni sufiksi:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li>Imenice: -ost, -oća, -ica, -telj, -ač, -ar, -stvo</li>
+            <li>Pridjevi: -an, -ski, -ov/-ev, -ji</li>
+            <li>Glagoli: -ati, -iti, -ovati, -avati, -nuti</li>
+            <li>Prilozi: -o, -ski</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--bronze);color:#fff">2</div>
+          <div class="scene-ttl"><div class="scene-name">SLAGANJE (kompozicija)</div><div class="scene-sub">Dvije osnove → složenica</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> spajanjem dvaju (ili više) korijena nastaje <strong>složenica</strong>.</p>
+          <p><strong>🔑 Tipovi:</strong></p>
+          <ul>
+            <li><strong>Složenice sa spojnikom -o-/-e-:</strong> <em>knjig<strong>o</strong>vodstvo, rib<strong>o</strong>lov, star<strong>o</strong>sjedilac</em></li>
+            <li><strong>Složenice bez spojnika:</strong> <em>vatrogasac, parobrod</em></li>
+            <li><strong>Polusloženice (s crticom):</strong> <em>spomen-ploča, brat-sestra, radio-postaja</em></li>
+            <li><strong>Sraslice:</strong> <em>brzojav (brzo + javiti), dangubiti</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:var(--green);color:#fff">3</div>
+          <div class="scene-ttl"><div class="scene-name">KRAĆENJE</div><div class="scene-sub">Skraćenice · akronimi · pokrate</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> skraćivanje riječi ili izraza — nastaju <strong>skraćenice</strong> (čitane po slovima ili kao riječ).</p>
+          <p><strong>🔑 Tipovi:</strong></p>
+          <ul>
+            <li><strong>Slogovne skraćenice</strong> (čitaju se kao riječ): <em>HAZU, HEP, INA</em></li>
+            <li><strong>Alfabetske / inicijalne</strong> (čitaju se po slovima): <em>SAD (Es-A-De), EU (E-U)</em></li>
+            <li><strong>Djelomične skraćenice:</strong> <em>prof. (profesor), dr. (doktor), g. (gospodin/godina)</em></li>
+            <li><strong>Složene skraćenice:</strong> <em>Nogometni klub → NK</em></li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#e67e22;color:#fff">4</div>
+          <div class="scene-ttl"><div class="scene-name">PREOBRAZBA (konverzija)</div><div class="scene-sub">Riječ mijenja vrstu BEZ promjene oblika</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> riječ prelazi iz jedne vrste u drugu <strong>bez ikakvih morfoloških promjena</strong> (bez prefiksa, sufiksa, spajanja). Mijenja samo gramatičku funkciju i kontekst.</p>
+          <p><strong>🔑 Najčešći tipovi:</strong></p>
+          <ul>
+            <li><strong>Pridjev → imenica:</strong> <em>mladi (pridj.) → mladi (imenica: „mladi su otišli")</em></li>
+            <li><strong>Prilog → imenica:</strong> <em>dobro (prilog) → dobro (imenica: „činiti dobro")</em></li>
+            <li><strong>Glagolski pridjev → pridjev:</strong> <em>pisan (gpr.) → pisan zadatak (pridjev)</em></li>
+            <li><strong>Imenica → prilog:</strong> <em>jutro (imenica) → jutros (prilog)</em></li>
+            <li><strong>Glagol u infinitivu → imenica:</strong> <em>spavati (glag.) → spavati je odmor (imenički predikat)</em></li>
+          </ul>
+          <p><strong>📝 Više primjera:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li><em>teško (prilog) → teško (imenica): „nije teško!"</em></li>
+            <li><em>prvi (broj) → prvi (imenica): „prvi medju jednakima"</em></li>
+            <li><em>radni (pridjev) → radni (imenica): „radni je dosadan dan"</em></li>
+            <li><em>učitelj (imenica m.r.) → učiteljica (imenica ž.r.) — NIJE preobrazba (sufiksacija!)</em></li>
+          </ul>
+          <p><strong>⚠ Pažnja!</strong> Preobrazba ≠ sufiksacija. Sufiksacija dodaje slovo (lijep → ljepota: -ota); preobrazba <strong>NIŠTA ne dodaje</strong> — riječ ostaje ista, mijenja se samo vrsta.</p>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-head">
+          <div class="scene-badge" style="background:#9b59b6;color:#fff">5</div>
+          <div class="scene-ttl"><div class="scene-name">SRASTANJE (univerbizacija)</div><div class="scene-sub">Više riječi → jedna riječ (sraslica)</div></div>
+          <div class="scene-arrow">▾</div>
+        </div>
+        <div class="scene-body">
+          <p><strong>📜 Definicija:</strong> dvije ili više riječi <strong>"srastu"</strong> u jednu riječ — gube samostalnost i postaju nedjeljivi par. Ne treba spojnik (-o-/-e-), ali se zadržavaju oblici.</p>
+          <p><strong>🔑 Razlika od slaganja:</strong></p>
+          <ul>
+            <li><strong>Slaganje:</strong> uzima <em>korijene</em> + spojnik → <em>knjig-o-vodstvo</em></li>
+            <li><strong>Srastanje:</strong> uzima <em>cijele riječi</em> bez spojnika → <em>brzojav (brzo + jav…)</em></li>
+          </ul>
+          <p><strong>📝 Primjeri sraslica:</strong></p>
+          <ul style="font-family:var(--mono);font-size:13px">
+            <li><em>brzojav</em> ← brzo + javljati</li>
+            <li><em>dangubiti</em> ← dan + gubiti</li>
+            <li><em>vagabundirati</em> — od stranog izraza, sraslo</li>
+            <li><em>kućepazitelj</em> ← kuću + paziti</li>
+            <li><em>tako-tako, jed va-jedva</em> — udvajanje</li>
+            <li><em>nikad, nigdje, ništa</em> ← ni + kad, ni + gdje (drevne sraslice)</li>
+          </ul>
+          <p><strong>💡 Trik:</strong> Ako se značenje dvije riječi može „shvatiti zasebno" → slaganje. Ako značenje postaje <strong>idiomatsko</strong> (cjelovit pojam) → sraslica.</p>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <!-- SUSTAVNA TABLICA TVORBE -->
+    <div style="margin:18px 0;padding:14px 16px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--gold);border-radius:var(--r2)">
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:10px">📊 SUSTAVNI PREGLED · 5 VRSTA TVORBE</div>
+      <div class="table-wrap">
+        <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+          <thead>
+            <tr style="background:var(--bg);border-bottom:2px solid var(--gold)">
+              <th style="padding:8px 10px;text-align:left;color:var(--gold);font-family:var(--mono);font-size:10px;letter-spacing:1px">VRSTA</th>
+              <th style="padding:8px 10px;text-align:left;color:var(--gold);font-family:var(--mono);font-size:10px;letter-spacing:1px">METODA</th>
+              <th style="padding:8px 10px;text-align:left;color:var(--gold);font-family:var(--mono);font-size:10px;letter-spacing:1px">PRIMJER</th>
+              <th style="padding:8px 10px;text-align:left;color:var(--gold);font-family:var(--mono);font-size:10px;letter-spacing:1px">NCVVO ⭐</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;color:var(--blue);font-weight:700">Izvođenje</td><td style="padding:8px 10px">prefiks + korijen + sufiks</td><td style="padding:8px 10px;font-style:italic">lijep → ljepota</td><td style="padding:8px 10px;text-align:center">★★★</td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;color:var(--bronze);font-weight:700">Slaganje</td><td style="padding:8px 10px">korijen + spojnik + korijen</td><td style="padding:8px 10px;font-style:italic">knjig-o-vodstvo</td><td style="padding:8px 10px;text-align:center">★★★</td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;color:var(--green);font-weight:700">Kraćenje</td><td style="padding:8px 10px">prvih nekoliko slova</td><td style="padding:8px 10px;font-style:italic">HEP, ZET, NK Dinamo</td><td style="padding:8px 10px;text-align:center">★★</td></tr>
+            <tr style="border-bottom:1px solid var(--bd)"><td style="padding:8px 10px;color:#e67e22;font-weight:700">Preobrazba</td><td style="padding:8px 10px">promjena vrste BEZ izmjene oblika</td><td style="padding:8px 10px;font-style:italic">teško (pril.) → teško (im.)</td><td style="padding:8px 10px;text-align:center">★★★</td></tr>
+            <tr><td style="padding:8px 10px;color:#9b59b6;font-weight:700">Srastanje</td><td style="padding:8px 10px">2+ riječi srastaju u 1 (idiom)</td><td style="padding:8px 10px;font-style:italic">brzojav, dangubiti</td><td style="padding:8px 10px;text-align:center">★★</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:10px;font-size:11.5px;color:var(--t3);font-style:italic;line-height:1.5">
+        <strong>NCVVO ⭐ ključ:</strong> ★★★ = redovita tema · ★★ = povremena tema · ★ = rijetko. <strong>Preobrazba i izvođenje su NAJVAŽNIJE</strong> — pojavljuju se gotovo svake godine.
+      </div>
+    </div>
+
+<!-- VJEŽBE PLACEHOLDERI -->
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🎮 Vježba 1 · Padežni quiz</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Aktivni trening padeža</div>
+      <div class="box-int-txt">
+        Rečenica je pred tobom — <strong>klikni na označenu riječ</strong> i odaberi njezin padež. 8 rečenica s tipičnim NCVVO primjerima.
+      </div>
+    </div>
+
+    <div id="pz-exercise" style="margin:16px 0"></div>
+    <div id="pz-result" style="display:none;margin-top:18px"></div>
+
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🎮 Vježba 2 · Konjugacijski quiz</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🎯 Prepoznaj glagolski oblik</div>
+      <div class="box-int-txt">
+        Prikazuje se glagolski oblik — odredi <strong>vrijeme + lice + broj</strong>. 6 oblika iz različitih vremena.
+      </div>
+    </div>
+
+    <div id="kz-exercise" style="margin:16px 0"></div>
+    <div id="kz-result" style="display:none;margin-top:18px"></div>
+
+    <!-- RECAP -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">📌 RECAP — Tab 3</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Gramatičke kategorije</div>
+      <div class="box-key-txt" style="line-height:1.9">
+        <strong>IMENSKE KATEGORIJE:</strong><br>
+        • Rod (3): m / ž / sr<br>
+        • Broj (2): jd. / mn.<br>
+        • Padež (7): N · G · D · A · V · L · I<br><br>
+        <strong>GLAGOLSKE KATEGORIJE:</strong><br>
+        • Lice (3) · Broj (2)<br>
+        • Vrijeme (7): prezent, perfekt, aorist, imperfekt, pluskvamperfekt, futur I, futur II<br>
+        • Način (4): indikativ, imperativ, kondicional I/II<br>
+        • Vid (2): svršeni / nesvršeni<br>
+        • Stanje (2): aktiv / pasiv<br><br>
+        <strong>TVORBA RIJEČI (3 načina):</strong> izvođenje · slaganje · kraćenje
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(2)">← Nepromjenjive</span>
+      <span class="nb-btn primary" onclick="sw(4)">📚 Pojmovnik →</span>
+    </div>
+
+  </div><!-- /l3 -->
+
+  <div class="layer" id="l4" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa hchip">📚 Pojmovnik</span>
+      <span class="pill p-br hchip">60 pojmova</span>
+      <span class="pill p-go hchip">7 kategorija</span>
+      <span class="pill p-t hchip">Klikni za definiciju</span>
+      <span class="pill p-r hchip">Filtriraj po temi</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">📚 Pojmovnik — svi pojmovi morfologije</div>
+      <div class="box-int-txt">
+        <strong>60 pojmova u 7 kategorija</strong> — sve što trebaš znati za NCVVO pitanja o morfologiji. Klikni karticu za definiciju. Filtriraj po kategoriji ispod.<br><br>
+        <strong>⭐ Kritični pojmovi</strong> (najčešće pitani): morfem, korijen, sufiks, padeži (G, A, L), glagolski vid, prezent, perfekt, futur, imperativ, povratno-posvojna zamjenica.
+      </div>
+    </div>
+
+    <!-- KATEGORIJE FILTER -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">🔍 Filtriraj po kategoriji</div><div class="sec-line"></div></div>
+
+    <div class="pojm-filter" style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <button class="pojm-fbt on" onclick="pojmFilter2('all', this)">Svi (60)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('osnove', this)">🧩 Osnove (8)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('vrste', this)">📚 Vrste riječi (12)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('padezi', this)">📐 Padeži (8)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('glagoli', this)">⚙️ Glagoli (12)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('zamjenice', this)">🔄 Zamjenice (7)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('tvorba', this)">🏗 Tvorba (6)</button>
+      <button class="pojm-fbt" onclick="pojmFilter2('meta', this)">🌐 Metajezik (7)</button>
+    </div>
+
+    <!-- POJM GRID (renderira renderPojm2) -->
+    <div id="pojm-grid2" class="pojm-grid-wrap"></div>
+
+    <!-- DISCERE -->
+    <div class="discere-banner" style="margin-top:24px" onclick="window.location.href='#discere'">
+      <div class="discere-ico">🧠</div>
+      <div class="discere-txt">
+        <div class="discere-ttl">Discere · AI profesor morfologije</div>
+        <div class="discere-sub">Pitaj AI bilo koji morfološki pojam + interaktivne vježbe + spaced repetition · <strong>Pro plan</strong></div>
+      </div>
+      <div class="discere-arrow">→</div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(3)">← Kategorije</span>
+      <span class="nb-btn primary" onclick="sw(5)">🔬 Morfo Scanner →</span>
+    </div>
+
+  </div><!-- /l4 -->
+
+  <div class="layer" id="l5" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa hchip">🔬 Morfo Scanner</span>
+      <span class="pill p-br hchip">Riječ → morfemska analiza</span>
+      <span class="pill p-go hchip">Vrsta + kategorije</span>
+      <span class="pill p-t hchip">Tvorba + osnovni oblik</span>
+      <span class="pill p-r hchip">★ Glavni alat</span>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">🔬 Glavni interaktivni alat H20</div>
+      <div class="box-int-txt">
+        Upiši bilo koju hrvatsku riječ ili kratku rečenicu — Scanner će ti pokazati:<br>
+        <strong>1. Morfemska analiza</strong> (prefiks + korijen + sufiks + nastavak)<br>
+        <strong>2. Vrsta riječi</strong> (imenica, glagol, pridjev, prilog, prijedlog, veznik, čestica, uzvik, zamjenica, broj)<br>
+        <strong>3. Gramatičke kategorije</strong> (rod, broj, padež, vrijeme, lice, vid...)<br>
+        <strong>4. Osnovni oblik</strong> (lema — infinitiv glagola, N jd. imenice)<br>
+        <strong>5. Tvorbena analiza</strong> (prefiksi/sufiksi + njihovo značenje)<br>
+        <strong>6. Sigurnost analize</strong> (visoka/srednja/niska — koliko je rezultat pouzdan)
+      </div>
+    </div>
+
+    <!-- SCANNER INPUT -->
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">✍ Upiši riječ za analizu</div><div class="sec-line"></div></div>
+
+    <div style="padding:18px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);margin:16px 0">
+      <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+        <input type="text" id="ms-input" placeholder="npr. nepreispisanosti, napisao, čitam, oči, jako, da..." 
+               style="flex:1;min-width:200px;padding:12px 14px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r1);color:var(--t1);font-family:var(--display);font-size:16px;outline:none"
+               onkeydown="if(event.key==='Enter')morfoAnalyze()">
+        <button class="nb-btn primary" onclick="morfoAnalyze()">🔬 Analiziraj</button>
+      </div>
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0;flex-wrap:wrap;gap:8px">
+        <button class="nb-btn" style="padding:5px 10px;font-size:11px" onclick="msShowHistory()">📜 Povijest analiza</button>
+        <button class="nb-btn" style="padding:5px 10px;font-size:11px" onclick="msClear()">🔄 Resetiraj</button>
+      </div>
+      <div id="ms-history" style="display:none;margin:10px 0;padding:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);font-family:var(--mono);font-size:11px"></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;padding-top:4px">PRIMJERI:</span>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('ljepote')">ljepote</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('napisao')">napisao</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('najljepši')">najljepši</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('vojnicima')">vojnicima</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('pročitajte')">pročitajte</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('knjižarstvo')">knjižarstvo</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('čitam')">čitam</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('oči')">oči</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('jako')">jako</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('iako')">iako</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('protiv')">protiv</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="msExample('Ivan dolazi')">Ivan dolazi</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px;border-color:var(--blue);color:var(--blue)" onclick="msRandom()" title="Iznenadi me!">🎲 Random</button>
+      </div>
+    </div>
+
+    <div id="ms-results"></div>
+
+    <!-- STRATEGIJA -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">💡 Kako koristiti Scanner</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Strategija za NCVVO pitanja</div>
+      <div class="box-key-txt">
+        <strong>Za pitanja o morfemima:</strong> Upiši riječ, pogledaj strukturu (prefiks+korijen+sufiks+nastavak).<br><br>
+        <strong>Za pitanja o vrsti riječi:</strong> Scanner pokazuje vrstu + podvrstu (npr. "imenica, ž.r., e-vrsta"). Provjeri uz svoj osjećaj.<br><br>
+        <strong>Za pitanja o osnovnom obliku:</strong> Scanner rekonstruira infinitiv (napisao → napisati) ili N jd. (ljepote → ljepota).<br><br>
+        <strong>⚠ Scanner je heuristički alat</strong> — radi s većinom riječi, ali može pogriješiti na neobičnim oblicima. Uvijek provjeri svojim znanjem.
+      </div>
+    </div>
+
+    <div class="box-warn">
+      <div class="bw-body">
+        <div class="bw-ttl" style="color:var(--gold)">🔒 Napredne funkcije · Pro plan</div>
+        <div class="bw-txt">Scanner je besplatan za osnovnu analizu. <strong>Pro plan</strong> dodaje: analizu cijele rečenice (svaka riječ pojedinačno), AI profesor za nejasne slučajeve, spremanje analiza, napredne sintaktičke povezanice (H21).</div>
+      </div>
+    </div>
+
+    <!-- UPGRADE: AI TUTOR — ASK CLAUDE ABOUT MORPHOLOGY -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">🤖 AI tutor — pitaj o morfologiji</div><div class="sec-line"></div></div>
+    
+    <div style="padding:18px;background:linear-gradient(135deg,rgba(74,144,217,.05),transparent);border:1px solid var(--bd);border-left:3px solid var(--blue);border-radius:var(--r2);margin:16px 0">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue);margin-bottom:10px">🤖 AI PROFESOR — MORFOLOGIJA</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px">
+        Postavi pitanje o morfologiji — objašnjenje, primjere, razliku pojmova.<br>
+        Npr. „Koja je razlika između sufiksa i nastavka?", „Objasni padež na primjeru riječi knjiga.", „Kako razlikovati svoj od njegov?"
+      </div>
+      
+      <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+        <input type="text" id="ai-input" placeholder="Upiši svoje pitanje..." 
+               style="flex:1;min-width:200px;padding:12px 14px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r1);color:var(--t1);font-family:var(--serif);font-size:14px;outline:none"
+               onkeydown="if(event.key==='Enter')aiAsk()">
+        <button class="nb-btn primary" onclick="aiAsk()">🤖 Pitaj AI</button>
+      </div>
+      
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;padding-top:4px">PRIMJERI:</span>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="aiAskExample('Koja je razlika između sufiksa i nastavka?')">sufiks vs. nastavak</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="aiAskExample('Objasni svih 7 padeža na riječi &quot;knjiga&quot;.')">sklanjanje knjige</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="aiAskExample('Kako prepoznati glagolski vid?')">glagolski vid</button>
+        <button class="nb-btn" style="padding:3px 9px;font-size:11px" onclick="aiAskExample('Razlika: svoj vs. njegov?')">svoj vs. njegov</button>
+      </div>
+      
+      <div id="ai-output" style="display:none;margin-top:14px"></div>
+      
+      <div style="margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--t3);text-align:center">
+        ⚡ Powered by Anthropic Claude · Besplatno za osnovna pitanja · <strong style="color:var(--gold)">Pro</strong> za neograničena
+      </div>
+    </div>
+    
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(4)">← Pojmovnik</span>
+      <span class="nb-btn primary" onclick="sw(6)">🧠 Kviz →</span>
+    </div>
+
+  </div><!-- /l5 -->
+
+  <div class="layer" id="l6" role="tabpanel" tabindex="0">
+    <!-- DISCERE TOUCHPOINT 4 -->
+    <div class="discere-banner" id="discere-kviz" onclick="window.location.href='#discere'">
+      <div class="discere-ico">🏆</div>
+      <div class="discere-txt">
+        <div class="discere-ttl">Discere · Pravi ispit mode</div>
+        <div class="discere-sub">Ovaj kviz je priprema — u Discere treniraj s vremenskim pritiskom i točnim bodovanjem kao na maturi</div>
+      </div>
+      <div class="discere-arrow">→</div>
+    </div>
+    <div class="qz-wrap" id="qz-wrap"></div>
+    <!-- Score History -->
+    <div class="score-hist" id="score-hist" style="display:none">
+      <div class="score-hist-lbl">📊 Zadnjih 5 kvizova</div>
+      <div class="score-hist-rows" id="score-hist-rows"></div>
+    </div>
+
+    <div class="nav-row" style="margin-top:20px">
+      <span class="nb-btn" onclick="sw(5)">← Morfo Scanner</span>
+      <span class="nb-btn primary" onclick="sw(7)">📊 Referentna tablica →</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 7 · CHECKPOINT
+  ══════════════════════════════════════ -->
+  <div class="layer" id="l7" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa hchip">📊 Referentna tablica</span>
+      <span class="pill p-br hchip">A4 printabilno</span>
+      <span class="pill p-go hchip">Cheat sheet</span>
+      <span class="pill p-t hchip">Sve na jednom mjestu</span>
+      <span class="pill p-r hchip">🖨 Print-friendly</span>
+    </div>
+
+    <div class="box-int no-print">
+      <div class="box-int-lbl">📊 Brzi pregled cijelog H20 poglavlja</div>
+      <div class="box-int-txt">
+        Sve ključne tablice i pravila morfologije na jednom mjestu — <strong>A4 printabilno</strong>. Koristi kao „last-minute" pregled dan prije mature.<br><br>
+        <strong>🖨 Tip:</strong> pritisni <code>Ctrl+P</code> (Windows) ili <code>Cmd+P</code> (Mac) za print. Boje i stilovi su optimizirani za crno-bijeli ispis.
+      </div>
+    </div>
+
+    <button class="nb-btn primary no-print" style="margin-bottom:20px" onclick="window.print()">🖨 Isprintaj ovu tablicu (Ctrl+P)</button>
+
+    <!-- PRINT HEADER (visible only in print) -->
+    <div class="print-only" style="display:none;text-align:center;margin-bottom:16px;border-bottom:2px solid #000;padding-bottom:10px">
+      <h2 style="font-size:20px;font-weight:700;margin:0;color:#000">MATURIRAJ.HR · H20 MORFOLOGIJA</h2>
+      <div style="font-size:11px;color:#555;margin-top:4px">Referentna tablica · Matura 2026 · Hrvatski jezik</div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         1. 10 VRSTA RIJEČI
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">1. 10 VRSTA RIJEČI</div>
+      
+      <div class="ref-subttl" style="color:var(--gold)">🔄 PROMJENJIVE (5) — sklanjaju se ili konjugiraju</div>
+      <table class="ref-tbl">
+        <thead><tr><th>Vrsta</th><th>Pitanje</th><th>Što mijenja</th><th>Primjeri</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Imenica</strong></td><td>tko? što?</td><td>padež, broj</td><td>žena, stol, ljubav</td></tr>
+          <tr><td><strong>2. Pridjev</strong></td><td>kakav? čiji?</td><td>rod, broj, padež, stupanj</td><td>lijep, velik, majčin</td></tr>
+          <tr><td><strong>3. Zamjenica</strong></td><td>(zamjenjuje)</td><td>padež, broj, rod, lice</td><td>ja, ti, on, ovaj, svoj</td></tr>
+          <tr><td><strong>4. Broj</strong></td><td>koliko? koji?</td><td>djelomično padež, rod</td><td>pet, drugi, dvoje</td></tr>
+          <tr><td><strong>5. Glagol</strong></td><td>što radi?</td><td>lice, broj, vrijeme, način, vid</td><td>pisati, trčati, doći</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ref-subttl" style="color:var(--blue);margin-top:14px">🔒 NEPROMJENJIVE (5) — uvijek isti oblik</div>
+      <table class="ref-tbl">
+        <thead><tr><th>Vrsta</th><th>Funkcija</th><th>Primjeri</th></tr></thead>
+        <tbody>
+          <tr><td><strong>6. Prilog</strong></td><td>opisuje glagol/pridjev</td><td>brzo, ovdje, sutra, vrlo</td></tr>
+          <tr><td><strong>7. Prijedlog</strong></td><td>izražava odnose (uz padeže)</td><td>u, na, iz, s, pod</td></tr>
+          <tr><td><strong>8. Veznik</strong></td><td>povezuje riječi/rečenice</td><td>i, ili, a, jer, da, kad</td></tr>
+          <tr><td><strong>9. Uzvik</strong></td><td>emocija / zvuk</td><td>ah, uf, mjau, bum</td></tr>
+          <tr><td><strong>10. Čestica</strong></td><td>stav govornika</td><td>ne, da, li, evo, neka</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         2. 7 PADEŽA
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">2. 7 PADEŽA · pitanja · prijedlozi · primjer</div>
+
+      <table class="ref-tbl">
+        <thead>
+          <tr><th>#</th><th>Padež</th><th>Pitanja</th><th>Prijedlozi</th><th>Žena jd.</th><th>Žena mn.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>N</strong> Nominativ</td><td>tko? što?</td><td><em>— bez prijedloga</em></td><td>žena</td><td>žene</td></tr>
+          <tr><td>2</td><td><strong>G</strong> Genitiv</td><td>koga? čega?</td><td>od, do, iz, bez, kod, preko, protiv, zbog</td><td>žene</td><td>žena</td></tr>
+          <tr><td>3</td><td><strong>D</strong> Dativ</td><td>komu? čemu?</td><td>k(a), prema, nasuprot, usprkos</td><td>ženi</td><td>ženama</td></tr>
+          <tr><td>4</td><td><strong>A</strong> Akuzativ</td><td>koga? što?</td><td>u, na, za, kroz, pod, nad (kamo?)</td><td>ženu</td><td>žene</td></tr>
+          <tr><td>5</td><td><strong>V</strong> Vokativ</td><td>dozivanje!</td><td><em>— bez prijedloga</em></td><td>ženo!</td><td>žene!</td></tr>
+          <tr><td>6</td><td><strong>L</strong> Lokativ</td><td>o kome? o čemu?</td><td>u, na, o, po, pri (gdje?)</td><td>(o) ženi</td><td>ženama</td></tr>
+          <tr><td>7</td><td><strong>I</strong> Instrumental</td><td>s kim? s čim?</td><td>s(a), za, pod, nad, pred, među</td><td>ženom</td><td>ženama</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ref-note"><strong>Mnemotehnika:</strong> <strong>NADIVLA</strong> (N-G-D-A-V-L-I). <strong>A vs. L razlika:</strong> isti prijedlozi (u, na, pod, nad, pred) — A = kretanje (kamo?), L = mirovanje (gdje?).</div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         3. 3 DEKLINACIJSKE VRSTE
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">3. 3 DEKLINACIJSKE VRSTE · usporedba</div>
+
+      <table class="ref-tbl">
+        <thead><tr><th>Padež</th><th>a-vrsta m.r. (stol)</th><th>a-vrsta sr.r. (selo)</th><th>e-vrsta ž.r. (žena)</th><th>i-vrsta ž.r. (kost)</th></tr></thead>
+        <tbody>
+          <tr><td>N jd.</td><td>stol</td><td>selo</td><td>žena</td><td>kost</td></tr>
+          <tr><td>G jd.</td><td>stol-<strong>a</strong></td><td>sel-<strong>a</strong></td><td>žen-<strong>e</strong></td><td>kost-<strong>i</strong></td></tr>
+          <tr><td>D jd.</td><td>stol-<strong>u</strong></td><td>sel-<strong>u</strong></td><td>žen-<strong>i</strong></td><td>kost-<strong>i</strong></td></tr>
+          <tr><td>A jd.</td><td>stol (neživo) / stol-a (živo)</td><td>selo</td><td>žen-<strong>u</strong></td><td>kost</td></tr>
+          <tr><td>V jd.</td><td>stol-<strong>e</strong></td><td>selo</td><td>žen-<strong>o</strong></td><td>kost-<strong>i</strong></td></tr>
+          <tr><td>L jd.</td><td>stol-<strong>u</strong></td><td>sel-<strong>u</strong></td><td>žen-<strong>i</strong></td><td>kost-<strong>i</strong></td></tr>
+          <tr><td>I jd.</td><td>stol-<strong>om</strong></td><td>sel-<strong>om</strong></td><td>žen-<strong>om</strong></td><td>kost-<strong>i</strong> / koš-<strong>ću</strong></td></tr>
+          <tr style="background:var(--ele)"><td>N mn.</td><td>stolov-i</td><td>sel-a</td><td>žen-e</td><td>kost-i</td></tr>
+          <tr><td>G mn.</td><td>stolov-a</td><td>sel-a</td><td>žen-a (Ø)</td><td>kost-iju</td></tr>
+          <tr><td>DLI mn.</td><td>stolov-ima</td><td>sel-ima</td><td>žen-ama</td><td>kost-ima</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ref-note"><strong>Brzo prepoznavanje:</strong> pogledaj G jd. → ako je <strong>-a</strong> (a-vrsta), <strong>-e</strong> (e-vrsta), <strong>-i</strong> (i-vrsta).</div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         4. 7 GLAGOLSKIH VREMENA
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">4. 7 GLAGOLSKIH VREMENA · tvorba</div>
+
+      <table class="ref-tbl">
+        <thead><tr><th>Vrijeme</th><th>Tvorba</th><th>Primjer (čitati)</th><th>Kada se koristi</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Prezent</strong></td><td>osnova + lični nastavak</td><td>čit-am, čit-aš, čit-a</td><td>sadašnjost</td></tr>
+          <tr><td><strong>2. Perfekt</strong></td><td>nenaglašeni prezent „biti" + gl. pridjev radni</td><td>čitao <strong>sam</strong>, <strong>si</strong> čitala</td><td>najčešće prošlo vrijeme</td></tr>
+          <tr><td><strong>3. Aorist</strong></td><td>osnova + -h/-ø/-ø/-smo/-ste/-še</td><td>rek-<strong>oh</strong>, reče, rek-oše</td><td>književno, prošla svrš. radnja</td></tr>
+          <tr><td><strong>4. Imperfekt</strong></td><td>osnova + -jah, -jaše, -jasmo...</td><td>čit-<strong>ah</strong>, čit-aše</td><td>arhaično, prošla radnja u tijeku</td></tr>
+          <tr><td><strong>5. Pluskvamperfekt</strong></td><td>imperfekt/perfekt „biti" + gl. prid. radni</td><td><strong>bijah</strong> čitao / <strong>bio sam</strong> čitao</td><td>rijetko, predprošla radnja</td></tr>
+          <tr><td><strong>6. Futur I</strong></td><td>inf. (bez -i) + nenaglašeni „htjeti"</td><td>čita-<strong>t ću</strong>, <strong>ćeš</strong> čitati</td><td>buduća radnja</td></tr>
+          <tr><td><strong>7. Futur II</strong></td><td>prezent svrš. „biti" (budem) + gl. pr. r.</td><td><strong>budem</strong> čitao</td><td>pretbuduća, u zavisnim reč.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5. 4 GLAGOLSKA NAČINA
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">5. 4 GLAGOLSKA NAČINA</div>
+
+      <table class="ref-tbl">
+        <thead><tr><th>Način</th><th>Funkcija</th><th>Primjer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Indikativ</strong></td><td>stvarna, objektivna radnja</td><td>Čitam knjigu.</td></tr>
+          <tr><td><strong>2. Imperativ</strong></td><td>zapovijed, molba (2.jd, 1.mn, 2.mn)</td><td>Čitaj! Čitajmo! Čitajte!</td></tr>
+          <tr><td><strong>3. Kondicional I</strong></td><td>uvjetna sadašnja/buduća radnja</td><td>Čitao <strong>bih</strong>.</td></tr>
+          <tr><td><strong>4. Kondicional II</strong></td><td>neostvariv uvjet u prošlosti</td><td><strong>Bio bih</strong> čitao.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         6. GLAGOLSKI VID
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">6. GLAGOLSKI VID · svršeni vs. nesvršeni</div>
+
+      <table class="ref-tbl">
+        <thead><tr><th>Vid</th><th>Značenje</th><th>Primjeri</th><th>Kako prepoznati</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Nesvršeni</strong> (imperf.)</td><td>radnja u tijeku, traje, ponavlja se</td><td>pisati, čitati, trčati, spavati</td><td>često bez prefiksa</td></tr>
+          <tr><td><strong>Svršeni</strong> (perf.)</td><td>radnja završena, jednokratna</td><td>napisati, pročitati, dotrčati, prespavati</td><td>s prefiksom: na-, pro-, do-, pre-, iz-, u-, za-, po-</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ref-note"><strong>Test vida:</strong> možeš li reći „trenutačno"? Ako DA → svršeni (trenutačno napišem). Ako NE → nesvršeni (NE kažeš „trenutačno pišem").</div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         7. 5 KONJUGACIJSKIH VRSTA
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">7. 5 KONJUGACIJSKIH VRSTA GLAGOLA</div>
+
+      <table class="ref-tbl">
+        <thead><tr><th>Vrsta</th><th>Infinitiv završava</th><th>Prezent 1.l.jd.</th><th>Primjeri</th></tr></thead>
+        <tbody>
+          <tr><td><strong>I.</strong></td><td>-ti</td><td>-em / -am / -im</td><td>čita-ti → čita-m</td></tr>
+          <tr><td><strong>II.</strong></td><td>-nuti</td><td>-nem</td><td>kliknu-ti → klikne-m</td></tr>
+          <tr><td><strong>III.</strong></td><td>-jeti / -iti</td><td>-im</td><td>vidje-ti → vidi-m</td></tr>
+          <tr><td><strong>IV.</strong></td><td>-ati (dati, znati)</td><td>-am</td><td>da-ti → da-m</td></tr>
+          <tr><td><strong>V.</strong></td><td>-ći / nepravilni</td><td>-em (nepravilno)</td><td>ići → idem, reći → rečem</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         8. TVORBA RIJEČI
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">8. TVORBA RIJEČI · 3 načina</div>
+
+      <table class="ref-tbl">
+        <thead><tr><th>Način</th><th>Opis</th><th>Tipovi</th><th>Primjeri</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Izvođenje</strong><br>(derivacija)</td><td>prefiks + korijen + sufiks</td><td>prefiksalna · sufiksalna · prefiks.-sufiks.</td><td>na-pisati · ljep-ota · ubrzanje</td></tr>
+          <tr><td><strong>2. Slaganje</strong><br>(kompozicija)</td><td>2 korijena → složenica</td><td>s spojnikom · bez spojnika · polusloženice · sraslice</td><td>knjig-o-vodstvo · spomen-ploča · brzojav</td></tr>
+          <tr><td><strong>3. Kraćenje</strong></td><td>skraćivanje</td><td>slogovne · inicijalne · djelomične</td><td>HAZU (riječ) · SAD (slova) · prof.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ref-subttl" style="margin-top:14px">Najčešći sufiksi po vrstama riječi:</div>
+      <table class="ref-tbl">
+        <thead><tr><th>Vrsta</th><th>Sufiksi</th><th>Primjeri</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Imenice</strong></td><td>-ost, -oća, -stvo, -ica, -telj, -ač, -ar, -nik, -anje, -enje</td><td>ljepota, učitelj, vozač</td></tr>
+          <tr><td><strong>Pridjevi</strong></td><td>-an, -ni, -ski, -ov/-ev, -in, -ji</td><td>hladan, školski, očev, majčin</td></tr>
+          <tr><td><strong>Glagoli</strong></td><td>-ati, -iti, -nuti, -jeti, -ovati, -avati, -ivati</td><td>pisati, govoriti, kliknuti</td></tr>
+          <tr><td><strong>Prilozi</strong></td><td>-o, -ski</td><td>brzo, junački</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         9. 7 VRSTA ZAMJENICA
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">9. 7 VRSTA ZAMJENICA</div>
+
+      <table class="ref-tbl">
+        <thead><tr><th>Vrsta</th><th>Funkcija</th><th>Primjeri</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Osobne</strong></td><td>osoba/stvar</td><td>ja, ti, on/ona/ono, mi, vi, oni/one/ona</td></tr>
+          <tr><td><strong>2. Povratne</strong></td><td>odnos na subjekt</td><td>sebe / se, sobom</td></tr>
+          <tr><td><strong>3. Posvojne</strong></td><td>pripadnost</td><td>moj, tvoj, njegov/njezin, naš, vaš, njihov</td></tr>
+          <tr><td><strong>4. Povratno-posvojna</strong></td><td>pripadnost subjektu</td><td><strong>svoj</strong> (u svim licima)</td></tr>
+          <tr><td><strong>5. Pokazne</strong></td><td>upućuju</td><td>ovaj, taj, onaj · ovakav, takav, onakav</td></tr>
+          <tr><td><strong>6. Upitne/Odnosne</strong></td><td>pitaju / povezuju</td><td>tko, što, koji, čiji, kakav</td></tr>
+          <tr><td><strong>7. Neodređene</strong></td><td>neodređeno</td><td>netko, nešto, neki, svatko, nitko</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ref-note"><strong>⚠ Razlika SVOJ vs. NJEGOV:</strong> <em>Ivan je uzeo <strong>svoju</strong> knjigu</em> (Ivanovu!) vs. <em>Ivan je uzeo <strong>njegovu</strong> knjigu</em> (nečiju drugu). Povratno-posvojna = pripadnost subjektu!</div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         10. KRITIČNE ZAMKE
+    ═══════════════════════════════════ -->
+
+    <div class="ref-section">
+      <div class="ref-h1">10. NCVVO KRITIČNE ZAMKE</div>
+
+      <table class="ref-tbl">
+        <thead><tr><th>Zamka</th><th>Pravilo</th><th>Primjer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Prilog vs. pridjev</strong></td><td>prilog → glagol; pridjev → imenica</td><td>trči <strong>brzo</strong> (prilog) vs. <strong>brzi</strong> vlak (pridjev)</td></tr>
+          <tr><td><strong>„Da" — čestica ili veznik?</strong></td><td>potvrđuje → čestica; uvodi rečenicu → veznik</td><td><strong>Da</strong>, razumijem. (čestica) vs. Znam <strong>da</strong> dolaziš. (veznik)</td></tr>
+          <tr><td><strong>„Ne"</strong></td><td>UVIJEK čestica (negacija)</td><td><strong>Ne</strong> znam. <strong>Ne</strong>pismen.</td></tr>
+          <tr><td><strong>A vs. L</strong></td><td>isti prijedlog — A (kretanje) vs. L (mirovanje)</td><td>u <strong>školu</strong> (A) vs. u <strong>školi</strong> (L)</td></tr>
+          <tr><td><strong>I bez prijedloga</strong></td><td>sredstvo (čime?) — BEZ prijedloga</td><td>Pišem <strong>olovkom</strong>. (sredstvo, I)</td></tr>
+          <tr><td><strong>Paukal</strong></td><td>uz 2, 3, 4 → G jd. (ne N mn.)</td><td><strong>dva stola</strong> (ne stolovi!)</td></tr>
+          <tr><td><strong>Pluralia tantum</strong></td><td>samo množina</td><td>vrata, kola, novine, hlače</td></tr>
+          <tr><td><strong>Zbirna imenica</strong></td><td>sklanja se u jednini</td><td>djeca (djece, djeci), braća</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PRINT FOOTER -->
+    <div class="print-only" style="display:none;margin-top:24px;border-top:2px solid #000;padding-top:10px;text-align:center">
+      <div style="font-size:10px;color:#555">© Maturiraj.hr · H20 Morfologija · Referentna tablica za pripremu mature</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="no-print" style="margin-top:32px;padding:20px;background:linear-gradient(135deg,rgba(233,180,70,.05),transparent);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-family:var(--display);font-size:18px;font-weight:700;color:var(--gold);margin-bottom:8px">🎓 H20 Morfologija · završeno!</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.6">Prošao/la si kroz sve tabove. Preporučeni sljedeći koraci:<br>
+      1. Riješi <strong>Kviz</strong> (Tab 6) barem 3 puta dok ne pogodiš 85%+<br>
+      2. Koristi <strong>Padežni decliner</strong> (Tab 3) i <strong>Morfo Scanner</strong> (Tab 5) kad god nisi siguran<br>
+      3. Isprintaj ovu tablicu i drži je pokraj sebe tijekom učenja</div>
+    </div>
+
+    <div class="nav-row no-print">
+      <span class="nb-btn" onclick="sw(6)">← Kviz</span>
+      <span class="nb-btn primary" onclick="sw(0)">🏠 Natrag na početak</span>
+    </div>
+
+  </div><!-- /l7 -->
+</div><!-- /content-wrap -->
+  <!-- ═══════════════════════════════════
+       CROSS-CHAPTER NAVIGATION
+  ═══════════════════════════════════ -->
+  <div class="chapter-nav-wrap">
+    <div class="chapter-nav-hdr">
+      <div class="chapter-nav-title">📚 Sljedeća poglavlja</div>
+      <div class="chapter-nav-sub">Nastavi učiti — povezana poglavlja u sustavu hrvatskoga jezika</div>
+    </div>
+    
+    <div class="chapter-nav-grid">
+      <a class="chapter-nav-card chapter-nav-prev" href="/skripte/hrv/h19">
+        <div class="chapter-nav-arrow">←</div>
+        <div class="chapter-nav-meta">
+          <div class="chapter-nav-pill">PRETHODNO</div>
+          <div class="chapter-nav-name">H19 · Fonologija i pravopis</div>
+          <div class="chapter-nav-desc">Glasovi, naglasci, pravopisna pravila</div>
+        </div>
+      </a>
+
+      <a class="chapter-nav-card chapter-nav-next" href="/skripte/hrv/h21">
+        <div class="chapter-nav-meta">
+          <div class="chapter-nav-pill chapter-nav-pill-next">SLJEDEĆE</div>
+          <div class="chapter-nav-name">H21 · Sintaksa</div>
+          <div class="chapter-nav-desc">Rečenični članovi, vrste rečenica</div>
+        </div>
+        <div class="chapter-nav-arrow">→</div>
+      </a>
+</div>
+
+    <div class="chapter-nav-related">
+      <div class="chapter-nav-related-ttl">🔗 Povezana poglavlja</div>
+      <div class="chapter-nav-related-grid">
+        <a class="chapter-nav-mini" href="/skripte/hrv/h19">
+          <span class="chapter-nav-mini-code">H19</span>
+          <span class="chapter-nav-mini-name">Fonologija</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h21">
+          <span class="chapter-nav-mini-code">H21</span>
+          <span class="chapter-nav-mini-name">Sintaksa</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h22">
+          <span class="chapter-nav-mini-code">H22</span>
+          <span class="chapter-nav-mini-name">Leksikologija</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h23">
+          <span class="chapter-nav-mini-code">H23</span>
+          <span class="chapter-nav-mini-name">Povijest hrv. jezika</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+</div><!-- /shell -->
+<script>
+/* ═══════════════════════════════════
+   GLOBALS & DATA
+═══════════════════════════════════ */
+
+
+const KVIZ_Q = [
+  // === VRSTE RIJEČI (6) ===
+  {q:'U rečenici „Mala djevojka brzo trči u školu." riječ „brzo" je:',o:['prilog','pridjev','imenica','čestica'],t:0,e:'„Brzo" je prilog načina — opisuje glagol „trči" (kako trči?). Pridjev bi stajao uz imenicu („brzi vlak").'},
+  {q:'Koja je vrsta riječi „svoj" u „Ivan je uzeo svoju knjigu"?',o:['osobna zamjenica','povratno-posvojna zamjenica','posvojna zamjenica','povratna zamjenica'],t:1,e:'„Svoj" je POVRATNO-POSVOJNA zamjenica — izražava pripadnost subjektu (Ivanovu). Razlika od „njegovu" (nečiju drugu).'},
+  {q:'Riječ „protiv" u „Glasao je protiv nas." je:',o:['prilog','čestica','prijedlog','veznik'],t:2,e:'„Protiv" je prijedlog koji dolazi uz genitiv. Pitaj: protiv koga? → protiv nas (G).'},
+  {q:'Koja je vrsta riječi „iako" u „Iako je kišilo, izašli smo."?',o:['prilog vremena','nezavisni veznik','čestica','zavisni veznik (dopusni)'],t:3,e:'„Iako" je zavisni veznik koji uvodi dopusnu rečenicu (unatoč kiši).'},
+  {q:'Riječ „evo" u „Evo knjige!" je:',o:['uzvik','pokazna čestica','prijedlog','pokazna zamjenica'],t:1,e:'„Evo" je pokazna čestica — pokazuje na predmet. NIJE prijedlog (iako dolazi uz genitiv).'},
+  {q:'Koji je redni broj „četvrti"?',o:['glavni broj','zbirni broj','redni broj','dijelni broj'],t:2,e:'„Četvrti" je redni broj (koji po redu?). Glavni bi bio „četiri", zbirni „četvero".'},
+
+  // === PADEŽI (6) ===
+  {q:'U „Dao sam knjigu prijatelju." riječ „prijatelju" je u:',o:['dativu','akuzativu','lokativu','instrumentalu'],t:0,e:'„Prijatelju" je dativ (D) — primatelj radnje. Pitaj: komu sam dao? → prijatelju.'},
+  {q:'Koji je padež riječi „sveske" u „Otvori sveske!"?',o:['N jednine','A množine','G jednine','V množine'],t:1,e:'„Sveske" je akuzativ množine (izravni objekt). Pitaj: što otvori? → sveske (više njih).'},
+  {q:'U rečenici „Šetam se s prijateljem po parku." riječi „prijateljem" i „parku" su u:',o:['G i L','D i L','I i L','I i A'],t:2,e:'„Prijateljem" je instrumental (s kim?), „parku" je lokativ (po čemu? — gdje mirujemo).'},
+  {q:'Koji padež koriste prijedlozi „od, do, iz, bez"?',o:['nominativ','dativ','akuzativ','genitiv'],t:3,e:'Svi ti prijedlozi dolaze uz genitiv (G). Pitaj: od koga? od čega? → G.'},
+  {q:'Razlika između „Idem u školu" i „U školi sam" je u tome što:',o:['prvi je A, drugi L','prvi je L, drugi A','oba su L','oba su A'],t:0,e:'Prvi: „u školu" (A — kretanje, kamo?). Drugi: „u školi" (L — mirovanje, gdje?). Isti prijedlog, različit padež.'},
+  {q:'Oblik „Ivane!" u „Ivane, dođi!" je:',o:['N jd.','V jd.','D jd.','G jd.'],t:1,e:'„Ivane!" je vokativ (V) jd. — dozivanje. Nastao 1. palatalizacijom (Ivan → Ivane).'},
+
+  // === GLAGOLSKI OBLICI (6) ===
+  {q:'Oblik „napisat ću" je:',o:['prezent','perfekt','futur I','futur II'],t:2,e:'„Napisat ću" je futur I — buduće vrijeme. Tvorba: infinitiv (bez -i) + nenaglašeni „htjeti" (ću).'},
+  {q:'Glagolski oblik „napisao sam" tvori se od:',o:['aorista + pridjeva radnog','prezenta glagola „biti" + pridjeva radnog','infinitiva + „htjeti"','samo infinitiva'],t:1,e:'Perfekt: nenaglašeni prezent „biti" (sam) + glagolski pridjev radni (napisao). Najčešće prošlo vrijeme.'},
+  {q:'Koji je vid glagola „pročitati"?',o:['nesvršeni','oba','nepromjenjivi','svršeni'],t:3,e:'„Pročitati" je SVRŠENI vid — završena radnja (nastao prefiksom „pro-" od nesvršenog „čitati").'},
+  {q:'Oblik „čitao bih" je:',o:['kondicional I','perfekt','futur I','aorist'],t:0,e:'„Čitao bih" je kondicional I — pogodbeni način (sadašnji/budući uvjet). Tvorba: aorist „biti" (bih) + pridjev radni.'},
+  {q:'Koji je oblik „idi!" i lice?',o:['prezent 1. jd.','kondicional','imperativ 2. mn.','imperativ 2. jd.'],t:3,e:'„Idi!" je imperativ 2. l. jd. — zapovijed upućena 1 osobi (ti).'},
+  {q:'Glagol „govoriti" pripada kojoj konjugacijskoj vrsti?',o:['I. (na -am)','II. (na -nem)','III. (na -im od -iti)','V. (na -ći)'],t:2,e:'„Govoriti → govorim" — III. vrsta. Infinitiv na -iti, prezent na -im.'},
+
+  // === SKLANJANJE (4) ===
+  {q:'Koja je deklinacijska vrsta imenice „kost"?',o:['a-vrsta','e-vrsta','i-vrsta','ne sklanja se'],t:2,e:'„Kost" je i-vrsta (ž.r. na suglasnik). G jd. „kosti", G mn. „kostiju".'},
+  {q:'U D jd. „noga" postaje „nozi". Koja je glasovna promjena?',o:['sibilarizacija','1. palatalizacija','jotacija','jednačenje'],t:0,e:'Sibilarizacija (2. palat.): k + i → c (noga → nozi, ruka → ruci). H19 tema.'},
+  {q:'Koji je G mn. imenice „žena"?',o:['ženi','ženama','žena','žene'],t:2,e:'G mn. „žena" (identično s N jd.!). E-vrsta u G mn. gubi -a (žen- + Ø).'},
+  {q:'Imenica „djeca" je:',o:['regularna množina od „dijete"','zbirna imenica (sklanja se u jd.)','pluralia tantum','i-vrsta ž.r.'],t:1,e:'„Djeca" je zbirna imenica — iako znači množinu, sklanja se kao jednina e-vrste (djece, djeci, djecu).'},
+
+  // === TVORBA (3) ===
+  {q:'U riječi „ljepota" morfem „-ot-" je:',o:['sufiks','prefiks','korijen','nastavak'],t:0,e:'„-ot-" je sufiks koji od pridjeva („lijep") tvori apstraktnu imenicu ž.r. Korijen je „ljep-", nastavak je „-a" (N jd.).'},
+  {q:'Riječ „knjigovodstvo" nastala je:',o:['izvođenjem','prefiksacijom','slaganjem (kompozicijom)','kraćenjem'],t:2,e:'Slaganje: knjig- + -o- (spojnik) + vodstvo. Dva korijena + spojnik = složenica.'},
+  {q:'Koja je tvorbena skupina „HAZU" (Hrvatska akademija znanosti i umjetnosti)?',o:['polusloženica','izvedenica','složenica','slogovna skraćenica'],t:3,e:'„HAZU" je slogovna skraćenica — čita se kao riječ (ne po slovima). Alfabetska skraćenica bi se čitala „Ha-A-Ze-U".'},
+];
+
+const CP_ITEMS=[
+  'Razumijem razliku između morfologije (oblici riječi) i fonetike (glasovi), sintakse (rečenica) i leksikologije (značenje).',
+  'Znam 4 tipa morfema: korijen (značenje), prefiks (ispred), sufiks (tvorbeni), nastavak (gramatički).',
+  'Znam 10 vrsta riječi — 5 promjenjivih (imenice, pridjevi, zamjenice, brojevi, glagoli) + 5 nepromjenjivih (prilozi, prijedlozi, veznici, uzvici, čestice).',
+  'Znam 3 deklinacijske vrste imenica (a/e/i) i kako ih prepoznati po G jd. (-a / -e / -i).',
+  'Znam sva 7 padeža s pitanjima, značenjima i prijedlozima (mnemotehnika NADIVLA).',
+  'Razumijem razliku A vs. L s istim prijedlozima: A = kretanje (kamo?), L = mirovanje (gdje?).',
+  'Znam 7 glagolskih vremena (prezent, perfekt, aorist, imperfekt, pluskvamperfekt, futur I, futur II).',
+  'Razumijem glagolski vid — svršeni (završena radnja, s prefiksom) vs. nesvršeni (u tijeku).',
+  'Znam 7 vrsta zamjenica — posebno razliku svoj (povratno-posvojna, subjektu) vs. njegov (posvojna, nečija druga).',
+  'Razumijem 3 načina tvorbe riječi: izvođenje (prefiks/sufiks), slaganje (složenice), kraćenje (skraćenice).',
+];
+
+const DIAG0_Q=[
+  {q:'Koliko vrsta riječi razlikuje hrvatski jezik?',o:['8','10','12','7'],t:1,e:'10 vrsta riječi: 5 promjenjivih (imenice, pridjevi, zamjenice, brojevi, glagoli) + 5 nepromjenjivih (prilozi, prijedlozi, veznici, uzvici, čestice).'},
+  {q:'U kojoj skupini je glagol „pisati"?',o:['nepromjenjiva riječ','promjenjiva riječ','prijedlog','veznik'],t:1,e:'Glagoli su promjenjiva vrsta riječi — konjugiraju se po vremenu, licu, broju, vidu.'},
+  {q:'Koji je ovo morfem: ljep-OT-a?',o:['korijen','prefiks','sufiks','nastavak'],t:2,e:'„-ot-" je sufiks — od pridjeva „lijep" tvori imenicu „ljepota". Korijen je „ljep-", nastavak je „-a" (N jd.).'},
+  {q:'U rečenici „Dao sam joj knjigu." koji je padež riječi „knjigu"?',o:['nominativ','genitiv','akuzativ','instrumental'],t:2,e:'Akuzativ (A) — označava izravni objekt radnje (koga/što dajem). „Knjigu" = ono što dajem.'},
+  {q:'Koji je glagolski oblik „pročitat ću"?',o:['prezent','perfekt','futur I','aorist'],t:2,e:'Futur I (buduće vrijeme) — tvori se od svršenog glagola infinitiva + nenaglašenih oblika glagola „htjeti" (ću, ćeš, će, ćemo, ćete, će).'},
+  {q:'„Teško" iz „Teško je živjeti" je:',o:['prilog','imenica (preobrazba)','pridjev','čestica'],t:0,e:'PRILOG — opisuje kako je živjeti („teško je"). Ali u „Učinio je teško" → može biti imenica (preobrazba). Ovisi o kontekstu!'},
+  {q:'Imenica „stvar" pripada kojoj deklinaciji?',o:['a-deklinacija','e-deklinacija','i-deklinacija','ne deklinira se'],t:2,e:'i-deklinacija — ženske imenice koje u N završavaju na suglasnik. Sklonimo: stvar, stvari, stvari, stvar, stvari!, stvari, stvarju/i.'},
+  {q:'Komparativ pridjeva „dobar" je:',o:['dobriji','bolji','dobreći','dobrosi'],t:1,e:'BOLJI — supletivna komparacija (mijenja korijen). Pozitiv: dobar · komp: bolji · superlativ: najbolji. Slično: zao → gori, mali → manji, velik → veći.'},
+  {q:'„Knjigovodstvo" je nastalo:',o:['izvođenjem','slaganjem','preobrazbom','srastanjem'],t:1,e:'SLAGANJE — dva korijena (knjig + vodstvo) povezana spojnikom „-o-". Tipičan primjer složenice. Izvođenje bi bilo lijep+ota, preobrazba bi bila bez ikakve promjene oblika.'},
+  {q:'Glagol „dolaziti" je po vidu:',o:['svršeni','nesvršeni','dvovidni','bezglagolski'],t:1,e:'NESVRŠENI — radnja u tijeku/ponavlja se („dolazim svaki dan"). Svršeni parnjak je „doći" (radnja je gotova: „dođi sutra").'},
+];
+const TAB_NAMES=['Teorija','Promjenjive riječi','Nepromjenjive riječi','Gramatičke kategorije','Pojmovnik','Morfo Scanner','Kviz','Referentna tablica'];
+function sw(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('on',i===n);
+    t.setAttribute('aria-selected',i===n);
+  });
+  document.querySelectorAll('.layer').forEach((l,i)=>l.classList.toggle('on',i===n));
+  const _bc=document.getElementById('bc-tab');if(_bc)_bc.textContent=TAB_NAMES[n];
+  if(n===6)qzInit();
+  if(n===5){
+    // init drill on first open (safe — mg-dynamic may not exist in H20 since Tab 5 is now Scanner)
+    const _mg=document.getElementById('mg-dynamic');
+    if(_mg&&!_mg.dataset.init){
+      _mg.dataset.init='1';
+      if(typeof mgInit==='function')mgInit('easy');
+      if(typeof fcInit==='function')fcInit();
+    }
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeSb();
+}
+
+/* ═══════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════ */
+function openSb(){
+  document.getElementById('sidebar').classList.add('mobile-open');
+  document.getElementById('overlay').classList.add('show');
+}
+function closeSb(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+/* ═══════════════════════════════════
+   COUNTDOWN
+═══════════════════════════════════ */
+(function(){
+  // Datum ispita Hrv. jezik — ljetni rok 2025./2026.
+  // Dan 1 (test + sažetak): 15. lipnja 2026.
+  // Dan 2 (esej):           16. lipnja 2026.
+  // Izvor: NCVVO kalendar 2025./2026.
+  const now=new Date();
+  const todayLocal=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const dan1=new Date(2026,5,15); // 15. lipnja 2026. — lokalno (month je 0-indexed!)
+  const dan2=new Date(2026,5,16); // 16. lipnja 2026.
+  const target=todayLocal<=dan1?dan1:dan2; // Prikaži dan 1, pa dan 2
+  const diff=Math.round((target-todayLocal)/(1000*60*60*24));
+  const el=document.getElementById('cd-days');
+  const cw=el?el.closest('.countdown'):null;
+  if(!el)return;
+  if(diff>0){
+    el.textContent=diff;
+    if(cw&&diff<=30)cw.style.borderColor='var(--bronze-d)';
+    if(cw&&diff<=14)cw.style.borderColor='var(--bronze)';
+    if(cw&&diff<=7){cw.style.borderColor='var(--red)';cw.style.color='var(--red)';}
+  } else if(diff===0){
+    el.textContent='DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else if(Math.round((dan2-todayLocal)/(1000*60*60*24))===0){
+    el.textContent='Esej DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else {
+    el.textContent='prošlo';
+  }
+})();
+
+/* ═══════════════════════════════════
+   SCENES (pjevanja)
+═══════════════════════════════════ */
+function speakVerse(text, rate){
+  if(!('speechSynthesis' in window)){
+    alert('Vaš preglednik ne podržava audio čitanje (Web Speech API). Isprobaj Chrome, Edge ili Safari.');
+    return;
+  }
+  // Cancel any ongoing speech
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'hr-HR';
+  u.rate = rate || 0.85;
+  u.pitch = 1.0;
+  u.volume = 1.0;
+  // Try to find Croatian voice
+  const voices = window.speechSynthesis.getVoices();
+  const hrVoice = voices.find(v => v.lang && v.lang.startsWith('hr')) || voices.find(v => v.lang && v.lang.startsWith('sr')) || voices.find(v => v.lang && v.lang.startsWith('sl'));
+  if(hrVoice) u.voice = hrVoice;
+  window.speechSynthesis.speak(u);
+}
+// Trigger voice list load
+if('speechSynthesis' in window){
+  window.speechSynthesis.getVoices();
+  if(window.speechSynthesis.onvoiceschanged !== undefined){
+    window.speechSynthesis.onvoiceschanged = function(){};
+  }
+}
+
+
+
+/* WEB SPEECH API — fonetski audio demo */
+function speakWord(text){
+  if(!('speechSynthesis' in window)){
+    alert('Tvoj preglednik ne podržava audio izgovor. Pokušaj u Chrome ili Safari.');
+    return;
+  }
+  // Stop any ongoing speech
+  window.speechSynthesis.cancel();
+  
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'hr-HR';
+  utter.rate = 0.85;
+  utter.pitch = 1.0;
+  
+  // Try to find Croatian voice
+  const voices = window.speechSynthesis.getVoices();
+  const hrVoice = voices.find(v => v.lang.startsWith('hr'));
+  if(hrVoice) utter.voice = hrVoice;
+  
+  window.speechSynthesis.speak(utter);
+}
+
+// Preload voices (some browsers need this)
+if('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined){
+  window.speechSynthesis.onvoiceschanged = function(){};
+}
+
+
+
+
+
+/* ═══════════════════════════════════
+   H20 POJMOVNIK DATA + RENDERER
+═══════════════════════════════════ */
+
+const POJM_DATA2 = [
+  // === 1. MORFOLOGIJA OSNOVE (8) ===
+  {kat:'osnove', term:'Morfologija', def:'Grana gramatike koja proučava oblike riječi — kako se riječi mijenjaju (sklanjaju, konjugiraju) i kako se tvore. Razlikovati od sintakse (rečenica) i leksikologije (značenje riječi).'},
+  {kat:'osnove', term:'Morfem', def:'Najmanja jezična jedinica s vlastitim značenjem ili gramatičkom funkcijom. Riječ može imati više morfema (ljep-ot-a = 3 morfema).'},
+  {kat:'osnove', term:'Korijen (osnova)', def:'Središnji morfem riječi koji nosi leksičko značenje. Zajednički je svim srodnim riječima (ljep- u ljepota, ljepši, uljepšati).'},
+  {kat:'osnove', term:'Prefiks', def:'Morfem ispred korijena koji mijenja značenje (na-, do-, iz-, pre-, uz-, pod-, nad-, ne-). Iz prijedloga ili slavenskih osnova.'},
+  {kat:'osnove', term:'Sufiks', def:'Tvorbeni morfem iza korijena koji stvara novu riječ (drugu vrstu ili značenje). Primjeri: -ost (ljepota), -ica (učenica), -telj (učitelj), -ski (školski).'},
+  {kat:'osnove', term:'Nastavak', def:'Gramatički morfem na kraju riječi — označava padež, broj, lice, rod, vrijeme. Razlika od sufiksa: nastavak se mijenja, sufiks ostaje.'},
+  {kat:'osnove', term:'Promjenjive riječi', def:'5 vrsta riječi koje mijenjaju oblik: imenice, pridjevi, zamjenice, brojevi, glagoli. Sklanjaju se (padeži) ili konjugiraju (vremena).'},
+  {kat:'osnove', term:'Nepromjenjive riječi', def:'5 vrsta riječi koje zadržavaju isti oblik: prilozi, prijedlozi, veznici, uzvici, čestice.'},
+  
+  // === 2. VRSTE RIJEČI (12) ===
+  {kat:'vrste', term:'Imenica', def:'Promjenjiva vrsta riječi — imenuje bića, stvari, pojmove. Ima rod (m/ž/sr), broj (jd/mn), padež (7). Pitanje: tko? što?'},
+  {kat:'vrste', term:'Pridjev', def:'Promjenjiva vrsta — označava svojstva, osobine, pripadnost. Slaže se s imenicom u rodu, broju, padežu. 4 vrste: opisni, posvojni, gradivni, vremenski.'},
+  {kat:'vrste', term:'Zamjenica', def:'Promjenjiva vrsta koja zamjenjuje druge riječi (imenice, pridjeve). 7 vrsta: osobne, povratne, posvojne, povratno-posvojna, pokazne, upitne/odnosne, neodređene.'},
+  {kat:'vrste', term:'Broj', def:'Promjenjiva vrsta — označava količinu (glavni: pet), redoslijed (redni: drugi), skupinu (zbirni: dvoje) ili dio (dijelni: polovica).'},
+  {kat:'vrste', term:'Glagol', def:'Promjenjiva vrsta — izražava radnju, stanje, zbivanje. Konjugira se po licu (3), broju (2), vremenu (7), načinu (4), vidu (2), stanju (2).'},
+  {kat:'vrste', term:'Prilog', def:'Nepromjenjiva vrsta — pobliže označava glagol, pridjev ili drugi prilog. 5 vrsta: način (brzo), mjesto (ovdje), vrijeme (sutra), količina (vrlo), uzrok (zato).'},
+  {kat:'vrste', term:'Prijedlog', def:'Nepromjenjiva vrsta — izražava odnose. Dolazi uz padeže: G (od, iz), D (k, prema), A (u, na, za), L (u, na, o), I (s, pod).'},
+  {kat:'vrste', term:'Veznik', def:'Nepromjenjiva vrsta — povezuje riječi ili rečenice. Nezavisni (i, ili, a, ali) povezuju ravnopravne; zavisni (da, kad, jer, ako) uvode zavisnu rečenicu.'},
+  {kat:'vrste', term:'Uzvik', def:'Nepromjenjiva vrsta — izražava emocije (ah, jao), zvukove (mjau, bum) ili služi za dozivanje (hej, ej). Stoji izolirano u rečenici.'},
+  {kat:'vrste', term:'Čestica (riječca)', def:'Nepromjenjiva vrsta — izražava stav govornika. 7 vrsta: niječne (ne), potvrdne (da), upitne (li), usklične (baš), pokazne (evo), modalne (možda), poticajne (neka).'},
+  {kat:'vrste', term:'Deklinacija', def:'Sklanjanje imenica, pridjeva, zamjenica, brojeva kroz 7 padeža. Hrvatski ima 3 deklinacijske vrste: a-vrsta, e-vrsta, i-vrsta.'},
+  {kat:'vrste', term:'Konjugacija', def:'Mijenjanje glagolskih oblika po licu, broju, vremenu, načinu. Hrv. ima 5 konjugacijskih vrsta glagola.'},
+  
+  // === 3. PADEŽI (8) ===
+  {kat:'padezi', term:'Padež', def:'Gramatička kategorija koja označava sintaktičku funkciju imenice/pridjeva u rečenici. Hrv. ima 7 padeža: N, G, D, A, V, L, I.'},
+  {kat:'padezi', term:'Nominativ (N)', def:'1. padež — osnovni oblik. Pitanje: tko? što? Funkcija: subjekt rečenice. Nema prijedloga.'},
+  {kat:'padezi', term:'Genitiv (G)', def:'2. padež. Pitanja: koga? čega? Značenja: pripadnost (knjiga učenika), dio (litra vode), negacija (nema vode), vrijeme. Prijedlozi: od, do, iz, bez, kod.'},
+  {kat:'padezi', term:'Dativ (D)', def:'3. padež. Pitanja: komu? čemu? Značenja: primatelj (dao sam prijatelju), smjer (prema moru). Prijedlozi: k, prema, nasuprot.'},
+  {kat:'padezi', term:'Akuzativ (A)', def:'4. padež. Pitanja: koga? što? Značenja: izravni objekt (čitam knjigu), cilj kretanja (u školu). Prijedlozi: u, na, za, kroz.'},
+  {kat:'padezi', term:'Vokativ (V)', def:'5. padež — dozivanje. Često s 1. palatalizacijom (Ivan → Ivane, Bog → Bože). Nema prijedloga, stoji izolirano.'},
+  {kat:'padezi', term:'Lokativ (L)', def:'6. padež. Pitanja: o kome? o čemu? Značenja: mjesto mirovanja (u školi), tema (o knjizi). UVIJEK s prijedlogom: u, na, o, po, pri.'},
+  {kat:'padezi', term:'Instrumental (I)', def:'7. padež. Pitanja: s kim? s čim? Značenja: sredstvo (pišem olovkom), društvo (s prijateljem). Prijedlozi: s, za, pod, nad, pred.'},
+  
+  // === 4. GLAGOLSKE KATEGORIJE (12) ===
+  {kat:'glagoli', term:'Infinitiv', def:'Osnovni oblik glagola — završava na -ti ili -ći (čitati, reći). Neodređen oblik, bez lica i broja. Koristi se u tvorbi futura I.'},
+  {kat:'glagoli', term:'Prezent', def:'Sadašnje vrijeme. Tvorba: osnova + lični nastavci (-m/-š/-(ø), -mo/-te/-u ili -ju). Primjer: čit-am, čit-aš, čit-a.'},
+  {kat:'glagoli', term:'Perfekt', def:'Najčešće prošlo vrijeme. Tvorba: nenaglašeni prezent "biti" (sam, si, je...) + glagolski pridjev radni. Primjer: čitao sam.'},
+  {kat:'glagoli', term:'Aorist', def:'Prošlo završeno vrijeme od svršenih glagola. Tvorba: osnova + -h/-Ø/-Ø/-smo/-ste/-še. Knjževno, rijetko u razgovoru. Primjer: rekoh, reče.'},
+  {kat:'glagoli', term:'Imperfekt', def:'Prošlo vrijeme nesvršene radnje u tijeku. Tvorba: osnova + -jah/-jaše... Arhaično. Primjer: čitah, čitaše.'},
+  {kat:'glagoli', term:'Pluskvamperfekt', def:'Predprošlo vrijeme — radnja prije druge prošle. Tvorba: imperfekt/perfekt "biti" + pridjev radni. Primjer: bijah čitao, bio sam čitao.'},
+  {kat:'glagoli', term:'Futur I', def:'Buduće vrijeme. Tvorba: infinitiv (bez -i) + nenaglašeni "htjeti" (ću/ćeš/će/ćemo/ćete/će). Primjer: čitat ću.'},
+  {kat:'glagoli', term:'Futur II', def:'Pretbuduće vrijeme (u zavisnim rečenicama). Tvorba: prezent svršenog "biti" (budem) + pridjev radni. Primjer: budem čitao.'},
+  {kat:'glagoli', term:'Imperativ', def:'Zapovijedni način. Izražava zapovijed, molbu, savjet. Primjer: čitaj! (2. jd.), čitajmo! (1. mn.), čitajte! (2. mn.).'},
+  {kat:'glagoli', term:'Kondicional I', def:'Pogodbeni način — sadašnji ili budući uvjet. Tvorba: bih/bi/bi/bismo/biste/bi + pridjev radni. Primjer: čitao bih.'},
+  {kat:'glagoli', term:'Glagolski vid', def:'Kategorija koja izražava dovršenost radnje. SVRŠENI vid (napisati) = završena radnja; NESVRŠENI vid (pisati) = radnja u tijeku.'},
+  {kat:'glagoli', term:'Stanje (aktiv/pasiv)', def:'Kategorija koja označava odnos subjekta i radnje. AKTIV: subjekt vrši radnju (Ivan čita). PASIV: subjekt trpi radnju (Knjiga je pročitana).'},
+  
+  // === 5. ZAMJENIČKE VRSTE (7) ===
+  {kat:'zamjenice', term:'Osobne zamjenice', def:'Zamjenice koje označavaju osobe/stvari. 3 lica: ja/ti/on-ona-ono (jd.), mi/vi/oni-one-ona (mn.). Imaju naglašene (mene) i nenaglašene (me) oblike.'},
+  {kat:'zamjenice', term:'Povratne zamjenice', def:'Odnose se na subjekt rečenice. U hrvatskom je samo jedna: SE (nenaglašeno) / SEBE (naglašeno). Primjer: Vidim se u ogledalu.'},
+  {kat:'zamjenice', term:'Posvojne zamjenice', def:'Označavaju pripadnost osobi. Moj, tvoj, njegov/njezin, naš, vaš, njihov. Slažu se s imenicom u rodu, broju, padežu.'},
+  {kat:'zamjenice', term:'Povratno-posvojna zamjenica', def:'SVOJ — pripadnost subjektu. Razlika od posvojne: Ivan je uzeo SVOJU knjigu (Ivanovu) vs. NJEGOVU knjigu (nečiju drugu).'},
+  {kat:'zamjenice', term:'Pokazne zamjenice', def:'Upućuju na bliske/daleke entitete. Ovaj (blizu govornika), taj (blizu sugovornika), onaj (daleko). + ovakav/takav/onakav, oliki/toliki.'},
+  {kat:'zamjenice', term:'Upitne i odnosne zamjenice', def:'Upitne PITAJU (tko? što? koji? čiji?), odnosne POVEZUJU rečenice (čovjek koji dolazi). Iste riječi u obje funkcije.'},
+  {kat:'zamjenice', term:'Neodređene zamjenice', def:'Označavaju neodređene entitete. Netko, nešto, neki, svatko, svako, nitko, ništa, ičiji, svi, svašta. Tvoreno prefiksima ne-, ni-, sva-, i-.'},
+  
+  // === 6. TVORBA (6) ===
+  {kat:'tvorba', term:'Izvođenje (derivacija)', def:'Tvorba nove riječi dodavanjem prefiksa i/ili sufiksa. Najproduktivniji način. Primjer: pisati → napisati (prefiks), rad → radnik (sufiks).'},
+  {kat:'tvorba', term:'Slaganje (kompozicija)', def:'Tvorba spajanjem dvaju korijena → složenica. Tipovi: sa spojnikom (knjigovodstvo), bez spojnika (vatrogasac), polusloženice (spomen-ploča), sraslice (brzojav).'},
+  {kat:'tvorba', term:'Kraćenje', def:'Tvorba skraćenica. Tipovi: slogovne (HAZU — čita se kao riječ), inicijalne/alfabetske (SAD, EU — po slovima), djelomične (prof., dr.).'},
+  {kat:'tvorba', term:'Složenica', def:'Riječ nastala slaganjem dvaju korijena. Primjeri: knjigovodstvo, staro-sjedilac, parobrod. Obično s spojnikom -o- ili -e-.'},
+  {kat:'tvorba', term:'Polusloženica', def:'Dvije riječi spojene crticom, svaki dio zadržava svoje značenje i naglasak. Primjeri: spomen-ploča, brat-sestra, radio-postaja.'},
+  {kat:'tvorba', term:'Tvorbena osnova', def:'Dio riječi od kojeg se tvori nova riječ — obično korijen bez nastavaka. Primjer: rad- (od raditi) → radnik, radnica, radni.'},
+  
+  // === 7. METAJEZIK (7) ===
+  {kat:'meta', term:'Gramatička kategorija', def:'Obilježja po kojima se riječi mijenjaju. Imenske kategorije: rod, broj, padež. Glagolske: lice, broj, vrijeme, način, vid, stanje.'},
+  {kat:'meta', term:'Rod (m/ž/sr)', def:'Imenska kategorija — 3 roda. Najčešće se prepoznaje po završetku N jd. (suglasnik = m.r., -a = ž.r., -o/-e = sr.r.), ali s mnogim iznimkama.'},
+  {kat:'meta', term:'Broj (jd/mn)', def:'2 vrijednosti: jednina (1 entitet) i množina (2+). Neke imenice samo jd. (voda, ljubav), druge samo mn. (vrata, novine, pluća).'},
+  {kat:'meta', term:'Lice', def:'Glagolska kategorija — 3 lica: 1. (ja/mi), 2. (ti/vi), 3. (on-ona-ono/oni). Označava govornika, sugovornika, osobu o kojoj se govori.'},
+  {kat:'meta', term:'Paukal', def:'Poseban oblik imenice uz brojeve 2, 3, 4 (identičan s G jd.). Primjer: DVA STOLA (ne "stolovi"), TRI PRIJATELJA. Ostatak praslav. dvojine.'},
+  {kat:'meta', term:'Pluralia tantum', def:'Imenice koje postoje SAMO u množini. Primjeri: vrata, kola, pluća, leđa, naočale, hlače, škare, novine, usta.'},
+  {kat:'meta', term:'Deklinacijska vrsta', def:'Klasifikacija imenica po načinu sklanjanja. Hrvatski ima 3 vrste: a-vrsta (m.r.+sr.r., G jd. -a), e-vrsta (ž.r., G jd. -e), i-vrsta (ž.r. na suglasnik, G jd. -i).'},
+];
+
+let pojm2Active = 'all';
+let pojm2Mode = 'grid';
+let pj2Data = [];
+let pj2Idx = 0;
+let pj2Seen = {};
+
+function renderPojm2(){
+  const grid = document.getElementById('pojm-grid2');
+  if(!grid) return;
+  const show = pojm2Active === 'all' ? POJM_DATA2 : POJM_DATA2.filter(p => p.kat === pojm2Active);
+  
+  const KAT_LABELS = {
+    'osnove':'Osnove',
+    'vrste':'Vrste riječi',
+    'padezi':'Padeži',
+    'glagoli':'Glagoli',
+    'zamjenice':'Zamjenice',
+    'tvorba':'Tvorba',
+    'meta':'Metajezik'
+  };
+  
+  grid.innerHTML = show.map(p => \`
+    <div class="pojm-card-h20" onclick="this.classList.toggle('open')">
+      <div class="pc-kat">\${KAT_LABELS[p.kat] || p.kat}</div>
+      <div class="pc-term">\${p.term}</div>
+      <div class="pc-hint">→ klikni za definiciju</div>
+      <div class="pc-def">\${p.def}</div>
+    </div>
+  \`).join('');
+}
+
+function pojmFilter2(cat, btn){
+  document.querySelectorAll('.pojm-filter .pojm-fbt').forEach(b => b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  pojm2Active = cat;
+  renderPojm2();
+}
+
+// Auto-init
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderPojm2, 150);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderPojm2, 150);
+  }
+}
+
+
+/* TAB 5 · MORFO SCANNER (engine) */
+
+
+
+
+
+/* ═══════════════════════════════════
+   TAB 2 · INTERAKTIVNA VJEŽBA GLASOVNIH PROMJENA
+═══════════════════════════════════ */
+
+const GP_PAIRS = [
+  {pair:['list', 'lišće'], answer:'jotacija', explain:'Jotacija: t+j → ć, s+j → š (zbirna imenica na -je)'},
+  {pair:['vuk', 'vuče'], answer:'1palat', explain:'1. palatalizacija: k + e → č (vokativ jednine m.r.)'},
+  {pair:['vojnik', 'vojnici'], answer:'sibilar', explain:'Sibilarizacija (2. palat.): k + i → c (N mn. m.r.)'},
+  {pair:['čital', 'čitao'], answer:'vokal', explain:'Vokalizacija l: -l na kraju sloga → -o (gl. pridjev radni m.r.)'},
+  {pair:['pas', 'psa'], answer:'nepost', explain:'Nepostojano a: a se gubi u kosim padežima (ali se vraća u G mn.: pasa)'},
+  {pair:['svijet', 'svjetlost'], answer:'jat', explain:'Alternacija jata: ije (dugi slog) → je (kratki slog) — refleks praslav. *ě'},
+  {pair:['bog', 'bože'], answer:'1palat', explain:'1. palatalizacija: g + e → ž (vokativ jednine m.r.)'},
+  {pair:['iz+pasti', 'ispasti'], answer:'jednacenje', explain:'Jednačenje po zvučnosti: zvučni z → bezvučni s pred bezvučnim p'},
+];
+
+let gpIdx = 0;
+let gpScore = 0;
+
+function renderGpExercise(){
+  const cont = document.getElementById('gp-exercise');
+  if(!cont) return;
+  
+  if(gpIdx >= GP_PAIRS.length){
+    renderGpResult();
+    return;
+  }
+  
+  const item = GP_PAIRS[gpIdx];
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">PITANJE \${gpIdx+1} / \${GP_PAIRS.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${gpScore}</div>
+      </div>
+      
+      <div style="text-align:center;margin:24px 0;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap">
+        <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--t1);padding:14px 24px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r1)">\${item.pair[0]}</div>
+        <div style="font-size:24px;color:var(--gold)">→</div>
+        <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);padding:14px 24px;background:var(--bg);border:1.5px solid var(--gold);border-radius:var(--r1);box-shadow:0 2px 8px rgba(233,180,70,.15)">\${item.pair[1]}</div>
+      </div>
+      
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJA SE GLASOVNA PROMJENA DOGODILA?</div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">
+        <button class="gp-opt" data-ans="jotacija" onclick="gpAnswer('jotacija', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--blue);font-weight:700;margin-bottom:2px">1. Jotacija</div>
+          <div style="font-size:10px;color:var(--t3)">C + j → palatalni</div>
+        </button>
+        <button class="gp-opt" data-ans="1palat" onclick="gpAnswer('1palat', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--bronze);font-weight:700;margin-bottom:2px">2. 1. palatalizacija</div>
+          <div style="font-size:10px;color:var(--t3)">k,g,h + e/i → č,ž,š</div>
+        </button>
+        <button class="gp-opt" data-ans="sibilar" onclick="gpAnswer('sibilar', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--green);font-weight:700;margin-bottom:2px">3. Sibilarizacija</div>
+          <div style="font-size:10px;color:var(--t3)">k,g,h + i → c,z,s</div>
+        </button>
+        <button class="gp-opt" data-ans="vokal" onclick="gpAnswer('vokal', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--red);font-weight:700;margin-bottom:2px">4. Vokalizacija l</div>
+          <div style="font-size:10px;color:var(--t3)">-l → -o</div>
+        </button>
+        <button class="gp-opt" data-ans="nepost" onclick="gpAnswer('nepost', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--gold);font-weight:700;margin-bottom:2px">5. Nepostojano a</div>
+          <div style="font-size:10px;color:var(--t3)">a se gubi</div>
+        </button>
+        <button class="gp-opt" data-ans="jat" onclick="gpAnswer('jat', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:#9b59b6;font-weight:700;margin-bottom:2px">6. Alternacija jata</div>
+          <div style="font-size:10px;color:var(--t3)">ije/je/e/i</div>
+        </button>
+        <button class="gp-opt" data-ans="jednacenje" onclick="gpAnswer('jednacenje', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:#e67e22;font-weight:700;margin-bottom:2px">7. Jednačenje zvuč.</div>
+          <div style="font-size:10px;color:var(--t3)">izjednač. zvučnost</div>
+        </button>
+      </div>
+      
+      <div id="gp-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function gpAnswer(chosen, btn){
+  const item = GP_PAIRS[gpIdx];
+  const correct = chosen === item.answer;
+  if(correct) gpScore++;
+  
+  document.querySelectorAll('.gp-opt').forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+    b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.gp-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity = '1';
+        b.style.borderColor = 'var(--green)';
+        b.style.background = 'rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('gp-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="gpNext()">\${gpIdx < GP_PAIRS.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function gpNext(){
+  gpIdx++;
+  renderGpExercise();
+}
+
+function renderGpResult(){
+  const cont = document.getElementById('gp-exercise');
+  const res = document.getElementById('gp-result');
+  if(!cont || !res) return;
+  
+  cont.style.display = 'none';
+  res.style.display = 'block';
+  
+  const pct = Math.round((gpScore / GP_PAIRS.length) * 100);
+  let msg, color, emoji;
+  if(pct === 100){ emoji='🏆'; msg='Savršeno! Sve glasovne promjene prepoznate.'; color='var(--gold)'; }
+  else if(pct >= 75){ emoji='🎯'; msg='Odlično! Razlike među promjenama su ti jasne.'; color='var(--green)'; }
+  else if(pct >= 50){ emoji='📖'; msg='Dobro, ali ima prostora — provjeri scene-cards iznad.'; color='var(--blue)'; }
+  else{ emoji='⚠'; msg='Vrati se na scene-cards i ponovi pravila glasovnih promjena.'; color='var(--red)'; }
+  
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${gpScore} / \${GP_PAIRS.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="gpReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+function gpReset(){
+  gpIdx = 0;
+  gpScore = 0;
+  const res = document.getElementById('gp-result');
+  const cont = document.getElementById('gp-exercise');
+  if(res) res.style.display = 'none';
+  if(cont) cont.style.display = '';
+  renderGpExercise();
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderGpExercise, 200);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderGpExercise, 200);
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 1 · WORD CLASS IDENTIFICATION EXERCISE
+═══════════════════════════════════ */
+
+const WC_SENTENCES = [
+  {sentence:['Mala','djevojka','brzo','trči','u','školu','.'], target:1, word:'djevojka', answer:'imenica', explain:'"Djevojka" odgovara na pitanje TKO/ŠTO? — imenica (biće), ž.r., N jd.'},
+  {sentence:['Taj','pametan','dječak','čita','zanimljivu','knjigu','.'], target:1, word:'pametan', answer:'pridjev', explain:'"Pametan" odgovara na pitanje KAKAV? — pridjev (opisni, neodređeni oblik), m.r., N jd.'},
+  {sentence:['Ivan','i','Ana','pjevaju','lijepu','pjesmu','.'], target:3, word:'pjevaju', answer:'glagol', explain:'"Pjevaju" = radnja u prezentu, 3. l. mn. — glagol (nesvršeni vid).'},
+  {sentence:['Njegova','majka','radi','u','velikoj','bolnici','.'], target:0, word:'Njegova', answer:'zamjenica', explain:'"Njegova" = posvojna zamjenica — izražava pripadnost (čija majka?), ž.r., N jd.'},
+  {sentence:['Pet','studenata','uspješno','položi','ispit','.'], target:0, word:'Pet', answer:'broj', explain:'"Pet" = glavni broj, označava količinu (5 studenata). Ne mijenja oblik.'},
+  {sentence:['Knjiga','leži','na','velikom','stolu','.'], target:2, word:'na', answer:'prijedlog', explain:'"Na" = prijedlog — izražava odnos (gdje leži?), stoji uz imenicu u L.'},
+  {sentence:['Došao','sam','u','školu','jer','je','početak','.'], target:4, word:'jer', answer:'veznik', explain:'"Jer" = veznik — povezuje zavisnu (uzročnu) rečenicu s glavnom. Nepromjenjiva riječ.'},
+  {sentence:['Ona','je','vrlo','lijepo','otpjevala','arijetu','.'], target:3, word:'lijepo', answer:'prilog', explain:'"Lijepo" = prilog načina (KAKO je pjevala?) — opisuje radnju glagola.'},
+];
+
+let wcIdx = 0;
+let wcScore = 0;
+const WC_OPTIONS = ['imenica','pridjev','zamjenica','broj','glagol','prilog','prijedlog','veznik','uzvik','čestica'];
+
+function renderWcExercise(){
+  const cont = document.getElementById('wc-exercise');
+  if(!cont) return;
+  
+  if(wcIdx >= WC_SENTENCES.length){
+    renderWcResult();
+    return;
+  }
+  
+  const item = WC_SENTENCES[wcIdx];
+  
+  // Build sentence HTML with target word highlighted
+  const sentenceHtml = item.sentence.map((w, i) => {
+    if(i === item.target){
+      return \`<span style="display:inline-block;padding:4px 10px;background:rgba(233,180,70,.15);border:2px solid var(--gold);border-radius:var(--r1);color:var(--gold);font-weight:700;margin:0 2px">\${w}</span>\`;
+    }
+    if(w === '.' || w === ',' || w === '!' || w === '?'){
+      return w;
+    }
+    return \`<span style="margin:0 2px">\${w}</span>\`;
+  }).join(' ').replace(/ ([.,!?])/g, '$1');
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">REČENICA \${wcIdx+1} / \${WC_SENTENCES.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${wcScore}</div>
+      </div>
+      
+      <div style="text-align:center;margin:20px 0;padding:20px;background:var(--bg);border-radius:var(--r1);font-family:var(--display);font-size:16px;line-height:1.8;color:var(--t2)">
+        \${sentenceHtml}
+      </div>
+      
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJA JE VRSTA OZNAČENE RIJEČI?</div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px">
+        \${WC_OPTIONS.map(opt => \`
+          <button class="wc-opt" data-ans="\${opt}" onclick="wcAnswer('\${opt}', this)" style="padding:10px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;transition:all .2s;text-transform:capitalize">
+            \${opt}
+          </button>
+        \`).join('')}
+      </div>
+      
+      <div id="wc-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function wcAnswer(chosen, btn){
+  const item = WC_SENTENCES[wcIdx];
+  const correct = chosen === item.answer;
+  if(correct) wcScore++;
+  
+  document.querySelectorAll('.wc-opt').forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+    b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.wc-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity = '1';
+        b.style.borderColor = 'var(--green)';
+        b.style.background = 'rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('wc-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="wcNext()">\${wcIdx < WC_SENTENCES.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function wcNext(){
+  wcIdx++;
+  renderWcExercise();
+}
+
+function renderWcResult(){
+  const cont = document.getElementById('wc-exercise');
+  const res = document.getElementById('wc-result');
+  if(!cont || !res) return;
+  
+  cont.style.display = 'none';
+  res.style.display = 'block';
+  
+  const pct = Math.round((wcScore / WC_SENTENCES.length) * 100);
+  let msg, color, emoji;
+  if(pct === 100){ emoji='🏆'; msg='Savršeno! Sve vrste riječi prepoznaješ bez problema.'; color='var(--gold)'; }
+  else if(pct >= 75){ emoji='🎯'; msg='Odlično! Vrste riječi su ti jasne.'; color='var(--green)'; }
+  else if(pct >= 50){ emoji='📖'; msg='Dobro, ali provjeri scene-cards još jednom — posebno zamjenice i priloge.'; color='var(--blue)'; }
+  else{ emoji='⚠'; msg='Vrati se na scene-cards i pažljivo pročitaj definicije + primjere.'; color='var(--red)'; }
+  
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${wcScore} / \${WC_SENTENCES.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="wcReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+function wcReset(){
+  wcIdx = 0;
+  wcScore = 0;
+  const res = document.getElementById('wc-result');
+  const cont = document.getElementById('wc-exercise');
+  if(res) res.style.display = 'none';
+  if(cont) cont.style.display = '';
+  renderWcExercise();
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderWcExercise, 200);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderWcExercise, 200);
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 2 · NEPROMJENJIVE — DETECTION EXERCISE
+═══════════════════════════════════ */
+
+const NP_SENTENCES = [
+  {sentence:['Ivan','je','došao','u','školu','jučer','.'], target:3, word:'u', answer:'prijedlog', explain:'"U" je prijedlog — dolazi uz akuzativ (u školu = kamo?). Izražava prostorni odnos (kretanje).'},
+  {sentence:['Ana','pjeva','lijepo','i','glasno','.'], target:3, word:'i', answer:'veznik', explain:'"I" je nezavisni veznik (sastavni) — povezuje dva ravnopravna priloga (lijepo, glasno).'},
+  {sentence:['Učim','jer','želim','položiti','maturu','.'], target:1, word:'jer', answer:'veznik', explain:'"Jer" je zavisni veznik (uzročni) — uvodi zavisnu uzročnu rečenicu (zašto učim?).'},
+  {sentence:['Ah',',','kako','je','lijep','ovaj','dan','!'], target:0, word:'Ah', answer:'uzvik', explain:'"Ah" je emocionalni uzvik — izražava čuđenje/oduševljenje. Stoji odvojeno od rečenice.'},
+  {sentence:['Ne','znam','kamo','idemo','sutra','.'], target:0, word:'Ne', answer:'čestica', explain:'"Ne" je niječna čestica — negira glagol "znam". Izražava stav govornika (negaciju).'},
+  {sentence:['On','trči','vrlo','brzo','prema','kući','.'], target:2, word:'vrlo', answer:'prilog', explain:'"Vrlo" je prilog količine — opisuje drugi prilog ("brzo"). Stupnjuje intenzitet.'},
+];
+
+let npIdx = 0;
+let npScore = 0;
+const NP_OPTIONS = ['prilog','prijedlog','veznik','uzvik','čestica'];
+
+function renderNpExercise(){
+  const cont = document.getElementById('np-exercise');
+  if(!cont) return;
+  
+  if(npIdx >= NP_SENTENCES.length){
+    renderNpResult();
+    return;
+  }
+  
+  const item = NP_SENTENCES[npIdx];
+  
+  const sentenceHtml = item.sentence.map((w, i) => {
+    if(i === item.target){
+      return \`<span style="display:inline-block;padding:4px 10px;background:rgba(233,180,70,.15);border:2px solid var(--gold);border-radius:var(--r1);color:var(--gold);font-weight:700;margin:0 2px">\${w}</span>\`;
+    }
+    if(w === '.' || w === ',' || w === '!' || w === '?'){
+      return w;
+    }
+    return \`<span style="margin:0 2px">\${w}</span>\`;
+  }).join(' ').replace(/ ([.,!?])/g, '$1');
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">REČENICA \${npIdx+1} / \${NP_SENTENCES.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${npScore}</div>
+      </div>
+      
+      <div style="text-align:center;margin:20px 0;padding:20px;background:var(--bg);border-radius:var(--r1);font-family:var(--display);font-size:16px;line-height:1.8;color:var(--t2)">
+        \${sentenceHtml}
+      </div>
+      
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJA JE VRSTA OZNAČENE RIJEČI?</div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+        \${NP_OPTIONS.map(opt => \`
+          <button class="np-opt" data-ans="\${opt}" onclick="npAnswer('\${opt}', this)" style="padding:12px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:13px;transition:all .2s;text-transform:capitalize">
+            \${opt}
+          </button>
+        \`).join('')}
+      </div>
+      
+      <div id="np-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function npAnswer(chosen, btn){
+  const item = NP_SENTENCES[npIdx];
+  const correct = chosen === item.answer;
+  if(correct) npScore++;
+  
+  document.querySelectorAll('.np-opt').forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+    b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.np-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity = '1';
+        b.style.borderColor = 'var(--green)';
+        b.style.background = 'rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('np-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="npNext()">\${npIdx < NP_SENTENCES.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function npNext(){
+  npIdx++;
+  renderNpExercise();
+}
+
+function renderNpResult(){
+  const cont = document.getElementById('np-exercise');
+  const res = document.getElementById('np-result');
+  if(!cont || !res) return;
+  
+  cont.style.display = 'none';
+  res.style.display = 'block';
+  
+  const pct = Math.round((npScore / NP_SENTENCES.length) * 100);
+  let msg, color, emoji;
+  if(pct === 100){ emoji='🏆'; msg='Savršeno! Sve nepromjenjive riječi prepoznaješ.'; color='var(--gold)'; }
+  else if(pct >= 75){ emoji='🎯'; msg='Odlično! Razlike su ti jasne.'; color='var(--green)'; }
+  else if(pct >= 50){ emoji='📖'; msg='Ponovi — posebno razliku između veznika i čestice.'; color='var(--blue)'; }
+  else{ emoji='⚠'; msg='Vrati se na scene-cards i pažljivo pročitaj razlike (Box warn).'; color='var(--red)'; }
+  
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${npScore} / \${NP_SENTENCES.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="npReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+function npReset(){
+  npIdx = 0;
+  npScore = 0;
+  const res = document.getElementById('np-result');
+  const cont = document.getElementById('np-exercise');
+  if(res) res.style.display = 'none';
+  if(cont) cont.style.display = '';
+  renderNpExercise();
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderNpExercise, 250);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderNpExercise, 250);
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 3 · PADEŽNI DECLINER
+═══════════════════════════════════ */
+
+// BAZA IZNIMKI — nepravilne imenice + često pitane
+const DECL_EXCEPTIONS = {
+  'čovjek': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['čovjek', 'ljudi'], G: ['čovjeka', 'ljudi'], D: ['čovjeku', 'ljudima'],
+      A: ['čovjeka', 'ljude'], V: ['čovječe', 'ljudi'], L: ['čovjeku', 'ljudima'],
+      I: ['čovjekom', 'ljudima']
+    },
+    note: 'Supletivna množina — "ljudi" je poseban oblik (nije "čovjeci").'
+  },
+  'dijete': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['dijete', 'djeca'], G: ['djeteta', 'djece'], D: ['djetetu', 'djeci'],
+      A: ['dijete', 'djecu'], V: ['dijete', 'djeco'], L: ['djetetu', 'djeci'],
+      I: ['djetetom', 'djecom']
+    },
+    note: 'Zbirna množina "djeca" se sklanja u jednini (kao ž.r.), ali gramatički je množina.'
+  },
+  'pas': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['pas', 'psi'], G: ['psa', 'pasa'], D: ['psu', 'psima'],
+      A: ['psa', 'pse'], V: ['pase', 'psi'], L: ['psu', 'psima'],
+      I: ['psom', 'psima']
+    },
+    note: 'Nepostojano a — a nestaje u kosim padežima (pas → psa).'
+  },
+  'noga': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['noga', 'noge'], G: ['noge', 'nogu'], D: ['nozi', 'nogama'],
+      A: ['nogu', 'noge'], V: ['nogo', 'noge'], L: ['nozi', 'nogama'],
+      I: ['nogom', 'nogama']
+    },
+    note: 'Sibilarizacija u D/L jd. (noga → nozi).'
+  },
+  'ruka': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['ruka', 'ruke'], G: ['ruke', 'ruku'], D: ['ruci', 'rukama'],
+      A: ['ruku', 'ruke'], V: ['ruko', 'ruke'], L: ['ruci', 'rukama'],
+      I: ['rukom', 'rukama']
+    },
+    note: 'Sibilarizacija u D/L jd. (ruka → ruci).'
+  },
+  'majka': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['majka', 'majke'], G: ['majke', 'majki'], D: ['majci', 'majkama'],
+      A: ['majku', 'majke'], V: ['majko', 'majke'], L: ['majci', 'majkama'],
+      I: ['majkom', 'majkama']
+    },
+    note: 'Sibilarizacija u D/L jd. (majka → majci).'
+  },
+  'vojnik': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['vojnik', 'vojnici'], G: ['vojnika', 'vojnika'], D: ['vojniku', 'vojnicima'],
+      A: ['vojnika', 'vojnike'], V: ['vojniče', 'vojnici'], L: ['vojniku', 'vojnicima'],
+      I: ['vojnikom', 'vojnicima']
+    },
+    note: 'Sibilarizacija u N/V mn. (vojnik → vojnici). V jd. ima 1. palatalizaciju (vojniče).'
+  },
+  'Bog': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['Bog', 'bogovi'], G: ['Boga', 'bogova'], D: ['Bogu', 'bogovima'],
+      A: ['Boga', 'bogove'], V: ['Bože', 'bogovi'], L: ['Bogu', 'bogovima'],
+      I: ['Bogom', 'bogovima']
+    },
+    note: 'V jd. "Bože" — 1. palatalizacija (g → ž).'
+  },
+  'noć': {
+    gender: 'ž', type: 'i',
+    forms: {
+      N: ['noć', 'noći'], G: ['noći', 'noći'], D: ['noći', 'noćima'],
+      A: ['noć', 'noći'], V: ['noći', 'noći'], L: ['noći', 'noćima'],
+      I: ['noći / noću', 'noćima']
+    },
+    note: 'I-vrsta ž.r. (završava suglasnikom). I jd. ima oblik "noću" (kao prilog: "po noći").'
+  },
+  'stvar': {
+    gender: 'ž', type: 'i',
+    forms: {
+      N: ['stvar', 'stvari'], G: ['stvari', 'stvari'], D: ['stvari', 'stvarima'],
+      A: ['stvar', 'stvari'], V: ['stvari', 'stvari'], L: ['stvari', 'stvarima'],
+      I: ['stvari / stvarju', 'stvarima']
+    },
+    note: 'I-vrsta ž.r.'
+  },
+  'kost': {
+    gender: 'ž', type: 'i',
+    forms: {
+      N: ['kost', 'kosti'], G: ['kosti', 'kostiju'], D: ['kosti', 'kostima'],
+      A: ['kost', 'kosti'], V: ['kosti', 'kosti'], L: ['kosti', 'kostima'],
+      I: ['kosti / košću', 'kostima']
+    },
+    note: 'I-vrsta ž.r. G mn. završava -iju (kostiju).'
+  },
+  'ljubav': {
+    gender: 'ž', type: 'i',
+    forms: {
+      N: ['ljubav', 'ljubavi'], G: ['ljubavi', 'ljubavi'], D: ['ljubavi', 'ljubavima'],
+      A: ['ljubav', 'ljubavi'], V: ['ljubavi', 'ljubavi'], L: ['ljubavi', 'ljubavima'],
+      I: ['ljubavi / ljubavlju', 'ljubavima']
+    },
+    note: 'I-vrsta ž.r. I jd. ima dva oblika — "ljubavi" i "ljubavlju".'
+  },
+  'brat': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['brat', 'braća'], G: ['brata', 'braće'], D: ['bratu', 'braći'],
+      A: ['brata', 'braću'], V: ['brate', 'braćo'], L: ['bratu', 'braći'],
+      I: ['bratom', 'braćom']
+    },
+    note: 'Zbirna množina "braća" sklanja se u jednini (kao ž.r.).'
+  },
+  'sin': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['sin', 'sinovi'], G: ['sina', 'sinova'], D: ['sinu', 'sinovima'],
+      A: ['sina', 'sinove'], V: ['sine', 'sinovi'], L: ['sinu', 'sinovima'],
+      I: ['sinom', 'sinovima']
+    },
+    note: 'M.r. kratka riječ s umetkom -ov- u množini.'
+  },
+  'otac': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['otac', 'očevi'], G: ['oca', 'očeva'], D: ['ocu', 'očevima'],
+      A: ['oca', 'očeve'], V: ['oče', 'očevi'], L: ['ocu', 'očevima'],
+      I: ['ocem', 'očevima']
+    },
+    note: 'Nepostojano a + palatalizacija (c→č) u množini.'
+  },
+  'tata': {
+    gender: 'm', type: 'e',
+    forms: {
+      N: ['tata', 'tate'], G: ['tate', 'tata'], D: ['tati', 'tatama'],
+      A: ['tatu', 'tate'], V: ['tata', 'tate'], L: ['tati', 'tatama'],
+      I: ['tatom', 'tatama']
+    },
+    note: 'M.r. na -a — sklanja se kao e-vrsta (ženska), ali rod je muški (slaganje s pridjevima: dobar tata).'
+  },
+  'oko': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['oko', 'oči'], G: ['oka', 'očiju'], D: ['oku', 'očima'],
+      A: ['oko', 'oči'], V: ['oko', 'oči'], L: ['oku', 'očima'],
+      I: ['okom', 'očima']
+    },
+    note: 'Supletivna množina "oči" (stari dvojinski oblik) — ž.r. i-vrste u mn.'
+  },
+  'uho': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['uho', 'uši'], G: ['uha', 'ušiju'], D: ['uhu', 'ušima'],
+      A: ['uho', 'uši'], V: ['uho', 'uši'], L: ['uhu', 'ušima'],
+      I: ['uhom', 'ušima']
+    },
+    note: 'Supletivna množina "uši" (stari dvojinski oblik).'
+  },
+  'gospodin': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['gospodin', 'gospoda'], G: ['gospodina', 'gospode'], D: ['gospodinu', 'gospodi'],
+      A: ['gospodina', 'gospodu'], V: ['gospodine', 'gospodo'], L: ['gospodinu', 'gospodi'],
+      I: ['gospodinom', 'gospodom']
+    },
+    note: 'Nepravilna zbirna množina "gospoda" — sklanja se u jednini (kao ž.r.).'
+  },
+  'selo': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['selo', 'sela'], G: ['sela', 'sela'], D: ['selu', 'selima'],
+      A: ['selo', 'sela'], V: ['selo', 'sela'], L: ['selu', 'selima'],
+      I: ['selom', 'selima']
+    },
+    note: 'Sr.r. a-vrsta — tipično sklanjanje.'
+  },
+  'more': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['more', 'mora'], G: ['mora', 'mora'], D: ['moru', 'morima'],
+      A: ['more', 'mora'], V: ['more', 'mora'], L: ['moru', 'morima'],
+      I: ['morem', 'morima']
+    },
+    note: 'Sr.r. palatalna osnova — I jd. ima -em umjesto -om.'
+  },
+  // === DODATNE IZNIMKE (UPGRADE) ===
+  'prst': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['prst', 'prsti'], G: ['prsta', 'prstiju / prsta'], D: ['prstu', 'prstima'],
+      A: ['prst', 'prste'], V: ['prste', 'prsti'], L: ['prstu', 'prstima'],
+      I: ['prstom', 'prstima']
+    },
+    note: 'G mn. ima dva oblika — "prstiju" i "prsta".'
+  },
+  'gost': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['gost', 'gosti'], G: ['gosta', 'gostiju'], D: ['gostu', 'gostima'],
+      A: ['gosta', 'goste'], V: ['goste', 'gosti'], L: ['gostu', 'gostima'],
+      I: ['gostom', 'gostima']
+    },
+    note: 'M.r. s G mn. -iju (kao i-vrsta).'
+  },
+  'put': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['put', 'putovi / puti'], G: ['puta', 'putova / puti'], D: ['putu', 'putovima'],
+      A: ['put', 'putove'], V: ['pute', 'putovi'], L: ['putu', 'putovima'],
+      I: ['putem / putom', 'putovima']
+    },
+    note: 'I jd. ima oblike "putem" (po putu) i "putom" (jednom). Mn. ima 2 oblika ("putovi" je češći).'
+  },
+  'dan': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['dan', 'dani'], G: ['dana', 'dana'], D: ['danu', 'danima'],
+      A: ['dan', 'dane'], V: ['dane', 'dani'], L: ['danu', 'danima'],
+      I: ['danom', 'danima']
+    },
+    note: 'M.r. s G mn. = G jd. (rijetkost u m.r.).'
+  },
+  'pjesma': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['pjesma', 'pjesme'], G: ['pjesme', 'pjesama'], D: ['pjesmi', 'pjesmama'],
+      A: ['pjesmu', 'pjesme'], V: ['pjesmo', 'pjesme'], L: ['pjesmi', 'pjesmama'],
+      I: ['pjesmom', 'pjesmama']
+    },
+    note: 'G mn. s nepostojanim a — "pjesama".'
+  },
+  'sestra': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['sestra', 'sestre'], G: ['sestre', 'sestara'], D: ['sestri', 'sestrama'],
+      A: ['sestru', 'sestre'], V: ['sestro', 'sestre'], L: ['sestri', 'sestrama'],
+      I: ['sestrom', 'sestrama']
+    },
+    note: 'G mn. s nepostojanim a — "sestara".'
+  },
+  'jaje': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['jaje', 'jaja'], G: ['jaja', 'jaja'], D: ['jajetu', 'jajima'],
+      A: ['jaje', 'jaja'], V: ['jaje', 'jaja'], L: ['jajetu', 'jajima'],
+      I: ['jajetom / jajem', 'jajima']
+    },
+    note: 'Sr.r. s posebnim oblikom u D/L jd. (-etu).'
+  },
+  'ime': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['ime', 'imena'], G: ['imena', 'imena'], D: ['imenu', 'imenima'],
+      A: ['ime', 'imena'], V: ['ime', 'imena'], L: ['imenu', 'imenima'],
+      I: ['imenom', 'imenima']
+    },
+    note: 'Sr.r. s n-osnovom — proširuje se s -en- (ime → imen-a, imen-u, imen-om).'
+  },
+  'vrijeme': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['vrijeme', 'vremena'], G: ['vremena', 'vremena'], D: ['vremenu', 'vremenima'],
+      A: ['vrijeme', 'vremena'], V: ['vrijeme', 'vremena'], L: ['vremenu', 'vremenima'],
+      I: ['vremenom', 'vremenima']
+    },
+    note: 'Sr.r. s n-osnovom + alternacija jata (vrije/vreme).'
+  },
+  'rame': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['rame', 'ramena'], G: ['ramena', 'ramena'], D: ['ramenu', 'ramenima'],
+      A: ['rame', 'ramena'], V: ['rame', 'ramena'], L: ['ramenu', 'ramenima'],
+      I: ['ramenom', 'ramenima']
+    },
+    note: 'Sr.r. s n-osnovom (kao "ime").'
+  }
+};
+
+// Detekcija deklinacijske vrste i roda (heuristika)
+function detectDeclType(word){
+  const w = word.toLowerCase();
+  if(w.endsWith('a')){
+    if(['tata','papa','djed','vojvoda','starješina','kolega','sudac'].includes(w)){
+      return {type:'e', gender:'m'};
+    }
+    return {type:'e', gender:'ž'};
+  }
+  if(w.endsWith('o') || w.endsWith('e')){
+    return {type:'a', gender:'sr'};
+  }
+  // Konstantna imena na -i (i-vrsta ž.r.) ili neka specifična
+  if(['noć','stvar','ljubav','kost','mast','mladost','sreća','radost','glad','riječ'].includes(w)){
+    return {type:'i', gender:'ž'};
+  }
+  // Default — suglasnik = a-vrsta m.r.
+  return {type:'a', gender:'m'};
+}
+
+// Primjena glasovnih promjena (za regular declension)
+function applySoundChanges(stem, ending, position){
+  const last = stem[stem.length-1];
+  // Sibilarizacija (k, g, h + i → c, z, s) u D/L jd. i N/V mn.
+  if(ending.startsWith('i') && (position === 'Djd' || position === 'Ljd' || position === 'Nmn' || position === 'Vmn')){
+    if(last === 'k') return stem.slice(0, -1) + 'c' + ending;
+    if(last === 'g') return stem.slice(0, -1) + 'z' + ending;
+    if(last === 'h') return stem.slice(0, -1) + 's' + ending;
+  }
+  // 1. palatalizacija (k, g, h + e → č, ž, š) u V jd.
+  if(ending.startsWith('e') && position === 'Vjd'){
+    if(last === 'k') return stem.slice(0, -1) + 'č' + ending;
+    if(last === 'g') return stem.slice(0, -1) + 'ž' + ending;
+    if(last === 'h') return stem.slice(0, -1) + 'š' + ending;
+    if(last === 'c') return stem.slice(0, -1) + 'č' + ending;
+  }
+  return stem + ending;
+}
+
+// Regular declension engine
+function declineRegular(word, type, gender){
+  const forms = {};
+  const w = word.toLowerCase();
+  const animate = isAnimate(w);
+  
+  if(type === 'a' && gender === 'm'){
+    const stem = w;
+    forms.N = [w, applySoundChanges(stem, 'i', 'Nmn')];
+    forms.G = [applySoundChanges(stem, 'a', 'Gjd'), applySoundChanges(stem, 'a', 'Gmn')];
+    forms.D = [applySoundChanges(stem, 'u', 'Djd'), applySoundChanges(stem, 'ima', 'Dmn')];
+    // A jd. — živo = G jd., neživo = N jd.
+    forms.A = [animate ? applySoundChanges(stem, 'a', 'Gjd') : w, applySoundChanges(stem, 'e', 'Amn')];
+    forms.V = [applySoundChanges(stem, 'e', 'Vjd'), applySoundChanges(stem, 'i', 'Vmn')];
+    forms.L = [applySoundChanges(stem, 'u', 'Ljd'), applySoundChanges(stem, 'ima', 'Lmn')];
+    forms.I = [applySoundChanges(stem, 'om', 'Ijd'), applySoundChanges(stem, 'ima', 'Imn')];
+  } else if(type === 'a' && gender === 'sr'){
+    const stem = w.slice(0, -1);
+    const isE = w.endsWith('e');
+    forms.N = [w, stem + 'a'];
+    forms.G = [stem + 'a', stem + 'a'];
+    forms.D = [stem + 'u', stem + 'ima'];
+    forms.A = [w, stem + 'a'];
+    forms.V = [w, stem + 'a'];
+    forms.L = [stem + 'u', stem + 'ima'];
+    forms.I = [stem + (isE ? 'em' : 'om'), stem + 'ima'];
+  } else if(type === 'e'){
+    const stem = w.slice(0, -1);
+    forms.N = [w, stem + 'e'];
+    forms.G = [stem + 'e', stem + 'a'];
+    forms.D = [applySoundChanges(stem, 'i', 'Djd'), stem + 'ama'];
+    forms.A = [stem + 'u', stem + 'e'];
+    forms.V = [stem + 'o', stem + 'e'];
+    forms.L = [applySoundChanges(stem, 'i', 'Ljd'), stem + 'ama'];
+    forms.I = [stem + 'om', stem + 'ama'];
+  } else if(type === 'i'){
+    const stem = w;
+    forms.N = [w, stem + 'i'];
+    forms.G = [stem + 'i', stem + 'i'];
+    forms.D = [stem + 'i', stem + 'ima'];
+    forms.A = [w, stem + 'i'];
+    forms.V = [stem + 'i', stem + 'i'];
+    forms.L = [stem + 'i', stem + 'ima'];
+    forms.I = [stem + 'i / ' + stem + 'ju', stem + 'ima'];
+  }
+  
+  return forms;
+}
+
+function declineNoun(){
+  const input = document.getElementById('decl-input');
+  const out = document.getElementById('decl-results');
+  if(!input || !out) return;
+  
+  const word = input.value.trim().toLowerCase();
+  if(!word){ out.innerHTML = ''; return; }
+  
+  if(!/^[a-zčćđšž]+$/.test(word)){
+    out.innerHTML = '<div class="box-warn"><div class="bw-body"><div class="bw-txt">Samo hrv. slova (a-ž), bez razmaka.</div></div></div>';
+    return;
+  }
+  
+  let result, gender, type, note, isException = false;
+  
+  // Provjeri bazu iznimki
+  if(DECL_EXCEPTIONS[word]){
+    const exc = DECL_EXCEPTIONS[word];
+    result = exc.forms;
+    gender = exc.gender;
+    type = exc.type;
+    note = exc.note;
+    isException = true;
+  } else {
+    const detected = detectDeclType(word);
+    type = detected.type;
+    gender = detected.gender;
+    result = declineRegular(word, type, gender);
+    note = \`Regularno sklanjanje · \${type}-vrsta · \${gender}.r.\`;
+  }
+  
+  const GENDER_LABEL = {'m':'muški rod','ž':'ženski rod','sr':'srednji rod'};
+  const TYPE_LABEL = {'a':'a-vrsta','e':'e-vrsta','i':'i-vrsta'};
+  
+  const PADEZ_NAMES = [
+    ['N','Nominativ','tko? što?','var(--blue)'],
+    ['G','Genitiv','koga? čega?','var(--red)'],
+    ['D','Dativ','komu? čemu?','var(--bronze)'],
+    ['A','Akuzativ','koga? što?','var(--green)'],
+    ['V','Vokativ','(dozivanje)','var(--gold)'],
+    ['L','Lokativ','o kome? o čemu?','#9b59b6'],
+    ['I','Instrumental','s kim? s čim?','#e67e22']
+  ];
+  
+  let html = \`
+    <div style="padding:18px;background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.3);border-radius:var(--r2);margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:2px">DEKLINACIJA</div>
+          <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);margin-top:4px">\${word}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--t2)">\${GENDER_LABEL[gender]} · \${TYPE_LABEL[type]}</div>
+          \${isException ? '<div style="font-family:var(--mono);font-size:10px;color:var(--bronze);margin-top:4px">⚠ IZNIMKA · iz baze</div>' : ''}
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:12px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Padež</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Pitanje</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Jednina</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Množina</th>
+          </tr>
+        </thead>
+        <tbody>
+  \`;
+  
+  PADEZ_NAMES.forEach(([key, name, q, color]) => {
+    const [jd, mn] = result[key] || ['—','—'];
+    html += \`
+      <tr style="border-bottom:1px solid var(--bd)">
+        <td style="padding:10px;color:\${color};font-weight:700">\${name}</td>
+        <td style="padding:10px;color:var(--t3);font-size:11px">\${q}</td>
+        <td style="padding:10px;text-align:center;color:var(--t1);font-weight:600">\${jd}</td>
+        <td style="padding:10px;text-align:center;color:var(--t1);font-weight:600">\${mn}</td>
+      </tr>
+    \`;
+  });
+  
+  html += \`
+        </tbody>
+      </table>
+    </div>
+  \`;
+  
+  if(note){
+    html += \`
+      <div class="box-signal" style="margin-top:12px">
+        <div class="box-signal-lbl">💡 Napomena</div>
+        <div class="box-signal-txt">\${note}</div>
+      </div>
+    \`;
+  }
+  
+  if(!isException){
+    html += \`
+      <div style="font-family:var(--mono);font-size:10px;color:var(--t3);text-align:center;margin-top:8px">⚠ Algoritamska deklinacija — provjeri u rječniku za stilistički specifične oblike</div>
+    \`;
+  }
+  
+  // Action buttons at bottom
+  html += \`
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap">
+      <button class="nb-btn" id="decl-copy-btn" style="padding:6px 12px;font-size:12px" onclick="declineCopyTable()">📋 Kopiraj tablicu</button>
+      <button class="nb-btn" style="padding:6px 12px;font-size:12px" onclick="window.print()">🖨 Printaj</button>
+    </div>
+  \`;
+  
+    // Save to history
+  try {
+    const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.decl_hist')||'[]');
+    if(!hist.some(h => h.word === word)){
+      hist.push({word, date: new Date().toISOString()});
+      localStorage.setItem('mt.hrv.h20.decl_hist', JSON.stringify(hist.slice(-15)));
+    }
+  } catch(e){}
+  
+  out.innerHTML = html;
+}
+
+function declineExample(word){
+  const input = document.getElementById('decl-input');
+  if(input){
+    input.value = word;
+    declineNoun();
+    input.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 3 · PADEŽNI QUIZ
+═══════════════════════════════════ */
+
+const PZ_ITEMS = [
+  {sentence:['Ivan','je','vidio','Anu','u','parku','.'], target:3, word:'Anu', answer:'A', explain:'"Anu" je izravni objekt glagola "vidio" — akuzativ (A). Pitanje: koga je vidio? → Anu.'},
+  {sentence:['Dao','sam','knjigu','prijatelju','.'], target:3, word:'prijatelju', answer:'D', explain:'"Prijatelju" je primatelj — dativ (D). Pitanje: komu sam dao? → prijatelju.'},
+  {sentence:['Boravim','u','Zagrebu','već','5','godina','.'], target:2, word:'Zagrebu', answer:'L', explain:'"Zagrebu" označava mjesto (gdje?) — lokativ (L). Uz prijedlog "u" + L = mirovanje.'},
+  {sentence:['Kupila','je','cvijeće','za','majčin','rođendan','.'], target:5, word:'rođendan', answer:'A', explain:'"Rođendan" — akuzativ (A), uz prijedlog "za". Pitanje: za što? → za rođendan.'},
+  {sentence:['Otišao','je','od','kuće','rano','ujutro','.'], target:3, word:'kuće', answer:'G', explain:'"Kuće" je genitiv (G) uz prijedlog "od". Pitanje: od čega? → od kuće.'},
+  {sentence:['Šetali','su','se','s','djecom','po','parku','.'], target:4, word:'djecom', answer:'I', explain:'"Djecom" je instrumental (I) uz prijedlog "s" — društvo. Pitanje: s kim? → s djecom.'},
+  {sentence:['Ivane',',','dođi','ovamo','!'], target:0, word:'Ivane', answer:'V', explain:'"Ivane" — vokativ (V). Dozivanje osobe, stoji odvojeno (obično sa zarezom ili uskličnikom).'},
+  {sentence:['Knjiga','leži','na','stolu','kraj','prozora','.'], target:3, word:'stolu', answer:'L', explain:'"Stolu" je lokativ (L) uz prijedlog "na" — gdje leži? Stanje mirovanja.'},
+];
+
+let pzIdx = 0, pzScore = 0;
+const PZ_OPTIONS = [
+  {key:'N', name:'Nominativ', color:'var(--blue)'},
+  {key:'G', name:'Genitiv', color:'var(--red)'},
+  {key:'D', name:'Dativ', color:'var(--bronze)'},
+  {key:'A', name:'Akuzativ', color:'var(--green)'},
+  {key:'V', name:'Vokativ', color:'var(--gold)'},
+  {key:'L', name:'Lokativ', color:'#9b59b6'},
+  {key:'I', name:'Instrumental', color:'#e67e22'}
+];
+
+function renderPzExercise(){
+  const cont = document.getElementById('pz-exercise');
+  if(!cont) return;
+  if(pzIdx >= PZ_ITEMS.length){ renderPzResult(); return; }
+  
+  const item = PZ_ITEMS[pzIdx];
+  const sentenceHtml = item.sentence.map((w, i) => {
+    if(i === item.target){
+      return \`<span style="display:inline-block;padding:4px 10px;background:rgba(233,180,70,.15);border:2px solid var(--gold);border-radius:var(--r1);color:var(--gold);font-weight:700;margin:0 2px">\${w}</span>\`;
+    }
+    if(w === '.' || w === ',' || w === '!' || w === '?') return w;
+    return \`<span style="margin:0 2px">\${w}</span>\`;
+  }).join(' ').replace(/ ([.,!?])/g, '$1');
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">PITANJE \${pzIdx+1} / \${PZ_ITEMS.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${pzScore}</div>
+      </div>
+      <div style="text-align:center;margin:20px 0;padding:20px;background:var(--bg);border-radius:var(--r1);font-family:var(--display);font-size:16px;line-height:1.8;color:var(--t2)">\${sentenceHtml}</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJI JE PADEŽ OZNAČENE RIJEČI?</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px">
+        \${PZ_OPTIONS.map(opt => \`
+          <button class="pz-opt" data-ans="\${opt.key}" onclick="pzAnswer('\${opt.key}', this)" style="padding:12px 10px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;transition:all .2s;text-align:left">
+            <div style="font-weight:700;color:\${opt.color}">\${opt.key}</div>
+            <div style="font-size:10px;color:var(--t3)">\${opt.name}</div>
+          </button>
+        \`).join('')}
+      </div>
+      <div id="pz-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function pzAnswer(chosen, btn){
+  const item = PZ_ITEMS[pzIdx];
+  const correct = chosen === item.answer;
+  if(correct) pzScore++;
+  
+  document.querySelectorAll('.pz-opt').forEach(b => {b.disabled=true;b.style.cursor='default';b.style.opacity='0.5';});
+  btn.style.opacity='1'; btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.pz-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity='1'; b.style.borderColor='var(--green)'; b.style.background='rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('pz-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="pzNext()">\${pzIdx < PZ_ITEMS.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function pzNext(){ pzIdx++; renderPzExercise(); }
+function pzReset(){ pzIdx=0; pzScore=0; const r=document.getElementById('pz-result'),c=document.getElementById('pz-exercise'); if(r)r.style.display='none'; if(c)c.style.display=''; renderPzExercise(); }
+
+function renderPzResult(){
+  const cont = document.getElementById('pz-exercise'), res = document.getElementById('pz-result');
+  if(!cont || !res) return;
+  cont.style.display='none'; res.style.display='block';
+  const pct = Math.round((pzScore/PZ_ITEMS.length)*100);
+  let msg, color, emoji;
+  if(pct===100){emoji='🏆';msg='Savršeno! Padeži su ti potpuno jasni.';color='var(--gold)';}
+  else if(pct>=75){emoji='🎯';msg='Odlično! Solidan temelj.';color='var(--green)';}
+  else if(pct>=50){emoji='📖';msg='Dobro, ali vježbaj s declinerom iznad.';color='var(--blue)';}
+  else{emoji='⚠';msg='Ponovi scene-cards svakog padeža + pitanja.';color='var(--red)';}
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${pzScore} / \${PZ_ITEMS.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="pzReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(renderPzExercise, 300); });
+  if(document.readyState !== 'loading'){ setTimeout(renderPzExercise, 300); }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 3 · KONJUGACIJSKI QUIZ
+═══════════════════════════════════ */
+
+const KZ_ITEMS = [
+  {form:'čitam', base:'čitati', answer:'prezent 1. l. jd.', explain:'"Čitam" — prezent, 1. lice jednine. Tvorba: osnova "čit-" + nastavak "-am".'},
+  {form:'napisao sam', base:'napisati', answer:'perfekt 1. l. jd. m.r.', explain:'"Napisao sam" — perfekt, 1. l. jd. (m.r.). Tvorba: prezent "biti" + glagolski pridjev radni.'},
+  {form:'pročitat ću', base:'pročitati', answer:'futur I 1. l. jd.', explain:'"Pročitat ću" — futur I, 1. l. jd. Tvorba: infinitiv bez -i + nenaglašeni "htjeti" (ću).'},
+  {form:'čitao bih', base:'čitati', answer:'kondicional I 1. l. jd. m.r.', explain:'"Čitao bih" — kondicional I, 1. l. jd. (m.r.). Tvorba: aorist pomoćnog glagola "biti" (bih) + pridjev radni.'},
+  {form:'čitaj!', base:'čitati', answer:'imperativ 2. l. jd.', explain:'"Čitaj!" — imperativ, 2. l. jd. Zapovijed upućena sugovorniku.'},
+  {form:'budem čitao', base:'čitati', answer:'futur II 1. l. jd. m.r.', explain:'"Budem čitao" — futur II, 1. l. jd. (m.r.). Tvorba: prezent svršenog "biti" (budem) + pridjev radni. Koristi se u zavisnim rečenicama.'},
+];
+
+let kzIdx = 0, kzScore = 0;
+const KZ_OPTIONS = [
+  'prezent 1. l. jd.', 'prezent 3. l. mn.',
+  'perfekt 1. l. jd. m.r.', 'perfekt 3. l. jd. ž.r.',
+  'aorist 1. l. jd.',
+  'futur I 1. l. jd.', 'futur I 3. l. mn.',
+  'futur II 1. l. jd. m.r.',
+  'imperativ 2. l. jd.', 'imperativ 1. l. mn.',
+  'kondicional I 1. l. jd. m.r.', 'kondicional II 1. l. jd. m.r.'
+];
+
+function renderKzExercise(){
+  const cont = document.getElementById('kz-exercise');
+  if(!cont) return;
+  if(kzIdx >= KZ_ITEMS.length){ renderKzResult(); return; }
+  
+  const item = KZ_ITEMS[kzIdx];
+  
+  // Build 4 option choices: correct + 3 distractors
+  const wrong = KZ_OPTIONS.filter(o => o !== item.answer);
+  const shuffled = wrong.sort(() => Math.random() - 0.5).slice(0, 3);
+  const options = [item.answer, ...shuffled].sort(() => Math.random() - 0.5);
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">PITANJE \${kzIdx+1} / \${KZ_ITEMS.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${kzScore}</div>
+      </div>
+      <div style="text-align:center;margin:20px 0;padding:24px;background:var(--bg);border-radius:var(--r1)">
+        <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);margin-bottom:4px">\${item.form}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">osnova: \${item.base}</div>
+      </div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJI JE OBLIK?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        \${options.map(opt => \`
+          <button class="kz-opt" data-ans="\${opt}" onclick="kzAnswer('\${opt}', this)" style="padding:12px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;transition:all .2s;text-align:left">
+            \${opt}
+          </button>
+        \`).join('')}
+      </div>
+      <div id="kz-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function kzAnswer(chosen, btn){
+  const item = KZ_ITEMS[kzIdx];
+  const correct = chosen === item.answer;
+  if(correct) kzScore++;
+  
+  document.querySelectorAll('.kz-opt').forEach(b => {b.disabled=true;b.style.cursor='default';b.style.opacity='0.5';});
+  btn.style.opacity='1'; btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.kz-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity='1'; b.style.borderColor='var(--green)'; b.style.background='rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('kz-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="kzNext()">\${kzIdx < KZ_ITEMS.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function kzNext(){ kzIdx++; renderKzExercise(); }
+function kzReset(){ kzIdx=0; kzScore=0; const r=document.getElementById('kz-result'),c=document.getElementById('kz-exercise'); if(r)r.style.display='none'; if(c)c.style.display=''; renderKzExercise(); }
+
+function renderKzResult(){
+  const cont = document.getElementById('kz-exercise'), res = document.getElementById('kz-result');
+  if(!cont || !res) return;
+  cont.style.display='none'; res.style.display='block';
+  const pct = Math.round((kzScore/KZ_ITEMS.length)*100);
+  let msg, color, emoji;
+  if(pct===100){emoji='🏆';msg='Savršeno! Glagolski oblici su ti jasni.';color='var(--gold)';}
+  else if(pct>=75){emoji='🎯';msg='Odlično! Manje greške — ponovi nepravilne.';color='var(--green)';}
+  else if(pct>=50){emoji='📖';msg='Dobro, ali ponovi tablicu 7 vremena.';color='var(--blue)';}
+  else{emoji='⚠';msg='Vrati se na tablicu vremena/načina — ovo je temelj.';color='var(--red)';}
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${kzScore} / \${KZ_ITEMS.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="kzReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(renderKzExercise, 350); });
+  if(document.readyState !== 'loading'){ setTimeout(renderKzExercise, 350); }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 5 · MORFO SCANNER · morfemska + gramatička analiza
+═══════════════════════════════════ */
+
+
+// LEXICON — frequent words for accurate analysis (fallback for heuristic)
+const MS_VERB_LEXICON = {
+  // PRESENT FORMS → infinitive
+  'idem':'ići','ideš':'ići','ide':'ići','idemo':'ići','idete':'ići','idu':'ići',
+  'mogu':'moći','možeš':'moći','može':'moći','možemo':'moći','možete':'moći',
+  'jesam':'biti','jesi':'biti','jest':'biti','jesmo':'biti','jeste':'biti','jesu':'biti',
+  'sam':'biti','si':'biti','je':'biti','smo':'biti','ste':'biti','su':'biti',
+  'imam':'imati','imaš':'imati','ima':'imati','imamo':'imati','imate':'imati','imaju':'imati',
+  'znam':'znati','znaš':'znati','zna':'znati','znamo':'znati','znate':'znati','znaju':'znati',
+  'volim':'voljeti','voliš':'voljeti','voli':'voljeti','volimo':'voljeti','volite':'voljeti','vole':'voljeti',
+  'dajem':'davati','daješ':'davati','daje':'davati','dam':'dati','daš':'dati','da':'dati',
+  'pišem':'pisati','pišeš':'pisati','piše':'pisati','pišemo':'pisati','pišete':'pisati','pišu':'pisati',
+  'čitam':'čitati','čitaš':'čitati','čita':'čitati','čitamo':'čitati','čitate':'čitati','čitaju':'čitati',
+  'kažem':'kazati','kažeš':'kazati','kaže':'kazati','kažemo':'kazati','kažete':'kazati','kažu':'kazati',
+  'velim':'veljeti','veliš':'veljeti','veli':'veljeti','velimo':'veljeti','velite':'veljeti','vele':'veljeti',
+  'rekoh':'reći','reče':'reći','rekosmo':'reći','rekoste':'reći','rekoše':'reći',
+};
+
+// Frequent animate (living) nouns — for accurate A jd. m.r.
+const DECL_ANIMATE = ['prijatelj','učitelj','učenik','student','profesor','liječnik','pisac','pjesnik','glumac','dječak','momak','čovjek','muškarac','sinovi','gospod','vladar','kralj','car','svetac','svećenik','voditelj','pjevač','glumac','vozač','radnik','voj','vojnik','konj','vuk','medvjed','tigar','lav','pas','mačka','zec','jelen','sokol','orao','golub','lavin','lisica','kuna','jazavac','bik','pijetao','crv','komarac','pauk','medo'];
+
+function isAnimate(word){
+  return DECL_ANIMATE.some(a => word.toLowerCase().includes(a));
+}
+
+
+const MS_NOUN_LEXICON = {
+  // FREQUENT IRREGULAR FORMS → lemma
+  'ljudi':'čovjek','djeca':'dijete','braća':'brat','psi':'pas','oči':'oko','uši':'uho',
+  'gospoda':'gospodin','sinovi':'sin','očevi':'otac','životi':'život',
+};
+
+const MS_PRONOUNS = {
+  'ja':{type:'osobna',person:1,number:'jd'},'ti':{type:'osobna',person:2,number:'jd'},
+  'on':{type:'osobna',person:3,number:'jd',gender:'m'},'ona':{type:'osobna',person:3,number:'jd',gender:'ž'},
+  'ono':{type:'osobna',person:3,number:'jd',gender:'sr'},
+  'mi':{type:'osobna',person:1,number:'mn'},'vi':{type:'osobna',person:2,number:'mn'},
+  'oni':{type:'osobna',person:3,number:'mn'},
+  'se':{type:'povratna'},'sebe':{type:'povratna'},
+  'moj':{type:'posvojna'},'tvoj':{type:'posvojna'},'naš':{type:'posvojna'},'vaš':{type:'posvojna'},
+  'njegov':{type:'posvojna'},'njezin':{type:'posvojna'},'njihov':{type:'posvojna'},
+  'svoj':{type:'povratno-posvojna'},
+  'ovaj':{type:'pokazna'},'taj':{type:'pokazna'},'onaj':{type:'pokazna'},
+  'ovo':{type:'pokazna'},'to':{type:'pokazna'},'ono':{type:'pokazna'},
+  'tko':{type:'upitna/odnosna'},'što':{type:'upitna/odnosna'},'koji':{type:'upitna/odnosna'},
+  'čiji':{type:'upitna/odnosna'},'kakav':{type:'upitna/odnosna'},
+  'netko':{type:'neodređena'},'nešto':{type:'neodređena'},'neki':{type:'neodređena'},
+  'svatko':{type:'neodređena'},'svako':{type:'neodređena'},'svi':{type:'neodređena'},
+  'nitko':{type:'neodređena'},'ništa':{type:'neodređena'},
+};
+
+const MS_NUMERALS = {
+  'jedan':{type:'glavni',value:1},'dva':{type:'glavni',value:2},'tri':{type:'glavni',value:3},
+  'četiri':{type:'glavni',value:4},'pet':{type:'glavni',value:5},'šest':{type:'glavni',value:6},
+  'sedam':{type:'glavni',value:7},'osam':{type:'glavni',value:8},'devet':{type:'glavni',value:9},
+  'deset':{type:'glavni',value:10},'sto':{type:'glavni',value:100},'tisuću':{type:'glavni',value:1000},
+  'prvi':{type:'redni',value:1},'drugi':{type:'redni',value:2},'treći':{type:'redni',value:3},
+  'četvrti':{type:'redni',value:4},'peti':{type:'redni',value:5},'šesti':{type:'redni',value:6},
+  'dvoje':{type:'zbirni',value:2},'troje':{type:'zbirni',value:3},'četvero':{type:'zbirni',value:4},
+};
+
+const MS_PARTICLES = ['ne','da','li','baš','evo','eto','eno','možda','neka','nek'];
+const MS_INTERJECTIONS = ['ah','oh','uh','ej','hej','jao','ajme','mjau','vau','bum','bam','tras'];
+const MS_PREPOSITIONS = ['u','na','o','po','pri','s','sa','za','iz','od','do','bez','kod','kraj','pokraj','preko','protiv','prema','k','ka','nasuprot','usprkos','zbog','radi','poslije','prije','iznad','ispod','iza','ispred','među','nad','pod','pred','kroz','niz','uz'];
+const MS_CONJUNCTIONS = ['i','pa','te','ni','niti','ali','no','nego','već','ili','a','jer','da','dok','kad','kada','ako','iako','premda','što','čim','čime','dokle'];
+const MS_ADVERBS = ['brzo','sporo','glasno','tiho','ovdje','ondje','gdje','kamo','sutra','jučer','danas','sada','tada','vrlo','jako','malo','mnogo','možda','sigurno','sretno','zato','stoga','također','ponekad'];
+
+// ========== PREFIKS baza ==========
+const MS_PREFIXES = [
+  {p:'naj', meaning:'superlativ'},
+  {p:'ne', meaning:'negacija'},
+  {p:'protu', meaning:'nasuprot'},
+  {p:'među', meaning:'između'},
+  {p:'pred', meaning:'ispred'},
+  {p:'raz', meaning:'razdvajanje / pojačavanje'},
+  {p:'iz', meaning:'iznutra, dovršenje'},
+  {p:'is', meaning:'iznutra (pred bezv.)'},
+  {p:'uz', meaning:'prema gore, usput'},
+  {p:'us', meaning:'uz + bezvučno'},
+  {p:'od', meaning:'udaljavanje'},
+  {p:'ot', meaning:'od + bezvučno'},
+  {p:'pre', meaning:'ponavljanje / prekomjerno'},
+  {p:'pri', meaning:'približavanje, blizina'},
+  {p:'pro', meaning:'kroz, ispunjenje'},
+  {p:'nad', meaning:'iznad'},
+  {p:'nat', meaning:'nad + bezvučno'},
+  {p:'pod', meaning:'ispod'},
+  {p:'pot', meaning:'pod + bezvučno'},
+  {p:'za', meaning:'početak, prostor iza'},
+  {p:'do', meaning:'dolazak, dovršenje'},
+  {p:'po', meaning:'dovršenje, nastavak'},
+  {p:'u', meaning:'ulazak'},
+  {p:'na', meaning:'početak / dovršenje'},
+  {p:'o', meaning:'oko, obuhvat'},
+  {p:'ob', meaning:'okolo, obuhvat'},
+  {p:'s', meaning:'zajedno, dolje'},
+  {p:'z', meaning:'s + zvučno'},
+];
+
+// ========== SUFIKSI baza (tvorbeni) ==========
+const MS_NOUN_SUFFIXES = [
+  {s:'ost', type:'imenica ž.r.', meaning:'apstraktna osobina (ljep-ost, dobr-ost)'},
+  {s:'oća', type:'imenica ž.r.', meaning:'apstraktna osobina (čist-oća)'},
+  {s:'stvo', type:'imenica sr.r.', meaning:'skupina / svojstvo (pjesn-ištvo, druš-tvo)'},
+  {s:'ica', type:'imenica ž.r.', meaning:'osoba/mala stvar (učen-ica, knjiž-ica)'},
+  {s:'telj', type:'imenica m.r.', meaning:'vršitelj radnje (uči-telj, pisa-telj)'},
+  {s:'ač', type:'imenica m.r.', meaning:'vršitelj radnje (voz-ač, pjev-ač)'},
+  {s:'ar', type:'imenica m.r.', meaning:'zanimanje (knjiž-ar, mlin-ar)'},
+  {s:'nik', type:'imenica m.r.', meaning:'osoba (rad-nik, putnik)'},
+  {s:'ica', type:'imenica ž.r.', meaning:'osoba ž.r. / umanjenice (učen-ica, kuć-ica)'},
+  {s:'anje', type:'imenica sr.r. (glagolska)', meaning:'od glagola -ati (pis-anje, čit-anje)'},
+  {s:'enje', type:'imenica sr.r. (glagolska)', meaning:'od glagola -iti/-eti (vođ-enje)'},
+  {s:'onja', type:'imenica m.r.', meaning:'osobina (crn-onja, tvrd-oglavonja)'},
+  {s:'lo', type:'imenica sr.r.', meaning:'sredstvo/rezultat (peri-lo, kup-alo)'},
+];
+
+const MS_ADJ_SUFFIXES = [
+  {s:'an', type:'pridjev (neodr.)', meaning:'opisni (lijep-an? hlad-an)'},
+  {s:'ni', type:'pridjev (određ.)', meaning:'opisni određeni (jutar-nji)'},
+  {s:'ski', type:'pridjev', meaning:'pripadnost/odnos (škol-ski, grad-ski)'},
+  {s:'čki', type:'pridjev', meaning:'pripadnost (junač-ki)'},
+  {s:'ov', type:'pridjev posvojni', meaning:'pripadnost m.r. (oč-ev, brat-ov)'},
+  {s:'ev', type:'pridjev posvojni', meaning:'pripadnost (otač-ev varianta)'},
+  {s:'in', type:'pridjev posvojni', meaning:'pripadnost ž.r. (majč-in, Anin)'},
+  {s:'ji', type:'pridjev posvojni', meaning:'pripadnost (pas-ji, božji)'},
+];
+
+const MS_VERB_SUFFIXES = [
+  {s:'nuti', type:'glagol (II. vrsta, svršeni)', meaning:'trenutna radnja (klik-nuti)'},
+  {s:'avati', type:'glagol (nesvršeni)', meaning:'ponavljanje (pis-avati, ud-arati)'},
+  {s:'ivati', type:'glagol (nesvršeni)', meaning:'ponavljanje (propov-ijedati)'},
+  {s:'ovati', type:'glagol', meaning:'radnja (rad-ovati, kup-ovati)'},
+  {s:'jeti', type:'glagol', meaning:'stanje (vid-jeti, bol-jeti)'},
+];
+
+// ========== PADEŽNI NASTAVCI ==========
+const MS_CASE_ENDINGS = {
+  // e-vrsta ž.r.
+  'e-vrsta': {
+    'a': {padez:'N jd.', info:'nominativ jednine'},
+    'e': {padez:'G jd. / N mn.', info:'genitiv jd. ili nominativ mn.'},
+    'i': {padez:'D/L jd.', info:'dativ ili lokativ jednine'},
+    'u': {padez:'A jd.', info:'akuzativ jednine'},
+    'o': {padez:'V jd.', info:'vokativ jednine'},
+    'om': {padez:'I jd.', info:'instrumental jednine'},
+    'ama': {padez:'D/L/I mn.', info:'dativ/lokativ/instrumental množine'},
+    'ima': {padez:'D/L/I mn.', info:'dativ/lokativ/instrumental množine'},
+  },
+  // a-vrsta m.r.
+  'a-vrsta': {
+    'a': {padez:'G/A jd. (živo)', info:'genitiv/akuzativ jednine (za živo)'},
+    'u': {padez:'D/L jd.', info:'dativ ili lokativ jednine'},
+    'e': {padez:'V jd. (palat.) / A mn.', info:'vokativ ili akuzativ množine'},
+    'om': {padez:'I jd.', info:'instrumental jednine'},
+    'em': {padez:'I jd. (palat.)', info:'instrumental jednine palatalna osnova'},
+    'i': {padez:'N/V mn.', info:'nominativ ili vokativ množine'},
+    'ima': {padez:'D/L/I mn.', info:'dativ/lokativ/instrumental množine'},
+  }
+};
+
+// ========== GLAGOLSKI NASTAVCI ==========
+const MS_VERB_ENDINGS = [
+  {end:'ati', form:'infinitiv'},
+  {end:'iti', form:'infinitiv'},
+  {end:'eti', form:'infinitiv'},
+  {end:'jeti', form:'infinitiv'},
+  {end:'nuti', form:'infinitiv'},
+  {end:'ći', form:'infinitiv'},
+  // Prezent
+  {end:'am', form:'prezent 1. l. jd.'},
+  {end:'aš', form:'prezent 2. l. jd.'},
+  {end:'a', form:'prezent 3. l. jd.'},
+  {end:'amo', form:'prezent 1. l. mn.'},
+  {end:'ate', form:'prezent 2. l. mn.'},
+  {end:'aju', form:'prezent 3. l. mn.'},
+  {end:'im', form:'prezent 1. l. jd.'},
+  {end:'iš', form:'prezent 2. l. jd.'},
+  {end:'imo', form:'prezent 1. l. mn.'},
+  {end:'ite', form:'prezent 2. l. mn.'},
+  {end:'e', form:'prezent 3. l. jd. (tip -em) ili imperativ'},
+  {end:'em', form:'prezent 1. l. jd.'},
+  {end:'eš', form:'prezent 2. l. jd.'},
+  {end:'emo', form:'prezent 1. l. mn.'},
+  {end:'ete', form:'prezent 2. l. mn.'},
+  {end:'u', form:'prezent 3. l. mn.'},
+  // Glagolski pridjev radni
+  {end:'ao', form:'glag. pridjev radni m.r. jd.'},
+  {end:'la', form:'glag. pridjev radni ž.r. jd.'},
+  {end:'lo', form:'glag. pridjev radni sr.r. jd.'},
+  {end:'li', form:'glag. pridjev radni m.r. mn.'},
+  {end:'le', form:'glag. pridjev radni ž.r. mn.'},
+  {end:'io', form:'glag. pridjev radni m.r. jd. (od -ieti)'},
+  // Imperativ
+  {end:'ajte', form:'imperativ 2. l. mn.'},
+  {end:'aj', form:'imperativ 2. l. jd.'},
+  {end:'ajmo', form:'imperativ 1. l. mn.'},
+  {end:'ite', form:'imperativ 2. l. mn.'},
+  {end:'i', form:'imperativ 2. l. jd.'},
+];
+
+// ========== ANALIZA ==========
+function msAnalyzeWord(word){
+  const w = word.toLowerCase().trim();
+  const result = {
+    word: w,
+    prefix: [],
+    root: w,
+    suffix: [],
+    ending: '',
+    wordClass: null,
+    categories: {},
+    lemma: w,
+    note: '',
+    confidence: 'medium'
+  };
+  
+  // STEP 0: LEXICON CHECKS (highest confidence)
+  
+  // Check pronouns
+  if(MS_PRONOUNS[w]){
+    result.wordClass = 'zamjenica';
+    result.categories.type = MS_PRONOUNS[w].type;
+    if(MS_PRONOUNS[w].person) result.categories.person = MS_PRONOUNS[w].person + '. lice';
+    if(MS_PRONOUNS[w].number) result.categories.number = MS_PRONOUNS[w].number;
+    if(MS_PRONOUNS[w].gender) result.categories.gender = MS_PRONOUNS[w].gender + '.r.';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check numerals
+  if(MS_NUMERALS[w]){
+    result.wordClass = 'broj';
+    result.categories.type = MS_NUMERALS[w].type + ' broj';
+    result.categories.value = MS_NUMERALS[w].value;
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check particles
+  if(MS_PARTICLES.includes(w)){
+    result.wordClass = 'čestica';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    if(w === 'ne') result.categories.type = 'niječna';
+    else if(w === 'da') result.categories.type = 'potvrdna (ovisno o kontekstu)';
+    else if(w === 'li') result.categories.type = 'upitna';
+    else if(['evo','eto','eno'].includes(w)) result.categories.type = 'pokazna';
+    else if(['možda','neka','nek'].includes(w)) result.categories.type = 'modalna/poticajna';
+    return result;
+  }
+  
+  // Check interjections
+  if(MS_INTERJECTIONS.includes(w)){
+    result.wordClass = 'uzvik';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check prepositions
+  if(MS_PREPOSITIONS.includes(w)){
+    result.wordClass = 'prijedlog';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check conjunctions
+  if(MS_CONJUNCTIONS.includes(w)){
+    result.wordClass = 'veznik';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    if(['i','pa','te','ni','niti','ali','no','nego','već','ili','a'].includes(w)) result.categories.type = 'nezavisni';
+    else result.categories.type = 'zavisni';
+    return result;
+  }
+  
+  // Check adverbs (whitelist)
+  if(MS_ADVERBS.includes(w)){
+    result.wordClass = 'prilog';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check verb lexicon
+  if(MS_VERB_LEXICON[w]){
+    result.wordClass = 'glagol';
+    result.lemma = MS_VERB_LEXICON[w];
+    result.root = MS_VERB_LEXICON[w].slice(0, -2); // remove -ti
+    result.confidence = 'high';
+    // Try to determine form heuristically
+    if(/m$/.test(w)) result.categories.form = 'prezent 1. l. jd.';
+    else if(/š$/.test(w)) result.categories.form = 'prezent 2. l. jd.';
+    else if(/mo$/.test(w)) result.categories.form = 'prezent 1. l. mn.';
+    else if(/te$/.test(w)) result.categories.form = 'prezent 2. l. mn.';
+    return result;
+  }
+  
+  // Check noun lexicon (irregular)
+  if(MS_NOUN_LEXICON[w]){
+    result.wordClass = 'imenica';
+    result.lemma = MS_NOUN_LEXICON[w];
+    result.note = 'Nepravilna množina (lemma: ' + MS_NOUN_LEXICON[w] + ').';
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // STEP 1: Heuristic analysis (existing logic)
+  let remaining = w;
+  
+  // Detect prefixes (longest match first)
+  const sortedPrefixes = [...MS_PREFIXES].sort((a, b) => b.p.length - a.p.length);
+  for(let p of sortedPrefixes){
+    if(remaining.startsWith(p.p) && remaining.length > p.p.length + 2){
+      result.prefix.push(p);
+      remaining = remaining.slice(p.p.length);
+      // Try second prefix
+      for(let p2 of sortedPrefixes){
+        if(remaining.startsWith(p2.p) && remaining.length > p2.p.length + 2){
+          result.prefix.push(p2);
+          remaining = remaining.slice(p2.p.length);
+          break;
+        }
+      }
+      break;
+    }
+  }
+  
+  // Try verb endings (longest first)
+  const sortedVerbEndings = [...MS_VERB_ENDINGS].sort((a, b) => b.end.length - a.end.length);
+  let verbMatch = null;
+  for(let ve of sortedVerbEndings){
+    if(remaining.endsWith(ve.end) && remaining.length > ve.end.length + 1){
+      verbMatch = ve;
+      break;
+    }
+  }
+  
+  // Try suffixes
+  let foundSuffix = null;
+  let suffixType = null;
+  
+  // Noun suffixes
+  const sortedNounSfx = [...MS_NOUN_SUFFIXES].sort((a, b) => b.s.length - a.s.length);
+  for(let sf of sortedNounSfx){
+    if(remaining.includes(sf.s)){
+      const sfIdx = remaining.lastIndexOf(sf.s);
+      if(sfIdx > 0 && sfIdx <= remaining.length - sf.s.length){
+        const afterSf = remaining.slice(sfIdx + sf.s.length);
+        if(afterSf.length <= 3 && /^[aeiouima]*$/.test(afterSf)){
+          foundSuffix = sf;
+          suffixType = 'noun';
+          result.root = remaining.slice(0, sfIdx);
+          result.suffix.push(sf);
+          result.ending = afterSf;
+          break;
+        }
+      }
+    }
+  }
+  
+  // Adjective suffixes
+  if(!foundSuffix){
+    const sortedAdjSfx = [...MS_ADJ_SUFFIXES].sort((a, b) => b.s.length - a.s.length);
+    for(let sf of sortedAdjSfx){
+      if(remaining.includes(sf.s)){
+        const sfIdx = remaining.lastIndexOf(sf.s);
+        if(sfIdx > 0 && sfIdx <= remaining.length - sf.s.length){
+          const afterSf = remaining.slice(sfIdx + sf.s.length);
+          if(afterSf.length <= 3 && /^[aeiouh]*$/.test(afterSf)){
+            foundSuffix = sf;
+            suffixType = 'adj';
+            result.root = remaining.slice(0, sfIdx);
+            result.suffix.push(sf);
+            result.ending = afterSf;
+            break;
+          }
+        }
+      }
+    }
+  }
+  
+  // Classify
+  if(verbMatch){
+    result.wordClass = 'glagol';
+    result.categories.form = verbMatch.form;
+    let stem = remaining.slice(0, remaining.length - verbMatch.end.length);
+    
+    if(verbMatch.form.startsWith('infinitiv')){
+      result.lemma = remaining;
+    } else if(verbMatch.form.startsWith('prezent')){
+      if(verbMatch.end.match(/^a[mš]?$|^am$|^aš$|^amo$|^ate$|^aju$/)) result.lemma = stem + 'ati';
+      else if(verbMatch.end.match(/^i[mš]?$|^im$|^iš$|^imo$|^ite$/)) result.lemma = stem + 'iti';
+      else if(verbMatch.end.match(/^e[mš]?$|^em$|^eš$|^emo$|^ete$|^u$/)) result.lemma = stem + 'ti';
+    } else if(verbMatch.form.startsWith('glag. pridjev radni')){
+      if(verbMatch.end === 'ao' || verbMatch.end === 'io') result.lemma = stem + (verbMatch.end === 'ao' ? 'ati' : 'iti');
+      else if(['la','lo','li','le'].includes(verbMatch.end)) result.lemma = stem + 'ti';
+    } else if(verbMatch.form.startsWith('imperativ')){
+      if(['aj','ajte','ajmo'].includes(verbMatch.end)) result.lemma = stem + 'ati';
+      else if(['i','ite'].includes(verbMatch.end)) result.lemma = stem + 'iti';
+    }
+    
+    const hasPerfectivePrefix = result.prefix.some(p => ['na','pro','po','do','u','iz','is','pre','za','raz'].includes(p.p));
+    result.categories.vid = hasPerfectivePrefix ? 'svršeni' : 'nesvršeni';
+  } else if(foundSuffix && suffixType === 'noun'){
+    result.wordClass = 'imenica';
+    result.categories.type = foundSuffix.type;
+    const e = result.ending;
+    const declType = foundSuffix.type.includes('ž.r.') ? 'e-vrsta' : 'a-vrsta';
+    if(MS_CASE_ENDINGS[declType] && MS_CASE_ENDINGS[declType][e]){
+      result.categories.padezAndBroj = MS_CASE_ENDINGS[declType][e].padez;
+    } else if(e === ''){
+      result.categories.padezAndBroj = 'N/V jd.';
+    }
+    if(foundSuffix.type.includes('ž.r.')) result.lemma = result.root + foundSuffix.s + 'a';
+    else if(foundSuffix.type.includes('sr.r.')) result.lemma = result.root + foundSuffix.s + 'o';
+    else result.lemma = result.root + foundSuffix.s;
+  } else if(foundSuffix && suffixType === 'adj'){
+    result.wordClass = 'pridjev';
+    result.categories.type = foundSuffix.type;
+    result.lemma = result.root + foundSuffix.s;
+    if(result.prefix.some(p => p.p === 'naj')) result.categories.stupanj = 'superlativ';
+    else if(w.endsWith('ji') || w.endsWith('iji')) result.categories.stupanj = 'komparativ';
+    else result.categories.stupanj = 'pozitiv';
+  } else {
+    // Heuristic noun fallback
+    if(/[aeiou]$/.test(w) || /[aeiou]ma$/.test(w) || /ima$/.test(w)){
+      result.wordClass = 'imenica (moguća)';
+      const declType = w.endsWith('a') ? 'e-vrsta' : 'a-vrsta';
+      result.categories.declType = declType;
+      result.confidence = 'low';
+      if(MS_CASE_ENDINGS[declType]){
+        for(let end in MS_CASE_ENDINGS[declType]){
+          if(w.endsWith(end) && (w.length > end.length)){
+            result.categories.padezAndBroj = MS_CASE_ENDINGS[declType][end].padez;
+            result.ending = end;
+            result.root = w.slice(0, w.length - end.length);
+            break;
+          }
+        }
+      }
+      if(declType === 'e-vrsta') result.lemma = result.root + 'a';
+      else result.lemma = result.root;
+    } else {
+      result.wordClass = '?';
+      result.note = 'Teško prepoznati vrstu — provjeri svojim znanjem.';
+      result.confidence = 'low';
+    }
+  }
+  
+  if(!result.root || result.root.length < 2){
+    let fallback = w;
+    for(let p of result.prefix){
+      fallback = fallback.slice(p.p.length);
+    }
+    result.root = fallback;
+  }
+  
+  return result;
+}
+
+function morfoAnalyze(){
+  const input = document.getElementById('ms-input');
+  const out = document.getElementById('ms-results');
+  if(!input || !out) return;
+  
+  const word = input.value.trim().toLowerCase();
+  if(!word){ out.innerHTML = ''; return; }
+  
+  if(!/^[a-zčćđšž\\s]+$/.test(word)){
+    out.innerHTML = '<div class="box-warn"><div class="bw-body"><div class="bw-txt">Samo hrv. slova (a-ž), bez razmaka ili brojeva.</div></div></div>';
+    return;
+  }
+  
+  // Multi-word support — analyze each word separately
+  const words = word.split(/\\s+/).filter(w => w.length > 0);
+  
+  if(words.length > 1){
+    // Multi-word — show each
+    let allHtml = '<div style="margin-bottom:14px;font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center">📝 ANALIZA RAZINA: ' + words.length + ' riječi</div>';
+    words.forEach((w, idx) => {
+      const a = msAnalyzeWord(w);
+      allHtml += renderMsResult(a, idx === 0);
+      if(idx < words.length - 1){
+        allHtml += '<div style="height:24px"></div>';
+      }
+    });
+    out.innerHTML = allHtml;
+  } else {
+    const a = msAnalyzeWord(words[0]);
+    out.innerHTML = renderMsResult(a, true);
+  }
+  
+  // Save to history
+  try {
+    const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.scanner_hist')||'[]');
+    // Only save valid words (no special chars)
+    if(/^[a-zčćđšžA-ZČĆĐŠŽ\\s]+$/.test(word) && word.length < 50){
+      hist.push({word, date: new Date().toISOString()});
+      localStorage.setItem('mt.hrv.h20.scanner_hist', JSON.stringify(hist.slice(-20)));
+    }
+  } catch(e){}
+}
+
+function renderMsResult(a, showHeader){
+  const word = a.word;
+  
+  // Build morpheme display
+  let morphBuild = '';
+  a.prefix.forEach(p => {
+    morphBuild += \`<span style="display:inline-block;padding:6px 12px;background:rgba(74,144,217,.15);border:1.5px solid var(--blue);border-radius:var(--r1);color:var(--blue);font-weight:700;font-family:var(--mono);margin:2px">\${p.p}-</span>\`;
+  });
+  morphBuild += \`<span style="display:inline-block;padding:6px 12px;background:rgba(233,180,70,.15);border:1.5px solid var(--gold);border-radius:var(--r1);color:var(--gold);font-weight:700;font-family:var(--mono);margin:2px">\${a.root}</span>\`;
+  a.suffix.forEach(sf => {
+    morphBuild += \`<span style="display:inline-block;padding:6px 12px;background:rgba(176,107,33,.15);border:1.5px solid var(--bronze);border-radius:var(--r1);color:var(--bronze);font-weight:700;font-family:var(--mono);margin:2px">-\${sf.s}-</span>\`;
+  });
+  if(a.ending){
+    morphBuild += \`<span style="display:inline-block;padding:6px 12px;background:rgba(224,82,82,.15);border:1.5px solid var(--red);border-radius:var(--r1);color:var(--red);font-weight:700;font-family:var(--mono);margin:2px">-\${a.ending}</span>\`;
+  }
+  
+  // Classification summary  
+  let classSummary = '';
+  if(a.wordClass){
+    classSummary = a.wordClass;
+    if(a.categories.type) classSummary += \` · \${a.categories.type}\`;
+    if(a.categories.declType) classSummary += \` · \${a.categories.declType}\`;
+    if(a.categories.stupanj) classSummary += \` · \${a.categories.stupanj}\`;
+    if(a.categories.form) classSummary += \` · \${a.categories.form}\`;
+    if(a.categories.vid) classSummary += \` · \${a.categories.vid} vid\`;
+    if(a.categories.padezAndBroj) classSummary += \` · \${a.categories.padezAndBroj}\`;
+    if(a.categories.person) classSummary += \` · \${a.categories.person}\`;
+    if(a.categories.number) classSummary += \` · \${a.categories.number}\`;
+    if(a.categories.gender) classSummary += \` · \${a.categories.gender}\`;
+  }
+  
+  // Confidence badge
+  const confColors = {high: 'var(--green)', medium: 'var(--gold)', low: 'var(--red)'};
+  const confLabels = {high: '🟢 VISOKA', medium: '🟡 SREDNJA', low: '🔴 NISKA'};
+  const confColor = confColors[a.confidence] || 'var(--t3)';
+  const confLabel = confLabels[a.confidence] || a.confidence;
+  
+  return \`
+    <!-- HEADER -->
+    <div style="padding:18px;background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.3);border-radius:var(--r2);margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:2px">MORFEMSKA ANALIZA</div>
+          <div style="font-family:var(--display);font-size:32px;font-weight:700;color:var(--gold);margin-top:4px">\${word}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--t2)">\${classSummary || '—'}</div>
+          <div style="font-family:var(--mono);font-size:9px;color:\${confColor};margin-top:4px;letter-spacing:1px">SIGURNOST: \${confLabel}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MORPHEMES -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">🧩 Morfemska struktura</div><div class="sec-line"></div></div>
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin:12px 0;text-align:center">
+      <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px;margin-bottom:14px">\${morphBuild}</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-family:var(--mono);font-size:10px">
+        \${a.prefix.length > 0 ? '<span style="padding:3px 8px;background:rgba(74,144,217,.1);color:var(--blue);border-radius:12px">prefiks</span>' : ''}
+        <span style="padding:3px 8px;background:rgba(233,180,70,.1);color:var(--gold);border-radius:12px">korijen</span>
+        \${a.suffix.length > 0 ? '<span style="padding:3px 8px;background:rgba(176,107,33,.1);color:var(--bronze);border-radius:12px">sufiks</span>' : ''}
+        \${a.ending ? '<span style="padding:3px 8px;background:rgba(224,82,82,.1);color:var(--red);border-radius:12px">nastavak</span>' : ''}
+      </div>
+    </div>
+
+    <!-- CLASSIFICATION TABLE -->
+    <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">📋 Analiza</div><div class="sec-line"></div></div>
+    <div class="table-wrap" style="overflow-x:auto;margin:12px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3);width:40%">Vrsta riječi</td><td style="padding:10px;color:var(--t1);font-weight:700">\${a.wordClass || '—'}</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Osnovni oblik (lema)</td><td style="padding:10px;color:var(--gold);font-weight:700">\${a.lemma}</td></tr>
+          \${a.categories.form ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Oblik glagola</td><td style="padding:10px;color:var(--t1)">\${a.categories.form}</td></tr>\` : ''}
+          \${a.categories.vid ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Glagolski vid</td><td style="padding:10px;color:var(--t1)">\${a.categories.vid}</td></tr>\` : ''}
+          \${a.categories.type ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Tip (podvrsta)</td><td style="padding:10px;color:var(--t1)">\${a.categories.type}</td></tr>\` : ''}
+          \${a.categories.declType ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Deklinacijska vrsta</td><td style="padding:10px;color:var(--t1)">\${a.categories.declType}</td></tr>\` : ''}
+          \${a.categories.padezAndBroj ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Padež / broj</td><td style="padding:10px;color:var(--t1);font-weight:700">\${a.categories.padezAndBroj}</td></tr>\` : ''}
+          \${a.categories.person ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Lice / broj</td><td style="padding:10px;color:var(--t1)">\${a.categories.person}\${a.categories.number ? ' · ' + a.categories.number : ''}</td></tr>\` : ''}
+          \${a.categories.gender ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Rod</td><td style="padding:10px;color:var(--t1)">\${a.categories.gender}</td></tr>\` : ''}
+          \${a.categories.stupanj ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Stupanj</td><td style="padding:10px;color:var(--t1)">\${a.categories.stupanj}</td></tr>\` : ''}
+          \${a.categories.value ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Vrijednost</td><td style="padding:10px;color:var(--t1)">\${a.categories.value}</td></tr>\` : ''}
+          <tr><td style="padding:10px;color:var(--t3)">Korijen</td><td style="padding:10px;color:var(--t1);font-weight:700">\${a.root}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    \${a.prefix.length > 0 || a.suffix.length > 0 ? \`
+      <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">🏗 Tvorbena analiza</div><div class="sec-line"></div></div>
+      <div style="margin:12px 0">
+        \${a.prefix.map(p => \`
+          <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--blue);border-radius:var(--r1);margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--blue);letter-spacing:1px;margin-bottom:4px">PREFIKS</div>
+                <div style="font-family:var(--display);font-weight:700;color:var(--t1);font-size:16px">\${p.p}-</div>
+                <div style="font-size:12px;color:var(--t2);margin-top:4px">\${p.meaning}</div>
+              </div>
+            </div>
+          </div>
+        \`).join('')}
+        \${a.suffix.map(sf => \`
+          <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--bronze);border-radius:var(--r1);margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1px;margin-bottom:4px">SUFIKS</div>
+                <div style="font-family:var(--display);font-weight:700;color:var(--t1);font-size:16px">-\${sf.s}</div>
+                <div style="font-size:12px;color:var(--t2);margin-top:4px">\${sf.meaning}</div>
+              </div>
+            </div>
+          </div>
+        \`).join('')}
+      </div>
+    \` : ''}
+
+    \${a.note ? \`
+      <div class="box-warn" style="margin:12px 0"><div class="bw-body"><div class="bw-ttl" style="color:var(--gold)">💡 Napomena</div><div class="bw-txt">\${a.note}</div></div></div>
+    \` : ''}
+
+    \${a.confidence === 'low' ? \`<div style="font-family:var(--mono);font-size:10px;color:var(--red);text-align:center;margin-top:8px">⚠ Niska sigurnost — Scanner koristi heuristiku, provjeri svojim znanjem</div>\` : ''}
+  \`;
+}
+
+function msExample(word){
+  const input = document.getElementById('ms-input');
+  if(input){
+    input.value = word;
+    morfoAnalyze();
+    input.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+
+
+function msShowHistory(){
+  const div = document.getElementById('ms-history');
+  if(!div) return;
+  if(div.style.display !== 'none' && div.innerHTML !== ''){
+    div.style.display = 'none';
+    return;
+  }
+  try {
+    const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.scanner_hist')||'[]');
+    if(hist.length === 0){
+      div.innerHTML = '<span style="color:var(--t3)">Još nema analiziranih riječi.</span>';
+    } else {
+      div.innerHTML = '<div style="margin-bottom:8px;color:var(--t3);letter-spacing:1px">ZADNJIH ' + hist.length + ' (klikni za ponovnu analizu):</div>' +
+        hist.slice().reverse().map(h => {
+        const safeWord = String(h.word||'').replace(/['"\\\\<>&]/g, c => ({"'":'\\\\\\'',
+'"':'&quot;','\\\\':'\\\\\\\\','<':'&lt;','>':'&gt;','&':'&amp;'}[c]||c));
+        const displayWord = String(h.word||'').replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+        return \`<button class="nb-btn" style="padding:4px 8px;font-size:11px;margin:2px" onclick="msExample('\${safeWord}')">\${displayWord}</button>\`;
+      }).join('');
+    }
+    div.style.display = 'block';
+  } catch(e){
+    div.innerHTML = '<span style="color:var(--t3)">Greška u učitavanju.</span>';
+    div.style.display = 'block';
+  }
+}
+
+function msClear(){
+  const input = document.getElementById('ms-input');
+  const out = document.getElementById('ms-results');
+  const hist = document.getElementById('ms-history');
+  if(input) input.value = '';
+  if(out) out.innerHTML = '';
+  if(hist){ hist.style.display = 'none'; hist.innerHTML = ''; }
+  input?.focus();
+}
+
+// === DECLINER UPGRADES: COPY RESULT FUNCTION ===
+function declineCopyTable(){
+  const tbl = document.querySelector('#decl-results table');
+  if(!tbl) return;
+  
+  const rows = Array.from(tbl.querySelectorAll('tr'));
+  let csv = rows.map(r => 
+    Array.from(r.querySelectorAll('th, td'))
+      .map(c => c.textContent.trim())
+      .join('\\t')
+  ).join('\\n');
+  
+  navigator.clipboard.writeText(csv).then(() => {
+    const btn = document.getElementById('decl-copy-btn');
+    if(btn){
+      const orig = btn.textContent;
+      btn.textContent = '✓ Kopirano!';
+      btn.style.background = 'var(--green)';
+      btn.style.color = '#0F0605';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 1500);
+    }
+  }).catch(() => alert('Greška pri kopiranju.'));
+}
+
+// === SCANNER COPY FUNCTION ===
+function msCopyResult(){
+  const out = document.getElementById('ms-results');
+  if(!out) return;
+  const text = out.innerText.trim();
+  if(!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('ms-copy-btn');
+    if(btn){
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✓ Kopirano';
+      setTimeout(() => btn.innerHTML = orig, 1500);
+    }
+  });
+}
+
+
+
+function declHistory(){
+  const div = document.getElementById('decl-history');
+  if(!div) return;
+  if(div.style.display !== 'none' && div.innerHTML !== ''){
+    div.style.display = 'none';
+    return;
+  }
+  try {
+    const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.decl_hist')||'[]');
+    if(hist.length === 0){
+      div.innerHTML = '<span style="color:var(--t3)">Još nema sklanjanih riječi.</span>';
+    } else {
+      div.innerHTML = '<div style="margin-bottom:8px;color:var(--t3);letter-spacing:1px">ZADNJIH ' + hist.length + ':</div>' +
+        hist.slice().reverse().map(h => {
+        const safeWord = String(h.word||'').replace(/['"\\\\<>&]/g, c => ({"'":'\\\\\\'',
+'"':'&quot;','\\\\':'\\\\\\\\','<':'&lt;','>':'&gt;','&':'&amp;'}[c]||c));
+        const displayWord = String(h.word||'').replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+        return \`<button class="nb-btn" style="padding:4px 8px;font-size:11px;margin:2px" onclick="declineExample('\${safeWord}')">\${displayWord}</button>\`;
+      }).join('');
+    }
+    div.style.display = 'block';
+  } catch(e){}
+}
+
+function declClear(){
+  const input = document.getElementById('decl-input');
+  const out = document.getElementById('decl-results');
+  const hist = document.getElementById('decl-history');
+  if(input) input.value = '';
+  if(out) out.innerHTML = '';
+  if(hist){ hist.style.display = 'none'; hist.innerHTML = ''; }
+  input?.focus();
+}
+
+
+
+// ═══════════════════════════════════
+// RANDOM WORD — surprise me feature
+// ═══════════════════════════════════
+const RANDOM_SCANNER_WORDS = [
+  'nepredvidljivosti','najmoćniji','prijateljica','knjižarstvo','čitateljica',
+  'nepismenima','učiteljica','upoznavati','pročitanima','razgovaraju',
+  'postojanost','opisivanje','ozdravlje','razumijevanje','najljepše',
+  'protunapadom','međurazinski','nadmašiti','potpomognuti','predviđanju',
+  'iskreno','iako','protiv','vrlo','preko','čovjek','dijete','kost',
+  'vrijeme','volim','imam','idu','jedan','peti','dvoje','svoj','ovaj','netko'
+];
+
+const RANDOM_DECLINER_WORDS = [
+  'stol','knjiga','prijatelj','učenica','grad','more','selo','noć','riječ',
+  'pjesma','sestra','učitelj','dječak','majka','brat','sin','kuća','ime',
+  'jaje','dan','put','pas','čovjek','dijete','oko','uho','noga','ruka',
+  'kost','ljubav','stvar','tata','sokol','zec','stvarnost','radost'
+];
+
+function msRandom(){
+  const w = RANDOM_SCANNER_WORDS[Math.floor(Math.random() * RANDOM_SCANNER_WORDS.length)];
+  msExample(w);
+}
+
+function declRandom(){
+  const w = RANDOM_DECLINER_WORDS[Math.floor(Math.random() * RANDOM_DECLINER_WORDS.length)];
+  declineExample(w);
+}
+
+
+function togScene(card){
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.scene-card').forEach(c=>c.classList.remove('open'));
+  if(!wasOpen)card.classList.add('open');
+}
+
+/* ═══════════════════════════════════
+   DIAG0
+═══════════════════════════════════ */
+let d0idx=0,d0score=0;
+function diag0Skip(){
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='dismissed';
+}
+function diag0Start(){
+  d0idx=0;d0score=0;
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='quiz';
+  d0Show();
+}
+function d0Show(){
+  if(d0idx>=DIAG0_Q.length){diag0End();return;}
+  const q=DIAG0_Q[d0idx];
+  const fill=document.getElementById('d0fill');
+  if(fill)fill.style.width=((d0idx/DIAG0_Q.length)*100)+'%';
+  const num=document.getElementById('d0num');
+  if(num)num.textContent=\`Pitanje \${d0idx+1} / \${DIAG0_Q.length}\`;
+  const text=document.getElementById('d0text');
+  if(text)text.textContent=q.q;
+  const opts=document.getElementById('d0opts');
+  if(!opts)return;
+  opts.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='diag-opt';btn.textContent=o;
+    btn.onclick=()=>{
+      opts.querySelectorAll('.diag-opt').forEach(b=>b.onclick=null);
+      if(i===q.t){btn.classList.add('correct');d0score++;}
+      else{btn.classList.add('wrong');opts.querySelectorAll('.diag-opt')[q.t].classList.add('correct');}
+      setTimeout(()=>{d0idx++;d0Show();},900);
+    };
+    opts.appendChild(btn);
+  });
+}
+function diag0End(){
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='result';
+  const pct=Math.round(d0score/DIAG0_Q.length*100);
+  let msg='', btnTxt='', btnTab=1;
+  if(pct>=80){
+    msg='<strong>Odlično!</strong> Osnove H20 imaš savladane. Preporučujem Referentnu tablicu — svi ključni podaci o morfologiji na jednom mjestu za brzu provjeru.';
+    btnTxt='📊 Referentna tablica →'; btnTab=7;
+  } else if(pct>=60){
+    msg='<strong>Dobro!</strong> Nekoliko rupa postoji — provjeri Tab 1-4 za vrste riječi, padeže, glagolske oblike i tvorbu.';
+    btnTxt='📚 Promjenjive riječi →'; btnTab=1;
+  } else {
+    msg='<strong>Kreni od osnova.</strong> Preporučujem: Teorija (Tab 0) + Promjenjive riječi (Tab 1). 10 vrsta riječi, 7 padeža i 4 morfema (korijen, prefiks, sufiks, nastavak) su temelj — sigurno ih nauči napamet.';
+    btnTxt='📖 Teorija →'; btnTab=0;
+  }
+  (document.getElementById('d0rtitle')||{}).textContent=\`\${d0score} / \${DIAG0_Q.length} — \${pct}%\`;
+  (document.getElementById('d0rdesc')||{}).innerHTML=msg;
+  const btn=document.getElementById('d0rbtn');
+  if(btn){btn.textContent=btnTxt;btn.onclick=()=>sw(btnTab);}
+}
+function diag0Reset(){const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='intro';}
+
+/* ═══════════════════════════════════
+   CITATNIK
+═══════════════════════════════════ */
+const CAT_COLORS={alegorija:'p-go',vjera:'p-t',judita:'p-br',holofern:'p-r',domoljublje:'p-g',stih:'p-pa'};
+let citStars={};
+try{citStars=JSON.parse(localStorage.getItem('mt.hrv.h20.cit_stars')||'{}')}catch(e){}
+let citActive='sve';
+
+function togStar(i,el){
+  citStars[i]=!citStars[i];
+  el.classList.toggle('starred',!!citStars[i]);
+  try{localStorage.setItem('mt.hrv.h20.cit_stars',JSON.stringify(citStars))}catch(e){}
+}
+
+/* ═══════════════════════════════════
+   POJMOVNIK
+═══════════════════════════════════ */
+let pojActive='sve';
+
+/* ═══════════════════════════════════
+   ESEJ ALAT
+═══════════════════════════════════ */
+function alTab(btn,pane){
+  document.querySelectorAll('.alat-tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.alat-pane').forEach(p=>p.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  const p=document.getElementById(pane);
+  if(p)p.classList.add('on');
+}
+function cpyTeza(el){
+  navigator.clipboard.writeText(el.textContent.trim()).catch(()=>{});
+  el.classList.add('copied');
+  setTimeout(()=>el.classList.remove('copied'),1500);
+}
+
+/* Scanner */
+function scannerUpdate(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  const txt=ta.value;
+  const words=txt.trim()?txt.trim().split(/\\s+/).length:0;
+  const lines=txt.split('\\n').filter(function(l){return l.trim().length>0;}).length;
+  const syl=words>0?Math.round(txt.replace(/[^aeiouAEIOUčšžđćČŠŽĐĆ]/g,'').length/Math.max(words,1)*10)/10:0;
+  const we=document.getElementById('sc-words');
+  if(we){const wn=we.querySelector('.wc-stat-num');if(wn)wn.textContent=words;}
+  const le=document.getElementById('sc-lines');
+  if(le){const ln=le.querySelector('.wc-stat-num');if(ln)ln.textContent=lines;}
+  const se=document.getElementById('sc-syl');
+  if(se){const sn=se.querySelector('.wc-stat-num');if(sn)sn.textContent=syl||'—';}
+  try{localStorage.setItem('mt.hrv.h20.wc_text',txt);}catch(e){}
+}
+(function(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  try{const sv=localStorage.getItem('mt.hrv.h20.wc_text');if(sv){ta.value=sv;scannerUpdate();}}catch(e){}
+})();
+
+/* ═══════════════════════════════════
+   KVIZ
+═══════════════════════════════════ */
+let qzIdx=0,qzScore=0,qzAnswered=[];
+function qzInit(){
+  const w=document.getElementById('qz-wrap');
+  if(!w||w.dataset.init==='1')return;
+  w.dataset.init='1';
+  qzRender();
+}
+function qzRender(){
+  const w=document.getElementById('qz-wrap');
+  if(!w)return;
+  w.innerHTML=\`<div class="qz-wrap" id="qz-inner"></div>\`;
+  qzIdx=0;qzScore=0;
+  const el=document.getElementById('qz-inner');
+  el.innerHTML=\`<div class="qz-start" style="text-align:center;padding:40px 24px;background:linear-gradient(135deg, rgba(233,180,70,.05) 0%, transparent 100%);border:1px solid var(--bd);border-radius:var(--r2)">
+    <div style="font-size:56px;margin-bottom:16px">🧠</div>
+    <h3 style="font-family:var(--display);font-size:22px;font-weight:700;color:var(--t1);margin:0 0 12px 0">25 pitanja · H20 Morfologija</h3>
+    <p style="font-size:14px;line-height:1.6;color:var(--t2);max-width:560px;margin:0 auto 24px">Pitanja pokrivaju sve teme: <strong>vrste riječi, padeži, glagolski oblici, sklanjanje, tvorba</strong>. Svako pitanje daje <em>konkretan primjer</em> — analiziraj, prepoznaj, objasni. Na kraju dobivaš ocjenu i objašnjenja.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">📚 10 vrsta riječi</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">📐 7 padeža</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">⚙️ Glagolski oblici</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">🏗 Tvorba riječi</div>
+    </div>
+    <button class="nb-btn primary" style="font-size:14px;padding:14px 28px" onclick="qzStart()">Započni kviz →</button>
+  </div>\`;
+}
+function qzStart(){
+  qzIdx=0;qzScore=0;qzAnswered=[];
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzShowQ(el){
+  if(qzIdx>=KVIZ_Q.length){qzEnd(el);return;}
+  const q=KVIZ_Q[qzIdx];
+  const pct=Math.round((qzIdx/KVIZ_Q.length)*100);
+  el.innerHTML=\`
+    <div class="qz-prog"><div class="qz-prog-fill" style="width:\${pct}%"></div></div>
+    <div class="qz-num">Pitanje \${qzIdx+1} / \${KVIZ_Q.length}</div>
+    <div class="qz-q">\${q.q}</div>
+    <div class="qz-opts">\${q.o.map((o,i)=>\`<button class="qz-opt" onclick="qzAns(this,\${i})">\${o}</button>\`).join('')}</div>
+    <div class="qz-expl" id="qz-expl" style="display:none"></div>
+    <div style="text-align:right;margin-top:12px"><button class="nb-btn primary qz-next" id="qz-next" onclick="qzNext()" style="display:none">Sljedeće →</button></div>
+  \`;
+}
+function qzAns(btn,i){
+  if(document.querySelector('.qz-opt.correct,.qz-opt.wrong'))return;
+  const opts=document.querySelectorAll('.qz-opt');
+  opts.forEach(b=>b.disabled=true);
+  const q=KVIZ_Q[qzIdx];
+  const ok=(i===q.t);
+  if(ok){btn.classList.add('correct');qzScore++;}
+  else{btn.classList.add('wrong');opts[q.t].classList.add('correct');}
+  if(!qzAnswered)qzAnswered=[];
+  qzAnswered.push({q:q.q,ok,correct:q.o[q.t]});
+  const expl=document.getElementById('qz-expl');
+  expl.style.display='block';
+  expl.innerHTML=\`<strong>\${ok?'✓ Točno!':'✗ Netočno.'}</strong> \${q.e}\`;
+  document.getElementById('qz-next').style.display='inline-flex';
+}
+function qzNext(){
+  qzIdx++;
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzEnd(el){
+  const pct=Math.round(qzScore/KVIZ_Q.length*100);
+  let grade,msg,ico;
+  if(pct>=90){grade='ODLIČAN';msg='Spreman/na si za maturu iz H20 — razumiješ sve vrste riječi, padeže i glagolske oblike.';ico='🏆';}
+  else if(pct>=75){grade='VRLO DOBAR';msg='Solidno znanje. Provjeri neispravne odgovore i ponovi Tab 1-4.';ico='💪';}
+  else if(pct>=60){grade='DOBAR';msg='Ponoviti: 10 vrsta riječi, 7 padeža i glagolske oblike (vidi Tab 7 Referentna tablica).';ico='📚';}
+  else if(pct>=45){grade='DOVOLJAN';msg='Osnove su tu — trebaš više vježbe.';ico='🔁';}
+  else{grade='NEDOVOLJAN';msg='Vrati se na Teoriju i ponovi korak po korak.';ico='🎯';}
+
+  let wrongHtml='';
+  if(qzAnswered&&qzAnswered.length){
+    const wrong=qzAnswered.filter(a=>!a.ok);
+    if(wrong.length>0){
+      wrongHtml=\`<div style="margin-top:24px;text-align:left">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:12px">Promašena pitanja (\${wrong.length})</div>
+        \${wrong.map(a=>\`<div class="qz-wrong-item">
+          <div class="qz-wrong-q">\${a.q}</div>
+          <div class="qz-wrong-a">Točan odgovor: <b>\${a.correct}</b></div>
+        </div>\`).join('')}
+      </div>\`;
+    }
+  }
+
+  el.innerHTML=\`<div class="qz-result" style="text-align:center;padding:40px 24px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r4)">
+    <div style="font-size:48px;margin-bottom:8px">\${ico}</div>
+    <div class="qz-score-big">\${pct}%</div>
+    <div class="qz-grade">\${grade}</div>
+    <div class="qz-msg">\${qzScore} / \${KVIZ_Q.length} točnih · \${msg}</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="nb-btn primary" onclick="qzStart()">🔁 Ponovo</button>
+      <button class="nb-btn" onclick="sw(4)">📚 Pojmovnik</button>
+      <button class="nb-btn" onclick="sw(7)">📊 Referentna tablica</button>
+    </div>
+    \${wrongHtml}
+  </div>\`;
+
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+  if(typeof recordQuizResult === 'function') recordQuizResult(qzScore, KVIZ_Q.length);
+}
+
+/* ═══════════════════════════════════
+   CHECKPOINT
+═══════════════════════════════════ */
+let CP_STATE={done:{}};
+try{const s=localStorage.getItem('mt.hrv.h20.cp');if(s)CP_STATE=JSON.parse(s);}catch(e){}
+
+const CP_HINTS=['Tab 0','Tab 0','Tab 4','Tab 0','Tab 1','Tab 1','Tab 0','Tab 2','Tab 4','Tab 2'];
+function cpRender(){
+  const list=document.getElementById('cp-list');
+  if(!list)return;
+  list.innerHTML=CP_ITEMS.map((item,i)=>\`
+    <div class="cp-item\${CP_STATE.done[i]?' done':''}" onclick="cpToggle(\${i})" style="display:flex;align-items:flex-start;gap:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 16px;cursor:pointer;transition:all .15s">
+      <div class="cp-box">\${CP_STATE.done[i]?'✓':''}</div>
+      <div class="cp-txt" style="flex:1;font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5">\${item}</div>
+      <span class="cp-hint">\${CP_HINTS[i]||''}</span>
+    </div>
+  \`).join('');
+  cpUpdateProgress();
+}
+function cpToggle(i){
+  CP_STATE.done[i]=!CP_STATE.done[i];
+  try{localStorage.setItem('mt.hrv.h20.cp',JSON.stringify(CP_STATE));}catch(e){}
+  cpRender();
+  if(typeof updateDashboard === 'function') updateDashboard();
+  if(CP_STATE.done[i] && typeof addXP === 'function') addXP(5, 'Checkpoint savladan');
+}
+function cpUpdateProgress(){
+  const done=Object.values(CP_STATE.done).filter(Boolean).length;
+  const total=CP_ITEMS.length;
+  const pct=Math.round(done/total*100);
+  (document.getElementById('cp-pct')||{}).textContent=\`\${done} / \${total}\`;
+  (document.getElementById('cp-bar')||{style:{}}).style.width=pct+'%';
+  (document.getElementById('sb-prog-bar')||{style:{}}).style.width=pct+'%';
+  (document.getElementById('sb-prog-pct')||{}).textContent=pct+'%';
+  const fin=document.getElementById('cp-final');
+  if(fin)fin.classList.toggle('show',done===total);
+  // Update summary
+  const sumBox=document.getElementById('cp-summary-box');
+  const sumPct=document.getElementById('cp-sum-pct');
+  const sumTxt=document.getElementById('cp-sum-txt');
+  if(sumBox&&done>0){
+    sumBox.style.display='flex';
+    sumPct.textContent=pct+'%';
+    let msg;
+    if(pct===100)msg='<strong>Kompletan!</strong> Sve je savladano — spreman/na si za maturu.';
+    else if(pct>=70)msg='<strong>Odlično!</strong> Neoznačene tvrdnje su tvoje slabe točke — fokusiraj se na njih.';
+    else if(pct>=40)msg='<strong>Napredak!</strong> Nastavak: koristi Padežni decliner i Morfo Scanner (Tab 5) i radi kviz ponovno dok ne dobiješ 85%+.';
+    else msg='Još je posla. Počni s Teorijom (Tab 0) i prođi sve sekcije.';
+    sumTxt.innerHTML=msg;
+  }
+}
+function cpReset(){
+  CP_STATE={done:{}};
+  try{localStorage.removeItem('mt.hrv.h20.cp');}catch(e){}
+  cpRender();
+}
+cpRender();
+
+/* ═══════════════════════════════════
+   KVIZ INIT on tab 6
+═══════════════════════════════════ */
+// Already handled in sw()
+
+/* ═══════════════════════════════════
+   MARK TAB (completion badge)
+═══════════════════════════════════ */
+let TAB_DONE={};
+try{TAB_DONE=JSON.parse(localStorage.getItem('mt.hrv.h20.tab_done')||'{}')}catch(e){}
+
+function markTab(n){
+  TAB_DONE[n]=true;
+  try{localStorage.setItem('mt.hrv.h20.tab_done',JSON.stringify(TAB_DONE))}catch(e){}
+  const el=document.getElementById('td'+n);
+  if(el)el.textContent='✓';
+}
+function restoreTabDone(){
+  Object.keys(TAB_DONE).forEach(n=>{
+    const el=document.getElementById('td'+n);
+    if(el&&TAB_DONE[n])el.textContent='✓';
+  });
+}
+restoreTabDone();
+
+// Mark tab on dwell (8s)
+let tabTimer=null;
+const origSw=sw;
+window.sw=function(n){
+  origSw(n);
+  clearTimeout(tabTimer);
+  tabTimer=setTimeout(()=>{
+    if(n!==5)markTab(n); // don't auto-mark PRO locked
+  },8000);
+  // Show relevant tip
+  showTip(n);
+};
+
+/* ═══════════════════════════════════
+   TIP BAR
+═══════════════════════════════════ */
+const TIPS=[
+  '💡 <strong>Tab 0 tip:</strong> Morfem = najmanja jedinica sa značenjem. 4 tipa: korijen, prefiks, sufiks, nastavak — ovdje leži sve ostalo.',
+  '💡 <strong>Tab 1 tip:</strong> 5 promjenjivih vrsta riječi — zapamti test: promijeni padež/lice. Ako se mijenja → promjenjiva.',
+  '💡 <strong>Tab 2 tip:</strong> 5 nepromjenjivih vrsta. Zamke: „da" može biti čestica ili veznik, „ne" je uvijek čestica!',
+  '💡 <strong>Tab 3 tip:</strong> Padežni decliner — upiši bilo koju imenicu i dobit ćeš cijelu tablicu sklanjanja. Baza ima 21 iznimku.',
+  '💡 <strong>Tab 4 tip:</strong> 60 pojmova u 7 kategorija — filtriraj po temi. Pojmovi s crvenom zvjezdicom najčešće pitaju.',
+  '💡 <strong>Tab 5 tip:</strong> Morfo Scanner analizira riječ kompletno — morfemi + vrsta + padež + osnovni oblik. Koristi za eseje!',
+  '💡 <strong>Tab 6 tip:</strong> 25 kviz pitanja balansirano pokriva sve teme. Cilj: 85%+ prije mature.',
+  '💡 <strong>Tab 7 tip:</strong> Referentna tablica — isprintaj i drži uz sebe. A4 optimizirana za crno-bijeli ispis.',
+];
+let tipShown={};
+function showTip(n){
+  if(tipShown[n])return;
+  const bar=document.getElementById('tip-bar');
+  const txt=document.getElementById('tip-bar-txt');
+  if(!bar||!txt)return;
+  txt.innerHTML=TIPS[n]||TIPS[0];
+  bar.classList.add('show');
+  tipShown[n]=true;
+  clearTimeout(bar._timer);
+  bar._timer=setTimeout(()=>bar.classList.remove('show'),5000);
+}
+// Show tip for initial tab
+setTimeout(()=>showTip(0),3000);
+
+/* ═══════════════════════════════════
+   FROM BANNER (?from= URL param)
+═══════════════════════════════════ */
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const from=params.get('from');
+  if(from){
+    const names={H11:'H11 · Stari hrv. pisci',H12:'H12 · Marulić · Judita',H13:'H13 · Gundulić · Dubravka',H14:'H14 · Preporod · Mažuranić',H15:'H15 · Šenoa · Prijan Lovro',H16:'H16 · Krleža · Glembajevi',H17:'H17 · Stilske figure'};
+    const el=document.getElementById('from-banner');
+    const txt=document.getElementById('from-txt');
+    if(el&&txt){
+      txt.textContent='📎 Nastaviš učenje iz '+(names[from]||from)+' → H20 · Morfologija';
+      el.classList.add('show');
+      // Move banner to top of content
+      const cw=document.querySelector('.content-wrap');
+      if(cw)cw.insertBefore(el,cw.firstChild);
+      setTimeout(()=>el.classList.remove('show'),8000);
+    }
+  }
+})();
+
+/* ═══════════════════════════════════
+   SCORE HISTORY (kviz)
+═══════════════════════════════════ */
+function loadScoreHistory(){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h20.kviz_hist')||'[]');
+    const cont=document.getElementById('score-hist');
+    const rows=document.getElementById('score-hist-rows');
+    if(!cont||!rows||hist.length===0)return;
+    cont.style.display='block';
+    rows.innerHTML=hist.slice(-5).reverse().map(h=>{
+      const pct=Math.round(h.score/h.total*100);
+      const d=new Date(h.date);
+      const ds=d.toLocaleDateString('hr',{day:'2-digit',month:'2-digit'});
+      return \`<div class="score-hist-row">
+        <span class="score-hist-date">\${ds}</span>
+        <div class="score-hist-bar"><div class="score-hist-fill" style="width:\${pct}%"></div></div>
+        <span class="score-hist-val">\${h.score}/\${h.total}</span>
+      </div>\`;
+    }).join('');
+  }catch(e){}
+}
+
+function saveScoreHistory(score,total){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h20.kviz_hist')||'[]');
+    hist.push({score,total,date:new Date().toISOString()});
+    localStorage.setItem('mt.hrv.h20.kviz_hist',JSON.stringify(hist.slice(-10)));
+    loadScoreHistory();
+  }catch(e){}
+}
+
+// Upgrade qzEnd to save history
+const origQzEnd=qzEnd;
+window.qzEnd=function(el){
+  origQzEnd(el);
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+};
+
+// Load history on init
+loadScoreHistory();
+
+/* ═══════════════════════════════════
+   MATCH GAME — Funkcionalan (3 razine)
+═══════════════════════════════════ */
+const MATCH_DATA={
+  easy:[
+    {a:'Imenica',b:'tko? što? (žena, stol)'},
+    {a:'Glagol',b:'radnja/stanje (pisati, trčati)'},
+    {a:'Pridjev',b:'kakav? čiji? (lijep, majčin)'},
+    {a:'Prilog',b:'opisuje glagol (brzo, ovdje)'},
+  ],
+  medium:[
+    {a:'Nominativ',b:'1. padež · subjekt · tko? što?'},
+    {a:'Akuzativ',b:'4. padež · izravni objekt · koga? što?'},
+    {a:'Lokativ',b:'6. padež · mjesto · UVIJEK s prijedlogom'},
+    {a:'Instrumental',b:'7. padež · sredstvo · s kim? s čim?'},
+  ],
+  hard:[
+    {a:'Povratno-posvojna',b:'Zamjenica SVOJ — pripadnost subjektu'},
+    {a:'Svršeni vid',b:'Glagol završene radnje — s prefiksom (napisati)'},
+    {a:'Paukal',b:'Oblik imenice uz 2, 3, 4 — kao G jd. (dva stola)'},
+    {a:'Pluralia tantum',b:'Imenice samo u množini (vrata, novine)'},
+  ]
+};
+
+let mgLevel='easy',mgSelLeft=null,mgSelRight=null,mgMatched=0,mgPairs=[];
+
+function mgInit(level){
+  mgLevel=level||'easy';
+  const pairs=MATCH_DATA[mgLevel];
+  mgMatched=0;mgSelLeft=null;mgSelRight=null;
+  mgPairs=pairs.map((p,i)=>({...p,id:i}));
+  
+  // Shuffle BOTH sides independently for harder challenge
+  const leftItems=[...mgPairs].sort(()=>Math.random()-.5);
+  const rightItems=[...mgPairs].sort(()=>Math.random()-.5);
+  
+  const themes={
+    easy:'📚 Vrste riječi → pitanje (4 osnovna)',
+    medium:'📐 Padeži → funkcija (4 ključna)',
+    hard:'🔧 Napredni pojmovi (4 zamke)'
+  };
+  const labels={easy:'Lagano',medium:'Srednje',hard:'Teško'};
+  const activeClass=(lvl)=>mgLevel===lvl?'primary':'';
+  
+  const el=document.getElementById('mg-dynamic');
+  if(!el)return;
+  el.innerHTML=\`
+    <div class="mg-status" id="mg-status">
+      <strong>\${themes[mgLevel]}</strong> · \${mgPairs.length} parova · \${labels[mgLevel]}
+    </div>
+    <div class="mg-grid">
+      <div class="mg-col" id="mg-left">
+        \${leftItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="left" onclick="mgClick(this)">\${p.a}</div>\`).join('')}
+      </div>
+      <div class="mg-col" id="mg-right">
+        \${rightItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="right" onclick="mgClick(this)">\${p.b}</div>\`).join('')}
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="fcb \${activeClass('easy')}" onclick="mgInit('easy')" style="margin:3px" title="Vrste riječi i pitanja">📚 Lagano (4)</button>
+      <button class="fcb \${activeClass('medium')}" onclick="mgInit('medium')" style="margin:3px" title="Padeži i funkcije">📐 Srednje (4)</button>
+      <button class="fcb \${activeClass('hard')}" onclick="mgInit('hard')" style="margin:3px" title="Napredni pojmovi i zamke">🔧 Teško (4)</button>
+    </div>
+    <div style="text-align:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--t3)">
+      Svaka razina testira drugu vještinu — ne samo više parova
+    </div>
+  \`;
+}
+
+function mgClick(el){
+  if(el.classList.contains('matched')||el.classList.contains('wrong'))return;
+  const side=el.dataset.side;
+  
+  if(side==='left'){
+    document.querySelectorAll('#mg-left .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelLeft=el;
+  } else {
+    document.querySelectorAll('#mg-right .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelRight=el;
+  }
+  
+  if(mgSelLeft&&mgSelRight){
+    const match=mgSelLeft.dataset.id===mgSelRight.dataset.id;
+    if(match){
+      mgSelLeft.classList.add('matched');mgSelLeft.classList.remove('selected');
+      mgSelRight.classList.add('matched');mgSelRight.classList.remove('selected');
+      mgMatched++;
+      if(mgMatched===mgPairs.length){
+        document.getElementById('mg-status').innerHTML=\`<span style="color:var(--green)">✓ Sve spareno! Odlično!</span>\`;
+        markTab(5);
+      }
+    } else {
+      mgSelLeft.classList.add('wrong');mgSelRight.classList.add('wrong');
+      setTimeout(()=>{
+        mgSelLeft.classList.remove('wrong','selected');
+        mgSelRight.classList.remove('wrong','selected');
+        mgSelLeft=null;mgSelRight=null;
+      },600);
+      return;
+    }
+    mgSelLeft=null;mgSelRight=null;
+  }
+}
+
+/* ═══════════════════════════════════
+   FLASHCARDS — funkcionalan demo
+═══════════════════════════════════ */
+const FC_DATA=[
+  // === MORFEMI (5) ===
+  {t:'Morfem',d:'Najmanja jezična jedinica sa značenjem ili gramatičkom funkcijom. Primjer: ljep-ot-a = 3 morfema (korijen + sufiks + nastavak).',kat:'morfem'},
+  {t:'Korijen (osnova)',d:'Središnji morfem riječi koji nosi leksičko značenje. Zajednički je srodnim riječima (ljep- u ljepota, ljepši, uljepšati).',kat:'morfem'},
+  {t:'Prefiks',d:'Morfem ispred korijena koji mijenja značenje. Hrv.: na-, do-, iz-, pre-, uz-, pod-, nad-, ne-, protu-, među-.',kat:'morfem'},
+  {t:'Sufiks',d:'Tvorbeni morfem iza korijena koji stvara novu riječ. Razlika od nastavka: sufiks NE mijenja se, nastavak DA.',kat:'morfem'},
+  {t:'Nastavak',d:'Gramatički morfem na kraju — označava padež (-a, -e, -om), lice (-m, -š), rod/broj. Mijenja se kroz oblike.',kat:'morfem'},
+  
+  // === VRSTE RIJEČI (5) ===
+  {t:'10 vrsta riječi',d:'5 PROMJENJIVIH: imenice, pridjevi, zamjenice, brojevi, glagoli. 5 NEPROMJENJIVIH: prilozi, prijedlozi, veznici, uzvici, čestice.',kat:'vrste'},
+  {t:'Imenica vs. pridjev',d:'Imenica = tko/što? (stvar). Pridjev = kakav/čiji? (svojstvo). Pridjev se slaže s imenicom u rodu/broju/padežu.',kat:'vrste'},
+  {t:'Zamjenice — 7 vrsta',d:'Osobne, povratne (se), posvojne (moj), povratno-posvojna (svoj), pokazne (ovaj), upitne/odnosne (tko), neodređene (netko).',kat:'vrste'},
+  {t:'Svoj vs. njegov',d:'„Ivan uzima SVOJU knjigu" = Ivanovu (povratno-posvojna). „Ivan uzima NJEGOVU knjigu" = nečiju drugu (posvojna).',kat:'vrste'},
+  {t:'Prilog vs. pridjev',d:'Prilog opisuje glagol (trči BRZO). Pridjev opisuje imenicu (BRZI vlak). Test: dodaj imenicu → ako radi, pridjev.',kat:'vrste'},
+  
+  // === PADEŽI (5) ===
+  {t:'7 padeža (NADIVLA)',d:'N (tko?), G (čega? posvojni), D (komu?), A (koga? objekt), V (dozivanje), L (gdje? tema), I (čime?). Mnemotehnika: NADIVLA.',kat:'padez'},
+  {t:'A vs. L razlika',d:'Isti prijedlozi (u, na, pod, nad): A = kretanje (u ŠKOLU, kamo?), L = mirovanje (u ŠKOLI, gdje?).',kat:'padez'},
+  {t:'Prijedlozi uz G',d:'od, do, iz, bez, kod, preko, pokraj, poslije, prije, radi, zbog, protiv, između. G je najbogatiji padež prijedlozima.',kat:'padez'},
+  {t:'Vokativ (V)',d:'Padež dozivanja. Često s 1. palatalizacijom: Ivan → Ivane, čovjek → čovječe, Bog → Bože, majka → majko!',kat:'padez'},
+  {t:'Instrumental (I)',d:'Sredstvo (BEZ prijedloga: pišem OLOVKOM) vs. društvo (S + I: s PRIJATELJEM). Različito značenje!',kat:'padez'},
+  
+  // === GLAGOLI (5) ===
+  {t:'7 glagolskih vremena',d:'Prezent, perfekt (sam čitao), aorist, imperfekt, pluskvamperfekt, futur I (čitat ću), futur II (budem čitao).',kat:'glagol'},
+  {t:'Glagolski vid',d:'Svršeni (napisati — završeno) vs. nesvršeni (pisati — u tijeku). Prefiksi perfektiviziraju: pisati → NApisati.',kat:'glagol'},
+  {t:'Futur I tvorba',d:'Infinitiv (bez -i) + nenaglašeni „htjeti" (ću, ćeš, će...). Primjer: čitati → čitat ću, vidjeti → vidjet ću.',kat:'glagol'},
+  {t:'Perfekt tvorba',d:'Nenaglašeni prezent „biti" (sam, si, je, smo, ste, su) + glagolski pridjev radni. Primjer: čitao SAM, pročitala JE.',kat:'glagol'},
+  {t:'Imperativ',d:'Zapovijedni način. 3 oblika: 2. jd. (čitaj!), 1. mn. (čitajmo!), 2. mn. (čitajte!). Samo u 3 lica.',kat:'glagol'},
+];
+
+let fcIdx=0,fcFlipped=false;
+
+function fcInit(){
+  fcIdx=0;fcFlipped=false;
+  fcRender();
+}
+
+function fcRender(){
+  const card=document.getElementById('fc-card-dyn');
+  const counter=document.getElementById('fc-counter-dyn');
+  if(!card)return;
+  const item=FC_DATA[fcIdx];
+  const catCls={stih:'p-pa',ep:'p-br',aleg:'p-r',stil:'p-t',hum:'p-go'};
+  card.querySelector('.fc-term').textContent=item.t;
+  card.querySelector('.fc-def').textContent=item.d;
+  card.querySelector('.fc-cat').textContent=item.kat+' · klikni za definiciju';
+  card.querySelector('.fc-back .fc-cat').textContent=item.kat;
+  card.classList.remove('flipped');
+  fcFlipped=false;
+  if(counter)counter.textContent=\`\${fcIdx+1} / \${FC_DATA.length}\`;
+  (document.getElementById('fc-prev-dyn')||{}).disabled=(fcIdx===0);
+  (document.getElementById('fc-next-dyn')||{}).disabled=(fcIdx===FC_DATA.length-1);
+}
+
+function fcFlip(){
+  const card=document.getElementById('fc-card-dyn');
+  if(!card)return;
+  fcFlipped=!fcFlipped;
+  card.classList.toggle('flipped',fcFlipped);
+}
+
+function fcNav(dir){
+  fcIdx=Math.max(0,Math.min(FC_DATA.length-1,fcIdx+dir));
+  fcRender();
+}
+
+/* ═══════════════════════════════════
+   INTERSECTION OBSERVER (IntersectionObserver)
+═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   READ PROGRESS BAR + BTT
+═══════════════════════════════════ */
+(function(){
+  const bar=document.getElementById('rpbar');
+  const btt=document.getElementById('btt');
+  function update(){
+    const el=document.documentElement;
+    const scrolled=el.scrollTop||document.body.scrollTop;
+    const total=(el.scrollHeight||document.body.scrollHeight)-el.clientHeight;
+    const pct=total>0?Math.min(100,Math.round(scrolled/total*100)):0;
+    if(bar)bar.style.width=pct+'%';
+    if(btt)btt.classList.toggle('show',scrolled>300);
+  }
+  document.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+
+
+/* ═══════════════════════════════════
+   CHECKLIST (Esej alat AT7)
+═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   CHECKPOINT WRITER
+═══════════════════════════════════ */
+function buildCitHTML(c, i){
+  const safe = (s)=>s.replace(/\\\\/g,'\\\\\\\\').replace(/'/g,"\\\\'");
+  return \`<div class="featured-quote" data-cit-cat="\${c.cat}">
+      \${c.napamet ? '<span class="fq-napamet">★ NAPAMET</span>' : ''}
+      <div class="fq-mark">«</div>
+      <div class="fq-body">
+        <div class="fq-text">\${c.text}</div>
+        <div class="fq-meta">\${c.meta}</div>
+      </div>
+      <button type="button" class="fq-copy" onclick="fqCopy(this,'\${safe(c.text)} — \${safe(c.meta.replace(/<[^>]+>/g,''))}')">⎘</button>
+    </div>\`;
+}
+
+function fqCopy(btn, text) {
+  navigator.clipboard.writeText(text).catch(() => {});
+  btn.classList.add('copied');
+  btn.textContent = '✓';
+  setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '⎘'; }, 1500);
+}
+
+/* ═══════════════════════════════════
+   POJMOVNIK FLASHCARD MODE (H11 pj2*)
+═══════════════════════════════════ */
+
+
+function pj2Render(){
+  if(!pj2Data.length) return;
+  const p = pj2Data[pj2Idx];
+  const scene = document.getElementById('fc-scene2');
+  const inner = document.getElementById('fc-inner2');
+  if(scene) scene.classList.remove('flipped');
+  if(inner) inner.style.transform='';
+
+  const cat = document.getElementById('fc-cat2');
+  const term = document.getElementById('fc-term2');
+  const def = document.getElementById('fc-def2');
+  const counter = document.getElementById('fc-counter2');
+  const prev = document.getElementById('fc-prev2');
+  const next = document.getElementById('fc-next2');
+
+  if(cat) cat.textContent = p.kat.toUpperCase();
+  if(term) term.textContent = p.term;
+  if(def) def.innerHTML = p.def;
+  if(counter) counter.textContent = (pj2Idx+1)+' / '+pj2Data.length;
+  if(prev) prev.disabled = pj2Idx === 0;
+  if(next) next.disabled = pj2Idx === pj2Data.length-1;
+
+  pj2Seen[pj2Idx] = true;
+  pj2RenderDots();
+}
+
+function pj2RenderDots(){
+  const prog = document.getElementById('fc-progress2');
+  if(!prog || pj2Data.length > 20) return;
+  prog.innerHTML = pj2Data.map((_,i)=>\`<div class="fc-dot\${pj2Seen[i]?' seen':''}\${i===pj2Idx?' known':''}"></div>\`).join('');
+}
+
+function pj2Next(){
+  if(pj2Idx < pj2Data.length-1){ pj2Idx++; pj2Render(); }
+}
+
+function pj2Prev(){
+  if(pj2Idx > 0){ pj2Idx--; pj2Render(); }
+}
+
+/* ═══════════════════════════════════
+   KEYBOARD SHORTCUTS
+═══════════════════════════════════ */
+(function(){
+  let helpShown=false;
+  document.addEventListener('keydown', function(e){
+    // Ignore when typing in inputs/textareas
+    const target=e.target.tagName;
+    if(target==='INPUT'||target==='TEXTAREA'||e.target.isContentEditable)return;
+    
+    const activeTab=Array.from(document.querySelectorAll('.tab')).findIndex(t=>t.classList.contains('on'));
+    
+    // Tab-specific shortcuts
+    if(activeTab === 5){ // Scanner tab
+      if(e.key === 's' || e.key === 'S'){ e.preventDefault(); document.getElementById('ms-input')?.focus(); return; }
+      if(e.key === 'a' || e.key === 'A'){ e.preventDefault(); document.getElementById('ai-input')?.focus(); return; }
+    }
+    if(activeTab === 3){ // Decliner tab
+      if(e.key === 'd' || e.key === 'D'){ e.preventDefault(); document.getElementById('decl-input')?.focus(); return; }
+    }
+    
+    // Arrow navigation between tabs
+    if(e.key==='ArrowRight'&&activeTab<7){
+      e.preventDefault();
+      sw(activeTab+1);
+    } else if(e.key==='ArrowLeft'&&activeTab>0){
+      e.preventDefault();
+      sw(activeTab-1);
+    }
+    // Number keys 1-8 for direct tab access
+    else if(/^[1-8]$/.test(e.key)){
+      e.preventDefault();
+      sw(parseInt(e.key)-1);
+    }
+    // ? for help
+    else if(e.key==='?'){
+      e.preventDefault();
+      if(helpShown){
+        document.getElementById('kbd-help')?.remove();
+        helpShown=false;
+        return;
+      }
+      const help=document.createElement('div');
+      help.id='kbd-help';
+      help.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--ele);border:1px solid var(--gold);border-radius:var(--r3);padding:24px 28px;z-index:500;box-shadow:0 8px 40px rgba(0,0,0,.6);max-width:90vw';
+      help.innerHTML=\`
+        <h3 style="margin-bottom:12px;color:var(--gold);font-family:var(--display)">⌨ Kratice</h3>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-family:var(--serif);font-size:13px">
+          <span><span class="kbd">←</span> <span class="kbd">→</span></span><span>Prethodni / Sljedeći tab</span>
+          <span><span class="kbd">1</span> – <span class="kbd">8</span></span><span>Skok direktno na tab</span>
+          <span><span class="kbd">?</span></span><span>Prikaži / sakrij ovu pomoć</span>
+          <span><span class="kbd">Esc</span></span><span>Zatvori dialog / izađi iz polja</span>
+          <span><span class="kbd">Ctrl</span>+<span class="kbd">P</span></span><span>Print / PDF</span>
+          <span style="grid-column:1/-1;height:1px;background:var(--bd);margin:6px 0"></span>
+          <span style="grid-column:1/-1;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--gold)">PO TABOVIMA</span>
+          <span><span class="kbd">D</span></span><span>Tab 3 — fokus Padežni decliner</span>
+          <span><span class="kbd">S</span></span><span>Tab 5 — fokus Morfo Scanner</span>
+          <span><span class="kbd">A</span></span><span>Tab 5 — fokus AI tutor</span>
+        </div>
+        <div style="margin-top:14px;text-align:right">
+          <button class="fcb" onclick="document.getElementById('kbd-help').remove();">Zatvori</button>
+        </div>
+      \`;
+      document.body.appendChild(help);
+      helpShown=true;
+    }
+    // Escape closes help/sidebar
+    else if(e.key==='Escape'){
+      document.getElementById('kbd-help')?.remove();
+      helpShown=false;
+      closeSb();
+    }
+  });
+})();
+
+if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+      }
+    });
+  },{threshold:0.1});
+  
+  document.querySelectorAll('.scene-card,.ac,.box-key,.fq,.tbl-wrap').forEach(el=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(12px)';
+    el.style.transition='opacity .4s ease, transform .4s ease';
+    obs.observe(el);
+  });
+}
+
+function toggleSidebar(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay');if(s)s.classList.toggle('mobile-open');if(o)o.classList.toggle('show')}
+
+// ═══════════════════════════════════
+// AI TUTOR — Anthropic Claude integration
+// ═══════════════════════════════════
+
+let aiAsking = false;
+
+async function aiAsk(){
+  const input = document.getElementById('ai-input');
+  const out = document.getElementById('ai-output');
+  if(!input || !out) return;
+  
+  const q = input.value.trim();
+  if(!q){ 
+    input.focus();
+    return; 
+  }
+  
+  if(aiAsking) return;
+  aiAsking = true;
+  
+  out.style.display = 'block';
+  out.innerHTML = \`
+    <div style="padding:16px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r1)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div class="ai-spinner" style="width:16px;height:16px;border:2px solid var(--bd);border-top-color:var(--blue);border-radius:50%;animation:aiSpin .8s linear infinite"></div>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--t3)">AI profesor razmišlja...</span>
+      </div>
+    </div>
+  \`;
+  
+  try {
+    // 🚨 PRODUCTION TODO: Move this fetch to backend proxy (Next.js /api/ai-feedback)
+
+    // Current: API call from browser would expose API key in production.
+
+    // Plan: Next.js API route → Supabase tier check → proxy to Anthropic API → return result
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{
+          role: "user",
+          content: \`Ti si AI profesor hrvatskog jezika za srednjoškolce pred maturom. Odgovaraj na hrvatskom, jasno i konkretno. Koristi PRIMJERE. Odgovor neka bude 3-6 rečenica, maksimalno 150 riječi. Koristi oznake <strong> za bitne pojmove i <em> za primjere.\\n\\nPitanje: \${q}\`
+        }]
+      })
+    });
+    
+    const data = await response.json();
+    const answer = data.content?.[0]?.text || 'Greška u odgovoru.';
+    
+    out.innerHTML = \`
+      <div style="padding:16px;background:var(--bg);border:1px solid var(--bd);border-left:3px solid var(--blue);border-radius:var(--r1);animation:resultFadeIn .4s ease">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue)">🤖 AI PROFESOR</div>
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiCopy(this)">⎘ Kopiraj</button>
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiShare()">📤 Podijeli</button>
+        </div>
+        <div id="ai-answer-text" style="font-family:var(--serif);font-size:14px;line-height:1.7;color:var(--t1)">\${answer}</div>
+        <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiFollowup('Daj mi više primjera.')">➕ Više primjera</button>
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiFollowup('Kako se ovo pojavljuje na maturi?')">📝 Na maturi</button>
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiFollowup('Objasni još jednostavnije.')">📖 Jednostavnije</button>
+        </div>
+      </div>
+    \`;
+    
+    // Save to history
+    try {
+      const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.ai_hist')||'[]');
+      hist.push({q, a: answer, date: new Date().toISOString()});
+      localStorage.setItem('mt.hrv.h20.ai_hist', JSON.stringify(hist.slice(-20)));
+    } catch(e){}
+    
+  } catch(err){
+    out.innerHTML = \`
+      <div class="box-warn" style="margin:0">
+        <div class="bw-body">
+          <div class="bw-ttl" style="color:var(--red)">⚠ Greška</div>
+          <div class="bw-txt">AI trenutno nije dostupan. Pokušaj ponovo za nekoliko sekundi.<br>Ako problem potraje, koristi <strong>Morfo Scanner</strong> iznad ili se obrati na Maturiraj.hr.</div>
+        </div>
+      </div>
+    \`;
+  } finally {
+    aiAsking = false;
+  }
+}
+
+function aiAskExample(q){
+  const input = document.getElementById('ai-input');
+  if(input){
+    input.value = q;
+    aiAsk();
+  }
+}
+
+function aiFollowup(q){
+  const input = document.getElementById('ai-input');
+  if(input){
+    input.value = q;
+    aiAsk();
+  }
+}
+
+
+function aiShare(){
+  const ans = document.getElementById('ai-answer-text');
+  const input = document.getElementById('ai-input');
+  if(!ans) return;
+  
+  const text = \`Pitanje: \${input?.value || ''}\\n\\nOdgovor (Maturiraj.hr H20 Morfologija):\\n\${ans.innerText.trim()}\\n\\n→ maturiraj.hr/h20\`;
+  
+  if(navigator.share){
+    navigator.share({
+      title: 'Maturiraj.hr — H20 Morfologija',
+      text: text,
+      url: 'https://maturiraj.hr/hrvatski/h20-morfologija'
+    }).catch(() => {
+      // User cancelled or unsupported
+    });
+  } else {
+    // Fallback: copy to clipboard
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Kopirano! Sad zalijepi u poruku/email.');
+    });
+  }
+}
+
+function aiCopy(btn){
+  const ans = document.getElementById('ai-answer-text');
+  if(!ans) return;
+  const text = ans.innerText.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Kopirano';
+    setTimeout(() => btn.innerHTML = orig, 1500);
+  });
+}
+
+// Spinner keyframes
+if(!document.getElementById('ai-spinner-css')){
+  const s = document.createElement('style');
+  s.id = 'ai-spinner-css';
+  s.textContent = '@keyframes aiSpin { to { transform: rotate(360deg); } }';
+  document.head.appendChild(s);
+}
+
+
+// (Removed: Gamification — XP, Streak, Achievements per user request)
+// Stub no-op functions to prevent broken callers
+function addXP(){}
+function recordTabVisit(){}
+function recordQuizResult(){}
+function recordScan(){}
+function recordDecline(){}
+function updateStreak(){}
+function updateDashboard(){}
+
+// (Removed: Quick Search Cmd+K — restored to classic H19/H18 style)
+
+</script>
+
+
+<!-- TIP BAR -->
+<div class="tip-bar" id="tip-bar">
+  <span class="tip-bar-close" onclick="document.getElementById('tip-bar').classList.remove('show')">✕</span>
+  <span id="tip-bar-txt">💡 <strong>Tip:</strong> Koristi Padežni decliner za sklanjanje i Morfo Scanner za analizu riječi.</span>
+</div>
+
+<!-- FROM BANNER -->
+<div class="from-banner" id="from-banner">
+  <span>📎</span><span id="from-txt">Dolaziš iz prethodnog poglavlja</span>
+</div>
+
+
+<script>
+/* TIER_SYSTEM_JS_INJECTED */
+/**
+ * Maturiraj.hr — Tier Helper Module
+ * 
+ * Globalni JS modul za upravljanje tier sustavom (Free / Standard / Pro).
+ * Koristi se u svim chapterima i pricing page-u.
+ * 
+ * 🚨 PRODUCTION TODO:
+ * - Tier provjera mora ići preko Supabase (auth.uid() → user_subscriptions tablica)
+ * - Trenutno mock kroz localStorage 'mt.pro_mode' = 'free' | 'standard' | 'pro'
+ * - Dnevni limiti se moraju validirati na backendu
+ * 
+ * Verzija: 1.0
+ * Autor: Maturiraj.hr team
+ */
+
+(function(window) {
+  'use strict';
+
+  // ════════════════════════════════════════════════
+  // CONFIG — Tier Definicija
+  // ════════════════════════════════════════════════
+  
+  const TIER_CONFIG = {
+    free: {
+      name: 'Free',
+      label: '🆓 Free',
+      price: 0,
+      color: 'var(--t3, #888)',
+      features: {
+        // TEORIJA — sve free
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve free
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — limited
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: 1,            // 1 esej max
+        max_summaries: 1,         // 1 sažetak max
+        all_essay_models: false,  // 1 vidljiv
+        all_summary_models: false,
+        export_workspace: false,  // bez exporta
+        // SIMULATORI — 0 demo
+        discere_simulators: false,
+        max_simulators: 0,
+        // PLAN UČENJA — pregled
+        study_plan_preview: true,
+        study_plan_full: false,
+        // STATS
+        streak_tracking: false,
+        heatmap: false,
+        progress_analytics: false,
+        // PARENT
+        parent_dashboard: false,
+        // AI — sve zaključano
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    standard: {
+      name: 'Standard',
+      label: '⭐ Standard',
+      price: 9.99,
+      color: 'var(--blue, #4a90d9)',
+      features: {
+        // TEORIJA — sve
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — full
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,           // unlimited
+        max_summaries: -1,        // unlimited
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        // SIMULATORI — svi (70 ispita)
+        discere_simulators: true,
+        max_simulators: -1,
+        // PLAN UČENJA — full
+        study_plan_preview: true,
+        study_plan_full: true,
+        // STATS
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        // PARENT
+        parent_dashboard: true,
+        // AI — sve zaključano (Standard NEMA AI!)
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    pro: {
+      name: 'Pro',
+      label: '💎 Pro',
+      price: 19.99,
+      color: 'var(--gold, #e9b446)',
+      features: {
+        // Sve iz Standard
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,
+        max_summaries: -1,
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        discere_simulators: true,
+        max_simulators: -1,
+        study_plan_preview: true,
+        study_plan_full: true,
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        parent_dashboard: true,
+        // AI — sve unlocked (PRO ONLY)
+        ai_chat: true,
+        ai_feedback: true,
+        ai_personal_plan: true,
+        // PRIJEMNI — Pro only
+        prijemni: true,
+      },
+      ai_limits: {
+        feedback_per_day: 20,    // 2B odluka
+        chat_per_day: 30,        // 2B odluka
+        plan_refresh_per_week: 1,
+      }
+    }
+  };
+
+  // ════════════════════════════════════════════════
+  // STORAGE KEYS
+  // ════════════════════════════════════════════════
+  
+  const STORAGE_KEYS = {
+    tier: 'mt.pro_mode',
+    daily_usage: 'mt.daily_usage',
+    weekly_usage: 'mt.weekly_usage',
+  };
+
+  // ════════════════════════════════════════════════
+  // CORE API
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća trenutni tier korisnika.
+   * @returns {'free' | 'standard' | 'pro'}
+   */
+  function getTier() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.tier);
+      if (stored === 'pro' || stored === 'standard') return stored;
+      return 'free';
+    } catch (e) {
+      return 'free';
+    }
+  }
+
+  /**
+   * Postavlja tier (mock — produkcija ovo radi preko Supabase).
+   */
+  function setTier(tier) {
+    if (!['free', 'standard', 'pro'].includes(tier)) {
+      console.error('[tier_helper] Invalid tier:', tier);
+      return false;
+    }
+    try {
+      if (tier === 'free') {
+        localStorage.removeItem(STORAGE_KEYS.tier);
+      } else {
+        localStorage.setItem(STORAGE_KEYS.tier, tier);
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Toggle tier (free → standard → pro → free)
+   * Koristi se u dev mode-u.
+   */
+  function toggleTier() {
+    const current = getTier();
+    const next = current === 'free' ? 'standard' : (current === 'standard' ? 'pro' : 'free');
+    setTier(next);
+    return next;
+  }
+
+  /**
+   * Provjerava ima li korisnik feature.
+   * @param {string} feature - npr 'ai_feedback', 'all_simulators'
+   * @returns {boolean}
+   */
+  function hasFeature(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return false;
+    return config.features[feature] === true;
+  }
+
+  /**
+   * Vraća konfiguraciju tier-a (label, cijena, boja).
+   * @param {string} tier - opcionalno; ako nije zadan, vraća za current.
+   */
+  function getTierConfig(tier) {
+    return TIER_CONFIG[tier || getTier()] || TIER_CONFIG.free;
+  }
+
+  /**
+   * Vraća vrijednost numeričkog limita feature-a.
+   * @param {string} feature - npr 'max_essays', 'max_simulators'
+   * @returns {number} -1 = unlimited, 0 = nema, X = točno X
+   */
+  function getLimit(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return 0;
+    const val = config.features[feature];
+    if (val === true) return -1; // unlimited
+    if (val === false) return 0;
+    return val;
+  }
+
+  /**
+   * Vraća AI limit (feedback / chat / plan).
+   * @param {string} type - 'feedback' | 'chat' | 'plan'
+   */
+  function getAILimit(type) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config || !config.ai_limits) return 0;
+    
+    const map = {
+      feedback: 'feedback_per_day',
+      chat: 'chat_per_day',
+      plan: 'plan_refresh_per_week'
+    };
+    return config.ai_limits[map[type]] || 0;
+  }
+
+  // ════════════════════════════════════════════════
+  // USAGE TRACKING
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća današnju potrošnju feature-a.
+   */
+  function getDailyUsage(feature) {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (!stored) return 0;
+      const data = JSON.parse(stored);
+      if (data.date !== today) return 0;
+      return data.usage[feature] || 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Inkrementira potrošnju feature-a.
+   */
+  function incrementDailyUsage(feature) {
+    const today = new Date().toISOString().split('T')[0];
+    let data = { date: today, usage: {} };
+    
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.date === today) data = parsed;
+      }
+    } catch (e) {}
+    
+    data.usage[feature] = (data.usage[feature] || 0) + 1;
+    
+    try {
+      localStorage.setItem(STORAGE_KEYS.daily_usage, JSON.stringify(data));
+    } catch (e) {}
+    
+    return data.usage[feature];
+  }
+
+  /**
+   * Provjerava može li korisnik koristiti AI feature (limit + tier check).
+   * @returns {{ allowed: boolean, reason: string, used: number, limit: number }}
+   */
+  function canUseAI(type) {
+    const tier = getTier();
+    const limit = getAILimit(type);
+    const used = getDailyUsage('ai_' + type);
+    
+    if (limit === 0) {
+      return {
+        allowed: false,
+        reason: 'tier_locked',
+        tier_required: 'pro',
+        used: 0,
+        limit: 0
+      };
+    }
+    
+    if (used >= limit) {
+      return {
+        allowed: false,
+        reason: 'daily_limit_reached',
+        tier_required: tier,
+        used,
+        limit
+      };
+    }
+    
+    return {
+      allowed: true,
+      reason: 'ok',
+      used,
+      limit
+    };
+  }
+
+  // ════════════════════════════════════════════════
+  // PAYWALL MODAL
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Prikazuje paywall modal.
+   * @param {object} options
+   * @param {string} options.feature - naziv feature-a
+   * @param {string} options.requiredTier - 'standard' | 'pro'
+   * @param {string} options.reason - razlog (free_limit / tier_locked / daily_limit)
+   */
+  function showPaywall(options) {
+    const opts = options || {};
+    const requiredTier = opts.requiredTier || 'standard';
+    const reason = opts.reason || 'feature_locked';
+    const feature = opts.feature || 'Ovaj feature';
+    
+    // Remove existing modal
+    const existing = document.getElementById('mt-paywall-modal');
+    if (existing) existing.remove();
+    
+    const reasonText = {
+      free_limit: 'Iskoristio si Free limit za ovaj feature.',
+      tier_locked: 'Ovaj feature je dostupan u Standard ili Pro pretplati.',
+      daily_limit: 'Iskoristio si svoj dnevni limit. Vrati se sutra ili upgradaj na viši tier.',
+      feature_locked: 'Ovaj feature zahtijeva pretplatu.'
+    };
+    
+    const modal = document.createElement('div');
+    modal.id = 'mt-paywall-modal';
+    modal.className = 'mt-paywall-overlay';
+    modal.innerHTML = \`
+      <div class="mt-paywall-modal" onclick="event.stopPropagation()">
+        <button type="button" class="mt-paywall-close" onclick="MT.Tier.closePaywall()" aria-label="Zatvori">×</button>
+        
+        <div class="mt-paywall-header">
+          <div class="mt-paywall-icon">\${requiredTier === 'pro' ? '💎' : '⭐'}</div>
+          <div class="mt-paywall-title">\${feature}</div>
+          <div class="mt-paywall-subtitle">\${reasonText[reason] || reasonText.feature_locked}</div>
+        </div>
+        
+        <div class="mt-paywall-tiers">
+          \${requiredTier !== 'pro' ? \`
+          <div class="mt-paywall-tier mt-paywall-tier-standard \${requiredTier === 'standard' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'standard' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">⭐ Standard</div>
+            <div class="mt-paywall-tier-price">9,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Cijela teorija + kvizovi</li>
+              <li>✅ Svi Discere simulatori (70 ispita)</li>
+              <li>✅ Sve modelne eseje (9) + sažetke (10)</li>
+              <li>✅ Neograničeno u Workspace</li>
+              <li>✅ Parent dashboard</li>
+              <li>✅ Streak + heatmap + analitika</li>
+              <li>❌ Bez AI features</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta" onclick="MT.Tier.subscribe('standard')">
+              Pretplati se na Standard
+            </button>
+          </div>
+          \` : ''}
+          
+          <div class="mt-paywall-tier mt-paywall-tier-pro \${requiredTier === 'pro' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'pro' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">💎 Pro</div>
+            <div class="mt-paywall-tier-price">19,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Sve iz Standard</li>
+              <li>✅ <strong>🤖 AI Profesor (chat) — 30/dan</strong></li>
+              <li>✅ <strong>🤖 AI Feedback za eseje + sažetke — 20/dan</strong></li>
+              <li>✅ <strong>Personalizirani plan učenja</strong></li>
+              <li>✅ <strong>Prijemni priprema</strong></li>
+              <li>✅ Priority AI queue</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta mt-paywall-cta-pro" onclick="MT.Tier.subscribe('pro')">
+              Pretplati se na Pro
+            </button>
+          </div>
+        </div>
+        
+        <div class="mt-paywall-footer">
+          <a href="Maturiraj_Pricing.html" class="mt-paywall-link">Vidi sve tier opcije →</a>
+          <span class="mt-paywall-divider">·</span>
+          <button type="button" class="mt-paywall-link mt-paywall-link-btn" onclick="MT.Tier.toggleTierDevMode()">
+            🧪 Dev: Toggle tier (trenutno: \${getTier().toUpperCase()})
+          </button>
+        </div>
+      </div>
+    \`;
+    
+    modal.addEventListener('click', closePaywall);
+    document.body.appendChild(modal);
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePaywall() {
+    const modal = document.getElementById('mt-paywall-modal');
+    if (modal) {
+      modal.remove();
+      document.body.style.overflow = '';
+    }
+  }
+
+  function subscribe(tier) {
+    // 🚨 PRODUCTION TODO: Stripe Checkout integration
+    // Plan: Stripe Checkout Session → success_url: /pretplata/success?tier=X
+    // Backend writes to Supabase user_subscriptions, then redirects back
+    
+    // For now: mock behavior — set tier, close paywall, reload
+    if (confirm(\`🚧 Pretplata u izradi (Stripe checkout uskoro).\\n\\nMock: Postaviti tier na \${tier === 'pro' ? 'Pro 19,99€' : 'Standard 9,99€'}/mj?\\n\\nKliknite OK za mock pretplatu.\`)) {
+      setTier(tier);
+      closePaywall();
+      location.reload();
+    }
+  }
+
+  function toggleTierDevMode() {
+    const next = toggleTier();
+    alert(\`🧪 Dev mode — tier postavljen na: \${next.toUpperCase()}\`);
+    closePaywall();
+    location.reload();
+  }
+
+  // ════════════════════════════════════════════════
+  // SIDEBAR TIER BADGE
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Injectsa tier badge u sidebar (ako postoji).
+   */
+  function injectSidebarBadge() {
+    const sidebar = document.querySelector('.sidebar') || document.querySelector('nav.sb');
+    if (!sidebar) return;
+    
+    // Check if already exists
+    if (document.getElementById('mt-tier-badge')) return;
+    
+    const tier = getTier();
+    const config = getTierConfig(tier);
+    
+    const badge = document.createElement('div');
+    badge.id = 'mt-tier-badge';
+    badge.className = 'mt-tier-badge mt-tier-badge-' + tier;
+    badge.innerHTML = \`
+      <div class="mt-tier-badge-label">\${config.label}</div>
+      \${tier === 'free' ? '<button type="button" class="mt-tier-badge-cta" onclick="MT.Tier.openPricing()">Upgrade →</button>' : ''}
+    \`;
+    
+    // Insert at top of sidebar
+    const firstChild = sidebar.firstElementChild;
+    if (firstChild) {
+      sidebar.insertBefore(badge, firstChild);
+    } else {
+      sidebar.appendChild(badge);
+    }
+  }
+
+  function openPricing() {
+    location.href = 'Maturiraj_Pricing.html';
+  }
+
+  // ════════════════════════════════════════════════
+  // PUBLIC API
+  // ════════════════════════════════════════════════
+  
+  window.MT = window.MT || {};
+  window.MT.Tier = {
+    // Core
+    getTier,
+    setTier,
+    toggleTier,
+    getTierConfig,
+    
+    // Features
+    hasFeature,
+    getLimit,
+    getAILimit,
+    
+    // Usage
+    getDailyUsage,
+    incrementDailyUsage,
+    canUseAI,
+    
+    // Paywall
+    showPaywall,
+    closePaywall,
+    subscribe,
+    toggleTierDevMode,
+    
+    // UI
+    injectSidebarBadge,
+    openPricing,
+    
+    // Config (read-only)
+    CONFIG: TIER_CONFIG
+  };
+
+  // Auto-inject sidebar badge on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectSidebarBadge);
+  } else {
+    injectSidebarBadge();
+  }
+
+})(window);
+
+</script>
+
+<script>
+/* UPDATE_PROGRESS_INJECTED */
+
+function updateProgress(pct){
+  var p=Math.max(5,pct);
+  var pb=document.getElementById('prog-bar'); if(pb) pb.style.width=p+'%';
+  var pct2=document.getElementById('prog-pct'); if(pct2) pct2.textContent=p+'%';
+  var hp=document.getElementById('hero-pb'); if(hp) hp.style.width=p+'%';
+  var hl=document.getElementById('hero-prog-lbl'); if(hl) hl.textContent=p+'% završeno';
+  try { localStorage.setItem('mt.hrv.h20.prog', p); } catch(e){}
+}
+
+</script>`;
+
+const STYLES_CSS = `
+/* ═══════════════════════════════════════════
+   HRVATSKI DESIGN SYSTEM v1 — KRVAVO CRVENA
+   ═══════════════════════════════════════════ */
+:root{
+  --bg:#0F0605;--sur:#180A08;--ele:#20100D;--card:#2A1612;--hov:#351B16;--inp:#180A08;
+  --bd:rgba(220,50,47,.10);--bdm:rgba(220,50,47,.18);--bdl:rgba(220,50,47,.32);
+  --bronze:#DC322F;--bronze-l:#FF5A54;--bronze-d:#8B1E1B;
+  --bd-br:rgba(220,50,47,.28);--dim-br:rgba(220,50,47,.10);--glow-br:rgba(220,50,47,.06);
+  --gold:#E8C97A;--bd-go:rgba(232,201,122,.26);--dim-go:rgba(232,201,122,.09);
+  --parchment:#D4B98C;--bd-pa:rgba(212,185,140,.22);--dim-pa:rgba(212,185,140,.08);
+  --teal:#6B8E7F;--bd-t:rgba(107,142,127,.22);--dim-t:rgba(107,142,127,.09);
+  --red:#C04244;--bd-r:rgba(192,66,68,.22);--dim-r:rgba(192,66,68,.10);
+  --green:#6B9464;--bd-g:rgba(107,148,100,.22);--dim-g:rgba(107,148,100,.09);
+  --sienna:#A85940;--bd-s:rgba(168,89,64,.22);--dim-s:rgba(168,89,64,.10);
+  --t1:#F5E6D3;--t2:#B09684;--t3:#6B5A4E;--t4:#3A2A22;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;
+  --serif:'Crimson Text',Georgia,serif;
+  --display:'Cinzel',serif;
+  --mono:'JetBrains Mono',monospace;
+  --r1:4px;--r2:8px;--r3:12px;--r4:16px;--r5:24px;--sb:258px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+img,video,iframe,embed,object{max-width:100%;height:auto}
+html{font-size:16px;scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M0 40 L80 40 M40 0 L40 80' stroke='%23DC322F' stroke-width='.25' opacity='.05'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%23DC322F' opacity='.08'/%3E%3C/svg%3E");
+  background-size:80px 80px;pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(220,50,47,.07) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.shell{display:flex;min-height:100vh}
+.shell,.sidebar,.main{position:relative;z-index:1}
+.main{flex:1;min-width:0;max-width:100%}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes layerIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(220,50,47,.3)}50%{box-shadow:0 0 0 8px rgba(220,50,47,.0)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes diagFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ SIDEBAR ══ */
+.sidebar{
+  width:var(--sb);min-width:var(--sb);flex-shrink:0;background:var(--sur);
+  border-right:1px solid var(--bdm);
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  display:flex;flex-direction:column;
+  scrollbar-width:thin;scrollbar-color:var(--bdm) transparent;
+}
+@media(max-width:1200px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;height:100%;z-index:180;
+    transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+    pointer-events:none}
+  .sidebar.mobile-open{transform:translateX(0)!important;pointer-events:auto}
+  .sb-hamburger{display:flex!important}
+  .main{width:100%!important;max-width:100%!important;flex:1!important}
+}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--bdm);border-radius:2px}
+.sb-brand{padding:16px 14px 14px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px}
+.sb-logo{
+  width:34px;height:34px;
+  background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));
+  border-radius:var(--r2);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;box-shadow:0 0 20px rgba(220,50,47,.35);
+  animation:pulse 3s ease-in-out infinite;
+}
+.sb-name{font-family:var(--display);font-size:12px;font-weight:700;color:var(--t1);letter-spacing:.5px}
+.sb-sub{font-size:9px;color:var(--t3);margin-top:2px;font-family:var(--mono);letter-spacing:1.5px;text-transform:uppercase}
+.sb-hamburger{
+  display:none;position:fixed;top:6px;left:6px;z-index:300;
+  width:38px;height:38px;background:var(--sur);border:1px solid var(--bdm);
+  border-radius:var(--r2);align-items:center;justify-content:center;cursor:pointer;flex-direction:column;gap:4px;
+}
+.sb-hamburger span{display:block;width:16px;height:1.5px;background:var(--t2);border-radius:1px;transition:all .2s}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:150;backdrop-filter:blur(3px)}
+.sb-overlay.show{display:block}
+.sidebar.mobile-open{transform:translateX(0)!important}
+.sb-prog-wrap{padding:10px 14px;border-bottom:1px solid var(--bd)}
+.sb-prog-label{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between}
+.sb-prog-track{height:4px;background:var(--bd);border-radius:2px;overflow:hidden}
+.sb-prog-bar{
+  height:100%;
+  background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));
+  background-size:200% 100%;
+  border-radius:2px;transition:width .6s cubic-bezier(.4,0,.2,1);
+  animation:shimmer 2.5s linear infinite;
+}
+.sb-era{font-family:var(--display);font-size:8px;font-weight:600;letter-spacing:2.5px;color:var(--bronze-d);text-transform:uppercase;padding:14px 14px 4px;border-top:1px solid var(--bd);margin-top:4px}
+.sb-era:first-of-type{border-top:none;margin-top:0}
+.sb-item{display:flex;align-items:center;gap:9px;padding:6px 14px;font-size:11.5px;color:var(--t2);cursor:pointer;border-left:2px solid transparent;transition:all .12s;line-height:1.35;font-family:var(--serif)}
+.sb-item:hover:not(.disabled){color:var(--t1);background:var(--hov)}
+.sb-item.active{color:var(--bronze-l);background:var(--glow-br);border-left-color:var(--bronze);font-weight:600}
+.sb-item.disabled{opacity:.35;cursor:not-allowed;position:relative}
+.sb-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.35}
+.sb-item.active .sb-dot{opacity:1;box-shadow:0 0 4px currentColor}
+.sb-footer{margin-top:auto;padding:10px 14px;border-top:1px solid var(--bd);font-size:9px;color:var(--t3);line-height:1.75;font-family:var(--mono)}
+.sb-item.sb-d .sb-dot{background:var(--gold);opacity:.5}
+.sb-item.sb-d:hover:not(.disabled){color:var(--gold);background:var(--dim-go)}
+.sb-item[data-star="2026"]::after{
+  content:'★ 2026';position:absolute;right:10px;
+  font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.5px;
+  color:var(--gold);background:var(--dim-go);border:1px solid var(--bd-go);
+  border-radius:3px;padding:2px 5px;
+}
+.sb-item[data-star="2026"]{padding-right:58px;position:relative}
+
+
+/* ══ MAIN ══ */
+.content-wrap{max-width:860px;width:100%;margin:0 auto;padding:32px 44px 120px;animation:fadeUp .4s ease both;box-sizing:border-box}
+.bc{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--t3);margin-bottom:24px;font-family:var(--mono);flex-wrap:wrap}
+.bc-sep{opacity:.3}.bc-cur{color:var(--bronze)}.bc-link{color:inherit;text-decoration:none}.bc-link:hover{opacity:.7}
+.bc-tab{color:var(--gold);font-weight:600;padding:2px 8px;background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r1);letter-spacing:.3px}
+
+/* ══ HERO ══ */
+.hero{margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--bdm);position:relative}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;width:60px;height:2px;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:1px}
+.hero-chapter{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--bronze);opacity:.8;margin-bottom:10px}
+.hero-title{font-family:var(--display);font-size:28px;font-weight:700;color:var(--t1);letter-spacing:.3px;line-height:1.15;margin-bottom:10px}
+.hero-title span{background:linear-gradient(135deg,var(--bronze-l),var(--gold),var(--parchment));background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+.hero-sub{font-family:var(--serif);font-size:15px;color:var(--t2);line-height:1.65;margin-bottom:18px}
+.hero-sub strong{color:var(--t1)}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.hchip{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:4px}
+.hchip.br{background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+.hchip.go{background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go)}
+.hchip.te{background:var(--dim-t);color:var(--teal);border:1px solid var(--bd-t)}
+.hchip.re{background:var(--dim-r);color:var(--red);border:1px solid var(--bd-r)}
+.hchip.gr{background:var(--dim-g);color:var(--green);border:1px solid var(--bd-g)}
+.hchip.pa{background:var(--dim-pa);color:var(--parchment);border:1px solid var(--bd-pa)}
+
+/* ══ COUNTDOWN ══ */
+.countdown{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--t3);padding:7px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);display:inline-flex;align-items:center;gap:8px;margin-bottom:20px}
+.countdown strong{color:var(--bronze);font-size:13px}
+
+/* ══ TABS ══ */
+.tabs{display:flex;gap:0;margin-bottom:20px;background:var(--sur);border:1px solid var(--bdm);border-radius:var(--r2);padding:3px;width:100%;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;-ms-overflow-style:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:7px 16px;font-size:11px;font-weight:600;color:var(--t2);cursor:pointer;border-radius:5px;transition:all .18s;white-space:nowrap;font-family:var(--mono);position:relative;z-index:1;background:transparent;border:none;line-height:normal;min-height:44px}
+.tab:hover{color:var(--t1)}
+.tab:focus-visible{outline:2px solid var(--bronze);outline-offset:2px}
+.tab.on{background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));color:#0F0605;font-weight:700;box-shadow:0 2px 18px rgba(220,50,47,.35),inset 0 1px 0 rgba(255,255,255,.1)}
+.tab-badge{display:inline-flex;align-items:center;justify-content:center;margin-left:5px;font-size:9px;color:var(--green);opacity:.9;font-weight:700}
+.tab-lock{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.5px;margin-left:5px;background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go);border-radius:3px;padding:1px 5px}
+.tab-done{display:inline-flex;align-items:center;justify-content:center;margin-left:5px;font-size:9px;color:var(--green);opacity:.9;font-weight:700}
+/* ══ TIP BAR ══ */
+.tip-bar{position:fixed;bottom:16px;right:16px;background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r3);padding:10px 14px;font-family:var(--mono);font-size:10px;color:var(--t2);max-width:260px;box-shadow:0 4px 20px rgba(0,0,0,.4);z-index:190;display:none;animation:fadeUp .3s ease;line-height:1.5}
+.tip-bar.show{display:block}
+.tip-bar-close{float:right;cursor:pointer;color:var(--t3);margin-left:8px;font-size:12px}
+.tip-bar strong{color:var(--gold)}
+/* ══ DISCERE BANNER ══ */
+.discere-banner{background:linear-gradient(135deg,rgba(220,50,47,.12),rgba(232,201,122,.08));border:1px solid var(--bd-br);border-radius:var(--r3);padding:14px 18px;margin:20px 0;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .18s}
+.discere-banner:hover{border-color:var(--bdl);background:linear-gradient(135deg,rgba(220,50,47,.18),rgba(232,201,122,.12))}
+.discere-ico{font-size:28px;flex-shrink:0}
+.discere-txt{flex:1}
+.discere-ttl{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin-bottom:3px}
+.discere-sub{font-family:var(--serif);font-size:12.5px;color:var(--t3);line-height:1.4}
+.discere-arrow{color:var(--bronze);font-size:18px;flex-shrink:0}
+/* ══ SCORE HISTORY ══ */
+.score-hist{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 18px;margin:16px 0}
+.score-hist-lbl{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.score-hist-rows{display:flex;flex-direction:column;gap:6px}
+.score-hist-row{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px}
+.score-hist-bar{flex:1;height:6px;background:var(--bd);border-radius:3px;overflow:hidden}
+.score-hist-fill{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:3px;transition:width .5s ease}
+.score-hist-val{color:var(--gold);min-width:36px;text-align:right}
+.score-hist-date{color:var(--t3);font-size:9px;min-width:48px}
+/* ══ FROM BANNER ══ */
+.from-banner{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:8px 14px;margin-bottom:18px;font-family:var(--mono);font-size:10px;color:var(--gold);display:none}
+.from-banner.show{display:flex;align-items:center;gap:8px}
+
+/* ══ LAYERS ══ */
+.layer{display:none!important;scroll-margin-top:50px}
+.layer.on{display:block!important;animation:layerIn .28s cubic-bezier(.4,0,.2,1) both}
+
+/* ══ PILLS / TAGS ══ */
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}
+.pill{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center}
+.p-br{background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+.p-go{background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go)}
+.p-r{background:var(--dim-r);color:var(--red);border:1px solid var(--bd-r)}
+.p-t{background:var(--dim-t);color:var(--teal);border:1px solid var(--bd-t)}
+.p-g{background:var(--dim-g);color:var(--green);border:1px solid var(--bd-g)}
+.p-pa{background:var(--dim-pa);color:var(--parchment);border:1px solid var(--bd-pa)}
+
+/* ══ FEATURED QUOTE ══ */
+.fq{background:var(--ele);border-left:3px solid var(--bronze);border-radius:0 var(--r3) var(--r3) 0;padding:18px 22px;margin:22px 0;position:relative}
+.fq::before{content:'\\275D';position:absolute;top:8px;right:14px;font-size:32px;color:var(--bronze);opacity:.15;font-family:Georgia,serif;line-height:1}
+.fq-text{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--t1);line-height:1.7;margin-bottom:8px}
+.fq-source{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px}
+.fq-source span{color:var(--gold)}
+
+/* ══ BOX SYSTEM ══ */
+.box-key{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r3);padding:16px 18px;margin:18px 0}
+.box-key-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.box-int{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:16px 18px;margin:18px 0}
+.box-int-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bronze-l);margin-bottom:10px}
+.box-warn{background:rgba(192,66,68,.07);border:1px solid var(--bd-r);border-radius:var(--r3);padding:14px 18px;margin:16px 0}
+.box-warn-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.box-signal{background:rgba(107,142,127,.07);border:1px solid var(--bd-t);border-radius:var(--r3);padding:14px 18px;margin:16px 0}
+.box-signal-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.box-signal-txt,.box-int-txt,.box-key-txt,.box-warn-txt,.bw-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+.box-signal-txt strong,.box-int-txt strong,.box-key-txt strong,.bw-txt strong{color:var(--t1)}
+.box-signal-txt em,.box-int-txt em,.bw-txt em{color:var(--teal);font-style:italic}
+
+/* ══ SECTION HEADER ══ */
+.sec-hdr{display:flex;align-items:center;gap:12px;margin:32px 0 16px}
+.sec-line{flex:1;height:1px;background:var(--bd)}
+.sec-badge{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);white-space:nowrap}
+
+/* ══ TABLE ══ */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0}
+.tbl th{background:var(--ele);color:var(--t3);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:8px 12px;border:1px solid var(--bd);text-align:left}
+.tbl td{padding:9px 12px;border:1px solid var(--bd);color:var(--t2);vertical-align:top;line-height:1.5}
+.tbl tr:hover td{background:var(--hov);color:var(--t1)}
+.tbl td strong{color:var(--t1)}
+.tbl td em{color:var(--gold);font-style:italic}
+.tbl-wrap{overflow-x:auto;margin:16px 0;border-radius:var(--r2)}
+
+/* ══ SCENE CARDS (pjevanja) ══ */
+.scene-list{display:flex;flex-direction:column;gap:12px;margin:18px 0}
+.scene-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);overflow:hidden;cursor:pointer;transition:border-color .18s}
+.scene-card:hover{border-color:var(--bdl)}
+.scene-card.open{border-color:var(--bd-br)}
+.scene-hdr{display:flex;align-items:center;gap:12px;padding:12px 16px}
+.scene-num{font-family:var(--display);font-size:11px;font-weight:700;color:var(--bronze);min-width:28px}
+.scene-ttl{font-family:var(--serif);font-size:14px;color:var(--t1);font-weight:600;flex:1}
+.scene-tag{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+.scene-arr{color:var(--t3);font-size:12px;transition:transform .2s}
+.scene-card.open .scene-arr{transform:rotate(90deg)}
+.scene-body{display:none;padding:0 16px 14px;border-top:1px solid var(--bd)}
+.scene-card.open .scene-body{display:block;animation:diagFade .25s ease}
+.scene-quote{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--gold);background:var(--dim-go);border-left:2px solid var(--bd-go);padding:10px 14px;margin:12px 0;border-radius:0 var(--r2) var(--r2) 0}
+.scene-why{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.6;margin:10px 0}
+.scene-why b{color:var(--t1)}
+.scene-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.scene-chip{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px}
+
+/* ══ QUICK NAV ══ */
+.qnav{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:20px 0}
+.qnav-btn{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:12px 14px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:4px}
+.qnav-btn:hover{border-color:var(--bdl);background:var(--hov);color:var(--t1)}
+.qnav-btn{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--bronze-l)}
+.qnav-btn span{font-family:var(--font);font-size:11px;font-weight:400;color:var(--t3);letter-spacing:0}
+
+/* ══ AUTHOR CARD ══ */
+.ac{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);padding:20px;margin:18px 0}
+.ac-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px}
+.ac-avatar{width:52px;height:52px;border-radius:var(--r3);background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:#0F0605;font-weight:700;flex-shrink:0}
+.ac-info{flex:1}
+.ac-name{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.ac-dates{font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1px}
+.ac-role{font-size:12px;color:var(--t3);margin-top:2px}
+.ac-body{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+.ac-body strong{color:var(--t1)}
+.ac-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+
+/* ══ DIAG ══ */
+.diag{background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r4);overflow:hidden;margin:20px 0}
+.diag-intro,.diag-quiz,.diag-result{display:none;padding:22px 26px;animation:diagFade .35s ease}
+.diag[data-state="intro"] .diag-intro{display:block}
+.diag[data-state="quiz"] .diag-quiz{display:block}
+.diag[data-state="result"] .diag-result{display:block}
+.diag-intro-title{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin-bottom:8px}
+.diag-intro-desc{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.diag-q-num{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;margin-bottom:10px}
+.diag-q-text{font-family:var(--serif);font-size:15px;color:var(--t1);line-height:1.6;margin-bottom:16px}
+.diag-opts{display:flex;flex-direction:column;gap:8px}
+.diag-opt{background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:10px 14px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .15s;font-family:var(--serif)}
+.diag-opt:hover{border-color:var(--bdl);color:var(--t1);background:var(--hov)}
+.diag-opt.correct{background:var(--dim-g);border-color:var(--bd-g);color:var(--green)}
+.diag-opt.wrong{background:var(--dim-r);border-color:var(--bd-r);color:var(--red)}
+.diag-prog{height:3px;background:var(--bd);margin-bottom:18px}
+.diag-prog-fill{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));transition:width .4s ease;border-radius:1px}
+
+/* ══ ALAT (esej) ══ */
+.alat-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.alat-tab{font-family:var(--mono);font-size:10px;font-weight:700;padding:5px 12px;border-radius:var(--r1);background:var(--ele);border:1px solid var(--bd);color:var(--t3);cursor:pointer;transition:all .15s;letter-spacing:.5px}
+.alat-tab.on{background:var(--dim-go);border-color:var(--bd-go);color:var(--gold)}
+.alat-pane{display:none}.alat-pane.on{display:block;animation:layerIn .2s ease}
+.alat-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:16px 18px;margin:10px 0}
+.alat-card h4{font-family:var(--display);font-size:12px;font-weight:700;color:var(--bronze-l);margin-bottom:10px;letter-spacing:.5px}
+.alat-card p{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+.alat-card p strong{color:var(--t1)}
+.alat-card p em{color:var(--gold);font-style:italic}
+.alat-teza{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:12px 16px;margin:8px 0;font-family:var(--serif);font-size:14px;color:var(--t1);font-style:italic;cursor:pointer;transition:all .15s;position:relative}
+.alat-teza:hover{border-color:var(--gold)}
+.alat-teza::after{content:'📋';position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.5}
+.alat-teza.copied::after{content:'✓';color:var(--green);opacity:1}
+.wc-area{width:100%;background:var(--inp);border:1px solid var(--bd);border-radius:var(--r2);padding:12px;color:var(--t1);font-family:var(--serif);font-size:14px;resize:vertical;min-height:120px;line-height:1.6}
+.wc-area:focus{outline:none;border-color:var(--bdl)}
+.wc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--t3)}
+.wc-count{color:var(--gold)}
+
+/* ══ CITATNIK ══ */
+.cit-grid{display:flex;flex-direction:column;gap:10px;margin:18px 0}
+.cit-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 18px;transition:border-color .15s}
+.cit-card:hover{border-color:var(--bdl)}
+.cit-text{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t1);line-height:1.65;margin-bottom:8px}
+.cit-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.cit-src{font-family:var(--mono);font-size:9.5px;color:var(--t3)}
+.cit-tags{display:flex;gap:5px;flex-wrap:wrap}
+.cit-tag{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:3px}
+.cit-star{cursor:pointer;font-size:14px;color:var(--t3);transition:color .15s}
+.cit-star.starred{color:var(--gold)}
+.cit-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.cit-fbt{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:4px 10px;border-radius:var(--r1);background:var(--ele);border:1px solid var(--bd);color:var(--t3);cursor:pointer;transition:all .15s}
+.cit-fbt.on{background:var(--dim-br);border-color:var(--bd-br);color:var(--bronze-l)}
+
+/* ══ POJMOVNIK ══ */
+.poj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:18px 0}
+.poj-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 16px;cursor:pointer;transition:all .15s}
+.poj-card:hover{border-color:var(--bdl);background:var(--hov)}
+.poj-front{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.poj-term{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin-bottom:6px}
+.poj-cat{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:3px}
+.poj-def{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.55;display:none}
+.poj-card.open .poj-def{display:block;margin-top:8px;padding-top:8px;border-top:1px solid var(--bd);animation:diagFade .2s ease}
+.poj-ex{font-family:var(--serif);font-size:12px;color:var(--teal);font-style:italic;margin-top:6px}
+
+/* ══ FLASHCARD ══ */
+.fc-wrap{perspective:1000px;margin:20px 0}
+.fc-inner{width:100%;height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative}
+.fc-inner.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r4);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center}
+.fc-front{background:var(--ele);border:1px solid var(--bdm)}
+.fc-back{background:var(--dim-go);border:1px solid var(--bd-go);transform:rotateY(180deg)}
+.fc-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:12px}
+.fc-term{font-family:var(--display);font-size:20px;font-weight:700;color:var(--t1);line-height:1.3}
+.fc-def{font-family:var(--serif);font-size:15px;color:var(--t1);line-height:1.6}
+.fc-cat{font-family:var(--mono);font-size:9px;color:var(--gold);margin-top:8px}
+.fc-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.fc-btn{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:7px 16px;font-size:12px;font-family:var(--mono);font-weight:700;cursor:pointer;color:var(--t2);transition:all .15s}
+.fc-btn:hover{border-color:var(--bdl);color:var(--t1)}
+.fc-btn:disabled{opacity:.3;cursor:not-allowed}
+.fc-counter{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.fc-cat-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bronze);margin-bottom:14px}
+
+/* ══ MATCH GAME ══ */
+.mg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.mg-col{display:flex;flex-direction:column;gap:8px}
+.mg-item{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:10px 14px;font-family:var(--serif);font-size:13px;color:var(--t2);cursor:pointer;transition:all .15s;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center;line-height:1.4}
+.mg-item:hover:not(.matched):not(.wrong){border-color:var(--bdl);color:var(--t1);background:var(--hov)}
+.mg-item.selected{border-color:var(--bronze);background:var(--dim-br);color:var(--bronze-l)}
+.mg-item.matched{border-color:var(--bd-g);background:var(--dim-g);color:var(--green);cursor:default}
+.mg-item.wrong{border-color:var(--bd-r);background:var(--dim-r);color:var(--red);animation:shake .3s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.mg-status{font-family:var(--mono);font-size:11px;color:var(--t3);margin-bottom:12px}
+
+/* ══ KVIZ ══ */
+.qz-wrap{padding:4px 0}
+.qz-start{text-align:center;padding:32px 20px}
+.qz-start-ico{font-size:40px;margin-bottom:12px}
+.qz-start h3{font-family:var(--display);font-size:18px;color:var(--t1);margin-bottom:8px}
+.qz-start p{font-family:var(--serif);font-size:14px;color:var(--t2);margin-bottom:20px;line-height:1.6}
+.qz-prog{height:4px;background:var(--bd);border-radius:2px;margin-bottom:20px}
+.qz-prog-fill{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:2px;transition:width .4s ease}
+.qz-num{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;margin-bottom:10px}
+.qz-q{font-family:var(--serif);font-size:16px;color:var(--t1);line-height:1.65;margin-bottom:18px;font-weight:600}
+.qz-opts{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.qz-opt{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:11px 16px;font-family:var(--serif);font-size:14px;color:var(--t2);cursor:pointer;transition:all .15s;text-align:left}
+.qz-opt:hover:not(:disabled){border-color:var(--bdl);color:var(--t1);background:var(--hov)}
+.qz-opt.correct{border-color:var(--bd-g);background:var(--dim-g);color:var(--green);cursor:default}
+.qz-opt.wrong{border-color:var(--bd-r);background:var(--dim-r);color:var(--red);cursor:default}
+.qz-expl{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:12px 16px;font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.6;margin-top:12px}
+.qz-expl strong{color:var(--gold)}
+.qz-next{display:none}
+.qz-result{text-align:center;padding:28px 20px}
+.qz-result-ico{font-size:48px;margin-bottom:12px}
+.qz-result h3{font-family:var(--display);font-size:22px;color:var(--t1);margin-bottom:8px}
+.qz-result-grade{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--gold);margin:10px 0}
+.qz-result p{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:18px}
+
+/* ══ CHECKPOINT ══ */
+.cp-list{display:flex;flex-direction:column;gap:8px;margin:18px 0}
+.cp-item{display:flex;align-items:flex-start;gap:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 16px;cursor:pointer;transition:all .15s}
+.cp-item:hover{border-color:var(--bdl)}
+.cp-item.done{border-color:var(--bd-g);background:var(--dim-g)}
+.cp-cb{width:20px;height:20px;border:2px solid var(--bd);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .15s;margin-top:1px}
+.cp-item.done .cp-cb{background:var(--green);border-color:var(--green);color:#0F0605}
+.cp-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5}
+.cp-item.done .cp-txt{color:var(--t1)}
+.cp-prog{margin-top:18px}
+.cp-prog-label{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px;margin-bottom:6px;display:flex;justify-content:space-between}
+.cp-prog-track{height:6px;background:var(--bd);border-radius:3px;overflow:hidden}
+.cp-prog-bar{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cp-final{text-align:center;padding:28px 20px;background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r4);margin:20px 0;display:none}
+.cp-final.show{display:block;animation:fadeUp .4s ease}
+.cp-final-ico{font-size:44px;margin-bottom:10px}
+.cp-final-title{font-family:var(--display);font-size:20px;color:var(--gold);margin-bottom:8px}
+.cp-final-msg{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65;margin-bottom:18px}
+
+/* ══ AUTH BOX ══ */
+.auth-box{background:rgba(220,50,47,.05);border:1px solid var(--bd-br);border-radius:var(--r3);padding:14px 18px;margin:18px 0}
+.auth-ttl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bronze-l);margin-bottom:8px}
+.auth-txt{font-family:var(--serif);font-size:13.5px;color:var(--t2);line-height:1.65}
+.auth-txt strong{color:var(--t1)}
+.auth-txt em{color:var(--bronze-l)}
+
+/* ══ REVEAL LOCK ══ */
+.reveal-lock{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border:none;border-radius:var(--r2);padding:10px 20px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;color:#0F0605;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px}
+.reveal-lock:hover{opacity:.85;transform:translateY(-1px)}
+.reveal-lock-btn{background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));border:none;border-radius:var(--r2);padding:11px 22px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;color:#0F0605;cursor:pointer;transition:all .18s}
+.reveal-lock-btn:hover{opacity:.85;transform:translateY(-1px)}
+.fcb{background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r2);padding:9px 18px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--t2);cursor:pointer;transition:all .15s}
+.fcb:hover{border-color:var(--bdl);color:var(--t1)}
+.fcb.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border-color:transparent;color:#0F0605}
+.fcb.primary:hover{opacity:.85}
+
+/* ══ MISC ══ */
+.nb{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;cursor:pointer;color:var(--bronze-l);text-decoration:underline;text-underline-offset:3px}
+.nb:hover{color:var(--gold)}
+p{font-family:var(--serif);font-size:14.5px;color:var(--t2);line-height:1.7;margin-bottom:12px}
+p strong{color:var(--t1)}
+p em{color:var(--gold);font-style:italic}
+h3{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:20px 0 10px;letter-spacing:.3px}
+h4{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin:16px 0 8px;letter-spacing:.5px}
+ul,ol{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.7;padding-left:20px;margin-bottom:12px}
+ul li,ol li{margin-bottom:4px}
+ul li strong,ol li strong{color:var(--t1)}
+.mid{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.sc{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);padding:18px 20px;margin:16px 0}
+.sc-name{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin-bottom:6px}
+.sc-desc{font-family:var(--serif);font-size:13.5px;color:var(--t2);line-height:1.6}
+.sc-desc b{color:var(--t1)}
+.sc-desc em{color:var(--teal);font-style:italic}
+.sc-kod{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:6px}
+
+/* ══ SC-GRID (icon grid za brzi pregled) ══ */
+.sc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}
+.sc-ico{margin-bottom:10px;display:inline-block}
+
+/* ══ FC-SCENE (H11 flashcard flip scene) ══ */
+.fc-scene{width:100%;max-width:100%;perspective:1000px;cursor:pointer;height:220px}
+.fc-scene .fc-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.fc-scene.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-scene .fc-front,.fc-scene .fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r4);padding:28px 32px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.fc-scene .fc-front{background:linear-gradient(135deg,var(--ele),var(--card));border:1px solid var(--bdm)}
+.fc-scene .fc-back{background:linear-gradient(135deg,var(--card),var(--hov));border:1px solid var(--bd-go);transform:rotateY(180deg)}
+.fc-hint{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px}
+.fc-progress{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:400px}
+.fc-dot{width:8px;height:8px;border-radius:50%;background:var(--bd);transition:background .2s}
+.fc-dot.seen{background:var(--bronze)}
+.fc-dot.known{background:var(--green)}
+
+/* ══ TIMELINE ══ */
+.timeline{position:relative;padding:20px 0 10px 30px;margin:18px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--bronze) 0%,var(--gold) 50%,var(--parchment) 100%);border-radius:1px}
+.tl-event{position:relative;padding:10px 14px 14px 20px;margin-bottom:8px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);transition:border-color .15s}
+.tl-event:hover{border-color:var(--bdl)}
+.tl-event::before{content:'';position:absolute;left:-30px;top:16px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--bronze);box-shadow:0 0 8px rgba(220,50,47,.4)}
+.tl-event.milestone::before{background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px var(--gold)}
+.tl-year{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;color:var(--bronze);margin-bottom:3px}
+.tl-event.milestone .tl-year{color:var(--gold)}
+.tl-title{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--t1);margin-bottom:3px}
+.tl-desc{font-family:var(--serif);font-size:12.5px;color:var(--t2);line-height:1.5}
+.tl-desc em{color:var(--gold);font-style:italic}
+
+/* ══ KEYBOARD HINT ══ */
+.kbd{display:inline-block;padding:1px 6px;font-family:var(--mono);font-size:10px;font-weight:700;background:var(--card);border:1px solid var(--bdm);border-radius:3px;color:var(--t2);box-shadow:0 1px 0 var(--bg);margin:0 2px}
+.kbd-hint{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px;margin-top:8px;text-align:center}
+
+/* ══ READ PROGRESS BAR + BTT ══ */
+.read-progress{position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:400;pointer-events:none}
+.read-progress-bar{height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));width:0%;transition:width .15s ease;border-radius:0 2px 2px 0}
+.btt{position:fixed;bottom:24px;right:24px;z-index:100;width:40px;height:40px;background:var(--sur);border:1px solid var(--bdm);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--t2);transition:all .2s;opacity:0;pointer-events:none;font-family:var(--mono)}
+.btt.show{opacity:1;pointer-events:auto}
+.btt:hover{color:var(--bronze);border-color:var(--bronze)}
+
+/* ══ NAV-ROW (tab bottom navigation) ══ */
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--bd)}
+.nav-row:has(> :only-child){justify-content:flex-end}
+.nb-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--t2);cursor:pointer;padding:9px 14px;border:1px solid var(--bdm);border-radius:var(--r2);background:var(--ele);transition:all .15s;text-decoration:none}
+.nb-btn:hover{color:var(--t1);border-color:var(--bronze);background:var(--hov)}
+.nb-btn.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border-color:transparent;color:#0F0605;font-weight:700}
+.nb-btn.primary:hover{opacity:.85}
+.nb-btn.off{opacity:.3;cursor:not-allowed;pointer-events:none}
+
+/* ══ AUTHOR-CARD EXTENDED ══ */
+.author-card{border:1px solid var(--bdm);border-radius:var(--r4);overflow:hidden;margin:20px 0;background:var(--sur);transition:border-color .2s}
+.ac-header{padding:18px 22px 14px;background:linear-gradient(135deg,var(--ele),var(--card));border-bottom:1px solid var(--bdm);display:flex;align-items:flex-start;gap:16px}
+.ac-monogram{width:52px;height:52px;border-radius:var(--r3);background:linear-gradient(135deg,var(--bronze-d),var(--bronze));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:22px;font-weight:700;color:var(--gold);flex-shrink:0;box-shadow:0 4px 20px rgba(220,50,47,.3)}
+.ac-meta{flex:1;min-width:0}
+.ac-name{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:4px;letter-spacing:.3px}
+.ac-dates{font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1px}
+.ac-body{padding:18px 22px}
+.ac-body p{font-family:var(--serif);font-size:14.5px;color:var(--t2);line-height:1.65;margin-bottom:12px}
+.ac-body strong{color:var(--t1)}.ac-body em{color:var(--gold);font-style:italic}
+.ac-works{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd)}
+.ac-works-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.ac-work-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.ac-work-item:last-child{border-bottom:none;padding-bottom:0}
+.ac-badge{font-size:18px;flex-shrink:0;margin-top:1px}
+.ac-work-title{font-family:var(--display);font-size:12px;font-weight:700;color:var(--gold);margin-bottom:3px;letter-spacing:.5px}
+.ac-work-meta{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.5px;margin-bottom:5px}
+.ac-work-desc{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.5}
+.ac-work-desc strong{color:var(--t1)}
+
+/* ══ WC-WRAP (H11 esej writer) ══ */
+.wc-wrap{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);overflow:hidden;margin:16px 0}
+.wc-header{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.wc-lbl{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bronze-l)}
+.wc-stats{display:flex;gap:16px;flex-wrap:wrap}
+.wc-stat{text-align:center}
+.wc-stat-num{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);display:block}
+.wc-stat-lbl{font-family:var(--mono);font-size:8.5px;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+.wc-stat.ok .wc-stat-num{color:var(--green)}
+.wc-stat.critical .wc-stat-num{color:var(--red)}
+.wc-body{padding:14px 18px}
+.wc-ta{width:100%;min-height:200px;background:var(--inp);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--t1);font-family:var(--serif);font-size:14px;padding:12px;resize:vertical;line-height:1.65;box-sizing:border-box}
+.wc-ta:focus{outline:none;border-color:var(--bronze)}
+.wc-prog{height:5px;background:var(--bd);border-radius:3px;overflow:hidden;margin-top:12px}
+.wc-prog-bar{height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));border-radius:3px;transition:width .4s ease}
+.wc-prog.pass .wc-prog-bar{background:linear-gradient(90deg,var(--green),var(--teal))}
+.wc-prog-lbl{font-family:var(--mono);font-size:9px;color:var(--t3);margin-top:6px;text-align:right}
+.wc-actions{display:flex;gap:8px;margin-top:12px}
+.wc-btn{padding:8px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;border:1px solid var(--bdm);background:var(--ele);color:var(--t2);transition:all .15s}
+.wc-btn:hover{color:var(--t1);border-color:var(--bronze)}
+
+/* ══ QZ-SCORE (large) + QZ-WRONG ══ */
+.qz-score-big{font-family:var(--display);font-size:68px;font-weight:700;background:linear-gradient(135deg,var(--bronze),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px}
+.qz-grade{font-family:var(--display);font-size:18px;color:var(--t1);letter-spacing:1.5px;margin-bottom:6px}
+.qz-msg{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5;margin-bottom:20px}
+.qz-wrong-item{padding:10px 14px;border-bottom:1px solid var(--bd);margin-top:4px}
+.qz-wrong-q{font-family:var(--serif);font-size:13px;color:var(--t2);margin-bottom:4px}
+.qz-wrong-a{font-family:var(--mono);font-size:10px;color:var(--green)}
+
+/* ══ CP-GRID (H11 style) ══ */
+.cp-grid{display:flex;flex-direction:column;gap:8px;margin:18px 0 24px}
+.cp-box{width:24px;height:24px;border-radius:6px;border:2px solid var(--bdl);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transition:all .15s}
+.cp-item.done .cp-box{background:var(--green);border-color:var(--green);color:#0F0605}
+.cp-hint{font-family:var(--mono);font-size:10px;color:var(--t3);margin-left:auto;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;padding:2px 6px;background:var(--ele);border:1px solid var(--bd);border-radius:3px}
+.cp-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+
+/* ══ BW-BOX (rich box-warn with icon + title) ══ */
+.bw-ico{font-size:22px;flex-shrink:0}
+.bw-body{flex:1;min-width:0}
+.bw-title{font-family:var(--display);font-size:8.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.bw-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6}
+.bw-txt strong{color:var(--t1)}
+.bw-txt em{color:var(--red);font-style:italic}
+
+/* ══ AUTH-LINKS ══ */
+.auth-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.auth-link{display:inline-block;font-family:var(--mono);font-size:10.5px;color:var(--teal);text-decoration:none;padding:4px 10px;border:1px solid var(--bd-t);border-radius:var(--r1);background:var(--ele);transition:all .15s}
+.auth-link:hover{background:var(--dim-t);transform:translateX(2px)}
+
+/* ══ DIAG-BTN ══ */
+.diag-btn{padding:10px 18px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;border:1px solid var(--bdm);background:var(--ele);color:var(--t2);transition:all .2s}
+.diag-btn-primary{background:linear-gradient(135deg,var(--gold),var(--bronze));color:var(--bg);border-color:var(--gold)}
+.diag-btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,201,122,.3)}
+.diag-btn-ghost{background:transparent;color:var(--t3);border-color:var(--bd)}
+.diag-btn-ghost:hover{color:var(--t1);border-color:var(--bd-br)}
+
+/* ══ DIAG-REC ══ */
+.diag-rec{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;padding:12px 14px;background:var(--bg);border-left:2px solid var(--bronze);border-radius:0 var(--r2) var(--r2) 0;margin-bottom:14px}
+.diag-res-msg{font-family:var(--display);font-size:20px;font-weight:700;color:var(--gold);margin-bottom:10px}
+
+/* ══ CP SUMMARY ══ */
+.cp-summary{background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r3);padding:16px 18px;margin-top:20px;display:flex;align-items:center;gap:16px}
+.cp-sum-pct{font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);min-width:60px}
+.cp-sum-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5}
+.cp-sum-txt strong{color:var(--t1)}
+
+/* ══ PRINT ══ */
+@media print{
+  body{background:white!important;color:black!important}
+  body::before,body::after{display:none!important}
+  .sidebar,.tabs,.sb-hamburger,.tip-bar,.discere-banner,.reveal-lock-btn,
+  .main{width:100%!important;max-width:100%!important;padding:0!important}
+  .content-wrap{max-width:100%!important;padding:10px!important}
+  .layer{display:block!important;page-break-after:always}
+  .box-key,.box-int,.box-warn,.box-signal,.sc,.fq,.ac{border:1px solid #666!important;background:#f5f5f5!important;color:black!important;break-inside:avoid}
+  .hero-title,.hero-chapter,h3,h4,.sec-badge,.tl-title,.pojm-term{color:black!important}
+  .tbl td,.tbl th{border-color:#888!important;color:black!important}
+  .featured-quote{background:#faf6ec!important;border-color:#d4b98c!important;color:black!important;break-inside:avoid}
+  .scene-card{border:1px solid #888!important;background:white!important}
+  .scene-card .scene-body{display:block!important}
+  .pojm-card .pojm-back{display:block!important}
+  .pojm-card .pojm-front{display:none!important}
+  a{color:black!important;text-decoration:none!important}
+  .qnav-btn,.countdown,.tip-bar,.diag{display:none!important}
+}
+
+/* ══ FEATURED-QUOTE (H11 pattern) ══ */
+.featured-quote{display:flex;gap:14px;padding:20px 22px;background:linear-gradient(135deg,rgba(212,185,140,.04),rgba(220,50,47,.02));border:1px solid var(--bdm);border-left:3px solid var(--parchment);border-radius:var(--r3);margin:14px 0;position:relative;word-break:break-word;overflow:hidden;transition:border-color .2s}
+.featured-quote:hover{border-color:var(--bd-pa);box-shadow:0 2px 12px rgba(212,185,140,.06)}
+.fq-mark{font-family:var(--display);font-size:52px;color:var(--parchment);opacity:.3;line-height:1;flex-shrink:0;margin-top:-8px}
+.fq-body{flex:1;min-width:0}
+.fq-text{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--t1);line-height:1.6;margin-bottom:8px}
+.fq-meta{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px}
+.fq-copy{background:none;border:1px solid var(--bd);border-radius:var(--r1);color:var(--t3);font-size:12px;padding:4px 8px;cursor:pointer;font-family:var(--mono);transition:all .15s;flex-shrink:0;align-self:flex-start}
+.fq-copy:hover{color:var(--gold);border-color:var(--bd-go);background:var(--dim-go)}
+.fq-copy.copied{color:var(--green);border-color:var(--bd-g);background:var(--dim-g)}
+.fq-napamet{position:absolute;top:-1px;right:40px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1px;color:var(--gold);background:var(--dim-go);border:1px solid var(--bd-go);border-radius:0 0 4px 4px;padding:2px 7px}
+
+/* ══ POJM-CARD (H11 pattern — grid + flip) ══ */
+.pojm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:16px 0}
+.pojm-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.pojm-card:hover,.pojm-card.flip{border-color:var(--bdm)}
+.pojm-card.flip{background:var(--card)}
+.pojm-front,.pojm-back{transition:all .25s ease}
+.pojm-card.flip .pojm-front{display:none}
+.pojm-card:not(.flip) .pojm-back{display:none}
+.pojm-term{font-family:var(--display);font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:.3px}
+.pojm-hint{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+.pojm-def{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.55}
+.pojm-def strong{color:var(--t1)}
+.pojm-def em{color:var(--gold)}
+.pojm-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pojm-filter{padding:6px 14px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:20px;cursor:pointer;border:1px solid var(--bd);background:none;color:var(--t3);transition:all .15s}
+.pojm-filter.on,.pojm-filter:hover{color:var(--bronze-l);border-color:var(--bd-br);background:var(--dim-br)}
+
+/* ══ POJM MODE (grid/flashcard toggle) ══ */
+.pojm-mode-row{display:flex;gap:8px;margin-bottom:16px;align-items:center}
+.pojm-mode-btn{padding:7px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:20px;cursor:pointer;border:1px solid var(--bdm);background:none;color:var(--t3);transition:all .15s}
+.pojm-mode-btn.on{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));color:var(--gold);border-color:transparent}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  .content-wrap{padding:24px 20px 100px}
+  .poj-grid{grid-template-columns:1fr}
+  .mg-grid{grid-template-columns:1fr}
+  .mg-col{flex-direction:row;flex-wrap:wrap}
+  .mg-item{flex:1;min-width:120px}
+}
+@media(max-width:600px){
+  .content-wrap{padding:16px 14px 90px}
+  .hero-title{font-size:22px}
+  .qnav{grid-template-columns:1fr 1fr}
+  .bc-tab,.bc-tab-sep{display:none}
+  .tabs{width:100%;max-width:100%;overflow-x:auto;padding:2px}
+  .tab{font-size:8px;padding:5px 6px;letter-spacing:0;min-height:38px;flex-shrink:0;white-space:nowrap}
+  .layer.on{padding-top:52px}
+  .fc-inner{height:170px}
+  .poj-grid{grid-template-columns:1fr}
+  .tbl-wrap{font-size:12px}
+  .diag-intro,.diag-quiz,.diag-result{padding:16px}
+  .pojm-grid{grid-template-columns:1fr!important}
+  .pojm-filter{padding:5px 9px;font-size:8.5px;letter-spacing:.5px}
+  #cit-filters .pojm-filter{padding:5px 9px;font-size:8.5px}
+  .featured-quote{padding:14px 12px;gap:10px;margin:10px 0}
+  .fq-mark{font-size:36px;margin-top:-2px;flex-shrink:0}
+  .fq-text{font-size:14px;line-height:1.5}
+  .fq-copy{display:none}
+}
+
+/* === H20 POJMOVNIK CUSTOM CSS === */
+.pojm-fbt{font-family:var(--display);font-size:12px;font-weight:600;padding:7px 13px;border-radius:20px;background:transparent;border:1.5px solid var(--bd);color:var(--t2);cursor:pointer;transition:all .2s ease;letter-spacing:.2px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.pojm-fbt:hover{border-color:var(--gold);color:var(--t1);transform:translateY(-1px)}
+.pojm-fbt.on{background:var(--gold);border-color:var(--gold);color:#0F0605;box-shadow:0 2px 8px rgba(233,180,70,.25);font-weight:700}
+.pojm-fbt.on:hover{background:var(--gold);color:#0F0605;transform:translateY(-1px)}
+@media (max-width:480px){
+  .pojm-fbt{font-size:11px;padding:6px 10px}
+}
+
+/* pojm-grid cards */
+.pojm-grid-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:16px 0}
+.pojm-card-h20{padding:14px 16px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);cursor:pointer;transition:all .2s;position:relative}
+.pojm-card-h20:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.pojm-card-h20 .pc-kat{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--bronze);text-transform:uppercase;margin-bottom:6px}
+.pojm-card-h20 .pc-term{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin-bottom:6px;line-height:1.3}
+.pojm-card-h20 .pc-def{font-size:12px;line-height:1.5;color:var(--t2);display:none}
+.pojm-card-h20.open .pc-def{display:block;margin-top:8px;padding-top:8px;border-top:1px solid var(--bd)}
+.pojm-card-h20 .pc-hint{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:1px}
+.pojm-card-h20.open .pc-hint{display:none}
+
+/* === PRINT CSS (za A4 ispis Tab 7) === */
+@media print {
+  body { background: white !important; color: black !important; }
+  .sidebar, .tabs, nav, footer, .tab-done, .tab-badge, .nav-row, 
+  .discere-banner, .from-banner, .countdown, .progress-ring,
+  .tip-bar, button, .nb-btn { display: none !important; }
+  .layer { display: block !important; background: white !important; }
+  .layer:not(#l7) { display: none !important; }
+  main, .content-wrap { width: 100% !important; max-width: 100% !important; padding: 0 !important; margin: 0 !important; background: white !important; }
+  table { page-break-inside: avoid; background: white !important; }
+  .box-int, .box-key, .box-warn, .box-signal { background: #f9f9f9 !important; color: black !important; border: 1px solid #ccc !important; }
+  h1, h2, h3, h4, .sec-badge { color: black !important; }
+  .pill { background: white !important; color: black !important; border: 1px solid #ccc !important; }
+  * { box-shadow: none !important; }
+  @page { size: A4; margin: 1.5cm; }
+}
+
+/* === H20 PREMIUM VIZUALNE NADOGRADNJE === */
+
+/* (Hero v1 gradient block consolidated into "Hero gradient + shimmer" below) */
+
+/* Badge animation za hero chips */
+.hchip{position:relative;overflow:hidden;transition:all .3s ease}
+.hchip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(233,180,70,.15)}
+.hchip::after{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+  transition:left .6s ease;
+}
+.hchip:hover::after{left:100%}
+
+/* Section headers — više dramatični */
+.sec-hdr{margin:32px 0 16px}
+.sec-badge{
+  position:relative;
+  background:linear-gradient(135deg, var(--ele) 0%, var(--bg) 100%);
+  border:1px solid var(--bd);
+  padding:10px 20px;
+  border-radius:24px;
+  font-weight:700;
+  letter-spacing:.5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+.sec-line{
+  background:linear-gradient(90deg, transparent, var(--bd), transparent);
+  height:1px;
+}
+
+/* Scene cards — premium hover ===*/
+.scene-card{
+  transition:all .3s ease;
+  position:relative;
+  overflow:hidden;
+}
+.scene-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--gold), var(--bronze));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .4s ease;
+}
+.scene-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+  border-color:var(--gold)
+}
+.scene-card:hover::before{transform:scaleX(1)}
+.scene-card.open::before{transform:scaleX(1)}
+
+/* Box variations — accent borders */
+.box-int{border-left:3px solid var(--blue);background:linear-gradient(90deg, rgba(74,144,217,.05) 0%, transparent 100%)}
+.box-key{border-left:3px solid var(--gold);background:linear-gradient(90deg, rgba(233,180,70,.06) 0%, transparent 100%)}
+.box-warn .bw-body{border-left:3px solid var(--red)!important}
+.box-signal{border-left:3px solid var(--bronze);background:linear-gradient(90deg, rgba(176,107,33,.05) 0%, transparent 100%)}
+
+/* Tablice — modernize */
+table{border-radius:var(--r2);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+thead tr{background:linear-gradient(135deg, var(--ele) 0%, var(--bg) 100%)!important}
+table tbody tr{transition:background .15s ease}
+table tbody tr:hover{background:rgba(233,180,70,.04)!important}
+
+/* Pills — better gradient */
+.pill{
+  background:linear-gradient(135deg, var(--ele) 0%, var(--bg) 100%);
+  border:1px solid var(--bd);
+  transition:all .2s ease;
+}
+.pill:hover{transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,.15)}
+
+/* Pojm cards — premium */
+.pojm-card-h20{
+  position:relative;
+  overflow:hidden;
+  transition:all .25s ease;
+  background:linear-gradient(135deg, var(--ele) 0%, transparent 100%);
+}
+.pojm-card-h20::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;
+  width:3px;height:100%;
+  background:var(--gold);
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .3s ease;
+}
+.pojm-card-h20:hover::before,
+.pojm-card-h20.open::before{transform:scaleY(1)}
+
+/* nb-btn — premium hover */
+.nb-btn{transition:all .2s ease;position:relative;overflow:hidden}
+.nb-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.nb-btn.primary{
+  background:linear-gradient(135deg, var(--gold) 0%, #d4a045 100%);
+  color:#0F0605;
+  border:none;
+  font-weight:700;
+}
+.nb-btn.primary:hover{
+  background:linear-gradient(135deg, #f0c168 0%, var(--gold) 100%);
+  box-shadow:0 4px 16px rgba(233,180,70,.35);
+}
+
+/* Audio button — distinct style */
+button[onclick*="speakWord"]{
+  background:linear-gradient(135deg, rgba(74,144,217,.1) 0%, rgba(74,144,217,.05) 100%)!important;
+  border:1px solid rgba(74,144,217,.3)!important;
+  transition:all .2s ease;
+}
+button[onclick*="speakWord"]:hover{
+  background:linear-gradient(135deg, rgba(74,144,217,.2) 0%, rgba(74,144,217,.1) 100%)!important;
+  border-color:var(--blue)!important;
+  transform:scale(1.05);
+}
+
+/* Input field — premium */
+input#scan-input{
+  transition:all .25s ease;
+  background:linear-gradient(135deg, var(--bg) 0%, var(--ele) 100%);
+}
+input#scan-input:focus{
+  border-color:var(--gold)!important;
+  box-shadow:0 0 0 3px rgba(233,180,70,.15);
+}
+
+/* Tab navigation — animated underline */
+.tab{position:relative;transition:all .2s ease}
+.tab::after{
+  content:'';
+  position:absolute;
+  bottom:-1px;left:50%;
+  width:0;height:2px;
+  background:var(--gold);
+  transition:all .3s ease;
+  transform:translateX(-50%);
+}
+.tab:hover::after,.tab.on::after{width:80%}
+
+/* Diagonal stripe pattern accent for premium feel */
+.box-key{
+  background-image:linear-gradient(90deg, rgba(233,180,70,.06) 0%, transparent 100%),
+    repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(233,180,70,.02) 12px, rgba(233,180,70,.02) 13px);
+}
+
+/* Stats cards — glow effect */
+[style*="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))"] > div{
+  transition:all .25s ease;
+  cursor:default;
+}
+[style*="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))"] > div:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 16px rgba(233,180,70,.15);
+  border-color:var(--gold)!important;
+}
+
+/* Timeline dots — pulse */
+@keyframes pulse-dot{
+  0%,100%{box-shadow:0 0 0 0 rgba(233,180,70,.4)}
+  50%{box-shadow:0 0 0 8px rgba(233,180,70,0)}
+}
+[style*="border-radius:50%"][style*="background:var(--gold)"]{
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+
+/* Smooth scroll */
+html{scroll-behavior:smooth}
+
+/* Selection color */
+::selection{background:var(--gold);color:#0F0605}
+
+/* Tag pills — animated */
+.tags .pill{animation:tagFadeIn .4s ease backwards}
+.tags .pill:nth-child(1){animation-delay:.05s}
+.tags .pill:nth-child(2){animation-delay:.1s}
+.tags .pill:nth-child(3){animation-delay:.15s}
+.tags .pill:nth-child(4){animation-delay:.2s}
+.tags .pill:nth-child(5){animation-delay:.25s}
+@keyframes tagFadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+/* Layer transition */
+.layer{animation:layerFade .3s ease}
+@keyframes layerFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Mobile improvements */
+@media (max-width:768px){
+  .sec-badge{font-size:11px;padding:8px 14px}
+  .scene-card{padding:14px}
+  .box-int,.box-key,.box-warn,.box-signal{padding:14px}
+}
+
+/* === REFERENTNA TABLICA (Tab 7) === */
+.ref-section {
+  background: var(--ele);
+  border: 1px solid var(--bd);
+  border-radius: var(--r2);
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  page-break-inside: avoid;
+}
+.ref-h1 {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  border-bottom: 2px solid rgba(233,180,70,.3);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+.ref-subttl {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--t2);
+  font-weight: 700;
+  margin: 14px 0 8px;
+  text-transform: uppercase;
+}
+.ref-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 12px;
+  margin: 6px 0;
+}
+.ref-tbl thead tr {
+  background: var(--bg);
+  border-bottom: 2px solid var(--bd);
+}
+.ref-tbl th {
+  padding: 8px 10px;
+  text-align: left;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 11px;
+}
+.ref-tbl td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--bd);
+  color: var(--t1);
+  vertical-align: top;
+}
+.ref-tbl tbody tr:hover {
+  background: rgba(233,180,70,.03);
+}
+.ref-tbl tbody tr:last-child td {
+  border-bottom: none;
+}
+.ref-note {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(74,144,217,.05);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--r1);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--t2);
+}
+
+/* Print mode */
+.print-only { display: none; }
+
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  
+  header, .sidebar, .bottom-nav, .tabs-wrap, #rpbar, #btt, #sb-overlay, #tip-bar, .from-banner {
+    display: none !important;
+  }
+  
+  .content-wrap { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+  .layer { display: block !important; }
+  .layer:not(#l7) { display: none !important; }
+  
+  .ref-section {
+    background: #fff !important;
+    border: 1px solid #999 !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 14px !important;
+    padding: 12px 14px !important;
+  }
+  .ref-h1 {
+    color: #000 !important;
+    border-bottom: 2px solid #000 !important;
+    font-size: 16px !important;
+  }
+  .ref-subttl {
+    color: #000 !important;
+    font-size: 10px !important;
+  }
+  .ref-tbl {
+    font-size: 10px !important;
+  }
+  .ref-tbl thead tr {
+    background: #eee !important;
+    border-bottom: 1px solid #000 !important;
+  }
+  .ref-tbl th, .ref-tbl td {
+    color: #000 !important;
+    border-bottom: 1px solid #ccc !important;
+  }
+  .ref-note {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+    border-left: 2px solid #000 !important;
+    font-size: 10px !important;
+  }
+  
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+  
+  h1, h2, h3, h4 { page-break-after: avoid; }
+}
+
+
+
+/* ═══════════════════════════════════
+   H20 PREMIUM CSS UPGRADE
+═══════════════════════════════════ */
+
+/* Hero gradient + shimmer */
+.hero{
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at 30% 50%, rgba(233,180,70,.06) 0%, transparent 40%),
+             radial-gradient(circle at 70% 80%, rgba(74,144,217,.04) 0%, transparent 40%);
+  pointer-events:none;
+  animation:heroShimmer 12s ease-in-out infinite;
+}
+@keyframes heroShimmer{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(2%,-2%) scale(1.05)}
+}
+
+/* Scene cards — premium hover */
+.scene-card{
+  position:relative;
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+  border-left:3px solid transparent;
+}
+.scene-card:hover:not(.open){
+  border-left-color:var(--gold);
+  transform:translateX(2px);
+  box-shadow:-2px 0 12px rgba(233,180,70,.08), 0 4px 20px rgba(0,0,0,.15);
+}
+.scene-card.open{
+  border-left-color:var(--gold);
+  box-shadow:-3px 0 16px rgba(233,180,70,.12), 0 6px 28px rgba(0,0,0,.2);
+}
+.scene-card .scene-arrow{
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.scene-card.open .scene-arrow{
+  transform:rotate(180deg);
+  color:var(--gold);
+}
+
+/* Box accents — colored left borders for visual hierarchy */
+.box-int{ border-left:3px solid var(--gold); }
+.box-key{ border-left:3px solid var(--blue); }
+.box-warn{ border-left:3px solid var(--red); }
+.box-signal{ border-left:3px solid var(--green); }
+
+/* Tables — premium hover */
+table tbody tr{
+  transition:background .15s ease;
+}
+table tbody tr:hover{
+  background:rgba(233,180,70,.04);
+}
+
+/* Pills — subtle gradient */
+.pill, .hchip{
+  background:linear-gradient(135deg, var(--ele) 0%, var(--bg) 100%);
+  transition:all .2s ease;
+}
+.pill:hover, .hchip:hover{
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+/* Sec-hdr — animated underline */
+.sec-hdr{
+  position:relative;
+}
+.sec-badge{
+  position:relative;
+  z-index:1;
+}
+.sec-line{
+  background:linear-gradient(90deg, transparent, var(--bd), transparent);
+}
+
+/* Tab indicators — pulse on done */
+.tab-done{
+  animation:tabDonePulse 2s ease-in-out infinite;
+}
+@keyframes tabDonePulse{
+  0%,100%{opacity:1}
+  50%{opacity:.6}
+}
+
+/* Box-int label — premium glow */
+.box-int-lbl{
+  text-shadow:0 0 12px rgba(233,180,70,.3);
+}
+
+/* Buttons — premium transitions */
+.nb-btn{
+  transition:all .2s cubic-bezier(.4,0,.2,1);
+}
+.nb-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+}
+.nb-btn.primary:hover{
+  box-shadow:0 4px 20px rgba(233,180,70,.3);
+}
+
+/* Quiz options — enhanced feedback */
+.qz-opt{
+  transition:all .2s cubic-bezier(.4,0,.2,1);
+  position:relative;
+  overflow:hidden;
+}
+.qz-opt:hover:not(.correct):not(.wrong){
+  border-color:var(--gold);
+  background:rgba(233,180,70,.05);
+  transform:translateX(2px);
+}
+.qz-opt.correct{
+  background:rgba(80,200,120,.12);
+  border-color:var(--green);
+  animation:correctPulse .4s ease;
+}
+.qz-opt.wrong{
+  background:rgba(224,82,82,.12);
+  border-color:var(--red);
+  animation:wrongShake .4s ease;
+}
+@keyframes correctPulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.02)}
+  100%{transform:scale(1)}
+}
+@keyframes wrongShake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-4px)}
+  75%{transform:translateX(4px)}
+}
+
+/* Tags fade-in stagger */
+.tags > * {
+  opacity:0;
+  animation:tagFadeIn .4s ease forwards;
+}
+.tags > *:nth-child(1){ animation-delay:.05s }
+.tags > *:nth-child(2){ animation-delay:.1s }
+.tags > *:nth-child(3){ animation-delay:.15s }
+.tags > *:nth-child(4){ animation-delay:.2s }
+.tags > *:nth-child(5){ animation-delay:.25s }
+@keyframes tagFadeIn{
+  to{opacity:1; transform:translateY(0)}
+  from{opacity:0; transform:translateY(8px)}
+}
+
+/* Pojmovnik card hover */
+.pojm-card-h20{
+  transition:all .2s cubic-bezier(.4,0,.2,1);
+}
+.pojm-card-h20:hover{
+  border-color:var(--gold);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,.15);
+}
+
+/* Mobile responsive — better small screens */
+@media (max-width: 600px){
+  .hero-title{ font-size:32px !important; }
+  .scene-card{ padding:14px !important; }
+  .ref-tbl{ font-size:11px !important; }
+  .ref-h1{ font-size:16px !important; }
+}
+
+/* Decliner & Scanner result — fade in */
+#ms-results > *, #decl-results > *{
+  animation:resultFadeIn .4s ease;
+}
+@keyframes resultFadeIn{
+  from{opacity:0; transform:translateY(8px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* Keyboard shortcut hint */
+.kbd{
+  display:inline-block;
+  padding:2px 7px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-bottom-width:2px;
+  border-radius:4px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--t1);
+  font-weight:600;
+}
+
+/* Focus rings — accessibility */
+button:focus-visible, [role="button"]:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+
+/* Checkpoint item — animated check */
+.cp-item.done .cp-box{
+  animation:checkPop .3s ease;
+}
+@keyframes checkPop{
+  0%{transform:scale(.8)}
+  50%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
+
+/* Print improvements */
+@media print{
+  .hero, .countdown-wrap, header.hero{ display:none !important; }
+  body{ background:#fff !important; color:#000 !important; }
+  .scene-card{ box-shadow:none !important; border:1px solid #999 !important; }
+  .scene-card .scene-body{ display:block !important; }
+}
+
+
+
+/* (Removed: HERO V2 — PREMIUM UPGRADE — restored to classic H19/H18 style) */
+/* (Removed: TAB INTRO CARD — used at top of tabs — restored to classic H19/H18 style) */
+/* ═══════════════════════════════════
+   DETAILS / SUMMARY POLISH (collapsible)
+═══════════════════════════════════ */
+details summary{
+  list-style:none;
+  outline:none;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::marker{display:none;content:''}
+
+details summary > span:last-child{
+  transition:transform .2s ease;
+}
+details[open] summary > span:last-child{
+  transform:rotate(180deg);
+}
+details > div{
+  animation:detailsOpen .25s ease;
+}
+@keyframes detailsOpen{
+  from{opacity:0;transform:translateY(-4px)}
+  to{opacity:1;transform:translateY(0)}
+}
+details:hover summary{
+  color:var(--gold);
+}
+
+/* ═══════════════════════════════════
+   IMPROVED FOCUS STATES (a11y)
+═══════════════════════════════════ */
+*:focus{outline:none}
+*:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+  border-radius:4px;
+}
+button:focus-visible, [role="button"]:focus-visible, a:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+}
+input:focus-visible, textarea:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:0;
+  border-color:var(--gold) !important;
+}
+
+/* ═══════════════════════════════════
+   PRINT — ensure detail/summary expand
+═══════════════════════════════════ */
+@media print{
+  details{
+    border:1px solid #999 !important;
+    page-break-inside:avoid;
+  }
+  details > div{
+    display:block !important;
+  }
+  details:not([open]) > div{
+    display:block !important;
+  }
+  details > summary > span:last-child{
+    display:none !important;
+  }
+}
+
+/* ═══════════════════════════════════
+   REDUCED MOTION (a11y)
+═══════════════════════════════════ */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .floater, .ti-icon-ring, .status-dot, .badge-new{
+    animation:none !important;
+  }
+}
+
+/* ═══════════════════════════════════
+   LARGE TEXT MODE (a11y user preference)
+═══════════════════════════════════ */
+@media (min-resolution: 192dpi){
+  body{font-size:15px}
+}
+
+
+/* (Removed: QUICK SEARCH (Cmd/Ctrl+K) — restored to classic H19/H18 style) */
+
+/* ═══════════════════════════════════════════
+   H20 V2 — VIZUALNA POBOLJŠANJA · MISSING CLASSES
+   ═══════════════════════════════════════════ */
+
+/* ─── SCENE CARDS (collapsible — Tab 1, 2, 3, 4) ─── */
+.scene-grid{
+  display:grid;
+  gap:12px;
+  margin:18px 0;
+}
+.scene-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 18px;
+}
+.scene-badge{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-family:var(--mono);
+  font-size:14px;
+  flex-shrink:0;
+  box-shadow:0 2px 8px rgba(233,180,70,.25);
+}
+.scene-name{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:15px;
+  color:var(--t1);
+  letter-spacing:.5px;
+  line-height:1.3;
+}
+.scene-sub{
+  font-size:12.5px;
+  color:var(--t2);
+  margin-top:3px;
+  font-family:var(--serif);
+  font-style:italic;
+}
+
+/* Improve existing scene-card hover & open states */
+.scene-card{
+  transition:all .2s cubic-bezier(.4,0,.2,1) !important;
+}
+.scene-card:hover{
+  border-color:var(--gold) !important;
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+.scene-card.open .scene-arrow{
+  transform:rotate(180deg);
+  color:var(--gold);
+}
+.scene-card.open{
+  border-color:var(--gold) !important;
+  background:linear-gradient(180deg, var(--ele) 0%, var(--bg) 100%);
+}
+.scene-body{
+  display:none;
+  padding:0 18px 18px;
+  color:var(--t2);
+  font-family:var(--serif);
+  font-size:14px;
+  line-height:1.7;
+  border-top:1px dashed var(--bd);
+  margin-top:4px;
+  padding-top:14px !important;
+}
+.scene-card.open .scene-body{
+  display:block;
+  animation:sceneFadeIn .3s ease;
+}
+@keyframes sceneFadeIn{
+  from{opacity:0; transform:translateY(-4px)}
+  to{opacity:1; transform:translateY(0)}
+}
+.scene-body p{
+  margin:0 0 10px;
+  line-height:1.7;
+}
+.scene-body strong{color:var(--t1)}
+.scene-body em{color:var(--gold); font-style:italic}
+.scene-body ul{
+  margin:8px 0 8px 22px;
+  padding:0;
+  list-style:disc;
+}
+.scene-body ul li{
+  margin-bottom:5px;
+  line-height:1.6;
+}
+
+/* ─── SIDEBAR DJELA (D01-D22) ─── */
+.sb-era-d{
+  color:var(--gold) !important;
+  margin-top:14px !important;
+  padding-bottom:2px !important;
+}
+.sb-d-meta{
+  font-size:10px;
+  color:var(--t3);
+  font-style:italic;
+  padding:2px 14px 8px;
+  line-height:1.45;
+  font-family:var(--serif);
+}
+
+/* ─── BOX WARNING TITLE ─── */
+.bw-ttl{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.2px;
+  font-weight:700;
+  margin-bottom:6px;
+  text-transform:uppercase;
+}
+
+/* ─── UTILITY GRID ─── */
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:16px 0;
+}
+@media (max-width:720px){
+  .grid-2{grid-template-columns:1fr}
+}
+
+/* ─── TABLE WRAP (responsive scroll) ─── */
+.table-wrap{
+  overflow-x:auto;
+  margin:14px 0;
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+  background:var(--ele);
+}
+.table-wrap table{
+  margin:0 !important;
+  border:none !important;
+  border-radius:0 !important;
+}
+.table-wrap::-webkit-scrollbar{height:6px}
+.table-wrap::-webkit-scrollbar-track{background:var(--bg)}
+.table-wrap::-webkit-scrollbar-thumb{background:var(--bd); border-radius:3px}
+.table-wrap::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* ═══════════════════════════════════════════
+   H20 V2 — TYPOGRAPHY & POLISH
+   ═══════════════════════════════════════════ */
+
+/* Better headings inside content */
+.layer h2:not([class]){
+  font-family:var(--display);
+  font-size:22px;
+  color:var(--gold);
+  font-weight:700;
+  margin:24px 0 12px;
+  letter-spacing:.5px;
+}
+.layer h3:not([class]){
+  font-family:var(--display);
+  font-size:18px;
+  color:var(--bronze, var(--gold));
+  font-weight:700;
+  margin:20px 0 10px;
+  letter-spacing:.3px;
+}
+
+/* Better paragraph spacing inside layers */
+.layer p:not([class]){
+  margin:8px 0 12px;
+  line-height:1.7;
+  color:var(--t2);
+}
+.layer p:not([class]) strong{color:var(--t1)}
+.layer p:not([class]) em{color:var(--gold); font-style:italic}
+
+/* Tables — improved consistency */
+.layer table:not([class]){
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+  margin:14px 0;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+  overflow:hidden;
+}
+.layer table:not([class]) th{
+  background:var(--bg);
+  color:var(--gold);
+  padding:10px 14px;
+  text-align:left;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-weight:700;
+  border-bottom:2px solid var(--bd);
+}
+.layer table:not([class]) td{
+  padding:9px 14px;
+  border-bottom:1px solid var(--bd);
+  color:var(--t1);
+  vertical-align:top;
+  line-height:1.55;
+}
+.layer table:not([class]) tr:last-child td{border-bottom:none}
+.layer table:not([class]) tr:hover td{background:rgba(233,180,70,.04)}
+.layer table:not([class]) strong{color:var(--gold)}
+
+/* Lists — improved styling */
+.layer ul:not([class]){
+  margin:10px 0 14px 22px;
+  padding:0;
+  list-style:disc;
+}
+.layer ul:not([class]) li{
+  margin-bottom:5px;
+  line-height:1.6;
+  color:var(--t2);
+}
+.layer ul:not([class]) li strong{color:var(--t1)}
+.layer ol:not([class]){
+  margin:10px 0 14px 24px;
+  padding:0;
+}
+.layer ol:not([class]) li{
+  margin-bottom:6px;
+  line-height:1.6;
+  color:var(--t2);
+}
+
+/* Inline code */
+.layer code:not([class]){
+  background:var(--ele);
+  border:1px solid var(--bd);
+  padding:2px 7px;
+  border-radius:4px;
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--gold);
+}
+
+/* Better focus states (a11y) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[onclick]:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+  border-radius:4px;
+}
+
+/* Scrollbar polish */
+::-webkit-scrollbar{width:8px; height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bd); border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* Selection color */
+::selection{
+  background:rgba(233,180,70,.3);
+  color:var(--t1);
+}
+
+/* Better hr */
+hr:not([class]){
+  border:none;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--bd) 20%, var(--bd) 80%, transparent);
+  margin:24px 0;
+}
+
+/* Hero polish */
+.hero-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+
+/* Responsive */
+@media (max-width:640px){
+  .scene-head{padding:12px 14px}
+  .scene-body{padding:0 14px 14px; padding-top:12px !important}
+  .scene-badge{width:28px; height:28px; font-size:12px}
+  .scene-name{font-size:14px}
+  .layer h2:not([class]){font-size:19px}
+  .layer h3:not([class]){font-size:16px}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+/* Print */
+@media print{
+  .scene-card{break-inside:avoid; cursor:default}
+  .scene-body{display:block !important}
+  .scene-arrow{display:none}
+}
+
+
+/* ═══════════════════════════════════
+   CROSS-CHAPTER NAVIGATION
+═══════════════════════════════════ */
+.chapter-nav-wrap{
+  margin:48px auto 32px;
+  max-width:920px;
+  padding:0 20px;
+}
+.chapter-nav-hdr{
+  text-align:center;
+  margin-bottom:24px;
+}
+.chapter-nav-title{
+  font-family:var(--display);
+  font-size:20px;
+  font-weight:700;
+  color:var(--t1);
+  margin-bottom:6px;
+}
+.chapter-nav-sub{
+  font-family:var(--serif);
+  font-size:13px;
+  color:var(--t3);
+  font-style:italic;
+}
+.chapter-nav-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:28px;
+}
+.chapter-nav-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+  text-decoration:none;
+  color:inherit;
+  transition:all .25s ease;
+  cursor:pointer;
+}
+.chapter-nav-card:hover{
+  border-color:var(--gold);
+  background:linear-gradient(135deg, var(--ele), rgba(233,180,70,.06));
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+.chapter-nav-prev{
+  text-align:left;
+}
+.chapter-nav-next{
+  text-align:right;
+  flex-direction:row;
+}
+.chapter-nav-next .chapter-nav-meta{
+  flex:1;
+}
+.chapter-nav-arrow{
+  font-size:24px;
+  color:var(--gold);
+  font-weight:700;
+  flex-shrink:0;
+}
+.chapter-nav-meta{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.chapter-nav-pill{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:var(--t3);
+  text-transform:uppercase;
+  font-weight:700;
+}
+.chapter-nav-pill-next{
+  color:var(--gold);
+}
+.chapter-nav-name{
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:700;
+  color:var(--t1);
+}
+.chapter-nav-desc{
+  font-family:var(--serif);
+  font-size:12px;
+  color:var(--t2);
+  font-style:italic;
+}
+.chapter-nav-related{
+  padding:18px;
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+}
+.chapter-nav-related-ttl{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--gold);
+  margin-bottom:12px;
+  text-transform:uppercase;
+}
+.chapter-nav-related-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:8px;
+}
+.chapter-nav-mini{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r1);
+  text-decoration:none;
+  color:inherit;
+  transition:all .2s ease;
+  font-size:12.5px;
+}
+.chapter-nav-mini:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+.chapter-nav-mini-code{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:1px;
+  color:var(--gold);
+  font-weight:700;
+  background:rgba(233,180,70,.1);
+  padding:2px 6px;
+  border-radius:4px;
+}
+.chapter-nav-mini-name{
+  font-family:var(--serif);
+  color:var(--t2);
+}
+@media (max-width:640px){
+  .chapter-nav-grid{
+    grid-template-columns:1fr;
+  }
+  .chapter-nav-next{
+    flex-direction:row;
+  }
+}
+
+
+/* TIER INDICATOR — Workspace badge */
+.ws-tier-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--ele, #1f1414);
+  border: 1px solid var(--bd, #2c1f1f);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.ws-tier-indicator.ws-tier-free {
+  border-left: 3px solid var(--t3, #888);
+}
+
+.ws-tier-indicator.ws-tier-free.ws-tier-full {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233,180,70,0.06), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator.ws-tier-standard {
+  border-left: 3px solid var(--blue, #4a90d9);
+  background: linear-gradient(135deg, rgba(74,144,217,0.04), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator.ws-tier-pro {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233,180,70,0.06), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator .ws-tier-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ws-tier-indicator .ws-tier-text {
+  flex: 1;
+  font-size: 13px;
+  color: var(--t2, #c5b8aa);
+  line-height: 1.4;
+  font-family: var(--mono, monospace);
+}
+
+.ws-tier-indicator .ws-tier-text strong {
+  color: var(--t1, #f4ede5);
+}
+
+.ws-tier-indicator .ws-tier-cta {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.ws-tier-indicator .ws-tier-cta:hover {
+  background: var(--gold-hover, #d4a13e);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .ws-tier-indicator {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .ws-tier-indicator .ws-tier-text {
+    font-size: 12px;
+  }
+}
+
+/* TIER_SYSTEM_CSS_INJECTED */
+/* ═══════════════════════════════════════════════════
+   MATURIRAJ.HR — TIER SYSTEM CSS
+   Paywall modal + sidebar badge + tier indicators
+   ═══════════════════════════════════════════════════ */
+
+/* ───────── PAYWALL OVERLAY ───────── */
+.mt-paywall-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: mt-fade-in 0.2s ease;
+}
+
+@keyframes mt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ───────── PAYWALL MODAL ───────── */
+.mt-paywall-modal {
+  position: relative;
+  background: var(--bg2, #1a1a1a);
+  border: 1px solid var(--bd, #333);
+  border-radius: 18px;
+  max-width: 920px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  padding: 32px 28px;
+  animation: mt-slide-up 0.3s ease;
+}
+
+@keyframes mt-slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.mt-paywall-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--bd, #333);
+  color: var(--t2, #aaa);
+  font-size: 22px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.mt-paywall-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--t1, #fff);
+  border-color: var(--gold, #e9b446);
+}
+
+/* ───────── PAYWALL HEADER ───────── */
+.mt-paywall-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--bd, #333);
+}
+
+.mt-paywall-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.mt-paywall-title {
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--t1, #fff);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.mt-paywall-subtitle {
+  font-size: 14px;
+  color: var(--t2, #aaa);
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ───────── PAYWALL TIERS ───────── */
+.mt-paywall-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mt-paywall-tier {
+  position: relative;
+  padding: 24px 22px;
+  background: var(--ele, #222);
+  border: 2px solid var(--bd, #333);
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.mt-paywall-tier:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mt-paywall-tier-recommended {
+  border-color: var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233, 180, 70, 0.06), var(--ele, #222));
+  box-shadow: 0 0 0 4px rgba(233, 180, 70, 0.08);
+}
+
+.mt-paywall-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.mt-paywall-tier-name {
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--t1, #fff);
+}
+
+.mt-paywall-tier-standard .mt-paywall-tier-name {
+  color: var(--blue, #4a90d9);
+}
+
+.mt-paywall-tier-pro .mt-paywall-tier-name {
+  color: var(--gold, #e9b446);
+}
+
+.mt-paywall-tier-price {
+  font-family: var(--mono, monospace);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--t1, #fff);
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+.mt-paywall-tier-price span {
+  font-size: 14px;
+  color: var(--t3, #888);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.mt-paywall-tier-features {
+  list-style: none;
+  margin: 0 0 18px 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--t2, #ccc);
+}
+
+.mt-paywall-tier-features li {
+  padding: 4px 0;
+  padding-left: 4px;
+}
+
+.mt-paywall-tier-features li strong {
+  color: var(--t1, #fff);
+}
+
+/* ───────── CTA BUTTONS ───────── */
+.mt-paywall-cta {
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--blue, #4a90d9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.2px;
+}
+
+.mt-paywall-cta:hover {
+  background: var(--blue-hover, #3578bf);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(74, 144, 217, 0.3);
+}
+
+.mt-paywall-cta-pro {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+}
+
+.mt-paywall-cta-pro:hover {
+  background: var(--gold-hover, #d4a13e);
+  box-shadow: 0 6px 18px rgba(233, 180, 70, 0.3);
+}
+
+/* ───────── PAYWALL FOOTER ───────── */
+.mt-paywall-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--t3, #888);
+  padding-top: 18px;
+  border-top: 1px solid var(--bd, #333);
+}
+
+.mt-paywall-link {
+  color: var(--blue, #4a90d9);
+  text-decoration: none;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.mt-paywall-link:hover {
+  color: var(--gold, #e9b446);
+  text-decoration: underline;
+}
+
+.mt-paywall-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mt-paywall-divider {
+  margin: 0 8px;
+  color: var(--t3, #888);
+}
+
+/* ───────── SIDEBAR TIER BADGE ───────── */
+.mt-tier-badge {
+  margin: 12px;
+  padding: 10px 12px;
+  background: var(--ele, #222);
+  border: 1px solid var(--bd, #333);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mt-tier-badge-free {
+  border-left: 3px solid var(--t3, #888);
+}
+
+.mt-tier-badge-standard {
+  border-left: 3px solid var(--blue, #4a90d9);
+}
+
+.mt-tier-badge-pro {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233, 180, 70, 0.04), var(--ele, #222));
+}
+
+.mt-tier-badge-label {
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--t1, #fff);
+}
+
+.mt-tier-badge-cta {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mt-tier-badge-cta:hover {
+  background: var(--gold-hover, #d4a13e);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(233, 180, 70, 0.3);
+}
+
+/* ───────── MOBILE ───────── */
+@media (max-width: 720px) {
+  .mt-paywall-modal {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+  
+  .mt-paywall-title {
+    font-size: 20px;
+  }
+  
+  .mt-paywall-icon {
+    font-size: 40px;
+  }
+  
+  .mt-paywall-tiers {
+    grid-template-columns: 1fr;
+  }
+  
+  .mt-paywall-tier-price {
+    font-size: 28px;
+  }
+  
+  .mt-tier-badge {
+    margin: 8px;
+    padding: 8px 10px;
+  }
+  
+  .mt-tier-badge-cta {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}
+
+
+/* CHEAT-CARD (auto-injected) */
+.cheat-card{background:linear-gradient(135deg,rgba(233,180,70,0.04),var(--card,#1a1010));border:1px solid var(--gold,#e9b446);border-radius:14px;padding:18px 22px}
+.cheat-hdr{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdm,#2c1f1f)}
+.cheat-eye{font-family:var(--mono,monospace);font-size:10px;font-weight:800;color:var(--gold,#e9b446);letter-spacing:1.2px;margin-bottom:4px}
+.cheat-ttl{font-family:var(--serif,'Fraunces',serif);font-size:16px;font-weight:700;color:var(--t1,#f4ede5)}
+.cheat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.cheat-col-wide{grid-column:1/-1}
+
+  `;
+
+const SCRIPTS_JS = `/* ═══════════════════════════════════
+   GLOBALS & DATA
+═══════════════════════════════════ */
+
+
+const KVIZ_Q = [
+  // === VRSTE RIJEČI (6) ===
+  {q:'U rečenici „Mala djevojka brzo trči u školu." riječ „brzo" je:',o:['prilog','pridjev','imenica','čestica'],t:0,e:'„Brzo" je prilog načina — opisuje glagol „trči" (kako trči?). Pridjev bi stajao uz imenicu („brzi vlak").'},
+  {q:'Koja je vrsta riječi „svoj" u „Ivan je uzeo svoju knjigu"?',o:['osobna zamjenica','povratno-posvojna zamjenica','posvojna zamjenica','povratna zamjenica'],t:1,e:'„Svoj" je POVRATNO-POSVOJNA zamjenica — izražava pripadnost subjektu (Ivanovu). Razlika od „njegovu" (nečiju drugu).'},
+  {q:'Riječ „protiv" u „Glasao je protiv nas." je:',o:['prilog','čestica','prijedlog','veznik'],t:2,e:'„Protiv" je prijedlog koji dolazi uz genitiv. Pitaj: protiv koga? → protiv nas (G).'},
+  {q:'Koja je vrsta riječi „iako" u „Iako je kišilo, izašli smo."?',o:['prilog vremena','nezavisni veznik','čestica','zavisni veznik (dopusni)'],t:3,e:'„Iako" je zavisni veznik koji uvodi dopusnu rečenicu (unatoč kiši).'},
+  {q:'Riječ „evo" u „Evo knjige!" je:',o:['uzvik','pokazna čestica','prijedlog','pokazna zamjenica'],t:1,e:'„Evo" je pokazna čestica — pokazuje na predmet. NIJE prijedlog (iako dolazi uz genitiv).'},
+  {q:'Koji je redni broj „četvrti"?',o:['glavni broj','zbirni broj','redni broj','dijelni broj'],t:2,e:'„Četvrti" je redni broj (koji po redu?). Glavni bi bio „četiri", zbirni „četvero".'},
+
+  // === PADEŽI (6) ===
+  {q:'U „Dao sam knjigu prijatelju." riječ „prijatelju" je u:',o:['dativu','akuzativu','lokativu','instrumentalu'],t:0,e:'„Prijatelju" je dativ (D) — primatelj radnje. Pitaj: komu sam dao? → prijatelju.'},
+  {q:'Koji je padež riječi „sveske" u „Otvori sveske!"?',o:['N jednine','A množine','G jednine','V množine'],t:1,e:'„Sveske" je akuzativ množine (izravni objekt). Pitaj: što otvori? → sveske (više njih).'},
+  {q:'U rečenici „Šetam se s prijateljem po parku." riječi „prijateljem" i „parku" su u:',o:['G i L','D i L','I i L','I i A'],t:2,e:'„Prijateljem" je instrumental (s kim?), „parku" je lokativ (po čemu? — gdje mirujemo).'},
+  {q:'Koji padež koriste prijedlozi „od, do, iz, bez"?',o:['nominativ','dativ','akuzativ','genitiv'],t:3,e:'Svi ti prijedlozi dolaze uz genitiv (G). Pitaj: od koga? od čega? → G.'},
+  {q:'Razlika između „Idem u školu" i „U školi sam" je u tome što:',o:['prvi je A, drugi L','prvi je L, drugi A','oba su L','oba su A'],t:0,e:'Prvi: „u školu" (A — kretanje, kamo?). Drugi: „u školi" (L — mirovanje, gdje?). Isti prijedlog, različit padež.'},
+  {q:'Oblik „Ivane!" u „Ivane, dođi!" je:',o:['N jd.','V jd.','D jd.','G jd.'],t:1,e:'„Ivane!" je vokativ (V) jd. — dozivanje. Nastao 1. palatalizacijom (Ivan → Ivane).'},
+
+  // === GLAGOLSKI OBLICI (6) ===
+  {q:'Oblik „napisat ću" je:',o:['prezent','perfekt','futur I','futur II'],t:2,e:'„Napisat ću" je futur I — buduće vrijeme. Tvorba: infinitiv (bez -i) + nenaglašeni „htjeti" (ću).'},
+  {q:'Glagolski oblik „napisao sam" tvori se od:',o:['aorista + pridjeva radnog','prezenta glagola „biti" + pridjeva radnog','infinitiva + „htjeti"','samo infinitiva'],t:1,e:'Perfekt: nenaglašeni prezent „biti" (sam) + glagolski pridjev radni (napisao). Najčešće prošlo vrijeme.'},
+  {q:'Koji je vid glagola „pročitati"?',o:['nesvršeni','oba','nepromjenjivi','svršeni'],t:3,e:'„Pročitati" je SVRŠENI vid — završena radnja (nastao prefiksom „pro-" od nesvršenog „čitati").'},
+  {q:'Oblik „čitao bih" je:',o:['kondicional I','perfekt','futur I','aorist'],t:0,e:'„Čitao bih" je kondicional I — pogodbeni način (sadašnji/budući uvjet). Tvorba: aorist „biti" (bih) + pridjev radni.'},
+  {q:'Koji je oblik „idi!" i lice?',o:['prezent 1. jd.','kondicional','imperativ 2. mn.','imperativ 2. jd.'],t:3,e:'„Idi!" je imperativ 2. l. jd. — zapovijed upućena 1 osobi (ti).'},
+  {q:'Glagol „govoriti" pripada kojoj konjugacijskoj vrsti?',o:['I. (na -am)','II. (na -nem)','III. (na -im od -iti)','V. (na -ći)'],t:2,e:'„Govoriti → govorim" — III. vrsta. Infinitiv na -iti, prezent na -im.'},
+
+  // === SKLANJANJE (4) ===
+  {q:'Koja je deklinacijska vrsta imenice „kost"?',o:['a-vrsta','e-vrsta','i-vrsta','ne sklanja se'],t:2,e:'„Kost" je i-vrsta (ž.r. na suglasnik). G jd. „kosti", G mn. „kostiju".'},
+  {q:'U D jd. „noga" postaje „nozi". Koja je glasovna promjena?',o:['sibilarizacija','1. palatalizacija','jotacija','jednačenje'],t:0,e:'Sibilarizacija (2. palat.): k + i → c (noga → nozi, ruka → ruci). H19 tema.'},
+  {q:'Koji je G mn. imenice „žena"?',o:['ženi','ženama','žena','žene'],t:2,e:'G mn. „žena" (identično s N jd.!). E-vrsta u G mn. gubi -a (žen- + Ø).'},
+  {q:'Imenica „djeca" je:',o:['regularna množina od „dijete"','zbirna imenica (sklanja se u jd.)','pluralia tantum','i-vrsta ž.r.'],t:1,e:'„Djeca" je zbirna imenica — iako znači množinu, sklanja se kao jednina e-vrste (djece, djeci, djecu).'},
+
+  // === TVORBA (3) ===
+  {q:'U riječi „ljepota" morfem „-ot-" je:',o:['sufiks','prefiks','korijen','nastavak'],t:0,e:'„-ot-" je sufiks koji od pridjeva („lijep") tvori apstraktnu imenicu ž.r. Korijen je „ljep-", nastavak je „-a" (N jd.).'},
+  {q:'Riječ „knjigovodstvo" nastala je:',o:['izvođenjem','prefiksacijom','slaganjem (kompozicijom)','kraćenjem'],t:2,e:'Slaganje: knjig- + -o- (spojnik) + vodstvo. Dva korijena + spojnik = složenica.'},
+  {q:'Koja je tvorbena skupina „HAZU" (Hrvatska akademija znanosti i umjetnosti)?',o:['polusloženica','izvedenica','složenica','slogovna skraćenica'],t:3,e:'„HAZU" je slogovna skraćenica — čita se kao riječ (ne po slovima). Alfabetska skraćenica bi se čitala „Ha-A-Ze-U".'},
+];
+
+const CP_ITEMS=[
+  'Razumijem razliku između morfologije (oblici riječi) i fonetike (glasovi), sintakse (rečenica) i leksikologije (značenje).',
+  'Znam 4 tipa morfema: korijen (značenje), prefiks (ispred), sufiks (tvorbeni), nastavak (gramatički).',
+  'Znam 10 vrsta riječi — 5 promjenjivih (imenice, pridjevi, zamjenice, brojevi, glagoli) + 5 nepromjenjivih (prilozi, prijedlozi, veznici, uzvici, čestice).',
+  'Znam 3 deklinacijske vrste imenica (a/e/i) i kako ih prepoznati po G jd. (-a / -e / -i).',
+  'Znam sva 7 padeža s pitanjima, značenjima i prijedlozima (mnemotehnika NADIVLA).',
+  'Razumijem razliku A vs. L s istim prijedlozima: A = kretanje (kamo?), L = mirovanje (gdje?).',
+  'Znam 7 glagolskih vremena (prezent, perfekt, aorist, imperfekt, pluskvamperfekt, futur I, futur II).',
+  'Razumijem glagolski vid — svršeni (završena radnja, s prefiksom) vs. nesvršeni (u tijeku).',
+  'Znam 7 vrsta zamjenica — posebno razliku svoj (povratno-posvojna, subjektu) vs. njegov (posvojna, nečija druga).',
+  'Razumijem 3 načina tvorbe riječi: izvođenje (prefiks/sufiks), slaganje (složenice), kraćenje (skraćenice).',
+];
+
+const DIAG0_Q=[
+  {q:'Koliko vrsta riječi razlikuje hrvatski jezik?',o:['8','10','12','7'],t:1,e:'10 vrsta riječi: 5 promjenjivih (imenice, pridjevi, zamjenice, brojevi, glagoli) + 5 nepromjenjivih (prilozi, prijedlozi, veznici, uzvici, čestice).'},
+  {q:'U kojoj skupini je glagol „pisati"?',o:['nepromjenjiva riječ','promjenjiva riječ','prijedlog','veznik'],t:1,e:'Glagoli su promjenjiva vrsta riječi — konjugiraju se po vremenu, licu, broju, vidu.'},
+  {q:'Koji je ovo morfem: ljep-OT-a?',o:['korijen','prefiks','sufiks','nastavak'],t:2,e:'„-ot-" je sufiks — od pridjeva „lijep" tvori imenicu „ljepota". Korijen je „ljep-", nastavak je „-a" (N jd.).'},
+  {q:'U rečenici „Dao sam joj knjigu." koji je padež riječi „knjigu"?',o:['nominativ','genitiv','akuzativ','instrumental'],t:2,e:'Akuzativ (A) — označava izravni objekt radnje (koga/što dajem). „Knjigu" = ono što dajem.'},
+  {q:'Koji je glagolski oblik „pročitat ću"?',o:['prezent','perfekt','futur I','aorist'],t:2,e:'Futur I (buduće vrijeme) — tvori se od svršenog glagola infinitiva + nenaglašenih oblika glagola „htjeti" (ću, ćeš, će, ćemo, ćete, će).'},
+  {q:'„Teško" iz „Teško je živjeti" je:',o:['prilog','imenica (preobrazba)','pridjev','čestica'],t:0,e:'PRILOG — opisuje kako je živjeti („teško je"). Ali u „Učinio je teško" → može biti imenica (preobrazba). Ovisi o kontekstu!'},
+  {q:'Imenica „stvar" pripada kojoj deklinaciji?',o:['a-deklinacija','e-deklinacija','i-deklinacija','ne deklinira se'],t:2,e:'i-deklinacija — ženske imenice koje u N završavaju na suglasnik. Sklonimo: stvar, stvari, stvari, stvar, stvari!, stvari, stvarju/i.'},
+  {q:'Komparativ pridjeva „dobar" je:',o:['dobriji','bolji','dobreći','dobrosi'],t:1,e:'BOLJI — supletivna komparacija (mijenja korijen). Pozitiv: dobar · komp: bolji · superlativ: najbolji. Slično: zao → gori, mali → manji, velik → veći.'},
+  {q:'„Knjigovodstvo" je nastalo:',o:['izvođenjem','slaganjem','preobrazbom','srastanjem'],t:1,e:'SLAGANJE — dva korijena (knjig + vodstvo) povezana spojnikom „-o-". Tipičan primjer složenice. Izvođenje bi bilo lijep+ota, preobrazba bi bila bez ikakve promjene oblika.'},
+  {q:'Glagol „dolaziti" je po vidu:',o:['svršeni','nesvršeni','dvovidni','bezglagolski'],t:1,e:'NESVRŠENI — radnja u tijeku/ponavlja se („dolazim svaki dan"). Svršeni parnjak je „doći" (radnja je gotova: „dođi sutra").'},
+];
+const TAB_NAMES=['Teorija','Promjenjive riječi','Nepromjenjive riječi','Gramatičke kategorije','Pojmovnik','Morfo Scanner','Kviz','Referentna tablica'];
+function sw(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('on',i===n);
+    t.setAttribute('aria-selected',i===n);
+  });
+  document.querySelectorAll('.layer').forEach((l,i)=>l.classList.toggle('on',i===n));
+  const _bc=document.getElementById('bc-tab');if(_bc)_bc.textContent=TAB_NAMES[n];
+  if(n===6)qzInit();
+  if(n===5){
+    // init drill on first open (safe — mg-dynamic may not exist in H20 since Tab 5 is now Scanner)
+    const _mg=document.getElementById('mg-dynamic');
+    if(_mg&&!_mg.dataset.init){
+      _mg.dataset.init='1';
+      if(typeof mgInit==='function')mgInit('easy');
+      if(typeof fcInit==='function')fcInit();
+    }
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeSb();
+}
+
+/* ═══════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════ */
+function openSb(){
+  document.getElementById('sidebar').classList.add('mobile-open');
+  document.getElementById('overlay').classList.add('show');
+}
+function closeSb(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+/* ═══════════════════════════════════
+   COUNTDOWN
+═══════════════════════════════════ */
+(function(){
+  // Datum ispita Hrv. jezik — ljetni rok 2025./2026.
+  // Dan 1 (test + sažetak): 15. lipnja 2026.
+  // Dan 2 (esej):           16. lipnja 2026.
+  // Izvor: NCVVO kalendar 2025./2026.
+  const now=new Date();
+  const todayLocal=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const dan1=new Date(2026,5,15); // 15. lipnja 2026. — lokalno (month je 0-indexed!)
+  const dan2=new Date(2026,5,16); // 16. lipnja 2026.
+  const target=todayLocal<=dan1?dan1:dan2; // Prikaži dan 1, pa dan 2
+  const diff=Math.round((target-todayLocal)/(1000*60*60*24));
+  const el=document.getElementById('cd-days');
+  const cw=el?el.closest('.countdown'):null;
+  if(!el)return;
+  if(diff>0){
+    el.textContent=diff;
+    if(cw&&diff<=30)cw.style.borderColor='var(--bronze-d)';
+    if(cw&&diff<=14)cw.style.borderColor='var(--bronze)';
+    if(cw&&diff<=7){cw.style.borderColor='var(--red)';cw.style.color='var(--red)';}
+  } else if(diff===0){
+    el.textContent='DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else if(Math.round((dan2-todayLocal)/(1000*60*60*24))===0){
+    el.textContent='Esej DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else {
+    el.textContent='prošlo';
+  }
+})();
+
+/* ═══════════════════════════════════
+   SCENES (pjevanja)
+═══════════════════════════════════ */
+function speakVerse(text, rate){
+  if(!('speechSynthesis' in window)){
+    alert('Vaš preglednik ne podržava audio čitanje (Web Speech API). Isprobaj Chrome, Edge ili Safari.');
+    return;
+  }
+  // Cancel any ongoing speech
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'hr-HR';
+  u.rate = rate || 0.85;
+  u.pitch = 1.0;
+  u.volume = 1.0;
+  // Try to find Croatian voice
+  const voices = window.speechSynthesis.getVoices();
+  const hrVoice = voices.find(v => v.lang && v.lang.startsWith('hr')) || voices.find(v => v.lang && v.lang.startsWith('sr')) || voices.find(v => v.lang && v.lang.startsWith('sl'));
+  if(hrVoice) u.voice = hrVoice;
+  window.speechSynthesis.speak(u);
+}
+// Trigger voice list load
+if('speechSynthesis' in window){
+  window.speechSynthesis.getVoices();
+  if(window.speechSynthesis.onvoiceschanged !== undefined){
+    window.speechSynthesis.onvoiceschanged = function(){};
+  }
+}
+
+
+
+/* WEB SPEECH API — fonetski audio demo */
+function speakWord(text){
+  if(!('speechSynthesis' in window)){
+    alert('Tvoj preglednik ne podržava audio izgovor. Pokušaj u Chrome ili Safari.');
+    return;
+  }
+  // Stop any ongoing speech
+  window.speechSynthesis.cancel();
+  
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'hr-HR';
+  utter.rate = 0.85;
+  utter.pitch = 1.0;
+  
+  // Try to find Croatian voice
+  const voices = window.speechSynthesis.getVoices();
+  const hrVoice = voices.find(v => v.lang.startsWith('hr'));
+  if(hrVoice) utter.voice = hrVoice;
+  
+  window.speechSynthesis.speak(utter);
+}
+
+// Preload voices (some browsers need this)
+if('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined){
+  window.speechSynthesis.onvoiceschanged = function(){};
+}
+
+
+
+
+
+/* ═══════════════════════════════════
+   H20 POJMOVNIK DATA + RENDERER
+═══════════════════════════════════ */
+
+const POJM_DATA2 = [
+  // === 1. MORFOLOGIJA OSNOVE (8) ===
+  {kat:'osnove', term:'Morfologija', def:'Grana gramatike koja proučava oblike riječi — kako se riječi mijenjaju (sklanjaju, konjugiraju) i kako se tvore. Razlikovati od sintakse (rečenica) i leksikologije (značenje riječi).'},
+  {kat:'osnove', term:'Morfem', def:'Najmanja jezična jedinica s vlastitim značenjem ili gramatičkom funkcijom. Riječ može imati više morfema (ljep-ot-a = 3 morfema).'},
+  {kat:'osnove', term:'Korijen (osnova)', def:'Središnji morfem riječi koji nosi leksičko značenje. Zajednički je svim srodnim riječima (ljep- u ljepota, ljepši, uljepšati).'},
+  {kat:'osnove', term:'Prefiks', def:'Morfem ispred korijena koji mijenja značenje (na-, do-, iz-, pre-, uz-, pod-, nad-, ne-). Iz prijedloga ili slavenskih osnova.'},
+  {kat:'osnove', term:'Sufiks', def:'Tvorbeni morfem iza korijena koji stvara novu riječ (drugu vrstu ili značenje). Primjeri: -ost (ljepota), -ica (učenica), -telj (učitelj), -ski (školski).'},
+  {kat:'osnove', term:'Nastavak', def:'Gramatički morfem na kraju riječi — označava padež, broj, lice, rod, vrijeme. Razlika od sufiksa: nastavak se mijenja, sufiks ostaje.'},
+  {kat:'osnove', term:'Promjenjive riječi', def:'5 vrsta riječi koje mijenjaju oblik: imenice, pridjevi, zamjenice, brojevi, glagoli. Sklanjaju se (padeži) ili konjugiraju (vremena).'},
+  {kat:'osnove', term:'Nepromjenjive riječi', def:'5 vrsta riječi koje zadržavaju isti oblik: prilozi, prijedlozi, veznici, uzvici, čestice.'},
+  
+  // === 2. VRSTE RIJEČI (12) ===
+  {kat:'vrste', term:'Imenica', def:'Promjenjiva vrsta riječi — imenuje bića, stvari, pojmove. Ima rod (m/ž/sr), broj (jd/mn), padež (7). Pitanje: tko? što?'},
+  {kat:'vrste', term:'Pridjev', def:'Promjenjiva vrsta — označava svojstva, osobine, pripadnost. Slaže se s imenicom u rodu, broju, padežu. 4 vrste: opisni, posvojni, gradivni, vremenski.'},
+  {kat:'vrste', term:'Zamjenica', def:'Promjenjiva vrsta koja zamjenjuje druge riječi (imenice, pridjeve). 7 vrsta: osobne, povratne, posvojne, povratno-posvojna, pokazne, upitne/odnosne, neodređene.'},
+  {kat:'vrste', term:'Broj', def:'Promjenjiva vrsta — označava količinu (glavni: pet), redoslijed (redni: drugi), skupinu (zbirni: dvoje) ili dio (dijelni: polovica).'},
+  {kat:'vrste', term:'Glagol', def:'Promjenjiva vrsta — izražava radnju, stanje, zbivanje. Konjugira se po licu (3), broju (2), vremenu (7), načinu (4), vidu (2), stanju (2).'},
+  {kat:'vrste', term:'Prilog', def:'Nepromjenjiva vrsta — pobliže označava glagol, pridjev ili drugi prilog. 5 vrsta: način (brzo), mjesto (ovdje), vrijeme (sutra), količina (vrlo), uzrok (zato).'},
+  {kat:'vrste', term:'Prijedlog', def:'Nepromjenjiva vrsta — izražava odnose. Dolazi uz padeže: G (od, iz), D (k, prema), A (u, na, za), L (u, na, o), I (s, pod).'},
+  {kat:'vrste', term:'Veznik', def:'Nepromjenjiva vrsta — povezuje riječi ili rečenice. Nezavisni (i, ili, a, ali) povezuju ravnopravne; zavisni (da, kad, jer, ako) uvode zavisnu rečenicu.'},
+  {kat:'vrste', term:'Uzvik', def:'Nepromjenjiva vrsta — izražava emocije (ah, jao), zvukove (mjau, bum) ili služi za dozivanje (hej, ej). Stoji izolirano u rečenici.'},
+  {kat:'vrste', term:'Čestica (riječca)', def:'Nepromjenjiva vrsta — izražava stav govornika. 7 vrsta: niječne (ne), potvrdne (da), upitne (li), usklične (baš), pokazne (evo), modalne (možda), poticajne (neka).'},
+  {kat:'vrste', term:'Deklinacija', def:'Sklanjanje imenica, pridjeva, zamjenica, brojeva kroz 7 padeža. Hrvatski ima 3 deklinacijske vrste: a-vrsta, e-vrsta, i-vrsta.'},
+  {kat:'vrste', term:'Konjugacija', def:'Mijenjanje glagolskih oblika po licu, broju, vremenu, načinu. Hrv. ima 5 konjugacijskih vrsta glagola.'},
+  
+  // === 3. PADEŽI (8) ===
+  {kat:'padezi', term:'Padež', def:'Gramatička kategorija koja označava sintaktičku funkciju imenice/pridjeva u rečenici. Hrv. ima 7 padeža: N, G, D, A, V, L, I.'},
+  {kat:'padezi', term:'Nominativ (N)', def:'1. padež — osnovni oblik. Pitanje: tko? što? Funkcija: subjekt rečenice. Nema prijedloga.'},
+  {kat:'padezi', term:'Genitiv (G)', def:'2. padež. Pitanja: koga? čega? Značenja: pripadnost (knjiga učenika), dio (litra vode), negacija (nema vode), vrijeme. Prijedlozi: od, do, iz, bez, kod.'},
+  {kat:'padezi', term:'Dativ (D)', def:'3. padež. Pitanja: komu? čemu? Značenja: primatelj (dao sam prijatelju), smjer (prema moru). Prijedlozi: k, prema, nasuprot.'},
+  {kat:'padezi', term:'Akuzativ (A)', def:'4. padež. Pitanja: koga? što? Značenja: izravni objekt (čitam knjigu), cilj kretanja (u školu). Prijedlozi: u, na, za, kroz.'},
+  {kat:'padezi', term:'Vokativ (V)', def:'5. padež — dozivanje. Često s 1. palatalizacijom (Ivan → Ivane, Bog → Bože). Nema prijedloga, stoji izolirano.'},
+  {kat:'padezi', term:'Lokativ (L)', def:'6. padež. Pitanja: o kome? o čemu? Značenja: mjesto mirovanja (u školi), tema (o knjizi). UVIJEK s prijedlogom: u, na, o, po, pri.'},
+  {kat:'padezi', term:'Instrumental (I)', def:'7. padež. Pitanja: s kim? s čim? Značenja: sredstvo (pišem olovkom), društvo (s prijateljem). Prijedlozi: s, za, pod, nad, pred.'},
+  
+  // === 4. GLAGOLSKE KATEGORIJE (12) ===
+  {kat:'glagoli', term:'Infinitiv', def:'Osnovni oblik glagola — završava na -ti ili -ći (čitati, reći). Neodređen oblik, bez lica i broja. Koristi se u tvorbi futura I.'},
+  {kat:'glagoli', term:'Prezent', def:'Sadašnje vrijeme. Tvorba: osnova + lični nastavci (-m/-š/-(ø), -mo/-te/-u ili -ju). Primjer: čit-am, čit-aš, čit-a.'},
+  {kat:'glagoli', term:'Perfekt', def:'Najčešće prošlo vrijeme. Tvorba: nenaglašeni prezent "biti" (sam, si, je...) + glagolski pridjev radni. Primjer: čitao sam.'},
+  {kat:'glagoli', term:'Aorist', def:'Prošlo završeno vrijeme od svršenih glagola. Tvorba: osnova + -h/-Ø/-Ø/-smo/-ste/-še. Knjževno, rijetko u razgovoru. Primjer: rekoh, reče.'},
+  {kat:'glagoli', term:'Imperfekt', def:'Prošlo vrijeme nesvršene radnje u tijeku. Tvorba: osnova + -jah/-jaše... Arhaično. Primjer: čitah, čitaše.'},
+  {kat:'glagoli', term:'Pluskvamperfekt', def:'Predprošlo vrijeme — radnja prije druge prošle. Tvorba: imperfekt/perfekt "biti" + pridjev radni. Primjer: bijah čitao, bio sam čitao.'},
+  {kat:'glagoli', term:'Futur I', def:'Buduće vrijeme. Tvorba: infinitiv (bez -i) + nenaglašeni "htjeti" (ću/ćeš/će/ćemo/ćete/će). Primjer: čitat ću.'},
+  {kat:'glagoli', term:'Futur II', def:'Pretbuduće vrijeme (u zavisnim rečenicama). Tvorba: prezent svršenog "biti" (budem) + pridjev radni. Primjer: budem čitao.'},
+  {kat:'glagoli', term:'Imperativ', def:'Zapovijedni način. Izražava zapovijed, molbu, savjet. Primjer: čitaj! (2. jd.), čitajmo! (1. mn.), čitajte! (2. mn.).'},
+  {kat:'glagoli', term:'Kondicional I', def:'Pogodbeni način — sadašnji ili budući uvjet. Tvorba: bih/bi/bi/bismo/biste/bi + pridjev radni. Primjer: čitao bih.'},
+  {kat:'glagoli', term:'Glagolski vid', def:'Kategorija koja izražava dovršenost radnje. SVRŠENI vid (napisati) = završena radnja; NESVRŠENI vid (pisati) = radnja u tijeku.'},
+  {kat:'glagoli', term:'Stanje (aktiv/pasiv)', def:'Kategorija koja označava odnos subjekta i radnje. AKTIV: subjekt vrši radnju (Ivan čita). PASIV: subjekt trpi radnju (Knjiga je pročitana).'},
+  
+  // === 5. ZAMJENIČKE VRSTE (7) ===
+  {kat:'zamjenice', term:'Osobne zamjenice', def:'Zamjenice koje označavaju osobe/stvari. 3 lica: ja/ti/on-ona-ono (jd.), mi/vi/oni-one-ona (mn.). Imaju naglašene (mene) i nenaglašene (me) oblike.'},
+  {kat:'zamjenice', term:'Povratne zamjenice', def:'Odnose se na subjekt rečenice. U hrvatskom je samo jedna: SE (nenaglašeno) / SEBE (naglašeno). Primjer: Vidim se u ogledalu.'},
+  {kat:'zamjenice', term:'Posvojne zamjenice', def:'Označavaju pripadnost osobi. Moj, tvoj, njegov/njezin, naš, vaš, njihov. Slažu se s imenicom u rodu, broju, padežu.'},
+  {kat:'zamjenice', term:'Povratno-posvojna zamjenica', def:'SVOJ — pripadnost subjektu. Razlika od posvojne: Ivan je uzeo SVOJU knjigu (Ivanovu) vs. NJEGOVU knjigu (nečiju drugu).'},
+  {kat:'zamjenice', term:'Pokazne zamjenice', def:'Upućuju na bliske/daleke entitete. Ovaj (blizu govornika), taj (blizu sugovornika), onaj (daleko). + ovakav/takav/onakav, oliki/toliki.'},
+  {kat:'zamjenice', term:'Upitne i odnosne zamjenice', def:'Upitne PITAJU (tko? što? koji? čiji?), odnosne POVEZUJU rečenice (čovjek koji dolazi). Iste riječi u obje funkcije.'},
+  {kat:'zamjenice', term:'Neodređene zamjenice', def:'Označavaju neodređene entitete. Netko, nešto, neki, svatko, svako, nitko, ništa, ičiji, svi, svašta. Tvoreno prefiksima ne-, ni-, sva-, i-.'},
+  
+  // === 6. TVORBA (6) ===
+  {kat:'tvorba', term:'Izvođenje (derivacija)', def:'Tvorba nove riječi dodavanjem prefiksa i/ili sufiksa. Najproduktivniji način. Primjer: pisati → napisati (prefiks), rad → radnik (sufiks).'},
+  {kat:'tvorba', term:'Slaganje (kompozicija)', def:'Tvorba spajanjem dvaju korijena → složenica. Tipovi: sa spojnikom (knjigovodstvo), bez spojnika (vatrogasac), polusloženice (spomen-ploča), sraslice (brzojav).'},
+  {kat:'tvorba', term:'Kraćenje', def:'Tvorba skraćenica. Tipovi: slogovne (HAZU — čita se kao riječ), inicijalne/alfabetske (SAD, EU — po slovima), djelomične (prof., dr.).'},
+  {kat:'tvorba', term:'Složenica', def:'Riječ nastala slaganjem dvaju korijena. Primjeri: knjigovodstvo, staro-sjedilac, parobrod. Obično s spojnikom -o- ili -e-.'},
+  {kat:'tvorba', term:'Polusloženica', def:'Dvije riječi spojene crticom, svaki dio zadržava svoje značenje i naglasak. Primjeri: spomen-ploča, brat-sestra, radio-postaja.'},
+  {kat:'tvorba', term:'Tvorbena osnova', def:'Dio riječi od kojeg se tvori nova riječ — obično korijen bez nastavaka. Primjer: rad- (od raditi) → radnik, radnica, radni.'},
+  
+  // === 7. METAJEZIK (7) ===
+  {kat:'meta', term:'Gramatička kategorija', def:'Obilježja po kojima se riječi mijenjaju. Imenske kategorije: rod, broj, padež. Glagolske: lice, broj, vrijeme, način, vid, stanje.'},
+  {kat:'meta', term:'Rod (m/ž/sr)', def:'Imenska kategorija — 3 roda. Najčešće se prepoznaje po završetku N jd. (suglasnik = m.r., -a = ž.r., -o/-e = sr.r.), ali s mnogim iznimkama.'},
+  {kat:'meta', term:'Broj (jd/mn)', def:'2 vrijednosti: jednina (1 entitet) i množina (2+). Neke imenice samo jd. (voda, ljubav), druge samo mn. (vrata, novine, pluća).'},
+  {kat:'meta', term:'Lice', def:'Glagolska kategorija — 3 lica: 1. (ja/mi), 2. (ti/vi), 3. (on-ona-ono/oni). Označava govornika, sugovornika, osobu o kojoj se govori.'},
+  {kat:'meta', term:'Paukal', def:'Poseban oblik imenice uz brojeve 2, 3, 4 (identičan s G jd.). Primjer: DVA STOLA (ne "stolovi"), TRI PRIJATELJA. Ostatak praslav. dvojine.'},
+  {kat:'meta', term:'Pluralia tantum', def:'Imenice koje postoje SAMO u množini. Primjeri: vrata, kola, pluća, leđa, naočale, hlače, škare, novine, usta.'},
+  {kat:'meta', term:'Deklinacijska vrsta', def:'Klasifikacija imenica po načinu sklanjanja. Hrvatski ima 3 vrste: a-vrsta (m.r.+sr.r., G jd. -a), e-vrsta (ž.r., G jd. -e), i-vrsta (ž.r. na suglasnik, G jd. -i).'},
+];
+
+let pojm2Active = 'all';
+let pojm2Mode = 'grid';
+let pj2Data = [];
+let pj2Idx = 0;
+let pj2Seen = {};
+
+function renderPojm2(){
+  const grid = document.getElementById('pojm-grid2');
+  if(!grid) return;
+  const show = pojm2Active === 'all' ? POJM_DATA2 : POJM_DATA2.filter(p => p.kat === pojm2Active);
+  
+  const KAT_LABELS = {
+    'osnove':'Osnove',
+    'vrste':'Vrste riječi',
+    'padezi':'Padeži',
+    'glagoli':'Glagoli',
+    'zamjenice':'Zamjenice',
+    'tvorba':'Tvorba',
+    'meta':'Metajezik'
+  };
+  
+  grid.innerHTML = show.map(p => \`
+    <div class="pojm-card-h20" onclick="this.classList.toggle('open')">
+      <div class="pc-kat">\${KAT_LABELS[p.kat] || p.kat}</div>
+      <div class="pc-term">\${p.term}</div>
+      <div class="pc-hint">→ klikni za definiciju</div>
+      <div class="pc-def">\${p.def}</div>
+    </div>
+  \`).join('');
+}
+
+function pojmFilter2(cat, btn){
+  document.querySelectorAll('.pojm-filter .pojm-fbt').forEach(b => b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  pojm2Active = cat;
+  renderPojm2();
+}
+
+// Auto-init
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderPojm2, 150);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderPojm2, 150);
+  }
+}
+
+
+/* TAB 5 · MORFO SCANNER (engine) */
+
+
+
+
+
+/* ═══════════════════════════════════
+   TAB 2 · INTERAKTIVNA VJEŽBA GLASOVNIH PROMJENA
+═══════════════════════════════════ */
+
+const GP_PAIRS = [
+  {pair:['list', 'lišće'], answer:'jotacija', explain:'Jotacija: t+j → ć, s+j → š (zbirna imenica na -je)'},
+  {pair:['vuk', 'vuče'], answer:'1palat', explain:'1. palatalizacija: k + e → č (vokativ jednine m.r.)'},
+  {pair:['vojnik', 'vojnici'], answer:'sibilar', explain:'Sibilarizacija (2. palat.): k + i → c (N mn. m.r.)'},
+  {pair:['čital', 'čitao'], answer:'vokal', explain:'Vokalizacija l: -l na kraju sloga → -o (gl. pridjev radni m.r.)'},
+  {pair:['pas', 'psa'], answer:'nepost', explain:'Nepostojano a: a se gubi u kosim padežima (ali se vraća u G mn.: pasa)'},
+  {pair:['svijet', 'svjetlost'], answer:'jat', explain:'Alternacija jata: ije (dugi slog) → je (kratki slog) — refleks praslav. *ě'},
+  {pair:['bog', 'bože'], answer:'1palat', explain:'1. palatalizacija: g + e → ž (vokativ jednine m.r.)'},
+  {pair:['iz+pasti', 'ispasti'], answer:'jednacenje', explain:'Jednačenje po zvučnosti: zvučni z → bezvučni s pred bezvučnim p'},
+];
+
+let gpIdx = 0;
+let gpScore = 0;
+
+function renderGpExercise(){
+  const cont = document.getElementById('gp-exercise');
+  if(!cont) return;
+  
+  if(gpIdx >= GP_PAIRS.length){
+    renderGpResult();
+    return;
+  }
+  
+  const item = GP_PAIRS[gpIdx];
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">PITANJE \${gpIdx+1} / \${GP_PAIRS.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${gpScore}</div>
+      </div>
+      
+      <div style="text-align:center;margin:24px 0;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap">
+        <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--t1);padding:14px 24px;background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--r1)">\${item.pair[0]}</div>
+        <div style="font-size:24px;color:var(--gold)">→</div>
+        <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);padding:14px 24px;background:var(--bg);border:1.5px solid var(--gold);border-radius:var(--r1);box-shadow:0 2px 8px rgba(233,180,70,.15)">\${item.pair[1]}</div>
+      </div>
+      
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJA SE GLASOVNA PROMJENA DOGODILA?</div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">
+        <button class="gp-opt" data-ans="jotacija" onclick="gpAnswer('jotacija', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--blue);font-weight:700;margin-bottom:2px">1. Jotacija</div>
+          <div style="font-size:10px;color:var(--t3)">C + j → palatalni</div>
+        </button>
+        <button class="gp-opt" data-ans="1palat" onclick="gpAnswer('1palat', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--bronze);font-weight:700;margin-bottom:2px">2. 1. palatalizacija</div>
+          <div style="font-size:10px;color:var(--t3)">k,g,h + e/i → č,ž,š</div>
+        </button>
+        <button class="gp-opt" data-ans="sibilar" onclick="gpAnswer('sibilar', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--green);font-weight:700;margin-bottom:2px">3. Sibilarizacija</div>
+          <div style="font-size:10px;color:var(--t3)">k,g,h + i → c,z,s</div>
+        </button>
+        <button class="gp-opt" data-ans="vokal" onclick="gpAnswer('vokal', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--red);font-weight:700;margin-bottom:2px">4. Vokalizacija l</div>
+          <div style="font-size:10px;color:var(--t3)">-l → -o</div>
+        </button>
+        <button class="gp-opt" data-ans="nepost" onclick="gpAnswer('nepost', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:var(--gold);font-weight:700;margin-bottom:2px">5. Nepostojano a</div>
+          <div style="font-size:10px;color:var(--t3)">a se gubi</div>
+        </button>
+        <button class="gp-opt" data-ans="jat" onclick="gpAnswer('jat', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:#9b59b6;font-weight:700;margin-bottom:2px">6. Alternacija jata</div>
+          <div style="font-size:10px;color:var(--t3)">ije/je/e/i</div>
+        </button>
+        <button class="gp-opt" data-ans="jednacenje" onclick="gpAnswer('jednacenje', this)" style="padding:12px 14px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;text-align:left;transition:all .2s">
+          <div style="color:#e67e22;font-weight:700;margin-bottom:2px">7. Jednačenje zvuč.</div>
+          <div style="font-size:10px;color:var(--t3)">izjednač. zvučnost</div>
+        </button>
+      </div>
+      
+      <div id="gp-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function gpAnswer(chosen, btn){
+  const item = GP_PAIRS[gpIdx];
+  const correct = chosen === item.answer;
+  if(correct) gpScore++;
+  
+  document.querySelectorAll('.gp-opt').forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+    b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.gp-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity = '1';
+        b.style.borderColor = 'var(--green)';
+        b.style.background = 'rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('gp-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="gpNext()">\${gpIdx < GP_PAIRS.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function gpNext(){
+  gpIdx++;
+  renderGpExercise();
+}
+
+function renderGpResult(){
+  const cont = document.getElementById('gp-exercise');
+  const res = document.getElementById('gp-result');
+  if(!cont || !res) return;
+  
+  cont.style.display = 'none';
+  res.style.display = 'block';
+  
+  const pct = Math.round((gpScore / GP_PAIRS.length) * 100);
+  let msg, color, emoji;
+  if(pct === 100){ emoji='🏆'; msg='Savršeno! Sve glasovne promjene prepoznate.'; color='var(--gold)'; }
+  else if(pct >= 75){ emoji='🎯'; msg='Odlično! Razlike među promjenama su ti jasne.'; color='var(--green)'; }
+  else if(pct >= 50){ emoji='📖'; msg='Dobro, ali ima prostora — provjeri scene-cards iznad.'; color='var(--blue)'; }
+  else{ emoji='⚠'; msg='Vrati se na scene-cards i ponovi pravila glasovnih promjena.'; color='var(--red)'; }
+  
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${gpScore} / \${GP_PAIRS.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="gpReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+function gpReset(){
+  gpIdx = 0;
+  gpScore = 0;
+  const res = document.getElementById('gp-result');
+  const cont = document.getElementById('gp-exercise');
+  if(res) res.style.display = 'none';
+  if(cont) cont.style.display = '';
+  renderGpExercise();
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderGpExercise, 200);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderGpExercise, 200);
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 1 · WORD CLASS IDENTIFICATION EXERCISE
+═══════════════════════════════════ */
+
+const WC_SENTENCES = [
+  {sentence:['Mala','djevojka','brzo','trči','u','školu','.'], target:1, word:'djevojka', answer:'imenica', explain:'"Djevojka" odgovara na pitanje TKO/ŠTO? — imenica (biće), ž.r., N jd.'},
+  {sentence:['Taj','pametan','dječak','čita','zanimljivu','knjigu','.'], target:1, word:'pametan', answer:'pridjev', explain:'"Pametan" odgovara na pitanje KAKAV? — pridjev (opisni, neodređeni oblik), m.r., N jd.'},
+  {sentence:['Ivan','i','Ana','pjevaju','lijepu','pjesmu','.'], target:3, word:'pjevaju', answer:'glagol', explain:'"Pjevaju" = radnja u prezentu, 3. l. mn. — glagol (nesvršeni vid).'},
+  {sentence:['Njegova','majka','radi','u','velikoj','bolnici','.'], target:0, word:'Njegova', answer:'zamjenica', explain:'"Njegova" = posvojna zamjenica — izražava pripadnost (čija majka?), ž.r., N jd.'},
+  {sentence:['Pet','studenata','uspješno','položi','ispit','.'], target:0, word:'Pet', answer:'broj', explain:'"Pet" = glavni broj, označava količinu (5 studenata). Ne mijenja oblik.'},
+  {sentence:['Knjiga','leži','na','velikom','stolu','.'], target:2, word:'na', answer:'prijedlog', explain:'"Na" = prijedlog — izražava odnos (gdje leži?), stoji uz imenicu u L.'},
+  {sentence:['Došao','sam','u','školu','jer','je','početak','.'], target:4, word:'jer', answer:'veznik', explain:'"Jer" = veznik — povezuje zavisnu (uzročnu) rečenicu s glavnom. Nepromjenjiva riječ.'},
+  {sentence:['Ona','je','vrlo','lijepo','otpjevala','arijetu','.'], target:3, word:'lijepo', answer:'prilog', explain:'"Lijepo" = prilog načina (KAKO je pjevala?) — opisuje radnju glagola.'},
+];
+
+let wcIdx = 0;
+let wcScore = 0;
+const WC_OPTIONS = ['imenica','pridjev','zamjenica','broj','glagol','prilog','prijedlog','veznik','uzvik','čestica'];
+
+function renderWcExercise(){
+  const cont = document.getElementById('wc-exercise');
+  if(!cont) return;
+  
+  if(wcIdx >= WC_SENTENCES.length){
+    renderWcResult();
+    return;
+  }
+  
+  const item = WC_SENTENCES[wcIdx];
+  
+  // Build sentence HTML with target word highlighted
+  const sentenceHtml = item.sentence.map((w, i) => {
+    if(i === item.target){
+      return \`<span style="display:inline-block;padding:4px 10px;background:rgba(233,180,70,.15);border:2px solid var(--gold);border-radius:var(--r1);color:var(--gold);font-weight:700;margin:0 2px">\${w}</span>\`;
+    }
+    if(w === '.' || w === ',' || w === '!' || w === '?'){
+      return w;
+    }
+    return \`<span style="margin:0 2px">\${w}</span>\`;
+  }).join(' ').replace(/ ([.,!?])/g, '$1');
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">REČENICA \${wcIdx+1} / \${WC_SENTENCES.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${wcScore}</div>
+      </div>
+      
+      <div style="text-align:center;margin:20px 0;padding:20px;background:var(--bg);border-radius:var(--r1);font-family:var(--display);font-size:16px;line-height:1.8;color:var(--t2)">
+        \${sentenceHtml}
+      </div>
+      
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJA JE VRSTA OZNAČENE RIJEČI?</div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px">
+        \${WC_OPTIONS.map(opt => \`
+          <button class="wc-opt" data-ans="\${opt}" onclick="wcAnswer('\${opt}', this)" style="padding:10px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;transition:all .2s;text-transform:capitalize">
+            \${opt}
+          </button>
+        \`).join('')}
+      </div>
+      
+      <div id="wc-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function wcAnswer(chosen, btn){
+  const item = WC_SENTENCES[wcIdx];
+  const correct = chosen === item.answer;
+  if(correct) wcScore++;
+  
+  document.querySelectorAll('.wc-opt').forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+    b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.wc-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity = '1';
+        b.style.borderColor = 'var(--green)';
+        b.style.background = 'rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('wc-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="wcNext()">\${wcIdx < WC_SENTENCES.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function wcNext(){
+  wcIdx++;
+  renderWcExercise();
+}
+
+function renderWcResult(){
+  const cont = document.getElementById('wc-exercise');
+  const res = document.getElementById('wc-result');
+  if(!cont || !res) return;
+  
+  cont.style.display = 'none';
+  res.style.display = 'block';
+  
+  const pct = Math.round((wcScore / WC_SENTENCES.length) * 100);
+  let msg, color, emoji;
+  if(pct === 100){ emoji='🏆'; msg='Savršeno! Sve vrste riječi prepoznaješ bez problema.'; color='var(--gold)'; }
+  else if(pct >= 75){ emoji='🎯'; msg='Odlično! Vrste riječi su ti jasne.'; color='var(--green)'; }
+  else if(pct >= 50){ emoji='📖'; msg='Dobro, ali provjeri scene-cards još jednom — posebno zamjenice i priloge.'; color='var(--blue)'; }
+  else{ emoji='⚠'; msg='Vrati se na scene-cards i pažljivo pročitaj definicije + primjere.'; color='var(--red)'; }
+  
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${wcScore} / \${WC_SENTENCES.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="wcReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+function wcReset(){
+  wcIdx = 0;
+  wcScore = 0;
+  const res = document.getElementById('wc-result');
+  const cont = document.getElementById('wc-exercise');
+  if(res) res.style.display = 'none';
+  if(cont) cont.style.display = '';
+  renderWcExercise();
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderWcExercise, 200);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderWcExercise, 200);
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 2 · NEPROMJENJIVE — DETECTION EXERCISE
+═══════════════════════════════════ */
+
+const NP_SENTENCES = [
+  {sentence:['Ivan','je','došao','u','školu','jučer','.'], target:3, word:'u', answer:'prijedlog', explain:'"U" je prijedlog — dolazi uz akuzativ (u školu = kamo?). Izražava prostorni odnos (kretanje).'},
+  {sentence:['Ana','pjeva','lijepo','i','glasno','.'], target:3, word:'i', answer:'veznik', explain:'"I" je nezavisni veznik (sastavni) — povezuje dva ravnopravna priloga (lijepo, glasno).'},
+  {sentence:['Učim','jer','želim','položiti','maturu','.'], target:1, word:'jer', answer:'veznik', explain:'"Jer" je zavisni veznik (uzročni) — uvodi zavisnu uzročnu rečenicu (zašto učim?).'},
+  {sentence:['Ah',',','kako','je','lijep','ovaj','dan','!'], target:0, word:'Ah', answer:'uzvik', explain:'"Ah" je emocionalni uzvik — izražava čuđenje/oduševljenje. Stoji odvojeno od rečenice.'},
+  {sentence:['Ne','znam','kamo','idemo','sutra','.'], target:0, word:'Ne', answer:'čestica', explain:'"Ne" je niječna čestica — negira glagol "znam". Izražava stav govornika (negaciju).'},
+  {sentence:['On','trči','vrlo','brzo','prema','kući','.'], target:2, word:'vrlo', answer:'prilog', explain:'"Vrlo" je prilog količine — opisuje drugi prilog ("brzo"). Stupnjuje intenzitet.'},
+];
+
+let npIdx = 0;
+let npScore = 0;
+const NP_OPTIONS = ['prilog','prijedlog','veznik','uzvik','čestica'];
+
+function renderNpExercise(){
+  const cont = document.getElementById('np-exercise');
+  if(!cont) return;
+  
+  if(npIdx >= NP_SENTENCES.length){
+    renderNpResult();
+    return;
+  }
+  
+  const item = NP_SENTENCES[npIdx];
+  
+  const sentenceHtml = item.sentence.map((w, i) => {
+    if(i === item.target){
+      return \`<span style="display:inline-block;padding:4px 10px;background:rgba(233,180,70,.15);border:2px solid var(--gold);border-radius:var(--r1);color:var(--gold);font-weight:700;margin:0 2px">\${w}</span>\`;
+    }
+    if(w === '.' || w === ',' || w === '!' || w === '?'){
+      return w;
+    }
+    return \`<span style="margin:0 2px">\${w}</span>\`;
+  }).join(' ').replace(/ ([.,!?])/g, '$1');
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">REČENICA \${npIdx+1} / \${NP_SENTENCES.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${npScore}</div>
+      </div>
+      
+      <div style="text-align:center;margin:20px 0;padding:20px;background:var(--bg);border-radius:var(--r1);font-family:var(--display);font-size:16px;line-height:1.8;color:var(--t2)">
+        \${sentenceHtml}
+      </div>
+      
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJA JE VRSTA OZNAČENE RIJEČI?</div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+        \${NP_OPTIONS.map(opt => \`
+          <button class="np-opt" data-ans="\${opt}" onclick="npAnswer('\${opt}', this)" style="padding:12px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:13px;transition:all .2s;text-transform:capitalize">
+            \${opt}
+          </button>
+        \`).join('')}
+      </div>
+      
+      <div id="np-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function npAnswer(chosen, btn){
+  const item = NP_SENTENCES[npIdx];
+  const correct = chosen === item.answer;
+  if(correct) npScore++;
+  
+  document.querySelectorAll('.np-opt').forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+    b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.np-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity = '1';
+        b.style.borderColor = 'var(--green)';
+        b.style.background = 'rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('np-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="npNext()">\${npIdx < NP_SENTENCES.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function npNext(){
+  npIdx++;
+  renderNpExercise();
+}
+
+function renderNpResult(){
+  const cont = document.getElementById('np-exercise');
+  const res = document.getElementById('np-result');
+  if(!cont || !res) return;
+  
+  cont.style.display = 'none';
+  res.style.display = 'block';
+  
+  const pct = Math.round((npScore / NP_SENTENCES.length) * 100);
+  let msg, color, emoji;
+  if(pct === 100){ emoji='🏆'; msg='Savršeno! Sve nepromjenjive riječi prepoznaješ.'; color='var(--gold)'; }
+  else if(pct >= 75){ emoji='🎯'; msg='Odlično! Razlike su ti jasne.'; color='var(--green)'; }
+  else if(pct >= 50){ emoji='📖'; msg='Ponovi — posebno razliku između veznika i čestice.'; color='var(--blue)'; }
+  else{ emoji='⚠'; msg='Vrati se na scene-cards i pažljivo pročitaj razlike (Box warn).'; color='var(--red)'; }
+  
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${npScore} / \${NP_SENTENCES.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="npReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+function npReset(){
+  npIdx = 0;
+  npScore = 0;
+  const res = document.getElementById('np-result');
+  const cont = document.getElementById('np-exercise');
+  if(res) res.style.display = 'none';
+  if(cont) cont.style.display = '';
+  renderNpExercise();
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderNpExercise, 250);
+  });
+  if(document.readyState !== 'loading'){
+    setTimeout(renderNpExercise, 250);
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 3 · PADEŽNI DECLINER
+═══════════════════════════════════ */
+
+// BAZA IZNIMKI — nepravilne imenice + često pitane
+const DECL_EXCEPTIONS = {
+  'čovjek': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['čovjek', 'ljudi'], G: ['čovjeka', 'ljudi'], D: ['čovjeku', 'ljudima'],
+      A: ['čovjeka', 'ljude'], V: ['čovječe', 'ljudi'], L: ['čovjeku', 'ljudima'],
+      I: ['čovjekom', 'ljudima']
+    },
+    note: 'Supletivna množina — "ljudi" je poseban oblik (nije "čovjeci").'
+  },
+  'dijete': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['dijete', 'djeca'], G: ['djeteta', 'djece'], D: ['djetetu', 'djeci'],
+      A: ['dijete', 'djecu'], V: ['dijete', 'djeco'], L: ['djetetu', 'djeci'],
+      I: ['djetetom', 'djecom']
+    },
+    note: 'Zbirna množina "djeca" se sklanja u jednini (kao ž.r.), ali gramatički je množina.'
+  },
+  'pas': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['pas', 'psi'], G: ['psa', 'pasa'], D: ['psu', 'psima'],
+      A: ['psa', 'pse'], V: ['pase', 'psi'], L: ['psu', 'psima'],
+      I: ['psom', 'psima']
+    },
+    note: 'Nepostojano a — a nestaje u kosim padežima (pas → psa).'
+  },
+  'noga': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['noga', 'noge'], G: ['noge', 'nogu'], D: ['nozi', 'nogama'],
+      A: ['nogu', 'noge'], V: ['nogo', 'noge'], L: ['nozi', 'nogama'],
+      I: ['nogom', 'nogama']
+    },
+    note: 'Sibilarizacija u D/L jd. (noga → nozi).'
+  },
+  'ruka': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['ruka', 'ruke'], G: ['ruke', 'ruku'], D: ['ruci', 'rukama'],
+      A: ['ruku', 'ruke'], V: ['ruko', 'ruke'], L: ['ruci', 'rukama'],
+      I: ['rukom', 'rukama']
+    },
+    note: 'Sibilarizacija u D/L jd. (ruka → ruci).'
+  },
+  'majka': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['majka', 'majke'], G: ['majke', 'majki'], D: ['majci', 'majkama'],
+      A: ['majku', 'majke'], V: ['majko', 'majke'], L: ['majci', 'majkama'],
+      I: ['majkom', 'majkama']
+    },
+    note: 'Sibilarizacija u D/L jd. (majka → majci).'
+  },
+  'vojnik': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['vojnik', 'vojnici'], G: ['vojnika', 'vojnika'], D: ['vojniku', 'vojnicima'],
+      A: ['vojnika', 'vojnike'], V: ['vojniče', 'vojnici'], L: ['vojniku', 'vojnicima'],
+      I: ['vojnikom', 'vojnicima']
+    },
+    note: 'Sibilarizacija u N/V mn. (vojnik → vojnici). V jd. ima 1. palatalizaciju (vojniče).'
+  },
+  'Bog': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['Bog', 'bogovi'], G: ['Boga', 'bogova'], D: ['Bogu', 'bogovima'],
+      A: ['Boga', 'bogove'], V: ['Bože', 'bogovi'], L: ['Bogu', 'bogovima'],
+      I: ['Bogom', 'bogovima']
+    },
+    note: 'V jd. "Bože" — 1. palatalizacija (g → ž).'
+  },
+  'noć': {
+    gender: 'ž', type: 'i',
+    forms: {
+      N: ['noć', 'noći'], G: ['noći', 'noći'], D: ['noći', 'noćima'],
+      A: ['noć', 'noći'], V: ['noći', 'noći'], L: ['noći', 'noćima'],
+      I: ['noći / noću', 'noćima']
+    },
+    note: 'I-vrsta ž.r. (završava suglasnikom). I jd. ima oblik "noću" (kao prilog: "po noći").'
+  },
+  'stvar': {
+    gender: 'ž', type: 'i',
+    forms: {
+      N: ['stvar', 'stvari'], G: ['stvari', 'stvari'], D: ['stvari', 'stvarima'],
+      A: ['stvar', 'stvari'], V: ['stvari', 'stvari'], L: ['stvari', 'stvarima'],
+      I: ['stvari / stvarju', 'stvarima']
+    },
+    note: 'I-vrsta ž.r.'
+  },
+  'kost': {
+    gender: 'ž', type: 'i',
+    forms: {
+      N: ['kost', 'kosti'], G: ['kosti', 'kostiju'], D: ['kosti', 'kostima'],
+      A: ['kost', 'kosti'], V: ['kosti', 'kosti'], L: ['kosti', 'kostima'],
+      I: ['kosti / košću', 'kostima']
+    },
+    note: 'I-vrsta ž.r. G mn. završava -iju (kostiju).'
+  },
+  'ljubav': {
+    gender: 'ž', type: 'i',
+    forms: {
+      N: ['ljubav', 'ljubavi'], G: ['ljubavi', 'ljubavi'], D: ['ljubavi', 'ljubavima'],
+      A: ['ljubav', 'ljubavi'], V: ['ljubavi', 'ljubavi'], L: ['ljubavi', 'ljubavima'],
+      I: ['ljubavi / ljubavlju', 'ljubavima']
+    },
+    note: 'I-vrsta ž.r. I jd. ima dva oblika — "ljubavi" i "ljubavlju".'
+  },
+  'brat': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['brat', 'braća'], G: ['brata', 'braće'], D: ['bratu', 'braći'],
+      A: ['brata', 'braću'], V: ['brate', 'braćo'], L: ['bratu', 'braći'],
+      I: ['bratom', 'braćom']
+    },
+    note: 'Zbirna množina "braća" sklanja se u jednini (kao ž.r.).'
+  },
+  'sin': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['sin', 'sinovi'], G: ['sina', 'sinova'], D: ['sinu', 'sinovima'],
+      A: ['sina', 'sinove'], V: ['sine', 'sinovi'], L: ['sinu', 'sinovima'],
+      I: ['sinom', 'sinovima']
+    },
+    note: 'M.r. kratka riječ s umetkom -ov- u množini.'
+  },
+  'otac': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['otac', 'očevi'], G: ['oca', 'očeva'], D: ['ocu', 'očevima'],
+      A: ['oca', 'očeve'], V: ['oče', 'očevi'], L: ['ocu', 'očevima'],
+      I: ['ocem', 'očevima']
+    },
+    note: 'Nepostojano a + palatalizacija (c→č) u množini.'
+  },
+  'tata': {
+    gender: 'm', type: 'e',
+    forms: {
+      N: ['tata', 'tate'], G: ['tate', 'tata'], D: ['tati', 'tatama'],
+      A: ['tatu', 'tate'], V: ['tata', 'tate'], L: ['tati', 'tatama'],
+      I: ['tatom', 'tatama']
+    },
+    note: 'M.r. na -a — sklanja se kao e-vrsta (ženska), ali rod je muški (slaganje s pridjevima: dobar tata).'
+  },
+  'oko': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['oko', 'oči'], G: ['oka', 'očiju'], D: ['oku', 'očima'],
+      A: ['oko', 'oči'], V: ['oko', 'oči'], L: ['oku', 'očima'],
+      I: ['okom', 'očima']
+    },
+    note: 'Supletivna množina "oči" (stari dvojinski oblik) — ž.r. i-vrste u mn.'
+  },
+  'uho': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['uho', 'uši'], G: ['uha', 'ušiju'], D: ['uhu', 'ušima'],
+      A: ['uho', 'uši'], V: ['uho', 'uši'], L: ['uhu', 'ušima'],
+      I: ['uhom', 'ušima']
+    },
+    note: 'Supletivna množina "uši" (stari dvojinski oblik).'
+  },
+  'gospodin': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['gospodin', 'gospoda'], G: ['gospodina', 'gospode'], D: ['gospodinu', 'gospodi'],
+      A: ['gospodina', 'gospodu'], V: ['gospodine', 'gospodo'], L: ['gospodinu', 'gospodi'],
+      I: ['gospodinom', 'gospodom']
+    },
+    note: 'Nepravilna zbirna množina "gospoda" — sklanja se u jednini (kao ž.r.).'
+  },
+  'selo': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['selo', 'sela'], G: ['sela', 'sela'], D: ['selu', 'selima'],
+      A: ['selo', 'sela'], V: ['selo', 'sela'], L: ['selu', 'selima'],
+      I: ['selom', 'selima']
+    },
+    note: 'Sr.r. a-vrsta — tipično sklanjanje.'
+  },
+  'more': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['more', 'mora'], G: ['mora', 'mora'], D: ['moru', 'morima'],
+      A: ['more', 'mora'], V: ['more', 'mora'], L: ['moru', 'morima'],
+      I: ['morem', 'morima']
+    },
+    note: 'Sr.r. palatalna osnova — I jd. ima -em umjesto -om.'
+  },
+  // === DODATNE IZNIMKE (UPGRADE) ===
+  'prst': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['prst', 'prsti'], G: ['prsta', 'prstiju / prsta'], D: ['prstu', 'prstima'],
+      A: ['prst', 'prste'], V: ['prste', 'prsti'], L: ['prstu', 'prstima'],
+      I: ['prstom', 'prstima']
+    },
+    note: 'G mn. ima dva oblika — "prstiju" i "prsta".'
+  },
+  'gost': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['gost', 'gosti'], G: ['gosta', 'gostiju'], D: ['gostu', 'gostima'],
+      A: ['gosta', 'goste'], V: ['goste', 'gosti'], L: ['gostu', 'gostima'],
+      I: ['gostom', 'gostima']
+    },
+    note: 'M.r. s G mn. -iju (kao i-vrsta).'
+  },
+  'put': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['put', 'putovi / puti'], G: ['puta', 'putova / puti'], D: ['putu', 'putovima'],
+      A: ['put', 'putove'], V: ['pute', 'putovi'], L: ['putu', 'putovima'],
+      I: ['putem / putom', 'putovima']
+    },
+    note: 'I jd. ima oblike "putem" (po putu) i "putom" (jednom). Mn. ima 2 oblika ("putovi" je češći).'
+  },
+  'dan': {
+    gender: 'm', type: 'a',
+    forms: {
+      N: ['dan', 'dani'], G: ['dana', 'dana'], D: ['danu', 'danima'],
+      A: ['dan', 'dane'], V: ['dane', 'dani'], L: ['danu', 'danima'],
+      I: ['danom', 'danima']
+    },
+    note: 'M.r. s G mn. = G jd. (rijetkost u m.r.).'
+  },
+  'pjesma': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['pjesma', 'pjesme'], G: ['pjesme', 'pjesama'], D: ['pjesmi', 'pjesmama'],
+      A: ['pjesmu', 'pjesme'], V: ['pjesmo', 'pjesme'], L: ['pjesmi', 'pjesmama'],
+      I: ['pjesmom', 'pjesmama']
+    },
+    note: 'G mn. s nepostojanim a — "pjesama".'
+  },
+  'sestra': {
+    gender: 'ž', type: 'e',
+    forms: {
+      N: ['sestra', 'sestre'], G: ['sestre', 'sestara'], D: ['sestri', 'sestrama'],
+      A: ['sestru', 'sestre'], V: ['sestro', 'sestre'], L: ['sestri', 'sestrama'],
+      I: ['sestrom', 'sestrama']
+    },
+    note: 'G mn. s nepostojanim a — "sestara".'
+  },
+  'jaje': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['jaje', 'jaja'], G: ['jaja', 'jaja'], D: ['jajetu', 'jajima'],
+      A: ['jaje', 'jaja'], V: ['jaje', 'jaja'], L: ['jajetu', 'jajima'],
+      I: ['jajetom / jajem', 'jajima']
+    },
+    note: 'Sr.r. s posebnim oblikom u D/L jd. (-etu).'
+  },
+  'ime': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['ime', 'imena'], G: ['imena', 'imena'], D: ['imenu', 'imenima'],
+      A: ['ime', 'imena'], V: ['ime', 'imena'], L: ['imenu', 'imenima'],
+      I: ['imenom', 'imenima']
+    },
+    note: 'Sr.r. s n-osnovom — proširuje se s -en- (ime → imen-a, imen-u, imen-om).'
+  },
+  'vrijeme': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['vrijeme', 'vremena'], G: ['vremena', 'vremena'], D: ['vremenu', 'vremenima'],
+      A: ['vrijeme', 'vremena'], V: ['vrijeme', 'vremena'], L: ['vremenu', 'vremenima'],
+      I: ['vremenom', 'vremenima']
+    },
+    note: 'Sr.r. s n-osnovom + alternacija jata (vrije/vreme).'
+  },
+  'rame': {
+    gender: 'sr', type: 'a',
+    forms: {
+      N: ['rame', 'ramena'], G: ['ramena', 'ramena'], D: ['ramenu', 'ramenima'],
+      A: ['rame', 'ramena'], V: ['rame', 'ramena'], L: ['ramenu', 'ramenima'],
+      I: ['ramenom', 'ramenima']
+    },
+    note: 'Sr.r. s n-osnovom (kao "ime").'
+  }
+};
+
+// Detekcija deklinacijske vrste i roda (heuristika)
+function detectDeclType(word){
+  const w = word.toLowerCase();
+  if(w.endsWith('a')){
+    if(['tata','papa','djed','vojvoda','starješina','kolega','sudac'].includes(w)){
+      return {type:'e', gender:'m'};
+    }
+    return {type:'e', gender:'ž'};
+  }
+  if(w.endsWith('o') || w.endsWith('e')){
+    return {type:'a', gender:'sr'};
+  }
+  // Konstantna imena na -i (i-vrsta ž.r.) ili neka specifična
+  if(['noć','stvar','ljubav','kost','mast','mladost','sreća','radost','glad','riječ'].includes(w)){
+    return {type:'i', gender:'ž'};
+  }
+  // Default — suglasnik = a-vrsta m.r.
+  return {type:'a', gender:'m'};
+}
+
+// Primjena glasovnih promjena (za regular declension)
+function applySoundChanges(stem, ending, position){
+  const last = stem[stem.length-1];
+  // Sibilarizacija (k, g, h + i → c, z, s) u D/L jd. i N/V mn.
+  if(ending.startsWith('i') && (position === 'Djd' || position === 'Ljd' || position === 'Nmn' || position === 'Vmn')){
+    if(last === 'k') return stem.slice(0, -1) + 'c' + ending;
+    if(last === 'g') return stem.slice(0, -1) + 'z' + ending;
+    if(last === 'h') return stem.slice(0, -1) + 's' + ending;
+  }
+  // 1. palatalizacija (k, g, h + e → č, ž, š) u V jd.
+  if(ending.startsWith('e') && position === 'Vjd'){
+    if(last === 'k') return stem.slice(0, -1) + 'č' + ending;
+    if(last === 'g') return stem.slice(0, -1) + 'ž' + ending;
+    if(last === 'h') return stem.slice(0, -1) + 'š' + ending;
+    if(last === 'c') return stem.slice(0, -1) + 'č' + ending;
+  }
+  return stem + ending;
+}
+
+// Regular declension engine
+function declineRegular(word, type, gender){
+  const forms = {};
+  const w = word.toLowerCase();
+  const animate = isAnimate(w);
+  
+  if(type === 'a' && gender === 'm'){
+    const stem = w;
+    forms.N = [w, applySoundChanges(stem, 'i', 'Nmn')];
+    forms.G = [applySoundChanges(stem, 'a', 'Gjd'), applySoundChanges(stem, 'a', 'Gmn')];
+    forms.D = [applySoundChanges(stem, 'u', 'Djd'), applySoundChanges(stem, 'ima', 'Dmn')];
+    // A jd. — živo = G jd., neživo = N jd.
+    forms.A = [animate ? applySoundChanges(stem, 'a', 'Gjd') : w, applySoundChanges(stem, 'e', 'Amn')];
+    forms.V = [applySoundChanges(stem, 'e', 'Vjd'), applySoundChanges(stem, 'i', 'Vmn')];
+    forms.L = [applySoundChanges(stem, 'u', 'Ljd'), applySoundChanges(stem, 'ima', 'Lmn')];
+    forms.I = [applySoundChanges(stem, 'om', 'Ijd'), applySoundChanges(stem, 'ima', 'Imn')];
+  } else if(type === 'a' && gender === 'sr'){
+    const stem = w.slice(0, -1);
+    const isE = w.endsWith('e');
+    forms.N = [w, stem + 'a'];
+    forms.G = [stem + 'a', stem + 'a'];
+    forms.D = [stem + 'u', stem + 'ima'];
+    forms.A = [w, stem + 'a'];
+    forms.V = [w, stem + 'a'];
+    forms.L = [stem + 'u', stem + 'ima'];
+    forms.I = [stem + (isE ? 'em' : 'om'), stem + 'ima'];
+  } else if(type === 'e'){
+    const stem = w.slice(0, -1);
+    forms.N = [w, stem + 'e'];
+    forms.G = [stem + 'e', stem + 'a'];
+    forms.D = [applySoundChanges(stem, 'i', 'Djd'), stem + 'ama'];
+    forms.A = [stem + 'u', stem + 'e'];
+    forms.V = [stem + 'o', stem + 'e'];
+    forms.L = [applySoundChanges(stem, 'i', 'Ljd'), stem + 'ama'];
+    forms.I = [stem + 'om', stem + 'ama'];
+  } else if(type === 'i'){
+    const stem = w;
+    forms.N = [w, stem + 'i'];
+    forms.G = [stem + 'i', stem + 'i'];
+    forms.D = [stem + 'i', stem + 'ima'];
+    forms.A = [w, stem + 'i'];
+    forms.V = [stem + 'i', stem + 'i'];
+    forms.L = [stem + 'i', stem + 'ima'];
+    forms.I = [stem + 'i / ' + stem + 'ju', stem + 'ima'];
+  }
+  
+  return forms;
+}
+
+function declineNoun(){
+  const input = document.getElementById('decl-input');
+  const out = document.getElementById('decl-results');
+  if(!input || !out) return;
+  
+  const word = input.value.trim().toLowerCase();
+  if(!word){ out.innerHTML = ''; return; }
+  
+  if(!/^[a-zčćđšž]+$/.test(word)){
+    out.innerHTML = '<div class="box-warn"><div class="bw-body"><div class="bw-txt">Samo hrv. slova (a-ž), bez razmaka.</div></div></div>';
+    return;
+  }
+  
+  let result, gender, type, note, isException = false;
+  
+  // Provjeri bazu iznimki
+  if(DECL_EXCEPTIONS[word]){
+    const exc = DECL_EXCEPTIONS[word];
+    result = exc.forms;
+    gender = exc.gender;
+    type = exc.type;
+    note = exc.note;
+    isException = true;
+  } else {
+    const detected = detectDeclType(word);
+    type = detected.type;
+    gender = detected.gender;
+    result = declineRegular(word, type, gender);
+    note = \`Regularno sklanjanje · \${type}-vrsta · \${gender}.r.\`;
+  }
+  
+  const GENDER_LABEL = {'m':'muški rod','ž':'ženski rod','sr':'srednji rod'};
+  const TYPE_LABEL = {'a':'a-vrsta','e':'e-vrsta','i':'i-vrsta'};
+  
+  const PADEZ_NAMES = [
+    ['N','Nominativ','tko? što?','var(--blue)'],
+    ['G','Genitiv','koga? čega?','var(--red)'],
+    ['D','Dativ','komu? čemu?','var(--bronze)'],
+    ['A','Akuzativ','koga? što?','var(--green)'],
+    ['V','Vokativ','(dozivanje)','var(--gold)'],
+    ['L','Lokativ','o kome? o čemu?','#9b59b6'],
+    ['I','Instrumental','s kim? s čim?','#e67e22']
+  ];
+  
+  let html = \`
+    <div style="padding:18px;background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.3);border-radius:var(--r2);margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:2px">DEKLINACIJA</div>
+          <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);margin-top:4px">\${word}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--t2)">\${GENDER_LABEL[gender]} · \${TYPE_LABEL[type]}</div>
+          \${isException ? '<div style="font-family:var(--mono);font-size:10px;color:var(--bronze);margin-top:4px">⚠ IZNIMKA · iz baze</div>' : ''}
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto;margin:12px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px">
+        <thead>
+          <tr style="background:var(--ele);border-bottom:2px solid var(--bd)">
+            <th style="padding:10px;text-align:left;color:var(--gold)">Padež</th>
+            <th style="padding:10px;text-align:left;color:var(--gold)">Pitanje</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Jednina</th>
+            <th style="padding:10px;text-align:center;color:var(--gold)">Množina</th>
+          </tr>
+        </thead>
+        <tbody>
+  \`;
+  
+  PADEZ_NAMES.forEach(([key, name, q, color]) => {
+    const [jd, mn] = result[key] || ['—','—'];
+    html += \`
+      <tr style="border-bottom:1px solid var(--bd)">
+        <td style="padding:10px;color:\${color};font-weight:700">\${name}</td>
+        <td style="padding:10px;color:var(--t3);font-size:11px">\${q}</td>
+        <td style="padding:10px;text-align:center;color:var(--t1);font-weight:600">\${jd}</td>
+        <td style="padding:10px;text-align:center;color:var(--t1);font-weight:600">\${mn}</td>
+      </tr>
+    \`;
+  });
+  
+  html += \`
+        </tbody>
+      </table>
+    </div>
+  \`;
+  
+  if(note){
+    html += \`
+      <div class="box-signal" style="margin-top:12px">
+        <div class="box-signal-lbl">💡 Napomena</div>
+        <div class="box-signal-txt">\${note}</div>
+      </div>
+    \`;
+  }
+  
+  if(!isException){
+    html += \`
+      <div style="font-family:var(--mono);font-size:10px;color:var(--t3);text-align:center;margin-top:8px">⚠ Algoritamska deklinacija — provjeri u rječniku za stilistički specifične oblike</div>
+    \`;
+  }
+  
+  // Action buttons at bottom
+  html += \`
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap">
+      <button class="nb-btn" id="decl-copy-btn" style="padding:6px 12px;font-size:12px" onclick="declineCopyTable()">📋 Kopiraj tablicu</button>
+      <button class="nb-btn" style="padding:6px 12px;font-size:12px" onclick="window.print()">🖨 Printaj</button>
+    </div>
+  \`;
+  
+    // Save to history
+  try {
+    const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.decl_hist')||'[]');
+    if(!hist.some(h => h.word === word)){
+      hist.push({word, date: new Date().toISOString()});
+      localStorage.setItem('mt.hrv.h20.decl_hist', JSON.stringify(hist.slice(-15)));
+    }
+  } catch(e){}
+  
+  out.innerHTML = html;
+}
+
+function declineExample(word){
+  const input = document.getElementById('decl-input');
+  if(input){
+    input.value = word;
+    declineNoun();
+    input.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 3 · PADEŽNI QUIZ
+═══════════════════════════════════ */
+
+const PZ_ITEMS = [
+  {sentence:['Ivan','je','vidio','Anu','u','parku','.'], target:3, word:'Anu', answer:'A', explain:'"Anu" je izravni objekt glagola "vidio" — akuzativ (A). Pitanje: koga je vidio? → Anu.'},
+  {sentence:['Dao','sam','knjigu','prijatelju','.'], target:3, word:'prijatelju', answer:'D', explain:'"Prijatelju" je primatelj — dativ (D). Pitanje: komu sam dao? → prijatelju.'},
+  {sentence:['Boravim','u','Zagrebu','već','5','godina','.'], target:2, word:'Zagrebu', answer:'L', explain:'"Zagrebu" označava mjesto (gdje?) — lokativ (L). Uz prijedlog "u" + L = mirovanje.'},
+  {sentence:['Kupila','je','cvijeće','za','majčin','rođendan','.'], target:5, word:'rođendan', answer:'A', explain:'"Rođendan" — akuzativ (A), uz prijedlog "za". Pitanje: za što? → za rođendan.'},
+  {sentence:['Otišao','je','od','kuće','rano','ujutro','.'], target:3, word:'kuće', answer:'G', explain:'"Kuće" je genitiv (G) uz prijedlog "od". Pitanje: od čega? → od kuće.'},
+  {sentence:['Šetali','su','se','s','djecom','po','parku','.'], target:4, word:'djecom', answer:'I', explain:'"Djecom" je instrumental (I) uz prijedlog "s" — društvo. Pitanje: s kim? → s djecom.'},
+  {sentence:['Ivane',',','dođi','ovamo','!'], target:0, word:'Ivane', answer:'V', explain:'"Ivane" — vokativ (V). Dozivanje osobe, stoji odvojeno (obično sa zarezom ili uskličnikom).'},
+  {sentence:['Knjiga','leži','na','stolu','kraj','prozora','.'], target:3, word:'stolu', answer:'L', explain:'"Stolu" je lokativ (L) uz prijedlog "na" — gdje leži? Stanje mirovanja.'},
+];
+
+let pzIdx = 0, pzScore = 0;
+const PZ_OPTIONS = [
+  {key:'N', name:'Nominativ', color:'var(--blue)'},
+  {key:'G', name:'Genitiv', color:'var(--red)'},
+  {key:'D', name:'Dativ', color:'var(--bronze)'},
+  {key:'A', name:'Akuzativ', color:'var(--green)'},
+  {key:'V', name:'Vokativ', color:'var(--gold)'},
+  {key:'L', name:'Lokativ', color:'#9b59b6'},
+  {key:'I', name:'Instrumental', color:'#e67e22'}
+];
+
+function renderPzExercise(){
+  const cont = document.getElementById('pz-exercise');
+  if(!cont) return;
+  if(pzIdx >= PZ_ITEMS.length){ renderPzResult(); return; }
+  
+  const item = PZ_ITEMS[pzIdx];
+  const sentenceHtml = item.sentence.map((w, i) => {
+    if(i === item.target){
+      return \`<span style="display:inline-block;padding:4px 10px;background:rgba(233,180,70,.15);border:2px solid var(--gold);border-radius:var(--r1);color:var(--gold);font-weight:700;margin:0 2px">\${w}</span>\`;
+    }
+    if(w === '.' || w === ',' || w === '!' || w === '?') return w;
+    return \`<span style="margin:0 2px">\${w}</span>\`;
+  }).join(' ').replace(/ ([.,!?])/g, '$1');
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">PITANJE \${pzIdx+1} / \${PZ_ITEMS.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${pzScore}</div>
+      </div>
+      <div style="text-align:center;margin:20px 0;padding:20px;background:var(--bg);border-radius:var(--r1);font-family:var(--display);font-size:16px;line-height:1.8;color:var(--t2)">\${sentenceHtml}</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJI JE PADEŽ OZNAČENE RIJEČI?</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px">
+        \${PZ_OPTIONS.map(opt => \`
+          <button class="pz-opt" data-ans="\${opt.key}" onclick="pzAnswer('\${opt.key}', this)" style="padding:12px 10px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;transition:all .2s;text-align:left">
+            <div style="font-weight:700;color:\${opt.color}">\${opt.key}</div>
+            <div style="font-size:10px;color:var(--t3)">\${opt.name}</div>
+          </button>
+        \`).join('')}
+      </div>
+      <div id="pz-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function pzAnswer(chosen, btn){
+  const item = PZ_ITEMS[pzIdx];
+  const correct = chosen === item.answer;
+  if(correct) pzScore++;
+  
+  document.querySelectorAll('.pz-opt').forEach(b => {b.disabled=true;b.style.cursor='default';b.style.opacity='0.5';});
+  btn.style.opacity='1'; btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.pz-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity='1'; b.style.borderColor='var(--green)'; b.style.background='rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('pz-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="pzNext()">\${pzIdx < PZ_ITEMS.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function pzNext(){ pzIdx++; renderPzExercise(); }
+function pzReset(){ pzIdx=0; pzScore=0; const r=document.getElementById('pz-result'),c=document.getElementById('pz-exercise'); if(r)r.style.display='none'; if(c)c.style.display=''; renderPzExercise(); }
+
+function renderPzResult(){
+  const cont = document.getElementById('pz-exercise'), res = document.getElementById('pz-result');
+  if(!cont || !res) return;
+  cont.style.display='none'; res.style.display='block';
+  const pct = Math.round((pzScore/PZ_ITEMS.length)*100);
+  let msg, color, emoji;
+  if(pct===100){emoji='🏆';msg='Savršeno! Padeži su ti potpuno jasni.';color='var(--gold)';}
+  else if(pct>=75){emoji='🎯';msg='Odlično! Solidan temelj.';color='var(--green)';}
+  else if(pct>=50){emoji='📖';msg='Dobro, ali vježbaj s declinerom iznad.';color='var(--blue)';}
+  else{emoji='⚠';msg='Ponovi scene-cards svakog padeža + pitanja.';color='var(--red)';}
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${pzScore} / \${PZ_ITEMS.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="pzReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(renderPzExercise, 300); });
+  if(document.readyState !== 'loading'){ setTimeout(renderPzExercise, 300); }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 3 · KONJUGACIJSKI QUIZ
+═══════════════════════════════════ */
+
+const KZ_ITEMS = [
+  {form:'čitam', base:'čitati', answer:'prezent 1. l. jd.', explain:'"Čitam" — prezent, 1. lice jednine. Tvorba: osnova "čit-" + nastavak "-am".'},
+  {form:'napisao sam', base:'napisati', answer:'perfekt 1. l. jd. m.r.', explain:'"Napisao sam" — perfekt, 1. l. jd. (m.r.). Tvorba: prezent "biti" + glagolski pridjev radni.'},
+  {form:'pročitat ću', base:'pročitati', answer:'futur I 1. l. jd.', explain:'"Pročitat ću" — futur I, 1. l. jd. Tvorba: infinitiv bez -i + nenaglašeni "htjeti" (ću).'},
+  {form:'čitao bih', base:'čitati', answer:'kondicional I 1. l. jd. m.r.', explain:'"Čitao bih" — kondicional I, 1. l. jd. (m.r.). Tvorba: aorist pomoćnog glagola "biti" (bih) + pridjev radni.'},
+  {form:'čitaj!', base:'čitati', answer:'imperativ 2. l. jd.', explain:'"Čitaj!" — imperativ, 2. l. jd. Zapovijed upućena sugovorniku.'},
+  {form:'budem čitao', base:'čitati', answer:'futur II 1. l. jd. m.r.', explain:'"Budem čitao" — futur II, 1. l. jd. (m.r.). Tvorba: prezent svršenog "biti" (budem) + pridjev radni. Koristi se u zavisnim rečenicama.'},
+];
+
+let kzIdx = 0, kzScore = 0;
+const KZ_OPTIONS = [
+  'prezent 1. l. jd.', 'prezent 3. l. mn.',
+  'perfekt 1. l. jd. m.r.', 'perfekt 3. l. jd. ž.r.',
+  'aorist 1. l. jd.',
+  'futur I 1. l. jd.', 'futur I 3. l. mn.',
+  'futur II 1. l. jd. m.r.',
+  'imperativ 2. l. jd.', 'imperativ 1. l. mn.',
+  'kondicional I 1. l. jd. m.r.', 'kondicional II 1. l. jd. m.r.'
+];
+
+function renderKzExercise(){
+  const cont = document.getElementById('kz-exercise');
+  if(!cont) return;
+  if(kzIdx >= KZ_ITEMS.length){ renderKzResult(); return; }
+  
+  const item = KZ_ITEMS[kzIdx];
+  
+  // Build 4 option choices: correct + 3 distractors
+  const wrong = KZ_OPTIONS.filter(o => o !== item.answer);
+  const shuffled = wrong.sort(() => Math.random() - 0.5).slice(0, 3);
+  const options = [item.answer, ...shuffled].sort(() => Math.random() - 0.5);
+  
+  cont.innerHTML = \`
+    <div style="padding:20px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">PITANJE \${kzIdx+1} / \${KZ_ITEMS.length}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--gold)">✓ \${kzScore}</div>
+      </div>
+      <div style="text-align:center;margin:20px 0;padding:24px;background:var(--bg);border-radius:var(--r1)">
+        <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);margin-bottom:4px">\${item.form}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1px">osnova: \${item.base}</div>
+      </div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center;margin-bottom:14px;letter-spacing:1px">KOJI JE OBLIK?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        \${options.map(opt => \`
+          <button class="kz-opt" data-ans="\${opt}" onclick="kzAnswer('\${opt}', this)" style="padding:12px;background:transparent;border:1.5px solid var(--bd);border-radius:var(--r1);cursor:pointer;color:var(--t1);font-family:var(--display);font-size:12px;transition:all .2s;text-align:left">
+            \${opt}
+          </button>
+        \`).join('')}
+      </div>
+      <div id="kz-feedback" style="margin-top:14px"></div>
+    </div>
+  \`;
+}
+
+function kzAnswer(chosen, btn){
+  const item = KZ_ITEMS[kzIdx];
+  const correct = chosen === item.answer;
+  if(correct) kzScore++;
+  
+  document.querySelectorAll('.kz-opt').forEach(b => {b.disabled=true;b.style.cursor='default';b.style.opacity='0.5';});
+  btn.style.opacity='1'; btn.style.borderColor = correct ? 'var(--green)' : 'var(--red)';
+  btn.style.background = correct ? 'rgba(80,200,120,.1)' : 'rgba(224,82,82,.1)';
+  
+  if(!correct){
+    document.querySelectorAll('.kz-opt').forEach(b => {
+      if(b.dataset.ans === item.answer){
+        b.style.opacity='1'; b.style.borderColor='var(--green)'; b.style.background='rgba(80,200,120,.1)';
+      }
+    });
+  }
+  
+  const fb = document.getElementById('kz-feedback');
+  if(fb){
+    fb.innerHTML = \`
+      <div style="padding:12px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin-top:10px">
+        <div style="font-size:13px;line-height:1.6">
+          <strong style="color:\${correct ? 'var(--green)' : 'var(--red)'}">\${correct ? '✓ Točno!' : '✗ Netočno.'}</strong>
+          <span style="color:var(--t2)"> \${item.explain}</span>
+        </div>
+        <button class="nb-btn primary" style="margin-top:10px" onclick="kzNext()">\${kzIdx < KZ_ITEMS.length - 1 ? 'Sljedeće →' : 'Završi'}</button>
+      </div>
+    \`;
+  }
+}
+
+function kzNext(){ kzIdx++; renderKzExercise(); }
+function kzReset(){ kzIdx=0; kzScore=0; const r=document.getElementById('kz-result'),c=document.getElementById('kz-exercise'); if(r)r.style.display='none'; if(c)c.style.display=''; renderKzExercise(); }
+
+function renderKzResult(){
+  const cont = document.getElementById('kz-exercise'), res = document.getElementById('kz-result');
+  if(!cont || !res) return;
+  cont.style.display='none'; res.style.display='block';
+  const pct = Math.round((kzScore/KZ_ITEMS.length)*100);
+  let msg, color, emoji;
+  if(pct===100){emoji='🏆';msg='Savršeno! Glagolski oblici su ti jasni.';color='var(--gold)';}
+  else if(pct>=75){emoji='🎯';msg='Odlično! Manje greške — ponovi nepravilne.';color='var(--green)';}
+  else if(pct>=50){emoji='📖';msg='Dobro, ali ponovi tablicu 7 vremena.';color='var(--blue)';}
+  else{emoji='⚠';msg='Vrati se na tablicu vremena/načina — ovo je temelj.';color='var(--red)';}
+  res.innerHTML = \`
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">\${emoji}</div>
+      <div style="font-family:var(--display);font-size:26px;font-weight:700;color:\${color};margin-bottom:8px">\${kzScore} / \${KZ_ITEMS.length} · \${pct}%</div>
+      <div style="font-size:14px;color:var(--t2);margin-bottom:16px">\${msg}</div>
+      <button class="nb-btn primary" onclick="kzReset()">🔄 Ponovi vježbu</button>
+    </div>
+  \`;
+}
+
+if(typeof document !== 'undefined'){
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(renderKzExercise, 350); });
+  if(document.readyState !== 'loading'){ setTimeout(renderKzExercise, 350); }
+}
+
+
+/* ═══════════════════════════════════
+   TAB 5 · MORFO SCANNER · morfemska + gramatička analiza
+═══════════════════════════════════ */
+
+
+// LEXICON — frequent words for accurate analysis (fallback for heuristic)
+const MS_VERB_LEXICON = {
+  // PRESENT FORMS → infinitive
+  'idem':'ići','ideš':'ići','ide':'ići','idemo':'ići','idete':'ići','idu':'ići',
+  'mogu':'moći','možeš':'moći','može':'moći','možemo':'moći','možete':'moći',
+  'jesam':'biti','jesi':'biti','jest':'biti','jesmo':'biti','jeste':'biti','jesu':'biti',
+  'sam':'biti','si':'biti','je':'biti','smo':'biti','ste':'biti','su':'biti',
+  'imam':'imati','imaš':'imati','ima':'imati','imamo':'imati','imate':'imati','imaju':'imati',
+  'znam':'znati','znaš':'znati','zna':'znati','znamo':'znati','znate':'znati','znaju':'znati',
+  'volim':'voljeti','voliš':'voljeti','voli':'voljeti','volimo':'voljeti','volite':'voljeti','vole':'voljeti',
+  'dajem':'davati','daješ':'davati','daje':'davati','dam':'dati','daš':'dati','da':'dati',
+  'pišem':'pisati','pišeš':'pisati','piše':'pisati','pišemo':'pisati','pišete':'pisati','pišu':'pisati',
+  'čitam':'čitati','čitaš':'čitati','čita':'čitati','čitamo':'čitati','čitate':'čitati','čitaju':'čitati',
+  'kažem':'kazati','kažeš':'kazati','kaže':'kazati','kažemo':'kazati','kažete':'kazati','kažu':'kazati',
+  'velim':'veljeti','veliš':'veljeti','veli':'veljeti','velimo':'veljeti','velite':'veljeti','vele':'veljeti',
+  'rekoh':'reći','reče':'reći','rekosmo':'reći','rekoste':'reći','rekoše':'reći',
+};
+
+// Frequent animate (living) nouns — for accurate A jd. m.r.
+const DECL_ANIMATE = ['prijatelj','učitelj','učenik','student','profesor','liječnik','pisac','pjesnik','glumac','dječak','momak','čovjek','muškarac','sinovi','gospod','vladar','kralj','car','svetac','svećenik','voditelj','pjevač','glumac','vozač','radnik','voj','vojnik','konj','vuk','medvjed','tigar','lav','pas','mačka','zec','jelen','sokol','orao','golub','lavin','lisica','kuna','jazavac','bik','pijetao','crv','komarac','pauk','medo'];
+
+function isAnimate(word){
+  return DECL_ANIMATE.some(a => word.toLowerCase().includes(a));
+}
+
+
+const MS_NOUN_LEXICON = {
+  // FREQUENT IRREGULAR FORMS → lemma
+  'ljudi':'čovjek','djeca':'dijete','braća':'brat','psi':'pas','oči':'oko','uši':'uho',
+  'gospoda':'gospodin','sinovi':'sin','očevi':'otac','životi':'život',
+};
+
+const MS_PRONOUNS = {
+  'ja':{type:'osobna',person:1,number:'jd'},'ti':{type:'osobna',person:2,number:'jd'},
+  'on':{type:'osobna',person:3,number:'jd',gender:'m'},'ona':{type:'osobna',person:3,number:'jd',gender:'ž'},
+  'ono':{type:'osobna',person:3,number:'jd',gender:'sr'},
+  'mi':{type:'osobna',person:1,number:'mn'},'vi':{type:'osobna',person:2,number:'mn'},
+  'oni':{type:'osobna',person:3,number:'mn'},
+  'se':{type:'povratna'},'sebe':{type:'povratna'},
+  'moj':{type:'posvojna'},'tvoj':{type:'posvojna'},'naš':{type:'posvojna'},'vaš':{type:'posvojna'},
+  'njegov':{type:'posvojna'},'njezin':{type:'posvojna'},'njihov':{type:'posvojna'},
+  'svoj':{type:'povratno-posvojna'},
+  'ovaj':{type:'pokazna'},'taj':{type:'pokazna'},'onaj':{type:'pokazna'},
+  'ovo':{type:'pokazna'},'to':{type:'pokazna'},'ono':{type:'pokazna'},
+  'tko':{type:'upitna/odnosna'},'što':{type:'upitna/odnosna'},'koji':{type:'upitna/odnosna'},
+  'čiji':{type:'upitna/odnosna'},'kakav':{type:'upitna/odnosna'},
+  'netko':{type:'neodređena'},'nešto':{type:'neodređena'},'neki':{type:'neodređena'},
+  'svatko':{type:'neodređena'},'svako':{type:'neodređena'},'svi':{type:'neodređena'},
+  'nitko':{type:'neodređena'},'ništa':{type:'neodređena'},
+};
+
+const MS_NUMERALS = {
+  'jedan':{type:'glavni',value:1},'dva':{type:'glavni',value:2},'tri':{type:'glavni',value:3},
+  'četiri':{type:'glavni',value:4},'pet':{type:'glavni',value:5},'šest':{type:'glavni',value:6},
+  'sedam':{type:'glavni',value:7},'osam':{type:'glavni',value:8},'devet':{type:'glavni',value:9},
+  'deset':{type:'glavni',value:10},'sto':{type:'glavni',value:100},'tisuću':{type:'glavni',value:1000},
+  'prvi':{type:'redni',value:1},'drugi':{type:'redni',value:2},'treći':{type:'redni',value:3},
+  'četvrti':{type:'redni',value:4},'peti':{type:'redni',value:5},'šesti':{type:'redni',value:6},
+  'dvoje':{type:'zbirni',value:2},'troje':{type:'zbirni',value:3},'četvero':{type:'zbirni',value:4},
+};
+
+const MS_PARTICLES = ['ne','da','li','baš','evo','eto','eno','možda','neka','nek'];
+const MS_INTERJECTIONS = ['ah','oh','uh','ej','hej','jao','ajme','mjau','vau','bum','bam','tras'];
+const MS_PREPOSITIONS = ['u','na','o','po','pri','s','sa','za','iz','od','do','bez','kod','kraj','pokraj','preko','protiv','prema','k','ka','nasuprot','usprkos','zbog','radi','poslije','prije','iznad','ispod','iza','ispred','među','nad','pod','pred','kroz','niz','uz'];
+const MS_CONJUNCTIONS = ['i','pa','te','ni','niti','ali','no','nego','već','ili','a','jer','da','dok','kad','kada','ako','iako','premda','što','čim','čime','dokle'];
+const MS_ADVERBS = ['brzo','sporo','glasno','tiho','ovdje','ondje','gdje','kamo','sutra','jučer','danas','sada','tada','vrlo','jako','malo','mnogo','možda','sigurno','sretno','zato','stoga','također','ponekad'];
+
+// ========== PREFIKS baza ==========
+const MS_PREFIXES = [
+  {p:'naj', meaning:'superlativ'},
+  {p:'ne', meaning:'negacija'},
+  {p:'protu', meaning:'nasuprot'},
+  {p:'među', meaning:'između'},
+  {p:'pred', meaning:'ispred'},
+  {p:'raz', meaning:'razdvajanje / pojačavanje'},
+  {p:'iz', meaning:'iznutra, dovršenje'},
+  {p:'is', meaning:'iznutra (pred bezv.)'},
+  {p:'uz', meaning:'prema gore, usput'},
+  {p:'us', meaning:'uz + bezvučno'},
+  {p:'od', meaning:'udaljavanje'},
+  {p:'ot', meaning:'od + bezvučno'},
+  {p:'pre', meaning:'ponavljanje / prekomjerno'},
+  {p:'pri', meaning:'približavanje, blizina'},
+  {p:'pro', meaning:'kroz, ispunjenje'},
+  {p:'nad', meaning:'iznad'},
+  {p:'nat', meaning:'nad + bezvučno'},
+  {p:'pod', meaning:'ispod'},
+  {p:'pot', meaning:'pod + bezvučno'},
+  {p:'za', meaning:'početak, prostor iza'},
+  {p:'do', meaning:'dolazak, dovršenje'},
+  {p:'po', meaning:'dovršenje, nastavak'},
+  {p:'u', meaning:'ulazak'},
+  {p:'na', meaning:'početak / dovršenje'},
+  {p:'o', meaning:'oko, obuhvat'},
+  {p:'ob', meaning:'okolo, obuhvat'},
+  {p:'s', meaning:'zajedno, dolje'},
+  {p:'z', meaning:'s + zvučno'},
+];
+
+// ========== SUFIKSI baza (tvorbeni) ==========
+const MS_NOUN_SUFFIXES = [
+  {s:'ost', type:'imenica ž.r.', meaning:'apstraktna osobina (ljep-ost, dobr-ost)'},
+  {s:'oća', type:'imenica ž.r.', meaning:'apstraktna osobina (čist-oća)'},
+  {s:'stvo', type:'imenica sr.r.', meaning:'skupina / svojstvo (pjesn-ištvo, druš-tvo)'},
+  {s:'ica', type:'imenica ž.r.', meaning:'osoba/mala stvar (učen-ica, knjiž-ica)'},
+  {s:'telj', type:'imenica m.r.', meaning:'vršitelj radnje (uči-telj, pisa-telj)'},
+  {s:'ač', type:'imenica m.r.', meaning:'vršitelj radnje (voz-ač, pjev-ač)'},
+  {s:'ar', type:'imenica m.r.', meaning:'zanimanje (knjiž-ar, mlin-ar)'},
+  {s:'nik', type:'imenica m.r.', meaning:'osoba (rad-nik, putnik)'},
+  {s:'ica', type:'imenica ž.r.', meaning:'osoba ž.r. / umanjenice (učen-ica, kuć-ica)'},
+  {s:'anje', type:'imenica sr.r. (glagolska)', meaning:'od glagola -ati (pis-anje, čit-anje)'},
+  {s:'enje', type:'imenica sr.r. (glagolska)', meaning:'od glagola -iti/-eti (vođ-enje)'},
+  {s:'onja', type:'imenica m.r.', meaning:'osobina (crn-onja, tvrd-oglavonja)'},
+  {s:'lo', type:'imenica sr.r.', meaning:'sredstvo/rezultat (peri-lo, kup-alo)'},
+];
+
+const MS_ADJ_SUFFIXES = [
+  {s:'an', type:'pridjev (neodr.)', meaning:'opisni (lijep-an? hlad-an)'},
+  {s:'ni', type:'pridjev (određ.)', meaning:'opisni određeni (jutar-nji)'},
+  {s:'ski', type:'pridjev', meaning:'pripadnost/odnos (škol-ski, grad-ski)'},
+  {s:'čki', type:'pridjev', meaning:'pripadnost (junač-ki)'},
+  {s:'ov', type:'pridjev posvojni', meaning:'pripadnost m.r. (oč-ev, brat-ov)'},
+  {s:'ev', type:'pridjev posvojni', meaning:'pripadnost (otač-ev varianta)'},
+  {s:'in', type:'pridjev posvojni', meaning:'pripadnost ž.r. (majč-in, Anin)'},
+  {s:'ji', type:'pridjev posvojni', meaning:'pripadnost (pas-ji, božji)'},
+];
+
+const MS_VERB_SUFFIXES = [
+  {s:'nuti', type:'glagol (II. vrsta, svršeni)', meaning:'trenutna radnja (klik-nuti)'},
+  {s:'avati', type:'glagol (nesvršeni)', meaning:'ponavljanje (pis-avati, ud-arati)'},
+  {s:'ivati', type:'glagol (nesvršeni)', meaning:'ponavljanje (propov-ijedati)'},
+  {s:'ovati', type:'glagol', meaning:'radnja (rad-ovati, kup-ovati)'},
+  {s:'jeti', type:'glagol', meaning:'stanje (vid-jeti, bol-jeti)'},
+];
+
+// ========== PADEŽNI NASTAVCI ==========
+const MS_CASE_ENDINGS = {
+  // e-vrsta ž.r.
+  'e-vrsta': {
+    'a': {padez:'N jd.', info:'nominativ jednine'},
+    'e': {padez:'G jd. / N mn.', info:'genitiv jd. ili nominativ mn.'},
+    'i': {padez:'D/L jd.', info:'dativ ili lokativ jednine'},
+    'u': {padez:'A jd.', info:'akuzativ jednine'},
+    'o': {padez:'V jd.', info:'vokativ jednine'},
+    'om': {padez:'I jd.', info:'instrumental jednine'},
+    'ama': {padez:'D/L/I mn.', info:'dativ/lokativ/instrumental množine'},
+    'ima': {padez:'D/L/I mn.', info:'dativ/lokativ/instrumental množine'},
+  },
+  // a-vrsta m.r.
+  'a-vrsta': {
+    'a': {padez:'G/A jd. (živo)', info:'genitiv/akuzativ jednine (za živo)'},
+    'u': {padez:'D/L jd.', info:'dativ ili lokativ jednine'},
+    'e': {padez:'V jd. (palat.) / A mn.', info:'vokativ ili akuzativ množine'},
+    'om': {padez:'I jd.', info:'instrumental jednine'},
+    'em': {padez:'I jd. (palat.)', info:'instrumental jednine palatalna osnova'},
+    'i': {padez:'N/V mn.', info:'nominativ ili vokativ množine'},
+    'ima': {padez:'D/L/I mn.', info:'dativ/lokativ/instrumental množine'},
+  }
+};
+
+// ========== GLAGOLSKI NASTAVCI ==========
+const MS_VERB_ENDINGS = [
+  {end:'ati', form:'infinitiv'},
+  {end:'iti', form:'infinitiv'},
+  {end:'eti', form:'infinitiv'},
+  {end:'jeti', form:'infinitiv'},
+  {end:'nuti', form:'infinitiv'},
+  {end:'ći', form:'infinitiv'},
+  // Prezent
+  {end:'am', form:'prezent 1. l. jd.'},
+  {end:'aš', form:'prezent 2. l. jd.'},
+  {end:'a', form:'prezent 3. l. jd.'},
+  {end:'amo', form:'prezent 1. l. mn.'},
+  {end:'ate', form:'prezent 2. l. mn.'},
+  {end:'aju', form:'prezent 3. l. mn.'},
+  {end:'im', form:'prezent 1. l. jd.'},
+  {end:'iš', form:'prezent 2. l. jd.'},
+  {end:'imo', form:'prezent 1. l. mn.'},
+  {end:'ite', form:'prezent 2. l. mn.'},
+  {end:'e', form:'prezent 3. l. jd. (tip -em) ili imperativ'},
+  {end:'em', form:'prezent 1. l. jd.'},
+  {end:'eš', form:'prezent 2. l. jd.'},
+  {end:'emo', form:'prezent 1. l. mn.'},
+  {end:'ete', form:'prezent 2. l. mn.'},
+  {end:'u', form:'prezent 3. l. mn.'},
+  // Glagolski pridjev radni
+  {end:'ao', form:'glag. pridjev radni m.r. jd.'},
+  {end:'la', form:'glag. pridjev radni ž.r. jd.'},
+  {end:'lo', form:'glag. pridjev radni sr.r. jd.'},
+  {end:'li', form:'glag. pridjev radni m.r. mn.'},
+  {end:'le', form:'glag. pridjev radni ž.r. mn.'},
+  {end:'io', form:'glag. pridjev radni m.r. jd. (od -ieti)'},
+  // Imperativ
+  {end:'ajte', form:'imperativ 2. l. mn.'},
+  {end:'aj', form:'imperativ 2. l. jd.'},
+  {end:'ajmo', form:'imperativ 1. l. mn.'},
+  {end:'ite', form:'imperativ 2. l. mn.'},
+  {end:'i', form:'imperativ 2. l. jd.'},
+];
+
+// ========== ANALIZA ==========
+function msAnalyzeWord(word){
+  const w = word.toLowerCase().trim();
+  const result = {
+    word: w,
+    prefix: [],
+    root: w,
+    suffix: [],
+    ending: '',
+    wordClass: null,
+    categories: {},
+    lemma: w,
+    note: '',
+    confidence: 'medium'
+  };
+  
+  // STEP 0: LEXICON CHECKS (highest confidence)
+  
+  // Check pronouns
+  if(MS_PRONOUNS[w]){
+    result.wordClass = 'zamjenica';
+    result.categories.type = MS_PRONOUNS[w].type;
+    if(MS_PRONOUNS[w].person) result.categories.person = MS_PRONOUNS[w].person + '. lice';
+    if(MS_PRONOUNS[w].number) result.categories.number = MS_PRONOUNS[w].number;
+    if(MS_PRONOUNS[w].gender) result.categories.gender = MS_PRONOUNS[w].gender + '.r.';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check numerals
+  if(MS_NUMERALS[w]){
+    result.wordClass = 'broj';
+    result.categories.type = MS_NUMERALS[w].type + ' broj';
+    result.categories.value = MS_NUMERALS[w].value;
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check particles
+  if(MS_PARTICLES.includes(w)){
+    result.wordClass = 'čestica';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    if(w === 'ne') result.categories.type = 'niječna';
+    else if(w === 'da') result.categories.type = 'potvrdna (ovisno o kontekstu)';
+    else if(w === 'li') result.categories.type = 'upitna';
+    else if(['evo','eto','eno'].includes(w)) result.categories.type = 'pokazna';
+    else if(['možda','neka','nek'].includes(w)) result.categories.type = 'modalna/poticajna';
+    return result;
+  }
+  
+  // Check interjections
+  if(MS_INTERJECTIONS.includes(w)){
+    result.wordClass = 'uzvik';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check prepositions
+  if(MS_PREPOSITIONS.includes(w)){
+    result.wordClass = 'prijedlog';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check conjunctions
+  if(MS_CONJUNCTIONS.includes(w)){
+    result.wordClass = 'veznik';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    if(['i','pa','te','ni','niti','ali','no','nego','već','ili','a'].includes(w)) result.categories.type = 'nezavisni';
+    else result.categories.type = 'zavisni';
+    return result;
+  }
+  
+  // Check adverbs (whitelist)
+  if(MS_ADVERBS.includes(w)){
+    result.wordClass = 'prilog';
+    result.lemma = w;
+    result.root = w;
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // Check verb lexicon
+  if(MS_VERB_LEXICON[w]){
+    result.wordClass = 'glagol';
+    result.lemma = MS_VERB_LEXICON[w];
+    result.root = MS_VERB_LEXICON[w].slice(0, -2); // remove -ti
+    result.confidence = 'high';
+    // Try to determine form heuristically
+    if(/m$/.test(w)) result.categories.form = 'prezent 1. l. jd.';
+    else if(/š$/.test(w)) result.categories.form = 'prezent 2. l. jd.';
+    else if(/mo$/.test(w)) result.categories.form = 'prezent 1. l. mn.';
+    else if(/te$/.test(w)) result.categories.form = 'prezent 2. l. mn.';
+    return result;
+  }
+  
+  // Check noun lexicon (irregular)
+  if(MS_NOUN_LEXICON[w]){
+    result.wordClass = 'imenica';
+    result.lemma = MS_NOUN_LEXICON[w];
+    result.note = 'Nepravilna množina (lemma: ' + MS_NOUN_LEXICON[w] + ').';
+    result.confidence = 'high';
+    return result;
+  }
+  
+  // STEP 1: Heuristic analysis (existing logic)
+  let remaining = w;
+  
+  // Detect prefixes (longest match first)
+  const sortedPrefixes = [...MS_PREFIXES].sort((a, b) => b.p.length - a.p.length);
+  for(let p of sortedPrefixes){
+    if(remaining.startsWith(p.p) && remaining.length > p.p.length + 2){
+      result.prefix.push(p);
+      remaining = remaining.slice(p.p.length);
+      // Try second prefix
+      for(let p2 of sortedPrefixes){
+        if(remaining.startsWith(p2.p) && remaining.length > p2.p.length + 2){
+          result.prefix.push(p2);
+          remaining = remaining.slice(p2.p.length);
+          break;
+        }
+      }
+      break;
+    }
+  }
+  
+  // Try verb endings (longest first)
+  const sortedVerbEndings = [...MS_VERB_ENDINGS].sort((a, b) => b.end.length - a.end.length);
+  let verbMatch = null;
+  for(let ve of sortedVerbEndings){
+    if(remaining.endsWith(ve.end) && remaining.length > ve.end.length + 1){
+      verbMatch = ve;
+      break;
+    }
+  }
+  
+  // Try suffixes
+  let foundSuffix = null;
+  let suffixType = null;
+  
+  // Noun suffixes
+  const sortedNounSfx = [...MS_NOUN_SUFFIXES].sort((a, b) => b.s.length - a.s.length);
+  for(let sf of sortedNounSfx){
+    if(remaining.includes(sf.s)){
+      const sfIdx = remaining.lastIndexOf(sf.s);
+      if(sfIdx > 0 && sfIdx <= remaining.length - sf.s.length){
+        const afterSf = remaining.slice(sfIdx + sf.s.length);
+        if(afterSf.length <= 3 && /^[aeiouima]*$/.test(afterSf)){
+          foundSuffix = sf;
+          suffixType = 'noun';
+          result.root = remaining.slice(0, sfIdx);
+          result.suffix.push(sf);
+          result.ending = afterSf;
+          break;
+        }
+      }
+    }
+  }
+  
+  // Adjective suffixes
+  if(!foundSuffix){
+    const sortedAdjSfx = [...MS_ADJ_SUFFIXES].sort((a, b) => b.s.length - a.s.length);
+    for(let sf of sortedAdjSfx){
+      if(remaining.includes(sf.s)){
+        const sfIdx = remaining.lastIndexOf(sf.s);
+        if(sfIdx > 0 && sfIdx <= remaining.length - sf.s.length){
+          const afterSf = remaining.slice(sfIdx + sf.s.length);
+          if(afterSf.length <= 3 && /^[aeiouh]*$/.test(afterSf)){
+            foundSuffix = sf;
+            suffixType = 'adj';
+            result.root = remaining.slice(0, sfIdx);
+            result.suffix.push(sf);
+            result.ending = afterSf;
+            break;
+          }
+        }
+      }
+    }
+  }
+  
+  // Classify
+  if(verbMatch){
+    result.wordClass = 'glagol';
+    result.categories.form = verbMatch.form;
+    let stem = remaining.slice(0, remaining.length - verbMatch.end.length);
+    
+    if(verbMatch.form.startsWith('infinitiv')){
+      result.lemma = remaining;
+    } else if(verbMatch.form.startsWith('prezent')){
+      if(verbMatch.end.match(/^a[mš]?$|^am$|^aš$|^amo$|^ate$|^aju$/)) result.lemma = stem + 'ati';
+      else if(verbMatch.end.match(/^i[mš]?$|^im$|^iš$|^imo$|^ite$/)) result.lemma = stem + 'iti';
+      else if(verbMatch.end.match(/^e[mš]?$|^em$|^eš$|^emo$|^ete$|^u$/)) result.lemma = stem + 'ti';
+    } else if(verbMatch.form.startsWith('glag. pridjev radni')){
+      if(verbMatch.end === 'ao' || verbMatch.end === 'io') result.lemma = stem + (verbMatch.end === 'ao' ? 'ati' : 'iti');
+      else if(['la','lo','li','le'].includes(verbMatch.end)) result.lemma = stem + 'ti';
+    } else if(verbMatch.form.startsWith('imperativ')){
+      if(['aj','ajte','ajmo'].includes(verbMatch.end)) result.lemma = stem + 'ati';
+      else if(['i','ite'].includes(verbMatch.end)) result.lemma = stem + 'iti';
+    }
+    
+    const hasPerfectivePrefix = result.prefix.some(p => ['na','pro','po','do','u','iz','is','pre','za','raz'].includes(p.p));
+    result.categories.vid = hasPerfectivePrefix ? 'svršeni' : 'nesvršeni';
+  } else if(foundSuffix && suffixType === 'noun'){
+    result.wordClass = 'imenica';
+    result.categories.type = foundSuffix.type;
+    const e = result.ending;
+    const declType = foundSuffix.type.includes('ž.r.') ? 'e-vrsta' : 'a-vrsta';
+    if(MS_CASE_ENDINGS[declType] && MS_CASE_ENDINGS[declType][e]){
+      result.categories.padezAndBroj = MS_CASE_ENDINGS[declType][e].padez;
+    } else if(e === ''){
+      result.categories.padezAndBroj = 'N/V jd.';
+    }
+    if(foundSuffix.type.includes('ž.r.')) result.lemma = result.root + foundSuffix.s + 'a';
+    else if(foundSuffix.type.includes('sr.r.')) result.lemma = result.root + foundSuffix.s + 'o';
+    else result.lemma = result.root + foundSuffix.s;
+  } else if(foundSuffix && suffixType === 'adj'){
+    result.wordClass = 'pridjev';
+    result.categories.type = foundSuffix.type;
+    result.lemma = result.root + foundSuffix.s;
+    if(result.prefix.some(p => p.p === 'naj')) result.categories.stupanj = 'superlativ';
+    else if(w.endsWith('ji') || w.endsWith('iji')) result.categories.stupanj = 'komparativ';
+    else result.categories.stupanj = 'pozitiv';
+  } else {
+    // Heuristic noun fallback
+    if(/[aeiou]$/.test(w) || /[aeiou]ma$/.test(w) || /ima$/.test(w)){
+      result.wordClass = 'imenica (moguća)';
+      const declType = w.endsWith('a') ? 'e-vrsta' : 'a-vrsta';
+      result.categories.declType = declType;
+      result.confidence = 'low';
+      if(MS_CASE_ENDINGS[declType]){
+        for(let end in MS_CASE_ENDINGS[declType]){
+          if(w.endsWith(end) && (w.length > end.length)){
+            result.categories.padezAndBroj = MS_CASE_ENDINGS[declType][end].padez;
+            result.ending = end;
+            result.root = w.slice(0, w.length - end.length);
+            break;
+          }
+        }
+      }
+      if(declType === 'e-vrsta') result.lemma = result.root + 'a';
+      else result.lemma = result.root;
+    } else {
+      result.wordClass = '?';
+      result.note = 'Teško prepoznati vrstu — provjeri svojim znanjem.';
+      result.confidence = 'low';
+    }
+  }
+  
+  if(!result.root || result.root.length < 2){
+    let fallback = w;
+    for(let p of result.prefix){
+      fallback = fallback.slice(p.p.length);
+    }
+    result.root = fallback;
+  }
+  
+  return result;
+}
+
+function morfoAnalyze(){
+  const input = document.getElementById('ms-input');
+  const out = document.getElementById('ms-results');
+  if(!input || !out) return;
+  
+  const word = input.value.trim().toLowerCase();
+  if(!word){ out.innerHTML = ''; return; }
+  
+  if(!/^[a-zčćđšž\\s]+$/.test(word)){
+    out.innerHTML = '<div class="box-warn"><div class="bw-body"><div class="bw-txt">Samo hrv. slova (a-ž), bez razmaka ili brojeva.</div></div></div>';
+    return;
+  }
+  
+  // Multi-word support — analyze each word separately
+  const words = word.split(/\\s+/).filter(w => w.length > 0);
+  
+  if(words.length > 1){
+    // Multi-word — show each
+    let allHtml = '<div style="margin-bottom:14px;font-family:var(--mono);font-size:11px;color:var(--t2);text-align:center">📝 ANALIZA RAZINA: ' + words.length + ' riječi</div>';
+    words.forEach((w, idx) => {
+      const a = msAnalyzeWord(w);
+      allHtml += renderMsResult(a, idx === 0);
+      if(idx < words.length - 1){
+        allHtml += '<div style="height:24px"></div>';
+      }
+    });
+    out.innerHTML = allHtml;
+  } else {
+    const a = msAnalyzeWord(words[0]);
+    out.innerHTML = renderMsResult(a, true);
+  }
+  
+  // Save to history
+  try {
+    const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.scanner_hist')||'[]');
+    // Only save valid words (no special chars)
+    if(/^[a-zčćđšžA-ZČĆĐŠŽ\\s]+$/.test(word) && word.length < 50){
+      hist.push({word, date: new Date().toISOString()});
+      localStorage.setItem('mt.hrv.h20.scanner_hist', JSON.stringify(hist.slice(-20)));
+    }
+  } catch(e){}
+}
+
+function renderMsResult(a, showHeader){
+  const word = a.word;
+  
+  // Build morpheme display
+  let morphBuild = '';
+  a.prefix.forEach(p => {
+    morphBuild += \`<span style="display:inline-block;padding:6px 12px;background:rgba(74,144,217,.15);border:1.5px solid var(--blue);border-radius:var(--r1);color:var(--blue);font-weight:700;font-family:var(--mono);margin:2px">\${p.p}-</span>\`;
+  });
+  morphBuild += \`<span style="display:inline-block;padding:6px 12px;background:rgba(233,180,70,.15);border:1.5px solid var(--gold);border-radius:var(--r1);color:var(--gold);font-weight:700;font-family:var(--mono);margin:2px">\${a.root}</span>\`;
+  a.suffix.forEach(sf => {
+    morphBuild += \`<span style="display:inline-block;padding:6px 12px;background:rgba(176,107,33,.15);border:1.5px solid var(--bronze);border-radius:var(--r1);color:var(--bronze);font-weight:700;font-family:var(--mono);margin:2px">-\${sf.s}-</span>\`;
+  });
+  if(a.ending){
+    morphBuild += \`<span style="display:inline-block;padding:6px 12px;background:rgba(224,82,82,.15);border:1.5px solid var(--red);border-radius:var(--r1);color:var(--red);font-weight:700;font-family:var(--mono);margin:2px">-\${a.ending}</span>\`;
+  }
+  
+  // Classification summary  
+  let classSummary = '';
+  if(a.wordClass){
+    classSummary = a.wordClass;
+    if(a.categories.type) classSummary += \` · \${a.categories.type}\`;
+    if(a.categories.declType) classSummary += \` · \${a.categories.declType}\`;
+    if(a.categories.stupanj) classSummary += \` · \${a.categories.stupanj}\`;
+    if(a.categories.form) classSummary += \` · \${a.categories.form}\`;
+    if(a.categories.vid) classSummary += \` · \${a.categories.vid} vid\`;
+    if(a.categories.padezAndBroj) classSummary += \` · \${a.categories.padezAndBroj}\`;
+    if(a.categories.person) classSummary += \` · \${a.categories.person}\`;
+    if(a.categories.number) classSummary += \` · \${a.categories.number}\`;
+    if(a.categories.gender) classSummary += \` · \${a.categories.gender}\`;
+  }
+  
+  // Confidence badge
+  const confColors = {high: 'var(--green)', medium: 'var(--gold)', low: 'var(--red)'};
+  const confLabels = {high: '🟢 VISOKA', medium: '🟡 SREDNJA', low: '🔴 NISKA'};
+  const confColor = confColors[a.confidence] || 'var(--t3)';
+  const confLabel = confLabels[a.confidence] || a.confidence;
+  
+  return \`
+    <!-- HEADER -->
+    <div style="padding:18px;background:linear-gradient(135deg,rgba(233,180,70,.08),transparent);border:1px solid rgba(233,180,70,.3);border-radius:var(--r2);margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:2px">MORFEMSKA ANALIZA</div>
+          <div style="font-family:var(--display);font-size:32px;font-weight:700;color:var(--gold);margin-top:4px">\${word}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--t2)">\${classSummary || '—'}</div>
+          <div style="font-family:var(--mono);font-size:9px;color:\${confColor};margin-top:4px;letter-spacing:1px">SIGURNOST: \${confLabel}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MORPHEMES -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">🧩 Morfemska struktura</div><div class="sec-line"></div></div>
+    <div style="padding:24px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r1);margin:12px 0;text-align:center">
+      <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px;margin-bottom:14px">\${morphBuild}</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-family:var(--mono);font-size:10px">
+        \${a.prefix.length > 0 ? '<span style="padding:3px 8px;background:rgba(74,144,217,.1);color:var(--blue);border-radius:12px">prefiks</span>' : ''}
+        <span style="padding:3px 8px;background:rgba(233,180,70,.1);color:var(--gold);border-radius:12px">korijen</span>
+        \${a.suffix.length > 0 ? '<span style="padding:3px 8px;background:rgba(176,107,33,.1);color:var(--bronze);border-radius:12px">sufiks</span>' : ''}
+        \${a.ending ? '<span style="padding:3px 8px;background:rgba(224,82,82,.1);color:var(--red);border-radius:12px">nastavak</span>' : ''}
+      </div>
+    </div>
+
+    <!-- CLASSIFICATION TABLE -->
+    <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">📋 Analiza</div><div class="sec-line"></div></div>
+    <div class="table-wrap" style="overflow-x:auto;margin:12px 0">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3);width:40%">Vrsta riječi</td><td style="padding:10px;color:var(--t1);font-weight:700">\${a.wordClass || '—'}</td></tr>
+          <tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Osnovni oblik (lema)</td><td style="padding:10px;color:var(--gold);font-weight:700">\${a.lemma}</td></tr>
+          \${a.categories.form ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Oblik glagola</td><td style="padding:10px;color:var(--t1)">\${a.categories.form}</td></tr>\` : ''}
+          \${a.categories.vid ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Glagolski vid</td><td style="padding:10px;color:var(--t1)">\${a.categories.vid}</td></tr>\` : ''}
+          \${a.categories.type ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Tip (podvrsta)</td><td style="padding:10px;color:var(--t1)">\${a.categories.type}</td></tr>\` : ''}
+          \${a.categories.declType ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Deklinacijska vrsta</td><td style="padding:10px;color:var(--t1)">\${a.categories.declType}</td></tr>\` : ''}
+          \${a.categories.padezAndBroj ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Padež / broj</td><td style="padding:10px;color:var(--t1);font-weight:700">\${a.categories.padezAndBroj}</td></tr>\` : ''}
+          \${a.categories.person ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Lice / broj</td><td style="padding:10px;color:var(--t1)">\${a.categories.person}\${a.categories.number ? ' · ' + a.categories.number : ''}</td></tr>\` : ''}
+          \${a.categories.gender ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Rod</td><td style="padding:10px;color:var(--t1)">\${a.categories.gender}</td></tr>\` : ''}
+          \${a.categories.stupanj ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Stupanj</td><td style="padding:10px;color:var(--t1)">\${a.categories.stupanj}</td></tr>\` : ''}
+          \${a.categories.value ? \`<tr style="border-bottom:1px solid var(--bd)"><td style="padding:10px;color:var(--t3)">Vrijednost</td><td style="padding:10px;color:var(--t1)">\${a.categories.value}</td></tr>\` : ''}
+          <tr><td style="padding:10px;color:var(--t3)">Korijen</td><td style="padding:10px;color:var(--t1);font-weight:700">\${a.root}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    \${a.prefix.length > 0 || a.suffix.length > 0 ? \`
+      <div class="sec-hdr" style="margin-top:20px"><div class="sec-line"></div><div class="sec-badge">🏗 Tvorbena analiza</div><div class="sec-line"></div></div>
+      <div style="margin:12px 0">
+        \${a.prefix.map(p => \`
+          <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--blue);border-radius:var(--r1);margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--blue);letter-spacing:1px;margin-bottom:4px">PREFIKS</div>
+                <div style="font-family:var(--display);font-weight:700;color:var(--t1);font-size:16px">\${p.p}-</div>
+                <div style="font-size:12px;color:var(--t2);margin-top:4px">\${p.meaning}</div>
+              </div>
+            </div>
+          </div>
+        \`).join('')}
+        \${a.suffix.map(sf => \`
+          <div style="padding:12px;background:var(--ele);border:1px solid var(--bd);border-left:3px solid var(--bronze);border-radius:var(--r1);margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1px;margin-bottom:4px">SUFIKS</div>
+                <div style="font-family:var(--display);font-weight:700;color:var(--t1);font-size:16px">-\${sf.s}</div>
+                <div style="font-size:12px;color:var(--t2);margin-top:4px">\${sf.meaning}</div>
+              </div>
+            </div>
+          </div>
+        \`).join('')}
+      </div>
+    \` : ''}
+
+    \${a.note ? \`
+      <div class="box-warn" style="margin:12px 0"><div class="bw-body"><div class="bw-ttl" style="color:var(--gold)">💡 Napomena</div><div class="bw-txt">\${a.note}</div></div></div>
+    \` : ''}
+
+    \${a.confidence === 'low' ? \`<div style="font-family:var(--mono);font-size:10px;color:var(--red);text-align:center;margin-top:8px">⚠ Niska sigurnost — Scanner koristi heuristiku, provjeri svojim znanjem</div>\` : ''}
+  \`;
+}
+
+function msExample(word){
+  const input = document.getElementById('ms-input');
+  if(input){
+    input.value = word;
+    morfoAnalyze();
+    input.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+
+
+function msShowHistory(){
+  const div = document.getElementById('ms-history');
+  if(!div) return;
+  if(div.style.display !== 'none' && div.innerHTML !== ''){
+    div.style.display = 'none';
+    return;
+  }
+  try {
+    const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.scanner_hist')||'[]');
+    if(hist.length === 0){
+      div.innerHTML = '<span style="color:var(--t3)">Još nema analiziranih riječi.</span>';
+    } else {
+      div.innerHTML = '<div style="margin-bottom:8px;color:var(--t3);letter-spacing:1px">ZADNJIH ' + hist.length + ' (klikni za ponovnu analizu):</div>' +
+        hist.slice().reverse().map(h => {
+        const safeWord = String(h.word||'').replace(/['"\\\\<>&]/g, c => ({"'":'\\\\\\'',
+'"':'&quot;','\\\\':'\\\\\\\\','<':'&lt;','>':'&gt;','&':'&amp;'}[c]||c));
+        const displayWord = String(h.word||'').replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+        return \`<button class="nb-btn" style="padding:4px 8px;font-size:11px;margin:2px" onclick="msExample('\${safeWord}')">\${displayWord}</button>\`;
+      }).join('');
+    }
+    div.style.display = 'block';
+  } catch(e){
+    div.innerHTML = '<span style="color:var(--t3)">Greška u učitavanju.</span>';
+    div.style.display = 'block';
+  }
+}
+
+function msClear(){
+  const input = document.getElementById('ms-input');
+  const out = document.getElementById('ms-results');
+  const hist = document.getElementById('ms-history');
+  if(input) input.value = '';
+  if(out) out.innerHTML = '';
+  if(hist){ hist.style.display = 'none'; hist.innerHTML = ''; }
+  input?.focus();
+}
+
+// === DECLINER UPGRADES: COPY RESULT FUNCTION ===
+function declineCopyTable(){
+  const tbl = document.querySelector('#decl-results table');
+  if(!tbl) return;
+  
+  const rows = Array.from(tbl.querySelectorAll('tr'));
+  let csv = rows.map(r => 
+    Array.from(r.querySelectorAll('th, td'))
+      .map(c => c.textContent.trim())
+      .join('\\t')
+  ).join('\\n');
+  
+  navigator.clipboard.writeText(csv).then(() => {
+    const btn = document.getElementById('decl-copy-btn');
+    if(btn){
+      const orig = btn.textContent;
+      btn.textContent = '✓ Kopirano!';
+      btn.style.background = 'var(--green)';
+      btn.style.color = '#0F0605';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 1500);
+    }
+  }).catch(() => alert('Greška pri kopiranju.'));
+}
+
+// === SCANNER COPY FUNCTION ===
+function msCopyResult(){
+  const out = document.getElementById('ms-results');
+  if(!out) return;
+  const text = out.innerText.trim();
+  if(!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('ms-copy-btn');
+    if(btn){
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✓ Kopirano';
+      setTimeout(() => btn.innerHTML = orig, 1500);
+    }
+  });
+}
+
+
+
+function declHistory(){
+  const div = document.getElementById('decl-history');
+  if(!div) return;
+  if(div.style.display !== 'none' && div.innerHTML !== ''){
+    div.style.display = 'none';
+    return;
+  }
+  try {
+    const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.decl_hist')||'[]');
+    if(hist.length === 0){
+      div.innerHTML = '<span style="color:var(--t3)">Još nema sklanjanih riječi.</span>';
+    } else {
+      div.innerHTML = '<div style="margin-bottom:8px;color:var(--t3);letter-spacing:1px">ZADNJIH ' + hist.length + ':</div>' +
+        hist.slice().reverse().map(h => {
+        const safeWord = String(h.word||'').replace(/['"\\\\<>&]/g, c => ({"'":'\\\\\\'',
+'"':'&quot;','\\\\':'\\\\\\\\','<':'&lt;','>':'&gt;','&':'&amp;'}[c]||c));
+        const displayWord = String(h.word||'').replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+        return \`<button class="nb-btn" style="padding:4px 8px;font-size:11px;margin:2px" onclick="declineExample('\${safeWord}')">\${displayWord}</button>\`;
+      }).join('');
+    }
+    div.style.display = 'block';
+  } catch(e){}
+}
+
+function declClear(){
+  const input = document.getElementById('decl-input');
+  const out = document.getElementById('decl-results');
+  const hist = document.getElementById('decl-history');
+  if(input) input.value = '';
+  if(out) out.innerHTML = '';
+  if(hist){ hist.style.display = 'none'; hist.innerHTML = ''; }
+  input?.focus();
+}
+
+
+
+// ═══════════════════════════════════
+// RANDOM WORD — surprise me feature
+// ═══════════════════════════════════
+const RANDOM_SCANNER_WORDS = [
+  'nepredvidljivosti','najmoćniji','prijateljica','knjižarstvo','čitateljica',
+  'nepismenima','učiteljica','upoznavati','pročitanima','razgovaraju',
+  'postojanost','opisivanje','ozdravlje','razumijevanje','najljepše',
+  'protunapadom','međurazinski','nadmašiti','potpomognuti','predviđanju',
+  'iskreno','iako','protiv','vrlo','preko','čovjek','dijete','kost',
+  'vrijeme','volim','imam','idu','jedan','peti','dvoje','svoj','ovaj','netko'
+];
+
+const RANDOM_DECLINER_WORDS = [
+  'stol','knjiga','prijatelj','učenica','grad','more','selo','noć','riječ',
+  'pjesma','sestra','učitelj','dječak','majka','brat','sin','kuća','ime',
+  'jaje','dan','put','pas','čovjek','dijete','oko','uho','noga','ruka',
+  'kost','ljubav','stvar','tata','sokol','zec','stvarnost','radost'
+];
+
+function msRandom(){
+  const w = RANDOM_SCANNER_WORDS[Math.floor(Math.random() * RANDOM_SCANNER_WORDS.length)];
+  msExample(w);
+}
+
+function declRandom(){
+  const w = RANDOM_DECLINER_WORDS[Math.floor(Math.random() * RANDOM_DECLINER_WORDS.length)];
+  declineExample(w);
+}
+
+
+function togScene(card){
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.scene-card').forEach(c=>c.classList.remove('open'));
+  if(!wasOpen)card.classList.add('open');
+}
+
+/* ═══════════════════════════════════
+   DIAG0
+═══════════════════════════════════ */
+let d0idx=0,d0score=0;
+function diag0Skip(){
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='dismissed';
+}
+function diag0Start(){
+  d0idx=0;d0score=0;
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='quiz';
+  d0Show();
+}
+function d0Show(){
+  if(d0idx>=DIAG0_Q.length){diag0End();return;}
+  const q=DIAG0_Q[d0idx];
+  const fill=document.getElementById('d0fill');
+  if(fill)fill.style.width=((d0idx/DIAG0_Q.length)*100)+'%';
+  const num=document.getElementById('d0num');
+  if(num)num.textContent=\`Pitanje \${d0idx+1} / \${DIAG0_Q.length}\`;
+  const text=document.getElementById('d0text');
+  if(text)text.textContent=q.q;
+  const opts=document.getElementById('d0opts');
+  if(!opts)return;
+  opts.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='diag-opt';btn.textContent=o;
+    btn.onclick=()=>{
+      opts.querySelectorAll('.diag-opt').forEach(b=>b.onclick=null);
+      if(i===q.t){btn.classList.add('correct');d0score++;}
+      else{btn.classList.add('wrong');opts.querySelectorAll('.diag-opt')[q.t].classList.add('correct');}
+      setTimeout(()=>{d0idx++;d0Show();},900);
+    };
+    opts.appendChild(btn);
+  });
+}
+function diag0End(){
+  const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='result';
+  const pct=Math.round(d0score/DIAG0_Q.length*100);
+  let msg='', btnTxt='', btnTab=1;
+  if(pct>=80){
+    msg='<strong>Odlično!</strong> Osnove H20 imaš savladane. Preporučujem Referentnu tablicu — svi ključni podaci o morfologiji na jednom mjestu za brzu provjeru.';
+    btnTxt='📊 Referentna tablica →'; btnTab=7;
+  } else if(pct>=60){
+    msg='<strong>Dobro!</strong> Nekoliko rupa postoji — provjeri Tab 1-4 za vrste riječi, padeže, glagolske oblike i tvorbu.';
+    btnTxt='📚 Promjenjive riječi →'; btnTab=1;
+  } else {
+    msg='<strong>Kreni od osnova.</strong> Preporučujem: Teorija (Tab 0) + Promjenjive riječi (Tab 1). 10 vrsta riječi, 7 padeža i 4 morfema (korijen, prefiks, sufiks, nastavak) su temelj — sigurno ih nauči napamet.';
+    btnTxt='📖 Teorija →'; btnTab=0;
+  }
+  (document.getElementById('d0rtitle')||{}).textContent=\`\${d0score} / \${DIAG0_Q.length} — \${pct}%\`;
+  (document.getElementById('d0rdesc')||{}).innerHTML=msg;
+  const btn=document.getElementById('d0rbtn');
+  if(btn){btn.textContent=btnTxt;btn.onclick=()=>sw(btnTab);}
+}
+function diag0Reset(){const _d0=document.getElementById('diag0');if(_d0)_d0.dataset.state='intro';}
+
+/* ═══════════════════════════════════
+   CITATNIK
+═══════════════════════════════════ */
+const CAT_COLORS={alegorija:'p-go',vjera:'p-t',judita:'p-br',holofern:'p-r',domoljublje:'p-g',stih:'p-pa'};
+let citStars={};
+try{citStars=JSON.parse(localStorage.getItem('mt.hrv.h20.cit_stars')||'{}')}catch(e){}
+let citActive='sve';
+
+function togStar(i,el){
+  citStars[i]=!citStars[i];
+  el.classList.toggle('starred',!!citStars[i]);
+  try{localStorage.setItem('mt.hrv.h20.cit_stars',JSON.stringify(citStars))}catch(e){}
+}
+
+/* ═══════════════════════════════════
+   POJMOVNIK
+═══════════════════════════════════ */
+let pojActive='sve';
+
+/* ═══════════════════════════════════
+   ESEJ ALAT
+═══════════════════════════════════ */
+function alTab(btn,pane){
+  document.querySelectorAll('.alat-tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.alat-pane').forEach(p=>p.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  const p=document.getElementById(pane);
+  if(p)p.classList.add('on');
+}
+function cpyTeza(el){
+  navigator.clipboard.writeText(el.textContent.trim()).catch(()=>{});
+  el.classList.add('copied');
+  setTimeout(()=>el.classList.remove('copied'),1500);
+}
+
+/* Scanner */
+function scannerUpdate(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  const txt=ta.value;
+  const words=txt.trim()?txt.trim().split(/\\s+/).length:0;
+  const lines=txt.split('\\n').filter(function(l){return l.trim().length>0;}).length;
+  const syl=words>0?Math.round(txt.replace(/[^aeiouAEIOUčšžđćČŠŽĐĆ]/g,'').length/Math.max(words,1)*10)/10:0;
+  const we=document.getElementById('sc-words');
+  if(we){const wn=we.querySelector('.wc-stat-num');if(wn)wn.textContent=words;}
+  const le=document.getElementById('sc-lines');
+  if(le){const ln=le.querySelector('.wc-stat-num');if(ln)ln.textContent=lines;}
+  const se=document.getElementById('sc-syl');
+  if(se){const sn=se.querySelector('.wc-stat-num');if(sn)sn.textContent=syl||'—';}
+  try{localStorage.setItem('mt.hrv.h20.wc_text',txt);}catch(e){}
+}
+(function(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  try{const sv=localStorage.getItem('mt.hrv.h20.wc_text');if(sv){ta.value=sv;scannerUpdate();}}catch(e){}
+})();
+
+/* ═══════════════════════════════════
+   KVIZ
+═══════════════════════════════════ */
+let qzIdx=0,qzScore=0,qzAnswered=[];
+function qzInit(){
+  const w=document.getElementById('qz-wrap');
+  if(!w||w.dataset.init==='1')return;
+  w.dataset.init='1';
+  qzRender();
+}
+function qzRender(){
+  const w=document.getElementById('qz-wrap');
+  if(!w)return;
+  w.innerHTML=\`<div class="qz-wrap" id="qz-inner"></div>\`;
+  qzIdx=0;qzScore=0;
+  const el=document.getElementById('qz-inner');
+  el.innerHTML=\`<div class="qz-start" style="text-align:center;padding:40px 24px;background:linear-gradient(135deg, rgba(233,180,70,.05) 0%, transparent 100%);border:1px solid var(--bd);border-radius:var(--r2)">
+    <div style="font-size:56px;margin-bottom:16px">🧠</div>
+    <h3 style="font-family:var(--display);font-size:22px;font-weight:700;color:var(--t1);margin:0 0 12px 0">25 pitanja · H20 Morfologija</h3>
+    <p style="font-size:14px;line-height:1.6;color:var(--t2);max-width:560px;margin:0 auto 24px">Pitanja pokrivaju sve teme: <strong>vrste riječi, padeži, glagolski oblici, sklanjanje, tvorba</strong>. Svako pitanje daje <em>konkretan primjer</em> — analiziraj, prepoznaj, objasni. Na kraju dobivaš ocjenu i objašnjenja.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">📚 10 vrsta riječi</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">📐 7 padeža</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">⚙️ Glagolski oblici</div>
+      <div style="padding:8px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:20px;font-family:var(--mono);font-size:11px;color:var(--t2)">🏗 Tvorba riječi</div>
+    </div>
+    <button class="nb-btn primary" style="font-size:14px;padding:14px 28px" onclick="qzStart()">Započni kviz →</button>
+  </div>\`;
+}
+function qzStart(){
+  qzIdx=0;qzScore=0;qzAnswered=[];
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzShowQ(el){
+  if(qzIdx>=KVIZ_Q.length){qzEnd(el);return;}
+  const q=KVIZ_Q[qzIdx];
+  const pct=Math.round((qzIdx/KVIZ_Q.length)*100);
+  el.innerHTML=\`
+    <div class="qz-prog"><div class="qz-prog-fill" style="width:\${pct}%"></div></div>
+    <div class="qz-num">Pitanje \${qzIdx+1} / \${KVIZ_Q.length}</div>
+    <div class="qz-q">\${q.q}</div>
+    <div class="qz-opts">\${q.o.map((o,i)=>\`<button class="qz-opt" onclick="qzAns(this,\${i})">\${o}</button>\`).join('')}</div>
+    <div class="qz-expl" id="qz-expl" style="display:none"></div>
+    <div style="text-align:right;margin-top:12px"><button class="nb-btn primary qz-next" id="qz-next" onclick="qzNext()" style="display:none">Sljedeće →</button></div>
+  \`;
+}
+function qzAns(btn,i){
+  if(document.querySelector('.qz-opt.correct,.qz-opt.wrong'))return;
+  const opts=document.querySelectorAll('.qz-opt');
+  opts.forEach(b=>b.disabled=true);
+  const q=KVIZ_Q[qzIdx];
+  const ok=(i===q.t);
+  if(ok){btn.classList.add('correct');qzScore++;}
+  else{btn.classList.add('wrong');opts[q.t].classList.add('correct');}
+  if(!qzAnswered)qzAnswered=[];
+  qzAnswered.push({q:q.q,ok,correct:q.o[q.t]});
+  const expl=document.getElementById('qz-expl');
+  expl.style.display='block';
+  expl.innerHTML=\`<strong>\${ok?'✓ Točno!':'✗ Netočno.'}</strong> \${q.e}\`;
+  document.getElementById('qz-next').style.display='inline-flex';
+}
+function qzNext(){
+  qzIdx++;
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzEnd(el){
+  const pct=Math.round(qzScore/KVIZ_Q.length*100);
+  let grade,msg,ico;
+  if(pct>=90){grade='ODLIČAN';msg='Spreman/na si za maturu iz H20 — razumiješ sve vrste riječi, padeže i glagolske oblike.';ico='🏆';}
+  else if(pct>=75){grade='VRLO DOBAR';msg='Solidno znanje. Provjeri neispravne odgovore i ponovi Tab 1-4.';ico='💪';}
+  else if(pct>=60){grade='DOBAR';msg='Ponoviti: 10 vrsta riječi, 7 padeža i glagolske oblike (vidi Tab 7 Referentna tablica).';ico='📚';}
+  else if(pct>=45){grade='DOVOLJAN';msg='Osnove su tu — trebaš više vježbe.';ico='🔁';}
+  else{grade='NEDOVOLJAN';msg='Vrati se na Teoriju i ponovi korak po korak.';ico='🎯';}
+
+  let wrongHtml='';
+  if(qzAnswered&&qzAnswered.length){
+    const wrong=qzAnswered.filter(a=>!a.ok);
+    if(wrong.length>0){
+      wrongHtml=\`<div style="margin-top:24px;text-align:left">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:12px">Promašena pitanja (\${wrong.length})</div>
+        \${wrong.map(a=>\`<div class="qz-wrong-item">
+          <div class="qz-wrong-q">\${a.q}</div>
+          <div class="qz-wrong-a">Točan odgovor: <b>\${a.correct}</b></div>
+        </div>\`).join('')}
+      </div>\`;
+    }
+  }
+
+  el.innerHTML=\`<div class="qz-result" style="text-align:center;padding:40px 24px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r4)">
+    <div style="font-size:48px;margin-bottom:8px">\${ico}</div>
+    <div class="qz-score-big">\${pct}%</div>
+    <div class="qz-grade">\${grade}</div>
+    <div class="qz-msg">\${qzScore} / \${KVIZ_Q.length} točnih · \${msg}</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="nb-btn primary" onclick="qzStart()">🔁 Ponovo</button>
+      <button class="nb-btn" onclick="sw(4)">📚 Pojmovnik</button>
+      <button class="nb-btn" onclick="sw(7)">📊 Referentna tablica</button>
+    </div>
+    \${wrongHtml}
+  </div>\`;
+
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+  if(typeof recordQuizResult === 'function') recordQuizResult(qzScore, KVIZ_Q.length);
+}
+
+/* ═══════════════════════════════════
+   CHECKPOINT
+═══════════════════════════════════ */
+let CP_STATE={done:{}};
+try{const s=localStorage.getItem('mt.hrv.h20.cp');if(s)CP_STATE=JSON.parse(s);}catch(e){}
+
+const CP_HINTS=['Tab 0','Tab 0','Tab 4','Tab 0','Tab 1','Tab 1','Tab 0','Tab 2','Tab 4','Tab 2'];
+function cpRender(){
+  const list=document.getElementById('cp-list');
+  if(!list)return;
+  list.innerHTML=CP_ITEMS.map((item,i)=>\`
+    <div class="cp-item\${CP_STATE.done[i]?' done':''}" onclick="cpToggle(\${i})" style="display:flex;align-items:flex-start;gap:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 16px;cursor:pointer;transition:all .15s">
+      <div class="cp-box">\${CP_STATE.done[i]?'✓':''}</div>
+      <div class="cp-txt" style="flex:1;font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5">\${item}</div>
+      <span class="cp-hint">\${CP_HINTS[i]||''}</span>
+    </div>
+  \`).join('');
+  cpUpdateProgress();
+}
+function cpToggle(i){
+  CP_STATE.done[i]=!CP_STATE.done[i];
+  try{localStorage.setItem('mt.hrv.h20.cp',JSON.stringify(CP_STATE));}catch(e){}
+  cpRender();
+  if(typeof updateDashboard === 'function') updateDashboard();
+  if(CP_STATE.done[i] && typeof addXP === 'function') addXP(5, 'Checkpoint savladan');
+}
+function cpUpdateProgress(){
+  const done=Object.values(CP_STATE.done).filter(Boolean).length;
+  const total=CP_ITEMS.length;
+  const pct=Math.round(done/total*100);
+  (document.getElementById('cp-pct')||{}).textContent=\`\${done} / \${total}\`;
+  (document.getElementById('cp-bar')||{style:{}}).style.width=pct+'%';
+  (document.getElementById('sb-prog-bar')||{style:{}}).style.width=pct+'%';
+  (document.getElementById('sb-prog-pct')||{}).textContent=pct+'%';
+  const fin=document.getElementById('cp-final');
+  if(fin)fin.classList.toggle('show',done===total);
+  // Update summary
+  const sumBox=document.getElementById('cp-summary-box');
+  const sumPct=document.getElementById('cp-sum-pct');
+  const sumTxt=document.getElementById('cp-sum-txt');
+  if(sumBox&&done>0){
+    sumBox.style.display='flex';
+    sumPct.textContent=pct+'%';
+    let msg;
+    if(pct===100)msg='<strong>Kompletan!</strong> Sve je savladano — spreman/na si za maturu.';
+    else if(pct>=70)msg='<strong>Odlično!</strong> Neoznačene tvrdnje su tvoje slabe točke — fokusiraj se na njih.';
+    else if(pct>=40)msg='<strong>Napredak!</strong> Nastavak: koristi Padežni decliner i Morfo Scanner (Tab 5) i radi kviz ponovno dok ne dobiješ 85%+.';
+    else msg='Još je posla. Počni s Teorijom (Tab 0) i prođi sve sekcije.';
+    sumTxt.innerHTML=msg;
+  }
+}
+function cpReset(){
+  CP_STATE={done:{}};
+  try{localStorage.removeItem('mt.hrv.h20.cp');}catch(e){}
+  cpRender();
+}
+cpRender();
+
+/* ═══════════════════════════════════
+   KVIZ INIT on tab 6
+═══════════════════════════════════ */
+// Already handled in sw()
+
+/* ═══════════════════════════════════
+   MARK TAB (completion badge)
+═══════════════════════════════════ */
+let TAB_DONE={};
+try{TAB_DONE=JSON.parse(localStorage.getItem('mt.hrv.h20.tab_done')||'{}')}catch(e){}
+
+function markTab(n){
+  TAB_DONE[n]=true;
+  try{localStorage.setItem('mt.hrv.h20.tab_done',JSON.stringify(TAB_DONE))}catch(e){}
+  const el=document.getElementById('td'+n);
+  if(el)el.textContent='✓';
+}
+function restoreTabDone(){
+  Object.keys(TAB_DONE).forEach(n=>{
+    const el=document.getElementById('td'+n);
+    if(el&&TAB_DONE[n])el.textContent='✓';
+  });
+}
+restoreTabDone();
+
+// Mark tab on dwell (8s)
+let tabTimer=null;
+const origSw=sw;
+window.sw=function(n){
+  origSw(n);
+  clearTimeout(tabTimer);
+  tabTimer=setTimeout(()=>{
+    if(n!==5)markTab(n); // don't auto-mark PRO locked
+  },8000);
+  // Show relevant tip
+  showTip(n);
+};
+
+/* ═══════════════════════════════════
+   TIP BAR
+═══════════════════════════════════ */
+const TIPS=[
+  '💡 <strong>Tab 0 tip:</strong> Morfem = najmanja jedinica sa značenjem. 4 tipa: korijen, prefiks, sufiks, nastavak — ovdje leži sve ostalo.',
+  '💡 <strong>Tab 1 tip:</strong> 5 promjenjivih vrsta riječi — zapamti test: promijeni padež/lice. Ako se mijenja → promjenjiva.',
+  '💡 <strong>Tab 2 tip:</strong> 5 nepromjenjivih vrsta. Zamke: „da" može biti čestica ili veznik, „ne" je uvijek čestica!',
+  '💡 <strong>Tab 3 tip:</strong> Padežni decliner — upiši bilo koju imenicu i dobit ćeš cijelu tablicu sklanjanja. Baza ima 21 iznimku.',
+  '💡 <strong>Tab 4 tip:</strong> 60 pojmova u 7 kategorija — filtriraj po temi. Pojmovi s crvenom zvjezdicom najčešće pitaju.',
+  '💡 <strong>Tab 5 tip:</strong> Morfo Scanner analizira riječ kompletno — morfemi + vrsta + padež + osnovni oblik. Koristi za eseje!',
+  '💡 <strong>Tab 6 tip:</strong> 25 kviz pitanja balansirano pokriva sve teme. Cilj: 85%+ prije mature.',
+  '💡 <strong>Tab 7 tip:</strong> Referentna tablica — isprintaj i drži uz sebe. A4 optimizirana za crno-bijeli ispis.',
+];
+let tipShown={};
+function showTip(n){
+  if(tipShown[n])return;
+  const bar=document.getElementById('tip-bar');
+  const txt=document.getElementById('tip-bar-txt');
+  if(!bar||!txt)return;
+  txt.innerHTML=TIPS[n]||TIPS[0];
+  bar.classList.add('show');
+  tipShown[n]=true;
+  clearTimeout(bar._timer);
+  bar._timer=setTimeout(()=>bar.classList.remove('show'),5000);
+}
+// Show tip for initial tab
+setTimeout(()=>showTip(0),3000);
+
+/* ═══════════════════════════════════
+   FROM BANNER (?from= URL param)
+═══════════════════════════════════ */
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const from=params.get('from');
+  if(from){
+    const names={H11:'H11 · Stari hrv. pisci',H12:'H12 · Marulić · Judita',H13:'H13 · Gundulić · Dubravka',H14:'H14 · Preporod · Mažuranić',H15:'H15 · Šenoa · Prijan Lovro',H16:'H16 · Krleža · Glembajevi',H17:'H17 · Stilske figure'};
+    const el=document.getElementById('from-banner');
+    const txt=document.getElementById('from-txt');
+    if(el&&txt){
+      txt.textContent='📎 Nastaviš učenje iz '+(names[from]||from)+' → H20 · Morfologija';
+      el.classList.add('show');
+      // Move banner to top of content
+      const cw=document.querySelector('.content-wrap');
+      if(cw)cw.insertBefore(el,cw.firstChild);
+      setTimeout(()=>el.classList.remove('show'),8000);
+    }
+  }
+})();
+
+/* ═══════════════════════════════════
+   SCORE HISTORY (kviz)
+═══════════════════════════════════ */
+function loadScoreHistory(){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h20.kviz_hist')||'[]');
+    const cont=document.getElementById('score-hist');
+    const rows=document.getElementById('score-hist-rows');
+    if(!cont||!rows||hist.length===0)return;
+    cont.style.display='block';
+    rows.innerHTML=hist.slice(-5).reverse().map(h=>{
+      const pct=Math.round(h.score/h.total*100);
+      const d=new Date(h.date);
+      const ds=d.toLocaleDateString('hr',{day:'2-digit',month:'2-digit'});
+      return \`<div class="score-hist-row">
+        <span class="score-hist-date">\${ds}</span>
+        <div class="score-hist-bar"><div class="score-hist-fill" style="width:\${pct}%"></div></div>
+        <span class="score-hist-val">\${h.score}/\${h.total}</span>
+      </div>\`;
+    }).join('');
+  }catch(e){}
+}
+
+function saveScoreHistory(score,total){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h20.kviz_hist')||'[]');
+    hist.push({score,total,date:new Date().toISOString()});
+    localStorage.setItem('mt.hrv.h20.kviz_hist',JSON.stringify(hist.slice(-10)));
+    loadScoreHistory();
+  }catch(e){}
+}
+
+// Upgrade qzEnd to save history
+const origQzEnd=qzEnd;
+window.qzEnd=function(el){
+  origQzEnd(el);
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+};
+
+// Load history on init
+loadScoreHistory();
+
+/* ═══════════════════════════════════
+   MATCH GAME — Funkcionalan (3 razine)
+═══════════════════════════════════ */
+const MATCH_DATA={
+  easy:[
+    {a:'Imenica',b:'tko? što? (žena, stol)'},
+    {a:'Glagol',b:'radnja/stanje (pisati, trčati)'},
+    {a:'Pridjev',b:'kakav? čiji? (lijep, majčin)'},
+    {a:'Prilog',b:'opisuje glagol (brzo, ovdje)'},
+  ],
+  medium:[
+    {a:'Nominativ',b:'1. padež · subjekt · tko? što?'},
+    {a:'Akuzativ',b:'4. padež · izravni objekt · koga? što?'},
+    {a:'Lokativ',b:'6. padež · mjesto · UVIJEK s prijedlogom'},
+    {a:'Instrumental',b:'7. padež · sredstvo · s kim? s čim?'},
+  ],
+  hard:[
+    {a:'Povratno-posvojna',b:'Zamjenica SVOJ — pripadnost subjektu'},
+    {a:'Svršeni vid',b:'Glagol završene radnje — s prefiksom (napisati)'},
+    {a:'Paukal',b:'Oblik imenice uz 2, 3, 4 — kao G jd. (dva stola)'},
+    {a:'Pluralia tantum',b:'Imenice samo u množini (vrata, novine)'},
+  ]
+};
+
+let mgLevel='easy',mgSelLeft=null,mgSelRight=null,mgMatched=0,mgPairs=[];
+
+function mgInit(level){
+  mgLevel=level||'easy';
+  const pairs=MATCH_DATA[mgLevel];
+  mgMatched=0;mgSelLeft=null;mgSelRight=null;
+  mgPairs=pairs.map((p,i)=>({...p,id:i}));
+  
+  // Shuffle BOTH sides independently for harder challenge
+  const leftItems=[...mgPairs].sort(()=>Math.random()-.5);
+  const rightItems=[...mgPairs].sort(()=>Math.random()-.5);
+  
+  const themes={
+    easy:'📚 Vrste riječi → pitanje (4 osnovna)',
+    medium:'📐 Padeži → funkcija (4 ključna)',
+    hard:'🔧 Napredni pojmovi (4 zamke)'
+  };
+  const labels={easy:'Lagano',medium:'Srednje',hard:'Teško'};
+  const activeClass=(lvl)=>mgLevel===lvl?'primary':'';
+  
+  const el=document.getElementById('mg-dynamic');
+  if(!el)return;
+  el.innerHTML=\`
+    <div class="mg-status" id="mg-status">
+      <strong>\${themes[mgLevel]}</strong> · \${mgPairs.length} parova · \${labels[mgLevel]}
+    </div>
+    <div class="mg-grid">
+      <div class="mg-col" id="mg-left">
+        \${leftItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="left" onclick="mgClick(this)">\${p.a}</div>\`).join('')}
+      </div>
+      <div class="mg-col" id="mg-right">
+        \${rightItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="right" onclick="mgClick(this)">\${p.b}</div>\`).join('')}
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="fcb \${activeClass('easy')}" onclick="mgInit('easy')" style="margin:3px" title="Vrste riječi i pitanja">📚 Lagano (4)</button>
+      <button class="fcb \${activeClass('medium')}" onclick="mgInit('medium')" style="margin:3px" title="Padeži i funkcije">📐 Srednje (4)</button>
+      <button class="fcb \${activeClass('hard')}" onclick="mgInit('hard')" style="margin:3px" title="Napredni pojmovi i zamke">🔧 Teško (4)</button>
+    </div>
+    <div style="text-align:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--t3)">
+      Svaka razina testira drugu vještinu — ne samo više parova
+    </div>
+  \`;
+}
+
+function mgClick(el){
+  if(el.classList.contains('matched')||el.classList.contains('wrong'))return;
+  const side=el.dataset.side;
+  
+  if(side==='left'){
+    document.querySelectorAll('#mg-left .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelLeft=el;
+  } else {
+    document.querySelectorAll('#mg-right .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelRight=el;
+  }
+  
+  if(mgSelLeft&&mgSelRight){
+    const match=mgSelLeft.dataset.id===mgSelRight.dataset.id;
+    if(match){
+      mgSelLeft.classList.add('matched');mgSelLeft.classList.remove('selected');
+      mgSelRight.classList.add('matched');mgSelRight.classList.remove('selected');
+      mgMatched++;
+      if(mgMatched===mgPairs.length){
+        document.getElementById('mg-status').innerHTML=\`<span style="color:var(--green)">✓ Sve spareno! Odlično!</span>\`;
+        markTab(5);
+      }
+    } else {
+      mgSelLeft.classList.add('wrong');mgSelRight.classList.add('wrong');
+      setTimeout(()=>{
+        mgSelLeft.classList.remove('wrong','selected');
+        mgSelRight.classList.remove('wrong','selected');
+        mgSelLeft=null;mgSelRight=null;
+      },600);
+      return;
+    }
+    mgSelLeft=null;mgSelRight=null;
+  }
+}
+
+/* ═══════════════════════════════════
+   FLASHCARDS — funkcionalan demo
+═══════════════════════════════════ */
+const FC_DATA=[
+  // === MORFEMI (5) ===
+  {t:'Morfem',d:'Najmanja jezična jedinica sa značenjem ili gramatičkom funkcijom. Primjer: ljep-ot-a = 3 morfema (korijen + sufiks + nastavak).',kat:'morfem'},
+  {t:'Korijen (osnova)',d:'Središnji morfem riječi koji nosi leksičko značenje. Zajednički je srodnim riječima (ljep- u ljepota, ljepši, uljepšati).',kat:'morfem'},
+  {t:'Prefiks',d:'Morfem ispred korijena koji mijenja značenje. Hrv.: na-, do-, iz-, pre-, uz-, pod-, nad-, ne-, protu-, među-.',kat:'morfem'},
+  {t:'Sufiks',d:'Tvorbeni morfem iza korijena koji stvara novu riječ. Razlika od nastavka: sufiks NE mijenja se, nastavak DA.',kat:'morfem'},
+  {t:'Nastavak',d:'Gramatički morfem na kraju — označava padež (-a, -e, -om), lice (-m, -š), rod/broj. Mijenja se kroz oblike.',kat:'morfem'},
+  
+  // === VRSTE RIJEČI (5) ===
+  {t:'10 vrsta riječi',d:'5 PROMJENJIVIH: imenice, pridjevi, zamjenice, brojevi, glagoli. 5 NEPROMJENJIVIH: prilozi, prijedlozi, veznici, uzvici, čestice.',kat:'vrste'},
+  {t:'Imenica vs. pridjev',d:'Imenica = tko/što? (stvar). Pridjev = kakav/čiji? (svojstvo). Pridjev se slaže s imenicom u rodu/broju/padežu.',kat:'vrste'},
+  {t:'Zamjenice — 7 vrsta',d:'Osobne, povratne (se), posvojne (moj), povratno-posvojna (svoj), pokazne (ovaj), upitne/odnosne (tko), neodređene (netko).',kat:'vrste'},
+  {t:'Svoj vs. njegov',d:'„Ivan uzima SVOJU knjigu" = Ivanovu (povratno-posvojna). „Ivan uzima NJEGOVU knjigu" = nečiju drugu (posvojna).',kat:'vrste'},
+  {t:'Prilog vs. pridjev',d:'Prilog opisuje glagol (trči BRZO). Pridjev opisuje imenicu (BRZI vlak). Test: dodaj imenicu → ako radi, pridjev.',kat:'vrste'},
+  
+  // === PADEŽI (5) ===
+  {t:'7 padeža (NADIVLA)',d:'N (tko?), G (čega? posvojni), D (komu?), A (koga? objekt), V (dozivanje), L (gdje? tema), I (čime?). Mnemotehnika: NADIVLA.',kat:'padez'},
+  {t:'A vs. L razlika',d:'Isti prijedlozi (u, na, pod, nad): A = kretanje (u ŠKOLU, kamo?), L = mirovanje (u ŠKOLI, gdje?).',kat:'padez'},
+  {t:'Prijedlozi uz G',d:'od, do, iz, bez, kod, preko, pokraj, poslije, prije, radi, zbog, protiv, između. G je najbogatiji padež prijedlozima.',kat:'padez'},
+  {t:'Vokativ (V)',d:'Padež dozivanja. Često s 1. palatalizacijom: Ivan → Ivane, čovjek → čovječe, Bog → Bože, majka → majko!',kat:'padez'},
+  {t:'Instrumental (I)',d:'Sredstvo (BEZ prijedloga: pišem OLOVKOM) vs. društvo (S + I: s PRIJATELJEM). Različito značenje!',kat:'padez'},
+  
+  // === GLAGOLI (5) ===
+  {t:'7 glagolskih vremena',d:'Prezent, perfekt (sam čitao), aorist, imperfekt, pluskvamperfekt, futur I (čitat ću), futur II (budem čitao).',kat:'glagol'},
+  {t:'Glagolski vid',d:'Svršeni (napisati — završeno) vs. nesvršeni (pisati — u tijeku). Prefiksi perfektiviziraju: pisati → NApisati.',kat:'glagol'},
+  {t:'Futur I tvorba',d:'Infinitiv (bez -i) + nenaglašeni „htjeti" (ću, ćeš, će...). Primjer: čitati → čitat ću, vidjeti → vidjet ću.',kat:'glagol'},
+  {t:'Perfekt tvorba',d:'Nenaglašeni prezent „biti" (sam, si, je, smo, ste, su) + glagolski pridjev radni. Primjer: čitao SAM, pročitala JE.',kat:'glagol'},
+  {t:'Imperativ',d:'Zapovijedni način. 3 oblika: 2. jd. (čitaj!), 1. mn. (čitajmo!), 2. mn. (čitajte!). Samo u 3 lica.',kat:'glagol'},
+];
+
+let fcIdx=0,fcFlipped=false;
+
+function fcInit(){
+  fcIdx=0;fcFlipped=false;
+  fcRender();
+}
+
+function fcRender(){
+  const card=document.getElementById('fc-card-dyn');
+  const counter=document.getElementById('fc-counter-dyn');
+  if(!card)return;
+  const item=FC_DATA[fcIdx];
+  const catCls={stih:'p-pa',ep:'p-br',aleg:'p-r',stil:'p-t',hum:'p-go'};
+  card.querySelector('.fc-term').textContent=item.t;
+  card.querySelector('.fc-def').textContent=item.d;
+  card.querySelector('.fc-cat').textContent=item.kat+' · klikni za definiciju';
+  card.querySelector('.fc-back .fc-cat').textContent=item.kat;
+  card.classList.remove('flipped');
+  fcFlipped=false;
+  if(counter)counter.textContent=\`\${fcIdx+1} / \${FC_DATA.length}\`;
+  (document.getElementById('fc-prev-dyn')||{}).disabled=(fcIdx===0);
+  (document.getElementById('fc-next-dyn')||{}).disabled=(fcIdx===FC_DATA.length-1);
+}
+
+function fcFlip(){
+  const card=document.getElementById('fc-card-dyn');
+  if(!card)return;
+  fcFlipped=!fcFlipped;
+  card.classList.toggle('flipped',fcFlipped);
+}
+
+function fcNav(dir){
+  fcIdx=Math.max(0,Math.min(FC_DATA.length-1,fcIdx+dir));
+  fcRender();
+}
+
+/* ═══════════════════════════════════
+   INTERSECTION OBSERVER (IntersectionObserver)
+═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   READ PROGRESS BAR + BTT
+═══════════════════════════════════ */
+(function(){
+  const bar=document.getElementById('rpbar');
+  const btt=document.getElementById('btt');
+  function update(){
+    const el=document.documentElement;
+    const scrolled=el.scrollTop||document.body.scrollTop;
+    const total=(el.scrollHeight||document.body.scrollHeight)-el.clientHeight;
+    const pct=total>0?Math.min(100,Math.round(scrolled/total*100)):0;
+    if(bar)bar.style.width=pct+'%';
+    if(btt)btt.classList.toggle('show',scrolled>300);
+  }
+  document.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+
+
+/* ═══════════════════════════════════
+   CHECKLIST (Esej alat AT7)
+═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   CHECKPOINT WRITER
+═══════════════════════════════════ */
+function buildCitHTML(c, i){
+  const safe = (s)=>s.replace(/\\\\/g,'\\\\\\\\').replace(/'/g,"\\\\'");
+  return \`<div class="featured-quote" data-cit-cat="\${c.cat}">
+      \${c.napamet ? '<span class="fq-napamet">★ NAPAMET</span>' : ''}
+      <div class="fq-mark">«</div>
+      <div class="fq-body">
+        <div class="fq-text">\${c.text}</div>
+        <div class="fq-meta">\${c.meta}</div>
+      </div>
+      <button type="button" class="fq-copy" onclick="fqCopy(this,'\${safe(c.text)} — \${safe(c.meta.replace(/<[^>]+>/g,''))}')">⎘</button>
+    </div>\`;
+}
+
+function fqCopy(btn, text) {
+  navigator.clipboard.writeText(text).catch(() => {});
+  btn.classList.add('copied');
+  btn.textContent = '✓';
+  setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '⎘'; }, 1500);
+}
+
+/* ═══════════════════════════════════
+   POJMOVNIK FLASHCARD MODE (H11 pj2*)
+═══════════════════════════════════ */
+
+
+function pj2Render(){
+  if(!pj2Data.length) return;
+  const p = pj2Data[pj2Idx];
+  const scene = document.getElementById('fc-scene2');
+  const inner = document.getElementById('fc-inner2');
+  if(scene) scene.classList.remove('flipped');
+  if(inner) inner.style.transform='';
+
+  const cat = document.getElementById('fc-cat2');
+  const term = document.getElementById('fc-term2');
+  const def = document.getElementById('fc-def2');
+  const counter = document.getElementById('fc-counter2');
+  const prev = document.getElementById('fc-prev2');
+  const next = document.getElementById('fc-next2');
+
+  if(cat) cat.textContent = p.kat.toUpperCase();
+  if(term) term.textContent = p.term;
+  if(def) def.innerHTML = p.def;
+  if(counter) counter.textContent = (pj2Idx+1)+' / '+pj2Data.length;
+  if(prev) prev.disabled = pj2Idx === 0;
+  if(next) next.disabled = pj2Idx === pj2Data.length-1;
+
+  pj2Seen[pj2Idx] = true;
+  pj2RenderDots();
+}
+
+function pj2RenderDots(){
+  const prog = document.getElementById('fc-progress2');
+  if(!prog || pj2Data.length > 20) return;
+  prog.innerHTML = pj2Data.map((_,i)=>\`<div class="fc-dot\${pj2Seen[i]?' seen':''}\${i===pj2Idx?' known':''}"></div>\`).join('');
+}
+
+function pj2Next(){
+  if(pj2Idx < pj2Data.length-1){ pj2Idx++; pj2Render(); }
+}
+
+function pj2Prev(){
+  if(pj2Idx > 0){ pj2Idx--; pj2Render(); }
+}
+
+/* ═══════════════════════════════════
+   KEYBOARD SHORTCUTS
+═══════════════════════════════════ */
+(function(){
+  let helpShown=false;
+  document.addEventListener('keydown', function(e){
+    // Ignore when typing in inputs/textareas
+    const target=e.target.tagName;
+    if(target==='INPUT'||target==='TEXTAREA'||e.target.isContentEditable)return;
+    
+    const activeTab=Array.from(document.querySelectorAll('.tab')).findIndex(t=>t.classList.contains('on'));
+    
+    // Tab-specific shortcuts
+    if(activeTab === 5){ // Scanner tab
+      if(e.key === 's' || e.key === 'S'){ e.preventDefault(); document.getElementById('ms-input')?.focus(); return; }
+      if(e.key === 'a' || e.key === 'A'){ e.preventDefault(); document.getElementById('ai-input')?.focus(); return; }
+    }
+    if(activeTab === 3){ // Decliner tab
+      if(e.key === 'd' || e.key === 'D'){ e.preventDefault(); document.getElementById('decl-input')?.focus(); return; }
+    }
+    
+    // Arrow navigation between tabs
+    if(e.key==='ArrowRight'&&activeTab<7){
+      e.preventDefault();
+      sw(activeTab+1);
+    } else if(e.key==='ArrowLeft'&&activeTab>0){
+      e.preventDefault();
+      sw(activeTab-1);
+    }
+    // Number keys 1-8 for direct tab access
+    else if(/^[1-8]$/.test(e.key)){
+      e.preventDefault();
+      sw(parseInt(e.key)-1);
+    }
+    // ? for help
+    else if(e.key==='?'){
+      e.preventDefault();
+      if(helpShown){
+        document.getElementById('kbd-help')?.remove();
+        helpShown=false;
+        return;
+      }
+      const help=document.createElement('div');
+      help.id='kbd-help';
+      help.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--ele);border:1px solid var(--gold);border-radius:var(--r3);padding:24px 28px;z-index:500;box-shadow:0 8px 40px rgba(0,0,0,.6);max-width:90vw';
+      help.innerHTML=\`
+        <h3 style="margin-bottom:12px;color:var(--gold);font-family:var(--display)">⌨ Kratice</h3>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-family:var(--serif);font-size:13px">
+          <span><span class="kbd">←</span> <span class="kbd">→</span></span><span>Prethodni / Sljedeći tab</span>
+          <span><span class="kbd">1</span> – <span class="kbd">8</span></span><span>Skok direktno na tab</span>
+          <span><span class="kbd">?</span></span><span>Prikaži / sakrij ovu pomoć</span>
+          <span><span class="kbd">Esc</span></span><span>Zatvori dialog / izađi iz polja</span>
+          <span><span class="kbd">Ctrl</span>+<span class="kbd">P</span></span><span>Print / PDF</span>
+          <span style="grid-column:1/-1;height:1px;background:var(--bd);margin:6px 0"></span>
+          <span style="grid-column:1/-1;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--gold)">PO TABOVIMA</span>
+          <span><span class="kbd">D</span></span><span>Tab 3 — fokus Padežni decliner</span>
+          <span><span class="kbd">S</span></span><span>Tab 5 — fokus Morfo Scanner</span>
+          <span><span class="kbd">A</span></span><span>Tab 5 — fokus AI tutor</span>
+        </div>
+        <div style="margin-top:14px;text-align:right">
+          <button class="fcb" onclick="document.getElementById('kbd-help').remove();">Zatvori</button>
+        </div>
+      \`;
+      document.body.appendChild(help);
+      helpShown=true;
+    }
+    // Escape closes help/sidebar
+    else if(e.key==='Escape'){
+      document.getElementById('kbd-help')?.remove();
+      helpShown=false;
+      closeSb();
+    }
+  });
+})();
+
+if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+      }
+    });
+  },{threshold:0.1});
+  
+  document.querySelectorAll('.scene-card,.ac,.box-key,.fq,.tbl-wrap').forEach(el=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(12px)';
+    el.style.transition='opacity .4s ease, transform .4s ease';
+    obs.observe(el);
+  });
+}
+
+function toggleSidebar(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay');if(s)s.classList.toggle('mobile-open');if(o)o.classList.toggle('show')}
+
+// ═══════════════════════════════════
+// AI TUTOR — Anthropic Claude integration
+// ═══════════════════════════════════
+
+let aiAsking = false;
+
+async function aiAsk(){
+  const input = document.getElementById('ai-input');
+  const out = document.getElementById('ai-output');
+  if(!input || !out) return;
+  
+  const q = input.value.trim();
+  if(!q){ 
+    input.focus();
+    return; 
+  }
+  
+  if(aiAsking) return;
+  aiAsking = true;
+  
+  out.style.display = 'block';
+  out.innerHTML = \`
+    <div style="padding:16px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r1)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div class="ai-spinner" style="width:16px;height:16px;border:2px solid var(--bd);border-top-color:var(--blue);border-radius:50%;animation:aiSpin .8s linear infinite"></div>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--t3)">AI profesor razmišlja...</span>
+      </div>
+    </div>
+  \`;
+  
+  try {
+    // 🚨 PRODUCTION TODO: Move this fetch to backend proxy (Next.js /api/ai-feedback)
+
+    // Current: API call from browser would expose API key in production.
+
+    // Plan: Next.js API route → Supabase tier check → proxy to Anthropic API → return result
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{
+          role: "user",
+          content: \`Ti si AI profesor hrvatskog jezika za srednjoškolce pred maturom. Odgovaraj na hrvatskom, jasno i konkretno. Koristi PRIMJERE. Odgovor neka bude 3-6 rečenica, maksimalno 150 riječi. Koristi oznake <strong> za bitne pojmove i <em> za primjere.\\n\\nPitanje: \${q}\`
+        }]
+      })
+    });
+    
+    const data = await response.json();
+    const answer = data.content?.[0]?.text || 'Greška u odgovoru.';
+    
+    out.innerHTML = \`
+      <div style="padding:16px;background:var(--bg);border:1px solid var(--bd);border-left:3px solid var(--blue);border-radius:var(--r1);animation:resultFadeIn .4s ease">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue)">🤖 AI PROFESOR</div>
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiCopy(this)">⎘ Kopiraj</button>
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiShare()">📤 Podijeli</button>
+        </div>
+        <div id="ai-answer-text" style="font-family:var(--serif);font-size:14px;line-height:1.7;color:var(--t1)">\${answer}</div>
+        <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiFollowup('Daj mi više primjera.')">➕ Više primjera</button>
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiFollowup('Kako se ovo pojavljuje na maturi?')">📝 Na maturi</button>
+          <button class="nb-btn" style="padding:4px 10px;font-size:10px" onclick="aiFollowup('Objasni još jednostavnije.')">📖 Jednostavnije</button>
+        </div>
+      </div>
+    \`;
+    
+    // Save to history
+    try {
+      const hist = JSON.parse(localStorage.getItem('mt.hrv.h20.ai_hist')||'[]');
+      hist.push({q, a: answer, date: new Date().toISOString()});
+      localStorage.setItem('mt.hrv.h20.ai_hist', JSON.stringify(hist.slice(-20)));
+    } catch(e){}
+    
+  } catch(err){
+    out.innerHTML = \`
+      <div class="box-warn" style="margin:0">
+        <div class="bw-body">
+          <div class="bw-ttl" style="color:var(--red)">⚠ Greška</div>
+          <div class="bw-txt">AI trenutno nije dostupan. Pokušaj ponovo za nekoliko sekundi.<br>Ako problem potraje, koristi <strong>Morfo Scanner</strong> iznad ili se obrati na Maturiraj.hr.</div>
+        </div>
+      </div>
+    \`;
+  } finally {
+    aiAsking = false;
+  }
+}
+
+function aiAskExample(q){
+  const input = document.getElementById('ai-input');
+  if(input){
+    input.value = q;
+    aiAsk();
+  }
+}
+
+function aiFollowup(q){
+  const input = document.getElementById('ai-input');
+  if(input){
+    input.value = q;
+    aiAsk();
+  }
+}
+
+
+function aiShare(){
+  const ans = document.getElementById('ai-answer-text');
+  const input = document.getElementById('ai-input');
+  if(!ans) return;
+  
+  const text = \`Pitanje: \${input?.value || ''}\\n\\nOdgovor (Maturiraj.hr H20 Morfologija):\\n\${ans.innerText.trim()}\\n\\n→ maturiraj.hr/h20\`;
+  
+  if(navigator.share){
+    navigator.share({
+      title: 'Maturiraj.hr — H20 Morfologija',
+      text: text,
+      url: 'https://maturiraj.hr/hrvatski/h20-morfologija'
+    }).catch(() => {
+      // User cancelled or unsupported
+    });
+  } else {
+    // Fallback: copy to clipboard
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Kopirano! Sad zalijepi u poruku/email.');
+    });
+  }
+}
+
+function aiCopy(btn){
+  const ans = document.getElementById('ai-answer-text');
+  if(!ans) return;
+  const text = ans.innerText.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Kopirano';
+    setTimeout(() => btn.innerHTML = orig, 1500);
+  });
+}
+
+// Spinner keyframes
+if(!document.getElementById('ai-spinner-css')){
+  const s = document.createElement('style');
+  s.id = 'ai-spinner-css';
+  s.textContent = '@keyframes aiSpin { to { transform: rotate(360deg); } }';
+  document.head.appendChild(s);
+}
+
+
+// (Removed: Gamification — XP, Streak, Achievements per user request)
+// Stub no-op functions to prevent broken callers
+function addXP(){}
+function recordTabVisit(){}
+function recordQuizResult(){}
+function recordScan(){}
+function recordDecline(){}
+function updateStreak(){}
+function updateDashboard(){}
+
+// (Removed: Quick Search Cmd+K — restored to classic H19/H18 style)
+;
+/* TIER_SYSTEM_JS_INJECTED */
+/**
+ * Maturiraj.hr — Tier Helper Module
+ * 
+ * Globalni JS modul za upravljanje tier sustavom (Free / Standard / Pro).
+ * Koristi se u svim chapterima i pricing page-u.
+ * 
+ * 🚨 PRODUCTION TODO:
+ * - Tier provjera mora ići preko Supabase (auth.uid() → user_subscriptions tablica)
+ * - Trenutno mock kroz localStorage 'mt.pro_mode' = 'free' | 'standard' | 'pro'
+ * - Dnevni limiti se moraju validirati na backendu
+ * 
+ * Verzija: 1.0
+ * Autor: Maturiraj.hr team
+ */
+
+(function(window) {
+  'use strict';
+
+  // ════════════════════════════════════════════════
+  // CONFIG — Tier Definicija
+  // ════════════════════════════════════════════════
+  
+  const TIER_CONFIG = {
+    free: {
+      name: 'Free',
+      label: '🆓 Free',
+      price: 0,
+      color: 'var(--t3, #888)',
+      features: {
+        // TEORIJA — sve free
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve free
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — limited
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: 1,            // 1 esej max
+        max_summaries: 1,         // 1 sažetak max
+        all_essay_models: false,  // 1 vidljiv
+        all_summary_models: false,
+        export_workspace: false,  // bez exporta
+        // SIMULATORI — 0 demo
+        discere_simulators: false,
+        max_simulators: 0,
+        // PLAN UČENJA — pregled
+        study_plan_preview: true,
+        study_plan_full: false,
+        // STATS
+        streak_tracking: false,
+        heatmap: false,
+        progress_analytics: false,
+        // PARENT
+        parent_dashboard: false,
+        // AI — sve zaključano
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    standard: {
+      name: 'Standard',
+      label: '⭐ Standard',
+      price: 9.99,
+      color: 'var(--blue, #4a90d9)',
+      features: {
+        // TEORIJA — sve
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — full
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,           // unlimited
+        max_summaries: -1,        // unlimited
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        // SIMULATORI — svi (70 ispita)
+        discere_simulators: true,
+        max_simulators: -1,
+        // PLAN UČENJA — full
+        study_plan_preview: true,
+        study_plan_full: true,
+        // STATS
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        // PARENT
+        parent_dashboard: true,
+        // AI — sve zaključano (Standard NEMA AI!)
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    pro: {
+      name: 'Pro',
+      label: '💎 Pro',
+      price: 19.99,
+      color: 'var(--gold, #e9b446)',
+      features: {
+        // Sve iz Standard
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,
+        max_summaries: -1,
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        discere_simulators: true,
+        max_simulators: -1,
+        study_plan_preview: true,
+        study_plan_full: true,
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        parent_dashboard: true,
+        // AI — sve unlocked (PRO ONLY)
+        ai_chat: true,
+        ai_feedback: true,
+        ai_personal_plan: true,
+        // PRIJEMNI — Pro only
+        prijemni: true,
+      },
+      ai_limits: {
+        feedback_per_day: 20,    // 2B odluka
+        chat_per_day: 30,        // 2B odluka
+        plan_refresh_per_week: 1,
+      }
+    }
+  };
+
+  // ════════════════════════════════════════════════
+  // STORAGE KEYS
+  // ════════════════════════════════════════════════
+  
+  const STORAGE_KEYS = {
+    tier: 'mt.pro_mode',
+    daily_usage: 'mt.daily_usage',
+    weekly_usage: 'mt.weekly_usage',
+  };
+
+  // ════════════════════════════════════════════════
+  // CORE API
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća trenutni tier korisnika.
+   * @returns {'free' | 'standard' | 'pro'}
+   */
+  function getTier() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.tier);
+      if (stored === 'pro' || stored === 'standard') return stored;
+      return 'free';
+    } catch (e) {
+      return 'free';
+    }
+  }
+
+  /**
+   * Postavlja tier (mock — produkcija ovo radi preko Supabase).
+   */
+  function setTier(tier) {
+    if (!['free', 'standard', 'pro'].includes(tier)) {
+      console.error('[tier_helper] Invalid tier:', tier);
+      return false;
+    }
+    try {
+      if (tier === 'free') {
+        localStorage.removeItem(STORAGE_KEYS.tier);
+      } else {
+        localStorage.setItem(STORAGE_KEYS.tier, tier);
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Toggle tier (free → standard → pro → free)
+   * Koristi se u dev mode-u.
+   */
+  function toggleTier() {
+    const current = getTier();
+    const next = current === 'free' ? 'standard' : (current === 'standard' ? 'pro' : 'free');
+    setTier(next);
+    return next;
+  }
+
+  /**
+   * Provjerava ima li korisnik feature.
+   * @param {string} feature - npr 'ai_feedback', 'all_simulators'
+   * @returns {boolean}
+   */
+  function hasFeature(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return false;
+    return config.features[feature] === true;
+  }
+
+  /**
+   * Vraća konfiguraciju tier-a (label, cijena, boja).
+   * @param {string} tier - opcionalno; ako nije zadan, vraća za current.
+   */
+  function getTierConfig(tier) {
+    return TIER_CONFIG[tier || getTier()] || TIER_CONFIG.free;
+  }
+
+  /**
+   * Vraća vrijednost numeričkog limita feature-a.
+   * @param {string} feature - npr 'max_essays', 'max_simulators'
+   * @returns {number} -1 = unlimited, 0 = nema, X = točno X
+   */
+  function getLimit(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return 0;
+    const val = config.features[feature];
+    if (val === true) return -1; // unlimited
+    if (val === false) return 0;
+    return val;
+  }
+
+  /**
+   * Vraća AI limit (feedback / chat / plan).
+   * @param {string} type - 'feedback' | 'chat' | 'plan'
+   */
+  function getAILimit(type) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config || !config.ai_limits) return 0;
+    
+    const map = {
+      feedback: 'feedback_per_day',
+      chat: 'chat_per_day',
+      plan: 'plan_refresh_per_week'
+    };
+    return config.ai_limits[map[type]] || 0;
+  }
+
+  // ════════════════════════════════════════════════
+  // USAGE TRACKING
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća današnju potrošnju feature-a.
+   */
+  function getDailyUsage(feature) {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (!stored) return 0;
+      const data = JSON.parse(stored);
+      if (data.date !== today) return 0;
+      return data.usage[feature] || 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Inkrementira potrošnju feature-a.
+   */
+  function incrementDailyUsage(feature) {
+    const today = new Date().toISOString().split('T')[0];
+    let data = { date: today, usage: {} };
+    
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.date === today) data = parsed;
+      }
+    } catch (e) {}
+    
+    data.usage[feature] = (data.usage[feature] || 0) + 1;
+    
+    try {
+      localStorage.setItem(STORAGE_KEYS.daily_usage, JSON.stringify(data));
+    } catch (e) {}
+    
+    return data.usage[feature];
+  }
+
+  /**
+   * Provjerava može li korisnik koristiti AI feature (limit + tier check).
+   * @returns {{ allowed: boolean, reason: string, used: number, limit: number }}
+   */
+  function canUseAI(type) {
+    const tier = getTier();
+    const limit = getAILimit(type);
+    const used = getDailyUsage('ai_' + type);
+    
+    if (limit === 0) {
+      return {
+        allowed: false,
+        reason: 'tier_locked',
+        tier_required: 'pro',
+        used: 0,
+        limit: 0
+      };
+    }
+    
+    if (used >= limit) {
+      return {
+        allowed: false,
+        reason: 'daily_limit_reached',
+        tier_required: tier,
+        used,
+        limit
+      };
+    }
+    
+    return {
+      allowed: true,
+      reason: 'ok',
+      used,
+      limit
+    };
+  }
+
+  // ════════════════════════════════════════════════
+  // PAYWALL MODAL
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Prikazuje paywall modal.
+   * @param {object} options
+   * @param {string} options.feature - naziv feature-a
+   * @param {string} options.requiredTier - 'standard' | 'pro'
+   * @param {string} options.reason - razlog (free_limit / tier_locked / daily_limit)
+   */
+  function showPaywall(options) {
+    const opts = options || {};
+    const requiredTier = opts.requiredTier || 'standard';
+    const reason = opts.reason || 'feature_locked';
+    const feature = opts.feature || 'Ovaj feature';
+    
+    // Remove existing modal
+    const existing = document.getElementById('mt-paywall-modal');
+    if (existing) existing.remove();
+    
+    const reasonText = {
+      free_limit: 'Iskoristio si Free limit za ovaj feature.',
+      tier_locked: 'Ovaj feature je dostupan u Standard ili Pro pretplati.',
+      daily_limit: 'Iskoristio si svoj dnevni limit. Vrati se sutra ili upgradaj na viši tier.',
+      feature_locked: 'Ovaj feature zahtijeva pretplatu.'
+    };
+    
+    const modal = document.createElement('div');
+    modal.id = 'mt-paywall-modal';
+    modal.className = 'mt-paywall-overlay';
+    modal.innerHTML = \`
+      <div class="mt-paywall-modal" onclick="event.stopPropagation()">
+        <button type="button" class="mt-paywall-close" onclick="MT.Tier.closePaywall()" aria-label="Zatvori">×</button>
+        
+        <div class="mt-paywall-header">
+          <div class="mt-paywall-icon">\${requiredTier === 'pro' ? '💎' : '⭐'}</div>
+          <div class="mt-paywall-title">\${feature}</div>
+          <div class="mt-paywall-subtitle">\${reasonText[reason] || reasonText.feature_locked}</div>
+        </div>
+        
+        <div class="mt-paywall-tiers">
+          \${requiredTier !== 'pro' ? \`
+          <div class="mt-paywall-tier mt-paywall-tier-standard \${requiredTier === 'standard' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'standard' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">⭐ Standard</div>
+            <div class="mt-paywall-tier-price">9,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Cijela teorija + kvizovi</li>
+              <li>✅ Svi Discere simulatori (70 ispita)</li>
+              <li>✅ Sve modelne eseje (9) + sažetke (10)</li>
+              <li>✅ Neograničeno u Workspace</li>
+              <li>✅ Parent dashboard</li>
+              <li>✅ Streak + heatmap + analitika</li>
+              <li>❌ Bez AI features</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta" onclick="MT.Tier.subscribe('standard')">
+              Pretplati se na Standard
+            </button>
+          </div>
+          \` : ''}
+          
+          <div class="mt-paywall-tier mt-paywall-tier-pro \${requiredTier === 'pro' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'pro' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">💎 Pro</div>
+            <div class="mt-paywall-tier-price">19,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Sve iz Standard</li>
+              <li>✅ <strong>🤖 AI Profesor (chat) — 30/dan</strong></li>
+              <li>✅ <strong>🤖 AI Feedback za eseje + sažetke — 20/dan</strong></li>
+              <li>✅ <strong>Personalizirani plan učenja</strong></li>
+              <li>✅ <strong>Prijemni priprema</strong></li>
+              <li>✅ Priority AI queue</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta mt-paywall-cta-pro" onclick="MT.Tier.subscribe('pro')">
+              Pretplati se na Pro
+            </button>
+          </div>
+        </div>
+        
+        <div class="mt-paywall-footer">
+          <a href="Maturiraj_Pricing.html" class="mt-paywall-link">Vidi sve tier opcije →</a>
+          <span class="mt-paywall-divider">·</span>
+          <button type="button" class="mt-paywall-link mt-paywall-link-btn" onclick="MT.Tier.toggleTierDevMode()">
+            🧪 Dev: Toggle tier (trenutno: \${getTier().toUpperCase()})
+          </button>
+        </div>
+      </div>
+    \`;
+    
+    modal.addEventListener('click', closePaywall);
+    document.body.appendChild(modal);
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePaywall() {
+    const modal = document.getElementById('mt-paywall-modal');
+    if (modal) {
+      modal.remove();
+      document.body.style.overflow = '';
+    }
+  }
+
+  function subscribe(tier) {
+    // 🚨 PRODUCTION TODO: Stripe Checkout integration
+    // Plan: Stripe Checkout Session → success_url: /pretplata/success?tier=X
+    // Backend writes to Supabase user_subscriptions, then redirects back
+    
+    // For now: mock behavior — set tier, close paywall, reload
+    if (confirm(\`🚧 Pretplata u izradi (Stripe checkout uskoro).\\n\\nMock: Postaviti tier na \${tier === 'pro' ? 'Pro 19,99€' : 'Standard 9,99€'}/mj?\\n\\nKliknite OK za mock pretplatu.\`)) {
+      setTier(tier);
+      closePaywall();
+      location.reload();
+    }
+  }
+
+  function toggleTierDevMode() {
+    const next = toggleTier();
+    alert(\`🧪 Dev mode — tier postavljen na: \${next.toUpperCase()}\`);
+    closePaywall();
+    location.reload();
+  }
+
+  // ════════════════════════════════════════════════
+  // SIDEBAR TIER BADGE
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Injectsa tier badge u sidebar (ako postoji).
+   */
+  function injectSidebarBadge() {
+    const sidebar = document.querySelector('.sidebar') || document.querySelector('nav.sb');
+    if (!sidebar) return;
+    
+    // Check if already exists
+    if (document.getElementById('mt-tier-badge')) return;
+    
+    const tier = getTier();
+    const config = getTierConfig(tier);
+    
+    const badge = document.createElement('div');
+    badge.id = 'mt-tier-badge';
+    badge.className = 'mt-tier-badge mt-tier-badge-' + tier;
+    badge.innerHTML = \`
+      <div class="mt-tier-badge-label">\${config.label}</div>
+      \${tier === 'free' ? '<button type="button" class="mt-tier-badge-cta" onclick="MT.Tier.openPricing()">Upgrade →</button>' : ''}
+    \`;
+    
+    // Insert at top of sidebar
+    const firstChild = sidebar.firstElementChild;
+    if (firstChild) {
+      sidebar.insertBefore(badge, firstChild);
+    } else {
+      sidebar.appendChild(badge);
+    }
+  }
+
+  function openPricing() {
+    location.href = 'Maturiraj_Pricing.html';
+  }
+
+  // ════════════════════════════════════════════════
+  // PUBLIC API
+  // ════════════════════════════════════════════════
+  
+  window.MT = window.MT || {};
+  window.MT.Tier = {
+    // Core
+    getTier,
+    setTier,
+    toggleTier,
+    getTierConfig,
+    
+    // Features
+    hasFeature,
+    getLimit,
+    getAILimit,
+    
+    // Usage
+    getDailyUsage,
+    incrementDailyUsage,
+    canUseAI,
+    
+    // Paywall
+    showPaywall,
+    closePaywall,
+    subscribe,
+    toggleTierDevMode,
+    
+    // UI
+    injectSidebarBadge,
+    openPricing,
+    
+    // Config (read-only)
+    CONFIG: TIER_CONFIG
+  };
+
+  // Auto-inject sidebar badge on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectSidebarBadge);
+  } else {
+    injectSidebarBadge();
+  }
+
+})(window);
+;
+/* UPDATE_PROGRESS_INJECTED */
+
+function updateProgress(pct){
+  var p=Math.max(5,pct);
+  var pb=document.getElementById('prog-bar'); if(pb) pb.style.width=p+'%';
+  var pct2=document.getElementById('prog-pct'); if(pct2) pct2.textContent=p+'%';
+  var hp=document.getElementById('hero-pb'); if(hp) hp.style.width=p+'%';
+  var hl=document.getElementById('hero-prog-lbl'); if(hl) hl.textContent=p+'% završeno';
+  try { localStorage.setItem('mt.hrv.h20.prog', p); } catch(e){}
+}`;
+
+export default function H20Chapter() {
+  const containerRef = useRef(null);
+  const stylesInjectedRef = useRef(false);
+  const scriptsExecutedRef = useRef(false);
+
+  useEffect(() => {
+    // Inject styles (once per page mount)
+    if (!stylesInjectedRef.current && STYLES_CSS) {
+      const styleEl = document.createElement('style');
+      styleEl.id = `chapter-styles-H20`;
+      styleEl.textContent = STYLES_CSS;
+      document.head.appendChild(styleEl);
+      stylesInjectedRef.current = true;
+    }
+
+    // Execute inline scripts (once per page mount)
+    if (!scriptsExecutedRef.current && SCRIPTS_JS) {
+      try {
+        const scriptEl = document.createElement('script');
+        scriptEl.textContent = SCRIPTS_JS;
+        document.body.appendChild(scriptEl);
+        scriptsExecutedRef.current = true;
+      } catch (err) {
+        console.error(`[H20] Script execution error:`, err);
+      }
+    }
+
+    return () => {
+      // Cleanup on unmount
+      const styleEl = document.getElementById(`chapter-styles-H20`);
+      if (styleEl) styleEl.remove();
+      stylesInjectedRef.current = false;
+      scriptsExecutedRef.current = false;
+    };
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="chapter-h20"
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{ __html: BODY_HTML }}
+    />
+  );
+}
+export const HRV_POGAVLJE_20 = null

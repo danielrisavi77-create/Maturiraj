@@ -1,0 +1,5424 @@
+﻿/**
+ * H13 — Maturiraj.hr — Maturiraj.hr
+ * Auto-generated from Maturiraj_Hrvatski_H13.html
+ * 
+ * Strategy: Hybrid HTML-in-JSX (Strategy C)
+ * - Body HTML rendered via dangerouslySetInnerHTML
+ * - Inline <style> blocks injected at mount
+ * - Inline <script> blocks executed at mount
+ * - All onclick/oninput/etc. handlers preserved
+ * - SEO via Next.js Metadata API (in page.jsx)
+ */
+'use client';
+
+import { useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+import ChapterWrapper from './ChapterWrapper';
+import { SHARED_LIT_CSS } from './shared-lit-styles';
+import CitatnikH13 from './H13_CitatnikTab';
+import PojmovnikH13 from './H13_PojmovnikTab';
+import {
+  HeroQuoteGundulic,
+  AuthorProfileGundulic,
+  StatCardsDubravka,
+  TimelineGundulic,
+  CompareAlegorijaGundulic,
+  PopKulturaGundulic,
+  AccordionCinjenja,
+  AccordionEsejTezeH13,
+  VideoCardPrimaryH13,
+  VideoCardSecondaryH13,
+  VideoCardTertiaryH13,
+  VideoCardQuaternaryH13,
+} from './H13_Additions';
+
+const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="read-progress-bar" id="rpbar"></div></div>
+<a class="skip-link" href="#main">Preskoči na sadržaj</a>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Natrag na vrh" title="Natrag na vrh">↑</button>
+
+
+<!-- Feedback / bug report modal (v3.6.1) -->
+<div class="modal-backdrop" id="fb-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="fb-modal-title" onclick="if(event.target===this)closeFeedbackModal()">
+  <div class="modal" role="document">
+    <button class="modal-close" onclick="closeFeedbackModal()" aria-label="Zatvori">✕</button>
+    <div class="modal-ico">📝</div>
+    <div class="modal-eye">PRIJAVA / PRIJEDLOG</div>
+    <div class="modal-title" id="fb-modal-title">Javi nam što ne valja</div>
+    <div class="modal-desc">Uočio si grešku u sadržaju, bug u aplikaciji ili imaš prijedlog? <strong>Opiši ovdje</strong> — čitamo svaku poruku.</div>
+
+    <div class="modal-msg" id="fb-msg"></div>
+
+    <form class="fb-form" id="fb-form" onsubmit="return submitFeedback(event)">
+      <!-- Tip -->
+      <label class="fb-label">Vrsta poruke</label>
+      <div class="fb-types" role="radiogroup" aria-label="Vrsta poruke">
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="content_error" checked><span>📖 Greška u sadržaju</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="bug"><span>🐛 Bug u aplikaciji</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="suggestion"><span>💡 Prijedlog</span></label>
+        <label class="fb-type-opt"><input type="radio" name="fb-type" value="praise"><span>💚 Pohvala</span></label>
+      </div>
+
+      <!-- Poruka -->
+      <label class="fb-label" for="fb-message">Poruka <span class="fb-req">*</span></label>
+      <textarea id="fb-message" class="fb-textarea" required minlength="3" maxlength="5000" rows="5" placeholder="Opiši što si uočio — što detaljnije, lakše ćemo popraviti. Npr. 'U kvizu pitanje 3 ima grešku: točan odgovor je X, a ne Y.'"></textarea>
+      <div class="fb-counter"><span id="fb-char-count">0</span> / 5000</div>
+
+      <!-- Email (optional) -->
+      <label class="fb-label" for="fb-email">Tvoj e-mail <span class="fb-hint">(neobavezno — samo ako želiš odgovor)</span></label>
+      <input type="email" id="fb-email" class="modal-input" placeholder="tvoj@email.hr" autocomplete="email">
+
+      <button type="submit" class="modal-submit" id="fb-submit" style="width:100%;margin-top:14px">Pošalji →</button>
+      <div class="modal-small" style="margin-top:10px">Tvoj e-mail čuvamo samo za odgovor. Ne šaljemo ništa drugo.</div>
+    </form>
+  </div>
+</div>
+<div class="sb-overlay" id="overlay" onclick="closeSb()"></div>
+<button class="sb-hamburger" id="hamburger" onclick="openSb()" aria-label="Izbornik">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="shell">
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar" role="navigation" aria-label="Navigacija poglavlja">
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+        <path d="M16 3L29 9.5V22.5L16 29L3 22.5V9.5Z" stroke="#0F0605" stroke-width="1.5"/>
+        <path d="M16 3V29M3 9.5L29 22.5M29 9.5L3 22.5" stroke="#0F0605" stroke-width=".8" opacity=".5"/>
+        <circle cx="16" cy="16" r="2.5" fill="#0F0605" opacity=".7"/>
+      </svg>
+    </div>
+    <div>
+      <div class="sb-name">Maturiraj.hr</div>
+      <div class="sb-sub">HRVATSKI</div>
+    </div>
+    <button type="button" class="sb-hamburger" onclick="toggleSidebar()" aria-label="Zatvori izbornik">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="sb-prog-wrap">
+    <div class="sb-prog-label"><span>napredak</span><span id="sb-prog-pct">0%</span></div>
+    <div class="sb-prog-track"><div class="sb-prog-bar" id="sb-prog-bar" style="width:0%"></div></div>
+  </div>
+
+  <!-- ══ SVJETSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Svjetska književnost</div>
+  <a class="sb-item" data-code="h01" href="/skripte/hrv/h01"><span class="sb-dot"></span>H01 · Temelji i antika</a>
+  <a class="sb-item" data-code="h02" href="/skripte/hrv/h02"><span class="sb-dot"></span>H02 · Srednji vijek</a>
+  <a class="sb-item" data-code="h03" href="/skripte/hrv/h03"><span class="sb-dot"></span>H03 · Renesansa</a>
+  <a class="sb-item" data-code="h04" href="/skripte/hrv/h04"><span class="sb-dot"></span>H04 · Barok i klasicizam</a>
+  <a class="sb-item" data-code="h05" href="/skripte/hrv/h05"><span class="sb-dot"></span>H05 · Prosvjetiteljstvo</a>
+  <a class="sb-item" data-code="h06" href="/skripte/hrv/h06"><span class="sb-dot"></span>H06 · Romantizam</a>
+  <a class="sb-item" data-code="h07" href="/skripte/hrv/h07"><span class="sb-dot"></span>H07 · Realizam</a>
+  <a class="sb-item" data-code="h08" href="/skripte/hrv/h08"><span class="sb-dot"></span>H08 · Moderna</a>
+  <a class="sb-item" data-code="h09" href="/skripte/hrv/h09"><span class="sb-dot"></span>H09 · Avangarda i 20. st.</a>
+  <a class="sb-item" data-code="h10" href="/skripte/hrv/h10"><span class="sb-dot"></span>H10 · Postmoderna</a>
+
+  <!-- ══ HRVATSKA KNJIŽEVNOST ══ -->
+  <div class="sb-era">// Hrvatska književnost</div>
+  <a class="sb-item" data-code="h11" href="/skripte/hrv/h11"><span class="sb-dot"></span>H11 · Stari hrv. pisci</a>
+  <a class="sb-item" data-code="h12" href="/skripte/hrv/h12"><span class="sb-dot"></span>H12 · Marulić i hrv. rens.</a>
+  <a class="sb-item" data-code="h13" href="/skripte/hrv/h13"><span class="sb-dot"></span>H13 · Hrv. barok — Gundulić</a>
+  <a class="sb-item" data-code="h14" href="/skripte/hrv/h14"><span class="sb-dot"></span>H14 · Preporod</a>
+  <a class="sb-item" data-code="h15" href="/skripte/hrv/h15"><span class="sb-dot"></span>H15 · Šenoa i realizam</a>
+  <a class="sb-item" data-code="h16" href="/skripte/hrv/h16"><span class="sb-dot"></span>H16 · Krleža i moderna</a>
+
+  <!-- ══ STIL I IZRAZ ══ -->
+  <div class="sb-era">// Stil i izraz</div>
+  <a class="sb-item" data-code="h17" href="/skripte/hrv/h17"><span class="sb-dot"></span>H17 · Stilske figure</a>
+  <a class="sb-item" data-code="h18" href="/skripte/hrv/h18"><span class="sb-dot"></span>H18 · Versifikacija</a>
+
+  <!-- ══ JEZIKOSLOVLJE ══ -->
+  <div class="sb-era">// Jezikoslovlje</div>
+  <a class="sb-item" data-code="h19" href="/skripte/hrv/h19"><span class="sb-dot"></span>H19 · Fonetika i fonologija</a>
+  <a class="sb-item" data-code="h20" href="/skripte/hrv/h20"><span class="sb-dot"></span>H20 · Morfologija</a>
+  <a class="sb-item" data-code="h21" href="/skripte/hrv/h21"><span class="sb-dot"></span>H21 · Sintaksa</a>
+  <a class="sb-item" data-code="h22" href="/skripte/hrv/h22"><span class="sb-dot"></span>H22 · Leksikologija</a>
+  <a class="sb-item" data-code="h23" href="/skripte/hrv/h23"><span class="sb-dot"></span>H23 · Povijest hrv. jezika</a>
+  <a class="sb-item" data-code="h24" href="/skripte/hrv/h24"><span class="sb-dot"></span>H24 · Hrv. narječja</a>
+
+  <!-- ══ PRAVOPIS ══ -->
+  <div class="sb-era">// Pravopis</div>
+  <a class="sb-item" data-code="h25" href="/skripte/hrv/h25"><span class="sb-dot"></span>H25 · Pravopisna pravila</a>
+  <a class="sb-item" data-code="h26" href="/skripte/hrv/h26"><span class="sb-dot"></span>H26 · Interpunkcija</a>
+
+  <!-- ══ PISANJE ══ -->
+  <div class="sb-era">// Pisanje</div>
+  <a class="sb-item" data-code="h27" href="/skripte/hrv/h27"><span class="sb-dot"></span>H27 · Školski esej</a>
+  <a class="sb-item" data-code="h28" href="/skripte/hrv/h28"><span class="sb-dot"></span>H28 · Sažetak</a>
+
+  <!-- ══ DODATNO — obvezatna djela (deep-dive za esej 2026 + čitanje) ══ -->
+  <div class="sb-era sb-era-d">// Dodatno · obvezatna djela</div>
+  <div class="sb-d-meta">Deep-dive za esej (30 bod) + čitanje (20 bod)</div>
+
+  <a class="sb-item sb-d" data-code="d01" href="/skripte/hrv"><span class="sb-dot"></span>D01 · Sofoklo · Antigona</a>
+  <a class="sb-item sb-d" data-code="d02" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D02 · Petrarca · izbor</a>
+  <a class="sb-item sb-d" data-code="d03" href="/skripte/hrv"><span class="sb-dot"></span>D03 · Shakespeare · Hamlet</a>
+  <a class="sb-item sb-d" data-code="d04" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D04 · Calderón · Život je san</a>
+  <a class="sb-item sb-d" data-code="d05" href="/skripte/hrv"><span class="sb-dot"></span>D05 · Molière · Škrtac</a>
+  <a class="sb-item sb-d" data-code="d06" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D06 · Goethe · Werther</a>
+  <a class="sb-item sb-d" data-code="d07" href="/skripte/hrv"><span class="sb-dot"></span>D07 · Dostojevski · Zločin i kazna</a>
+  <a class="sb-item sb-d" data-code="d08" href="/skripte/hrv"><span class="sb-dot"></span>D08 · Kafka · Preobražaj</a>
+  <a class="sb-item sb-d" data-code="d09" href="/skripte/hrv"><span class="sb-dot"></span>D09 · Camus · Stranac</a>
+  <a class="sb-item sb-d" data-code="d10" href="/skripte/hrv"><span class="sb-dot"></span>D10 · Baudelaire · Cvjetovi zla</a>
+  <a class="sb-item sb-d" data-code="d11" href="/skripte/hrv"><span class="sb-dot"></span>D11 · Držić · Novela od Stanca</a>
+  <a class="sb-item sb-d" data-code="d12" href="/skripte/hrv"><span class="sb-dot"></span>D12 · Marulić · Judita</a>
+  <a class="sb-item sb-d active" data-code="d13" href="/skripte/hrv"><span class="sb-dot"></span>D13 · Gundulić · Dubravka</a>
+  <a class="sb-item sb-d" data-code="d14" href="/skripte/hrv"><span class="sb-dot"></span>D14 · Mažuranić · Smail-aga</a>
+  <a class="sb-item sb-d" data-code="d15" href="/skripte/hrv"><span class="sb-dot"></span>D15 · Šenoa · Prijan Lovro</a>
+  <a class="sb-item sb-d" data-code="d16" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D16 · Novak · Posljednji Stipančići</a>
+  <a class="sb-item sb-d" data-code="d17" href="/skripte/hrv"><span class="sb-dot"></span>D17 · Kranjčević · poezija</a>
+  <a class="sb-item sb-d" data-code="d18" href="/skripte/hrv"><span class="sb-dot"></span>D18 · Matoš · izbor</a>
+  <a class="sb-item sb-d" data-code="d19" href="/skripte/hrv"><span class="sb-dot"></span>D19 · Nazor · poezija</a>
+  <a class="sb-item sb-d" data-code="d20" href="/skripte/hrv"><span class="sb-dot"></span>D20 · Šimić · poezija</a>
+  <a class="sb-item sb-d" data-code="d21" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D21 · Krleža · Glembajevi</a>
+  <a class="sb-item sb-d" data-code="d22" data-star="2026" href="/skripte/hrv"><span class="sb-dot"></span>D22 · Marinković · Kiklop</a>
+
+  <div class="sb-footer" id="sb-footer">
+    <span id="sb-footer-pos">13 / 28</span> · <span id="sb-footer-title">gundulić · dubravka</span>
+    <br>maturiraj.hr · hrvatski · v2
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main" id="main" role="main">
+<div class="content-wrap">
+
+  <!-- BREADCRUMB -->
+  <div class="bc">
+    <a class="bc-link" href="/">Maturiraj.hr</a><span class="bc-sep">/</span>
+    <a class="bc-link" href="/skripte/hrv">Skripte</a><span class="bc-sep">/</span>
+    <a class="bc-link" href="/skripte/hrv">Hrvatski jezik</a><span class="bc-sep bc-tab-sep">/</span>
+    <span class="bc-cur">H13 · Gundulić · Dubravka</span>
+    <span class="bc-sep bc-tab-sep">/</span>
+    <span class="bc-tab" id="bc-tab">Teorija</span>
+  </div>
+
+  <!-- COUNTDOWN + ACTIONS -->
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px">
+    <div class="countdown" style="margin-bottom:0">
+      ⏳ Do ispita HRV: <strong id="cd-days">—</strong> dana &nbsp;<span style="font-size:9px;color:var(--t3)">(15. 6. 2026.)</span>
+    </div>
+    <button class="fcb" onclick="window.print()" style="font-size:10px" title="Print / PDF (Ctrl+P)">🖨 Print</button>
+    <button class="fcb" onclick="navigator.share?navigator.share({title:'H13 · Gundulić · Dubravka',url:window.location.href}):navigator.clipboard.writeText(window.location.href)" style="font-size:10px" title="Podijeli">📤 Dijeli</button>
+    <span style="font-family:var(--mono);font-size:9px;color:var(--t3);margin-left:auto">
+      <span class="kbd">←</span> <span class="kbd">→</span> tabovi · <span class="kbd">?</span> pomoć
+    </span>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-chapter">H13 &nbsp;·&nbsp; Hrvatska književnost &nbsp;·&nbsp; Barok (17. st.) · Deep-dive</div>
+    <h1 class="hero-title">Ivan Gundulić<br><span>i Dubravka</span></h1>
+    <p class="hero-sub">
+      <strong>Gundulićeva Dubravka (1628.) — pastoralno-alegorijska drama o dubrovačkoj slobodi.</strong> Tri činjenja, 28 skazanja, pastirski likovi kao nositelji patriotske poruke. Dubinska analiza teme slobode, pastorale i barokne alegorije. <strong>★ ispitno djelo za maturu 2026.</strong>
+    </p>
+    <div class="hero-chips">
+      <span class="hchip br">▶ H13 deep-dive</span>
+      <span class="hchip go">🎭 Dubravka 1628.</span>
+      <span class="hchip te">🏛 Dubrovačka Republika</span>
+      <span class="hchip pa">📖 Obvezatno čitanje</span>
+      <span class="hchip re">★ ispitno djelo 2026</span>
+    </div>
+  </header>
+
+
+  <!-- ══ SOCIAL PROOF + COUNTDOWN ═════════════════
+       Playbook P5.1 + P5.2 — trust + urgency
+       Brojevi se renderiraju iz JS-a (vidi renderSocialProof)
+  ═══════════════════════════════════════════════════ -->
+  <div class="social-proof" id="social-proof" aria-label="Statistika platforme"></div>
+
+  <!-- Countdown se dinamički renderira iz JS-a -->
+  <div class="countdown" id="countdown" aria-label="Do mature" style="display:none"></div>
+
+  <!-- TABS -->
+  <div class="tabs" role="tablist" aria-label="Dijelovi poglavlja">
+    <button class="tab on" id="tab0" onclick="sw(0)" role="tab" aria-selected="true" aria-controls="l0">📖 Teorija</button>
+    <button class="tab" id="tab1" onclick="sw(1)" role="tab" aria-selected="false" aria-controls="l1">📖 3 činjenja</button>
+    <button class="tab" id="tab2" onclick="sw(2)" role="tab" aria-selected="false" aria-controls="l2">✍️ Esej alat</button>
+    <button class="tab" id="tab3" onclick="sw(3)" role="tab" aria-selected="false" aria-controls="l3">💬 Citatnik</button>
+    <button class="tab" id="tab4" onclick="sw(4)" role="tab" aria-selected="false" aria-controls="l4">📚 Pojmovnik</button>
+    <button class="tab" id="tab5" onclick="sw(5)" role="tab" aria-selected="false" aria-controls="l5">⚡ Drill<span class="tab-lock">PRO</span></button>
+    <button class="tab" id="tab6" onclick="sw(6)" role="tab" aria-selected="false" aria-controls="l6">🧠 Kviz<span class="tab-badge">20</span></button>
+    <button class="tab" id="tab7" onclick="sw(7)" role="tab" aria-selected="false" aria-controls="l7">✅ Checkpoint</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 0 · TEORIJA
+  ══════════════════════════════════════ -->
+  <div class="layer on" id="l0" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-pa">Gundulić</span>
+      <span class="pill p-br">Dubravka 1628.</span>
+      <span class="pill p-go">★ Esejsko 2026</span>
+      <span class="pill p-t">Pastorala · alegorija</span>
+      <span class="pill p-r">Hrv. barok</span>
+    </div>
+
+    <div id="h13-react-hero-quote-gundulic"></div>
+
+    <!-- Soft kontekst hint — exam frequency -->
+    <div class="soft-hint">
+      <div class="soft-hint-ico">💡</div>
+      <div class="soft-hint-body">
+        Tema <b>Ivan Gundulić / Dubravka i Osman</b> pojavila se na MAT 2023. — Alegorična sloboda Dubravke i <b>anti-osmanski ep Osman</b> su ključne esejske kombinacije 2026.
+      </div>
+    </div>
+
+    <!-- DIJAGNOSTIKA -->
+    <div class="box-int" style="margin-bottom:20px">
+      <div class="box-int-lbl">🎯 Brza dijagnostika H13 — 5 pitanja</div>
+      <div class="diag" data-state="intro" id="diag0" style="">
+      <style>#diag0[data-state="dismissed"]{display:none}
+/* ══ H10 SIDEBAR UPGRADES ══ */
+.sb-era-d{color:var(--gold,#E8C97A);border-top:1px solid var(--bd-go,rgba(232,201,122,.2));margin-top:8px;padding-top:14px}
+.sb-d-meta{font-family:var(--serif);font-size:10px;font-style:italic;color:var(--t3);padding:0 14px 8px;line-height:1.4;letter-spacing:.1px}
+
+
+/* ═══════════════════════════════════
+   CROSS-CHAPTER NAVIGATION
+═══════════════════════════════════ */
+.chapter-nav-wrap{
+  margin:48px auto 32px;
+  max-width:920px;
+  padding:0 20px;
+}
+.chapter-nav-hdr{
+  text-align:center;
+  margin-bottom:24px;
+}
+.chapter-nav-title{
+  font-family:var(--display);
+  font-size:20px;
+  font-weight:700;
+  color:var(--t1);
+  margin-bottom:6px;
+}
+.chapter-nav-sub{
+  font-family:var(--serif);
+  font-size:13px;
+  color:var(--t3);
+  font-style:italic;
+}
+.chapter-nav-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:28px;
+}
+.chapter-nav-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+  text-decoration:none;
+  color:inherit;
+  transition:all .25s ease;
+  cursor:pointer;
+}
+.chapter-nav-card:hover{
+  border-color:var(--gold);
+  background:linear-gradient(135deg, var(--ele), rgba(233,180,70,.06));
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+.chapter-nav-prev{text-align:left}
+.chapter-nav-next{text-align:right;flex-direction:row}
+.chapter-nav-next .chapter-nav-meta{flex:1}
+.chapter-nav-arrow{
+  font-size:24px;
+  color:var(--gold);
+  font-weight:700;
+  flex-shrink:0;
+}
+.chapter-nav-meta{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.chapter-nav-pill{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:var(--t3);
+  text-transform:uppercase;
+  font-weight:700;
+}
+.chapter-nav-pill-next{color:var(--gold)}
+.chapter-nav-name{
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:700;
+  color:var(--t1);
+}
+.chapter-nav-desc{
+  font-family:var(--serif);
+  font-size:12px;
+  color:var(--t2);
+  font-style:italic;
+}
+.chapter-nav-related{
+  padding:18px;
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--bd);
+  border-radius:var(--r2);
+}
+.chapter-nav-related-ttl{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--gold);
+  margin-bottom:12px;
+  text-transform:uppercase;
+}
+.chapter-nav-related-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:8px;
+}
+.chapter-nav-mini{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:var(--ele);
+  border:1px solid var(--bd);
+  border-radius:var(--r1);
+  text-decoration:none;
+  color:inherit;
+  transition:all .2s ease;
+  font-size:12.5px;
+}
+.chapter-nav-mini:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+.chapter-nav-mini-code{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:1px;
+  color:var(--gold);
+  font-weight:700;
+  background:rgba(233,180,70,.1);
+  padding:2px 6px;
+  border-radius:4px;
+}
+.chapter-nav-mini-name{
+  font-family:var(--serif);
+  color:var(--t2);
+}
+@media (max-width:640px){
+  .chapter-nav-grid{grid-template-columns:1fr}
+  .chapter-nav-next{flex-direction:row}
+}
+
+
+/* TIER INDICATOR — Workspace badge */
+.ws-tier-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--ele, #1f1414);
+  border: 1px solid var(--bd, #2c1f1f);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.ws-tier-indicator.ws-tier-free {
+  border-left: 3px solid var(--t3, #888);
+}
+
+.ws-tier-indicator.ws-tier-free.ws-tier-full {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233,180,70,0.06), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator.ws-tier-standard {
+  border-left: 3px solid var(--blue, #4a90d9);
+  background: linear-gradient(135deg, rgba(74,144,217,0.04), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator.ws-tier-pro {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233,180,70,0.06), var(--ele, #1f1414));
+}
+
+.ws-tier-indicator .ws-tier-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ws-tier-indicator .ws-tier-text {
+  flex: 1;
+  font-size: 13px;
+  color: var(--t2, #c5b8aa);
+  line-height: 1.4;
+  font-family: var(--mono, monospace);
+}
+
+.ws-tier-indicator .ws-tier-text strong {
+  color: var(--t1, #f4ede5);
+}
+
+.ws-tier-indicator .ws-tier-cta {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.ws-tier-indicator .ws-tier-cta:hover {
+  background: var(--gold-hover, #d4a13e);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .ws-tier-indicator {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .ws-tier-indicator .ws-tier-text {
+    font-size: 12px;
+  }
+}
+
+/* TIER_SYSTEM_CSS_INJECTED */
+/* ═══════════════════════════════════════════════════
+   MATURIRAJ.HR — TIER SYSTEM CSS
+   Paywall modal + sidebar badge + tier indicators
+   ═══════════════════════════════════════════════════ */
+
+/* ───────── PAYWALL OVERLAY ───────── */
+.mt-paywall-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: mt-fade-in 0.2s ease;
+}
+
+@keyframes mt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ───────── PAYWALL MODAL ───────── */
+.mt-paywall-modal {
+  position: relative;
+  background: var(--bg2, #1a1a1a);
+  border: 1px solid var(--bd, #333);
+  border-radius: 18px;
+  max-width: 920px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  padding: 32px 28px;
+  animation: mt-slide-up 0.3s ease;
+}
+
+@keyframes mt-slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.mt-paywall-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--bd, #333);
+  color: var(--t2, #aaa);
+  font-size: 22px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.mt-paywall-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--t1, #fff);
+  border-color: var(--gold, #e9b446);
+}
+
+/* ───────── PAYWALL HEADER ───────── */
+.mt-paywall-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--bd, #333);
+}
+
+.mt-paywall-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.mt-paywall-title {
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--t1, #fff);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.mt-paywall-subtitle {
+  font-size: 14px;
+  color: var(--t2, #aaa);
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ───────── PAYWALL TIERS ───────── */
+.mt-paywall-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mt-paywall-tier {
+  position: relative;
+  padding: 24px 22px;
+  background: var(--ele, #222);
+  border: 2px solid var(--bd, #333);
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.mt-paywall-tier:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mt-paywall-tier-recommended {
+  border-color: var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233, 180, 70, 0.06), var(--ele, #222));
+  box-shadow: 0 0 0 4px rgba(233, 180, 70, 0.08);
+}
+
+.mt-paywall-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.mt-paywall-tier-name {
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--t1, #fff);
+}
+
+.mt-paywall-tier-standard .mt-paywall-tier-name {
+  color: var(--blue, #4a90d9);
+}
+
+.mt-paywall-tier-pro .mt-paywall-tier-name {
+  color: var(--gold, #e9b446);
+}
+
+.mt-paywall-tier-price {
+  font-family: var(--mono, monospace);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--t1, #fff);
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+.mt-paywall-tier-price span {
+  font-size: 14px;
+  color: var(--t3, #888);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.mt-paywall-tier-features {
+  list-style: none;
+  margin: 0 0 18px 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--t2, #ccc);
+}
+
+.mt-paywall-tier-features li {
+  padding: 4px 0;
+  padding-left: 4px;
+}
+
+.mt-paywall-tier-features li strong {
+  color: var(--t1, #fff);
+}
+
+/* ───────── CTA BUTTONS ───────── */
+.mt-paywall-cta {
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--blue, #4a90d9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--display, 'Fraunces', serif);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.2px;
+}
+
+.mt-paywall-cta:hover {
+  background: var(--blue-hover, #3578bf);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(74, 144, 217, 0.3);
+}
+
+.mt-paywall-cta-pro {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+}
+
+.mt-paywall-cta-pro:hover {
+  background: var(--gold-hover, #d4a13e);
+  box-shadow: 0 6px 18px rgba(233, 180, 70, 0.3);
+}
+
+/* ───────── PAYWALL FOOTER ───────── */
+.mt-paywall-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--t3, #888);
+  padding-top: 18px;
+  border-top: 1px solid var(--bd, #333);
+}
+
+.mt-paywall-link {
+  color: var(--blue, #4a90d9);
+  text-decoration: none;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.mt-paywall-link:hover {
+  color: var(--gold, #e9b446);
+  text-decoration: underline;
+}
+
+.mt-paywall-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mt-paywall-divider {
+  margin: 0 8px;
+  color: var(--t3, #888);
+}
+
+/* ───────── SIDEBAR TIER BADGE ───────── */
+.mt-tier-badge {
+  margin: 12px;
+  padding: 10px 12px;
+  background: var(--ele, #222);
+  border: 1px solid var(--bd, #333);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mt-tier-badge-free {
+  border-left: 3px solid var(--t3, #888);
+}
+
+.mt-tier-badge-standard {
+  border-left: 3px solid var(--blue, #4a90d9);
+}
+
+.mt-tier-badge-pro {
+  border-left: 3px solid var(--gold, #e9b446);
+  background: linear-gradient(135deg, rgba(233, 180, 70, 0.04), var(--ele, #222));
+}
+
+.mt-tier-badge-label {
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--t1, #fff);
+}
+
+.mt-tier-badge-cta {
+  background: var(--gold, #e9b446);
+  color: #0F0605;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mt-tier-badge-cta:hover {
+  background: var(--gold-hover, #d4a13e);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(233, 180, 70, 0.3);
+}
+
+/* ───────── MOBILE ───────── */
+@media (max-width: 720px) {
+  .mt-paywall-modal {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+  
+  .mt-paywall-title {
+    font-size: 20px;
+  }
+  
+  .mt-paywall-icon {
+    font-size: 40px;
+  }
+  
+  .mt-paywall-tiers {
+    grid-template-columns: 1fr;
+  }
+  
+  .mt-paywall-tier-price {
+    font-size: 28px;
+  }
+  
+  .mt-tier-badge {
+    margin: 8px;
+    padding: 8px 10px;
+  }
+  
+  .mt-tier-badge-cta {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}
+
+
+/* CHEAT-CARD (auto-injected) */
+.cheat-card{background:linear-gradient(135deg,rgba(233,180,70,0.04),var(--card,#1a1010));border:1px solid var(--gold,#e9b446);border-radius:14px;padding:18px 22px}
+.cheat-hdr{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdm,#2c1f1f)}
+.cheat-eye{font-family:var(--mono,monospace);font-size:10px;font-weight:800;color:var(--gold,#e9b446);letter-spacing:1.2px;margin-bottom:4px}
+.cheat-ttl{font-family:var(--serif,'Fraunces',serif);font-size:16px;font-weight:700;color:var(--t1,#f4ede5)}
+.cheat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.cheat-col-wide{grid-column:1/-1}
+
+  </style>
+        <div class="diag-intro">
+          <div class="diag-intro-icon">🎯</div>
+          <div class="diag-intro-body">
+            <h4>Provjeri gdje si s H13 — Gundulić · Dubravka</h4>
+            <p>5 pitanja (&lt;2 min). Na kraju: personalizirana preporuka gdje započeti učiti. Rezultat se ne sprema.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+            <button class="diag-btn diag-btn-primary" onclick="diag0Start()">▶ Pokreni dijagnostiku</button>
+            <button class="diag-btn diag-btn-ghost" onclick="diag0Skip()">Preskoči — odmah na sadržaj ↓</button>
+          </div>
+        </div>
+        <div class="diag-quiz" id="diag0-quiz">
+          <div class="diag-q" id="diag0-q"></div>
+          <div class="diag-opts" id="diag0-opts"></div>
+          <div class="diag-prog-wrap">
+            <div class="diag-prog-txt">Pitanje <span id="diag0-idx">1</span> / 5</div>
+            <div class="diag-bar"><div class="diag-prog-bar" id="diag0-bar" style="width:0%"></div></div>
+            <div class="diag-prog-num"><span id="diag0-correct">0</span> točno</div>
+          </div>
+        </div>
+        <div class="diag-result">
+          <div class="diag-res-msg" id="d0rtitle">Rezultat</div>
+          <div class="diag-rec" id="d0rdesc"></div>
+          <button class="fcb" onclick="diag0Reset()" style="margin-right:8px">↩ Ponovi</button>
+          <button class="fcb primary" id="d0rbtn" onclick="sw(1)">→ Dubravka: 3 činjenja</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEC 01: Gundulić — život i opus -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01 · Ivan Gundulić — život i opus</div><div class="sec-line"></div></div>
+
+    <div id="h13-react-author-gundulic"></div>
+
+    <!-- SEC 02: Kontekst — hrvatski barok -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02 · Kontekst — hrvatski barok (17. st.)</div><div class="sec-line"></div></div>
+
+    <p>Barok je europski kulturni pokret <strong>17. st.</strong> (između renesanse i klasicizma). U Hrvatskoj: <strong>Dubrovačka Republika</strong> je glavni centar, protureformacijska atmosfera, katoličko-humanistička sinteza.</p>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Obilježje</th><th>Renesansa (16. st.)</th><th>Barok (17. st.)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Svjetonazor</strong></td><td>Čovjek u centru · humanizam · optimizam</td><td>Bog u centru · taština · memento mori</td></tr>
+          <tr><td><strong>Stil</strong></td><td>Jasnoća, harmonija, mjera</td><td>Patos, kontrast, pretjerivanje</td></tr>
+          <tr><td><strong>Omiljena sredstva</strong></td><td>Sonet, antiteza, alegorija</td><td>Hiperbola, oksimoron, metafora, paradoks</td></tr>
+          <tr><td><strong>Tematika</strong></td><td>Ljubav, priroda, humanizam</td><td>Prolaznost, vjera, otpor grijehu</td></tr>
+          <tr><td><strong>Hrv. autori</strong></td><td>Marulić, petrarkisti, Držić, Lucić</td><td><strong>Gundulić</strong>, Palmotić, Bunić Vučić, Đurđević</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-warn" style="display:flex;gap:14px;align-items:flex-start">
+      <div class="bw-ico">⚠️</div>
+      <div class="bw-body">
+        <div class="bw-title">Turska opasnost — i dalje kontekst</div>
+        <div class="bw-txt">Kao i u renesansi (Marulić), <strong>turska opasnost</strong> je stalna podloga. Bitka kod Hoćima (1621.) poraz je Turaka — Gundulić u Osmanu slavi tu pobjedu. Dubrovačka Republika, iako plaća tribut Turcima, njeguje ideal slobode. <em>Dubravka je književni spomenik te slobode.</em></div>
+      </div>
+    </div>
+
+    <!-- SEC 02b: Kronologija -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">02b · Kronologija — Gundulić u europskom kontekstu</div><div class="sec-line"></div></div>
+
+    <div id="h13-react-timeline-gundulic"></div>
+
+    <!-- SEC 03: Dubravka — nastanak i karakter -->
+    <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Dubravka je <b>pastoralno-alegorijska drama</b> (1628.) — ne ep! Tri činjenja, 28 skazanja. Tema ispita: zašto Gundulić bira pastoralu (mirni seosko okruženje) da priča o <b>slobodi Dubrovnika</b>?</div></div>
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">03 · Dubravka — nastanak i karakter</div><div class="sec-line"></div></div>
+
+    <div id="h13-react-statcards-dubravka"></div>
+
+    <p><strong>Dubravka</strong> je nastala <strong>1627./1628.</strong> za Gundulićevu vjenčanu svečanost s Nikom Sorkočević. Prva izvedba: <strong>3. veljače 1628.</strong> u Dubrovniku „pred Dvorom", na dan sv. Vlaha — zaštitnika Dubrovnika. Od tada se izvodila svake godine na istu svetkovinu, sve do pada Republike 1808.</p>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Element</th><th>Činjenica</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Godina nastanka</strong></td><td>~1627. (napisana); <b>1628.</b> (izvedena)</td></tr>
+          <tr><td><strong>Povod</strong></td><td>Gundulićeva vjenčana svečanost s Nikom Sorkočević</td></tr>
+          <tr><td><strong>Prva izvedba</strong></td><td>Na dan sv. Vlaha (3. veljače 1628.) u Dubrovniku „pred Dvorom"</td></tr>
+          <tr><td><strong>Žanr</strong></td><td>Pastorala s elementima melodrame i pastirske igre (tragikomedija)</td></tr>
+          <tr><td><strong>Rod</strong></td><td>Drama — ali objedinjuje sva tri roda: <b>drama + epika + lirika</b></td></tr>
+          <tr><td><strong>Struktura</strong></td><td>3 činjenja, 28 skazanja, 1696 stihova</td></tr>
+          <tr><td><strong>Stihovi</strong></td><td>Dvostruko rimovani dvanaesterci + osmerci + peterci (različiti metri)</td></tr>
+          <tr><td><strong>Uzori</strong></td><td>Tassov <em>Aminta</em>, Guarinijev <em>Il pastor fido</em>, Sannazzarova <em>Arcadia</em></td></tr>
+          <tr><td><strong>Mjesto radnje</strong></td><td>Dubrava (mitski prostor → Dubrovnik)</td></tr>
+          <tr><td><strong>Vrijeme radnje</strong></td><td>1628., dan sv. Vlaha (praznik slobode)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Dubravka kao trostruki žanrovski hibrid</div>
+      <div class="box-key-txt">
+        <strong>Drama</strong> — radnja u 3 činjenja, dijalozi, dramski sukob (Miljenko–Grdan).<br>
+        <strong>Epika</strong> — in medias res uvod, fabula o vjenčanju kao ep u stihu.<br>
+        <strong>Lirika</strong> — ljubavne monologe, himne slobodi, pjesme pastira i vila.<br>
+        <em>Ova trostrukost je ključno esejsko obilježje. Dubravka nije „samo" pastorala — ona je <b>pastirska igra s elementima melodrame i alegorijska drama</b> istovremeno.</em>
+      </div>
+    </div>
+
+    <!-- SEC 04: Stih i forma -->
+    <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Gundulićev stih: <b>osmerac u katreni</b> (4 stiha, rim ABAB ili ABBA). Za razliku od Marulićevog dvanaesterca — ovo je kraći, lirskičiji ritam prikladan pastorali. Pitanje na ispitu: razlikuj ep (dvanaesterac) od drame/lirike (osmerac).</div></div>
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">04 · Stih i forma — kako Gundulić gradi ritam</div><div class="sec-line"></div></div>
+
+    <p>Dubravka koristi <strong>različite metre ovisno o sloju likova i kontekstu</strong>. To je važna stilska inovacija — Gundulić svjesno mijenja stih kao <em>glazbu za različite emocije</em>.</p>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Stih</th><th>Gdje se pojavljuje</th><th>Učinak</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Dvostruko rimovani dvanaesterac (6+6)</strong></td><td>Dijalozi, ozbiljni monologi, niži slojevi likova</td><td>Tradicionalni hrv. stih (Marulić, Držić) — povezuje s tradicijom</td></tr>
+          <tr><td><strong>Simetrični osmerac (4+4)</strong></td><td>Viši slojevi: Miljenko, Dubravka, pastiri</td><td>Lirski, melodičan — pogodan za ljubavne iskaze</td></tr>
+          <tr><td><strong>Peterac</strong></td><td>Himne, zborske izvedbe, svečani trenutci</td><td>Kratki, energični — pogodan za uzvike i svečanost</td></tr>
+          <tr><td><strong>Rima</strong></td><td>Katren (ABAB), parna (AABB)</td><td>Jasna struktura, lako pamtiva</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="featured-quote" data-cit-cat="himna">
+      <span class="fq-napamet">★ NAPAMET</span>
+      <div class="fq-mark">«</div>
+      <div class="fq-body">
+        <div class="fq-text">O lijepa, o draga, o slatka slobodo,<br>dar u kom sva blaga višnji nam Bog je do,<br>uzroče istini od naše sve slave,<br>uresu jedini od ove Dubrave!</div>
+        <div class="fq-meta">— Gundulić, <em>Dubravka</em>, završna himna · Najpoznatiji hrv. barokni stihovi · Slobodarski ideal</div>
+      </div>
+      <button type="button" class="fq-copy" onclick="fqCopy(this,'O lijepa, o draga, o slatka slobodo, dar u kom sva blaga višnji nam Bog je do, uzroče istini od naše sve slave, uresu jedini od ove Dubrave! — Gundulić, Dubravka, završna himna slobodi')">⎘</button>
+    </div>
+
+    <!-- SEC 05: Alegorijska shema Dubravke -->
+    <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Alegorijska shema Dubravke: <b>Dubrava = Dubrovnik, Miljenko = sloboda/domovina, Grdan = tiranski osvajač</b>. Isti alegorijski mehanizam kao Judita (H12) — ali Gundulić koristi pastirski, a ne biblijski okvir.</div></div>
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">05 · Alegorijska shema — Dubravka = Dubrovnik</div><div class="sec-line"></div></div>
+
+    <p>Dubravka nije samo pastirska igra — ona je <strong>alegorija dubrovačkog društvenog stanja</strong>. Svaki lik predstavlja društvenu skupinu, a radnja odražava političku borbu za vlast u Dubrovačkoj Republici.</p>
+
+    <div id="h13-react-compare-alegorija-gundulic"></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Lik / prostor</th><th>Alegorijsko značenje</th><th>Objašnjenje</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Dubrava</strong></td><td>Dubrovačka Republika</td><td>Mitski prostor slobode, koji alegorijski predstavlja grad</td></tr>
+          <tr><td><strong>Dubravka</strong></td><td>Sloboda / vlast Dubrovnika</td><td>Najljepša pastirica — simbol onoga najvrjednijega u Republici</td></tr>
+          <tr><td><strong>Miljenko</strong></td><td>Dubrovačko plemstvo (vlastela)</td><td>„Najbolji i najčestitiji momak" — legitimni nositelj slobode</td></tr>
+          <tr><td><strong>Grdan</strong></td><td>Bogati pučani (građanska klasa)</td><td>Ružan, bogat, potkupljuje suce — prijetnja legitimnoj vlasti</td></tr>
+          <tr><td><strong>Suci</strong></td><td>Korumpirana elita</td><td>Prodajni — oni kojima bogatstvo kvari sud</td></tr>
+          <tr><td><strong>Bog Lero</strong></td><td>Božja pravda / tradicija</td><td>Intervenira čudom kad bi sloboda pala u krive ruke</td></tr>
+          <tr><td><strong>Satiri (Divjak, Gorštak, Vuk)</strong></td><td>Ljudski poroci</td><td>Raskalaš, lažni „ličeni" izgled — kritika novih običaja</td></tr>
+          <tr><td><strong>Ribar iz Dalmacije</strong></td><td>Ostali hrv. krajevi pod Turcima</td><td>Hvali slobodu Dubrave — Dubrovnik kao utočište</td></tr>
+          <tr><td><strong>Starac Ljubdrag</strong></td><td>Čuvar tradicije</td><td>Tuži se na nove običaje — moralistički glas</td></tr>
+          <tr><td><strong>Svetkovina sv. Vlaha</strong></td><td>Dan slobode Dubrovnika</td><td>Realni blagdan Republike (3. veljače) — politički simbol</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">💡 Kako koristiti alegoriju u eseju</div>
+      <div class="box-signal-txt">
+        Alegorijsko čitanje je <strong>obvezno u esejima o Dubravki</strong>. Primjer rečenice:<br><br>
+        <em>„Gundulićeva pastirska igra Dubravka nije samo ljubavna idila: Dubrava predstavlja Dubrovačku Republiku, a pastirica Dubravka njezinu slobodu za koju se natječu legitimni plemić (Miljenko) i korumpirani bogataš (Grdan). Alegorija postaje politička: Gundulić brani tradicionalni aristokratski poredak od novih ekonomskih elita koje prijete dubrovačkom idealu slobode."</em>
+      </div>
+    </div>
+
+    <!-- SEC 06: Likovi u 3 sloja -->
+    <div class="soft-hint"><div class="soft-hint-ico">💡</div><div class="soft-hint-body">Osman (Gundulićev ep, 1621.–26.) NIJE ispitno djelo 2026. — ali se može pojaviti kao <b>kontekstualni argument</b> u eseju o Dubravki ili hr. baroku. Usmjeri energiju na Dubravku!</div></div>
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">06 · Likovi — 3 socijalna sloja Dubrave</div><div class="sec-line"></div></div>
+
+    <p>Gundulić je likove strukturirao u <strong>3 socijalna sloja</strong>, svaki sa svojim stilom govora i stihom:</p>
+
+    <div class="sc-grid">
+      <div class="sc">
+        <span class="sc-ico hchip go">SLOJ 1</span>
+        <div class="sc-name">Visoki likovi — pastiri i vile</div>
+        <div class="sc-desc"><strong>Miljenko, Dubravka, Radmio, Ljubmir, Ljubdrag</strong> — govore kićenim jezikom, viši stil. Stih: <em>osmerac</em>. Teme: ljubav, čast, sloboda. Simboliziraju plemstvo.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip te">SLOJ 2</span>
+        <div class="sc-name">Srednji likovi — starci, svećenici, ribari</div>
+        <div class="sc-desc"><strong>Starac Ljubdrag, svećenik, ribar iz Dalmacije, Stojna</strong> — govore razgovornim jezikom, srednji stil. Stih: <em>dvanaesterac</em>. Funkcija: moralistički glas, komentatori.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip br">SLOJ 3</span>
+        <div class="sc-name">Niski likovi — satiri i negativci</div>
+        <div class="sc-desc"><strong>Satiri (Divjak, Gorštak, Vuk), satirica Jeljenka, Grdan</strong> — govore pučkim, grubim jezikom, komičan efekt. Stih: <em>dvanaesterac</em>. Funkcija: satira društvenih mana, humor.</div>
+      </div>
+    </div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">⚖️ 3 sloja = 3 stila + 3 stiha</div>
+      <div class="box-int-txt">Ova <strong>trostruka stilska hijerarhija</strong> je tipično barokno — preuzeta iz talijanske tradicije (Tasso, Guarini). Pokazuje Gundulićevu stilsku vještinu: nije pisao „jednim tonom", nego se prilagođavao svakom liku. <em>Jezik sluga satira ne liči na Miljenkov.</em></div>
+    </div>
+
+    <!-- SEC 07: Glavni likovi — detaljna karakterizacija -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">07 · Glavni likovi — detaljna karakterizacija</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Lik</th><th>Opis</th><th>Alegorija</th><th>Ključni moment</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Dubravka</strong></td><td>Najljepša pastirica, obećana Miljenku od djetinjstva. Pobožna, odana, strpljiva. Ne bori se sama — čeka Božju pravdu.</td><td>Sloboda · vlast Dubrovnika</td><td>Spasena od Grdana zahvaljujući čudu boga Lera</td></tr>
+          <tr><td><strong>Miljenko</strong></td><td>Najljepši pastir, nesiguran, tuži se Ljubmiru. Plemenit, iskren, voli Dubravku. Nije ratnik — lirski heroj.</td><td>Dubrovačko plemstvo</td><td>Ulazi u hram u odlučnom trenutku, vjenča se s Dubravkom</td></tr>
+          <tr><td><strong>Grdan</strong></td><td>Star, ružan, bogat, lukav. Potkupljuje suce. Antiheroj — suprotnost Miljenku u svakom smislu.</td><td>Bogati pučani / građanska klasa</td><td>Bježi kad bog Lero šalje čudo (III. činjenje)</td></tr>
+          <tr><td><strong>Radmio</strong></td><td>Pastir-pripovjedač, uvodi radnju (in medias res). Otkriva običaj svetkovine.</td><td>Tradicija / narativni glas</td><td>Prvo skazanje I. činjenja — ekspozicija</td></tr>
+          <tr><td><strong>Ljubmir</strong></td><td>Pastir, prijatelj Miljenka. Savjetuje ga i tješi.</td><td>Mudri savjetnik / prijatelj</td><td>Razgovor s Miljenkom u II. činjenju</td></tr>
+          <tr><td><strong>Starac Ljubdrag</strong></td><td>Mudri starac. Kritizira nove običaje — podmitljivost, lijenost, raskoš.</td><td>Moralna tradicija Republike</td><td>Monolog o propadanju društva</td></tr>
+          <tr><td><strong>Ribar iz Dalmacije</strong></td><td>Emigrant iz turskih krajeva. Hvali slobodu Dubrave.</td><td>Ostali hrv. krajevi koji pate pod Turcima</td><td>Monolog o važnosti Dubrave kao utočišta</td></tr>
+          <tr><td><strong>Satiri (Divjak, Gorštak, Vuk)</strong></td><td>Smiješni, pohotni, često groteskni. Divjak se prerušava u vilu.</td><td>Ljudski poroci — pohlepa, taština</td><td>Komične scene koje ublažavaju dramu</td></tr>
+          <tr><td><strong>Bog Lero</strong></td><td>Bog ljubavi. Intervenira kad bi se nepravda ostvarila — čudom spašava Dubravku.</td><td>Božja pravda / Republika kao sveta</td><td>Čudo u hramu (III. činjenje) — deus ex machina</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEC 08: Kako H13 izgleda na ispitu -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">08 · Kako H13 izgleda na ispitu</div><div class="sec-line"></div></div>
+
+    <div class="scene-list">
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr"><div class="scene-num">A</div><div class="scene-ttl">Tip A — Ulomak Dubravke za analizu</div><div class="scene-arr">▶</div></div>
+        <div class="scene-body">
+          <div class="scene-why"><strong>Što očekuj:</strong> Ulomak (10-20 stihova) iz Dubravke s pitanjima o stilu, alegoriji, liku. Često himna slobodi ili monologi Miljenka/Grdana.<br><br><strong>Kako odgovoriti:</strong> (1) Prepoznaj tko govori i kontekst u radnji; (2) identificiraj stilska sredstva (hiperbola, antiteza, apostrofa); (3) veži s alegorijom (Dubrava=Dubrovnik); (4) citiraj ključnu riječ.</div>
+        </div>
+      </div>
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr"><div class="scene-num">B</div><div class="scene-ttl">Tip B — Teorijsko pitanje (bez teksta)</div><div class="scene-arr">▶</div></div>
+        <div class="scene-body">
+          <div class="scene-why"><strong>Što očekuj:</strong> „Što je pastorala?", „Koja su obilježja baroka?", „Koji je žanr Dubravke?", „Koja je alegorijska razina?"<br><br><strong>Kako odgovoriti:</strong> Jasni kratki odgovor + jedan primjer iz Dubravke. Npr: <em>Pastorala je idilična pastirska igra o ljubavi pastira i pastirica u prirodi. U Dubravki: Miljenko i Dubravka kao najljepši par, radnja u Dubravi (mitskom pastirskom prostoru).</em></div>
+        </div>
+      </div>
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr"><div class="scene-num">C</div><div class="scene-ttl">Tip C — ★ Školski esej o Dubravki</div><div class="scene-arr">▶</div></div>
+        <div class="scene-body">
+          <div class="scene-why"><strong>★ Dubravka JE ispitno djelo 2026.</strong> Esej će biti interpretacijski — s ulomkom i polaznim pitanjem. Moguće teme: <em>alegorija</em> (Dubravka = Dubrovnik), <em>žanr</em> (pastorala s elementima melodrame), <em>ljubav vs. politika</em>, <em>sloboda kao vrhovna vrijednost</em>, <em>suprotnost Miljenka i Grdana</em>.<br><br><strong>Kako odgovoriti:</strong> Uvod (teza) + 2-3 argumenta s analizom ulomka + zaključak koji povezuje s alegorijskom dimenzijom. CILJ: 440+ riječi.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEC 09: H13 i ostalo gradivo — konekti -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">09 · H13 i ostalo gradivo — kako se spaja</div><div class="sec-line"></div></div>
+
+    <div class="sc-grid">
+      <div class="sc">
+        <span class="sc-ico hchip br">H12</span>
+        <div class="sc-name">H13 → H12 (Marulić · Judita)</div>
+        <div class="sc-desc">Oba su alegorijska hrv. djela s domoljubnim sadržajem. <b>Razlika:</b> Marulić piše ep (narativ u stihu), Gundulić dramu. Marulić = renesansa, Gundulić = barok. Oba koriste dvanaesterac. <em>Za esej:</em> tradicija hrv. domoljubnog pisma Marulić → Gundulić → Mažuranić.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip go">H11</span>
+        <div class="sc-name">H13 → H11 (Držić · Novela od Stanca)</div>
+        <div class="sc-desc">Držić i Gundulić dubrovački dramatičari, ali razni žanrovi: Držić piše farsu i komediju, Gundulić pastoralu. <b>Razlika:</b> Držić = renesansa (smijeh, podsmijeh), Gundulić = barok (ozbiljnost, alegorija). <em>Kontrast:</em> realizam (Držić) vs. idealizam (Gundulić).</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip te">H20</span>
+        <div class="sc-name">H13 → Petrarca / Shakespeare</div>
+        <div class="sc-desc">Gundulić piše pod utjecajem Tassa i Guarinija — talijanskih baroknih autora. Povezanost s europskim barokom. Shakespeare je suvremenik (1564.–1616.). Dubravka nastaje 20 godina nakon njegova San Ivanjske noći (1595.) — slična pastoralna tematika.</div>
+      </div>
+      <div class="sc">
+        <span class="sc-ico hchip pa">Kontekst</span>
+        <div class="sc-name">Dubravka u tradiciji hrv. baroka</div>
+        <div class="sc-desc">Dubravka otvara zrelo razdoblje hrv. baroka. Ostali: <em>Suze sina razmetnoga</em> (Gundulić, 1622.), <em>Osman</em> (Gundulić, 1638.), djela Palmotića, Bunića Vučića, Đurđevića. Dubrovnik kao centar hrv. baroka.</div>
+      </div>
+    </div>
+
+    <!-- SEC 10: Ključni kontrasti za esej -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">10 · Ključni kontrasti za esej</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Kontrast</th><th>Dubravka (Gundulić)</th><th>Suprotnost</th><th>Esejska primjena</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Miljenko vs. Grdan</strong></td><td>Plemenitost, ljubav, legitimitet</td><td>Bogatstvo, pohlepa, kupljeni uspjeh</td><td>Sukob vrijednosti — tradicija vs. novac</td></tr>
+          <tr><td><strong>Dubrava vs. vanjski svijet</strong></td><td>Sloboda, idila, pravda</td><td>Tursko nasilje, bijeg, eksploatacija</td><td>Dubrovnik kao utopija / „otok slobode"</td></tr>
+          <tr><td><strong>Visoki stil vs. niski stil</strong></td><td>Osmerac — Miljenko, Dubravka, vile</td><td>Dvanaesterac — satiri, prosti likovi</td><td>Socijalna hijerarhija kroz jezik</td></tr>
+          <tr><td><strong>Drama vs. ideja</strong></td><td>Pastoralna ljubavna priča</td><td>Politička alegorija</td><td>„Pastorala nije samo estetska — ona je politički manifest"</td></tr>
+          <tr><td><strong>Gundulić vs. Marulić</strong></td><td>Dramski oblik, barok, Dubrovnik</td><td>Ep, renesansa, Split</td><td>Različiti putovi hrv. domoljubnog pisma</td></tr>
+          <tr><td><strong>Ljubav vs. politika</strong></td><td>Radnja je ljubavna priča...</td><td>...ali alegorija je politička</td><td>Dva sloja čitanja — doslovno i alegorijski</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEC 11: Gundulić na prstu -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">11 · Gundulić na prstu — 60 sekundi</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Pitanje</th><th>Odgovor</th></tr></thead>
+        <tbody>
+          <tr><td>Tko je autor Dubravke?</td><td><strong>Ivan Gundulić</strong> (1589.–1638.), Dubrovčanin, plemić</td></tr>
+          <tr><td>Kada je nastala?</td><td>Izvedena <strong>1628.</strong> za Gundulićevu svadbu; napisana ~1627.</td></tr>
+          <tr><td>Povod nastanka?</td><td>Vjenčanje Gundulića s Nikom Sorkočević — svadbena predstava</td></tr>
+          <tr><td>Žanr?</td><td><strong>Pastorala</strong> s elementima melodrame i pastirske igre; <em>tragikomedija</em></td></tr>
+          <tr><td>Rod?</td><td>Drama, ali objedinjuje sva tri roda (drama + epika + lirika)</td></tr>
+          <tr><td>Struktura?</td><td>3 činjenja · 28 skazanja · 1696 stihova</td></tr>
+          <tr><td>Glavni stihovi?</td><td>Dvostruko rim. dvanaesterac + osmerac + peterac</td></tr>
+          <tr><td>Ključna alegorija?</td><td><strong>Dubrava = Dubrovnik, Dubravka = sloboda</strong></td></tr>
+          <tr><td>Miljenko simbolizira?</td><td>Dubrovačko plemstvo (vlastelu)</td></tr>
+          <tr><td>Grdan simbolizira?</td><td>Bogate pučane koji kupuju vlast</td></tr>
+          <tr><td>Ključni stih?</td><td>„O lijepa, o draga, o slatka slobodo..." (završna himna)</td></tr>
+          <tr><td>Uzori?</td><td>Tasso (<em>Aminta</em>), Guarini (<em>Il pastor fido</em>), Sannazzaro (<em>Arcadia</em>)</td></tr>
+          <tr><td>ispitno djelo 2026?</td><td><strong>★ DA</strong> — jedno od 21 obvezatnog djela za školski esej</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEC 12: Samoprocjena -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">12 · Samoprocjena — jesi li spreman/a?</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">✅ Označi što znaš — dobivaš live score</div>
+      <div class="box-int-txt">Ne „mislim da znam". Označi samo ono što stvarno znaš, i gdje si siguran/sigurna.</div>
+    </div>
+
+    <div id="sc-list"></div>
+    <div id="sc-score" style="margin-top:14px"></div>
+
+    <!-- SEC 13: Finalni pregled -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">13 · Finalni pregled — sve u 3 minute</div><div class="sec-line"></div></div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">⚡ Recap — sve ključno u 5 rečenica</div>
+      <div class="box-key-txt">
+        <strong>1.</strong> <strong>Ivan Gundulić</strong> (1589.–1638.) dubrovački je plemić, najveći hrv. barokni pisac. <br>
+        <strong>2.</strong> <strong>Dubravka</strong> (1628.) je pastorala u 3 činjenja, 28 skazanja, 1696 stihova — napisana za Gundulićevu svadbu. <br>
+        <strong>3.</strong> Radnja: Miljenko i Dubravka trebaju se vjenčati na dan sv. Vlaha, ali zli bogataš Grdan potkupljuje suce; bog Lero spašava ih čudom. <br>
+        <strong>4.</strong> <strong>Alegorija:</strong> Dubrava = Dubrovnik, Dubravka = sloboda, Miljenko = plemstvo, Grdan = bogati pučani koji prijete vlasti. <br>
+        <strong>5.</strong> Djelo završava slavnom himnom slobodi — „<em>O lijepa, o draga, o slatka slobodo...</em>" — koja je postala književni spomenik dubrovačkog slobodarstva.
+      </div>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">✍ Tri gotove esejske rečenice za Dubravku</div>
+      <div class="box-signal-txt">
+        <em>1. „Gundulićeva Dubravka (1628.) nije tek ljubavna pastirska igra — ona je pažljivo konstruirana politička alegorija o sudbini dubrovačke slobode u doba kada građanska klasa počinje izazivati tradicionalnu aristokratsku vlast."</em><br><br>
+        <em>2. „Sukob Miljenka i Grdana nije privatni ljubavni trokut, nego javni politički sukob: Miljenko predstavlja legitimnu vlastelu, Grdan korumpiranu novu elitu koja kroz bogatstvo traži politički prestiž."</em><br><br>
+        <em>3. „Završna himna slobodi — 'O lijepa, o draga, o slatka slobodo' — najpoznatiji je stih hrv. baroka i istovremeno najsažetiji izraz dubrovačkog političkog ideala: sloboda kao najviša vrijednost, darovana od Boga i čuvana tradicijom."</em>
+      </div>
+    </div>
+
+    <!-- SEC 14: Nasljeđe Dubravke -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">14 · Nasljeđe Dubravke — zašto je važna danas</div><div class="sec-line"></div></div>
+
+    <div class="sc">
+      <div class="sc-name">🇭🇷 Dubravka kao književni spomenik dubrovačke slobode</div>
+      <div class="sc-desc">Dubravka je <b>najslavnija književna ekspresija</b> dubrovačkog slobodarskog ideala. Izvodila se svake godine na dan sv. Vlaha od 1628. do pada Republike 1808. — <em>180 godina tradicije</em>. Po rušenju Republike, djelo je postalo simbol hrv. nacionalne svijesti.</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">🎭 Dubravka u modernom kazalištu</div>
+      <div class="sc-desc">HNK postavlja Dubravku 1888. za 300. obljetnicu Gundulićeva rođenja. Uz Dubravku pišu glazbu Ivan Zajc, Jakov Gotovac. Od 1990-ih dio stalnog repertoara HNK. Tumačenje 1990-ih (Petar Selem): paralela s ratom u Hrvatskoj — borba za slobodu nije nova.</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">📚 Dubravka na državnoj maturi 2026.</div>
+      <div class="sc-desc">Dubravka je <strong>jedno od 21 obvezatnog djela za školski esej 2025./2026.</strong> Učenici moraju poznavati djelo u cjelini — pročitati ga, ne samo sažetak. Može se pojaviti u: (1) ulomku za analizu, (2) esejskom pitanju, (3) teorijskim pitanjima o baroku i pastorali.</div>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🏆 3 razloga zašto Dubravka ostaje relevantna</div>
+      <div class="box-key-txt">
+        <strong>1. Politički angažman:</strong> Književnost kao reakcija na društvene promjene — Gundulić brani tradicionalni poredak od novih ekonomskih sila. Moderan diskurs.<br>
+        <strong>2. Stilska inovacija:</strong> Objedinjuje dramu, epiku i liriku u jednom djelu. Barokna slobodna forma.<br>
+        <strong>3. Slobodarska etika:</strong> Završna himna slobodi je najbolja hrv. književna ekspresija demokratskog ideala — odjekuje kroz stoljeća, od Ilirskog preporoda do Domovinskog rata.
+      </div>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">🌍 EUROPSKA PARALELA — barok i Calderón (→ H04)</div>
+      <div class="box-signal-txt">
+        Gundulić je suvremenik <strong>Pedra Calderóna de la Barce</strong> — obojica pišu vrhunska barokna djela iste generacije. <b>Ključna usporedba za esej:</b> Calderónov <em>Život je san</em> (1635.) tematizira <em>slobodnu volju vs. sudbinu</em>; Gundulićeva <em>Dubravka</em> (1628.) tematizira <em>slobodu domovine vs. tiraniju</em>. Različiti konteksti, ista barokna tematika. → <b>H04 · Calderón / Život je san</b>
+      </div>
+    </div>
+
+    <div class="sec-hdr" style="margin-top:24px"><div class="sec-line"></div><div class="sec-badge">Pred-ispit cheat sheet</div><div class="sec-line"></div></div>
+
+    <div class="cheat-card cheat-card-printable" style="margin-top:24px">
+      <div class="cheat-hdr">
+        <div class="cheat-hdr-l">
+          <div class="cheat-eye">QUICK REFERENCE · 30 MIN PRIJE ISPITA</div>
+          <div class="cheat-ttl">Sve što moraš pamtiti — H13</div>
+        </div>
+        <button class="cheat-print" onclick="printCheatSheet(this)" aria-label="Ispiši cheat sheet">🖨️ Ispiši</button>
+      </div>
+      <div class="cheat-grid">
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Osnovni podaci</div>
+          <table class="cheat-tbl">
+            <tr><td><b>Autor</b></td><td>Ivan Gundulić, hrvatski barok</td></tr>
+            <tr><td><b>Djelo</b></td><td><em>Dubravka</em>, pastorala / alegorijska drama</td></tr>
+            <tr><td><b>Struktura</b></td><td>3 činjenja</td></tr>
+            <tr><td><b>Ključ</b></td><td>sloboda Dubrovnika i moralni poredak</td></tr>
+            <tr><td><b>Citat</b></td><td>Himna slobodi</td></tr>
+          </table>
+        </div>
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Likovi i značenja</div>
+          <ul class="cheat-list">
+            <li><b>Dubravka</b> = ljepota, sloboda, ideal zajednice.</li>
+            <li><b>Miljenko</b> = pravi red, ljubav i moralna pravda.</li>
+            <li><b>Grdan</b> = korupcija, nezaslužena moć, poremećaj poretka.</li>
+            <li><b>Lero</b> = božanska potvrda pravednog izbora.</li>
+          </ul>
+        </div>
+        <div class="cheat-col cheat-col-warn">
+          <div class="cheat-col-ttl">Zamke</div>
+          <ul class="cheat-list cheat-list-warn">
+            <li>Ne zamijeni <em>Dubravku</em> s <em>Osmanom</em>: drama vs. ep.</li>
+            <li>Ne svodi djelo na ljubavnu priču; sloboda je glavna ideja.</li>
+            <li>Ne zaboravi baroknu napetost: raskoš, kontrast, moral.</li>
+          </ul>
+        </div>
+        <div class="cheat-col">
+          <div class="cheat-col-ttl">Mini plan odgovora</div>
+          <ol class="cheat-steps">
+            <li><b>Prepoznaj činjenje:</b> priprema, sukob, rasplet.</li>
+            <li><b>Objasni alegoriju:</b> Dubrava kao Dubrovnik.</li>
+            <li><b>Veži likove:</b> Miljenko/Grdan kao moralni kontrast.</li>
+            <li><b>Zaključi:</b> sloboda je politička i etička vrijednost.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn off">← Početak</span>
+      <span class="nb-btn primary" onclick="sw(1)">📖 Dubravka: 3 činjenja →</span>
+    </div>
+
+  
+    <div class="cheat-card" style="margin-top:24px">
+      <div class="cheat-hdr">
+        <div class="cheat-hdr-l">
+          <div class="cheat-eye">SLJEDEĆE</div>
+          <div class="cheat-ttl">Tab 1 · Gundulić — Dubravka (3 činjenja)</div>
+        </div>
+      </div>
+      <div class="cheat-grid">
+        <div class="cheat-col cheat-col-wide" style="font-family:var(--serif,Fraunces,serif);font-size:13.5px;color:var(--t2,#c5b8aa);line-height:1.65">
+          <p style="margin:0">Sad si savladao kontekst baroka — <b>Tab 1</b> donosi strukturalnu analizu <em>Dubravke</em>. 3 činjenja, alegoriju slobode, barokne figure i ključne citate.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="h13-react-pop-kultura-gundulic"></div>
+
+    </div><!-- /l0 -->
+
+  <div class="layer" id="l1" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-br">3 činjenja</span>
+      <span class="pill p-go">28 skazanja</span>
+      <span class="pill p-t">Likovi</span>
+      <span class="pill p-pa">Stilska sredstva</span>
+      <span class="pill p-r">Alegorija</span>
+    </div>
+
+    <p style="margin-bottom:20px">Dubravka je organizirana u <strong>3 činjenja</strong> (<em>čina</em>), svaki podijeljen na <strong>skazanja</strong> (<em>scene</em>). Ukupno 28 skazanja, 1696 stihova. Klikni na činjenje za detalje, ključne trenutke, stihove i esejske signale.</p>
+
+    <!-- TIP BAR -->
+    <div class="box-int" style="margin-bottom:18px">
+      <div class="box-int-lbl">🎬 Što je „činjenje" i „skazanje"?</div>
+      <div class="box-int-txt"><strong>Činjenje</strong> = čin drame (akt). Dubravka ima 3 činjenja — struktura tri klasična čina (ekspozicija, zaplet, rasplet). <strong>Skazanje</strong> = scena unutar čina. Svako činjenje ima 9-10 skazanja. Gundulić koristi stare slavenske termine umjesto latinskih.</div>
+    </div>
+
+    <div id="h13-react-accordion-cinjenja"></div>
+
+    <!-- SCENE-LIST — 3 činjenja -->
+    <div class="scene-list">
+      <!-- I. činjenje -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr">
+          <div class="scene-num">I</div>
+          <div class="scene-ttl">I. činjenje — Ekspozicija: najava svetkovine i vjenčanja · 10 skazanja</div>
+          <div class="scene-arr">▶</div>
+        </div>
+        <div class="scene-body">
+          <div class="scene-why">
+            <b>Radnja:</b> Pastir <em>Radmio</em> najavljuje svetkovinu sv. Vlaha — dan slobode Dubrave. Suci su odabrali Miljenka i Dubravku kao najljepši par koji će se vjenčati. Pojavljuju se satiri (<em>Divjak, Gorštak, Vuk</em>) koji se nadaju da će dobiti Dubravku. Uvodi se <em>ribar iz Dalmacije</em> koji bježi pred Turcima i hvali slobodu Dubrave.<br><br>
+            
+            <b>🎬 Ključna skazanja I. činjenja:</b><br>
+            <table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px">
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700;width:70px">1-2</td><td style="padding:6px 10px;border:1px solid var(--bd)">Radmijev otvarajući monolog — invokacija Danice, najava blagog dana slobode. <em>In medias res</em> početak.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">3-4</td><td style="padding:6px 10px;border:1px solid var(--bd)">Pojava pastira Ljubmira i Miljenka. Ljubmir tješi nesigurnog Miljenka. Osmerac.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">5-6</td><td style="padding:6px 10px;border:1px solid var(--bd)">Prizori sa satirima (Divjak, Gorštak). Prvi komični elementi. Dvanaesterac u pučkom registru.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">7-8</td><td style="padding:6px 10px;border:1px solid var(--bd)">Ribar iz Dalmacije pripovijeda o stanju Dalmacije pod Mlecima. <em>Kontrast slobode i ropstva.</em></td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">9-10</td><td style="padding:6px 10px;border:1px solid var(--bd)">Zakljuna scena — priprema za svetkovinu, pastiri slave. Lirske dionice.</td></tr>
+            </table>
+            
+            <b>Ključni likovi u I. činjenju:</b> Radmio, Miljenko, Dubravka (u pjevu), Ljubmir, satiri (Divjak, Gorštak, Vuk), ribar iz Dalmacije, pastiri.<br><br>
+            
+            <b>Ključni motivi:</b><br>
+            • <em>Svetkovina sv. Vlaha</em> — blagdan slobode Dubrovnika (3.2.) · realni politički simbol<br>
+            • <em>Ljubavna idila</em> Miljenka i Dubravke (odmalena obećani)<br>
+            • <em>Ribarova tuga</em> — Dalmacija pod Mlecima, Dubrava kao utočište<br>
+            • <em>Satirova komika</em> — lažne pretenzije na Dubravku<br>
+            • <em>Danica (zora)</em> — simbol novog dana, otvaranje djela<br><br>
+            
+            <b>Stih i stil:</b><br>
+            • Radmio otvara djelo <strong>dvostruko rim. dvanaestercima</strong> (in medias res)<br>
+            • Miljenko i Dubravka govore <strong>osmercima</strong> (viši stil, lirski)<br>
+            • Satiri: <strong>grubi dvanaesterci</strong>, humor, pučki jezik<br>
+            • Ribarov monolog: <strong>didaktični dvanaesterac</strong>, narativni ton<br><br>
+            
+            <b>📜 Ključni citat iz I. činjenja:</b><br>
+            <em>„Žuđena Danice, objav' se, objavi! / Dubrava ova plemenita."</em> — Radmijev zaziv zore na početku djela.<br><br>
+            
+            <b>Dramska funkcija:</b> Klasična ekspozicija — uvedeni su svi likovi, sukob se najavljuje (satirovi skriveni namjeri, slutnja Grdana koji još nije ušao u radnju). Ljubavna idila i nada.<br><br>
+            
+            <b>🎯 Esejski signal:</b> Atmosfera I. činjenja je <em>idilična ali krhka</em> — Gundulić postavlja scenu slobode koja će biti <em>ugrožena</em>. Ribarova priča uvodi realpolitički kontekst: <strong>dubrovačka sloboda nije prirodna, ona je iznimka u regiji.</strong> Ovaj kontrast (sloboda vs. ropstvo) je esejski argument o važnosti Dubrave.
+          </div>
+        </div>
+      </div>
+
+      <!-- II. činjenje -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr">
+          <div class="scene-num">II</div>
+          <div class="scene-ttl">II. činjenje — Zaplet: Miljenkova nesigurnost + Grdanova zavjera · 9 skazanja</div>
+          <div class="scene-arr">▶</div>
+        </div>
+        <div class="scene-body">
+          <div class="scene-why">
+            <b>Radnja:</b> Miljenko sumnja da će izgubiti Dubravku — <em>razgovara s prijateljem Ljubmirom</em>, žali se. Pojavljuje se starac <em>Ljubdrag</em> koji kritizira nove običaje (podmitljivost, raskoš, lijenost). Dubravka se pojavljuje, tješi Miljenka. <em>Grdan</em> — bogati ružni starac — dolazi u igru: on potkupljuje suce da donesu odluku njemu u korist.<br><br>
+            
+            <b>🎬 Ključna skazanja II. činjenja:</b><br>
+            <table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px">
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700;width:70px">1-2</td><td style="padding:6px 10px;border:1px solid var(--bd)">Miljenkov otvarajući monolog — <em>žaljenje zbog straha od gubitka Dubravke</em>. Ljubavni lament u osmercima.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">3-4</td><td style="padding:6px 10px;border:1px solid var(--bd)">Ljubmir tješi Miljenka — <em>mudri savjet</em>. Pastoralni dijalog. „Ne boj se — pravda će pobijediti."</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">5</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>⭐ Ljubdragov monolog</strong> — stari pastir kritizira <em>nove običaje</em>. Ključ alegorijskog čitanja. Didaktični dvanaesterac.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">6-7</td><td style="padding:6px 10px;border:1px solid var(--bd)">Pojava Dubravke — kratka scena utjehe. Satirički elementi (Divjak, Jeljenka u pozadini).</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">8-9</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Grdan ulazi i potkupljuje suce</strong> — „tamno mito" (zlato). Sudac donosi nepovoljnu odluku. <em>Kulminacija zapleta.</em></td></tr>
+            </table>
+            
+            <b>Ključni likovi u II. činjenju:</b> Miljenko, Ljubmir, Ljubdrag, Dubravka, Grdan, suci.<br><br>
+            
+            <b>Ključni motivi:</b><br>
+            • <em>Miljenkov strah</em> — klasični motiv nedostatne samouvjerenosti<br>
+            • <em>Ljubmirova utjeha</em> — mudri savjet prijatelja<br>
+            • <em>Ljubdragova kritika</em> — glas moralne tradicije<br>
+            • <em>Grdanova potkupljivost</em> — novac vs. pravda<br>
+            • <em>„Tamno mito"</em> — eufemizam za podmićivanje<br>
+            • <em>Sud koji se može kupiti</em> — korupcija kao prijetnja<br><br>
+            
+            <b>Stih i stil:</b><br>
+            • Miljenkov monolog — <strong>melankolični osmerci</strong> (ljubavni lament)<br>
+            • Ljubdragov monolog — <strong>didaktički dvanaesterci</strong>, retorika s kletvama („Proklet i oni...")<br>
+            • Grdanov ton — <strong>kratke, grube replike</strong>, pragmatski jezik<br><br>
+            
+            <b>📜 Ključni citat iz II. činjenja:</b><br>
+            <em>„Ali se je ockvrnila svetkovina plemenita: najljepša je dana vila najgrđemu s tamna mita."</em> — Ljubdrag o nepravdi.<br><br>
+            
+            <b>Dramska funkcija:</b> Klasični <em>zaplet</em> — sukob je sada javan. Miljenko zna za prijetnju, Grdan djeluje. Vrhunac neizvjesnosti: sud se priklanja Grdanu.<br><br>
+            
+            <b>🎯 Esejski signal:</b> Ljubdragov monolog je <em>ključ alegorije</em> — kad stari Ljubdrag kritizira „nove običaje", on ne govori o ljubavi, nego o <em>dubrovačkom društvenom stanju</em>: bogati pučani kupuju političku vlast, tradicionalne vrijednosti padaju. <strong>Gundulić glasi kroz Ljubdraga</strong> — to je autorska intervencija u dramu.
+          </div>
+        </div>
+      </div>
+
+      <!-- III. činjenje -->
+      <div class="scene-card" onclick="togScene(this)">
+        <div class="scene-hdr">
+          <div class="scene-num">III</div>
+          <div class="scene-ttl">III. činjenje — Kulminacija i rasplet: čudo boga Lera + himna slobodi · 9 skazanja</div>
+          <div class="scene-arr">▶</div>
+        </div>
+        <div class="scene-body">
+          <div class="scene-why">
+            <b>Radnja:</b> Sve je spremno za vjenčanje Dubravke i Grdana u hramu boga Lera. Svi su tužni — nepravda je gotova. Ali u trenutku obreda <em>hram se potresa</em>, <em>Miljenko ulazi</em>, <em>bog Lero čudom objavljuje pravdu</em>. Svećenik vjenča Miljenka i Dubravku. Svi slave. Pjeva se <strong>završna himna slobodi</strong>. Satir Divjak koji se prerušio u vilu biva prepoznat — komičan kraj s tom potjerom.<br><br>
+            
+            <b>🎬 Ključna skazanja III. činjenja:</b><br>
+            <table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px">
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700;width:70px">1-2</td><td style="padding:6px 10px;border:1px solid var(--bd)">Priprema obreda — pastiri, vile, satiri ulaze u hram boga Lera. Svečani ton u pentercima.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">3</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Svećenik započinje obred</strong> — „Hoja, Lero, Dolerije!" puk zaziva boga. Obredni ritual.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">4</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>⭐ ČUDO</strong> — plam potamni, tlo se trese, grom, kip boga Lera se znoji. Zajednica u strahu.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">5</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>Miljenko ulazi u hram</strong> — čudo prestaje, bog Lero ga potvrđuje zrakom. <em>Deus ex machina.</em></td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">6</td><td style="padding:6px 10px;border:1px solid var(--bd)">Grdanov bijeg. Puk slavi. Svećenik vjenča Miljenka i Dubravku.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">7</td><td style="padding:6px 10px;border:1px solid var(--bd)">Satir Divjak pokušava ući među vile prerušen. Pastiri ga prepoznaju — <em>komična potjera</em>.</td></tr>
+              <tr style="background:var(--dim-br)"><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">8</td><td style="padding:6px 10px;border:1px solid var(--bd)">Svećenik pušta ptice iz kaveza — simbol širenja slobode Dubravom. Pastoralni ritual.</td></tr>
+              <tr><td style="padding:6px 10px;border:1px solid var(--bd);font-weight:700">9</td><td style="padding:6px 10px;border:1px solid var(--bd)"><strong>⭐ ZAVRŠNA HIMNA SLOBODI</strong> — zbor svih likova. Dvostruko rim. dvanaesterac. <em>Vrhunac djela.</em></td></tr>
+            </table>
+            
+            <b>Ključni likovi u III. činjenju:</b> Miljenko, Dubravka, Grdan, svećenik, bog Lero (neviđen ali aktivan), pastiri i vile (zbor), Divjak, ostali satiri.<br><br>
+            
+            <b>Ključni motivi:</b><br>
+            • <em>Čudo u hramu</em> — <strong>deus ex machina</strong> (bog Lero intervenira)<br>
+            • <em>Miljenkov dolazak u odlučnom trenutku</em> — slučajnost ili providnost?<br>
+            • <em>Grdanov bijeg</em> — zlo je poraženo, ali kažnjeno javnim sramom<br>
+            • <em>Vjenčanje kao restauracija pravde</em><br>
+            • <em>Puštanje ptica</em> — simbol širenja slobode<br>
+            • <em>Završna himna slobodi</em> — vrhunac lirske razine, zborska izvedba<br>
+            • <em>Komična potjera</em> za Divjakom — olakšava kraj, karnevalski element<br><br>
+            
+            <b>Stih i stil:</b><br>
+            • Scene u hramu — <strong>svečani peterci i osmerci</strong><br>
+            • Himna slobodi — <strong>dvostruko rim. dvanaesterac</strong> (svečana forma, zborska)<br>
+            • Komična potjera — <strong>dvanaesterci, pučki jezik</strong><br>
+            • Obredne formule — <strong>pucijan zaziv („Hoja, Lero, Dolerije!")</strong><br><br>
+            
+            <b>📜 Ključni stih završne himne:</b><br>
+            <em>„O lijepa, o draga, o slatka slobodo,<br>
+            dar u kom sva blaga višnji nam Bog je do,<br>
+            uzroče istini od naše sve slave,<br>
+            uresu jedini od ove Dubrave!"</em><br><br>
+            
+            <b>Dramska funkcija:</b> Klasični <em>rasplet</em> — <b>deus ex machina</b> riješi sukob. Međutim, to nije slabost dramaturgije nego <em>namjera</em>: poruka je da <strong>dubrovačka sloboda je dar Božji</strong>, čuvana božanskom pravdom — ne samo ljudskim snagama.<br><br>
+            
+            <b>🎯 Esejski signal:</b> Završna himna nije tek „ukrasna pjesma" — ona je <em>tematski vrhunac cijele drame</em>. Kroz nju Gundulić sažima ideološku poruku: sloboda je najviša vrijednost, darovana Bogu, zaštićena tradicijom. <em>Cijeli ljubavni zaplet postoji zato da se ova himna mogla izreći kao prirodni zaključak.</em> <strong>Bez himne, Dubravka bi bila obična pastirska priča; s himnom, ona je politički manifest.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DUBINSKA ANALIZA -->
+    <div class="sec-hdr" style="margin-top:32px"><div class="sec-line"></div><div class="sec-badge">★ Stilska sredstva u Dubravki — za analizu ulomka</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Stilsko sredstvo</th><th>Primjer iz Dubravke</th><th>Učinak / esejska primjena</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Apostrofa</strong></td><td>„O lijepa, o draga, o slatka slobodo..."</td><td>Oslovljavanje apstraktnog pojma kao bića — pojačava emociju</td></tr>
+          <tr><td><strong>Anafora</strong></td><td>„O lijepa, O draga, O slatka..."</td><td>Ponavljanje „O" — emfaza, svečani ton, ritam</td></tr>
+          <tr><td><strong>Epitet</strong></td><td>„lijepa, draga, slatka" (sloboda)</td><td>Pridjevi emotivne vrijednosti — idealizacija pojma</td></tr>
+          <tr><td><strong>Alegorija</strong></td><td>Dubrava = Dubrovnik, Dubravka = sloboda</td><td>Dvostruka razina čitanja — doslovna i politička</td></tr>
+          <tr><td><strong>Antiteza</strong></td><td>Miljenko (lijep, siromašan) vs. Grdan (ružan, bogat)</td><td>Suprotnost vrijednosti — moralna struktura</td></tr>
+          <tr><td><strong>Hiperbola</strong></td><td>„Ne mogu bit plata tvojoj čistoj ljepoti!"</td><td>Pretjerivanje — barokni patos</td></tr>
+          <tr><td><strong>Deus ex machina</strong></td><td>Čudo boga Lera u III. činjenju</td><td>Božanska intervencija — ideološka poruka</td></tr>
+          <tr><td><strong>Metafora</strong></td><td>„dar u kom sva blaga" (o slobodi)</td><td>Sloboda = darovano bogatstvo — nematerijalno</td></tr>
+          <tr><td><strong>Personifikacija</strong></td><td>Bog Lero kao aktivni lik</td><td>Apstraktna pravda kao subjekt radnje</td></tr>
+          <tr><td><strong>Stilska hijerarhija</strong></td><td>Osmerci (plemići) vs. dvanaesterci (satiri)</td><td>Socijalna razlika izražena jezikom/stihom</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JEZIK DUBRAVKE -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Jezik Dubravke — 3 sloja</div><div class="sec-line"></div></div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Jezični sloj</th><th>Tko ga koristi</th><th>Obilježja</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Kićeni (visoki)</strong></td><td>Miljenko, Dubravka, vile, pastiri — plemićki sloj</td><td>Metafore, patos, hiperbole, osmerci, petrarkizmi ljubavne retorike</td></tr>
+          <tr><td><strong>Razgovorni (srednji)</strong></td><td>Starac Ljubdrag, svećenik, ribar, Stojna</td><td>Mjereni jezik, didaktička retorika, dvanaesterci, moralistička pouka</td></tr>
+          <tr><td><strong>Pučki (niski)</strong></td><td>Satiri (Divjak, Gorštak, Vuk), Grdan</td><td>Grubi izrazi, šale, dosjetke, komika, pučke dvanaesterce</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box-signal">
+      <div class="box-signal-lbl">💡 Esejski signal — trostruka hijerarhija</div>
+      <div class="box-signal-txt">
+        Ova trostruka hijerarhija nije samo stil — ona je <strong>dramska strategija</strong>. Gundulić koristi različite jezične registre da bi (1) okarakterizirao likove bez eksplicitnih opisa, (2) stvorio komičan kontrast među slojevima, (3) odražavao baroknu estetiku <em>raznolikosti unutar jedinstva</em>. <em>Visoka pastorala uključuje satirsku komiku — i obrnuto.</em>
+      </div>
+    </div>
+
+    <!-- SINTEZA -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">★ Sinteza — Dubravka u 3 razine čitanja</div><div class="sec-line"></div></div>
+
+    <div class="sc">
+      <div class="sc-name">📖 1. Doslovna razina — ljubavna pastorala</div>
+      <div class="sc-desc">Dubravka i Miljenko se vole, obećani od djetinjstva. Zli bogataš Grdan ih razdvaja potkupljujući suce. Bog Lero čudom riješi sve. Vjenčanje, himna slobodi. <em>Klasična pastirska priča s happy endom.</em></div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">🏛 2. Alegorijska razina — politika Dubrovnika</div>
+      <div class="sc-desc">Dubrava = Dubrovačka Republika. Dubravka = sloboda/vlast. Miljenko = plemstvo (legitimni vladar). Grdan = bogati pučani (nova prijetnja). Bog Lero = božanska pravda koja čuva Republiku. <em>Drama postaje politički manifest o borbi za dubrovačku slobodu.</em></div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">⛪ 3. Moralna razina — vjera pobjeđuje grijeh</div>
+      <div class="sc-desc">Ljepota i plemenitost (Miljenko) pobjeđuju ružnoću i pohlepu (Grdan). Sud potkupljen — ali Bog čudom vraća pravdu. <em>Katolička teodiceja: Bog dopušta iskušenje, ali vodi do pravde. Dubrovnik čuvana božanskim planom.</em></div>
+    </div>
+
+    <div class="box-key">
+      <div class="box-key-lbl">🎯 Taktika za ispitni ulomak Dubravke</div>
+      <div class="box-key-txt">
+        <strong>Korak 1:</strong> Identificiraj <em>tko govori</em> i <em>u kojem činjenju</em>. To ti daje kontekst i socijalni sloj lika.<br>
+        <strong>Korak 2:</strong> Prepoznaj <em>stih</em> — osmerac (visoki sloj), dvanaesterac (niži ili didaktički), peterac (svečano). Svaki stih je namjerni izbor.<br>
+        <strong>Korak 3:</strong> Identificiraj <em>stilska sredstva</em> — apostrofa, anafora, hiperbola, antiteza, alegorija.<br>
+        <strong>Korak 4:</strong> Vezi s <em>alegorijskom dimenzijom</em> — što lik/stih simbolizira politički?<br>
+        <strong>Korak 5:</strong> Citiraj <em>ključnu riječ ili sintagmu</em> (ne cijele stihove) kao potporu tezi.
+      </div>
+    </div>
+
+    <!-- DISCERE TOUCHPOINT -->
+    <div class="discere-banner" id="discere-t1" style="margin-top:18px" onclick="window.location.href=&#39;#discere&#39;">
+      <div class="discere-ico">📖</div>
+      <div class="discere-txt">
+        <div class="discere-ttl">Discere · Simulator ulomaka Dubravke</div>
+        <div class="discere-sub">Vježbaj analizu ulomaka iz sva 3 činjenja · Pro plan</div>
+      </div>
+      <div class="discere-arrow">→</div>
+    </div>
+
+    
+    <!-- VIDEO RESURSI — v3.5 -->
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">Video resursi</div><div class="sec-line"></div></div>
+
+    <div class="prose">Kada ti tekst nije dovoljan — vizualni učenici često bolje pamte kroz video objašnjenja i predstave. Ovdje su pouzdani edukacijski resursi na YouTubeu.</div>
+
+    <div class="yt-grid">
+      <div id="h13-react-video-card-primary"></div>
+
+      <div id="h13-react-video-card-secondary"></div>
+
+      <div id="h13-react-video-card-tertiary"></div>
+
+      <div id="h13-react-video-card-quaternary"></div>
+    </div>
+
+    <div class="box-tip" style="margin-top:14px">
+      <div class="bt-ico">💡</div>
+      <div class="bt-body">
+        <div class="bt-title">Pro tip — kako koristiti</div>
+        <div class="bt-txt">Video je <strong>dodatak</strong>, ne zamjena. Pročitaj djelo + ovu skriptu, pa pogledaj video — tako pamtiš 3× bolje nego kroz bilo koji pojedinačni izvor.</div>
+      </div>
+    </div>
+
+<div class="nav-row">
+      <span class="nb-btn" onclick="sw(0)">← Teorija</span>
+      <span class="nb-btn primary" onclick="sw(2)">✍ Esej alat →</span>
+    </div>
+
+  </div><!-- /l1 -->
+
+  <div class="layer" id="l2" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-go">★ Esejsko 2026</span>
+      <span class="pill p-br">Teze</span>
+      <span class="pill p-t">Struktura eseja</span>
+      <span class="pill p-pa">Scanner ulomka</span>
+      <span class="pill p-r">Konektori</span>
+    </div>
+
+    <!-- STATUS BOX -->
+    <div class="box-key" style="margin-bottom:20px">
+      <div class="box-key-lbl">★ Dubravka JE ispitno djelo 2026./2027.</div>
+      <div class="box-key-txt">
+        <strong>Dubravka je jedno od 21 obvezatnog djela</strong> za školski esej na državnoj maturi 2025./2026. To znači da možeš <strong>direktno pisati esej o Dubravki</strong> — ne samo koristiti je kao kontekst. Trenutni tip eseja: <strong>interpretacijski</strong> (polazno pitanje + ulomak + analiza + teza).<br><br>
+        Ovaj Tab daje ti: (1) <b>5 gotovih teza</b> za najvjerojatnije teme eseja, (2) <b>strukturu interpretacijskog eseja</b>, (3) <b>Scanner ulomka</b> (AI analiza), (4) <b>konektore i fraze</b> za pisanje, (5) <b>checklist</b> što ne smiješ zaboraviti, (6) <b>5 najčešćih grešaka</b>.
+      </div>
+    </div>
+
+    <div id="h13-react-accordion-esej-teze"></div>
+
+    <!-- ALAT TABS -->
+    <div class="alat-tabs">
+      <button class="alat-tab on" onclick="alTab(this,'at0')">📑 Gotove teze (5)</button>
+      <button class="alat-tab" onclick="alTab(this,'at1')">📄 Struktura eseja</button>
+      <button class="alat-tab" onclick="alTab(this,'at2')">🔍 Scanner ulomka</button>
+      <button class="alat-tab" onclick="alTab(this,'at3')">✍ Model eseja</button>
+      <button class="alat-tab" onclick="alTab(this,'at4')">🔗 Konektori</button>
+      <button class="alat-tab" onclick="alTab(this,'at5')">Checklist</button>
+      <button class="alat-tab" onclick="alTab(this,'at6')">🚫 5 grešaka</button>
+      <button class="alat-tab" onclick="alTab(this,'at7')">🌐 Usporedbe</button>
+      <button class="alat-tab" onclick="alTab(this,'at8')">⭐ Bonus teze</button>
+    </div>
+
+    <!-- AT0: Gotove teze (5 najvjerojatnijih tema) -->
+    <div class="alat-pane on" id="at0">
+      <div class="alat-card">
+        <h4>5 najvjerojatnijih esejskih tema za Dubravku</h4>
+        <p>Na temelju analize NCVVO kataloga i prošlih matura, ovo su najčešće tematske cjeline. Svaka ima gotovu tezu koju možeš <em>koristiti kao startnu točku</em> i prilagoditi zadanom ulomku.</p>
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA 1 — Alegorijska razina djela</b><br>
+        „Gundulićeva Dubravka (1628.) nije samo pastirska igra o ljubavi Miljenka i Dubravke — ona je pažljivo konstruirana alegorija dubrovačke slobode: Dubrava predstavlja Dubrovačku Republiku, Dubravka njezinu slobodu i vlast, Miljenko legitimno plemstvo, a Grdan korumpiranu novu ekonomsku elitu. Alegorijsko čitanje otkriva djelo kao politički manifest o sudbini dubrovačkog slobodarstva u 17. stoljeću."
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA 2 — Žanrovska hibridnost (pastorala + melodrama + pastirska igra)</b><br>
+        „Dubravka je žanrovski hibrid karakterističan za hrvatski barok: iako primarno pastirska igra u tradiciji Tassove <em>Aminte</em> i Guarinijeva <em>Il pastor fida</em>, Gundulić je obogaćuje elementima melodrame (pjevne dionice), tragikomedije (deus ex machina rasplet) i političke drame (alegorijska dimenzija). Ova stilska sloboda — objedinjenje sva tri književna roda u jednom djelu — obilježje je baroknog nadogradnje tradicionalnih oblika."
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA 3 — Sloboda kao vrhovna vrijednost</b><br>
+        „Središnja ideja Dubravke nije ljubav Miljenka i Dubravke, već <em>sloboda</em> — vrijednost koja djelo otvara i zatvara. Završna himna — 'O lijepa, o draga, o slatka slobodo, dar u kom sva blaga višnji nam Bog je do' — najpoznatiji je stih hrv. baroka i najsažetiji izraz dubrovačkog slobodarskog ideala. Za Gundulića, sloboda je darovana Bogu, čuvana tradicijom, ugrožena pohlepom — istina koja se potvrđuje u svakom činjenju."
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA 4 — Sukob vrijednosti: Miljenko vs. Grdan</b><br>
+        „Antitetički odnos Miljenka i Grdana nije samo ljubavna zapetljaj — to je simbolički sukob dvaju društvenih principa: tradicionalnog aristokratskog poretka (Miljenko: plemenitost, ljepota, iskrenost) i nove ekonomske sile (Grdan: bogatstvo, ružnoća, korupcija). Gundulić, sam plemić, otvoreno zauzima stranu tradicionalnih vrijednosti, sugerirajući da Dubrovačka Republika opstaje samo kroz očuvanje izvornog aristokratskog ethosa."
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA 5 — Stilska hijerarhija i barokna estetika</b><br>
+        „Dubravka demonstrira zrelu baroknu poetiku kroz <em>trostruku stilsku hijerarhiju</em>: visoki stil (osmerac, kićeni jezik — Miljenko, Dubravka, vile), srednji stil (dvanaesterac, didaktička retorika — starac Ljubdrag, ribar) i niski stil (pučki dvanaesterac, gruba komika — satiri, Grdan). Ova hijerarhija nije ukras nego dramska strategija: kroz jezik Gundulić karakterizira likove, odražava socijalne slojeve i postiže <em>raznolikost unutar jedinstva</em> — baroknu idealu."
+      </div>
+
+      <div class="box-int" style="margin-top:16px">
+        <div class="box-int-lbl">💡 Kako koristiti gotove teze</div>
+        <div class="box-int-txt">
+          Ove teze su <strong>startne točke</strong> — ne bukvalni odgovori. Na ispitu: (1) pročitaj polazno pitanje, (2) odredi koja se teza najbolje poklapa, (3) <em>prilagodi</em> tezu zadanom ulomku, (4) razradi kroz 3-4 argumenta s analizom.<br><br>
+          <b>Klikni tezu — kopira se u clipboard.</b> Vježba: prilagodi svaku tezu ulomku iz Dubravke koji znaš.
+        </div>
+      </div>
+    </div>
+
+    <!-- AT1: Struktura interpretacijskog eseja -->
+    <div class="alat-pane" id="at1">
+      <div class="alat-card">
+        <h4>Struktura interpretacijskog eseja — 440+ riječi, 5 dijelova</h4>
+        <p>NCVVO traži <strong>interpretacijski esej</strong>: pristupnik iznosi spoznaje o književnosti tako da na polazno pitanje odgovara središnjom tvrdnjom koju argumentira na temelju analize ulomka i poznavanja djela u cjelini.</p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Dio</th><th>Cilj</th><th>Riječi</th><th>Savjet</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Uvod</strong></td><td>Predstavi djelo + tezu (središnja tvrdnja)</td><td>~60-80</td><td>Autor + godina + žanr + <em>zašto je važno</em>. Završi tezom.</td></tr>
+            <tr><td><strong>2. Analiza ulomka</strong></td><td>Detaljna analiza zadanog ulomka</td><td>~120-150</td><td>Tko govori, kontekst, stilska sredstva, ključne riječi, značenje za cjelinu</td></tr>
+            <tr><td><strong>3. Argumenti (2-3)</strong></td><td>Poveži ulomak s cjelinom djela</td><td>~150-200</td><td>Svaki argument: tvrdnja + primjer iz djela + objašnjenje</td></tr>
+            <tr><td><strong>4. Kontekst</strong></td><td>Smjesti u književnopovijesni okvir</td><td>~50-80</td><td>Barok, hrv. tradicija, uzori (Tasso, Guarini), kontekst Dubrovnika</td></tr>
+            <tr><td><strong>5. Zaključak</strong></td><td>Potvrdi tezu, dodaj širu misao</td><td>~40-60</td><td>Ne ponavljaj uvod — sintetiziraj, dodaj dubinsku poantu</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box-signal">
+        <div class="box-signal-lbl">🎯 3 zlatna pravila interpretacijskog eseja</div>
+        <div class="box-signal-txt">
+          <strong>1.</strong> <em>Teza mora biti jasna i specifična</em> — ne „Dubravka je važno djelo", nego „Dubravka je politička alegorija koja kroz ljubavnu priču brani tradicionalni aristokratski poredak Dubrovačke Republike".<br>
+          <strong>2.</strong> <em>Svaki argument mora imati primjer iz djela</em> — citat, lik, scena, stilsko sredstvo. Bez primjera, argument je prazan.<br>
+          <strong>3.</strong> <em>Povezuj ulomak s cjelinom</em> — ulomak je ulaz u djelo, ne cilj. Analiziraj ga tako da otkriva širu sliku djela.
+        </div>
+      </div>
+    </div>
+
+    <!-- AT2: Scanner ulomka -->
+    <div class="alat-pane" id="at2">
+      <div class="alat-card">
+        <h4>Scanner ulomka — AI analiza stihova Dubravke</h4>
+        <p>Zalijepi stihove iz Dubravke → dobiješ analizu: stilska sredstva, lik, činjenje, alegorijski sloj, esejska primjena. Vježbaj prepoznavanje elemenata prije ispita.</p>
+      </div>
+
+      <div class="wc-wrap">
+        <div class="wc-head">
+          <div class="wc-ico">🔍</div>
+          <div class="wc-label">Zalijepi ulomak iz Dubravke</div>
+          <div class="wc-stats">
+            <span id="scanner-chars">0</span> znakova · <span id="scanner-words">0</span> riječi
+          </div>
+        </div>
+        <div class="wc-body">
+          <textarea id="scanner-in" class="wc-ta" placeholder="Zalijepite stihove Dubravke ovdje...&#10;Npr: O lijepa, o draga, o slatka slobodo, / dar u kom sva blaga višnji nam Bog je do..." rows="5" oninput="scannerCount()"></textarea>
+        </div>
+        <div class="wc-foot">
+          <button class="fcb primary" onclick="scannerGo()">🔍 Analiziraj ulomak</button>
+          <button class="fcb" onclick="scannerClear()">× Očisti</button>
+        </div>
+      </div>
+
+      <div id="scanner-out" style="margin-top:16px"></div>
+    </div>
+
+    <!-- AT3: Model eseja -->
+    <div class="alat-pane" id="at3">
+      <div class="alat-card">
+        <h4>Model interpretacijskog eseja — „Alegorijska razina Dubravke"</h4>
+        <p>Puni model eseja (~470 riječi) na temelju ulomka iz završne himne slobodi. Pokazuje strukturu, retoriku i razinu koja se od tebe očekuje.</p>
+      </div>
+
+      <div class="alat-card" style="border-left:3px solid var(--bronze)">
+        <p style="font-style:italic;color:var(--t3);margin-bottom:12px"><strong>Polazno pitanje:</strong> „Objasnite alegorijsku razinu Gundulićeve Dubravke na temelju zadanog ulomka." <br><strong>Zadani ulomak:</strong> završna himna slobodi (III. činjenje).</p>
+
+        <p><strong>Uvod.</strong> Dubravka Ivana Gundulića, izvedena 1628. godine u Dubrovniku za autorovu svadbu s Nikom Sorkočević, najvažnije je dramsko djelo hrvatskog baroka. Iako primarno nastupa kao pastirska igra o ljubavi pastira Miljenka i pastirice Dubravke, djelo funkcionira na dvije razine čitanja: doslovnoj i alegorijskoj. <strong>Tvrdim da je alegorijska razina Dubravke politička alegorija o sudbini dubrovačke slobode, u kojoj svaki lik i prostor imaju specifično društveno-političko značenje.</strong></p>
+
+        <p><strong>Analiza ulomka.</strong> Završna himna — „O lijepa, o draga, o slatka slobodo, dar u kom sva blaga višnji nam Bog je do, uzroče istini od naše sve slave, uresu jedini od ove Dubrave" — nije puki ukrasni zaključak pastoralne priče. Gundulić koristi <em>apostrofu</em> („O slobodo") i <em>anaforu</em> ponavljanjem „O" kako bi personificirao slobodu kao božanstvo. Epiteti „lijepa, draga, slatka" idealiziraju pojam, a metafora „dar u kom sva blaga" sugerira da je sloboda najviša, nematerijalna vrijednost. Izraz „uresu jedini od ove Dubrave" direktno povezuje slobodu s Dubravom — mitskim prostorom koji alegorijski predstavlja Dubrovnik.</p>
+
+        <p><strong>Argument 1: lik Dubravke kao personifikacija slobode.</strong> Cijela radnja — borba Miljenka i Grdana za ruku najljepše pastirice — postaje alegorijska kad se razumije da Dubravka ne simbolizira tek ljubav, nego samu <em>vlast i slobodu Dubrovačke Republike</em>. Njezino moguće vjenčanje s Grdanom nije privatna tragedija nego javna prijetnja: korumpirani bogataš bi kroz brak prisvojio ono što legitimno pripada samo plemenitima.</p>
+
+        <p><strong>Argument 2: sukob Miljenka i Grdana kao klasni sukob.</strong> Miljenko predstavlja dubrovačko plemstvo — legitimne vladare koji svoju vlast imaju po tradiciji i plemenitoj naravi. Grdan simbolizira bogate pučane koji kroz novac žele pristupiti političkoj vlasti. Potkupljivanje sudaca u II. činjenju paralela je Gundulićevoj kritici dubrovačke društvene stvarnosti 17. st., u kojoj se granica između plemstva i bogatog građanstva počinje rušiti.</p>
+
+        <p><strong>Argument 3: deus ex machina kao ideološka poruka.</strong> Čudo boga Lera u III. činjenju nije slabost dramaturgije, nego namjera: Gundulić sugerira da je dubrovačka sloboda <em>božanski čuvana</em> — <em>„dar u kom sva blaga višnji nam Bog je do"</em>. Republika nije tek ljudski projekt, nego sveti poredak. Bog štiti Dubravu kao što štiti i pobožne koji je brane.</p>
+
+        <p><strong>Kontekst.</strong> Ova alegorijska strategija tipična je za hrvatski barok i dubrovačku političku književnost. Gundulić slijedi tradiciju Tassove <em>Aminte</em> i Guarinijeva <em>Il pastor fida</em>, ali <em>obogaćuje</em> pastoralni oblik alegorijom karakterističnom za dubrovački patriotizam.</p>
+
+        <p><strong>Zaključak.</strong> Dubravka je tako istovremeno ljubavna pastirska igra i politički manifest. Završna himna slobodi čini eksplicitno što ostatak djela čini implicitno: slobodu proglašava najvišom vrijednošću — darom Boga, čuvanom tradicijom, ugroženom pohlepom. Otuda njezina trajna važnost: ona je književni spomenik dubrovačkog ideala koji odjekuje od 1628. do danas.</p>
+      </div>
+
+      <div class="box-key">
+        <div class="box-key-lbl">📝 Što naučiti iz ovog modela</div>
+        <div class="box-key-txt">
+          <strong>1.</strong> Teza je specifična i argumentabilna (ne „djelo je važno").<br>
+          <strong>2.</strong> Analiza ulomka identificira <em>konkretna stilska sredstva</em> s primjerima.<br>
+          <strong>3.</strong> Svaki argument ima strukturu: tvrdnja + primjer + objašnjenje.<br>
+          <strong>4.</strong> Kontekst povezuje s europskom tradicijom bez zalaska u neistine.<br>
+          <strong>5.</strong> Zaključak sintetizira, ne ponavlja uvod.
+        </div>
+      </div>
+    </div>
+
+    <!-- AT4: Konektori -->
+    <div class="alat-pane" id="at4">
+      <div class="alat-card">
+        <h4>Konektori i fraze za esej o Dubravki</h4>
+        <p>Pripremljene retoričke fraze koje povezuju argumente. Koristi ih da izbjegneš ponavljanje i postigneš glatko stilu.</p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Funkcija</th><th>Fraze za Dubravku</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Uvod u tezu</strong></td><td>„Gundulićeva Dubravka otvara pitanje..." · „Središnja ideja djela..." · „Na površinskoj razini Dubravka je pastirska igra, no dublje čitanje otkriva..."</td></tr>
+            <tr><td><strong>Analiza ulomka</strong></td><td>„Stihovi zadanog ulomka otkrivaju..." · „Gundulić koristi [stilsko sredstvo] kako bi..." · „Ovaj odlomak stoji na presjeku dviju razina čitanja..."</td></tr>
+            <tr><td><strong>Povezivanje s cjelinom</strong></td><td>„Ovaj motiv ponavlja se i u I./II./III. činjenju..." · „Paralelno tome, lik Grdana..." · „U kontekstu alegorije..."</td></tr>
+            <tr><td><strong>Uvod u argument</strong></td><td>„Prvi argument za ovu tezu..." · „Ne manje važno..." · „Još jedan aspekt koji podržava ovu tvrdnju..."</td></tr>
+            <tr><td><strong>Stilska analiza</strong></td><td>„Uz apostrofu Gundulić postiže..." · „Alegorija funkcionira na dvije razine..." · „Barokna estetika ovdje se ogleda u..."</td></tr>
+            <tr><td><strong>Kontekst</strong></td><td>„U duhu talijanske pastoralne tradicije (Tasso, Guarini)..." · „Unutar hrv. baroka Dubravka zauzima..." · „Dubrovačka Republika 17. st. bila je..."</td></tr>
+            <tr><td><strong>Zaključak</strong></td><td>„Sve navedeno potvrđuje..." · „Dubravka tako ostaje..." · „Njezina trajna vrijednost proizlazi iz..."</td></tr>
+            <tr><td><strong>Kritičko distanciranje</strong></td><td>„Iako neki tumači smatraju..." · „Gundulićev izbor [X] umjesto [Y] sugerira..." · „Ovdje treba istaknuti da..."</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box-int">
+        <div class="box-int-lbl">⚠ Jezični savjet</div>
+        <div class="box-int-txt">Ne prekomjerno koristi iste fraze — varianj. <strong>Stil ocjenjuje se</strong> u interpretacijskom eseju (4 boda za pisanu komunikaciju). Razgovorne izraze („super", „baš", „stvarno") <em>izbjegavaj</em>.</div>
+      </div>
+    </div>
+
+    <!-- AT5: Checklist -->
+    <div class="alat-pane" id="at5">
+      <div class="alat-card">
+        <h4>Checklist prije predaje — 12 stvari koje MORAJU biti u eseju</h4>
+        <p>Prije predaje provjerite ove točke. Preskakanje bilo koje znači gubitak bodova.</p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>✓</th><th>Stavka</th><th>Ako nedostaje</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Jasna teza u uvodu</strong> (središnja tvrdnja)</td><td>Gubitak 2-3 boda za argumentaciju</td></tr>
+            <tr><td>2</td><td><strong>Analiza zadanog ulomka</strong> (nije zanemarena)</td><td>Gubitak 3-4 boda — <em>kritična greška</em></td></tr>
+            <tr><td>3</td><td><strong>Autor i godina</strong> djela (Gundulić, 1628.)</td><td>Manji gubitak za kontekst</td></tr>
+            <tr><td>4</td><td><strong>Žanrovsko određenje</strong> (pastorala / pastirska igra / melodrama)</td><td>Gubitak za teoriju književnosti</td></tr>
+            <tr><td>5</td><td><strong>Alegorijska razina</strong> (Dubrava=Dubrovnik, Dubravka=sloboda)</td><td>Ključno za esej — ne preskakati</td></tr>
+            <tr><td>6</td><td><strong>2-3 stilska sredstva</strong> iz ulomka (s primjerima)</td><td>Gubitak za analizu</td></tr>
+            <tr><td>7</td><td><strong>2-3 argumenta</strong> s primjerima iz djela</td><td>Gubitak za argumentaciju</td></tr>
+            <tr><td>8</td><td><strong>Kontekst</strong> (barok / Dubrovnik / Tasso)</td><td>Manji gubitak</td></tr>
+            <tr><td>9</td><td><strong>Zaključak</strong> koji sintetizira</td><td>Gubitak za kompoziciju</td></tr>
+            <tr><td>10</td><td><strong>400-440+ riječi</strong> (ne manje, ne puno više)</td><td>Automatski gubitak za dužinu</td></tr>
+            <tr><td>11</td><td><strong>Pravopis i standardni jezik</strong> (č/ć, ije/je)</td><td>Gubitak 1-3 boda za jezik</td></tr>
+            <tr><td>12</td><td><strong>Čitljiv rukopis / uredna stranica</strong></td><td>Indirektan gubitak — ako ne pročitaju, ne ocjene</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AT6: 5 najčešćih grešaka -->
+    <div class="alat-pane" id="at6">
+      <div class="alat-card">
+        <h4>5 najčešćih grešaka u esejima o Dubravki</h4>
+        <p>Analiza prošlih ispita i školskih eseja pokazuje ponavljane greške. Ako ih izbjegneš — već si iznad prosjeka.</p>
+      </div>
+
+      <div class="scene-list">
+        <div class="scene-card" onclick="togScene(this)">
+          <div class="scene-hdr"><div class="scene-num">1</div><div class="scene-ttl">Prepričavanje radnje umjesto analize</div><div class="scene-arr">▶</div></div>
+          <div class="scene-body">
+            <div class="scene-why"><b>Greška:</b> „Miljenko voli Dubravku. Grdan podmićuje suce. Bog Lero čudom spasi. Kraj."<br><br><b>Ispravno:</b> Ne prepričavaj — <em>analiziraj</em>. Što Gundulić postiže postavkom Miljenka kao „najboljeg"? Zašto Grdan podmićuje — što to znači o dubrovačkom društvu? Zašto deus ex machina — što kaže o teodicejskoj poruci?</div>
+          </div>
+        </div>
+        <div class="scene-card" onclick="togScene(this)">
+          <div class="scene-hdr"><div class="scene-num">2</div><div class="scene-ttl">Zanemarivanje alegorijske razine</div><div class="scene-arr">▶</div></div>
+          <div class="scene-body">
+            <div class="scene-why"><b>Greška:</b> Pisanje samo o doslovnoj razini (ljubav Miljenka i Dubravke) bez spominjanja političke alegorije.<br><br><b>Ispravno:</b> <strong>Alegorija je srce djela</strong>. Ako ne spomeneš Dubravu=Dubrovnik, Dubravka=sloboda, Grdan=bogati pučani — izgubio/la si ključno obilježje djela. <em>Esej bez alegorije = esej bez Dubravke.</em></div>
+          </div>
+        </div>
+        <div class="scene-card" onclick="togScene(this)">
+          <div class="scene-hdr"><div class="scene-num">3</div><div class="scene-ttl">Brkanje „pjevanja" i „činjenja"</div><div class="scene-arr">▶</div></div>
+          <div class="scene-body">
+            <div class="scene-why"><b>Greška:</b> „Dubravka ima 6 pjevanja..." — <em>kriva struktura</em>. To je struktura Judite, ne Dubravke.<br><br><b>Ispravno:</b> Dubravka ima <strong>3 činjenja (čina)</strong> i <strong>28 skazanja (scena)</strong>. „Činjenje" i „skazanje" su stari slavenski termini koje Gundulić koristi umjesto latinskih „čin" i „scena".</div>
+          </div>
+        </div>
+        <div class="scene-card" onclick="togScene(this)">
+          <div class="scene-hdr"><div class="scene-num">4</div><div class="scene-ttl">Kriva godina ili povod nastanka</div><div class="scene-arr">▶</div></div>
+          <div class="scene-body">
+            <div class="scene-why"><b>Greška:</b> „Dubravka je nastala u 16. stoljeću..." ili „Gundulić ju je napisao za svoj rođendan".<br><br><b>Ispravno:</b> Dubravka je napisana <strong>~1627.</strong>, izvedena <strong>3. veljače 1628.</strong> u Dubrovniku „pred Dvorom" na dan sv. Vlaha — za <strong>Gundulićevu svadbu</strong> s Nikom Sorkočević. Pripada <strong>17. stoljeću</strong>, hrv. baroku.</div>
+          </div>
+        </div>
+        <div class="scene-card" onclick="togScene(this)">
+          <div class="scene-hdr"><div class="scene-num">5</div><div class="scene-ttl">Tretiranje Dubravke kao čisto Marulićevog tipa djela</div><div class="scene-arr">▶</div></div>
+          <div class="scene-body">
+            <div class="scene-why"><b>Greška:</b> „Dubravka je domoljubni ep kao Marulićeva Judita..."<br><br><b>Ispravno:</b> Dubravka <strong>nije ep</strong> — to je <strong>pastirska igra</strong> (drama). Marulić piše ep u stihu (Judita, 1501., renesansa, dvanaesterac). Gundulić piše dramu (Dubravka, 1628., barok, različiti stihovi). Kontrast Marulić vs. Gundulić: <em>renesansa vs. barok, ep vs. drama, Split vs. Dubrovnik</em>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AT7: Usporedbe -->
+    <div class="alat-pane" id="at7">
+      <div class="alat-card">
+        <h4>Usporedbe s drugim djelima — bonus bodovi za esej</h4>
+        <p>Kad u eseju uspostaviš vezu s drugim djelom iz kataloga, dobivaš bodove za <em>književnopovijesni kontekst</em>. Ovo su najbolje paralele.</p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Paralela</th><th>Zajedničko</th><th>Razlika</th><th>Esejski ugao</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Dubravka ↔ Marulićeva Judita</strong></td><td>Hrv. alegorijsko djelo, domoljubna tema, dvanaesterac</td><td>Dubravka = drama, barok, Dubrovnik / Judita = ep, renesansa, Split</td><td>Tradicija hrv. domoljubnog pisma: Marulić → Gundulić → Mažuranić</td></tr>
+            <tr><td><strong>Dubravka ↔ Držićeva Novela od Stanca</strong></td><td>Dubrovački dramski oblik, satira društvenih mana</td><td>Držić = renesansa, farsa, realizam / Gundulić = barok, pastorala, idealizam</td><td>Dubrovnik kao dramski centar: različiti odgovori na istu kulturu</td></tr>
+            <tr><td><strong>Dubravka ↔ Tassova Aminta (uzor)</strong></td><td>Pastirska igra, ljubav u idiličnoj prirodi, europska tradicija</td><td>Gundulić dodaje alegorijsku/političku dimenziju — hrvatski specifikum</td><td>Hrv. barok ne kopira Tallijane — preobražava ih za domaće potrebe</td></tr>
+            <tr><td><strong>Dubravka ↔ Mažuranićeva Smrt Smail-age Čengića</strong></td><td>Tema slobode, borba protiv ugnjetača (u oba: alegorijski nositelji)</td><td>Gundulić = 17. st., pastorala / Mažuranić = 19. st., ep u desetercu</td><td>Sloboda kao književna tema preko 2 stoljeća hrv. književnosti</td></tr>
+            <tr><td><strong>Dubravka ↔ Gundulićev Osman</strong></td><td>Isti autor, isti barokni stil, tematika slobode vs. tiranije</td><td>Dubravka = drama, domaća alegorija / Osman = ep, antiturska tema</td><td>Gundulićeva poetika: dva žanra, iste ideje — sloboda, vjera, tradicija</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box-signal">
+        <div class="box-signal-lbl">🎯 Tehnika bonus bodova</div>
+        <div class="box-signal-txt">
+          U zaključku ili kontekstu eseja, dodaj rečenicu tipa: <em>„Dubravka se uklapa u tradiciju hrv. domoljubnog pisma — od Marulićeve Judite (1501.), preko Gundulićeve Dubravke (1628.), do Mažuranićeve Smrti Smail-age Čengića (1846.) — jer sve tri obrađuju ideju slobode kao najviše vrijednosti."</em> Ovakva rečenica pokazuje <strong>kontekst, erudiciju i sintezu</strong> — sve što povjerenstvo traži.
+        </div>
+      </div>
+    </div>
+
+    <!-- AT8: Bonus teze -->
+    <div class="alat-pane" id="at8">
+      <div class="alat-card">
+        <h4>Bonus teze za složenije teme</h4>
+        <p>Ako ti polazno pitanje ide prema specifičnijoj temi, ove teze pokrivaju dodatne kutove.</p>
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA — Uloga boga Lera / deus ex machina</b><br>
+        „Intervencija boga Lera u III. činjenju Dubravke nije dramska slabost, nego ideološka namjera: Gundulić, pišući u katoličko-protureformacijskoj atmosferi Dubrovnika 17. stoljeća, koristi deus ex machina kako bi sugerirao da dubrovačka sloboda nije tek ljudski projekt, nego sveti poredak čuvan božanskom pravdom. Čudo u hramu postaje teološko-politički argument: Republiku štiti Bog."
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA — Ženska uloga (Dubravka kao pasivna junakinja?)</b><br>
+        „Lik Dubravke proturječi modernim očekivanjima od dramske junakinje: ona ne djeluje, ne govori puno, ne bori se. No njezina pasivnost nije manjkavost karakterizacije, nego simbolička funkcija — Dubravka kao personifikacija slobode <em>nije subjekt radnje, nego njezin objekt</em>: oko nje se vrte muški likovi koji se bore za nju. Ta strukturna pasivnost odraz je baroknih i katoličkih ideala ženstvenosti, ali i alegorijske logike: sloboda se ne bori, ona je dobije ili izgubi."
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA — Satiri kao komičan element u alegoriji</b><br>
+        „Satiri — Divjak, Gorštak i Vuk — naizgled su marginalni komični likovi, ali njihova uloga u Dubravki je strukturno važna: oni <em>pučkim jezikom i grubim humorom</em> utjelovljuju ljudske poroke (taština, pohlepa, raskalaš) kroz koje Gundulić kritizira nove dubrovačke običaje. Divjakovo prerušavanje u vilu u II. činjenju dublja je metafora društvenog varanja — lažno predstavljanje kao način stjecanja statusa. Satiri su tako komičan izraz ozbiljne društvene kritike."
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA — Ribar iz Dalmacije (realni povijesni ulomak u mitskom svijetu)</b><br>
+        „Lik ribara iz Dalmacije upada u pastoralnu idilu Dubrave kao jedini <em>povijesno realistični</em> lik: on dolazi iz krajeva pod Turcima i hvali dubrovačku slobodu. Njegovim uvođenjem Gundulić probija mitsku atmosferu pastorale i ubacuje konkretnu političku stvarnost 17. stoljeća — Dubrovnik kao iznimka u okruženju turskog nasilja. Time Dubravka postaje ne samo apstraktna alegorija, nego i dokument povijesnog trenutka."
+      </div>
+
+      <div class="alat-teza" onclick="cpyTeza(this)">
+        <b>TEMA — Jezična hijerarhija kao dramska strategija</b><br>
+        „Trostruka jezična hijerarhija Dubravke — osmerac za plemićki sloj, dvanaesterac za didaktične likove, pučki dvanaesterac za satire i Grdana — nije stilska dekoracija, nego dramska strategija karakterizacije. Gundulić kroz stih istovremeno <em>individualizira lik, locira ga u socijalnom sloju i postavlja komičan kontrast</em>. Ta stilska višeglasnost obilježje je zrelog baroka i razlikuje Dubravku od kasnijih klasicističkih drama koje teže jezičnom jedinstvu."
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="nb-btn" onclick="sw(1)">← 3 činjenja</span>
+      <span class="nb-btn primary" onclick="sw(3)">📚 Citatnik →</span>
+    </div>
+
+  </div><!-- /l2 -->
+
+  <div class="layer" id="l3" role="tabpanel" tabindex="0"></div>
+
+  <div class="layer" id="l4" role="tabpanel" tabindex="0"></div>
+
+  <div class="layer" id="l5" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-br">20 flashcards</span>
+      <span class="pill p-go">3 razine matching</span>
+      <span class="pill p-t">Demo slobodan</span>
+      <span class="pill p-r">Puno PRO</span>
+    </div>
+
+    <div class="sec-hdr"><div class="sec-line"></div><div class="sec-badge">01 · Flashcards · okreni karticu</div><div class="sec-line"></div></div>
+
+    <style>
+      .h13d-fc-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;margin:16px 0 24px}
+      .h13d-fc-counter{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase}
+      .h13d-fc-counter b{color:var(--bronze-l)}
+      .h13d-fc{width:100%;max-width:520px;min-height:220px;perspective:1500px;cursor:pointer}
+      .h13d-fc-inner{position:relative;width:100%;height:100%;min-height:220px;transition:transform .6s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+      .h13d-fc.flipped .h13d-fc-inner{transform:rotateY(180deg)}
+      .h13d-fc-front,.h13d-fc-back{position:absolute;inset:0;min-height:220px;padding:40px 32px;border-radius:var(--r4);backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--bdm)}
+      .h13d-fc-front{background:linear-gradient(135deg,var(--card),var(--ele))}
+      .h13d-fc-back{background:linear-gradient(135deg,rgba(220,50,47,.12),rgba(232,201,122,.05));border-color:var(--bd-br);transform:rotateY(180deg)}
+      .h13d-fc-cat{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--bronze);margin-bottom:12px}
+      .h13d-fc-term{font-family:var(--display);font-size:30px;font-weight:700;color:var(--t1);letter-spacing:1px}
+      .h13d-fc-hint{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:22px;letter-spacing:1px}
+      .h13d-fc-def{font-family:var(--serif);font-size:16px;line-height:1.65;color:var(--t1);max-width:420px}
+      .h13d-fc-controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+      .h13d-fcb{padding:10px 20px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--t2);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+      .h13d-fcb:hover{border-color:var(--bd-br);color:var(--bronze-l)}
+      .h13d-fcb.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));color:#F5E6D3;border-color:var(--bronze)}
+      .h13d-fcb.know{border-color:var(--bd-g);color:var(--green)}
+      .h13d-fcb.know:hover{background:var(--dim-g)}
+      .h13d-fcb.dont{border-color:var(--bd-r);color:var(--red)}
+      .h13d-fcb.dont:hover{background:var(--dim-r)}
+      .h13d-fc-stats{display:flex;gap:20px;margin-top:10px;font-family:var(--mono);font-size:11px}
+      .h13d-fc-stats span{color:var(--t3)}
+      .h13d-fc-stats b{color:var(--green)}
+      .h13d-fc-stats i{color:var(--red);font-style:normal}
+    </style>
+
+    <div class="h13d-fc-wrap">
+      <div class="h13d-fc-counter"><span id="h13d-fc-num"><b>1</b> / 20</span></div>
+      <div class="h13d-fc" id="h13d-fc-card" onclick="h13DrillFcFlip()">
+        <div class="h13d-fc-inner" id="h13d-fc-inner">
+          <div class="h13d-fc-front">
+            <div class="h13d-fc-cat" id="h13d-fc-cat-f">POJAM</div>
+            <div class="h13d-fc-term" id="h13d-fc-term">—</div>
+            <div class="h13d-fc-hint">Klikni za okretanje</div>
+          </div>
+          <div class="h13d-fc-back">
+            <div class="h13d-fc-cat" id="h13d-fc-cat-b">DEFINICIJA</div>
+            <div class="h13d-fc-def" id="h13d-fc-def">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="h13d-fc-controls">
+        <button class="h13d-fcb dont" onclick="h13DrillFcMark(0)">❌ Ne znam</button>
+        <button class="h13d-fcb know" onclick="h13DrillFcMark(1)">✅ Znam</button>
+        <button class="h13d-fcb" onclick="h13DrillFcSkip()">Preskoči ›</button>
+        <button class="h13d-fcb" onclick="h13DrillFcShuffleAndRender()">📌 Promiješaj</button>
+        <button class="h13d-fcb primary" onclick="h13DrillFcReset()">🔁 Reset</button>
+      </div>
+      <div class="h13d-fc-stats"><span>točno: <b id="h13d-fc-right">0</b></span><span>krivo: <i id="h13d-fc-wrong">0</i></span></div>
+    </div>
+
+    <!-- MATCHING GAME — potpuno funkcionalan -->
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">Matching game — spoji pojam s definicijom · 3 razine</div><div class="sec-line"></div></div>
+
+    <div id="mg-dynamic"></div>
+
+    <div class="box-signal" style="margin-top:16px">
+      <div class="box-signal-lbl">💡 Matching tip</div>
+      <div class="box-signal-txt">Počni s <strong>Lagano (4 para)</strong> za provjeru osnova, zatim napreduj na Teško (8 parova). Svako uspješno sparivanje gradi memorijsku vezu pojam–definicija.</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 6 · KVIZ
+  ══════════════════════════════════════ -->
+  <div class="layer" id="l6" role="tabpanel" tabindex="0">
+    <!-- DISCERE TOUCHPOINT 4 -->
+    <div class="discere-banner" id="discere-kviz" onclick="window.location.href='#discere'">
+      <div class="discere-ico">🏆</div>
+      <div class="discere-txt">
+        <div class="discere-ttl">Discere · Pravi ispit mode</div>
+        <div class="discere-sub">Ovaj kviz je priprema — u Discere treniraj s vremenskim pritiskom i točnim bodovanjem kao na maturi</div>
+      </div>
+      <div class="discere-arrow">→</div>
+    </div>
+    <div class="qz-wrap" id="qz-wrap"></div>
+    <!-- Score History -->
+    <div class="score-hist" id="score-hist" style="display:none">
+      <div class="score-hist-lbl">📊 Zadnjih 5 kvizova</div>
+      <div class="score-hist-rows" id="score-hist-rows"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 7 · CHECKPOINT
+  ══════════════════════════════════════ -->
+  <div class="layer" id="l7" role="tabpanel" tabindex="0">
+    <div class="tags">
+      <span class="pill p-br">10 tvrdnji</span>
+      <span class="pill p-go">Provjera znanja</span>
+    </div>
+
+    <p>Označi svaku tvrdnju koju <strong>stvarno znaš</strong> — ne samo prepoznaješ, nego možeš objasniti i primijeniti u eseju. Kada označiš svih 10, možeš prijeći na H14.</p>
+
+    <style>
+      .minirev{margin:16px 0 14px;padding:14px;border:1px solid var(--line,rgba(255,255,255,.12));border-radius:var(--r3,12px);background:linear-gradient(135deg,var(--panel,rgba(255,255,255,.03)) 0%,rgba(255,255,255,.01) 100%)}
+      .minirev-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+      .minirev-ttl{font-weight:800;color:var(--gold,#e9b446);font-size:14px}
+      .minirev-time{font-size:11px;color:var(--muted,#b8b8b8)}
+      .minirev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-bottom:10px}
+      .minirev-card{border:1px solid var(--line,rgba(255,255,255,.12));border-radius:10px;padding:9px;background:rgba(255,255,255,.02)}
+      .minirev-card-lbl{font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--bronze-l,#e0ba93);margin-bottom:4px;font-weight:700}
+      .minirev-card-val{font-size:12.5px;line-height:1.45;color:var(--txt,#ebebeb)}
+      .minirev-card-val b{color:var(--gold,#e9b446)}
+      .minirev-quotes{border:1px dashed var(--line,rgba(255,255,255,.12));border-radius:10px;padding:10px;background:rgba(255,255,255,.015)}
+      .minirev-quotes ol{margin:0;padding-left:18px}
+      .minirev-quotes li{margin:4px 0;font-size:12.5px;line-height:1.45}
+      .exam-prompt{position:relative;margin:0 0 16px;padding:13px;border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:var(--r3,12px);background:linear-gradient(135deg,var(--dim-r,rgba(192,66,68,.12)) 0%,rgba(224,82,82,.04) 100%)}
+      .exam-prompt::before{content:'NCVVO · SKOLSKI ESEJ';display:inline-block;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:999px;background:var(--bg,#0f0b10);color:var(--red-l,#f0a8a8);margin-bottom:8px}
+      .exam-prompt-ttl{font-size:14px;font-weight:800;color:var(--txt,#f3f3f3);margin-bottom:6px}
+      .exam-prompt-task{font-size:13px;line-height:1.55;color:var(--txt,#ececec);margin-bottom:8px}
+      .exam-prompt-tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+      .exam-tip{border:1px solid var(--bd-r,rgba(192,66,68,.28));border-radius:10px;padding:8px 9px;background:rgba(15,8,9,.22);font-size:12.5px;line-height:1.45}
+    </style>
+
+    <div class="minirev">
+      <div class="minirev-head">
+        <div class="minirev-ttl">🧭 Mini-revizija — sve u 3 minute</div>
+        <div class="minirev-time">~3 min čitanja</div>
+      </div>
+      <div class="minirev-body">
+        <div class="minirev-grid">
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Djelo i korpus</div><div class="minirev-card-val"><b>Gundulić: Dubravka</b> uz kontekst <b>Osmana</b> kao ključ hrvatskoga baroka.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Kontekst</div><div class="minirev-card-val"><b>Hrvatski barok</b>: politička nesigurnost, religioznost i pojačana retorika slobode.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Likovi i osi</div><div class="minirev-card-val"><b>Dubravka, Miljenko, Grdan</b> — sukob ljubavi, moći i ideala slobodne zajednice.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Središnji sukob</div><div class="minirev-card-val"><b>Sloboda i pravda vs korupcija i interes</b>; alegorijska razina vodi čitanje drame.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Pojmovi</div><div class="minirev-card-val"><b>pastorala, alegorija, barokni stil, antiteza, retorika slobode</b>.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Simboli</div><div class="minirev-card-val"><b>Dubrava, sloboda, obred vjencanja</b> — ključni simbolički kod za esejsku razradu.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Most</div><div class="minirev-card-val">› <b>H14 Preporod</b>: od barokne alegorije slobode prema nacionalno-političkom programu 19. stoljeća.</div></div>
+          <div class="minirev-card"><div class="minirev-card-lbl">📌 Najveća greška</div><div class="minirev-card-val">Dubravku čitati kao „idilu bez konflikta”. Djelo je <b>politički i etički oštro</b>, ne dekorativno.</div></div>
+        </div>
+        <div class="minirev-quotes">
+          <b style="display:block;font-family:var(--mono);font-size:9.5px;color:var(--bronze-l,#e0ba93);letter-spacing:1.5px;font-weight:700;text-transform:uppercase;margin-bottom:8px">3 citata/formulacije napamet</b>
+          <ol>
+            <li>„O lijepa, o draga, o slatka slobodo.” <b>(Gundulić)</b></li>
+            <li>„Tko bi gori, eto je doli.” <b>(Gundulić)</b></li>
+            <li>„Dubravka alegorijski brani dubrovačku slobodu.” <b>(školska formulacija)</b></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-prompt">
+      <div class="exam-prompt-ttl">📌 Kako se Gundulić i Dubravka mogu pojaviti na ispitu</div>
+      <div class="exam-prompt-task">Analiziraj kako Gundulić u <em>Dubravki</em> oblikuje alegoriju slobode i društvene pravde. Objasni ulogu likova, simboličke razine i baroknog stila te pokaži aktualnost političke poruke djela.</div>
+      <div class="exam-prompt-tips">
+        <div class="exam-tip"><b>📌 Struktura eseja</b>Uvod (50-60 r.) · 3 razradna odlomka (~120 r. svaki: kontekst, alegorija/simboli, poruka djela) · zaključak (60-70 r.) = ~470 r.</div>
+        <div class="exam-tip"><b>📌 Citati</b>Koristi 2-3 citata/formulacije: „O lijepa, o draga...”, „Tko bi gori...”, jedna rečenica o alegorijskom čitanju.</div>
+        <div class="exam-tip"><b>📌 Povezivanje</b>Poveži H13→H14: barokna ideja slobode otvara put preporodnoj nacionalnoj ideji.</div>
+        <div class="exam-tip"><b>📚 Pojmovi</b>Barok · pastorala · alegorija · antiteza · retorika slobode · politički kontekst.</div>
+      </div>
+    </div>
+
+    <div class="cp-grid" id="cp-list"></div>
+    <div class="cp-prog">
+      <div class="cp-prog-label">
+        <span>Usvojenost H13</span>
+        <span id="cp-pct">0 / 10</span>
+      </div>
+      <div class="cp-prog-track"><div class="cp-prog-bar" id="cp-bar" style="width:0%"></div></div>
+    </div>
+    <div class="cp-actions">
+      <button class="fcb" onclick="cpReset()">↩ Resetiraj</button>
+      <button class="fcb primary" onclick="sw(6)">🧠 Idi na kviz</button>
+    </div>
+
+    <div class="cp-summary" id="cp-summary-box" style="display:none">
+      <div class="cp-sum-pct" id="cp-sum-pct">0%</div>
+      <div class="cp-sum-txt" id="cp-sum-txt">Označi tvrdnje koje <strong>stvarno znaš</strong>.</div>
+    </div>
+
+    <div class="cp-final" id="cp-final">
+      <div class="cp-final-ico">🏆</div>
+      <div class="cp-final-title">H13 Završeno!</div>
+      <div class="cp-final-msg">Izvrsno! Savladao/la si Gundulića i Dubravku — pastoralu, alegoriju dubrovačke slobode, 3 činjenja i esejsku argumentaciju.<br>Sljedeće: <strong>H14 · Preporod</strong>.</div>
+      <a href="Maturiraj_Hrvatski_H14.html?from=H13" class="reveal-lock-btn" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">→ H14 · Preporod</a>
+      <br><br>
+      <button class="nb-btn" onclick="cpReset()">↩ Resetiraj</button>
+    </div>
+
+    <!-- Writing practice widget -->
+    <div class="sec-hdr" style="margin-top:28px"><div class="sec-line"></div><div class="sec-badge">Vježba pisanja — rečenica o Dubravki</div><div class="sec-line"></div></div>
+
+    <div class="box-int">
+      <div class="box-int-lbl">✍ Napiši jednu rečenicu o Dubravki koja bi mogla ući u esej</div>
+      <div class="box-int-txt">Vježbaj oblikovanje esejskih rečenica. Cilj: precizna, tehnički točna rečenica s književnim pojmom, primjerom i argumentom. Minimum 20 riječi.</div>
+    </div>
+    <div class="wc-wrap">
+      <div class="wc-header">
+        <div class="wc-lbl">Vježbaj pisanje esejske rečenice</div>
+        <div class="wc-stats">
+          <div class="wc-stat" id="cpw-words"><span class="wc-stat-num">0</span><span class="wc-stat-lbl">Riječi</span></div>
+          <div class="wc-stat" id="cpw-terms"><span class="wc-stat-num">0</span><span class="wc-stat-lbl">Pojmova</span></div>
+        </div>
+      </div>
+      <div class="wc-body">
+        <textarea id="cp-writer" class="wc-ta" style="min-height:100px" placeholder="Npr: Gundulić u Dubravki (1628.) gradi pastoralu u dvanaestercu i osmercu koja — kroz alegorijsku razinu Dubrava=Dubrovnik — postaje politički manifest o sudbini dubrovačke slobode..." rows="4" oninput="cpWriterUpdate()"></textarea>
+        <div class="wc-prog" id="cpw-prog"><div class="wc-prog-bar" id="cpw-bar"></div></div>
+        <div class="wc-prog-lbl" id="cpw-lbl">CILJ 20 RIJEČI · 0 / 20</div>
+        <div class="wc-actions">
+          <button class="wc-btn" onclick="navigator.clipboard.writeText(document.getElementById('cp-writer').value)">⎘ Kopiraj</button>
+          <button class="wc-btn" onclick="document.getElementById('cp-writer').value='';cpWriterUpdate()">✕ Obriši</button>
+        </div>
+      </div>
+    </div>
+    <div id="cp-writer-fb" style="margin-top:10px"></div>
+
+    <div class="box-signal" style="margin-top:24px">
+      <div class="box-signal-lbl">📎 Poveznice između tabova H13</div>
+      <div class="box-signal-txt">
+        <b>Teorija (0)</b> → kontekst i pojmovi → <b>3 činjenja (1)</b> → detaljna analiza → <b>Esej alat (2)</b> → primjena u eseju → <b>Citatnik (3)</b> → gotovi citati → <b>Pojmovnik (4)</b> → precizni pojmovi → <b>Kviz (6)</b> → provjera → <b>Checkpoint (7)</b> → potvrda. <strong>Za ispit: počni s Kvizom (brza dijagnoza), zatim nadopuni slabe točke.</strong>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content-wrap -->
+  <!-- ═══════════════════════════════════
+       CROSS-CHAPTER NAVIGATION
+  ═══════════════════════════════════ -->
+  <div class="chapter-nav-wrap">
+    <div class="chapter-nav-hdr">
+      <div class="chapter-nav-title">📚 Sljedeća poglavlja</div>
+      <div class="chapter-nav-sub">Nastavi učiti — povezana poglavlja u Maturiraj knjižnici</div>
+    </div>
+    
+    <div class="chapter-nav-grid">
+      <a class="chapter-nav-card chapter-nav-prev" href="/skripte/hrv/h12">
+        <div class="chapter-nav-arrow">←</div>
+        <div class="chapter-nav-meta">
+          <div class="chapter-nav-pill">PRETHODNO</div>
+          <div class="chapter-nav-name">H12 · Marulić · Judita</div>
+          <div class="chapter-nav-desc">Hrvatska renesansa — početak hrv. književnosti</div>
+        </div>
+      </a>
+
+      <a class="chapter-nav-card chapter-nav-next" href="/skripte/hrv/h14">
+        <div class="chapter-nav-meta">
+          <div class="chapter-nav-pill chapter-nav-pill-next">SLJEDEĆE</div>
+          <div class="chapter-nav-name">H14 · Narodni preporod</div>
+          <div class="chapter-nav-desc">Mažuranić — Smrt Smail-age Čengića</div>
+        </div>
+        <div class="chapter-nav-arrow">→</div>
+      </a>
+</div>
+
+    <div class="chapter-nav-related">
+      <div class="chapter-nav-related-ttl">🔗 Povezana poglavlja</div>
+      <div class="chapter-nav-related-grid">
+        <a class="chapter-nav-mini" href="/skripte/hrv/h12">
+          <span class="chapter-nav-mini-code">H12</span>
+          <span class="chapter-nav-mini-name">Marulić · Judita</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h14">
+          <span class="chapter-nav-mini-code">H14</span>
+          <span class="chapter-nav-mini-name">Narodni preporod</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h17">
+          <span class="chapter-nav-mini-code">H17</span>
+          <span class="chapter-nav-mini-name">Stilske figure</span>
+        </a>
+        <a class="chapter-nav-mini" href="/skripte/hrv/h18">
+          <span class="chapter-nav-mini-code">H18</span>
+          <span class="chapter-nav-mini-name">Versifikacija</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══ MODULE FOOTER (v3.6) ══ -->
+  <footer class="mod-foot" role="contentinfo">
+    <div class="foot-line"><b>Maturiraj.hr</b> · Hrvatski · H13 Avangarda i ekspresionizam — hrvatska književnost (1914.–1952.)</div>
+    <div class="foot-line">Autorski sadržaj · Usklađeno s <a href="https://www.ncvvo.hr/ispitni-katalozi-za-drzavnu-maturu-2025-2026/" target="_blank" rel="noopener noreferrer">NCVVO</a> ispitnim katalogom · Ažurirano <time datetime="2026-04-18">travanj 2026.</time></div>
+    <div class="foot-line foot-feedback">
+      <span class="foot-fb-q">Imaš prijedlog ili si uočio grešku?</span>
+      <button type="button" class="foot-fb-btn" onclick="openFeedbackModal()">📝 Prijavi →</button>
+      <span class="foot-fb-or">ili e-mail</span>
+      <a href="mailto:maturirajgreske@gmail.com" class="foot-fb-mail">maturirajgreske@gmail.com</a>
+    </div>
+  </footer>
+</main>
+</div><!-- /shell -->
+
+<!-- TIP BAR -->
+<div class="tip-bar" id="tip-bar">
+  <span class="tip-bar-close" onclick="document.getElementById('tip-bar').classList.remove('show')">✕</span>
+  <span id="tip-bar-txt">💡 <strong>Tip:</strong> Klikni na činjenje za detalje i esejske signale.</span>
+</div>
+
+<!-- FROM BANNER -->
+<div class="from-banner" id="from-banner">
+  <span>📎</span><span id="from-txt">Dolaziš iz prethodnog poglavlja</span>
+</div>
+
+
+
+
+
+
+`;
+
+const CHAPTER_CSS_DELTA = `--red:#C04244;--bd-r:rgba(192,66,68,.22);--dim-r:rgba(192,66,68,.10);
+  --green:#6B9464;--bd-g:rgba(107,148,100,.22);--dim-g:rgba(107,148,100,.09);
+  --sienna:#A85940;--bd-s:rgba(168,89,64,.22);--dim-s:rgba(168,89,64,.10);
+  --t1:#F5E6D3;--t2:#B09684;--t3:#6B5A4E;--t4:#3A2A22;
+img,video,iframe,embed,object{max-width:100%;height:auto}
+html{font-size:16px;scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+  background-size:80px 80px;pointer-events:none;z-index:0;
+  pointer-events:none;z-index:0;
+.shell,.sidebar,.main{position:relative;z-index:1}
+.main{flex:1;min-width:0;max-width:100%}
+@keyframes layerIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  width:var(--sb);min-width:var(--sb);flex-shrink:0;background:var(--sur);
+@media(max-width:1200px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;height:100%;z-index:180;
+    transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+    pointer-events:none}
+  .sidebar.mobile-open{transform:translateX(0)!important;pointer-events:auto}
+  .sb-hamburger{display:flex!important}
+  .main{width:100%!important;max-width:100%!important;flex:1!important}
+  display:none;position:fixed;top:6px;left:6px;z-index:300;
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:150;backdrop-filter:blur(3px)}
+.sb-item.sb-d .sb-dot{background:var(--gold);opacity:.5}
+  content:'★ 2026';position:absolute;right:10px;
+  font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.5px;
+  color:var(--gold);background:var(--dim-go);border:1px solid var(--bd-go);
+  border-radius:3px;padding:2px 5px;
+.sb-item[data-star="2026"]{padding-right:58px;position:relative}
+.content-wrap{max-width:860px;width:100%;margin:0 auto;padding:32px 44px 120px;animation:fadeUp .4s ease both;box-sizing:border-box}
+.hero{margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--bdm);position:relative}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;width:60px;height:2px;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:1px}
+.hero-chapter{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--bronze);opacity:.8;margin-bottom:10px}
+.hero-title{font-family:var(--display);font-size:28px;font-weight:700;color:var(--t1);letter-spacing:.3px;line-height:1.15;margin-bottom:10px}
+.hero-sub{font-family:var(--serif);font-size:15px;color:var(--t2);line-height:1.65;margin-bottom:18px}
+.hero-sub strong{color:var(--t1)}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.hchip{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:4px}
+.hchip.br{background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+.hchip.go{background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go)}
+.hchip.te{background:var(--dim-t);color:var(--teal);border:1px solid var(--bd-t)}
+.hchip.re{background:var(--dim-r);color:var(--red);border:1px solid var(--bd-r)}
+.hchip.gr{background:var(--dim-g);color:var(--green);border:1px solid var(--bd-g)}
+.hchip.pa{background:var(--dim-pa);color:var(--parchment);border:1px solid var(--bd-pa)}
+/* ══ COUNTDOWN ══ */
+.countdown{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--t3);padding:7px 14px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);display:inline-flex;align-items:center;gap:8px;margin-bottom:20px}
+.countdown strong{color:var(--bronze);font-size:13px}
+.tabs{display:flex;gap:0;margin-bottom:20px;background:var(--sur);border:1px solid var(--bdm);border-radius:var(--r2);padding:3px;width:100%;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;-ms-overflow-style:none;scroll-snap-type:none}
+.tab{padding:7px 16px;font-size:11px;font-weight:600;color:var(--t2);cursor:pointer;border-radius:5px;transition:all .18s;white-space:nowrap;font-family:var(--mono);position:relative;z-index:1;background:transparent;border:none;line-height:normal;min-height:44px}
+.tab.on{background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));color:#0F0605;font-weight:700;box-shadow:0 2px 18px rgba(220,50,47,.35),inset 0 1px 0 rgba(255,255,255,.1)}
+.tab-lock{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.5px;margin-left:5px;background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go);border-radius:3px;padding:1px 5px}
+.tab-done{display:inline-flex;align-items:center;justify-content:center;margin-left:5px;font-size:9px;color:var(--green);opacity:.9;font-weight:700}
+/* ══ TIP BAR ══ */
+.tip-bar{position:fixed;bottom:16px;right:16px;background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r3);padding:10px 14px;font-family:var(--mono);font-size:10px;color:var(--t2);max-width:260px;box-shadow:0 4px 20px rgba(0,0,0,.4);z-index:190;display:none;animation:fadeUp .3s ease;line-height:1.5}
+.tip-bar.show{display:block}
+.tip-bar-close{float:right;cursor:pointer;color:var(--t3);margin-left:8px;font-size:12px}
+.tip-bar strong{color:var(--gold)}
+/* ══ DISCERE BANNER ══ */
+.discere-banner{background:linear-gradient(135deg,rgba(220,50,47,.12),rgba(232,201,122,.08));border:1px solid var(--bd-br);border-radius:var(--r3);padding:14px 18px;margin:20px 0;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .18s}
+.discere-banner:hover{border-color:var(--bdl);background:linear-gradient(135deg,rgba(220,50,47,.18),rgba(232,201,122,.12))}
+.discere-ico{font-size:28px;flex-shrink:0}
+.discere-txt{flex:1}
+.discere-ttl{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin-bottom:3px}
+.discere-sub{font-family:var(--serif);font-size:12.5px;color:var(--t3);line-height:1.4}
+.discere-arrow{color:var(--bronze);font-size:18px;flex-shrink:0}
+/* ══ SCORE HISTORY ══ */
+.score-hist{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 18px;margin:16px 0}
+.score-hist-lbl{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.score-hist-rows{display:flex;flex-direction:column;gap:6px}
+.score-hist-row{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px}
+.score-hist-bar{flex:1;height:6px;background:var(--bd);border-radius:3px;overflow:hidden}
+.score-hist-fill{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:3px;transition:width .5s ease}
+.score-hist-val{color:var(--gold);min-width:36px;text-align:right}
+.score-hist-date{color:var(--t3);font-size:9px;min-width:48px}
+/* ══ FROM BANNER ══ */
+.from-banner{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:8px 14px;margin-bottom:18px;font-family:var(--mono);font-size:10px;color:var(--gold);display:none}
+.from-banner.show{display:flex;align-items:center;gap:8px}
+/* ══ LAYERS ══ */
+.layer{display:none!important;scroll-margin-top:50px}
+.layer.on{display:block!important;animation:layerIn .28s cubic-bezier(.4,0,.2,1) both}
+/* ══ PILLS / TAGS ══ */
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}
+.pill{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center}
+.p-br{background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+.p-go{background:var(--dim-go);color:var(--gold);border:1px solid var(--bd-go)}
+.p-r{background:var(--dim-r);color:var(--red);border:1px solid var(--bd-r)}
+.p-t{background:var(--dim-t);color:var(--teal);border:1px solid var(--bd-t)}
+.p-g{background:var(--dim-g);color:var(--green);border:1px solid var(--bd-g)}
+.p-pa{background:var(--dim-pa);color:var(--parchment);border:1px solid var(--bd-pa)}
+/* ══ FEATURED QUOTE ══ */
+.fq{background:var(--ele);border-left:3px solid var(--bronze);border-radius:0 var(--r3) var(--r3) 0;padding:18px 22px;margin:22px 0;position:relative}
+.fq::before{content:'\\275D';position:absolute;top:8px;right:14px;font-size:32px;color:var(--bronze);opacity:.15;font-family:var(--serif);line-height:1}
+.fq-text{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--t1);line-height:1.7;margin-bottom:8px}
+.fq-source{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px}
+.fq-source span{color:var(--gold)}
+/* ══ BOX SYSTEM ══ */
+.box-key{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r3);padding:16px 18px;margin:18px 0}
+.box-key-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.box-int{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:16px 18px;margin:18px 0}
+.box-int-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bronze-l);margin-bottom:10px}
+.box-warn{background:rgba(192,66,68,.07);border:1px solid var(--bd-r);border-radius:var(--r3);padding:14px 18px;margin:16px 0}
+.box-warn-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.box-signal{background:rgba(107,142,127,.07);border:1px solid var(--bd-t);border-radius:var(--r3);padding:14px 18px;margin:16px 0}
+.box-signal-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.box-signal-txt,.box-int-txt,.box-key-txt,.box-warn-txt,.bw-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+.box-signal-txt strong,.box-int-txt strong,.box-key-txt strong,.bw-txt strong{color:var(--t1)}
+.box-signal-txt em,.box-int-txt em,.bw-txt em{color:var(--teal);font-style:italic}
+/* ══ SECTION HEADER ══ */
+.sec-hdr{display:flex;align-items:center;gap:12px;margin:32px 0 16px}
+.sec-line{flex:1;height:1px;background:var(--bd)}
+.sec-badge{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);white-space:nowrap}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0}
+.tbl th{background:var(--ele);color:var(--t3);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:8px 12px;border:1px solid var(--bd);text-align:left}
+.tbl td{padding:9px 12px;border:1px solid var(--bd);color:var(--t2);vertical-align:top;line-height:1.5}
+.tbl tr:hover td{background:var(--hov);color:var(--t1)}
+.tbl td strong{color:var(--t1)}
+.tbl td em{color:var(--gold);font-style:italic}
+.tbl-wrap{overflow-x:auto;margin:16px 0;border-radius:var(--r2)}
+/* ══ SCENE CARDS (pjevanja) ══ */
+.scene-list{display:flex;flex-direction:column;gap:12px;margin:18px 0}
+.scene-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);overflow:hidden;cursor:pointer;transition:border-color .18s}
+.scene-card:hover{border-color:var(--bdl)}
+.scene-card.open{border-color:var(--bd-br)}
+.scene-hdr{display:flex;align-items:center;gap:12px;padding:12px 16px}
+.scene-num{font-family:var(--display);font-size:11px;font-weight:700;color:var(--bronze);min-width:28px}
+.scene-ttl{font-family:var(--serif);font-size:14px;color:var(--t1);font-weight:600;flex:1}
+.scene-tag{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;background:var(--dim-br);color:var(--bronze-l);border:1px solid var(--bd-br)}
+.scene-arr{color:var(--t3);font-size:12px;transition:transform .2s}
+.scene-card.open .scene-arr{transform:rotate(90deg)}
+.scene-body{display:none;padding:0 16px 14px;border-top:1px solid var(--bd)}
+.scene-card.open .scene-body{display:block;animation:diagFade .25s ease}
+.scene-quote{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--gold);background:var(--dim-go);border-left:2px solid var(--bd-go);padding:10px 14px;margin:12px 0;border-radius:0 var(--r2) var(--r2) 0}
+.scene-why{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.6;margin:10px 0}
+.scene-why b{color:var(--t1)}
+.scene-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.scene-chip{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px}
+/* ══ QUICK NAV ══ */
+.qnav{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:20px 0}
+.qnav-btn{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:12px 14px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:4px}
+.qnav-btn:hover{border-color:var(--bdl);background:var(--hov);color:var(--t1)}
+.qnav-btn{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--bronze-l)}
+.qnav-btn span{font-family:var(--font);font-size:11px;font-weight:400;color:var(--t3);letter-spacing:0}
+/* ══ AUTHOR CARD ══ */
+.ac{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);padding:20px;margin:18px 0}
+.ac-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px}
+.ac-avatar{width:52px;height:52px;border-radius:var(--r3);background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:#0F0605;font-weight:700;flex-shrink:0}
+.ac-info{flex:1}
+.ac-name{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.ac-dates{font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1px}
+.ac-role{font-size:12px;color:var(--t3);margin-top:2px}
+.ac-body{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+.ac-body strong{color:var(--t1)}
+.ac-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+/* ══ DIAG ══ */
+.diag{background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r4);overflow:hidden;margin:20px 0}
+.diag-intro,.diag-quiz,.diag-result{display:none;padding:22px 26px;animation:diagFade .35s ease}
+.diag-intro-title{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin-bottom:8px}
+.diag-intro-desc{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.diag-q-num{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;margin-bottom:10px}
+.diag-q-text{font-family:var(--serif);font-size:15px;color:var(--t1);line-height:1.6;margin-bottom:16px}
+.diag-opts{display:flex;flex-direction:column;gap:8px}
+.diag-opt{background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:10px 14px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .15s;font-family:var(--serif)}
+.diag-opt:hover{border-color:var(--bdl);color:var(--t1);background:var(--hov)}
+.diag-opt.correct{background:var(--dim-g);border-color:var(--bd-g);color:var(--green)}
+.diag-opt.wrong{background:var(--dim-r);border-color:var(--bd-r);color:var(--red)}
+.diag-prog{height:3px;background:var(--bd);margin-bottom:18px}
+.diag-prog-fill{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));transition:width .4s ease;border-radius:1px}
+.diag-prog-wrap{display:flex;align-items:center;gap:10px;margin-top:10px}
+.diag-bar{flex:1;height:4px;background:var(--bd);border-radius:3px;overflow:hidden}
+.diag-prog-num{font-family:var(--mono);font-size:10px;color:var(--t3);white-space:nowrap}
+/* ══ ALAT (esej) ══ */
+.alat-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.alat-tab{font-family:var(--mono);font-size:10px;font-weight:700;padding:5px 12px;border-radius:var(--r1);background:var(--ele);border:1px solid var(--bd);color:var(--t3);cursor:pointer;transition:all .15s;letter-spacing:.5px}
+.alat-tab.on{background:var(--dim-go);border-color:var(--bd-go);color:var(--gold)}
+.alat-pane{display:none}.alat-pane.on{display:block;animation:layerIn .2s ease}
+.alat-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:16px 18px;margin:10px 0}
+.alat-card h4{font-family:var(--display);font-size:12px;font-weight:700;color:var(--bronze-l);margin-bottom:10px;letter-spacing:.5px}
+.alat-card p{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65}
+.alat-card p strong{color:var(--t1)}
+.alat-card p em{color:var(--gold);font-style:italic}
+.alat-teza{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:12px 16px;margin:8px 0;font-family:var(--serif);font-size:14px;color:var(--t1);font-style:italic;cursor:pointer;transition:all .15s;position:relative}
+.alat-teza:hover{border-color:var(--gold)}
+.alat-teza::after{content:'📋';position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.5}
+.alat-teza.copied::after{content:'✓';color:var(--green);opacity:1}
+.wc-area{width:100%;background:var(--inp);border:1px solid var(--bd);border-radius:var(--r2);padding:12px;color:var(--t1);font-family:var(--serif);font-size:14px;resize:vertical;min-height:120px;line-height:1.6}
+.wc-area:focus{outline:none;border-color:var(--bdl)}
+.wc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--t3)}
+.wc-count{color:var(--gold)}
+/* ══ CITATNIK ══ */
+.cit-grid{display:flex;flex-direction:column;gap:10px;margin:18px 0}
+.cit-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 18px;transition:border-color .15s}
+.cit-card:hover{border-color:var(--bdl)}
+.cit-text{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t1);line-height:1.65;margin-bottom:8px}
+.cit-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.cit-src{font-family:var(--mono);font-size:9.5px;color:var(--t3)}
+.cit-tags{display:flex;gap:5px;flex-wrap:wrap}
+.cit-tag{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:3px}
+.cit-star{cursor:pointer;font-size:14px;color:var(--t3);transition:color .15s}
+.cit-star.starred{color:var(--gold)}
+.cit-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.cit-fbt{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:4px 10px;border-radius:var(--r1);background:var(--ele);border:1px solid var(--bd);color:var(--t3);cursor:pointer;transition:all .15s}
+.cit-fbt.on{background:var(--dim-br);border-color:var(--bd-br);color:var(--bronze-l)}
+/* ══ POJMOVNIK ══ */
+.poj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:18px 0}
+.poj-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 16px;cursor:pointer;transition:all .15s}
+.poj-card:hover{border-color:var(--bdl);background:var(--hov)}
+.poj-front{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.poj-term{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin-bottom:6px}
+.poj-cat{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:3px}
+.poj-def{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.55;display:none}
+.poj-card.open .poj-def{display:block;margin-top:8px;padding-top:8px;border-top:1px solid var(--bd);animation:diagFade .2s ease}
+.poj-ex{font-family:var(--serif);font-size:12px;color:var(--teal);font-style:italic;margin-top:6px}
+/* ══ FLASHCARD ══ */
+.fc-wrap{perspective:1000px;margin:20px 0}
+.fc-inner{width:100%;height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative}
+.fc-inner.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r4);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center}
+.fc-front{background:var(--ele);border:1px solid var(--bdm)}
+.fc-back{background:var(--dim-go);border:1px solid var(--bd-go);transform:rotateY(180deg)}
+.fc-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:12px}
+.fc-term{font-family:var(--display);font-size:20px;font-weight:700;color:var(--t1);line-height:1.3}
+.fc-def{font-family:var(--serif);font-size:15px;color:var(--t1);line-height:1.6}
+.fc-cat{font-family:var(--mono);font-size:9px;color:var(--gold);margin-top:8px}
+.fc-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.fc-btn{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:7px 16px;font-size:12px;font-family:var(--mono);font-weight:700;cursor:pointer;color:var(--t2);transition:all .15s}
+.fc-btn:hover{border-color:var(--bdl);color:var(--t1)}
+.fc-btn:disabled{opacity:.3;cursor:not-allowed}
+.fc-counter{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.fc-cat-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bronze);margin-bottom:14px}
+.mg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.mg-col{display:flex;flex-direction:column;gap:8px}
+.mg-item{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:10px 14px;font-family:var(--serif);font-size:13px;color:var(--t2);cursor:pointer;transition:all .15s;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center;line-height:1.4}
+.mg-item:hover:not(.matched):not(.wrong){border-color:var(--bdl);color:var(--t1);background:var(--hov)}
+.mg-item.selected{border-color:var(--bronze);background:var(--dim-br);color:var(--bronze-l)}
+.mg-item.matched{border-color:var(--bd-g);background:var(--dim-g);color:var(--green);cursor:default}
+.mg-item.wrong{border-color:var(--bd-r);background:var(--dim-r);color:var(--red);animation:shake .3s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.mg-status{font-family:var(--mono);font-size:11px;color:var(--t3);margin-bottom:12px}
+/* ══ KVIZ ══ */
+.qz-wrap{padding:4px 0}
+.qz-start{text-align:center;padding:32px 20px}
+.qz-start-ico{font-size:40px;margin-bottom:12px}
+.qz-start h3{font-family:var(--display);font-size:18px;color:var(--t1);margin-bottom:8px}
+.qz-start p{font-family:var(--serif);font-size:14px;color:var(--t2);margin-bottom:20px;line-height:1.6}
+.qz-prog{height:4px;background:var(--bd);border-radius:2px;margin-bottom:20px}
+.qz-prog-fill{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:2px;transition:width .4s ease}
+.qz-num{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px;margin-bottom:10px}
+.qz-q{font-family:var(--serif);font-size:16px;color:var(--t1);line-height:1.65;margin-bottom:18px;font-weight:600}
+.qz-opts{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.qz-opt{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:11px 16px;font-family:var(--serif);font-size:14px;color:var(--t2);cursor:pointer;transition:all .15s;text-align:left}
+.qz-opt:hover:not(:disabled){border-color:var(--bdl);color:var(--t1);background:var(--hov)}
+.qz-opt.correct{border-color:var(--bd-g);background:var(--dim-g);color:var(--green);cursor:default}
+.qz-opt.wrong{border-color:var(--bd-r);background:var(--dim-r);color:var(--red);cursor:default}
+.qz-expl{background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r2);padding:12px 16px;font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.6;margin-top:12px}
+.qz-expl strong{color:var(--gold)}
+.qz-next{display:none}
+.qz-result{text-align:center;padding:28px 20px}
+.qz-result-ico{font-size:48px;margin-bottom:12px}
+.qz-result h3{font-family:var(--display);font-size:22px;color:var(--t1);margin-bottom:8px}
+.qz-result-grade{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--gold);margin:10px 0}
+.qz-result p{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:18px}
+.cp-list{display:flex;flex-direction:column;gap:8px;margin:18px 0}
+.cp-item{display:flex;align-items:flex-start;gap:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 16px;cursor:pointer;transition:all .15s}
+.cp-item:hover{border-color:var(--bdl)}
+.cp-item.done{border-color:var(--bd-g);background:var(--dim-g)}
+.cp-cb{width:20px;height:20px;border:2px solid var(--bd);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .15s;margin-top:1px}
+.cp-item.done .cp-cb{background:var(--green);border-color:var(--green);color:#0F0605}
+.cp-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5}
+.cp-item.done .cp-txt{color:var(--t1)}
+.cp-prog{margin-top:18px}
+.cp-prog-label{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px;margin-bottom:6px;display:flex;justify-content:space-between}
+.cp-prog-track{height:6px;background:var(--bd);border-radius:3px;overflow:hidden}
+.cp-prog-bar{height:100%;background:linear-gradient(90deg,var(--bronze),var(--gold));border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cp-final{text-align:center;padding:28px 20px;background:var(--dim-go);border:1px solid var(--bd-go);border-radius:var(--r4);margin:20px 0;display:none}
+.cp-final.show{display:block;animation:fadeUp .4s ease}
+.cp-final-ico{font-size:44px;margin-bottom:10px}
+.cp-final-title{font-family:var(--display);font-size:20px;color:var(--gold);margin-bottom:8px}
+.cp-final-msg{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.65;margin-bottom:18px}
+/* ══ AUTH BOX ══ */
+.auth-box{background:rgba(220,50,47,.05);border:1px solid var(--bd-br);border-radius:var(--r3);padding:14px 18px;margin:18px 0}
+.auth-ttl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bronze-l);margin-bottom:8px}
+.auth-txt{font-family:var(--serif);font-size:13.5px;color:var(--t2);line-height:1.65}
+.auth-txt em{color:var(--bronze-l)}
+/* ══ REVEAL LOCK ══ */
+.reveal-lock{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border:none;border-radius:var(--r2);padding:10px 20px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;color:#0F0605;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px}
+.reveal-lock:hover{opacity:.85;transform:translateY(-1px)}
+.reveal-lock-btn{background:linear-gradient(135deg,var(--bronze-d),var(--bronze),var(--gold));border:none;border-radius:var(--r2);padding:11px 22px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;color:#0F0605;cursor:pointer;transition:all .18s}
+.reveal-lock-btn:hover{opacity:.85;transform:translateY(-1px)}
+.fcb{background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r2);padding:9px 18px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--t2);cursor:pointer;transition:all .15s}
+.fcb:hover{border-color:var(--bdl);color:var(--t1)}
+.fcb.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border-color:transparent;color:#0F0605}
+.fcb.primary:hover{opacity:.85}
+/* ══ MISC ══ */
+.nb{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;cursor:pointer;color:var(--bronze-l);text-decoration:underline;text-underline-offset:3px}
+.nb:hover{color:var(--gold)}
+p{font-family:var(--serif);font-size:14.5px;color:var(--t2);line-height:1.7;margin-bottom:12px}
+p strong{color:var(--t1)}
+p em{color:var(--gold);font-style:italic}
+h3{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1);margin:20px 0 10px;letter-spacing:.3px}
+h4{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin:16px 0 8px;letter-spacing:.5px}
+ul,ol{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.7;padding-left:20px;margin-bottom:12px}
+ul li,ol li{margin-bottom:4px}
+ul li strong,ol li strong{color:var(--t1)}
+.mid{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.sc{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);padding:18px 20px;margin:16px 0}
+.sc-name{font-family:var(--display);font-size:13px;font-weight:700;color:var(--bronze-l);margin-bottom:6px}
+.sc-desc{font-family:var(--serif);font-size:13.5px;color:var(--t2);line-height:1.6}
+.sc-desc b{color:var(--t1)}
+.sc-desc em{color:var(--teal);font-style:italic}
+.sc-kod{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:6px}
+/* ══ SC-GRID (icon grid za brzi pregled) ══ */
+.sc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}
+.sc-ico{margin-bottom:10px;display:inline-block}
+/* ══ FC-SCENE (H11 flashcard flip scene) ══ */
+.fc-scene{width:100%;max-width:100%;perspective:1000px;cursor:pointer;height:220px}
+.fc-scene .fc-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.fc-scene.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-scene .fc-front,.fc-scene .fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r4);padding:28px 32px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.fc-scene .fc-front{background:linear-gradient(135deg,var(--ele),var(--card));border:1px solid var(--bdm)}
+.fc-scene .fc-back{background:linear-gradient(135deg,var(--card),var(--hov));border:1px solid var(--bd-go);transform:rotateY(180deg)}
+.fc-hint{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:1px}
+.fc-progress{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:400px}
+.fc-dot{width:8px;height:8px;border-radius:50%;background:var(--bd);transition:background .2s}
+.fc-dot.seen{background:var(--bronze)}
+.fc-dot.known{background:var(--green)}
+.timeline{position:relative;padding:20px 0 10px 30px;margin:18px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--bronze) 0%,var(--gold) 50%,var(--parchment) 100%);border-radius:1px}
+.tl-event{position:relative;padding:10px 14px 14px 20px;margin-bottom:8px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);transition:border-color .15s}
+.tl-event:hover{border-color:var(--bdl)}
+.tl-event::before{content:'';position:absolute;left:-30px;top:16px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--bronze);box-shadow:0 0 8px rgba(220,50,47,.4)}
+.tl-event.milestone::before{background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px var(--gold)}
+.tl-year{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1px;color:var(--bronze);margin-bottom:3px}
+.tl-event.milestone .tl-year{color:var(--gold)}
+.tl-title{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--t1);margin-bottom:3px}
+.tl-desc{font-family:var(--serif);font-size:12.5px;color:var(--t2);line-height:1.5}
+.tl-desc em{color:var(--gold);font-style:italic}
+/* ══ KEYBOARD HINT ══ */
+.kbd{display:inline-block;padding:1px 6px;font-family:var(--mono);font-size:10px;font-weight:700;background:var(--card);border:1px solid var(--bdm);border-radius:3px;color:var(--t2);box-shadow:0 1px 0 var(--bg);margin:0 2px}
+.kbd-hint{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px;margin-top:8px;text-align:center}
+/* ══ READ PROGRESS BAR + BTT ══ */
+.read-progress{position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:400;pointer-events:none}
+.read-progress-bar{height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));width:0%;transition:width .15s ease;border-radius:0 2px 2px 0}
+.btt{position:fixed;bottom:24px;right:24px;z-index:100;width:40px;height:40px;background:var(--sur);border:1px solid var(--bdm);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--t2);transition:all .2s;opacity:0;pointer-events:none;font-family:var(--mono)}
+.btt.show{opacity:1;pointer-events:auto}
+.btt:hover{color:var(--bronze);border-color:var(--bronze)}
+/* ══ NAV-ROW (tab bottom navigation) ══ */
+.nb-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--t2);cursor:pointer;padding:9px 14px;border:1px solid var(--bdm);border-radius:var(--r2);background:var(--ele);transition:all .15s;text-decoration:none}
+.nb-btn:hover{color:var(--t1);border-color:var(--bronze);background:var(--hov)}
+.nb-btn.primary{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));border-color:transparent;color:#0F0605;font-weight:700}
+.nb-btn.primary:hover{opacity:.85}
+.nb-btn.off{opacity:.3;cursor:not-allowed;pointer-events:none}
+/* ══ AUTHOR-CARD EXTENDED ══ */
+.author-card{border:1px solid var(--bdm);border-radius:var(--r4);overflow:hidden;margin:20px 0;background:var(--sur);transition:border-color .2s}
+.ac-header{padding:18px 22px 14px;background:linear-gradient(135deg,var(--ele),var(--card));border-bottom:1px solid var(--bdm);display:flex;align-items:flex-start;gap:16px}
+.ac-monogram{width:52px;height:52px;border-radius:var(--r3);background:linear-gradient(135deg,var(--bronze-d),var(--bronze));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:22px;font-weight:700;color:var(--gold);flex-shrink:0;box-shadow:0 4px 20px rgba(220,50,47,.3)}
+.ac-meta{flex:1;min-width:0}
+.ac-name{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:4px;letter-spacing:.3px}
+.ac-dates{font-family:var(--mono);font-size:10px;color:var(--bronze);letter-spacing:1px}
+.ac-body{padding:18px 22px}
+.ac-body p{font-family:var(--serif);font-size:14.5px;color:var(--t2);line-height:1.65;margin-bottom:12px}
+.ac-body strong{color:var(--t1)}.ac-body em{color:var(--gold);font-style:italic}
+.ac-works{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd)}
+.ac-works-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.ac-work-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.ac-work-item:last-child{border-bottom:none;padding-bottom:0}
+.ac-badge{font-size:18px;flex-shrink:0;margin-top:1px}
+.ac-work-title{font-family:var(--display);font-size:12px;font-weight:700;color:var(--gold);margin-bottom:3px;letter-spacing:.5px}
+.ac-work-meta{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.5px;margin-bottom:5px}
+.ac-work-desc{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.5}
+.ac-work-desc strong{color:var(--t1)}
+/* ══ WC-WRAP (H11 esej writer) ══ */
+.wc-wrap{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r4);overflow:hidden;margin:16px 0}
+.wc-header{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.wc-lbl{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bronze-l)}
+.wc-stats{display:flex;gap:16px;flex-wrap:wrap}
+.wc-stat{text-align:center}
+.wc-stat-num{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);display:block}
+.wc-stat-lbl{font-family:var(--mono);font-size:8.5px;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+.wc-stat.ok .wc-stat-num{color:var(--green)}
+.wc-stat.critical .wc-stat-num{color:var(--red)}
+.wc-head{padding:12px 16px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--card)}
+.wc-ico{font-size:16px;line-height:1}
+.wc-label{font-family:var(--mono);font-size:10px;letter-spacing:.8px;color:var(--t3);text-transform:uppercase}
+.wc-body{padding:14px 18px}
+.wc-foot{padding:12px 16px;border-top:1px solid var(--bd);display:flex;gap:8px;flex-wrap:wrap;background:var(--card)}
+.wc-ta{width:100%;min-height:200px;background:var(--inp);border:1px solid var(--bdm);border-radius:var(--r2);color:var(--t1);font-family:var(--serif);font-size:14px;padding:12px;resize:vertical;line-height:1.65;box-sizing:border-box}
+.wc-ta:focus{outline:none;border-color:var(--bronze)}
+.wc-prog{height:5px;background:var(--bd);border-radius:3px;overflow:hidden;margin-top:12px}
+.wc-prog-bar{height:100%;background:linear-gradient(90deg,var(--bronze-d),var(--bronze),var(--gold));border-radius:3px;transition:width .4s ease}
+.wc-prog.pass .wc-prog-bar{background:linear-gradient(90deg,var(--green),var(--teal))}
+.wc-prog-lbl{font-family:var(--mono);font-size:9px;color:var(--t3);margin-top:6px;text-align:right}
+.wc-btn{padding:8px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;border:1px solid var(--bdm);background:var(--ele);color:var(--t2);transition:all .15s}
+.wc-btn:hover{color:var(--t1);border-color:var(--bronze)}
+/* ══ QZ-SCORE (large) + QZ-WRONG ══ */
+.qz-score-big{font-family:var(--display);font-size:68px;font-weight:700;background:linear-gradient(135deg,var(--bronze),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px}
+.qz-grade{font-family:var(--display);font-size:18px;color:var(--t1);letter-spacing:1.5px;margin-bottom:6px}
+.qz-msg{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5;margin-bottom:20px}
+.qz-wrong-item{padding:10px 14px;border-bottom:1px solid var(--bd);margin-top:4px}
+.qz-wrong-q{font-family:var(--serif);font-size:13px;color:var(--t2);margin-bottom:4px}
+.qz-wrong-a{font-family:var(--mono);font-size:10px;color:var(--green)}
+/* ══ CP-GRID (H11 style) ══ */
+.cp-grid{display:flex;flex-direction:column;gap:8px;margin:18px 0 24px}
+.cp-box{width:24px;height:24px;border-radius:6px;border:2px solid var(--bdl);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transition:all .15s}
+.cp-item.done .cp-box{background:var(--green);border-color:var(--green);color:#0F0605}
+.cp-hint{font-family:var(--mono);font-size:10px;color:var(--t3);margin-left:auto;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;padding:2px 6px;background:var(--ele);border:1px solid var(--bd);border-radius:3px}
+.cp-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+/* ══ BW-BOX (rich box-warn with icon + title) ══ */
+.bw-ico{font-size:22px;flex-shrink:0}
+.bw-body{flex:1;min-width:0}
+.bw-title{font-family:var(--display);font-size:8.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.bw-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6}
+.bw-txt strong{color:var(--t1)}
+.bw-txt em{color:var(--red);font-style:italic}
+/* ══ AUTH-LINKS ══ */
+.auth-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.auth-link{display:inline-block;font-family:var(--mono);font-size:10.5px;color:var(--teal);text-decoration:none;padding:4px 10px;border:1px solid var(--bd-t);border-radius:var(--r1);background:var(--ele);transition:all .15s}
+/* ══ DIAG-BTN ══ */
+.diag-btn{padding:10px 18px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:var(--r2);cursor:pointer;border:1px solid var(--bdm);background:var(--ele);color:var(--t2);transition:all .2s}
+/* ══ DIAG-REC ══ */
+.diag-rec{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.6;padding:12px 14px;background:var(--bg);border-left:2px solid var(--bronze);border-radius:0 var(--r2) var(--r2) 0;margin-bottom:14px}
+.diag-res-msg{font-family:var(--display);font-size:20px;font-weight:700;color:var(--gold);margin-bottom:10px}
+/* ══ CP SUMMARY ══ */
+.cp-summary{background:var(--ele);border:1px solid var(--bdm);border-radius:var(--r3);padding:16px 18px;margin-top:20px;display:flex;align-items:center;gap:16px}
+.cp-sum-pct{font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);min-width:60px}
+.cp-sum-txt{font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5}
+.cp-sum-txt strong{color:var(--t1)}
+/* ══ PRINT ══ */
+  body{background:white!important;color:black!important}
+  body::before,body::after{display:none!important}
+  .sidebar,.tabs,.sb-hamburger,.tip-bar,.discere-banner,.reveal-lock-btn,.fcb{display:none!important}
+  .main{width:100%!important;max-width:100%!important;padding:0!important}
+  .content-wrap{max-width:100%!important;padding:10px!important}
+  .layer{display:block!important;page-break-after:always}
+  .box-key,.box-int,.box-warn,.box-signal,.sc,.fq,.ac{border:1px solid #666!important;background:#f5f5f5!important;color:black!important;break-inside:avoid}
+  .hero-title,.hero-chapter,h3,h4,.sec-badge,.tl-title,.pojm-term{color:black!important}
+  .tbl td,.tbl th{border-color:#888!important;color:black!important}
+  .featured-quote{background:#faf6ec!important;border-color:#d4b98c!important;color:black!important;break-inside:avoid}
+  .scene-card{border:1px solid #888!important;background:white!important}
+  .scene-card .scene-body{display:block!important}
+  .pojm-card .pojm-back{display:block!important}
+  .pojm-card .pojm-front{display:none!important}
+  a{color:black!important;text-decoration:none!important}
+  .qnav-btn,.countdown,.tip-bar,.diag{display:none!important}
+/* ══ FEATURED-QUOTE (H11 pattern) ══ */
+.featured-quote{display:flex;gap:14px;padding:20px 22px;background:linear-gradient(135deg,rgba(212,185,140,.04),rgba(220,50,47,.02));border:1px solid var(--bdm);border-left:3px solid var(--parchment);border-radius:var(--r3);margin:14px 0;position:relative;word-break:break-word;overflow:hidden;transition:border-color .2s}
+.featured-quote:hover{border-color:var(--bd-pa);box-shadow:0 2px 12px rgba(212,185,140,.06)}
+.fq-mark{font-family:var(--display);font-size:52px;color:var(--parchment);opacity:.3;line-height:1;flex-shrink:0;margin-top:-8px}
+.fq-body{flex:1;min-width:0}
+.fq-text{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--t1);line-height:1.6;margin-bottom:8px}
+.fq-meta{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.5px}
+.fq-copy{background:none;border:1px solid var(--bd);border-radius:var(--r1);color:var(--t3);font-size:12px;padding:4px 8px;cursor:pointer;font-family:var(--mono);transition:all .15s;flex-shrink:0;align-self:flex-start}
+.fq-copy:hover{color:var(--gold);border-color:var(--bd-go);background:var(--dim-go)}
+.fq-copy.copied{color:var(--green);border-color:var(--bd-g);background:var(--dim-g)}
+.fq-napamet{position:absolute;top:-1px;right:40px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1px;color:var(--gold);background:var(--dim-go);border:1px solid var(--bd-go);border-radius:0 0 4px 4px;padding:2px 7px}
+/* ══ POJM-CARD (H11 pattern — grid + flip) ══ */
+.pojm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:16px 0}
+.pojm-card{background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.pojm-card:hover,.pojm-card.flip{border-color:var(--bdm)}
+.pojm-card.flip{background:var(--card)}
+.pojm-front,.pojm-back{transition:all .25s ease}
+.pojm-card.flip .pojm-front{display:none}
+.pojm-card:not(.flip) .pojm-back{display:none}
+.pojm-term{font-family:var(--display);font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;letter-spacing:.3px}
+.pojm-hint{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+.pojm-def{font-family:var(--serif);font-size:13px;color:var(--t2);line-height:1.55}
+.pojm-def strong{color:var(--t1)}
+.pojm-def em{color:var(--gold)}
+.pojm-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pojm-filter{padding:6px 14px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:20px;cursor:pointer;border:1px solid var(--bd);background:none;color:var(--t3);transition:all .15s}
+.pojm-filter.on,.pojm-filter:hover{color:var(--bronze-l);border-color:var(--bd-br);background:var(--dim-br)}
+/* ══ POJM MODE (grid/flashcard toggle) ══ */
+.pojm-mode-row{display:flex;gap:8px;margin-bottom:16px;align-items:center}
+.pojm-mode-btn{padding:7px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:20px;cursor:pointer;border:1px solid var(--bdm);background:none;color:var(--t3);transition:all .15s}
+.pojm-mode-btn.on{background:linear-gradient(135deg,var(--bronze-d),var(--bronze));color:var(--gold);border-color:transparent}
+/* ══ RESPONSIVE ══ */
+}
+@media(max-width:900px){
+  .content-wrap{padding:24px 20px 100px}
+  .poj-grid{grid-template-columns:1fr}
+  .mg-grid{grid-template-columns:1fr}
+  .mg-col{flex-direction:row;flex-wrap:wrap}
+  .mg-item{flex:1;min-width:120px}
+}
+@media(max-width:600px){
+  .content-wrap{padding:16px 14px 90px}
+  .qnav{grid-template-columns:1fr 1fr}
+  .bc-tab,.bc-tab-sep{display:none}
+  .tabs{scroll-snap-type:x proximity;scroll-padding-inline:6px;--tabs-left-mask:0px;--tabs-right-mask:0px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--tabs-left-mask),#000 calc(100% - var(--tabs-right-mask)),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 var(--tabs-left-mask),#000 calc(100% - var(--tabs-right-mask)),transparent 100%)}
+  .tabs.has-left{--tabs-left-mask:18px}
+  .tabs.has-right{--tabs-right-mask:18px}
+  .tab{font-size:8px;padding:5px 6px;letter-spacing:0;min-height:38px;flex-shrink:0;white-space:nowrap}
+  .tab{scroll-snap-align:start}
+  .layer.on{padding-top:52px}
+  .fc-inner{height:170px}
+  .poj-grid{grid-template-columns:1fr}
+  .tbl-wrap{font-size:12px}
+  .diag-intro,.diag-quiz,.diag-result{padding:16px}
+  .pojm-grid{grid-template-columns:1fr!important}
+  .pojm-filter{padding:5px 9px;font-size:8.5px;letter-spacing:.5px}
+  #cit-filters .pojm-filter{padding:5px 9px;font-size:8.5px}
+  .featured-quote{padding:14px 12px;gap:10px;margin:10px 0}
+  .fq-mark{font-size:36px;margin-top:-2px;flex-shrink:0}
+  .fq-text{font-size:14px;line-height:1.5}
+  .fq-copy{display:none}
+}
+#diag0[data-state="dismissed"]{display:none}
+/* ══ H10 SIDEBAR UPGRADES ══ */
+.sb-era-d{color:var(--gold,#E8C97A);border-top:1px solid var(--bd-go,rgba(232,201,122,.2));margin-top:8px;padding-top:14px}
+.sb-d-meta{font-family:var(--serif);font-size:10px;font-style:italic;color:var(--t3);padding:0 14px 8px;line-height:1.4;letter-spacing:.1px}
+/* ═══════════════════════════════════
+   CROSS-CHAPTER NAVIGATION
+════════════════════════════════════ */
+.chapter-nav-wrap{margin:48px auto 32px;max-width:920px;padding:0 20px}
+.chapter-nav-hdr{text-align:center;margin-bottom:24px}
+.chapter-nav-title{font-family:var(--display);font-size:20px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.chapter-nav-sub{font-family:var(--serif);font-size:13px;color:var(--t3)}
+.chapter-nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.chapter-nav-card{display:flex;gap:14px;padding:16px 18px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r3);color:inherit;text-decoration:none;transition:all .25s ease}
+.chapter-nav-card:hover{border-color:var(--gold);background:linear-gradient(135deg,var(--ele),rgba(233,180,70,.06));transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.chapter-nav-prev{text-align:left}
+.chapter-nav-next{text-align:right;flex-direction:row}
+.chapter-nav-next .chapter-nav-meta{flex:1}
+.chapter-nav-arrow{font-size:24px;line-height:1;color:var(--gold);flex-shrink:0}
+.chapter-nav-meta{flex:1}
+.chapter-nav-pill{display:inline-flex;padding:3px 8px;border:1px solid var(--bdm);border-radius:999px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--t3);margin-bottom:8px}
+.chapter-nav-pill-next{color:var(--gold);border-color:var(--bd-go);background:var(--dim-go)}
+.chapter-nav-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.chapter-nav-desc{font-family:var(--serif);font-size:12px;color:var(--t2);line-height:1.45}
+.chapter-nav-related{padding:18px;background:rgba(255,255,255,.02);border:1px solid var(--bd);border-radius:var(--r3)}
+.chapter-nav-related-ttl{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--t3);letter-spacing:1.5px;margin-bottom:12px}
+.chapter-nav-related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.chapter-nav-mini{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);color:inherit;text-decoration:none;transition:all .2s ease;font-size:12.5px}
+.chapter-nav-mini:hover{border-color:var(--gold);background:var(--hov)}
+.chapter-nav-mini-code{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--gold);background:rgba(233,180,70,.1);border-radius:4px;padding:2px 5px}
+.chapter-nav-mini-name{font-family:var(--serif);color:var(--t2)}
+@media(max-width:640px){
+  .chapter-nav-grid{grid-template-columns:1fr}
+  .chapter-nav-next{flex-direction:row}
+}
+/* TIER INDICATOR — Workspace badge */
+.ws-tier-indicator{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;margin-bottom:16px;border:1px solid var(--bdm);border-radius:var(--r3);background:var(--ele)}
+.ws-tier-indicator.ws-tier-free{border-color:var(--bd-go);background:linear-gradient(135deg,rgba(233,180,70,.05),var(--ele))}
+.ws-tier-indicator.ws-tier-free.ws-tier-full{background:linear-gradient(135deg,rgba(233,180,70,.08),var(--ele))}
+.ws-tier-indicator.ws-tier-standard{border-color:rgba(74,144,217,.35);background:linear-gradient(135deg,rgba(74,144,217,.05),var(--ele))}
+.ws-tier-indicator.ws-tier-pro{border-color:var(--bd-go);background:linear-gradient(135deg,rgba(233,180,70,.06),var(--ele))}
+.ws-tier-indicator .ws-tier-icon{font-size:18px}
+.ws-tier-indicator .ws-tier-text{font-family:var(--serif);font-size:13px;line-height:1.4;color:var(--t2)}
+.ws-tier-indicator .ws-tier-text strong{color:var(--t1)}
+.ws-tier-indicator .ws-tier-cta{padding:6px 12px;border-radius:8px;border:1px solid var(--bd-go);background:var(--dim-go);font-family:var(--mono);font-size:10px;font-weight:700;color:var(--gold);text-decoration:none}
+.ws-tier-indicator .ws-tier-cta:hover{filter:brightness(1.08)}
+@media(max-width:640px){
+  .ws-tier-indicator{padding:10px 12px;gap:8px}
+  .ws-tier-indicator .ws-tier-text{font-size:12px}
+}
+/* CHEAT-CARD (auto-injected) */
+.cheat-card{background:linear-gradient(135deg,rgba(233,180,70,0.04),var(--card,#1a1010));border:1px solid var(--gold,#e9b446);border-radius:14px;padding:18px 22px}
+.cheat-hdr{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdm,#2c1f1f)}
+.cheat-eye{font-family:var(--mono,monospace);font-size:10px;font-weight:800;color:var(--gold,#e9b446);letter-spacing:1.2px;margin-bottom:4px}
+.cheat-ttl{font-family:var(--serif,'Fraunces',serif);font-size:16px;font-weight:700;color:var(--t1,#f4ede5)}
+.cheat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.cheat-col-wide{grid-column:1/-1}`;
+const STYLES_CSS = SHARED_LIT_CSS + '\n' + CHAPTER_CSS_DELTA;
+const SCRIPTS_JS = `/* ══ SUPABASE CONFIG ══ */
+var SUPABASE_URL = 'https://your-project.supabase.co';
+var SUPABASE_ANON_KEY = 'your-anon-key-here';
+
+var CURRENT_CHAPTER = {
+  subject: 'hrvatski',
+  code: 'h13',
+  title: 'Gundulić · Dubravka — hrvatski barok'
+};
+
+function printCheatSheet(trigger){
+  var card = trigger && trigger.closest ? trigger.closest('.cheat-card') : null;
+  if(card){
+    document.body.classList.add('print-cheat-targeted');
+    card.classList.add('printing-cheat-sheet');
+  }
+  document.body.classList.add('print-cheat-only');
+  setTimeout(function(){
+    window.print();
+    setTimeout(function(){
+      document.body.classList.remove('print-cheat-only','print-cheat-targeted');
+      if(card) card.classList.remove('printing-cheat-sheet');
+    }, 500);
+  }, 50);
+  if(typeof track === 'function') track('cheat_sheet_print', {chapter: CURRENT_CHAPTER.code}, 'engagement');
+}
+
+if(typeof window !== 'undefined'){
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('print-cheat-only','print-cheat-targeted');
+    document.querySelectorAll('.printing-cheat-sheet').forEach(function(card){card.classList.remove('printing-cheat-sheet')});
+  });
+}
+/* ══ COUNTDOWN — sljedeći maturalni rok ══
+   Konfigurabilno: promijeni datum ovdje za različite sezone.
+   Ljetni rok 2026: 8. lipnja 2026 (približno — NCVVO objavljuje točan datum)
+═════════════════════════════════════════════ */
+var MATURA_NEXT = new Date('2026-06-08T08:00:00+02:00');
+var MATURA_LABEL = 'Ljetna matura 2026';
+
+function daysToMatura(){
+  var now = new Date();
+  var ms = MATURA_NEXT - now;
+  return Math.max(0, Math.ceil(ms / (1000*60*60*24)));
+}
+
+function renderCountdown(targetId){
+  var el = document.getElementById(targetId);
+  if(!el) return;
+  var days = daysToMatura();
+  var urgency = days <= 60;
+  el.innerHTML = \`
+    <div class="cd-ico">⏰</div>
+    <div class="cd-body">
+      <div class="cd-label">\${urgency ? 'Peak urgency' : 'Do mature'}</div>
+      <div class="cd-main"><b>\${days}</b> \${days===1?'dan':(days<5?'dana':'dana')}</div>
+      <div class="cd-sub">\${MATURA_LABEL} · \${urgency ? 'svaki dan bez vježbe = izgubljeni bodovi' : 'još ima vremena — pametno uči'}</div>
+    </div>
+  \`;
+}
+
+/* ══ SOCIAL PROOF ══
+   Brojeve puni iz Supabase view-a u produkciji. Sad — placeholder "uskoro".
+═════════════════════════════════════════════ */
+var SOCIAL_PROOF = {
+  active_learners: null,
+  avg_rating: null,
+  review_count: null,
+  avg_improvement: null,
+  is_placeholder: true
+};
+
+function renderSocialProof(targetId, variant){
+  var el = document.getElementById(targetId);
+  if(!el) return;
+  variant = variant || 'full';
+
+  if(SOCIAL_PROOF.is_placeholder){
+    el.innerHTML = \`
+      <div class="sp-item">🇭🇷 <b>Besplatno</b> za sve maturante</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">📚 Usklađeno s <b>NCVVO</b> katalogom</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ Do mature <b>\${daysToMatura()}</b> dana</div>
+    \`;
+    return;
+  }
+
+  if(variant === 'compact'){
+    el.innerHTML = \`
+      <div class="sp-item">🔥 <b>\${SOCIAL_PROOF.active_learners}</b> uči trenutno</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ <b>\${daysToMatura()}</b> dana do mature</div>
+    \`;
+  } else {
+    el.innerHTML = \`
+      <div class="sp-item">🔥 <b>\${SOCIAL_PROOF.active_learners}</b> maturanata uči</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">⭐ <b>\${SOCIAL_PROOF.avg_rating}/5</b> (\${SOCIAL_PROOF.review_count} recenzija)</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">📈 prosječno <b>\${SOCIAL_PROOF.avg_improvement}</b> nakon 2 mj</div>
+      <div class="sp-divider"></div>
+      <div class="sp-item urgency">⏰ <b>\${daysToMatura()}</b> dana do mature</div>
+    \`;
+  }
+}
+
+
+
+/* Character counter for feedback textarea */
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var ta = document.getElementById('fb-message');
+    var counter = document.getElementById('fb-char-count');
+    if(ta && counter){
+      ta.addEventListener('input', function(){
+        counter.textContent = ta.value.length;
+        counter.parentElement.classList.toggle('over', ta.value.length > 5000);
+      });
+    }
+  });
+})();
+
+/* ══ FEEDBACK MODAL (v3.6.1) ══ */
+function openFeedbackModal(){
+  var bd = document.getElementById('fb-modal-backdrop');
+  if(!bd) return;
+  var form = document.getElementById('fb-form');
+  if(form) form.reset();
+  var defaultRadio = document.querySelector('input[name="fb-type"][value="content_error"]');
+  if(defaultRadio) defaultRadio.checked = true;
+  var msg = document.getElementById('fb-msg');
+  if(msg){msg.className='modal-msg'; msg.textContent=''}
+  var counter = document.getElementById('fb-char-count');
+  if(counter) counter.textContent = '0';
+  var btn = document.getElementById('fb-submit');
+  if(btn){btn.disabled=false; btn.textContent='Pošalji →'}
+  if(form) form.style.display = 'flex';
+  bd.classList.add('show');
+  setTimeout(function(){
+    var ta = document.getElementById('fb-message');
+    if(ta) ta.focus();
+  }, 100);
+  if(typeof track === 'function') track('feedback_modal_open', {chapter: CURRENT_CHAPTER.code}, 'engagement');
+}
+
+function closeFeedbackModal(){
+  var bd = document.getElementById('fb-modal-backdrop');
+  if(bd) bd.classList.remove('show');
+}
+
+function submitFeedback(ev){
+  ev.preventDefault();
+  var msgEl = document.getElementById('fb-message');
+  var emailEl = document.getElementById('fb-email');
+  var btn = document.getElementById('fb-submit');
+  var fbMsg = document.getElementById('fb-msg');
+  var typeEl = document.querySelector('input[name="fb-type"]:checked');
+
+  var message = (msgEl && msgEl.value || '').trim();
+  var email = (emailEl && emailEl.value || '').trim().toLowerCase();
+  var feedbackType = (typeEl && typeEl.value) || 'general';
+
+  if(message.length < 3){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Poruka mora imati barem 3 znaka.'}
+    return false;
+  }
+  if(message.length > 5000){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Poruka ne smije biti dulja od 5000 znakova.'}
+    return false;
+  }
+  if(email && !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email)){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ E-mail adresa nije valjana.'}
+    return false;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Šaljem...';
+  if(fbMsg) fbMsg.className = 'modal-msg';
+
+  var payload = {
+    p_message: message,
+    p_feedback_type: feedbackType,
+    p_email: email || null,
+    p_subject: CURRENT_CHAPTER.subject,
+    p_chapter_code: CURRENT_CHAPTER.code,
+    p_tab_index: (function(){ try{ return JSON.parse(localStorage.getItem('mt.hrv.h13.tab') || '0') }catch(e){return 0} })(),
+    p_url: window.location.href,
+    p_viewport_width: window.innerWidth,
+    p_viewport_height: window.innerHeight
+  };
+
+  if(SUPABASE_URL.indexOf('your-project') >= 0){
+    setTimeout(function(){
+      if(fbMsg){fbMsg.className='modal-msg show success'; fbMsg.textContent='✓ Hvala! Poruka primljena.'}
+      var form = document.getElementById('fb-form');
+      if(form) form.style.display = 'none';
+      if(typeof track === 'function') track('feedback_submit', {type: feedbackType, offline: true}, 'engagement');
+      setTimeout(closeFeedbackModal, 2400);
+    }, 600);
+    return false;
+  }
+
+  fetch(SUPABASE_URL + '/rest/v1/rpc/submit_feedback', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).then(function(r){ return r.json() }).then(function(res){
+    if(res && res.success){
+      if(fbMsg){fbMsg.className='modal-msg show success'; fbMsg.textContent='✓ '+(res.message || 'Hvala! Primili smo tvoju poruku.')}
+      var form = document.getElementById('fb-form');
+      if(form) form.style.display = 'none';
+      if(typeof track === 'function') track('feedback_submit', {type: feedbackType, has_email: !!email}, 'engagement');
+      setTimeout(closeFeedbackModal, 2400);
+    } else {
+      if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ '+((res && res.message) || 'Nešto je pošlo krivo. Pokušaj ponovo ili pošalji e-mail direktno.')}
+      btn.disabled = false;
+      btn.textContent = 'Pošalji →';
+    }
+  }).catch(function(){
+    if(fbMsg){fbMsg.className='modal-msg show error'; fbMsg.textContent='✗ Greška u mreži. Pošalji e-mail na maturirajgreske@gmail.com'}
+    btn.disabled = false;
+    btn.textContent = 'Pošalji →';
+  });
+
+  return false;
+}
+const CITATI=[]; /* Legacy H12 array - dead code, replaced by CIT_DATA2 */
+
+const POJMOVI=[]; /* Legacy H12 array - dead code, replaced by POJM_DATA2 */
+
+const KVIZ_Q=[
+  {q:'Kada je Dubravka prvi put izvedena?',o:['1628.','1598.','1622.','1638.'],t:0,e:'Dubravka je prvi put izvedena 3. veljače 1628. u Dubrovniku „pred Dvorom" za Gundulićevu svadbu s Nikom Sorkočević.'},
+  {q:'Tko je autor Dubravke?',o:['Ivan Gundulić','Marin Držić','Marko Marulić','Džore Držić'],t:0,e:'Ivan Gundulić (1589.–1638.), dubrovački plemić, najveći pjesnik hrvatskog baroka. Nadimak „Mačica".'},
+  {q:'Koji je primarni žanr Dubravke?',o:['Ep','Tragedija','Pastorala','Farsa'],t:2,e:'Dubravka je pastirska igra (pastorala) s elementima melodrame i tragikomedije — po uzoru na Tassovu Amintu i Guarinijev Il pastor fido.'},
+  {q:'Koliko činjenja ima Dubravka?',o:['2','3','5','7'],t:1,e:'Dubravka ima 3 činjenja (čina) i 28 skazanja (scena). Ukupno 1696 stihova.'},
+  {q:'Za koju prigodu je Dubravka napisana?',o:['Krunidbu dubrovačkog kneza','Svadbu Ivana Gundulića','Obljetnicu Dubrovačke Republike','Pobjedu kod Hoćima'],t:1,e:'Dubravka je napisana za Gundulićevu svadbu s Nikom Sorkočević 1628. godine. Od tada se izvodila svake godine na dan sv. Vlaha.'},
+  {q:'Što alegorijski predstavlja Dubrava?',o:['Hrvatska u cjelini','Dubrovačka Republika','Dalmacija pod Mlecima','Mitsko pogansko vrijeme'],t:1,e:'Dubrava (mitski pastoralni prostor) alegorijski predstavlja Dubrovačku Republiku — idealni prostor slobode i pravednosti.'},
+  {q:'Što simbolizira lik Dubravke?',o:['Slobodu i vlast Dubrovnika','Ljubav','Vjeru katoličku','Dubrovačku mladost'],t:0,e:'Dubravka je personifikacija slobode i vlasti Dubrovačke Republike. Njezina ljepota simbolizira uzvišenost državnih ideala.'},
+  {q:'Koga u alegoriji predstavlja lik Miljenka?',o:['Dubrovačko plemstvo (vlastelu)','Obični puk','Redovništvo','Strance u Dubrovniku'],t:0,e:'Miljenko — najbolji i najčestitiji pastir — alegorijski je dubrovačko plemstvo, legitimni nositelj slobode i vlasti.'},
+  {q:'Koga simbolizira Grdan?',o:['Turke koji prijete Dubrovniku','Mletačku vlast','Seljake iz okolice','Bogate pučane koji žele vlast'],t:3,e:'Grdan (star, ružan, bogat) alegorijski je obogaćeno dubrovačko građanstvo koje ženidbom s plemkinjama želi steći političku vlast.'},
+  {q:'Koji bog u Dubravki čudom sprječava Grdanovo vjenčanje?',o:['Bog Lero','Zeus','Apolon','Hermes'],t:0,e:'Bog Lero (bog ljubavi u Dubravi) šalje znamen — trešnju, grmljavinu i tamu — dok Miljenko ne uđe u hram. To je deus ex machina moment.'},
+  {q:'Koji su glavni stihovi u Dubravki?',o:['Osmerac i dvostruko rimovani dvanaesterac','Deseterac i heksametar','Samo dvanaesterac','Sonet'],t:0,e:'Dubravka koristi različite stihove: peterac, osmerac i dvostruko rimovani dvanaesterac — svaki za drugi socijalni sloj likova.'},
+  {q:'Koji stih u Dubravki koriste plemićki likovi (Miljenko, Dubravka, vile)?',o:['Osmerac','Dvanaesterac','Deseterac','Peterac'],t:0,e:'Plemićki, viši likovi govore simetričnim osmercima (4+4) — lirski, melodičan stih pogodan za ljubavne iskaze i svečane prizore.'},
+  {q:'Koje stilsko sredstvo je „O lijepa, o draga, o slatka slobodo"?',o:['Metafora','Apostrofa i anafora','Personifikacija','Sinekdoha'],t:1,e:'Apostrofa je oslovljavanje apstraktnog pojma (slobode) kao bića. Ponavljanje „O" na početku — anafora. Oba sredstva postižu svečan ton.'},
+  {q:'Što znači „deus ex machina"?',o:['Zaplet preko zbora','Iznenadna božanska intervencija koja riješi sukob','Tragičan kraj','Epska uvodna molitva'],t:1,e:'„Bog iz stroja" — dramska konvencija gdje iznenadna božanska intervencija rješava sukob. U Dubravki: čudo boga Lera u III. činjenju.'},
+  {q:'Koja je glavna antiteza u Dubravki?',o:['Miljenko (ljepota/plemenitost) vs. Grdan (ružnoća/zlato)','Ljubav vs. smrt','Dan vs. noć','Mladost vs. starost'],t:0,e:'Antiteza Miljenko–Grdan je temeljni sukob: ljepota i plemenitost nasuprot ružnoći i potkupljivanju. Simbolizira sukob vrijednosti u dubrovačkom društvu.'},
+  {q:'Kojem književnopovijesnom razdoblju pripada Dubravka?',o:['Renesansa','Barok','Klasicizam','Romantizam'],t:1,e:'Dubravka pripada hrvatskom baroku (17. st.). Glavni centar baroka u Hrvatskoj: Dubrovačka Republika. Obilježja: patos, kontrast, pretjerivanje, religioznost.'},
+  {q:'Koje talijansko djelo je glavni uzor Dubravki?',o:['Dante, Božanstvena komedija','Machiavelli, Vladar','Boccaccio, Dekameron','Tasso, Aminta'],t:3,e:'Tassova Aminta (1573.) je glavni uzor Dubravki. Također Guarinijev Il pastor fido i Sannazzarova Arcadia.'},
+  {q:'Kojeg dana se u Dubravki odvija radnja?',o:['Dan Božićni','Dan sv. Vlaha (3. veljače)','Uskrs','Velika Gospa'],t:1,e:'Radnja se odvija na dan svetkovine sv. Vlaha, zaštitnika Dubrovnika (3. veljače). To je realni blagdan Republike — dan slobode.'},
+  {q:'Zašto se u Dubravki pojavljuje lik ribara iz Dalmacije?',o:['Predstavlja Turke','Uvodi ljubavnu priču','Komičan je lik','Hvali slobodu Dubrave nasuprot neslobodnoj mletačkoj Dalmaciji'],t:3,e:'Ribar iz Dalmacije bježi od mletačke vlasti i hvali slobodu Dubrave. Njegov monolog stvara antitezu: slobodni Dubrovnik vs. neslobodna Dalmacija pod Mlecima.'},
+  {q:'Koje druge Gundulićeve značajne djelo datiraju iz iste dekade kao Dubravka?',o:['Smrt Smail-age Čengića','Judita','Suze sina razmetnoga i Osman','Novela od Stanca'],t:2,e:'Gundulić je napisao Suze sina razmetnoga (1622., Venecija) i započeo rad na Osmanu (1621.–1638., nedovršen). Dubravka (1628.) je između ta dva.'},
+  {q:'Što simboliziraju satiri (Divjak, Gorštak, Vuk) u Dubravki?',o:['Ljudske poroke — taštinu, pohlepu, raskalaš','Vojnike Turaka','Stranačku borbu','Anđele čuvare'],t:0,e:'Satiri su pohotni, komični likovi koji simboliziraju ljudske poroke. Služe i za komiku i za satiru novih dubrovačkih običaja.'},
+  {q:'Koji termin Gundulić koristi za „scenu" u drami?',o:['Prizor','Skazanje','Slika','Pojavak'],t:1,e:'Gundulić koristi stare slavenske termine: „činjenje" za čin i „skazanje" za scenu. Dubravka ima 3 činjenja i ukupno 28 skazanja.'},
+  {q:'Koja je glavna tema završne himne Dubravke?',o:['Ljubav Miljenka i Dubravke','Kletva Grdanu','Povratak u idilu','Sloboda kao dar Boga'],t:3,e:'Završna himna slobodi („O lijepa, o draga, o slatka slobodo...") sažima glavnu temu — sloboda kao najviša vrijednost, dar Boga, čuvana tradicijom.'},
+  {q:'Zašto je Dubravka važno djelo na maturi 2025./2026.?',o:['Najduže je djelo u katalogu','Napisano je prije Judite','Jedno je od 21 obvezatnog djela za školski esej','Ima najviše likova'],t:2,e:'Dubravka je jedno od 21 obvezatnog djela za školski esej na državnoj maturi 2025./2026. To znači da se o njoj može direktno pisati interpretacijski esej.'},
+  {q:'Koja je ključna razlika Dubravke i Marulićeve Judite?',o:['Obje su epovi u dvanaestercu','Obje su renesansne tragedije','Dubravka je drama (barok), Judita ep (renesansa)','Judita je kasnija od Dubravke'],t:2,e:'Dubravka je barokna drama (1628.), Marulićeva Judita renesansni ep (1501.). Gundulić = Dubrovnik, Marulić = Split. Oba su hrv. alegorijska djela, ali drugog roda i razdoblja.'},
+];
+
+const CP_ITEMS=[
+  'Znam godinu i povod nastanka Dubravke (1628., Gundulićeva svadba s Nikom Sorkočević).',
+  'Mogu opisati strukturu: 3 činjenja, 28 skazanja, 1696 stihova.',
+  'Znam alegorijsku shemu: Dubrava=Dubrovnik, Dubravka=sloboda, Miljenko=plemstvo, Grdan=bogati pučani.',
+  'Mogu objasniti što je pastorala i zašto je Dubravka žanrovski hibrid (pastorala + melodrama + tragikomedija).',
+  'Razumijem koje stihove Gundulić koristi i za koga (osmerac=plemići, dvanaesterac=didaktični likovi, peterac=svečano).',
+  'Znam što je „deus ex machina" i mogu pokazati gdje se pojavljuje u Dubravki (čudo boga Lera u III. činjenju).',
+  'Mogu analizirati završnu himnu slobodi („O lijepa, o draga, o slatka slobodo...") — stilska sredstva i značenje.',
+  'Razumijem kontekst: hrv. barok 17. st., Dubrovačka Republika, uzori (Tasso, Guarini, Sannazzaro).',
+  'Mogu napisati interpretacijski esej o Dubravki na temu alegorije ili slobode.',
+  'Znam razliku između Dubravke (Gundulić, barok, drama) i Judite (Marulić, renesansa, ep) — za komparativnu tezu.',
+];
+
+const DIAG0_Q=[
+  {q:'U kojoj godini je izvedena Dubravka?',o:['1501.','1568.','1628.','1701.'],t:2},
+  {q:'Tko je autor Dubravke?',o:['Marko Marulić','Ivan Gundulić','Marin Držić','Petar Zoranić'],t:1},
+  {q:'Što simbolizira Dubrava (mjesto radnje)?',o:['Hrvatska u cjelini','Dubrovačka Republika','Split','Mitsko pogansko doba'],t:1},
+  {q:'Koji je žanr Dubravke?',o:['Ep','Pastorala','Tragedija','Roman'],t:1},
+  {q:'Koji lik simbolizira bogatu pučansku klasu koja prijeti Dubrovniku?',o:['Miljenko','Grdan','Ljubdrag','Radmio'],t:1}
+]
+
+/* ═══════════════════════════════════
+   TAB SWITCHER
+═══════════════════════════════════ */
+const TAB_NAMES=['Teorija','3 činjenja','Esej alat','Citatnik','Pojmovnik','Drill','Kviz','Checkpoint'];
+function updateTabStripAffordance(){
+  document.querySelectorAll('.tabs').forEach(row=>{
+    const rowTabs=row.querySelectorAll('.tab');
+    if(rowTabs.length<8) return;
+    const maxScroll=Math.max(0,row.scrollWidth-row.clientWidth);
+    const left=row.scrollLeft;
+    const hasOverflow=maxScroll>4;
+    row.classList.toggle('has-left',hasOverflow&&left>4);
+    row.classList.toggle('has-right',hasOverflow&&left<maxScroll-4);
+  });
+}
+function sw(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('on',i===n);
+    t.setAttribute('aria-selected',i===n);
+  });
+  document.querySelectorAll('.layer').forEach((l,i)=>l.classList.toggle('on',i===n));
+  document.querySelectorAll('.tabs').forEach(row=>{
+    const rowTabs=row.querySelectorAll('.tab');
+    if(rowTabs.length<8||!rowTabs[n]) return;
+    rowTabs[n].scrollIntoView({behavior:'smooth',inline:'nearest',block:'nearest'});
+  });
+  updateTabStripAffordance();
+  document.getElementById('bc-tab').textContent=TAB_NAMES[n];
+  if(n===6)qzInit();
+  if(n===5){
+    // init drill on first open
+    if(!document.getElementById('mg-dynamic').dataset.init){
+      document.getElementById('mg-dynamic').dataset.init='1';
+      mgInit('easy');
+      fcInit();
+    }
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeSb();
+}
+
+(function initTabStripAffordance(){
+  const tabRows=[...document.querySelectorAll('.tabs')].filter(row=>row.querySelectorAll('.tab').length>=8);
+  if(!tabRows.length) return;
+  tabRows.forEach(row=>row.addEventListener('scroll',updateTabStripAffordance,{passive:true}));
+  window.addEventListener('resize',updateTabStripAffordance,{passive:true});
+  setTimeout(updateTabStripAffordance,0);
+})();
+
+/* ═══════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════ */
+function openSb(){
+  document.getElementById('sidebar').classList.add('mobile-open');
+  document.getElementById('overlay').classList.add('show');
+}
+function closeSb(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+/* ═══════════════════════════════════
+   COUNTDOWN
+═══════════════════════════════════ */
+(function(){
+  // Datum ispita Hrv. jezik — ljetni rok 2025./2026.
+  // Dan 1 (test + sažetak): 15. lipnja 2026.
+  // Dan 2 (esej):           16. lipnja 2026.
+  // Izvor: NCVVO kalendar 2025./2026.
+  const now=new Date();
+  const todayLocal=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const dan1=new Date(2026,5,15); // 15. lipnja 2026. — lokalno (month je 0-indexed!)
+  const dan2=new Date(2026,5,16); // 16. lipnja 2026.
+  const target=todayLocal<=dan1?dan1:dan2; // Prikaži dan 1, pa dan 2
+  const diff=Math.round((target-todayLocal)/(1000*60*60*24));
+  const el=document.getElementById('cd-days');
+  const cw=el?el.closest('.countdown'):null;
+  if(!el)return;
+  if(diff>0){
+    el.textContent=diff;
+    if(cw&&diff<=30)cw.style.borderColor='var(--bronze-d)';
+    if(cw&&diff<=14)cw.style.borderColor='var(--bronze)';
+    if(cw&&diff<=7){cw.style.borderColor='var(--red)';cw.style.color='var(--red)';}
+  } else if(diff===0){
+    el.textContent='DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else if(Math.round((dan2-todayLocal)/(1000*60*60*24))===0){
+    el.textContent='Esej DANAS!';
+    if(cw)cw.style.borderColor='var(--gold)';
+  } else {
+    el.textContent='prošlo';
+  }
+})();
+/* ══ SOCIAL PROOF + COUNTDOWN WIDGET ══ */
+(function(){
+  renderSocialProof('social-proof', 'full');
+  var daysLeft = daysToMatura();
+  if(daysLeft <= 60){
+    var cd = document.getElementById('countdown');
+    if(cd){cd.style.display='flex';renderCountdown('countdown');}
+  }
+})();
+
+
+
+/* ═══════════════════════════════════
+   SCENES (pjevanja)
+═══════════════════════════════════ */
+function togScene(card){
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.scene-card').forEach(c=>c.classList.remove('open'));
+  if(!wasOpen)card.classList.add('open');
+}
+
+/* ═══════════════════════════════════
+   DIAG0
+═══════════════════════════════════ */
+let d0idx=0,d0score=0;
+function diag0Skip(){
+  document.getElementById('diag0').dataset.state='dismissed';
+}
+function diag0Start(){
+  d0idx=0;d0score=0;
+  document.getElementById('diag0').dataset.state='quiz';
+  d0Show();
+}
+function d0Show(){
+  if(d0idx>=DIAG0_Q.length){diag0End();return;}
+  const q=DIAG0_Q[d0idx];
+  document.getElementById('d0fill').style.width=((d0idx/DIAG0_Q.length)*100)+'%';
+  document.getElementById('d0num').textContent=\`Pitanje \${d0idx+1} / \${DIAG0_Q.length}\`;
+  document.getElementById('d0text').textContent=q.q;
+  const opts=document.getElementById('d0opts');
+  opts.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='diag-opt';btn.textContent=o;
+    btn.onclick=()=>{
+      opts.querySelectorAll('.diag-opt').forEach(b=>b.onclick=null);
+      if(i===q.t){btn.classList.add('correct');d0score++;}
+      else{btn.classList.add('wrong');opts.querySelectorAll('.diag-opt')[q.t].classList.add('correct');}
+      setTimeout(()=>{d0idx++;d0Show();},900);
+    };
+    opts.appendChild(btn);
+  });
+}
+function diag0End(){
+  document.getElementById('diag0').dataset.state='result';
+  const pct=Math.round(d0score/DIAG0_Q.length*100);
+  let msg='', btnTxt='', btnTab=1;
+  if(pct>=80){
+    msg='<strong>Odlično!</strong> Osnove H12 imaš savladane. Preporučujem Esej alat — tamo su gotove teze za eseje o Petrarci i Calderónu.';
+    btnTxt='✍ Esej alat →'; btnTab=2;
+  } else if(pct>=60){
+    msg='<strong>Dobro!</strong> Nekoliko rupa postoji — provjeri Dubravka: 3 činjenja za detalje o svakom činjenju i alegorijskoj shemi.';
+    btnTxt='📖 Dubravka: 3 činjenja →'; btnTab=1;
+  } else {
+    msg='<strong>Kreni od osnova.</strong> Preporučujem: Teorija (Sec 01-07) + Pojmovnik (Tab 4). Alegorijska shema i dvanaesterac su ključni — zapis ih napamet.';
+    btnTxt='📖 Teorija →'; btnTab=0;
+  }
+  document.getElementById('d0rtitle').textContent=\`\${d0score} / \${DIAG0_Q.length} — \${pct}%\`;
+  document.getElementById('d0rdesc').innerHTML=msg;
+  const btn=document.getElementById('d0rbtn');
+  if(btn){btn.textContent=btnTxt;btn.onclick=()=>sw(btnTab);}
+}
+function diag0Reset(){document.getElementById('diag0').dataset.state='intro';}
+
+/* ═══════════════════════════════════
+   CITATNIK
+═══════════════════════════════════ */
+const CAT_COLORS={alegorija:'p-go',vjera:'p-t',judita:'p-br',holofern:'p-r',domoljublje:'p-g',stih:'p-pa'};
+let citStars={};
+try{citStars=JSON.parse(localStorage.getItem('mt.hrv.h13.cit_stars')||'{}')}catch(e){}
+let citActive='sve';
+
+function renderCitati(){
+  const grid=document.getElementById('cit-grid');
+  if(!grid)return;
+  const show=citActive==='sve'?CITATI:CITATI.filter(c=>c.tags.includes(citActive));
+  grid.innerHTML=show.map((c,i)=>{
+    const idx=CITATI.indexOf(c);
+    const starred=citStars[idx]?'starred':'';
+    const tagsHTML=c.tags.map(tg=>\`<span class="cit-tag \${CAT_COLORS[tg]||'p-pa'}">\${tg}</span>\`).join('');
+    return \`<div class="cit-card">
+      <div class="cit-text">\${c.t}</div>
+      <div class="cit-meta">
+        <span class="cit-src">\${c.s}</span>
+        <div class="cit-tags">\${tagsHTML}<span class="cit-star \${starred}" onclick="togStar(\${idx},this)">★</span></div>
+      </div>
+    </div>\`;
+  }).join('');
+}
+function togStar(i,el){
+  citStars[i]=!citStars[i];
+  el.classList.toggle('starred',!!citStars[i]);
+  try{localStorage.setItem('mt.hrv.h13.cit_stars',JSON.stringify(citStars))}catch(e){}
+}
+function citFilter(btn,kat){
+  document.querySelectorAll('.cit-fbt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  citActive=kat;
+  renderCitati();
+}
+renderCitati();
+
+/* ═══════════════════════════════════
+   POJMOVNIK
+═══════════════════════════════════ */
+let pojActive='sve';
+function renderPojmovi(){
+  const grid=document.getElementById('poj-grid');
+  if(!grid)return;
+  const show=pojActive==='sve'?POJMOVI:POJMOVI.filter(p=>p.kat===pojActive);
+  const catCls={stih:'p-pa',stil:'p-t',ep:'p-br',hum:'p-go',aleg:'p-r'};
+  grid.innerHTML=show.map(p=>\`
+    <div class="poj-card" onclick="this.classList.toggle('open')">
+      <div class="poj-front">
+        <div class="poj-term">\${p.t}</div>
+        <span class="poj-cat \${catCls[p.kat]||'p-pa'}">\${p.kat}</span>
+      </div>
+      <div class="poj-def">\${p.d}\${p.e?\`<div class="poj-ex">Primjer: \${p.e}</div>\`:''}</div>
+    </div>
+  \`).join('');
+}
+function pojFilter(btn,kat){
+  document.querySelectorAll('#poj-filter .cit-fbt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');pojActive=kat;renderPojmovi();
+}
+renderPojmovi();
+
+/* ═══════════════════════════════════
+   ESEJ ALAT
+═══════════════════════════════════ */
+function alTab(btn,pane){
+  document.querySelectorAll('.alat-tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.alat-pane').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(pane).classList.add('on');
+}
+function cpyTeza(el){
+  navigator.clipboard.writeText(el.textContent.trim()).catch(()=>{});
+  el.classList.add('copied');
+  setTimeout(()=>el.classList.remove('copied'),1500);
+}
+
+/* ═══════════════════════════════════
+   SCANNER — Analiza ulomka Dubravke
+═══════════════════════════════════ */
+function scannerCount(){
+  const ta = document.getElementById('scanner-in');
+  if(!ta) return;
+  const txt = ta.value;
+  const chars = document.getElementById('scanner-chars');
+  const words = document.getElementById('scanner-words');
+  if(chars) chars.textContent = txt.length;
+  if(words) words.textContent = txt.trim() ? txt.trim().split(/\\s+/).length : 0;
+}
+
+function scannerClear(){
+  const ta = document.getElementById('scanner-in');
+  const out = document.getElementById('scanner-out');
+  if(ta){ ta.value=''; scannerCount(); }
+  if(out) out.innerHTML = '';
+}
+
+function scannerGo(){
+  const ta = document.getElementById('scanner-in');
+  const out = document.getElementById('scanner-out');
+  if(!ta || !out) return;
+  const txt = ta.value.trim();
+  if(!txt){
+    out.innerHTML = '<div class="box-warn" style="margin-top:10px"><div class="bw-body"><div class="bw-txt">Zalijepi stihove Dubravke prije analize.</div></div></div>';
+    return;
+  }
+  const tl = txt.toLowerCase();
+  
+  // Detekcija likova
+  const likovi = [];
+  if(/miljenk/.test(tl)) likovi.push('Miljenko');
+  if(/dubravk/.test(tl)) likovi.push('Dubravka');
+  if(/grdan/.test(tl)) likovi.push('Grdan');
+  if(/ljubdrag/.test(tl)) likovi.push('Ljubdrag');
+  if(/ljubmir/.test(tl)) likovi.push('Ljubmir');
+  if(/radmio/.test(tl)) likovi.push('Radmio');
+  if(/lero/.test(tl)) likovi.push('Bog Lero');
+  if(/divjak|gorštak|vuk\\b/.test(tl)) likovi.push('Satiri');
+  if(/ribar/.test(tl)) likovi.push('Ribar iz Dalmacije');
+  
+  // Detekcija činjenja (po ključnim motivima)
+  let cinjenje = '';
+  if(/radmio|svetkov|blagdan|vlah|najava|objav.{1,3}se/.test(tl)) cinjenje = 'I. činjenje (ekspozicija)';
+  else if(/zlato|mito|potkup|ogrč|žalos|zaman/.test(tl)) cinjenje = 'II. činjenje (zaplet)';
+  else if(/lero|čudo|trešnj|gromnj|hram|oganj|plam|ptic/.test(tl)) cinjenje = 'III. činjenje (rasplet)';
+  else if(/sloboda|o lijepa|slatka/.test(tl)) cinjenje = 'III. činjenje (završna himna)';
+  
+  // Detekcija stilskih sredstava
+  const stila = [];
+  if(/^o\\s+\\w+|,\\s*o\\s+\\w+/i.test(txt)) stila.push('Apostrofa (O + pojam)');
+  if(/\\b(o\\s+\\w+[,!\\s].*?){2,}/i.test(txt)) stila.push('Anafora (ponavljanje)');
+  if(/najljepš|najgrđ|najbolj|sav|svi|svih/.test(tl)) stila.push('Epitet / superlativ');
+  if(/proklet|blažen/.test(tl)) stila.push('Kletva / blagoslov');
+  if(/nek?\\smogu|nije\\s*moguć|sve\\s*bi\\s*zaman/.test(tl)) stila.push('Hiperbola / negacija');
+  if(/ljepot.*?grdo|ljepot.*?zlat|grd.*?zlato/.test(tl)) stila.push('Antiteza');
+  
+  // Detekcija alegorijskih slojeva
+  const aleg = [];
+  if(/dubrav/.test(tl)) aleg.push('Dubrava/Dubravka → Dubrovnik/sloboda');
+  if(/sloboda/.test(tl)) aleg.push('Sloboda → najviša vrijednost');
+  if(/zlato|mito|podmit/.test(tl)) aleg.push('Zlato/mito → korupcija, nove elite');
+  if(/pastir|vil|satir/.test(tl)) aleg.push('Pastirski svijet → dubrovačko društvo');
+  if(/lero|čudo|bog/.test(tl)) aleg.push('Božanska pravda → Republika pod Božjom zaštitom');
+  
+  // Vjerojatni stih
+  const avgLen = txt.split(/[.!?\\n]/).filter(s=>s.trim()).map(s=>s.trim().split(/\\s+/).length).reduce((a,b)=>a+b,0) / Math.max(1, txt.split(/[.!?\\n]/).filter(s=>s.trim()).length);
+  let stih = '';
+  if(/o\\s+lijepa|slatka\\s+slobodo|dar\\s+u\\s+kom/i.test(tl)) stih = 'Dvanaesterac (završna himna) — svečani';
+  else if(avgLen < 4) stih = 'Kraći stih (peterac?)';
+  else if(avgLen < 6) stih = 'Osmerac — lirski, plemićki sloj';
+  else stih = 'Dvanaesterac (6+6) — didaktični / narativni';
+  
+  // Render
+  let h = '<div class="box-int" style="margin-top:10px"><div class="box-int-lbl">📊 Rezultat analize</div><div class="box-int-txt">';
+  
+  h += '<p><b>📏 Vjerojatni stih:</b> ' + (stih || 'Nedovoljno za procjenu') + '</p>';
+  
+  h += '<p><b>🎭 Likovi u ulomku:</b> ' + (likovi.length ? likovi.join(', ') : '<em>Nisu eksplicitno imenovani — provjeri kontekst</em>') + '</p>';
+  
+  h += '<p><b>🎬 Vjerojatno činjenje:</b> ' + (cinjenje || '<em>Nedovoljno signala — provjeri kontekst</em>') + '</p>';
+  
+  h += '<p><b>✒ Stilska sredstva:</b> ' + (stila.length ? stila.join(', ') : '<em>Nisu prepoznata bazična sredstva</em>') + '</p>';
+  
+  h += '<p><b>🏛 Alegorijski sloj:</b> ' + (aleg.length ? '<br>• ' + aleg.join('<br>• ') : '<em>Nema eksplicitnih alegorijskih markera</em>') + '</p>';
+  
+  h += '<p style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd)"><b>🎯 Esejska primjena:</b> Za esej o ovom ulomku: (1) identificiraj tko govori i u kojem činjenju, (2) imenuj 2-3 stilska sredstva uz primjer, (3) pokaži alegorijsku dimenziju — kako se povezuje s temom slobode/vlasti Dubrovnika, (4) citiraj ključnu riječ ili sintagmu, ne cijele stihove.</p>';
+  
+  h += '</div></div>';
+  out.innerHTML = h;
+}
+
+
+/* Scanner */
+function scannerUpdate(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  const txt=ta.value;
+  const words=txt.trim()?txt.trim().split(/\\s+/).length:0;
+  const lines=txt.split('\\n').filter(function(l){return l.trim().length>0;}).length;
+  // Estimate syllables (Croatian: count vowels a,e,i,o,u)
+  const syl=words>0?Math.round(txt.replace(/[^aeiouAEIOUčšžđćČŠŽĐĆ]/g,'').length/Math.max(words,1)*10)/10:0;
+  const we=document.getElementById('sc-words');if(we)we.querySelector('.wc-stat-num').textContent=words;
+  const le=document.getElementById('sc-lines');if(le)le.querySelector('.wc-stat-num').textContent=lines;
+  const se=document.getElementById('sc-syl');if(se)se.querySelector('.wc-stat-num').textContent=syl||'—';
+  try{localStorage.setItem('mt.hrv.h13.wc_text',txt);}catch(e){}
+}
+(function(){
+  const ta=document.getElementById('scanner-in');
+  if(!ta)return;
+  try{const sv=localStorage.getItem('mt.hrv.h13.wc_text');if(sv){ta.value=sv;scannerUpdate();}}catch(e){}
+})();
+
+function scanJudita(){
+  const txt=document.getElementById('scanner-in').value.trim();
+  const out=document.getElementById('scanner-out');
+  if(!txt||txt.length<10){out.innerHTML='<div class="box-warn"><div class="box-warn-lbl">⚠ Prazan unos</div><div class="box-warn-txt">Unesite barem jedan stih Judite za analizu.</div></div>';return;}
+  
+  let findings=[];
+  if(/\\d{1,2}\\s*\\+\\s*\\d{1,2}|šest|cezur/i.test(txt))findings.push('🎵 <strong>Metrička napomena:</strong> Tekst sadrži reference na broj slogova ili cezuru — provjeri je li stih dvanaesterac (6+6).');
+  if(/judita|udova|lijepa|lipos/i.test(txt))findings.push('👤 <strong>Judita kao lik:</strong> Ovaj ulomak govori o Juditi. Korisni argumenti: psihologizacija, individualnost, alegorijska dimenzija (= Hrvatska).');
+  if(/holofern|vojvoda|neprijatel|tursk/i.test(txt))findings.push('⚔️ <strong>Holofern / neprijatelj:</strong> Ovaj ulomak govori o antagonistu. Argumenti: oholost (hybris), alegorija Turaka, moć bez vjere.');
+  if(/moli|Gospod|Bog|Isus|vjera|Krist/i.test(txt))findings.push('✝️ <strong>Vjera / molitva:</strong> Religijska dimenzija. Marulić = kršćanski humanist. Bog kao jedini izvor prave moći.');
+  if(/Betulija|grad|zid|opsad/i.test(txt))findings.push('🏰 <strong>Betulija:</strong> Alegorija hrv. gradova pod opsadom. Veza: konkretna geografska situacija Dalmacije 1501.');
+  if(/slav|pobijed|radost|trijumf/i.test(txt))findings.push('🏆 <strong>Trijumf:</strong> Ovaj ulomak vjerojatno je iz V. ili VI. pjevanja — pobjeda i moralna pouka.');
+  if(/invokacij|Ki hoće|slišati|čudesa/i.test(txt))findings.push('📖 <strong>Invokacija:</strong> Početak epa — zaziv čitatelja. Epska konvencija (usp. Homer, Vergilije).');
+  if(findings.length===0)findings.push('ℹ️ <strong>Opća napomena:</strong> Ulomak analiziran. Za detalje: provjeri činjenje iz kojeg potječe (koristite Tab 1 — 3 činjenja), identificiraj likove i stilska sredstva.');
+  
+  out.innerHTML=\`<div class="box-int">
+    <div class="box-int-lbl">🔍 Analiza ulomka</div>
+    \${findings.map(f=>\`<div class="box-signal-txt" style="margin-bottom:8px">• \${f}</div>\`).join('')}
+    <div style="margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--t3)">Napomena: automatska analiza. Za dublje tumačenje koristite Tab 2 (Esej alat) i Tab 3 (Citatnik).</div>
+  </div>\`;
+}
+
+/* ═══════════════════════════════════
+   KVIZ
+═══════════════════════════════════ */
+let qzIdx=0,qzScore=0,qzAnswered=[];
+function qzInit(){
+  const w=document.getElementById('qz-wrap');
+  if(!w||w.dataset.init==='1')return;
+  w.dataset.init='1';
+  qzRender();
+}
+function qzRender(){
+  const w=document.getElementById('qz-wrap');
+  if(!w)return;
+  w.innerHTML=\`<div class="qz-wrap" id="qz-inner"></div>\`;
+  qzIdx=0;qzScore=0;
+  const el=document.getElementById('qz-inner');
+  el.innerHTML=\`<div class="qz-start">
+    <div class="qz-start-ico">🧠</div>
+    <h3>20 pitanja · H12 Judita</h3>
+    <p>Pitanja pokrivaju cijelo poglavlje H13: Gundulić, Dubravka, pastorala, alegorija Dubrovnika, 3 činjenja, hrv. barok. Na kraju dobivaš ocjenu i objašnjenja.</p>
+    <button class="fcb primary" onclick="qzStart()">Započni kviz →</button>
+  </div>\`;
+}
+function qzStart(){
+  qzIdx=0;qzScore=0;qzAnswered=[];
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzShowQ(el){
+  if(qzIdx>=KVIZ_Q.length){qzEnd(el);return;}
+  const q=KVIZ_Q[qzIdx];
+  const pct=Math.round((qzIdx/KVIZ_Q.length)*100);
+  el.innerHTML=\`
+    <div class="qz-prog"><div class="qz-prog-fill" style="width:\${pct}%"></div></div>
+    <div class="qz-num">Pitanje \${qzIdx+1} / \${KVIZ_Q.length}</div>
+    <div class="qz-q">\${q.q}</div>
+    <div class="qz-opts">\${q.o.map((o,i)=>\`<button class="qz-opt" onclick="qzAns(this,\${i})">\${o}</button>\`).join('')}</div>
+    <div class="qz-expl" id="qz-expl" style="display:none"></div>
+    <div style="text-align:right;margin-top:12px"><button class="fcb qz-next" id="qz-next" onclick="qzNext()" style="display:none">Sljedeće →</button></div>
+  \`;
+}
+function qzAns(btn,i){
+  if(document.querySelector('.qz-opt.correct,.qz-opt.wrong'))return;
+  const opts=document.querySelectorAll('.qz-opt');
+  opts.forEach(b=>b.disabled=true);
+  const q=KVIZ_Q[qzIdx];
+  const ok=(i===q.t);
+  if(ok){btn.classList.add('correct');qzScore++;}
+  else{btn.classList.add('wrong');opts[q.t].classList.add('correct');}
+  if(!qzAnswered)qzAnswered=[];
+  qzAnswered.push({q:q.q,ok,correct:q.o[q.t]});
+  const expl=document.getElementById('qz-expl');
+  expl.style.display='block';
+  expl.innerHTML=\`<strong>\${ok?'✓ Točno!':'✗ Netočno.'}</strong> \${q.e}\`;
+  document.getElementById('qz-next').style.display='inline-flex';
+}
+function qzNext(){
+  qzIdx++;
+  const el=document.getElementById('qz-inner')||document.getElementById('qz-wrap');
+  qzShowQ(el);
+}
+function qzEnd(el){
+  const pct=Math.round(qzScore/KVIZ_Q.length*100);
+  let grade,msg,ico;
+  if(pct>=90){grade='ODLIČAN';msg='Spreman/na si za maturu iz H12.';ico='🏆';}
+  else if(pct>=75){grade='VRLO DOBAR';msg='Solidno znanje. Provjeri pogreške u Pojmovniku.';ico='💪';}
+  else if(pct>=60){grade='DOBAR';msg='Ponoviti: 3 činjenja i alegorijska shema.';ico='📚';}
+  else if(pct>=45){grade='DOVOLJAN';msg='Osnove su tu — trebaš više vježbe.';ico='🔁';}
+  else{grade='NEDOVOLJAN';msg='Vrati se na Teoriju i ponovi korak po korak.';ico='🎯';}
+
+  let wrongHtml='';
+  if(qzAnswered&&qzAnswered.length){
+    const wrong=qzAnswered.filter(a=>!a.ok);
+    if(wrong.length>0){
+      wrongHtml=\`<div style="margin-top:24px;text-align:left">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:12px">Promašena pitanja (\${wrong.length})</div>
+        \${wrong.map(a=>\`<div class="qz-wrong-item">
+          <div class="qz-wrong-q">\${a.q}</div>
+          <div class="qz-wrong-a">Točan odgovor: <b>\${a.correct}</b></div>
+        </div>\`).join('')}
+      </div>\`;
+    }
+  }
+
+  el.innerHTML=\`<div class="qz-result" style="text-align:center;padding:40px 24px;background:var(--card);border:1px solid var(--bdm);border-radius:var(--r4)">
+    <div style="font-size:48px;margin-bottom:8px">\${ico}</div>
+    <div class="qz-score-big">\${pct}%</div>
+    <div class="qz-grade">\${grade}</div>
+    <div class="qz-msg">\${qzScore} / \${KVIZ_Q.length} točnih · \${msg}</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="fcb primary" onclick="qzStart()">🔁 Ponovo</button>
+      <button class="fcb" onclick="sw(4)">📚 Pojmovnik</button>
+      <button class="fcb" onclick="sw(7)">Checkpoint</button>
+    </div>
+    \${wrongHtml}
+  </div>\`;
+
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+}
+
+/* ═══════════════════════════════════
+   CHECKPOINT
+═══════════════════════════════════ */
+let CP_STATE={done:{}};
+try{const s=localStorage.getItem('mt.hrv.h13.cp');if(s)CP_STATE=JSON.parse(s);}catch(e){}
+
+const CP_HINTS=['Tab 0','Tab 0','Tab 0','Tab 0','Tab 1','Tab 1','Tab 3','Tab 0','Tab 2','Tab 2'];
+function cpRender(){
+  const list=document.getElementById('cp-list');
+  if(!list)return;
+  list.innerHTML=CP_ITEMS.map((item,i)=>\`
+    <div class="cp-item\${CP_STATE.done[i]?' done':''}" onclick="cpToggle(\${i})" style="display:flex;align-items:flex-start;gap:12px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 16px;cursor:pointer;transition:all .15s">
+      <div class="cp-box">\${CP_STATE.done[i]?'✓':''}</div>
+      <div class="cp-txt" style="flex:1;font-family:var(--serif);font-size:14px;color:var(--t2);line-height:1.5">\${item}</div>
+      <span class="cp-hint">\${CP_HINTS[i]||''}</span>
+    </div>
+  \`).join('');
+  cpUpdateProgress();
+}
+function cpToggle(i){
+  CP_STATE.done[i]=!CP_STATE.done[i];
+  try{localStorage.setItem('mt.hrv.h13.cp',JSON.stringify(CP_STATE));}catch(e){}
+  cpRender();
+}
+function cpUpdateProgress(){
+  const done=Object.values(CP_STATE.done).filter(Boolean).length;
+  const total=CP_ITEMS.length;
+  const pct=Math.round(done/total*100);
+  document.getElementById('cp-pct').textContent=\`\${done} / \${total}\`;
+  document.getElementById('cp-bar').style.width=pct+'%';
+  document.getElementById('sb-prog-bar').style.width=pct+'%';
+  document.getElementById('sb-prog-pct').textContent=pct+'%';
+  const fin=document.getElementById('cp-final');
+  if(fin)fin.classList.toggle('show',done===total);
+  // Update summary
+  const sumBox=document.getElementById('cp-summary-box');
+  const sumPct=document.getElementById('cp-sum-pct');
+  const sumTxt=document.getElementById('cp-sum-txt');
+  if(sumBox&&done>0){
+    sumBox.style.display='flex';
+    sumPct.textContent=pct+'%';
+    let msg;
+    if(pct===100)msg='<strong>Kompletan!</strong> Sve je savladano — spreman/na si za maturu.';
+    else if(pct>=70)msg='<strong>Odlično!</strong> Neoznačene tvrdnje su tvoje slabe točke — fokusiraj se na njih.';
+    else if(pct>=40)msg='<strong>Napredak!</strong> Nastavak: provjeri 3 činjenja i Esej alat za neoznačene stavke.';
+    else msg='Još je posla. Počni s Teorijom (Tab 0) i prođi sve sekcije.';
+    sumTxt.innerHTML=msg;
+  }
+}
+function cpReset(){
+  CP_STATE={done:{}};
+  try{localStorage.removeItem('mt.hrv.h13.cp');}catch(e){}
+  cpRender();
+}
+cpRender();
+
+/* ═══════════════════════════════════
+   KVIZ INIT on tab 6
+═══════════════════════════════════ */
+// Already handled in sw()
+
+/* ═══════════════════════════════════
+   MARK TAB (completion badge)
+═══════════════════════════════════ */
+let TAB_DONE={};
+try{TAB_DONE=JSON.parse(localStorage.getItem('mt.hrv.h13.tab_done')||'{}')}catch(e){}
+
+function markTab(n){
+  TAB_DONE[n]=true;
+  try{localStorage.setItem('mt.hrv.h13.tab_done',JSON.stringify(TAB_DONE))}catch(e){}
+  const el=document.getElementById('td'+n);
+  if(el)el.textContent='✓';
+}
+function restoreTabDone(){
+  Object.keys(TAB_DONE).forEach(n=>{
+    const el=document.getElementById('td'+n);
+    if(el&&TAB_DONE[n])el.textContent='✓';
+  });
+}
+restoreTabDone();
+
+// Mark tab on dwell (8s)
+let tabTimer=null;
+const origSw=sw;
+window.sw=function(n){
+  origSw(n);
+  clearTimeout(tabTimer);
+  tabTimer=setTimeout(()=>{
+    if(n!==5)markTab(n); // don't auto-mark PRO locked
+  },8000);
+  // Show relevant tip
+  showTip(n);
+};
+
+/* ═══════════════════════════════════
+   TIP BAR
+═══════════════════════════════════ */
+const TIPS=[
+  '💡 <strong>Tab 0 tip:</strong> Provjeri alegorijsku shemu — Dubrava=Dubrovnik, Dubravka=sloboda, Miljenko=plemstvo, Grdan=bogati pučani.',
+  '💡 <strong>Tab 1 tip:</strong> Klikni na činjenje za detalje radnje, likova i esejskih signala.',
+  '💡 <strong>Tab 2 tip:</strong> Klikni na tezu da je kopiraš u clipboard — iskoristi za školski esej.',
+  '💡 <strong>Tab 3 tip:</strong> ⭐ označi citate koje ćeš učiti — spremaju se u lokalni profil.',
+  '💡 <strong>Tab 4 tip:</strong> Prebaci na Flashcard mode — ← → za navigaciju, Space za okret.',
+  '💡 <strong>Tab 5 tip:</strong> Počni s Lagano (4 para) matchinga, pa Srednje (6), pa Teško (8).',
+  '💡 <strong>Tab 6 tip:</strong> Nakon kviza provjeri objašnjenja pogrešaka — više uči kroz njih.',
+  '💡 <strong>Tab 7 tip:</strong> Označi samo tvrdnje koje STVARNO znaš — ne varaj sebe.'
+];
+let tipShown={};
+function showTip(n){
+  if(tipShown[n])return;
+  const bar=document.getElementById('tip-bar');
+  const txt=document.getElementById('tip-bar-txt');
+  if(!bar||!txt)return;
+  txt.innerHTML=TIPS[n]||TIPS[0];
+  bar.classList.add('show');
+  tipShown[n]=true;
+  clearTimeout(bar._timer);
+  bar._timer=setTimeout(()=>bar.classList.remove('show'),5000);
+}
+// Show tip for initial tab
+setTimeout(()=>showTip(0),3000);
+
+/* ═══════════════════════════════════
+   FROM BANNER (?from= URL param)
+═══════════════════════════════════ */
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const from=params.get('from');
+  if(from){
+    const names={H11:'H11 · Stari hrv. pisci',H13:'H13 · Barok · Gundulić'};
+    const el=document.getElementById('from-banner');
+    const txt=document.getElementById('from-txt');
+    if(el&&txt){
+      txt.textContent='📎 Nastaviš učenje iz '+(names[from]||from)+' → H13 · Gundulić · Dubravka';
+      el.classList.add('show');
+      // Move banner to top of content
+      const cw=document.querySelector('.content-wrap');
+      if(cw)cw.insertBefore(el,cw.firstChild);
+      setTimeout(()=>el.classList.remove('show'),8000);
+    }
+  }
+})();
+
+/* ═══════════════════════════════════
+   SCORE HISTORY (kviz)
+═══════════════════════════════════ */
+function loadScoreHistory(){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h13.kviz_hist')||'[]');
+    const cont=document.getElementById('score-hist');
+    const rows=document.getElementById('score-hist-rows');
+    if(!cont||!rows||hist.length===0)return;
+    cont.style.display='block';
+    rows.innerHTML=hist.slice(-5).reverse().map(h=>{
+      const pct=Math.round(h.score/h.total*100);
+      const d=new Date(h.date);
+      const ds=d.toLocaleDateString('hr',{day:'2-digit',month:'2-digit'});
+      return \`<div class="score-hist-row">
+        <span class="score-hist-date">\${ds}</span>
+        <div class="score-hist-bar"><div class="score-hist-fill" style="width:\${pct}%"></div></div>
+        <span class="score-hist-val">\${h.score}/\${h.total}</span>
+      </div>\`;
+    }).join('');
+  }catch(e){}
+}
+
+function saveScoreHistory(score,total){
+  try{
+    const hist=JSON.parse(localStorage.getItem('mt.hrv.h13.kviz_hist')||'[]');
+    hist.push({score,total,date:new Date().toISOString()});
+    localStorage.setItem('mt.hrv.h13.kviz_hist',JSON.stringify(hist.slice(-10)));
+    loadScoreHistory();
+  }catch(e){}
+}
+
+// Upgrade qzEnd to save history
+const origQzEnd=qzEnd;
+window.qzEnd=function(el){
+  origQzEnd(el);
+  saveScoreHistory(qzScore,KVIZ_Q.length);
+  markTab(6);
+};
+
+// Load history on init
+loadScoreHistory();
+
+/* ═══════════════════════════════════
+   MATCH GAME — Funkcionalan (3 razine)
+═══════════════════════════════════ */
+const MATCH_DATA={
+  // EASY — Osnove: tko je tko u Dubravki
+  easy:[
+    {a:'Miljenko',b:'Najljepši pastir (plemstvo)'},
+    {a:'Dubravka',b:'Najljepša pastirica (sloboda)'},
+    {a:'Grdan',b:'Bogati ružni starac'},
+    {a:'Bog Lero',b:'Bog ljubavi u Dubravi'},
+  ],
+  // MEDIUM — Stilska sredstva → primjeri iz Dubravke
+  medium:[
+    {a:'Apostrofa',b:'„O lijepa, o draga, o slatka slobodo"'},
+    {a:'Anafora',b:'„O... O... O..." ponavljanje'},
+    {a:'Antiteza',b:'Ljepota (Miljenko) vs. zlato (Grdan)'},
+    {a:'Hiperbola',b:'„Sva srebra... ne mogu bit plata"'},
+    {a:'Deus ex machina',b:'Čudo boga Lera u hramu'},
+    {a:'Kletva',b:'„Proklet i oni tko najprije..."'},
+  ],
+  // HARD — Suptilne paralele: Dubravka u kontekstu
+  hard:[
+    {a:'Tasso, Aminta (1573.)',b:'Talijanski uzor — pastirska igra'},
+    {a:'Guarini, Il pastor fido',b:'Talijanski uzor — pastirska tragikomedija'},
+    {a:'Sannazzaro, Arcadia',b:'Talijanski uzor — rodonačelnica pastoralne tradicije'},
+    {a:'Svetkovina sv. Vlaha',b:'Dan slobode Dubrovnika (3. veljače)'},
+    {a:'Hoćimska bitka (1621.)',b:'Pobjeda Poljaka — inspiracija za Gundulićev Osman'},
+    {a:'Sultan Osman II. (1622.)',b:'Ubijen u pobuni — povod Osmanu'},
+    {a:'Suze sina razmetnoga (1622.)',b:'Gundulićeva religiozna poema'},
+    {a:'Niko Sorkočević',b:'Gundulićeva supruga — povod Dubravke'},
+  ],
+};
+
+let mgLevel='easy',mgSelLeft=null,mgSelRight=null,mgMatched=0,mgPairs=[];
+
+function mgInit(level){
+  mgLevel=level||'easy';
+  const pairs=MATCH_DATA[mgLevel];
+  mgMatched=0;mgSelLeft=null;mgSelRight=null;
+  mgPairs=pairs.map((p,i)=>({...p,id:i}));
+  
+  // Shuffle BOTH sides independently for harder challenge
+  const leftItems=[...mgPairs].sort(()=>Math.random()-.5);
+  const rightItems=[...mgPairs].sort(()=>Math.random()-.5);
+  
+  const themes={
+    easy:'🎭 Likovi Dubravke',
+    medium:'✒ Stilska sredstva + primjeri',
+    hard:'🏛 Kontekst i uzori (napredno)'
+  };
+  const labels={easy:'Lagano',medium:'Srednje',hard:'Teško'};
+  const activeClass=(lvl)=>mgLevel===lvl?'primary':'';
+  
+  const el=document.getElementById('mg-dynamic');
+  if(!el)return;
+  el.innerHTML=\`
+    <div class="mg-status" id="mg-status">
+      <strong>\${themes[mgLevel]}</strong> · \${mgPairs.length} parova · \${labels[mgLevel]}
+    </div>
+    <div class="mg-grid">
+      <div class="mg-col" id="mg-left">
+        \${leftItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="left" onclick="mgClick(this)">\${p.a}</div>\`).join('')}
+      </div>
+      <div class="mg-col" id="mg-right">
+        \${rightItems.map(p=>\`<div class="mg-item" data-id="\${p.id}" data-side="right" onclick="mgClick(this)">\${p.b}</div>\`).join('')}
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="fcb \${activeClass('easy')}" onclick="mgInit('easy')" style="margin:3px" title="Likovi Dubravke">🎭 Lagano (4)</button>
+      <button class="fcb \${activeClass('medium')}" onclick="mgInit('medium')" style="margin:3px" title="Stilska sredstva + primjeri">✒ Srednje (6)</button>
+      <button class="fcb \${activeClass('hard')}" onclick="mgInit('hard')" style="margin:3px" title="Kontekst i uzori">🏛 Teško (8)</button>
+    </div>
+    <div style="text-align:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--t3)">
+      Svaka razina testira drugu vještinu — ne samo više parova
+    </div>
+  \`;
+}
+
+function mgClick(el){
+  if(el.classList.contains('matched')||el.classList.contains('wrong'))return;
+  const side=el.dataset.side;
+  
+  if(side==='left'){
+    document.querySelectorAll('#mg-left .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelLeft=el;
+  } else {
+    document.querySelectorAll('#mg-right .mg-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    mgSelRight=el;
+  }
+  
+  if(mgSelLeft&&mgSelRight){
+    const match=mgSelLeft.dataset.id===mgSelRight.dataset.id;
+    if(match){
+      mgSelLeft.classList.add('matched');mgSelLeft.classList.remove('selected');
+      mgSelRight.classList.add('matched');mgSelRight.classList.remove('selected');
+      mgMatched++;
+      if(mgMatched===mgPairs.length){
+        document.getElementById('mg-status').innerHTML=\`<span style="color:var(--green)">✓ Sve spareno! Odlično!</span>\`;
+        markTab(5);
+      }
+    } else {
+      mgSelLeft.classList.add('wrong');mgSelRight.classList.add('wrong');
+      setTimeout(()=>{
+        mgSelLeft.classList.remove('wrong','selected');
+        mgSelRight.classList.remove('wrong','selected');
+        mgSelLeft=null;mgSelRight=null;
+      },600);
+      return;
+    }
+    mgSelLeft=null;mgSelRight=null;
+  }
+}
+
+/* ═══════════════════════════════════
+  FLASHCARDS — H11/H12 style (H13 sadržaj)
+═══════════════════════════════════ */
+const FC_DATA=[
+  {t:'Pastorala',d:'Dramski oblik o idiličnom životu pastira u prirodi. Europska tradicija iz 16. st.',kat:'drama'},
+  {t:'Činjenje',d:'Stari slavenski termin za čin drame. Dubravka ima 3 činjenja.',kat:'drama'},
+  {t:'Skazanje',d:'Stari slavenski termin za scenu. Dubravka ima 28 skazanja.',kat:'drama'},
+  {t:'Deus ex machina',d:'„Bog iz stroja" — iznenadna božanska intervencija. U Dubravki: čudo boga Lera.',kat:'drama'},
+  {t:'Alegorija',d:'Dvostruka razina čitanja. Dubrava = Dubrovnik, Dubravka = sloboda.',kat:'aleg'},
+  {t:'Dubrava',d:'Mjesto radnje — alegorijski Dubrovačka Republika.',kat:'aleg'},
+  {t:'Miljenko',d:'Glavni pastir. Alegorija: dubrovačko plemstvo (vlastela).',kat:'aleg'},
+  {t:'Grdan',d:'Bogati ružni starac. Alegorija: bogati pučani koji žele vlast.',kat:'aleg'},
+  {t:'Bog Lero',d:'Bog ljubavi koji čudom spašava Dubravku. Alegorija: božanska pravda.',kat:'aleg'},
+  {t:'Apostrofa',d:'Oslovljavanje apstraktnog pojma kao bića. „O lijepa, o draga, o slatka slobodo"',kat:'stil'},
+  {t:'Anafora',d:'Ponavljanje iste riječi na početku stihova. „O lijepa, O draga, O slatka"',kat:'stil'},
+  {t:'Hiperbola',d:'Namjerno pretjerivanje. „Sva srebra, sva zlata... ne mogu bit plata"',kat:'stil'},
+  {t:'Antiteza',d:'Suprotstavljanje: Miljenko (ljepota) vs. Grdan (ružnoća + zlato).',kat:'stil'},
+  {t:'Dvostruko rim. dvanaesterac',d:'Stih 12 slogova (6+6) s parnom rimom. Viši stil, dijalozi u Dubravki.',kat:'stih'},
+  {t:'Osmerac',d:'Stih 8 slogova (4+4). Koriste ga Miljenko, Dubravka, vile — lirski ton.',kat:'stih'},
+  {t:'Peterac',d:'Stih 5 slogova. Svečani trenutci, zborske dionice.',kat:'stih'},
+  {t:'Barok',d:'Europski kulturni pokret 17. st. Obilježja: patos, kontrast, pretjerivanje.',kat:'barok'},
+  {t:'Tasso',d:'Talijanski pjesnik. Njegova Aminta (1573.) uzor je Dubravki.',kat:'barok'},
+  {t:'Sv. Vlaho',d:'Zaštitnik Dubrovnika (3.2.). Njegova svetkovina = dan slobode u Dubravki.',kat:'barok'},
+  {t:'Hoćimska bitka',d:'1621. — pobjeda Poljaka nad Turcima. Inspiracija za Gundulićev Osman.',kat:'barok'},
+];
+
+var H13_DRILL_FC_CARDS = FC_DATA.map(function(item){
+  return {
+    cat: String(item.kat || 'pojam').toUpperCase(),
+    term: String(item.t || ''),
+    def: String(item.d || '')
+  };
+});
+
+var h13dFcIdx=0,h13dFcKnown=0,h13dFcUnknown=0,h13dFcOrder=[];
+var H13_DRILL_SS_KEY='mt.hrv.h13.drill.fc';
+var H13_DRILL_FC_FREE_LIMIT=5;
+
+function h13DrillBeep(f,d,v,t){
+  try{
+    var c=new(window.AudioContext||window.webkitAudioContext)();
+    var o=c.createOscillator();
+    var g=c.createGain();
+    o.connect(g);g.connect(c.destination);
+    o.frequency.value=f;o.type=t||'sine';
+    g.gain.setValueAtTime(v||0.08,c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+d);
+    o.start(c.currentTime);o.stop(c.currentTime+d);
+  }catch(e){}
+}
+
+function h13DrillSoundOk(){h13DrillBeep(660,.1,.08,'sine');setTimeout(function(){h13DrillBeep(880,.14,.07,'sine')},110)}
+function h13DrillSoundNg(){h13DrillBeep(200,.18,.08,'sawtooth')}
+function h13DrillSoundDone(){[440,550,660,880].forEach(function(f,i){setTimeout(function(){h13DrillBeep(f,.18,.07,'sine')},i*90)})}
+
+function h13DrillSave(){
+  try{sessionStorage.setItem(H13_DRILL_SS_KEY,JSON.stringify({idx:h13dFcIdx,known:h13dFcKnown,unknown:h13dFcUnknown,order:h13dFcOrder,ts:Date.now()}))}catch(e){}
+}
+
+function h13DrillRestore(){
+  try{
+    var raw=sessionStorage.getItem(H13_DRILL_SS_KEY);if(!raw)return false;
+    var s=JSON.parse(raw);
+    if(!s||!Array.isArray(s.order)||s.order.length!==H13_DRILL_FC_CARDS.length)return false;
+    h13dFcIdx=s.idx||0;h13dFcKnown=s.known||0;h13dFcUnknown=s.unknown||0;h13dFcOrder=s.order;
+    var r=document.getElementById('h13d-fc-right');if(r)r.textContent=h13dFcKnown;
+    var w=document.getElementById('h13d-fc-wrong');if(w)w.textContent=h13dFcUnknown;
+    return true;
+  }catch(e){return false}
+}
+
+function h13DrillFcShuffle(){
+  h13dFcOrder=H13_DRILL_FC_CARDS.map(function(_,i){return i});
+  for(var i=h13dFcOrder.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=h13dFcOrder[i];h13dFcOrder[i]=h13dFcOrder[j];h13dFcOrder[j]=t}
+}
+
+function h13DrillFcIsPaid(){
+  var attrTier=(document.body.getAttribute('data-tier')||'').toLowerCase();
+  var detected=(typeof detectTier==='function')?String(detectTier()||'').toLowerCase():'';
+  var t=attrTier||detected||'free';
+  return t==='standard'||t==='pro';
+}
+
+function h13DrillFcShowPaywall(){
+  var wrap=document.querySelector('.h13d-fc-wrap');
+  if(!wrap)return;
+  var existing=document.getElementById('h13d-fc-paywall');
+  if(existing){if(existing.scrollIntoView)existing.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  var chapter=(typeof CURRENT_CHAPTER!=='undefined'&&CURRENT_CHAPTER.code)||'h13';
+  var html='<div id="h13d-fc-paywall" class="drill-paywall" data-feature="drill-flashcards">'+
+           '<div class="drill-paywall-ico">🔒</div>'+
+           '<div class="drill-paywall-title">15 više kartica + Matching + Spaced repetition</div>'+
+           '<div class="drill-paywall-sub">Drill je aktivno učenje — 4× efikasnije od pasivnog čitanja. Svih 20 kartica + 9 pair matchingov.</div>'+
+           '<a class="pro-gate-btn" href="/pricing?ctx=drill_flashcards_'+chapter+'">Otključaj — 9,99€/mj</a>'+
+           '<div class="pro-gate-meta">Otkaži bilo kad · Free trial 7 dana</div>'+
+           '</div>';
+  wrap.insertAdjacentHTML('afterend',html);
+  if(typeof track==='function'){track('paywall_impression',{feature:'drill-flashcards',chapter:chapter,at_card:h13dFcIdx},'conversion');}
+}
+
+function h13DrillFcRender(){
+  if(h13dFcOrder.length===0)h13DrillFcShuffle();
+
+  if(!h13DrillFcIsPaid() && h13dFcIdx >= H13_DRILL_FC_FREE_LIMIT){
+    var termL=document.getElementById('h13d-fc-term');
+    var catFL=document.getElementById('h13d-fc-cat-f');
+    var defL=document.getElementById('h13d-fc-def');
+    var catBL=document.getElementById('h13d-fc-cat-b');
+    var numL=document.getElementById('h13d-fc-num');
+    if(termL)termL.textContent='Otključaj svih 20 kartica';
+    if(catFL)catFL.textContent='FREE TIER — 5 / 20';
+    if(defL)defL.textContent='Pridruži se Standard planu za svih 20 flashcards + Matching igru + Spaced Repetition. Učenje je 4× brže s aktivnim drillom.';
+    if(catBL)catBL.textContent='UPGRADE';
+    if(numL)numL.innerHTML='<b>'+H13_DRILL_FC_FREE_LIMIT+'</b> / 20 · <span style="color:var(--gold)">Free limit</span>';
+    h13DrillFcShowPaywall();
+    return;
+  }
+
+  if(h13dFcIdx>=h13dFcOrder.length){
+    var t=document.getElementById('h13d-fc-term');
+    var d=document.getElementById('h13d-fc-def');
+    var cf=document.getElementById('h13d-fc-cat-f');
+    var cb=document.getElementById('h13d-fc-cat-b');
+    var num=document.getElementById('h13d-fc-num');
+    if(t)t.textContent='Gotovo! ✅';
+    if(cf)cf.textContent='REZULTAT';
+    if(d)d.textContent='Točno: '+h13dFcKnown+' / Krivo: '+h13dFcUnknown+'. Klikni Reset za novi krug.';
+    if(cb)cb.textContent='REZULTAT';
+    if(num)num.innerHTML='<b>'+h13dFcOrder.length+'</b> / '+h13dFcOrder.length;
+    h13DrillSoundDone();
+    return;
+  }
+
+  var c=H13_DRILL_FC_CARDS[h13dFcOrder[h13dFcIdx]];
+  var card=document.getElementById('h13d-fc-card');if(card)card.classList.remove('flipped');
+  var catf=document.getElementById('h13d-fc-cat-f');
+  var catb=document.getElementById('h13d-fc-cat-b');
+  var term=document.getElementById('h13d-fc-term');
+  var def=document.getElementById('h13d-fc-def');
+  var num2=document.getElementById('h13d-fc-num');
+  if(catf)catf.textContent=c.cat;
+  if(catb)catb.textContent='DEFINICIJA';
+  if(term)term.textContent=c.term;
+  if(def)def.textContent=c.def;
+  if(num2)num2.innerHTML='<b>'+(h13dFcIdx+1)+'</b> / '+h13dFcOrder.length;
+}
+
+function h13DrillFcFlip(){var card=document.getElementById('h13d-fc-card');if(card)card.classList.toggle('flipped')}
+
+function h13DrillFcMark(known){
+  if(known){h13dFcKnown++;h13DrillSoundOk();}
+  else{h13dFcUnknown++;h13DrillSoundNg();}
+  var r=document.getElementById('h13d-fc-right');if(r)r.textContent=h13dFcKnown;
+  var w=document.getElementById('h13d-fc-wrong');if(w)w.textContent=h13dFcUnknown;
+  h13dFcIdx++;
+  h13DrillSave();
+  setTimeout(h13DrillFcRender,180);
+}
+
+function h13DrillFcSkip(){h13dFcIdx++;h13DrillSave();h13DrillFcRender()}
+
+function h13DrillFcShuffleAndRender(){
+  h13DrillFcShuffle();
+  h13dFcIdx=0;
+  h13DrillSave();
+  h13DrillFcRender();
+}
+
+function h13DrillFcReset(){
+  h13dFcIdx=0;h13dFcKnown=0;h13dFcUnknown=0;
+  h13DrillFcShuffle();
+  try{sessionStorage.removeItem(H13_DRILL_SS_KEY)}catch(e){}
+  var r=document.getElementById('h13d-fc-right');if(r)r.textContent=0;
+  var w=document.getElementById('h13d-fc-wrong');if(w)w.textContent=0;
+  h13DrillFcRender();
+}
+
+function h13DrillInit(){if(!h13DrillRestore())h13DrillFcShuffle();h13DrillFcRender()}
+
+function fcInit(){ h13DrillInit(); }
+function fcRender(){ h13DrillFcRender(); }
+function fcFlip(){ h13DrillFcFlip(); }
+function fcNav(dir){
+  if(dir>0){h13DrillFcSkip();return;}
+  if(dir<0 && h13dFcIdx>0){h13dFcIdx--;h13DrillSave();h13DrillFcRender();}
+}
+
+/* ═══════════════════════════════════
+   INTERSECTION OBSERVER (IntersectionObserver)
+═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   READ PROGRESS BAR + BTT
+═══════════════════════════════════ */
+(function(){
+  const bar=document.getElementById('rpbar');
+  const btt=document.getElementById('btt');
+  function update(){
+    const el=document.documentElement;
+    const scrolled=el.scrollTop||document.body.scrollTop;
+    const total=(el.scrollHeight||document.body.scrollHeight)-el.clientHeight;
+    const pct=total>0?Math.min(100,Math.round(scrolled/total*100)):0;
+    if(bar)bar.style.width=pct+'%';
+    if(btt)btt.classList.toggle('show',scrolled>300);
+  }
+  document.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+/* ═══════════════════════════════════
+   SELFCHECK (Samoprocjena Tab 0)
+═══════════════════════════════════ */
+const SC_QS = [
+  {q: 'Znam godinu izvedbe Dubravke i povod nastanka (1628., svadba Gundulića).', k: 'kontekst'},
+  {q: 'Mogu objasniti alegoriju: Dubrava=Dubrovnik, Dubravka=sloboda, Miljenko=plemstvo, Grdan=bogati pučani.', k: 'alegorija'},
+  {q: 'Znam strukturu djela: 3 činjenja, 28 skazanja, 1696 stihova.', k: 'struktura'},
+  {q: 'Mogu nabrojati glavne likove (Miljenko, Dubravka, Grdan, bog Lero, satiri Divjak/Gorštak/Vuk).', k: 'likovi'},
+  {q: 'Razumijem zašto je Dubravka žanrovski hibrid (pastorala + melodrama + pastirska igra).', k: 'žanr'}
+];
+
+function scRender() {
+  const el = document.getElementById('sc-qs');
+  if (!el) return;
+  el.innerHTML = SC_QS.map((q,i) => \`
+    <div style="display:flex;align-items:flex-start;gap:10px;background:var(--ele);border:1px solid var(--bd);border-radius:var(--r2);padding:10px 14px">
+      <input type="checkbox" id="sc\${i}" style="margin-top:3px;accent-color:var(--bronze);width:16px;height:16px;flex-shrink:0">
+      <label for="sc\${i}" style="font-family:var(--serif);font-size:13.5px;color:var(--t2);cursor:pointer;line-height:1.5">\${q.q}</label>
+    </div>
+  \`).join('');
+}
+
+function scCheck() {
+  const checked = SC_QS.map((_,i) => document.getElementById('sc'+i)?.checked).filter(Boolean).length;
+  const pct = Math.round(checked / SC_QS.length * 100);
+  const el = document.getElementById('sc-result');
+  if (!el) return;
+  let msg, color;
+  if (pct >= 100) { msg = '🏆 Odlično! Spreman/na si za sve što NCVVO može pitati iz H12.'; color = 'var(--green)'; }
+  else if (pct >= 60) { msg = '📖 Dobro! Provjeri neoznačene stavke — one su tvoje slabe točke.'; color = 'var(--gold)'; }
+  else { msg = '📚 Još je posla. Počni s Teorijom i 6 pjevanjima — te sekcije su najvažnije.'; color = 'var(--red)'; }
+  el.style.display = 'block';
+  el.innerHTML = \`<div class="box-int" style="border-color:\${color}20">
+    <div style="font-family:var(--display);font-size:18px;color:\${color};margin-bottom:8px">\${checked} / \${SC_QS.length} · \${pct}%</div>
+    <div style="font-family:var(--serif);font-size:14px;color:var(--t2)">\${msg}</div>
+  </div>\`;
+}
+
+function scReset() {
+  SC_QS.forEach((_,i) => { const el=document.getElementById('sc'+i); if(el) el.checked=false; });
+  const r = document.getElementById('sc-result');
+  if (r) r.style.display = 'none';
+}
+
+scRender();
+
+/* ═══════════════════════════════════
+   CHECKLIST (Esej alat AT7)
+═══════════════════════════════════ */
+const CL_ITEMS = [
+  'Uvod sadrži: autor (Gundulić) + djelo (Dubravka) + godina (1628.) + jasna teza.',
+  'Teza odgovara točno na postavljeno pitanje i argumentabilna je.',
+  'Svaki argument ima: tvrdnju + primjer/citat iz djela + analizu.',
+  'Navedena je alegorijska dimenzija: Dubrava=Dubrovnik, Dubravka=sloboda, Miljenko=plemstvo, Grdan=bogati pučani.',
+  'Korišten barem jedan književnoteorijski pojam (pastorala, činjenje, deus ex machina, alegorija, apostrofa...).',
+  'Spomenut žanrovski kontekst: pastirska igra + melodrama + tragikomedija.',
+  'Zaključak sintetizira, ne ponavlja uvod i ne uvodi nove teme.',
+  'Minimalno 440 riječi (~5 rečenica/odlomak × 4 odlomka = ~440).',
+  'Citirana je barem jedna ključna riječ/stih iz Dubravke (npr. „O lijepa, o draga, o slatka slobodo").',
+  'Čitljiv rukopis — ako ne, napiši tiskano ali čitko.',
+];
+let clDone = {};
+try { clDone = JSON.parse(localStorage.getItem('mt.hrv.h13.cl') || '{}'); } catch(e) {}
+
+function clRender() {
+  const el = document.getElementById('cl-list');
+  if (!el) return;
+  el.innerHTML = CL_ITEMS.map((item, i) => \`
+    <div class="cp-item\${clDone[i] ? ' done' : ''}" onclick="clToggle(\${i})" style="cursor:pointer">
+      <div class="cp-cb">\${clDone[i] ? '✓' : ''}</div>
+      <div class="cp-txt">\${item}</div>
+    </div>
+  \`).join('');
+}
+function clToggle(i) {
+  clDone[i] = !clDone[i];
+  try { localStorage.setItem('mt.hrv.h13.cl', JSON.stringify(clDone)); } catch(e) {}
+  clRender();
+}
+clRender();
+
+/* ═══════════════════════════════════
+   CHECKPOINT WRITER
+═══════════════════════════════════ */
+function cpWriterUpdate(){
+  const ta=document.getElementById('cp-writer');
+  const fb=document.getElementById('cp-writer-fb');
+  if(!ta)return;
+  const txt=ta.value;
+  const words=txt.trim()?txt.trim().split(/\\s+/).length:0;
+  try{localStorage.setItem('mt.hrv.h13.cp_writer',txt);}catch(e){}
+  // Count literary terms
+  const tl=txt.toLowerCase();
+  const terms=['pastoral','dvanaesterac','osmerac','stih','činjenje','skazanje','alegorij','dubrava','dubrovnik','sloboda','miljenko','grdan','lero','barok','gundulić','1628','apostrof','anafora','hiperbol','čudo','deus'];
+  const found=[];
+  if(/pastoral|činjenje|skazanje/.test(tl))found.push('✅ Žanr/struktura');
+  if(/dvanaesterac|osmerac|stih/.test(tl))found.push('✅ Stih/forma');
+  if(/alegorij|dubrava|sloboda/.test(tl))found.push('✅ Alegorija');
+  if(/miljenko|grdan|lero|dubravka(?!\\.html)/.test(tl))found.push('✅ Lik');
+  if(/barok|gundulić|1628|tasso|guarini/.test(tl))found.push('✅ Kontekst');
+  if(/apostrof|anafora|hiperbol|čudo|deus/.test(tl))found.push('✅ Stilsko sredstvo');
+  // Update stats
+  const ww=document.getElementById('cpw-words');if(ww)ww.querySelector('.wc-stat-num').textContent=words;
+  const wt=document.getElementById('cpw-terms');if(wt)wt.querySelector('.wc-stat-num').textContent=found.length;
+  // Progress bar
+  const pct=Math.min(100,Math.round(words/20*100));
+  const bar=document.getElementById('cpw-bar');const prog=document.getElementById('cpw-prog');
+  const lbl=document.getElementById('cpw-lbl');
+  if(bar)bar.style.width=pct+'%';
+  if(prog)prog.classList.toggle('pass',words>=20);
+  if(lbl)lbl.textContent='CILJ 20 · '+words+' / 20'+(words>=20?' ✓':'');
+  if(!fb||words===0){if(fb)fb.innerHTML='';return;}
+  const quality=words>=20?(words>=40?'<span style="color:var(--green)">Odlična duljina</span>':'<span style="color:var(--gold)">Dobra duljina</span>'):'<span style="color:var(--red)">Previše kratko</span>';
+  fb.innerHTML=\`<div class="box-int" style="padding:10px 14px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">\${found.map(f=>\`<span style="font-family:var(--mono);font-size:10px;color:var(--green)">\${f}</span>\`).join('')||'<span style="font-family:var(--mono);font-size:10px;color:var(--t3)">Nema prepoznatih pojmova</span>'}</div>
+    <div style="font-family:var(--mono);font-size:10px">\${quality} · \${found.length}/6 književnih pojmova</div>
+  </div>\`;
+}
+(function(){
+  const ta=document.getElementById('cp-writer');
+  if(!ta)return;
+  try{const sv=localStorage.getItem('mt.hrv.h13.cp_writer');if(sv){ta.value=sv;cpWriterUpdate();}}catch(e){}
+})();
+
+/* ═══════════════════════════════════
+   CITATNIK v2 (H11 featured-quote pattern)
+═══════════════════════════════════ */
+const CIT_DATA2 = [
+  // === HIMNA SLOBODI (8 citata) ===
+  {cat:'himna',napamet:true,
+   text:'O lijepa, o draga, o slatka slobodo, dar u kom sva blaga višnji nam Bog je do.',
+   meta:'— Gundulić, <em>Dubravka</em>, završna himna III. činjenja · NAJPOZNATIJI STIH hrv. baroka · Apostrofa + anafora'},
+  {cat:'himna',napamet:true,
+   text:'uzroče istini od naše sve slave, uresu jedini od ove Dubrave!',
+   meta:'— Gundulić, <em>Dubravka</em>, nastavak himne · Direktna veza: sloboda = identitet Dubrave/Dubrovnika'},
+  {cat:'himna',napamet:true,
+   text:'Sva srebra, sva zlata, svi ljudski životi ne mogu bit plata tvojoj čistoj ljepoti!',
+   meta:'— Gundulić, <em>Dubravka</em>, himna slobodi · Hiperbola · Sloboda kao neprocjenjiva vrijednost'},
+  {cat:'himna',
+   text:'Dubrava sama ova vlada se po sebi.',
+   meta:'— Gundulić, <em>Dubravka</em> · Dubrava (=Dubrovnik) kao samostalna republika · Alegorijska politička teza'},
+  {cat:'himna',
+   text:'Žuđena Danice, objav\\u2019 se, objavi!',
+   meta:'— Gundulić, <em>Dubravka</em>, početak I. činjenja · Zora slobode — simbol novog dana'},
+  {cat:'himna',
+   text:'Objavi, Danice, drag pogled objavi!',
+   meta:'— Gundulić, <em>Dubravka</em> · Ponavljanje apostrofe · Lirski uvod u pastoralu'},
+  {cat:'himna',
+   text:'Dubrava ova plemenita.',
+   meta:'— Gundulić, <em>Dubravka</em> · Epitet „plemenita" — aristokratski karakter Dubrave'},
+  {cat:'himna',
+   text:'Pastijera po lugu ne straši na blag dan!',
+   meta:'— Gundulić, <em>Dubravka</em> · Idilična slika mira na dan svetkovine — kontrast s prijetnjama'},
+
+  // === SUKOB MILJENKO / GRDAN (7 citata) ===
+  {cat:'sukob',napamet:true,
+   text:'Miljenko je imô mili steć Dubravku cić lipote, nu se ukloni zakon sili: grd ju pastir zlatom ote.',
+   meta:'— Gundulić, <em>Dubravka</em>, II. činjenje · Ljubdrag objašnjava nepravdu · Antiteza ljepota/zlato'},
+  {cat:'sukob',napamet:true,
+   text:'Ali se je ockvrnila svetkovina plemenita: najljepša je dana vila najgrđemu s tamna mita.',
+   meta:'— Gundulić, <em>Dubravka</em>, Ljubdragov monolog · „Tamno mito" = potkupljivanje · Sramota svetkovine'},
+  {cat:'sukob',
+   text:'Blažen pastir slavni od Ide ki zaslijepljen ne bi od zlata neg po čistoj pravdi otide da \\u2019e ljeposti ljepos plata.',
+   meta:'— Gundulić, <em>Dubravka</em> · Aluzija na Parisov sud — pozitivna paralela · Čista pravda vs. zlato'},
+  {cat:'sukob',
+   text:'A oni proklet s koga izlaze na dan blag nam plačne kobi, tko liposti lipos vaze, a za zlato da grdobi!',
+   meta:'— Gundulić, <em>Dubravka</em> · Kletva onoga tko mijenja ljepotu za bogatstvo · Moralni sud'},
+  {cat:'sukob',
+   text:'Najljepša se vila daje najgrđemu u prilici!',
+   meta:'— Gundulić, <em>Dubravka</em>, Miljenkov ogorčeni uzvik · Kulminacija nepravde'},
+  {cat:'sukob',
+   text:'Ljubav, vjera, služba, lipos i običaji i zakoni, sve bi zaman: jaču kripos grda u zlatu nemam doni.',
+   meta:'— Gundulić, <em>Dubravka</em>, Miljenkov monolog · Nabrajanje pobijenih vrijednosti · Očaj pred moći novca'},
+  {cat:'sukob',
+   text:'Da na blag dan od slobode jes tko zlatu još robuje, i da sila s prike zgode nad zakonim gospoduje.',
+   meta:'— Gundulić, <em>Dubravka</em> · Direktna politička optužba · Zlato i sila nad zakonom'},
+
+  // === BOG LERO / ČUDO (6 citata) ===
+  {cat:'lero',napamet:true,
+   text:'Ali na ognju plam potamni, pod nami se tle ustrese, crkva od groma bukom zamni, a stup Lerov znojaše se.',
+   meta:'— Gundulić, <em>Dubravka</em>, III. činjenje · Čudo u hramu · Deus ex machina'},
+  {cat:'lero',napamet:true,
+   text:'Na došastje Miljenkovo prista trešnja, gromnja umuknu, prosvjetljen\\u2019je oganj novo uze i u čis plamen buknu.',
+   meta:'— Gundulić, <em>Dubravka</em>, III. činjenje · Miljenkov ulazak = božanski znak · Pravda potvrđena'},
+  {cat:'lero',
+   text:'„Hoja, Lero, Dolerije!" vapijaše vas puk ini.',
+   meta:'— Gundulić, <em>Dubravka</em>, III. činjenje · Obredni zaziv boga Lera · Pučko mnoštvo u hramu'},
+  {cat:'lero',
+   text:'Bog razvedri Lero sliku i, da vidi mladi i stari, nje lijepu ljubovniku u obraz jedan zrak udari.',
+   meta:'— Gundulić, <em>Dubravka</em>, III. činjenje · Božanska zraka potvrđuje Miljenka · Vizualni simbol pravde'},
+  {cat:'lero',
+   text:'Svak to uze za zlamen\\u2019je da vlas višnja to učini, da Miljenko sadružen je lijepoj Dubravci, a ne ini.',
+   meta:'— Gundulić, <em>Dubravka</em> · „Vlas višnja" = božanska volja · Zajednica priznaje čudo'},
+  {cat:'lero',
+   text:'Poznam i to, rijet je trijebi, vrh vladanja svijeh na svitu da vladalac višnji s nebi ima pomnju posobitu.',
+   meta:'— Gundulić, <em>Dubravka</em>, zaključne refleksije · Bog bdije nad vlašću · Teološko-politička poruka'},
+
+  // === DRUŠTVENA KRITIKA (7 citata) ===
+  {cat:'drustvo',napamet:true,
+   text:'Proklet i oni tko najprije za izet zlato, zemlju izdube, kad cić zlata najvrednije običaji se u nas gube!',
+   meta:'— Gundulić, <em>Dubravka</em>, Ljubdragov monolog · Kritika pohlepe · „Običaji se gube" = kraj tradicije'},
+  {cat:'drustvo',
+   text:'Cić zlata najvrednije običaji se u nas gube!',
+   meta:'— Gundulić, <em>Dubravka</em> · Krača verzija Ljubdrageve kritike · Za esej o tradiciji vs. pohlepi'},
+  {cat:'drustvo',
+   text:'I Miljenko ču sa mnome tko mu ugrabi vjerenicu, i od muke svenu u licu i zamuknu mramorkome.',
+   meta:'— Gundulić, <em>Dubravka</em> · Ljubdrag o Miljenkovoj reakciji · Slika očaja mlade plemenitosti'},
+  {cat:'drustvo',
+   text:'Tko Grdanu bogatomu smio se oprijet cića toga.',
+   meta:'— Gundulić, <em>Dubravka</em> · Ljubdragova retorička tvrdnja · Bogatstvo kao strah u društvu'},
+  {cat:'drustvo',
+   text:'Razmišljajuć na što sada zločestvo nas vodi mnogo.',
+   meta:'— Gundulić, <em>Dubravka</em>, Ljubdragov monolog · „Zločestvo" = društveno zlo · Opća moralna kriza'},
+  {cat:'drustvo',
+   text:'Dubrava je Dubrovnik, Miljenko vlastela, Grdan bogato građanstvo koje se žele domoći plemstva ženidbom.',
+   meta:'— Stručna interpretacija alegorije · NAPOMENA: za esej, uvijek spomeni alegorijsku razinu'},
+  {cat:'drustvo',
+   text:'Gundulić kritizira pokušaje bogatog građanstva da ženidbom s plemkinjama stekne političku vlast.',
+   meta:'— Sinteza esejske teze · Za esejski kontekst o klasnom sukobu'},
+
+  // === LJUBAV (5 citata) ===
+  {cat:'ljubav',
+   text:'On nju žuđe, i ona njega okom gleda vazdan blazim.',
+   meta:'— Gundulić, <em>Dubravka</em>, Ljubdrag o Miljenku i Dubravki · Uzajamna ljubav od djetinjstva'},
+  {cat:'ljubav',
+   text:'Komu \\u2019e bila od djeteta još Dubravka narečena.',
+   meta:'— Gundulić, <em>Dubravka</em> · Miljenku i Dubravki obećani par od djetinjstva · Tradicija'},
+  {cat:'ljubav',
+   text:'Tim Miljenko sad, veseliji i čestitiji neg ikada, lipos dragu ku sveđ želi, kad manje ufa, steče sada.',
+   meta:'— Gundulić, <em>Dubravka</em>, rasplet · Trenutak sreće · Kontrast nade i ispunjenja'},
+  {cat:'ljubav',
+   text:'Kî plač, kâ smrt? Miljenko je zdrav, živ, veseo, čestit svime: smirio je želje svoje, Dubravka je lijepa š njime.',
+   meta:'— Gundulić, <em>Dubravka</em>, pripovijedanje raspleta · „Živ, veseo, čestit" — trijumf'},
+  {cat:'ljubav',
+   text:'Vile, pastiri i gorani, svak ga slidi, svak ga slavi.',
+   meta:'— Gundulić, <em>Dubravka</em> · Zajednica slavi Miljenkovu pobjedu · Društveno priznanje'},
+
+  // === RIBAR / DALMACIJA (4 citata) ===
+  {cat:'ribar',
+   text:'Ribar iz Dalmacije: teško i nesigurno stanje u mletačkoj Dalmaciji — Dubrovnik je slobodan, iako mali.',
+   meta:'— Sažetak Ribarove funkcije · Kontrast: Mletačka Dalmacija vs. slobodni Dubrovnik'},
+  {cat:'ribar',
+   text:'Ribarov monolog uvodi stvarnu povijesnu situaciju u pastoralnu idilu — Dubrovnik kao utočište.',
+   meta:'— Esejska sinteza · Za argument o Ribaru kao realnom elementu'},
+  {cat:'ribar',
+   text:'Slobodan Dubrovnik u kontrastu je s neslobodnom Dalmacijom pod Mlecima.',
+   meta:'— Ključna antiteza u Dubravki · Za esej: realni politički kontekst 17. st.'},
+  {cat:'ribar',
+   text:'Tursko vrhovništvo bilo je samo formalno uz cijenu plaćanja danka.',
+   meta:'— Povijesni kontekst · Dubrovnik je formalno Turski tributar, suštinski slobodna Republika'},
+
+  // === JEZIK / STIH / FORMA (3 citata) ===
+  {cat:'forma',
+   text:'Dubravka je pisana petercima, osmercima i dvostruko rimovanim dvanaestercima — različiti stihovi za različite likove.',
+   meta:'— Formalna činjenica · Stilska hijerarhija po socijalnom sloju'},
+  {cat:'forma',
+   text:'Dubravka započinje i završava stihovima o slobodi — kompozicijski okvir cijelog djela.',
+   meta:'— Strukturalno obilježje · Sloboda kao alpha i omega djela'},
+  {cat:'forma',
+   text:'Gundulić koristi in medias res — Radmio u I. činjenju najavljuje događaje bez prethodnog uvoda.',
+   meta:'— Epska tehnika preuzeta u dramu · Tipično barokno'},
+];
+
+let cit2Active = 'all';
+
+function renderCit2() {
+  const el = document.getElementById('cit-grid2');
+  if (!el) return;
+  const show = cit2Active === 'all' ? CIT_DATA2 : CIT_DATA2.filter(c => c.cat === cit2Active);
+  el.innerHTML = show.map((c,i) => buildCitHTML(c,i)).join('');
+}
+
+function citFilter2(cat, btn) {
+  document.querySelectorAll('#cit-filter-row .cit-fbt').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  cit2Active = cat;
+  // Handle 'stars' filter — show only starred items
+  if(cat === 'stars'){
+    try{
+      const stars = JSON.parse(localStorage.getItem('mt.hrv.h13.cit_stars')||'[]');
+      const el = document.getElementById('cit-grid2');
+      if(!el) return;
+      const show = CIT_DATA2.filter((c,i)=>stars.includes(i));
+      if(show.length===0){
+        el.innerHTML = '<div class="box-int" style="margin-top:12px"><div class="box-int-txt">Još nemaš označenih citata. Klikni ⭐ na citatu da ga dodaš u favorite.</div></div>';
+        return;
+      }
+      el.innerHTML = show.map((c,i)=>buildCitHTML(c,i)).join('');
+      return;
+    }catch(e){}
+  }
+  renderCit2();
+}
+
+function buildCitHTML(c, i){
+  const safe = (s)=>s.replace(/\\\\/g,'\\\\\\\\').replace(/'/g,"\\\\'");
+  return \`<div class="featured-quote" data-cit-cat="\${c.cat}">
+      \${c.napamet ? '<span class="fq-napamet">★ NAPAMET</span>' : ''}
+      <div class="fq-mark">«</div>
+      <div class="fq-body">
+        <div class="fq-text">\${c.text}</div>
+        <div class="fq-meta">\${c.meta}</div>
+      </div>
+      <button type="button" class="fq-copy" onclick="fqCopy(this,'\${safe(c.text)} — \${safe(c.meta.replace(/<[^>]+>/g,''))}')">⎘</button>
+    </div>\`;
+}
+
+function fqCopy(btn, text) {
+  navigator.clipboard.writeText(text).catch(() => {});
+  btn.classList.add('copied');
+  btn.textContent = '✓';
+  setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '⎘'; }, 1500);
+}
+
+renderCit2();
+
+/* ═══════════════════════════════════
+   POJMOVNIK v2 (H11 pojm-card pattern)
+═══════════════════════════════════ */
+const POJM_DATA2 = [
+  // === STIH / FORMA (10 pojmova) ===
+  {kat:'stih',term:'Osmerac',def:'Stih od <strong>8 slogova</strong> s cezurom iza 4. sloga (4+4). U Dubravki koriste ga viši likovi (Miljenko, Dubravka, vile). Simetričan, lirski, melodičan.'},
+  {kat:'stih',term:'Dvostruko rimovani dvanaesterac',def:'Stih od <strong>12 slogova</strong>, cezura 6+6, dvostruke rime (AA BB). Dubravka njime počinje i završava. Viša stilska forma za dijaloge i svečane trenutke.'},
+  {kat:'stih',term:'Peterac',def:'Stih od <strong>5 slogova</strong>. U Dubravki se pojavljuje u himnama, zborskim dionicama, svečanim momentima. Energičan, ritmičan, pogodan za uzvike.'},
+  {kat:'stih',term:'Cezura',def:'Obvezatna pauza unutar stiha. U Dubravkinim dvanaestercima: iza 6. sloga. U osmercima: iza 4. sloga. <em>„O lijepa, o draga | o slatka slobodo"</em>.'},
+  {kat:'stih',term:'Metrička raznolikost',def:'Korištenje različitih stihova u istom djelu. Dubravka miješa peterce, osmerce i dvanaesterce — obilježje zrelog baroka i Gundulićeve stilske vještine.'},
+  {kat:'stih',term:'Rima',def:'U Dubravki: parna (AABB) kod dvanaesteraca, katren (ABAB) kod osmeraca. Rima pojačava ritam i pamtljivost — ključno za izvedbu.'},
+  {kat:'stih',term:'Strofa',def:'Grupa stihova povezanih tematski i ritmički. U Dubravki najčešći katren (4 stiha). Dvanaesterci često stoje samostalno u rimovanim dvostihovima.'},
+  {kat:'stih',term:'Kompozicijski okvir',def:'Djelo otvara i zatvara isti motiv — u Dubravki: <strong>stihovi o slobodi</strong>. Struktura daje djelu simetriju i naglašava temu.'},
+  {kat:'stih',term:'Stilska hijerarhija',def:'Gundulić koristi <strong>3 stila</strong>: visoki (osmerac, kićeni jezik — plemstvo), srednji (dvanaesterac, razgovorni — starci), niski (pučki — satiri). Jezik odražava socijalnu klasu.'},
+  {kat:'stih',term:'Polustih (hemistih)',def:'Polovica stiha odvojena cezurom. U dvanaestercu: 2 hemistiha po 6 slogova. U osmercu: 2 po 4 sloga. Osnova rasporeda značenja.'},
+
+  // === DRAMA / PASTORALA (10 pojmova) ===
+  {kat:'drama',term:'Pastorala',def:'<strong>Dramski/književni oblik</strong> o idiličnom životu pastira u prirodi. Europska tradicija iz 16. st. (Italija). Dubravka je primjer <em>alegorijske pastorale</em>.'},
+  {kat:'drama',term:'Pastirska igra',def:'Podvrsta pastorale s naglaskom na scenske elemente — pjesma, ples, komični ulomci. Dubravka objedinjuje pastoralu i pastirsku igru.'},
+  {kat:'drama',term:'Činjenje',def:'Stari slavenski termin za <strong>čin drame</strong> (akt). Gundulić koristi umjesto latinskog „čin". Dubravka ima <strong>3 činjenja</strong>.'},
+  {kat:'drama',term:'Skazanje',def:'Stari slavenski termin za <strong>scenu/prizor</strong> unutar čina. Dubravka ima <strong>28 skazanja</strong>, podijeljenih na 3 činjenja.'},
+  {kat:'drama',term:'Melodrama',def:'Scenski oblik koji kombinira tekst i glazbu. U Dubravki: pjevne dionice, zborski dijelovi, himne. Gundulić spaja pastoralu s melodramom.'},
+  {kat:'drama',term:'Tragikomedija',def:'Žanr koji kombinira tragične i komične elemente, s <strong>sretnim raspletom</strong>. Dubravka često se klasificira kao tragikomedija (prijetnja tragedijom, komičan kraj).'},
+  {kat:'drama',term:'Dramski sukob',def:'Napetost između likova/vrijednosti koja pokreće radnju. Glavni sukob Dubravke: <strong>Miljenko vs. Grdan</strong> za ruku Dubravke.'},
+  {kat:'drama',term:'Deus ex machina',def:'„Bog iz stroja" — iznenadna božanska intervencija koja riješi sukob. U Dubravki: <strong>bog Lero čudom</strong> sprječava vjenčanje Grdana (III. činjenje).'},
+  {kat:'drama',term:'In medias res',def:'Početak djela „usred radnje". Dubravka počinje Radmijevim monologom koji najavljuje svetkovinu — bez prethodnog uvoda u likove.'},
+  {kat:'drama',term:'Kor',def:'Zborska dionica — više likova izgovara zajedno. U Dubravki: završna himna slobodi izvodi se kao zbor svih likova. Antička tradicija.'},
+
+  // === STILSKA SREDSTVA (12 pojmova) ===
+  {kat:'stil',term:'Apostrofa',def:'Oslovljavanje odsutne osobe, apstraktnog pojma ili stvari. <strong>Najvažniji primjer:</strong> <em>„O lijepa, o draga, o slatka slobodo"</em> — apostrofa slobode.'},
+  {kat:'stil',term:'Anafora',def:'Ponavljanje iste riječi na početku stihova/rečenica. U Dubravki: <em>„O lijepa, O draga, O slatka"</em> — anafora „O" za svečani ton.'},
+  {kat:'stil',term:'Epitet',def:'Pridjev koji opisuje emotivnu/estetsku vrijednost pojma. <em>„lijepa, draga, slatka"</em> (sloboda), <em>„blažen pastir"</em>, <em>„plemenita svetkovina"</em>.'},
+  {kat:'stil',term:'Hiperbola',def:'Namjerno pretjerivanje. <em>„Sva srebra, sva zlata, svi ljudski životi ne mogu bit plata..."</em> — hiperbola o slobodi kao nemjerljivoj vrijednosti.'},
+  {kat:'stil',term:'Antiteza',def:'Suprotstavljanje: ljepota vs. zlato, Miljenko vs. Grdan, sloboda vs. pohlepa. <em>„Najljepša je dana vila najgrđemu"</em> — antiteza u jednom stihu.'},
+  {kat:'stil',term:'Personifikacija',def:'Apstraktni pojam ili predmet kao lik/subjekt. <strong>Bog Lero</strong> kao aktivni lik u drami — personifikacija božanske pravde.'},
+  {kat:'stil',term:'Metafora',def:'Prenošenje značenja („sloboda je dar"). <em>„dar u kom sva blaga"</em> — metafora slobode kao darovanog bogatstva.'},
+  {kat:'stil',term:'Kletva',def:'Direktno proklinjanje negativca u tekstu. U Dubravki: <em>„A oni proklet..."</em> i <em>„Proklet i oni..."</em> — Ljubdrag proklinje pohlepu.'},
+  {kat:'stil',term:'Retoričko pitanje',def:'Pitanje bez očekivanog odgovora, koristi se za emfazu. <em>„Ke ufan\\u2019je veće ostaje nami, o verni ljubovnici?"</em> — Miljenkova očaj.'},
+  {kat:'stil',term:'Simbol',def:'Predmet ili lik s prenesenim značenjem. <strong>Dubrava, Dubravka, bog Lero, zlato, hram</strong> — svaki simbol alegorije.'},
+  {kat:'stil',term:'Nabrajanje',def:'Niz srodnih pojmova za stilski učinak. <em>„Ljubav, vjera, služba, lipos i običaji i zakoni, sve bi zaman"</em> — nabraja pobijene vrijednosti.'},
+  {kat:'stil',term:'Invokacija',def:'Zazivanje božanstva/muze na početku djela. U Dubravki: <em>„Žuđena Danice, objav\\u2019 se, objavi!"</em> — zaziv zore kao prilog otvaranja.'},
+
+  // === ALEGORIJA / LIKOVI (13 pojmova) ===
+  {kat:'aleg',term:'Alegorija',def:'Dvostruka razina čitanja: doslovna + preneseno značenje. Dubravka je <strong>politička alegorija Dubrovačke Republike</strong>.'},
+  {kat:'aleg',term:'Dubrava',def:'<strong>Mjesto radnje</strong> — mitski pastoralni prostor. <em>Alegorija:</em> Dubrovačka Republika (ili grad Dubrovnik).'},
+  {kat:'aleg',term:'Dubravka',def:'<strong>Glavna pastirica</strong>, najljepša, obećana Miljenku. <em>Alegorija:</em> sloboda i vlast Dubrovnika. Ne djeluje aktivno — personifikacija.'},
+  {kat:'aleg',term:'Miljenko',def:'<strong>Glavni pastir</strong>, najljepši, plemenit, nesiguran. <em>Alegorija:</em> dubrovačko plemstvo (vlastela), legitimni nositelj slobode.'},
+  {kat:'aleg',term:'Grdan',def:'<strong>Antagonist</strong> — star, ružan, bogat, potkupljiv. <em>Alegorija:</em> bogato dubrovačko građanstvo koje ženidbom želi do vlasti.'},
+  {kat:'aleg',term:'Bog Lero',def:'<strong>Bog ljubavi</strong> u Dubravi. Čudom sprječava Grdanovo vjenčanje s Dubravkom. <em>Alegorija:</em> božanska pravda koja čuva Dubrovnik.'},
+  {kat:'aleg',term:'Starac Ljubdrag',def:'Mudri starac, glas moralne tradicije. Kritizira nove dubrovačke običaje (pohlepa, lijenost, korupcija). Gundulićev autorski glas.'},
+  {kat:'aleg',term:'Radmio',def:'Pastir-pripovjedač, otvara djelo (in medias res). Najavljuje svetkovinu i radnju. <em>Funkcija:</em> narativni okvir.'},
+  {kat:'aleg',term:'Ljubmir',def:'Prijatelj Miljenka. Savjetuje ga i tješi u II. činjenju. <em>Funkcija:</em> mudri savjetnik.'},
+  {kat:'aleg',term:'Ribar iz Dalmacije',def:'Emigrant iz mletačke Dalmacije. Hvali slobodu Dubrave. <em>Alegorija:</em> ostali hrv. krajevi pod Turcima/Mlecima — Dubrovnik kao utočište.'},
+  {kat:'aleg',term:'Satiri (Divjak, Gorštak, Vuk)',def:'Pohotni, pučki, komični likovi. <em>Alegorija:</em> ljudski poroci — taština, pohlepa, raskalaš. Satira novih dubrovačkih običaja.'},
+  {kat:'aleg',term:'Jeljenka',def:'Satirica, ljubi satira Divjaka. Komični lik koji govori o varanju vila.'},
+  {kat:'aleg',term:'Svetkovina sv. Vlaha',def:'Dan slobode Dubrovnika (3. veljače). Stvarni blagdan Republike koji se u djelu prikazuje. <em>Alegorija:</em> politički identitet Dubrovnika.'},
+
+  // === BAROK / KONTEKST (12 pojmova) ===
+  {kat:'barok',term:'Barok',def:'Europski kulturni pokret <strong>17. st.</strong>, između renesanse i klasicizma. Obilježja: patos, kontrast, pretjerivanje, religioznost, memento mori.'},
+  {kat:'barok',term:'Hrvatski barok',def:'17. st., centar <strong>Dubrovačka Republika</strong>. Ključni autori: Gundulić, Palmotić, Bunić Vučić, Đurđević. Katoličko-humanistička sinteza.'},
+  {kat:'barok',term:'Memento mori',def:'Latinski: „Zapamti da ćeš umrijeti". Barokna tema prolaznosti. Kod Gundulića najizraženija u <em>Suzama sina razmetnoga</em>, nije glavna u Dubravki.'},
+  {kat:'barok',term:'Protureformacija',def:'Katoličko reagiranje na protestantizam 16.–17. st. Utjecala na hrv. barok — <strong>naglasak na katolicizmu</strong>, bogoslužju, pokori. U Dubravki: čudo boga Lera.'},
+  {kat:'barok',term:'Ivan Gundulić',def:'<strong>Najveći hrv. barokni pjesnik</strong> (1589.–1638.), Dubrovčanin, plemić. Djela: Dubravka, Osman, Suze sina razmetnoga. Nadimak „Mačica".'},
+  {kat:'barok',term:'Torquato Tasso',def:'Talijanski barokni pjesnik (1544.–1595.). Njegova pastirska drama <em>Aminta</em> (1573.) uzor je Dubravki.'},
+  {kat:'barok',term:'Giovanni Battista Guarini',def:'Talijanski pjesnik (1538.–1612.). Njegovo <em>Il pastor fido</em> (Vjerni pastir, 1590.) također uzor Dubravki — pastirska tragikomedija.'},
+  {kat:'barok',term:'Jacopo Sannazzaro',def:'Talijanski pjesnik (1458.–1530.). Njegova <em>Arcadia</em> (1504.) rodonačelnica europske pastoralne tradicije.'},
+  {kat:'barok',term:'Hoćimska bitka (1621.)',def:'Poljaci pobjeđuju Turke u bitci kod Hoćima. Inspiracija za Gundulićev ep <em>Osman</em>. Simbol kršćanskog trijumfa.'},
+  {kat:'barok',term:'Sultan Osman II.',def:'Turski sultan, ubijen u pobuni janjičara 1622. Gundulićev ep <em>Osman</em> temelji se na ovom događaju.'},
+  {kat:'barok',term:'Dubrovačka Republika',def:'Samostalna pomorska Republika (14.–19. st.), formalni turski tributar, stvarno neovisna. Centar hrv. baroka. Alegorijski = Dubrava.'},
+  {kat:'barok',term:'Sv. Vlaho',def:'<strong>Zaštitnik Dubrovnika</strong> (3. veljače). Njegova svetkovina u Dubravki je dan slobode. Realni politički simbol grada.'},
+
+  // === DJELO / STRUKTURA (8 pojmova) ===
+  {kat:'djelo',term:'Dubravka',def:'Pastirska alegorijska drama, <strong>izvedena 1628.</strong> u Dubrovniku. 3 činjenja, 28 skazanja, 1696 stihova. Napisana za Gundulićevu svadbu.'},
+  {kat:'djelo',term:'Osman',def:'Gundulićev <strong>viteško-junački ep</strong>, nedovršen. 20 pjevanja (14. i 15. izgubljeni, dopunio ih Mažuranić). Tema: Hoćimska bitka, pad sultana.'},
+  {kat:'djelo',term:'Suze sina razmetnoga',def:'Gundulićeva <strong>religiozna poema</strong> (1622., Venecija). 3 „plača" (sagrješenje, spoznanje, skrušenje). Po biblijskoj paraboli.'},
+  {kat:'djelo',term:'„Porod od tmine"',def:'Gundulićev <strong>autorski termin za rana djela</strong> — 10 drama i pjesama iz mladosti. Sam ih odbacuje kao nezrela.'},
+  {kat:'djelo',term:'3 činjenja Dubravke',def:'I. <strong>Ekspozicija</strong> (svetkovina, likovi, idila). II. <strong>Zaplet</strong> (Grdanova korupcija, Miljenkov strah). III. <strong>Kulminacija i rasplet</strong> (čudo boga Lera, himna slobodi).'},
+  {kat:'djelo',term:'Niko Sorkočević',def:'Gundulićeva <strong>supruga</strong> — za njezino vjenčanje 1628. napisana je Dubravka. S njom imao 3 sina.'},
+  {kat:'djelo',term:'Trostruki rod',def:'Dubravka objedinjuje <strong>dramu + epiku + liriku</strong>: dramska radnja, epsko pripovijedanje (in medias res), lirske pjesme (himne, monolozi).'},
+  {kat:'djelo',term:'Hram boga Lera',def:'Mjesto finalnog događaja u III. činjenju. Tu se odvija čudo — trešnja, grmljavina, kip se znoji. Simbolički hram pravde.'},
+];
+
+let pojm2Active = 'all';
+
+function renderPojm2() {
+  const grid = document.getElementById('pojm-grid2');
+  if (!grid) return;
+  const show = pojm2Active === 'all' ? POJM_DATA2 : POJM_DATA2.filter(p => p.kat === pojm2Active);
+  grid.innerHTML = show.map(p => \`
+    <div class="pojm-card" data-cat="\${p.kat}" onclick="this.classList.toggle('flip')">
+      <div class="pojm-front">
+        <div class="pojm-term">\${p.term}</div>
+        <div class="pojm-hint">→ klikni</div>
+      </div>
+      <div class="pojm-back">
+        <div class="pojm-def">\${p.def}</div>
+      </div>
+    </div>
+  \`).join('');
+}
+
+function pojmFilter2(cat, btn) {
+  document.querySelectorAll('.pojm-filter').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  pojm2Active = cat;
+  renderPojm2();
+  // Also update flashcard array if in FC mode
+  if(pj2Data.length === 0 || pojm2Active !== cat) pj2Build();
+}
+
+renderPojm2();
+
+/* ═══════════════════════════════════
+   POJMOVNIK FLASHCARD MODE (H11 pj2*)
+═══════════════════════════════════ */
+let pj2Idx=0, pj2Data=[], pj2Seen={};
+
+function pj2Build(){
+  const src = pojm2Active==='all' ? POJM_DATA2 : POJM_DATA2.filter(p=>p.kat===pojm2Active);
+  pj2Data = src;
+  pj2Idx = 0;
+  pj2Seen = {};
+  pj2Render();
+}
+
+function pj2Render(){
+  if(!pj2Data.length) return;
+  const p = pj2Data[pj2Idx];
+  const scene = document.getElementById('fc-scene2');
+  const inner = document.getElementById('fc-inner2');
+  if(scene) scene.classList.remove('flipped');
+  if(inner) inner.style.transform='';
+
+  const cat = document.getElementById('fc-cat2');
+  const term = document.getElementById('fc-term2');
+  const def = document.getElementById('fc-def2');
+  const counter = document.getElementById('fc-counter2');
+  const prev = document.getElementById('fc-prev2');
+  const next = document.getElementById('fc-next2');
+
+  if(cat) cat.textContent = p.kat.toUpperCase();
+  if(term) term.textContent = p.term;
+  if(def) def.innerHTML = p.def;
+  if(counter) counter.textContent = (pj2Idx+1)+' / '+pj2Data.length;
+  if(prev) prev.disabled = pj2Idx === 0;
+  if(next) next.disabled = pj2Idx === pj2Data.length-1;
+
+  pj2Seen[pj2Idx] = true;
+  pj2RenderDots();
+}
+
+function pj2RenderDots(){
+  const prog = document.getElementById('fc-progress2');
+  if(!prog || pj2Data.length > 20) return;
+  prog.innerHTML = pj2Data.map((_,i)=>\`<div class="fc-dot\${pj2Seen[i]?' seen':''}\${i===pj2Idx?' known':''}"></div>\`).join('');
+}
+
+function pj2Flip(){
+  const scene = document.getElementById('fc-scene2');
+  if(scene) scene.classList.toggle('flipped');
+}
+
+function pj2Next(){
+  if(pj2Idx < pj2Data.length-1){ pj2Idx++; pj2Render(); }
+}
+
+function pj2Prev(){
+  if(pj2Idx > 0){ pj2Idx--; pj2Render(); }
+}
+
+function setPojmMode2(mode){
+  const gw = document.getElementById('grid-wrap2');
+  const fw = document.getElementById('fc-wrap2');
+  const mb1 = document.getElementById('mode-grid');
+  const mb2 = document.getElementById('mode-fc');
+  if(mode==='fc'){
+    if(gw) gw.style.display='none';
+    if(fw){ fw.style.display='flex'; }
+    if(mb1) mb1.classList.remove('on');
+    if(mb2) mb2.classList.add('on');
+    pj2Build();
+    document.onkeydown = function(e){
+      if(e.key==='ArrowRight') pj2Next();
+      else if(e.key==='ArrowLeft') pj2Prev();
+      else if(e.key===' '||e.key==='Enter'){ e.preventDefault(); pj2Flip(); }
+    };
+  } else {
+    if(gw) gw.style.display='';
+    if(fw) fw.style.display='none';
+    if(mb1) mb1.classList.add('on');
+    if(mb2) mb2.classList.remove('on');
+    document.onkeydown = null;
+  }
+}
+
+/* ═══════════════════════════════════
+   KEYBOARD SHORTCUTS
+═══════════════════════════════════ */
+(function(){
+  let helpShown=false;
+  document.addEventListener('keydown', function(e){
+    // Ignore when typing in inputs/textareas
+    const target=e.target.tagName;
+    if(target==='INPUT'||target==='TEXTAREA'||e.target.isContentEditable)return;
+    
+    const activeTab=Array.from(document.querySelectorAll('.tab')).findIndex(t=>t.classList.contains('on'));
+    
+    // Arrow navigation between tabs
+    if(e.key==='ArrowRight'&&activeTab<7){
+      e.preventDefault();
+      sw(activeTab+1);
+    } else if(e.key==='ArrowLeft'&&activeTab>0){
+      e.preventDefault();
+      sw(activeTab-1);
+    }
+    // Number keys 1-8 for direct tab access
+    else if(/^[1-8]$/.test(e.key)){
+      e.preventDefault();
+      sw(parseInt(e.key)-1);
+    }
+    // ? for help
+    else if(e.key==='?'){
+      e.preventDefault();
+      if(helpShown){
+        document.getElementById('kbd-help')?.remove();
+        helpShown=false;
+        return;
+      }
+      const help=document.createElement('div');
+      help.id='kbd-help';
+      help.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--ele);border:1px solid var(--gold);border-radius:var(--r3);padding:24px 28px;z-index:500;box-shadow:0 8px 40px rgba(0,0,0,.6);max-width:90vw';
+      help.innerHTML=\`
+        <h3 style="margin-bottom:12px;color:var(--gold);font-family:var(--display)">⌨ Kratice</h3>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-family:var(--serif);font-size:13px">
+          <span><span class="kbd">←</span> <span class="kbd">→</span></span><span>Prethodni / Sljedeći tab</span>
+          <span><span class="kbd">1</span> – <span class="kbd">8</span></span><span>Skok direktno na tab</span>
+          <span><span class="kbd">?</span></span><span>Prikaži / sakrij ovu pomoć</span>
+          <span><span class="kbd">Esc</span></span><span>Zatvori dialog / izađi iz polja</span>
+          <span><span class="kbd">Ctrl</span>+<span class="kbd">P</span></span><span>Print / PDF</span>
+        </div>
+        <div style="margin-top:14px;text-align:right">
+          <button class="fcb" onclick="document.getElementById('kbd-help').remove();">Zatvori</button>
+        </div>
+      \`;
+      document.body.appendChild(help);
+      helpShown=true;
+    }
+    // Escape closes help/sidebar
+    else if(e.key==='Escape'){
+      document.getElementById('kbd-help')?.remove();
+      helpShown=false;
+      closeSb();
+    }
+  });
+})();
+
+if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+      }
+    });
+  },{threshold:0.1});
+  
+  document.querySelectorAll('.scene-card,.ac,.box-key,.fq,.tbl-wrap').forEach(el=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(12px)';
+    el.style.transition='opacity .4s ease, transform .4s ease';
+    obs.observe(el);
+  });
+}
+
+function toggleSidebar(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay');if(s)s.classList.toggle('mobile-open');if(o)o.classList.toggle('show')}
+;
+/* TIER_SYSTEM_JS_INJECTED */
+/**
+ * Maturiraj.hr — Tier Helper Module
+ * 
+ * Globalni JS modul za upravljanje tier sustavom (Free / Standard / Pro).
+ * Koristi se u svim chapterima i pricing page-u.
+ * 
+ * 🚨 PRODUCTION TODO:
+ * - Tier provjera mora ići preko Supabase (auth.uid() → user_subscriptions tablica)
+ * - Trenutno mock kroz localStorage 'mt.pro_mode' = 'free' | 'standard' | 'pro'
+ * - Dnevni limiti se moraju validirati na backendu
+ * 
+ * Verzija: 1.0
+ * Autor: Maturiraj.hr team
+ */
+
+(function(window) {
+  'use strict';
+
+  // ════════════════════════════════════════════════
+  // CONFIG — Tier Definicija
+  // ════════════════════════════════════════════════
+  
+  const TIER_CONFIG = {
+    free: {
+      name: 'Free',
+      label: '🆓 Free',
+      price: 0,
+      color: 'var(--t3, #888)',
+      features: {
+        // TEORIJA — sve free
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve free
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — limited
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: 1,            // 1 esej max
+        max_summaries: 1,         // 1 sažetak max
+        all_essay_models: false,  // 1 vidljiv
+        all_summary_models: false,
+        export_workspace: false,  // bez exporta
+        // SIMULATORI — 0 demo
+        discere_simulators: false,
+        max_simulators: 0,
+        // PLAN UČENJA — pregled
+        study_plan_preview: true,
+        study_plan_full: false,
+        // STATS
+        streak_tracking: false,
+        heatmap: false,
+        progress_analytics: false,
+        // PARENT
+        parent_dashboard: false,
+        // AI — sve zaključano
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    standard: {
+      name: 'Standard',
+      label: '⭐ Standard',
+      price: 9.99,
+      color: 'var(--blue, #4a90d9)',
+      features: {
+        // TEORIJA — sve
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        // ALATI — sve
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        // WORKSPACE — full
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,           // unlimited
+        max_summaries: -1,        // unlimited
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        // SIMULATORI — svi (70 ispita)
+        discere_simulators: true,
+        max_simulators: -1,
+        // PLAN UČENJA — full
+        study_plan_preview: true,
+        study_plan_full: true,
+        // STATS
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        // PARENT
+        parent_dashboard: true,
+        // AI — sve zaključano (Standard NEMA AI!)
+        ai_chat: false,
+        ai_feedback: false,
+        ai_personal_plan: false,
+        // PRIJEMNI
+        prijemni: false,
+      },
+      ai_limits: {
+        feedback_per_day: 0,
+        chat_per_day: 0,
+      }
+    },
+    
+    pro: {
+      name: 'Pro',
+      label: '💎 Pro',
+      price: 19.99,
+      color: 'var(--gold, #e9b446)',
+      features: {
+        // Sve iz Standard
+        all_theory: true,
+        all_quizzes: true,
+        ncvvo_errors: true,
+        glossary: true,
+        cheatsheet: true,
+        diagnostics: true,
+        score_calculator: true,
+        plagiarism_detector: true,
+        objectivity_detector: true,
+        speed_drill: true,
+        proofreading_game: true,
+        essay_workspace: true,
+        summary_workspace: true,
+        max_essays: -1,
+        max_summaries: -1,
+        all_essay_models: true,
+        all_summary_models: true,
+        export_workspace: true,
+        discere_simulators: true,
+        max_simulators: -1,
+        study_plan_preview: true,
+        study_plan_full: true,
+        streak_tracking: true,
+        heatmap: true,
+        progress_analytics: true,
+        parent_dashboard: true,
+        // AI — sve unlocked (PRO ONLY)
+        ai_chat: true,
+        ai_feedback: true,
+        ai_personal_plan: true,
+        // PRIJEMNI — Pro only
+        prijemni: true,
+      },
+      ai_limits: {
+        feedback_per_day: 20,    // 2B odluka
+        chat_per_day: 30,        // 2B odluka
+        plan_refresh_per_week: 1,
+      }
+    }
+  };
+
+  // ════════════════════════════════════════════════
+  // STORAGE KEYS
+  // ════════════════════════════════════════════════
+  
+  const STORAGE_KEYS = {
+    tier: 'mt.pro_mode',
+    daily_usage: 'mt.daily_usage',
+    weekly_usage: 'mt.weekly_usage',
+  };
+
+  // ════════════════════════════════════════════════
+  // CORE API
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća trenutni tier korisnika.
+   * @returns {'free' | 'standard' | 'pro'}
+   */
+  function getTier() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.tier);
+      if (stored === 'pro' || stored === 'standard') return stored;
+      return 'free';
+    } catch (e) {
+      return 'free';
+    }
+  }
+
+  /**
+   * Postavlja tier (mock — produkcija ovo radi preko Supabase).
+   */
+  function setTier(tier) {
+    if (!['free', 'standard', 'pro'].includes(tier)) {
+      console.error('[tier_helper] Invalid tier:', tier);
+      return false;
+    }
+    try {
+      if (tier === 'free') {
+        localStorage.removeItem(STORAGE_KEYS.tier);
+      } else {
+        localStorage.setItem(STORAGE_KEYS.tier, tier);
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Toggle tier (free → standard → pro → free)
+   * Koristi se u dev mode-u.
+   */
+  function toggleTier() {
+    const current = getTier();
+    const next = current === 'free' ? 'standard' : (current === 'standard' ? 'pro' : 'free');
+    setTier(next);
+    return next;
+  }
+
+  /**
+   * Provjerava ima li korisnik feature.
+   * @param {string} feature - npr 'ai_feedback', 'all_simulators'
+   * @returns {boolean}
+   */
+  function hasFeature(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return false;
+    return config.features[feature] === true;
+  }
+
+  /**
+   * Vraća konfiguraciju tier-a (label, cijena, boja).
+   * @param {string} tier - opcionalno; ako nije zadan, vraća za current.
+   */
+  function getTierConfig(tier) {
+    return TIER_CONFIG[tier || getTier()] || TIER_CONFIG.free;
+  }
+
+  /**
+   * Vraća vrijednost numeričkog limita feature-a.
+   * @param {string} feature - npr 'max_essays', 'max_simulators'
+   * @returns {number} -1 = unlimited, 0 = nema, X = točno X
+   */
+  function getLimit(feature) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config) return 0;
+    const val = config.features[feature];
+    if (val === true) return -1; // unlimited
+    if (val === false) return 0;
+    return val;
+  }
+
+  /**
+   * Vraća AI limit (feedback / chat / plan).
+   * @param {string} type - 'feedback' | 'chat' | 'plan'
+   */
+  function getAILimit(type) {
+    const tier = getTier();
+    const config = TIER_CONFIG[tier];
+    if (!config || !config.ai_limits) return 0;
+    
+    const map = {
+      feedback: 'feedback_per_day',
+      chat: 'chat_per_day',
+      plan: 'plan_refresh_per_week'
+    };
+    return config.ai_limits[map[type]] || 0;
+  }
+
+  // ════════════════════════════════════════════════
+  // USAGE TRACKING
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Vraća današnju potrošnju feature-a.
+   */
+  function getDailyUsage(feature) {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (!stored) return 0;
+      const data = JSON.parse(stored);
+      if (data.date !== today) return 0;
+      return data.usage[feature] || 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Inkrementira potrošnju feature-a.
+   */
+  function incrementDailyUsage(feature) {
+    const today = new Date().toISOString().split('T')[0];
+    let data = { date: today, usage: {} };
+    
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.daily_usage);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.date === today) data = parsed;
+      }
+    } catch (e) {}
+    
+    data.usage[feature] = (data.usage[feature] || 0) + 1;
+    
+    try {
+      localStorage.setItem(STORAGE_KEYS.daily_usage, JSON.stringify(data));
+    } catch (e) {}
+    
+    return data.usage[feature];
+  }
+
+  /**
+   * Provjerava može li korisnik koristiti AI feature (limit + tier check).
+   * @returns {{ allowed: boolean, reason: string, used: number, limit: number }}
+   */
+  function canUseAI(type) {
+    const tier = getTier();
+    const limit = getAILimit(type);
+    const used = getDailyUsage('ai_' + type);
+    
+    if (limit === 0) {
+      return {
+        allowed: false,
+        reason: 'tier_locked',
+        tier_required: 'pro',
+        used: 0,
+        limit: 0
+      };
+    }
+    
+    if (used >= limit) {
+      return {
+        allowed: false,
+        reason: 'daily_limit_reached',
+        tier_required: tier,
+        used,
+        limit
+      };
+    }
+    
+    return {
+      allowed: true,
+      reason: 'ok',
+      used,
+      limit
+    };
+  }
+
+  // ════════════════════════════════════════════════
+  // PAYWALL MODAL
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Prikazuje paywall modal.
+   * @param {object} options
+   * @param {string} options.feature - naziv feature-a
+   * @param {string} options.requiredTier - 'standard' | 'pro'
+   * @param {string} options.reason - razlog (free_limit / tier_locked / daily_limit)
+   */
+  function showPaywall(options) {
+    const opts = options || {};
+    const requiredTier = opts.requiredTier || 'standard';
+    const reason = opts.reason || 'feature_locked';
+    const feature = opts.feature || 'Ovaj feature';
+    
+    // Remove existing modal
+    const existing = document.getElementById('mt-paywall-modal');
+    if (existing) existing.remove();
+    
+    const reasonText = {
+      free_limit: 'Iskoristio si Free limit za ovaj feature.',
+      tier_locked: 'Ovaj feature je dostupan u Standard ili Pro pretplati.',
+      daily_limit: 'Iskoristio si svoj dnevni limit. Vrati se sutra ili upgradaj na viši tier.',
+      feature_locked: 'Ovaj feature zahtijeva pretplatu.'
+    };
+    
+    const modal = document.createElement('div');
+    modal.id = 'mt-paywall-modal';
+    modal.className = 'mt-paywall-overlay';
+    modal.innerHTML = \`
+      <div class="mt-paywall-modal" onclick="event.stopPropagation()">
+        <button type="button" class="mt-paywall-close" onclick="MT.Tier.closePaywall()" aria-label="Zatvori">×</button>
+        
+        <div class="mt-paywall-header">
+          <div class="mt-paywall-icon">\${requiredTier === 'pro' ? '💎' : '⭐'}</div>
+          <div class="mt-paywall-title">\${feature}</div>
+          <div class="mt-paywall-subtitle">\${reasonText[reason] || reasonText.feature_locked}</div>
+        </div>
+        
+        <div class="mt-paywall-tiers">
+          \${requiredTier !== 'pro' ? \`
+          <div class="mt-paywall-tier mt-paywall-tier-standard \${requiredTier === 'standard' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'standard' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">⭐ Standard</div>
+            <div class="mt-paywall-tier-price">9,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Cijela teorija + kvizovi</li>
+              <li>✅ Svi Discere simulatori (70 ispita)</li>
+              <li>✅ Sve modelne eseje (9) + sažetke (10)</li>
+              <li>✅ Neograničeno u Workspace</li>
+              <li>✅ Parent dashboard</li>
+              <li>✅ Streak + heatmap + analitika</li>
+              <li>❌ Bez AI features</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta" onclick="MT.Tier.subscribe('standard')">
+              Pretplati se na Standard
+            </button>
+          </div>
+          \` : ''}
+          
+          <div class="mt-paywall-tier mt-paywall-tier-pro \${requiredTier === 'pro' ? 'mt-paywall-tier-recommended' : ''}">
+            \${requiredTier === 'pro' ? '<div class="mt-paywall-badge">Preporučeno</div>' : ''}
+            <div class="mt-paywall-tier-name">💎 Pro</div>
+            <div class="mt-paywall-tier-price">19,99€<span>/mj</span></div>
+            <ul class="mt-paywall-tier-features">
+              <li>✅ Sve iz Standard</li>
+              <li>✅ <strong>🤖 AI Profesor (chat) — 30/dan</strong></li>
+              <li>✅ <strong>🤖 AI Feedback za eseje + sažetke — 20/dan</strong></li>
+              <li>✅ <strong>Personalizirani plan učenja</strong></li>
+              <li>✅ <strong>Prijemni priprema</strong></li>
+              <li>✅ Priority AI queue</li>
+            </ul>
+            <button type="button" class="mt-paywall-cta mt-paywall-cta-pro" onclick="MT.Tier.subscribe('pro')">
+              Pretplati se na Pro
+            </button>
+          </div>
+        </div>
+        
+        <div class="mt-paywall-footer">
+          <a href="/pretplata" class="mt-paywall-link">Vidi sve tier opcije →</a>
+          <span class="mt-paywall-divider">·</span>
+          <button type="button" class="mt-paywall-link mt-paywall-link-btn" onclick="MT.Tier.toggleTierDevMode()">
+            🧪 Dev: Toggle tier (trenutno: \${getTier().toUpperCase()})
+          </button>
+        </div>
+      </div>
+    \`;
+    
+    modal.addEventListener('click', closePaywall);
+    document.body.appendChild(modal);
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePaywall() {
+    const modal = document.getElementById('mt-paywall-modal');
+    if (modal) {
+      modal.remove();
+      document.body.style.overflow = '';
+    }
+  }
+
+  function subscribe(tier) {
+    // 🚨 PRODUCTION TODO: Stripe Checkout integration
+    // Plan: Stripe Checkout Session → success_url: /pretplata/success?tier=X
+    // Backend writes to Supabase user_subscriptions, then redirects back
+    
+    // For now: mock behavior — set tier, close paywall, reload
+    if (confirm(\`🚧 Pretplata u izradi (Stripe checkout uskoro).\\n\\nMock: Postaviti tier na \${tier === 'pro' ? 'Pro 19,99€' : 'Standard 9,99€'}/mj?\\n\\nKliknite OK za mock pretplatu.\`)) {
+      setTier(tier);
+      closePaywall();
+      location.reload();
+    }
+  }
+
+  function toggleTierDevMode() {
+    const next = toggleTier();
+    alert(\`🧪 Dev mode — tier postavljen na: \${next.toUpperCase()}\`);
+    closePaywall();
+    location.reload();
+  }
+
+  // ════════════════════════════════════════════════
+  // SIDEBAR TIER BADGE
+  // ════════════════════════════════════════════════
+  
+  /**
+   * Injectsa tier badge u sidebar (ako postoji).
+   */
+  function injectSidebarBadge() {
+    const sidebar = document.querySelector('.sidebar') || document.querySelector('nav.sb');
+    if (!sidebar) return;
+    
+    // Check if already exists
+    if (document.getElementById('mt-tier-badge')) return;
+    
+    const tier = getTier();
+    const config = getTierConfig(tier);
+    
+    const badge = document.createElement('div');
+    badge.id = 'mt-tier-badge';
+    badge.className = 'mt-tier-badge mt-tier-badge-' + tier;
+    badge.innerHTML = \`
+      <div class="mt-tier-badge-label">\${config.label}</div>
+      \${tier === 'free' ? '<button type="button" class="mt-tier-badge-cta" onclick="MT.Tier.openPricing()">Upgrade →</button>' : ''}
+    \`;
+    
+    // Insert at top of sidebar
+    const firstChild = sidebar.firstElementChild;
+    if (firstChild) {
+      sidebar.insertBefore(badge, firstChild);
+    } else {
+      sidebar.appendChild(badge);
+    }
+  }
+
+  function openPricing() {
+    location.href = '/pretplata';
+  }
+
+  // ════════════════════════════════════════════════
+  // PUBLIC API
+  // ════════════════════════════════════════════════
+  
+  window.MT = window.MT || {};
+  window.MT.Tier = {
+    // Core
+    getTier,
+    setTier,
+    toggleTier,
+    getTierConfig,
+    
+    // Features
+    hasFeature,
+    getLimit,
+    getAILimit,
+    
+    // Usage
+    getDailyUsage,
+    incrementDailyUsage,
+    canUseAI,
+    
+    // Paywall
+    showPaywall,
+    closePaywall,
+    subscribe,
+    toggleTierDevMode,
+    
+    // UI
+    injectSidebarBadge,
+    openPricing,
+    
+    // Config (read-only)
+    CONFIG: TIER_CONFIG
+  };
+
+  // Auto-inject sidebar badge on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectSidebarBadge);
+  } else {
+    injectSidebarBadge();
+  }
+
+})(window);
+;
+/* UPDATE_PROGRESS_INJECTED */
+
+function updateProgress(pct){
+  var p=Math.max(5,pct);
+  var pb=document.getElementById('prog-bar'); if(pb) pb.style.width=p+'%';
+  var pct2=document.getElementById('prog-pct'); if(pct2) pct2.textContent=p+'%';
+  var hp=document.getElementById('hero-pb'); if(hp) hp.style.width=p+'%';
+  var hl=document.getElementById('hero-prog-lbl'); if(hl) hl.textContent=p+'% završeno';
+  try { localStorage.setItem('mt.hrv.h13.prog', p); } catch(e){}
+}
+;
+/* CIT_SEARCH_INJECTED */
+
+function citSearch(query){
+  var q = (query || '').toLowerCase().trim();
+  var quotes = document.querySelectorAll('.featured-quote');
+  var visible = 0;
+  quotes.forEach(function(qt){
+    var text = qt.textContent.toLowerCase();
+    var match = !q || text.indexOf(q) !== -1;
+    qt.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+}
+/* ══ SIDEBAR ACTIVATION ══ */
+var PUBLISHED_CHAPTERS = {
+  h01: true, h02: true, h03: true, h04: true, h05: true,
+  h06: true, h07: true, h08: true, h09: true, h10: true,
+  h11: true, h12: true, h13: true, h14: true, h15: true, h16: true,
+  h17: true, h18: true,
+  h19: true, h20: true, h21: true, h22: true, h23: true, h24: true,
+  h25: true, h26: true, h27: true, h28: true,
+  d01: false, d02: false, d03: false, d04: true,  d05: false,
+  d06: false, d07: false, d08: false, d09: false, d10: true,
+  d11: false, d12: false, d13: false, d14: false, d15: false,
+  d16: false, d17: false, d18: false, d19: false, d20: false,
+  d21: false, d22: false
+};
+var CHAPTER_TITLES = {
+  h01:'temelji i antika', h02:'srednji vijek', h03:'renesansa',
+  h04:'barok i klasicizam', h05:'prosvjetiteljstvo', h06:'romantizam',
+  h07:'realizam', h08:'moderna', h09:'avangarda i 20. st.', h10:'postmoderna',
+  h11:'stari hrv. pisci', h12:'Marulić i hrv. rens.', h13:'hrv. barok — Gundulić',
+  h14:'preporod', h15:'Šenoa i realizam', h16:'Krleža i moderna',
+  h17:'stilske figure', h18:'versifikacija',
+  h19:'fonetika i fonologija', h20:'morfologija', h21:'sintaksa',
+  h22:'leksikologija', h23:'povijest hrv. jezika', h24:'hrv. narječja',
+  h25:'pravopisna pravila', h26:'interpunkcija',
+  h27:'školski esej', h28:'sažetak',
+  d01:'Antigona', d02:'Petrarca · izbor', d03:'Hamlet', d04:'Život je san',
+  d05:'Škrtac', d06:'Werther', d07:'Zločin i kazna', d08:'Preobražaj',
+  d09:'Stranac', d10:'Cvjetovi zla', d11:'Novela od Stanca', d12:'Judita',
+  d13:'Dubravka', d14:'Smail-aga', d15:'Prijan Lovro', d16:'Posljednji Stipančići',
+  d17:'Kranjčević · poezija', d18:'Matoš · izbor', d19:'Nazor · poezija',
+  d20:'Šimić · poezija', d21:'Glembajevi', d22:'Kiklop'
+};
+function initSidebar(){
+  var currentCode = (CURRENT_CHAPTER && CURRENT_CHAPTER.code) || '';
+  var items = document.querySelectorAll('.sb-item[data-code]');
+  items.forEach(function(item){ item.classList.remove('active','completed','disabled'); });
+  var currentIdx = -1;
+  var totalMain = 28;
+  items.forEach(function(item){
+    var code = item.getAttribute('data-code');
+    var isCurrent = code === currentCode;
+    var isPublished = PUBLISHED_CHAPTERS[code] === true;
+    if(isCurrent){
+      item.classList.add('active');
+      item.setAttribute('aria-current','page');
+      if(code.indexOf('h')===0){ currentIdx = parseInt(code.slice(1),10); }
+    }
+    if(!isPublished && !isCurrent){
+      item.classList.add('disabled');
+      item.setAttribute('aria-disabled','true');
+      item.setAttribute('title','Klikni da te obavijestimo kad izađe');
+      item.removeAttribute('href');
+      item.addEventListener('click', function(e){
+        e.preventDefault();
+        var title = (item.textContent||'').replace(/^[hd]\d\d\s·\s/i,'').trim();
+        /* poglavlje u izradi — signup uklonjen */
+        return false;
+      });
+    } else if (isPublished) {
+      /* Only mark completed if user finished all checkpoints for this chapter */
+      try {
+        var cpKey = 'mt.hrv.' + code + '.cp';
+        var cpRaw = localStorage.getItem(cpKey);
+        if (cpRaw) {
+          var cpArr = JSON.parse(cpRaw);
+          if (Array.isArray(cpArr) && cpArr.length > 0 && cpArr.every(function(v){ return v === true; })) {
+            item.classList.add('completed');
+          }
+        }
+      } catch(e) {}
+    }
+  });
+  var footPos = document.getElementById('sb-footer-pos');
+  var footTitle = document.getElementById('sb-footer-title');
+  if(footPos){
+    if(currentCode.indexOf('d')===0){ footPos.textContent = currentCode.toUpperCase() + ' · dodatno'; }
+    else if(currentIdx > 0){ footPos.textContent = String(currentIdx).padStart(2,'0') + ' / ' + totalMain; }
+  }
+  if(footTitle){ footTitle.textContent = CHAPTER_TITLES[currentCode] || ''; }
+  var doneH = Object.keys(PUBLISHED_CHAPTERS).filter(function(k){ return k.indexOf('h')===0 && PUBLISHED_CHAPTERS[k]; }).length;
+  var pct = Math.round((doneH / totalMain) * 100);
+  var progBar = document.getElementById('prog-bar');
+  var progPct = document.getElementById('prog-pct');
+  if(progBar) progBar.style.width = pct + '%';
+  if(progPct) progPct.textContent = pct + '%';
+}
+function detectTier(){
+  var override = null;
+  try { override = localStorage.getItem('mt.user.tier'); } catch(e){}
+  return override || 'free';
+}
+function applyTier(){
+  var tier = detectTier();
+  document.body.setAttribute('data-tier', tier);
+  document.querySelectorAll('.pro-gate').forEach(function(gate){
+    var feat = gate.getAttribute('data-feature') || 'generic';
+    var btn = gate.querySelector('.pro-gate-btn');
+    if(btn && !btn.href.includes('ctx=')){
+      var sep = btn.href.indexOf('?') >= 0 ? '&' : '?';
+      btn.href = btn.href + sep + 'ctx=' + feat + '_' +
+                 ((typeof CURRENT_CHAPTER !== 'undefined' && CURRENT_CHAPTER.code) || 'unknown');
+    }
+    if(tier === 'free'){
+      track('paywall_impression', { feature: feat,
+        chapter: (typeof CURRENT_CHAPTER !== 'undefined' && CURRENT_CHAPTER.code) || '' }, 'conversion');
+    }
+  });
+}
+function setTierLegacy(t){ try { localStorage.setItem('mt.user.tier', t); } catch(e){} applyTier(); }
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', function(){ initSidebar(); applyTier(); });
+} else {
+  initSidebar();
+  applyTier();
+}
+`;
+
+
+export default function H13Chapter() {
+  useEffect(() => {
+    const roots = [];
+    const raf = requestAnimationFrame(() => {
+      const mounts = [
+        ['h13-react-hero-quote-gundulic', HeroQuoteGundulic],
+        ['h13-react-author-gundulic', AuthorProfileGundulic],
+        ['h13-react-timeline-gundulic', TimelineGundulic],
+        ['h13-react-statcards-dubravka', StatCardsDubravka],
+        ['h13-react-compare-alegorija-gundulic', CompareAlegorijaGundulic],
+        ['h13-react-pop-kultura-gundulic', PopKulturaGundulic],
+        ['h13-react-accordion-cinjenja', AccordionCinjenja],
+        ['h13-react-accordion-esej-teze', AccordionEsejTezeH13],
+        ['h13-react-video-card-primary', VideoCardPrimaryH13],
+        ['h13-react-video-card-secondary', VideoCardSecondaryH13],
+        ['h13-react-video-card-tertiary', VideoCardTertiaryH13],
+        ['h13-react-video-card-quaternary', VideoCardQuaternaryH13],
+        ['l3', CitatnikH13],
+        ['l4', PojmovnikH13],
+      ];
+
+      mounts.forEach(([id, Component]) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const root = createRoot(el);
+        root.render(<Component />);
+        roots.push(root);
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      setTimeout(() => roots.forEach((root) => root?.unmount()), 0);
+    };
+  }, []);
+
+  return (
+    <ChapterWrapper
+      chapterId="H13"
+      bodyHtml={BODY_HTML}
+      stylesCss={STYLES_CSS}
+      scriptsJs={SCRIPTS_JS}
+    />
+  );
+}
+
+export const HRV_POGAVLJE_13 = null
