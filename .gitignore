@@ -47,6 +47,9 @@ next-env.d.ts
 *.log
 /build_log.txt
 
+# stray generated component at repo root (canonical version is in app/skripte/data/hrv-components/)
+/poglavlje10.jsx
+
 # dev screenshots & scratch/backup dirs (not meant for history)
 /h[0-9]*.png
 /tmp/
