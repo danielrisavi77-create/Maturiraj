@@ -44,3 +44,9 @@ next-env.d.ts
 /_*.js
 /_*.mjs
 /_*.py
+
+# dev screenshots & scratch/backup dirs (not meant for history)
+/h[0-9]*.png
+/tmp/
+/backups/
+/_staged_backup/
