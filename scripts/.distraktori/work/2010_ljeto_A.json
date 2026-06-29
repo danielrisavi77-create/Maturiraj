@@ -1,0 +1,981 @@
+{
+  "examKey": "2010_ljeto_A",
+  "label": "Ljetni rok — Viša razina (A)",
+  "total": 76,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojim pjesničkim pravcima pripadaju prvi i drugi tekst?",
+      "opts": [
+        "A. nadrealizmu i realizmu",
+        "B. romantizmu i klasicizmu",
+        "C. impresionizmu i ekspresionizmu",
+        "D. futurizmu i imagizmu"
+      ],
+      "correct": "C",
+      "exp": "Matoš/Utjeha kose = impresionizam (lirska slika, ugođaj, sinestezija); Šimić/Mrtva ljubav = ekspresionizam (kratki stihovi, bol, boja).",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš\n\nAntun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su m…"
+    },
+    {
+      "id": 2,
+      "q": "Što povezuje tekstove?",
+      "opts": [
+        "A. razdoblje",
+        "B. tema",
+        "C. oblik",
+        "D. stil"
+      ],
+      "correct": "B",
+      "exp": "Oba teksta govore o ljubavi i smrti/gubitku = ista tema.",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš\n\nAntun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su m…"
+    },
+    {
+      "id": 3,
+      "q": "Koji su glavni motivi u tekstovima?",
+      "opts": [
+        "A. cvijeće i zvijezde",
+        "B. prolaznost i vječnost",
+        "C. san i java",
+        "D. ljubav i smrt"
+      ],
+      "correct": "D",
+      "exp": "'U snu. Tužnu. Mrtvu.' / 'Kraj ljubavi u duši mrtvo zvoni' — oba teksta bave se ljubavlju i smrću.",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš\n\nAntun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su m…"
+    },
+    {
+      "id": 4,
+      "q": "U čemu se razlikuje odnos pjesnika prema temeljnome motivu?",
+      "opts": [
+        "A. Za Matoša postoji izlaz iz boli, a za Šimića je sve završeno.",
+        "B. Matoš izražava nedostižnost ljubavi, a Šimić dostižnost.",
+        "C. Šimić nalazi smirenje u prirodi, a Matoš u svojoj snazi.",
+        "D. Šimićeva je ljubav stvarna, a Matoševa nestvarna."
+      ],
+      "correct": "A",
+      "exp": "Matošev sonet završava utjehom kose (izlaz/pomirenje); Šimićeva pjesma završava vječnom tminom, bez izlaza.",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš\n\nAntun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su m…"
+    },
+    {
+      "id": 5,
+      "q": "Koji pjesnički oblik prepoznajete u Matoševu tekstu?",
+      "opts": [
+        "A. baladu",
+        "B. gazelu",
+        "C. glosu",
+        "D. sonet"
+      ],
+      "correct": "D",
+      "exp": "Utjeha kose = sonet (14 stihova: 2 katrena + 2 tercine).",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš"
+    },
+    {
+      "id": 6,
+      "q": "Kakva je rima u Matoševu tekstu?",
+      "opts": [
+        "A. abab cdcd eef eef",
+        "B. abab abab cdc dee",
+        "C. abba cddc efe fgg",
+        "D. abba abba cdc dee"
+      ],
+      "correct": "D",
+      "exp": "Utjeha kose: žrtvu/stao/jasne/sjao (abba) + krasne/ruke/sivim/muke (abba) + oživim/živa/muke (cdc) + sniva/dee? Petrarkistički sonet = abba abba cdc dee.",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš"
+    },
+    {
+      "id": 7,
+      "q": "Koju stilsku figuru prepoznajete u drugome stihu druge strofe Matoševa teksta?\n('U dvorani kobnoj, punoj smrti krasne,')",
+      "opts": [
+        "A. sinesteziju",
+        "B. oksimoron",
+        "C. kontrast",
+        "D. poredbu"
+      ],
+      "correct": "B",
+      "exp": "'Smrti krasne' = smrt + krasna (lijepa) = suprotni pojmovi u jednoj sintagmi = oksimoron.",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš"
+    },
+    {
+      "id": 8,
+      "q": "Koju stilsku figuru prepoznajete u posljednjem stihu Matoševa teksta?\n('Pa mi reče: Miruj! U smrti se sniva.')",
+      "opts": [
+        "A. simbol",
+        "B. alegoriju",
+        "C. eufemizam",
+        "D. hiperbolu"
+      ],
+      "correct": "C",
+      "exp": "'U smrti se sniva' = smrt opisana kao san (bez izravnog imenovanja) = eufemizam.",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš"
+    },
+    {
+      "id": 9,
+      "q": "Tko izgovara posljednje dvije rečenice u Matoševu tekstu?",
+      "opts": [
+        "A. lirski subjekt",
+        "B. pokojnica",
+        "C. kobna dvorana",
+        "D. kosa"
+      ],
+      "correct": "D",
+      "exp": "'Samo kosa tvoja još je bila živa / Pa mi reče: Miruj!' = kosa govori lirskom subjektu.",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš"
+    },
+    {
+      "id": 10,
+      "q": "Od koje jezične norme Matoš odstupa u prvoj rečenici?\n('Gledao sam te sinoć. U snu. Tužnu. Mrtvu.')",
+      "opts": [
+        "A. od morfološke",
+        "B. od leksičke",
+        "C. od pravopisne",
+        "D. od sintaktičke"
+      ],
+      "correct": "D",
+      "exp": "'U snu. Tužnu. Mrtvu.' = nominativni apozicijski nizovi bez glagola = odstupanje od standardne sintaktičke norme.",
+      "ctx": "Antun Gustav Matoš, Utjeha kose (sonet)\n\nGledao sam te sinoć. U snu. Tužnu. Mrtvu.\nU dvorani kobnoj, u idili cvijeća,\nNa visokom odru, u agoniji svijeća,\nGotov da ti predam život kao žrtvu.\n\nNisam plakao. Nisam. Zapanjen sam stao\nU dvorani kobnoj, punoj smrti krasne,\nSumnjajući da su tamne oči jasne\nOdakle mi nekad bolji život sjao.\n\nSve baš, sve je mrtvo: oči, dah i ruke,\nSve, što očajanjem htjedoh da oživim\nU slijepoj stravi i u strasti muke,\nU dvorani kobnoj, mislima u sivim.\n\nSamo kosa tvoja još je bila živa,\nPa mi reče: Miruj! U smrti se sniva.\n\nA. G. Matoš"
+    },
+    {
+      "id": 11,
+      "q": "Kako se zove Šimićeva zbirka pjesama?",
+      "opts": [
+        "A. Preobraženja",
+        "B. Pjesme u tmini",
+        "C. Kolajna",
+        "D. Knjiga pjesama"
+      ],
+      "correct": "A",
+      "exp": "A. B. Šimić = Preobraženja (1920.) — jedina zbirka za života.",
+      "ctx": "Antun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su mrtve zvijezde i kuće i mjesec\ni crn prostor nepomičan stoji\nNiko nikad neće doći k meni\nSmrt još samo nevidljiva — Snu —\nrazmotaj crven pokrov povrh mene\ni nada mnom neka crno nebo noći\nvječno...\n\nA. B. Šimić"
+    },
+    {
+      "id": 12,
+      "q": "Od koje jezične norme odstupa Šimić u svome tekstu?",
+      "opts": [
+        "A. od gramatičke",
+        "B. od pravopisne",
+        "C. od leksičke",
+        "D. od pravogovorne"
+      ],
+      "correct": "B",
+      "exp": "Šimić ne koristi velika slova na početku stiha niti interpunkciju = odstupanje od pravopisne norme.",
+      "ctx": "Antun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su mrtve zvijezde i kuće i mjesec\ni crn prostor nepomičan stoji\nNiko nikad neće doći k meni\nSmrt još samo nevidljiva — Snu —\nrazmotaj crven pokrov povrh mene\ni nada mnom neka crno nebo noći\nvječno...\n\nA. B. Šimić"
+    },
+    {
+      "id": 13,
+      "q": "Kako se ostvaruje ritam u Šimićevu tekstu?",
+      "opts": [
+        "A. pravilnom izmjenom naglašenih i nenaglašenih slogova",
+        "B. uporabom istih prozodijskih obrazaca",
+        "C. osobitim rasporedom riječi i oblikom stihova",
+        "D. glasovnim ponavljanjima, posebice rimom"
+      ],
+      "correct": "C",
+      "exp": "Šimić = slobodni stih — ritam se ostvaruje osobitim rasporedom riječi, oblikom i duljinom stihova, ne metrumom ni rimom.",
+      "ctx": "Antun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su mrtve zvijezde i kuće i mjesec\ni crn prostor nepomičan stoji\nNiko nikad neće doći k meni\nSmrt još samo nevidljiva — Snu —\nrazmotaj crven pokrov povrh mene\ni nada mnom neka crno nebo noći\nvječno...\n\nA. B. Šimić"
+    },
+    {
+      "id": 14,
+      "q": "Kojim motivom počinje Šimićev tekst?",
+      "opts": [
+        "A. vizualnim",
+        "B. auditivnim",
+        "C. taktilnim",
+        "D. gustativnim"
+      ],
+      "correct": "B",
+      "exp": "'Kraj ljubavi u duši mrtvo zvoni' = zvoni = auditivni (slušni) motiv.",
+      "ctx": "Antun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su mrtve zvijezde i kuće i mjesec\ni crn prostor nepomičan stoji\nNiko nikad neće doći k meni\nSmrt još samo nevidljiva — Snu —\nrazmotaj crven pokrov povrh mene\ni nada mnom neka crno nebo noći\nvječno...\n\nA. B. Šimić"
+    },
+    {
+      "id": 15,
+      "q": "Koji se glagolski oblik javlja u posljednjih pet stihova Šimićeva teksta?",
+      "opts": [
+        "A. prezent",
+        "B. infinitiv",
+        "C. aorist",
+        "D. imperativ"
+      ],
+      "correct": "D",
+      "exp": "'razmotaj... neka' = imperativ (zapovjedni/željni oblik).",
+      "ctx": "Antun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su mrtve zvijezde i kuće i mjesec\ni crn prostor nepomičan stoji\nNiko nikad neće doći k meni\nSmrt još samo nevidljiva — Snu —\nrazmotaj crven pokrov povrh mene\ni nada mnom neka crno nebo noći\nvječno...\n\nA. B. Šimić"
+    },
+    {
+      "id": 16,
+      "q": "Koje je značenje riječi 'kob'?",
+      "opts": [
+        "A. nesreća",
+        "B. sudbina",
+        "C. slučaj",
+        "D. događaj"
+      ],
+      "correct": "B",
+      "exp": "'Kob' = sudbina, usud, udes (arhaizam).",
+      "ctx": "Antun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su mrtve zvijezde i kuće i mjesec\ni crn prostor nepomičan stoji\nNiko nikad neće doći k meni\nSmrt još samo nevidljiva — Snu —\nrazmotaj crven pokrov povrh mene\ni nada mnom neka crno nebo noći\nvječno...\n\nA. B. Šimić"
+    },
+    {
+      "id": 17,
+      "q": "Kako glasi genitiv sintagme 'crven pokrov'?",
+      "opts": [
+        "A. crvenoga pokrova",
+        "B. crvenijega pokrova",
+        "C. crven pokrova",
+        "D. crvena pokrova"
+      ],
+      "correct": "A",
+      "exp": "'Crven' = određeni pridjev → G jd. = 'crvenoga pokrova'.",
+      "ctx": "Antun Branko Šimić, Mrtva ljubav\n\nKraj ljubavi u duši mrtvo zvoni\nVeć slazi s neba plavo\nSpuštam tihe crne zastore\nZnam: vani su mrtve zvijezde i kuće i mjesec\ni crn prostor nepomičan stoji\nNiko nikad neće doći k meni\nSmrt još samo nevidljiva — Snu —\nrazmotaj crven pokrov povrh mene\ni nada mnom neka crno nebo noći\nvječno...\n\nA. B. Šimić"
+    },
+    {
+      "id": 18,
+      "q": "Kako se zove djelo iz kojega je treći tekst?",
+      "opts": [
+        "A. Eneida",
+        "B. Ilijada",
+        "C. Odiseja",
+        "D. Orestija"
+      ],
+      "correct": "B",
+      "exp": "'Srdžbu mi, boginjo, pjevaj Ahileja, Peleju sina' = početak Ilijade (Homer).",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 19,
+      "q": "Kojoj književnoj vrsti pripada djelo iz kojega je treći tekst?",
+      "opts": [
+        "A. himni",
+        "B. tragediji",
+        "C. epopeji",
+        "D. mitu"
+      ],
+      "correct": "C",
+      "exp": "Ilijada = ep/epopeja (herojski ep antičke Grčke).",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 20,
+      "q": "Komu povijest književnosti pripisuje autorstvo djela iz kojega je treći tekst?",
+      "opts": [
+        "A. Hesiodu",
+        "B. Homeru",
+        "C. Vergiliju",
+        "D. Aristotelu"
+      ],
+      "correct": "B",
+      "exp": "Ilijadu tradicionalno pripisujemo Homeru (8. st. pr. Kr.).",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 21,
+      "q": "Kojim je stihom napisano djelo iz kojega je treći tekst?",
+      "opts": [
+        "A. dvostruko rimovanim dvanaestercem",
+        "B. heksametrom",
+        "C. dvanaestercem",
+        "D. epskim desetercem"
+      ],
+      "correct": "B",
+      "exp": "Homerovi epovi = daktilski heksametar (6 stopa).",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 22,
+      "q": "Kako se naziva književni postupak koji prepoznajete u tekstu?\n('Srdžbu mi, boginjo, pjevaj...')",
+      "opts": [
+        "A. katarza",
+        "B. digresija",
+        "C. retardacija",
+        "D. invokacija"
+      ],
+      "correct": "D",
+      "exp": "'Srdžbu mi, boginjo, pjevaj' = zaziv Muze na početku epa = invokacija.",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 23,
+      "q": "O kojemu događaju govori djelo iz kojega je treći tekst?",
+      "opts": [
+        "A. o desetogodišnjem lutanju morem",
+        "B. o desetogodišnjoj opsadi Troje",
+        "C. o osnutku italskog carstva",
+        "D. o propasti tebanskog kraljevstva"
+      ],
+      "correct": "B",
+      "exp": "Ilijada = desetogodišnja opsada Troje (Trojanskog rata).",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 24,
+      "q": "Zbog čega se Ahilej naljutio?",
+      "opts": [
+        "A. Oduzeta mu je robinja Brizeida.",
+        "B. Okrivljen je za ratne neuspjehe.",
+        "C. Oluja mu je potopila lađu.",
+        "D. Uništeni su mu štit i kaciga."
+      ],
+      "correct": "A",
+      "exp": "Agamemnon je oduzeo Ahileju robinju Brizeidu = Ahilejeva srdžba koja pokreće Ilijadu.",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 25,
+      "q": "Zašto pjesnik Ahilejovu srdžbu naziva pogubnom?",
+      "opts": [
+        "A. Ahilejeva srdžba uzrokovala je sukobe unutar grčke vojske.",
+        "B. Zbog Ahilejeve srdžbe bogovi se povlače iz rata.",
+        "C. Ahilej se povukao iz borbe i Grci su počeli gubiti.",
+        "D. Ahilejeva srdžba izaziva bijes suparničke vojske."
+      ],
+      "correct": "C",
+      "exp": "Ahilej se povukao iz bitke zbog srdžbe na Agamemnona → Grci su počeli gubiti = srdžba pogubna za Ahejce.",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 26,
+      "q": "Što je, prema legendi, pokrenulo temeljni događaj o kojemu govori djelo?",
+      "opts": [
+        "A. Afroditina srdžba",
+        "B. proročanstvo iz Delfa",
+        "C. otmica lijepe Helene",
+        "D. osveta za rodoskvrnuće"
+      ],
+      "correct": "C",
+      "exp": "Paris/Aleksandar oteo je Helenu od Menelaja = uzrok Trojanskog rata.",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 27,
+      "q": "Što znači sljedeći stih?\n'Snažne je duše mnogih junaka ona k Aidu / Poslala...'",
+      "opts": [
+        "A. Ahejci su poslani na pregovore.",
+        "B. Ahejci su kažnjeni.",
+        "C. Mnogi su junaci poginuli.",
+        "D. Mnogi su junaci prognani."
+      ],
+      "correct": "C",
+      "exp": "'K Aidu poslala' = Hades = carstvo mrtvih = mnogi su junaci poginuli.",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 28,
+      "q": "Tko je 'Atrejev sin, junacima kralj'?",
+      "opts": [
+        "A. Agamemnon",
+        "B. Hektor",
+        "C. Menelaj",
+        "D. Odisej"
+      ],
+      "correct": "A",
+      "exp": "Atrejev sin = Agamemnon (sin Atreja) = vrhovni zapovjednik grčke vojske.",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 29,
+      "q": "Tko je Zeus?",
+      "opts": [
+        "A. spartanski kralj",
+        "B. vrhovni svećenik",
+        "C. najslavniji vračar",
+        "D. gospodar Olimpa"
+      ],
+      "correct": "D",
+      "exp": "Zeus = vrhovni bog olimpskog panteona, gospodar Olimpa.",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 30,
+      "q": "Kako završava djelo iz kojega je treći tekst?",
+      "opts": [
+        "A. sretnim povratkom kući",
+        "B. ustoličenjem novog kralja",
+        "C. pogrebnim svečanostima",
+        "D. predajom neprijateljske vojske"
+      ],
+      "correct": "C",
+      "exp": "Ilijada završava pogrebom Hektora = pogrebne svečanosti za Hektora.",
+      "ctx": "Homer, Ilijada (početak — invokacija)\n\nSrdžbu mi, boginjo, pjevaj Ahileja, Peleju sina,\nPogubnu, kojano zada Ahejcima tisuću jada.\nSnažne je duše mnogih junaka ona k Aidu\nPoslala, a njih je same učinila plijen da budu\nPsima i pticama gozba; a Zeusu se vrše volja,\nOtkad se bjehu onomad razdvojili poslije svađe\nAtrejev sin, junacima kralj, i divni Ahilej."
+    },
+    {
+      "id": 31,
+      "q": "Koja se lica kriju iza naslova Kuća lutaka?",
+      "opts": [
+        "A. lica koja su prave lutke",
+        "B. lica koja simboliziraju lutke",
+        "C. lica koja se igraju lutkama",
+        "D. lica koja bi željela biti lutke"
+      ],
+      "correct": "B",
+      "exp": "Kuća lutaka = metafora za dom u kojemu su likovi (Nora, Helmer) poput lutaka — simboli uloga koje igraju u društvu.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 32,
+      "q": "Kojoj vrsti drame pripada Kuća lutaka?",
+      "opts": [
+        "A. građanskoj drami",
+        "B. lirskoj drami",
+        "C. ekspresionističkoj drami",
+        "D. simbolističkoj drami"
+      ],
+      "correct": "A",
+      "exp": "Nora = realistička građanska drama (Ibsen, norveški realizam, 1879.).",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 33,
+      "q": "Tko je autor teksta Kuća lutaka?",
+      "opts": [
+        "A. Charles Baudelaire",
+        "B. A. Pavlovič Čehov",
+        "C. Arthur Rimbaud",
+        "D. Henrik Ibsen"
+      ],
+      "correct": "D",
+      "exp": "Et dukkehjem (Kuća lutaka/Nora, 1879.) = Henrik Ibsen, norveški dramatičar.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 34,
+      "q": "Na čemu se temelji promjena Helmerova raspoloženja?",
+      "opts": [
+        "A. na kontrastu",
+        "B. na sinesteziji",
+        "C. na larpurlartizmu",
+        "D. na personifikaciji"
+      ],
+      "correct": "A",
+      "exp": "Helmer se naglo mijenja od bijesa do sreće kad stigne drugo pismo = promjena temeljena na kontrastu.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 35,
+      "q": "Što u strukturi teksta predstavlja Norino otkrivanje tajne prijateljici Kristini?",
+      "opts": [
+        "A. zaplet",
+        "B. vrhunac",
+        "C. rasplet",
+        "D. završetak"
+      ],
+      "correct": "A",
+      "exp": "Norino otkrivanje tajne Kristini = zaplet (uvodi se konflikt koji će pokrenuti radnju).",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 36,
+      "q": "Koja sintagma izrečena u prvome odlomku četvrtoga teksta opisuje Helmerov stav o Norinoj ljubavi?",
+      "opts": [
+        "A. glupave isprike",
+        "B. spas za oboje",
+        "C. užasna istina",
+        "D. nesretnica"
+      ],
+      "correct": "A",
+      "exp": "'Molim, samo bez glupavih isprika' = Helmer odbacuje Norinu ljubav kao glupave isprike.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 37,
+      "q": "Što Helmer saznaje u prvome pismu?",
+      "opts": [
+        "A. Nora je imala ljubavnika.",
+        "B. Nora je posudila novac.",
+        "C. Nora ga napušta.",
+        "D. Norina djeca nisu njegova."
+      ],
+      "correct": "B",
+      "exp": "Nora je potajno posudila novac (uz falsifikat potpisa) da bi platila Helmerovo liječenje = to je sadržaj prvog pisma.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 38,
+      "q": "Što je u pismu uzrok promjene Helmerova raspoloženja u odnosu na početak teksta?",
+      "opts": [
+        "A. jasan pokazatelj da je prvo pismo poslano zabunom",
+        "B. optužba obiteljskog prijatelja",
+        "C. konačni trag o pravome krivcu",
+        "D. vraćanje dokaza krivnje"
+      ],
+      "correct": "D",
+      "exp": "Krogstad vraća Norinu mjenicu (dokaz krivnje) = Helmer se smiruje jer je prijetnja otklonjena.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 39,
+      "q": "Može li Helmer biti Norina istinska zaštita?",
+      "opts": [
+        "A. Može jer ga je pismo promijenilo.",
+        "B. Može jer je shvatio veličinu Norine ljubavi.",
+        "C. Ne može jer se nije spreman žrtvovati.",
+        "D. Ne može jer je shvatio da je Nora moralno jača od njega."
+      ],
+      "correct": "C",
+      "exp": "Helmer je rekao da nikad ne bi žrtvovao čast za Noru = nije spreman na žrtvu = ne može biti istinska zaštita.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 40,
+      "q": "Koja rečenica iz priloženih odlomaka izriče problem kojim se bavi djelo Kuća lutaka?",
+      "opts": [
+        "A. Čuvat ću te u njem kao progonjenu golubicu...",
+        "B. Ne ću ti više morati ponavljati kako sam ti sve oprostio...",
+        "C. Tako ona u dvostrukom smislu postaje njegovom svojinom.",
+        "D. Ne plaši se ni zbog čega, Nora, samo mi budi iskrena pa ću ti tako postati i tvoja volja i tvoja savjest."
+      ],
+      "correct": "C",
+      "exp": "'U dvostrukom smislu postaje njegovom svojinom' = žena kao vlasništvo = temeljni problem drame (položaj žene u braku i društvu).",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 41,
+      "q": "Kojom se stilskom figurom autor poslužio u sljedećoj rečenici?\n'Imam dovoljno široka krila da te zakrilim njima.'",
+      "opts": [
+        "A. poredbom",
+        "B. paradoksom",
+        "C. ironijom",
+        "D. metaforom"
+      ],
+      "correct": "D",
+      "exp": "'Krila da te zakrilim' = pripisuje Helmeru krila (zaštita kao ptica) = metafora.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 42,
+      "q": "Koji niz djela pripada istome književnom rodu kao i tekst Kuća lutaka?",
+      "opts": [
+        "A. Antigona, Zločin i kazna, Dundo Maroje",
+        "B. Dubravka, Ljudska komedija, Fedra",
+        "C. Gospoda Glembajevi, Hamlet, Madame Bovary",
+        "D. U očekivanju Godota, Kralj Edip, Bez trećeg"
+      ],
+      "correct": "D",
+      "exp": "Kuća lutaka = drama. U očekivanju Godota (Beckett), Kralj Edip (Sofoklo), Bez trećeg (Vojnović) = sve drame.",
+      "ctx": "Henrik Ibsen, Nora (Kuća lutaka) — ulomak (III. čin)\n\nHELMER (teturajući natraške): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\n\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\n\nHELMER: Molim, samo bez glupavih isprika.\n\n(...)\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\n\nNORA: A ja?\n\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\n(...)\n\nHELMER (pokraj otvorenih vrata): Da, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. O, kako nam je naš dom smir…"
+    },
+    {
+      "id": 43,
+      "q": "Koji je točan raspored?",
+      "opts": [
+        "A. 1D, 2A, 3B, 4C, 5E",
+        "B. 1E, 2A, 3B, 4F, 5D",
+        "C. 1D, 2F, 3B, 4C, 5E",
+        "D. 1A, 2D, 3C, 4B, 5E"
+      ],
+      "correct": "A",
+      "exp": "Vojnović=Dubrovačka trilogija(D); Brešan=Predstava Hamleta u selu Mrduša Donja(A); Brecht=Majka Courage(B); Ionesco=Stolice(C); Krleža=U agoniji(E). 1D,2A,3B,4C,5E.",
+      "ctx": "Autorima pridružite djela (sparivanje):\n1. Ivo Vojnović — 2. Ivo Brešan — 3. Bertolt Brecht — 4. Eugene Ionesco — 5. Miroslav Krleža\nA. Predstava Hamleta u selu Mrduša Donja — B. Majka Courage — C. Stolice — D. Dubrovačka trilogija — E. U agoniji — F. U očekivanju Godota\n\nKoji je točan raspored?"
+    },
+    {
+      "id": 44,
+      "q": "Koliko je zamjenica u sljedećoj rečenici?\n'Činio je sve to sa mnom kao ja sa svojom lutkom.'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "C",
+      "exp": "'to' (pokazna), 'mnom' (osobna), 'ja' (osobna), 'svojom' (posvojna) = 4 zamjenice."
+    },
+    {
+      "id": 45,
+      "q": "Koliko je surečenica u sljedećoj rečenici?\n'Ide to malo pomalo, moja Nora, vjeruj mi, ide.'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "A",
+      "exp": "'Ide to malo pomalo' + 'moja Nora, vjeruj mi' + 'ide' — ali 'vjeruj mi' je umetnut zavisni imperativ, a 'moja Nora' je vokativ. Dvije surečenice: 1. 'Ide to malo pomalo' + 2. 'ide'."
+    },
+    {
+      "id": 46,
+      "q": "Koji je glagolski oblik uporabljen u sljedećoj rečenici?\n'A onda se smiri i ponovno saberi, mala moja uplašena ptičice.'",
+      "opts": [
+        "A. infinitiv",
+        "B. kondicional I.",
+        "C. prezent",
+        "D. imperativ"
+      ],
+      "correct": "D",
+      "exp": "'Smiri' i 'saberi' = zapovjedni oblik = imperativ."
+    },
+    {
+      "id": 47,
+      "q": "Kojom pripovjednom tehnikom počinje novela Baraka pet be?",
+      "opts": [
+        "A. pripovijedanjem",
+        "B. opisivanjem",
+        "C. unutarnjim monologom",
+        "D. retrospekcijom"
+      ],
+      "correct": "B",
+      "exp": "Novela počinje detaljnim opisom grofa Axelrodea (prezime, titule, porijeklo, haljina) = opisivanje.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 48,
+      "q": "Kakvim je tonom napisan peti tekst?",
+      "opts": [
+        "A. svečanim",
+        "B. sentimentalnim",
+        "C. elegičnim",
+        "D. ironičnim"
+      ],
+      "correct": "D",
+      "exp": "'ovo idiotsko doba parnih lokomotiva', 'kakav se rijetko zbiva na kugli zemaljskoj' = Krleža ismijava napuhanu grandioznost grofovog plemenitaštva = ironičan ton.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 49,
+      "q": "O čemu je oduvijek sanjao grof Axelrode?",
+      "opts": [
+        "A. o carskoj pobjedi",
+        "B. o ratničkoj slavi",
+        "C. o žrtvovanju za vjeru",
+        "D. o pobjedi pravde"
+      ],
+      "correct": "C",
+      "exp": "'za svoju visoku maltešku devizu — Pro Fide — povuče goli mač... i da sune u smrt' = umrijeti za vjeru (Pro Fide = Za vjeru).",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 50,
+      "q": "Što saznajemo o grofu iz sljedeće rečenice?\n'...grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv...'",
+      "opts": [
+        "A. bio je pobjednik u dvadeset i osam bitaka",
+        "B. pripada staroj plemenitoj obitelji",
+        "C. bio je blizak Njegovu Veličanstvu",
+        "D. sudjelovao je u križarskim ratovima"
+      ],
+      "correct": "B",
+      "exp": "'Dvadeset i osam perjanica i kaciga na lozi' = 28 plemenitih predaka = stara plemićka obitelj.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 51,
+      "q": "Kakav je bio grofov položaj u odnosu na druge plemiće pri prijemu u Malteški red?",
+      "opts": [
+        "A. Bio je znatno mlađi nego ostali kad je postao johaniterski chevalier de justice.",
+        "B. Uvelike je u potrebnim uvjetima nadmašio druge dostojanstvenike primane u Malteški red.",
+        "C. Oduševio je veliki priorat Suverenog malteškog reda svojim zlatnim pečatima.",
+        "D. Bio je u krvnom srodstvu s kancelarom Njegova Veličanstva."
+      ],
+      "correct": "B",
+      "exp": "Potrebno je 16 plemenitih predaka, a grof ima 28 = znatno više od minimuma = nadmašio uvjete.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 52,
+      "q": "Zašto je grof Maksimilijan Axelrode plakao u Jeruzalemu?",
+      "opts": [
+        "A. Prvi je put stigao u Svetu Zemlju.",
+        "B. Nije pokopan u Santae Mariae Latinae.",
+        "C. Nije sudjelovao u križarskim ratovima.",
+        "D. Nije upoznao Gottfrieda Bouillonskoga."
+      ],
+      "correct": "C",
+      "exp": "'Nije mu bila dana velika sreća, da tu... posije svoje plemenite kosti sa velikim Gottfriedom Bouillonskim' = tuga jer nije mogao sudjelovati u križarskim ratovima.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 53,
+      "q": "Koje je društvene okolnosti i zbivanja svoga doba grof Axelrode odobravao?",
+      "opts": [
+        "A. ulogu parlamenata u odnosu na vojsku",
+        "B. nastalu društvenu ulogu plemića",
+        "C. socijalističku demokraciju",
+        "D. održavanje dvoboja"
+      ],
+      "correct": "D",
+      "exp": "'dvoboji su zakonom ukinuti' = grof žali što su ukinuti = odobravao je dvoboje (viteška tradicija). Sve ostalo = 'idiotsko doba'.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 54,
+      "q": "Što radi grof Axelrode u noveli?",
+      "opts": [
+        "A. general je na galicijskom ratištu",
+        "B. zapovjednik je vojne bolnice",
+        "C. glavni je kirurg u vojnoj bolnici",
+        "D. teško je ranjen na ratištu"
+      ],
+      "correct": "B",
+      "exp": "Baraka pet be = Axelrode je zapovjednik (komtur) u vojnoj bolnici/baraci za ranjene vojnike u Prvom svjetskom ratu.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 55,
+      "q": "Tko je glavni lik u noveli Baraka pet be?",
+      "opts": [
+        "A. domobran Jambrek",
+        "B. dr. med. Kyriales",
+        "C. odvjetnik Baločanski",
+        "D. student Vidović"
+      ],
+      "correct": "A",
+      "exp": "Baraka pet be = domobran Jambrek = glavni lik (obični vojnik koji umire besmislenom smrću).",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 56,
+      "q": "Kako završava glavni lik u noveli Baraka pet be?",
+      "opts": [
+        "A. nestaje u ratnom kaosu",
+        "B. teško je ranjen i umire",
+        "C. dobiva orden za hrabrost",
+        "D. osakaćen se vraća kući"
+      ],
+      "correct": "B",
+      "exp": "Jambrek = ranjen vojnik koji umire u baraci = teško ranjen i umire.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 57,
+      "q": "Što je temeljna ideja novele Baraka pet be?",
+      "opts": [
+        "A. viteška hrabrost",
+        "B. spašavanje ranjenika",
+        "C. seljački fatalizam",
+        "D. besmislenost rata"
+      ],
+      "correct": "D",
+      "exp": "Baraka pet be = Krleža oslikava apsurd rata i besmislenu smrt seljačkog vojnika = besmislenost rata.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 58,
+      "q": "U kojemu se vremenu zbiva radnja novele Baraka pet be?",
+      "opts": [
+        "A. krajem 19. stoljeća",
+        "B. tridesetih godina 20. stoljeća",
+        "C. u drugome desetljeću 20. stoljeća",
+        "D. u drugoj polovini 20. stoljeća"
+      ],
+      "correct": "C",
+      "exp": "Baraka pet be = Prvi svjetski rat (1914.–1918.) = drugom desetljeću 20. stoljeća.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 59,
+      "q": "Što označuje baraka u naslovu novele?",
+      "opts": [
+        "A. bolnički paviljon",
+        "B. zapovjedno središte",
+        "C. spremište streljiva",
+        "D. zarobljenički logor"
+      ],
+      "correct": "A",
+      "exp": "Baraka pet be = bolnička baraka (broj pet B) u kojoj leže ranjeni vojnici.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 60,
+      "q": "Kojoj zbirci novela pripada novela Baraka pet be?",
+      "opts": [
+        "A. Novele",
+        "B. Hrvatski bog Mars",
+        "C. Glembajevi",
+        "D. Hiljadu i jedna smrt"
+      ],
+      "correct": "B",
+      "exp": "Baraka pet be = novela iz zbirke Hrvatski bog Mars (Miroslav Krleža).",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 61,
+      "q": "Kako glasi genitiv jednine titule i imena 'grof Maksimilijan Axelrode'?",
+      "opts": [
+        "A. grofa Maksimilijan Axelroda",
+        "B. grofa Maksimilijana Axelrodea",
+        "C. grof Maksimilijana Axelrodea",
+        "D. grof Maksimilijan Axelroda"
+      ],
+      "correct": "B",
+      "exp": "'Grofa' = G jd. od grof; 'Maksimilijana' = G jd. od Maksimilijan; 'Axelrodea' = G jd. strane imenice na -e = grofa Maksimilijana Axelrodea.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 62,
+      "q": "Koliko ima surečenica u sljedećoj rečenici?\n'Grof Maksimilijan Axelrode tugovao je tako jalovo pune šezdeset i tri godine, kad se jednoga jutra probudio i bilo mu je kao da sanja.'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "C",
+      "exp": "1. 'Grof Axelrode tugovao je'; 2. 'kad se probudio'; 3. 'i bilo mu je'; 4. 'kao da sanja' = 4 surečenice.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 63,
+      "q": "Kojoj vrsti leksema pripadaju leksemi 'grof' i 'vitez'?",
+      "opts": [
+        "A. oronimima",
+        "B. eponimima",
+        "C. arhaizmima",
+        "D. historizmima"
+      ],
+      "correct": "D",
+      "exp": "'Grof' i 'vitez' = nazivi za titule koje više ne postoje u aktivnoj upotrebi = historijizmi.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 64,
+      "q": "Kako se naziva podcrtana stilska figura u sljedećoj rečenici?\n'...grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv...'",
+      "opts": [
+        "A. metonimija",
+        "B. okamenjena metafora",
+        "C. barokna antiteza",
+        "D. simbol"
+      ],
+      "correct": "A",
+      "exp": "'Perjanica i kaciga' stoje umjesto 'plemenitih predaka' (dio = cjelina) = metonimija.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 65,
+      "q": "Što znači sintagma 'modra krv' u sljedećoj rečenici?\n'...pod kojima je već ključala modra krv...'",
+      "opts": [
+        "A. slavnu prošlost",
+        "B. nasljednu bolest",
+        "C. sklonost nasilju",
+        "D. aristokratsko porijeklo"
+      ],
+      "correct": "D",
+      "exp": "'Modra krv' (plava krv) = ustaljeni izraz za aristokratsko/plemenito porijeklo.",
+      "ctx": "Miroslav Krleža, Baraka pet be (ulomak — grof Axelrode)\n\nGrof Maksimilijan Axelrode, komtur Suverenog malteškog reda, postao je johaniterski chevalier de justice, u potpunoj gali sa srebrnim krstom, u svojoj četrnaestoj godini. Mjesto šesnaest plemenitih i viteških predaka na liniji svoga gospodina oca i svoje gospođe majke, visokoro đene kneginje, potrebnih za rang visokog dostojanstvenika visokog Malteškog reda, grof Maksimilijan Axelrode brojio je na svojoj lozi dvadeset i osam perjanica i kaciga, pod kojima je već ključala modra krv.\n\nGrof Maksimilijan Axelrode imao je za cijeloga svoga života samo jednu ideju, da za svoju visoku maltešku devizu — Pro Fide — povuče goli mač, da se zaogrn…"
+    },
+    {
+      "id": 66,
+      "q": "Što u ponuđenoj leksikografskoj definiciji predstavlja etimološku odrednicu?\n'idila — (klas. evr.) umjetnička tvorevina u kojoj se opisuje život ljudi koji sretno žive u prirodi... nastala u staroj Grčkoj.'",
+      "opts": [
+        "A. idila",
+        "B. —",
+        "C. (klas. evr.)",
+        "D. umjetnička tvorevina u kojoj se opisuje život..."
+      ],
+      "correct": "C",
+      "exp": "'(klas. evr.)' = klasično europsko porijeklo = etimološka odrednica (podrijetlo riječi)."
+    },
+    {
+      "id": 67,
+      "q": "Odaberite točan oblik:\n'Rano (67) _____________ najavilo je prvo veliko razdoblje talijanske književnosti (67) _____________ nakon Dantea i Petrarke.'\nUmjesto (67) — o vremenskom izričaju: 200 godina ili 200. godina?",
+      "opts": [
+        "A. 200 godina",
+        "B. 200. godina",
+        "C. dvjesto godina",
+        "D. dvjestota godina"
+      ],
+      "correct": "A",
+      "exp": "'200 godina' = redoslijed (prošlo je 200 godina) = kardinalni broj, ne redni = 200 godina."
+    },
+    {
+      "id": 68,
+      "q": "Odaberite točan oblik genitiva: 'nakon ___ i Petrarke'",
+      "opts": [
+        "A. Dantea",
+        "B. Dante-a",
+        "C. Danteha",
+        "D. Danteja"
+      ],
+      "correct": "A",
+      "exp": "Strani vlastiti nazivi koji završavaju na samoglasnik dodaju nastavak bez crtice: Dante → Dantea."
+    },
+    {
+      "id": 69,
+      "q": "Odaberite točan zapis datuma životnog vijeka: '(1474. – 1533.)' ili '(1474 – 1533)'?",
+      "opts": [
+        "A. (1474. – 1533.)",
+        "B. (1474 – 1533)",
+        "C. (1474.–1533.)",
+        "D. 1474–1533"
+      ],
+      "correct": "A",
+      "exp": "Redni broj + točka + en-crtica s razmacima + godišta s točkama = (1474. – 1533.)."
+    },
+    {
+      "id": 70,
+      "q": "Odaberite točan zapis složenice: 'remek-djelu' ili 'remekdjelu'?",
+      "opts": [
+        "A. remek-djelu",
+        "B. remekdjelu",
+        "C. remekdjelo",
+        "D. remekovnom djelu"
+      ],
+      "correct": "A",
+      "exp": "'Remek-djelo' = poluslož enica s crticom (remek = tur. savršen + djelo)."
+    },
+    {
+      "id": 71,
+      "q": "Odaberite točan zapis: 'flamanac' ili 'Flamanac'?",
+      "opts": [
+        "A. flamanac",
+        "B. Flamanac",
+        "C. Flandrijski",
+        "D. flandrijski"
+      ],
+      "correct": "B",
+      "exp": "'Flamanac' = stanovnik Flandrije = etnik = piše se velikim slovom: Flamanac."
+    },
+    {
+      "id": 72,
+      "q": "Odaberite točan oblik superlativa: 'najcjenjeniji' ili 'najcijenjeniji'?",
+      "opts": [
+        "A. najcjenjeniji",
+        "B. najcijenjeniji",
+        "C. najcenjeniji",
+        "D. najcjenaniji"
+      ],
+      "correct": "A",
+      "exp": "'Cijeniti → cijenjen → cijenjeniji → najcjenjeniji' — ekavski refleks u prefiksu: naj+cjenjeniji."
+    },
+    {
+      "id": 73,
+      "q": "Odaberite točan genitiv: 'Leonarda da Vincia' ili 'Leonarda da Vincija'?",
+      "opts": [
+        "A. Leonarda da Vincia",
+        "B. Leonarda da Vincija",
+        "C. Leonarda da Vinca",
+        "D. Leonarda de Vincija"
+      ],
+      "correct": "B",
+      "exp": "Vinci → Vincija (strana vlastita imenica na -i → genitiv -ija): Leonarda da Vincija."
+    },
+    {
+      "id": 74,
+      "q": "Odaberite točan genitiv: 'Josquina Des Presa' ili 'Josquino Des Presa'?",
+      "opts": [
+        "A. Josquina Des Presa",
+        "B. Josquino Des Presa",
+        "C. Josquina Des Pres",
+        "D. Josquinom Des Presom"
+      ],
+      "correct": "A",
+      "exp": "Josquin → Josquina (strana imenica na -n → G -na). A = pravilno."
+    },
+    {
+      "id": 75,
+      "q": "Odaberite točan oblik: 'zahtijevao' ili 'zahtjevao'?",
+      "opts": [
+        "A. zahtjevao",
+        "B. zahtijevao",
+        "C. zatijevao",
+        "D. zahtevao"
+      ],
+      "correct": "B",
+      "exp": "'Zahtijevati' (ije-refleks) → 'zahtijevao' = pravilno (dugi jat = ije)."
+    },
+    {
+      "id": 76,
+      "q": "Odaberite točan oblik: 'plaću' ili 'plać'?",
+      "opts": [
+        "A. plaću",
+        "B. plać",
+        "C. plaću",
+        "D. plaçu"
+      ],
+      "correct": "A",
+      "exp": "'Plaća' → akuzativ = plaću (ć ostaje). A = pravilno."
+    }
+  ]
+}

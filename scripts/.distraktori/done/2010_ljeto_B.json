@@ -1,0 +1,364 @@
+{
+  "2010_ljeto_B__1": {
+    "A": "Epika je pripovjedni rod (epovi, romani), a ovdje je posrijedi kratka subjektivna pjesma sa stihovima i rimom.",
+    "C": "Drama je rod namijenjen izvedbi, s dijalogom i likovima, a u tekstu nema ni jednoga od tih obilježja."
+  },
+  "2010_ljeto_B__2": {
+    "A": "Gazela je istočnjački oblik s parno rimovanim dvostisima, a ne sa 14 stihova u katrenima i tercinama.",
+    "B": "Glosa razrađuje uvodnu strofu (motto) u nizu strofa, što ovdje nije slučaj.",
+    "D": "Balada je pripovjedna pjesma s tragičnom radnjom, a ovaj tekst je čista lirika određene strofike soneta."
+  },
+  "2010_ljeto_B__3": {
+    "A": "Katreni nemaju ukrštenu rimu abab, nego obgrljenu abba abba.",
+    "B": "Katreni nisu rimovani abab cdcd, već obgrljeno abba abba, a ni tercine nemaju shemu efe ege.",
+    "D": "Katreni su abba abba (točno), ali tercine se ne rimuju cdd dee, nego cdc eed."
+  },
+  "2010_ljeto_B__4": {
+    "B": "Prvi stih 'Pa, uzdignut nad zipkom i nad grobom' ima 11 slogova, a ne 12.",
+    "C": "Posljednji stih 'I onda, kad me više biti neće' ima 12 slogova, a ne 11.",
+    "D": "Prvi je stih jedanaesterac, a drugi 'Da u tebi dišem i da živim s tobom' također jedanaesterac, ne dvanaesterac."
+  },
+  "2010_ljeto_B__5": {
+    "A": "Pjesma ne opisuje krajolik kao glavnu temu, nego izriče odanost jeziku domovine.",
+    "B": "Socijalna lirika progovara o društvenoj nepravdi i bijedi, čega ovdje nema.",
+    "C": "Iako ima misaonih elemenata o životu i smrti, temeljni je sadržaj ljubav prema hrvatskome jeziku, dakle domoljublje."
+  },
+  "2010_ljeto_B__6": {
+    "B": "Gustativni (okusni) poticaj nije prisutan; 'mirisati' je olfaktivni, a ne okusni osjet.",
+    "C": "Vizualni poticaj nije naglašen, a 'žice' i 'cvijeće' ne upućuju na okus.",
+    "D": "Slika 'žice' upućuje na zvuk (auditivno), a ne na vizualni dojam."
+  },
+  "2010_ljeto_B__7": {
+    "A": "Naglasak nije na lijepim godinama, nego na cjeloživotnoj povezanosti s jezikom kojim se izražavao.",
+    "B": "Ljepota jezika spominje se uzgred ('lijepi jezice'), no glavna je poruka da je u tom jeziku proživio vijek.",
+    "D": "Drevnost jezika spomenuta je epitetom, ali poruka prvih dvaju stihova jest pjesnikovo cjeloživotno služenje jezikom."
+  },
+  "2010_ljeto_B__8": {
+    "A": "Slika 'morskog praga' upućuje na obalu (Dalmaciju), a ne na kontinentalnu Slavoniju.",
+    "B": "Lika je gorski kraj, a stih govori o moru, što ne odgovara.",
+    "D": "Zagorje je kontinentalno, dok 'morski prag' jasno upućuje na primorje, Dalmaciju."
+  },
+  "2010_ljeto_B__9": {
+    "A": "Stih 'Polako sam te, uz trud, usvojiо' isključuje prirodno usvajanje rođenjem.",
+    "C": "Pjesma ne spominje učenje u školi, nego osobni trud i postupno ovladavanje.",
+    "D": "Glagol 'usvojiо' (svršeni, prošlost) govori o dovršenom procesu, a ne o stalnom usavršavanju."
+  },
+  "2010_ljeto_B__10": {
+    "A": "Prva strofa govori o cjeloživotnoj povezanosti s jezikom, a ne o tome koliko je njime naučio.",
+    "C": "Treća strofa (prva tercina) govori o želji da bude poput glazbala, ne o učenju.",
+    "D": "Četvrta strofa govori o besmrtnosti u jeziku, a stihovi o spoznaji ('gdje nisam bio') su u drugoj strofi."
+  },
+  "2010_ljeto_B__11": {
+    "A": "Usporedba s glazbalom odnosi se na ljepotu izraza, a ne na razlog želje za pjesničkom besmrtnošću.",
+    "B": "Bogatstvo rječnika nije navedeno kao motiv; cilj je živjeti i nakon smrti.",
+    "C": "Pjesnik ne govori o pjevanju tema od rođenja do smrti, nego o vlastitu trajanju u jeziku nakon smrti."
+  },
+  "2010_ljeto_B__12": {
+    "B": "Taj stih izriče odsutnost i smrt, ali ne i ideju opstanka u stihovima koja je u zadnjoj strofi.",
+    "C": "Stih izražava želju za životom u tuđim grudima, a ne besmrtnost kroz vlastitu poeziju.",
+    "D": "Stih govori o predaji vlastita života u tuđu ruku, što ne odgovara motivu trajanja u stihovima."
+  },
+  "2010_ljeto_B__13": {
+    "A": "Homonimi su jednakozvučne riječi različita značenja, a 'zipka' i 'grob' ni glasovno ni značenjski nisu jednake.",
+    "B": "Sinonimi imaju istovjetno značenje, dok su 'zipka' i 'grob' suprotni pojmovi.",
+    "D": "Hiponimija je odnos nadređenoga i podređenoga pojma, a ovdje su pojmovi suprotstavljeni, ne podređeni."
+  },
+  "2010_ljeto_B__14": {
+    "B": "'Kad me više ne bude' mijenja glagolski oblik (futur drugi), a ne samo uklanja inverziju.",
+    "C": "'Kad više ne budem' također mijenja oblik i lice glagola, čime se gubi izvorno značenje stiha."
+  },
+  "2010_ljeto_B__15": {
+    "A": "'Voljeni' nije značenje pridjeva 'drevni'; emotivni odnos izražen je drugdje, a ne ovom riječju.",
+    "C": "'Jedinstveni' znači neponovljiv, a 'drevni' označava starinu.",
+    "D": "'Izražajan' se odnosi na snagu izraza, a ne na starinu koju nosi 'drevni'."
+  },
+  "2010_ljeto_B__16": {
+    "A": "Roman je opsežno fikcionalno prozno djelo, a ovo je kratki stručno-esejistički odlomak o glagoljici.",
+    "B": "Pjesma je stihovani lirski tekst, dok je ovo proza bez stihova.",
+    "D": "Poema je dulja stihovana pripovjedna pjesma, što ne odgovara proznome esejističkom tekstu."
+  },
+  "2010_ljeto_B__17": {
+    "A": "Tekst ne spominje grčku kulturu, nego latinskoromansku.",
+    "C": "Talijanske kulture u to doba još nema; riječ je o rimsko-latinskoj baštini Sredozemlja.",
+    "D": "Turci dolaze tek mnogo kasnije; Hrvati su zatekli latinskoromansku (rimsku) kulturu."
+  },
+  "2010_ljeto_B__18": {
+    "A": "'Prava' nije naziv za vrstu glagoljice.",
+    "B": "Kurzivna glagoljica je brzopisni oblik, a hrvatski se ustaljeni oblik naziva oblom.",
+    "D": "Uglata je glagoljica zapravo hrvatska inačica nasuprot obloj makedonsko-bugarskoj; traženi naziv ovdje je 'obla'."
+  },
+  "2010_ljeto_B__19": {
+    "A": "Držiha i Dobrovit spominju se na Bašćanskoj ploči, ali nisu slavenski apostoli.",
+    "B": "Rastislav i Mihajlo su moravski vladari koji su pozvali misionare, a ne sami apostoli.",
+    "D": "Crnorizac Hrabar i pop Dukljanin su pisci, a ne tvorci slavenske pismenosti."
+  },
+  "2010_ljeto_B__20": {
+    "A": "Trpimirov natpis je raniji latinski spomenik, a 'dragocjeni kamen' je glagoljska Bašćanska ploča.",
+    "B": "Zapis popa Martinca je mlađi rukopisni tekst (1493.), a ne kamen koji autor naziva dragocjenim.",
+    "C": "Vinodolski zakon je pravni rukopis iz 1288., a ovdje se misli na kamen, Bašćansku ploču."
+  },
+  "2010_ljeto_B__21": {
+    "A": "Sredina 9. stoljeća prerana je; Bašćanska ploča nastaje oko 1100. godine.",
+    "C": "Sredina 15. stoljeća prekasna je za nastanak Bašćanske ploče.",
+    "D": "Početak 16. stoljeća jest doba tiska, a ne nastanka ploče s kraja 11. stoljeća."
+  },
+  "2010_ljeto_B__22": {
+    "A": "Krbavski poraz (1493.) zabilježen je u zapisu popa Martinca, a ne na Bašćanskoj ploči.",
+    "B": "Odnose knezova i građana uređuje Vinodolski zakon, a ne ploča.",
+    "D": "Godine kraljevske vladavine nisu sadržaj ploče; ona bilježi darovnicu samostanu."
+  },
+  "2010_ljeto_B__23": {
+    "B": "Tomislav je raniji vladar (10. st.) i ne spominje se na Bašćanskoj ploči.",
+    "C": "Petar Krešimir IV. vladao je prije, a na ploči je zabilježen Zvonimir.",
+    "D": "Branimir se spominje na drugim natpisima (9. st.), a ne na Bašćanskoj ploči."
+  },
+  "2010_ljeto_B__24": {
+    "A": "Tekst ne tvrdi da je jezik bio zaboravljen do 18. st., nego da se razvijao sporije zbog nedostatka domaće vlasti.",
+    "C": "Slavenski apostoli pridonijeli su pismenosti; razvoj nije njima prekinut, nego usporen tuđinskom vlašću.",
+    "D": "Hrvati nisu napustili svoj jezik za latinskoromanski; rečenica govori o usporenom razvoju vlastitoga jezika."
+  },
+  "2010_ljeto_B__25": {
+    "A": "Ilijada i Odiseja pripadaju antici (8. st. pr. Kr.), daleko prije Bašćanske ploče.",
+    "B": "Gilgameš i Mahabharata su drevni istočnjački epovi, vremenski neusporedivi s 11. stoljećem.",
+    "C": "Bijesni Orlando i Oslobođeni Jeruzalem su renesansni/manieristički epovi 16. stoljeća, ne srednjovjekovni."
+  },
+  "2010_ljeto_B__26": {
+    "B": "Šibenska molitva je rukopisni tekst, a ne prva tiskana knjiga.",
+    "C": "Lucidar je srednjovjekovni rukopisni zbornik, a ne prva hrvatska tiskana knjiga.",
+    "D": "Biblija nije bila prva hrvatska tiskana knjiga; to je glagoljski Misal iz 1483."
+  },
+  "2010_ljeto_B__27": {
+    "A": "U srednjovjekovnoj se književnosti rabilo više pisama, ne samo jedno.",
+    "B": "Pisma su bila tri (glagoljica, ćirilica/bosančica, latinica), a ne dva.",
+    "D": "Pisama je itekako bilo; rabila su se sva tri navedena."
+  },
+  "2010_ljeto_B__28": {
+    "A": "Likovi nisu prave, materijalne lutke, nego ljudi prikazani metaforom lutke.",
+    "C": "Riječ nije o osobama koje se igraju lutkama, nego o osobama koje su simbolično lutke u tuđim rukama.",
+    "D": "Likovi ne žele biti lutke; oni to nesvjesno već jesu u nametnutim ulogama."
+  },
+  "2010_ljeto_B__29": {
+    "B": "Roman je prozno djelo, a Kuća lutaka je scensko djelo s replikama i didaskalijama.",
+    "C": "Ep je stihovana pripovjedna vrsta, što Kuća lutaka nije.",
+    "D": "Pjesma je lirska vrsta, dok je Kuća lutaka dramski tekst za izvedbu."
+  },
+  "2010_ljeto_B__30": {
+    "A": "Miroslav Krleža je hrvatski pisac (Glembajevi), nije autor Kuće lutaka.",
+    "B": "A. P. Čehov je ruski dramatičar, nije napisao Kuću lutaka.",
+    "C": "Marcel Proust je francuski romanopisac, a ne autor te norveške drame."
+  },
+  "2010_ljeto_B__31": {
+    "B": "Metafora je prijenos značenja, a Helmerova naglu promjenu raspoloženja oblikuje suprotstavljanje bijesa i nježnosti.",
+    "C": "Poredba uspoređuje dva pojma veznikom, što nije sredstvo na kojem počiva preokret raspoloženja.",
+    "D": "Personifikacija pridaje neživomu ljudska svojstva, a ovdje je riječ o kontrastu dvaju Helmerovih stanja."
+  },
+  "2010_ljeto_B__32": {
+    "A": "Početak uvodi likove i situaciju, a ovaj prizor donosi rasplet pred Norin odlazak.",
+    "B": "Zaplet zaoštrava sukob, dok je ovdje sukob već razriješen čitanjem pisma.",
+    "C": "Vrhunac je trenutak najveće napetosti, a ovaj prizor slijedi nakon njega, u raspletu."
+  },
+  "2010_ljeto_B__33": {
+    "B": "Ironije nema; Helmer iskreno (premda umišljeno) tepa Nori, ne govoreći suprotno od mišljenoga.",
+    "C": "Ton nije komičan radi smijeha, nego pokroviteljski i nadmoćan.",
+    "D": "'Zaneseno' bi značilo strasnu zanesenost, a Helmer je tu zaštitnički i snishodljiv, dakle pokroviteljski."
+  },
+  "2010_ljeto_B__34": {
+    "A": "U pismu nije riječ o ljubavniku, nego o Norinu financijskom prijestupu.",
+    "C": "Vijest da ga Nora napušta dolazi tek kasnije, ne iz prvoga pisma.",
+    "D": "Pitanje očinstva djece nije tema; pismo otkriva pozajmicu i krivotvorenje potpisa."
+  },
+  "2010_ljeto_B__35": {
+    "A": "Pismo ga nije istinski promijenilo; opraštanje slijedi tek kad nestane opasnost.",
+    "C": "Helmer ne shvaća veličinu Norine ljubavi, nego misli samo na vlastiti spas.",
+    "D": "On nije svjestan Norine moralne nadmoći; razlog je njegova nespremnost na žrtvu, a ne ta spoznaja."
+  },
+  "2010_ljeto_B__36": {
+    "A": "Poredba bi tražila veznik (kao), a ovdje je 'krila' izravno preneseno značenje bez usporednice.",
+    "B": "Personifikacija pridaje neživomu ljudska svojstva, no ovdje se čovjeku pripisuje krilo, dakle riječ je o metafori.",
+    "C": "Ironije nema; izraz se temelji na prenesenome značenju zaštite, što je metafora."
+  },
+  "2010_ljeto_B__37": {
+    "A": "Slika progonjene golubice prikazuje Helmerov pokroviteljski stav, ali ne izriče izravno temeljni problem djela.",
+    "B": "Rečenica o opraštanju pokazuje Helmerovu nadmoć, no ne formulira problem žene kao vlasništva.",
+    "D": "Ta rečenica naglašava Norinu podređenost volji muža, ali središnji problem (žena kao svojina) izravno izriče rečenica C."
+  },
+  "2010_ljeto_B__38": {
+    "A": "Romantizam prethodi Ibsenu i obilježen je idealizacijom i emocijama, a ne kritičkim prikazom građanskoga braka.",
+    "C": "Modernizam nastupa kasnije; Kuća lutaka pripada realizmu 19. stoljeća.",
+    "D": "Suvremena književnost je 20./21. stoljeće, a drama je iz 1879., dakle realizam."
+  },
+  "2010_ljeto_B__39": {
+    "A": "Ibsen nije francuski, nego norveški dramatičar.",
+    "C": "Ibsen nije njemački pisac.",
+    "D": "Ibsen nije engleski pisac, nego Norvežanin."
+  },
+  "2010_ljeto_B__40": {
+    "A": "Cvjetovi zla (Baudelaire) najavljuju modernu liriku, a ne početak realizma kojemu pripada Kuća lutaka.",
+    "C": "Preobražaj (Kafka) je djelo modernizma 20. st., a ne razdoblja Kuće lutaka.",
+    "D": "Combray je dio Proustova modernističkog ciklusa, a ne početak realizma."
+  },
+  "2010_ljeto_B__41": {
+    "A": "Antigona jest drama, ali Zločin i kazna je roman, pa niz nije jedinstven po rodu.",
+    "B": "Dubravka je dramsko djelo, no Otac Goriot je roman, pa niz miješa rodove.",
+    "D": "Posljednji Stipančići je roman; iako je U agoniji drama, niz nije čisto dramski."
+  },
+  "2010_ljeto_B__42": {
+    "B": "Zamjenica postoji ('ti'), pa to nije vrsta koje nema.",
+    "C": "Glagola ima ('činiće se', 'će biti'), pa nedostaje druga vrsta.",
+    "D": "Pridjev je prisutan ('drukčijim'), pa to nije vrsta koje nema."
+  },
+  "2010_ljeto_B__43": {
+    "A": "Prezenta i pluskvamperfekta u rečenici nema; 'ne ću' je futur prvi, a 'sam oprostio' perfekt.",
+    "C": "Kondicionala prvoga nema, a niz dvaju infinitiva nije potpun jer izostaje treći oblik koji je perfekt.",
+    "D": "Ni kondicionala ni prezenta nema; oblici su futur prvi, infinitiv i perfekt."
+  },
+  "2010_ljeto_B__44": {
+    "A": "Nabrajanja u rečenici nema; nema niza istovrsnih članova odvojenih zarezom.",
+    "C": "Inverzija ne uvjetuje ove zareze; oni okružuju izdvojeni vokativ 'moja Noro'.",
+    "D": "'Nizanje' nije načelo pisanja ovih zareza; oni se pišu zbog vokativa (obraćanja)."
+  },
+  "2010_ljeto_B__45": {
+    "A": "Romantizam je ranije razdoblje (sredina 19. st.), a Matoš stvara na prijelazu stoljeća.",
+    "B": "Realizam prethodi moderni; Matoš je vodeća figura hrvatske moderne, ne realizma.",
+    "D": "Druga moderna je razdoblje sredine 20. st. (Mihalić, Pupačić), a Matoš pripada (prvoj) moderni."
+  },
+  "2010_ljeto_B__46": {
+    "B": "'Grbova' je neutralan, denotativan pojam i ne nosi ironiju.",
+    "C": "'Financije' je obična imenica bez ironijskoga naboja.",
+    "D": "'Vojsku' je doslovno značenje; ironiju nosi podrugljiva tvorba 'učeprtljišu'."
+  },
+  "2010_ljeto_B__47": {
+    "A": "Ironija obilježava prvu rečenicu o 'buni', a opis jutra i neba je poetičan, lirski.",
+    "B": "Realistički bi opis bio objektivan i činjeničan, a ovdje su slike pjesnički, lirski dočarane.",
+    "D": "Naturalistički opis donosi surovu, ružnu zbilju, dok je ovaj opis ugođajan i lirski."
+  },
+  "2010_ljeto_B__48": {
+    "A": "Kurziv ne izražava pijetet prema žrtvama, nego autorovu ironijsku ogradu od pojma.",
+    "B": "Kosa slova ne znače da je to službeno ime pobune, nego sumnju u njezinu pravu prirodu.",
+    "D": "Kurziv ovdje ne ističe važnost, nego naprotiv umanjuje i ironizira 'bunu'."
+  },
+  "2010_ljeto_B__49": {
+    "A": "Nije riječ o isteku radnoga vremena, nego o paničnom skrivanju pred konjicom.",
+    "B": "Vrata nisu zatvorena zbog nevremena, nego zbog straha od vojske.",
+    "C": "Ljudi nisu nezainteresirani; upravo suprotno, preplašeno se zaključavaju i bježe."
+  },
+  "2010_ljeto_B__50": {
+    "A": "Ponos nije razlog; Pepica ostaje jer tvrdoglavo ustraje pri svome.",
+    "B": "Želja za zaradom nije navedena kao motiv njezina neposluha.",
+    "D": "Radoznalost nije razlog; ona prkosno odbija otići uvjerena da nije kriva."
+  },
+  "2010_ljeto_B__51": {
+    "A": "Pepica ne gine od zalutaloga metka, nego od konja.",
+    "C": "Ne umire od straha (prepuknuća srca), nego stradava pod konjem.",
+    "D": "Husari je ne streljaju; usmrćuje je udarac husarskoga konja."
+  },
+  "2010_ljeto_B__52": {
+    "B": "Portret nije sentimentalan (raznježen), nego pretjeran i podrugljiv, dakle karikaturalan.",
+    "C": "Opis nije objektivno realističan, nego komički iskrivljen.",
+    "D": "Likovi nisu idealizirani; naprotiv, prikazani su smiješno i pretjerano."
+  },
+  "2010_ljeto_B__53": {
+    "A": "Pepica ne predstavlja položaj žena, nego stradanje malog čovjeka i sudbinu domovine.",
+    "B": "Ona nije svjesni žrtvenik; strada slučajno, ne svjesnom žrtvom.",
+    "C": "Nije klasična tragička junakinja u sukobu dobra i zla, nego simbol nesretne hrvatske sudbine."
+  },
+  "2010_ljeto_B__54": {
+    "A": "Pepica ne gleda na Bakačevu ulicu, nego na kip bana Jelačića.",
+    "B": "Pogled nije usmjeren na nebo, nego na 'sionog Bana' na trgu.",
+    "D": "Ne gleda u supruga Jožkeca, nego molitveno na Jelačićev kip."
+  },
+  "2010_ljeto_B__55": {
+    "A": "Posljednja misao nije čežnja za rodnim selom, nego sjećanje vezano uz Jelačića i preporod.",
+    "B": "Nije riječ o spoznaji napuštenosti, nego o sjećanju na narodni preporod uz banov lik.",
+    "D": "Nije posrijedi odluka o dobru djelu, nego prisjećanje na preporodno doba i bana."
+  },
+  "2010_ljeto_B__56": {
+    "A": "Djelo nije pustolovno; nema avanturističke radnje, nego satirični prikaz domovine.",
+    "B": "Iako prikazuje supružnike, tema nije obiteljska, nego sudbina domovine.",
+    "C": "Premda ima povijesni okvir, težište je na domoljubnoj satiri o stanju Hrvatske."
+  },
+  "2010_ljeto_B__57": {
+    "A": "Preradović i Gaj pripadaju ilirizmu/romantizmu (sredina 19. st.), a ne moderni.",
+    "C": "Ujević i Cesarić djeluju nakon Matoša (međuratno razdoblje), a ne u njegovoj generaciji.",
+    "D": "Mihalić i Pupačić pripadaju drugoj polovici 20. st. (druga moderna), a ne Matoševoj moderni."
+  },
+  "2010_ljeto_B__58": {
+    "B": "Notturno je intimna, ugođajna pjesma o noći, bez domoljubno-političke tematike Kipa domovine.",
+    "C": "Utjeha kose je ljubavna/refleksivna pjesma o prolaznosti, ne domoljubna.",
+    "D": "Jesenje veče je pejzažno-impresionistička pjesma, bez političke tematike djela."
+  },
+  "2010_ljeto_B__59": {
+    "A": "Kajkavski 'kip' ne znači stanje.",
+    "C": "'Kip' ne znači sjećanje.",
+    "D": "'Kip' u kajkavskom nije apstraktni simbol, nego konkretno slika/prikaz."
+  },
+  "2010_ljeto_B__60": {
+    "A": "'Baciti u kljun' nije ustaljeni frazem s prenesenim cjelovitim značenjem.",
+    "B": "'Poštovani Pogačić' je obična atributna sintagma, a ne frazem.",
+    "D": "'Ujezerila na tronošku' je slikoviti autorski izraz, ali ne ustaljeni frazem hrvatskoga jezika."
+  },
+  "2010_ljeto_B__61": {
+    "A": "Znanstveni stil teži objektivnosti i terminologiji, a ovdje je izraz ekspresivan i ironičan.",
+    "C": "Administrativni stil obilježavaju klišeji i formalnost, što ne odgovara živom reportažnom tonu rečenice."
+  },
+  "2010_ljeto_B__62": {
+    "A": "Historizmi imenuju nestale pojave (npr. povijesne ustanove), a 'onijeh' je samo zastarjeli gramatički oblik.",
+    "C": "Lokalizmi su mjesno ograničene riječi, a 'onijeh' je starinski oblik, ne mjesna posebnost.",
+    "D": "Egzotizmi su riječi iz stranih, dalekih kultura, dok je 'onijeh' domaći arhaični oblik."
+  },
+  "2010_ljeto_B__63": {
+    "B": "'Zarudi' ne znači zvuk (topot), nego pojavu crvene boje konjice.",
+    "C": "Konjica ne odlazi, nego se tek pojavljuje; 'zarudi' označava pojavljivanje, ne odlazak.",
+    "D": "'Zarudi' ne govori o plamenu, nego o crvenome rumenilu, dakle pojavi konjice u crvenom."
+  },
+  "2010_ljeto_B__64": {
+    "B": "'Za tili časak' ne znači sporo, nego upravo suprotno, vrlo brzo.",
+    "C": "Izraz ne znači 'malo prije'; označava brzinu, a ne prošli trenutak.",
+    "D": "Ne znači 'prije svega', nego 'za tren, vrlo brzo'."
+  },
+  "2010_ljeto_B__65": {
+    "B": "'Mniti' nije pravilan infinitiv ovoga glagola; standardno je 'mnijeti'.",
+    "C": "'Mnijevati' je nepostojeći oblik za ovaj glagol.",
+    "D": "'Mnijuti' nije ispravan infinitiv; glagol glasi 'mnijeti'."
+  },
+  "2010_ljeto_B__66": {
+    "A": "'Nejdem' je također dijalektni (kajkavski) oblik, a ne suvremeni standardni 'ne idem'.",
+    "B": "'Ne budem' mijenja glagolski oblik i značenje izvornika ('ne idem').",
+    "D": "'Ne ću' znači odbijanje volje (futur), a izvorno 'nedem' znači 'ne idem'."
+  },
+  "2010_ljeto_B__67": {
+    "A": "Balzac jest u popisu autora i njegovo je djelo Ljudska komedija, a Božanstvenu nije napisao on.",
+    "B": "Proust jest u popisu i njegovo je djelo upravo U traganju za izgubljenim vremenom.",
+    "D": "Tolstoj jest u popisu i Ana Karenjina jest njegovo djelo; autor koji nedostaje je Dante."
+  },
+  "2010_ljeto_B__68": {
+    "B": "'Najednostavnije' je pogrešno; pri dodavanju 'naj-' na riječ koja počinje s 'j' pišu se dva 'j': najjednostavnije."
+  },
+  "2010_ljeto_B__69": {
+    "B": "'Kraće' bi bio prilog ili srednji rod, a imenica 'trajanja' (ž. r. mn.) traži oblik 'kraća'."
+  },
+  "2010_ljeto_B__70": {
+    "B": "'Ugradjen' je pogrešno; skup 'dj' u trpnom pridjevu daje 'đ', pa je pravilno 'ugrađen'."
+  },
+  "2010_ljeto_B__71": {
+    "B": "Malo slovo 'jačina' nije ispravno na početku rečenice; početak rečenice piše se velikim slovom."
+  },
+  "2010_ljeto_B__72": {
+    "B": "Druga je inačica istovjetna pravilnoj ('izvođenja') te ne predstavlja pravopisno različitu, pogrešnu mogućnost."
+  },
+  "2010_ljeto_B__73": {
+    "B": "'Dijela' je genitiv imenice 'dio', a ovdje je riječ o 'djelu' (uradku), pa je pogrešno."
+  },
+  "2010_ljeto_B__74": {
+    "A": "'Melodia' je neprilagođeni talijanski oblik; u hrvatskome se piše s 'j': melodija."
+  },
+  "2010_ljeto_B__75": {
+    "B": "'Sljed' (kratki slog) ne odgovara značenju; za 'redoslijed, niz' pravilno je 'slijed' (dugi slog, ije)."
+  },
+  "2010_ljeto_B__76": {
+    "B": "'Cijelina' ne postoji; imenica od 'cijel' u kratkom slogu glasi 'cjelina'."
+  },
+  "2010_ljeto_B__77": {
+    "B": "'Talijanskoga' velikim slovom je pogrešno; posvojni pridjevi od naziva naroda pišu se malim slovom."
+  }
+}

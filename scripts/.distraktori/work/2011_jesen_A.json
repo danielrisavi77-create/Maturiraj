@@ -1,0 +1,976 @@
+{
+  "examKey": "2011_jesen_A",
+  "label": "Jesenski rok — Viša razina (A)",
+  "total": 76,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu književnome rodu pripada polazni tekst?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "A",
+      "exp": "Slobodni stih, lirski subjekt, bez narativne radnje = lirika.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 2,
+      "q": "Kojom je sintagmom iskazana metafora za prestanak umjetničkoga stvaranja?",
+      "opts": [
+        "A. ugasiti svijeću",
+        "B. brojiti zvijezde",
+        "C. saditi luk",
+        "D. baviti se proročanstvima"
+      ],
+      "correct": "A",
+      "exp": "'Ugasi svijeću' = prestani stvarati = metafora za gašenje stvaralačke vatre.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 3,
+      "q": "Kako Mihalić prikazuje majstora?",
+      "opts": [
+        "A. kao vještoga vrtlara i zvjezdoznanca",
+        "B. kao klauna i razumnoga čovjeka",
+        "C. kao sanjara i buntovnika",
+        "D. kao zanatliju koji se čudi svijetu"
+      ],
+      "correct": "D",
+      "exp": "'Oči pune čuđenja' + 'takav je tvoj zanat' = zanatlija koji se čudi = D.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 4,
+      "q": "Što je temeljni zahtjev majstorova umijeća?",
+      "opts": [
+        "A. Mora izreći sve što vidi i zna.",
+        "B. Mora se smijati i kad mu se ne smije.",
+        "C. Mora živjeti u iluziji i tražiti izlaz u sjećanjima.",
+        "D. Mora opraštati svima i oplakivati njihove grijehe."
+      ],
+      "correct": "A",
+      "exp": "'Takav je tvoj zanat: ništa ne smiješ prešutjeti.' = mora izreći sve.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 5,
+      "q": "Koja je tema polaznoga teksta?",
+      "opts": [
+        "A. pjesnik u diktatorskome vremenu",
+        "B. sjećanje na pjesnikovu mladost",
+        "C. težnja za ugodnim životom",
+        "D. usamljeni pojedinac u otuđenome svijetu"
+      ],
+      "correct": "A",
+      "exp": "'Ozbiljna su vremena', 'neposlušne riječi mogle bi pregristi uzice' = pjesnik u diktatorskome vremenu.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 6,
+      "q": "Koja je stilska figura uporabljena u sintagmi 'uzmeš pero'?",
+      "opts": [
+        "A. ironija",
+        "B. oksimoron",
+        "C. simbol",
+        "D. metonimija"
+      ],
+      "correct": "D",
+      "exp": "'Pero' = instrument pisanja, označava čitavo pisanje/stvaranje = metonimija.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 7,
+      "q": "Kojoj tematici pripada polazni tekst?",
+      "opts": [
+        "A. pejzažnoj",
+        "B. misaonoj",
+        "C. socijalnoj",
+        "D. ljubavnoj"
+      ],
+      "correct": "B",
+      "exp": "Razmišljanje o ulozi pjesnika i slobodi govora = misaona tematika.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 8,
+      "q": "Kakvu vrstu ljudi simboliziraju klaunovi?",
+      "opts": [
+        "A. one koji glume da ne vide",
+        "B. one koji samo zabavljaju ljude",
+        "C. one koji tragično gledaju život",
+        "D. one koji optimistično gledaju život"
+      ],
+      "correct": "A",
+      "exp": "'Plaču kad im se smije i smiju se kad im plač razara lice' = glume osjećaje koje ne osjećaju = oni koji glume da ne vide.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 9,
+      "q": "U kojemu je padežu podcrtana zamjenica u sljedećoj rečenici?\n'... i smiju se kad im plač razara lice.'",
+      "opts": [
+        "A. u dativu",
+        "B. u akuzativu",
+        "C. u lokativu",
+        "D. u instrumentalu"
+      ],
+      "correct": "A",
+      "exp": "'Im' = klitička forma zamjenice 'oni' u dativu (kome? = njima/im).",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 10,
+      "q": "Koji pisac svoje djelo završava uputom da treba obrađivati svoj vrt?",
+      "opts": [
+        "A. Balzac",
+        "B. Cervantes",
+        "C. Dante",
+        "D. Voltaire"
+      ],
+      "correct": "D",
+      "exp": "Voltaire, Kandid: 'Il faut cultiver notre jardin' = Voltaire."
+    },
+    {
+      "id": 11,
+      "q": "Čiji motiv prepoznajete u sintagmi 'oči pune čuđenja'?",
+      "opts": [
+        "A. Kranjčevićev",
+        "B. Matošev",
+        "C. Šimićev",
+        "D. Tadijanovićev"
+      ],
+      "correct": "C",
+      "exp": "'Pjesnici su čuđenje u svijetu' (Šimić, Pjesnici) = Šimićev motiv čuđenja.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 12,
+      "q": "U kojemu je padežu podcrtana riječ u sljedećem primjeru?\n'Majstore, ugasi svijeću,...'",
+      "opts": [
+        "A. u nominativu",
+        "B. u dativu",
+        "C. u akuzativu",
+        "D. u vokativu"
+      ],
+      "correct": "D",
+      "exp": "'Majstore' = dozivanje = vokativ.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 13,
+      "q": "Prema kojemu je načelu napisan zarez u sljedećem stihu?\n'Sadi u vrtu luk, cijepaj drva, pospremaj tavan.'",
+      "opts": [
+        "A. nabrajanja",
+        "B. inverzije",
+        "C. suprotnosti",
+        "D. vokativnosti"
+      ],
+      "correct": "A",
+      "exp": "Tri uzastopna imperativa = nabrajanje = zarez po načelu nabrajanja.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 14,
+      "q": "U kojemu je obliku podcrtani glagol?\n'Majstore, ugasi svijeću,...'",
+      "opts": [
+        "A. u prezentu",
+        "B. u imperativu",
+        "C. u infinitivu",
+        "D. u aoristu"
+      ],
+      "correct": "B",
+      "exp": "'Ugasi' = zapovijed, 2. l. jd. = imperativ.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 15,
+      "q": "Kojemu razdoblju hrvatske književnosti pripada Slavko Mihalić?",
+      "opts": [
+        "A. romantizmu",
+        "B. realizmu",
+        "C. moderni",
+        "D. drugoj moderni"
+      ],
+      "correct": "D",
+      "exp": "Slavko Mihalić (1928.–2007.) = postratna hrvatska lirika = druga moderna."
+    },
+    {
+      "id": 16,
+      "q": "U kojemu su leksičko-semantičkome odnosu leksemi 'pèro' i 'Péro'?",
+      "opts": [
+        "A. u sinonimskome",
+        "B. u antonimskome",
+        "C. u homonimskome",
+        "D. u hiperonimskome"
+      ],
+      "correct": "C",
+      "exp": "'Pèro' (instrument pisanja) i 'Péro' (ime) = isti zapis, različito značenje = homonimi.",
+      "ctx": "Slavko Mihalić, Majstore, ugasi svijeću\n\nMajstore, ugasi svijeću, došla su ozbiljna vremena.\nRadije noću broji zvijezde, uzdiši za mladošću.\nTvoje neposlušne riječi mogle bi pregristi uzice.\nSadi u vrtu luk, cijepaj drva, pospremaj tavan.\nBolje da nitko ne vidi tvoje oči pune čuđenja.\nTakav je tvoj zanat: ništa ne smiješ prešutjeti.\nNe uzmogneš li izdržati i jedne noći opet uzmeš pero,\nmajstore, budi razuman, ne bavi se proročanstvima.\nPokušaj zapisati imena zvijezda.\nOzbiljna su vremena, nikome se ništa ne oprašta.\nSamo klauni znadu kako se možeš izvući:\nplaču kad im se smije i smiju se kad im plač\nrazara lice.\n\nSlavko Mihalić"
+    },
+    {
+      "id": 17,
+      "q": "Što je Dekameron?",
+      "opts": [
+        "A. zbirka pisama",
+        "B. zbirka bajki",
+        "C. ciklus viteških romana",
+        "D. zbirka novela"
+      ],
+      "correct": "D",
+      "exp": "Dekameron = 100 novela koje priča 10 mladih Firentinaca za 10 dana.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 18,
+      "q": "Kako glasi prijevod naslova Dekameron?",
+      "opts": [
+        "A. sretna ljubav",
+        "B. deset dana",
+        "C. sto zgoda",
+        "D. ispovijest duše"
+      ],
+      "correct": "B",
+      "exp": "Dekameron (grč. deka = deset, hemeron = dan) = deset dana.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 19,
+      "q": "Što je Uvod u strukturi Dekamerona?",
+      "opts": [
+        "A. okvir",
+        "B. epilog",
+        "C. invokacija",
+        "D. epizoda"
+      ],
+      "correct": "A",
+      "exp": "Uvod = priča o kugi = okvir unutar kojega se odvija pripovijedanje novela.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 20,
+      "q": "Koji je epski postupak uporabljen u polaznome tekstu?",
+      "opts": [
+        "A. monolog",
+        "B. pripovijedanje",
+        "C. retardacija",
+        "D. retrospekcija"
+      ],
+      "correct": "B",
+      "exp": "Boccaccio pripovijeda o nastanku knjige = pripovijedanje.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 21,
+      "q": "Zašto Boccaccio svoj Uvod naziva užasnim početkom?",
+      "opts": [
+        "A. zato što nitko ne voli čitati početke",
+        "B. zato što su uključene jezovite priče",
+        "C. zato što opisuje epidemiju kuge",
+        "D. zato što je napisan nerazumljivo"
+      ],
+      "correct": "C",
+      "exp": "Uvod opisuje crnu kugu (1348.) = užasni početak.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 22,
+      "q": "Koja je stilska figura uporabljena u sljedećoj rečenici?\n'Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina,...'",
+      "opts": [
+        "A. personifikacija",
+        "B. hiperbola",
+        "C. oksimoron",
+        "D. poredba"
+      ],
+      "correct": "D",
+      "exp": "'Neka bude ono što je... uspon na planinu' = usporedba teškog uvoda s usponom = poredba.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 23,
+      "q": "Što zabrinjava Boccaccia u prvoj rečenici?",
+      "opts": [
+        "A. osjetljivost čitateljica",
+        "B. neukost pučanstva",
+        "C. strah od kuge",
+        "D. osobna popularnost"
+      ],
+      "correct": "A",
+      "exp": "'Ljupke gospe... po naravi srca milostiva... početak biti težak i mučan' = brine ga osjetljivost čitateljica.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 24,
+      "q": "Što Boccaccio izriče sljedećom rečenicom?\n'Poslije ove kratke muke… slijedi ubrzo naslada i užitak,...'",
+      "opts": [
+        "A. Firentinci će nakon pomora prirediti slavlje.",
+        "B. Nakon teškoga uvoda slijedi zabavno štivo.",
+        "C. Nagrada za čestit život rajska je slava.",
+        "D. Raskalašeni život vodi u paklene muke."
+      ],
+      "correct": "B",
+      "exp": "Kratka muka (uvod o kugi) → naslada (novele) = B.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 25,
+      "q": "Zašto Boccaccio kaže da ne bi mogao bez ovog uvoda izložiti zašto se zbilo ono o čemu će gospe čitati?",
+      "opts": [
+        "A. Bio je običaj svakoj knjizi napisati uvod.",
+        "B. U uvodnome dijelu krije se zaplet radnje.",
+        "C. Važno je da ugodi gospama kratkim uvodom.",
+        "D. U uvodu je opisan povod nastanku knjige."
+      ],
+      "correct": "D",
+      "exp": "Kuga = razlog okupljanja i pripovijedanja = povod nastanku knjige = D.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 26,
+      "q": "Tko u nastavku Dekamerona preuzima ulogu pripovjedača?",
+      "opts": [
+        "A. kraljevi dvorjani",
+        "B. djevojke i mladići",
+        "C. putujući glumci",
+        "D. trubaduri i golijardi"
+      ],
+      "correct": "B",
+      "exp": "10 mladih Firentinaca (7 djevojaka i 3 mladića) = djevojke i mladići.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 27,
+      "q": "S čime Boccaccio uspoređuje stvaralački čin u polaznome tekstu?",
+      "opts": [
+        "A. s putovanjem",
+        "B. s mukom",
+        "C. s kugom",
+        "D. s veseljem"
+      ],
+      "correct": "A",
+      "exp": "'Uspon na vrletnu planinu iza koje ugodna dolina' = stvaralački čin kao putovanje.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 28,
+      "q": "Na kojemu se leksičko-semantičkome odnosu temelji sljedeća rečenica?\n'... tako za svakom nevoljom slijedi veselje.'",
+      "opts": [
+        "A. na sinonimiji",
+        "B. na homonimiji",
+        "C. na antonimiji"
+      ],
+      "correct": "C",
+      "exp": "Nevolja ↔ veselje = suprotno značenje = antonimija.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 29,
+      "q": "Kojim je jezikom napisan Dekameron?",
+      "opts": [
+        "A. latinskim",
+        "B. francuskim",
+        "C. talijanskim",
+        "D. grčkim"
+      ],
+      "correct": "C",
+      "exp": "Boccaccio piše na toskanskom/talijanskom narodnom jeziku.",
+      "ctx": "Giovanni Boccaccio, Dekameron (Dan prvi — Uvod)\n\nKoliko god puta, ljupke gospe, premišljam o tom kako ste po naravi srca milostiva, toliko puta spoznajem da će po vašem sudu početak ovog djela biti težak i mučan, jer mu je na čelu upisano bolno sjećanje na minuli pomor i kugu, koju proklinje svatko tko je o njoj slušao ili je pak doživio.\n\nNo neću da vas od daljnjeg čitanja odvrati bojazan da će vas do konca ove knjige pratiti uzdasi i suze. Neka ovaj užasni početak bude ono što je za putnika uspon na vrletnu i strmu planinu iza koje se prostire krasna i ugodna dolina, toliko ugodnija koliko je naporniji bio uspon i slaz. I kao što se u dnu najveće radosti krije bol, tako za svakom nevoljom …"
+    },
+    {
+      "id": 30,
+      "q": "Koje je od navedenih djela zbirka novela?",
+      "opts": [
+        "A. Patnje mladog Werthera",
+        "B. Hrvatski bog Mars",
+        "C. U potrazi za izgubljenim vremenom",
+        "D. Planine"
+      ],
+      "correct": "B",
+      "exp": "Hrvatski bog Mars (Miroslav Krleža) = ciklus novela o Prvom svjetskom ratu."
+    },
+    {
+      "id": 31,
+      "q": "Koja dva pisca s Boccacciom čine trolist predrenesanse?",
+      "opts": [
+        "A. Cervantes i Shakespeare",
+        "B. Ovidije i Vergilije",
+        "C. Tasso i Ariosto",
+        "D. Dante i Petrarca"
+      ],
+      "correct": "D",
+      "exp": "Dante + Petrarca + Boccaccio = trojica velikana talijanskog trecenta."
+    },
+    {
+      "id": 32,
+      "q": "Kako se zove autor Posljednjih Stipančića?",
+      "opts": [
+        "A. Ante Kovačić",
+        "B. Josip Kozarac",
+        "C. Milan Begović",
+        "D. Vjenceslav Novak"
+      ],
+      "correct": "D",
+      "exp": "Posljednji Stipančići = roman Vjenceslava Novaka (1899.).",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 33,
+      "q": "U kojemu je književnome razdoblju napisan roman Posljednji Stipančići?",
+      "opts": [
+        "A. u klasicizmu",
+        "B. u romantizmu",
+        "C. u realizmu",
+        "D. u modernizmu"
+      ],
+      "correct": "C",
+      "exp": "Novak = hrvatski realist = realizam.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 34,
+      "q": "U koje se vrijeme događa radnja Posljednjih Stipančića?",
+      "opts": [
+        "A. u prvoj polovini 18. st.",
+        "B. u tridesetim godinama 19. st.",
+        "C. u prvim desetljećima 20. st.",
+        "D. u vrijeme Drugoga svjetskoga rata"
+      ],
+      "correct": "B",
+      "exp": "Posljednji Stipančići = propast patricijske obitelji u 19. st.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 35,
+      "q": "Kojom je stilskom figurom prikazano Lucijino strastveno čitanje romana?\n'..., već upravo gutala roman za romanom...'",
+      "opts": [
+        "A. poredbom",
+        "B. onomatopejom",
+        "C. metaforom",
+        "D. personifikacijom"
+      ],
+      "correct": "C",
+      "exp": "'Gutala roman' = čitanje prikazano kao gutanje = metafora.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 36,
+      "q": "Zašto Stipančić želi da Lucija nauči jezike?",
+      "opts": [
+        "A. Smatra da je obrazovanje važno za ženu.",
+        "B. Želi i sam obnoviti znanje jezika.",
+        "C. Izgubit će ugled ako mu kći ne zna jezike.",
+        "D. Namjerava Luciju dobro udati."
+      ],
+      "correct": "C",
+      "exp": "'bez toga bila bi nam na sramotu' = boji se za ugled = C.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 37,
+      "q": "Što o Valpurgi govori rečenica:\n'Valpurga je dašto, kao sve tako i to, odobrila mužu,...'",
+      "opts": [
+        "A. Sigurna je u sebe i svoje postupke.",
+        "B. Lukavo manipulira suprugom.",
+        "C. Nije zainteresirana za zbivanja u kući.",
+        "D. Potpuno je podložna suprugu."
+      ],
+      "correct": "D",
+      "exp": "'Kao i sve tako i to odobrila' = bez prigovora prihvaća sve = potpuno podložna suprugu.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 38,
+      "q": "Koja tvrdnja odgovara Stipančićevim nazorima o odgoju ženskoga djeteta?",
+      "opts": [
+        "A. Žena treba biti supruga i majka.",
+        "B. Žene treba odgojiti da budu ravnopravne muškarcima.",
+        "C. Obrazovanje ženu čini neovisnom.",
+        "D. Obrazovana žena može ugoditi mužu."
+      ],
+      "correct": "D",
+      "exp": "Jezici + povijest + kućanstvo = da ne bude sramota, da ugodi mužu i društvu = D.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 39,
+      "q": "U čemu Stipančić vidi opasnost za Lucijin odgoj?",
+      "opts": [
+        "A. u poznavanju jezika",
+        "B. u romanima",
+        "C. u majčinu utjecaju",
+        "D. u druženju s vršnjakinjama"
+      ],
+      "correct": "B",
+      "exp": "'roman nerazboritoj mladosti prvi korak u moralnu propast' = romani su opasnost.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 40,
+      "q": "Zašto Stipančić Luciji zabranjuje čitati beletristiku?",
+      "opts": [
+        "A. Ima i pametnijega posla u kući.",
+        "B. Poželjet će život koji nije stvaran.",
+        "C. Samo povijest može biti učiteljica života.",
+        "D. Beletristika je samo za neobrazovane."
+      ],
+      "correct": "B",
+      "exp": "'uvrte si... koješta u glavu što ne može biti' = nestvarni ideali = B.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 41,
+      "q": "Koji je tip žene Lucijin lik?",
+      "opts": [
+        "A. patnica",
+        "B. osvetnica",
+        "C. zavodnica",
+        "D. spletkarica"
+      ],
+      "correct": "A",
+      "exp": "Lucija = bolesna, zarobljena, nesretna, čeka = patnica.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 42,
+      "q": "U kojoj rečenici prepoznajete frazem koji znači biti suosjećajan?",
+      "opts": [
+        "A. ... ta nju sirotu nijesmo još ništa dali učiti.",
+        "B. ... ali nije imala srca da tu nasladu Luciji uskrati.",
+        "C. ... znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu.",
+        "D. ... nijesu mu dapače bila u volji ni njezina poznanstva..."
+      ],
+      "correct": "B",
+      "exp": "'Nije imala srca' = frazem koji znači imati/nemati suosjećanja.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 43,
+      "q": "Prema kojemu su načelu napisani zarezi?\n'Valpurga je dašto, kao i sve tako i to, odobrila mužu...'",
+      "opts": [
+        "A. vokativnosti",
+        "B. suprotnosti",
+        "C. inverzije",
+        "D. umetanja"
+      ],
+      "correct": "D",
+      "exp": "'kao i sve tako i to' = umetnuta rečenica = zarezi po načelu umetanja.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 44,
+      "q": "Koja je riječ sinonim riječi 'okretno'?\n'Za godinu dana čitala je i govorila Lucija okretno u oba jezika,...'",
+      "opts": [
+        "A. smjerno",
+        "B. zainteresirano",
+        "C. sigurno",
+        "D. vješto"
+      ],
+      "correct": "D",
+      "exp": "'Okretno' = vješto, spretno = sinonim je 'vješto'.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 45,
+      "q": "Kako glasi vidski parnjak glagola 'uskratiti'?",
+      "opts": [
+        "A. uskraćivati",
+        "B. skraćivati",
+        "C. skratiti",
+        "D. pokraćivati"
+      ],
+      "correct": "A",
+      "exp": "'Uskratiti' (svršeni) → 'uskraćivati' (nesvršeni) = vidski parnjak.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 46,
+      "q": "Kojoj vrsti leksema pripada riječ 'uzgoj' u značenju 'odgoj'?",
+      "opts": [
+        "A. pomodnicama",
+        "B. arhaizmima",
+        "C. neologizmima",
+        "D. oživljenicama"
+      ],
+      "correct": "D",
+      "exp": "'Uzgoj' u značenju 'odgoj' = stara zastarjela riječ koja se ponovo uvodi = oživljenica.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 47,
+      "q": "Kojim se sinonimnim izrazom može zamijeniti 'krišom'?\n'Lucija naime nije krišom od oca samo čitala,...'",
+      "opts": [
+        "A. bježeći",
+        "B. strahujući",
+        "C. ozbiljnije",
+        "D. kradom"
+      ],
+      "correct": "D",
+      "exp": "'Krišom' = tajno, skriveno = sinonim je 'kradom'.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 48,
+      "q": "Koliko ima surečenica u sljedećoj rečenici?\n'Ženske to ne umiju čitati – kako valja; uvrte si, osobito ovako mlade, koješta u glavu što ne može biti, a često je takav roman nerazboritoj mladosti prvi korak u moralnu propast.'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "D",
+      "exp": "5 surečenica: 1.'Ženske to ne umiju čitati kako valja' 2.'uvrte si koješta u glavu' 3.'što ne može biti' 4.'a često je takav roman... prvi korak' + 5. propast = 5.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 49,
+      "q": "Koji je glagolski oblik podcrtan?\n'Ona se stidjela svoga neznanja...'",
+      "opts": [
+        "A. infinitiv",
+        "B. prezent",
+        "C. perfekt",
+        "D. kondicional prvi"
+      ],
+      "correct": "C",
+      "exp": "'Stidjela (se)' = glagolski pridjev radni = perfekt.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucijin odgoj)\n\nZa njezin uzgoj nije otac ni pitao, nijesu mu dapače bila u volji ni njezina poznanstva s nekim vršnjakinjama iz odličnih obitelji; (...)\nIstom kad je Lucija jednom pobolijevala, znao bi doći otac k njezinom krevetu i pogladiti je dapače po licu. Poslije bolesti upitao je Luciju slučajno talijanski je li ozdravila – a ona oborila svoje lijepe oči i pocrvenjela u licu. Ona se stidjela svoga neznanja te je mjesto nje odgovorila Valpurga:\n— Ona ne zna talijanski, ta nju sirotu nijesmo još ništa dali učiti.\n— Jezike mora znati, bezuvjetno mora naučiti njemački i talijanski, bez toga bila bi nam na sramotu među naobraženim svijetom…"
+    },
+    {
+      "id": 50,
+      "q": "Što Leone iskazuje kada kaže kako mu je drago da nije Glembay?",
+      "opts": [
+        "A. ponos na svoje podrijetlo",
+        "B. odricanje od nasljedstva",
+        "C. sramotu zbog bogatstva",
+        "D. netrpeljivost prema ocu"
+      ],
+      "correct": "A",
+      "exp": "Leone je Danielli po majci = ponosi se aristokratskim podrijetlom nasuprot parvenu Glembayu.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 51,
+      "q": "Tko je barunica o kojoj govore Glembay i Leone?",
+      "opts": [
+        "A. Glembayeva druga žena",
+        "B. Leoneova prijateljica",
+        "C. Leoneova majka",
+        "D. Glembayeva ljubavnica"
+      ],
+      "correct": "A",
+      "exp": "Barunica Castelli = Glembayeva druga žena.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 52,
+      "q": "S kakvim se osjećajima Glembay obraća Leoneu u prvoj replici?",
+      "opts": [
+        "A. s grižnjom savjesti",
+        "B. s ogorčenošću",
+        "C. sa strahom",
+        "D. sa srdžbom"
+      ],
+      "correct": "B",
+      "exp": "'Gorko' + 'zamišljeno i rezignirano' = ogorčenost i rezignacija.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 53,
+      "q": "Kakav je odnos oca i sina u polaznome tekstu?",
+      "opts": [
+        "A. potpuno prijateljski",
+        "B. ispunjen podrškom",
+        "C. pun nerazumijevanja",
+        "D. suparnički"
+      ],
+      "correct": "C",
+      "exp": "Otac i sin suprotstavljaju se u svim pogledima = pun nerazumijevanja.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 54,
+      "q": "Što Glembay iskazuje rečenicom 'A ja, tko sam ja?'",
+      "opts": [
+        "A. spoznaju da je uvijek bio manje vrijedan od Leoneove majke",
+        "B. želi naglasiti veličinu svojega uspjeha i uspona",
+        "C. svijest da je izgubio vjeru u sebe",
+        "D. žalost zbog činjenice da nije Leoneov otac"
+      ],
+      "correct": "B",
+      "exp": "'Nekakav međimurski parveni' = ironično naglašava vlastiti uspon = B.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 55,
+      "q": "U kojemu su leksičko-semantičkome odnosu prezimena Glembajevi i Daniellijevi u tekstu?",
+      "opts": [
+        "A. općejezični sinonimi",
+        "B. kontekstualni sinonimi",
+        "C. općejezični antonimi",
+        "D. kontekstualni antonimi"
+      ],
+      "correct": "D",
+      "exp": "Glembajevi = parveni, Daniellijevi = stara aristokracija = suprotni u kontekstu = kontekstualni antonimi.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 56,
+      "q": "Što Glembay želi da Leone porekne jer nema dovoljno 'juridičkih' razloga?",
+      "opts": [
+        "A. vijest da će tvrtka Glembay propasti",
+        "B. tvrdnju da je kriv za majčinu smrt",
+        "C. podatak o njihovu podrijetlu",
+        "D. izjavu da njegova žena ima ljubavnika"
+      ],
+      "correct": "D",
+      "exp": "'Juridičke konzekvencije' = Leonova izjava o barunici i popu = žena ima ljubavnika = D.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 57,
+      "q": "Kojim tonom Glembay izriče rečenicu:\n'Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna...'",
+      "opts": [
+        "A. sentimentalnim",
+        "B. ironičnim",
+        "C. patetičnim",
+        "D. ushićenim"
+      ],
+      "correct": "B",
+      "exp": "Glembay hvali Leoneovo podrijetlo na način koji ga zapravo ismijava = ironičan ton.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 58,
+      "q": "Čime se bavi Leone Glembay?",
+      "opts": [
+        "A. slikarstvom",
+        "B. glazbom",
+        "C. književnošću",
+        "D. novinarstvom"
+      ],
+      "correct": "A",
+      "exp": "Leone Glembay = slikar koji se vratio iz inozemstva."
+    },
+    {
+      "id": 59,
+      "q": "Kada je napisano djelo Gospoda Glembajevi?",
+      "opts": [
+        "A. u prvoj polovini 19. st.",
+        "B. krajem 19. st.",
+        "C. u prvoj polovini 20. st.",
+        "D. krajem 20. st."
+      ],
+      "correct": "C",
+      "exp": "Gospoda Glembajevi (Krleža) = 1928. = u prvoj polovini 20. st."
+    },
+    {
+      "id": 60,
+      "q": "Koji naslovi s Gospodom Glembajevima čine trilogiju?",
+      "opts": [
+        "A. Vučjak i Galicija",
+        "B. Kraljevo i Legenda",
+        "C. Leda i U agoniji",
+        "D. Aretej i Michelangelo Buonarotti"
+      ],
+      "correct": "C",
+      "exp": "Glembajeva trilogija = Gospoda Glembajevi + U agoniji + Leda."
+    },
+    {
+      "id": 61,
+      "q": "Kako se naziva dio polaznoga teksta otisnut kosim slovima?",
+      "opts": [
+        "A. prolog",
+        "B. epilog",
+        "C. didaskalija",
+        "D. replika"
+      ],
+      "correct": "C",
+      "exp": "'GLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina...' = uputa redatelju = didaskalija.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 62,
+      "q": "U kojemu je padežu podcrtana riječ?\n'Ja sam eto na odlasku,...'",
+      "opts": [
+        "A. u genitivu",
+        "B. u dativu",
+        "C. u akuzativu",
+        "D. u lokativu"
+      ],
+      "correct": "D",
+      "exp": "'Na odlasku' = prijedlog 'na' + lokativ = lokativ.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 63,
+      "q": "Koji je glagolski oblik podcrtan?\n'... ti bi htio spasiti formalnu, juridičku stranu pitanja.'",
+      "opts": [
+        "A. pluskvamperfekt",
+        "B. kondicional prvi",
+        "C. futur drugi",
+        "D. kondicional drugi"
+      ],
+      "correct": "B",
+      "exp": "'Bi + htio' = kondicional prvi.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 64,
+      "q": "Koja je uloga dvotočja?\n'Ja znam: ti bi htio spasiti formalnu, juridičku stranu pitanja.'",
+      "opts": [
+        "A. nabrajanje",
+        "B. navođenje tuđih misli",
+        "C. objašnjenje",
+        "D. naglašavanje osjećaja"
+      ],
+      "correct": "C",
+      "exp": "'Ja znam:' → uvodi objašnjenje što se zna = dvotočje za objašnjenje.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 65,
+      "q": "Što znači riječ 'juridički'?",
+      "opts": [
+        "A. znanstveni",
+        "B. pravni",
+        "C. napadački",
+        "D. pomirbeni"
+      ],
+      "correct": "B",
+      "exp": "'Juridički' = od lat. juridicus = koji se tiče prava = pravni.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i Glembay)\n\nGLEMBAY gleda ga dugo bez riječi. Šutnja. Grmljavina, ali slabija. Vjetar. Gorko: Da, to si ti! Pravi Danielli!\nLEONE: Meni je lično drago da nisam Glembay!\nGLEMBAY zamišljeno i rezignirano: Da, da, uvijek je tako bilo! Kad god sam ja pristupio nekome od vas, u bilo čemu, s bilo kakvom molbom ili namjerom, uvijek, da, uvijek se dogodilo jedno te jedno: uvijek se preda mnom javila ova vaša Danielli-grimasa, s jednim višim prezirom za sve što niste vi! Gospoda! Gospoda Danielli, venecijanski grandi! A ja, tko sam ja? Nekakav međimurski parveni*. Kako ja smijem doći na tu ideju da meni ne bude jedna žena indiferentna, kad je za teb…"
+    },
+    {
+      "id": 66,
+      "q": "Koji je točan raspored (književnik → smjer)?",
+      "opts": [
+        "A. 1C, 2B, 3D, 4A, 5F",
+        "B. 1C, 2B, 3E, 4A, 5F",
+        "C. 1E, 2B, 3D, 4A, 5F",
+        "D. 1C, 2A, 3D, 4B, 5F"
+      ],
+      "correct": "A",
+      "exp": "Breton=nadrealizam(C), Marinetti=futurizam(B), Jesenjin=imažinizam(D), Tzara=dadaizam(A), Camus=egzistencijalizam(F). Ekspresionizam(E) ostaje nepovezan.",
+      "ctx": "Književnicima pridružite smjerove kojima pripadaju (jedno slovo ne može se povezati):\n\nKnjiževnici:\n  1. André Breton\n  2. Filippo Tommaso Marinetti\n  3. Sergej A. Jesenjin\n  4. Tristan Tzara\n  5. Albert Camus\n\nSmjerovi:\n  A. dadaizam\n  B. futurizam\n  C. nadrealizam\n  D. imažinizam\n  E. ekspresionizam\n  F. egzistencijalizam"
+    },
+    {
+      "id": 67,
+      "q": "Odaberite točan oblik — naziv parka:\n'Na prostoru Karlovačke i Ličko-senjske županije smjestio se Nacionalni park ___'",
+      "opts": [
+        "A. Plitvička jezera",
+        "B. Plitvička Jezera",
+        "C. plitvička jezera",
+        "D. Plitvice"
+      ],
+      "correct": "A",
+      "exp": "'Plitvička jezera' = Plitvička (veliko) + jezera (malo) = pravilno."
+    },
+    {
+      "id": 68,
+      "q": "Odaberite točan oblik datuma:\n'Proglašen je nacionalnim parkom ___ godine'",
+      "opts": [
+        "A. 8. travanj 1949.",
+        "B. 8. travnja 1949.",
+        "C. 8. travnja, 1949.",
+        "D. osmog travnja 1949."
+      ],
+      "correct": "B",
+      "exp": "Datum u rečenici: redni broj + genitiv = '8. travnja 1949.'"
+    },
+    {
+      "id": 69,
+      "q": "Odaberite točan oblik:\n'Unesco ga je proglasio ___ prirodnom baštinom'\n— svjetskom ili svijetskom?",
+      "opts": [
+        "A. svjetskom",
+        "B. svijetskom",
+        "C. svjetljom",
+        "D. svjetovnom"
+      ],
+      "correct": "A",
+      "exp": "'Svjetski' (od 'svijet') = kratki jat = 'svjetskom' (ne 'svijetskom')."
+    },
+    {
+      "id": 70,
+      "q": "Odaberite točan oblik broja:\n'...sastoji se od ___ jezera'\n— šesnaest ili šesnajest?",
+      "opts": [
+        "A. šesnaest",
+        "B. šesnajest",
+        "C. šesnajs",
+        "D. šesnaeste"
+      ],
+      "correct": "A",
+      "exp": "'Šesnaest' = pravilno (šesnajest je razgovorni oblik)."
+    },
+    {
+      "id": 71,
+      "q": "Odaberite točan oblik glagola:\n'Jezera se stepenasto ___ i silaze jedno u drugo'\n— prelijevaju ili preljevaju?",
+      "opts": [
+        "A. prelijevaju",
+        "B. preljevaju",
+        "C. prelijevu",
+        "D. prelijevaju"
+      ],
+      "correct": "A",
+      "exp": "'Prelijevati' (dugi jat = ije) → 'prelijevaju' = pravilno."
+    },
+    {
+      "id": 72,
+      "q": "Odaberite točan zapis:\n'Najveće je ___'\n— Prošćansko jezero ili prošćansko jezero?",
+      "opts": [
+        "A. Prošćansko jezero",
+        "B. prošćansko jezero",
+        "C. Proščansko jezero",
+        "D. prošćansko Jezero"
+      ],
+      "correct": "A",
+      "exp": "'Prošćansko jezero' = vlastito ime = početno veliko slovo."
+    },
+    {
+      "id": 73,
+      "q": "Odaberite točan oblik:\n'...u tradicionalnim ličkim ___'\n— specialitetima ili specijalitetima?",
+      "opts": [
+        "A. specialitetima",
+        "B. specijalitetima",
+        "C. specijalistima",
+        "D. specifitetima"
+      ],
+      "correct": "B",
+      "exp": "'Specijalitet' → 'specijalitetima' = pravilno (ne 'specialitet')."
+    },
+    {
+      "id": 74,
+      "q": "Odaberite točan oblik:\n'Životinjski svijet čine i brojni ___'\n— Endemi ili endemi?",
+      "opts": [
+        "A. Endemi",
+        "B. endemi",
+        "C. endemiti",
+        "D. endeme"
+      ],
+      "correct": "B",
+      "exp": "'Endemi' = vrsta organizama = obična imenica = malo slovo."
+    },
+    {
+      "id": 75,
+      "q": "Odaberite točan oblik broja:\n'Zabilježeno je ___ vrsta ptica'\n— sto dvadeset šest ili stodvadesetšest?",
+      "opts": [
+        "A. sto dvadeset šest",
+        "B. stodvadesetšest",
+        "C. 126",
+        "D. sto-dvadeset-šest"
+      ],
+      "correct": "A",
+      "exp": "Složeni višeznamenkasti brojevi pišu se odvojeno = 'sto dvadeset šest'."
+    },
+    {
+      "id": 76,
+      "q": "Odaberite točan oblik:\n'Svim posjetiteljima najdraža je aktivnost ___'\n— pješačenje ili pješaćenje?",
+      "opts": [
+        "A. pješačenje",
+        "B. pješaćenje",
+        "C. pješanje",
+        "D. pješakovanje"
+      ],
+      "correct": "A",
+      "exp": "'Pješačiti' → 'pješačenje' = pravilno (č, ne ć)."
+    }
+  ]
+}

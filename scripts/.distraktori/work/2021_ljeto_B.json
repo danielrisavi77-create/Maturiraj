@@ -1,0 +1,997 @@
+{
+  "examKey": "2021_ljeto_B",
+  "label": "Ljetni rok — Osnovna razina (B)",
+  "total": 80,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Koji je od sljedećih motiva naglašen gustativnim osjetilnim podražajem?",
+      "opts": [
+        "A. sunce",
+        "B. voda",
+        "C. svod",
+        "D. trava"
+      ],
+      "correct": "B",
+      "exp": "'hodajuć u želucu pljuska bljutava voda' — 'bljutava' je okus (gustativni podražaj). Bljutav = koji ima neugodna okusa bez soli/šećera. Voda je opisana gustativnim atributom.",
+      "ctx": "Ivan Goran Kovačić, Ljetno podne\n\nOsjećam sunce u mozgu, kako me pali i žeže,\na hodajuć u želucu pljuska bljutava voda.\nUdišem mirise vrele plastova sijena što leže\nispod blijedoplavog i vrućeg nebeskog svoda.\n\nGore se daleke plave, kroz lišće trešnji i lijeskâ\nplanduju ovce u kupu, klikće pastirka hitra,\nkljune ih po vuni mekoj, odleti do žarkog pijeska,\na vreli uzdah vrh žita stalno na nebu titra.\n\nGladuša suha se žuti. Žito pritisla omara,\na trava blijeda od suše runi se tek i gine.\nSjena je tanka i gdjegdje bljedilo umorno šara.\nNebo je vrelo sve bljeđe i kao bez visine.\n\nRuše se obrovi mirno. Tišina svuda se širi,\nkroz travu čuje se disaj i vlas se vidi plava,\na drenak prosiplje sjenu, …"
+    },
+    {
+      "id": 2,
+      "q": "U kojemu je od sljedećih primjera ostvarena sinestezija?",
+      "opts": [
+        "A. Udišem mirise vrele",
+        "B. Sjena je tanka",
+        "C. Gore se daleke plave,",
+        "D. Tišina svuda se širi,"
+      ],
+      "correct": "A",
+      "exp": "'Udišem mirise vrele' — sinestezija: 'vrele' (temperaturni/taktilni podražaj) opisuje 'mirise' (olfaktivni podražaj). Prenošenje jednog osjetilnog doživljaja na drugi = sinestezija.",
+      "ctx": "Ivan Goran Kovačić, Ljetno podne\n\nOsjećam sunce u mozgu, kako me pali i žeže,\na hodajuć u želucu pljuska bljutava voda.\nUdišem mirise vrele plastova sijena što leže\nispod blijedoplavog i vrućeg nebeskog svoda.\n\nGore se daleke plave, kroz lišće trešnji i lijeskâ\nplanduju ovce u kupu, klikće pastirka hitra,\nkljune ih po vuni mekoj, odleti do žarkog pijeska,\na vreli uzdah vrh žita stalno na nebu titra.\n\nGladuša suha se žuti. Žito pritisla omara,\na trava blijeda od suše runi se tek i gine.\nSjena je tanka i gdjegdje bljedilo umorno šara.\nNebo je vrelo sve bljeđe i kao bez visine.\n\nRuše se obrovi mirno. Tišina svuda se širi,\nkroz travu čuje se disaj i vlas se vidi plava,\na drenak prosiplje sjenu, …"
+    },
+    {
+      "id": 3,
+      "q": "U kojoj je strofi naglašen lirski subjekt?",
+      "opts": [
+        "A. u prvoj",
+        "B. u drugoj",
+        "C. u trećoj",
+        "D. u četvrtoj"
+      ],
+      "correct": "A",
+      "exp": "'Osjećam sunce u mozgu... Udišem mirise vrele' — prva strofa ima glagole u prvom licu jednine (osjećam, udišem) koji izravno označavaju lirski subjekt. U ostalim strofama dominira opis krajolika.",
+      "ctx": "Ivan Goran Kovačić, Ljetno podne\n\nOsjećam sunce u mozgu, kako me pali i žeže,\na hodajuć u želucu pljuska bljutava voda.\nUdišem mirise vrele plastova sijena što leže\nispod blijedoplavog i vrućeg nebeskog svoda.\n\nGore se daleke plave, kroz lišće trešnji i lijeskâ\nplanduju ovce u kupu, klikće pastirka hitra,\nkljune ih po vuni mekoj, odleti do žarkog pijeska,\na vreli uzdah vrh žita stalno na nebu titra.\n\nGladuša suha se žuti. Žito pritisla omara,\na trava blijeda od suše runi se tek i gine.\nSjena je tanka i gdjegdje bljedilo umorno šara.\nNebo je vrelo sve bljeđe i kao bez visine.\n\nRuše se obrovi mirno. Tišina svuda se širi,\nkroz travu čuje se disaj i vlas se vidi plava,\na drenak prosiplje sjenu, …"
+    },
+    {
+      "id": 4,
+      "q": "Zašto se Anđulina preselila u Bakar?",
+      "opts": [
+        "A. Čeznula je za time da se vrati u rodni kraj.",
+        "B. Svidjeli su joj se bakarska sredina i ljudi.",
+        "C. Željela se što prije ponovno udati.",
+        "D. Planirala je tamo kupiti vinograd."
+      ],
+      "correct": "B",
+      "exp": "'pokupi svoj imetak pa se preseli u Bakar gdje joj je osobito omilio veseli život kakov je o sajmu sastajala, i možda jaki, žustri i srčani Bakrani s kojimi je mnogu ugodnu uru provela' — svidjela joj se bakarska sredina i živi ljudi.",
+      "ctx": "Adolfo Veber Tkalčević, Nadala Bakarka (ulomak)\n\nAnđulina je rodom Mlečanka koja je često sa svojim mužem na trabakulu dolazila u Bakar da o Margaretinskom sajmu prodaje tanjire, zdjele, vrče i vrčiće od porculane. Bila je krasna kano anđeo, odakle joj je i ime poteklo; a da je morala i bogata biti, možeš slutiti po jakoj trgovini koju joj je muž po onih stranah a i drugdje po Italiji tjerao. Poslije muževe smrti koja ju je zatekla još u cvatućoj dobi, pokupi svoj imetak pa se preseli u Bakar gdje joj je osobito omilio veseli život kakov je o sajmu sastajala, i možda jaki, žustri i srčani Bakrani s kojimi je mnogu ugodnu uru provela. U Bakru otvori štacun za jestivo, ter su veliku prođu imal…"
+    },
+    {
+      "id": 5,
+      "q": "Koja je od sljedećih tvrdnja o Anđulininom prvom suprugu točna?",
+      "opts": [
+        "A. Zahtijevao je od Anđuline da trguje po sajmovima.",
+        "B. Zadnje dane svojega života proveo je u Bakru.",
+        "C. Umro je dok je Anđulina bila još mlada.",
+        "D. Posjedovao je tvornicu tjestenine."
+      ],
+      "correct": "C",
+      "exp": "'Poslije muževe smrti koja ju je zatekla još u cvatućoj dobi' — muž je umro dok je Anđulina bila u 'cvatućoj dobi' = još mlada. Nije navedeno da je umro u Bakru niti da je posjedovao tvornicu.",
+      "ctx": "Adolfo Veber Tkalčević, Nadala Bakarka (ulomak)\n\nAnđulina je rodom Mlečanka koja je često sa svojim mužem na trabakulu dolazila u Bakar da o Margaretinskom sajmu prodaje tanjire, zdjele, vrče i vrčiće od porculane. Bila je krasna kano anđeo, odakle joj je i ime poteklo; a da je morala i bogata biti, možeš slutiti po jakoj trgovini koju joj je muž po onih stranah a i drugdje po Italiji tjerao. Poslije muževe smrti koja ju je zatekla još u cvatućoj dobi, pokupi svoj imetak pa se preseli u Bakar gdje joj je osobito omilio veseli život kakov je o sajmu sastajala, i možda jaki, žustri i srčani Bakrani s kojimi je mnogu ugodnu uru provela. U Bakru otvori štacun za jestivo, ter su veliku prođu imal…"
+    },
+    {
+      "id": 6,
+      "q": "Koji od sljedećih primjera ukazuje na zaljubljivanje dvoje ljudi?",
+      "opts": [
+        "A. s kojimi je mnogu ugodnu uru provela",
+        "B. da u šali probave koji časak",
+        "C. postade ona ljubimicom mladićah",
+        "D. slika nađe priliku"
+      ],
+      "correct": "D",
+      "exp": "'Slika nađe priliku ter se Franjo priženi Anđulini' — 'slika nađe priliku' je metaforični (eufemistični) izraz za to kako se Franjo i Anđulina zaljubili i odlučili oženiti. 'Slika' = prigoda, situacija, Kupid.",
+      "ctx": "Adolfo Veber Tkalčević, Nadala Bakarka (ulomak)\n\nAnđulina je rodom Mlečanka koja je često sa svojim mužem na trabakulu dolazila u Bakar da o Margaretinskom sajmu prodaje tanjire, zdjele, vrče i vrčiće od porculane. Bila je krasna kano anđeo, odakle joj je i ime poteklo; a da je morala i bogata biti, možeš slutiti po jakoj trgovini koju joj je muž po onih stranah a i drugdje po Italiji tjerao. Poslije muževe smrti koja ju je zatekla još u cvatućoj dobi, pokupi svoj imetak pa se preseli u Bakar gdje joj je osobito omilio veseli život kakov je o sajmu sastajala, i možda jaki, žustri i srčani Bakrani s kojimi je mnogu ugodnu uru provela. U Bakru otvori štacun za jestivo, ter su veliku prođu imal…"
+    },
+    {
+      "id": 7,
+      "q": "Što je od sljedećega iskazano o odnosu kćeri prema Lizaveti?",
+      "opts": [
+        "A. Prividno poštuju njezino mišljenje.",
+        "B. Prihvaćaju njezine prijedloge.",
+        "C. Smatraju je ćudljivom.",
+        "D. Složno joj pomažu."
+      ],
+      "correct": "A",
+      "exp": "'neka njezina mišljenja, unatoč svemu vanjskomu poštovanju s kojim su ih primale kćeri, zapravo već odavno izgubila nekadašnji, neosporivi ugled' — kćeri vanjski pokazuju poštovanje, ali zapravo više ne prihvaćaju njena mišljenja = prividno poštovanje.",
+      "ctx": "Fjodor Mihajlovič Dostojevski, Idiot (ulomak)\n\nSve tri djevojke Jepančine bile su zdrave gospođice, jedre, divnih pleća, jakih grudi, snažnih ruku, gotovo kao u muškaraca, te su dabome, prema svojoj snazi i zdravlju, voljele katkad dobro se najesti, što nisu nikako niti htjele kriti. Mamica njihova, Lizaveta Prokofjevna, zamjerala je ponekad iskrenosti njihova apetita, ali kako su neka njezina mišljenja, unatoč svemu vanjskomu poštovanju s kojim su ih primale kćeri, zapravo već odavno izgubila nekadašnji, neosporivi ugled među njima, to je i generalica poradi svojega vlastita dostojanstva počela smatrati udobnijim ne prepirati se, nego popuštati. Istina, često nije htjela slušati i nije se p…"
+    },
+    {
+      "id": 8,
+      "q": "Koja je tvrdnja o Lizaveti točna?",
+      "opts": [
+        "A. Proračunata je u svojim postupcima.",
+        "B. Nepopustljiva je u svojim odlukama.",
+        "C. Ravnodušna je prema kćerima.",
+        "D. Nedosljedna je u odgoju."
+      ],
+      "correct": "D",
+      "exp": "'Istina, često nije htjela slušati i nije se pokoravala odlukama razbora; Lizaveta je Prokofjevna svake godine bivala sve hirovitija' — i sama popušta (udobnije joj je ne prepirati se), ali i inzistira. Nije dosljedna.",
+      "ctx": "Fjodor Mihajlovič Dostojevski, Idiot (ulomak)\n\nSve tri djevojke Jepančine bile su zdrave gospođice, jedre, divnih pleća, jakih grudi, snažnih ruku, gotovo kao u muškaraca, te su dabome, prema svojoj snazi i zdravlju, voljele katkad dobro se najesti, što nisu nikako niti htjele kriti. Mamica njihova, Lizaveta Prokofjevna, zamjerala je ponekad iskrenosti njihova apetita, ali kako su neka njezina mišljenja, unatoč svemu vanjskomu poštovanju s kojim su ih primale kćeri, zapravo već odavno izgubila nekadašnji, neosporivi ugled među njima, to je i generalica poradi svojega vlastita dostojanstva počela smatrati udobnijim ne prepirati se, nego popuštati. Istina, često nije htjela slušati i nije se p…"
+    },
+    {
+      "id": 9,
+      "q": "Što je od sljedećega iskazano o generalu?",
+      "opts": [
+        "A. Naslutio je da će se u obitelji nešto dogoditi.",
+        "B. Večer prije posvađao se sa suprugom.",
+        "C. Zakasnio je na doručak.",
+        "D. Rano su ga probudili."
+      ],
+      "correct": "A",
+      "exp": "'Još jučer je doduše slutio da će danas baš i biti neka zgoda... te se sinoć, kad je već htio zaspati, uznemirivao zbog toga' — general je naslutio/slutio da će se nešto dogoditi.",
+      "ctx": "Fjodor Mihajlovič Dostojevski, Idiot (ulomak)\n\nSve tri djevojke Jepančine bile su zdrave gospođice, jedre, divnih pleća, jakih grudi, snažnih ruku, gotovo kao u muškaraca, te su dabome, prema svojoj snazi i zdravlju, voljele katkad dobro se najesti, što nisu nikako niti htjele kriti. Mamica njihova, Lizaveta Prokofjevna, zamjerala je ponekad iskrenosti njihova apetita, ali kako su neka njezina mišljenja, unatoč svemu vanjskomu poštovanju s kojim su ih primale kćeri, zapravo već odavno izgubila nekadašnji, neosporivi ugled među njima, to je i generalica poradi svojega vlastita dostojanstva počela smatrati udobnijim ne prepirati se, nego popuštati. Istina, često nije htjela slušati i nije se p…"
+    },
+    {
+      "id": 10,
+      "q": "Čime se od sljedećega bavi pripovjedač?",
+      "opts": [
+        "A. kinematografijom",
+        "B. pjesništvom",
+        "C. poučavanjem",
+        "D. prosjačenjem"
+      ],
+      "correct": "B",
+      "exp": "'dečko uči, nije glup, slabo se hrani, piše pjesme' — pripovjedač je pjesnik (piše pjesme). Kinematograf samo spominje u kritici, a 'nosi se kao prosjak' je usporedba, ne zanimanje.",
+      "ctx": "Janko Polić Kamov, Odijelo (ulomak)\n\n– Na, tu imaš jedno odijelo gotovo još novo. Uzmi, ja ga ne trebam.\n\nUzeh, zahvalih i pođoh svojoj kući. On me voli; nema ni djece ni žene; ne radi ništa; živi od rente, a vidi, da ja kuburim, da učim uvijek, da bih trebao ženu i da možda imam već za nevolju i dijete – i ovako je rekao u sebi: \"Zašto da mu ne pomognem? Najposlije sam mu rod; a dečko uči, nije glup, slabo se hrani, piše pjesme i nosi se kao prosjak.\"\n\nA ja rekoh u sebi: Nije loše! Imam odijelo, pravo, gospodsko odijelo! Ne ću morati prolaziti kao nevino osuđeni kroz sažalne poglede znanaca i prezir neznanaca. Eno, sinoć dokazivah u kavani nekoj gospodi, da ne volim kinematografa radi prost…"
+    },
+    {
+      "id": 11,
+      "q": "Što je iskazano o odijelu koje je pripovjedaču poklonio rođak?",
+      "opts": [
+        "A. U njemu neće morati gestikulirati.",
+        "B. Dobio ga je za vjenčanje.",
+        "C. Izlizano je na stražnjici.",
+        "D. Izgleda poput novoga."
+      ],
+      "correct": "D",
+      "exp": "'Na, tu imaš jedno odijelo gotovo još novo' — rođak mu govori da je odijelo 'gotovo još novo', tj. izgleda gotovo poput novoga.",
+      "ctx": "Janko Polić Kamov, Odijelo (ulomak)\n\n– Na, tu imaš jedno odijelo gotovo još novo. Uzmi, ja ga ne trebam.\n\nUzeh, zahvalih i pođoh svojoj kući. On me voli; nema ni djece ni žene; ne radi ništa; živi od rente, a vidi, da ja kuburim, da učim uvijek, da bih trebao ženu i da možda imam već za nevolju i dijete – i ovako je rekao u sebi: \"Zašto da mu ne pomognem? Najposlije sam mu rod; a dečko uči, nije glup, slabo se hrani, piše pjesme i nosi se kao prosjak.\"\n\nA ja rekoh u sebi: Nije loše! Imam odijelo, pravo, gospodsko odijelo! Ne ću morati prolaziti kao nevino osuđeni kroz sažalne poglede znanaca i prezir neznanaca. Eno, sinoć dokazivah u kavani nekoj gospodi, da ne volim kinematografa radi prost…"
+    },
+    {
+      "id": 12,
+      "q": "Zašto pripovjedač hoda pogrbljeno?",
+      "opts": [
+        "A. jer su mu šešir i cipele neusklađeni",
+        "B. jer mu je odijelo premaleno",
+        "C. jer želi izgledati starije",
+        "D. jer je nespretan"
+      ],
+      "correct": "B",
+      "exp": "'odijelo uopće prekratko: ako se uspravim kako to dolikuje mojoj dobi, vidi mi se neoprana košulja... moram se sasma skutriti' — hoda pogrbljeno jer mu je odijelo (bratovo) prekratko pa mora se skuliti da sakrije.",
+      "ctx": "Janko Polić Kamov, Odijelo (ulomak)\n\n– Na, tu imaš jedno odijelo gotovo još novo. Uzmi, ja ga ne trebam.\n\nUzeh, zahvalih i pođoh svojoj kući. On me voli; nema ni djece ni žene; ne radi ništa; živi od rente, a vidi, da ja kuburim, da učim uvijek, da bih trebao ženu i da možda imam već za nevolju i dijete – i ovako je rekao u sebi: \"Zašto da mu ne pomognem? Najposlije sam mu rod; a dečko uči, nije glup, slabo se hrani, piše pjesme i nosi se kao prosjak.\"\n\nA ja rekoh u sebi: Nije loše! Imam odijelo, pravo, gospodsko odijelo! Ne ću morati prolaziti kao nevino osuđeni kroz sažalne poglede znanaca i prezir neznanaca. Eno, sinoć dokazivah u kavani nekoj gospodi, da ne volim kinematografa radi prost…"
+    },
+    {
+      "id": 13,
+      "q": "Što je od sljedećega iskazano o Lionelu i njegovu poslu?",
+      "opts": [
+        "A. Lionel ne dijeli poslovne tajne s kolegama.",
+        "B. Lionel radi u uredu koji se nalazi u crkvi.",
+        "C. Lionel je nezadovoljan svojom plaćom.",
+        "D. Lionel uređuje župne novine."
+      ],
+      "correct": "C",
+      "exp": "'Radim u bescjenje' — Lionel izražava nezadovoljstvo plaćom ('bescjenje' = za nisku plaću, gotovo džabe).",
+      "ctx": "Alice Munro, Drvena konstrukcija (ulomak)\n\nLionel se na brijeg uspinjao visokim, staromodnim biciklom. Obično se nije presvlačio iz odjeće u kojoj je išao na posao. Tamne hlače, bijela košulja koja je uvijek djelovala musavo i iznošeno oko manšeta i ovratnika, neugledna kravata. Kad su išli na predstavu Comédie Française, tome je dodao sako od tvida koji mu je bio preširok u ramenima i prekratak u rukavima. Možda nije imao druge odjeće.\n\n\"Radim u bescjenje\", rekao je. \"I to ne u vinogradima Gospodinovim. Nego u dijecezi nadbiskupovoj.\" I: \"Katkad mislim da sam u Dickensovom romanu. A smiješno je što uopće ne volim Dickensa.\"\n\nGovorio je glave nagnute na jednu stranu, najčešće, pogleda uprta …"
+    },
+    {
+      "id": 14,
+      "q": "U kojoj prilici Lionel nosi sako?",
+      "opts": [
+        "A. kad odlazi u kazalište",
+        "B. dok se vozi biciklom",
+        "C. dok radi u uredu",
+        "D. kad ide u crkvu"
+      ],
+      "correct": "A",
+      "exp": "'Kad su išli na predstavu Comédie Française, tome je dodao sako od tvida' — Lionel nosi sako kad ide na kazališnu predstavu (Comédie Française = kazalište).",
+      "ctx": "Alice Munro, Drvena konstrukcija (ulomak)\n\nLionel se na brijeg uspinjao visokim, staromodnim biciklom. Obično se nije presvlačio iz odjeće u kojoj je išao na posao. Tamne hlače, bijela košulja koja je uvijek djelovala musavo i iznošeno oko manšeta i ovratnika, neugledna kravata. Kad su išli na predstavu Comédie Française, tome je dodao sako od tvida koji mu je bio preširok u ramenima i prekratak u rukavima. Možda nije imao druge odjeće.\n\n\"Radim u bescjenje\", rekao je. \"I to ne u vinogradima Gospodinovim. Nego u dijecezi nadbiskupovoj.\" I: \"Katkad mislim da sam u Dickensovom romanu. A smiješno je što uopće ne volim Dickensa.\"\n\nGovorio je glave nagnute na jednu stranu, najčešće, pogleda uprta …"
+    },
+    {
+      "id": 15,
+      "q": "Koju osobinu svojih kolegica Lionel prikazuje?",
+      "opts": [
+        "A. melankoličnost",
+        "B. pobožnost",
+        "C. razvratnost",
+        "D. sebičnost"
+      ],
+      "correct": "D",
+      "exp": "'Svi su nešto potajno grickali i nisu to nudili ostalima... gđa Penfound uopće nije bacala ambalažu u koš za smeće' — obje kolegice skriveno jedu i ne dijele s drugima = sebičnost.",
+      "ctx": "Alice Munro, Drvena konstrukcija (ulomak)\n\nLionel se na brijeg uspinjao visokim, staromodnim biciklom. Obično se nije presvlačio iz odjeće u kojoj je išao na posao. Tamne hlače, bijela košulja koja je uvijek djelovala musavo i iznošeno oko manšeta i ovratnika, neugledna kravata. Kad su išli na predstavu Comédie Française, tome je dodao sako od tvida koji mu je bio preširok u ramenima i prekratak u rukavima. Možda nije imao druge odjeće.\n\n\"Radim u bescjenje\", rekao je. \"I to ne u vinogradima Gospodinovim. Nego u dijecezi nadbiskupovoj.\" I: \"Katkad mislim da sam u Dickensovom romanu. A smiješno je što uopće ne volim Dickensa.\"\n\nGovorio je glave nagnute na jednu stranu, najčešće, pogleda uprta …"
+    },
+    {
+      "id": 16,
+      "q": "Zbog čega se od sljedećega Dalí jako razljutio?",
+      "opts": [
+        "A. jer ga je detektiv odveo u policijsku postaju",
+        "B. jer je preinačeno njegovo umjetničko djelo",
+        "C. jer je dospio na novinske naslovnice",
+        "D. jer je razbio izlog gurnuvši kadu"
+      ],
+      "correct": "B",
+      "exp": "'Dalí je poludio kad je to vidio' — vidio je da je robna kuća 'cenzurirala' (promijenila) njegovu instalaciju, čednije odjenuvši voštanu lutku. Preinaka/cenzura njegovih uradaka ga je naljutila.",
+      "ctx": "Carmen Domingo, Gala – Dalí (ulomak)\n\nDalí je u Velikoj Jabuci imao više uspjeha nego što su mogli zamisliti. Zbog jedne je Galine ideje završio u zatvoru, a to ga je dovelo na naslovnice svih novina.\n\nLuksuzna ga je njujorška robna kuća Bonwit Teller angažirala da uredi dva njihova izloga. Dalí i Gala radili su cijelu noć, oblažući starinsku kadu crnom ovčjom vunom. Zatim su je napunili vodom iz koje su izranjale ruke od voska, držeći ogledalo. Sljedećeg su dana prošetali Petom avenijom kako bi promatrali reakcije Njujorčana. Robna je kuća primila brojne pritužbe na voštanu lutku u prozirnoj spavaćici, pa je uprava odlučila cenzurirati Dalíjev rad, čednije odjenuvši lutku. Dalí je poludio k…"
+    },
+    {
+      "id": 17,
+      "q": "Zašto je sudac odlučio pustiti Dalíja?",
+      "opts": [
+        "A. jer nije znao kako se ponašati prema Dalíju",
+        "B. jer Dalí nije prekršio nijedan zakon",
+        "C. jer je bio ljubitelj umjetnosti",
+        "D. jer se želio inatiti detektivu"
+      ],
+      "correct": "A",
+      "exp": "'Dežurni je sudac bio naviknut ophoditi se s gangsterima i lopovima, a ne sa čudacima, pa je odlučio odbaciti optužbe' — nije znao kako se ophoditi s takvim tipom — čudakom/umjetnikom.",
+      "ctx": "Carmen Domingo, Gala – Dalí (ulomak)\n\nDalí je u Velikoj Jabuci imao više uspjeha nego što su mogli zamisliti. Zbog jedne je Galine ideje završio u zatvoru, a to ga je dovelo na naslovnice svih novina.\n\nLuksuzna ga je njujorška robna kuća Bonwit Teller angažirala da uredi dva njihova izloga. Dalí i Gala radili su cijelu noć, oblažući starinsku kadu crnom ovčjom vunom. Zatim su je napunili vodom iz koje su izranjale ruke od voska, držeći ogledalo. Sljedećeg su dana prošetali Petom avenijom kako bi promatrali reakcije Njujorčana. Robna je kuća primila brojne pritužbe na voštanu lutku u prozirnoj spavaćici, pa je uprava odlučila cenzurirati Dalíjev rad, čednije odjenuvši lutku. Dalí je poludio k…"
+    },
+    {
+      "id": 18,
+      "q": "Koje su bile posljedice Dalíjeva ispada?",
+      "opts": [
+        "A. Rugali su mu se u umjetničkim krugovima.",
+        "B. Stekao je povlastice u robnoj kući.",
+        "C. Razišao se s Galom.",
+        "D. Postao je slavniji."
+      ],
+      "correct": "D",
+      "exp": "'Vijest o Dalíjevom pothvatu smjesta je preletjela preko Atlantika... nije izazvala podsmijeh, nego zavist zbog pažnje koju je privlačila njegova umjetnost' — postao je slavniji, privukao je međunarodnu pozornost.",
+      "ctx": "Carmen Domingo, Gala – Dalí (ulomak)\n\nDalí je u Velikoj Jabuci imao više uspjeha nego što su mogli zamisliti. Zbog jedne je Galine ideje završio u zatvoru, a to ga je dovelo na naslovnice svih novina.\n\nLuksuzna ga je njujorška robna kuća Bonwit Teller angažirala da uredi dva njihova izloga. Dalí i Gala radili su cijelu noć, oblažući starinsku kadu crnom ovčjom vunom. Zatim su je napunili vodom iz koje su izranjale ruke od voska, držeći ogledalo. Sljedećeg su dana prošetali Petom avenijom kako bi promatrali reakcije Njujorčana. Robna je kuća primila brojne pritužbe na voštanu lutku u prozirnoj spavaćici, pa je uprava odlučila cenzurirati Dalíjev rad, čednije odjenuvši lutku. Dalí je poludio k…"
+    },
+    {
+      "id": 19,
+      "q": "Što je od sljedećega bilo meta vandala?",
+      "opts": [
+        "A. vrata",
+        "B. izlog",
+        "C. dizalo",
+        "D. žetonijera"
+      ],
+      "correct": "A",
+      "exp": "'velikih ulaznih vrata koja bi netko uredno obio svaki put kad bi upravitelj dao popraviti bravu' — vandali su redovito obilali vrata. Meta vandala su bila vrata.",
+      "ctx": "Elena Ferrante, Mučna ljubav (ulomak)\n\nZgrada mi se nikada nije svidjela. Uznemiravala me poput zatvora, suda ili bolnice. Majka je pak bila zadovoljna: bila joj je dojmljiva. Zapravo je bila ružna i prljava počevši od velikih ulaznih vrata koja bi netko uredno obio svaki put kad bi upravitelj dao popraviti bravu.\n\nU dugom mračnom prolazu koji vodi do unutarnjeg dvorišta danju je uvijek netko boravio: studenti, prolaznici koji čekaju autobus, prodavači upaljača, papirnatih rupčića, pečenih kukuruza ili kestena, turisti koji se sklanjaju od vrućine ili kiše, smrknuti muškarci svih rasa koji vječito proučavaju izloge. Potonji su uglavnom kratili vrijeme čekanja promatrajući umjetničke fotograf…"
+    },
+    {
+      "id": 20,
+      "q": "Zašto je pripovjedačica naredila fotografu da makne Amalijinu fotografiju?",
+      "opts": [
+        "A. Smatrala je da fotografijama za dokumente nije mjesto u izlogu.",
+        "B. Nije željela da bude izložena pokraj fotografija mladića u odori.",
+        "C. Fotografija se pripovjedačici nije svidjela zbog staromodnosti.",
+        "D. Nije htjela da njezin otac vidi fotografiju u izlogu."
+      ],
+      "correct": "D",
+      "exp": "'naredila fotografu da je ukloni prije negoli moj otac prođe onuda i poludi pa porazbija izlog' — bojala se očeve reakcije ako vidi fotografiju u izlogu.",
+      "ctx": "Elena Ferrante, Mučna ljubav (ulomak)\n\nZgrada mi se nikada nije svidjela. Uznemiravala me poput zatvora, suda ili bolnice. Majka je pak bila zadovoljna: bila joj je dojmljiva. Zapravo je bila ružna i prljava počevši od velikih ulaznih vrata koja bi netko uredno obio svaki put kad bi upravitelj dao popraviti bravu.\n\nU dugom mračnom prolazu koji vodi do unutarnjeg dvorišta danju je uvijek netko boravio: studenti, prolaznici koji čekaju autobus, prodavači upaljača, papirnatih rupčića, pečenih kukuruza ili kestena, turisti koji se sklanjaju od vrućine ili kiše, smrknuti muškarci svih rasa koji vječito proučavaju izloge. Potonji su uglavnom kratili vrijeme čekanja promatrajući umjetničke fotograf…"
+    },
+    {
+      "id": 21,
+      "q": "S čim pripovjedačica uspoređuje dizalo?",
+      "opts": [
+        "A. s arabeskama",
+        "B. s lijesom",
+        "C. s prolazom",
+        "D. s rupom"
+      ],
+      "correct": "B",
+      "exp": "'Uglavnom nisam voljela te metalne sarkofage koji se brzo penju' — sarkofag = lijes/kovčeg. Metalni sarkofag = metafora za obično/standardno dizalo. Uspoređuje dizala s lijesovima.",
+      "ctx": "Elena Ferrante, Mučna ljubav (ulomak)\n\nZgrada mi se nikada nije svidjela. Uznemiravala me poput zatvora, suda ili bolnice. Majka je pak bila zadovoljna: bila joj je dojmljiva. Zapravo je bila ružna i prljava počevši od velikih ulaznih vrata koja bi netko uredno obio svaki put kad bi upravitelj dao popraviti bravu.\n\nU dugom mračnom prolazu koji vodi do unutarnjeg dvorišta danju je uvijek netko boravio: studenti, prolaznici koji čekaju autobus, prodavači upaljača, papirnatih rupčića, pečenih kukuruza ili kestena, turisti koji se sklanjaju od vrućine ili kiše, smrknuti muškarci svih rasa koji vječito proučavaju izloge. Potonji su uglavnom kratili vrijeme čekanja promatrajući umjetničke fotograf…"
+    },
+    {
+      "id": 22,
+      "q": "Komu se Heraklo obraća izrazom 'moj brajko'?",
+      "opts": [
+        "A. podaniku",
+        "B. pjesniku",
+        "C. kipu",
+        "D. ocu"
+      ],
+      "correct": "C",
+      "exp": "'Pogled mu bludi po prisutnima i tad se zaustavi na kipu: Možda si ti bolestan, pa zato svi šute?... A što bi bilo, moj brajko, da si skočio...' — Heraklo razgovara s kipom sebe samoga, oslovljavajući ga 'brajko'.",
+      "ctx": "Marijan Matković, Heraklo (ulomak)\n\nHERAKLO u sredini scene osluškuje tišinu: Što je? Zar je i tu netko umro? Šutnja. Pogled mu bludi po prisutnima i tad se zaustavi na kipu: Možda si ti bolestan, pa zato svi šute? Ili se stide što nisi skočio u vodu za onom malom iz Troje, pa od gađenja šute? A što bi bilo, moj brajko, da si skočio, ha, što? Začas bi nestao pod vodom! Jer si kamen, potonuo bi do dna! Grubo, zapovjedno: Liha, zar ti nisam naložio da tu kamenu neman izbaciš odavle? I što rade ovi kreteni pod tim kipom?\n\nLIHA: Heraklo, oni ti se klanjaju. To je najnoviji istočnjački običaj kojim se izražava poštovanje. Samo pred božanstvom se kleči.\n\nHERAKLO: Kakvo poštovanje, kakvo klanjanje,…"
+    },
+    {
+      "id": 23,
+      "q": "Koji se od sljedećih primjera odnosi na pjesnike?",
+      "opts": [
+        "A. kreteni pod tim kipom",
+        "B. kupite se, da vas ne vidim",
+        "C. brzo odlaze",
+        "D. prestrašene ptice"
+      ],
+      "correct": "D",
+      "exp": "'Što ste se tako stisli kao prestrašene ptice?' — Heraklo se obraća pjesnicima usporedbom s prestrašenim pticama. Robovima kaže 'kupite se' i 'brzo odlaze', 'kreteni pod tim kipom' su robovi koji kleče.",
+      "ctx": "Marijan Matković, Heraklo (ulomak)\n\nHERAKLO u sredini scene osluškuje tišinu: Što je? Zar je i tu netko umro? Šutnja. Pogled mu bludi po prisutnima i tad se zaustavi na kipu: Možda si ti bolestan, pa zato svi šute? Ili se stide što nisi skočio u vodu za onom malom iz Troje, pa od gađenja šute? A što bi bilo, moj brajko, da si skočio, ha, što? Začas bi nestao pod vodom! Jer si kamen, potonuo bi do dna! Grubo, zapovjedno: Liha, zar ti nisam naložio da tu kamenu neman izbaciš odavle? I što rade ovi kreteni pod tim kipom?\n\nLIHA: Heraklo, oni ti se klanjaju. To je najnoviji istočnjački običaj kojim se izražava poštovanje. Samo pred božanstvom se kleči.\n\nHERAKLO: Kakvo poštovanje, kakvo klanjanje,…"
+    },
+    {
+      "id": 24,
+      "q": "Zašto je Heraklo otjerao robove?",
+      "opts": [
+        "A. Nisu slušali njegove naredbe.",
+        "B. Nisu bili obrazovani.",
+        "C. Previše su brbljali.",
+        "D. Klanjali su mu se."
+      ],
+      "correct": "D",
+      "exp": "'I što rade ovi kreteni pod tim kipom? — Heraklo, oni ti se klanjaju... Samo pred božanstvom se kleči.' — 'Ajde, kupite se, da vas ne vidim!' — Heraklo ih otjera jer mu se klanjaju (ne prihvaća da mu se klanjaju).",
+      "ctx": "Marijan Matković, Heraklo (ulomak)\n\nHERAKLO u sredini scene osluškuje tišinu: Što je? Zar je i tu netko umro? Šutnja. Pogled mu bludi po prisutnima i tad se zaustavi na kipu: Možda si ti bolestan, pa zato svi šute? Ili se stide što nisi skočio u vodu za onom malom iz Troje, pa od gađenja šute? A što bi bilo, moj brajko, da si skočio, ha, što? Začas bi nestao pod vodom! Jer si kamen, potonuo bi do dna! Grubo, zapovjedno: Liha, zar ti nisam naložio da tu kamenu neman izbaciš odavle? I što rade ovi kreteni pod tim kipom?\n\nLIHA: Heraklo, oni ti se klanjaju. To je najnoviji istočnjački običaj kojim se izražava poštovanje. Samo pred božanstvom se kleči.\n\nHERAKLO: Kakvo poštovanje, kakvo klanjanje,…"
+    },
+    {
+      "id": 25,
+      "q": "Što bi prema Proustu posjet drugomu dijelu Louvrea omogućio mladiću?",
+      "opts": [
+        "A. Uočio bi da i svakodnevni predmeti u sebi nose ljepotu.",
+        "B. Dobio bi inspiraciju za slikanje svojih umjetničkih djela.",
+        "C. Upoznao bi se s grandioznim umjetničkim djelima.",
+        "D. Mogao bi se duže zadržati pred slikama."
+      ],
+      "correct": "A",
+      "exp": "Chardin slika svakodnevne predmete — 'zdjele s voćem, vrčeve, kavnike, štruce kruha, noževe, čaše vina' — ali slike su 'neobično privlačne'. Proust misli da bi mladić kroz Chardina naučio vidjeti ljepotu u svakodnevnim stvarima.",
+      "ctx": "Alain de Botton, Kako vam Proust može promijeniti život (ulomak)\n\nProust je jednom napisao esej u kojemu je pokušao vratiti osmijeh na lice jednog mračnog, zavidnog i nezadovoljnog mladića. Opisao ga je kako jednog dana sjedi poslije ručka za stolom u stanu svojih roditelja i potišteno bulji u stvari oko sebe: u nož što je ostao ležati na stolnjaku, u ostatke odviše krvavog, neukusnog kotleta i u napol zavrnuti stolnjak. Trivijalnost te scene potpuno je oprečna mladićevoj sklonosti lijepim i skupocjenim stvarima koje ne može sebi priuštiti. Proust je predočio sebi odbojnost mladog estete spram ovog malograđanskog interijera, i zamislio kako sve to uspoređuje s divotama koje je vidio po muzej…"
+    },
+    {
+      "id": 26,
+      "q": "Što bi odlazak u Nizozemsku ili Italiju omogućio mladiću?",
+      "opts": [
+        "A. da bude u neposrednom dodiru s onim za čim teži",
+        "B. da se utješi zbog nemogućnosti posjeta Louvreu",
+        "C. da se školuje za bankara i obogati",
+        "D. da kupi umjetnička djela"
+      ],
+      "correct": "A",
+      "exp": "'taj bi mladić, koji pošto-poto želi pobjeći od domaće sumornosti, mogao... otići u Louvre da napase oči' — Nizozemska i Italija = mjesta s umjetnošću i ljepotom za kojima mladi teži. Odlazak bi mu omogućio neposredan dodir s onim za čim čezne.",
+      "ctx": "Alain de Botton, Kako vam Proust može promijeniti život (ulomak)\n\nProust je jednom napisao esej u kojemu je pokušao vratiti osmijeh na lice jednog mračnog, zavidnog i nezadovoljnog mladića. Opisao ga je kako jednog dana sjedi poslije ručka za stolom u stanu svojih roditelja i potišteno bulji u stvari oko sebe: u nož što je ostao ležati na stolnjaku, u ostatke odviše krvavog, neukusnog kotleta i u napol zavrnuti stolnjak. Trivijalnost te scene potpuno je oprečna mladićevoj sklonosti lijepim i skupocjenim stvarima koje ne može sebi priuštiti. Proust je predočio sebi odbojnost mladog estete spram ovog malograđanskog interijera, i zamislio kako sve to uspoređuje s divotama koje je vidio po muzej…"
+    },
+    {
+      "id": 27,
+      "q": "Tko je od sljedećih slikara slikao mrtvu prirodu?",
+      "opts": [
+        "A. Veronese",
+        "B. Claude Lorrain",
+        "C. van Dyck",
+        "D. Jean-Baptiste Chardin"
+      ],
+      "correct": "D",
+      "exp": "'Chardin... koji je najradije slikao zdjele s voćem, vrčeve, kavnike, štruce kruha, noževe, čaše vina i komade mesa' — sve su to motivi mrtve prirode (nature morte/still life). Veronese = palače, Lorrain = pejzaži, van Dyck = portreti.",
+      "ctx": "Alain de Botton, Kako vam Proust može promijeniti život (ulomak)\n\nProust je jednom napisao esej u kojemu je pokušao vratiti osmijeh na lice jednog mračnog, zavidnog i nezadovoljnog mladića. Opisao ga je kako jednog dana sjedi poslije ručka za stolom u stanu svojih roditelja i potišteno bulji u stvari oko sebe: u nož što je ostao ležati na stolnjaku, u ostatke odviše krvavog, neukusnog kotleta i u napol zavrnuti stolnjak. Trivijalnost te scene potpuno je oprečna mladićevoj sklonosti lijepim i skupocjenim stvarima koje ne može sebi priuštiti. Proust je predočio sebi odbojnost mladog estete spram ovog malograđanskog interijera, i zamislio kako sve to uspoređuje s divotama koje je vidio po muzej…"
+    },
+    {
+      "id": 28,
+      "q": "Kako treba snimati političare?",
+      "opts": [
+        "A. tako da se snimi pokret koji odgovara onomu što su rekli",
+        "B. tako da ih se snima kad izravno gledaju u kameru",
+        "C. tako da ih se snima kad se pažljivo namjeste",
+        "D. tako da ih se snima uvijek iz istoga kuta"
+      ],
+      "correct": "A",
+      "exp": "'tražimo karakteristične izraze lica, mahanje rukom, lupkanje olovkom – sve što je neuobičajeno, a istodobno ilustrira sadržaj njihovih riječi' — snimiti pokret koji prati/odgovara riječima.",
+      "ctx": "Stjepan Malović, Karakteristike novinskog i videoizvješća (ulomak)\n\nFotoreporter i snimatelj stalno moraju voditi računa o kutu snimanja. Najgore je iz \"trbuha\". Treba pokušati odozdo, odozgo, slijeva, zdesna te čitatelju prikazati događaj iz različitih perspektiva. Akcija se mora nalaziti na svakoj slici i sceni. Ljudi moraju biti u pokretu. Političare treba snimati u neslužbenim djelatnostima, a za vrijeme sjednica tražimo karakteristične izraze lica, mahanje rukom, lupkanje olovkom — sve što je neuobičajeno, a istodobno ilustrira sadržaj njihovih riječi.\n\nObjekti snimanja ne smiju gledati ravno u kameru. Treba ih zaposliti nečim što će odvratiti njihovu pozornost od objektiva. Kompozicija…"
+    },
+    {
+      "id": 29,
+      "q": "Što od sljedećega treba izbjegavati dobar fotoreporter?",
+      "opts": [
+        "A. različite perspektive",
+        "B. točku fokusa",
+        "C. grupni efekt",
+        "D. ptičica efekt"
+      ],
+      "correct": "D",
+      "exp": "'Bijes političara zbog neugodnih pitanja, pobjednička gesta, sve samo ne ptičica efekt' — 'ptičica efekt' = poza za fotografiranje (osmijeh za kameru) je nešto što treba izbjegavati jer nije autentično.",
+      "ctx": "Stjepan Malović, Karakteristike novinskog i videoizvješća (ulomak)\n\nFotoreporter i snimatelj stalno moraju voditi računa o kutu snimanja. Najgore je iz \"trbuha\". Treba pokušati odozdo, odozgo, slijeva, zdesna te čitatelju prikazati događaj iz različitih perspektiva. Akcija se mora nalaziti na svakoj slici i sceni. Ljudi moraju biti u pokretu. Političare treba snimati u neslužbenim djelatnostima, a za vrijeme sjednica tražimo karakteristične izraze lica, mahanje rukom, lupkanje olovkom — sve što je neuobičajeno, a istodobno ilustrira sadržaj njihovih riječi.\n\nObjekti snimanja ne smiju gledati ravno u kameru. Treba ih zaposliti nečim što će odvratiti njihovu pozornost od objektiva. Kompozicija…"
+    },
+    {
+      "id": 30,
+      "q": "Zašto fotoreporter treba snimiti zijevanje gledatelja?",
+      "opts": [
+        "A. jer se tako ilustrira odnos prema govornikovim riječima",
+        "B. jer se na taj način izbjegava mrtvi prostor",
+        "C. jer treba pokazati svoju pristranost",
+        "D. jer želi izazvati bijes političara"
+      ],
+      "correct": "A",
+      "exp": "'Govornikove riječi možda najbolje oslikava reakcija gledatelja, zijevanje ili duboka koncentracija' — zijevanje (ili suprotno: duboka koncentracija) ilustrira odnos publike prema govornikovim riječima.",
+      "ctx": "Stjepan Malović, Karakteristike novinskog i videoizvješća (ulomak)\n\nFotoreporter i snimatelj stalno moraju voditi računa o kutu snimanja. Najgore je iz \"trbuha\". Treba pokušati odozdo, odozgo, slijeva, zdesna te čitatelju prikazati događaj iz različitih perspektiva. Akcija se mora nalaziti na svakoj slici i sceni. Ljudi moraju biti u pokretu. Političare treba snimati u neslužbenim djelatnostima, a za vrijeme sjednica tražimo karakteristične izraze lica, mahanje rukom, lupkanje olovkom — sve što je neuobičajeno, a istodobno ilustrira sadržaj njihovih riječi.\n\nObjekti snimanja ne smiju gledati ravno u kameru. Treba ih zaposliti nečim što će odvratiti njihovu pozornost od objektiva. Kompozicija…"
+    },
+    {
+      "id": 31,
+      "q": "Koje od sljedećih književnih djela pripada dramskomu književnom rodu?",
+      "opts": [
+        "A. Đulabije",
+        "B. Novela od Stanca",
+        "C. Putositnice",
+        "D. Smrt Smail-age Čengića"
+      ],
+      "correct": "B",
+      "exp": "Novela od Stanca je Marinova drama (komedija) — dramski rod. Đulabije = zbirka lirskih pjesama (Preradović), Putositnice = putopis (Nemčić), Smrt Smail-age = ep (Mažuranić)."
+    },
+    {
+      "id": 32,
+      "q": "Kojoj književnoj vrsti pripada sljedeći tekst?\nZID I ČAVAO: Zid, koji je čavao silom kidao, počne vikati: Što me trgaš... Čavao mu tada kaže: Nisam ja za to kriv, nego onaj koji me otraga žestoko udara. (Ezop)",
+      "opts": [
+        "A. anegdoti",
+        "B. bajci",
+        "C. basni",
+        "D. kratkoj priči"
+      ],
+      "correct": "C",
+      "exp": "Tekst je Ezopova basna — zid i čavao su personificirani predmeti koji komuniciraju i izriču moralnu pouku (tko je kriv?). Ezop = začetnik basne. Obilježja: personifikacija, kratkoća, moralna pouka."
+    },
+    {
+      "id": 33,
+      "q": "U kojemu od sljedećih primjera nije upotrijebljen dvostruko rimovani dvanaesterac?",
+      "opts": [
+        "A. Isprazne mē pjesni, kad vas tko upita / tko s vami tač bjesni i toli mahnita,",
+        "B. Na vojsku, na vojsku, vitezi zibrani, / koga god majka junačka odhrani;",
+        "C. Višnji Bog na nebi, vladalac od zvizda, / što stvori sam sebi, kad ovo nam izda?",
+        "D. O slavni Hrvati, i vas li ognjen zmaj / do traga pomlati i da vam plačni vaj!"
+      ],
+      "correct": "D",
+      "exp": "D: 'O slavni Hrvati' = 4 sloga, 'i vas li ognjen zmaj' = 6 sloga = ukupno 10 slogova (deseterac), a rima je: Hrvati/pomlati, zmaj/vaj. Nije 12-erac nego kraći stih. ABC su dvostruko rimovani dvanaesterci (6+6 s rimom na 6. i 12.)."
+    },
+    {
+      "id": 34,
+      "q": "U kojemu je od sljedećih stihova upotrijebljena metonimija?",
+      "opts": [
+        "A. Oprali su pred njim sve stolice i daske poda.",
+        "B. Ribale su dugo lavor pepelom i pijeskom.",
+        "C. Svjetlucale su čaše svečanim bljeskom.",
+        "D. Čitava kuća veseli se rođenju djeteta."
+      ],
+      "correct": "D",
+      "exp": "'Čitava kuća veseli se' — 'kuća' umjesto 'ukućani/svi u kući'. Metonimija = označavanje predmeta ili pojave imenovan bliskim pojmom (kuća = stanari). Konkretno mjesto za ljude koji u njemu borave."
+    },
+    {
+      "id": 35,
+      "q": "Koji je izraz u sljedećim stihovima oksimoron?\n\nO, ti si uzdah, suza, arija,\nSutonâ pustih Zdrava Marija,\nTi si Helena, Psiha, Venera,\nLasta i bršljan moga pendžera,\nGdje gledam rujne ruže mladosti,\nKad dišu pelin tužnih radosti.",
+      "opts": [
+        "A. Zdrava Marija",
+        "B. Lasta i bršljan",
+        "C. rujne ruže",
+        "D. tužnih radosti"
+      ],
+      "correct": "D",
+      "exp": "'Tužnih radosti' — 'tužan' i 'radost' su suprotni pojmovi u jednoj sintagmi = oksimoron. Prividno proturječna spojenica."
+    },
+    {
+      "id": 36,
+      "q": "Komu se u Ilijadi Hektor obraća sljedećim riječima?\n'Pred tobōm, Pelejev sine, od sada već uzmicat neću,'",
+      "opts": [
+        "A. Agamemnonu",
+        "B. Ahileju",
+        "C. Menelaju",
+        "D. Odiseju"
+      ],
+      "correct": "B",
+      "exp": "'Pelejev sine' = Ahilej (sin Peleja). Hektor se izravno obraća Ahileju pred završni dvoboj koji će rezultirati Hektorovom smrću."
+    },
+    {
+      "id": 37,
+      "q": "Koja od sljedećih didaskalija pripada Plautovoj drami Škrtac?",
+      "opts": [
+        "A. Dolazi Tiresija, vodi ga dječak.",
+        "B. Iz Euklionove kuće izlazi Kućni bog.",
+        "C. Sviće. Izlaze iz kraljevskoga dvora u Tebi.",
+        "D. Scena predstavlja visoko i suro stijenje. Ulaze Sila i Vlast,"
+      ],
+      "correct": "B",
+      "exp": "'Iz Euklionove kuće izlazi Kućni bog' — Euklion je lik Plautovog Škrca (Aulularia). Prolog izgovara Kućni bog koji čuva Euklionov ćup zlata. A = Antigona (Tiresija), C = Antigona/Edip (Teba), D = Okovani Prometej (Sila, Vlast)."
+    },
+    {
+      "id": 38,
+      "q": "Koji je hrvatski srednjovjekovni tekst pisan glagoljicom i autentično je svjedočanstvo o porazu Hrvata u Krbavskoj bitci?",
+      "opts": [
+        "A. Ljetopis popa Dukljanina",
+        "B. Svit se konča",
+        "C. Vinodolski zakon",
+        "D. Zapis popa Martinca"
+      ],
+      "correct": "D",
+      "exp": "Zapis popa Martinca (1493.) je glagoljički zapis o Krbavskoj bitci u kojoj je hrvatska vojska teško poražena od Turaka. Autentičan svjedok događaja. 'Svit se konča' = pjesma o propasti."
+    },
+    {
+      "id": 39,
+      "q": "Koja se od sljedećih tvrdnja odnosi na Božanstvenu komediju?",
+      "opts": [
+        "A. To je epsko djelo u tercinama koje obrađuje viziju zagrobnoga života.",
+        "B. To je roman čiji likovi simboliziraju sukob između ideala i stvarnosti.",
+        "C. To je zbirka od 100 novela uokvirenih pričom o kugi u Firenci.",
+        "D. To je zbirka sastavljena od 366 pjesama, a najviše je soneta."
+      ],
+      "correct": "A",
+      "exp": "Božanstvena komedija (Dante, 1308.–1321.) je ep u tercinama (ABA BCB...) koji opisuje viziju pakla, čistilišta i raja. C = Dekameron, D = Kanconijer (Petrarca)."
+    },
+    {
+      "id": 40,
+      "q": "U kojemu se književnom djelu nalaze zapisi hrvatskih narodnih pjesama bugarštica?",
+      "opts": [
+        "A. u djelu Ribanje i ribarsko prigovaranje",
+        "B. u djelu Novela od Stanca",
+        "C. u djelu Plandovanja",
+        "D. u djelu Planine"
+      ],
+      "correct": "A",
+      "exp": "Ribanje i ribarsko prigovaranje (Petar Hektorović, 1568.) sadrži prve zapisane bugarštice (narodne pjesme dugog stiha) koje su pjevali ribari Nikola i Paskoje."
+    },
+    {
+      "id": 41,
+      "q": "Koji je od sljedećih književnika petrarkistički pjesnik?",
+      "opts": [
+        "A. Antun Kanižlić",
+        "B. Hanibal Lucić",
+        "C. Ivan Česmički",
+        "D. Ivan Gundulić"
+      ],
+      "correct": "B",
+      "exp": "Hanibal Lucić (1485.–1553.) je hvarski petrarkist. Kanižlić = barok/klasicizam, Česmički = humanist/latinisti, Gundulić = barok."
+    },
+    {
+      "id": 42,
+      "q": "Koje književno djelo započinje zazivanjem zvijezde Danice sa željom da objavi svečani dan vjenčanja najljepšega pastira i pastirice?",
+      "opts": [
+        "A. Dubravka",
+        "B. Judita",
+        "C. Jur ni jedna na svit vila",
+        "D. Suze sina razmetnoga"
+      ],
+      "correct": "A",
+      "exp": "Dubravka (Gundulić, 1628.) počinje hvalospjevom slobodi i zazivanjem Danice — pastirska igra (melodrama) o vjenčanju Dubravke i Miljka (najljepša pastirica i pastir)."
+    },
+    {
+      "id": 43,
+      "q": "Na koji se književni lik odnosi podcrtana riječ u sljedećemu primjeru?\n'Sad sam opet ovdje, hoću pojesti za večeru svoj kruh s maslacem i pisati tebi, Wilhelme. Ah, kolika je slast u mojoj duši vidjeti nju u krugu drage, živahne djece, njene osmoro braće i sestara!'",
+      "opts": [
+        "A. na Lottu iz romana Patnje mladog Werthera",
+        "B. na Luciju iz romana Posljednji Stipančići",
+        "C. na Sonju iz romana Zločin i kazna",
+        "D. na Lauru iz romana U registraturi"
+      ],
+      "correct": "A",
+      "exp": "Werther piše Wilhelmu o 'njoj' koja je okružena djecom i braćom/sestrama — to je Lotta (Charlotte), Wertherova ljubav iz Patnji mladog Werthera. Osmero braće i sestara je Lottin karakteristični detalj."
+    },
+    {
+      "id": 44,
+      "q": "Koja se od sljedećih tvrdnja odnosi na poetiku realizma?",
+      "opts": [
+        "A. Naglašavaju se subjektivni doživljaji, mašta i originalnost te prevladava osjećaj boli zbog nesklada svijeta.",
+        "B. Književna se djela temelje na promatranju i proučavanju društva te na proučavanju činjenica.",
+        "C. U književnosti se ističe ideja larpurlartizma, naglašava se estetika ružnoće i kult forme.",
+        "D. Glavni je motiv prolaznost života, a dominiraju povijesno-mitološke i vjerske teme."
+      ],
+      "correct": "B",
+      "exp": "Realizam (19. st.): književnost kao promatranje i analiza stvarnosti, socijalnih odnosa, činjenica. A = romantizam, C = modernizam/simbolizam, D = barok."
+    },
+    {
+      "id": 45,
+      "q": "U kojemu se gradu nalazi prostor opisan u sljedećemu primjeru?\n'Ova prva prostorija odiše mirisom za koji u jeziku nema imena... On je kao zadah blagovaonice u kojoj se netom ručalo; zaudara po suđu, smočnici, ubožnici.'",
+      "opts": [
+        "A. u Combrayu",
+        "B. u Parizu",
+        "C. u Petrogradu",
+        "D. u Zagrebu"
+      ],
+      "correct": "B",
+      "exp": "Opis je iz Balzacovog Oca Goriota — pansion Vauquer u Parizu. Opis smrdljive blagovaonice pansiona je jedna od najslavnijih opisnih scena u realizmu. Pansion je u Parizu."
+    },
+    {
+      "id": 46,
+      "q": "Koji su od sljedećih književnih likova sestra i brat?",
+      "opts": [
+        "A. Delphine i Rastignac",
+        "B. Dunja i Raskoljnikov",
+        "C. Laura i Ivica",
+        "D. Bobočka i Filip"
+      ],
+      "correct": "B",
+      "exp": "Dunja (Avdotja) i Raskoljnikov su sestra i brat u Dostojevskom Zločinu i kazni. A = Delphine i Rastignac su ljubavnici, C = Laura je Ivicin 'kobni' lik u U registraturi, D = Bobočka i Filip Latinovicz su polubraća."
+    },
+    {
+      "id": 47,
+      "q": "Na koji se književni lik iz romana U registraturi odnosi sljedeća rečenica?\n'Bijaše taj rođak mastibrk (ali u njega ne bijaše ni brka ni brade) dakle – mastigrlo u nekoga jako visokoga gospodina koga je naš rođak vazda nazivao lustrišimuš.'",
+      "opts": [
+        "A. na Ferkonju",
+        "B. na Mihu",
+        "C. na Zgubidana",
+        "D. na Žorža"
+      ],
+      "correct": "D",
+      "exp": "Kumordinar Žorž je bliski suradnik visokog gospodina (lustrišimuš = illustrissimus = najpresvijetliji), dvorski mazač/dodvorica — mastibrk/mastigrlo = onaj koji se dodvorava. To je Žorž koji se dodvorava Meceni."
+    },
+    {
+      "id": 48,
+      "q": "Uz koju se regiju vežu pripovijetke Dinka Šimunovića iz zbirke Mrkodol?",
+      "opts": [
+        "A. uz Istru",
+        "B. uz Slavoniju",
+        "C. uz Hrvatsko zagorje",
+        "D. uz Dalmatinsku zagoru"
+      ],
+      "correct": "D",
+      "exp": "Dinko Šimunović (1873.–1933.) rodom je iz Knina, a njegove pripovijetke (Mrkodol, Duga, Alkar) smještene su u Dalmatinsku zagoru — krška, suha krajina s osobitim likovima."
+    },
+    {
+      "id": 49,
+      "q": "Kojemu tipu romana pripada Combray Marcela Prousta?",
+      "opts": [
+        "A. monološko-asocijativnom romanu",
+        "B. romanu proze u trapericama",
+        "C. romanu struje svijesti",
+        "D. pikarskom romanu"
+      ],
+      "correct": "C",
+      "exp": "Combray (Marcel Proust) je roman struje svijesti (stream of consciousness) — asocijativno pripovijedanje, involuntarna memorija, nelinearna naracija. A je slično ali specifičan podtip, C je točno."
+    },
+    {
+      "id": 50,
+      "q": "Tko je u svojemu programatskom tekstu napisao sljedeće rečenice?\n'Umjetnost je ekspresija umjetnikovih osjećanja; ovaploćenje umjetnikove unutrašnjosti u zvucima, bojama, linijama, ili riječima; stoga, u ekspresiji. Umjetnost se dakle otkriva u ekspresivnosti, ne u ljepoti.'",
+      "opts": [
+        "A. Antun Branko Šimić",
+        "B. Antun Gustav Matoš",
+        "C. August Šenoa",
+        "D. Stanko Vraz"
+      ],
+      "correct": "A",
+      "exp": "Antun Branko Šimić napisao je programatski tekst o ekspresionizmu — 'Umjetnost i umjetnik' (1920.) u kojemu izlaže ekspresionističku poetiku. Naglasak na ekspresiji, a ne ljepoti."
+    },
+    {
+      "id": 51,
+      "q": "Na kojega se pjesnika odnosi sljedeća tvrdnja?\n'Pisao je slobodnim stihom koji se temelji na ritmu svakidašnjega govora. U najboljim pjesmama pokazuje uzbuđenje rastuškoga u grad premještena dječaka.'",
+      "opts": [
+        "A. na Dragutina Tadijanovića",
+        "B. na Dobrišu Cesarića",
+        "C. na Juru Kaštelana",
+        "D. na Tina Ujevića"
+      ],
+      "correct": "A",
+      "exp": "Dragutin Tadijanović (1905.–2007.) pisao je slobodnim stihom temeljenim na govornom ritmu, a tematizira djetinjstvo u slavonskom Rastušju i premještanje u grad (Zagreb). Zbirke: Sunce nad oranicom, Pepeo srca..."
+    },
+    {
+      "id": 52,
+      "q": "Na koju se zbirku pjesama odnosi sljedeća tvrdnja?\n'Pjesnik u stihovima iz zbirke odustaje od standardnoga jezika i prihvaća idiom svojega zavičaja, preuzima govor svoje bake Terezije i visoko literarni jezik iz rječnika i književnih djela bogate kajkavske književnosti 18. stoljeća.'",
+      "opts": [
+        "A. na zbirku Balade Petrice Kerempuha Miroslava Krleže",
+        "B. na zbirku Kipci i popevke Dragutina Domjanića",
+        "C. na zbirku Ognji i rože Ivana Gorana Kovačića",
+        "D. na zbirku Z mojih bregov Frana Galovića"
+      ],
+      "correct": "A",
+      "exp": "Balade Petrice Kerempuha (1936.) Miroslav Krleža piše arhaičnim kajkavskim koristeći rječnike starih kajkavskih pisaca 18. st. i govor svog okruženja. Baka Terezija bila je izvor kajkavskog idioma."
+    },
+    {
+      "id": 53,
+      "q": "Koji književni lik u romanu Kiklop izgovara sljedeće rečenice?\n'Nemam više što da izgubim, jer ništa više nemam. Čak ni ovo tijelo nije više moje. Svoj kadaver sam prodao medicinskom fakultetu. I zapio ga odavno. Ja sam čovjek koji je progutao svoj leš – fućkam na sve finese.'",
+      "opts": [
+        "A. Adam ATMA",
+        "B. Don Fernando",
+        "C. Maestro",
+        "D. Ugo"
+      ],
+      "correct": "C",
+      "exp": "Maestro je lik u Marinkovićevom Kiklopu koji je prodao svoje tijelo medicinskom fakultetu — ekstremna nihilistička gesta. Karakteristična filozofija dehumanizacije."
+    },
+    {
+      "id": 54,
+      "q": "Koje je temeljno obilježje vladajućeg mentaliteta u drami Predstava Hamleta u selu Mrduša Donja?",
+      "opts": [
+        "A. demokracija",
+        "B. kreativnost",
+        "C. pesimizam",
+        "D. primitivizam"
+      ],
+      "correct": "D",
+      "exp": "Brešanova drama prikazuje seosku sredinu s primitivnim, dogmatskim, birokratskim mentalitetom (Mačak, Bukara) koji ne razumije kulturu niti demokratske vrijednosti. Primitivizam je temeljna kritika drame."
+    },
+    {
+      "id": 55,
+      "q": "Tko je autor sljedećih stihova?\nGrozno suzim gork plač sada,\ngorko plačem grozne suze\nke razmetni sin njekada\nkajan z grijeha lijevat uze;\njeda i moje grijehe oplaču\nsuze u suzah, plač u plaču.",
+      "opts": [
+        "A. Ivan Gundulić",
+        "B. Marin Držić",
+        "C. Marko Marulić",
+        "D. Šiško Menčetić"
+      ],
+      "correct": "A",
+      "exp": "'Razmetni sin' koji se kaje — to je Gundulićeva religiozna poema Suze sina razmetnoga (1622.). Kajanje za grijehe, gorke suze pokajanja — tipična Gundulićeva pobožna lirika."
+    },
+    {
+      "id": 56,
+      "q": "U kojoj je od sljedećih rečenica podcrtana riječ pravopisno točna?",
+      "opts": [
+        "A. Pomočnički ispit provodi se u Agenciji za strukovno obrazovanje.",
+        "B. Tin je odabrao za Luciju jednostavan zaručnički prsten.",
+        "C. Lovro nije htio izabrati svečenički poziv.",
+        "D. Pobunu je ugušila plačenička vojska."
+      ],
+      "correct": "B",
+      "exp": "'Zaručnički' = zaručnik + ski = pravilno. A: 'pomoćnički' (ne pomočnički); C: 'svećenički' (ne svečenički); D: 'plaćenička' (ne plačenička)."
+    },
+    {
+      "id": 57,
+      "q": "U kojoj je od sljedećih rečenica podcrtana riječ pravopisno točna?",
+      "opts": [
+        "A. Kućica je trebala zasijenjivati južnu stranu dvorišta.",
+        "B. Sabor je započeo zasijedati u petak.",
+        "C. Nemojte opet zapodijevati svađu.",
+        "D. Nije mu imao što zamijerati."
+      ],
+      "correct": "D",
+      "exp": "'Zamijerati' je pravilno (zamjerati → zamijerati, nesvršeni vid). A: 'zasjenjivati'; B: 'zasjedati' (zasjedati = na sjednici, ne zasijedati); C: 'zapodijevati'. Jedino D je ispravno."
+    },
+    {
+      "id": 58,
+      "q": "Koja je od sljedećih rečenica napisana u skladu s pravilima o pisanju velikog i malog početnog slova?",
+      "opts": [
+        "A. Povjerenstvo je prema pravilniku odlučilo koja će Lovačka društva biti odlikovana.",
+        "B. Lovačko odlikovanje 1. reda dobio je Lovački savez Osječko-Baranjske županije.",
+        "C. Nagradu je primio i predstavnik Lovačkoga društva 'Stari gaj' iz Mraclina.",
+        "D. Iz Gorskoga Kotara nagrađeno je Lovačko društvo 'Srnjak'."
+      ],
+      "correct": "C",
+      "exp": "'Lovačkoga društva Stari gaj' — nazivi društava/udruga u navodnicima pišu se velikim slovom. 'Lovačkoga društva' = opisni naziv (malo), 'Stari gaj' = vlastito ime u navodnicima (veliko). C je ispravno."
+    },
+    {
+      "id": 59,
+      "q": "U kojoj je od sljedećih rečenica podcrtani primjer napisan u skladu s pravilima o sastavljenom i nesastavljenom pisanju riječi?",
+      "opts": [
+        "A. U emisiji je bilo riječi o štetnosti ultra-ljubičastih zraka.",
+        "B. Pred nama su stajala najveća svjetska remek-djela.",
+        "C. Naši su nam prijatelji uputili video-poziv.",
+        "D. Za njega kažu da je pravi čovjek-zvijer."
+      ],
+      "correct": "B",
+      "exp": "'Remek-djela' — složenica s crticom, pravilno. A: 'ultaljubičasti' (bez crtice, prefiks uz+ osnova); C: 'videopoziv' (bez crtice); D: 'čovjek-zvijer' s crticom može biti, ali B je nesporni standardni oblik."
+    },
+    {
+      "id": 60,
+      "q": "U kojoj je riječi u sljedećoj rečenici došlo do gubljenja suglasnika?\nPrije predstave dijelili su kazališne programe.",
+      "opts": [
+        "A. predstave",
+        "B. dijelili",
+        "C. kazališne",
+        "D. programe"
+      ],
+      "correct": "C",
+      "exp": "'Kazalište + ni = kazališni → kazalištni → kazališni' — gubitak suglasničke grupe tštn → štn → kazališni (t ispada). Glasovna promjena gubljenja suglasnika (ispadanje t iz grupe štn)."
+    },
+    {
+      "id": 61,
+      "q": "Koja od sljedećih riječi ima dugosilazni naglasak?",
+      "opts": [
+        "A. hijena",
+        "B. konj",
+        "C. ljepota",
+        "D. snijeg"
+      ],
+      "correct": "A",
+      "exp": "'Hijȇna' — dugosilazni naglasak (ê) na prvom slogu. Konj = kratkosilazni (kȍnj), ljepota = kratkouzlazni (ljèpota), snijeg = kratkosilazni (snijȅg)."
+    },
+    {
+      "id": 62,
+      "q": "Koja imenica u sljedećoj rečenici završava nultim morfemom u nominativu jednine?\nPutujući domovinom početkom ljeta, uživali smo u blagodatima sunca.",
+      "opts": [
+        "A. domovinom",
+        "B. ljeta",
+        "C. blagodatima",
+        "D. sunca"
+      ],
+      "correct": "C",
+      "exp": "'Blagodat' — u nominativu jd. završava nultim morfemom Ø: blagodat + Ø (bez vidljivog nastavka). To je imenica ž.r. s nultim završetkom. 'Domovinom' = instrumental, 'ljeta' = genitiv, 'sunca' = genitiv."
+    },
+    {
+      "id": 63,
+      "q": "U kojoj je od sljedećih rečenica podcrtana riječ ženskoga roda?",
+      "opts": [
+        "A. Urednik je Programa za djecu i mladež na Hrvatskoj televiziji.",
+        "B. Namjerno izazivanje požara ili palež kažnjivo je zakonom.",
+        "C. Mrljica na koži tamnije boje simpatičan je madež.",
+        "D. Ljeti se često osjeća svrbež od uboda komaraca."
+      ],
+      "correct": "B",
+      "exp": "'Palež' je imenica ženskoga roda (ta palež, ove paleži). 'Mladež' = ž.r. — ali u A rečenici 'mladež' nije podcrtano. Provjera: B 'palež' — palež m.r. ili ž.r.? 'Palež' = ž.r. — pa B je točan."
+    },
+    {
+      "id": 64,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljen točan glagolski prilog?",
+      "opts": [
+        "A. Šalje sina na školovanje zanemareći kćer.",
+        "B. Zatvoreći vrata, konačno je odahnuo.",
+        "C. Otišao je znajući da će se vratiti.",
+        "D. Otprateći sina, bio je tužan."
+      ],
+      "correct": "A",
+      "exp": "'Zanemareći' = glagolski prilog sadašnji od 'zanemariti' — nesvršen gl. prilog. A je ispravan. B: 'zatvoreći' → 'zatvorivši' (svršeni glagol prilog prošli); C: 'znajući' od 'znati' = ispravno, ali D: 'otprateći' → 'otpratavši' (svršeni)."
+    },
+    {
+      "id": 65,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljen točan oblik komparativa pridjeva?",
+      "opts": [
+        "A. Djeca su zdravlja ako borave u prirodi i bave se sportom.",
+        "B. Bilo je mnogo zaraženih, ali s blažijim oblikom bolesti.",
+        "C. Umak je gustiji ako se na kraju umiješa vrhnje.",
+        "D. Juha je to krepča što je više povrća u njoj."
+      ],
+      "correct": "C",
+      "exp": "'Gustiji' = komparativ od 'gust' — supletivni komparativ s crticom (gust → gustiji). Ispravan. A: 'zdravija'; B: 'blažim' (ne blažijim); D: 'krepkija' (ne krepča)."
+    },
+    {
+      "id": 66,
+      "q": "U kojoj je od sljedećih rečenica imenica 'prosvjed' u instrumentalu množine?",
+      "opts": [
+        "A. Unatoč prosvjedima izglasan je zakon o radu nedjeljom.",
+        "B. Među svim prosvjedima najveći je bio onaj u Zagrebu.",
+        "C. Na prosvjedima se okupilo mnoštvo građana.",
+        "D. Mnogo se tih dana pisalo o prosvjedima."
+      ],
+      "correct": "A",
+      "exp": "'Unatoč prosvjedima' — prijedlog 'unatoč' zahtijeva dativ. Čekaj — unatoč + dativ = prosvjedima = dativ ili instrumental? 'Unatoč' traži dativ: 'unatoč prosvjedima' = dativ mn. Ali instrumental je isti oblik! 'Na prosvjedima' = lokativ."
+    },
+    {
+      "id": 67,
+      "q": "U kojoj se od sljedećih rečenica nalazi pluralia tantum?",
+      "opts": [
+        "A. U dramama su česte zamjene identiteta.",
+        "B. Sljeme je omiljeno izletište Zagrepčana.",
+        "C. Guliveru su trebale goleme cipele.",
+        "D. Popili smo kavu u Vinkovcima."
+      ],
+      "correct": "D",
+      "exp": "'Vinkovci' — pluralia tantum = imenica koja postoji samo u množini. Vinkovci (grad) = samo množina. 'Cipele' je obična množina (postoji jd. cipela), 'drame' i 'zamjene' su obične množine."
+    },
+    {
+      "id": 68,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljena odnosna zamjenica?",
+      "opts": [
+        "A. Taj bi odgovor zadovoljio svakoga.",
+        "B. Koga bismo mogli pitati?",
+        "C. Mislim da nema nikoga.",
+        "D. Pitaj koga hoćeš."
+      ],
+      "correct": "D",
+      "exp": "'Koga hoćeš' — 'koga' u rečenici 'Pitaj koga hoćeš' je odnosna zamjenica koja uvodi relativnu rečenicu. A = pokazna, B = upitna, C = niječna."
+    },
+    {
+      "id": 69,
+      "q": "Koju sintaktičku službu ima podcrtani rečenični dio u sljedećoj rečenici?\n\nNa probleme u lovstvu odgovor mora dati mjerodavno ministarstvo.",
+      "opts": [
+        "A. apozicije",
+        "B. atributa",
+        "C. priložne oznake",
+        "D. subjekta"
+      ],
+      "correct": "D",
+      "exp": "'Mjerodavno ministarstvo' — subjekt rečenice (tko mora dati odgovor? = mjerodavno ministarstvo). 'Mora dati' = predikat, 'odgovor' = objekt, 'na probleme u lovstvu' = priložna oznaka."
+    },
+    {
+      "id": 70,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljen neizravni objekt?",
+      "opts": [
+        "A. Požari su i ovoga proljeća uništili brojna životinjska obitavališta.",
+        "B. Časopis Lovački vjesnik namijenjen je ljubiteljima prirode.",
+        "C. Teški strojevi mogli bi uznemiriti sitnu i krupnu divljač.",
+        "D. Lovac nije pio vode cijelo prijepodne."
+      ],
+      "correct": "B",
+      "exp": "'Namijenjen ljubiteljima' — 'ljubiteljima' je neizravni objekt u dativu (namijenjen komu? = ljubiteljima = dativ). A = izravni objekt (obitavališta), C = izravni (divljač), D = partitivni genitiv."
+    },
+    {
+      "id": 71,
+      "q": "U kojoj rečenici podcrtani primjer ima službu priložne oznake uzroka?",
+      "opts": [
+        "A. Na proslavu rođendana stigli smo u dogovoreno vrijeme.",
+        "B. Naša je rođakinja uzbuđeno sjala od iznenadne sreće.",
+        "C. Usprkos lošemu vremenu odlučili smo krenuti na put.",
+        "D. Tražili su ju po ulicama do krajnje iznemoglosti."
+      ],
+      "correct": "B",
+      "exp": "'Od iznenadne sreće' — priložna oznaka uzroka (zašto je sjala? = od sreće = uzrok). Prijedlog 'od' + genitiv može izražavati uzrok."
+    },
+    {
+      "id": 72,
+      "q": "Koja je od sljedećih rečenica zavisnosložena namjerna rečenica?",
+      "opts": [
+        "A. Vriježe jagoda posadite u posudice kako biste osigurali sadnice za sljedeću sezonu.",
+        "B. Neven se sije po vrtu i u cvjetnjacima protiv nametnika kako to uči narodna predaja.",
+        "C. Pri kiseljenju povrća radite u koracima kako je propisano u receptu.",
+        "D. Zaražene dijelove biljke otrgnite kako piše u uputama."
+      ],
+      "correct": "A",
+      "exp": "'Kako biste osigurali sadnice' — 'kako biste' + kondicional = namjerna rečenica (s ciljem/namjerom da se nešto postigne). B, C, D = načinske rečenice (kako = na koji način)."
+    },
+    {
+      "id": 73,
+      "q": "Koja je od sljedećih rečenica gramatički točna?",
+      "opts": [
+        "A. Nedaleko Varaždina nalazi se problematično odlagalište otpada.",
+        "B. Izvještavali smo o pet događaja koji su prošli jako dobro.",
+        "C. Problem je riješeni u vrlo kratkome roku.",
+        "D. Gosti nas sve manje traže ćevape."
+      ],
+      "correct": "A",
+      "exp": "'Nedaleko Varaždina' — prijedlog 'nedaleko' + genitiv = ispravno. B: 'koji su' → 'koji je' (pet događaja = koji su); C: 'riješen' (ne riješeni); D: 'traže ćevape od nas' ili 'traže da im donesemo ćevape'."
+    },
+    {
+      "id": 74,
+      "q": "Koja je od sljedećih riječi sinonim podcrtane riječi u sljedećoj rečenici?\nJa ćutim da sam nečim dotaknut.",
+      "opts": [
+        "A. mislim",
+        "B. osjećam",
+        "C. sanjam",
+        "D. slutim"
+      ],
+      "correct": "B",
+      "exp": "'Ćutiti' (regionalno/arhaično) = osjećati. Sinonim je 'osjećam'. 'Ćutiti' je dubrovačko-dalmatinski leksem koji znači 'osjećati, čuti'."
+    },
+    {
+      "id": 75,
+      "q": "U kojemu je od sljedećih primjera upotrijebljen oksimoron?",
+      "opts": [
+        "A. Jana – voda osamsto metara duboko iznad svih",
+        "B. Donat Mg – klinički dokazano potiče probavu",
+        "C. Radenska – povezuje srca već 150 godina",
+        "D. Kala i Kalnička – voda koja drži priču"
+      ],
+      "correct": "A",
+      "exp": "'Osamsto metara duboko iznad svih' — 'duboko' i 'iznad' su suprotni pojmovi (duboko = prema dolje, iznad = prema gore) u jednom izrazu = oksimoron/paradoks u reklamnom sloganu."
+    },
+    {
+      "id": 76,
+      "q": "Koja je riječ u sljedećemu tekstu metonimija?\n'U srijedu je Picasso prodan za rekordnih 55 milijuna dolara...'",
+      "opts": [
+        "A. Picasso",
+        "B. period",
+        "C. ljubitelji",
+        "D. djela"
+      ],
+      "correct": "A",
+      "exp": "'Picasso prodan' — Picasso (ime autora) umjesto 'Picassova slika' (djelo). Metonimija = autor umjesto djela. Klasičan primjer metonimije u novinarstvu."
+    },
+    {
+      "id": 77,
+      "q": "Koja je od sljedećih rečenica leksički točna?",
+      "opts": [
+        "A. Ličinka se postupno odvija u prekrasnoga leptira.",
+        "B. Tema se odvija o jednoj patricijskoj obitelji.",
+        "C. Predstava se odvija kako je zamišljeno.",
+        "D. Mjesto radnje odvija se u Danskoj."
+      ],
+      "correct": "C",
+      "exp": "'Odvijati se' u značenju 'tijek, razvitak' ispravno je uz 'predstava/radnja'. A: 'preobražava'; B: 'tema se tiče'; D: 'radnja se odvija' (ne 'mjesto radnje se odvija')."
+    },
+    {
+      "id": 78,
+      "q": "U kojoj je od sljedećih rečenica podcrtana riječ leksički točna?",
+      "opts": [
+        "A. Pokazao nam je video sa stimulacijom scenarija mogućega udara Mjeseca u Zemlju.",
+        "B. Gorljiv je zdravstveni problem pronalaženje cjepiva koje će pobijediti virus.",
+        "C. Postupak detaljnoga opisivanja utječe na realnost romana.",
+        "D. Dobro su se slagali usprkos povremenim tenzijama."
+      ],
+      "correct": "D",
+      "exp": "'Tenzija' = napetost — ispravna upotreba. A: 'simulacijom'; B: 'goruć' (ne gorljiv = vatren/strastven); C: 'uvjerljivost/vjerodostojnost' (ne realnost)."
+    },
+    {
+      "id": 79,
+      "q": "Što su galicizmi?",
+      "opts": [
+        "A. posuđenice iz engleskoga jezika",
+        "B. posuđenice iz francuskoga jezika",
+        "C. posuđenice iz španjolskoga jezika",
+        "D. posuđenice iz talijanskoga jezika"
+      ],
+      "correct": "B",
+      "exp": "Galicizmi su posuđenice iz francuskog (Gallia = Francuska). Primjeri: bulevar, kuvert, žanr, garderoba. Anglizmi = engleski, hispanizmi = španjolski, italicizmi = talijanski."
+    },
+    {
+      "id": 80,
+      "q": "Koji od sljedećih frazema znači 'biti sitničav'?",
+      "opts": [
+        "A. gurati glavu u pijesak",
+        "B. tražiti dlaku u jajetu",
+        "C. biti prva violina",
+        "D. biti bog i batina"
+      ],
+      "correct": "B",
+      "exp": "'Tražiti dlaku u jajetu' = biti pretjerano sitničav, tražiti nedostatke tamo gdje ih nema. A = ignorirati probleme, C = biti najvažniji, D = imati svu moć."
+    }
+  ]
+}

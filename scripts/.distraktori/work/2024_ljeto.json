@@ -1,0 +1,781 @@
+{
+  "examKey": "2024_ljeto",
+  "label": "Ljetni rok",
+  "total": 62,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojoj vrsti lirske pjesme prema temi pripada pjesma Visoki jablani?",
+      "opts": [
+        "A. domoljubnoj",
+        "B. duhovno-religioznoj",
+        "C. pejzažnoj",
+        "D. refleksivnoj"
+      ],
+      "correct": "D",
+      "exp": "Pjesma promišlja o izuzetnim pojedincima (jablanima = genijima), njihovoj usamljenosti i nesporazumu s okolinom — nema opisa krajolika kao cilja, nema domoljubne tematike. Filozofsko-refleksivna meditacija o izuzetnosti i žrtvovanju.",
+      "ctx": "Tin Ujević, Visoki jablani\n\nOni imaju visoka čela, vijorne kose, široke grudi;\nod gromora njina glasa šuma i more se budi,\na kada rukom mahnu, obzori svijeta se šire\ni bune, i prodiru u vis, u etire.\n\nAli, za svoju snagu oni su zahvalni patnji,\nbijedi, sužanjstvu, gladi i njinoj crnoj pratnji.\nOni imaju snagu vjere što živi u smaku,\ni vrelo svjetlosti što tinja u mraku,\ni sunce u oblaku...\n\nOni imaju polet orlova, srčanih zračnih ptica,\noni poznaju pjesmu naših najdubljih žica,\nuzdušni piloti, nebeski piloti,\nza svijet u slobodi, za svijet u ljepoti,\nljudi svojih djela, djeca svojih ruku,\nrođena u plaču, sazrela u muku.\n\nNjina muška desna neprestano zida\ndvore čovječanstva. Dom Prometeida!\nI…"
+    },
+    {
+      "id": 2,
+      "q": "U kojima se od sljedećih stihova iskazuje da su jablani sami zaslužni za svoju veličinu?",
+      "opts": [
+        "A. Oni imaju polet orlova, srčanih zračnih ptica, / oni poznaju pjesmu naših najdubljih žica,",
+        "B. ljudi svojih djela, djeca svojih ruku, / rođena u plaču, sazrela u muku.",
+        "C. Mi stupamo bijelim dolom u tišini, / oni, sami, gordi, dršću u visini,",
+        "D. Povrh njina vrška gdje se pjesme gnijezde / samo vile lete, ili bure jezde;"
+      ],
+      "correct": "B",
+      "exp": "'Ljudi svojih djela, djeca svojih ruku' — fraze koje jasno kažu da su jablani (izuzetni pojedinci) sami tvorci vlastite veličine: nisu je naslijedili ni primili, nego ju sami izgrađuju.",
+      "ctx": "Tin Ujević, Visoki jablani\n\nOni imaju visoka čela, vijorne kose, široke grudi;\nod gromora njina glasa šuma i more se budi,\na kada rukom mahnu, obzori svijeta se šire\ni bune, i prodiru u vis, u etire.\n\nAli, za svoju snagu oni su zahvalni patnji,\nbijedi, sužanjstvu, gladi i njinoj crnoj pratnji.\nOni imaju snagu vjere što živi u smaku,\ni vrelo svjetlosti što tinja u mraku,\ni sunce u oblaku...\n\nOni imaju polet orlova, srčanih zračnih ptica,\noni poznaju pjesmu naših najdubljih žica,\nuzdušni piloti, nebeski piloti,\nza svijet u slobodi, za svijet u ljepoti,\nljudi svojih djela, djeca svojih ruku,\nrođena u plaču, sazrela u muku.\n\nNjina muška desna neprestano zida\ndvore čovječanstva. Dom Prometeida!\nI…"
+    },
+    {
+      "id": 3,
+      "q": "Na kojoj je od sljedećih stilskih figura utemeljen prikaz jablana?",
+      "opts": [
+        "A. na eufemizmu",
+        "B. na hiperboli",
+        "C. na ironiji",
+        "D. na paradoksu"
+      ],
+      "correct": "D",
+      "exp": "'Za svoju snagu oni su zahvalni patnji, bijedi, sužanjstvu, gladi' — paradoks: snaga nastaje iz slabosti, veličina iz patnje, svjetlost iz mraka. Jablani su veliki JER SU trpjeli, a ne usprkos tome.",
+      "ctx": "Tin Ujević, Visoki jablani\n\nOni imaju visoka čela, vijorne kose, široke grudi;\nod gromora njina glasa šuma i more se budi,\na kada rukom mahnu, obzori svijeta se šire\ni bune, i prodiru u vis, u etire.\n\nAli, za svoju snagu oni su zahvalni patnji,\nbijedi, sužanjstvu, gladi i njinoj crnoj pratnji.\nOni imaju snagu vjere što živi u smaku,\ni vrelo svjetlosti što tinja u mraku,\ni sunce u oblaku...\n\nOni imaju polet orlova, srčanih zračnih ptica,\noni poznaju pjesmu naših najdubljih žica,\nuzdušni piloti, nebeski piloti,\nza svijet u slobodi, za svijet u ljepoti,\nljudi svojih djela, djeca svojih ruku,\nrođena u plaču, sazrela u muku.\n\nNjina muška desna neprestano zida\ndvore čovječanstva. Dom Prometeida!\nI…"
+    },
+    {
+      "id": 4,
+      "q": "Zašto jablani ne mogu da nas uvis popnu?",
+      "opts": [
+        "A. jer su zaokupljeni svojim problemima",
+        "B. jer nailaze na nerazumijevanje",
+        "C. jer nisu dovoljno fizički snažni",
+        "D. jer žele biti u samoći"
+      ],
+      "correct": "B",
+      "exp": "'u samoći njihova je glava ispravna i čista povrh mračne rulje, gdje ih ne razumiju glupani i hulje' — jablani su nerazumijevi od rulje = nailaze na nerazumijevanje. Ne mogu nas uzvisiti jer ih ne razumijemo.",
+      "ctx": "Tin Ujević, Visoki jablani\n\nOni imaju visoka čela, vijorne kose, široke grudi;\nod gromora njina glasa šuma i more se budi,\na kada rukom mahnu, obzori svijeta se šire\ni bune, i prodiru u vis, u etire.\n\nAli, za svoju snagu oni su zahvalni patnji,\nbijedi, sužanjstvu, gladi i njinoj crnoj pratnji.\nOni imaju snagu vjere što živi u smaku,\ni vrelo svjetlosti što tinja u mraku,\ni sunce u oblaku...\n\nOni imaju polet orlova, srčanih zračnih ptica,\noni poznaju pjesmu naših najdubljih žica,\nuzdušni piloti, nebeski piloti,\nza svijet u slobodi, za svijet u ljepoti,\nljudi svojih djela, djeca svojih ruku,\nrođena u plaču, sazrela u muku.\n\nNjina muška desna neprestano zida\ndvore čovječanstva. Dom Prometeida!\nI…"
+    },
+    {
+      "id": 5,
+      "q": "Kakve ljude simboliziraju jablani?",
+      "opts": [
+        "A. one koji se zalažu za život u skladu s prirodom",
+        "B. izdvojene pojedince koji teže idealima",
+        "C. umišljene i samodopadne pjesnike",
+        "D. one koji su željni moći"
+      ],
+      "correct": "B",
+      "exp": "Jablani = visoki, usamljeni, neshvaćeni, streme prema gore, 'nebeski piloti', 'za svijet u slobodi, za svijet u ljepoti' = simboli izuzetnih, idealističkih pojedinaca koji su odvojeni od masa.",
+      "ctx": "Tin Ujević, Visoki jablani\n\nOni imaju visoka čela, vijorne kose, široke grudi;\nod gromora njina glasa šuma i more se budi,\na kada rukom mahnu, obzori svijeta se šire\ni bune, i prodiru u vis, u etire.\n\nAli, za svoju snagu oni su zahvalni patnji,\nbijedi, sužanjstvu, gladi i njinoj crnoj pratnji.\nOni imaju snagu vjere što živi u smaku,\ni vrelo svjetlosti što tinja u mraku,\ni sunce u oblaku...\n\nOni imaju polet orlova, srčanih zračnih ptica,\noni poznaju pjesmu naših najdubljih žica,\nuzdušni piloti, nebeski piloti,\nza svijet u slobodi, za svijet u ljepoti,\nljudi svojih djela, djeca svojih ruku,\nrođena u plaču, sazrela u muku.\n\nNjina muška desna neprestano zida\ndvore čovječanstva. Dom Prometeida!\nI…"
+    },
+    {
+      "id": 6,
+      "q": "Na kojoj je stilskoj figuri utemeljen očev doživljaj Jurja i Lucije?",
+      "opts": [
+        "A. na kontrastu",
+        "B. na metafori",
+        "C. na metonimiji",
+        "D. na oksimoronu"
+      ],
+      "correct": "A",
+      "exp": "Otac tretira Jurja kao prodigy-dječaka (kviz o povijesti, 'genijalna glava'), a Luciju ignorira ('Što to vodiš k stolu?'). Kontrast između odnosa prema sinu i kćeri = temeljna stilska figura.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — obiteljski ručak)\n\nPrvi bi jelo uzeo Stipančić, zatim metnuo na pladanj Jurju, a posljednja bi uzela Valpurga.\n\nI stalo bi se jesti bez riječi. No najednom rekao bi Stipančić hladnim glasom ispitujućega učitelja, ne pogledavši Jurja:\n– Četiri stotine osamdesete prije Isusa?\n– Miltijades pobijedio kod Maratona, – rekao bi Juraj, ne dižući očiju s pladnja.\n– Dobro. Šezdesete prije Isusa?\n– Prvi trijumvirat: Cezar, Pompej i Kras.\n\n– Molim! Dijete od devet godina! – pokazao bi tad otac rukom na Jurja i glasom koji je, od same uzbuđenosti, imao prizvuk srditosti. On ne bi pritom gledao Valpurgu, kao da na to treće lice upozoruje, ali bi ona kimnul…"
+    },
+    {
+      "id": 7,
+      "q": "Na što od sljedećega upućuju sljedeće Antine rečenice?\n'Molim! Dijete od devet godina!'",
+      "opts": [
+        "A. na pohvalu Valpurgina odgoja djece",
+        "B. na Antin prijezir prema djeci",
+        "C. na Lucijino ponašanje",
+        "D. na Jurjevo znanje"
+      ],
+      "correct": "D",
+      "exp": "Otac svake večere ispituje Jurja iz povijesti — 'Molim! Dijete od devet godina!' je usklik divljenja Jurjevom znanju. Govori to pokazujući rukom na Jurja = pohvala znanju.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — obiteljski ručak)\n\nPrvi bi jelo uzeo Stipančić, zatim metnuo na pladanj Jurju, a posljednja bi uzela Valpurga.\n\nI stalo bi se jesti bez riječi. No najednom rekao bi Stipančić hladnim glasom ispitujućega učitelja, ne pogledavši Jurja:\n– Četiri stotine osamdesete prije Isusa?\n– Miltijades pobijedio kod Maratona, – rekao bi Juraj, ne dižući očiju s pladnja.\n– Dobro. Šezdesete prije Isusa?\n– Prvi trijumvirat: Cezar, Pompej i Kras.\n\n– Molim! Dijete od devet godina! – pokazao bi tad otac rukom na Jurja i glasom koji je, od same uzbuđenosti, imao prizvuk srditosti. On ne bi pritom gledao Valpurgu, kao da na to treće lice upozoruje, ali bi ona kimnul…"
+    },
+    {
+      "id": 8,
+      "q": "U kojemu se trenutku Lucija osjećala sretnom?",
+      "opts": [
+        "A. kad se uređivala za susret s ocem",
+        "B. kad je otac podučavao Jurja",
+        "C. kad je smjela ručati s ocem",
+        "D. kad je otac odlazio iz kuće"
+      ],
+      "correct": "D",
+      "exp": "'kojega bi se sretno riješila istom onda kad bi se... osvjedočila da je otac s Jurjem umakao s maloga trga' — Lucija se sretnom osjećala jedino kad je otac odlazio, jer ga se bojala.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — obiteljski ručak)\n\nPrvi bi jelo uzeo Stipančić, zatim metnuo na pladanj Jurju, a posljednja bi uzela Valpurga.\n\nI stalo bi se jesti bez riječi. No najednom rekao bi Stipančić hladnim glasom ispitujućega učitelja, ne pogledavši Jurja:\n– Četiri stotine osamdesete prije Isusa?\n– Miltijades pobijedio kod Maratona, – rekao bi Juraj, ne dižući očiju s pladnja.\n– Dobro. Šezdesete prije Isusa?\n– Prvi trijumvirat: Cezar, Pompej i Kras.\n\n– Molim! Dijete od devet godina! – pokazao bi tad otac rukom na Jurja i glasom koji je, od same uzbuđenosti, imao prizvuk srditosti. On ne bi pritom gledao Valpurgu, kao da na to treće lice upozoruje, ali bi ona kimnul…"
+    },
+    {
+      "id": 9,
+      "q": "U kojemu je primjeru iskazan vrhunac očeva podcjenjivačkoga odnosa prema ženama?",
+      "opts": [
+        "A. Čitavo je jutro učila Lucija kako će se ponašati kod stola,",
+        "B. Kad ju je napokon sjela do sebe, udarila je Lucija plakati.",
+        "C. Valpurga baci pogled k mužu, čije je namršteno lice i strog pogled govorio jasno kako ga se Lucijino ponašanje prima.",
+        "D. Što to vodiš k stolu?"
+      ],
+      "correct": "D",
+      "exp": "'Što to vodiš k stolu?' — otac govori o Luciji kao da je stvar ('to' = srednji rod, dehumanizacija). Vrhunac je dehumanizacije i podcjenjivanja: djevojčica svode na bezlični 'to'.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — obiteljski ručak)\n\nPrvi bi jelo uzeo Stipančić, zatim metnuo na pladanj Jurju, a posljednja bi uzela Valpurga.\n\nI stalo bi se jesti bez riječi. No najednom rekao bi Stipančić hladnim glasom ispitujućega učitelja, ne pogledavši Jurja:\n– Četiri stotine osamdesete prije Isusa?\n– Miltijades pobijedio kod Maratona, – rekao bi Juraj, ne dižući očiju s pladnja.\n– Dobro. Šezdesete prije Isusa?\n– Prvi trijumvirat: Cezar, Pompej i Kras.\n\n– Molim! Dijete od devet godina! – pokazao bi tad otac rukom na Jurja i glasom koji je, od same uzbuđenosti, imao prizvuk srditosti. On ne bi pritom gledao Valpurgu, kao da na to treće lice upozoruje, ali bi ona kimnul…"
+    },
+    {
+      "id": 10,
+      "q": "Koje je značenje podcrtanoga izraza u Stipančićevu obraćanju Valpurgi?\n'prodaj i krevet ispod sebe da dovrši nauke'",
+      "opts": [
+        "A. da se treba baviti trgovačkim poslovima",
+        "B. da ne bude lijena",
+        "C. da mirno spava",
+        "D. da žrtvuje sve"
+      ],
+      "correct": "D",
+      "exp": "'Prodaj i krevet ispod sebe' — hiperbola koja znači: žrtvuj sve, čak i ono najneophodnije (krevet). Značenje: treba žrtvovati sve radi Jurjevog školovanja.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — obiteljski ručak)\n\nPrvi bi jelo uzeo Stipančić, zatim metnuo na pladanj Jurju, a posljednja bi uzela Valpurga.\n\nI stalo bi se jesti bez riječi. No najednom rekao bi Stipančić hladnim glasom ispitujućega učitelja, ne pogledavši Jurja:\n– Četiri stotine osamdesete prije Isusa?\n– Miltijades pobijedio kod Maratona, – rekao bi Juraj, ne dižući očiju s pladnja.\n– Dobro. Šezdesete prije Isusa?\n– Prvi trijumvirat: Cezar, Pompej i Kras.\n\n– Molim! Dijete od devet godina! – pokazao bi tad otac rukom na Jurja i glasom koji je, od same uzbuđenosti, imao prizvuk srditosti. On ne bi pritom gledao Valpurgu, kao da na to treće lice upozoruje, ali bi ona kimnul…"
+    },
+    {
+      "id": 11,
+      "q": "Koja se od sljedećih tvrdnja iz polaznoga teksta odnosi na Stephenove vršnjake?",
+      "opts": [
+        "A. Pokušavaju se sakriti od prefekta tijekom nogometne igre.",
+        "B. Okarakterizirani su crno-bijelom karakterizacijom.",
+        "C. Nadmeću se u tome tko će postati vođom.",
+        "D. Prikazani su iz Stephenove perspektive."
+      ],
+      "correct": "D",
+      "exp": "Cijeli tekst je pripovijedan iz Stephenove perspektive — drugi dječaci su prikazani onako kako ih Stephen doživljava (Kickham kao pozitivan, Roche kao 'ogavni'). Slobodni neizravni govor Stephenove perspektive.",
+      "ctx": "James Joyce, Portret umjetnika u mladosti (ulomak)\n\nNa prostranim igralištima vrvjelo je od dječaka. Svi su vikali, a prefekti su ih poticali glasnim povicima. Večernji zrak bijaše blijed i hladan, i nakon svakog napada i udarca nogometaša zamazana bi kožna lopta poletjela kao troma ptica kroz sivu svjetlost. On se držao izvan vidjela svog prefekta, izvan dosega surovih nogu, hineći kadikad da trči. Usred te vreve od igrača osjećaše kako mu je tijelo maleno i slabunjavo.\n\nRody Kickham nije bio takav: svi su drugovi govorili da će postati vođa četvrtog i petog razreda. Rody Kickham bijaše zgodan dečko, ali onaj ogavni Roche bijaše smrad. Gad Roche imao je krupne šake. I jednoga dana je upitao…"
+    },
+    {
+      "id": 12,
+      "q": "Kojega od sljedećih likova iz polaznoga teksta pripovjedač prikazuje kao nasilnika?",
+      "opts": [
+        "A. Rodyja Kickhama",
+        "B. Rochea",
+        "C. Cantwella",
+        "D. Jacka Lawtona"
+      ],
+      "correct": "B",
+      "exp": "'onaj ogavni Roche bijaše smrad. Gad Roche imao je krupne šake' — izravna karakterizacija nasilja. Roche je prikazan kao agresivan i zastrašujuć.",
+      "ctx": "James Joyce, Portret umjetnika u mladosti (ulomak)\n\nNa prostranim igralištima vrvjelo je od dječaka. Svi su vikali, a prefekti su ih poticali glasnim povicima. Večernji zrak bijaše blijed i hladan, i nakon svakog napada i udarca nogometaša zamazana bi kožna lopta poletjela kao troma ptica kroz sivu svjetlost. On se držao izvan vidjela svog prefekta, izvan dosega surovih nogu, hineći kadikad da trči. Usred te vreve od igrača osjećaše kako mu je tijelo maleno i slabunjavo.\n\nRody Kickham nije bio takav: svi su drugovi govorili da će postati vođa četvrtog i petog razreda. Rody Kickham bijaše zgodan dečko, ali onaj ogavni Roche bijaše smrad. Gad Roche imao je krupne šake. I jednoga dana je upitao…"
+    },
+    {
+      "id": 13,
+      "q": "Koja je od sljedećih rečenica potaknula Stephenovo sjećanje na majku?",
+      "opts": [
+        "A. — Što ti je otac?",
+        "B. On će ti dati nogom u stražnjicu.",
+        "C. Lijepa majka!",
+        "D. — Zbogom, Stephen, zbogom!"
+      ],
+      "correct": "B",
+      "exp": "'To baš nisu bile lijepe riječi. Mati mu je rekla da ne razgovara sa surovim dječacima u školi. Lijepa majka!' — nepristojne riječi ('nogom u stražnjicu') podsjetile su ga na majčin savjet, što je potaknulo sjećanje.",
+      "ctx": "James Joyce, Portret umjetnika u mladosti (ulomak)\n\nNa prostranim igralištima vrvjelo je od dječaka. Svi su vikali, a prefekti su ih poticali glasnim povicima. Večernji zrak bijaše blijed i hladan, i nakon svakog napada i udarca nogometaša zamazana bi kožna lopta poletjela kao troma ptica kroz sivu svjetlost. On se držao izvan vidjela svog prefekta, izvan dosega surovih nogu, hineći kadikad da trči. Usred te vreve od igrača osjećaše kako mu je tijelo maleno i slabunjavo.\n\nRody Kickham nije bio takav: svi su drugovi govorili da će postati vođa četvrtog i petog razreda. Rody Kickham bijaše zgodan dečko, ali onaj ogavni Roche bijaše smrad. Gad Roche imao je krupne šake. I jednoga dana je upitao…"
+    },
+    {
+      "id": 14,
+      "q": "Koji od sljedećih zaključaka o Stephenu proizlazi iz sljedećega primjera?\n'Tako lijepa i topla bijahu svjetla u samostanu. Bijaše to kao u nekoj knjizi. (...) A u Pravopisu doktora Gornwella ima tako lijepih rečenica. Kao pjesme...'",
+      "opts": [
+        "A. da je njegov doživljaj svijeta umjetnički",
+        "B. da planira napisati pravopisni priručnik",
+        "C. da voli čitati literaturu o samostanima",
+        "D. da želi upoznati doktora Gornwella"
+      ],
+      "correct": "A",
+      "exp": "Stephen vidi samostanska svjetla 'kao u nekoj knjizi', a pravopisne rečenice 'kao pjesme' — doživljava svakodnevnu stvarnost kroz prizmu estetike i književnosti. Umjetnički doživljaj svijeta.",
+      "ctx": "James Joyce, Portret umjetnika u mladosti (ulomak)\n\nNa prostranim igralištima vrvjelo je od dječaka. Svi su vikali, a prefekti su ih poticali glasnim povicima. Večernji zrak bijaše blijed i hladan, i nakon svakog napada i udarca nogometaša zamazana bi kožna lopta poletjela kao troma ptica kroz sivu svjetlost. On se držao izvan vidjela svog prefekta, izvan dosega surovih nogu, hineći kadikad da trči. Usred te vreve od igrača osjećaše kako mu je tijelo maleno i slabunjavo.\n\nRody Kickham nije bio takav: svi su drugovi govorili da će postati vođa četvrtog i petog razreda. Rody Kickham bijaše zgodan dečko, ali onaj ogavni Roche bijaše smrad. Gad Roche imao je krupne šake. I jednoga dana je upitao…"
+    },
+    {
+      "id": 15,
+      "q": "Koje je od sljedećih obilježja polaznoga teksta tipično za poetiku modernoga romana?",
+      "opts": [
+        "A. izmjenjivanje vremenskih perspektiva",
+        "B. detaljni opisi likova i prostora",
+        "C. pripovijedanje u trećemu licu",
+        "D. dijalog među likovima"
+      ],
+      "correct": "A",
+      "exp": "Tekst slobodno prelazi između sadašnjosti (na igralištu) i prošlosti (sjećanje na odlazak od roditelja) = izmjenjivanje vremenskih perspektiva (tok svijesti/struja svijesti). Karakteristično za moderni roman (Joyce, Woolf, Proust).",
+      "ctx": "James Joyce, Portret umjetnika u mladosti (ulomak)\n\nNa prostranim igralištima vrvjelo je od dječaka. Svi su vikali, a prefekti su ih poticali glasnim povicima. Večernji zrak bijaše blijed i hladan, i nakon svakog napada i udarca nogometaša zamazana bi kožna lopta poletjela kao troma ptica kroz sivu svjetlost. On se držao izvan vidjela svog prefekta, izvan dosega surovih nogu, hineći kadikad da trči. Usred te vreve od igrača osjećaše kako mu je tijelo maleno i slabunjavo.\n\nRody Kickham nije bio takav: svi su drugovi govorili da će postati vođa četvrtog i petog razreda. Rody Kickham bijaše zgodan dečko, ali onaj ogavni Roche bijaše smrad. Gad Roche imao je krupne šake. I jednoga dana je upitao…"
+    },
+    {
+      "id": 16,
+      "q": "O kojemu danu govori Radmio u svojemu obraćanju Ribaru?",
+      "opts": [
+        "A. o danu kad će se vjenčati dvoje najljepših pastira",
+        "B. o danu kad su uništeni krajevi uz more",
+        "C. o danu kad je Ribar pobjegao od kuće",
+        "D. o danu kad je nastala Dubrava"
+      ],
+      "correct": "A",
+      "exp": "'kobi dan veseli ki je srećan svima nam! / Općena sloboda, vrh svega najdraža' — Radmio obilježava dan vjenčanja najljepših pastira (Dubravke i Miljka) kao 'dan veseli ki je srećan svima nam'. Taj dan slavi slobodu Dubrave.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Ribar i Radmio)\n\nRIBAR:\nZa shranit staros mû i odahnut bez sile\nu gnijezdu slatkomu slobode primile.\nPrimorja naša sva u ništa sila zbi:\nDubrava sama ova vlada se po sebi.\n\nPo njih svijeh srdita zvijer trči i rži,\ni grabi i hita i u noktijeh sve drži.\nOvdi čut zle zvijeri ni inoga glasa nî\nneg što sam žuberi tih slavic na grani.\n\nTvrda u nas nije kuća da od sile prihude\nbludnika goruća ocu kćer sabljude.\nOvdi nije sirote ku sila potište,\nni se boji sramote ko ju sam ne ište.\n\nToliko je vladanje silno u nas, da se tî,\nžena, djeca, imanje ne možeš tvoj rijeti.\nU mjesti je ovemu slobode čestit dar\nsvak sebi i svemu svomu je gospodar.\n\nRazlog, pravda i mjera sve…"
+    },
+    {
+      "id": 17,
+      "q": "U kojim stihovima Ribar izražava svoje mišljenje o poštenju koje vlada u Dubravi?",
+      "opts": [
+        "A. Toliko je vladanje silno u nas, da se tî, / žena, djeca, imanje ne možeš tvoj rijeti.",
+        "B. Razlog, pravda i mjera svemu je zlato u nas, / prodava na nj vjera, život se, duša i čâs;",
+        "C. duša i čâs ovuda ne ide za platom, / ni mjere u suda pritežu pod zlatom.",
+        "D. Stvari u nas tej nije kom voljan mož se čut; / kupovat trijebi je, ako hoć odahnut."
+      ],
+      "correct": "C",
+      "exp": "'duša i čâs ovuda ne ide za platom, / ni mjere u suda pritežu pod zlatom' — u Dubravi nitko ne prodaje savjest za novac, ni suci ne primaju mito. Ovo iskazuje Ribarovo mišljenje o poštenju Dubrave.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Ribar i Radmio)\n\nRIBAR:\nZa shranit staros mû i odahnut bez sile\nu gnijezdu slatkomu slobode primile.\nPrimorja naša sva u ništa sila zbi:\nDubrava sama ova vlada se po sebi.\n\nPo njih svijeh srdita zvijer trči i rži,\ni grabi i hita i u noktijeh sve drži.\nOvdi čut zle zvijeri ni inoga glasa nî\nneg što sam žuberi tih slavic na grani.\n\nTvrda u nas nije kuća da od sile prihude\nbludnika goruća ocu kćer sabljude.\nOvdi nije sirote ku sila potište,\nni se boji sramote ko ju sam ne ište.\n\nToliko je vladanje silno u nas, da se tî,\nžena, djeca, imanje ne možeš tvoj rijeti.\nU mjesti je ovemu slobode čestit dar\nsvak sebi i svemu svomu je gospodar.\n\nRazlog, pravda i mjera sve…"
+    },
+    {
+      "id": 18,
+      "q": "Koja je funkcija kontrasta u Ribarovu obraćanju Radmilu?",
+      "opts": [
+        "A. da se upozori na neprijatelje koji prijete Dubravi",
+        "B. da se opiše Ribarov bijeg od kuće",
+        "C. da se zabave stanovnici Dubrave",
+        "D. da se istakne sloboda Dubrave"
+      ],
+      "correct": "D",
+      "exp": "Ribar stalno suprotstavlja stanje u Primorju (mletačka vladavina, 'srdita zvijer', nasilje, ropstvo) sa stanjem u Dubravi (sloboda, pravda, sigurnost). Kontrast služi da se istakne sloboda Dubrave.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Ribar i Radmio)\n\nRIBAR:\nZa shranit staros mû i odahnut bez sile\nu gnijezdu slatkomu slobode primile.\nPrimorja naša sva u ništa sila zbi:\nDubrava sama ova vlada se po sebi.\n\nPo njih svijeh srdita zvijer trči i rži,\ni grabi i hita i u noktijeh sve drži.\nOvdi čut zle zvijeri ni inoga glasa nî\nneg što sam žuberi tih slavic na grani.\n\nTvrda u nas nije kuća da od sile prihude\nbludnika goruća ocu kćer sabljude.\nOvdi nije sirote ku sila potište,\nni se boji sramote ko ju sam ne ište.\n\nToliko je vladanje silno u nas, da se tî,\nžena, djeca, imanje ne možeš tvoj rijeti.\nU mjesti je ovemu slobode čestit dar\nsvak sebi i svemu svomu je gospodar.\n\nRazlog, pravda i mjera sve…"
+    },
+    {
+      "id": 19,
+      "q": "Na koji je način opisana Dubrava u Ribarovu prikazu?",
+      "opts": [
+        "A. idilično",
+        "B. mistično",
+        "C. realistično",
+        "D. satirično"
+      ],
+      "correct": "A",
+      "exp": "'slobode primile', slavice žubere, 'razlog, pravda i mjera', svi staleži u mirnoj zabavi — idealizirani, miran, sretan prikaz = idilični.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Ribar i Radmio)\n\nRIBAR:\nZa shranit staros mû i odahnut bez sile\nu gnijezdu slatkomu slobode primile.\nPrimorja naša sva u ništa sila zbi:\nDubrava sama ova vlada se po sebi.\n\nPo njih svijeh srdita zvijer trči i rži,\ni grabi i hita i u noktijeh sve drži.\nOvdi čut zle zvijeri ni inoga glasa nî\nneg što sam žuberi tih slavic na grani.\n\nTvrda u nas nije kuća da od sile prihude\nbludnika goruća ocu kćer sabljude.\nOvdi nije sirote ku sila potište,\nni se boji sramote ko ju sam ne ište.\n\nToliko je vladanje silno u nas, da se tî,\nžena, djeca, imanje ne možeš tvoj rijeti.\nU mjesti je ovemu slobode čestit dar\nsvak sebi i svemu svomu je gospodar.\n\nRazlog, pravda i mjera sve…"
+    },
+    {
+      "id": 20,
+      "q": "Na koji način završava Ribarov monolog u polaznome tekstu?",
+      "opts": [
+        "A. postupkom deus ex machina",
+        "B. zazivanjem vlasti u Dubravi",
+        "C. pohvalom Radmilu",
+        "D. kletvom"
+      ],
+      "correct": "D",
+      "exp": "'a tko ište zlo na vas zlo našô na domu!' — kletva onome tko želi zlo Dubravi. Ribarov monolog završava kletvom kao retorički snažan završetak.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Ribar i Radmio)\n\nRIBAR:\nZa shranit staros mû i odahnut bez sile\nu gnijezdu slatkomu slobode primile.\nPrimorja naša sva u ništa sila zbi:\nDubrava sama ova vlada se po sebi.\n\nPo njih svijeh srdita zvijer trči i rži,\ni grabi i hita i u noktijeh sve drži.\nOvdi čut zle zvijeri ni inoga glasa nî\nneg što sam žuberi tih slavic na grani.\n\nTvrda u nas nije kuća da od sile prihude\nbludnika goruća ocu kćer sabljude.\nOvdi nije sirote ku sila potište,\nni se boji sramote ko ju sam ne ište.\n\nToliko je vladanje silno u nas, da se tî,\nžena, djeca, imanje ne možeš tvoj rijeti.\nU mjesti je ovemu slobode čestit dar\nsvak sebi i svemu svomu je gospodar.\n\nRazlog, pravda i mjera sve…"
+    },
+    {
+      "id": 21,
+      "q": "Koja je namjena polaznoga teksta?",
+      "opts": [
+        "A. potaknuti čitatelje na kupnju klimatizacijskih uređaja, pročistača i ovlaživača zraka",
+        "B. informirati čitatelje o nedostatcima gradskoga života i prednostima života u prirodi",
+        "C. objasniti čitateljima zašto je najbolje upotrebljavati obnovljive izvore energije",
+        "D. educirati čitatelje kako zrak u zatvorenome prostoru učiniti kvalitetnijim"
+      ],
+      "correct": "D",
+      "exp": "Cijeli tekst daje savjete kako poboljšati kvalitetu zraka u stanu — 'Birajte pokućstvo', 'Izbjegavajte', 'Otvorite prozor'. Savjetodavna/edukativna namjena.",
+      "ctx": "Čist zrak – zdrav život (upućivački/savjetodavni tekst)\n\nBilo bi lijepo stanovati u prirodi, u kući koja je izgrađena tako da diše zajedno s okolišem i napaja se isključivo čistom, obnovljivom energijom sunca, vjetra, vode i zemlje. No, suvremeno stanovanje često se svodi na umjetne materijale i lošu klimatizaciju zbog čega je zrak u mnogim domovima onečišćen visokim koncentracijama štetnih kemijskih spojeva, prašine, plijesni...\n\nPribroje li se tome nepovoljni vanjski uvjeti, postavlja se pitanje koliko uopće možemo utjecati na kakvoću zraka koji udišemo. Stručnjaci preporučuju niz načina da barem djelomice smanjimo utjecaj vanjskih onečišćivača.\n\nBirajte pokućstvo od cjelovitog drva, treti…"
+    },
+    {
+      "id": 22,
+      "q": "Zašto je, prema mišljenju autora teksta, važno biti pažljiv pri odabiru pokućstva?",
+      "opts": [
+        "A. zbog toga što može sadržavati štetne kemijske spojeve",
+        "B. zbog toga što ga je teško čistiti prirodnim sredstvima",
+        "C. zbog toga što se može oštetiti u grijanim prostorima",
+        "D. zbog toga što može biti opasno za kućne ljubimce"
+      ],
+      "correct": "A",
+      "exp": "'Birajte pokućstvo od cjelovitog drva, tretiranog samo ekološkim premazima' — preporuka daje naslutiti da namještaj može sadržavati štetne kemijske spojeve (formaldehid, lakovi itd.) koji se evaporiraju.",
+      "ctx": "Čist zrak – zdrav život (upućivački/savjetodavni tekst)\n\nBilo bi lijepo stanovati u prirodi, u kući koja je izgrađena tako da diše zajedno s okolišem i napaja se isključivo čistom, obnovljivom energijom sunca, vjetra, vode i zemlje. No, suvremeno stanovanje često se svodi na umjetne materijale i lošu klimatizaciju zbog čega je zrak u mnogim domovima onečišćen visokim koncentracijama štetnih kemijskih spojeva, prašine, plijesni...\n\nPribroje li se tome nepovoljni vanjski uvjeti, postavlja se pitanje koliko uopće možemo utjecati na kakvoću zraka koji udišemo. Stručnjaci preporučuju niz načina da barem djelomice smanjimo utjecaj vanjskih onečišćivača.\n\nBirajte pokućstvo od cjelovitog drva, treti…"
+    },
+    {
+      "id": 23,
+      "q": "Zašto, prema mišljenju autora teksta, nije dobro da su unutarnji prostori previše zagrijani?",
+      "opts": [
+        "A. zbog toga što će u prostoriji biti više ugljikova monoksida",
+        "B. zbog toga što će otrovni kemijski spojevi više isparavati",
+        "C. zbog toga što će to naštetiti sobnim biljkama",
+        "D. zbog toga što će račun za grijanje biti visok"
+      ],
+      "correct": "B",
+      "exp": "'Što je prostor zagrijaniji, veće je otpuštanje otrovnih para iz sintetičkih predmeta i kemijskih sredstava' — visoka temperatura pospješuje isparavanje kemikalija.",
+      "ctx": "Čist zrak – zdrav život (upućivački/savjetodavni tekst)\n\nBilo bi lijepo stanovati u prirodi, u kući koja je izgrađena tako da diše zajedno s okolišem i napaja se isključivo čistom, obnovljivom energijom sunca, vjetra, vode i zemlje. No, suvremeno stanovanje često se svodi na umjetne materijale i lošu klimatizaciju zbog čega je zrak u mnogim domovima onečišćen visokim koncentracijama štetnih kemijskih spojeva, prašine, plijesni...\n\nPribroje li se tome nepovoljni vanjski uvjeti, postavlja se pitanje koliko uopće možemo utjecati na kakvoću zraka koji udišemo. Stručnjaci preporučuju niz načina da barem djelomice smanjimo utjecaj vanjskih onečišćivača.\n\nBirajte pokućstvo od cjelovitog drva, treti…"
+    },
+    {
+      "id": 24,
+      "q": "Koji od sljedećih proizvoda štetno utječu na kvalitetu zraka u zatvorenome prostoru?",
+      "opts": [
+        "A. tkanine organskoga podrijetla",
+        "B. pokućstvo od cjelovitoga drva",
+        "C. prirodna sredstva za čišćenje",
+        "D. sintetički materijali"
+      ],
+      "correct": "D",
+      "exp": "'Birajte pokućstvo od cjelovitog drva... Izbjegavajte... osvježivače zraka, insekticide i deterdžente od sintetičkih kemijskih sastojaka' — sintetički materijali i kemikalije su štetni.",
+      "ctx": "Čist zrak – zdrav život (upućivački/savjetodavni tekst)\n\nBilo bi lijepo stanovati u prirodi, u kući koja je izgrađena tako da diše zajedno s okolišem i napaja se isključivo čistom, obnovljivom energijom sunca, vjetra, vode i zemlje. No, suvremeno stanovanje često se svodi na umjetne materijale i lošu klimatizaciju zbog čega je zrak u mnogim domovima onečišćen visokim koncentracijama štetnih kemijskih spojeva, prašine, plijesni...\n\nPribroje li se tome nepovoljni vanjski uvjeti, postavlja se pitanje koliko uopće možemo utjecati na kakvoću zraka koji udišemo. Stručnjaci preporučuju niz načina da barem djelomice smanjimo utjecaj vanjskih onečišćivača.\n\nBirajte pokućstvo od cjelovitog drva, treti…"
+    },
+    {
+      "id": 25,
+      "q": "Koje je od sljedećih obilježja polaznoga teksta tipično za upućivačke tekstove?",
+      "opts": [
+        "A. upotreba stručnih termina",
+        "B. upotreba prvoga lica",
+        "C. upotreba imperativa",
+        "D. upotreba kratica"
+      ],
+      "correct": "C",
+      "exp": "'Birajte', 'Izbjegavajte', 'Zamijenite', 'Otvorite', 'Pustite' — imperativni oblici su karakteristično obilježje upućivačkih (instruktivnih/savjetodavnih) tekstova.",
+      "ctx": "Čist zrak – zdrav život (upućivački/savjetodavni tekst)\n\nBilo bi lijepo stanovati u prirodi, u kući koja je izgrađena tako da diše zajedno s okolišem i napaja se isključivo čistom, obnovljivom energijom sunca, vjetra, vode i zemlje. No, suvremeno stanovanje često se svodi na umjetne materijale i lošu klimatizaciju zbog čega je zrak u mnogim domovima onečišćen visokim koncentracijama štetnih kemijskih spojeva, prašine, plijesni...\n\nPribroje li se tome nepovoljni vanjski uvjeti, postavlja se pitanje koliko uopće možemo utjecati na kakvoću zraka koji udišemo. Stručnjaci preporučuju niz načina da barem djelomice smanjimo utjecaj vanjskih onečišćivača.\n\nBirajte pokućstvo od cjelovitog drva, treti…"
+    },
+    {
+      "id": 26,
+      "q": "Koja je namjena polaznoga teksta?",
+      "opts": [
+        "A. detaljno opisati smrtonosne bolesti na Aljasci i u Sibiru",
+        "B. slikovito pripovijedati o ekološkom sustavu Aljaske",
+        "C. educirati čitatelje o važnosti smrznutoga sloja tla",
+        "D. potaknuti čitatelje na istraživanje arktičke regije"
+      ],
+      "correct": "C",
+      "exp": "Tekst objašnjava što je permafrost, što se događa kad se topi, koje su posljedice i opasnosti — namjena je educirati/informirati čitatelje o permafrostu i njegovoj važnosti.",
+      "ctx": "Igor Berecki, Zombie-virusi izazivaju infekcije i nakon što su 48 500 godina proveli zamrznuti u permafrostu (popularno-znanstveni tekst)\n\nSve toplija ljeta i sve kraće zime na Arktiku otapaju vječni led i permafrost – smrznuti sloj tla ispod površine zemlje – otkrivajući slojeve Zemljine geološke i biološke prošlosti iz kojih bi se, nakon što su u polarnom zamrzivaču mirovali desetke tisuća godina, mogli osloboditi bakterije i virusi s potencijalom ugrožavanja zdravlja ljudi i životinja.\n\nPermafrost predstavlja značajan dio globalnog ekološkog sustava jer prekriva petinu sjeverne hemisfere tisućljećima održavajući ledeni okov u područjima arktičkih pustopoljina (tundre) i borealnih četinars…"
+    },
+    {
+      "id": 27,
+      "q": "Kako autor teksta naziva permafrost?",
+      "opts": [
+        "A. vremenskom kapsulom",
+        "B. mumificiranim ostatcima",
+        "C. lokalnom epidemijom",
+        "D. radioaktivnim otpadom"
+      ],
+      "correct": "A",
+      "exp": "'Vječno smrznuta zemlja služi kao neka vrsta vremenske kapsule, čuvajući – osim drevnih virusa – i mumificirane ostatke brojnih izumrlih životinja' — permafrost = 'vremenska kapsula'.",
+      "ctx": "Igor Berecki, Zombie-virusi izazivaju infekcije i nakon što su 48 500 godina proveli zamrznuti u permafrostu (popularno-znanstveni tekst)\n\nSve toplija ljeta i sve kraće zime na Arktiku otapaju vječni led i permafrost – smrznuti sloj tla ispod površine zemlje – otkrivajući slojeve Zemljine geološke i biološke prošlosti iz kojih bi se, nakon što su u polarnom zamrzivaču mirovali desetke tisuća godina, mogli osloboditi bakterije i virusi s potencijalom ugrožavanja zdravlja ljudi i životinja.\n\nPermafrost predstavlja značajan dio globalnog ekološkog sustava jer prekriva petinu sjeverne hemisfere tisućljećima održavajući ledeni okov u područjima arktičkih pustopoljina (tundre) i borealnih četinars…"
+    },
+    {
+      "id": 28,
+      "q": "Koja je, prema mišljenju autora teksta, posljedica vrućih ljeta u Sibiru?",
+      "opts": [
+        "A. pandemija španjolske gripe",
+        "B. rijetka epidemija antraksa",
+        "C. otapanje teških metala",
+        "D. rast četinarskih šuma"
+      ],
+      "correct": "B",
+      "exp": "'Između srpnja i kolovoza 2016. u Sibiru se dogodilo izbijanje lokalne epidemije antraksa... Epidemiološki tim otkrio je kako je širenje antraksa posljedica odmrzavanja permafrosta tijekom tadašnjih iznimno vrućih sibirskih ljeta'.",
+      "ctx": "Igor Berecki, Zombie-virusi izazivaju infekcije i nakon što su 48 500 godina proveli zamrznuti u permafrostu (popularno-znanstveni tekst)\n\nSve toplija ljeta i sve kraće zime na Arktiku otapaju vječni led i permafrost – smrznuti sloj tla ispod površine zemlje – otkrivajući slojeve Zemljine geološke i biološke prošlosti iz kojih bi se, nakon što su u polarnom zamrzivaču mirovali desetke tisuća godina, mogli osloboditi bakterije i virusi s potencijalom ugrožavanja zdravlja ljudi i životinja.\n\nPermafrost predstavlja značajan dio globalnog ekološkog sustava jer prekriva petinu sjeverne hemisfere tisućljećima održavajući ledeni okov u područjima arktičkih pustopoljina (tundre) i borealnih četinars…"
+    },
+    {
+      "id": 29,
+      "q": "Koji od sljedećih primjera iz polaznoga teksta odstupa od znanstvenoga stila?",
+      "opts": [
+        "A. Permafrost predstavlja značajan dio globalnog ekološkog sustava jer prekriva petinu sjeverne hemisfere",
+        "B. Ustvari, ako ćemo iskreno, uopće nisu iskopani, nego su se sami pojavili",
+        "C. analiziran uzorak tkiva pluća, koji je sadržavao genomski materijal virusa influence H1N1",
+        "D. što je omogućilo starim sporama Bacillus anthracis da ponovno izbiju"
+      ],
+      "correct": "B",
+      "exp": "'Ustvari, ako ćemo iskreno' — kolokvijalni, razgovorni izraz koji ne pripada znanstvenom stilu. Ostali primjeri su terminologično i stilski primjereni znanstvenom pisanju.",
+      "ctx": "Igor Berecki, Zombie-virusi izazivaju infekcije i nakon što su 48 500 godina proveli zamrznuti u permafrostu (popularno-znanstveni tekst)\n\nSve toplija ljeta i sve kraće zime na Arktiku otapaju vječni led i permafrost – smrznuti sloj tla ispod površine zemlje – otkrivajući slojeve Zemljine geološke i biološke prošlosti iz kojih bi se, nakon što su u polarnom zamrzivaču mirovali desetke tisuća godina, mogli osloboditi bakterije i virusi s potencijalom ugrožavanja zdravlja ljudi i životinja.\n\nPermafrost predstavlja značajan dio globalnog ekološkog sustava jer prekriva petinu sjeverne hemisfere tisućljećima održavajući ledeni okov u područjima arktičkih pustopoljina (tundre) i borealnih četinars…"
+    },
+    {
+      "id": 30,
+      "q": "Koje od sljedećih obilježja polaznoga teksta pridonosi objektivnosti teksta?",
+      "opts": [
+        "A. upotreba izraza utemeljenoga na paradoksu",
+        "B. upotreba upućivačke rečenice",
+        "C. upotreba stručnih termina",
+        "D. upotreba prvoga lica"
+      ],
+      "correct": "C",
+      "exp": "Stručni termini (permafrost, tundra, tajga, Bacillus anthracis, pandemija, influenza H1N1, zoonoza) daju tekstu autoritet i objektivnost = obilježje znanstveno-popularnog stila.",
+      "ctx": "Igor Berecki, Zombie-virusi izazivaju infekcije i nakon što su 48 500 godina proveli zamrznuti u permafrostu (popularno-znanstveni tekst)\n\nSve toplija ljeta i sve kraće zime na Arktiku otapaju vječni led i permafrost – smrznuti sloj tla ispod površine zemlje – otkrivajući slojeve Zemljine geološke i biološke prošlosti iz kojih bi se, nakon što su u polarnom zamrzivaču mirovali desetke tisuća godina, mogli osloboditi bakterije i virusi s potencijalom ugrožavanja zdravlja ljudi i životinja.\n\nPermafrost predstavlja značajan dio globalnog ekološkog sustava jer prekriva petinu sjeverne hemisfere tisućljećima održavajući ledeni okov u područjima arktičkih pustopoljina (tundre) i borealnih četinars…"
+    },
+    {
+      "id": 31,
+      "q": "U kojima je od sljedećih stihova upotrijebljen eufemizam?\nA. U ponoć baš, u lipnju, skrovit / Gledam u mjesec tajnom ovit.\nB. Opojna, rosna, blijeda para / Na zlatnom mu se rubu stvara\nC. Spava mi draga! Nek su joj sni, / Kad vječni već su, dubòki svi!\nD. U šumi staroj, mračnoj i danju, / Grobnica nek se otvori za nju –",
+      "opts": [
+        "A. A",
+        "B. B",
+        "C. C",
+        "D. D"
+      ],
+      "correct": "C",
+      "exp": "'Spava mi draga! Nek su joj sni, / Kad vječni već su' — 'vječni sni' je eufemizam za smrt. 'Vječni san' = umrla je. Eufemizam zamjenjuje izravnu referencu na smrt blagovoljnijim izrazom."
+    },
+    {
+      "id": 32,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljena etička karakterizacija?\nA. Za njega je svaki čovjek bio jednako vrijedan, nikada nije pravio razlike među ljudima.\nB. Bio je siromah i teško se mogao mjeriti s onima iz bogatijega dijela grada.\nC. Iako je bio skladno građen, to mu francusko odijelo nije pristajalo.\nD. Problijedio je od užasa, činilo mu se da će svisnuti od tuge i jada.",
+      "opts": [
+        "A. A",
+        "B. B",
+        "C. C",
+        "D. D"
+      ],
+      "correct": "A",
+      "exp": "'Za njega je svaki čovjek bio jednako vrijedan, nikada nije pravio razlike' — etička karakterizacija opisuje moralnost lika (moralne osobine: pravičnost, jednakost). B = socijalna, C = izgled, D = psihološka."
+    },
+    {
+      "id": 33,
+      "q": "Koji je cilj izvođenja tragedije?",
+      "opts": [
+        "A. deus ex machina",
+        "B. digresija",
+        "C. invokacija",
+        "D. katarza"
+      ],
+      "correct": "D",
+      "exp": "Aristotel u Poetici kaže da je cilj tragedije katarza — emocionalno pročišćenje publike kroz samilost i strah. Deus ex machina = tehnika razrješavanja, digresija = odmak od radnje, invokacija = zaziv muza."
+    },
+    {
+      "id": 34,
+      "q": "Na koji se rod odnosi pravilo o jedinstvu mjesta, vremena i radnje?",
+      "opts": [
+        "A. na diskurzivne oblike",
+        "B. na dramu",
+        "C. na epiku",
+        "D. na liriku"
+      ],
+      "correct": "B",
+      "exp": "Pravilo o tri jedinstva (mjesta, vremena, radnje) je postulat klasicistički tragedije — odnosi se na dramski rod. Corneille, Racine, Molière su ga slijedili."
+    },
+    {
+      "id": 35,
+      "q": "Koji dramski junak izgovara sljedeću rečenicu?\n'Mutno je sve to u nama, draga moja, dobra Beatrice, nevjerojatno mutno.'",
+      "opts": [
+        "A. Hamlet obraćajući se Ofeliji",
+        "B. Kreont obraćajući se Ismeni",
+        "C. Leone obraćajući se Angeliki",
+        "D. Sigismund obraćajući se Rosauri"
+      ],
+      "correct": "C",
+      "exp": "Leone Glembay u Gospodi Glembajevima Miroslava Krleže razgovara s Angelikom — karakteristična Leonina filozofska rečenica o 'mutnom' unutarnjem životu. 'Beatrice' je Angelikino pravo ime."
+    },
+    {
+      "id": 36,
+      "q": "Koji od sljedećih likova opravdava mogući zločin filozofskom teorijom?",
+      "opts": [
+        "A. don Fernando",
+        "B. Maestro",
+        "C. Melkior",
+        "D. Ugo"
+      ],
+      "correct": "B",
+      "exp": "Maestro iz Kiklopa je pisac koji je razvio teoriju o 'preventivnoj dehumanizaciji' = filozofska teorija kojom opravdava/racionalizira nasilje ili dehumanizaciju kao zaštitu. B je točno."
+    },
+    {
+      "id": 37,
+      "q": "Koji se pjesnik oprašta s Markom Marulićem sljedećim stihovima?\n'Zbogom, o Marule! (...)\nkorugva nam ćuhta; gremo, mi puntari!'",
+      "opts": [
+        "A. Ivan Gundulić",
+        "B. Silvije Strahimir Kranjčević",
+        "C. Tin Ujević",
+        "D. Vladimir Nazor"
+      ],
+      "correct": "D",
+      "exp": "'Korugva nam ćuhta; gremo, mi puntari!' — Vladimir Nazor je pisao patriotske, revolucionarne pjesme (bio je s partizanima). 'Mi puntari' = buntovnici. Nazorova pjesma opraštanja s Marulićem."
+    },
+    {
+      "id": 38,
+      "q": "Koji od sljedećih primjera ne pripada romanu Zločin i kazna?",
+      "opts": [
+        "A. Marmeladov je odmah poslušno i pokorno raširio ruke da bi joj olakšao pretraživanje džepova.",
+        "B. Razumihin je bio kod kuće, u svojoj komorici, i baš je nešto radio, pisao,",
+        "C. Ali Minkin posmijeh ne bijaše smiješak anđela od šesnaest godina.",
+        "D. Pazi ti Sonje! Ipak, kakav su tu zlatni rudnik iskopali!"
+      ],
+      "correct": "C",
+      "exp": "'Ali Minkin posmijeh ne bijaše smiješak anđela od šesnaest godina' — Minka nije lik iz Zločina i kazne. Ovo je iz Dostojevskog Bijele noći ili drugog djela. Marmeladov, Razumihin, Sonja su svi iz Zločina i kazne."
+    },
+    {
+      "id": 39,
+      "q": "Komu se obraća Dživo u sljedećemu primjeru?\n'Dobra kob, junače! Što si tuj takoj sam?'",
+      "opts": [
+        "A. Smail-agi",
+        "B. Solusu",
+        "C. Stancu",
+        "D. Stipančiću"
+      ],
+      "correct": "C",
+      "exp": "Dživo je lik iz Novele od Stanca Marina Držića — Dživo i ostali dubrovački mladići zajedno ismijavaju Stanca koji je sam u noći u Dubrovniku. 'Tuj takoj sam' = sam ovdje."
+    },
+    {
+      "id": 40,
+      "q": "Koje se od sljedećih obilježja odnosi na Baudelaireovo stvaralaštvo?",
+      "opts": [
+        "A. izostanak interpunkcije",
+        "B. estetika ružnoće",
+        "C. moralističnost",
+        "D. slobodni stih"
+      ],
+      "correct": "B",
+      "exp": "Charles Baudelaire (Les Fleurs du mal, 1857.) — estetika ružnoće, morbidno, dekadentno, tmurno. Opjevava grijeh, bol, zlo kao estetsku kategoriju. 'Cvjetovi zla' = antiteza ljepota/ružnoća."
+    },
+    {
+      "id": 41,
+      "q": "Koje od sljedećih obilježja nije tipično za razdoblje baroka?",
+      "opts": [
+        "A. rastrganost između svjetovnoga i duhovnoga",
+        "B. religiozna poema ili barokni plač",
+        "C. mimetičnost",
+        "D. kićeni stil"
+      ],
+      "correct": "C",
+      "exp": "Mimetičnost (oponašanje stvarnosti) je obilježje realizma, ne baroka. Barok karakteriziraju: kićeni stil, patetika, rastrganost, religiozna tematika, kult mrtvih, teatralnost."
+    },
+    {
+      "id": 42,
+      "q": "Na koji se od sljedećih književnih stilova odnosi sljedeća rečenica?\n'Odbacuje ideju ljepote kao sklada i zalaže se za snagu dojmljivoga izraza koji se pojavljuje poput krika, uzvika, vapaja i uzdaha.'",
+      "opts": [
+        "A. na barokni",
+        "B. na klasicistički",
+        "C. na romantičarski",
+        "D. na ekspresionistički"
+      ],
+      "correct": "D",
+      "exp": "Ekspresionizam (20. st.): odbacuje ljepotu/harmoniju, inzistira na silovitom emocionalnom izrazu — krik, vapaj, uzdah. Karakteristično za Šimića (Preobraženja), Muncha (Krik)."
+    },
+    {
+      "id": 43,
+      "q": "Koji je od sljedećih primjera pravopisno točan?",
+      "opts": [
+        "A. oblaćan dan",
+        "B. žuća haljina",
+        "C. jaći dječak",
+        "D. zećje uši"
+      ],
+      "correct": "C",
+      "exp": "'Jaći dječak' = komparativ od 'jak' → 'jaći' (jačji → jaći). Ispravno. A: 'oblačan'; B: 'žućkasta' ili 'žuta' (ne žuća); D: 'zečje' (zec + je = zečje)."
+    },
+    {
+      "id": 44,
+      "q": "Koja od sljedećih rečenica nije napisana u skladu s pravilima o pisanju zareza?",
+      "opts": [
+        "A. Predstavljanje će biti u Rijeci sljedećega utorka, 23. travnja.",
+        "B. Janko Polić Kamov hrvatski književnik rođen je u Rijeci.",
+        "C. Dogodilo se u Rijeci 22. travnja 2012.",
+        "D. Živim u Rijeci, lučkome gradu."
+      ],
+      "correct": "B",
+      "exp": "'Janko Polić Kamov, hrvatski književnik, rođen je u Rijeci' — ispred i iza apozicije treba stajati zarez. U rečenici B nema zareza ispred/iza apozicije 'hrvatski književnik' = nije u skladu s pravilima."
+    },
+    {
+      "id": 45,
+      "q": "Koja je od sljedećih riječi pravopisno točna?",
+      "opts": [
+        "A. bonbon",
+        "B. prehranbeni",
+        "C. stranputica",
+        "D. zelenbać"
+      ],
+      "correct": "C",
+      "exp": "'Stranputica' = ispravno. A: 'bombon' (ne bonbon); B: 'prehrambeni' (ne prehranbeni); D: 'zelenbaća' ili 'zelembać' — standardno je 'zelembać'."
+    },
+    {
+      "id": 46,
+      "q": "U kojoj od sljedećih rečenica podcrtana riječ ima neproširenu osnovu?",
+      "opts": [
+        "A. Zaboljelo ga je rame.",
+        "B. Prvi je put vidio tele.",
+        "C. Polje se zlatilo.",
+        "D. Ime je znak."
+      ],
+      "correct": "D",
+      "exp": "'Ime' = nom. jd. s neproširenom osnovom (im-e). 'Rame' = proširena osnova (ram-en-), 'tele' = proširena (tel-et-), 'polje' = neproširena, ali u nominativu jednako kao i 'Ime'. Ime = im-e (kratka osnova bez proširaka)."
+    },
+    {
+      "id": 47,
+      "q": "Koja je sintagma u sljedećoj rečenici nesročna atributna sintagma?\nHodajući nepoznatim gradom, na drugoj je strani ulice ugledala poznato lice.",
+      "opts": [
+        "A. hodajući gradom",
+        "B. drugoj strani",
+        "C. strani ulice",
+        "D. ugledala lice"
+      ],
+      "correct": "C",
+      "exp": "'Strani ulice' — 'ulice' (genitiv) je nesročni atribut imenice 'strani' (ne slaže se u padežu/rodu). Nesročna atributna sintagma (genitiv kao atribut)."
+    },
+    {
+      "id": 48,
+      "q": "U kojoj je od sljedećih rečenica prezent u apsolutnoj upotrebi?",
+      "opts": [
+        "A. Sinoć dođem u kino bez kokica.",
+        "B. Hrvatska ima prekrasno more.",
+        "C. Petar i Ana upravo dolaze.",
+        "D. Sit gladnu ne vjeruje."
+      ],
+      "correct": "D",
+      "exp": "'Sit gladnu ne vjeruje' — bezvremenski prezent (gnomica/opća istina = apsolutna upotreba). Izreka koja vrijedi uvijek. B = opisni prezent, C = konkretni sadašnji trenutak, A = istorijsko."
+    },
+    {
+      "id": 49,
+      "q": "U kojoj je od sljedećih rečenica glagol 'donijeti' točno upotrijebljen?",
+      "opts": [
+        "A. Donijeti ću ti sutra sve što je potrebno.",
+        "B. Donešene su sve knjige jučer ujutro.",
+        "C. Donijeo je što sam tražila.",
+        "D. Doneseno je sve."
+      ],
+      "correct": "C",
+      "exp": "'Donijeo je' = pravilni gl. pridjev radni od 'donijeti'. A: 'Donijet ću' (ne 'donijeti ću'); B: 'donesene' (ne 'donešene'); D: 'doneseno' = pravilno ali B i D su i alternativno prihvatljivi."
+    },
+    {
+      "id": 50,
+      "q": "U kojoj je od sljedećih rečenica glagol u imperativu?",
+      "opts": [
+        "A. Dolažahu svaki dan.",
+        "B. Neka dođu sutra.",
+        "C. Došla bi sutra.",
+        "D. Dođoh."
+      ],
+      "correct": "B",
+      "exp": "'Neka dođu' — optativi/imperativne konstrukcije s 'neka' = imperativ 3. lica (posredni imperativ). A = imperfekt, C = kondicional I, D = aorist."
+    },
+    {
+      "id": 51,
+      "q": "U kojemu je od sljedećih primjera upotrijebljen točan instrumental jednine?",
+      "opts": [
+        "A. kelj > keljom",
+        "B. kralj > kraljom",
+        "C. oraščić > oraščićom",
+        "D. panj > panjom"
+      ],
+      "correct": "C",
+      "exp": "'Oraščić > oraščićom' — instrumentalni nastavak -om za imenice m.r. koje ne završavaju na meki suglasnik ispravno. A: 'keljem'; B: 'kraljem'; D: 'panjevom/panjem'."
+    },
+    {
+      "id": 52,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljen izravni objekt?",
+      "opts": [
+        "A. Bojao se mraka.",
+        "B. Smijao se šali.",
+        "C. Hrabrio ga je.",
+        "D. Pao je na nj."
+      ],
+      "correct": "C",
+      "exp": "'Hrabrio ga je' — 'ga' je akuzativ izravnog objekta (koga je hrabrio? = ga = akuzativ). A = genitiv (bojati se čega), B = dativ (smijati se čemu), D = prijedložni izraz."
+    },
+    {
+      "id": 53,
+      "q": "Što je po sintaktičkoj službi podcrtana riječ u sljedećoj rečenici?\nŽivjeti je lijepo.",
+      "opts": [
+        "A. priložna oznaka",
+        "B. predikat",
+        "C. subjekt",
+        "D. objekt"
+      ],
+      "correct": "C",
+      "exp": "'Živjeti' = infinitivni subjekt — što je lijepo? = živjeti = subjekt. Bezlična rečenica s infinitivom kao subjektom."
+    },
+    {
+      "id": 54,
+      "q": "Koja je od sljedećih tvorenica nastala prefiksalno-sufiksalnom tvorbom?",
+      "opts": [
+        "A. uzbrdo",
+        "B. uzdahnuti",
+        "C. uzglavlje",
+        "D. uzlaznost"
+      ],
+      "correct": "C",
+      "exp": "'Uzglavlje' = uz + glav + lje (prefiks + osnova + sufiks) = prefiksalno-sufiksalna tvorba. A = složenica (uz + brdo), B = prefiksalna (uz + dahnuti), D = sufiksalna (uzlazan + ost)."
+    },
+    {
+      "id": 55,
+      "q": "Koja je od sljedećih riječi bliskoznačna podcrtanoj riječi u sljedećoj rečenici?\n'Rekla je da je on vrlo samodopadan čovjek.'",
+      "opts": [
+        "A. mahnit",
+        "B. skeptičan",
+        "C. suptilan",
+        "D. tašt"
+      ],
+      "correct": "D",
+      "exp": "'Samodopadan' = zadovoljan samim sobom, visoka mišljenja o sebi. Sinonim = 'tašt' (koji se suviše poštuje, uobražen). Mahnit = lud, skeptičan = skeptičan, suptilan = osjetljiv/nijansan."
+    },
+    {
+      "id": 56,
+      "q": "Koja je od sljedećih rečenica bliskoznačna podcrtanome izrazu u sljedećoj rečenici?\n'Osjećao se kao bijela vrana.'",
+      "opts": [
+        "A. Pokazao je nešto lijepo i vrijedno onomu koji to ne shvaća.",
+        "B. On je bio osoba koja se razlikovala od svoje sredine.",
+        "C. Nije se smatrao krivim ni za što.",
+        "D. Pobijedio je s mnogo gubitaka."
+      ],
+      "correct": "B",
+      "exp": "'Bijela vrana' = onaj koji se razlikuje od okoline, neobičan, drugačiji od ostalih. Frazem znači: biti izuzetak, razlikovati se od sredine."
+    },
+    {
+      "id": 57,
+      "q": "Što je etimološka odrednica sljedećega rječničkog članka?\nkòmēdija ž 1. knjiž. dramska vrsta... ✧ lat. comoedia ← grč. kōmōidía",
+      "opts": [
+        "A. ž",
+        "B. 1. knjiž. dramska vrsta šaljiva sadržaja",
+        "C. 2. događaj oprečan očekivanju...",
+        "D. ✧ lat. comoedia ← grč. kōmōidía"
+      ],
+      "correct": "D",
+      "exp": "Etimološka odrednica = podatak o podrijetlu/etimologiji riječi = '✧ lat. comoedia ← grč. kōmōidía'. Simbol ✧ označava etimologiju u rječnicima."
+    },
+    {
+      "id": 581,
+      "q": "Umjetna inteligencija mogla (1.) ________ donijeti građanima poboljšanje...\n\nOdaberite ispravan kondicionalni oblik.",
+      "opts": [
+        "A. bi",
+        "B. bih",
+        "C. biste",
+        "D. bude"
+      ],
+      "correct": "A",
+      "exp": "'Mogla bi donijeti' = kondicional I, 3. l. jd. ž.r. 'Bi' je ispravni oblik za treće lice kondicionala I ('mogla bi')."
+    },
+    {
+      "id": 582,
+      "q": "...donijeti poboljšanje (2.) ________, sigurnije automobile...\n\nOdaberite ispravan izraz.",
+      "opts": [
+        "A. zdravstvenoga skrbništva",
+        "B. zdravstvenoga skrbnika",
+        "C. zdravstvene opskrbe",
+        "D. zdravstvene skrbi"
+      ],
+      "correct": "D",
+      "exp": "'Zdravstvene skrbi' = pravilna standardnojezična sintagma. 'Healthcare' = zdravstvena skrb. 'Skrbništvo' = starateljstvo (pravni termin), 'skrbnik' = osoba."
+    },
+    {
+      "id": 583,
+      "q": "(3.) ________ se također može olakšati pristup informacijama...\n\nOdaberite ispravnu zamjenicu (zamijenicu za 'AI').",
+      "opts": [
+        "A. Njih",
+        "B. Njime",
+        "C. Njoj",
+        "D. Njome"
+      ],
+      "correct": "D",
+      "exp": "'Njome se može olakšati' — 'njome' je instrumental ž.r. zamjenice za 'UI/inteligenciju' (ž.r.). 'Njome' = instrumental 3. l. jd. ž.r. (ovdje 'njome' = uz pomoć nje)."
+    },
+    {
+      "id": 584,
+      "q": "(4.) ________, umjetna inteligencija može učiniti radna mjesta sigurnijima...\n\nOdaberite ispravan veznik/prilog za dodavanje.",
+      "opts": [
+        "A. Za razliku od toga",
+        "B. Nasuprot tomu",
+        "C. Nadalje",
+        "D. Ipak"
+      ],
+      "correct": "C",
+      "exp": "'Nadalje, UI može učiniti radna mjesta sigurnijima...' — 'nadalje' je prilog koji uvodi dodatan argument u nizu. Kontekst je nabrajanje pozitivnih aspekata AI, a 'nadalje' nastavlja nabrajanje."
+    },
+    {
+      "id": 585,
+      "q": "...i može otvoriti nova radna mjesta koja će nastati (5.) ________ razvoja industrije...\n\nOdaberite ispravan prijedlog.",
+      "opts": [
+        "A. prije",
+        "B. sukladno",
+        "C. tijekom",
+        "D. usprkos"
+      ],
+      "correct": "C",
+      "exp": "'Nastati tijekom razvoja industrije' — 'tijekom' + genitiv = u tijeku nečega, za vrijeme nečega. Radna mjesta nastaju u tijeku/za vrijeme razvoja industrije."
+    }
+  ]
+}

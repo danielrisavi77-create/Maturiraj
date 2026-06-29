@@ -1,0 +1,783 @@
+{
+  "examKey": "2023_jesen",
+  "label": "Jesenski rok",
+  "total": 62,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kako je dolazak u grad utjecao na Lovru?",
+      "opts": [
+        "A. Stvorio mu je osjećaj manje vrijednosti.",
+        "B. Ispunio ga je čežnjom za domom.",
+        "C. Djelovao je poticajno na njega.",
+        "D. Izazvao je u njemu strah."
+      ],
+      "correct": "C",
+      "exp": "'Kad je Lovro vidio velike kuće, silu ljudi, visoke tornjeve, kad su mu prvi put zagrmile velike orgulje, razigra mu se mlado srce preko reda' — dolazak u grad je razigrao Lovrino srce = poticajno djelovao.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak)\n\nLovro je dakako od svega toga malo razumio. Znao je da ide u velik grad kumu. I veselilo ga. Al kad je vidio kako je iz majčinih očiju udarila kiša, svilo mu se oko srca pa udri i on plakati. Nu otac otkinu sinka od majčine grudi te povede Lovru kumu zvonaru.\n\nTu je dakako drukče bilo. Kad je Lovro vidio velike kuće, silu ljudi, visoke tornjeve, kad su mu prvi put zagrmile velike orgulje, razigra mu se mlado srce preko reda. Nije se Lovro plašio kao drugi seoski dječaci. Hitra mu pamet primila se brzo svega. Dadoše mu i knjige. Eto veselja. Po vas dan sjedio maličak u školi, samo večerom zvonio bi mjesto kuma \"Zdravomariju\". Ne bijaše mu to dužnost, to bi…"
+    },
+    {
+      "id": 2,
+      "q": "Koju je predrasudu Lovro opovrgnuo?",
+      "opts": [
+        "A. Upotreba njemačkoga jezika znak je obrazovanosti svakoga pojedinca.",
+        "B. Gospodska djeca pametnija su i sposobnija od seoske djece.",
+        "C. Uspješna su djeca ona koja poslušaju savjete svojih učitelja.",
+        "D. Odluku o školovanju djeteta donosi otac."
+      ],
+      "correct": "B",
+      "exp": "'dočepala bi se slave školske samo gospodska djeca... Seljačko bokče, moralo se stisnuti u kut... I Lovro bijaše takvo bokče, al se on nije dao. Mali taj bokčić oborio oštrim umom... učitelji čuđahu, gospodska djeca klanjahu' — opovrgnuo je predrasudu da su gospodska djeca sposobnija.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak)\n\nLovro je dakako od svega toga malo razumio. Znao je da ide u velik grad kumu. I veselilo ga. Al kad je vidio kako je iz majčinih očiju udarila kiša, svilo mu se oko srca pa udri i on plakati. Nu otac otkinu sinka od majčine grudi te povede Lovru kumu zvonaru.\n\nTu je dakako drukče bilo. Kad je Lovro vidio velike kuće, silu ljudi, visoke tornjeve, kad su mu prvi put zagrmile velike orgulje, razigra mu se mlado srce preko reda. Nije se Lovro plašio kao drugi seoski dječaci. Hitra mu pamet primila se brzo svega. Dadoše mu i knjige. Eto veselja. Po vas dan sjedio maličak u školi, samo večerom zvonio bi mjesto kuma \"Zdravomariju\". Ne bijaše mu to dužnost, to bi…"
+    },
+    {
+      "id": 3,
+      "q": "Što znači da ne bijaše Lovro tolik junak?",
+      "opts": [
+        "A. Nije se izborio za prava seljačke djece.",
+        "B. Nije uspio završiti srednju školu.",
+        "C. Nije bio ponizan pred učiteljima.",
+        "D. Nije bio predan božjoj službi."
+      ],
+      "correct": "D",
+      "exp": "Kontekst: 'Ima duša mirnih krotkih, pobožnih u kojih je snage da metnu sav svoj život na oltar božji, a da ne požale nikada žrtve. Al ne bijaše Lovro tolik junak' — nije bio dovoljno predan/posvećen svećeničkom pozivu = nije bio predan božjoj službi.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak)\n\nLovro je dakako od svega toga malo razumio. Znao je da ide u velik grad kumu. I veselilo ga. Al kad je vidio kako je iz majčinih očiju udarila kiša, svilo mu se oko srca pa udri i on plakati. Nu otac otkinu sinka od majčine grudi te povede Lovru kumu zvonaru.\n\nTu je dakako drukče bilo. Kad je Lovro vidio velike kuće, silu ljudi, visoke tornjeve, kad su mu prvi put zagrmile velike orgulje, razigra mu se mlado srce preko reda. Nije se Lovro plašio kao drugi seoski dječaci. Hitra mu pamet primila se brzo svega. Dadoše mu i knjige. Eto veselja. Po vas dan sjedio maličak u školi, samo večerom zvonio bi mjesto kuma \"Zdravomariju\". Ne bijaše mu to dužnost, to bi…"
+    },
+    {
+      "id": 4,
+      "q": "Kojim je stilskim postupkom iskazan pripovjedačev stav prema Lovri?",
+      "opts": [
+        "A. kronološkim iznošenjem događaja iz njegova života",
+        "B. retoričkim pitanjima u iskazivanju njegovih dvojba",
+        "C. upotrebom umanjenica u njegovu prikazu",
+        "D. upotrebom aorista i imperfekta"
+      ],
+      "correct": "C",
+      "exp": "'Mali taj bokčić', 'maličak', 'dječarac' — umanjenice izražavaju nježnost i simpatiju prema Lovri. Umanjenice u opisu lika otkrivaju pripovjedačev blagonakloni stav.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak)\n\nLovro je dakako od svega toga malo razumio. Znao je da ide u velik grad kumu. I veselilo ga. Al kad je vidio kako je iz majčinih očiju udarila kiša, svilo mu se oko srca pa udri i on plakati. Nu otac otkinu sinka od majčine grudi te povede Lovru kumu zvonaru.\n\nTu je dakako drukče bilo. Kad je Lovro vidio velike kuće, silu ljudi, visoke tornjeve, kad su mu prvi put zagrmile velike orgulje, razigra mu se mlado srce preko reda. Nije se Lovro plašio kao drugi seoski dječaci. Hitra mu pamet primila se brzo svega. Dadoše mu i knjige. Eto veselja. Po vas dan sjedio maličak u školi, samo večerom zvonio bi mjesto kuma \"Zdravomariju\". Ne bijaše mu to dužnost, to bi…"
+    },
+    {
+      "id": 5,
+      "q": "Koja je situacija u djelu u cjelini bila presudna da Lovro raskine svetih veriga?",
+      "opts": [
+        "A. zapošljavanje kod vladina predsjednika",
+        "B. odlazak na školovanje u Prag",
+        "C. čitanje Petrarcinih pjesama",
+        "D. susret s Malvinom"
+      ],
+      "correct": "D",
+      "exp": "U Prijanu Lovri, Lovro se zaljubi u Malvinu — ta ljubav ga motivira da napusti svećenički poziv. Susret s Malvinom je ključni trenutak koji mu daje snagu raskinuti svete okove.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak)\n\nLovro je dakako od svega toga malo razumio. Znao je da ide u velik grad kumu. I veselilo ga. Al kad je vidio kako je iz majčinih očiju udarila kiša, svilo mu se oko srca pa udri i on plakati. Nu otac otkinu sinka od majčine grudi te povede Lovru kumu zvonaru.\n\nTu je dakako drukče bilo. Kad je Lovro vidio velike kuće, silu ljudi, visoke tornjeve, kad su mu prvi put zagrmile velike orgulje, razigra mu se mlado srce preko reda. Nije se Lovro plašio kao drugi seoski dječaci. Hitra mu pamet primila se brzo svega. Dadoše mu i knjige. Eto veselja. Po vas dan sjedio maličak u školi, samo večerom zvonio bi mjesto kuma \"Zdravomariju\". Ne bijaše mu to dužnost, to bi…"
+    },
+    {
+      "id": 6,
+      "q": "Na što se iz djela u cjelini odnosi zamjenica 'to' u sljedećim rečenicama?\nZar sam ja sposoban za to? Zar je to ozbiljno?",
+      "opts": [
+        "A. na pisanje pisma kojim odbija sestrinu žrtvu",
+        "B. na pisanje članka o odabranim pojedincima",
+        "C. na plaćanje sprovoda posljednjim novcem",
+        "D. na ubojstvo stare lihvarice"
+      ],
+      "correct": "D",
+      "exp": "U kontekstu romana, Raskoljnikov upravo planira ubojstvo stare lihvarice Aljone Ivanovne — 'to djelo' = ubojstvo. 'Na ovakvo se djelo hoću odvažiti' = ubojstvo.",
+      "ctx": "Fjodor Mihajlovič Dostojevski, Zločin i kazna (ulomak)\n\nMeđutim, ovoga puta, bojazan od susreta sa svojom vjerovnicom prenerazi čak i njega samoga kad je izišao na ulicu.\n\n\"Na ovakvo se djelo hoću odvažiti, a ovamo se bojim takvih sitnica!\" pomisli on čudno se smiješeći. \"Hm!... da... sve je u rukama čovjeka, a uvijek mu izmakne ispred nosa jedino zbog plašljivosti... takav je već aksiom... Zanimljivo je čega se ljudi najviše boje? Novoga koraka, nove svoje riječi boje se oni najviše... Uostalom, ja brbljam previše. Zato i ne radim ništa jer brbljam. Ali je možda i ovako: zato brbljam jer ništa ne radim. Naučio sam se brbljati za ovih posljednjih dana, ležeći dane i noći u kutu i premišljaju…"
+    },
+    {
+      "id": 7,
+      "q": "Koja je temeljna misao Raskoljnikovljeva monologa u drugome odlomku polaznoga teksta?",
+      "opts": [
+        "A. da može pobijediti strah ako se s njim suoči",
+        "B. da je sumnja pokretač svakoga napretka",
+        "C. da se smisao života nalazi u sitnicama",
+        "D. da razmišljanjem usporava djelovanje"
+      ],
+      "correct": "D",
+      "exp": "'Uostalom, ja brbljam previše. Zato i ne radim ništa jer brbljam. Ali je možda i ovako: zato brbljam jer ništa ne radim' — Raskoljnikov uviđa da previše razmišlja/govori a premalo djeluje. Razmišljanje usporava djelovanje.",
+      "ctx": "Fjodor Mihajlovič Dostojevski, Zločin i kazna (ulomak)\n\nMeđutim, ovoga puta, bojazan od susreta sa svojom vjerovnicom prenerazi čak i njega samoga kad je izišao na ulicu.\n\n\"Na ovakvo se djelo hoću odvažiti, a ovamo se bojim takvih sitnica!\" pomisli on čudno se smiješeći. \"Hm!... da... sve je u rukama čovjeka, a uvijek mu izmakne ispred nosa jedino zbog plašljivosti... takav je već aksiom... Zanimljivo je čega se ljudi najviše boje? Novoga koraka, nove svoje riječi boje se oni najviše... Uostalom, ja brbljam previše. Zato i ne radim ništa jer brbljam. Ali je možda i ovako: zato brbljam jer ništa ne radim. Naučio sam se brbljati za ovih posljednjih dana, ležeći dane i noći u kutu i premišljaju…"
+    },
+    {
+      "id": 8,
+      "q": "Kako je Raskoljnikov reagirao na pijančeve riječi?",
+      "opts": [
+        "A. Razljutio se na pijanca jer ga je on javno ismijao.",
+        "B. Posramio se jer si ne može priuštiti nov šešir.",
+        "C. Uplašio se da će mu pijanac ukrasti šešir.",
+        "D. Shvatio je da je previše primjetan."
+      ],
+      "correct": "D",
+      "exp": "'Ja sam to i znao!... Jest, suviše je upadljiv šešir... Smiješan pa zato i upadljiv... primijetit će me... zapamtit će onda, i eto dokaza. Treba tu biti što neupadljiviji' — shvatio je da je previše vidljiv/primjetan za planiranu zamisao.",
+      "ctx": "Fjodor Mihajlovič Dostojevski, Zločin i kazna (ulomak)\n\nMeđutim, ovoga puta, bojazan od susreta sa svojom vjerovnicom prenerazi čak i njega samoga kad je izišao na ulicu.\n\n\"Na ovakvo se djelo hoću odvažiti, a ovamo se bojim takvih sitnica!\" pomisli on čudno se smiješeći. \"Hm!... da... sve je u rukama čovjeka, a uvijek mu izmakne ispred nosa jedino zbog plašljivosti... takav je već aksiom... Zanimljivo je čega se ljudi najviše boje? Novoga koraka, nove svoje riječi boje se oni najviše... Uostalom, ja brbljam previše. Zato i ne radim ništa jer brbljam. Ali je možda i ovako: zato brbljam jer ništa ne radim. Naučio sam se brbljati za ovih posljednjih dana, ležeći dane i noći u kutu i premišljaju…"
+    },
+    {
+      "id": 9,
+      "q": "Koje je od sljedećih obilježja polaznoga teksta tipično za realističku poetiku?",
+      "opts": [
+        "A. prostor u službi karakterizacije lika",
+        "B. upotreba retoričkih pitanja",
+        "C. upotreba grafostilema",
+        "D. unutarnji monolog"
+      ],
+      "correct": "A",
+      "exp": "'Na ulici je bila strašna žega... Oduran zadah iz krčama, kojih baš u ovom dijelu grada ima sva sila' — opis Petrograda kao teškog, zagušljivog, smrdljivog prostora koji odgovara Raskoljnikovljevom unutarnjem stanju. Prostor karakterizira lik = realistička poetika.",
+      "ctx": "Fjodor Mihajlovič Dostojevski, Zločin i kazna (ulomak)\n\nMeđutim, ovoga puta, bojazan od susreta sa svojom vjerovnicom prenerazi čak i njega samoga kad je izišao na ulicu.\n\n\"Na ovakvo se djelo hoću odvažiti, a ovamo se bojim takvih sitnica!\" pomisli on čudno se smiješeći. \"Hm!... da... sve je u rukama čovjeka, a uvijek mu izmakne ispred nosa jedino zbog plašljivosti... takav je već aksiom... Zanimljivo je čega se ljudi najviše boje? Novoga koraka, nove svoje riječi boje se oni najviše... Uostalom, ja brbljam previše. Zato i ne radim ništa jer brbljam. Ali je možda i ovako: zato brbljam jer ništa ne radim. Naučio sam se brbljati za ovih posljednjih dana, ležeći dane i noći u kutu i premišljaju…"
+    },
+    {
+      "id": 10,
+      "q": "Koja je od sljedećih rečenica primjer pripovjedačeva komentara?",
+      "opts": [
+        "A. Na ovakvo se djelo hoću odvažiti, a ovamo se bojim takvih sitnica!",
+        "B. Uzgred budi rečeno, on bijaše osobito lijep, krasnih tamnih očiju, tamnoplave kose, viši od srednjeg rasta, vitak i stasit.",
+        "C. Drugačije je bilo kad se sretne s kojim znancem ili s prijašnjim drugovima, s kojima se uopće nije volio sretati...",
+        "D. Evo ovakva nekakva glupost, ma kakva tričava sitnica može pokvariti cijelu zamisao!"
+      ],
+      "correct": "B",
+      "exp": "'Uzgred budi rečeno' — ovaj metajezični uvod ('uzgred budi rečeno') je signal da govori sam pripovjedač, a ne lik. Opis Raskoljnikovljevog izgleda je komentarom-digresijom pripovjedača.",
+      "ctx": "Fjodor Mihajlovič Dostojevski, Zločin i kazna (ulomak)\n\nMeđutim, ovoga puta, bojazan od susreta sa svojom vjerovnicom prenerazi čak i njega samoga kad je izišao na ulicu.\n\n\"Na ovakvo se djelo hoću odvažiti, a ovamo se bojim takvih sitnica!\" pomisli on čudno se smiješeći. \"Hm!... da... sve je u rukama čovjeka, a uvijek mu izmakne ispred nosa jedino zbog plašljivosti... takav je već aksiom... Zanimljivo je čega se ljudi najviše boje? Novoga koraka, nove svoje riječi boje se oni najviše... Uostalom, ja brbljam previše. Zato i ne radim ništa jer brbljam. Ali je možda i ovako: zato brbljam jer ništa ne radim. Naučio sam se brbljati za ovih posljednjih dana, ležeći dane i noći u kutu i premišljaju…"
+    },
+    {
+      "id": 11,
+      "q": "Kakav je ugođaj ostvaren opisom brezovine?",
+      "opts": [
+        "A. ditirampski",
+        "B. elegični",
+        "C. idilični",
+        "D. satirični"
+      ],
+      "correct": "C",
+      "exp": "'Brezovina se bjelasala u svjetlosti duljega dana, sve drveće u šumi treptjelo, pokoji suhi list padao mirno, bez prestanka, bez težine... Začas me je osvojio čar divna prizora tihe prirode' — miran, ljupak, lijepi krajolik = idilični ugođaj.",
+      "ctx": "Ksaver Šandor Đalski, Illustrissimus Battorych (ulomak)\n\nBili smo jednom u lovu pod konac veljače. Dan svijetao i jasan da pogodnijega ne možeš poželjeti za lov. Tanak, sitan mraz razastro se poljem, a psi to lakše tjerali zeca za zecom. Vraćajući se poslije podne k domu, veselo smo koračali, a stari nam je lugar Janko pripovijedao kroniku malne svih lovskih zgoda brezovičkih iz posljednjih pedeset godina.\n\nUto dođosmo k zlosretnomu lugu. Starac nam Janko javi da je u njemu ogromna lisica. Ivanča, drugi lugar Batorićev, odredi mi dobro mjesto, baš na raskršću na malom vršku. Preda mnom sav se rasprostro daleki niski lug, sav još uspavan. Ipak, kao da se budio, pa tiho i lagodno u nekoj prele…"
+    },
+    {
+      "id": 12,
+      "q": "Što je pripovjedač zaključio na temelju glasanja svrake?",
+      "opts": [
+        "A. da su se Batorić i seljaci sukobili",
+        "B. da mu se približava lovina",
+        "C. da će morati prekinuti lov",
+        "D. da su drugi lovci u blizini"
+      ],
+      "correct": "B",
+      "exp": "'Brzo shvatim situaciju, pa se dadem na čekanje. Začas zbilja provuče se iz grmlja ogromna lisica' — svraka je 'siguran znak svakomu lovcu' = lovina je blizu. Grakćanje svrake je signal da je plijen blizu.",
+      "ctx": "Ksaver Šandor Đalski, Illustrissimus Battorych (ulomak)\n\nBili smo jednom u lovu pod konac veljače. Dan svijetao i jasan da pogodnijega ne možeš poželjeti za lov. Tanak, sitan mraz razastro se poljem, a psi to lakše tjerali zeca za zecom. Vraćajući se poslije podne k domu, veselo smo koračali, a stari nam je lugar Janko pripovijedao kroniku malne svih lovskih zgoda brezovičkih iz posljednjih pedeset godina.\n\nUto dođosmo k zlosretnomu lugu. Starac nam Janko javi da je u njemu ogromna lisica. Ivanča, drugi lugar Batorićev, odredi mi dobro mjesto, baš na raskršću na malom vršku. Preda mnom sav se rasprostro daleki niski lug, sav još uspavan. Ipak, kao da se budio, pa tiho i lagodno u nekoj prele…"
+    },
+    {
+      "id": 13,
+      "q": "Što je uzrok sukoba seljaka i Batorića?",
+      "opts": [
+        "A. I jedni i drugi nastoje zadobiti blagonaklonost bečkoga dvora.",
+        "B. Seljaci se žele pred pripovjedačem pokazati kao bolji lovci.",
+        "C. Batorić se nije prilagodio ukidanju kmetstva.",
+        "D. Batorić je počeo vrijeđati seljake."
+      ],
+      "correct": "C",
+      "exp": "'Zel vam je presvetli kralj vaše pravice. Kaj bi nam ti zapovedal, zbacil te je kralj s tvoje komeške stolice; vsi smo sada jednaki' — seljaci pozivaju se na ukidanje feudalnih privilegija (kmetstva), a Batorić se i dalje ponaša kao vlastelin. Nije se prilagodio novom vremenu.",
+      "ctx": "Ksaver Šandor Đalski, Illustrissimus Battorych (ulomak)\n\nBili smo jednom u lovu pod konac veljače. Dan svijetao i jasan da pogodnijega ne možeš poželjeti za lov. Tanak, sitan mraz razastro se poljem, a psi to lakše tjerali zeca za zecom. Vraćajući se poslije podne k domu, veselo smo koračali, a stari nam je lugar Janko pripovijedao kroniku malne svih lovskih zgoda brezovičkih iz posljednjih pedeset godina.\n\nUto dođosmo k zlosretnomu lugu. Starac nam Janko javi da je u njemu ogromna lisica. Ivanča, drugi lugar Batorićev, odredi mi dobro mjesto, baš na raskršću na malom vršku. Preda mnom sav se rasprostro daleki niski lug, sav još uspavan. Ipak, kao da se budio, pa tiho i lagodno u nekoj prele…"
+    },
+    {
+      "id": 14,
+      "q": "Na kojemu se postupku temelji polazni tekst?",
+      "opts": [
+        "A. na alegoriji",
+        "B. na hiperboli",
+        "C. na ironiji",
+        "D. na kontrastu"
+      ],
+      "correct": "D",
+      "exp": "Tekst je utemeljen na kontrastu: idilični lov u prirodi nasuprot nasilnom sukobu; stari feudalni poredak nasuprot ukidanju kmetstva; Batorićeva hvalisavost nasuprot njegovom padu. Kontrast je temeljna stilska figura.",
+      "ctx": "Ksaver Šandor Đalski, Illustrissimus Battorych (ulomak)\n\nBili smo jednom u lovu pod konac veljače. Dan svijetao i jasan da pogodnijega ne možeš poželjeti za lov. Tanak, sitan mraz razastro se poljem, a psi to lakše tjerali zeca za zecom. Vraćajući se poslije podne k domu, veselo smo koračali, a stari nam je lugar Janko pripovijedao kroniku malne svih lovskih zgoda brezovičkih iz posljednjih pedeset godina.\n\nUto dođosmo k zlosretnomu lugu. Starac nam Janko javi da je u njemu ogromna lisica. Ivanča, drugi lugar Batorićev, odredi mi dobro mjesto, baš na raskršću na malom vršku. Preda mnom sav se rasprostro daleki niski lug, sav još uspavan. Ipak, kao da se budio, pa tiho i lagodno u nekoj prele…"
+    },
+    {
+      "id": 15,
+      "q": "Koja je od sljedećih tvrdnja o stilskim obilježjima teksta točna?",
+      "opts": [
+        "A. O događajima se pripovijeda iz perspektive sveznajućega pripovjedača.",
+        "B. Govorna karakterizacija likova temelji se na poetizmima.",
+        "C. Opis prirode u službi je socijalne karakterizacije likova.",
+        "D. Jezik pripovjedača razlikuje se od jezika likova."
+      ],
+      "correct": "D",
+      "exp": "Pripovjedač govori književnim standardom, a seljaci kajkavskim dijalektom ('Čakaj čakaj, stari vrag... vu lov... vsi smo sada jednaki'). Dijalekt seljaka nasuprot standardnom jeziku pripovjedača.",
+      "ctx": "Ksaver Šandor Đalski, Illustrissimus Battorych (ulomak)\n\nBili smo jednom u lovu pod konac veljače. Dan svijetao i jasan da pogodnijega ne možeš poželjeti za lov. Tanak, sitan mraz razastro se poljem, a psi to lakše tjerali zeca za zecom. Vraćajući se poslije podne k domu, veselo smo koračali, a stari nam je lugar Janko pripovijedao kroniku malne svih lovskih zgoda brezovičkih iz posljednjih pedeset godina.\n\nUto dođosmo k zlosretnomu lugu. Starac nam Janko javi da je u njemu ogromna lisica. Ivanča, drugi lugar Batorićev, odredi mi dobro mjesto, baš na raskršću na malom vršku. Preda mnom sav se rasprostro daleki niski lug, sav još uspavan. Ipak, kao da se budio, pa tiho i lagodno u nekoj prele…"
+    },
+    {
+      "id": 16,
+      "q": "S kojom se namjerom Kreont obraća Zboru?",
+      "opts": [
+        "A. da bi obavijestio Zbor o smrti Edipovih sinova",
+        "B. da bi ga Zbor podupro u njegovim odlukama",
+        "C. da bi Zboru objasnio kako je oslobodio grad",
+        "D. da bi mu Zbor pomogao obnoviti grad"
+      ],
+      "correct": "B",
+      "exp": "Kreont objašnjava svoja načela vladavine i izlaže odluku o nepokapanju Polinika — Zbor mu odgovara 'Ti služiti se smiješ svakim zakonom'. Kreontov govor je namijenjen legitimizaciji vlastitih odluka = traži podršku Zbora.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreontov govor)\n\nKREONT:\nOj ljudi, grad nam silnom trešnjom bozi su\nPotresli, al' ga opet čvrsto pridigli.\nA samo vas sam glasnicima pozvao\nDa dođete jer, s jedne strane, dobro znam\nDa Lajev tron i vlast ste uvijek štovali,\nA s druge, kad je Edip gradom vladao,\nVi njemu, a kad pade, djeci njegovoj\nJoš ostali ste srca vjerna jednako.\nAl' otkad oni, evo, kobi dvostrukom\nU jedan izginuše dan – da, proliše\nKrv rukom vlastitom, na udar udarom\nUzvrativši – svu vlast ja držim otada\nJer poginulima sam rodom najbliži.\nA dušu, srce, pamet svakog čovjeka\nUpoznati se ne može dok nè vidiš\nGdje oko vlasti i zakona trudi se.\nTko cijelim gradom ravna, ali nè mari\nZa savjet najbol…"
+    },
+    {
+      "id": 17,
+      "q": "Koje načelo Kreont ističe kao temelj svoje vladavine?",
+      "opts": [
+        "A. savjetovanje s glasnicima",
+        "B. rad za dobrobit grada",
+        "C. poštovanje obitelji",
+        "D. štovanje Zeusa"
+      ],
+      "correct": "B",
+      "exp": "'Pa s tim u skladu... za sreću radim grada tog' — Kreont izlaže tezu da su vladare obveze prema gradu važnije od osobnih i obiteljskih veza. Temelj je rad za dobrobit/sreću grada.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreontov govor)\n\nKREONT:\nOj ljudi, grad nam silnom trešnjom bozi su\nPotresli, al' ga opet čvrsto pridigli.\nA samo vas sam glasnicima pozvao\nDa dođete jer, s jedne strane, dobro znam\nDa Lajev tron i vlast ste uvijek štovali,\nA s druge, kad je Edip gradom vladao,\nVi njemu, a kad pade, djeci njegovoj\nJoš ostali ste srca vjerna jednako.\nAl' otkad oni, evo, kobi dvostrukom\nU jedan izginuše dan – da, proliše\nKrv rukom vlastitom, na udar udarom\nUzvrativši – svu vlast ja držim otada\nJer poginulima sam rodom najbliži.\nA dušu, srce, pamet svakog čovjeka\nUpoznati se ne može dok nè vidiš\nGdje oko vlasti i zakona trudi se.\nTko cijelim gradom ravna, ali nè mari\nZa savjet najbol…"
+    },
+    {
+      "id": 18,
+      "q": "Što Zbor govori Kreontu?",
+      "opts": [
+        "A. da mora razlikovati prijatelja od neprijatelja",
+        "B. da se mora brinuti za žive sugrađane",
+        "C. da mora pridobiti narod za sebe",
+        "D. da je njegova vlast neupitna"
+      ],
+      "correct": "A",
+      "exp": "'To tebi s neprijateljem se svidjelo / I s prijateljem grada tog uraditi. / Ti služiti se smiješ svakim zakonom / Za mrtve ko i zà nas što još živi smo' — Zbor govori Kreontu da može primjenjivati zakone i na neprijatelje i na prijatelje = treba znati razlikovati ih.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreontov govor)\n\nKREONT:\nOj ljudi, grad nam silnom trešnjom bozi su\nPotresli, al' ga opet čvrsto pridigli.\nA samo vas sam glasnicima pozvao\nDa dođete jer, s jedne strane, dobro znam\nDa Lajev tron i vlast ste uvijek štovali,\nA s druge, kad je Edip gradom vladao,\nVi njemu, a kad pade, djeci njegovoj\nJoš ostali ste srca vjerna jednako.\nAl' otkad oni, evo, kobi dvostrukom\nU jedan izginuše dan – da, proliše\nKrv rukom vlastitom, na udar udarom\nUzvrativši – svu vlast ja držim otada\nJer poginulima sam rodom najbliži.\nA dušu, srce, pamet svakog čovjeka\nUpoznati se ne može dok nè vidiš\nGdje oko vlasti i zakona trudi se.\nTko cijelim gradom ravna, ali nè mari\nZa savjet najbol…"
+    },
+    {
+      "id": 19,
+      "q": "Koji je motiv iz Kreontova govora metafora za domovinu?",
+      "opts": [
+        "A. Lajev tron",
+        "B. jedra",
+        "C. vatra",
+        "D. grob"
+      ],
+      "correct": "B",
+      "exp": "'Pod njenim jedrima dok sretno plovimo, / Mi prijatelje stječemo' — 'jedra' (jedrenje/plovidba) = metafora za domovinu koja drži ljude zajedno i vodi ih. Plovidba pod zajedničkim jedrima = zajednički život u domovini.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreontov govor)\n\nKREONT:\nOj ljudi, grad nam silnom trešnjom bozi su\nPotresli, al' ga opet čvrsto pridigli.\nA samo vas sam glasnicima pozvao\nDa dođete jer, s jedne strane, dobro znam\nDa Lajev tron i vlast ste uvijek štovali,\nA s druge, kad je Edip gradom vladao,\nVi njemu, a kad pade, djeci njegovoj\nJoš ostali ste srca vjerna jednako.\nAl' otkad oni, evo, kobi dvostrukom\nU jedan izginuše dan – da, proliše\nKrv rukom vlastitom, na udar udarom\nUzvrativši – svu vlast ja držim otada\nJer poginulima sam rodom najbliži.\nA dušu, srce, pamet svakog čovjeka\nUpoznati se ne može dok nè vidiš\nGdje oko vlasti i zakona trudi se.\nTko cijelim gradom ravna, ali nè mari\nZa savjet najbol…"
+    },
+    {
+      "id": 20,
+      "q": "Koje je od sljedećih obilježja tragedije prisutno u polaznome tekstu?",
+      "opts": [
+        "A. Tekst je napisan u stihovima uzvišenim stilom.",
+        "B. Prisutna je tehnika deus ex machina.",
+        "C. Zbor najavljuje buduće događaje.",
+        "D. Prikazan je tragični završetak."
+      ],
+      "correct": "A",
+      "exp": "Tekst je u stihu s uzvišenim stilom (svečana dikcija, invokacija Zeusa, patetičan ton) = jambski trimetar + anapestički stihovi u dramskoj poeziji = obilježje tragedije. A je točno.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreontov govor)\n\nKREONT:\nOj ljudi, grad nam silnom trešnjom bozi su\nPotresli, al' ga opet čvrsto pridigli.\nA samo vas sam glasnicima pozvao\nDa dođete jer, s jedne strane, dobro znam\nDa Lajev tron i vlast ste uvijek štovali,\nA s druge, kad je Edip gradom vladao,\nVi njemu, a kad pade, djeci njegovoj\nJoš ostali ste srca vjerna jednako.\nAl' otkad oni, evo, kobi dvostrukom\nU jedan izginuše dan – da, proliše\nKrv rukom vlastitom, na udar udarom\nUzvrativši – svu vlast ja držim otada\nJer poginulima sam rodom najbliži.\nA dušu, srce, pamet svakog čovjeka\nUpoznati se ne može dok nè vidiš\nGdje oko vlasti i zakona trudi se.\nTko cijelim gradom ravna, ali nè mari\nZa savjet najbol…"
+    },
+    {
+      "id": 21,
+      "q": "Koja je namjena polaznoga teksta?",
+      "opts": [
+        "A. objasniti javnosti zašto je u Varaždinu razvijena obućarska industrija",
+        "B. potaknuti mlade ljude da se upišu na Tekstilno-tehnološki fakultet",
+        "C. podučiti javnost o podrijetlu naziva čestih obrtničkih zanimanja",
+        "D. informirati javnost o novopostavljenoj povijesnoj izložbi"
+      ],
+      "correct": "D",
+      "exp": "Tekst opisuje izložbu 'Šošteraj / Priče o cipelama iz GMV-a' u Varaždinu — njezin sadržaj, ciljeve, izložene predmete. Namjena je informativna: javnost se obavještava o izložbi.",
+      "ctx": "Tekst o varaždinskoj izložbi o cipelama (informativni tekst)\n\nZnate li zašto su se u Varaždinu dječje cipelice uzidavale u zid kuće? Odgovor leži u zanimljivoj izložbi \"Šošteraj / Priče o cipelama iz GMV-a\" u Gradskom muzeju Varaždin, otvorenoj u Starom gradu u sklopu ciklusa \"Nešto staro, nešto novo\".\n\nŠoštar je postolar, obućar. Germanizmi su to poput malera (ličioca) ili šnajdera (krojača). Nastala je zahvaljujući suradnji muzejske kustosice i više predavačice na Tekstilno-tehnološkom fakultetu (TTF-u) u Zagrebu. Šoštari su razvojem industrije otjerani na popise starih zanata, no proces oblikovanja i konstrukcije obuće u osnovi je ostao sličan.\n\nCipele su se gotovo same nametnule kao logi…"
+    },
+    {
+      "id": 22,
+      "q": "Koji je cilj niza izložaba 'Nešto staro, nešto novo'?",
+      "opts": [
+        "A. prikazati svakom izložbom jedno područje razvoja obućarskoga obrta",
+        "B. prikazati da je Varaždin grad s dugom obrtničkom tradicijom",
+        "C. omogućiti posjetiteljima da kupe proizvode lokalnih obrtnika",
+        "D. potaknuti studente dizajna da i oni izlože svoje radove"
+      ],
+      "correct": "B",
+      "exp": "Ciklus 'Nešto staro, nešto novo' prikazuje 'promjene, ali i kontinuitet u umjetničkoj i obrtnoj proizvodnji uporabnih predmeta u Varaždinu i okolici' — cilj je prikazati tradiciju i kontinuitet obrta u Varaždinu.",
+      "ctx": "Tekst o varaždinskoj izložbi o cipelama (informativni tekst)\n\nZnate li zašto su se u Varaždinu dječje cipelice uzidavale u zid kuće? Odgovor leži u zanimljivoj izložbi \"Šošteraj / Priče o cipelama iz GMV-a\" u Gradskom muzeju Varaždin, otvorenoj u Starom gradu u sklopu ciklusa \"Nešto staro, nešto novo\".\n\nŠoštar je postolar, obućar. Germanizmi su to poput malera (ličioca) ili šnajdera (krojača). Nastala je zahvaljujući suradnji muzejske kustosice i više predavačice na Tekstilno-tehnološkom fakultetu (TTF-u) u Zagrebu. Šoštari su razvojem industrije otjerani na popise starih zanata, no proces oblikovanja i konstrukcije obuće u osnovi je ostao sličan.\n\nCipele su se gotovo same nametnule kao logi…"
+    },
+    {
+      "id": 23,
+      "q": "Zašto su se u Varaždinu cipele uzidavale u zidove kuća?",
+      "opts": [
+        "A. jer se htjelo ovjekovječiti trenutak kad je dijete koje živi u toj kući prohodalo",
+        "B. jer se tako simbolično opraštalo od pokojnika koji je umro u toj kući",
+        "C. jer se željelo ostaviti trag o načinu života budućim generacijama",
+        "D. jer se vjerovalo da će se na taj način ukućani spasiti od nesreće"
+      ],
+      "correct": "D",
+      "exp": "'Primjer su učestale prakse uzidavanja cipela, osobito dječjih zbog velike smrtnosti, u dimnjake ili potkrovlja za zaštitu kuće od zlih sila' — uzidavale su se za zaštitu od zlih sila/nesreće.",
+      "ctx": "Tekst o varaždinskoj izložbi o cipelama (informativni tekst)\n\nZnate li zašto su se u Varaždinu dječje cipelice uzidavale u zid kuće? Odgovor leži u zanimljivoj izložbi \"Šošteraj / Priče o cipelama iz GMV-a\" u Gradskom muzeju Varaždin, otvorenoj u Starom gradu u sklopu ciklusa \"Nešto staro, nešto novo\".\n\nŠoštar je postolar, obućar. Germanizmi su to poput malera (ličioca) ili šnajdera (krojača). Nastala je zahvaljujući suradnji muzejske kustosice i više predavačice na Tekstilno-tehnološkom fakultetu (TTF-u) u Zagrebu. Šoštari su razvojem industrije otjerani na popise starih zanata, no proces oblikovanja i konstrukcije obuće u osnovi je ostao sličan.\n\nCipele su se gotovo same nametnule kao logi…"
+    },
+    {
+      "id": 24,
+      "q": "Gdje se prema autorovim riječima nalazi 'železni čovek'?",
+      "opts": [
+        "A. na tavanu jedne barokne kuće u Varaždinu",
+        "B. u središtu grada Varaždina",
+        "C. u filmu Vedrana Hunjeka",
+        "D. na izložbi o cipelama"
+      ],
+      "correct": "B",
+      "exp": "'U jezgri se još može vidjeti železni čovek koji je reklamirao trgovinu željeznom robom' — jezgra = gradska jezgra = središte grada Varaždina.",
+      "ctx": "Tekst o varaždinskoj izložbi o cipelama (informativni tekst)\n\nZnate li zašto su se u Varaždinu dječje cipelice uzidavale u zid kuće? Odgovor leži u zanimljivoj izložbi \"Šošteraj / Priče o cipelama iz GMV-a\" u Gradskom muzeju Varaždin, otvorenoj u Starom gradu u sklopu ciklusa \"Nešto staro, nešto novo\".\n\nŠoštar je postolar, obućar. Germanizmi su to poput malera (ličioca) ili šnajdera (krojača). Nastala je zahvaljujući suradnji muzejske kustosice i više predavačice na Tekstilno-tehnološkom fakultetu (TTF-u) u Zagrebu. Šoštari su razvojem industrije otjerani na popise starih zanata, no proces oblikovanja i konstrukcije obuće u osnovi je ostao sličan.\n\nCipele su se gotovo same nametnule kao logi…"
+    },
+    {
+      "id": 25,
+      "q": "U kojemu se od sljedećih primjera uočava subjektivnost autora polaznoga teksta?",
+      "opts": [
+        "A. Sad kad smo to razjasnili, možemo na priču o zanimljivoj izložbi (...).",
+        "B. Cipele su se gotovo same nametnule kao logičan izbor za izložbu (...).",
+        "C. Djetići su bili pomoćnici obrtnika, kalfe ili šegrti.",
+        "D. Zvali su ga Mali Beč."
+      ],
+      "correct": "A",
+      "exp": "'Sad kad smo to razjasnili' — autor se obraća čitatelju u 1. licu množine i dodaje komentar ('smo razjasnili') = subjektivno. B je citat iz razgovora, C i D su činjenični navodi.",
+      "ctx": "Tekst o varaždinskoj izložbi o cipelama (informativni tekst)\n\nZnate li zašto su se u Varaždinu dječje cipelice uzidavale u zid kuće? Odgovor leži u zanimljivoj izložbi \"Šošteraj / Priče o cipelama iz GMV-a\" u Gradskom muzeju Varaždin, otvorenoj u Starom gradu u sklopu ciklusa \"Nešto staro, nešto novo\".\n\nŠoštar je postolar, obućar. Germanizmi su to poput malera (ličioca) ili šnajdera (krojača). Nastala je zahvaljujući suradnji muzejske kustosice i više predavačice na Tekstilno-tehnološkom fakultetu (TTF-u) u Zagrebu. Šoštari su razvojem industrije otjerani na popise starih zanata, no proces oblikovanja i konstrukcije obuće u osnovi je ostao sličan.\n\nCipele su se gotovo same nametnule kao logi…"
+    },
+    {
+      "id": 26,
+      "q": "U kojemu je dijelu teksta prisutna jezična igra?",
+      "opts": [
+        "A. u tekstu kojim se sugovornika ukratko predstavlja",
+        "B. u pitanjima upućenim sugovorniku",
+        "C. u poveznici na sugovornikov blog",
+        "D. u naslovnome dijelu intervjua"
+      ],
+      "correct": "D",
+      "exp": "Naslov intervjua 'Knjiškim moljac — B(l)ožidarev blog' — igra s imenom Božidar: u zagradi (l) = 'Bl-ožidar' = glagol 'blažiti' + Božidar, ili 'bložidar'. Jezična igra je u naslovu.",
+      "ctx": "Božidar Alajbegović, intervju — Knjiškim moljac (informativni/intervju tekst)\n\nBožidar Alajbegović autor je bloga Knjiški moljac, vjerojatno najposjećenijeg i najdinamičnijeg internetskog foruma za književnost, književni kritičar, novinar.\n\nPitanje: Jedan si od kritičara koji svoju širu afirmaciju zahvaljuju internetu. Što misliš, koliko je elektronička forma formirala tvoj kritički rukopis?\n\nKod elektroničke forme nema ograničenja u pogledu opsega teksta, broja znakova ili kartica, što je redovit slučaj kod tiskanih medija (posebno dnevnih novina), koji zbog prostora za reklame ili za neke atraktivnije sadržaje od onih kulturnih zakidaju kritičare. Osim te vrste slobode internet je kao medi…"
+    },
+    {
+      "id": 27,
+      "q": "Kako autor intervjua postiže prisnost sa sugovornikom?",
+      "opts": [
+        "A. Upotrebljava superlative kad ga predstavlja.",
+        "B. Postavlja mu sugestivna pitanja.",
+        "C. Obraća mu se u 2. licu jednine.",
+        "D. Naziva ga knjiškim moljcem."
+      ],
+      "correct": "C",
+      "exp": "'Jedan si od kritičara...' 'Što misliš...' 'Autor si bloga...' — pitanja su u 2. licu jednine (ti forma) = neformalna, bliska komunikacija.",
+      "ctx": "Božidar Alajbegović, intervju — Knjiškim moljac (informativni/intervju tekst)\n\nBožidar Alajbegović autor je bloga Knjiški moljac, vjerojatno najposjećenijeg i najdinamičnijeg internetskog foruma za književnost, književni kritičar, novinar.\n\nPitanje: Jedan si od kritičara koji svoju širu afirmaciju zahvaljuju internetu. Što misliš, koliko je elektronička forma formirala tvoj kritički rukopis?\n\nKod elektroničke forme nema ograničenja u pogledu opsega teksta, broja znakova ili kartica, što je redovit slučaj kod tiskanih medija (posebno dnevnih novina), koji zbog prostora za reklame ili za neke atraktivnije sadržaje od onih kulturnih zakidaju kritičare. Osim te vrste slobode internet je kao medi…"
+    },
+    {
+      "id": 28,
+      "q": "U kojemu od sljedećih primjera sugovornik kritizira društvo koje ne podupire književnost s foruma i blogova?",
+      "opts": [
+        "A. Sumnjam da u nas uopće i postoje mecene koje bi takvu vrstu truda honorirale.",
+        "B. U blogosferi velik je broj neafirmiranih pisaca koji tako objavljuju prozu i poeziju te kvalitetom svakako zaslužuju pozornost, a neki od njih i ukoričenje.",
+        "C. Iako sam svjestan kreativnosti koju u mladih blogovi potiču, bojim se da bi utjecaj blogova na pismenost mogao biti negativniji nego što se misli.",
+        "D. ... a ono malo vremena što im ostaje za čitanje troše na konzumaciju blogovskih uradaka ekipe iz svog i susjednog im razreda."
+      ],
+      "correct": "A",
+      "exp": "'Sumnjam da u nas uopće i postoje mecene koje bi takvu vrstu truda honorirale' — kritika društva koje ne vrednuje/ne podupire književne blogove i kritiku financijski.",
+      "ctx": "Božidar Alajbegović, intervju — Knjiškim moljac (informativni/intervju tekst)\n\nBožidar Alajbegović autor je bloga Knjiški moljac, vjerojatno najposjećenijeg i najdinamičnijeg internetskog foruma za književnost, književni kritičar, novinar.\n\nPitanje: Jedan si od kritičara koji svoju širu afirmaciju zahvaljuju internetu. Što misliš, koliko je elektronička forma formirala tvoj kritički rukopis?\n\nKod elektroničke forme nema ograničenja u pogledu opsega teksta, broja znakova ili kartica, što je redovit slučaj kod tiskanih medija (posebno dnevnih novina), koji zbog prostora za reklame ili za neke atraktivnije sadržaje od onih kulturnih zakidaju kritičare. Osim te vrste slobode internet je kao medi…"
+    },
+    {
+      "id": 29,
+      "q": "Koja je uloga poveznice u intervjuu?",
+      "opts": [
+        "A. Upućuje na podatke o posjećenosti internetske stranice Matice hrvatske.",
+        "B. Čitatelju omogućuje prostor u koji će napisati svoj komentar intervjua.",
+        "C. Čitatelju otkriva s kojim je tiskanim medijima autor sklopio suradnju.",
+        "D. Upućuje na sadržaj koji otkriva sugovornikove interese."
+      ],
+      "correct": "D",
+      "exp": "'Koga to zanima, može to saznati uvidom u linkove na mom blogu Knjiškim moljac (http://...)' — poveznica vodi na blog gdje su vidljivi linkovi koje Alajbegović prati = otkrivaju sugovornikove interese (što čita).",
+      "ctx": "Božidar Alajbegović, intervju — Knjiškim moljac (informativni/intervju tekst)\n\nBožidar Alajbegović autor je bloga Knjiški moljac, vjerojatno najposjećenijeg i najdinamičnijeg internetskog foruma za književnost, književni kritičar, novinar.\n\nPitanje: Jedan si od kritičara koji svoju širu afirmaciju zahvaljuju internetu. Što misliš, koliko je elektronička forma formirala tvoj kritički rukopis?\n\nKod elektroničke forme nema ograničenja u pogledu opsega teksta, broja znakova ili kartica, što je redovit slučaj kod tiskanih medija (posebno dnevnih novina), koji zbog prostora za reklame ili za neke atraktivnije sadržaje od onih kulturnih zakidaju kritičare. Osim te vrste slobode internet je kao medi…"
+    },
+    {
+      "id": 30,
+      "q": "Na što upućuje sugovornik sljedećom tvrdnjom?\n'Time sam vrlo zadovoljan, s obzirom na popularnost književnosti u nas.'",
+      "opts": [
+        "A. Zadovoljan je jer ne mora tražiti novčanu potporu za svoj blog.",
+        "B. Književne kritike često su popularnije od samih književnih djela.",
+        "C. Drago mu je što je njegov blog mjesto afirmacije mladih proznih pisaca.",
+        "D. Posjećenost njegova bloga dokaz je da je njegov blog promicatelj književnosti."
+      ],
+      "correct": "D",
+      "exp": "Između 500-600 posjeta dnevno za književni blog — s ironicom napomenom 'Time sam vrlo zadovoljan, s obzirom na popularnost književnosti u nas' = njegova visoka posjećenost je dokaz da blog promovira književnost u zemlji gdje je ona ne baš popularna.",
+      "ctx": "Božidar Alajbegović, intervju — Knjiškim moljac (informativni/intervju tekst)\n\nBožidar Alajbegović autor je bloga Knjiški moljac, vjerojatno najposjećenijeg i najdinamičnijeg internetskog foruma za književnost, književni kritičar, novinar.\n\nPitanje: Jedan si od kritičara koji svoju širu afirmaciju zahvaljuju internetu. Što misliš, koliko je elektronička forma formirala tvoj kritički rukopis?\n\nKod elektroničke forme nema ograničenja u pogledu opsega teksta, broja znakova ili kartica, što je redovit slučaj kod tiskanih medija (posebno dnevnih novina), koji zbog prostora za reklame ili za neke atraktivnije sadržaje od onih kulturnih zakidaju kritičare. Osim te vrste slobode internet je kao medi…"
+    },
+    {
+      "id": 31,
+      "q": "Koji se oblik ponašanja ironizira u sljedećim stihovima Silvija Strahimira Kranjčevića?\n'Prvim vam korak bješe da svojoj gospođi bajnoj / Laznete skromno gospodsku petu. / Zlatna metoda! Cjelovom tijem shvatiste život!'",
+      "opts": [
+        "A. hvalisanje",
+        "B. lakovjernost",
+        "C. skromnost",
+        "D. ulizivanje"
+      ],
+      "correct": "D",
+      "exp": "'Laznete skromno gospodsku petu' — 'lagnuti petu' = polizati petu = ponizno se dodvoravati/ulizivati. 'Zlatna metoda' = ironija na račun karijerizma i udvorništva. Ironizira se ulizivanje."
+    },
+    {
+      "id": 32,
+      "q": "Na kojoj je stilskoj figuri utemeljena sljedeća pjesma Stanka Vraza?\n'Ni za što: Tvoja j' glava tvrda / Ko Stubički kam, / Nu i tupa, na njoj / Da ne mož nabrusti / Ni jedan epigram.'",
+      "opts": [
+        "A. na alegoriji",
+        "B. na antitezi",
+        "C. na poredbi",
+        "D. na sarkazmu"
+      ],
+      "correct": "B",
+      "exp": "'Tvrda ko Stubički kam' (tvrda/čvrsta) vs. 'tupa' (tupa/neoštrena) — antiteza: glava je istovremeno tvrda I tupa, što su dvije suprotnosti. Na antitezi."
+    },
+    {
+      "id": 33,
+      "q": "S kojim je književnim razdobljem Ivan Slamnig ostvario intertekstualnu vezu u sljedećoj pjesmi?\n'Neharnu služim gospoju / Ne mogu te potpuno zadovoljiti / medu ostalim zato što neću. / Možeš li uzu oblagčati?'",
+      "opts": [
+        "A. s renesansom",
+        "B. s klasicizmom",
+        "C. s romantizmom",
+        "D. s realizmom"
+      ],
+      "correct": "A",
+      "exp": "'Neharnu služim gospoju' — aluzija na petrarkistički motiv 'neharne gospođe' (belle dame sans merci) koji je karakterističan za renesansnu liriku (Menčetić, Lucić, Držić). Intertekstualnost s renesansom/petrarkizmom."
+    },
+    {
+      "id": 34,
+      "q": "Koji je točan raspored?",
+      "opts": [
+        "A. na srednjovjekovlje",
+        "B. na barok",
+        "C. na romantizam",
+        "D. na modernizam"
+      ],
+      "correct": "B",
+      "exp": "Katolička obnova (Tridentski sabor), podvojenost zemaljsko/nebesko, kićeni stil = barok (17. st.). Karakteristično za Gundulića, Kašića, talijansku i španjolsku baroknu književnost.",
+      "ctx": "Na koje se književnopovijesno razdoblje odnosi sljedeća rečenica?\n'Književnici pišu pod utjecajem katoličke obnove, u djelima se uočava podvojenost između svjetovnosti i onostranoga, a djela se odlikuju kićenošću izraza.'"
+    },
+    {
+      "id": 35,
+      "q": "Koje se od sljedećih obilježja odnosi na razdoblje hrvatskoga romantizma?",
+      "opts": [
+        "A. važnost kolektivnoga duha u buđenju nacionalne svijesti",
+        "B. socijalno-psihološka motivacija likova",
+        "C. kriterij doličnosti u oblikovanju likova",
+        "D. pluralizam stilova"
+      ],
+      "correct": "A",
+      "exp": "Hrvatski romantizam (ilirizam, 1835.–1850.) = buđenje nacionalne svijesti, kolektivni duh, preporod — Gaj, Vraz, Preradović. Kolektivni/nacionalni duh je ključno obilježje."
+    },
+    {
+      "id": 36,
+      "q": "Na koje se pjesništvo odnose sljedeće tvrdnje?\n'Jezik toga pjesništva vrlo je sugestivan, ritam i zvuk stiha razbijaju svakodnevna značenja upotrijebljenih riječi. U djelima se ističe kult ljepote i slijedi se načelo umjetnosti radi umjetnosti.'",
+      "opts": [
+        "A. na egzistencijalističko",
+        "B. na ekspresionističko",
+        "C. na petrarkističko",
+        "D. na simbolističko"
+      ],
+      "correct": "D",
+      "exp": "Sugestivan jezik, ritam, zvuk, kult ljepote, larpurlartizam = simbolizam (Baudelaire, Verlaine, Mallarmé). Simbolizam se temelji na suggestiji i glazbenosti stiha."
+    },
+    {
+      "id": 37,
+      "q": "Koja se od sljedećih tvrdnja odnosi na ep Eneida?",
+      "opts": [
+        "A. U središtu je radnje židovska udovica koja se žrtvovala za svoj narod i ubila neprijateljskoga vojskovođu.",
+        "B. U središtu je radnje junak koji se zahvaljujući svojemu lukavstvu uspije vratiti kući nakon deset godina ratovanja.",
+        "C. Glavni junak nakon propasti Troje zajedno s ocem i sinom traži mjesto gdje će stvoriti novu državu.",
+        "D. Ep je utemeljen na povijesnoj temi o pobuni janjičara u Osmanskome Carstvu."
+      ],
+      "correct": "C",
+      "exp": "Eneida (Vergilije) — Eneja (Aeneas) bježi iz gorući Troje s ocem Anhizom i sinom Askanije, putuje po Mediteranu tražeći novu domovinu, osniva novu domovinu koja će postati Rim. A = Judita, B = Odiseja, D = Osman."
+    },
+    {
+      "id": 38,
+      "q": "Koji književni lik o sebi promišlja slično kao što Raskoljnikov promišlja o sebi u sljedećemu primjeru?\n'Uostalom, ja brbljam previše. Zato i ne radim ništa jer brbljam... Onda, zašto ja sada idem? Zar sam ja sposoban za to?'",
+      "opts": [
+        "A. Gregor Samsa",
+        "B. Hamlet",
+        "C. Leone Glembaj",
+        "D. Meursault"
+      ],
+      "correct": "B",
+      "exp": "Hamlet je junak koji previše razmišlja i oklijevala ('Biti ili ne biti, eto pitanja'), pita se je li sposoban za osvetu, sumnjiči vlastite namjere. Kao i Raskoljnikov, intelektualizira i odgađa djelovanje."
+    },
+    {
+      "id": 39,
+      "q": "Koja se od sljedećih tvrdnja odnosi na Jurja iz romana Posljednji Stipančići?",
+      "opts": [
+        "A. U pismima prijatelju otkriva svoj odnos prema ljubavi, prirodi i svijetu koji ga okružuje.",
+        "B. Svoju bešćutnost prema sestri i majci otkriva pišući pisma prijatelju Mukiju.",
+        "C. Majčino pismo o sestrinoj udaji motivirat će ga na daljnje postupke.",
+        "D. Promijenio je sadržaj Klaudijeva pisma i tako izbjegao smrt."
+      ],
+      "correct": "B",
+      "exp": "Juraj Stipančić u pismima Mukiju otkriva bešćutnost prema majci i sestri Luciji (brine ga samo vlastito zadovoljstvo i novac, ne brine za majku kojoj seli kuću). B je točno."
+    },
+    {
+      "id": 40,
+      "q": "Koji je točan raspored?",
+      "opts": [
+        "A. na Dubravku",
+        "B. na Juditu",
+        "C. na Novelu od Stanca",
+        "D. na Osmana"
+      ],
+      "correct": "C",
+      "exp": "Novela od Stanca (Marin Držić, 1549.) — komedija u kojoj dubrovačka mladež ismijava naivnog seljaka Stanca koji dolazi prodati drva. 'Kasne noćne sate', 'seljak koji dolazi prodati proizvode' = Stanac.",
+      "ctx": "Na koje se književno djelo odnose sljedeće rečenice?\n'U svojoj je sažetosti najčistije djelo dubrovačke komediografije. Ostvaren je sklad forme i vjerne reprodukcije slike gradskoga života u kasnim noćnim satima u kojoj dominiraju raspojasani gradski mladići okupljeni oko seljaka koji dolazi u grad prodati svoje proizvode.'"
+    },
+    {
+      "id": 41,
+      "q": "Koja se od sljedećih rečenica odnosi na Maestra iz Marinkovićeva Kiklopa?",
+      "opts": [
+        "A. Novinar je i cinik koji prezire društveni napredak.",
+        "B. Kritičar je koji se izgladnjuje kako bi izbjegao poziv u vojsku.",
+        "C. Pisac je koji je osmislio teoriju o preventivnoj dehumanizaciji.",
+        "D. Boem je i lakrdijaš čije se djelovanje svodi na acte gratuit – bezrazložni čin."
+      ],
+      "correct": "C",
+      "exp": "Maestro iz Kiklopa je pisac koji je razvio teoriju o 'preventivnoj dehumanizaciji' — kako se čovjek može zaštititi od rata i nasilja time što se dobrovoljno degradira u životinju. B = Adam ATMA."
+    },
+    {
+      "id": 42,
+      "q": "Što je od sljedećega iskazano o Smail-agi Čengiću u sljedećemu primjeru?\n'Gvožđa, otrov, konop, nože, / Palu, oganj, kolac grozni, / Ulje vrelo i sto muka / U čas jedan junak smišlja, / Za izgladit gorkoj bruci trage / I sačuvat uspomenu čistu, / Čisto ime uz glas strune blage.'",
+      "opts": [
+        "A. Aga se slušajući pjesmu prisjeća bitaka u kojima je sudjelovao.",
+        "B. Aga ne voli slušati pjesme o stradanjima crnogorske vojske.",
+        "C. Aga zaboravlja svoje muke slušajući pjesmu.",
+        "D. Aga ne želi da ga se pamti po neuspjehu."
+      ],
+      "correct": "D",
+      "exp": "'Za izgladit gorkoj bruci trage / I sačuvat uspomenu čistu, / Čisto ime uz glas strune blage' — Smail-aga misli na muke koje bi nanio zarobljenim Crnogorcima da ukloni sramotu (brucu) i sačuva čisto ime = ne želi biti pamćen po porazu/neuspjehu."
+    },
+    {
+      "id": 43,
+      "q": "Koja je od sljedećih rečenica napisana u skladu s pravilima o pisanju velikog i malog početnog slova?",
+      "opts": [
+        "A. Razdoblje kojemu obilježje daje uporaba bronce naziva se Brončano doba.",
+        "B. Ugostitelji potvrđuju da je njihovim gostima sve važniji bežični Internet.",
+        "C. Uz zamolbu za posao treba priložiti presliku Radne knjižice i Rodni list.",
+        "D. Mjesec je jedini Zemljin prirodni satelit i najbliže joj nebesko tijelo."
+      ],
+      "correct": "D",
+      "exp": "'Mesec... Zemljin' — Mesec i Zemlja kao vlastita imenica (nebeska tijela) = veliko. 'Zemljin' = posvojni pridjev od Zemlje (vlastita imenica). D je pravilno. A: 'brončano doba' (malo); B: 'internet' (malo); C: 'radne knjižice' i 'rodni list' (malo)."
+    },
+    {
+      "id": 44,
+      "q": "U kojoj je od sljedećih rečenica podcrtana riječ pravopisno točna?",
+      "opts": [
+        "A. Kupila je plakat s prikazom zvijezdanoga neba.",
+        "B. Putovanje je odgođeno za slijedeći dan.",
+        "C. Tvrdili su da je vrlo savijesna osoba.",
+        "D. Pred nama je svijetla budućnost."
+      ],
+      "correct": "D",
+      "exp": "'Svijetla budućnost' = 'svijetao' (adj.) = ispravno. A: 'zvjezdanog'; B: 'sljedeći'; C: 'savjesna' (ne savijesna)."
+    },
+    {
+      "id": 45,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljen arhaizam?",
+      "opts": [
+        "A. Magellanova ekspedicija oplovila je svijet karakom Victoria, prvim jedrenjakom kojim se mogao preploviti ocean.",
+        "B. Školovanje u preparandiji, učiteljskoj školi u drugoj polovini 19. stoljeća, trajalo je tri godine.",
+        "C. Udžbenik nosi naslov Lučba, a taj se naziv za kemiju upotrebljavao krajem 19. st.",
+        "D. Osnovna jedinica za srebrni novac u Dubrovačkoj Republici bila je dinar."
+      ],
+      "correct": "C",
+      "exp": "'Lučba' — stariji naziv za kemiju koji se više ne koristi = arhaizam. Karakla = historicizam (stari brod koji se još upotrebljava); preparandija = historicizam; dinar = historicizam za Dubrovnik."
+    },
+    {
+      "id": 46,
+      "q": "Koja je rečenica u sljedećemu tekstu značenjski besmislena?\n'Nakon teških pandemijskih godina Europa ima još jedno kataklizmično ljeto. Zbog izostanka kiše suša je pod udarom u Europi već dva mjeseca. Suša je već smanjila proizvodnju... Iako postoji mogućnost da eventualno kišni kolovoz donese dašak olakšanja, najtopliji dio godine tek je počeo.'",
+      "opts": [
+        "A. Nakon teških pandemijskih godina Europa ima još jedno kataklizmično ljeto.",
+        "B. Zbog izostanka kiše suša je pod udarom u Europi već dva mjeseca.",
+        "C. Suša je već smanjila proizvodnju električne energije i hrane, pojačavajući tržišni pritisak koji već postoji zbog rata u Ukrajini.",
+        "D. Iako postoji mogućnost da eventualno kišni kolovoz donese dašak olakšanja, najtopliji dio godine tek je počeo."
+      ],
+      "correct": "B",
+      "exp": "'Zbog izostanka kiše suša je pod udarom' — semantički besmisleno: suša nastaje zbog izostanka kiše, ali suša ne može biti 'pod udarom'. Suša nije žrtva, ona je posljedica. Trebalo bi: 'Europa/stanovništvo je pod udarom suše'."
+    },
+    {
+      "id": 47,
+      "q": "Koji je od sljedećih primjera ktetik imena 'Jabuka'?",
+      "opts": [
+        "A. jabučni",
+        "B. jabučki",
+        "C. jabukov",
+        "D. jabukovački"
+      ],
+      "correct": "B",
+      "exp": "Ktetik = pridjev izveden od naziva mjesta. 'Jabuka' (ime mjesta) → ktetik 'jabučki' (-čki je sufiks za ktetike od naziva mjesta). 'Jabučni' = pridjev od voća jabuke, 'jabukov' = posvojni od jabuke."
+    },
+    {
+      "id": 48,
+      "q": "Koja je od sljedećih sintagmi nesročna atributna sintagma?\nIspod lijevoga ramena oduvijek je imala madež poput zvjezdice.",
+      "opts": [
+        "A. imala je madež",
+        "B. lijevoga ramena",
+        "C. imala je ispod ramena",
+        "D. madež poput zvjezdice"
+      ],
+      "correct": "D",
+      "exp": "'Madež poput zvjezdice' — prijedložna sintagma 'poput zvjezdice' je nesročni atribut imenice 'madež' (ne slaže se u rodu/padežu). Nesročna atributna sintagma."
+    },
+    {
+      "id": 49,
+      "q": "U kojoj je od sljedećih rečenica riječ 'ples' u službi izravnoga objekta?",
+      "opts": [
+        "A. Dok sam bila na plesu, ukrali su mi torbicu s dokumentima.",
+        "B. Neprekidno sanjarim o našemu maturalnom plesu.",
+        "C. Tko ne smatra romantičnim ples na kiši?",
+        "D. Kupila sam cipele za ples."
+      ],
+      "correct": "C",
+      "exp": "'Tko ne smatra romantičnim ples na kiši?' — 'ples' je u akuzativu kao izravni objekt glagola 'smatrati' (što smatra romantičnim? = ples = akuzativ). A = lokativ, B = lokativ, D = prijedložni izraz."
+    },
+    {
+      "id": 50,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljen točan veznik?",
+      "opts": [
+        "A. S obzirom da rano krećem na put, moram na spavanje.",
+        "B. Moram na spavanje radi toga jer rano krećem na put.",
+        "C. Budući da rano krećem na put, moram na spavanje.",
+        "D. Moram na spavanje zato jer rano krećem na put."
+      ],
+      "correct": "C",
+      "exp": "'Budući da' = pravilni uzročni veznik. A: 'S obzirom na to što/da' (ne 's obzirom da'); B: 'radi toga što' (ne 'radi toga jer'); D: 'zato što' (ne 'zato jer')."
+    },
+    {
+      "id": 51,
+      "q": "Koja je od sljedećih rečenica gramatički točna?",
+      "opts": [
+        "A. Posjetom muzejima naša nam je nastavnica oblikovala ukus u slikarstvo.",
+        "B. Vozila se s biciklom do glavnoga trga.",
+        "C. Problem se na koncu pokazao neznatnim.",
+        "D. Rock-opera pripada u novijem žanru glazbe."
+      ],
+      "correct": "C",
+      "exp": "'Problem se na koncu pokazao neznatnim' = 'pokazati se + instrumental' = pravilno. A: 'za slikarstvo' (ne 'u slikarstvo'); B: 'biciklom' (bez 's'); D: 'pripada novijem žanru' (bez 'u')."
+    },
+    {
+      "id": 52,
+      "q": "Koji morfem u riječi 'ravnateljičin' ima značenje pripadnosti?",
+      "opts": [
+        "A. -telj-",
+        "B. -ič-",
+        "C. -in-",
+        "D. -Ø"
+      ],
+      "correct": "C",
+      "exp": "'Ravnatelj + ič + in' — '-in-' je posvojni sufiks koji označava pripadnost ('ravnateljiČIN' = koji pripada ravnateljici). Usporedba: sestrin, mamičin."
+    },
+    {
+      "id": 53,
+      "q": "U kojemu je od sljedećih primjera točno tvoren glagolski prilog sadašnji?",
+      "opts": [
+        "A. gristi > grizeći",
+        "B. peći > pečući",
+        "C. pisati > pisajući",
+        "D. vući > vukući"
+      ],
+      "correct": "A",
+      "exp": "'Gristi → grizeći' — prezentska osnova 'griz-' + ući = grizeći = pravilno. B: 'peći → pekući' (od pek-); C: 'pisati → pišući'; D: 'vući → vukući' → 'vučući'."
+    },
+    {
+      "id": 54,
+      "q": "Koji je pridjev u sljedećoj rečenici u instrumentalu?\nNajboljim studentima na hrvatskim sveučilištima pružila se prilika da istražuju ekosustave u tropskim morima nastanjenim neobičnim organizmima.",
+      "opts": [
+        "A. najboljim",
+        "B. hrvatskim",
+        "C. tropskim",
+        "D. neobičnim"
+      ],
+      "correct": "D",
+      "exp": "'Nastanjenim neobičnim organizmima' — 'neobičnim' se slaže s 'organizmima' u instrumentalu množine m.r. (-im = instrumental). 'Najboljim' = dativ, 'hrvatskim' = lokativ, 'tropskim' = lokativ."
+    },
+    {
+      "id": 55,
+      "q": "Koja je od sljedećih tvorenica nastala prefiksalno-sufiksalnom tvorbom?",
+      "opts": [
+        "A. bezemljaš",
+        "B. biljožder",
+        "C. bioenergija",
+        "D. brodolomac"
+      ],
+      "correct": "A",
+      "exp": "'Bezemljaš' = bez + zemlja + aš (prefiks + osnova + sufiks) = prefiksalno-sufiksalna tvorba. B = složenica + sufiks, C = prefiks + osnova, D = složenica + sufiks."
+    },
+    {
+      "id": 56,
+      "q": "U kojoj je od sljedećih riječi epentetski l?",
+      "opts": [
+        "A. izmišljen",
+        "B. nauljen",
+        "C. usamljen",
+        "D. zaobljen"
+      ],
+      "correct": "B",
+      "exp": "'Nauljen' — naul-j-en: ulj (ulje) → naul-j-en. Epentetsko (umetničko) l: n-ulj → naulje. B: 'nauljen' = naulje + n — epentetski l je umetnut između osnove i sufiksa. U ostalima l nije epenteza."
+    },
+    {
+      "id": 57,
+      "q": "Što je etimološka odrednica sljedećega rječničkog članka?\nlȋbar, im. m G -bra, N mn -bri arh. jez. knjiž. knjiga; tal. libro ← lat. liber; na libar reg. pritvoriti (grilje, škure)...",
+      "opts": [
+        "A. im. m G -bra, N mn -bri",
+        "B. arh. jez. knjiž. knjiga",
+        "C. tal. libro ← lat. liber",
+        "D. na libar reg. pritvoriti (grilje, škure) slično otvorenoj knjizi"
+      ],
+      "correct": "C",
+      "exp": "Etimološka odrednica = podatak o podrijetlu/porijeklu riječi = 'tal. libro ← lat. liber' (talijanski iz latinskog). A = morfološka, B = stilska odrednica i definicija, D = frazeološki primjer."
+    },
+    {
+      "id": 581,
+      "q": "Napokon želite baciti (1.) ______ nepodnošljivoj nadutosti?\n\nOdaberite pravi frazem.",
+      "opts": [
+        "A. rukavicu u lice",
+        "B. pijesak u oči",
+        "C. ulje na vatru",
+        "D. bubu u uho"
+      ],
+      "correct": "A",
+      "exp": "'Baciti rukavicu u lice' = izazvati nekoga, javno mu se suprotstaviti. Odgovara kontekstu: suočiti se s nepodnošljivom nadutosti = baciti rukavicu = izazov."
+    },
+    {
+      "id": 582,
+      "q": "...vlasnik poznatoga slavonskog OPG-a. Domaći čaj gospodina (2.) ______ čini čuda za vašu probavu!\n\nOdaberite ispravni genitiv imenice Mile.",
+      "opts": [
+        "A. Mila",
+        "B. Mile",
+        "C. Milea",
+        "D. Mileta"
+      ],
+      "correct": "D",
+      "exp": "'Mile' (muško ime) → genitiv jednine: Milo → Mileta (e-deklinacija kratkih muških imena). G jd.: Mile → Mileta. 'Čaj gospodina Mileta' = pravilno."
+    },
+    {
+      "id": 583,
+      "q": "Za (3.) ______ čaja potrebna vam je samo adresa pošte.\n\nOdaberite ispravno napisanu imenicu.",
+      "opts": [
+        "A. naručbu",
+        "B. narućbu",
+        "C. narudžbu",
+        "D. naruđbu"
+      ],
+      "correct": "C",
+      "exp": "'Narudžba' = ispravno. 'Narudžbu' = akuzativ. Osnova: naruč + dž = narudžb-a. Ispravno: narudžba, narudžbu."
+    },
+    {
+      "id": 584,
+      "q": "...potrebna vam je samo adresa (4.) ______ pošte.\n\nOdaberite ispravni pridjev.",
+      "opts": [
+        "A. elektrićke",
+        "B. električne",
+        "C. elektroničke",
+        "D. elektronske"
+      ],
+      "correct": "D",
+      "exp": "'Elektronska pošta' — pridjev od 'elektronika' za e-poštu/mail = 'elektronička' ili 'elektronska'. U standardnom jeziku 'elektronička pošta' je prihvaćen oblik. D: 'elektronske' = prihvatljivo u kontekstu skraćenice 'e-mail'."
+    },
+    {
+      "id": 585,
+      "q": "Ne zaboravite: posebna akcija na kojoj možete kupiti dva pakiranja za cijenu jednoga (5.) ______ u petak!\n\nOdaberite ispravni oblik glagola.",
+      "opts": [
+        "A. istače",
+        "B. isteče",
+        "C. ističe",
+        "D. istječe"
+      ],
+      "correct": "C",
+      "exp": "'Ističe' = prezent od 'isticati' (trajati, biti na snazi). 'Akcija ističe u petak' = akcija vrijedi do petka. Ispravni oblik je 'ističe' (isticati → ističe)."
+    }
+  ]
+}

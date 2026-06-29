@@ -1,0 +1,365 @@
+{
+  "2010_jesen_B__1": {
+    "B": "Epika pripovijeda događaje s fabulom i likovima, a pjesma 'Oblak' nema radnju nego izražava subjektivni doživljaj.",
+    "C": "Drama je namijenjena izvedbi, s dijalogom i didaskalijama, čega u ovoj pjesmi nema."
+  },
+  "2010_jesen_B__2": {
+    "A": "Obgrljena rima 'abba' ne odgovara: parovi rimuju 1.-3. i 2.-4. stih, a ne 1.-4. i 2.-3.",
+    "B": "Ukrštena rima nije dosljedna kroz sve strofe, pa se shema ne svodi na pravilan 'abab cdcd...'.",
+    "D": "Raspored 'cded fghg ijkj' iz ove sheme ne odgovara stvarnim zvukovnim podudaranjima u stihovima."
+  },
+  "2010_jesen_B__3": {
+    "A": "Osmerac (8 slogova) ne odgovara stihu četvrte strofe koji prema brojenju ima više slogova.",
+    "B": "Deveterac ima 9 slogova, što ne odgovara traženomu deseteračkom stihu.",
+    "D": "Jedanaesterac ima 11 slogova, znatno više od broja slogova u tom stihu."
+  },
+  "2010_jesen_B__4": {
+    "A": "Distih ima dva stiha, a strofe ove pjesme imaju četiri stiha.",
+    "B": "Tercina ima tri stiha, a strofe imaju četiri.",
+    "D": "Sestina ima šest stihova, a strofe imaju samo četiri."
+  },
+  "2010_jesen_B__5": {
+    "A": "Oblak nije opisan radi prikaza prirode, nego kao simbol misli o neshvaćenom idealu, pa tema nije pejzažna.",
+    "B": "Pjesma se ne bavi društvenim nepravdama ni klasnim odnosima, nego razmišljanjem o idealu.",
+    "D": "Nema motiva domovine ni rodoljublja, nego općeljudskog misaonog promišljanja."
+  },
+  "2010_jesen_B__6": {
+    "B": "Olujno nebo nije simbolično značenje oblaka; pjesma govori o neshvaćenosti ljepote, a ne o vremenskim prilikama.",
+    "C": "Slučajni prolaznik su upravo ljudi 'uprti u zemne stvari' koji oblak ne gledaju, a ne sam oblak.",
+    "D": "Izgubljene iluzije nisu ono što oblak predstavlja; on simbolizira uzvišeni, neshvaćeni ideal/umjetnika."
+  },
+  "2010_jesen_B__7": {
+    "A": "Stih ne govori o razvedravanju nego o sudbini oblaka kao simbola, pa doslovno meteorološko čitanje promašuje smisao.",
+    "C": "Tema posljednjih stihova nije ljudska očekivanja, nego uzlet i pad samog oblaka.",
+    "D": "Nemilosrdnost prirode prema čovjeku nije poruka; riječ je o uzdizanju i propasti ideala."
+  },
+  "2010_jesen_B__8": {
+    "A": "Hiperbola je pretjerivanje radi naglašavanja, a ovdje je riječ o prenesenom značenju, ne o preuveličavanju.",
+    "B": "Simbol je predmet koji upućuje na apstraktni pojam, a 'krvareći ljepotu' je slika nastala prijenosom značenja.",
+    "D": "Kontrast suprotstavlja pojmove, a u ovoj sintagmi nema suprotstavljanja nego metaforičkog prijenosa."
+  },
+  "2010_jesen_B__9": {
+    "B": "Stihovi 'Pojavio se ponad grada / Oblak jedan' ne počinju istom riječi, pa nema anafore.",
+    "C": "'A on — krvareći ljepotu — / Svojim nebom' nemaju ponovljen početak, pa to nije anafora.",
+    "D": "'I svak je išo... / Za vlašću...' ne ponavljaju istu početnu riječ u uzastopnim stihovima."
+  },
+  "2010_jesen_B__10": {
+    "A": "Preradović, Mažuranić i Vidrić pripadaju starijim razdobljima (romantizam, moderna), ne 30-ima 20. st.",
+    "C": "Matoš i Kranjčević djeluju na prijelazu stoljeća i u moderni, prije Cesarićeva naraštaja.",
+    "D": "Slamnig, Mihalić i Šoljan su poslijeratni krugovaši, mlađi od Cesarića."
+  },
+  "2010_jesen_B__11": {
+    "B": "Leksička norma tiče se izbora riječi, a 'dig'' nije pogrešna riječ nego skraćeni oblik, dakle morfološka pojava.",
+    "C": "Pravopisna norma odnosi se na pisanje slova i znakova; ovdje je problem u obliku riječi, ne u pravopisu.",
+    "D": "Sintaktička norma uređuje slaganje riječi u rečenici, a odstupanje je u obliku jedne riječi."
+  },
+  "2010_jesen_B__12": {
+    "A": "'Vjet-ar' je pogrešno rastavljeno jer 'vje-tar' ima granicu sloga ispred suglasnika.",
+    "B": "'sta-o' nije ispravna podjela; dvoglas/zijev se rastavlja drukčije ('sta-o' razdvaja, ali ostatak stiha narušava slogovni broj).",
+    "D": "'U-pr-te' i 'ze-mne' te 'stvar-i' pogrešno su rastavljeni jer krše pravila granica slogova."
+  },
+  "2010_jesen_B__13": {
+    "A": "Iza dvotočja ne slijedi navedeni tuđi govor, nego niz pojmova, pa nije riječ o upravnom govoru.",
+    "B": "Tekst nije prekinut nego se nastavlja nabrajanjem, pa dvotočje ne označava prekid.",
+    "C": "Nema umetnute rečenice; dvotočjem se uvodi niz, ne umetak."
+  },
+  "2010_jesen_B__14": {
+    "A": "Točka bi prekinula rečenicu, a umetak se ne odvaja točkom nego parom istovrsnih znakova.",
+    "C": "Dvotočje uvodi nabrajanje ili objašnjenje, a ovdje treba znak koji omeđuje umetak s obiju strana.",
+    "D": "Točka zarez razdvaja veće cjeline u rečenici, a ne omeđuje umetnuti dio kao crtice/zarezi."
+  },
+  "2010_jesen_B__15": {
+    "A": "Prezent bi glasio 'jesu/su', a 'bjehu' je prošli glagolski oblik.",
+    "B": "Imperativ izriče zapovijed ('budi/budite'), a 'bjehu' je pripovjedno prošlo vrijeme.",
+    "C": "Aorist glagola biti glasio bi 'bih, bi, bismo, biste, biše', a 'bjehu' je imperfekt."
+  },
+  "2010_jesen_B__16": {
+    "A": "'Pokušavati' znači truditi se izvesti, a 'kaniti' znači imati nakanu/plan, što nije isto.",
+    "C": "'Moći' izriče sposobnost ili dopuštenje, a 'kaniti' izriče namjeru.",
+    "D": "'Željeti' označava puku želju, dok 'kaniti' znači namjeravati, tj. odlučnost da se nešto učini."
+  },
+  "2010_jesen_B__17": {
+    "A": "Eshil je raniji grčki tragičar; autor 'Antigone' je Sofoklo.",
+    "C": "Plaut je rimski komediograf, ne pisac grčke tragedije 'Antigone'.",
+    "D": "Homer je epski pjesnik ('Ilijada', 'Odiseja'), a ne dramatičar."
+  },
+  "2010_jesen_B__18": {
+    "A": "Srednjovjekovlje dolazi mnogo nakon antike; 'Antigona' je nastala u 5. st. pr. Kr.",
+    "B": "Renesansa je novovjekovni preporod antike, a djelo pripada izvornoj antici.",
+    "D": "Barok je razdoblje 17. st., daleko poslije antičke 'Antigone'."
+  },
+  "2010_jesen_B__19": {
+    "A": "Ep je opsežna stihovana pripovijetka, a 'Antigona' je dramsko djelo za izvedbu.",
+    "B": "Komedija ima vedar zaplet i sretan kraj, a 'Antigona' završava katastrofom.",
+    "C": "Ditiramb je lirska pjesma u čast Dioniza, a ne dramska vrsta poput 'Antigone'."
+  },
+  "2010_jesen_B__20": {
+    "B": "Upute glumcima daju didaskalije, a ne Zborovođa unutar replika.",
+    "C": "Karaktere oblikuju sami likovi svojim postupcima i riječima, dok zbor radnju komentira.",
+    "D": "Sukob razrješavaju junaci radnjom; zbor ga ne razrješava nego o njemu progovara."
+  },
+  "2010_jesen_B__21": {
+    "A": "Invokacija je zaziv muze na početku epa, vezana uz epiku, a ne uz tragediju.",
+    "B": "'In medias res' je pripovjedni postupak ulaska u sredinu radnje, tipičan za ep, ne pojam tragedije.",
+    "D": "Retardacija je usporavanje radnje u epu, a ne ključni pojam tragedije."
+  },
+  "2010_jesen_B__22": {
+    "A": "Pjesnikinja s Lezba je Sapfo, a ne Antigona.",
+    "C": "Pitijska proročica je svećenica iz Delfa, dok je Antigona Edipova kći.",
+    "D": "Antigona je smrtnica, tebanska kraljevna, a ne olimpska boginja."
+  },
+  "2010_jesen_B__23": {
+    "B": "Nepravedna vladavina nije razlog; Edip je nesretan zbog kobnog prokletstva svoga roda.",
+    "C": "Lutanje morem veže se uz Odiseja, a ne uz Edipa.",
+    "D": "Trojanski rat nije izazvao Edip, nego mitska otmica Helene."
+  },
+  "2010_jesen_B__24": {
+    "A": "Iznenađenje nije naglašeno; ton brige ('O nesretno dijete') upućuje na suosjećanje.",
+    "B": "Zborovođa ne sumnja u istinitost, nego žali Antigonu, pa nije riječ o nevjerici.",
+    "D": "Ljutnja izostaje; obraćanje je puno samilosti, a ne srdžbe."
+  },
+  "2010_jesen_B__25": {
+    "A": "Stražar ne uživa zlurado, nego se želi izvući 'čist i slobodan' iz nevolje.",
+    "B": "Stražar se Antigoni ne osvećuje; samo izvršava dužnost i bježi od odgovornosti.",
+    "D": "On ne traži anonimnost nego da bude oslobođen krivnje, da ode 'čist'."
+  },
+  "2010_jesen_B__26": {
+    "B": "Antigona nije izdala grad; prekršila je vladarevu zabranu pokopavši brata.",
+    "C": "Sfinginu zagonetku riješio je Edip, a ne Antigona.",
+    "D": "Antigona nije pomagala sestri u bijegu; njezin je čin pokop brata Polinika."
+  },
+  "2010_jesen_B__27": {
+    "A": "Antigonu ne pokreće osveta nego viši, nepisani zakon o pravu na pokop.",
+    "B": "Ne radi o iskupljenju roditeljskih grijeha, nego o ispunjenju božanske dužnosti prema mrtvom bratu.",
+    "C": "Odanost gradu i vladaru zastupa Kreont; Antigona se upravo suprotstavlja državnom zakonu zbog božjega."
+  },
+  "2010_jesen_B__28": {
+    "B": "Monolog je govor jednoga lika, a ovdje se izmjenjuju replike više likova.",
+    "C": "Pripovijedanje pripada epskoj tehnici, a ovdje likovi izravno govore.",
+    "D": "Opisivanje prikazuje izgled ili stanje, a ovdje teče razgovor među likovima."
+  },
+  "2010_jesen_B__29": {
+    "B": "'STRAŽAR' je samo oznaka lica koji govori, a ne uputa za izvedbu.",
+    "C": "Navedeni stih je replika lika, dakle dramski tekst, a ne scenska uputa.",
+    "D": "I to je replika (Zborovođin govor), a didaskalija je piščeva uputa u zagradi."
+  },
+  "2010_jesen_B__30": {
+    "B": "Romantizam prethodi Novakovu razdoblju; on stvara u realizmu.",
+    "C": "Protorealizam je prijelazna faza prije zrelog realizma, a Novak pripada realizmu.",
+    "D": "Moderna dolazi nakon realizma; Novak (umro 1905.) pripada realizmu."
+  },
+  "2010_jesen_B__31": {
+    "A": "Djelo nije pustolovno; nema avantura nego prikaz propadanja obitelji u društvu.",
+    "C": "Tematika nije povijesna; radnja se ne temelji na povijesnim događajima nego na društvenim odnosima.",
+    "D": "Tematika nije filozofska; riječ je o društvenom raslojavanju i propasti staleža."
+  },
+  "2010_jesen_B__32": {
+    "A": "Roman ne prikazuje raslojavanje sela i zadruge, nego propast gradske patricijske obitelji.",
+    "B": "Tema nije školovanje siromašnog dječaka, nego propadanje obitelji Stipančić.",
+    "D": "Iako ima ljubavnih motiva, glavna je tema propast patricijske obitelji, a ne staleška prepreka ljubavi."
+  },
+  "2010_jesen_B__33": {
+    "A": "Sin ne ostaje živ; smisao naslova je u izumiranju cijele obitelji.",
+    "B": "Naslov se ne odnosi na gubitak prezimena udajom, nego na fizički nestanak svih članova.",
+    "C": "Svađa oko nasljedstva nije uzrok; obitelj propada i izumire u novim društvenim okolnostima."
+  },
+  "2010_jesen_B__34": {
+    "A": "Novela je kratka prozna vrsta s jednim događajem, a 'Posljednji Stipančići' su opsežno djelo s razgranatom radnjom.",
+    "C": "Pripovijetka je kraća od romana; ovo je opsegom i strukturom roman.",
+    "D": "Životopis prikazuje stvarni život osobe, a ovo je fikcionalni roman."
+  },
+  "2010_jesen_B__35": {
+    "A": "Komentiranje znači pripovjedačevu ocjenu zbivanja, a ovdje se događaji najprije pripovijedaju.",
+    "C": "Dijaloga u prva dva odlomka nema; nema izmjene replika nego naracije.",
+    "D": "Monolog je govor jednoga lika, a ovi odlomci su pripovjedna naracija."
+  },
+  "2010_jesen_B__36": {
+    "A": "Scena nije krštenje; Valpurga je supruga, a riječ je o svečanosti vjenčanja.",
+    "C": "Nije riječ o Lucijinu prvom plesu, nego o Stipančićevu vjenčanju s gostima.",
+    "D": "Prigoda nije odlazak sina na školovanje, nego svadbena gozba."
+  },
+  "2010_jesen_B__37": {
+    "A": "Gosti nisu ravnodušni; tekst kaže da nisu znali kako primiti prizor, dakle bili su zatečeni.",
+    "B": "Podrugljivost izražava samo majorica svojim smijehom, a ostali gosti su zbunjeni.",
+    "C": "Samilosti nema; gosti su prije zatečeni i ne znaju kako reagirati."
+  },
+  "2010_jesen_B__38": {
+    "B": "Valpurga nije iznenada došla; ona je već prisutna kao supruga, povod je gostovo ponašanje.",
+    "C": "Troškovi gozbe nisu uzrok bijesa, nego Winterovo nedolično ponašanje.",
+    "D": "Nepozvani gosti nisu spomenuti kao povod; bijes izaziva pijani časnikov ispad."
+  },
+  "2010_jesen_B__39": {
+    "A": "Stipančić ne traži pozornost nego zadovoljštinu zbog povrijeđene časti.",
+    "C": "On nije vođen željom da bude dobar domaćin, nego povrijeđenim ponosom i taštinom.",
+    "D": "Pokretač nije zaštita supruge nego vlastiti ugled i taština ('toliko očekivana slava')."
+  },
+  "2010_jesen_B__40": {
+    "A": "Strastvena ljubav prema supruzi nije naglašena; istaknuta je njegova briga za ugled.",
+    "B": "Stipančić ne kontrolira osjećaje nego silovito reagira, tražeći zadovoljštinu.",
+    "C": "On ne okreće stvari u svoju korist, nego je posve obuzet osjećajem povrijeđenosti i ugleda."
+  },
+  "2010_jesen_B__41": {
+    "A": "Skromnost se ne otkriva; Stipančić reagira silovito i ponosno.",
+    "B": "Iako je ohol, u prizoru se ponajprije pokazuje njegova silovita, nagla reakcija s mačem.",
+    "C": "Brižnost nije istaknuta; prevladava silovit, nasilan postupak."
+  },
+  "2010_jesen_B__42": {
+    "A": "Valpurga ne djeluje samouvjereno; problijedjela je i zbunjeno gleda oko sebe.",
+    "C": "Sigurnost izostaje; ona je zatečena drzovitošću i ne zna kako reagirati.",
+    "D": "Koketnost se ne pokazuje; Valpurga je zbunjena i preneražena, a ne zavodljiva."
+  },
+  "2010_jesen_B__43": {
+    "B": "Poredba bi tražila riječ 'kao' ili 'poput', a ovdje je prijenos značenja izveden bez poredbenog veznika.",
+    "C": "Oksimoron spaja proturječne pojmove, čega ovdje nema.",
+    "D": "Ironija znači reći suprotno od mišljenoga, a ovdje je slikoviti prijenos bijesa u lik lava."
+  },
+  "2010_jesen_B__44": {
+    "A": "Pomodnice su trenutačno popularne, nove riječi, a 'nešta, česa, nijesu' su stari, zastarjeli oblici.",
+    "C": "Neologizmi su novostvorene riječi, a navedeni su oblici zastarjeli.",
+    "D": "Oživljenice su ponovno uvedene stare riječi, a ovi su oblici jednostavno zastarjeli (arhaizmi)."
+  },
+  "2010_jesen_B__45": {
+    "A": "'Poslije' izriče vrijeme nakon nečega, a 'dočim' ovdje znači istodobnost ('dok').",
+    "B": "'Iako' je dopusni veznik, a 'dočim' u ovoj rečenici ima vremensko/usporedno značenje.",
+    "C": "'Makar' je također dopusni veznik, dok 'dočim' znači 'dok'."
+  },
+  "2010_jesen_B__46": {
+    "A": "Oblik 'pepeo' je nominativ, a uz 'naslagati' traži se genitiv.",
+    "B": "'Pepel' je dijalektalni/stari oblik, a standardni genitiv glasi 'pepela'.",
+    "D": "'Pepelu' je dativ ili lokativ, a glagol 'naslagati' traži genitiv 'pepela'."
+  },
+  "2010_jesen_B__47": {
+    "B": "Drška je dio za koji se mač drži, a 'vr' označava prednji, rezni dio koji dohvaća čelo.",
+    "C": "Iako je 'vrh' srodno, traženi sinonim koji odgovara funkciji rezanja je 'oštrica'.",
+    "D": "Korica je tok/futrola u koju se mač sprema, a ne dio koji reže."
+  },
+  "2010_jesen_B__48": {
+    "A": "Goran Tribuson nije autor 'Dunava'; djelo je napisao Pavao Pavličić.",
+    "B": "Ivan Aralica nije autor 'Dunava'.",
+    "D": "Antun Šoljan nije autor 'Dunava'."
+  },
+  "2010_jesen_B__49": {
+    "A": "Djelo nije podijeljeno na četiri dijela po stranama svijeta, nego na dvanaest dijelova po mjesecima.",
+    "B": "Dijelovi nisu naslovljeni ženskim imenima, nego imenima mjeseci.",
+    "D": "Nije podijeljeno na četiri dijela s mitološkim imenima, nego na dvanaest mjeseci."
+  },
+  "2010_jesen_B__50": {
+    "A": "Pripovijedanje nije objektivno; ono je proosjećano, iz perspektive mladića, dakle subjektivno.",
+    "C": "Vanjski opis prikazuje izgled, a ovdje se prenose sjećanja i unutarnji doživljaj.",
+    "D": "Unutarnji opis prikazuje psihu lika kao opis, a ovdje je riječ o subjektivnom pripovijedanju."
+  },
+  "2010_jesen_B__51": {
+    "B": "Osijek nije grad nerazdvojiv od Dunava i pripovjedača u ovom djelu; to je Vukovar.",
+    "C": "Vinkovci ne leže na Dunavu; grad djela je Vukovar.",
+    "D": "Grad nije nepoznat nego prepoznatljiv Vukovar uz Dunav."
+  },
+  "2010_jesen_B__52": {
+    "A": "Tekst nije građen na opreci ljepota-ružnoća, nego na opreci dobi (mladi i stariji plivači).",
+    "B": "Opreka kretanje-mirovanje nije temeljna; nosivi je kontrast mladost i starost.",
+    "C": "Opreka govor-šutnja nije ona koja oblikuje tekst, nego mladost naspram starosti."
+  },
+  "2010_jesen_B__53": {
+    "B": "Proljeće nije vrijeme radnje; spominju se prosinac, magla i bljuzgavica, dakle zima.",
+    "C": "Ljeto je samo predmet sjećanja i planova, a radnja se zbiva zimi.",
+    "D": "Jesen nije naznačena; prosinac s maglom i bljuzgavicom upućuje na zimu."
+  },
+  "2010_jesen_B__54": {
+    "A": "Mladići ne ogovaraju, nego sjećaju se ljeta i kuju planove, tj. sanjare.",
+    "B": "Nema motiva tješenja; ozračje je optimistično sanjarenje o budućoj sezoni.",
+    "D": "Mladići ne tuguju; gledaju s nadom u iduće ljeto, pa je riječ o sanjarenju."
+  },
+  "2010_jesen_B__55": {
+    "A": "Pogled nije pesimistican; mladićima sve izgleda lako izvodljivo i lijepo.",
+    "B": "Destruktivnosti nema; njihov je odnos prema svijetu pun nade i planova.",
+    "C": "Vizionarstvo nije naglašeno; riječ je o vedrom, optimističnom doživljaju budućnosti."
+  },
+  "2010_jesen_B__56": {
+    "A": "Dubina nije tema rečenice; govori se o struji koja nosi plivača nizvodno.",
+    "C": "Širina nije naglašena nego snaga matice koja odnosi plivača kilometar nizvodno.",
+    "D": "Ljepota rijeke nije predmet ove rečenice, nego snaga njezine struje."
+  },
+  "2010_jesen_B__57": {
+    "A": "Dokazivanje nije osobina koja ih razlikuje; ističe se njihova odvažnost da plivaju ravno na maticu.",
+    "C": "Izdržljivost nije naglašena razlika; razlikuje ih hrabro plivanje preko najjače struje.",
+    "D": "Umišljenost nije ona crta koja ih razlikuje od ostalih plivača, nego hrabrost."
+  },
+  "2010_jesen_B__58": {
+    "A": "Mladići se usamljenim plivačima ne dive, nego ih ne razumiju i čude im se.",
+    "B": "Prezir nije njihov stav; oni su začuđeni takvim ponašanjem.",
+    "C": "Ismijavanje nije naglašeno; njihova je reakcija čuđenje, nerazumijevanje."
+  },
+  "2010_jesen_B__59": {
+    "B": "Anegdote nisu zapleti krimi-romana, nego kratke, smiješne životne zgode.",
+    "C": "Anegdote nisu scene iz horor-filmova nego vesele, duhovite zgode.",
+    "D": "Anegdote nisu neugodni doživljaji nego najčešće zabavne, smiješne zgode."
+  },
+  "2010_jesen_B__60": {
+    "A": "Pozitiv je 'lijepo', već naveden kao prvi član niza, pa ne nedostaje.",
+    "B": "Komparativ je 'ljepše', već naveden kao drugi član, pa nije izostavljeni oblik."
+  },
+  "2010_jesen_B__61": {
+    "A": "Zarez nije zbog suprotnosti; nema suprotnoga veznika, nego umetnute rečenice.",
+    "B": "Nizanje pretpostavlja niz istovrsnih dijelova, a ovdje je umetnuta zavisna rečenica.",
+    "D": "Nabrajanje bi tražilo niz pojmova, a ovdje se omeđuje umetnuta relativna rečenica."
+  },
+  "2010_jesen_B__62": {
+    "A": "Četiri surečenice je premalo; broji se pet odvojenih predikata u rečenici.",
+    "C": "Šest surečenica je previše; prema raščlambi predikata ima pet.",
+    "D": "Sedam surečenica ne odgovara; pravilan broj predikata daje pet."
+  },
+  "2010_jesen_B__63": {
+    "A": "'Kleti' znači proklinjati, što značenjski i oblikom ne odgovara obliku 'kuju'.",
+    "C": "'Kuljati' znači izbijati u mlazu, a 'kuju planove' dolazi od 'kovati'.",
+    "D": "'Klati' znači ubijati nožem, što ne odgovara obliku ni značenju 'kuju'."
+  },
+  "2010_jesen_B__64": {
+    "A": "Frazem se ne odnosi na vremensku granicu (do jutra), nego na neograničenu mjeru po volji.",
+    "B": "'Do mile volje' ne znači kriomice, nego koliko god se želi.",
+    "C": "Frazem ne govori o javnosti, nego o tome da se nešto čini koliko se hoće."
+  },
+  "2010_jesen_B__65": {
+    "A": "'Bal pod maskama' nije značenje riječi 'matica', pa niz nije točan.",
+    "B": "'Pokrivač' nije značenje riječi 'matica', pa ovaj niz otpada.",
+    "D": "'Pomoćni sudski službenik' nije značenje riječi 'matica', pa niz nije ispravan."
+  },
+  "2010_jesen_B__66": {
+    "A": "'Biti' u prezentu glasi 'jest/je', a 'biva' dolazi od učestaloga glagola 'bivati'.",
+    "B": "'Htjeti' nema oblik 'biva'; riječ je o glagolu 'bivati'.",
+    "C": "'Imati' u prezentu glasi 'ima', a 'biva' je oblik glagola 'bivati'."
+  },
+  "2010_jesen_B__67": {
+    "B": "Raspored '1D, 2A, 3B, 4C' netočno pridružuje Krleži 'Smrt Vronskog', a Krleža je autor 'Povratka Filipa Latinovicza'.",
+    "C": "Raspored '1C, 2B, 3A, 4E' krivo Brešanu pridružuje 'Okvir za mržnju', a on je autor 'Predstave Hamleta'.",
+    "D": "Raspored '1A, 2C, 3D, 4B' krivo Krleži pridružuje 'Predstavu Hamleta', što je Brešanovo djelo."
+  },
+  "2010_jesen_B__68": {
+    "A": "'Dijela' (od 'dio') znači čestice/komada, a ovdje se misli na umjetnikovo djelo, pa treba 'djela'."
+  },
+  "2010_jesen_B__69": {
+    "B": "Veliko 'F' nije opravdano jer 'firentinskoga' je opisni pridjev, a ne dio vlastitog imena."
+  },
+  "2010_jesen_B__70": {
+    "B": "Veliko 'F' nije ispravno jer 'francuski' je ovdje opisni pridjev (vrsta dvora), a ne dio naziva."
+  },
+  "2010_jesen_B__71": {
+    "B": "Malo 'l' nije ispravno jer je 'Leonardovoj' posvojni pridjev izveden od vlastitog imena."
+  },
+  "2010_jesen_B__72": {
+    "B": "'Orginala' je pogrešno napisano; ispravan oblik glasi 'originala'."
+  },
+  "2010_jesen_B__73": {
+    "B": "Spojnica u 'Louvre-u' nije potrebna jer se nastavak dodaje izravno: 'Louvreu'."
+  },
+  "2010_jesen_B__74": {
+    "A": "'20. st' bez točke nije pravilno jer je 'st.' kratica koja zahtijeva završnu točku."
+  },
+  "2010_jesen_B__75": {
+    "A": "'Naj ljepša' rastavljeno nije ispravno; superlativni prefiks 'naj-' piše se spojeno."
+  },
+  "2010_jesen_B__76": {
+    "B": "'Smijeka' je pogrešan oblik; ispravno je 'smješka' (od 'smješkati se')."
+  },
+  "2010_jesen_B__77": {
+    "B": "Malo 'p' nije ispravno jer je 'Posljednja večera' naziv umjetničkog djela, dakle vlastito ime."
+  }
+}

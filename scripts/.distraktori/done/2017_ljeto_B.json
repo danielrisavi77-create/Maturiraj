@@ -1,0 +1,402 @@
+{
+  "2017_ljeto_B__1": {
+    "B": "Staze se u pjesmi spominju kao prostor lutanja i patnje, a ne kao predmet čežnje na koji upućuje 'nju'.",
+    "C": "Vjera nije adresat naslova; religiozni prizvuci (Zdravemarije) tek su dio domovinske slike, a ne predmet 'misli na nju'.",
+    "D": "Pjesma ne tematizira čežnju za ženom, nego za zavičajem (maslinama, Salonama, rodnim arijama)."
+  },
+  "2017_ljeto_B__2": {
+    "B": "'Namočiti' znači ovlažiti, što ne odgovara značenju iscrpljenosti koje nosi 'utruditi'.",
+    "C": "'Otvrdnuti' upućuje na stvaranje žuljeva, ali glagol 'utruditi' označava umor, a ne otvrdnuće.",
+    "D": "'Zaprašiti' se veže uz prašinu drumova, no 'utruditi' znači izmučiti, a ne zaprašiti."
+  },
+  "2017_ljeto_B__3": {
+    "B": "Stih govori o zvuku (arijama) rodnoga kraja, a ne o vizualnoj ljepoti večernjeg krajolika.",
+    "C": "Crkvena zvona nisu spomenuta; 'arije' su napjevi i pjesme, a ne zvonjava.",
+    "D": "Stih se odnosi na melodije zavičaja, a ne na materijalno bogatstvo gradova."
+  },
+  "2017_ljeto_B__4": {
+    "B": "Smijeh se u pjesmi javlja kao prolazna pojava ('U smjehuljka nabrat dva se'), a ono što subjekt vječno pamti jest nijemi uzdah.",
+    "C": "Plač se izrijekom ne ostvaruje — uzdah 'u suze ne proteče'; subjekt pamti uzdah, a ne plač.",
+    "D": "Čežnja je subjektova osobina, a ono čega se vječno sjeća jest ženin nijemi uzdah na usnama."
+  },
+  "2017_ljeto_B__5": {
+    "A": "'On će proći' odnosi se na grč/uzdah koji će nestati, a ne na ženin život.",
+    "B": "Stih o smjehuljcima opisuje izraz ženina lica, a ne metaforu njezina života.",
+    "C": "'Mutit će moje dane' odnosi se na subjektov, a ne na ženin život."
+  },
+  "2017_ljeto_B__6": {
+    "A": "Tugovanje zbog prošlosti opisuje subjektovu bol, ali božju volju on ispunjava pjevanjem, a ne tugom.",
+    "B": "Život u skladu s prirodom nije naveden kao način ispunjavanja božje volje.",
+    "C": "Tješenje drage osobe je tema pjesme, ali božju volju subjekt vrši pisanjem pjesama ('Meni Bog je pjevat reko')."
+  },
+  "2017_ljeto_B__7": {
+    "A": "Aga ne nastoji izbjeći sukob s kršćanima, nego naprotiv na kraju poziva na obračun ('Hazur, momci').",
+    "B": "Žrtvovanje za narod nije agina nakana; on se bori sa svojom srdžbom i ponosom.",
+    "D": "Bauk se spominje kao onaj koji izusti riječ, ali agina želja nije nagraditi ga, nego prikriti vlastiti bijes."
+  },
+  "2017_ljeto_B__8": {
+    "B": "Plamen je u tekstu slika agine srdžbe ('Srdžbe plamen'), a ne iznenadnosti misli.",
+    "C": "Mač (noži) pripada agimu pozivu na oružje, a ne usporedbi za naglu misao.",
+    "D": "Ulje (vrelo) dio je prijetnje na kraju ulomka, a ne usporedbe za munjevitu misao."
+  },
+  "2017_ljeto_B__9": {
+    "A": "Bijes (srdžba) prikazuje aginu reakciju, ali 'bruka' znači sramotu, a ne bijes.",
+    "B": "'Jad' označava patnju, dok 'bruka' znači sramotu, ruglo.",
+    "C": "Osveta nije značenje riječi 'bruka'; ona znači sramotu."
+  },
+  "2017_ljeto_B__10": {
+    "A": "Sonjino suosjećanje nije razlog Katerinine tuge; uzrujao ju je nedolazak uglednih susjeda.",
+    "C": "Katerina je nezadovoljna jer su došli baš siromašni, a ne zato što bi se brinula zbog njihova siromaštva.",
+    "D": "O zakusci se govori, ali Katerinino nezadovoljstvo izazvao je izostanak gostiju, a ne sama zakuska."
+  },
+  "2017_ljeto_B__11": {
+    "A": "Tekst ne spominje traženje više mirovine od Amalije.",
+    "B": "Pozivanje Amalijina oca u kuću nije navedeno u ulomku.",
+    "D": "Govor o zakusci nije ono čime je dosađivala; dosađivala je hvalospjevima o Lužinu."
+  },
+  "2017_ljeto_B__12": {
+    "A": "Frazem ne znači upoznavanje s uglednim susjedom, nego oštro izricanje svojega mišljenja.",
+    "B": "'Natrljati nos' je verbalni, a ne fizički obračun.",
+    "C": "Frazem se ne odnosi na istjerivanje iz susjedstva, nego na to da joj se kaže istina u lice."
+  },
+  "2017_ljeto_B__13": {
+    "A": "Kumordinarova uglađenost nije tema; on je upravo grub i prezriv prema Vanči.",
+    "B": "Zanemarivanje pravničkih obveza nije tema ulomka, koji prikazuje sukob oko odlaska gospodi.",
+    "D": "Seoski običaji se spominju u Vančinim riječima, ali tema je sama prepirka, a ne opis običaja."
+  },
+  "2017_ljeto_B__14": {
+    "B": "Razlog uvrede nije Vančino odbijanje odvjetništva, nego njegovo odbijanje posjeta gospodi.",
+    "C": "Vanča ne traži ispriku gospode; on jednostavno ne želi poći k njima.",
+    "D": "Vančina želja za životom na selu pozadina je sukoba, ali kumordinara je razljutio konkretan odbijen posjet gospodi."
+  },
+  "2017_ljeto_B__15": {
+    "B": "'Godi' znače blagdane, a ne godine (premda riječi zvuče srodno).",
+    "C": "Skupovi nisu značenje riječi 'godi'; riječ je o crkvenim blagdanima.",
+    "D": "Snovi nisu značenje; 'veliki godi' su veliki blagdani poput Uskrsa."
+  },
+  "2017_ljeto_B__16": {
+    "A": "Sklanjanje u hladovinu nije navedeno; pastiri gone stoku prema potoku.",
+    "B": "Malaksalost na suncu nije spomenuta za pastire; oni se kreću lijeno, ali namjerno prema potoku.",
+    "D": "Pastiri ne lutaju bez cilja — gone blago 'svi u jednom pravcu', dakle prema potoku."
+  },
+  "2017_ljeto_B__17": {
+    "A": "Odnos gradskoga i seoskoga života nije tema ovog opisnog ulomka.",
+    "B": "Konji se spominju tek kao detalj prizora; ulomak nije o Đukinu odnosu prema konjima.",
+    "C": "Đukina razmišljanja samo se uzgred spominju na početku, a ulomak slika ljepotu ljetnoga dana."
+  },
+  "2017_ljeto_B__18": {
+    "A": "Osjećaji nisu ono što roni u travke i brazde; to čini pogled (oko).",
+    "C": "Dah se ne spominje kao ono što uranja u detalje krajolika.",
+    "D": "Dan je vrijeme radnje, a u svaku travku i brazdu roni pogled (oko)."
+  },
+  "2017_ljeto_B__19": {
+    "A": "Tekst ne spominje šetnju bez kišobrana kao ono što je čudno pratetki (kišobran se veže uz gđu Goupil).",
+    "B": "Odlazak u crkvu nedjeljom pratetki nije čudan; ona upravo nedjelju drži danom mirovanja.",
+    "C": "Pratetki nije čudno nedjeljno nerađenje — to je za nju norma; čudno joj je čitanje radnim danom."
+  },
+  "2017_ljeto_B__20": {
+    "A": "Mjesto šivanja haljine (Châteaudun) tetka već zna i navodi; to nije ono što želi doznati.",
+    "C": "Eulalijin dolazak tetka čeka, ali pitanje koje postavlja tiče se gđe Goupil i njezina dolaska u crkvu.",
+    "D": "Tko razgovara s Françoise nije predmet tetkina zanimanja; ona sama razgovara s njom."
+  },
+  "2017_ljeto_B__21": {
+    "B": "Pripovjedačevo učenje čitanja nije predmet Françoisina dvoumljenja izraženog s 'možda i ne'.",
+    "C": "Tetkin dolazak Eulalije nije ono što Françoise drži neizvjesnim u svojem komentaru.",
+    "D": "Haljina je već sašivena (u Châteaudunu), pa to nije neizvjesni ishod o kojem Françoise dvoji."
+  },
+  "2017_ljeto_B__22": {
+    "A": "Vanda ne traži povratak ureda, nego da svekrva odmakne sina od Bobočke.",
+    "B": "Uključivanje u odgoj unučadi nije Vandin zahtjev svekrvi.",
+    "C": "Podrška sinovoj karijeri nije ono što Vanda traži; ona traži djelovanje protiv Bobočke."
+  },
+  "2017_ljeto_B__23": {
+    "A": "Odnos Vande i svekrve nije ono na što upućuje 'nagnjila rastopina'.",
+    "C": "Izraz se ne odnosi na vezu Vladimira i Bobočke kao takvu, nego na samog Vladimira koji se 'topi'.",
+    "D": "Bobočka je ta koja Vladimira rastapa među prstima, ali sama 'rastopina' je Vladimir."
+  },
+  "2017_ljeto_B__24": {
+    "A": "Snahu kriminalnim tipom žene naziva Vanda (za Bobočku), a ne stara Ballocsanszka.",
+    "B": "Na razgovoru o Bobočki inzistirala je Vanda, a ne svekrva.",
+    "D": "Stvari sina zapečatili su sudski organi, a ne stara Ballocsanszka."
+  },
+  "2017_ljeto_B__25": {
+    "A": "Zbor ne plače zbog straha od Prometejeve sudbine, nego iz suosjećanja s njim.",
+    "B": "Osjećaj krivnje nije izražen; zbor suosjeća, ali nije kriv za Prometejeve patnje.",
+    "C": "Zbor se ne plaši Prometejeve reakcije, nego suosjeća gledajući njegovu patnju."
+  },
+  "2017_ljeto_B__26": {
+    "A": "Zeus je prikazan kao nepokolebljiv, dakle suprotno od kolebljivoga.",
+    "B": "Lukavost nije naglašena Zeusova osobina u ulomku; on je tiranski i samovoljan.",
+    "D": "Slatkorječivost se u tekstu veže uz nagovaranje kojem se Prometej opire, a ne uz Zeusovu narav."
+  },
+  "2017_ljeto_B__27": {
+    "A": "Prometej ne nudi začaravanje Zeusovih neprijatelja; Zeus ga treba zbog tajne o svrgavanju.",
+    "C": "Uvođenje Zeusa u podzemni svijet nije razlog; Zeus će trebati Prometeja zbog tajne.",
+    "D": "Izrada oružja nije razlog; Prometej posjeduje tajnu o gubitku Zeusove vlasti."
+  },
+  "2017_ljeto_B__28": {
+    "A": "Hamlet ne traži glasnije govorenje, nego odmjerenost i prirodnost.",
+    "B": "Gestikulaciju Hamlet upravo odvraća ('ne odveć rukom sjeći zrak').",
+    "D": "Afektiranje je ono što Hamlet osuđuje, a ne savjetuje."
+  },
+  "2017_ljeto_B__29": {
+    "A": "Poticanje zajedništva nije cilj glume po Hamletu; cilj je biti zrcalo prirodi.",
+    "B": "Nasmijavanje publike nije svrha glume; svrha joj je oponašati život.",
+    "C": "Pobuđivanje strasti suprotno je Hamletovu zahtjevu za umjerenošću; cilj je vjerno prikazati život."
+  },
+  "2017_ljeto_B__30": {
+    "A": "Didaskalija ne izriče Hamletovo upozoravanje na pogreške, nego opisuje njegovu kretnju rukama.",
+    "C": "Didaskalija ne govori o privlačenju pozornosti glumaca, nego o fizičkoj demonstraciji.",
+    "D": "Didaskalija ne prikazuje gubitak ravnoteže, nego namjerno pokazivanje kretnje."
+  },
+  "2017_ljeto_B__31": {
+    "A": "Tercina nije pjesma od tri strofe, nego strofa od tri stiha.",
+    "C": "Tercina nije stih od tri sloga, nego trostih.",
+    "D": "Tercina nije stih od tri stope, nego strofa (trostih)."
+  },
+  "2017_ljeto_B__32": {
+    "B": "Montaigne nije začetnik feljtona, nego eseja.",
+    "C": "Polemika nije diskurzivna vrsta koju je utemeljio Montaigne.",
+    "D": "Reportaža nije Montaigneova vrsta; on je začetnik eseja."
+  },
+  "2017_ljeto_B__33": {
+    "A": "Petrarkin sonet nema jedan katren, nego dva (uz dva terceta).",
+    "C": "Sonet nema tri katrena; tri stiha imaju terceti, kojih je također dva.",
+    "D": "Sonet nema četiri katrena; ima dva katrena i dva terceta."
+  },
+  "2017_ljeto_B__34": {
+    "A": "Anadiploza ponavlja kraj jednoga na početku sljedećeg stiha, čega ovdje nema.",
+    "C": "Epifora ponavlja riječ na kraju stihova, dok se ovdje 'Plačnijem srcem' ponavlja na početku.",
+    "D": "Simploka spaja anaforu i epiforu, no ovdje je samo početno ponavljanje, dakle anafora."
+  },
+  "2017_ljeto_B__35": {
+    "A": "Stihovi o stijenama i vrhu su metafora/poređenje, bez zvukovnog oponašanja.",
+    "B": "'Šiba teškim ritmom' dočarava ritam, ali glagoli ne oponašaju zvuk kao u točnom primjeru.",
+    "D": "'Sunčani ditiramb' je metafora svjetlosti, bez onomatopejskih glagola."
+  },
+  "2017_ljeto_B__36": {
+    "A": "Mahabharata je ep, a ne zbirka svetih knjiga.",
+    "B": "Pančatantra je zbirka basni/bajki, a ne svete knjige.",
+    "C": "Ramajana je ep, a ne svete knjige indijske književnosti."
+  },
+  "2017_ljeto_B__37": {
+    "A": "Pjesma nad pjesmama pripada mudrosnoj/lirskoj književnosti, a ne Povijesnim knjigama.",
+    "C": "Psalmi pripadaju mudrosnoj (pjesničkoj) književnosti, a ne Povijesnim knjigama.",
+    "D": "Judita je deuterokanonska knjiga, a ne dio kanonskih Povijesnih knjiga u traženom smislu."
+  },
+  "2017_ljeto_B__38": {
+    "A": "Edip je junak drugih Sofoklovih tragedija (Kralj Edip), a ne nositelj sukoba u Antigoni.",
+    "B": "Hefest je lik iz Okovanog Prometeja, a ne iz Antigone.",
+    "D": "Prometej je Eshilov, a ne Sofoklov lik; sukob u Antigoni nosi Kreont."
+  },
+  "2017_ljeto_B__39": {
+    "B": "Oponašanje prirode je mimeza, a ne katarza.",
+    "C": "Razrješenje dramskog sukoba je rasplet, a ne katarza.",
+    "D": "Jedinstvo mjesta, vremena i radnje su tri jedinstva, a ne katarza."
+  },
+  "2017_ljeto_B__40": {
+    "A": "Zapis popa Martinca je glagoljički ljetopisni zapis, a ne roman.",
+    "C": "Šibenska molitva je srednjovjekovna lirska molitva, a ne roman.",
+    "D": "Lucidar je srednjovjekovna enciklopedijska/poučna proza, a ne roman."
+  },
+  "2017_ljeto_B__41": {
+    "A": "Ribanje i ribarsko prigovaranje je putopisno-pjesnička poslanica, a ne roman.",
+    "B": "Novela od Stanca je komedija (farsa), a ne roman.",
+    "D": "Judita je religiozni ep, a ne roman; prvim hrvatskim romanom smatraju se Planine."
+  },
+  "2017_ljeto_B__42": {
+    "A": "Byron je romantičarski pjesnik (19. st.), a ne autor baroknog epa.",
+    "B": "Ariosto je autor renesansnog epa (Bijesni Roland), a ne baroknog.",
+    "C": "Petrarca je pjesnik lirike (Kanconijer), a ne autor baroknog epa."
+  },
+  "2017_ljeto_B__43": {
+    "A": "Dugi Nos je negromant iz prologa, ali podjelu na ljude nazbilj i nahvao iznosi Pomet.",
+    "C": "Popiva je sluga, ali filozofsku podjelu izgovara Pomet.",
+    "D": "Ugo Tudešak je lik bogata stranca, a podjelu ljudi iznosi Pomet."
+  },
+  "2017_ljeto_B__44": {
+    "B": "Kanconijer je Petrarkina ljubavna lirika, a ovdje se obraća vodiču kroz Pakao (Vergiliju), što je Dante.",
+    "C": "Judita je Marulićev religiozni ep o biblijskoj junakinji, a ne prizor putovanja kroz Pakao.",
+    "D": "Smrt Smail-age Čengića tematizira borbu s Turcima, a ne Dantino putovanje uz Vergilija."
+  },
+  "2017_ljeto_B__45": {
+    "A": "Osman je Gundulićev barokni ep, ali navedena himna slobodi pripada Dubravci.",
+    "C": "Suze sina razmetnoga su Gundulićeva religiozna poema, a ne izvor stihova o slobodi.",
+    "D": "Pjesni pokorne kralja Davida su psalamske parafraze, a ne djelo iz kojeg je himna slobodi."
+  },
+  "2017_ljeto_B__46": {
+    "B": "Werther nije monološko-asocijativni roman, nego roman u pismima.",
+    "C": "Proza u trapericama je suvremena pojava 20. st., a ne forma Wertherova.",
+    "D": "Struja svijesti je modernistička tehnika 20. st., a Werther je epistolarni roman 18. st."
+  },
+  "2017_ljeto_B__47": {
+    "A": "Urota zrinsko-frankopanska je djelo Eugena Kumičića, a ne Gjalskog.",
+    "B": "Čuvaj se senjske ruke napisao je August Šenoa, a ne Gjalski.",
+    "D": "Začuđeni svatovi su djelo Augusta Šenoe, a ne Gjalskog."
+  },
+  "2017_ljeto_B__48": {
+    "A": "Parnasovci nisu klasicistički pravac; pojavljuju se u 19. st. unutar realizma.",
+    "B": "Parnasovci se javljaju kao reakcija na romantizam, a ne kao njegov dio.",
+    "D": "Modernizam dolazi kasnije; parnasovci pripadaju razdoblju realizma."
+  },
+  "2017_ljeto_B__49": {
+    "B": "A. B. Šimić piše slobodnim stihom ekspresionizma, a navedeni motiv željeznice u daljini Matošev je.",
+    "C": "Nazor nije autor ovih stihova; prepoznatljiva slika osamljenosti uz željeznicu pripada Matošu.",
+    "D": "Tin Ujević nije autor 'Jesenjega veče'; ti su stihovi Matoševi."
+  },
+  "2017_ljeto_B__50": {
+    "A": "Posljednji Stipančići je realistički roman iz suvremenosti, a ne povijesni roman.",
+    "B": "Bijeg je realistički roman s temom moderne dezorijentacije, a ne povijesni.",
+    "D": "U registraturi je realistički roman suvremene tematike, a ne povijesni."
+  },
+  "2017_ljeto_B__51": {
+    "A": "Dadaizam nastaje 1916. u Zürichu, a ne 1909. u Italiji.",
+    "B": "Ekspresionizam se razvija u Njemačkoj početkom 20. st., a ne kao talijanski pravac iz 1909.",
+    "D": "Nadrealizam nastaje 1924. u Parizu, a ne 1909. u Italiji."
+  },
+  "2017_ljeto_B__52": {
+    "A": "Gospoda Glembajevi pripadaju realističkom glembajevskom ciklusu, a ne ekspresionizmu.",
+    "C": "Leda je dio glembajevskoga ciklusa (realizam), a ne ekspresionistička drama.",
+    "D": "U agoniji pripada glembajevskom ciklusu, a ne ekspresionizmu; ekspresionistička je Kraljevo."
+  },
+  "2017_ljeto_B__53": {
+    "A": "Lelek sebra nije Cesarićeva zbirka, nego Ujevićeva.",
+    "B": "Tadijanović nije autor Leleka sebra; to je Tin Ujević.",
+    "C": "I. G. Kovačić nije autor te zbirke; autor je Tin Ujević."
+  },
+  "2017_ljeto_B__54": {
+    "A": "Balade Petrice Kerempuha napisao je Miroslav Krleža, a ne Galović.",
+    "B": "Po dragomu kraju je zbirka Dragutina Domjanića, a ne Galovića.",
+    "D": "Ognji i rože je zbirka Ivana Gorana Kovačića, a ne Galovića."
+  },
+  "2017_ljeto_B__55": {
+    "A": "U Povratku Filipa Latinovicza nema motiva izgladnjivanja radi izbjegavanja mobilizacije.",
+    "B": "Prokleta avlija tematizira zatvor i pripovijedanje, a ne izgladnjivanje protiv mobilizacije.",
+    "C": "Koraljna vrata su postmodernistički roman zagonetke, bez tog motiva; on pripada Kiklopu."
+  },
+  "2017_ljeto_B__56": {
+    "A": "'Izvambračni' je pogrešno; pravilno je 'izvanbračni' (n se ne mijenja u m u pismu).",
+    "B": "'Jedamput' je pogrešno; pravilno je 'jedanput'.",
+    "D": "'Stramputica' je pogrešno; pravilno je 'stranputica'."
+  },
+  "2017_ljeto_B__57": {
+    "A": "Iako je 'nasjesti – nasjedati' pravilno, traži se par s odoljeti; ovaj nije točan odgovor.",
+    "C": "'Razumjevati' je pogrešno; pravilno je 'razumijevati'.",
+    "D": "'Zapovjedati' je pogrešno; pravilno je 'zapovijedati'."
+  },
+  "2017_ljeto_B__58": {
+    "A": "'Ujedinjenih Naroda' je pogrešno; pravilno je 'Ujedinjenih naroda' (samo prva riječ velikim).",
+    "B": "'Gorskoga Kotara' je pogrešno; pravilno je 'Gorskoga kotara' (kotar malim slovom).",
+    "C": "'Hrvatske Vlade' je pogrešno; pravilno je 'hrvatske vlade' (oba malim slovom)."
+  },
+  "2017_ljeto_B__59": {
+    "A": "'Bijelac' je dvosložna riječ (bje-lac), jer 'je' tvori jedan slog, a ne tri.",
+    "B": "'Cvijetak' je dvosložan (cvje-tak), a ne trosložan.",
+    "D": "'Stijena' je dvosložna (stje-na), a ne trosložna."
+  },
+  "2017_ljeto_B__60": {
+    "A": "Jednačenje po mjestu tvorbe mijenja mjesto izgovora (npr. s→š), čega ovdje nema.",
+    "C": "Palatalizacija je prijelaz k, g, h u č, ž, š, što nije slučaj u 'iz+pustiti'.",
+    "D": "Sibilarizacija je prijelaz k, g, h u c, z, s, što nije provedeno u ovom primjeru."
+  },
+  "2017_ljeto_B__61": {
+    "A": "'Ru-ka-vic-a' je pogrešna raščlamba jer rastavlja korijen 'rukav-'.",
+    "B": "'Ruk-av-ic-a' je pogrešno jer 'rukav' je jedinstven korijen, ne 'ruk' + 'av'.",
+    "C": "'Ruka-vic-a' je pogrešno jer korijen je 'rukav-', a ne 'ruka-'."
+  },
+  "2017_ljeto_B__62": {
+    "A": "'Rad-' je korijenski morfem, a ne oblikotvorna osnova cijele riječi 'radnički'.",
+    "B": "'Radni-' nije osnova na koju se dodaje gramatički nastavak '-i'.",
+    "C": "'Radnič-' nije oblikotvorna osnova; osnova je 'radničk-' (radničk + i)."
+  },
+  "2017_ljeto_B__63": {
+    "A": "Genitiv bi odgovarao na 'koga, čega', no 'o bolesniku' uz prijedlog 'o' je lokativ.",
+    "B": "Dativ bi bio 'bolesniku' bez prijedloga 'o' (komu, čemu), ali ovdje 'o' traži lokativ.",
+    "D": "Instrumental bi glasio 'bolesnikom', dok je oblik 'o bolesniku' lokativ."
+  },
+  "2017_ljeto_B__64": {
+    "A": "'Sušiji' je pogrešno; pravilan komparativ je 'suši'.",
+    "C": "'Vrućiji' je pogrešno; pravilan komparativ je 'vrući'.",
+    "D": "'Zliji' je pogrešno; pravilan supletivni komparativ je 'gori'."
+  },
+  "2017_ljeto_B__65": {
+    "A": "'Stilom kojega' je pogrešno; uz instrumental treba 'kojim' (stilom kojim).",
+    "B": "'Film kojega' je pogrešno za neživo u akuzativu; treba 'film koji'.",
+    "D": "'Roman kojega' je pogrešno jer je 'roman' neživo, pa u akuzativu treba 'koji'."
+  },
+  "2017_ljeto_B__66": {
+    "B": "U 'da ti sestre' riječ 'ti' je lična zamjenica (dativ tebi), a ne pokazna.",
+    "C": "'Rekao sam ti' sadrži ličnu zamjenicu 'ti' (tebi), a ne pokaznu.",
+    "D": "'Da ti je vila' sadrži ličnu zamjenicu 'ti' (tebi), a ne pokaznu."
+  },
+  "2017_ljeto_B__67": {
+    "A": "Oblik 'miš' je nominativ, a ne vokativ.",
+    "C": "'Mišo' nije pravilan vokativ imenice 'miš'; pravilno je 'miše'.",
+    "D": "'Mišu' je dativ/lokativ, a ne vokativ."
+  },
+  "2017_ljeto_B__68": {
+    "B": "'Skočiše' je aorist (prošlo svršeno vrijeme), a ne glagolski prilog prošli.",
+    "C": "'Skačući' je glagolski prilog sadašnji od 'skakati', a ne prošli od 'skočiti'.",
+    "D": "'Skakaše' je imperfekt, a ne glagolski prilog prošli."
+  },
+  "2017_ljeto_B__69": {
+    "A": "'Neku' je neodređena zamjenica, a ne prijedlog.",
+    "B": "'Posve' je prilog (mjere/stupnja), a ne prijedlog.",
+    "C": "'Kao' je veznik (poredbeni), a ne prijedlog."
+  },
+  "2017_ljeto_B__70": {
+    "A": "'Pobjeći pred požarom' je prijedložna (rektivna) sintagma, a ne sročna.",
+    "B": "'Zaustavljanje požara' je rektivna sintagma (genitivna dopuna), a ne sročna.",
+    "C": "'Bojati se požara' je rektivna sintagma, jer glagol traži genitiv, a ne slaganje u rodu, broju i padežu."
+  },
+  "2017_ljeto_B__71": {
+    "A": "U toj rečenici subjekt je implicitno 'mi' ('možemo'), a podcrtana riječ nije subjekt.",
+    "C": "Subjekt je 'djevojke', a ne podcrtana riječ u toj rečenici.",
+    "D": "Subjekt je 'oni', a ne podcrtana riječ; 'sila učenika' subjekt je u rečenici B."
+  },
+  "2017_ljeto_B__72": {
+    "A": "Zanaglasnica 'su' trebala bi doći iza prve naglašene riječi, pa je položaj pogrešan.",
+    "B": "Zanaglasnica 'mi' (i 'se') stoji na pogrešnu mjestu, ne iza prve naglašene riječi.",
+    "C": "Zanaglasnica 'se' nije na pravilnu položaju (iza prve naglašene riječi)."
+  },
+  "2017_ljeto_B__73": {
+    "B": "'Da bi se odrekao' je namjerna (ili izrična) rečenica, a ne atributna.",
+    "C": "'Iako se odrekao' je dopusna rečenica, a ne atributna.",
+    "D": "'Jer se odrekao' je uzročna rečenica, a ne atributna."
+  },
+  "2017_ljeto_B__74": {
+    "A": "Dvije surečenice premalo; uz glavnu postoje još odnosna ('koju je izazvala') i izrična ('da pobijedi'), dakle tri.",
+    "C": "Četiri surečenice previše; rečenica ima tri surečenice.",
+    "D": "Pet surečenica previše; surečenica je tri."
+  },
+  "2017_ljeto_B__75": {
+    "A": "'Slatko voće' nije antonim suhom voću; suprotnost suhom je svježe.",
+    "C": "'Ukusno voće' nije antonim suhom; antonimni je par suho – svježe.",
+    "D": "'Zrelo voće' nije antonim suhom voću; antonim je svježe."
+  },
+  "2017_ljeto_B__76": {
+    "B": "Posuđenice iz latinskoga jesu latinizmi, a ne galicizmi.",
+    "C": "Posuđenice iz portugalskoga nisu galicizmi; galicizmi su iz francuskoga.",
+    "D": "Posuđenice iz španjolskoga su hispanizmi, a ne galicizmi."
+  },
+  "2017_ljeto_B__77": {
+    "A": "'Držati uzde u svojim rukama' znači imati vlast/upravljanje, a ne raditi u svoju korist.",
+    "B": "'Čistiti pred svojim pragom' znači brinuti o vlastitim propustima, a ne raditi u svoju korist.",
+    "D": "'Nositi svoj križ' znači trpjeti teškoće, a ne raditi u svoju korist."
+  },
+  "2017_ljeto_B__78": {
+    "A": "Arhaizmi su zastarjele riječi koje imaju suvremenu zamjenu, dok 'centurija' imenuje povijesnu pojavu (historizam).",
+    "C": "Neologizmi su nove riječi, a 'centurija' označava povijesni pojam (historizam).",
+    "D": "Pomodnice su pomodne, kratkotrajne riječi, a 'centurija' je naziv za nestalu povijesnu pojavu (historizam)."
+  },
+  "2017_ljeto_B__79": {
+    "A": "Pozitiv i komparativ su različiti stupnjevi pridjeva, a ne sinonimi.",
+    "B": "Monosemija i polisemija su suprotni pojmovi (jednoznačnost i višeznačnost), a ne sinonimi.",
+    "D": "Fonem i alofon su različiti pojmovi (jedinica i njezina ostvarba), a ne sinonimi."
+  },
+  "2017_ljeto_B__80": {
+    "B": "Vrančić nije uredio prvu hrvatsku enciklopediju, nego je sastavio prvi tiskani rječnik s hrvatskim.",
+    "C": "Prvu hrvatsku gramatiku napisao je Bartol Kašić, a ne Vrančić.",
+    "D": "Prvi hrvatski pravopis nije Vrančićevo djelo; on je autor prvog rječnika s hrvatskim."
+  }
+}

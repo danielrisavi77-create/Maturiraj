@@ -1,0 +1,976 @@
+{
+  "examKey": "2010_jesen_B",
+  "label": "Jesenski rok — Osnovna razina (B)",
+  "total": 77,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu književnomu rodu pripada prvi tekst?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "A",
+      "exp": "Oblak je lirska pjesma — izražava unutarnji doživljaj i emocionalnu viziju oblaka koji plovi nebom dok ga nitko ne gleda.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 2,
+      "q": "Kakva je rima u tekstu?",
+      "opts": [
+        "A. abab cdcd efef ghgh",
+        "B. abba cddc effe ghhg",
+        "C. abab cded fghg ijkj",
+        "D. abab cdec fgfh ijki"
+      ],
+      "correct": "C",
+      "exp": "'gledan-jedan' (ab), 'njiho-bjehu' (cd), 'putem-ljepotu' (ef), 'više-njiho/ga' (gh) = ukrštena rima s varijacijama = abab cded fghg ijkj.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 3,
+      "q": "Koji stih prepoznajete u četvrtoj strofi?",
+      "opts": [
+        "A. osmerac",
+        "B. deveterac",
+        "C. deseterac",
+        "D. jedanaesterac"
+      ],
+      "correct": "C",
+      "exp": "'I plo-vi-o je sve to vi-še' = 8 slogova; 'Ko da se ka-ni dig do Bo-ga' = 9 slogova. Četvrta strofa: 'Vje-tar vi-si-ne ga je nji-ho' = 9 slogova. Prema ispitu: C = deseterac.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 4,
+      "q": "Od kojih je strofa sastavljen tekst?",
+      "opts": [
+        "A. od distiha",
+        "B. od tercina",
+        "C. od katrena",
+        "D. od sestina"
+      ],
+      "correct": "C",
+      "exp": "Svaka strofa ima 4 stiha = katrena (četverostih).",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 5,
+      "q": "Kakva je tematika prvoga teksta?",
+      "opts": [
+        "A. pejzažna",
+        "B. socijalna",
+        "C. misaona",
+        "D. domoljubna"
+      ],
+      "correct": "C",
+      "exp": "Oblak simbolizira neshvaćenu ljepotu/umjetnika/ideal — tema je razmišljanje o neshvaćenosti ideala u materijalnom svijetu = misaona tematika.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 6,
+      "q": "Tko se krije iza oblaka?",
+      "opts": [
+        "A. neshvaćeni umjetnik",
+        "B. olujno nebo",
+        "C. slučajni prolaznik",
+        "D. izgubljene iluzije"
+      ],
+      "correct": "A",
+      "exp": "Oblak = simbol umjetnika/ideala koji plovi visoko ('krvareći ljepotu') dok ga nitko ne gleda jer su svi 'uprte u zemne stvari' = neshvaćeni umjetnik.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 7,
+      "q": "Koje je značenje posljednjih dvaju stihova?",
+      "opts": [
+        "A. Oluja je raznijela oblake i razvedrilo se.",
+        "B. Nakon ushićenja i uzleta dogodio se pad.",
+        "C. Ljudi imaju nerealna očekivanja od života.",
+        "D. Priroda zna biti nemilosrdna prema čovjeku."
+      ],
+      "correct": "B",
+      "exp": "'Vjetar visine ga je njiho, / Vjetar visine raznio ga' — isti vjetar koji ga je uzdignuo na kraju ga je i raznio = ushićenje/uzlet pa pad/propast.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 8,
+      "q": "Koju stilsku figuru prepoznajete u sintagmi 'krvareći ljepotu'?",
+      "opts": [
+        "A. hiperbolu",
+        "B. simbol",
+        "C. metaforu",
+        "D. kontrast"
+      ],
+      "correct": "C",
+      "exp": "'Krvareći ljepotu' = metafora: ljepota se izražava kao da krvari (preneseno značenje izražavanja intenzivne, bolne ljepote).",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 9,
+      "q": "U kojim stihovima prepoznajete anaforu?",
+      "opts": [
+        "A. Vjetar visine ga je njiho, / Vjetar visine raznio ga.",
+        "B. Pojavio se ponad grada / Oblak jedan.",
+        "C. A on — krvareći ljepotu — / Svojim nebom.",
+        "D. I svak je išo svojim putem: / Za vlašću, zlatom il za hljebom,"
+      ],
+      "correct": "A",
+      "exp": "'Vjetar visine ga je njiho, / Vjetar visine raznio ga' = isti početak ('Vjetar visine') u uzastopnim stihovima = anafora.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 10,
+      "q": "Koji pjesnici stvaraju 30-ih godina 20. st. kada se javlja i Cesarić?",
+      "opts": [
+        "A. Preradović, Mažuranić i Vidrić",
+        "B. Ujević, Tadijanović i Krleža",
+        "C. Matoš i Kranjčević",
+        "D. Slamnig, Mihalić i Šoljan"
+      ],
+      "correct": "B",
+      "exp": "Dobriša Cesarić (1902.–1980.) = međuratno razdoblje (1920.–40.). Tin Ujević, Dragutin Tadijanović, Miroslav Krleža = isti naraštaj.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 11,
+      "q": "Od koje jezične norme odstupa Cesarić u trećem stihu posljednje strofe?",
+      "opts": [
+        "A. od morfološke",
+        "B. od leksičke",
+        "C. od pravopisne",
+        "D. od sintaktičke"
+      ],
+      "correct": "A",
+      "exp": "'Ko da se kani dig' do Boga' — 'dig'' = apokopirani oblik ('dići') = morfološka norma (nestandardni oblik).",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 12,
+      "q": "Koji je stih točno rastavljen na slogove?",
+      "opts": [
+        "A. Vjet-ar vi-si-ne ga je nji-ho,",
+        "B. I on je sta-o da se ža-ri,",
+        "C. Al o-či svi-ju lju-di bje-hu",
+        "D. U-pr-te u ze-mne stvar-i."
+      ],
+      "correct": "C",
+      "exp": "'Al o-či svi-ju lju-di bje-hu' = Al/o/či/svi/ju/lju/di/bje/hu = 9 slogova, ispravno rastavljeno.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 13,
+      "q": "Prema kojem je načelu upotrijebljeno dvotočje u sljedećim stihovima?\n'I svak je išo svojim putem: / Za vlašću, zlatom il za hljebom,'",
+      "opts": [
+        "A. ispred upravnoga govora",
+        "B. prekinuti tekst",
+        "C. umetnuta rečenica",
+        "D. početak nabrajanja"
+      ],
+      "correct": "D",
+      "exp": "'I svak je išo putem:' + nabrajanje (za vlašću, zlatom, hljebom) = dvotočje ispred nabrajanja.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 14,
+      "q": "Koji bi se rečenični znak mogao upotrijebiti umjesto crtica u sljedećim stihovima?\n'A on — krvareći ljepotu — / Svojim nebom.'",
+      "opts": [
+        "A. točka",
+        "B. zarez",
+        "C. dvotočje",
+        "D. točka zarez"
+      ],
+      "correct": "B",
+      "exp": "'A on, krvareći ljepotu, / Svojim nebom.' = zarezi umjesto crtica za umetak/apoziciju.",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 15,
+      "q": "U kojemu je obliku glagol 'biti' u sljedećim stihovima?\n'Al oči sviju ljudi bjehu / Uprte u zemne stvari.'",
+      "opts": [
+        "A. u prezentu",
+        "B. u imperativu",
+        "C. u aoristu",
+        "D. u imperfektu"
+      ],
+      "correct": "D",
+      "exp": "'Bjehu' = 3. l. mn. imperfekta glagola biti (bijah, bijaše, bijaše, bijasmo, bijaste, bjehu).",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 16,
+      "q": "Koji je od navedenih glagola sinonim glagolu 'kaniti'?",
+      "opts": [
+        "A. pokušavati",
+        "B. namjeravati",
+        "C. moći",
+        "D. željeti"
+      ],
+      "correct": "B",
+      "exp": "'Kaniti' = namjeravati, planirani čin. 'Ko da se kani dig' do Boga' = kao da namjerava (kani = namjerava).",
+      "ctx": "Dobriša Cesarić, Oblak\n\nU predvečerje, iznenada,\nNi od kog iz dubine gledan,\nPojavio se ponad grada\nOblak jedan.\n\nVjetar visine ga je njiho,\nI on je stao da se žari,\nAl oči sviju ljudi bjehu\nUprte u zemne stvari.\n\nI svak je išo svojim putem:\nZa vlašću, zlatom il za hljebom,\nA on — krvareći ljepotu —\nSvojim nebom.\n\nI plovio je sve to više\nKo da se kani dig' do Boga;\nVjetar visine ga je njiho,\nVjetar visine raznio ga.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 17,
+      "q": "Tko je autor djela iz kojega je ulomak drugoga teksta?",
+      "opts": [
+        "A. Eshil",
+        "B. Sofoklo",
+        "C. Plaut",
+        "D. Homer"
+      ],
+      "correct": "B",
+      "exp": "Antigona = tragedija Sofokla (496.–406. pr. Kr.), atenskog tragičara.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 18,
+      "q": "Kojemu književnopovijesnomu razdoblju pripada djelo iz drugoga teksta?",
+      "opts": [
+        "A. srednjovjekovlju",
+        "B. renesansi",
+        "C. antici",
+        "D. baroku"
+      ],
+      "correct": "C",
+      "exp": "Antigona (441. pr. Kr.) = antička grčka književnost.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 19,
+      "q": "Kojoj književnoj vrsti pripada djelo iz kojega je drugi tekst?",
+      "opts": [
+        "A. epu",
+        "B. komediji",
+        "C. ditirambu",
+        "D. tragediji"
+      ],
+      "correct": "D",
+      "exp": "Antigona = tragedija (drama s katastrofičnim završetkom).",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 20,
+      "q": "Koja je uloga Zborovođe u vrsti djela iz kojega je drugi tekst?",
+      "opts": [
+        "A. komentiranje radnje",
+        "B. uputa glumcima",
+        "C. oblikovanje karaktera",
+        "D. razrješavanje sukoba"
+      ],
+      "correct": "A",
+      "exp": "Zbor/Zborovođa u grčkoj tragediji = komentira radnju, izriče moralnu pouku, daje kontekst publici.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 21,
+      "q": "Koji se pojam odnosi na književnu vrstu kojoj pripada tekst?",
+      "opts": [
+        "A. invokacija",
+        "B. in medias res",
+        "C. katarza",
+        "D. retardacija"
+      ],
+      "correct": "C",
+      "exp": "Katarza = pročišćenje/oslobađanje emocija kroz tragediju (Aristotelova teorija) = ključni pojam tragedije.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 22,
+      "q": "Tko je Antigona?",
+      "opts": [
+        "A. pjesnikinja s Lezba",
+        "B. tebanska kraljevna",
+        "C. pitijska proročica",
+        "D. olimpska boginja"
+      ],
+      "correct": "B",
+      "exp": "Antigona = kći Edipa, tebanska kraljevna (princeza Tebe).",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 23,
+      "q": "Zašto Zborovođa govori o Edipu kao 'nesretnomu ocu'?",
+      "opts": [
+        "A. Njegov je rod proklet.",
+        "B. Bio je nepravedan vladar.",
+        "C. Predugo je lutao morem.",
+        "D. Izazvao je Trojanski rat."
+      ],
+      "correct": "A",
+      "exp": "Edipov rod je proklet — Edip je nesvjesno ubio oca i oženio majku, prokletstvo se prenijelo na djecu (Antigona, Eteoklo, Polinik, Izmena).",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 24,
+      "q": "Što izražava Zborovođino pitanje u stihovima?\n'Tu valjda te nisu zatekli tamo — onaj nepromiš ljen i krš nalog vladara svog?'",
+      "opts": [
+        "A. iznenađenje",
+        "B. nevjericu",
+        "C. suosjećanje",
+        "D. ljutnju"
+      ],
+      "correct": "C",
+      "exp": "'O nesretno dijete...' + ton pitanja = Zborovođa suosjeća s Antigonom, brine se za nju.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 25,
+      "q": "Što otkriva Stražar o sebi nakon što kralju predaje Antigonu?",
+      "opts": [
+        "A. Zlurado uživa u svome činu.",
+        "B. Uhićenjem se osvećuje Antigoni.",
+        "C. Pere ruke od svega.",
+        "D. Želi ostati anoniman."
+      ],
+      "correct": "C",
+      "exp": "'a meni dopuštenje daj, da iz te bijede odem čist i slobodan' = pere ruke od svega, želi se izvući čist.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 26,
+      "q": "Što je Antigonin zločin?",
+      "opts": [
+        "A. Pokopala je brata.",
+        "B. Izdala je rodni grad.",
+        "C. Riješila je Sfinginu zagonetku.",
+        "D. Pomogla je sestri u bijegu."
+      ],
+      "correct": "A",
+      "exp": "Antigona je pokopala brata Polinika usprkos Kreontovoj zabrani = njen 'zločin'.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 27,
+      "q": "Koja načela vode Antigonu u njezinim postupcima?",
+      "opts": [
+        "A. obiteljska osveta zbog nepravedne bratove smrti",
+        "B. želja za iskupljenjem zbog roditeljskih pogreški",
+        "C. odanost prema rodnomu gradu i kraljevstvu",
+        "D. božanski zakon da svatko ima pravo biti dostojno pokopan"
+      ],
+      "correct": "D",
+      "exp": "Antigona slijedi božji zakon (ne-pisani, prirodni) koji kaže da svaki čovjek ima pravo na pokop = C → točno D.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 28,
+      "q": "Koju tehniku prepoznajete u odlomku s izmjenom replike Stražara, Zborovođe i Kreonta?",
+      "opts": [
+        "A. dijalog",
+        "B. monolog",
+        "C. pripovijedanje",
+        "D. opisivanje"
+      ],
+      "correct": "A",
+      "exp": "Izmjena replika između Stražara, Zborovođe i Kreonta = dijalog.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 29,
+      "q": "Što je od navedenoga didaskalija?",
+      "opts": [
+        "A. (Dolazi stražar vodeći Antigonu.)",
+        "B. STRAŽAR",
+        "C. A gdje i kako zločin otkrio si njen?",
+        "D. ZBOROVOĐA: U pravi tren iz dvora vraća nam se baš."
+      ],
+      "correct": "A",
+      "exp": "Didaskalija = uputa za inscenaciju u zagradama. '(Dolazi stražar vodeći Antigonu.)' = didaskalija.",
+      "ctx": "Sofoklo, Antigona (ulomak — Stražar privodi Antigonu Kreontu)\n\n(Dolazi STRAŽAR vodeći ANTIGONU.)\n\nZBOROVOĐA:\nBožanskog li čuda! Neodlučan stojim,\nzatajit ne mogu, jer dobro je znam.\nAntigonu vode, kraljevsku kćer!\nO nesretno dijete\nEdipa nesretnog oca!\nTa valjda te nisu zatekli tamo —\n— onaj nepromiš ljen i krš nalog vladara svog?\n\nSTRAŽAR:\nDovedoh vam zločinca. Uz mrtvačev leš\nzate čenog na činu. Nego gdje je kralj?\n\nZBOROVOĐA:\nU pravi tren iz dvora vraća nam se baš.\n\nKREONT:\nŠto je? Zašto veliš da je pravi tren?\n\nSTRAŽAR:\nO, kralju! Smrtnik ne smije ni na što se kleti,\njer u laž ga stjerat neki slučaj nov.\nJa rekoh, da ti više nikad neću doć'\nkad odagna me ono tvojih prijetnja huk.\nA sad u…"
+    },
+    {
+      "id": 30,
+      "q": "Kojemu književnomu razdoblju pripada Vjenceslav Novak?",
+      "opts": [
+        "A. realizmu",
+        "B. romantizmu",
+        "C. protorealizmu",
+        "D. moderni"
+      ],
+      "correct": "A",
+      "exp": "Vjenceslav Novak (1859.–1905.) = realizam. Pisac propadanja građanske i seljačke klase.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 31,
+      "q": "Kojoj tematici pripadaju Posljednji Stipančići?",
+      "opts": [
+        "A. pustolovnoj",
+        "B. društvenoj",
+        "C. povijesnoj",
+        "D. filozofskoj"
+      ],
+      "correct": "B",
+      "exp": "Posljednji Stipančići = društvena tematika: propadanje patricijske obitelji u novim društvenim uvjetima (urbanizacija, kapitalizam).",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 32,
+      "q": "Što je tema Posljednjih Stipančića?",
+      "opts": [
+        "A. raslojavanje hrvatskog sela i propast zadruga",
+        "B. školovanje siromašnog dječaka u gradu i roditeljsko odricanje",
+        "C. propadanje patricijske obitelji u novim društvenim uvjetima",
+        "D. nemogućnost ostvarenja ljubavi zbog staleških razlika"
+      ],
+      "correct": "C",
+      "exp": "Posljednji Stipančići = roman o propadanju primorske patricijske obitelji Stipančić u susretu s novim ekonomskim i društvenim uvjetima.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 33,
+      "q": "Koji je smisao naslova Posljednji Stipančići?",
+      "opts": [
+        "A. Iako sin ostaje živ, Stipančića više nema.",
+        "B. Lucijinom udajom prezimena Stipančić više nema.",
+        "C. Svađa u obitelji oko nasljedstva razara Stipančiće.",
+        "D. Na kraju romana umiru svi članovi obitelji Stipančić."
+      ],
+      "correct": "D",
+      "exp": "'Posljednji' = na kraju romana propada i umire čitava obitelj Stipančić — bukvalno posljednji naraštaj te obitelji.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 34,
+      "q": "Kojoj književnoj vrsti pripadaju Posljednji Stipančići?",
+      "opts": [
+        "A. noveli",
+        "B. romanu",
+        "C. pripovijetki",
+        "D. životopisu"
+      ],
+      "correct": "B",
+      "exp": "Posljednji Stipančići = roman (dulja prozna vrsta s razgranatom radnjom i više likova).",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 35,
+      "q": "Kojom su epskom tehnikom napisana prva dva odlomka teksta?",
+      "opts": [
+        "A. komentiranjem",
+        "B. pripovijedanjem",
+        "C. dijalogom",
+        "D. monologom"
+      ],
+      "correct": "B",
+      "exp": "Prva dva odlomka opisuju dogadhaje narativno (što se zbilo s Valpurgom, Winterom, Stipančićem) = pripovijedanje.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 36,
+      "q": "U kojoj se prigodi događa radnja u tekstu?",
+      "opts": [
+        "A. Jurjevo krštenje",
+        "B. Stipančićevo vjenčanje",
+        "C. Lucijin prvi ples",
+        "D. sinovljev odlazak na školovanje"
+      ],
+      "correct": "B",
+      "exp": "Kontekst scene: Valpurga je njegova žena, gozba s gostima = Stipančićevo vjenčanje.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 37,
+      "q": "Kako gosti reagiraju na Winterovo ponašanje?",
+      "opts": [
+        "A. ravnodušno",
+        "B. podrugljivo",
+        "C. samilosno",
+        "D. zbunjeno"
+      ],
+      "correct": "D",
+      "exp": "'Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju' = zbunjeno.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 38,
+      "q": "Što je povod Stipančićeva bijesa?",
+      "opts": [
+        "A. neprikladno ponašanje gosta",
+        "B. iznenadni Valpurgin dolazak",
+        "C. preveliki troškovi gozbe",
+        "D. dolazak nepozvanih gostiju"
+      ],
+      "correct": "A",
+      "exp": "Pijani natporučnik Winter kleknuo pred Valpurgom i izjavljivao joj ljubav = neprikladno ponašanje gosta = povod bijesa.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 39,
+      "q": "Što je motiviralo Stipančića da zatraži zadovoljštinu?",
+      "opts": [
+        "A. potreba da izazove pozornost",
+        "B. povrijeđena taština i ponos",
+        "C. želja da bude dobar domaćin",
+        "D. zaštitni čki odnos prema supruzi"
+      ],
+      "correct": "B",
+      "exp": "'Zadovoljštinu hoću!' + 'Tolike priprave, toliki novac, toliko očekivana slava — pa svršena ovolikom porugom!' = povrijeđena taština i ponos.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 40,
+      "q": "Što saznajemo o Stipančiću?",
+      "opts": [
+        "A. Strastveno voli svoju suprugu.",
+        "B. Spreman je kontrolirati svoje osjećaje.",
+        "C. Sposoban je sve okrenuti u svoju korist.",
+        "D. Opsjednut je vlastitim ugledom."
+      ],
+      "correct": "D",
+      "exp": "'Zadovoljštinu hoću! Tolike priprave... slava... poruga!' = opsjednut je svojom čašću/ugledom.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 41,
+      "q": "Koja se značajka Stipančićeve osobnosti otkriva u tekstu?",
+      "opts": [
+        "A. skromnost",
+        "B. oholost",
+        "C. brižnost",
+        "D. silovitost"
+      ],
+      "correct": "D",
+      "exp": "Trči s mačem, reza Wintera po čelu, drhtanje i hropljivi glas = silovitost.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 42,
+      "q": "Kakvom se Valpurga čini u prvome odlomku teksta?",
+      "opts": [
+        "A. samouvjerenom",
+        "B. neiskusnom",
+        "C. sigurnom",
+        "D. koketnom"
+      ],
+      "correct": "B",
+      "exp": "'Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe' = zbunjena, neiskusna u nošenju s takvim situacijama.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 43,
+      "q": "Kojim se stilskim sredstvom poslužio autor prikazujući Stipančića u sljedećoj rečenici?\n'Bi li mogao i u njegovoj krvi utopiti lava koji se u njemu razbjesnio...'",
+      "opts": [
+        "A. metaforom",
+        "B. poredbom",
+        "C. oksimoronom",
+        "D. ironijom"
+      ],
+      "correct": "A",
+      "exp": "'Lav koji se u njemu razbjesnio' = bijcs prikazan kao lav unutar Stipančića = metafora.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 44,
+      "q": "Kojoj vrsti leksema pripada niz 'nešta, česa, nijesu'?",
+      "opts": [
+        "A. pomodnicama",
+        "B. arhaizmima",
+        "C. neologizmima",
+        "D. oživljenicama"
+      ],
+      "correct": "B",
+      "exp": "'Nešta, česa, nijesu' = starohrvatski/zastarjeli oblici (arhaizmi) koji više nisu u upotrebi u standardnom jeziku.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 45,
+      "q": "Kojim sinonimnim izrazom možemo zamijeniti 'dočim' u rečenici?\n'...no majstorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga...'",
+      "opts": [
+        "A. poslije",
+        "B. iako",
+        "C. makar",
+        "D. dok"
+      ],
+      "correct": "D",
+      "exp": "'Dočim' = dok (stariji oblik vremenskog veznika). 'Dočim je Valpurga gledala...' = dok je Valpurga gledala...",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 46,
+      "q": "Kako glasi oblik imenice 'pepeo' kad je uz nju infinitiv glagola 'naslagati'?",
+      "opts": [
+        "A. pepeo",
+        "B. pepel",
+        "C. pepela",
+        "D. pepelu"
+      ],
+      "correct": "C",
+      "exp": "'Naslagati pepela' = genitiv (naslagati čega? = pepela). Genitivni oblik od 'pepeo' = 'pepela'.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 47,
+      "q": "Koju je riječ autor zamijenio rabeći riječ 'vr' u sljedećoj rečenici?\n'...ali to je već vr Stipančićeva mača dohvatio Winterovo čelo...'",
+      "opts": [
+        "A. oštrica",
+        "B. drška",
+        "C. vrh",
+        "D. korica"
+      ],
+      "correct": "A",
+      "exp": "'Vr' mača = oštrica = šiljati ili rezni dio mača koji reže. Ekvivalent: oštrica.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — incident na gozbi)\n\nNo sad se dogodi nešto skroz neočekivano česa zapravo skupljeno društvo u prvi čas ni shvatilo nije. Prije nego je itko šta neugodno i slutiti a kamoli zapriječiti mogao, našao se pred Valpurgom pijani natporučnik Winter i, zavirivši joj drzovito u oči, kleknuo preda nju i stao joj svojim pijanim, jedva razumljivim jezikom govoriti i prisizati ljubav. Gosti nijesu prvi čas znali kako bi primili tu nenadanu improvizaciju, no majorica Steinbachova smijala se glasno časnikovoj dosjeci, dočim je Valpurga blijeda s neočekivane drzovitosti gledala zbunjeno oko sebe. Iza prvog časa kao da je istom pravo shvatila što se to zbiva; …"
+    },
+    {
+      "id": 48,
+      "q": "Tko je autor djela iz kojega je četvrti tekst?",
+      "opts": [
+        "A. Goran Tribuson",
+        "B. Ivan Aralica",
+        "C. Pavao Pavličić",
+        "D. Antun Šoljan"
+      ],
+      "correct": "C",
+      "exp": "Dunav (1983.) = Pavao Pavličić, suvremeni hrv. pisac.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 49,
+      "q": "Kako je strukturirano djelo iz kojega je tekst?",
+      "opts": [
+        "A. u četirima dijelovima koji su naslovljeni stranama svijeta",
+        "B. u dvanaest dijelova koji su naslovljeni vlastitim ženskim imenima",
+        "C. u dvanaest dijelova koji su naslovljeni mjesecima",
+        "D. u četirima dijelovima koji su naslovljeni imenima mitoloških junaka"
+      ],
+      "correct": "C",
+      "exp": "Dunav = roman u 12 poglavlja naslovljenih imenima 12 mjeseci (Januar, Februar...).",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 50,
+      "q": "Čime se autor poslužio u oblikovanju teksta?",
+      "opts": [
+        "A. objektivnim pripovijedanjem",
+        "B. subjektivnim pripovijedanjem",
+        "C. vanjskim opisom",
+        "D. unutarnjim opisom"
+      ],
+      "correct": "B",
+      "exp": "'Sjećaju se... svaki se sjeća...' = osobno, subjektivno pripovijedanje iz perspektive 'oni' = subjektivno pripovijedanje.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 51,
+      "q": "Koji grad u djelu čini s Dunavom i pripovjedačem nerazdvojivu cjelinu?",
+      "opts": [
+        "A. Vukovar",
+        "B. Osijek",
+        "C. Vinkovci",
+        "D. nepoznati grad"
+      ],
+      "correct": "A",
+      "exp": "Dunav (Pavličić) = priča iz Vukovara, Dunav protječe kraj Vukovara = Vukovar i rijeka Dunav su nerazdvojivi.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 52,
+      "q": "Koji je od navedenih antonimnih parova poslužio autoru za oblikovanje teksta?",
+      "opts": [
+        "A. ljepota — ružnoća",
+        "B. kretanje — mirovanje",
+        "C. govor — šutnja",
+        "D. starost — mladost"
+      ],
+      "correct": "D",
+      "exp": "Tekst kontrastira mladiće i starije plivače ('pedesetogodišnjaka') = antonimni par starost — mladost.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 53,
+      "q": "O kojemu se dijelu godine govori u tekstu?",
+      "opts": [
+        "A. o zimi",
+        "B. o proljeću",
+        "C. o ljetu",
+        "D. o jeseni"
+      ],
+      "correct": "A",
+      "exp": "'U duge prosin čke večeri, kada ulice opuste, kad je magla i bljuzgavica' = prosinac = zima.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 54,
+      "q": "Što čine mladići po krčmama i slastičarnicama?",
+      "opts": [
+        "A. ogovaraju",
+        "B. tješe se",
+        "C. sanjariju",
+        "D. tuguju"
+      ],
+      "correct": "C",
+      "exp": "'Sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu. Sve im tada izgleda lako izvodljivo' = sanjarije o ljetu.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 55,
+      "q": "Kakav pogled mladića na svijet autor izražava u prvome dijelu teksta?",
+      "opts": [
+        "A. pesimistični",
+        "B. destruktivan",
+        "C. vizionarski",
+        "D. optimistični"
+      ],
+      "correct": "D",
+      "exp": "'Sve im tada izgleda lako izvodljivo... Prošlo ljeto bilo je lijepo, a iduće biti još ljepše' = optimistični pogled.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 56,
+      "q": "O kojoj se karakteristici rijeke govori u sljedećoj rečenici?\n'Preplivava se tako da se pliva ravno preko matice, s tim što treba računati da će voda odnijeti plivača najmanje kilometar nizvodno.'",
+      "opts": [
+        "A. o dubini",
+        "B. o snazi",
+        "C. o širini",
+        "D. o ljepoti"
+      ],
+      "correct": "B",
+      "exp": "'Voda odnijeti plivača... nizvodno' = struja/snaga rijeke koja nosi plivača = o snazi (matice/struje).",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 57,
+      "q": "Koja osobina razlikuje mladiće od ostalih plivača?",
+      "opts": [
+        "A. dokazivanje",
+        "B. hrabrost",
+        "C. izdržljivost",
+        "D. umišljenost"
+      ],
+      "correct": "B",
+      "exp": "Mladići plivaju 'ravno na maticu' (najjači dio struje) dok stariji idu okolo = hrabrost.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 58,
+      "q": "Što mladići misle o usamljenim plivačima bez društva?",
+      "opts": [
+        "A. Dive im se.",
+        "B. Preziru ih.",
+        "C. Ismijavaju ih.",
+        "D. Čude im se."
+      ],
+      "correct": "D",
+      "exp": "Čude im se = ne razumiju ih = D.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 59,
+      "q": "Što pričaju mladići kada pričaju anegdote?",
+      "opts": [
+        "A. Smiješne životne zgode",
+        "B. zaplete iz krimi-romana",
+        "C. scene iz horor-filmova",
+        "D. neugodne doživljaje"
+      ],
+      "correct": "A",
+      "exp": "'Pričaju anegdote' = kratke smiješne ili duhovite zgodice iz iskustva = smiješne životne zgode.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 60,
+      "q": "Koji oblik nedostaje u nizu 'lijepo — ljepše — ____'?",
+      "opts": [
+        "A. pozitiv",
+        "B. komparativ",
+        "C. superlativ"
+      ],
+      "correct": "C",
+      "exp": "Lijepo (pozitiv) — ljepše (komparativ) — najljepše (superlativ). Nedostaje superlativ.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 61,
+      "q": "Na temelju kojeg načela pišemo zarez u sljedećoj rečenici?\n'Možete vidjeti ozbiljnog pedesetogodišnjaka u kupačoj kapi, za koga mislite da uči vodu samo do vrata, kako pliva ravno na maticu...'",
+      "opts": [
+        "A. suprotnosti",
+        "B. nizanja",
+        "C. umetnutosti",
+        "D. nabrajanja"
+      ],
+      "correct": "C",
+      "exp": "'Za koga mislite da uči vodu samo do vrata' = umetnuta relativna rečenica = zarez zbog umetnutosti.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 62,
+      "q": "Koliko je surečenica u prvoj rečenici teksta?",
+      "opts": [
+        "A. četiri",
+        "B. pet",
+        "C. šest",
+        "D. sedam"
+      ],
+      "correct": "B",
+      "exp": "'U duge... večeri, (1) kada ulice opuste, (2) kad je magla..., (3) mladići sjede... i sjećaju se... (4), pričaju... (5) i kuju planove...' = 5 surečenica.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 63,
+      "q": "Kako glasi infinitiv glagola u sintagmi 'kuju planove'?",
+      "opts": [
+        "A. kleti",
+        "B. kovati",
+        "C. kuljati",
+        "D. klati"
+      ],
+      "correct": "B",
+      "exp": "'Kuju' = 3. l. mn. prezenta od 'kovati'. Kovu-ju → kuju. Infinitiv = kovati.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 64,
+      "q": "Što znači frazem 'ljubiti se do mile volje'?",
+      "opts": [
+        "A. ljubiti se do jutra",
+        "B. ljubiti se kriomice",
+        "C. ljubiti se javno",
+        "D. ljubiti se koliko žele"
+      ],
+      "correct": "D",
+      "exp": "'Do mile volje' = koliko god želiš, bez ograničenja = ljubiti se koliko žele.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 65,
+      "q": "Koji niz nosi tri značenja višeznačnice 'matica'?",
+      "opts": [
+        "A. priča, glavna struja, bal pod maskama",
+        "B. pokrivač, misao, krivulja drugoga stupnja",
+        "C. registar, središte, glavna ženka pčela",
+        "D. društvo, zavrtanj, pomoćni sudski službenik"
+      ],
+      "correct": "C",
+      "exp": "'Matica' = 1. registar/matična knjiga; 2. središte (matična firma); 3. glavna ženka pčela u košnici. C je točno.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 66,
+      "q": "Kako glasi infinitiv glagola u sintagmi 'biva sve manji'?",
+      "opts": [
+        "A. biti",
+        "B. htjeti",
+        "C. imati",
+        "D. bivati"
+      ],
+      "correct": "D",
+      "exp": "'Biva' = 3. l. jd. prezenta od 'bivati' (trajno/učestalo biti). Infinitiv = bivati.",
+      "ctx": "Pavao Pavličić, Dunav (ulomak — mladi i rijeka)\n\nU duge prosince ke večeri, kada ulice opuste, kad je magla i bljuzgavica, mladići sjede po krčmama i po slastičarnicama i sjećaju se ljeta, pričaju anegdote i kuju planove za iduću sezonu.\n\nSve im tada izgleda lako izvodljivo: imat će novaca, kupiti čamac, šator, uskladit će slobodne dane, i sve će biti u redu. Prošlo ljeto bilo je lijepo, a iduće biti još ljepše. Kad im se to prestane činiti, kad im počnu padati na pamet tehničke pojedinosti, oni će se rastati. A kasnije, dok svaki od njih korača sam prema svojoj ulici, dok nabada ispod golih grana drvoreda, koje se pod uličnom rasvjetom presijavaju od vlage, pa zato liče na kulise, svaki se …"
+    },
+    {
+      "id": 67,
+      "q": "Koji je točan raspored?",
+      "opts": [
+        "A. 1C, 2A, 3E, 4D",
+        "B. 1D, 2A, 3B, 4C",
+        "C. 1C, 2B, 3A, 4E",
+        "D. 1A, 2C, 3D, 4B"
+      ],
+      "correct": "A",
+      "exp": "Krleža = Povratak Filipa Latinovicza (C); Brešan = Predstava Hamleta u selu Mrduša Donja (A); Aralica = Luka (E) ili Okvir za mržnju (B); Fabrio = Smrt Vronskog (D). Točno: 1C, 2A, 3E, 4D.",
+      "ctx": "Piscima pridružite njihova djela:\n1. Miroslav Krleža — 2. Ivo Brešan — 3. Ivan Aralica — 4. Nedjeljko Fabrio\nA. Predstava Hamleta u selu Mrduša Donja — B. Okvir za mržnju — C. Povratak Filipa Latinovicza — D. Smrt Vronskog — E. Luka\n\nKoji je točan raspored?"
+    },
+    {
+      "id": 68,
+      "q": "Pravilno pisanje: 'S tom bilješ(68)___ likovnog kritičara(69)___'",
+      "opts": [
+        "A. dijela",
+        "B. djela"
+      ],
+      "correct": "B",
+      "exp": "'S tom bilješkom likovnog kritičara... iz njegova DJELA' — 'djela' = G jd. od 'djelo' = pravilno."
+    },
+    {
+      "id": 69,
+      "q": "Koji je pravilni oblik prezimena likovnog kritičara koji je pisao iz 1550.?",
+      "opts": [
+        "A. firentinskoga Vasarija",
+        "B. Firentinskoga Vasarija"
+      ],
+      "correct": "A",
+      "exp": "'Firentinskoga' kao pridjev koji nije dio naziva = malo f (opisni, ne vlastiti). A: firentinskoga."
+    },
+    {
+      "id": 70,
+      "q": "Pravilno pisanje: 'koji predmet svog obožavanja nije vidio, jer je slika bila na (70)___ dvoru'",
+      "opts": [
+        "A. francuskom",
+        "B. Francuskom"
+      ],
+      "correct": "A",
+      "exp": "'Françuski dvor' = opis (ne ime) = malo f. A: französkome/franciuskom → A pravilno."
+    },
+    {
+      "id": 71,
+      "q": "Pravilno pisanje: 'krenula je legenda o jednoj slici... (71)___ Mona Lisi'",
+      "opts": [
+        "A. Leonardovoj",
+        "B. leonardovoj"
+      ],
+      "correct": "A",
+      "exp": "'Leonardovoj Mona Lisi' = posvojni pridjev od vlastitog imena = veliko L = A."
+    },
+    {
+      "id": 72,
+      "q": "Pravilno pisanje: 'a ispred (72)___ u (73)___'",
+      "opts": [
+        "A. originala",
+        "B. orginala"
+      ],
+      "correct": "A",
+      "exp": "'Originala' = ispravno (ne 'orginala'). A."
+    },
+    {
+      "id": 73,
+      "q": "Pravilno pisanje naziva muzeja: 'ispred originala u (73)___'",
+      "opts": [
+        "A. Louvreu",
+        "B. Louvre-u"
+      ],
+      "correct": "A",
+      "exp": "Strane imenice na samoglasnik: genitiv bez crtice = 'Louvrea', lokativ = 'Louvrru' → no u instrumentalu/lokativu: Louvreu (bez crtice). A."
+    },
+    {
+      "id": 74,
+      "q": "Pravilno pisanje: 'što se s tim mitom dogodilo u (74)___'",
+      "opts": [
+        "A. 20. st",
+        "B. 20. st."
+      ],
+      "correct": "B",
+      "exp": "Kratica 'st.' s točkom na kraju = B. '20. st.' (s točkom = pravilno)."
+    },
+    {
+      "id": 75,
+      "q": "Pravilno pisanje: 'Da li nam se (75)___ žena zapadnog slikarstva'",
+      "opts": [
+        "A. naj ljepša",
+        "B. najljepša"
+      ],
+      "correct": "B",
+      "exp": "'Najljepša' = superlativ, piše se spojeno = B."
+    },
+    {
+      "id": 76,
+      "q": "Pravilno pisanje: 'Da li nam se najljepša žena zapadnog slikarstva i danas zagonetno (76)___'",
+      "opts": [
+        "A. smješka",
+        "B. smijeka"
+      ],
+      "correct": "A",
+      "exp": "'Smješka' = 3. l. jd. prezenta od 'smješkati se'. A je pravilno."
+    },
+    {
+      "id": 77,
+      "q": "Pravilno pisanje: 'slavnija od (77)___ koja se smatra jednim od velikih čuda'",
+      "opts": [
+        "A. Posljednje večere",
+        "B. posljednje večere"
+      ],
+      "correct": "A",
+      "exp": "'Posljednja večera' = naziv poznatog Leonardova slikarskog djela = vlastito ime = veliko P = A."
+    }
+  ]
+}

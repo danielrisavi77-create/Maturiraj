@@ -1,0 +1,963 @@
+{
+  "examKey": "2011_ljeto_B",
+  "label": "Ljetni rok — Osnovna razina (B)",
+  "total": 76,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu književnomu rodu pripada polazni tekst?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "A",
+      "exp": "Balada iz predgrađa = lirska balada — kratka, dojmovna, s lirskim opisom sudbine nepoznatog čovjeka.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 2,
+      "q": "Kakva je rima u prvim dvjema strofama polaznoga teksta?",
+      "opts": [
+        "A. abcb defe",
+        "B. abab cdcd",
+        "C. abba cddc",
+        "D. abcb efgf"
+      ],
+      "correct": "A",
+      "exp": "1. strofa: lampa(a)/crvenkasto(b)/plota(c)/putu(b) = abcb. 2. strofa: ulazi(d)/mraka(e)/brige(f)/koraka(e) = defe. Shema: abcb defe.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 3,
+      "q": "Kojoj tematici pripada polazni tekst?",
+      "opts": [
+        "A. pejzažnoj",
+        "B. misaonoj",
+        "C. socijalnoj",
+        "D. ljubavnoj"
+      ],
+      "correct": "C",
+      "exp": "Balada iz predgrađa = socijalna tematika: anonimni radnik/siromah koji nestaje bez traga u predgrađu.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 4,
+      "q": "Koje osjetilne senzacije prepoznajete u prvoj strofi?",
+      "opts": [
+        "A. olfaktivne",
+        "B. vizualne",
+        "C. auditivne",
+        "D. taktilne"
+      ],
+      "correct": "B",
+      "exp": "'Svjetlost crvenkasto', 'debelo blato', 'dvije, tri cigle' = sve vizualne slike. Nema zvuka ni mirisa u prvoj strofi.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 5,
+      "q": "Kojim su stihovima iskazani socijalni motivi?",
+      "opts": [
+        "A. Na debelo blato kraj staroga plota / I dvije, tri cigle na putu.",
+        "B. I lampa gori, / I gori u magli, / I već je noć —",
+        "C. I lije na uglu petrolejska lampa / Svjetlost crvenkasto",
+        "D. A njega nema, i nema, i nema, / I nema ga više..."
+      ],
+      "correct": "A",
+      "exp": "'Debelo blato', 'cigle na putu' = slike siromaštva, bijede predgrađa = socijalni motivi.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 6,
+      "q": "Koji je temeljni motiv polaznoga teksta?",
+      "opts": [
+        "A. petrolejska lampa",
+        "B. debelo blato",
+        "C. stari plot",
+        "D. brižno lice"
+      ],
+      "correct": "A",
+      "exp": "Petrolejska lampa = jedini konstantni element koji se ponavlja na početku i na kraju = temeljni motiv koji svjedoči prolaznosti.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 7,
+      "q": "Koja je stilska figura uporabljena u sljedećem stihu?\n'I nema ga više...'",
+      "opts": [
+        "A. personifikacija",
+        "B. eufemizam",
+        "C. poredba",
+        "D. ironija"
+      ],
+      "correct": "B",
+      "exp": "'Nema ga više' = eufemizam za smrt (umro je, ali Cesarić to ne izriče izravno).",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 8,
+      "q": "Koje se dvije stilske figure poklapaju u četvrtoj strofi?",
+      "opts": [
+        "A. asonanca i aliteracija",
+        "B. metafora i simbol",
+        "C. anafora i polisindeton",
+        "D. epifora i asindeton"
+      ],
+      "correct": "C",
+      "exp": "Četvrta strofa: 'I nema ga sutra, I nema ga dva... I zima je... I sniježi' = 'I' na početku (anafora) + ponavljanje veznika 'I' (polisindeton).",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 9,
+      "q": "Koja je uloga ponavljanja glagola u sljedećim stihovima?\n'A njega nema, i nema, i nema, / I nema ga više...'",
+      "opts": [
+        "A. blagoglasnost",
+        "B. pojačavanje dojma",
+        "C. promjena značenja",
+        "D. kontrastiranje"
+      ],
+      "correct": "B",
+      "exp": "Ponavljanje 'nema, nema, nema' = pojačava dojam trajnog odsustva, osjećaj gubitka i praznine.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 10,
+      "q": "Koje je značenje ponavljanja prve strofe na kraju pjesme?",
+      "opts": [
+        "A. Sve se vraća na početak.",
+        "B. Više nema povratka.",
+        "C. Pojačava se ritam.",
+        "D. Naglašavaju se emocije."
+      ],
+      "correct": "B",
+      "exp": "Lampa i dalje gori, blato je tu — ali čovjeka više nema. Ponavlja se ista strofa = život ide dalje bez njega = više nema povratka.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 11,
+      "q": "Što od navedenoga svrstava polazni tekst u balade?",
+      "opts": [
+        "A. naturalstički izraz",
+        "B. tugaljivost",
+        "C. noćni ugođaj",
+        "D. simboličnost"
+      ],
+      "correct": "B",
+      "exp": "Balada = lirsko-epska forma obilježena tugaljivošću, tragičnom sudbinom i emotivnim nabojem. Tugaljivost je ključno obilježje.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 12,
+      "q": "Koja je riječ točno rastavljena na slogove?",
+      "opts": [
+        "A. li-je",
+        "B. svjetl-ost",
+        "C. u-vi-jek",
+        "D. dv-ije"
+      ],
+      "correct": "C",
+      "exp": "'U-vi-jek' = u/vi/jek = 3 sloga, ispravno rastavljeno. A: 'li-je' = točno ali samo 2 sloga. C = uvijek = u-vi-jek = pravilno.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 13,
+      "q": "Kojoj vrsti stiha pripada prvi, a kojoj drugi navedeni stih?\n'I uvijek ista sirotinja ulazi' / 'U njezinu svjetlost iz mraka'",
+      "opts": [
+        "A. dvanaestercu, desetercu",
+        "B. jedanaestercu, dvanaestercu",
+        "C. desetercu, dvanaestercu",
+        "D. jedanaestercu, devetercu"
+      ],
+      "correct": "D",
+      "exp": "'I u-vi-jek is-ta si-ro-ti-nja u-la-zi' = 11 slogova = jedanaesterac; 'U nje-zi-nu svjet-lost iz mra-ka' = 9 slogova = deveterac.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 14,
+      "q": "Prema kojemu je načelu napisan zarez u sljedećim stihovima?\n'A jedne večeri nekoga nema, / A moro bi proći —'",
+      "opts": [
+        "A. nabrajanja",
+        "B. inverzije",
+        "C. suprotnosti",
+        "D. vokativnosti"
+      ],
+      "correct": "C",
+      "exp": "'nekoga nema, A moro bi proći' = 'a' = suprotni veznik = zarez ispred suprotnosti.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 15,
+      "q": "Koliko surečenica ima u drugoj strofi?",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "C",
+      "exp": "'I uvijek ista sirotinja ulazi / U njezinu svjetlost iz mraka' (1), 'I s licem na kojem su obično brige' (2), 'žure je par koraka' (3). Hmm: 2. strofa ima 4 stiha = 4 predikacije? Prema ispitu: C = četiri.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 16,
+      "q": "Od koje jezične norme odstupa Cesarić u sljedećem stihu?\n'A moro bi proći —'",
+      "opts": [
+        "A. od pravopisne",
+        "B. od morfološke",
+        "C. od sintaktičke",
+        "D. od fonološke"
+      ],
+      "correct": "B",
+      "exp": "'Moro' umjesto 'morao' = apokopa (izostavljanje završetka glagolskog pridjeva radnog) = morfološka norma.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 17,
+      "q": "Koja je riječ istozvačnica (homonim) riječi 'maj'?",
+      "opts": [
+        "A. ožujak",
+        "B. travanj",
+        "C. svibanj",
+        "D. lipanj"
+      ],
+      "correct": "C",
+      "exp": "'Maj' (hrv. arhaizam za 5. mjesec) = istozvačnica s 'svibanj' (isto značenje, drugačiji oblik). Maj = svibanj.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 18,
+      "q": "Koju je antologijsku pjesmu napisao Dobriša Cesarić?",
+      "opts": [
+        "A. Mojsije",
+        "B. Zvonimirova laž",
+        "C. Zaljubljen u ljubav",
+        "D. Vagoneta"
+      ],
+      "correct": "D",
+      "exp": "Vagoneta = jedna od najpoznatijih Cesarićevih pjesama, antologijska lirska balada.",
+      "ctx": "Dobriša Cesarić, Balada iz predgrađa\n\n... I lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na putu.\n\nI uvijek ista sirotinja ulazi\nU njezinu svjetlost iz mraka,\nI s licem na kojem su obično brige\nŽure je par koraka.\n\nA jedne večeri nekoga nema,\nA moro bi proći —\nI lampa gori,\nI gori u magli,\nI već je noć —\n\nI nema ga sutra, ni prekosutra ne,\nI vele da bolestan leži.\nI nema ga mjesec, i nema ga dva,\nI zima je već —\nI sniježi...\n\nA prolaze kao i dosada ljudi,\nI maj već miriše —\nA njega nema, i nema, i nema,\nI nema ga više...\n\nI lije na uglu petrolejska lampa\nSvjetlost crvenkasto\nNa debelo blato kraj staroga plota\nI dvije, tri cigle na …"
+    },
+    {
+      "id": 19,
+      "q": "Kojoj književnoj vrsti pripada Božanstvena komedija?",
+      "opts": [
+        "A. viteškom romanu",
+        "B. epu",
+        "C. crkvenom prikazanju",
+        "D. mitu"
+      ],
+      "correct": "B",
+      "exp": "Božanstvena komedija = ep (dulje djelo u stihovima koje opisuje putovanje kroz tri onosvjetska carstva).",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 20,
+      "q": "Na kakvo je mjesto došao Dante prema sljedećim stihovima?\n'Do mjesta dođoh, gdje sva svjetla šute'",
+      "opts": [
+        "A. na osvjetljeno",
+        "B. na hladno",
+        "C. na užareno",
+        "D. na mračno"
+      ],
+      "correct": "D",
+      "exp": "'Gdje sva svjetla šute' = nema svjetla = mračno mjesto (drugi krug Pakla).",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 21,
+      "q": "Koja je stilska figura uporabljena u sljedećem stihu?\n'Šumi kao more u oluji'",
+      "opts": [
+        "A. poredba",
+        "B. onomatopeja",
+        "C. hiperbola",
+        "D. asonanca"
+      ],
+      "correct": "A",
+      "exp": "'Šumi kao more u oluji' = poredba (simile): zvuk Pakla uspoređen s morem u oluji.",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 22,
+      "q": "Koji je grijeh duša opisanih u polaznome tekstu?",
+      "opts": [
+        "A. krađa",
+        "B. ubojstvo",
+        "C. izdaja",
+        "D. bludnost"
+      ],
+      "correct": "D",
+      "exp": "'za one, što im grijeh baš puti gove / i kojima su strasti razum splele' = bludnici, pohlepnici = bludnost (drugi krug Pakla).",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 23,
+      "q": "Kako su mučene duše u polaznome tekstu?",
+      "opts": [
+        "A. stalnom vrućinom",
+        "B. ubodima strijela",
+        "C. neprestanim vjetrom",
+        "D. neizdrživom žeđu"
+      ],
+      "correct": "C",
+      "exp": "'Pakleni vihar, što bez stanke huji, tu nosi duše... vrti i nosi amo-tamo virom' = neprestanim vjetrom/vihorom.",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 24,
+      "q": "S čime su uspoređene duše prikazane u polaznome tekstu?",
+      "opts": [
+        "A. sa zimskim nebom",
+        "B. s jatom ptica",
+        "C. s jakim vjetrom",
+        "D. s užarenim grotlom"
+      ],
+      "correct": "B",
+      "exp": "'Kao što škorci krilma nošeni što plove / zimi u jatu rastegnutu širom, / tako i vjetar zle duhove ove' = duše uspoređene s jatom ptica (škoraca).",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 25,
+      "q": "Kakva je sudbina duša prikazanih u polaznome tekstu?",
+      "opts": [
+        "A. Zauvijek će biti kažnjavane.",
+        "B. Ipak će počinuti u miru.",
+        "C. Njihova će se bijeda smanjiti.",
+        "D. Nada za izbavljenje postoji."
+      ],
+      "correct": "A",
+      "exp": "'nema im nade, da će ikad bijedu / smanjiti, kamo li uništi s mirom' = zauvijek kažnjavane, bez nade.",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 26,
+      "q": "Zašto je prevoditelj uporabio oblik 'krilma' umjesto 'krilima'?",
+      "opts": [
+        "A. zbog poetičnosti riječi",
+        "B. zbog broja slogova u stihu",
+        "C. zbog kratkoće izraza",
+        "D. zbog pjesničke slobode"
+      ],
+      "correct": "B",
+      "exp": "'Krilma' (2 sloga) umjesto 'krilima' (3 sloga) = metrički razlog, da stih ima pravi broj slogova.",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 27,
+      "q": "Koliko pjevanja ima Božanstvena komedija?",
+      "opts": [
+        "A. tri",
+        "B. devet",
+        "C. trideset tri",
+        "D. sto"
+      ],
+      "correct": "D",
+      "exp": "100 pjevanja: Pakao 34 + Čistilište 33 + Raj 33 = 100.",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 28,
+      "q": "Koliko krugova ima Danteov Pakao?",
+      "opts": [
+        "A. tri",
+        "B. devet",
+        "C. trideset tri",
+        "D. sto"
+      ],
+      "correct": "B",
+      "exp": "Danteov Pakao ima 9 krugova (koncentričnih, sve dubljih i mračnijih).",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 29,
+      "q": "Kojim je jezikom napisana Božanstvena komedija?",
+      "opts": [
+        "A. latinskim",
+        "B. staroslavenskim",
+        "C. talijanskim",
+        "D. grčkim"
+      ],
+      "correct": "C",
+      "exp": "Dante je pisao toskanskim narječjem talijanskog (dolce stil novo) = talijanski.",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 30,
+      "q": "Kojom je strofom napisana Božanstvena komedija?",
+      "opts": [
+        "A. distihom",
+        "B. tercinom",
+        "C. katrenom",
+        "D. stancom"
+      ],
+      "correct": "B",
+      "exp": "Tercina = strofa od 3 stiha (aba bcb cdc...) = karakteristična forma Božanstvene komedije.",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 31,
+      "q": "Tko vodi Dantea kroz Pakao?",
+      "opts": [
+        "A. Beatrice",
+        "B. Ovidije",
+        "C. sv. Augustin",
+        "D. Vergilije"
+      ],
+      "correct": "D",
+      "exp": "Vergilije = Danteov vodič kroz Pakao i Čistilište (rimski pjesnik, autor Eneide).",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 32,
+      "q": "Koja dva pisca uz Dantea čine trolist predrenesanse?",
+      "opts": [
+        "A. Cervantes i Shakespeare",
+        "B. Ovidije i Plaut",
+        "C. Tasso i Ariosto",
+        "D. Boccaccio i Petrarca"
+      ],
+      "correct": "D",
+      "exp": "Trolist predrenesanse = Dante Alighieri + Francesco Petrarca + Giovanni Boccaccio.",
+      "ctx": "Dante Alighieri, Božanstvena komedija — Pakao, V. pjevanje (ulomak — drugi krug pakla)\n\nDo mjesta dođoh, gdje sva svjetla šute,\nŠumi kao more u oluji,\nkada ga vjetri s raznih strana mute.\n\nPakleni vihar, što bez stanke huji,\ntu nosi duše u zamahu punu:\nvrteći ih, bije, vrti ih u struji.\n\nKad bure s njima na rub grotla grunu,\nstane ih vika uz kuku i lele,\ni onda Božje veličanstvo kunu.\n\nShvah, da su kazna takve suze vrele\nza one, što im grijeh baš puti gove\ni kojima su strasti razum splele.\n\nKao što škorci krilma nošeni što plove\nzimi u jatu rastegnutu širom,\ntako i vjetar zle duhove ove\n\nvrti i nosi amo-tamo virom;\nnema im nade, da će ikad bijedu\nsmanjiti, kamo li uništi s mirom.\n\nDante Alig…"
+    },
+    {
+      "id": 33,
+      "q": "Kojom je epskom tehnikom napisan polazni tekst?",
+      "opts": [
+        "A. komentiranjem",
+        "B. opisivanjem",
+        "C. dijalogom",
+        "D. monologom"
+      ],
+      "correct": "C",
+      "exp": "Tekst je izmjena replika između Kanonika i Zgubidana = dijalog.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 34,
+      "q": "O čemu govori Kanonik u polaznome tekstu?",
+      "opts": [
+        "A. o nepotrebnosti obrazovanja",
+        "B. o primitivnosti ljudi",
+        "C. o važnosti poljoprivrede",
+        "D. o župnikovoj propovijedi"
+      ],
+      "correct": "A",
+      "exp": "Kanonik govori kako seljaci ne trebaju čitanje i pisanje = nepotrebnost obrazovanja za seljake.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 35,
+      "q": "Zašto se Zgubidan zamjerio Kanoniku?",
+      "opts": [
+        "A. Prijetio mu je sudom i zatvorom.",
+        "B. Nije se složio s njegovim idejama.",
+        "C. Rekao mu je da je smiješan.",
+        "D. Ne želi više svirati bajs."
+      ],
+      "correct": "B",
+      "exp": "Zgubidan kaže 'Ti si stara zvekasta kvrga-glava — moj kanonikee!' = nije se složio s Kanonikovima idejama protiv školstva.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 36,
+      "q": "Što znači sljedeća rečenica u kontekstu polaznoga teksta?\n'Zar ne imamo dosta gospode za te čarolije?'",
+      "opts": [
+        "A. Dobro je ostati živjeti na selu.",
+        "B. Škola nije za seljačku djecu.",
+        "C. Bolje je živjeti na selu, nego u gradu.",
+        "D. Seljački posao je častan i pošten."
+      ],
+      "correct": "B",
+      "exp": "'Zar ne imamo dosta gospode za te čarolije' = nije potrebno da seljačka djeca znaju čitati i pisati, to je za gospodu = škola nije za seljačku djecu.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 37,
+      "q": "Što o životu seoske djece govori sljedeća rečenica?\n'Sada pripni na svoj stari bajs kravicu plavku neka je na pašu po me, on vuče mjesto Ivice.'",
+      "opts": [
+        "A. Djeca su bezbrižna i besposlena.",
+        "B. Djeca su boležljiva i zanemarena.",
+        "C. Djeca su imala svoje poslove.",
+        "D. Djecu su učili raznim zanatima."
+      ],
+      "correct": "C",
+      "exp": "Ivica je vodio kravu na pašu = djeca su imala konkretne radne poslove na selu.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 38,
+      "q": "Što o Kanoniku govori njegova sljedeća rečenica?\n'...nositi Antikrstovo evanđelje: čitanje i pisanje!'",
+      "opts": [
+        "A. Vjerski je fanatik.",
+        "B. Sklon je razmišljanju.",
+        "C. Ljubomoran je.",
+        "D. Praznovjeran je."
+      ],
+      "correct": "A",
+      "exp": "Kanonik naziva čitanje i pisanje 'Antikrstovim evanđeljem' = fanatično vjersko odbacivanje obrazovanja = vjerski fanatik.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 39,
+      "q": "Kojemu književnom razdoblju pripada Ante Kovačić?",
+      "opts": [
+        "A. realizmu",
+        "B. romantizmu",
+        "C. protorealizmu",
+        "D. moderni"
+      ],
+      "correct": "A",
+      "exp": "Ante Kovačić (1854.–1889.) = hrv. realizam.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 40,
+      "q": "Kojoj tematici pripada djelo U registraturi?",
+      "opts": [
+        "A. pustolovnoj",
+        "B. društvenoj",
+        "C. povijesnoj",
+        "D. filozofskoj"
+      ],
+      "correct": "B",
+      "exp": "U registraturi = društvena tematika: sudbina seoskog dječaka koji uzlazi u grad, klasni sukobi.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 41,
+      "q": "Što je tema djela U registraturi?",
+      "opts": [
+        "A. raslojavanje sela i propast seoskih zadruga zbog stranog kapitala",
+        "B. sudbina siromašnog mladića koji pokušava uspjeti u gradu",
+        "C. propadanje hrvatskog plemstva u novim gospodarskim prilikama",
+        "D. staleške razlike kao prepreka ostvarenju ljubavi"
+      ],
+      "correct": "B",
+      "exp": "U registraturi = Ivica Kičmanović, seljačko dijete koje odlazi u grad i pokušava uspjeti = sudbina siromašnog mladića.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 42,
+      "q": "Koje je područje Hrvatske opisano u djelu U registraturi?",
+      "opts": [
+        "A. Dalmacija",
+        "B. Hrvatsko zagorje",
+        "C. Hrvatsko primorje",
+        "D. Slavonija"
+      ],
+      "correct": "B",
+      "exp": "U registraturi = smješteno u Hrvatskom zagorju (seoske sredine Zagorja, brda, zadruge).",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 43,
+      "q": "Koja je stilska figura uporabljena u sljedećoj Kanonikovoj rečenici?\n'Čim si me ti počastio?'",
+      "opts": [
+        "A. metafora",
+        "B. hiperbola",
+        "C. gradacija",
+        "D. ironija"
+      ],
+      "correct": "D",
+      "exp": "'Čim si me ti počastio?' = Kanonik kaže to sardonično/sarcastično u negativnom kontekstu = ironija.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 44,
+      "q": "U kojoj je od sljedećih rečenica uporabljena metonimija?",
+      "opts": [
+        "A. Ti si stara zvekasta kvrga-glava.",
+        "B. Poslao ga zakon.",
+        "C. Hm, nijeste vi mene slušali...",
+        "D. Ej, Zgubidane..."
+      ],
+      "correct": "B",
+      "exp": "'Poslao ga zakon' = zakon (apstraktan pojam/institucija) umjesto konkretnih osoba (vlasti/žandara) = metonimija.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 45,
+      "q": "Što označava trotočje u navedenom primjeru?\n'Hm, nijeste vi mene slušali... Kada su nam onoga adrapovca...'",
+      "opts": [
+        "A. izostavljeni tekst",
+        "B. prekinuti tekst",
+        "C. isprekidani govor",
+        "D. nenavedeni govor"
+      ],
+      "correct": "A",
+      "exp": "Trotočje između dvaju dijelova Kanonikova govora označava izostavljeni dio teksta (elipsa/elipsis).",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 46,
+      "q": "Prema kojemu je načelu napisan zarez u sljedećoj rečenici?\n'Ako bi tikve same rasle i rodile, zar bismo mi trebali orati!'",
+      "opts": [
+        "A. vokativnosti",
+        "B. inverzije",
+        "C. nizanja",
+        "D. isticanja"
+      ],
+      "correct": "B",
+      "exp": "'Ako bi tikve same rasle..., zar bismo...' = pogodbena rečenica ispred glavne = zarez zbog inverzije (zavisna ispred glavne).",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 47,
+      "q": "Kojim je glagolskim oblikom izrečen predikat u sljedećoj rečenici?\n'Hm, nijeste vi mene slušali...'",
+      "opts": [
+        "A. aoristom",
+        "B. imperfektom",
+        "C. prezentom",
+        "D. perfektom"
+      ],
+      "correct": "D",
+      "exp": "'Nijeste slušali' = niječni perfekt (niste = niječni prezent glagola biti + glagolski pridjev radni 'slušali') = perfekt.",
+      "ctx": "Ante Kovačić, U registraturi (ulomak — Kanonik i Zgubidan)\n\nHm, nijeste vi mene slušali... Kada su nam onoga adrapovca \"školnika\", golišava prtena bijelonju, svraku u kaputu, naslali ovamo i objesili o vrat, rekao sam ja: \"Potjerajmo ga vilama i motikama, pa se neće lje ni jednome više ra'iti u naše brdine nositi Antikrstovo evanđelje: čitanje i pisanje! Čitaj i piši ti vragu i njegovoj materi a ne mi seljaci! Zar ne imamo dosta gospode za te čarolije? Pa što ćemo s gospodom kad budemo mi svi znali čitati i pisati? Ako bi tikve same rasle i rodile, zar bismo mi trebali orati, kopati i gnojiti! He? A gospode treba da bude: tako bar prodikuje naš župnik.\"\n\n— Čim si me ti počastio? Bolje da si …"
+    },
+    {
+      "id": 48,
+      "q": "Kada je napisan roman Povratak Filipa Latinovicza?",
+      "opts": [
+        "A. u prvoj polovini 19. st.",
+        "B. u drugoj polovini 19. st.",
+        "C. u prvoj polovini 20. st.",
+        "D. u drugoj polovini 20. st."
+      ],
+      "correct": "C",
+      "exp": "Povratak Filipa Latinovicza (1932.) = prva polovica 20. stoljeća.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 49,
+      "q": "Kojoj književnoj vrsti romana pripada Povratak Filipa Latinovicza?",
+      "opts": [
+        "A. socijalnom",
+        "B. obiteljskom",
+        "C. psihološkom",
+        "D. pustolovnom"
+      ],
+      "correct": "C",
+      "exp": "Povratak Filipa Latinovicza = psihološki roman (unutarnja kriza, propadanje ličnosti, proučavanje psihe).",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 50,
+      "q": "Tko je Filip Latinovicz?",
+      "opts": [
+        "A. glazbenik",
+        "B. pisac",
+        "C. pustolov",
+        "D. slikar"
+      ],
+      "correct": "D",
+      "exp": "Filip Latinovicz = slikar koji se vraća u rodni kraj.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 51,
+      "q": "Što iskazuje Filip sljedećim rečenicama?\n'On je dobri i maleni Zygmusik, i to još njen? / O, kako je sve to bilo neobično i svečano!'",
+      "opts": [
+        "A. Obradovao se jer ga je majka priznala.",
+        "B. Zaćuden je majčinom prisnošću.",
+        "C. Zadivljen je majčinom elegancijom.",
+        "D. Veselio se dolazećem svečanom događaju."
+      ],
+      "correct": "B",
+      "exp": "Filip s čuđenjem/zaprepaštanjem doživljava majčinu prisnošću ('Zygmusik' = njezino ime za njega) = zaćuden je majčinom prisnošću.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 52,
+      "q": "Čime se od navedenoga očituje Filipovo stanje u vrućici?",
+      "opts": [
+        "A. auditivnim podražajima",
+        "B. okusnim senzacijama",
+        "C. vizualnim halucinacijama",
+        "D. olfaktivnim gađenjem"
+      ],
+      "correct": "C",
+      "exp": "'sve okomite crte nestajale su... vodoravni potezi kružili su oko njega vijugavo' = vizualne halucinacije od vrućice.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 53,
+      "q": "U kojima je od navedenih rečenica uporabljen vanjski opis?",
+      "opts": [
+        "A. ...naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga,...",
+        "B. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo.",
+        "C. Mahao je nogama, jeo već treću čokoladu sa slatkim vrhnjem,...",
+        "D. Mati se vratila tek poslijepodne."
+      ],
+      "correct": "B",
+      "exp": "'Oči su joj bile mutne... Obrve izlizane, lice upalo' = opis vanjskog izgleda lika = vanjski opis.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 54,
+      "q": "Što je tema romana Povratak Filipa Latinovicza?",
+      "opts": [
+        "A. društveno neprilagođeni pojedinac",
+        "B. uspon u visoko društvo",
+        "C. politička previranja u domovini",
+        "D. potraga za identitetom"
+      ],
+      "correct": "D",
+      "exp": "Povratak Filipa Latinovicza = Filipova potraga za vlastitim identitetom (tko je on, tko mu je otac, gdje mu je mjesto).",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 55,
+      "q": "Koje od navedenih djela pripada epskomu književnomu rodu?",
+      "opts": [
+        "A. Zore i vihori",
+        "B. U agoniji",
+        "C. Mirisi, zlato i tamjan",
+        "D. Preobraženja"
+      ],
+      "correct": "C",
+      "exp": "Mirisi, zlato i tamjan (Ivan Aralica, 1986.) = roman = epika. A = lirska zbirka, B = drama, D = lirska zbirka.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 56,
+      "q": "Koja ustanova u Republici Hrvatskoj nosi ime Miroslava Krleže?",
+      "opts": [
+        "A. Muzej suvremene umjetnosti",
+        "B. Institut za književnost",
+        "C. Leksikografski zavod",
+        "D. Hrvatsko narodno kazalište"
+      ],
+      "correct": "C",
+      "exp": "Leksikografski zavod Miroslav Krleža = hrvatska enciklopedijska ustanova nazvana po piscu.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 57,
+      "q": "U kojoj je od sljedećih rečenica uporabljena poredba?",
+      "opts": [
+        "A. ...da mu je mati naprahana brašnom kao klaun,...",
+        "B. ...pod tom bijelom brašnjavom obrazinom da ima drugo, žalosno, sivo, izmučeno lice.",
+        "C. ...što ih je čuvala u svilenoj pojastutenoj kutiji,...",
+        "D. ...vodoravni potezi kružili su oko njega vijugavo..."
+      ],
+      "correct": "A",
+      "exp": "'naprahana brašnom kao klaun' = poredba (simile): mati uspoređena s klaunom.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 58,
+      "q": "Koja je riječ antonim podcrtanom pridjevu u sljedećoj rečenici?\n'Putovali su u grad dugo u hladnom, nezagrijanom vagonu'",
+      "opts": [
+        "A. ugodnom",
+        "B. toplom",
+        "C. ledenom",
+        "D. jezovitom"
+      ],
+      "correct": "B",
+      "exp": "'Hladnom, nezagrijanom' ↔ 'toplom, zagrijanom' = antonim je 'toplom'.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 59,
+      "q": "Koji je glagolski oblik podcrtan u sljedećoj rečenici?\n'Ti si moj mali Zygmusik, zar ne?'",
+      "opts": [
+        "A. imperfekt",
+        "B. prezent",
+        "C. imperativ",
+        "D. aorist"
+      ],
+      "correct": "B",
+      "exp": "'Si' = 2. l. jd. prezenta glagola biti = prezent.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 60,
+      "q": "Kako glasi genitiv sintagme 'mali Zygmusik'?",
+      "opts": [
+        "A. mala Zygmusika",
+        "B. manjega Zygmusika",
+        "C. maloga Zygmusik",
+        "D. maloga Zygmusika"
+      ],
+      "correct": "D",
+      "exp": "'Mali Zygmusik' → genitiv: 'maloga Zygmusika' (opisni pridjev + vlastito ime u genitivu).",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 61,
+      "q": "Koja se glasovna promjena dogodila u obliku 'majci' (majka → majci)?",
+      "opts": [
+        "A. sibilarizacija",
+        "B. palatalizacija",
+        "C. nepostojano a",
+        "D. jotacija"
+      ],
+      "correct": "A",
+      "exp": "'Majka → majci': k ispred -i → sibilarizacija: k→c (majka + dativ i = majc-i). Sibilarizacija.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 62,
+      "q": "U kakvome su leksičko-semantičkom odnosu riječi 'vertikala' i 'okomica'?",
+      "opts": [
+        "A. u sinonimskom",
+        "B. u antonimskom",
+        "C. u homonimskom"
+      ],
+      "correct": "A",
+      "exp": "'Vertikala' i 'okomica' = ista geometrijska linija koja ide ravno gore-dolje = sinonimi.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 63,
+      "q": "Riječ 'kelner' njemačkog je podrijetla. Kojoj vrsti posuđenica pripada?",
+      "opts": [
+        "A. anglizmima",
+        "B. hungarizmima",
+        "C. galicizmima",
+        "D. germanizmima"
+      ],
+      "correct": "D",
+      "exp": "'Kelner' = od njem. Kellner = germanizam.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 64,
+      "q": "U kojemu je padežu podcrtana riječ u sljedećoj rečenici?\n'...a mati ga je u kavani ponovo pogladila...'",
+      "opts": [
+        "A. u genitivu",
+        "B. u dativu",
+        "C. u akuzativu",
+        "D. u lokativu"
+      ],
+      "correct": "D",
+      "exp": "'U kavani' = prijedlog 'u' + lokativ (Gdje? = u kavani = lokativ).",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 65,
+      "q": "Koji je od navedenih glagola vidski parnjak glagola 'primijetiti'?",
+      "opts": [
+        "A. vidjeti",
+        "B. zapaziti",
+        "C. prihvatiti",
+        "D. primjećivati"
+      ],
+      "correct": "D",
+      "exp": "'Primijetiti' (svršeni) → vidski parnjak nesvršeni = 'primjećivati'. Pravilno: primjećivati.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip u kavani s majkom)\n\nPutovali su u grad dugo u hladnom, nezagrijanom vagonu, a u gradu ostavila je mati Filipa u jednoj kavani pod staklenim lukom izloga, kod mramornog stola; naručila je za njega čokoladu i rekla kelneru neka pripazi na maloga, da će se ona skoro vratiti. Već u kavani Filip je bio u vrućici: sve okomite crte nestajale su pod njegovim pogledom u beskrajnim vertikalama, a vodoravni potezi kružili su oko njega vijugavo, kao neprekidno i uznemireno talasanje linija. Mati se vratila tek poslijepodne. Oči su joj bile mutne, umorne, natečene od suza, krvave. Obrve izlizane, lice upalo. Tu je Filip prvi put ustanovio da mu…"
+    },
+    {
+      "id": 66,
+      "q": "Koji je točan raspored?",
+      "opts": [
+        "A. 1E, 2A, 3B, 4D, 5F",
+        "B. 1C, 2A, 3B, 4D, 5F",
+        "C. 1E, 2A, 3B, 4F, 5D",
+        "D. 1E, 2D, 3B, 4A, 5F"
+      ],
+      "correct": "A",
+      "exp": "Mažuranić = Smrt Smail-age Čengića (E); Marulić = Judita (A); Hektorović = Ribanje i ribarsko prigovaranje (B); Relković = Satir iliti divji čovik (D); Lucić = Jur nijedna na svit vila (F). Dakle: 1E, 2A, 3B, 4D, 5F.",
+      "ctx": "Pjesnicima pridružite njihova djela:\n1. Ivan Mažuranić — 2. Marko Marulić — 3. Petar Hektorović — 4. Matija Antun Relković — 5. Hanibal Lucić\nA. Judita — B. Ribanje i ribarsko prigovaranje — C. Osman — D. Satir iliti divji čovik — E. Smrt Smail-age Čengića — F. Jur nijedna na svit vila\n\nKoji je točan raspored?"
+    },
+    {
+      "id": 67,
+      "q": "Pravilno pisanje: 'Grad se razvio na rubnim dijelovima (67.)___'",
+      "opts": [
+        "A. Panonske Nizine",
+        "B. Panonske nizine"
+      ],
+      "correct": "B",
+      "exp": "'Panonska nizina' = geografski naziv = samo N veliko (Panonska nizina, ne Nizina). B."
+    },
+    {
+      "id": 68,
+      "q": "Pravilno pisanje: 'Povijest Varaždina povezana je s (68.)___ srednjovjekovne'",
+      "opts": [
+        "A. poviješću",
+        "B. povješću"
+      ],
+      "correct": "A",
+      "exp": "'Povješću' = nestandardno; 'poviješću' = instrumental od 'povijest'. A."
+    },
+    {
+      "id": 69,
+      "q": "Pravilno pisanje: 'povijest (69.)___'",
+      "opts": [
+        "A. Varaždinske županije",
+        "B. varaždinske županije"
+      ],
+      "correct": "A",
+      "exp": "'Varaždinska županija' = vlastito ime administrativne jedinice = oba dijela velikim slovom. A."
+    },
+    {
+      "id": 70,
+      "q": "Pravilno pisanje: 'Krajem (70.)___ postaje'",
+      "opts": [
+        "A. Srednjega vijeka",
+        "B. srednjega vijeka"
+      ],
+      "correct": "B",
+      "exp": "'Srednji vijek' = povijesno razdoblje = piše se malo (kao renesansa, barok...). B."
+    },
+    {
+      "id": 71,
+      "q": "Pravilno pisanje: '(71.)___ grad toga dijela Hrvatske'",
+      "opts": [
+        "A. najnapučeniji",
+        "B. najnapučeniji"
+      ],
+      "correct": "A",
+      "exp": "'Najnapučeniji' = superlativ od 'napučen' = složenica, piše se zajedno. A."
+    },
+    {
+      "id": 72,
+      "q": "Pravilno pisanje tvrave: '(72.)___'",
+      "opts": [
+        "A. Stari Grad",
+        "B. Stari grad"
+      ],
+      "correct": "A",
+      "exp": "'Stari Grad' = ime tvrđave (vlastito ime) = oba dijela velikim slovom. A."
+    },
+    {
+      "id": 73,
+      "q": "Pravilno pisanje: 'mnoge barokne (73.)___ palače'",
+      "opts": [
+        "A. plemićke",
+        "B. plemenite"
+      ],
+      "correct": "A",
+      "exp": "'Plemićke palače' = posvojni pridjev od 'plemić' = pravilno 'plemićke'. A."
+    },
+    {
+      "id": 74,
+      "q": "Pravilno pisanje: 'Lisakova kula u (74.)___'",
+      "opts": [
+        "A. Gajevoj ulici",
+        "B. Gajevoj Ulici"
+      ],
+      "correct": "A",
+      "exp": "'Gajevoj ulici' = ime ulice: vlastito ime 'Gajevoj' (od Gaj), 'ulici' = opća imenica = malo u. A."
+    },
+    {
+      "id": 75,
+      "q": "Pravilno pisanje: 'Lančana kula na (75.)___'",
+      "opts": [
+        "A. Stančevu trgu",
+        "B. Stančevu Trgu"
+      ],
+      "correct": "A",
+      "exp": "'Stančev trg' = ime trga: vlastito 'Stančev', opće 'trg' = malo t. A."
+    },
+    {
+      "id": 76,
+      "q": "Pravilno pisanje: 'Varaždin poznat u svijetu glazbe po (76.)___'",
+      "opts": [
+        "A. Varaždinskim baroknim večerima",
+        "B. Varaždinskim baroknim Večerima"
+      ],
+      "correct": "A",
+      "exp": "'Varaždinski barokni večeri' = ime manifestacije = samo V veliko (prva riječ), ostale malo. A."
+    }
+  ]
+}

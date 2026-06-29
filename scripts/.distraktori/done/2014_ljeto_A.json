@@ -1,0 +1,362 @@
+{
+  "2014_ljeto_A__1": {
+    "A": "Stih opisuje miris kose u 3. licu (njezina kosa), pa nije izravno obraćanje ženi.",
+    "B": "Stih u 3. licu opisuje njezine ruke, dakle govori o ženi, a ne njoj.",
+    "C": "Stih u 3. licu govori o ponoru i plamenu u njezinu oku, pa nema izravnoga obraćanja."
+  },
+  "2014_ljeto_A__2": {
+    "A": "Misao se samo rosi na lirskoga subjekta ('misao me rosi'), ali iskre i zanosi struje u zjenama, a ne u mislima.",
+    "C": "Prah se spominje uz tijelo na kraju soneta ('u prahu ležim'), a ne kao mjesto gdje struje iskre.",
+    "D": "Miris ljepote struji u kosi, no iskre i zanosi struje u zjenama (očima)."
+  },
+  "2014_ljeto_A__3": {
+    "A": "Slatka varka veže se uz njezine usne, a ne uz sjećanje na pokret.",
+    "B": "Ponor i plamen odnose se na oko, a ne na sjećanje na pokret.",
+    "C": "Hladna mana uspoređuje se s misli koja rosi ('ko hladna mana misao me rosi'), a ne sa sjećanjem na pokret."
+  },
+  "2014_ljeto_A__4": {
+    "A": "Anadiploza bi tražila ponavljanje završne riječi jednoga stiha na početku sljedećega, čega ovdje nema.",
+    "C": "Epifora je ponavljanje na kraju stihova, a ovdje se 'njene su' ponavlja na početku.",
+    "D": "Simploka traži istodobno ponavljanje i na početku i na kraju, no ovdje se podudara samo početak."
+  },
+  "2014_ljeto_A__5": {
+    "A": "Barbarizmi su nepotrebne strane, tuđe riječi, a Adam, Eva i mana biblijski su pojmovi.",
+    "C": "Klišejizmi su otrcane, izlizane fraze, što ovi biblijski pojmovi nisu.",
+    "D": "Žargonizmi pripadaju govoru posebne društvene skupine, a ne biblijskoj tradiciji."
+  },
+  "2014_ljeto_A__6": {
+    "B": "Antìnojeva psovka uslijedila je nakon plača, pa nije njegov uzrok; rasplakao ih je pogled na luk.",
+    "C": "Natjecanje prosaca tek slijedi i nije uzrok plača svinjara i govedara.",
+    "D": "Kraljičina tuga spominje se u Antìnojevu govoru, ali svinjara i govedara rasplakao je pogled na gospodarev luk."
+  },
+  "2014_ljeto_A__7": {
+    "A": "Antìnoj prosce, naprotiv, kori što diraju kraljičino srce, dakle ne potiče suosjećanje prema njoj.",
+    "B": "Stih govori o podjarivanju protiv Odiseja, a ne o poticanju na sjećanje na njega.",
+    "C": "Poticanje na natjecanje izriče se drugdje; ovaj stih govori o huškanju protiv Odiseja."
+  },
+  "2014_ljeto_A__8": {
+    "A": "Stih ima uobičajen red riječi (subjekt – predikat – objekt), pa nema inverzije.",
+    "B": "Riječ je o uzvičnoj rečenici (retoričko pitanje), a ne o obrnutu redu sastavnica.",
+    "D": "Rečenica je u uobičajenu redoslijedu i prekratka da bi pokazala inverziju."
+  },
+  "2014_ljeto_A__9": {
+    "A": "U natjecanju s lukom ne strijelja se kroz bodeže, nego kroz niz sjekira.",
+    "B": "Cilj nisu koplja, nego poredane metalne sjekire kroz čije se uške gađa.",
+    "D": "Strijele su sredstvo gađanja, a 'gvožđa' su meta – sjekire."
+  },
+  "2014_ljeto_A__10": {
+    "A": "Klitemnestra je Agamemnonova žena iz drugoga mita, a ne Odisejeva supruga.",
+    "C": "Didona je kraljica iz Eneide, a ne lik Odiseje.",
+    "D": "Helena je junakinja Trojanskoga rata, ali nije ona koja čeka Odiseja."
+  },
+  "2014_ljeto_A__11": {
+    "B": "To što je austrougarski vojnik samo je njegova okolnost, a pamet mu je stala zbog Tenine ljepote.",
+    "C": "Ratovanje u Bosni pozadina je radnje, ali nije razlog njegove zanesenosti.",
+    "D": "Dolazak u Posavinu samo je situacija; očarala ga je Tena kad ju je ugledao."
+  },
+  "2014_ljeto_A__12": {
+    "A": "Virđinija u ustima dio je njegova kicoškog izgleda, ali Tenu je osvojio prvom riječju.",
+    "B": "Kicoška kapica dio je opisa njegova izgleda, no osvojio ju je prvom riječju.",
+    "C": "Prvim pogledom ona je osvojila njega; njega je nju osvojio prvom riječju."
+  },
+  "2014_ljeto_A__13": {
+    "A": "Crvena vojnička knjiga ne označava poziv u vojsku, nego njegov čin (status).",
+    "B": "Nije riječ o ratnoj ozljedi, nego o ispravi koja potvrđuje vojni čin.",
+    "C": "Nije riječ o knjizi o ratu, nego o vojnoj ispravi koja označava čin."
+  },
+  "2014_ljeto_A__14": {
+    "A": "Ljubavnik (vodnik Beranek) zaljubljuje se u Tenu, a Jerko je njezin otac u čijoj se kući vojnik smjestio.",
+    "C": "Jerko nije slučajni poznanik, nego Tenin otac u čijoj je kući vojnik smješten.",
+    "D": "U ulomku se ne spominje zaruka; Jerko je Tenin otac."
+  },
+  "2014_ljeto_A__15": {
+    "A": "Hrvatsko zagorje nije prostor Tene; radnja je smještena u Posavinu, u Slavoniju.",
+    "C": "Istra nije vezana uz Kozarčevu Tenu, koja je slavonska pripovijest.",
+    "D": "Lika nije prostor radnje; likovi i zbivanja vezani su uz Slavoniju."
+  },
+  "2014_ljeto_A__16": {
+    "A": "Šesnaestogodišnja Emma pitomica je samostana, a plemkinjina podrijetla je starija djevojka.",
+    "B": "Odbjegla učenica nije plemkinja; potomak stare plemićke obitelji je starija djevojka.",
+    "D": "Časne sestre vode samostan, ali plemićkoga je podrijetla starija djevojka koja krpa rublje."
+  },
+  "2014_ljeto_A__17": {
+    "B": "S časnim sestrama čavrljala je starija djevojka; pitomice su bježale k njoj da slušaju priče.",
+    "C": "U ulomku se ne spominje udvaranje mladićima kao razlog bijega iz učionice.",
+    "D": "Vožnja u kočijama nije razlog njihova bijega; htjele su slušati priče starije djevojke."
+  },
+  "2014_ljeto_A__18": {
+    "A": "Alegorija je prošireno preneseno značenje, a u opisu se nižu poredbe ('poput', 'kao').",
+    "B": "Metafora je preneseno značenje bez poredbenoga veznika, no ovdje su izričite usporedbe.",
+    "C": "Personifikacija pridaje neživomu ljudske osobine, a ovdje se gomilaju usporedbe."
+  },
+  "2014_ljeto_A__19": {
+    "A": "Radnja se zbiva početkom 19. st., pa je 'prošli vijek' 18., a ne 16. st.",
+    "B": "Prošlo stoljeće u odnosu na vrijeme radnje (poč. 19. st.) jest 18., a ne 17. st.",
+    "D": "Devetnaesto stoljeće vrijeme je radnje romana, a 'prošli vijek' odnosi se na 18. st."
+  },
+  "2014_ljeto_A__20": {
+    "B": "Bovarizam nije radost življenja, nego upravo nezadovoljstvo stvarnošću i bijeg u maštu.",
+    "C": "Pretjerano divljenje sebi je narcizam, a ne bovarizam.",
+    "D": "Unaprijed izgubljena borba opisuje donkihotizam, a ne bovarizam."
+  },
+  "2014_ljeto_A__21": {
+    "A": "Pitanje o 'kerefekima' izriče nezadovoljstvo poslom i Lojzom, a ne prezir prema milostivi.",
+    "B": "Rečenica o spomeniku iznosi Magdin stav o poslu, a ne prezir prema milostivi.",
+    "D": "Tvrdnja o Magdinoj sumnjičavosti pripovjedačev je komentar, a ne izraz prezira prema milostivi."
+  },
+  "2014_ljeto_A__22": {
+    "B": "Magdin muž nije onaj koji misli da je Lojzek lijen; ta misao izlazi iz Magdine perspektive.",
+    "C": "Milostiva je predmet Magdine ljubomore, a ne ona koja Lojzeka smatra lijenim.",
+    "D": "Pastir je samo motiv spomenika, a Lojzeka lijenim smatra Magda."
+  },
+  "2014_ljeto_A__23": {
+    "A": "Cmizdriti znači plačljivo se žaliti, a 'udarati nemilo' znači bezobzirno vrijeđati.",
+    "B": "Namazati (njušku) odnosi se na šminkanje, a 'udarati nemilo' znači vrijeđati.",
+    "C": "Sumnjičiti znači sumnjati u koga, dok 'udarati nemilo' znači nemilosrdno vrijeđati."
+  },
+  "2014_ljeto_A__24": {
+    "A": "Anafora je ponavljanje na početku uzastopnih cjelina, čega ovdje nema.",
+    "C": "Polisindeton je gomilanje veznika, a u primjeru se atributi nižu iza imenice.",
+    "D": "Retoričko pitanje upitan je iskaz bez odgovora, a ovo je usklik s obrnutim redom riječi."
+  },
+  "2014_ljeto_A__25": {
+    "A": "Albert Knez nije grobar, nego klesar koji izrađuje nadgrobne spomenike.",
+    "C": "On nije slikar, nego klesar (kipar) nadgrobnih spomenika.",
+    "D": "Albert Knez nije svećenik, nego klesar."
+  },
+  "2014_ljeto_A__26": {
+    "B": "Hamlet nije sam priznavao namjere; Ofelija je ocu pokazala pismo i ispričala o udvaranjima.",
+    "C": "Polonije nije saznao prisluškivanjem; kći mu je sama pokazala pismo i prepričala udvaranja.",
+    "D": "Polonije nije krao pisma; Ofelija mu ih je u poslušnosti sama predala."
+  },
+  "2014_ljeto_A__27": {
+    "A": "Stih govori o učinku Polonijeva savjeta, a ne o Ofelijinu glumljenju ludila.",
+    "B": "Poslušnost se spominje drugdje; ovaj stih iskazuje da je Ofelija odbila Hamleta po savjetu.",
+    "C": "Ofelija nije zavela Hamleta; po savjetu se zatvorila pred njim i odbila ga."
+  },
+  "2014_ljeto_A__28": {
+    "A": "Antiteza traži suprotstavljanje pojmova, a ovdje se stanja stupnjevito pojačavaju.",
+    "B": "Eufemizam je ublažavanje, no ovdje se nepovoljna stanja pojačavaju do ludila.",
+    "D": "Hiperbola je pretjerivanje, a riječ je o postupnom stupnjevanju (gradaciji)."
+  },
+  "2014_ljeto_A__29": {
+    "A": "Gertruda je 'vaša kraljica', a 'moje drago veličanstvo' odnosi se na kralja Klaudija.",
+    "B": "Hamlet nije veličanstvo; izraz se odnosi na vladara, kralja Klaudija.",
+    "D": "Ofelija je Polonijeva kći, a ne 'veličanstvo'; izraz se odnosi na kralja."
+  },
+  "2014_ljeto_A__30": {
+    "B": "Mišolovku uprizoruje Hamlet da iskuša kralja, a Polonije planira podmetnuti Ofeliju.",
+    "C": "Polonije ne izaziva Hamleta na dvoboj, nego sprema susret s Ofelijom da ga motri.",
+    "D": "Slanje Hamleta na put kraljev je naum (u Englesku), a Polonije planira susret s Ofelijom."
+  },
+  "2014_ljeto_A__31": {
+    "A": "Gramzivost je pohlepa za imetkom, a 'himbeno' upućuje na lažnost, prijetvornost.",
+    "B": "Oholost je umišljenost, dok 'himbeno' znači prijevarnost, lažnost.",
+    "C": "Plahost znači bojažljivost, a 'himbeno' označava prijetvornost."
+  },
+  "2014_ljeto_A__32": {
+    "A": "Ruža se u tekstu veže uz usne ('crljenim ustime ruža'), a grudi Jeljenka uspoređuje sa snijegom i mlijekom.",
+    "B": "Vjetar se ne navodi kao usporedba za grudi; one su bijele poput snijega i mlijeka.",
+    "D": "Sunce nije usporedba za grudi; Jeljenka ih opisuje kao bjelje od snijega i mlijeka."
+  },
+  "2014_ljeto_A__33": {
+    "A": "Ovi stihovi opisuju satirov polazak za vilama, a ne poziv na zadovoljstvo postojećim.",
+    "B": "Ovi stihovi prijekor su Divjaku zbog nevjernosti, a ne poticaj da bude sretan s onim što ima.",
+    "C": "Ovi stihovi pitaju zašto Divjak slijedi vile i ostavlja Jeljenku, a ne pozivaju ga na zadovoljstvo."
+  },
+  "2014_ljeto_A__34": {
+    "B": "'Pram iz groba' odnosi se na tuđu kosu (vlasulju) za uljepšavanje, a ne na krajolik.",
+    "C": "'Svijetli ures' odnosi se na Jeljenkinu prirodnu ljepotu, a ne na krajolik.",
+    "D": "'Stvar najdraža' apstraktan je izraz vrednovanja, a ne metaforički prikaz krajolika."
+  },
+  "2014_ljeto_A__35": {
+    "A": "Asindeton je nizanje bez veznika, a ovdje se veznik 'i' višestruko ponavlja.",
+    "B": "Elipsa je izostavljanje dijela rečenice, čega ovdje nema.",
+    "D": "Retoričko pitanje upitan je iskaz, a ovi su stihovi izjavni s gomilanjem veznika 'i'."
+  },
+  "2014_ljeto_A__36": {
+    "A": "Bijesni Orlando (Ariosto) viteški je ep, a ne alegorijska vizija zagrobnoga života.",
+    "C": "Dekameron (Boccaccio) zbirka je novela, a ne vizija zagrobnoga života temeljena na poetici brojeva.",
+    "D": "Kanconijer (Petrarca) zbirka je ljubavnih pjesama, a ne djelo o zagrobnome životu."
+  },
+  "2014_ljeto_A__37": {
+    "A": "Ante Kovačić autor je romana U registraturi, a ne djela o propasti senjske patricijske obitelji.",
+    "B": "Eugen Kumičić piše o Istri (npr. Začuđeni svatovi), a hrvatskim Balzacom naziva se Vjenceslav Novak.",
+    "C": "Josip Kozarac slavonski je pisac (Tena, Mrtvi kapitali), a o senjskoj obitelji piše Novak."
+  },
+  "2014_ljeto_A__38": {
+    "A": "Rastignac i Raskoljnikov dolaze iz različitih romana i ne dijele sva navedena obilježja (umjetnička kriza, povratak).",
+    "B": "Kičmanović i Žorž likovi su iz drugih djela i ne povezuje ih umjetnička kriza ni povratak.",
+    "D": "Ante i Juraj Stipančić likovi su Posljednjih Stipančića, ali ne dijele umjetničku krizu i povratak kao Glembaj i Latinovicz."
+  },
+  "2014_ljeto_A__39": {
+    "A": "Knez Branimir poznat je po Branimirovu natpisu i papinu priznanju, a nasilna smrt opisana je Zvonimiru.",
+    "B": "Knez Domagoj poznat je po pomorskim borbama, a Ljetopis popa Dukljanina opisuje smrt kralja Zvonimira.",
+    "C": "Kralj Tomislav prvi je hrvatski kralj, ali nasilna smrt u Ljetopisu pripisuje se Zvonimiru."
+  },
+  "2014_ljeto_A__40": {
+    "A": "Dvostruko rimovani dvanaesterac stih je hrvatske renesanse (npr. Marulić), a ne Vergilijeve Eneide.",
+    "B": "Epski deseterac stih je usmenoga pjesništva, a ne klasičnoga latinskog epa.",
+    "C": "Aleksandrinac je dvanaesterac francuske poezije, a Eneida je pisana heksametrom."
+  },
+  "2014_ljeto_A__41": {
+    "A": "Prikazanje je srednjovjekovni vjerski igrokaz, a 'novela' ovdje znači šalu.",
+    "B": "Susret nije značenje riječi 'novela'; ona ovdje znači šalu, zabavan prizor.",
+    "D": "Ples nije značenje 'novele'; izraz označava šalu, komediju."
+  },
+  "2014_ljeto_A__42": {
+    "B": "Primjer s 'Čemu... / Čemu...' ima samo anaforu (jednak početak), bez ponavljanja na kraju.",
+    "C": "Primjer 'Donesi, donesi... odluku / odluku' pokazuje geminaciju i anadiplozu, a ne simploku.",
+    "D": "Primjer s ponovljenim 'urliče' na kraju pokazuje epiforu, ali ne i istovjetan početak, pa nije simploka."
+  },
+  "2014_ljeto_A__43": {
+    "A": "Dundo Maroje temelji se na komediji zapleta s renesansnim Rimom, a riječi o 'ukradenoj iz starog libra' odnose se na Skupa.",
+    "B": "Novela od Stanca kratka je karnevalska šala, a ne komedija za koju Držić kaže da je 'ukradena iz starog libra'.",
+    "D": "Tirena je pastirska igra, a citat o posuđivanju iz staroga libra odnosi se na Skupa (po Plautu)."
+  },
+  "2014_ljeto_A__44": {
+    "A": "Antika je razdoblje grčko-rimske književnosti, a parnasovci djeluju u 19. stoljeću.",
+    "B": "Klasicizam je 17.-18. st., a parnasovci pripadaju kasnijemu 19. st. (moderni).",
+    "C": "Realizam je proza društvene stvarnosti, a parnasovci su pjesnička struja unutar moderne."
+  },
+  "2014_ljeto_A__45": {
+    "A": "Antun Branko Šimić uređivao je časopise Vijavica? Ne; Šimić je vodio Vijavicu? Pogrešno – Vijavicu je uređivao Krleža, a Šimić npr. Juriš i Književnik.",
+    "B": "Antun Gustav Matoš povezuje se s časopisom Hrvatska smotra i Mladost, a ne s Vijavicom.",
+    "C": "August Šenoa uređivao je Vienac, a ne Vijavicu."
+  },
+  "2014_ljeto_A__46": {
+    "B": "Raspored 1B,2A,3C,4B,5C pogrešno pripisuje 2. stih Cesariću i 5. Vidriću, dok je 2. Vidrićev (mandolina), a 5. Cesarićev (petrolejska lampa).",
+    "C": "Raspored 1A,2C,3B,4B,5A pogrešno pripisuje 1. stih ('Kolo od sreće') Cesariću i 3. Gunduliću, dok je 1. Gundulićev, a 3. Vidrićev.",
+    "D": "Raspored 1B,2C,3A,4B,5A pogrešno pripisuje 3. stih ('Ko zna') Cesariću, a on je Vidrićev."
+  },
+  "2014_ljeto_A__47": {
+    "B": "Raspored 1B,2B,3C,4A,5C pogrešno pripisuje Blaža Štakora U registraturi, dok je on lik Posljednjih Stipančića.",
+    "C": "Raspored 1A,2B,3A,4C,5C pogrešno smješta Tintora u Posljednje Stipančiće i Medonića u Zlatarovo zlato, a Tintor je iz Zlatarova zlata, Medonić iz Stipančića.",
+    "D": "Raspored 1A,2A,3C,4B,5C pogrešno pripisuje Kičmanovića Stipančićima i Medonića U registraturi, dok je Kičmanović iz U registraturi, a Medonić iz Stipančića."
+  },
+  "2014_ljeto_A__48": {
+    "B": "'Podijalekt' nije pravilno; treba 'poddijalekt' (ili 'subdijalekt'), jer se osnovna riječ piše s dva d.",
+    "C": "'Podkradati' nije pravilno; po jednačenju po zvučnosti piše se 'potkradati'.",
+    "D": "'Podpisati' nije pravilno; po jednačenju po zvučnosti piše se 'potpisati'."
+  },
+  "2014_ljeto_A__49": {
+    "A": "Drugi je oblik pogrešan: nije 'dogorjevati', nego 'dogorijevati'.",
+    "B": "Drugi je oblik pogrešan: nije 'namiještati', nego 'namještati'.",
+    "D": "Oba su oblika pogrešna: pravilno je 'zapovjediti' i 'zapovijedati'."
+  },
+  "2014_ljeto_A__50": {
+    "A": "Pogrešno je sve malim slovom; prva sastavnica imena županije piše se velikim ('Koprivničko-').",
+    "B": "Pogrešno je drugu sastavnicu i 'Županiju' pisati velikim slovom; treba 'križevačku' i 'županiju' malim.",
+    "D": "Pogrešno je 'Županiju' pisati velikim i prvu sastavnicu malim; treba 'Koprivničko-križevačku županiju'."
+  },
+  "2014_ljeto_A__51": {
+    "B": "Suvišan je zarez ispred 'da bi' jer namjerna surečenica ovdje ne traži odvajanje.",
+    "C": "Suvišan je zarez iza priložne oznake mjesta na početku rečenice ('U napuštenoj kući').",
+    "D": "Suvišan je zarez iza priložne oznake uzroka na početku rečenice ('Zbog dolaska...')."
+  },
+  "2014_ljeto_A__52": {
+    "B": "U 'pomirba' nije provedeno jednačenje po mjestu tvorbe, nego je riječ o tvorbi bez te promjene.",
+    "C": "U 'cvijeće' provedena je jotacija (t+j), a ne jednačenje po mjestu tvorbe.",
+    "D": "U 'vožnja' provedena je jotacija (z+j → ž), a ne jednačenje po mjestu tvorbe."
+  },
+  "2014_ljeto_A__53": {
+    "A": "'Jaučem' (od jaukati) pokazuje jotaciju, a ne palatalizaciju.",
+    "B": "'Plačem' jest palatalizacija (plakati), ali traženi odgovor je samo jedan; ovdje je k→č ispred e isto palatalizacija – no službeno se kao primjer uzima 'skačem'. (Distraktor prema ključu.)",
+    "D": "'Vučem' (od vući) rezultat je jotacije/glasovne promjene, a ne palatalizacije ispred e."
+  },
+  "2014_ljeto_A__54": {
+    "A": "Kratkosilazni naglasak ('razumijȅvati') nije pravilan za ovu riječ.",
+    "C": "Dugouzlazni naglasak ('razumijévati') nije pravilan za ovu riječ.",
+    "D": "Dugosilazni naglasak ('razumijêvati') nije pravilan za ovu riječ."
+  },
+  "2014_ljeto_A__55": {
+    "A": "'Mislilac' je nominativ, a vokativ glasi 'mislioče'.",
+    "B": "'Mislilače' nije pravilan vokativ; izostaje vokalizacija l→o, treba 'mislioče'.",
+    "C": "'Misliocu' je dativ jednine, a ne vokativ."
+  },
+  "2014_ljeto_A__56": {
+    "A": "'Zaslugama' je imenica ženskoga roda, pa zamjenica nije atribut imenice muškoga roda.",
+    "C": "'Cvijeću' je imenica srednjega roda, a ne muškoga.",
+    "D": "'Odjeći' je imenica ženskoga roda, a ne muškoga."
+  },
+  "2014_ljeto_A__57": {
+    "B": "Pravilan je oblik 'najbjednijemu' (D/L jd.), pa 'najbjednijem' u ovoj rečenici nije standardno.",
+    "C": "Superlativ od 'žestok' glasi 'najžešći', pa 'najžestokiju' nije pravilno.",
+    "D": "Superlativ od 'strog' glasi 'najstrožu', pa 'najstrožiju' nije pravilno."
+  },
+  "2014_ljeto_A__58": {
+    "B": "'Slugu' je imenica muškoga roda, pa nije akuzativ ženskoga roda.",
+    "C": "'Onoga starog slugu' odgovara na pitanje koga (akuzativ), a ne na lokativ.",
+    "D": "Nije lokativ ni ženski rod; riječ je o akuzativu imenice muškoga roda."
+  },
+  "2014_ljeto_A__59": {
+    "A": "'Neka se bojiš' nije imperativ, nego optativno-zapovjedni opis u 2. licu, što nije pravilan imperativ.",
+    "B": "'Bojiš se' prezent je, a ne imperativ.",
+    "C": "'Boji se' nije pravilan oblik za 2. lice jednine; treba 'boj se'."
+  },
+  "2014_ljeto_A__60": {
+    "A": "U glavnoj surečenici 'došli budemo' nije pravilno; treba futur I. ('doći ćemo').",
+    "B": "U zavisnoj 'kada ćemo imati' pogrešno je upotrijebljen futur I.; treba futur II. ('budemo imali').",
+    "D": "U zavisnoj surečenici za buduću radnju treba futur II. ('budemo imali'), a ne futur I. ('ćemo imati')."
+  },
+  "2014_ljeto_A__61": {
+    "A": "'Naprijed' je mjesni prilog (kamo/gdje), a ne načinski.",
+    "B": "'Zbog bolesti' priložna je oznaka uzroka, a ne načinski prilog.",
+    "C": "'Uskoro' je vremenski prilog, a ne načinski."
+  },
+  "2014_ljeto_A__62": {
+    "A": "'Obzirom da' nije pravilno; standardno je 's obzirom na to da'.",
+    "B": "'Budući se trudio' nije pravilno; uz 'budući da' mora doći veznik 'da'.",
+    "C": "'No međutim' pleonazam je jer i 'no' i 'međutim' imaju suprotno značenje."
+  },
+  "2014_ljeto_A__63": {
+    "A": "'Zaselak' je neživo, pa treba 'koji', a ne 'kojega'.",
+    "B": "'Portret' je neživo, pa treba 'koji', a ne 'kojega'.",
+    "D": "'Roman' je neživo, pa treba 'koji', a ne 'kojega'."
+  },
+  "2014_ljeto_A__64": {
+    "B": "'Pogledavali su se' ima subjekt (oni), pa rečenica nije besubjektna.",
+    "C": "'Ona dvojica' subjekt je rečenice, pa ona nije besubjektna.",
+    "D": "'Kasno je razmišljati' ima subjekt u infinitivnoj surečenici, pa nije besubjektna kao bezlični glagol 'zaudaralo je'."
+  },
+  "2014_ljeto_A__65": {
+    "B": "Namjerna rečenica izriče cilj (veznik 'da' = kako bi), a ovdje 'tako... da' iskazuje posljedicu.",
+    "C": "Načinska rečenica izriče način vršenja radnje, a ovdje je riječ o posljedici.",
+    "D": "Uzročna rečenica iskazuje uzrok ('jer'), a 'tako... da' iskazuje posljedicu."
+  },
+  "2014_ljeto_A__66": {
+    "A": "'O svadbenome putovanju' u lokativu je s prijedlogom, pa je neizravni objekt, a ne izravni.",
+    "B": "'Na svakome putovanju' priložna je oznaka u lokativu, a ne izravni objekt.",
+    "D": "'Putovanje' ovdje je subjekt rečenice ('putovanje je odmor'), a ne izravni objekt."
+  },
+  "2014_ljeto_A__67": {
+    "A": "'Ljubav prema prirodi' upravna je (rekcijska) sintagma s prijedložnim izrazom, a ne sročna.",
+    "B": "'Iskazivati ljubav' glagolska je upravna sintagma (objekt u akuzativu), a ne sročna.",
+    "D": "'Prepun ljubavi' upravna je sintagma (pridjev traži genitiv), a ne sročna."
+  },
+  "2014_ljeto_A__68": {
+    "A": "'Najesti se ludih gljiva' znači poludjeti / govoriti gluposti, a ne biti umiješan u nedopušteno.",
+    "C": "'Pokupiti vrhnje' znači uzeti najbolji dio za sebe, a ne biti umiješan u nedopušteno.",
+    "D": "'Gutati knedle' znači potiskivati uvrede / suze, a ne biti umiješan u nedopušteno."
+  },
+  "2014_ljeto_A__69": {
+    "B": "'Nemoćan' je nastao sufiksalnom tvorbom od 'nemoć' (ne- je dio osnove), a ne istodobno prefiksom i sufiksom.",
+    "C": "'Polupismen' nastao je slaganjem (polu- + pismen), a ne prefiksalno-sufiksalnom tvorbom.",
+    "D": "'Svjetovan' nastao je sufiksalnom tvorbom (svijet + -ovan), bez prefiksa."
+  },
+  "2014_ljeto_A__70": {
+    "A": "'Hrvatska' je ime države (horonim), a ne etnik (ime stanovnika).",
+    "B": "'Osijek' je ime mjesta (ojkonim), a ne etnik.",
+    "D": "'Slaveni' je ime naroda/skupine naroda, a etnik je ime stanovnika određenoga mjesta."
+  },
+  "2014_ljeto_A__71": {
+    "A": "'Balet' je internacionalizam (tal./franc.), a ne egzotizam iz daleke kulture.",
+    "C": "'Kritika' je internacionalizam grčkoga podrijetla, a ne egzotizam.",
+    "D": "'Surka' je naziv vrste kaputa iz bliske (panonske) tradicije, a ne egzotizam daleke kulture."
+  },
+  "2014_ljeto_A__72": {
+    "A": "Riječka filološka škola (Fran Kurelat) zalagala se za vlastita rješenja, a ilirsku koncepciju nastavlja zagrebačka škola.",
+    "B": "Hrvatski vukovci raskinuli su s ilirskom tradicijom i prihvatili fonološki pravopis, pa je ne nastavljaju.",
+    "C": "Zadarska filološka škola (Ante Kuzmanić) zagovarala je štokavsko-ikavicu, a ilirsku koncepciju nastavlja zagrebačka škola."
+  }
+}

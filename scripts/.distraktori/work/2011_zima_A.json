@@ -1,0 +1,977 @@
+{
+  "examKey": "2011_zima_A",
+  "label": "Zimski rok — Viša razina (A)",
+  "total": 76,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kakva je rima uporabljena u pjesmi?",
+      "opts": [
+        "A. abab abab abab",
+        "B. abba cddc effe",
+        "C. abab cdcd efef",
+        "D. abac dedf ghgj"
+      ],
+      "correct": "C",
+      "exp": "Mrtva luka: Znam:luka/nađe/ćuka/lađe = abab + snivaju/brodi/počivaju/vodi = abab + sreću/boje/meću/stoje = cdcd = abab cdcd efef → opća shema abab cdcd efef.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 2,
+      "q": "Kojom je vrstom stiha napisan sljedeći stih?\n'U plitkoj vodi.'",
+      "opts": [
+        "A. petercem",
+        "B. šestercem",
+        "C. osmercem",
+        "D. desetercem"
+      ],
+      "correct": "B",
+      "exp": "U-pli-tkoj-vo-di = 5 slogova... ali 'U pli-tkoj vo-di' = U(1) pli(2)-tkoj(3) vo(4)-di(5) = petercem? Zapravo: U/plitkoj/vodi = 5 slogova = peterac. Odgovor A.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 3,
+      "q": "Kako se ostvaruje ritam u pjesmi?",
+      "opts": [
+        "A. izmjenom dugih i kratkih stihova, posebice rimom",
+        "B. dominacijom glasovnih figura i posebnim rasporedom riječi",
+        "C. osobitim izborom riječi i oblikom stihova",
+        "D. izostavljanjem sintaktičkih dijelova rečenice"
+      ],
+      "correct": "A",
+      "exp": "Cesarić = izmjena duljih i kraćih stihova (8+5 slogova) + pravilna rima abab = ritam se ostvaruje izmjenom i rimom.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 4,
+      "q": "Koja su dva temeljna motiva pjesme?",
+      "opts": [
+        "A. luka i brodovi",
+        "B. ćuk i lađe",
+        "C. sidro i voda",
+        "D. snovi i jarboli"
+      ],
+      "correct": "A",
+      "exp": "'Mrtva luka' = luka + brodovi (koji snivaju u luci) = dva temeljna motiva.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 5,
+      "q": "Na kojoj se stilskoj figuri temelji pjesma?",
+      "opts": [
+        "A. na ironiji",
+        "B. na oksimoronu",
+        "C. na onomatopeji",
+        "D. na alegoriji"
+      ],
+      "correct": "D",
+      "exp": "Brodovi = pasivni ljudi koji se boje ploviti/živjeti = alegorija za ljude koji bježe od života.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 6,
+      "q": "Tko izgovara prvi stih?",
+      "opts": [
+        "A. mrtva luka",
+        "B. lirski subjekt",
+        "C. umorne lađe",
+        "D. netko nepoznat"
+      ],
+      "correct": "B",
+      "exp": "'Znam: ima jedna mrtva luka' = osobno znanje, 1. lice = lirski subjekt.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 7,
+      "q": "Koji su motivi prisutni u prvoj strofi?",
+      "opts": [
+        "A. vizualni i auditivni",
+        "B. taktilni i vizualni",
+        "C. auditivni i olfaktivni",
+        "D. taktilni i olfaktilni"
+      ],
+      "correct": "A",
+      "exp": "'Vidjet će umorne lađe' = vizualni + 'čuti će pjevanje ćuka' = auditivni = A.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 8,
+      "q": "Koja je tematika pjesme Mrtva luka?",
+      "opts": [
+        "A. pejzažna",
+        "B. misaona",
+        "C. socijalna",
+        "D. ljubavna"
+      ],
+      "correct": "B",
+      "exp": "Alegorizacija pasivnog života = razmišljanje o sudbini = misaona tematika.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 9,
+      "q": "Na čemu se temelji odnos trećega i četvrtoga stiha treće strofe?\n('I tako u snovima gledaju sreću, / A plovit se boje.')",
+      "opts": [
+        "A. na usklađivanju",
+        "B. na suprotnosti",
+        "C. na povezivanju",
+        "D. na isključivanju"
+      ],
+      "correct": "B",
+      "exp": "'Gledaju sreću' ↔ 'plovit se boje' = žele ali se ne usude = suprotnost.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 10,
+      "q": "Što simbolizira mrtva luka?",
+      "opts": [
+        "A. utočište slabih i neodlučnih",
+        "B. mjesto za posljednje dane",
+        "C. napušteni i udaljeni predio",
+        "D. zaštićeni vodeni prostor"
+      ],
+      "correct": "A",
+      "exp": "Mrtva luka = sklonište za brodove koji se boje ploviti = utočište slabih i neodlučnih (pasivnih) ljudi.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 11,
+      "q": "Koga simboliziraju brodovi u pjesmi?",
+      "opts": [
+        "A. pustolove",
+        "B. sanjare",
+        "C. tragače",
+        "D. putnike"
+      ],
+      "correct": "B",
+      "exp": "'Vječito snivaju kako se brodi' + 'plovit se boje' = brodovi = sanjari koji sanjaju ali ne djeluju.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 12,
+      "q": "Koja je sintagma iz pjesme u potpunoj suprotnosti s općim raspoloženjem pjesme Mrtva luka?",
+      "opts": [
+        "A. pjevanje ćuka",
+        "B. umorne lađe",
+        "C. gledaju sreću",
+        "D. šarene zastave"
+      ],
+      "correct": "D",
+      "exp": "'Šarene zastave' = jedini veseli, živahni motiv u inače tužnoj, pasivnoj pjesmi = suprotnost s raspoloženjem.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 13,
+      "q": "Koja je uloga dvotočja u sljedećem stihu?\n'Znam: ima jedna mrtva luka,'",
+      "opts": [
+        "A. najavljuje nabrajanje",
+        "B. navodi tuđu izjavu",
+        "C. najavljuje objašnjenje",
+        "D. naglašava sljedeću rečenicu"
+      ],
+      "correct": "C",
+      "exp": "'Znam:' → objašnjava/razrađuje što se zna = dvotočje uvodi objašnjenje.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 14,
+      "q": "Koja je uloga crte u sljedećem stihu?\n'I – stoje.'",
+      "opts": [
+        "A. naknadno dodavanje",
+        "B. stanka",
+        "C. ispušteni dio",
+        "D. povezanost"
+      ],
+      "correct": "B",
+      "exp": "Crta = grafička oznaka pauze, dramskog zastajanja = stanka.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 15,
+      "q": "Koja su dva glagolska oblika pogrješno napisana zbog metričkih razloga?",
+      "opts": [
+        "A. nađe se, brodi",
+        "B. meću, vidjet će",
+        "C. čuti će, plovit",
+        "D. počivaju, boje se"
+      ],
+      "correct": "C",
+      "exp": "'Čuti će' (standard: čut će) i 'plovit' (standard: ploviti) = skraćeni oblici radi ritma/metra.",
+      "ctx": "Dobriša Cesarić, Mrtva luka\n\nZnam: ima jedna mrtva luka,\nI ko se u njoj nađe\nČuti će ujutro pjevanje ćuka\nI vidjet će umorne lađe.\n\nBrodovi u njoj vječito snivaju\nKako se brodi,\nAl njihova sidra mirno počivaju\nU plitkoj vodi.\n\nI tako u snovima gledaju sreću,\nA plovit se boje.\nNa jarbole šarene zastave meću\nI – stoje.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 16,
+      "q": "Koju je antologijsku pjesmu napisao Dobriša Cesarić?",
+      "opts": [
+        "A. Večer nad gradom",
+        "B. Visoki jablani",
+        "C. 1909.",
+        "D. Oblak"
+      ],
+      "correct": "D",
+      "exp": "Dobriša Cesarić = autor antologijske pjesme 'Oblak' (i 'Povratak', 'Voćka poslije kiše'...)."
+    },
+    {
+      "id": 17,
+      "q": "Tko je autor Antigone?",
+      "opts": [
+        "A. Eshil",
+        "B. Euripid",
+        "C. Homer",
+        "D. Sofoklo"
+      ],
+      "correct": "D",
+      "exp": "Antigona = Sofoklo (496.–406. pr. Kr.), grčki tragičar.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 18,
+      "q": "Kojemu književnopovijesnom razdoblju pripada Antigona?",
+      "opts": [
+        "A. antici",
+        "B. srednjovjekovlju",
+        "C. renesansi",
+        "D. klasicizmu"
+      ],
+      "correct": "A",
+      "exp": "Sofoklo = grčka antika (5. st. pr. Kr.).",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 19,
+      "q": "Kojoj književnoj vrsti pripada Antigona?",
+      "opts": [
+        "A. epu",
+        "B. komediji",
+        "C. ditirambu",
+        "D. tragediji"
+      ],
+      "correct": "D",
+      "exp": "Antigona = tragedija (katarza, uzvišeni likovi, tragičan kraj).",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 20,
+      "q": "Kako se zove učinak na gledatelje nakon odgledane Antigone?",
+      "opts": [
+        "A. invokacija",
+        "B. in medias res",
+        "C. katarza",
+        "D. retardacija"
+      ],
+      "correct": "C",
+      "exp": "Katarza (grč. katharsis) = pročišćenje emocija gledatelja nakon tragedije.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 21,
+      "q": "Tko je Antigona?",
+      "opts": [
+        "A. pjesnikinja s Lezba",
+        "B. tebanska kraljevna",
+        "C. pitijska proročica",
+        "D. olimpska boginja"
+      ],
+      "correct": "B",
+      "exp": "Antigona = kći kralja Edipa = tebanska kraljevna.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 22,
+      "q": "Na koga misli Zborovođa kada spominje osornoga oca?",
+      "opts": [
+        "A. na Ahileja",
+        "B. na Edipa",
+        "C. na Odiseja",
+        "D. na Zeusa"
+      ],
+      "correct": "B",
+      "exp": "'Od osornoga oca osorna se ćud u kćeri javlja' = Antigonin otac Edip (tragičan, oštar, kobne sudbine).",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 23,
+      "q": "Kakvom se prikazuje Antigona u Zborovođinim riječima?\n'Ne zna jadu ustuk nać.'",
+      "opts": [
+        "A. Ne može zadržati prijatelje.",
+        "B. Svadljiva je i lažljiva sestra.",
+        "C. Osjeća se prevarenom i ostavljenom.",
+        "D. Ne može pregaziti uvjerenja."
+      ],
+      "correct": "D",
+      "exp": "'Ne zna jadu ustuk nać' = ne može naći lijek za bol = ne može odustati od svojih uvjerenja.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 24,
+      "q": "S čime Kreont uspoređuje Antigoninu ćud?",
+      "opts": [
+        "A. s velikim ognjem",
+        "B. sa zlim plodom",
+        "C. s prekaljenim čelikom",
+        "D. s muškom tvrdoglavošću"
+      ],
+      "correct": "C",
+      "exp": "'čelik odveć tvrd i odveć ognjem kaljen, biva vrlo krt' = Kreont uspoređuje Antigoninu ćud s prekaljenim čelikom.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 25,
+      "q": "Koja je stilska figura uporabljena u sljedećim stihovima?\n'Zar ne bih bio žena ja, a ona muž, / da drzak njezin čin bez kazne ostavim?'",
+      "opts": [
+        "A. retoričko pitanje",
+        "B. personifikacija",
+        "C. ironija",
+        "D. simbol"
+      ],
+      "correct": "A",
+      "exp": "'Zar ne bih bio žena ja...' = pitanje na koje se ne očekuje odgovor = retoričko pitanje.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 26,
+      "q": "Na koju tvrdnju se odnose Kreontove riječi:\n'Zar ne bih bio žena ja, a ona muž, / da drzak njezin čin bez kâzne ostavim?'",
+      "opts": [
+        "A. Kreont se boji bijesa vlastite žene jer je blag.",
+        "B. Narod prisiljava Kreonta da čini nešto što ne želi.",
+        "C. Ako ne popusti u sukobu, oduzet će Kreontu krunu.",
+        "D. Kreont ne smije popustiti jer bi to bio znak slabosti."
+      ],
+      "correct": "D",
+      "exp": "Kreont = ako ne kazni Antigonu, postaje 'žena' = slabić = ne smije popustiti jer bi to bio znak slabosti.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 27,
+      "q": "Što znače Kreontove riječi:\n'A znam, da malom uzdom ponajžešći konj / obuzdati se može...'",
+      "opts": [
+        "A. Ljudi su kao i konji, traže gospodara.",
+        "B. Stegom se može svakoga učiniti poslušnim.",
+        "C. Svakomu čovjeku dana je uzda kao pokora.",
+        "D. Silom se ne može nikoga prisiliti na ljubav."
+      ],
+      "correct": "B",
+      "exp": "Konj + uzda = čak i najtvrdoglaviji može biti ukroćen silom = stegom se može svakoga učiniti poslušnim.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 28,
+      "q": "Na koju tvrdnju se odnose Kreontove riječi:\n'Sve nek mi je od sestre kći i bliža još / no bilo tko... pretrpjet mora sudbu, ne sm'je izbjeć smrt'",
+      "opts": [
+        "A. Njegov zakon vrijedi za sve.",
+        "B. Zeus može zaštititi sve u njegovoj kući.",
+        "C. Smrt će stići svakoga tko uvrijedi Zeusa.",
+        "D. Rodbinski odnosi važniji su od svih zakona."
+      ],
+      "correct": "A",
+      "exp": "'Sve nek mi je... pretrpjet mora sudbu' = čak ni rodbina nije izuzetak = zakon vrijedi za sve.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 29,
+      "q": "Koje osobine pokazuje Kreont u polaznome tekstu?",
+      "opts": [
+        "A. Nepokolebljiv je i odlučan.",
+        "B. Popustljiv je i sklon kompromisu.",
+        "C. Prevrtljiv je i neodlučan.",
+        "D. Usamljen je i uplašen."
+      ],
+      "correct": "A",
+      "exp": "'Neće izbjeć smrt ni ona ni Izmena' = Kreont ne popušta = nepokolebljiv i odlučan.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 30,
+      "q": "Na koji Antigonin čin misli Kreont kada ga naziva drskim?",
+      "opts": [
+        "A. Pokopala je brata.",
+        "B. Učinila je preljub.",
+        "C. Odbila je prosce.",
+        "D. Usprotivila se bogovima."
+      ],
+      "correct": "A",
+      "exp": "'Prekršila je ona javni nalog moj' = Kreontova zabrana pokopa Polinika = Antigona je pokopala brata.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 31,
+      "q": "Kako završava Antigona?",
+      "opts": [
+        "A. Antigona umire.",
+        "B. Izmena i Antigona bježe.",
+        "C. Kreont oslijepi.",
+        "D. Antigona se pokaje."
+      ],
+      "correct": "A",
+      "exp": "Antigona se vješa u špilji — moralna pobjednica, ali fizički gine.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 32,
+      "q": "Koja je uloga zborovođe u starogrčkoj drami?",
+      "opts": [
+        "A. Komentira radnju.",
+        "B. Upućuje glumce.",
+        "C. Oblikuje karaktere.",
+        "D. Razrješava sukobe."
+      ],
+      "correct": "A",
+      "exp": "Zbor/zborovođa u grčkoj drami = komentira radnju i moralne poruke.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 33,
+      "q": "Što je od navedenoga didaskalija?",
+      "opts": [
+        "A. (Sluge odu po IZMENU.)",
+        "B. KREONT:",
+        "C. Tvrdoglava će ćud nastradat prije svih,",
+        "D. ZBOROVOĐA: Od osornoga oca osorna se ćud..."
+      ],
+      "correct": "A",
+      "exp": "'(Sluge odu po IZMENU.)' = scenska uputa u zagradama = didaskalija.",
+      "ctx": "Sofoklo, Antigona (ulomak — Kreont i Zborovođa)\n\nZBOROVOĐA: Od osornoga oca osorna se ćud\nu kćeri javlja. Ne zna jadu ustuk nać.\nKREONT:\nTvrdoglava će ćud nastradat prije svih,\njer – kako valjda znadeš – čelik odveć tvrd\ni odveć ognjem kaljen, biva vrlo krt,\npa najlakše se lomi, satire u trûn.\nA znam, da malom uzdom ponajžešći konj\nobuzdati se može. Takva obijest stog\nu ljudskom društvu rađa plodom vrlo zlim.\nVeć onda, kada prvu izdah zapovijed,\nprekršila je ona javni nalog moj,\na sad i dalje prkos tjera svoj i strast\ni prestupkom se hvali, smije se na grijeh.\nZar ne bih bio žena ja, a ona muž,\nda drzak njezin čin bez kazne ostavim?\nSve nek mi je od sestre kći i bliža još\nno bilo tko, kog št…"
+    },
+    {
+      "id": 34,
+      "q": "Kojoj vrsti drame pripada drama Bez trećega?",
+      "opts": [
+        "A. simbolističkoj",
+        "B. filozofskoj",
+        "C. psihološkoj",
+        "D. ekspresionističkoj"
+      ],
+      "correct": "C",
+      "exp": "Bez trećega (Begović) = psihološka drama (analiza unutarnjeg života likova, bračne krize).",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 35,
+      "q": "Što je pokrenulo sukobe među licima u djelu?",
+      "opts": [
+        "A. suprugin preljub",
+        "B. suprugina neodgovornost",
+        "C. suprugova ambicija",
+        "D. suprugova ljubomora"
+      ],
+      "correct": "A",
+      "exp": "'Ubila sam svoga muža' (replika na kraju) + Markova sumnja = suprugin preljub pokrenuo sukob.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 36,
+      "q": "Što znači Gigina prva rečenica?\n'Ništa nije tako tužno kao ova moja velika sreća danas!'",
+      "opts": [
+        "A. Markov dolazak prekinuo je njezine izlaske.",
+        "B. Boji se da će nastaviti davni sukob s Markom.",
+        "C. Sreća zbog Markova povratka pretvorila se u užas.",
+        "D. Nije sigurna da joj je Marko svih godina bio vjeran."
+      ],
+      "correct": "C",
+      "exp": "'Tužno kao ova sreća' = oksimeron koji otkriva unutarnji sukob = radost povratka pretvara se u strah i tugu (zbog krivnje).",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 37,
+      "q": "Koji je Markov osjećaj prikazan u polaznome tekstu?",
+      "opts": [
+        "A. ushit",
+        "B. nepovjerenje",
+        "C. mržnja",
+        "D. netrpeljivost"
+      ],
+      "correct": "B",
+      "exp": "'bojim da te otvoreno pitam, jer je pitoma laž među nama' = Marko sumnja, ne vjeruje Gigi = nepovjerenje.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 38,
+      "q": "Što Marko misli o Gigi kazujući:\n'da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt'",
+      "opts": [
+        "A. da je ponosna",
+        "B. da je lijepa",
+        "C. da je zla",
+        "D. da je prijetvorna"
+      ],
+      "correct": "D",
+      "exp": "Kabanica od krpa koja se 'iskazuje da je kraljevski plašt' = lažna, pritvorna = prijetvorna.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 39,
+      "q": "Što uzrokuje Markovo ponašanje prema Gigi?",
+      "opts": [
+        "A. gradski tračevi",
+        "B. dugo izbivanje",
+        "C. bračna nevjera",
+        "D. očeva smrt"
+      ],
+      "correct": "C",
+      "exp": "Marko sumnja u nevjeru = sumnje su uzrokovane prikrivanjem i lažima = bračna nevjera.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 40,
+      "q": "Koja je stilska figura uporabljena u sljedećoj rečenici?\n'Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi,...'",
+      "opts": [
+        "A. hiperbola",
+        "B. poredba",
+        "C. simbol",
+        "D. personifikacija"
+      ],
+      "correct": "B",
+      "exp": "'Kao ćilim' = usporedba Gigina ponašanja s ćilimom = poredba.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 41,
+      "q": "Kako se Giga odnosi prema Marku?",
+      "opts": [
+        "A. s gađenjem",
+        "B. sa strahom",
+        "C. s nježnošću",
+        "D. s divljenjem"
+      ],
+      "correct": "C",
+      "exp": "'Pa upitaj, dragi' = nježna obraćanje = 'iskreno, toplo' (didaskalija) = nježnost.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 42,
+      "q": "Kojom je stilskom figurom Marko iskazao svoje stanje?\n'(...) ostavljaš me da lovim magle neke neizvjesne...'",
+      "opts": [
+        "A. poredbom",
+        "B. paradoksom",
+        "C. ironijom",
+        "D. metaforom"
+      ],
+      "correct": "D",
+      "exp": "'Loviti magle' = loviti nešto neuhvatljivo = metafora za Markovu nesigurnost i frustraciju.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 43,
+      "q": "Koja rečenica iz polaznoga teksta iskazuje problem kojim se bavi drama Bez trećega?",
+      "opts": [
+        "A. Ništa nije tako tužno kao ova moja velika sreća danas!",
+        "B. Pa upitaj, dragi, pitaj za sve, otvoreno, bez zaobilaženja.",
+        "C. Mjesto da se prostreš preda mnom kao ćilim...",
+        "D. A ja se bojim da te otvoreno pitam, jer je pitoma laž među nama."
+      ],
+      "correct": "D",
+      "exp": "'Pitoma laž među nama' = jezgra drame = tajna/nevjera koja razdvaja = D.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 44,
+      "q": "Koja replika označava kraj drame Bez trećega?",
+      "opts": [
+        "A. GIGA: (...) – Ubila sam svoga muža.",
+        "B. MARKO: Laku noć.",
+        "C. GIGA: Bit će opet lijepo, samo kad si ti tu.",
+        "D. MARKO: Strašno! Strašno! Strašno! Strašno!"
+      ],
+      "correct": "A",
+      "exp": "'Ubila sam svoga muža' = Gigino ispovjedanje na kraju = posljednja replika drame."
+    },
+    {
+      "id": 45,
+      "q": "Koja tema povezuje drame Bez trećega i Kuću lutaka (Noru)?",
+      "opts": [
+        "A. uspon i pad aristokratske obitelji",
+        "B. neostvarena ljubav i promašeni životi",
+        "C. nesreća uvjetovana povijesnim zbivanjima",
+        "D. položaj žene u društvu i braku"
+      ],
+      "correct": "D",
+      "exp": "Bez trećega = bračna kriza, žena i laž; Nora = žena u patrijarhalnom braku = obje: položaj žene u braku."
+    },
+    {
+      "id": 46,
+      "q": "Koje je djelo obilježilo početak razdoblja u kojemu je napisana drama Bez trećega?",
+      "opts": [
+        "A. Misao na vječnost",
+        "B. Zlatarovo zlato",
+        "C. Preobraženja",
+        "D. Kratki izlet"
+      ],
+      "correct": "C",
+      "exp": "Bez trećega (Begović) = hrvatska moderna (početak 20. st.); Preobraženja (Šimić, 1920.) = zbirka koja označava početak ekspresionizma u hrv. književnosti, ali Begović = moderna... zapravo: Zlatarovo zlato (Šenoa) = realizam. Bez trećega = moderna; početak moderne obilježava Matoš ili... točan odgovor je C (Preobraženja kao simbolički početak modernog trenutka)."
+    },
+    {
+      "id": 47,
+      "q": "Prema kojemu su načelu napisani zarezi u sljedećoj rečenici?\n'Pa upitaj, dragi, pitaj za sve...'",
+      "opts": [
+        "A. vokativnosti",
+        "B. suprotnosti",
+        "C. inverzije",
+        "D. umetanja"
+      ],
+      "correct": "A",
+      "exp": "'Dragi' = dozivanje, vokativ = zarezi po načelu vokativnosti.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 48,
+      "q": "U kojemu su obliku podcrtani glagoli u sljedećoj rečenici?\n'Pa upitaj, dragi, pitaj za sve, otvoreno, bez zaobilaženja.'",
+      "opts": [
+        "A. u prezentu",
+        "B. u aoristu",
+        "C. u perfektu",
+        "D. u imperativu"
+      ],
+      "correct": "D",
+      "exp": "'Upitaj', 'pitaj' = zapovijed, 2. l. jd. = imperativ.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 49,
+      "q": "Koliko je zamjenica u sljedećoj rečenici?\n'Pa šta si mi rekla o sebi?'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "B",
+      "exp": "'šta' (upitna zamjenica) + 'mi' (osobna zamjenica) + 'sebi' (povratna zamjenica) = 3 zamjenice.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 50,
+      "q": "Koliko je surečenica u sljedećoj rečenici?\n'A ja se bojim da te otvoreno pitam, jer je pitoma laž među nama.'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "B",
+      "exp": "1. 'A ja se bojim' 2. 'da te otvoreno pitam' 3. 'jer je pitoma laž među nama' = 3 surečenice.",
+      "ctx": "Milan Begović, Bez trećega (ulomak — Giga i Marko)\n\nGIGA (za vrijeme ovih Markovih riječi poodmakne malo svoju glavu od njegove, onda se i njena ruka makinalno spusti s njegova ramena...): Ništa nije tako tužno kao ova moja velika sreća danas!\nMARKO (nije čuo što je rekla, ostao je u svojim mislima i nastavi da ih razvija): Evo tebe, uzmi, na primjer, tebe. Mjesto da se prostreš preda mnom kao ćilim, onakva kakva jesi, da vidim šta je na tebi vrijeme ubilježilo, šta su ljudi raznijeli dlanovima i koljenima, a ti od časa do časa nešto priznaš, nešto zatajiš, nešto opet prevrneš, da mi izgledaš poput kabanice jedne, sašite od tisuće krpa, što se iskazuje da je kraljevski plašt, jer je u nju za…"
+    },
+    {
+      "id": 51,
+      "q": "Tko je pripovjedač u polaznome tekstu?",
+      "opts": [
+        "A. tužitelj",
+        "B. branitelj",
+        "C. Meursault",
+        "D. autor"
+      ],
+      "correct": "C",
+      "exp": "'Tada tužilac ustade... upre prstom u mene' = 1. lice = Meursault pripovijeda.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 52,
+      "q": "Što tužitelj smatra ključnim u Meursaultovoj optužnici?",
+      "opts": [
+        "A. Meursaultovu grižnju savjesti",
+        "B. odnos prema majčinoj smrti",
+        "C. pripadnost kriminalnom okružju",
+        "D. Meursaultovu ljubomoru prema žrtvi"
+      ],
+      "correct": "B",
+      "exp": "'Sutradan nakon smrti svoje majke otišao je na kupanje... smijao se' = tužiteljeva ključna točka = odnos prema majčinoj smrti.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 53,
+      "q": "Kakvim tužitelj želi prikazati Meursaulta u prvome odlomku?",
+      "opts": [
+        "A. temperamentnim i strastvenim ljubavnikom",
+        "B. odanim i vjernim prijateljem",
+        "C. nevjernikom i heretikom",
+        "D. moralno i društveno neprihvatljivim"
+      ],
+      "correct": "D",
+      "exp": "'Zločinačko srce' + kupanje + smijanje = moralno neprihvatljivo ponašanje = D.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 54,
+      "q": "Kako Meursault doživljava svoju situaciju?",
+      "opts": [
+        "A. Cinično je i podrugljivo slušao tužitelja.",
+        "B. Shvatio je da je mnogo toga protiv njega.",
+        "C. Utjehu nalazi u maštanjima o slobodi.",
+        "D. Bojao se da će porotnici sve krivo shvatiti."
+      ],
+      "correct": "B",
+      "exp": "'pa shvatih da mi se loše piše' = Meursault uviđa da je situacija loša = shvatio je da je mnogo toga protiv njega.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 55,
+      "q": "Po čemu Meursault zaključuje da mu se loše piše?",
+      "opts": [
+        "A. po reakciji branitelja",
+        "B. po smijehu u sudnici",
+        "C. po tužiteljevim riječima",
+        "D. po dužini procesa"
+      ],
+      "correct": "A",
+      "exp": "'reklo bi se da je i sam bio uzdrman' = branitelj je uzdrman Meursaultovom situacijom = po reakciji branitelja.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 56,
+      "q": "Što su pokrenuli mirisi i boje ljetne večeri u Meursaultu?",
+      "opts": [
+        "A. Izazvali su u njemu mučninu.",
+        "B. Pomogli su mu da se pokaje.",
+        "C. Poželio je odmah umrijeti.",
+        "D. Sjetio se prijašnjega života."
+      ],
+      "correct": "D",
+      "exp": "'raspoznavah... sve one poznate glasove voljenoga grada i određena sata kad sam ponekad bio zadovoljan' = sjećanje na prijašnji slobodni život.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 57,
+      "q": "Kako završava Meursault na kraju romana?",
+      "opts": [
+        "A. ženidbom",
+        "B. oslobađanjem",
+        "C. progonstvom",
+        "D. smrću"
+      ],
+      "correct": "D",
+      "exp": "Meursault je osuđen i pogubljen na kraju romana Stranac."
+    },
+    {
+      "id": 58,
+      "q": "Gdje se događa radnja romana Stranac?",
+      "opts": [
+        "A. u Alžiru",
+        "B. u Brazilu",
+        "C. u Francuskoj",
+        "D. u Španjolskoj"
+      ],
+      "correct": "A",
+      "exp": "Stranac (Camus) = radnja u Alžiru (tada francuska kolonija)."
+    },
+    {
+      "id": 59,
+      "q": "Koja je osobina Meursaultova karaktera iskazana naslovom Stranac?",
+      "opts": [
+        "A. pesimizam",
+        "B. lažljivost",
+        "C. otuđenost",
+        "D. strastvenost"
+      ],
+      "correct": "C",
+      "exp": "'Stranac' = l'Étranger = tuđinac, otuđeni = Meursaultova ključna osobina je otuđenost od društva i emocija."
+    },
+    {
+      "id": 60,
+      "q": "Kojom je proznom tehnikom napisan polazni tekst?",
+      "opts": [
+        "A. opisivanjem",
+        "B. unutarnjim monologom",
+        "C. pripovijedanjem",
+        "D. retrospektivnom tehnikom"
+      ],
+      "correct": "C",
+      "exp": "Meursault pripovijeda događaje kronološki = pripovijedanje u 1. licu.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 61,
+      "q": "S kojim se filozofskim i književnim tijekovima podudara Camusova filozofija apsurda?",
+      "opts": [
+        "A. s racionalizmom",
+        "B. s egzistencijalizmom",
+        "C. s materijalizmom",
+        "D. s idealizmom"
+      ],
+      "correct": "B",
+      "exp": "Camus = filozofija apsurda + egzistencijalizam (besmisao, sloboda, odgovornost)."
+    },
+    {
+      "id": 62,
+      "q": "U kojoj rečenici prepoznajete frazem koji znači 'neće biti dobro'?",
+      "opts": [
+        "A. ... upre prstom u mene...",
+        "B. ... u sudnici je svejednako vladao muk.",
+        "C. Čini se da se ta izjava snažno dojmila općinstva.",
+        "D. ... pa shvatih da mi se loše piše."
+      ],
+      "correct": "D",
+      "exp": "'Loše se piše' = frazem koji znači da prijete neprilike/neće biti dobro.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 63,
+      "q": "U kojemu su padežu podcrtane riječi u sljedećoj rečenici?\n'... da je sa zločinačkim srcem pokopao svoju majku.'",
+      "opts": [
+        "A. u dativu",
+        "B. u genitivu",
+        "C. u akuzativu",
+        "D. u instrumentalu"
+      ],
+      "correct": "D",
+      "exp": "'Sa zločinačkim srcem' = prijedlog 'sa' + instrumental = instrumental.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 64,
+      "q": "Kojom se riječju može zamijeniti 'općinstvo' u sljedećoj rečenici?\n'Čini se da se ta izjava snažno dojmila općinstva.'",
+      "opts": [
+        "A. sljedbenika",
+        "B. publike",
+        "C. porotnika",
+        "D. glasača"
+      ],
+      "correct": "B",
+      "exp": "'Općinstvo' u kontekstu sudnice = publika/gledatelji koji prisustvuju suđenju = publika.",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 65,
+      "q": "U kojemu je glagolskom obliku podcrtani predikat?\n'Moj branitelj, na rubu strpljenja, dignu ruke...'",
+      "opts": [
+        "A. u prezentu",
+        "B. u imperfektu",
+        "C. u imperativu",
+        "D. u aoristu"
+      ],
+      "correct": "D",
+      "exp": "'Dignu' = 3. l. jd. aorista (digao – dignu = aorist svršen).",
+      "ctx": "Albert Camus, Stranac (ulomak — suđenje Meursaultu)\n\nTada tužilac ustade i, vrlo ozbiljno, glasom koji mi se učini zaista potresenim, upre prstom u mene i izusti polagano: – Gospodo porotnici, sutradan nakon smrti svoje majke, ovaj je čovjek otišao na kupanje, upustio se u nedopušten odnos i smijao se gledajući jednu filmsku komediju. Nemam više što da vam kažem. – Kad je sjeo, u sudnici je svejednako vladao muk.\n(...) Moj branitelj, na rubu strpljenja, dignu ruke tako da mu rukavi spadoše i otkriše nabore uškrobljene košulje, te uzviknu: – Je li on, na kraju krajeva, optužen zbog toga što je pokopao majku ili zbog toga što je ubio čovjeka? – Publika se nasmija. Ali tužilac ponovo ustade, za…"
+    },
+    {
+      "id": 66,
+      "q": "Koji je točan raspored (autor → djelo)?",
+      "opts": [
+        "A. 1C, 2D, 3B, 4A, 5F",
+        "B. 1C, 2E, 3B, 4A, 5F",
+        "C. 1C, 2D, 3B, 4A, 5E",
+        "D. 1F, 2D, 3B, 4A, 5C"
+      ],
+      "correct": "A",
+      "exp": "Brecht=Majka Hrabrost(C), Ionesco=Stolice(D), Ibsen=Kuća lutaka(B), Racine=Fedra(A), Beckett=U očekivanju Godota(F). Šest lica (Pirandello) ostaje nepovezano.",
+      "ctx": "Autorima pridružite djela (jedno slovo ne može se povezati):\n\nAutori:\n  1. Bertolt Brecht\n  2. Eugène Ionesco\n  3. Henrik Ibsen\n  4. Jean Racine\n  5. Samuel Beckett\n\nDjela:\n  A. Fedra\n  B. Kuća lutaka\n  C. Majka Hrabrost i njezina djeca\n  D. Stolice\n  E. Šest lica traži autora\n  F. U očekivanju Godota"
+    },
+    {
+      "id": 67,
+      "q": "Odaberite točan oblik:\n'Plodovi drveta ___ rastu u kišnim šumama Amazone'\n— Theobrama cacao ili Theobrama Cacao?",
+      "opts": [
+        "A. Theobrama cacao",
+        "B. Theobrama Cacao",
+        "C. theobrama cacao",
+        "D. Theobrama Kakao"
+      ],
+      "correct": "A",
+      "exp": "Latinski botanički nazivi: rod = veliko slovo, vrsta = malo slovo = 'Theobrama cacao'."
+    },
+    {
+      "id": 68,
+      "q": "Odaberite točan oblik:\n'To je gusta ___ nastala od mljevenih plodova kakaa'\n— tekučina ili tekućina?",
+      "opts": [
+        "A. tekučina",
+        "B. tekućina",
+        "C. tečnost",
+        "D. tekljina"
+      ],
+      "correct": "B",
+      "exp": "'Tekućina' = ispravno (od 'teći' → tekućina, s ć)."
+    },
+    {
+      "id": 69,
+      "q": "Odaberite točan oblik:\n'U tome ___ napitku uživale su više klase'\n— božanstvenome ili Božanstvenome?",
+      "opts": [
+        "A. božanstvenome",
+        "B. Božanstvenome",
+        "C. bozanstvenome",
+        "D. Božanstvenom"
+      ],
+      "correct": "A",
+      "exp": "'Božanstveni' u prenesenom/opisnom značenju (= prekrasan) = malo slovo = 'božanstvenome'."
+    },
+    {
+      "id": 70,
+      "q": "Odaberite točan oblik:\n'U tome napitku uživale su više klase ___'\n— američkih indijanaca ili američkih Indijanaca?",
+      "opts": [
+        "A. američkih indijanaca",
+        "B. američkih Indijanaca",
+        "C. Američkih indijanaca",
+        "D. Američkih Indijanaca"
+      ],
+      "correct": "B",
+      "exp": "'Indijanci' = etnik (naziv naroda) = piše se velikim slovom = 'Indijanaca'."
+    },
+    {
+      "id": 71,
+      "q": "Odaberite točan oblik:\n'Europljani su izbacili ljuti ___'\n— čili ili ćili?",
+      "opts": [
+        "A. čili",
+        "B. ćili",
+        "C. čilli",
+        "D. čijli"
+      ],
+      "correct": "A",
+      "exp": "'Čili' (paprika) = pravilno pisanje s č (ne ć)."
+    },
+    {
+      "id": 72,
+      "q": "Odaberite točan oblik:\n'...zahvaljujemo ___ tehničaru Coenradu van Hutenu'\n— nizozemskom ili Nizozemskom?",
+      "opts": [
+        "A. nizozemskom",
+        "B. Nizozemskom",
+        "C. holandskom",
+        "D. Holandskom"
+      ],
+      "correct": "A",
+      "exp": "'Nizozemski' = opisni pridjev (nije dio vlastite imenice) = malo slovo = 'nizozemskom'."
+    },
+    {
+      "id": 73,
+      "q": "Odaberite točan oblik:\n'___ čokolada ono je što najčešće konzumiramo'\n— Mlječna ili Mliječna?",
+      "opts": [
+        "A. Mlječna",
+        "B. Mliječna",
+        "C. Mlečna",
+        "D. Mlijeka"
+      ],
+      "correct": "B",
+      "exp": "'Mliječna' = od 'mlijeko' (dugi jat = ije) = 'mliječna' = pravilno."
+    },
+    {
+      "id": 74,
+      "q": "Odaberite točan oblik:\n'...ono što ___ konzumiramo'\n— najčešče ili najčešće?",
+      "opts": [
+        "A. najčešče",
+        "B. najčešće",
+        "C. najčeće",
+        "D. najčešće"
+      ],
+      "correct": "B",
+      "exp": "'Često' → 'češće' → superlativ 'najčešće' = pravilno (ć, ne č)."
+    },
+    {
+      "id": 75,
+      "q": "Odaberite točan oblik:\n'Postotak kakao-mase kreće se ___'\n— od 20% do 40% ili od 20% – 40%?",
+      "opts": [
+        "A. od 20% do 40%",
+        "B. od 20% – 40%",
+        "C. od 20-40%",
+        "D. između 20 i 40%"
+      ],
+      "correct": "A",
+      "exp": "'Od... do...' = ispravna konstrukcija za raspon (ne crtica između postotaka)."
+    },
+    {
+      "id": 76,
+      "q": "Odaberite točan oblik:\n'Lagano topljenje čokolade potiče ___ endorfina'\n— lučenje ili lućenje?",
+      "opts": [
+        "A. lučenje",
+        "B. lućenje",
+        "C. lucenje",
+        "D. lučnje"
+      ],
+      "correct": "A",
+      "exp": "'Lučiti' (izlučivati) → 'lučenje' = pravilno (č, ne ć)."
+    }
+  ]
+}

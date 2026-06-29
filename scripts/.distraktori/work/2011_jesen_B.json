@@ -1,0 +1,963 @@
+{
+  "examKey": "2011_jesen_B",
+  "label": "Jesenski rok — Osnovna razina (B)",
+  "total": 76,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu književnomu rodu pripada polazni tekst?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "A",
+      "exp": "Pjeza = kratka, dojmovna pjesma koja opisuje ljetni pejzaž = lirika (lirska pjesma).",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 2,
+      "q": "Kojoj tematici pripada polazni tekst?",
+      "opts": [
+        "A. pejzažnoj",
+        "B. misaonoj",
+        "C. socijalnoj",
+        "D. duhovno-religioznoj"
+      ],
+      "correct": "A",
+      "exp": "Pjeza opisuje ljetni pejzaž (cvjetovi, pčele, oblaci, polje) — pejzažna lirika.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 3,
+      "q": "Koliko se puta javlja auditivni motiv u polaznome tekstu?",
+      "opts": [
+        "A. nijednom",
+        "B. jedanput",
+        "C. dvaput",
+        "D. triput"
+      ],
+      "correct": "C",
+      "exp": "Auditivni (zvučni) motivi: 'zuje zlatane pčele' (1) i 'Podnevno zvono zove' (2) = dvaput.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 4,
+      "q": "Koja je stilska figura uporabljena u sljedećim stihovima?\n'Pod brijegom iz crvenih krovova / Podnevno zvono zove.'",
+      "opts": [
+        "A. metafora",
+        "B. personifikacija",
+        "C. onomatopeja",
+        "D. anafora"
+      ],
+      "correct": "B",
+      "exp": "'Zvono zove' — zvonu je pripisana ljudska radnja (zvanje = pozivanje) = personifikacija.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 5,
+      "q": "Koji su motivi prisutni u prvoj strofi polaznoga teksta?",
+      "opts": [
+        "A. vizualni i auditivni",
+        "B. taktilni i vizualni",
+        "C. auditivni i olfaktivni",
+        "D. taktilni i olfaktivni"
+      ],
+      "correct": "A",
+      "exp": "Prva strofa: 'žute cvjetovi' (vizualni), 'oblaci bijele' (vizualni), 'zuje pčele' (auditivni) = vizualni i auditivni.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 6,
+      "q": "Kakva je rima u prvoj strofi Vidrićeva teksta?",
+      "opts": [
+        "A. abab",
+        "B. abba",
+        "C. abcb",
+        "D. aabb"
+      ],
+      "correct": "C",
+      "exp": "'cvjetovi (a) / pčele (b) / stablima (c) / bijele (b)' = abcb (ukrštena s izmjenom = xaxa gdje b rima s b).",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 7,
+      "q": "Koji je stih točno rastavljen na slogove?",
+      "opts": [
+        "A. U tr-a-vi se žu-te cvje-to-vi",
+        "B. Kru-pni se o-bla-ci bi-je-le.",
+        "C. Pod brije-gom iz cr-ve-nih kro-vo-va",
+        "D. A dal-je i-za tih kro-vo-va"
+      ],
+      "correct": "B",
+      "exp": "'Kru-pni se o-bla-ci bi-je-le' = kru/pni/se/o/bla/ci/bi/je/le = 9 slogova, ispravno rastavljeno.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 8,
+      "q": "Kakav je pjesnički izraz u polaznome tekstu?",
+      "opts": [
+        "A. simbolički",
+        "B. alegorijski",
+        "C. složen",
+        "D. jednostavan"
+      ],
+      "correct": "D",
+      "exp": "Pjeza = jednostavan, jasan pejzažni opis bez složenih simbola ili alegorija = jednostavan izraz.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 9,
+      "q": "Kojom su vrstom riječi opisani cvjetovi u sljedećem stihu?\n'U travi se žute cvjetovi'",
+      "opts": [
+        "A. imenicom",
+        "B. glagolom",
+        "C. pridjevom",
+        "D. prilogom"
+      ],
+      "correct": "B",
+      "exp": "'Žute' ovdje nije pridjev nego glagol (žutjeti = postajati žutim). 'U travi se žute cvjetovi' = cvjetovi žute (glagol žutiti/žutjeti se).",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 10,
+      "q": "Koji se jedini glagolski oblik javlja u polaznome tekstu?",
+      "opts": [
+        "A. infinitiv",
+        "B. prezent",
+        "C. aorist",
+        "D. imperativ"
+      ],
+      "correct": "B",
+      "exp": "'žute, zuje, bijele, plavi, plove, zove, stere, vere' = svi glagoli u prezentu (sadašnje vrijeme, 3. lice).",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 11,
+      "q": "Što označava trotočje na kraju polaznoga teksta?",
+      "opts": [
+        "A. jaku stanku",
+        "B. nizanje dijelova teksta",
+        "C. izostavljeni dio teksta",
+        "D. nedovršenost teksta"
+      ],
+      "correct": "D",
+      "exp": "Trotočje na kraju pjesme 'I s huma se k humu vere...' = pjesma se nastavlja, doživljaj je otvoren, nedovršen = nedovršenost.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 12,
+      "q": "Što znači glagol 'ploviti' u drugome stihu druge strofe?",
+      "opts": [
+        "A. letjeti",
+        "B. plivati",
+        "C. lutati",
+        "D. skretati"
+      ],
+      "correct": "C",
+      "exp": "'Kud nečujno laste plove' — laste plove nebom = lete bešumno, kružeći = lutati/kretati se slobodno.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 13,
+      "q": "Koji je stih napisan stilski obilježenim redom riječi?",
+      "opts": [
+        "A. U travi se žute cvjetovi",
+        "B. I nebo se plavi visoko",
+        "C. Podnevno zvono zove.",
+        "D. Zlatno se polje stere"
+      ],
+      "correct": "D",
+      "exp": "'Zlatno se polje stere' = inverzija: pridjev 'zlatno' ispred imenice 'polje' = stilski obilježen red (normativni bi bio: 'Polje se stere zlatno').",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 14,
+      "q": "Koliko ima surečenica u prvoj strofi polaznoga teksta?",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "C",
+      "exp": "1. 'U travi se žute cvjetovi'; 2. 'I zuje zlatane pčele'; 3. 'Za sjenatim... Krupni se oblaci bijele'; 4. — jedna rečenica = 4? Ili: 'U travi... I zuje' = 2 predikacije, 'Za sjenatim... bijele' = 1; ukupno 4 surečenice.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 15,
+      "q": "Obilježje kojega pjesničkog pravca prepoznajete u polaznome tekstu?",
+      "opts": [
+        "A. nadrealizma",
+        "B. futurizma",
+        "C. impresionizma",
+        "D. ekspresionizma"
+      ],
+      "correct": "C",
+      "exp": "Pjeza = Vidrić = moderna, impresionizam: subjektivni dojam trenutka, vizualni i zvučni utisci, atmosfera bez dublje simbolike.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 16,
+      "q": "Koji pisac pripada istome književnopovijesnomu razdoblju kao i Vladimir Vidrić?",
+      "opts": [
+        "A. Ivan Mažuranić",
+        "B. Antun Gustav Matoš",
+        "C. Tin Ujević",
+        "D. Jure Kaštelan"
+      ],
+      "correct": "B",
+      "exp": "Vladimir Vidrić (1875.–1909.) = hrvatska moderna. A. G. Matoš (1873.–1914.) = isti naraštaj, ista književna epoha.",
+      "ctx": "Vladimir Vidrić, Pjeza\n\nU travi se žute cvjetovi\nI zuje zlatane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\n\nI nebo se plavi visoko\nKud nečujno laste plove;\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\n\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno\nI s huma se k humu vere.\n\nVladimir Vidrić"
+    },
+    {
+      "id": 17,
+      "q": "U kojemu književnom razdoblju nastaje roman Don Quijote?",
+      "opts": [
+        "A. u antici",
+        "B. u srednjovjekovlju",
+        "C. u renesansi",
+        "D. u realizmu"
+      ],
+      "correct": "C",
+      "exp": "Don Quijote (1605./1615.) = renesansa/rani moderni vijek.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 18,
+      "q": "Kojoj nacionalnoj književnosti pripada Cervantes?",
+      "opts": [
+        "A. francuskoj",
+        "B. njemačkoj",
+        "C. španolskoj",
+        "D. talijanskoj"
+      ],
+      "correct": "C",
+      "exp": "Miguel de Cervantes Saavedra (1547.–1616.) = španolska/hispanska književnost.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 19,
+      "q": "Što saznajete o knjigama iz Don Quijoteova vremena iz rečenice o prodavanju zemlje?",
+      "opts": [
+        "A. Svatko ih je mogao imati.",
+        "B. Bile su skupe.",
+        "C. Čitale su ih samo lijenosti.",
+        "D. Bile su statusni simbol."
+      ],
+      "correct": "B",
+      "exp": "'poprodavao mnoge hanege orače zemlje i kupovao viteške knjige' = morao prodati zemlju da bi kupio knjige = bile su skupe.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 20,
+      "q": "Kako čitanje viteških romana utječe na Don Quijoteov svakodnevni život?",
+      "opts": [
+        "A. Zapustio je imanje.",
+        "B. Nadahnuli su ga za lov.",
+        "C. Postao je bolji domaćin.",
+        "D. Naučio je vještinu govora."
+      ],
+      "correct": "A",
+      "exp": "'gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem' = zapustio je imanje.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 21,
+      "q": "Kojom stilskom figurom Cervantes predočuje kako Don Quijote doživljava de Silvine rečenice?\n'...one zamršene rečenice njegove činile mu se biserom'",
+      "opts": [
+        "A. personifikacijom",
+        "B. hiperbolom",
+        "C. poredbom",
+        "D. metaforom"
+      ],
+      "correct": "D",
+      "exp": "'Rečenice mu se činile biserom' = rečenice su biser (preneseno: dragocjene, sjajne) = metafora.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 22,
+      "q": "Kako je Don Quijote doživljavao sadržaj knjiga koje je čitao?",
+      "opts": [
+        "A. Uživao je iako je znao da je sve izmišljeno.",
+        "B. Smatrao je da govore čistu istinu.",
+        "C. S vremenom je shvatio da su sve priče iste.",
+        "D. Privlačili su ga korisni savjeti u njima."
+      ],
+      "correct": "B",
+      "exp": "'A uvrtio je u glavu da je zgoljna istina sva ta zbrka sanjarija što ih je čitao' = smatrao je da je sve što čita čista istina.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 23,
+      "q": "Što o de Silvinoj prozi govori sljedeća rečenica?\n'Nabdio se on, da bi ih razumio... ni sam Aristotel, sve da jedino radi toga ustane iz groba.'",
+      "opts": [
+        "A. Pisana je samo za visokoobrazovane.",
+        "B. Toliko je sjajna da bi i mrtve probudila.",
+        "C. Pisana je prema Aristotelovoj teoriji.",
+        "D. Potpuno je zamršena i nerazumljiva."
+      ],
+      "correct": "D",
+      "exp": "'da bi ih razumio... ne bi dosegnuo... ni sam Aristotel' = ni Aristotel ne bi razumio = potpuno je zamršena i nerazumljiva.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 24,
+      "q": "Koja je misao sinula Don Quijoteu na kraju polaznoga teksta?",
+      "opts": [
+        "A. Želi upoznati svog omiljenog pisca.",
+        "B. Poželio je i sam početi pisati romane.",
+        "C. Odlučio je živjeti kao u viteškim romanima.",
+        "D. Naumio je dokazati da živi u najboljjem dvorcu."
+      ],
+      "correct": "C",
+      "exp": "'sine mu najneobičnija misao' = Don Quijote odlučuje postati vitez i živjeti kao likovi iz viteških romana.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 25,
+      "q": "Kako završava lik Don Quijotea na kraju romana?",
+      "opts": [
+        "A. Postao je vitez.",
+        "B. Razbolio se i umro.",
+        "C. Napisao je roman.",
+        "D. Opametio se i oženio."
+      ],
+      "correct": "B",
+      "exp": "Na kraju Don Quijotea protagonist se razbolio, preminula mu je ludost (spoznao je da su romani bili obmana) i umro je.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 26,
+      "q": "Koji je frazem nastao na temelju romana Don Quijote?",
+      "opts": [
+        "A. borba s vjetrenjačama",
+        "B. kula od karata",
+        "C. knjižni moljac",
+        "D. trbuhom za kruhom"
+      ],
+      "correct": "A",
+      "exp": "'Borba s vjetrenjačama' = frazem nastao iz poznatog prizora Don Quijotea koji napada vjetrenjače misleći da su divovi.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 27,
+      "q": "Što znači termin 'donkihotizam'?",
+      "opts": [
+        "A. dobro smišljen pothvat",
+        "B. uzaludno nastojanje",
+        "C. sklonost ludim idejama",
+        "D. optimistički stav"
+      ],
+      "correct": "B",
+      "exp": "Donkihotizam = uzaludno nastojanje, junaštvo bez smisla, borba s nemogućim (po Don Quijoteovim uzaludnim pothvatima).",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 28,
+      "q": "Što je 'prva novela' u strukturi romana Don Quijote?",
+      "opts": [
+        "A. okvir",
+        "B. razrada",
+        "C. invokacija",
+        "D. epizoda"
+      ],
+      "correct": "A",
+      "exp": "U strukturi Don Quijotea, 'novele' unutar romana imaju ulogu okvira (okvir-priče) koji ujedno tvori umetnutu strukturu.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 29,
+      "q": "Kojim je epskim postupkom ostvaren polazni tekst?",
+      "opts": [
+        "A. monologom",
+        "B. pripovijedanjem",
+        "C. retardacijom",
+        "D. retrospekcijom"
+      ],
+      "correct": "B",
+      "exp": "Tekst opisuje kako je Don Quijote sve više čitao i gubio pamet = narativni opis = pripovijedanje.",
+      "ctx": "Miguel de Cervantes, Don Quijote (ulomak — Don Quijote i viteški romani)\n\nNo treba znati da se spomenuti plemić asovima koji su mu dokoni (a tih je u godini najviše bilo) s tolikim žarom i slađu odavao čitanju viteških knjiga da je gotovo sasvim zaboravio na lov, dapače i na upravljanje svojim imanjem. Zaokupila ga tolika radoznalost i ludost da je poprodavao mnoge hanege orače zemlje i kupovao viteške knjige, da ih čita, i tako ih zgrnuo u kuću koliko ih se god domogao. A od sviju mu knjiga nikoje nisu toliko po volji bile koliko one što ih je napisao slavni Feliciano de Silva, jer jasnoća njegove proze i one zamršene rečenice njegove činile mu se biserom, pogotovu kad bi uzeo čitati ona la…"
+    },
+    {
+      "id": 30,
+      "q": "Tko je autor Posljednjih Stipančića?",
+      "opts": [
+        "A. Josip Kozarac",
+        "B. Slobodan Novak",
+        "C. Vjenceslav Novak",
+        "D. August Šenoa"
+      ],
+      "correct": "C",
+      "exp": "Posljednji Stipančići (1899.) = Vjenceslav Novak (1859.–1905.), hrv. realizam.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 31,
+      "q": "U kojemu književnom razdoblju stvara autor Posljednjih Stipančića?",
+      "opts": [
+        "A. u realizmu",
+        "B. u naturalizmu",
+        "C. u moderni",
+        "D. u protorealizmu"
+      ],
+      "correct": "A",
+      "exp": "Vjenceslav Novak = realizam (hrv. realizam, kraj 19. st.).",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 32,
+      "q": "Kojoj tematici pripadaju Posljednji Stipančići?",
+      "opts": [
+        "A. filozofskoj",
+        "B. ljubavnoj",
+        "C. avanturističkoj",
+        "D. društvenoj"
+      ],
+      "correct": "D",
+      "exp": "Posljednji Stipančići = propadanje građanske obitelji = društvena tematika.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 33,
+      "q": "Kojoj književnoj vrsti pripadaju Posljednji Stipančići?",
+      "opts": [
+        "A. kratkoj priči",
+        "B. noveli",
+        "C. romanu",
+        "D. autobiografiji"
+      ],
+      "correct": "C",
+      "exp": "Posljednji Stipančići = roman (dulja prozna vrsta, razgranat sklop radnje).",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 34,
+      "q": "Kojom je stilskom figurom prikazana uličica u sljedećoj rečenici?\n'...gledala turobnim pogledom u mrtvu stisnutu uličicu'",
+      "opts": [
+        "A. usporedbom",
+        "B. onomatopejom",
+        "C. personifikacijom",
+        "D. simbolom"
+      ],
+      "correct": "C",
+      "exp": "'Mrtvu uličicu' = uličici je pripisano obilježje mrtvila (neživog bića) = personifikacija.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 35,
+      "q": "Što je u polaznome tekstu privuklo Lucijinu pozornost?",
+      "opts": [
+        "A. koraci na ulici",
+        "B. šamor djece",
+        "C. Gertrudin ulazak",
+        "D. dobivene pjesmice"
+      ],
+      "correct": "A",
+      "exp": "'Na ulici... čuli se nečiji koraci, a Lucija primakne glavu više k prozoru' = koraci su privukli pažnju.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 36,
+      "q": "U kakvome je raspoloženju Lucija na početku polaznoga teksta?",
+      "opts": [
+        "A. ravnodušnom",
+        "B. uznemirenom",
+        "C. zabrinutom",
+        "D. sjetnom"
+      ],
+      "correct": "D",
+      "exp": "'gledala turobnim pogledom u mrtvu stisnutu uličicu' = turobno, sjetno raspoloženje.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 37,
+      "q": "Kakvim je prikazan Martin Tintor u polaznome tekstu?",
+      "opts": [
+        "A. smetenim",
+        "B. sigurnim",
+        "C. odvažnim",
+        "D. zavodljivim"
+      ],
+      "correct": "A",
+      "exp": "'pocrveni kao rak, nakloni joj se nespretno... obori oči kao zastideno djevojče' = smeten, nervozan.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 38,
+      "q": "Čime Martin pokazuje svoje osjećaje?",
+      "opts": [
+        "A. odlučnim koracima",
+        "B. lijepim odijelom",
+        "C. zbunjenim ponašanjem",
+        "D. zavodničkim pogledom"
+      ],
+      "correct": "C",
+      "exp": "'pocrveni, nakloni se nespretno, obori oči' = zbunjeno/nespretno ponašanje odaje osjećaje.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 39,
+      "q": "Što Lucija izražava sljedećom rečenicom u kontekstu polaznoga teksta?\n'Što taj hoće?'",
+      "opts": [
+        "A. sigurnost",
+        "B. čuđenje",
+        "C. slutnju",
+        "D. ljutnju"
+      ],
+      "correct": "C",
+      "exp": "'morala ga je nehotice održati poradi nesvjesnog pitanja: Što taj hoće?' = slutnja, predosjećaj nečega što slijedi.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 40,
+      "q": "U kojoj od navedenih rečenica nalazite simbol ljubavi?",
+      "opts": [
+        "A. Mladi je čovjek pogleda i pocrveni kao rak,...",
+        "B. Luciji se pred očima javi narisano prostrijeljeno srce i u njemu slova: M. T.",
+        "C. Pa to zna sav grad da je radi vas ostavio sjemenište!",
+        "D. Ta, bože moj, tko vam je poš iljao tolike pjesmice nego on?"
+      ],
+      "correct": "B",
+      "exp": "'Narisano prostrijeljeno srce' = simbol ljubavi (srce probodeno strijelom = uobičajeni simbol zaljubljenosti).",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 41,
+      "q": "Koji je tip žene Lucijin lik u djelu Posljednji Stipančići?",
+      "opts": [
+        "A. patnica",
+        "B. osvetnica",
+        "C. zavodnica",
+        "D. spletkarica"
+      ],
+      "correct": "A",
+      "exp": "Lucija Stipančić = tiha, patnička duša, zatočena u patricijskom ambijentu bez budućnosti = patnica.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 42,
+      "q": "Prema kojemu su načelu napisani zarezi u sljedećoj rečenici?\n'Kako se, velite, zove?'",
+      "opts": [
+        "A. vokativnosti",
+        "B. suprotnosti",
+        "C. inverzije",
+        "D. umetanja"
+      ],
+      "correct": "D",
+      "exp": "'Kako se, velite, zove?' = 'velite' je umetnuta (parentetična) rečenica = zarezi zbog umetanja.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 43,
+      "q": "Što označavaju trotočja u navedenom dijelu teksta?\n'— Martin Tintor, frajlice! Pa vi ga ne poznate? A kako vas on rado ima — sirota! Ta, bože moj...'",
+      "opts": [
+        "A. izostavljeni tekst",
+        "B. prekinuti tekst",
+        "C. isprekidani govor",
+        "D. nenavedeni govor"
+      ],
+      "correct": "C",
+      "exp": "Trotočja unutar Gertrudinog uzbuđenog govora = uzbuđen, isprekidan govor pun emocija.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 44,
+      "q": "Koja je riječ antonim riječi 'nehotice'?",
+      "opts": [
+        "A. nasumice",
+        "B. nespremno",
+        "C. nespretno",
+        "D. namjerno"
+      ],
+      "correct": "D",
+      "exp": "'Nehotice' = nevoljno, bez namjere. Antonim = 'namjerno' (voljno, s namjerom).",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 45,
+      "q": "Kako glasi vidski parnjak glagola 'nakloniti se'?",
+      "opts": [
+        "A. naklanjati se",
+        "B. kloniti se",
+        "C. sklanjati se",
+        "D. skloniti se"
+      ],
+      "correct": "A",
+      "exp": "'Nakloniti se' (svršeni) → vidski parnjak nesvršeni = 'naklanjati se'. Pravilno: naklanjati se.",
+      "ctx": "Vjenceslav Novak, Posljednji Stipančići (ulomak — Lucija i Martin Tintor)\n\nJednog takvog poslijepodneva sjedila je Lucija blizu otvorenog prozora i gledala turobnim pogledom u mrtvu stisnutu uličicu kojom nije prolazila živa duša. Izdaleka dopirao je u ulicu šamor ljudski i vesela krika dječjih grla iz neke nedaleke ulice.\n\nNa ulici popločenoj velikim okruglim kamenom čuli se nečiji koraci, a Lucija primakne glavu više k prozoru. Prama kući prolazio je ulicom mlad čovjek, odjeven u dugačkom crnom kaputu do koljena. Mladi je čovjek pogleda i pocrveni kao rak, onda skine šir, nakloni joj se nespretno i duboko i obori oči kao zastideno djevojče k zemlji.\n\n— Tko je to? — upita Lucija Gertrudu.\n\n…"
+    },
+    {
+      "id": 46,
+      "q": "Kojemu književnomu rodu pripadaju Gospoda Glembajevi?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "C",
+      "exp": "Gospoda Glembajevi = drama (tragedija, dramski tekst s dijalogom i didaskalijama).",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 47,
+      "q": "Na što misli Leone govoreći o jubilarnoj dekorativnoj predstavi?",
+      "opts": [
+        "A. na otvaranje sirotišta",
+        "B. na majčin pokop",
+        "C. na očev rođendan",
+        "D. na godišnjicu banke"
+      ],
+      "correct": "D",
+      "exp": "'Jubilarnoj dekorativnoj predstavi' = godišnjica glembajevske banke/tvrtke koja se slavi svečano = jubilej banke.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 48,
+      "q": "Tko je Beatrice koju je Leone poželio vidjeti?",
+      "opts": [
+        "A. očeva druga žena",
+        "B. majčina prijateljica",
+        "C. bratova udovica",
+        "D. njegova bivša zaručnica"
+      ],
+      "correct": "D",
+      "exp": "U drami Gospoda Glembajevi, Beatrice (Angelika Castelli) = Leonova ljubav/zaručnica. Ovdje Leone kaže da ju je poželio vidjeti = bivša zaručnica.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 49,
+      "q": "S kakvim osjećajima Leone dolazi kući?",
+      "opts": [
+        "A. s grižnjom savjesti",
+        "B. s čežnjom",
+        "C. s ushitom",
+        "D. sa srdžbom"
+      ],
+      "correct": "B",
+      "exp": "'mala me je nostalgija pekla za svim ovim ovdje... ja sam se nevino veselio...' = čežnja, nostalgija.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 50,
+      "q": "Kakav je odnos oca i sina prikazan u polaznome tekstu?",
+      "opts": [
+        "A. potpuno prijateljski",
+        "B. ispunjen podrškom",
+        "C. pun nerazumijevanja",
+        "D. suparničkim"
+      ],
+      "correct": "C",
+      "exp": "'ti to ne razumiješ', 'Ti mene nisi nikada volio', 'ti me nikada nisi trpio' = pun nerazumijevanja.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 51,
+      "q": "Što Leone poručuje ocu rečenicom 'Mi smo dvije rase'?",
+      "opts": [
+        "A. Ja nisam kao ti.",
+        "B. Mi smo jedan svijet.",
+        "C. Isti smo u različitostima.",
+        "D. Krv nije voda."
+      ],
+      "correct": "A",
+      "exp": "'Mi smo dvije rase... Glembajevi i Daniellijevi!' = Leone kaže da su potpuno različiti, on nije kao otac = Ja nisam kao ti.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 52,
+      "q": "Koji je leksičko-semantički odnos iskazan podcrtanim riječima sljedeće rečenice?\n'Mi smo dvije rase, kao što si sam rekao: Glembajevi i Daniellijevi!'",
+      "opts": [
+        "A. kontekstualni sinonimi",
+        "B. pravi sinonimi",
+        "C. općejezični antonimi",
+        "D. kontekstualni antonimi"
+      ],
+      "correct": "D",
+      "exp": "'Glembajevi' i 'Daniellijevi' su u kontekstu rečenice suprotni (Leone je 'Daniellijev', otac 'Glembajev') = kontekstualni antonimi.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 53,
+      "q": "Zbog čega se Leone osjeća razočaranim u polaznome tekstu?",
+      "opts": [
+        "A. Predosjeca skoru propast tvrtke i raspad obitelji.",
+        "B. Obitelj ga nije dočekala kako je očekivao.",
+        "C. Saznao je da ga je otac razbaštinio.",
+        "D. Sve je ostalo isto kao i prije jedanaest godina."
+      ],
+      "correct": "D",
+      "exp": "'u ovoj nezdravoj atmosferi laži i intriga i histerije, odmah mi se javila stara moja migrena' = sve je isto, ništa se nije promijenilo = razočaranje.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 54,
+      "q": "Kojom stilskom figurom Leone opisuje svoju i očevu ulogu u proslavi jubileja?\n'...da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera!'",
+      "opts": [
+        "A. personifikacijom",
+        "B. metaforom",
+        "C. hiperbolom",
+        "D. simbolom"
+      ],
+      "correct": "B",
+      "exp": "'Statist' i 'režiser' = uloge iz kazalište prenesene na obiteljsku situaciju = metafora (kazalište kao slika obiteljskih odnosa).",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 55,
+      "q": "Čime se bavi Leone Glembay?",
+      "opts": [
+        "A. slikarstvom",
+        "B. glazbom",
+        "C. književnošću",
+        "D. novinarstvom"
+      ],
+      "correct": "A",
+      "exp": "Leone Glembay = slikar (u drami se to spominje; vratio se iz Pariza gdje je radio kao slikar).",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 56,
+      "q": "Koji se Krležin lik tako đer vraća kući nakon duga izbivanja?",
+      "opts": [
+        "A. grof Maksimilijan Axelrode",
+        "B. student Vidović",
+        "C. Ksenija Radajeva Bobočka",
+        "D. Filip Latinovicz"
+      ],
+      "correct": "D",
+      "exp": "Filip Latinovicz (roman Povratak Filipa Latinovicza, 1932.) = slikar koji se vraća u rodni grad nakon dugog izbivanja = isti motiv.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 57,
+      "q": "Kada nastaje djelo Gospoda Glembajevi?",
+      "opts": [
+        "A. u prvoj polovini 19. st.",
+        "B. krajem 19. st.",
+        "C. u prvoj polovini 20. st.",
+        "D. krajem 20. st."
+      ],
+      "correct": "C",
+      "exp": "Gospoda Glembajevi (1928.) = prva polovica 20. stoljeća.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 58,
+      "q": "Koji naslovi s Gospodom Glembajevima čine trilogiju?",
+      "opts": [
+        "A. Vučjak i Kristofor Kolumbo",
+        "B. Kraljevo i Michelangelo Buonarotti",
+        "C. U agoniji i Leda",
+        "D. Aretej i Adam i Eva"
+      ],
+      "correct": "C",
+      "exp": "Glembajevska trilogija = Gospoda Glembajevi + U agoniji + Leda.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 59,
+      "q": "U kojemu je padežu podcrtana riječ u sljedećoj rečenici?\n'...da se ja smatram u tvojoj kući gostom...'",
+      "opts": [
+        "A. u genitivu",
+        "B. u dativu",
+        "C. u lokativu",
+        "D. u instrumentalu"
+      ],
+      "correct": "D",
+      "exp": "'gostom' = instrumental jednine (ja sam gost → smatram se GOSTOM = instrumental imenskog predikata).",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 60,
+      "q": "Kako glasi genitiv sintagme 'dvije rase'?",
+      "opts": [
+        "A. dvaju rasa",
+        "B. dviju rasa",
+        "C. dvoje rase",
+        "D. dvije rase"
+      ],
+      "correct": "B",
+      "exp": "'Dvije rase' = dvije ž.r. imenice → genitiv: 'dviju rasa' (dvije → dviju za ž.r.).",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 61,
+      "q": "Koja je uloga dvotočja u sljedećoj rečenici?\n'I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla...'",
+      "opts": [
+        "A. najavljuje nabrajanje",
+        "B. navodi tuđe misli",
+        "C. najavljuje objašnjenje",
+        "D. naglašava osjećaj"
+      ],
+      "correct": "C",
+      "exp": "'moram da priznam:' = dvotočje najavljuje objašnjenje/ispovijest onoga što Leone treba reći.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 62,
+      "q": "Kojoj vrsti posuđenica pripada riječ 'weltanschaung'?",
+      "opts": [
+        "A. anglizmima",
+        "B. germanizmima",
+        "C. hungarizmima",
+        "D. turcizmima"
+      ],
+      "correct": "B",
+      "exp": "'Weltanschauung' = njemačka riječ (Welt=svijet, Anschauung=pogled/nazor) = germanizam.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 63,
+      "q": "Koliko ima surečenica u sljedećoj rečenici?\n'Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom!'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "B",
+      "exp": "1. 'Ja sam doputovao na tvoj lični poziv'; 2. 'molim te'; 3. 'da uvažiš'; 4. 'da se ja smatram... gostom' — Hmm: 'molim te da uvažiš da se...' = 3 surečenice: (1) doputovao, (2) molim+uvažiš, (3) smatram = B=tri.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 64,
+      "q": "Kako bi glasila rečenica s antonimskim parnjacima podcrtanog pridjeva i imenice?\n'...u ovoj nezdravoj atmosferi laži...'",
+      "opts": [
+        "A. u ovoj bolesnoj atmosferi neistine",
+        "B. u ovoj ozdravljujućoj atmosferi skrivanja",
+        "C. u ovoj zdravoj atmosferi istine",
+        "D. u ovoj bolničkoj atmosferi laganja"
+      ],
+      "correct": "C",
+      "exp": "'Nezdravoj' ↔ 'zdravoj'; 'laži' ↔ 'istine'. Antonimi: C = 'u ovoj zdravoj atmosferi istine'.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 65,
+      "q": "Koji je glagolski oblik podcrtan u sljedećoj rečenici?\n'ti zato nisi imao nikakva razloga!'",
+      "opts": [
+        "A. prezent",
+        "B. perfekt",
+        "C. imperativ",
+        "D. pluskvamperfekt"
+      ],
+      "correct": "B",
+      "exp": "'Nisi imao' = niječni perfekt (pomoćni glagol 'nisi' + glagolski pridjev radni 'imao') = perfekt.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak — Leone i otac)\n\nLEONE, još uvijek tiho: Molim te, samo da ponovim neke stvari! Ja sam doputovao na tvoj lični poziv, i molim te da uvažiš da se ja smatram u tvojoj kući gostom! Konačno, ja sam mislio da nemam prava da na toj jubilarnoj dekorativnoj predstavi ne prisustvujem kao statist kad si ti već preuzeo ulogu režisera! I još nešto moram da priznam: nakon onih jedanaest godina, mala me je nostalgija pekla za svim ovim ovdje. Putujući ovamo, ja sam se nevino veselio da ću vidjeti mamin grob, Beatrice, one naše stare slike i tebe. Da! I tebe! Ali u ovoj glembajevskoj atmosferi krvi, ubojstava, samoubojstava, u ovoj nezdravoj atmosferi laži i intr…"
+    },
+    {
+      "id": 66,
+      "q": "Koji je točan raspored?",
+      "opts": [
+        "A. 1F, 2B, 3C, 4A, 5D",
+        "B. 1E, 2B, 3C, 4A, 5D",
+        "C. 1F, 2B, 3C, 4E, 5D",
+        "D. 1A, 2B, 3C, 4D, 5F"
+      ],
+      "correct": "A",
+      "exp": "Šimić = Preobraženja (F); Baudelaire = Cvjetovi zla (B); Petrarca = Kanconijer (C); Kranjčević = Bugarkinje (A); Ujević = Lelek sebra (D). Dakle: 1F, 2B, 3C, 4A, 5D.",
+      "ctx": "Autorima pridružite njihova djela:\n1. Antun Branko Šimić — 2. Charles Baudelaire — 3. Francesco Petrarca — 4. Silvije Strahimir Kranjčević — 5. Tin Ujević\nA. Bugarkinje — B. Cvjetovi zla — C. Kanconijer — D. Lelek sebra — E. Pjesme u tmini — F. Preobraženja\n\nKoji je točan raspored?"
+    },
+    {
+      "id": 67,
+      "q": "Pravilno pisanje: 'Prema legendi, otkrio ga je kineski car Shen-Nong za jednoga od (67.)___ izleta'",
+      "opts": [
+        "A. mnogobrojnih",
+        "B. mnogo brojnih"
+      ],
+      "correct": "A",
+      "exp": "'Mnogobrojnih' = složeni pridjev, piše se spojeno. A."
+    },
+    {
+      "id": 68,
+      "q": "Pravilno pisanje: 'godine (68.)___'",
+      "opts": [
+        "A. 2737. pr. kr.",
+        "B. 2737. pr. Kr."
+      ],
+      "correct": "B",
+      "exp": "'Kr.' = Krist = vlastito ime = veliko slovo = B. '2737. pr. Kr.'"
+    },
+    {
+      "id": 69,
+      "q": "Pravilno pisanje: 'dok su sluge prokuhavale (69.)___ vodu'",
+      "opts": [
+        "A. rječnu",
+        "B. riječnu"
+      ],
+      "correct": "B",
+      "exp": "'Riječna voda' = od rijeka = 'riječnu' (dugi diftong je-). B."
+    },
+    {
+      "id": 70,
+      "q": "Pravilno pisanje: 'voda je (70.)___ boju'",
+      "opts": [
+        "A. promijenila",
+        "B. promjenila"
+      ],
+      "correct": "A",
+      "exp": "'Promijenila' = glagol promijeniti (pro+mij eniti) = pravilno s 'o'. A."
+    },
+    {
+      "id": 71,
+      "q": "Pravilno pisanje: 'Car je popio nekoliko gutljaja (71.)___'",
+      "opts": [
+        "A. tekućine",
+        "B. tekučine"
+      ],
+      "correct": "A",
+      "exp": "'Tekućine' = od tekući + -ina = genitiv = 'tekućine'. A."
+    },
+    {
+      "id": 72,
+      "q": "Pravilno pisanje: 'čini se da su u čaju prvi uživali budistički (72.)___'",
+      "opts": [
+        "A. svećenici",
+        "B. svećenici"
+      ],
+      "correct": "A",
+      "exp": "'Svećenici' = pravilno. A."
+    },
+    {
+      "id": 73,
+      "q": "Pravilno pisanje: 'čaj ima zanimljivu priču i u povijesti (73.)___ u događaju koji se odigrao u bostonskoj luci'",
+      "opts": [
+        "A. SAD-a",
+        "B. SADa"
+      ],
+      "correct": "A",
+      "exp": "'SAD-a' = genitiv od akronima SAD = s crticom. A."
+    },
+    {
+      "id": 74,
+      "q": "Pravilno pisanje: 'u (74.)___ luci'",
+      "opts": [
+        "A. Bostonskoj",
+        "B. bostonskoj"
+      ],
+      "correct": "B",
+      "exp": "'Bostonska luka' = bostonska (pridjev od Boston) = malo b u ovom kontekstu (opisni pridjev). B."
+    },
+    {
+      "id": 75,
+      "q": "Pravilno pisanje naziva događaja: '(75.)___'",
+      "opts": [
+        "A. Bostonska čajanka",
+        "B. Bostonska čajanka"
+      ],
+      "correct": "A",
+      "exp": "'Bostonska čajanka' = ime povijesnog događaja = vlastito ime = veliko B. A."
+    },
+    {
+      "id": 76,
+      "q": "Pravilno pisanje: 'Ledeni čaj i čaj u (76.)___ tako đer su američki izumi'",
+      "opts": [
+        "A. vrećicama",
+        "B. vrećicama"
+      ],
+      "correct": "B",
+      "exp": "'Vrećicama' = instrumental mn. od 'vrećica' = pravilno. B."
+    }
+  ]
+}

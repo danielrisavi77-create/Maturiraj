@@ -1,0 +1,340 @@
+{
+  "2010_zima_B__1": {
+    "B": "Tekst nema fabule, pripovjedača ni naracije, pa ne pripada epici.",
+    "C": "U tekstu nema dramskoga sukoba ni likova koji govore, pa nije drama."
+  },
+  "2010_zima_B__2": {
+    "A": "Elegija je tužaljka određene tematike, a ovdje je riječ o ustaljenom obliku od 14 stihova.",
+    "C": "Oda je svečana pohvalnica, a Notturno nije pjesma uzvišena slavljenja.",
+    "D": "Poema je duža pripovjedna pjesma, a ovaj je tekst kratak, čvrste sonetne strukture."
+  },
+  "2010_zima_B__3": {
+    "A": "Shema abab cdcd pripada engleskomu, a ne talijanskomu sonetu kojemu tekst pripada.",
+    "B": "Katrene imaju obgrljenu rimu abba, a ne ukrštenu abba s ovom rasporedbom tercina.",
+    "D": "Raspored abab abab ne odgovara obgrljenoj rimi katrena u tekstu."
+  },
+  "2010_zima_B__4": {
+    "B": "Stihovi katrena imaju osam, a ne devet slogova.",
+    "C": "Katrene su osmerci, a ne deseterci.",
+    "D": "Katrene nisu jedanaesterci nego osmerci."
+  },
+  "2010_zima_B__5": {
+    "A": "Notturno označava noćni prizor kao žanr, a ne raspoloženje kao takvo.",
+    "B": "Notturno nije po definiciji pjesma o smrti nego o noći.",
+    "D": "Notturno nije jadikovka nego prikaz noćnoga ugođaja."
+  },
+  "2010_zima_B__6": {
+    "A": "Pjesma odiše spokojem, a ne tjeskobom.",
+    "B": "Priroda je živa i skladna, pa nema ravnodušnosti.",
+    "D": "Ugođaj je smiren i zadovoljan, bez ikakva iščekivanja."
+  },
+  "2010_zima_B__7": {
+    "A": "Slika 'srebrn vir' upućuje na vid, a ne na njuh.",
+    "B": "Sinestezijom zvuk prelazi u drugo osjetilo, a ne ostaje samo slušni.",
+    "C": "U stihu nema osjeta okusa nego svjetlucave vizualne slike."
+  },
+  "2010_zima_B__8": {
+    "A": "Sat broji otkucaje, dakle vrijeme teče, a ne stoji.",
+    "B": "Noć je vrijeme sna i mira, a ne buđenja.",
+    "D": "Stihovi govore o noći koja traje, a ne o dolasku dana."
+  },
+  "2010_zima_B__9": {
+    "A": "'Pospan sat' ne označuje doba noći nego personificira spori protok vremena.",
+    "B": "Tišina noći nije značenje same sintagme 'pospan sat'.",
+    "C": "Sat broji, a ne pjeva uspavanku."
+  },
+  "2010_zima_B__10": {
+    "B": "Željeznica koju guta daljina simbolizira nestajanje, a ne konkretan polazak na put.",
+    "C": "U pjesmi nema ljubavnoga rastanka nego općega utrnuća zvukova.",
+    "D": "Slika nestajanja u noći suprotna je buđenju novoga dana."
+  },
+  "2010_zima_B__11": {
+    "A": "Slogovanje 'Sit-ni' i 'cv-r-čak' je pogrešno; prvi slog je 'Si-', a 'cvrčak' se dijeli 'cvr-čak'.",
+    "B": "'Sit-ni' i 'cv-rči' nisu pravilno rastavljeni slogovi.",
+    "D": "'Cv-r-čak' i 'jas-an' nisu pravilna podjela na slogove."
+  },
+  "2010_zima_B__12": {
+    "A": "U ovom stihu nema upadljiva ponavljanja istih suglasnika.",
+    "B": "Stih ne pokazuje izrazito gomilanje istoga suglasnika.",
+    "C": "Stih je prekratak i bez nizanja istih glasova za aliteraciju."
+  },
+  "2010_zima_B__13": {
+    "A": "Golub nije noćni leteći sisavac niti odgovara značenju riječi netopir.",
+    "C": "Leptir je kukac, a netopir je sisavac (šišmiš).",
+    "D": "Sova je ptica, a netopir je šišmiš, sisavac."
+  },
+  "2010_zima_B__14": {
+    "B": "'Kasnijega' je komparativ, a traži se genitiv pozitiva 'kasnoga'.",
+    "C": "'Kasan' je nominativ pridjeva i ne slaže se s genitivom imenice.",
+    "D": "Oblik 'kasna' nije ispravan genitiv određenoga pridjeva 'kasni'."
+  },
+  "2010_zima_B__15": {
+    "A": "Narodni preporod traje u prvoj polovici 19. st., prije Matoševa vremena.",
+    "B": "Realizam prethodi moderni, a Matoš je njezin predstavnik.",
+    "D": "Postmodernizam je razdoblje druge polovice 20. st., mnogo nakon Matoša."
+  },
+  "2010_zima_B__16": {
+    "A": "Dekameron nije zbirka ljubavnih pjesama nego proznih novela.",
+    "B": "Dekameron sadrži novele, a ne bajke.",
+    "C": "Dekameron nije roman u nastavcima nego zbirka samostalnih novela."
+  },
+  "2010_zima_B__17": {
+    "A": "Naziv ne znači 'sretan završetak' nego se izvodi iz brojeva deset i dan.",
+    "C": "Naziv ne upućuje na 'sto zgoda' nego na deset dana pripovijedanja.",
+    "D": "Naziv nema veze s ispovijedanjem duše nego s deset dana."
+  },
+  "2010_zima_B__18": {
+    "B": "Uvod nije razrada nego okvir unutar kojega se nižu novele.",
+    "C": "Invokacija je zaziv muze u epu, a ovdje je riječ o pripovjednome okviru.",
+    "D": "In medias res je počinjanje usred radnje, a ne uvodni okvirni dio."
+  },
+  "2010_zima_B__19": {
+    "A": "Razlog odlaska nije rat nego epidemija kuge.",
+    "B": "U uvodu se ne spominje potres nego pošast kuge.",
+    "D": "Skupina sama odlazi, a nije protjerana."
+  },
+  "2010_zima_B__20": {
+    "B": "Dioneo ističe da ih je doveo razbor djevojaka, a ne domišljatost mladića.",
+    "C": "U tekstu se ne spominje nagovor roditelja.",
+    "D": "Razlog odlasku jest razbor djevojaka, a ne puka želja za zabavom."
+  },
+  "2010_zima_B__21": {
+    "A": "Mladići i djevojke nisu dvorjani nego pripovjedači novela.",
+    "C": "Oni nisu putujući glumci nego kazivači priča.",
+    "D": "Ne poučavaju ples nego svaki dan pripovijedaju po jednu novelu."
+  },
+  "2010_zima_B__22": {
+    "A": "Panfilo nije zapjevao nego počeo pripovijedati priču.",
+    "C": "Panfilo ne započinje ples nego prvu novelu.",
+    "D": "Panfilo ne otpočinje natjecanje nego pripovijedanje."
+  },
+  "2010_zima_B__23": {
+    "A": "U odlomku nema monologa lica nego opisa prostora.",
+    "C": "Retardacija je usporavanje radnje, a ovdje je riječ o opisu.",
+    "D": "Retrospekcija je vraćanje u prošlost, a odlomak opisuje sadašnji prizor."
+  },
+  "2010_zima_B__24": {
+    "A": "Opis cvjetnoga, bujnoga mjesta nije tmuran nego vedar.",
+    "B": "Prizor je jasan i skladan, a ne mističan.",
+    "C": "Opis je realističan i ugodan, bez fantastičnih elemenata."
+  },
+  "2010_zima_B__25": {
+    "B": "Skupina je vesela, a ne pesimistična.",
+    "C": "Dioneo poziva na šalu, pa nema cinizma.",
+    "D": "Raspoloženje je vedro i optimistično, a ne turobno."
+  },
+  "2010_zima_B__26": {
+    "A": "Dioneo ističe dostojanstvo, pa nisu razuzdani.",
+    "B": "Skupina je vesela i čestita, a ne tužna i neutješna.",
+    "D": "Likovi su smjerni i ugodni, a ne strogi i ozbiljni."
+  },
+  "2010_zima_B__27": {
+    "A": "Boccaccio piše na pučkome talijanskom, a ne na latinskome.",
+    "B": "Dekameron nije pisan staroslavenskim nego toskanskim talijanskim.",
+    "D": "Djelo nije na grčkome nego na talijanskome volgare."
+  },
+  "2010_zima_B__28": {
+    "A": "Cervantes i Shakespeare nisu talijanski predrenesansni pisci.",
+    "B": "Ovidije i Plaut antički su rimski pisci, a ne predrenesansni trolist.",
+    "C": "Tasso i Ariosto pripadaju kasnijoj renesansi, a ne predrenesansnomu trolistu."
+  },
+  "2010_zima_B__29": {
+    "A": "Frazem ne znači 'pričekati' nego upravo suprotno - bez oklijevanja.",
+    "B": "Frazem ne znači gubljenje vremena nego brzo djelovanje.",
+    "C": "Naglasak nije na radosti nego na trenutačnosti čina."
+  },
+  "2010_zima_B__30": {
+    "A": "Dundo Maroje je dramsko djelo za izvedbu, a ne roman.",
+    "B": "Djelo je vesela komedija, a ne tragedija.",
+    "D": "Dundo Maroje je drama, a ne prozna novela."
+  },
+  "2010_zima_B__31": {
+    "A": "Pomet ne spominje glumce ni slikare nego pjesnike i glazbenike.",
+    "B": "U govoru se ne spominju slikari nego pjesnik i glazbenik.",
+    "C": "Spominju se pjesnik i glazbenik, a ne glumci."
+  },
+  "2010_zima_B__32": {
+    "A": "Pomet ne zagovara činjenje samo onoga što se želi nego prilagodbu prilikama.",
+    "B": "Pomet odbacuje i bogatstvo i viteške vrline kao jamstvo uspjeha.",
+    "D": "Pomet ne preporučuje pokorno trpljenje nego strpljivu i pravodobnu mudrost."
+  },
+  "2010_zima_B__33": {
+    "A": "Pomet je promišljen i lukav, a ne naivan.",
+    "C": "Pometa ne pokreće škrtost nego lukava prilagodljivost.",
+    "D": "Pomet djeluje sebično i proračunato, a ne velikodušno."
+  },
+  "2010_zima_B__34": {
+    "A": "Pomet ne teži vladanju svijetom nego zadovoljenju trbuha.",
+    "B": "Pomet se ne brine za bolji svijet nego za vlastiti užitak.",
+    "C": "Pometu cilj nije bogatstvo nego dobra hrana i piće."
+  },
+  "2010_zima_B__35": {
+    "B": "Pomet ne tumači zbivanja publici nego sam pokreće radnju.",
+    "C": "Pomet nije deus ex machina nego stvarni pokretač zapleta.",
+    "D": "Pomet ne uvodi predstavu u predstavi nego upravlja radnjom."
+  },
+  "2010_zima_B__36": {
+    "A": "Pomet je lukav i snalažljiv, a ne glup i nesposoban za suradnju.",
+    "B": "Pomet ne iskorištava ljude radi novca nego svima ugađa radi vlastite koristi.",
+    "D": "Pomet trpi i podnosi, a nije svadljiv ni naprasit."
+  },
+  "2010_zima_B__37": {
+    "A": "Radnja se ne odvija u Dubrovniku nego u Rimu.",
+    "B": "Mjesto radnje nije Venecija nego Rim.",
+    "D": "Radnja nije smještena u Split nego u Rim."
+  },
+  "2010_zima_B__38": {
+    "A": "Romantizam je razdoblje 19. st., a Držić djeluje u 16. st.",
+    "C": "Srednji vijek prethodi Držiću koji pripada renesansi.",
+    "D": "Barok slijedi nakon renesanse, a Držić je renesansni pisac."
+  },
+  "2010_zima_B__39": {
+    "A": "U ulomku govori samo jedno lice, pa nema dijaloga.",
+    "C": "Kulminacija je vrhunac radnje, a ne dramska tehnika govora.",
+    "D": "Didaskalija je scenska uputa, a tekst je Pometov govor, dakle monolog."
+  },
+  "2010_zima_B__40": {
+    "A": "Metaforičnost je obilježje lirike, a ne osnova drame.",
+    "B": "Pripovijedanje je obilježje epike, a ne drame.",
+    "D": "Iskazivanje osobnih osjećaja svojstveno je lirici, a ne drami."
+  },
+  "2010_zima_B__41": {
+    "A": "Pripovijedanje o licima epski je, a ne dramski postupak karakterizacije.",
+    "B": "Vanjski opis lica nije način karakterizacije u drami.",
+    "C": "Popis lica samo navodi osobe, ali ih ne karakterizira."
+  },
+  "2010_zima_B__42": {
+    "A": "Retardacija, epizode i digresije pripadaju epskoj kompoziciji, a ne scenskoj strukturi.",
+    "B": "Opis i pripovijedanje epski su postupci, a ne dijelovi scenske izvedbe.",
+    "C": "Teme, motivi i fabula sadržajne su sastavnice, a ne struktura izvedbe."
+  },
+  "2010_zima_B__43": {
+    "A": "'Kip domovine...' je lirska pjesma, a ne drama.",
+    "C": "'Balada iz predgrađa' je lirsko djelo, a ne drama.",
+    "D": "'Posljednji Stipančići' je roman, dakle epika, a ne drama."
+  },
+  "2010_zima_B__45": {
+    "A": "Tekst ima dijaloge i didaskalije scenskoga djela, pa nije lirika.",
+    "B": "Tekst nije pripovjedna proza nego dramski tekst za izvedbu."
+  },
+  "2010_zima_B__46": {
+    "A": "Prolog je uvodni govor, a ne kosim slovima otisnuta uputa.",
+    "B": "Epilog je zaključni dio, a ne scenska uputa u kurzivu.",
+    "D": "Replika je govor lica, a kosim su slovima pisane upute, ne replike."
+  },
+  "2010_zima_B__47": {
+    "A": "Leone nije svećenik nego slikar i sin Ignjata Glembaya.",
+    "C": "Leone nije pravni savjetnik nego umjetnik, sin glave obitelji.",
+    "D": "Leone nije liječnik nego Ignjatov sin slikar."
+  },
+  "2010_zima_B__48": {
+    "A": "Sukobe ne pokreće povratak zbog novca nego Leoneova optužba o nevjeri.",
+    "B": "Bankareva ucjena nije okidač nego Leoneova izjava o baruničinu ljubavniku.",
+    "C": "Sukob ne izaziva otkriće pravoga oca nego optužba za bračnu nevjeru."
+  },
+  "2010_zima_B__49": {
+    "B": "Leone se ne boji svađe s bratom i sestrom nego stare strasti prema barunici.",
+    "C": "Riječ nije o mržnji prema ocu nego o strasti prema njegovoj ženi.",
+    "D": "Strah nije od otkrivanja potrošena nasljedstva nego od ljubavne strasti."
+  },
+  "2010_zima_B__50": {
+    "A": "Krivnja ne proizlazi iz propasti tvrtke nego iz očeve smrti.",
+    "B": "Razlog krivnji nije izbivanje nego smrt oca.",
+    "C": "Leone se ne kaje zbog nevjere nego zbog uzrokovane očeve smrti."
+  },
+  "2010_zima_B__51": {
+    "A": "Glembajevski imperativ nije socijalna osjetljivost nego naslijeđeni nagoni.",
+    "C": "Pojam ne označuje obiteljsku idilu nego destruktivno nasljeđe.",
+    "D": "Riječ nije o financijskoj neovisnosti nego o naslijeđenim sklonostima."
+  },
+  "2010_zima_B__52": {
+    "B": "Leone ne otkriva socijalni status ni govorne osobine nego psihu i nagone.",
+    "C": "Riječ nije o vanjskom izgledu nego o naturalističko-psihološkoj analizi.",
+    "D": "Karakterizacija nije simbolistička nego naturalistička i psihološka."
+  },
+  "2010_zima_B__53": {
+    "A": "Rečenica ne pretjeruje radi pojačanja nego uspoređuje veznikom 'kao'.",
+    "C": "Nije riječ o simbolu nego o izravnoj usporedbi s jaguarom.",
+    "D": "Nije personifikacija jer se ljudsko ponašanje uspoređuje sa životinjom, a ne obrnuto."
+  },
+  "2010_zima_B__54": {
+    "A": "Angelika ne nadahnjuje nego tješi i smiruje Leonea.",
+    "B": "Angelika se ne odnosi prema njemu sa strahom nego sa samilošću.",
+    "D": "Angelika ne pokazuje divljenje nego brižnu utjehu."
+  },
+  "2010_zima_B__55": {
+    "A": "Suprotnost nije ljepota i ružnoća nego duhovno i tjelesno.",
+    "B": "Odnos se ne temelji na dobi nego na duhovnom i tjelesnom načelu.",
+    "C": "Krleža ih ne suprotstavlja kao selo i grad nego kao duhovno i tjelesno."
+  },
+  "2010_zima_B__56": {
+    "A": "Uzrok bijesu nije svađa sa suprugom nego novinski natpisi.",
+    "B": "Barunicu ne razbješnjuje materijalna propast nego skandal u tisku.",
+    "D": "Razlog nisu usmeni tračevi nego objavljeni novinski natpisi."
+  },
+  "2010_zima_B__57": {
+    "B": "Leoneova replika nije završna rečenica drame.",
+    "C": "Glembayeva izjava nije posljednja replika djela.",
+    "D": "Angelikina utješna rečenica ne zatvara dramu."
+  },
+  "2010_zima_B__58": {
+    "A": "Veza nije uspon i pad patricijske obitelji nego povratak i kriza umjetnika.",
+    "B": "Djela ne povezuje Edipov kompleks nego motiv povratka i umjetnička kriza.",
+    "C": "Junaci nemaju isti životni put ni tragičan kraj; poveznica je povratak i kriza."
+  },
+  "2010_zima_B__59": {
+    "A": "'Povratak Filipa Latinovicza' je roman, a 'Vučjak' nije dio toga dramskog ciklusa.",
+    "C": "'Na rubu pameti' je roman, a 'Balade Petrice Kerempuha' lirika; ne pripadaju ciklusu.",
+    "D": "'Kristofor Kolumbo' i 'Zastave' nisu dio glembajevskoga ciklusa."
+  },
+  "2010_zima_B__60": {
+    "A": "Krleža na početku nije futurist nego ekspresionist.",
+    "B": "Moderna prethodi Krležinim počecima koji su ekspresionistički.",
+    "D": "Krleža nije počeo kao nadrealist nego kao ekspresionist."
+  },
+  "2010_zima_B__61": {
+    "A": "Muzej suvremene umjetnosti ne nosi Krležino ime.",
+    "B": "Ne postoji 'Institut za književnost' s Krležinim imenom kao tražena ustanova.",
+    "D": "HNK ne nosi ime Miroslava Krleže."
+  },
+  "2010_zima_B__62": {
+    "A": "Ovdje 'imperativ' ne znači izrečenu zapovijed nego nešto neizbježno.",
+    "B": "Riječ ne označuje stroge nazore nego ono čemu se ne može oduprijeti.",
+    "D": "Ne znači ono što je potrebno nego ono što je neizbježno."
+  },
+  "2010_zima_B__63": {
+    "B": "Zarezi nisu po načelu suprotnosti jer u rečenici nema suprotnih dijelova.",
+    "C": "Nije riječ o inverziji nego o odvajanju vokativa zarezima.",
+    "D": "Nije riječ o umetanju nego o vokativu koji se odvaja zarezima."
+  },
+  "2010_zima_B__65": {
+    "B": "Oblik 'devetnajstoga' s glasom 'j' nestandardan je."
+  },
+  "2010_zima_B__66": {
+    "B": "Oblik 'djelili' je pogrešan jer ijekavski refleks daje 'dijelili'."
+  },
+  "2010_zima_B__67": {
+    "B": "Odvojeno pisanje 'ne zadovoljstva' nije ispravno jer se 'ne-' s imenicom piše spojeno."
+  },
+  "2010_zima_B__68": {
+    "B": "Oblik 'civilizacie' nije ispravan jer izostaje 'j' ispred 'e'."
+  },
+  "2010_zima_B__69": {
+    "A": "Oblik 'svjeta' je pogrešan jer ijekavski dugi refleks daje 'svijeta'."
+  },
+  "2010_zima_B__70": {
+    "B": "Sastavljeno 'uime' nije ispravno jer se prijedložni izraz 'u ime' piše odvojeno."
+  },
+  "2010_zima_B__71": {
+    "A": "Oblik 'iracijonalnih' s 'j' nije standardan jer je riječ o latinizmu bez 'j'."
+  },
+  "2010_zima_B__72": {
+    "A": "Oblik 'občinjeni' je pogrešan jer se 'b' ispred 'č' jednači u 'p': 'opčinjen'."
+  },
+  "2010_zima_B__73": {
+    "A": "Oblik 'svjest' je pogrešan jer ijekavski refleks daje 'svijest'."
+  },
+  "2010_zima_B__74": {
+    "B": "Veliko početno slovo 'Simbolizam' nije ispravno jer se nazivi pokreta pišu malim slovom."
+  }
+}

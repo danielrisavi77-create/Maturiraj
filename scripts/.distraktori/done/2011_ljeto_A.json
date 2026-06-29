@@ -1,0 +1,381 @@
+{
+  "2011_ljeto_A__1": {
+    "B": "Epika podrazumijeva pripovijedanje radnje, a polazni je tekst sonet, dakle lirska pjesma.",
+    "C": "Drama je namijenjena izvedbi i temelji se na dijalogu, što sonet nije."
+  },
+  "2011_ljeto_A__2": {
+    "A": "Gundulić je hrvatski barokni pjesnik epa Osman, a ne začetnik soneta.",
+    "B": "Marulić je 'otac hrvatske književnosti' (Judita), no sonetu nije dao slavu.",
+    "C": "Ovidije je rimski pjesnik (Metamorfoze) iz antike, davno prije pojave soneta."
+  },
+  "2011_ljeto_A__3": {
+    "A": "Tekst ne opisuje prirodu ni krajolik, nego razmišlja o pjesnikovoj sudbini.",
+    "C": "Nema teme društvene nepravde ni siromaštva, nego osobne refleksije.",
+    "D": "Riječ je o sumnji, slobodi i pjesnikovu pozivu, a ne o ljubavnom doživljaju."
+  },
+  "2011_ljeto_A__4": {
+    "A": "Suncokretu se ne pripisuju ljudske osobine, nego se njime prenosi značenje žara.",
+    "C": "Nema namjernog pretjerivanja radi pojačavanja dojma.",
+    "D": "Nema suprotnosti rečenog i mišljenog, dakle nije ironija."
+  },
+  "2011_ljeto_A__5": {
+    "A": "U stihu o tamjanu neviđenog cvijeta nema veznika usporedbe ni dvaju uspoređenih pojmova.",
+    "B": "'Lik u mutnoj vodi' je metafora, a ne poredba jer nema veznika 'kao'.",
+    "C": "Stih o padu i smrti samo niže radnju, bez ikakve usporedbe."
+  },
+  "2011_ljeto_A__6": {
+    "A": "Skromnost se odnosi na nenametljivost, a 'dvojiti' ne znači biti skroman.",
+    "B": "Plašljivost je strah, a dvojenje je sumnja, a ne bojazan.",
+    "C": "Umišljenost je precjenjivanje sebe, suprotno od onoga koji o svemu dvoji."
+  },
+  "2011_ljeto_A__7": {
+    "A": "Stih o gledanju žarom suncokreta iskazuje predanost, a ne životno okružje.",
+    "C": "Stih o tome da nikad nije plakao radi sebe govori o nesebičnosti, ne o okružju.",
+    "D": "Stih o ostavljanju cvijeta u suzama govori o pjesnikovoj žrtvi, ne o okolini."
+  },
+  "2011_ljeto_A__8": {
+    "B": "Tajne želje vezuju se uz cvijet u srcu, a ne uz sliku usamljenog broda.",
+    "C": "'Samac brod' označuje usamljenost puta, a ne fizičku daljinu odredišta.",
+    "D": "Neuslišana ljubav nije sadržana u slici broda koji sam plovi."
+  },
+  "2011_ljeto_A__9": {
+    "B": "Tercine se ne rimuju kao ccd eed jer su krajnji slogovi raspoređeni drukčije.",
+    "C": "Katreni nisu obgrljeni (abab) nego obgrljene rime abba, što ovo isključuje.",
+    "D": "Katreni nisu ukrštene rime (abab), pa raspored ne odgovara tekstu."
+  },
+  "2011_ljeto_A__10": {
+    "A": "Kondicional prvi tvori se s 'bih, bi...' + pridjev radni, čega ovdje nema.",
+    "B": "Kondicional drugi traži 'bio bih', a ne pomoćni glagol 'budeš'.",
+    "C": "Futur prvi tvori se s 'ću, ćeš...' + infinitiv, a ne s 'budeš' + pridjev radni."
+  },
+  "2011_ljeto_A__11": {
+    "A": "'Izdvajati' znači odvajati, što se značenjski ne podudara s 'dvoji'.",
+    "C": "'Zdvajati' znači očajavati, a tekst govori o sumnji, ne o očaju.",
+    "D": "'Udvojiti' znači podvostručiti, što nema veze sa sumnjanjem."
+  },
+  "2011_ljeto_A__12": {
+    "A": "Razdvaja zavisni veznik 'kad' od pripadajućeg predikata, pa nije neutralan red.",
+    "C": "Stavljanjem priložne oznake na početak nastaje obilježen, naglašen red riječi.",
+    "D": "Premetanjem 'muzama našim' i izmještanjem veznika dobiva se obilježen poredak."
+  },
+  "2011_ljeto_A__13": {
+    "A": "Nema niza istovrsnih dijelova, pa zarezi nisu po načelu nabrajanja.",
+    "B": "Zarezi ne odvajaju premetnuti dio rečenice, nego doziv.",
+    "C": "Nema suprotstavljenih sadržaja koje bi zarez odvajao."
+  },
+  "2011_ljeto_A__14": {
+    "A": "Dvije surečenice premalo je jer se zanemaruju eliptične i zavisne surečenice.",
+    "B": "Tri surečenice ne obuhvaćaju sve izdvojene predikate u navedenim stihovima.",
+    "D": "Pet surečenica precjenjuje broj jer se neke dijelove pogrešno razdvaja."
+  },
+  "2011_ljeto_A__15": {
+    "A": "'Dvoji' i 'pjeva' pravilni su prezentski oblici, nisu skraćivani radi metra.",
+    "B": "'Hodi' i 'ostavit će' redoviti su oblici, nemaju izostavljenih glasova.",
+    "D": "'Brodi' i 'uzmi' pravilni su oblici, nisu izmijenjeni zbog stiha."
+  },
+  "2011_ljeto_A__16": {
+    "A": "'Cvrčak' nije Matoševa antologijska pjesma.",
+    "B": "'Bele rože' kajkavska je pjesma Frana Galovića, ne Matoša.",
+    "C": "'Pejzaž I.' pripada A. B. Šimiću, a ne Matošu."
+  },
+  "2011_ljeto_A__17": {
+    "B": "Rimska je književnost mlađa; njezino antičko djelo o lutanju jest Eneida, ne Odiseja.",
+    "C": "Babilonsko-asirskoj književnosti pripada Ep o Gilgamešu, a ne Odiseja.",
+    "D": "Staroegipatska književnost ne obuhvaća Homerove epove."
+  },
+  "2011_ljeto_A__18": {
+    "A": "Hebrejski je jezik starozavjetne književnosti, a ne Homerova.",
+    "B": "Latinski je jezik rimske književnosti, primjerice Vergilija, ne Homera.",
+    "D": "Talijanski je novovjekovni jezik, davno mlađi od Homerova epa."
+  },
+  "2011_ljeto_A__19": {
+    "A": "Didaktički ep poučava (npr. Heziod), dok Odiseja pripovijeda pustolovine.",
+    "B": "Religiozna poema slavi vjerske teme, što Odiseja nije.",
+    "C": "Nacionalni mit nije književna vrsta, a ep nije svodiv na to."
+  },
+  "2011_ljeto_A__20": {
+    "A": "Osveta prijatelja nije Odisejev pokretač; cilj mu je povratak kući.",
+    "C": "Utemeljenje Rima cilj je Eneje u Eneidi, ne Odiseja.",
+    "D": "Troja je već pala prije Odiseje; spaljivanje Troje nije njegov cilj u epu."
+  },
+  "2011_ljeto_A__21": {
+    "B": "Posljednji trojanski junak jest Eneja (Trojanac), a Odisej je Grk.",
+    "C": "Odisej je smrtni junak, a ne jedan od olimpskih bogova.",
+    "D": "Helenu je oteo Paris, a ne Odisej."
+  },
+  "2011_ljeto_A__22": {
+    "A": "Pisac (Homer) ovdje ne pripovijeda; riječ predaje liku.",
+    "C": "Intrigant je spletkar, a u ulomku takva lika kao pripovjedača nema.",
+    "D": "Pripovjeda glavni lik Odisej, a ne neki sporedni lik."
+  },
+  "2011_ljeto_A__23": {
+    "B": "Stihovi ne govore o porazu u ratu, nego o progonu bogova.",
+    "C": "Nema spomena iznevjerene žene; Odisej ostaje vjeran.",
+    "D": "Stihovi ne spominju odricanje od sina."
+  },
+  "2011_ljeto_A__24": {
+    "A": "Stih govori o postojanosti srca prema kući, a ne o izdaji drugova.",
+    "B": "Odisej ne obećaje ljubav Kalipsi; baš zato srce ostaje nepromijenjeno.",
+    "D": "Stih se ne odnosi na odbijanje božanske pomoći."
+  },
+  "2011_ljeto_A__25": {
+    "A": "Prijetvornost (prijevarnost) jest epitet uz Kalipsu, ali u opisu njezina postupanja s gostom prevladava ugošćivanje.",
+    "C": "Razočaranje se u ulomku ne iskazuje u njezinu odnosu prema Odiseju.",
+    "D": "Neprijateljstva nema; ona ga ugošćuje i pazi."
+  },
+  "2011_ljeto_A__26": {
+    "B": "Epitet 'iskričavo' upućuje na blještavilo, a ne na mirnoću mora.",
+    "C": "Olujno more bilo bi mračno i uzburkano, suprotno od iskričava sjaja.",
+    "D": "Hladnoća nije sadržana u slici mora koje se iskri."
+  },
+  "2011_ljeto_A__27": {
+    "A": "Kraljica ne traži priznanje gdje je bio, nego pripovijedanje doživljaja.",
+    "B": "Nema spomena zavjeta šutnje koji bi trebalo prekinuti.",
+    "C": "Ne traži otkrivanje Kalipsina boravišta, nego cijelu pripovijest."
+  },
+  "2011_ljeto_A__28": {
+    "A": "Otmica žene (Helene) povezana je s Parisom, a nije Odisejev doživljaj.",
+    "B": "Gubitak kraljevstva nije ono što prethodi njegovim jadima na moru.",
+    "C": "Velika ljubav nije događaj koji je izazvao njegove muke."
+  },
+  "2011_ljeto_A__29": {
+    "A": "'Gorući grom' opisni je epitet uz tu situaciju, nije ustaljen uz isto ime.",
+    "C": "'Iskričavo more' prigodni je epitet, a ne stalni uz junakovo ime.",
+    "D": "'Lađene grede' opisni su izraz bez svojstva stalnoga epiteta."
+  },
+  "2011_ljeto_A__30": {
+    "A": "Gilgameš pripada babilonsko-asirskoj, a ne grčkoj antici.",
+    "B": "Metamorfoze su djelo rimskoga pjesnika Ovidija, ne grčke antike.",
+    "D": "Pjesma o Cidu srednjovjekovni je španjolski ep, mnogo mlađi od Odiseje."
+  },
+  "2011_ljeto_A__31": {
+    "B": "Vrsta stiha nije zajednička: Odiseja je heksametar, a Hektorović dvostruko rimovani dvanaesterac.",
+    "C": "Glavni su likovi različiti, pa ih djela ne povezuju.",
+    "D": "Djela su nastala u različitim razdobljima (antika i renesansa)."
+  },
+  "2011_ljeto_A__32": {
+    "A": "Likovi se ne grade statičnim opisom izgleda, nego njihovim govorom.",
+    "B": "Piščeva komentara kao postupka karakterizacije ovdje nema.",
+    "D": "Unutarnjeg monologa nema; riječ je o izmjeni replika dvaju likova."
+  },
+  "2011_ljeto_A__33": {
+    "B": "Podrijetlo se spominje tek poslije ('A ipak ste Hrvatica'), pozornost je privukla čitanjem.",
+    "C": "Gospođa nije šutljiva, naprotiv živo razgovara.",
+    "D": "Skromnost nije ono čime je privukla pozornost sugovornika."
+  },
+  "2011_ljeto_A__34": {
+    "B": "Ne nadmeću se znanjem djela, nego razgovaraju o vlastitim sklonostima čitanja.",
+    "C": "Ne prepiru se oko običaja; razgovor je opušten i o knjigama.",
+    "D": "Ne komentiraju aktualne društvene događaje, nego čitateljske navike."
+  },
+  "2011_ljeto_A__35": {
+    "B": "Ton nije napet; razgovor teče šaljivo i bez sukoba.",
+    "C": "Sentimentalnosti (ganutljivosti) u razgovoru nema.",
+    "D": "Vatren ton značio bi strast i žestinu, a razgovor je lagan i duhovit."
+  },
+  "2011_ljeto_A__36": {
+    "A": "'Umujete brzo' pohvala je oštroumnosti, a ne prijekor zbog uobraženosti.",
+    "B": "Brzo zaključivanje ovdje znači dosjetljivost, a ne nepromišljenu brzopletost.",
+    "D": "Iz iste rečenice slijedi naklonost ('zabavlja me'), ne antipatija."
+  },
+  "2011_ljeto_A__37": {
+    "A": "Nabrajanje vrsta štiva pokazuje što čita, ali ne ocjenjuje kvalitetu domaće književnosti.",
+    "B": "'Skoro ništa' govori o količini čitanja hrvatskih djela, ne izravno o njihovoj kvaliteti.",
+    "D": "'Vazda jedno te isto' upućuje na jednoličnost, ali rečenica o zasićenosti izravnije ocjenjuje kvalitetu."
+  },
+  "2011_ljeto_A__38": {
+    "B": "Iskrene zadivljenosti nema; naglasak je na prijekoru što ne čita hrvatski.",
+    "C": "Netrpeljivosti nema; ton ostaje blag.",
+    "D": "Otvorena simpatija nije ono što ova rečenica iskazuje, nego blagi ukor."
+  },
+  "2011_ljeto_A__39": {
+    "A": "Položaj žene nije temeljni problem; gospođa je samo primjer čitateljice.",
+    "B": "Odnos naroda prema jeziku nije središte; raspravlja se o čitateljskim navikama.",
+    "D": "Političkih sukoba u ulomku nema."
+  },
+  "2011_ljeto_A__40": {
+    "A": "'Hrana' nije državna politika ni 'ptica' neobrazovani puk.",
+    "C": "Slike se ne odnose na strani kapital ni oponašatelje uzora.",
+    "D": "'Hrana' i 'ptica' nisu narodni jezik ni nepoštivanje jezika."
+  },
+  "2011_ljeto_A__41": {
+    "A": "Humoreska nije roman u nastavcima, nego kratak duhovit tekst.",
+    "B": "Humoreska nije grčka komedija, nego kratka šaljiva proza.",
+    "D": "Ljubavni kanconijer zbirka je soneta, a ne humoreska."
+  },
+  "2011_ljeto_A__42": {
+    "A": "Zavođenje domišljatošću nije Šenoina namjera, nego poticanje na čitanje domaćega.",
+    "C": "Dodvoravanje kritičarima nije svrha; cilj je vrednovanje hrvatske zbilje kao građe.",
+    "D": "Ne ističe povijesne junake, nego pokazuje vrijednost suvremene domaće priče."
+  },
+  "2011_ljeto_A__43": {
+    "A": "Danicu ilirsku uređivao je Ljudevit Gaj, a ne Šenoa.",
+    "B": "'Hrvatsku misao' Šenoa nije uređivao.",
+    "C": "Kolo je pokrenuto u doba ilirizma; Šenoa je urednik Vijenca."
+  },
+  "2011_ljeto_A__44": {
+    "A": "Antroponimi su osobna imena ljudi, a 'franceski' nije ime.",
+    "B": "Eponimi su nazivi nastali od vlastitih imena, što 'franceski' nije.",
+    "C": "Egzotizmi označuju strane pojave; ovdje je riječ o zastarjelu domaćem obliku."
+  },
+  "2011_ljeto_A__45": {
+    "A": "Pogrešno je iza upitnika unutar navodnika staviti i zarez prije navedbe.",
+    "B": "Upitnik mora ostati unutar navodnika, a ne iza zatvaranja navodnika.",
+    "D": "Pogrešan je dodatni navodnik na kraju rečenice nakon glagola govorenja."
+  },
+  "2011_ljeto_A__46": {
+    "A": "Frazeologija proučava ustaljene sveze riječi, a ne vlastita imena.",
+    "C": "Povijest jezika proučava razvoj jezika, a ne vlastita imena.",
+    "D": "Dijalektologija proučava narječja, a ne imena."
+  },
+  "2011_ljeto_A__47": {
+    "A": "Dvije surečenice premalo je jer su tu četiri predikatna jezgra (i izostavljeni 'je').",
+    "B": "Tri surečenice ne obuhvaćaju i poredbeni dio 'brza kao ptica'.",
+    "D": "Pet surečenica previše je za navedenu rečenicu."
+  },
+  "2011_ljeto_A__48": {
+    "A": "'Privrženost' jest antonim antipatije, ali 'društvene' nije antonim od 'zajedničke'.",
+    "B": "'Netrpeljivost' je istoznačnica antipatije, a ne antonim; 'opće' nije parnjak 'zajedničke'.",
+    "D": "'Sumnjičavost' nije antonim antipatije, niti je 'dvostruke' parnjak 'zajedničke'."
+  },
+  "2011_ljeto_A__49": {
+    "A": "Infinitiv završava na -ti/-ći, a 'dozvolite' je osobni glagolski oblik.",
+    "C": "Prezent iskazuje radnju, dok 'dozvolite' izriče zapovijed/molbu.",
+    "D": "Imperfekt je prošlo nesvršeno vrijeme, a 'dozvolite' je zapovjedni način."
+  },
+  "2011_ljeto_A__50": {
+    "B": "Đuro nije glazbenik ni novinar, nego profesor i (neuspješan) pisac.",
+    "C": "Đuro nije pravnik ni slikar.",
+    "D": "Đuro nije svećenik ni pjesnik."
+  },
+  "2011_ljeto_A__51": {
+    "A": "Grižnje savjesti u ulomku nema; muči ga nedostatak novca.",
+    "C": "Posao (profesura) nije izgubio; problem je novčana nestašica.",
+    "D": "Nostalgija nije izvor muke; izrijekom je riječ o dugu i praznu džepu."
+  },
+  "2011_ljeto_A__52": {
+    "A": "Predosjećaj propasti posla i raspada obitelji nije ono na što tekst upućuje.",
+    "B": "O dočeku obitelji u ulomku nema riječi.",
+    "C": "Razbaštinjenja od oca tekst ne spominje."
+  },
+  "2011_ljeto_A__53": {
+    "B": "Rečenica o velikom gradu pokazuje sanjarenje, ali ne formulira temeljni problem romana.",
+    "C": "Tvrdnja o nezanimanju za životne forme dio je karakterizacije, ali ne izriče glavni problem.",
+    "D": "Rečenica o troškovima opisuje materijalnu nevolju, a ne bit problema."
+  },
+  "2011_ljeto_A__54": {
+    "A": "Bijeg u prirodu nije način kojim je zamišljao rješenje svoje novčane situacije.",
+    "B": "O dobitku na lutriji u tekstu nema spomena.",
+    "D": "Sam zaključuje da se na stanu i hrani ne da uštedjeti, pa štednja nije rješenje."
+  },
+  "2011_ljeto_A__55": {
+    "A": "Rijeke se ne prisjeća kao velikoga grada u kojem je bilo lako.",
+    "C": "Zdenci su upravo mala provincija iz koje bježi, a ne veliki grad.",
+    "D": "Praga se u ovom kontekstu ne prisjeća."
+  },
+  "2011_ljeto_A__56": {
+    "A": "Fantazije nisu građa za roman, nego sredstvo bijega od neugodne sadašnjosti.",
+    "B": "Tekst ih ne povezuje s prisutnošću zaručnice.",
+    "C": "Maštanje nije usmjereno protiv pijenja."
+  },
+  "2011_ljeto_A__57": {
+    "B": "Rečenica o povratku sa šetnja ne opisuje mjesto kao skučenu provinciju.",
+    "C": "Opis ljepote mora veliča krajolik, ne ističe zatvorenost provincije.",
+    "D": "Rečenica o ekstazi izriče zanos, a ne provincijalnu skučenost."
+  },
+  "2011_ljeto_A__58": {
+    "A": "Ženidba nije rasplet; Đuro propada.",
+    "B": "Odlazak nije konačan ishod lika, nego smrt.",
+    "C": "Đuro se ne prilagođava sredini, nego strada."
+  },
+  "2011_ljeto_A__59": {
+    "A": "Optimizam je suprotan Đurinoj sklonosti bijegu i propadanju.",
+    "B": "Gramzljivost nije osobina sadržana u naslovu Bijeg.",
+    "D": "Strastvenost nije ono što naslov ističe; istaknuta je nemoć djelovanja."
+  },
+  "2011_ljeto_A__60": {
+    "A": "Opisivanja krajolika u tom odlomku nema; iznose se junakove misli.",
+    "C": "Dijaloga nema jer Đuro razmišlja sam sa sobom.",
+    "D": "Retrospekcija je vraćanje u prošlost, a ovdje teče tijek sadašnjih misli."
+  },
+  "2011_ljeto_A__61": {
+    "A": "Simbol je trajni nositelj prenesenog značenja, a 'džep' je tu bliskoznačna zamjena za novac.",
+    "B": "'Džepu' se ne pripisuju ljudske osobine, pa nije personifikacija.",
+    "C": "Nema postupnoga pojačavanja niza pojmova, dakle nije gradacija."
+  },
+  "2011_ljeto_A__62": {
+    "A": "Genitiv ne dolazi uz prijedlog 'na' u ovom značenju mjesta/predmeta.",
+    "B": "Dativ ne ide uz prijedlog 'na' u ovoj svezi.",
+    "C": "Akuzativ uz 'na' označuje smjer, a ovdje je riječ o mjestu uštede, dakle lokativ."
+  },
+  "2011_ljeto_A__63": {
+    "A": "Nema doziva, pa zarez nije po načelu vokativnosti.",
+    "B": "Nema niza istovrsnih dijelova, pa nije načelo nabrajanja.",
+    "D": "Nema suprotnih sadržaja koje bi zarez razdvajao."
+  },
+  "2011_ljeto_A__64": {
+    "A": "Kondicional prvi tvori se s 'bi' + pridjev radni, čega ovdje nema.",
+    "C": "Futur drugi traži 'budem' + pridjev radni, a ovdje je 'nije ostalo'.",
+    "D": "Pluskvamperfekt traži 'bijah/bio sam' + pridjev radni, a ovdje je obična niječna sprega 'nije + ostalo'."
+  },
+  "2011_ljeto_A__65": {
+    "A": "Uzbuđenje je preslabo i preopćenito za zanos koji 'ekstaza' označuje.",
+    "C": "Veselje je blago raspoloženje, a ekstaza je krajnji zanos.",
+    "D": "Sreća je opće stanje, dok ekstaza znači intenzivan zanos, što najbolje pokriva 'ushit'."
+  },
+  "2011_ljeto_A__66": {
+    "B": "Krivo pridružuje 1B (Ujević), a 'Dugo u noć' Tadijanovićev je stih.",
+    "C": "Krivo pridružuje 3E (Šimić), a 'Kako je teško biti slab' Ujevićev je stih.",
+    "D": "Krivo pridružuje 4E (Šimić), a 'I lije na uglu' Cesarićev je stih."
+  },
+  "2011_ljeto_A__67": {
+    "B": "U imenu države i druga se riječ piše velikim slovom, pa 'hrvatske' nije točno.",
+    "C": "I prva sastavnica imena države piše se velikim slovom, dakle ne 'republike'.",
+    "D": "Obje su riječi imena države velikim slovom, pa su obje malim pogrešne."
+  },
+  "2011_ljeto_A__68": {
+    "A": "'Trg' je opća imenica u nazivu, pa se ne piše velikim slovom.",
+    "C": "Posvojni pridjev 'Strossmayerov' piše se velikim početnim slovom.",
+    "D": "Pisanje 'TRG' velikim slovima pravopisno je neopravdano."
+  },
+  "2011_ljeto_A__69": {
+    "B": "Iza rednoga broja pisanog rimskim brojkama dolazi točka, koja ovdje nedostaje.",
+    "C": "Uz papinsko ime redni se broj piše rimskim brojkama, ne arapskim '23.'.",
+    "D": "Slovima ispisan redni broj nije uobičajen zapis uz papinsko ime."
+  },
+  "2011_ljeto_A__70": {
+    "B": "Superlativni 'naj-' piše se sastavljeno, pa razdvojeno 'naj ljepša' nije točno.",
+    "C": "Crtica između 'naj' i pridjeva pravopisno je pogrešna.",
+    "D": "'Najlypša' sadrži nepostojeći oblik 'lypša' i nepravilan je."
+  },
+  "2011_ljeto_A__71": {
+    "B": "Naziv pasmine nije vlastito ime, pa se ne piše velikim slovom.",
+    "C": "Oblik 'Lipizanci' i pogrešno je napisan i velikim slovom.",
+    "D": "'Lipizanci' je pogrešan zapis; pravilno je 'lipicanci'."
+  },
+  "2011_ljeto_A__72": {
+    "A": "'Igre' su u nazivu opća imenica, pa se ne pišu velikim slovom.",
+    "C": "Prva se sastavnica 'Olimpijske' piše velikim slovom, dakle ne 'olimpijskih'.",
+    "D": "Pogrešno je 'olimpijskih' malim, a 'Igara' velikim slovom."
+  },
+  "2011_ljeto_A__73": {
+    "A": "'Engleska' je ovdje opisni pridjev (engleska kraljica), pa ide malim slovom.",
+    "C": "'Britansku' mijenja smisao i nepotrebno je veliko slovo opisnoga pridjeva.",
+    "D": "'Britansku' nije traženi pridjev; tekst govori o engleskoj kraljici."
+  },
+  "2011_ljeto_A__74": {
+    "B": "U vlastitu imenu manifestacije i druga se sastavnica piše velikim slovom.",
+    "C": "Obje su sastavnice imena manifestacije velikim slovom, pa su obje malim pogrešne.",
+    "D": "'đakovački' u imenu manifestacije treba veliko početno slovo."
+  },
+  "2011_ljeto_A__75": {
+    "B": "'Cvjećem' je pogrešno jer dugi jat daje 'ije', a ne kratko 'je'.",
+    "C": "'Cvećem' je ekavski oblik, nije hrvatski standard.",
+    "D": "'Cvijetjem' nije provedeno jotanje ni glasovna promjena, pa je netočno."
+  },
+  "2011_ljeto_A__76": {
+    "B": "'Svećanom' s 'ć' je pogrešno; pridjev se tvori s 'č'.",
+    "C": "Naglasni znak iznad 'e' nije dio pravopisnoga zapisa riječi.",
+    "D": "'Svecanom' bez kvačice na slovu pogrešan je zapis."
+  }
+}

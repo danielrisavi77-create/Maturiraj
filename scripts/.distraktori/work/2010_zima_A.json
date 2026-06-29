@@ -1,0 +1,991 @@
+{
+  "examKey": "2010_zima_A",
+  "label": "Zimski rok — Viša razina (A)",
+  "total": 77,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu pjesničkome pravcu pripadaju prvi i drugi tekst?",
+      "opts": [
+        "A. nadrealizmu",
+        "B. romantizmu",
+        "C. impresionizmu",
+        "D. ekspresionizmu"
+      ],
+      "correct": "C",
+      "exp": "Vidrić = hrvatski impresionist — lirski krajolici, vizualni ugođaji, boje i zvukovi, raspoloženje.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 2,
+      "q": "O čemu govore tekstovi?",
+      "opts": [
+        "A. o ljepoti i tajnovitosti prirode",
+        "B. o usamljenosti čovjeka u svijetu",
+        "C. o neizbježnom protjecanju vremena",
+        "D. o neskladu čovjeka i prirode"
+      ],
+      "correct": "A",
+      "exp": "Oba pejzaža prikazuju ljepotu prirode (polje, oblaci, moon, grmlje) i njezinu tajnovitost (glas iz grmlja, mistery moon).",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 3,
+      "q": "Što povezuje tekstove?",
+      "opts": [
+        "A. motivi",
+        "B. tema",
+        "C. oblik",
+        "D. ugođaj"
+      ],
+      "correct": "D",
+      "exp": "Oba teksta dijele impresionistički ugođaj mirne, lijepe prirode — ne iste motive ni isti oblik.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 4,
+      "q": "U kakvome su odnosu tekstovi?",
+      "opts": [
+        "A. u sukladnom",
+        "B. u oprečnom",
+        "C. u zavisnom",
+        "D. u usporednom"
+      ],
+      "correct": "D",
+      "exp": "Oba su pejzaži, usporedni prikazi prirode — dan i noć = usporedni odnos.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 5,
+      "q": "U čemu se razlikuju tekstovi?",
+      "opts": [
+        "A. u strofama",
+        "B. u rimi",
+        "C. u koloritu",
+        "D. u završnome razgotku"
+      ],
+      "correct": "D",
+      "exp": "Pejzaž I. završava spokojno ('s huma se k humu vere'); Pejzaž II. završava misteriosno ('Tiha se voda ljeska') = razlika u završnom razgotku (raspletu/završnoj slici).",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 6,
+      "q": "Koji se osjećaji lirskoga subjekta iščitavaju u Prvome i u Drugome pejzažu?",
+      "opts": [
+        "A. u Prvome opijenost, u Drugome ravnodušnost",
+        "B. u Prvome razdraganost, u Drugome uplašenost",
+        "C. u Prvome tugaljivost, u Drugome nostalgija",
+        "D. u Prvome spokoj, u Drugome razdraganost"
+      ],
+      "correct": "D",
+      "exp": "Pejzaž I. = mirna, statična slika = spokoj; Pejzaž II. = lirski subjekt se uzbuđuje, čuje glasove, uzbuđen je = razdraganost.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 7,
+      "q": "Kakav je ritam u Vidrićevim tekstovima?",
+      "opts": [
+        "A. u prvoj usporen, a u drugoj dinamičan",
+        "B. u objema dinamičan",
+        "C. u objema smiren",
+        "D. u prvoj dinamičan, a u drugoj smiren"
+      ],
+      "correct": "A",
+      "exp": "Pejzaž I. = lagani, spokojni ritam (opis polja); Pejzaž II. = dinamičniji (glas, pokret grane, kretanje mjeseca).",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 8,
+      "q": "Kakva je rima u prvoj strofi Prvoga pejzaža?\n(cvjetovi/pčele/stablima/bijele)",
+      "opts": [
+        "A. abab",
+        "B. abba",
+        "C. abcb",
+        "D. abcd"
+      ],
+      "correct": "C",
+      "exp": "cvjetovi(a) pčele(b) stablima(c) bijele(b) = abcb.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić"
+    },
+    {
+      "id": 9,
+      "q": "Kojim se rečeničnim dijelom postiže vizualna slika Prvoga pejzaža?",
+      "opts": [
+        "A. subjektom",
+        "B. predikatom",
+        "C. objektom",
+        "D. apozicijom"
+      ],
+      "correct": "A",
+      "exp": "Niz subjekata bez radnje: 'cvjetovi', 'pčele', 'oblaci', 'laste', 'zvono', 'polje' = vizualna slika gradi se subjektima.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić"
+    },
+    {
+      "id": 10,
+      "q": "Koliko se puta javlja auditivni motiv u Prvome pejzažu?",
+      "opts": [
+        "A. nijednom",
+        "B. jedanput",
+        "C. dvaput",
+        "D. triput"
+      ],
+      "correct": "B",
+      "exp": "'Podnevno zvono zove' = jedini auditivni motiv u Pejzažu I. (zujanje pčela se može smatrati vizualnim ili auditivnim, ali zvono je najjasniji auditivni motiv).",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić"
+    },
+    {
+      "id": 11,
+      "q": "U kojoj se strofi Drugoga pejzaža pojavljuje lirski subjekt?",
+      "opts": [
+        "A. u prvoj",
+        "B. u drugoj",
+        "C. u trećoj",
+        "D. u četvrtoj"
+      ],
+      "correct": "B",
+      "exp": "'I kad sam otvorio prozor' = lirski subjekt se pojavljuje u drugoj strofi.",
+      "ctx": "Vladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grmlje i bašta sniva,\nTek mjesec nad svijetlim rubom\nNaglije hiti i pliva.\n„Zdravstvuj!\" – i smijeh se pronije.\nIl prosu se šaka pijeska?\nJa ne znam. – Na mokrih stazah\nTiha se voda ljeska…\n\nVladimir Vidrić"
+    },
+    {
+      "id": 12,
+      "q": "Kako se može nazvati Drugi pejzaž s obzirom na motiviku?",
+      "opts": [
+        "A. marina",
+        "B. nokturno",
+        "C. elegija",
+        "D. balada"
+      ],
+      "correct": "B",
+      "exp": "'Nebeski putnik mjesec', noć, iskrice, mjesečina = noćna slika = nokturno (noćni ugođaj).",
+      "ctx": "Vladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grmlje i bašta sniva,\nTek mjesec nad svijetlim rubom\nNaglije hiti i pliva.\n„Zdravstvuj!\" – i smijeh se pronije.\nIl prosu se šaka pijeska?\nJa ne znam. – Na mokrih stazah\nTiha se voda ljeska…\n\nVladimir Vidrić"
+    },
+    {
+      "id": 13,
+      "q": "Što znače sljedeći stihovi u kontekstu Drugoga pejzaža?\n'Ja ne znam. – Na mokrih stazah / Tiha se voda ljeska…'",
+      "opts": [
+        "A. Prekinut je neugodni razgovor.",
+        "B. Vrt je lijep i mokar od kiše.",
+        "C. Nije odgonetnut tajanstveni glas.",
+        "D. Pjesnik odlazi u nepoznato."
+      ],
+      "correct": "C",
+      "exp": "'Ja ne znam' = lirski subjekt ne može odgonetnuti tajnoviti glas koji ga je pozvao = nije odgonetnut tajanstveni glas.",
+      "ctx": "Vladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grmlje i bašta sniva,\nTek mjesec nad svijetlim rubom\nNaglije hiti i pliva.\n„Zdravstvuj!\" – i smijeh se pronije.\nIl prosu se šaka pijeska?\nJa ne znam. – Na mokrih stazah\nTiha se voda ljeska…\n\nVladimir Vidrić"
+    },
+    {
+      "id": 14,
+      "q": "Kakav je Vidrićev pjesnički izaz?",
+      "opts": [
+        "A. metaforičan",
+        "B. hermetičan",
+        "C. simboličan",
+        "D. jednostavan"
+      ],
+      "correct": "D",
+      "exp": "Vidrić = jasan, slikovit, jednostavan izraz; nije hermetičan ni simboličan — impresionistički neposredan.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 15,
+      "q": "Koji pisci pripadaju istome književnopovijesnom razdoblju kao i Vladimir Vidrić?",
+      "opts": [
+        "A. Petar Preradović i Ljudevit Gaj",
+        "B. A. G. Matoš i Fran Galović",
+        "C. Tin Ujević i Dobriša Cesarić",
+        "D. Slavko Mihalić i Josip Pupačić"
+      ],
+      "correct": "B",
+      "exp": "Vidrić = hrvatska moderna (kraj 19./poč. 20. st.) = Matoš, Galović, Nazor, Begović = B."
+    },
+    {
+      "id": 16,
+      "q": "Od koje jezične norme odstupa Vidrić u prvoj strofi Drugoga pejzaža?\n('Lako je odskakivo / Nad svijetlim oblačnim rubom / I opet u nebo plivo.')",
+      "opts": [
+        "A. od morfološke",
+        "B. od leksičke",
+        "C. od fonološke",
+        "D. od sintaktičke"
+      ],
+      "correct": "A",
+      "exp": "'Odskakivo', 'plivo' = nestandardni oblici glagolskog pridjeva radnog (standardno: odskakivao, plivao) = odstupanje od morfološke norme.",
+      "ctx": "Vladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grmlje i bašta sniva,\nTek mjesec nad svijetlim rubom\nNaglije hiti i pliva.\n„Zdravstvuj!\" – i smijeh se pronije.\nIl prosu se šaka pijeska?\nJa ne znam. – Na mokrih stazah\nTiha se voda ljeska…\n\nVladimir Vidrić"
+    },
+    {
+      "id": 17,
+      "q": "Koji je jedini glagolski oblik koji se javlja u Vidrićevu Prvome pejzažu?",
+      "opts": [
+        "A. infinitiv",
+        "B. prezent",
+        "C. aorist",
+        "D. imperativ"
+      ],
+      "correct": "B",
+      "exp": "'žute se', 'zuje', 'bijele', 'plavi', 'plove', 'zove', 'stere', 'vere' = svi glagoli su u prezentu.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić"
+    },
+    {
+      "id": 18,
+      "q": "Što označuje trotočje na kraju Vidrićevih tekstova?",
+      "opts": [
+        "A. jaču stanku",
+        "B. nizanje dijelova teksta",
+        "C. izostavljen je dio teksta",
+        "D. nedovršenost teksta"
+      ],
+      "correct": "D",
+      "exp": "Oba pejzaža završavaju trotočjem = dojam da slika nije potpuna, da ugođaj traje = nedovršenost, otvorenost teksta.",
+      "ctx": "Vladimir Vidrić, Pejzaž I.\n\nU travi se žute cvjetovi\nI zuje zlaćane pčele,\nZa sjenatim onim stablima\nKrupni se oblaci bijele.\nI nebo se plavi visoko\nKud nečujno laste plove; –\nPod brijegom iz crvenih krovova\nPodnevno zvono zove.\nA dalje iza tih krovova\nZlatno se polje stere\nValovito, mirno i spokojno –\nI s huma se k humu vere…\n\nVladimir Vidrić\n\nVladimir Vidrić, Pejzaž II.\n\nNebeski putnik mjesec\nLako je odskakivo\nNad svijetlim oblačnim rubom\nI opet u nebo plivo.\nI kad sam otvorio prozor,\nBlistav od kapi kiše,\nTrznula se je grana\nI još se lagano njiše.\n„Gledaj\" – glas mi se javi –\n„Iskrice noći lete…\"\nI vidjeh u rosnom grmlju,\nGdje blisnuv – ginu i – svijete.\n„Tko mi to kaza?\" – viknuh,\nAl grm…"
+    },
+    {
+      "id": 19,
+      "q": "Kako se zove djelo iz kojega je treći tekst?",
+      "opts": [
+        "A. Ljudska komedija",
+        "B. Božanstvena komedija",
+        "C. Put u središte Zemlje",
+        "D. Izgubljeni raj"
+      ],
+      "correct": "B",
+      "exp": "'Pakao' = I. dio Božanstvene komedije (Dante Alighieri, ~1307.–1321.).",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 20,
+      "q": "Kojoj književnoj vrsti pripada djelo iz kojega je tekst?",
+      "opts": [
+        "A. religioznoj poemi",
+        "B. epu",
+        "C. crkvenom prikazanju",
+        "D. mitu"
+      ],
+      "correct": "A",
+      "exp": "Božanstvena komedija = religiozna poema (alegorijska, pisana u tercinskim strofama).",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 21,
+      "q": "Tko dolazi Danteu u susret?",
+      "opts": [
+        "A. sv. Petar",
+        "B. Eneja",
+        "C. Julije Cezar",
+        "D. Vergilije"
+      ],
+      "correct": "D",
+      "exp": "'Bio sam pjesnik; stih moj slavu dade Eneji... iz Mantove mi bjehu obadvoje' = Vergilije (autor Eneide, iz Mantove).",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 22,
+      "q": "O kojemu svojem djelu govori Danteov došljak?",
+      "opts": [
+        "A. o rimskoj nacionalnoj epopeji",
+        "B. o grčkoj ratničkoj epopeji",
+        "C. o srednjovjekovnom prikazanju",
+        "D. o zbirci mitoloških priča"
+      ],
+      "correct": "A",
+      "exp": "'stih moj slavu dade Eneji' = Eneida = rimska nacionalna epopeja.",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 23,
+      "q": "Što znači sljedeći stih?\n'Već nisam čovjek; bjeh u dane svoje,'",
+      "opts": [
+        "A. izgubio je svoju ljudskost",
+        "B. prodao je dušu vragu",
+        "C. više ne zna tko je",
+        "D. sada je umrla duša"
+      ],
+      "correct": "D",
+      "exp": "'Već nisam čovjek' = više nije živ = sada je sjena (duša mrtva) = umrla duša.",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 24,
+      "q": "Koja će biti uloga Danteova došljaka u Paklu?",
+      "opts": [
+        "A. skrbnik",
+        "B. vodič",
+        "C. učitelj",
+        "D. mecena"
+      ],
+      "correct": "B",
+      "exp": "Vergilije vodi Dantea kroz Pakao i Čistilište = vodič.",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 25,
+      "q": "Koliko krugova ima Danteov pakao u Paklu?",
+      "opts": [
+        "A. tri",
+        "B. devet",
+        "C. trideset i tri",
+        "D. stotinu"
+      ],
+      "correct": "B",
+      "exp": "Danteov Pakao = 9 krugova (za razne vrste grješnika).",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 26,
+      "q": "Zašto car što tamo gore vlada ne pušta došljaka do svojega grada?",
+      "opts": [
+        "A. bio je veliki grješnik",
+        "B. nije bio kršten",
+        "C. car ga ne poznaje",
+        "D. politički mu je protivnik"
+      ],
+      "correct": "B",
+      "exp": "Vergilije = poganin (živio je prije Krista, nije bio kršten) = nije imao pristup Raju/Bogu.",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 27,
+      "q": "Tko je 'dostojnija duša' koja će voditi Dantea 'međ blažene duše'?",
+      "opts": [
+        "A. Beatrice",
+        "B. Djevica Marija",
+        "C. Judita",
+        "D. Laura"
+      ],
+      "correct": "A",
+      "exp": "Beatrice = Danteova ljubav = vodi ga kroz Raj u Božanstvenoj komediji.",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 28,
+      "q": "Kojim je jezikom napisan Pakao?",
+      "opts": [
+        "A. grčkim",
+        "B. latinskim",
+        "C. staroslavenskim",
+        "D. talijanskim"
+      ],
+      "correct": "D",
+      "exp": "Dante piše na toskanskom/talijanskom narodnom jeziku (lingua volgare) = talijanski.",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 29,
+      "q": "Tko su dvojica pisaca koji s Danteom čine trolist predrenesanse?",
+      "opts": [
+        "A. Cervantes i Shakespeare",
+        "B. Ovidije i Plaut",
+        "C. Tasso i Ariosto",
+        "D. Boccaccio i Petrarca"
+      ],
+      "correct": "D",
+      "exp": "Dante + Boccaccio + Petrarca = trojica velikana talijanskog trecenta/predrenesanse."
+    },
+    {
+      "id": 30,
+      "q": "Koji bi se razgodak mogao upotrijebiti umjesto crtice u 1. strofi?\n('tko bio, sjena il' živ čovjek koji!')",
+      "opts": [
+        "A. točka",
+        "B. zarez",
+        "C. dvotočje",
+        "D. kosa crta"
+      ],
+      "correct": "B",
+      "exp": "'tko bio, sjena il' živ čovjek koji' = alternativni nabrajanje = umjesto crtice može stajati zarez.",
+      "ctx": "Dante Alighieri, Pakao (I. pjevanje — susret s Vergilijem)\n\n(...)\nU pustoši kad vidjeh kako stoji:\n„Smiluj se\" – viknuh – „na nevolje moje,\ntko bio, sjena il' živ čovjek koji!\"\n„Već nisam čovjek; bjeh u dane svoje,\na roditelji, lombardijsko pleme,\niz Mantove mi bjehu obadvoje.\nSub Julio, al' kasno, rodiše me;\nRim me za dobrog Augusta znȁde,\nkad bogova je lažnih bilo vrijeme.\nBio sam pjesnik; stih moj slavu dade\nEneji, što iz trojskog dođe grada,\nIlion gordi pošto spaljen pade.\n(...)\nVidjeti ćeš: neki u ognju se skruše\nzadovoljni, jer nadaju se stići,\nma kada bilo, međ blažene duše;\na k potonjima htjedneš li se dići,\ndostojnija će duša doći tada,\ns njom ću te pustiti, kad mi bude ići,\njer ona…"
+    },
+    {
+      "id": 31,
+      "q": "Kako se zove Hektorovićevo djelo iz kojega su navedeni stihovi?",
+      "opts": [
+        "A. Razgovor ugodni naroda slovinskoga",
+        "B. Ribanje i ribarsko prigovaranje",
+        "C. Osman",
+        "D. Planine"
+      ],
+      "correct": "B",
+      "exp": "'Pojdosmo k Nečujmu...' = Ribanje i ribarsko prigovaranje (Petar Hektorović, 1568.).",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 32,
+      "q": "Kojemu književnopovijesnom razdoblju pripada Hektorović?",
+      "opts": [
+        "A. srednjovjekovlju",
+        "B. renesansi",
+        "C. romantizmu",
+        "D. prosvjetiteljstvu"
+      ],
+      "correct": "B",
+      "exp": "Petar Hektorović (1487.–1572.) = renesansni pisac (otok Hvar).",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 33,
+      "q": "Kojim je stihom pisan četvrti tekst?",
+      "opts": [
+        "A. epskim narodnim desetercem",
+        "B. lirskim jedanaestercem",
+        "C. dvostruko rimovanim dvanaestercem",
+        "D. stihom bugarštice"
+      ],
+      "correct": "C",
+      "exp": "Ribanje = dvostruko rimovani dvanaesterac (čakavski, 12 slogova, rima na cezuri i kraju).",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 34,
+      "q": "Odakle je krenuo Hektorović u Nečujam?",
+      "opts": [
+        "A. s Hvara",
+        "B. iz Splita",
+        "C. s Korčule",
+        "D. iz Dubrovnika"
+      ],
+      "correct": "A",
+      "exp": "Petar Hektorović = hvaranin, kreće s Hvara prema Nečujmu (Šolta).",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 35,
+      "q": "Koliko je dana trajalo Hektorovićevo putovanje?",
+      "opts": [
+        "A. jedan dan",
+        "B. tri dana",
+        "C. tjedan dana",
+        "D. mjesec dana"
+      ],
+      "correct": "B",
+      "exp": "Ribanje i ribarsko prigovaranje = putopis o trodnevnom ribanju s dvojicom ribara.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 36,
+      "q": "Što je djelo iz kojega je četvrti tekst po vanjskoj formi, a što po sadržaju?",
+      "opts": [
+        "A. ep i ljetopis",
+        "B. epopeja i memoari",
+        "C. poslanica i putopis",
+        "D. elegija i pismo"
+      ],
+      "correct": "C",
+      "exp": "Ribanje = po obliku poslanica (pismo upućeno prijatelju Mikši Pelegrinoviću) + po sadržaju putopis.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 37,
+      "q": "Tko je pošao s Hektorovićem kad on kaže 'Pojdosmo k Nečujmu za kušati sriću'?",
+      "opts": [
+        "A. don Dujam Baništrilić",
+        "B. Marko Marulić",
+        "C. prijatelji pjesnici",
+        "D. dvojica ribara"
+      ],
+      "correct": "D",
+      "exp": "Hektorović putuje s dvojicom ribara (Paskoj Debelja i Nikola Zet) = dvojica ribara.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 38,
+      "q": "Koji stihovi govore o europskoj popularnosti Marulićevih djela?",
+      "opts": [
+        "A. Kê su raznesene po sve svita kraje,",
+        "B. Čudno narešene, svake slasti slaje;",
+        "C. Kim je urešen bil i jezik slovinski",
+        "D. Koga, mnim, da si čul i knjige njega čtil,"
+      ],
+      "correct": "A",
+      "exp": "'raznesene po sve svita kraje' = raširene po svim krajevima = europska popularnost.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 39,
+      "q": "Kojim je svojim djelom Marulić stekao europsku slavu?",
+      "opts": [
+        "A. Institutionum linguae illyricae libri duo",
+        "B. Elegiarum et carminum libri tres",
+        "C. De institutione bene vivendi per exempla sanctorum",
+        "D. Dictionarium quinque nobilissimarum Europae linguarum"
+      ],
+      "correct": "C",
+      "exp": "De institutione bene vivendi... (O dobrom životu po primjerima svetaca, 1506.) = Marulićevo latinsko djelo koje je prevođeno po cijeloj Europi.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 40,
+      "q": "Koje Marulićevo djelo stoji na početku hrvatske umjetničke književnosti?",
+      "opts": [
+        "A. Davidijada",
+        "B. Judita",
+        "C. Molitva suprotiva Turkom",
+        "D. Pedeset priča"
+      ],
+      "correct": "B",
+      "exp": "Judita (1501.) = prvo umjetničko djelo na hrvatskom jeziku = na početku hrvatske umjetničke književnosti.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 41,
+      "q": "Što o Marulićevu stvaralaštvu govore sljedeći stihovi?\n'Kim je urešen bil i jezik slovinski / I kim se je dičil tokoje latinski.'",
+      "opts": [
+        "A. Pisao je i na latinskome i na hrvatskome jeziku.",
+        "B. Stvorio je nove književne vrste na slovinskom jeziku.",
+        "C. Prevodio je antičke pisce na slavenske jezike.",
+        "D. Preveo je Bibliju s latinskoga na hrvatski jezik."
+      ],
+      "correct": "A",
+      "exp": "'Jezik slovinski' (= hrvatski) I 'latinski' = Marulić je pisao na oba jezika = A.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 42,
+      "q": "Što razlikuje putovanje u Zoranićevim Planinama i Hektorovićevo putovanje?",
+      "opts": [
+        "A. Hektoroviću je put lijek od ljubavnih jada, a Zoraniću odmor.",
+        "B. Hektorovićevo je putovanje prava pustolovina, a Zoranićevo istraživačko.",
+        "C. Hektorović opisuje stvarno putovanje, a Zoranić alegorijsko.",
+        "D. Hektorović se kreće zavičajnim krajolikom, a Zoranić odlazi u tuđinu."
+      ],
+      "correct": "C",
+      "exp": "Hektorović = stvarno putovanje (ribanje); Zoranić/Planine = alegorijsko putovanje (pastirski roman).",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 43,
+      "q": "Koje se od navedenih djela po temeljnome motivu povezuje s djelom iz kojega je tekst (Ribanje)?",
+      "opts": [
+        "A. Pjesma o Rolandu",
+        "B. Kafkin Preobražaj",
+        "C. Araličini Psi u trgovištu",
+        "D. Danteova Božanstvena komedija"
+      ],
+      "correct": "D",
+      "exp": "Ribanje = putovanje uz razgovor (slično Danteovom putovanju s vodičem) = motiv putovanja s pratnjom i razgovorom kao u Božanstvenoj komediji."
+    },
+    {
+      "id": 44,
+      "q": "Koji je od navedenih pisaca bio Hektoroviću suotočanin?",
+      "opts": [
+        "A. Andrija Kačić Miošić",
+        "B. Hanibal Lucić",
+        "C. Ivan Gundulić",
+        "D. Vladimir Nazor"
+      ],
+      "correct": "B",
+      "exp": "Hanibal Lucić (1485.–1553.) = hvarski renesansni pjesnik = suotočanin Hektoroviću (obojica s Hvara)."
+    },
+    {
+      "id": 45,
+      "q": "Kako glasi točan prepjev ovih stihova na suvremeni hrvatski jezik?\n'Koga, mnim, da si čul i knjige njega čtil,'",
+      "opts": [
+        "A. Koga si, predmnijevam, čuo i knjige mu čitao,",
+        "B. Kome si čuo ime, mislim, i pročitao knjige,",
+        "C. Kojega znaš, smatram, i poznaješ njegove knjige,",
+        "D. Za koga si, mislim, čuo i njegove knjige čitao,"
+      ],
+      "correct": "D",
+      "exp": "'Koga mnim da si čul i knjige njega čtil' = Za koga si, mislim, čuo i knjige njegove čitao = D.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 46,
+      "q": "Koja se stilska figura nalazi u sljedećim stihovima?\n'Zvizdami meu svimi kako sja Danica, / Tako t' meu mudrimi ime mu protica.'",
+      "opts": [
+        "A. poredba",
+        "B. hiperbola",
+        "C. personifikacija",
+        "D. simbol"
+      ],
+      "correct": "A",
+      "exp": "'Kako sja Danica... tako mu ime protica' = usporedba s Danicom = poredba.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 47,
+      "q": "Koji je naglasak na riječima 'ki' i 'da' u stihu 'Kî mu dâ nauk taj i razum u nj stavi'?",
+      "opts": [
+        "A. kratkosilazni",
+        "B. dugosilazni",
+        "C. kratkouzlazni",
+        "D. dugouzlazni"
+      ],
+      "correct": "B",
+      "exp": "'Kî' i 'dâ' = duga silazna kapa (^) = dugosilazni naglasak.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 48,
+      "q": "Kojoj vrsti riječi pripada riječ 'dâ' u stihu 'Kî mu dâ nauk taj i razum u nj stavi'?",
+      "opts": [
+        "A. česticama",
+        "B. glagolima",
+        "C. prijedlozima",
+        "D. veznicima"
+      ],
+      "correct": "B",
+      "exp": "'Dâ' = dade = glagol (3. l. jd. aorista od 'dati') = glagol.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 49,
+      "q": "Zašto je riječ 'mnim' u stihu 'Koga, mnim, da si čul i knjige njega čtil,' odvojena zarezima?",
+      "opts": [
+        "A. To je umetnuta rečenica.",
+        "B. Upravni je govor.",
+        "C. Riječ je u vokativu.",
+        "D. Riječ je o nizanju."
+      ],
+      "correct": "A",
+      "exp": "'Mnim' = mislim = umetnuta/umetnutica rečenica koja se odvaja zarezima s obje strane.",
+      "ctx": "Petar Hektorović, Ribanje i ribarsko prigovaranje (ulomak — hvala Marulića)\n\n(...)\nPojdosmo k Nečujmu za kušati sriću,\nGdi je bil Don Dujmu stan Baništriliću,\nKoji Split ostavi i tamo se zavi\nCić božje ljubavi, da ga bolje slavi,\n(...)\nDugo vrime Marul Marko je tuj š njim bil,\nKoga, mnim, da si čul i knjige njega čtil,\nKê su raznesene po sve svita kraje,\nČudno narešene, svake slasti slaje;\nKî cića umin'ja, koja on imiše,\nI čista živin'a svude poznan biše;\nKî svojom dobrotom, kud godi je hodil,\nI svetim životom svim je bil drag i mil.\nSvu našu okruni stranu mnogom dikom\nI častju napuni i hvalom velikom;\nKim je urešen bil i jezik slovinski\nI kim se je dičil tokoje latinski.\n(...)\nMarko Marul o…"
+    },
+    {
+      "id": 50,
+      "q": "Koji elementi obilježavaju književni rod kojemu pripada peti tekst?",
+      "opts": [
+        "A. rima, sažetost izraza, dijalog, pripovijedanje",
+        "B. opisivanje, stihovi, likovi, lirski subjekt",
+        "C. pripovijedanje, likovi, dijalog, opisivanje",
+        "D. prizor, lirski subjekt, unutrašnji monolog, stihovi"
+      ],
+      "correct": "C",
+      "exp": "Epika = pripovijedanje + likovi + dijalog + opisivanje = C.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 51,
+      "q": "Koji skup književnih vrsta pripada književnome rodu kojemu pripada tekst?",
+      "opts": [
+        "A. dnevnik, basna, novela, komedija",
+        "B. legenda, romanca, roman, ep",
+        "C. roman, pripovijetka, mit, bajka",
+        "D. kratka priča, epitaf, novela, esej"
+      ],
+      "correct": "C",
+      "exp": "Epika = roman, pripovijetka, mit, bajka (sve narativne vrste).",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 52,
+      "q": "U kojemu su licu ispripovijedani odlomci u tekstu?",
+      "opts": [
+        "A. u prvome licu",
+        "B. u drugome licu",
+        "C. u trećem licu"
+      ],
+      "correct": "A",
+      "exp": "'da nas Roko nije tjerao... smo imali... mi' = 1. lice množine.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 53,
+      "q": "Kakvim se pripovijedanjem poslužio autor u tekstu?",
+      "opts": [
+        "A. objektivnim",
+        "B. ironičnim",
+        "C. subjektivnim",
+        "D. humorističnim"
+      ],
+      "correct": "C",
+      "exp": "1. lice, opisivanje unutarnjih stanja, sumnji i osjećaja = subjektivno pripovijedanje.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 54,
+      "q": "Kako se zove djelo iz kojega je tekst?",
+      "opts": [
+        "A. Soba za prolaznike",
+        "B. Okvir za mržnju",
+        "C. Vježbanje života",
+        "D. Kratki izlet"
+      ],
+      "correct": "D",
+      "exp": "Tekst opisuje putovanje grupe pod Rokovim vodstvom = Kratki izlet (Antun Šoljan, 1965.).",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 55,
+      "q": "Koji je temeljni motiv na kojemu je izgrađeno djelo iz kojega je peti tekst?",
+      "opts": [
+        "A. uništenje",
+        "B. kretanje",
+        "C. prisjećanje",
+        "D. ljetovanje"
+      ],
+      "correct": "B",
+      "exp": "Kratki izlet = neprestano kretanje (potraga, izleti, hodanje) = kretanje kao temeljni motiv.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 56,
+      "q": "Tko je Roko u Šoljanovom tekstu?",
+      "opts": [
+        "A. glavni lik",
+        "B. sporedni lik",
+        "C. pripovjedač"
+      ],
+      "correct": "A",
+      "exp": "Roko je pokretač radnje, svi se vrte oko njega = glavni lik.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 57,
+      "q": "Kakvi su Rokovi suputnici?",
+      "opts": [
+        "A. energični",
+        "B. pronicljivi",
+        "C. agresivni",
+        "D. inertni"
+      ],
+      "correct": "D",
+      "exp": "'predajemo se vodstvu kao da je to jedina stvar... nitko sretniji od nas' = pasivni, inertni, bez vlastite volje.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 58,
+      "q": "Što je Roka učinilo vođom?",
+      "opts": [
+        "A. Organizator ga je postavio za vođu kulturno-istraživačke ekspedicije.",
+        "B. Klapa ga je izabrala na tajnom glasovanju poslije pijanstva.",
+        "C. Iz želje da imaju svojeg vođu ucijenili su ga da to bude baš on.",
+        "D. Prirođena želja suputnika da budu vođeni i njegova priroda da to bude."
+      ],
+      "correct": "D",
+      "exp": "'Možda je naša žeđ za vodstvom učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ' = D.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 59,
+      "q": "Što se događa s klapom do kraja djela iz kojega je peti tekst?",
+      "opts": [
+        "A. Ojačali su svoje zajedništvo.",
+        "B. Zajednički dolaze do cilja.",
+        "C. Postupno se raspada.",
+        "D. Dio klape smrtno stradava."
+      ],
+      "correct": "C",
+      "exp": "Kratki izlet = klapa se postupno raspada, svaki odlazi na svoju stranu.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 60,
+      "q": "Kako autor imenuje dva ženska lika u djelu iz kojega je peti tekst?",
+      "opts": [
+        "A. dvije Ofelije",
+        "B. dvije Eneide",
+        "C. dvije Antigone",
+        "D. dvije Beatrice"
+      ],
+      "correct": "D",
+      "exp": "Šoljan imenuje ženske likove 'Beatrice' (aluzija na Danteovu Beatrice)."
+    },
+    {
+      "id": 61,
+      "q": "Tko su likovi u djelu iz kojega je peti tekst?",
+      "opts": [
+        "A. prijatelji iz škole na zajedničkom izletu",
+        "B. sveučilišni profesori okupljeni na projektu",
+        "C. poznanici koji se nakon dugo vremena sreću",
+        "D. slučajno okupljeni mladi intelektualci"
+      ],
+      "correct": "D",
+      "exp": "Kratki izlet = slučajno okupljeni mladi intelektualci = D.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 62,
+      "q": "Kakav je, na temelju odlomaka iz teksta, Rokov utjecaj na ostale likove?",
+      "opts": [
+        "A. opčinjavajući",
+        "B. pokornički",
+        "C. ponižavajući",
+        "D. autoritativan"
+      ],
+      "correct": "A",
+      "exp": "'nitko nije mogao odoljeti Roku', 'predajemo se vodstvu... s oduševljenjem' = opčinjavajući utjecaj.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 63,
+      "q": "U kojemu se prostoru kreću Šoljanovi likovi?",
+      "opts": [
+        "A. prema Slavoniji",
+        "B. niz Krku",
+        "C. preko Velebita",
+        "D. po Istri"
+      ],
+      "correct": "D",
+      "exp": "Kratki izlet = putovanje po Istri.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 64,
+      "q": "Na čemu se temelji sljedeća rečenica?\n'...jer sami nismo vidjeli dalje od nosa…'",
+      "opts": [
+        "A. na hiperboli",
+        "B. na frazemu",
+        "C. na metonimiji",
+        "D. na kontrastu"
+      ],
+      "correct": "B",
+      "exp": "'Vidjeti dalje od nosa' = ustaljeni frazem (koji označava ograničenu sposobnost predviđanja).",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 65,
+      "q": "Što je zajedničko riječima 'vođa' i 'beznađe'?",
+      "opts": [
+        "A. provedena glasovna promjena",
+        "B. način tvorbe",
+        "C. ista osnova",
+        "D. gramatički rod"
+      ],
+      "correct": "B",
+      "exp": "'Vođa' = vod+ač/a (od voditi); 'beznađe' = bez+nad+je (od nadati se) = oba nastala sufiksalnom tvorbom = isti način tvorbe.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 66,
+      "q": "Što znači glagol 'dokučim' u sljedećoj rečenici?\n'…pokušavajući da to dokučim,…'",
+      "opts": [
+        "A. dohvatiti",
+        "B. shvatiti",
+        "C. dosegnuti",
+        "D. primaknuti"
+      ],
+      "correct": "B",
+      "exp": "'Dokučiti' = shvatiti, razumjeti, proniknuti u smisao = shvatiti.",
+      "ctx": "Antun Šoljan, Kratki izlet (ulomak — Roko kao vođa)\n\n(...) Sve bi se to dakle glatko pretvorilo u jedno više ili manje ugodno ljetovanje da nas Roko nije tjerao kao grešne duše, ili da smo imali dovoljno vlastite volje i snage da se odupremo njegovom navaljivanju. Ali čovjek je bespomoćan u prisutnosti nadmoćne energije kakva je, bez svake sumnje, bila Rokova. Čim netko poželi da nas vodi, nitko sretniji od nas; predajemo se vodstvu kao da je to jedina stvar koju smo od života očekivali. Možda je naša žeđ za vodstvom (jer sami nismo vidjeli dalje od nosa) učinila od Roka vođu, a možda je u samoj prirodi vođe da oko sebe stvara takvu žeđ, i sve se, osim puta prema fatamorgani njegove oaze na …"
+    },
+    {
+      "id": 67,
+      "q": "Koji je točan raspored autor → djelo?",
+      "opts": [
+        "A. 1C, 2A, 3D, 4B",
+        "B. 1C, 2A, 3E, 4B",
+        "C. 1C, 2E, 3D, 4B",
+        "D. 1B, 2A, 3D, 4C"
+      ],
+      "correct": "A",
+      "exp": "Brešan=Predstava Hamleta u selu Mrduša Donja(C); Aralica=Psi u trgovištu(A); Mihalić=Moj križ svejedno gori(D); Slamnig=Majstore, ugasi svijeću(B). → 1C, 2A, 3D, 4B.",
+      "ctx": "Autorima pridružite odgovarajuća djela (jedan pojam ne može se povezati):\n\nAutori:\n  1. Ivo Brešan\n  2. Ivan Aralica\n  3. Slavko Mihalić\n  4. Ivan Slamnig\n\nDjela:\n  A. Psi u trgovištu\n  B. Majstore, ugasi svijeću\n  C. Predstava Hamleta u selu Mrduša Donja\n  D. Moj križ svejedno gori\n  E. Ubili su ga ciglama"
+    },
+    {
+      "id": 68,
+      "q": "Odaberite točan oblik:\n'...koji su ___ zapadnu umjetnost...' — napučili ili napućili?",
+      "opts": [
+        "A. napučili",
+        "B. napućili",
+        "C. napuhnuli",
+        "D. naputali"
+      ],
+      "correct": "A",
+      "exp": "'Napučiti' (nastaniti) → 'napučili' = pravilno (č, ne ć)."
+    },
+    {
+      "id": 69,
+      "q": "Odaberite točan oblik:\n'...ne ___ potraga za nekim ciljem' — svjesna ili svijesna?",
+      "opts": [
+        "A. svjesna",
+        "B. svijesna",
+        "C. svisna",
+        "D. svejsna"
+      ],
+      "correct": "A",
+      "exp": "'Svjestan' (kratki jat = je) → 'svjesna' = pravilno."
+    },
+    {
+      "id": 70,
+      "q": "Odaberite točan oblik:\n'Ako pokušamo ___ to stanje duha...' — raščlaniti ili rasčlaniti?",
+      "opts": [
+        "A. raščlaniti",
+        "B. rasčlaniti",
+        "C. rasčlanjivati",
+        "D. razdčlaniti"
+      ],
+      "correct": "A",
+      "exp": "'Ras-' + 'čl-' = jednačenje: s ispred č → š = 'raščlaniti' (ne rasčlaniti)."
+    },
+    {
+      "id": 71,
+      "q": "Odaberite točan oblik:\n'...ono se ___ na niz nazora...' — rastače ili rastaće?",
+      "opts": [
+        "A. rastače",
+        "B. rastaće",
+        "C. rastakuje",
+        "D. rastoči"
+      ],
+      "correct": "A",
+      "exp": "'Rastačiti/rastakati' → prezent = 'rastače' (č, ne ć; standardno rastakivati)."
+    },
+    {
+      "id": 72,
+      "q": "Odaberite točan oblik:\n'...Jedno od mnogih očitih ___ romantizma...' — proturiječja ili proturječja?",
+      "opts": [
+        "A. proturiječja",
+        "B. proturječja",
+        "C. protivrječja",
+        "D. proturiječa"
+      ],
+      "correct": "B",
+      "exp": "'Proturječje' (kratki jat u složenici: protu+rječje) = 'proturječja' = pravilno."
+    },
+    {
+      "id": 73,
+      "q": "Odaberite točan oblik:\n'...unatoč čežnji za ___ slobodom...' — nesputanom ili ne sputanom?",
+      "opts": [
+        "A. nesputanom",
+        "B. ne sputanom",
+        "C. ne-sputanom",
+        "D. nesputanjem"
+      ],
+      "correct": "A",
+      "exp": "'Nesputan' = pridjev = piše se zajedno = 'nesputanom'."
+    },
+    {
+      "id": 74,
+      "q": "Odaberite točan oblik:\n'...za ___ građansku klasu...' — visoko obrazovanu ili visokoobrazovanu?",
+      "opts": [
+        "A. visoko obrazovanu",
+        "B. visokoobrazovanu",
+        "C. visoko-obrazovanu",
+        "D. visoke obrazovanosti"
+      ],
+      "correct": "B",
+      "exp": "'Visokoobrazovan' = složeni pridjev = piše se zajedno = 'visokoobrazovanu'."
+    },
+    {
+      "id": 75,
+      "q": "Odaberite točan oblik:\n'...zamijenila državne ___ i pokroviteljstvo...' — naručbe ili narudžbe?",
+      "opts": [
+        "A. naručbe",
+        "B. narudžbe",
+        "C. narubdžbe",
+        "D. naruđbine"
+      ],
+      "correct": "B",
+      "exp": "'Narudžba' (od naručiti, ali imenica s -džba) = 'narudžbe' = pravilno."
+    },
+    {
+      "id": 76,
+      "q": "Odaberite točan zapis:\n'...od ___ pustolovnih...'' — srednjovjekovnih ili srednje vjekovnih?",
+      "opts": [
+        "A. srednjovjekovnih",
+        "B. srednje vjekovnih",
+        "C. srednje-vjekovnih",
+        "D. středověkovnih"
+      ],
+      "correct": "A",
+      "exp": "'Srednjovjekovni' = složenica = piše se zajedno."
+    },
+    {
+      "id": 77,
+      "q": "Odaberite točan oblik:\n'...pustolovnih ___ koje su bile u modi...' — pripovijesti ili pripovjesti?",
+      "opts": [
+        "A. pripovijesti",
+        "B. pripovjesti",
+        "C. pripovijednosti",
+        "D. pripovestih"
+      ],
+      "correct": "A",
+      "exp": "'Pripovijest' (dugi jat = ije) → G mn. = 'pripovijesti' = pravilno."
+    }
+  ]
+}

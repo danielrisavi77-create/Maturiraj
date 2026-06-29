@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la c:/Users/Daniel/Desktop/*.html)",
+      "Bash(npm run:*)",
+      "PowerShell($f = \"c:\\\\Users\\\\PC\\\\Desktop\\\\maturiraj\\\\app\\\\discere\\\\hrvatski\\\\simulator\\\\components\\\\analytics\\\\AnalyticsPanel.jsx\"; if \\(Test-Path $f\\) { \"EXISTS: $f\" }; $env:PATH=\"$env:PATH;C:\\\\Program Files\\\\nodejs\"; node -e \"require\\('@babel/core'\\)\" 2>&1 | Out-Null; if \\($?\\) {\"babel ok\"} else {\"no babel\"})",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\PC\\\\Desktop\\\\maturiraj\\\\app\\\\discere\\\\hrvatski\\\\simulator\" -Recurse -File | Where-Object { $_.Name -match 'bak|backup|rebuild|old|essay|Essay|saz|Saz' } | Select-Object FullName, Length)",
+      "PowerShell(\"=== content/ ===\"; Get-ChildItem -Recurse content -Depth 2 | Select-Object Mode, @{n='Path';e={$_.FullName.Replace\\(\\(Get-Location\\).Path+'\\\\',''\\)}}, Length)",
+      "PowerShell(\"=== exams/ ===\")",
+      "PowerShell(\"=== styles/ ===\")",
+      "PowerShell(\"=== components/simulator/ ===\")"
+    ]
+  }
+}

@@ -1,0 +1,903 @@
+{
+  "examKey": "2014_jesen_A",
+  "label": "Jesenski rok — Viša razina (A)",
+  "total": 72,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Što izriče misao 'opet valja putovati'?",
+      "opts": [
+        "A. Treba se uspoređivati s drugima.",
+        "B. Treba stjecati bogatstvo.",
+        "C. Treba prihvatiti život.",
+        "D. Treba se vratiti kući."
+      ],
+      "correct": "C",
+      "exp": "Unatoč bolu i očaju koji su nemjerljivi, 'opet valja putovati' = treba nastaviti, prihvatiti život = C.",
+      "ctx": "Tin Ujević, Putovanje (pjesma u prozi)\n\nDrugi prte za sobom teške kovčege i sanduke; ali moja je prtljaga lakša od paunova perca i sunčane zrake.\nJer nemam ni zlata ni srebra, ni pokućstva ni posuđa ni rublja u pletenim košarama ili izrezanim škrinjama.\nAli moj je Bol, taj mjehur od sapunice, tako gust i težak da nema tezulje na kojoj bih ga mogao vagati. Ali moj je Očaj tako masivan da bi mogao potopiti najčvršću lađu; pa opet valja putovati.\n\nTin Ujević"
+    },
+    {
+      "id": 2,
+      "q": "Što znači riječ 'prte' u sljedećemu primjeru?\n'Drugi prte za sobom teške kovčege i sanduke;'",
+      "opts": [
+        "A. broje",
+        "B. gledaju",
+        "C. nose",
+        "D. ostavljaju"
+      ],
+      "correct": "C",
+      "exp": "'Prtiti' = nositi, vući = 'prte za sobom' = nose = C.",
+      "ctx": "Tin Ujević, Putovanje (pjesma u prozi)\n\nDrugi prte za sobom teške kovčege i sanduke; ali moja je prtljaga lakša od paunova perca i sunčane zrake.\nJer nemam ni zlata ni srebra, ni pokućstva ni posuđa ni rublja u pletenim košarama ili izrezanim škrinjama.\nAli moj je Bol, taj mjehur od sapunice, tako gust i težak da nema tezulje na kojoj bih ga mogao vagati. Ali moj je Očaj tako masivan da bi mogao potopiti najčvršću lađu; pa opet valja putovati.\n\nTin Ujević"
+    },
+    {
+      "id": 3,
+      "q": "Kojom je vrstom stilema istaknuta težina osjećaja lirskoga subjekta?",
+      "opts": [
+        "A. fonostilemom",
+        "B. grafostilemom",
+        "C. morfostilemom",
+        "D. sintaksostilemom"
+      ],
+      "correct": "B",
+      "exp": "Bol i Očaj pisani velikim slovom = grafostilemi (grafičko isticanje).",
+      "ctx": "Tin Ujević, Putovanje (pjesma u prozi)\n\nDrugi prte za sobom teške kovčege i sanduke; ali moja je prtljaga lakša od paunova perca i sunčane zrake.\nJer nemam ni zlata ni srebra, ni pokućstva ni posuđa ni rublja u pletenim košarama ili izrezanim škrinjama.\nAli moj je Bol, taj mjehur od sapunice, tako gust i težak da nema tezulje na kojoj bih ga mogao vagati. Ali moj je Očaj tako masivan da bi mogao potopiti najčvršću lađu; pa opet valja putovati.\n\nTin Ujević"
+    },
+    {
+      "id": 4,
+      "q": "Koja je od sljedećih stilskih figura upotrijebljena u sljedećemu primjeru?\n'taj mjehur od sapunice, tako gust i težak da nema tezulje na kojoj bih ga mogao vagati.'",
+      "opts": [
+        "A. personifikacija",
+        "B. paradoks",
+        "C. gradacija",
+        "D. ironija"
+      ],
+      "correct": "B",
+      "exp": "'Mjehur od sapunice... gust i težak' = ono što je lagano (mjehur) i ono što je teško = paradoks.",
+      "ctx": "Tin Ujević, Putovanje (pjesma u prozi)\n\nDrugi prte za sobom teške kovčege i sanduke; ali moja je prtljaga lakša od paunova perca i sunčane zrake.\nJer nemam ni zlata ni srebra, ni pokućstva ni posuđa ni rublja u pletenim košarama ili izrezanim škrinjama.\nAli moj je Bol, taj mjehur od sapunice, tako gust i težak da nema tezulje na kojoj bih ga mogao vagati. Ali moj je Očaj tako masivan da bi mogao potopiti najčvršću lađu; pa opet valja putovati.\n\nTin Ujević"
+    },
+    {
+      "id": 5,
+      "q": "Kojoj književnoj vrsti pripada polazni tekst?",
+      "opts": [
+        "A. putopisnoj poemi",
+        "B. pjesmi u prozi",
+        "C. baladi",
+        "D. crtici"
+      ],
+      "correct": "B",
+      "exp": "Ritmiziran prozni tekst s lirskim subjektom, bez fabule = pjesma u prozi = B.",
+      "ctx": "Tin Ujević, Putovanje (pjesma u prozi)\n\nDrugi prte za sobom teške kovčege i sanduke; ali moja je prtljaga lakša od paunova perca i sunčane zrake.\nJer nemam ni zlata ni srebra, ni pokućstva ni posuđa ni rublja u pletenim košarama ili izrezanim škrinjama.\nAli moj je Bol, taj mjehur od sapunice, tako gust i težak da nema tezulje na kojoj bih ga mogao vagati. Ali moj je Očaj tako masivan da bi mogao potopiti najčvršću lađu; pa opet valja putovati.\n\nTin Ujević"
+    },
+    {
+      "id": 6,
+      "q": "Kako je Eneja doznao za stradanja Trojanaca?",
+      "opts": [
+        "A. Objavili su mu ih bogovi.",
+        "B. Objavio mu ih je Uliks.",
+        "C. Bio je u drvenome konju.",
+        "D. Bio im je svjedok."
+      ],
+      "correct": "D",
+      "exp": "'U kojih bijah upleten dobráno' = bio je osobno upleten/svjedok = D.",
+      "ctx": "Vergilije, Eneida (ulomak — Eneja priča Didoni o padu Troje)\n\nNa to umuknu svi i pozorno uprave lica,\nA s počivala otac Eneja visokog počne:\n„Golemu, kraljice, bol ponovit mi u srcu veliš,\nKako su Trojansku moć i kraljevstvo Trojansko tužno\nRazbili Danajci, kakve l' grozote vidjeh, u kojih\nBijah upleten dobráno. Kazivajuć to ti ko ne bi\nZaplako, makar bio Ulìksa tvrdoga vojnik,\nDolopac il' Mirmidónac? S nebesa vlažna već hiti\nNoć, te zapadajuć zvijezde na počinak zovu.\nAli kad hoćeš tolìkô obaznati nevolje naše\nI čuti posljednje muke, pretrpjela što ih je Troja,\nPočeću, premda se duša pri spomenu zgraža i strepi\nOd jada tog. – Umorio rat i odbijala sudba\nVođe je Danajske, mnoga uminula u tom…"
+    },
+    {
+      "id": 7,
+      "q": "Koji od sljedećih primjera govori o proračunatosti Danajaca?",
+      "opts": [
+        "A. Na to umuknu svi i pozorno uprave lica,",
+        "B. Golemu, kraljice, bol ponovit mi u srcu veliš,",
+        "C. – Umorio rat i odbijala sudba / Vođe je Danajske,",
+        "D. Zavjetni bozima dar za povratak, – razglase lažuć."
+      ],
+      "correct": "D",
+      "exp": "'Razglase lažuć' = lažno razglašavaju da je konj zavjetni dar = proračunatost/prijevara = D.",
+      "ctx": "Vergilije, Eneida (ulomak — Eneja priča Didoni o padu Troje)\n\nNa to umuknu svi i pozorno uprave lica,\nA s počivala otac Eneja visokog počne:\n„Golemu, kraljice, bol ponovit mi u srcu veliš,\nKako su Trojansku moć i kraljevstvo Trojansko tužno\nRazbili Danajci, kakve l' grozote vidjeh, u kojih\nBijah upleten dobráno. Kazivajuć to ti ko ne bi\nZaplako, makar bio Ulìksa tvrdoga vojnik,\nDolopac il' Mirmidónac? S nebesa vlažna već hiti\nNoć, te zapadajuć zvijezde na počinak zovu.\nAli kad hoćeš tolìkô obaznati nevolje naše\nI čuti posljednje muke, pretrpjela što ih je Troja,\nPočeću, premda se duša pri spomenu zgraža i strepi\nOd jada tog. – Umorio rat i odbijala sudba\nVođe je Danajske, mnoga uminula u tom…"
+    },
+    {
+      "id": 8,
+      "q": "Koja se od sljedećih riječi odnosi na drvenoga konja?",
+      "opts": [
+        "A. kraljevstvo",
+        "B. rat",
+        "C. sudba",
+        "D. zatvor"
+      ],
+      "correct": "D",
+      "exp": "'Kradom zatvore tamni... šupljinu / Utrobe oružanim vojnicima napune' = zatvor = konj kao zatvor = D.",
+      "ctx": "Vergilije, Eneida (ulomak — Eneja priča Didoni o padu Troje)\n\nNa to umuknu svi i pozorno uprave lica,\nA s počivala otac Eneja visokog počne:\n„Golemu, kraljice, bol ponovit mi u srcu veliš,\nKako su Trojansku moć i kraljevstvo Trojansko tužno\nRazbili Danajci, kakve l' grozote vidjeh, u kojih\nBijah upleten dobráno. Kazivajuć to ti ko ne bi\nZaplako, makar bio Ulìksa tvrdoga vojnik,\nDolopac il' Mirmidónac? S nebesa vlažna već hiti\nNoć, te zapadajuć zvijezde na počinak zovu.\nAli kad hoćeš tolìkô obaznati nevolje naše\nI čuti posljednje muke, pretrpjela što ih je Troja,\nPočeću, premda se duša pri spomenu zgraža i strepi\nOd jada tog. – Umorio rat i odbijala sudba\nVođe je Danajske, mnoga uminula u tom…"
+    },
+    {
+      "id": 9,
+      "q": "Koja je od sljedećih stilskih figura upotrijebljena u sljedećemu stihu?\n'A s počivala otac Eneja visokog počne:'",
+      "opts": [
+        "A. asindeton",
+        "B. elipsa",
+        "C. inverzija",
+        "D. polisindeton"
+      ],
+      "correct": "C",
+      "exp": "'Otac Eneja visokog' = pridjev 'visokog' dolazi iza imenice + obrnuti red = inverzija.",
+      "ctx": "Vergilije, Eneida (ulomak — Eneja priča Didoni o padu Troje)\n\nNa to umuknu svi i pozorno uprave lica,\nA s počivala otac Eneja visokog počne:\n„Golemu, kraljice, bol ponovit mi u srcu veliš,\nKako su Trojansku moć i kraljevstvo Trojansko tužno\nRazbili Danajci, kakve l' grozote vidjeh, u kojih\nBijah upleten dobráno. Kazivajuć to ti ko ne bi\nZaplako, makar bio Ulìksa tvrdoga vojnik,\nDolopac il' Mirmidónac? S nebesa vlažna već hiti\nNoć, te zapadajuć zvijezde na počinak zovu.\nAli kad hoćeš tolìkô obaznati nevolje naše\nI čuti posljednje muke, pretrpjela što ih je Troja,\nPočeću, premda se duša pri spomenu zgraža i strepi\nOd jada tog. – Umorio rat i odbijala sudba\nVođe je Danajske, mnoga uminula u tom…"
+    },
+    {
+      "id": 10,
+      "q": "Kojemu je narodu pripadao Eneja?",
+      "opts": [
+        "A. Danajcima",
+        "B. Kartažanima",
+        "C. Rimljanima",
+        "D. Trojancima"
+      ],
+      "correct": "D",
+      "exp": "Eneja = trojansko-rimski junak = u Eneidi bježi iz Troje = Trojanac (koji osniva Rim)."
+    },
+    {
+      "id": 11,
+      "q": "Tko traži sučevu pomoć?",
+      "opts": [
+        "A. ban",
+        "B. kovač",
+        "C. kralj",
+        "D. vojnik"
+      ],
+      "correct": "B",
+      "exp": "'kovač Štakor... zapita ga sudac' = kovač Štakor traži pomoć sucu = B.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak — Štakor javlja vijesti)\n\nUto doleti do Kamenih vrata kovač Štakor zasukanih rukava, pod širokom kacigom, crna lica, noseć tešku gluntu na ramenih.\n„Šta je, zaboga, majstore?\" zapita ga sudac.\n„Zlo, gospodine suče!\"\n„Govorite, zaboga, majstore!\"\n„Nas pedesetorica prašili smo ajd dosta dobro, i pijani Gregorijančevi banderijalci podbrusili pete od naših glunta. Mi na brijegu, a oni pod brijegom, mi na njih, a oni bjež. Al sada nadođe drugi bijes. Ban pregleda na Harmici svoju vojsku, a ta vam je urlikala i vikala da se je nebo potreslo. 'Junaci', reče smijuć se bijesnoj četi, 'uzdajte se u mene, pa ako vam te zagrebačke hulje ne čine po volji, a vi po nji…"
+    },
+    {
+      "id": 12,
+      "q": "Što se dogodilo Gregorijančevim konjanicima?",
+      "opts": [
+        "A. Razbježali su se.",
+        "B. Naoružali su se.",
+        "C. Zapalili su ih.",
+        "D. Zarobili su ih."
+      ],
+      "correct": "A",
+      "exp": "'pijani Gregorijančevi banderijalci podbrusili pete od naših glunta' = pobjegli = razbježali se = A.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak — Štakor javlja vijesti)\n\nUto doleti do Kamenih vrata kovač Štakor zasukanih rukava, pod širokom kacigom, crna lica, noseć tešku gluntu na ramenih.\n„Šta je, zaboga, majstore?\" zapita ga sudac.\n„Zlo, gospodine suče!\"\n„Govorite, zaboga, majstore!\"\n„Nas pedesetorica prašili smo ajd dosta dobro, i pijani Gregorijančevi banderijalci podbrusili pete od naših glunta. Mi na brijegu, a oni pod brijegom, mi na njih, a oni bjež. Al sada nadođe drugi bijes. Ban pregleda na Harmici svoju vojsku, a ta vam je urlikala i vikala da se je nebo potreslo. 'Junaci', reče smijuć se bijesnoj četi, 'uzdajte se u mene, pa ako vam te zagrebačke hulje ne čine po volji, a vi po nji…"
+    },
+    {
+      "id": 13,
+      "q": "Na što se odnosi riječ 'bijes' u sljedećoj rečenici?\n'Al sada nadođe drugi bijes.'",
+      "opts": [
+        "A. na Gregorijančevu vojsku",
+        "B. na kraljevu vojsku",
+        "C. na banovu vojsku",
+        "D. na sučevu vojsku"
+      ],
+      "correct": "C",
+      "exp": "'Ban pregleda na Harmici svoju vojsku, a ta vam je urlikala' = drugi bijes = banova vojska = C.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak — Štakor javlja vijesti)\n\nUto doleti do Kamenih vrata kovač Štakor zasukanih rukava, pod širokom kacigom, crna lica, noseć tešku gluntu na ramenih.\n„Šta je, zaboga, majstore?\" zapita ga sudac.\n„Zlo, gospodine suče!\"\n„Govorite, zaboga, majstore!\"\n„Nas pedesetorica prašili smo ajd dosta dobro, i pijani Gregorijančevi banderijalci podbrusili pete od naših glunta. Mi na brijegu, a oni pod brijegom, mi na njih, a oni bjež. Al sada nadođe drugi bijes. Ban pregleda na Harmici svoju vojsku, a ta vam je urlikala i vikala da se je nebo potreslo. 'Junaci', reče smijuć se bijesnoj četi, 'uzdajte se u mene, pa ako vam te zagrebačke hulje ne čine po volji, a vi po nji…"
+    },
+    {
+      "id": 14,
+      "q": "Što o građanima izriče sljedeća rečenica?\n'Mi na brijegu, a oni pod brijegom, mi na njih, a oni bjež.'",
+      "opts": [
+        "A. Nadmoćni su.",
+        "B. Poraženi su.",
+        "C. Nemoćni su.",
+        "D. Pijani su."
+      ],
+      "correct": "A",
+      "exp": "'Mi na brijegu... na njih... oni bjež' = građani su nadmoćni, Gregorijančevi bježe = A.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak — Štakor javlja vijesti)\n\nUto doleti do Kamenih vrata kovač Štakor zasukanih rukava, pod širokom kacigom, crna lica, noseć tešku gluntu na ramenih.\n„Šta je, zaboga, majstore?\" zapita ga sudac.\n„Zlo, gospodine suče!\"\n„Govorite, zaboga, majstore!\"\n„Nas pedesetorica prašili smo ajd dosta dobro, i pijani Gregorijančevi banderijalci podbrusili pete od naših glunta. Mi na brijegu, a oni pod brijegom, mi na njih, a oni bjež. Al sada nadođe drugi bijes. Ban pregleda na Harmici svoju vojsku, a ta vam je urlikala i vikala da se je nebo potreslo. 'Junaci', reče smijuć se bijesnoj četi, 'uzdajte se u mene, pa ako vam te zagrebačke hulje ne čine po volji, a vi po nji…"
+    },
+    {
+      "id": 15,
+      "q": "U kojemu je od sljedećih primjera upotrijebljena hiperbola?",
+      "opts": [
+        "A. Uto doleti do Kamenih vrata kovač Štakor zasukanih rukava...",
+        "B. Ban pregleda na Harmici svoju vojsku, a ta vam je urlikala i vikala da se je nebo potreslo.",
+        "C. Tu sam ja vaš kralj i nitko drugi.",
+        "D. Čujte zvono zvoni u gradu proti vam,"
+      ],
+      "correct": "B",
+      "exp": "'Vikala da se je nebo potreslo' = preuveličavanje = hiperbola = B.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak — Štakor javlja vijesti)\n\nUto doleti do Kamenih vrata kovač Štakor zasukanih rukava, pod širokom kacigom, crna lica, noseć tešku gluntu na ramenih.\n„Šta je, zaboga, majstore?\" zapita ga sudac.\n„Zlo, gospodine suče!\"\n„Govorite, zaboga, majstore!\"\n„Nas pedesetorica prašili smo ajd dosta dobro, i pijani Gregorijančevi banderijalci podbrusili pete od naših glunta. Mi na brijegu, a oni pod brijegom, mi na njih, a oni bjež. Al sada nadođe drugi bijes. Ban pregleda na Harmici svoju vojsku, a ta vam je urlikala i vikala da se je nebo potreslo. 'Junaci', reče smijuć se bijesnoj četi, 'uzdajte se u mene, pa ako vam te zagrebačke hulje ne čine po volji, a vi po nji…"
+    },
+    {
+      "id": 16,
+      "q": "Tko je prekorio Akakija Akakijeviča?",
+      "opts": [
+        "A. gazdarica",
+        "B. general",
+        "C. liječnik",
+        "D. prijatelj"
+      ],
+      "correct": "B",
+      "exp": "'Nikad ga još nije tako izgrdio nijedan general' = general = B.",
+      "ctx": "Nikolaj Vasiljevič Gogolj, Kabanica (ulomak — Akakije Akakijevič kod visoke ličnosti)\n\nIznijeli su ga ni živog ni mrtvog. A visoka ličnost, zadovoljna što je učinak bio čak i iznad očekivanja, i posve umirena pomišlju da se čovjek može od njegove riječi čak i onesvijestiti, promotri prijatelja ispod oka, da vidi kako on na to gleda.\nKako je sišao niza stube, kako je izašao na ulicu, ničega se od svega toga Akakije Akakijevič nije poslije sjećao. I ruke su mu i noge bile potpuno odrvenjele. Nikad ga još nije tako izgrdio nijedan general, pogotovo iz druge ustanove. Ulicama je zavijala mećava a on je hodao otvorenih usta, posrćući i skrećući s trotoara; vjetar je, po peterburškom običaju, puha…"
+    },
+    {
+      "id": 17,
+      "q": "Što je visoku ličnost činilo zadovoljnom?",
+      "opts": [
+        "A. utjecaj peterbuškog podneblja",
+        "B. djelovanje propisanog lijeka",
+        "C. Akakijevičeva zaboravljivost",
+        "D. učinak vlastitih riječi"
+      ],
+      "correct": "D",
+      "exp": "'Zadovoljna što je učinak bio iznad očekivanja... da se čovjek može od njegove riječi onesvijestiti' = učinak vlastitih riječi = D.",
+      "ctx": "Nikolaj Vasiljevič Gogolj, Kabanica (ulomak — Akakije Akakijevič kod visoke ličnosti)\n\nIznijeli su ga ni živog ni mrtvog. A visoka ličnost, zadovoljna što je učinak bio čak i iznad očekivanja, i posve umirena pomišlju da se čovjek može od njegove riječi čak i onesvijestiti, promotri prijatelja ispod oka, da vidi kako on na to gleda.\nKako je sišao niza stube, kako je izašao na ulicu, ničega se od svega toga Akakije Akakijevič nije poslije sjećao. I ruke su mu i noge bile potpuno odrvenjele. Nikad ga još nije tako izgrdio nijedan general, pogotovo iz druge ustanove. Ulicama je zavijala mećava a on je hodao otvorenih usta, posrćući i skrećući s trotoara; vjetar je, po peterburškom običaju, puha…"
+    },
+    {
+      "id": 18,
+      "q": "Što o Akakiju Akakijeviču izriče sljedeća rečenica?\n'I ruke su mu i noge bile potpuno odrvenjele.'",
+      "opts": [
+        "A. Izbezumljen je zbog prijekora.",
+        "B. Naviknut je na neuspjehe.",
+        "C. Nemaran je prema sebi.",
+        "D. Preplašio se smrti."
+      ],
+      "correct": "A",
+      "exp": "'Odrvenjele ruke i noge' = metafora za šok i izbezumljenost = A.",
+      "ctx": "Nikolaj Vasiljevič Gogolj, Kabanica (ulomak — Akakije Akakijevič kod visoke ličnosti)\n\nIznijeli su ga ni živog ni mrtvog. A visoka ličnost, zadovoljna što je učinak bio čak i iznad očekivanja, i posve umirena pomišlju da se čovjek može od njegove riječi čak i onesvijestiti, promotri prijatelja ispod oka, da vidi kako on na to gleda.\nKako je sišao niza stube, kako je izašao na ulicu, ničega se od svega toga Akakije Akakijevič nije poslije sjećao. I ruke su mu i noge bile potpuno odrvenjele. Nikad ga još nije tako izgrdio nijedan general, pogotovo iz druge ustanove. Ulicama je zavijala mećava a on je hodao otvorenih usta, posrćući i skrećući s trotoara; vjetar je, po peterburškom običaju, puha…"
+    },
+    {
+      "id": 19,
+      "q": "U kojemu je od sljedećih primjera upotrijebljen eufemizam?",
+      "opts": [
+        "A. ostati bez blagotvorne pomoći",
+        "B. naručiti lijes od borovine",
+        "C. propisati vruće obloge",
+        "D. otići Bogu na račun"
+      ],
+      "correct": "D",
+      "exp": "'Otići Bogu na račun' = eufemizam za umrijeti = D.",
+      "ctx": "Nikolaj Vasiljevič Gogolj, Kabanica (ulomak — Akakije Akakijevič kod visoke ličnosti)\n\nIznijeli su ga ni živog ni mrtvog. A visoka ličnost, zadovoljna što je učinak bio čak i iznad očekivanja, i posve umirena pomišlju da se čovjek može od njegove riječi čak i onesvijestiti, promotri prijatelja ispod oka, da vidi kako on na to gleda.\nKako je sišao niza stube, kako je izašao na ulicu, ničega se od svega toga Akakije Akakijevič nije poslije sjećao. I ruke su mu i noge bile potpuno odrvenjele. Nikad ga još nije tako izgrdio nijedan general, pogotovo iz druge ustanove. Ulicama je zavijala mećava a on je hodao otvorenih usta, posrćući i skrećući s trotoara; vjetar je, po peterburškom običaju, puha…"
+    },
+    {
+      "id": 20,
+      "q": "Zašto je Akakije Akakijevič posjetio visoku ličnost u uredu?",
+      "opts": [
+        "A. da se visoka ličnost zauzme za njegov slučaj",
+        "B. da visoku ličnost zamoli za novčanu potporu",
+        "C. da visoku ličnost obavijesti o izdaji",
+        "D. da visokoj ličnosti otme kabanicu"
+      ],
+      "correct": "A",
+      "exp": "Akakije Akakijevič je opljačkan = tražio je pomoć = da se visoka ličnost zauzme za njega = A."
+    },
+    {
+      "id": 21,
+      "q": "Kakav je Filipov odnos prema starcu?",
+      "opts": [
+        "A. Suosjeća s njegovom bolesti.",
+        "B. Zamjera mu ponašanje.",
+        "C. Divi se njegovoj karijeri.",
+        "D. Zavidi mu na izgledu."
+      ],
+      "correct": "B",
+      "exp": "Filip kritizira/opisuje starca s gnušanjem = zamjera mu ponašanje prema Bobi = B.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip promatra starca i Bobu)\n\n„Kako se ta mješina vlada spram te žene? On nju miluje svojim debelim prstima po nadlaktici, on se po bicepsu smuca oko njenog ramena, on je privukao svoju tešku damastnu stolicu sasvim do njene, a ona se igra vrškom svoje cipele njegovom servijetom, prebačenom preko staračkog koljena. Što je sve to, pijano sanjanje, ludnica, javna kuća? A taj starac tu jauče, da je sve pri kraju, jer da su mu nedavno konstatirali prilično šećera, a i bubrezi da ne rade više kako bi trebalo: ima i bjelančevine! (...) Ta stara astmatična mješina, to crijevo s probavnim smetnjama, to astmatično kosmato biće u oblaku crne kave…"
+    },
+    {
+      "id": 22,
+      "q": "Što znači riječ 'kosmato' u sintagmi 'kosmato biće'?",
+      "opts": [
+        "A. bolesno",
+        "B. dlakavo",
+        "C. strašno",
+        "D. veliko"
+      ],
+      "correct": "B",
+      "exp": "'Kosmato' = dlakavo, obraslo dlakom = B.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip promatra starca i Bobu)\n\n„Kako se ta mješina vlada spram te žene? On nju miluje svojim debelim prstima po nadlaktici, on se po bicepsu smuca oko njenog ramena, on je privukao svoju tešku damastnu stolicu sasvim do njene, a ona se igra vrškom svoje cipele njegovom servijetom, prebačenom preko staračkog koljena. Što je sve to, pijano sanjanje, ludnica, javna kuća? A taj starac tu jauče, da je sve pri kraju, jer da su mu nedavno konstatirali prilično šećera, a i bubrezi da ne rade više kako bi trebalo: ima i bjelančevine! (...) Ta stara astmatična mješina, to crijevo s probavnim smetnjama, to astmatično kosmato biće u oblaku crne kave…"
+    },
+    {
+      "id": 23,
+      "q": "Koja je stilska figura upotrijebljena u sljedećemu primjeru?\n'to crijevo s probavnim smetnjama,'",
+      "opts": [
+        "A. eufemizam",
+        "B. hiperbola",
+        "C. metafora",
+        "D. gradacija"
+      ],
+      "correct": "C",
+      "exp": "'To crijevo s probavnim smetnjama' = starac = nazivanje starcem kao crijevom = metafora.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip promatra starca i Bobu)\n\n„Kako se ta mješina vlada spram te žene? On nju miluje svojim debelim prstima po nadlaktici, on se po bicepsu smuca oko njenog ramena, on je privukao svoju tešku damastnu stolicu sasvim do njene, a ona se igra vrškom svoje cipele njegovom servijetom, prebačenom preko staračkog koljena. Što je sve to, pijano sanjanje, ludnica, javna kuća? A taj starac tu jauče, da je sve pri kraju, jer da su mu nedavno konstatirali prilično šećera, a i bubrezi da ne rade više kako bi trebalo: ima i bjelančevine! (...) Ta stara astmatična mješina, to crijevo s probavnim smetnjama, to astmatično kosmato biće u oblaku crne kave…"
+    },
+    {
+      "id": 24,
+      "q": "U kojemu je od sljedećih primjera pripovjedač u trećemu licu?",
+      "opts": [
+        "A. Kako se ta mješina vlada spram te žene?",
+        "B. Što je sve to, pijano sanjanje, ludnica, javna kuća?",
+        "C. Boba se smije zvonko kao djevojčica, mjeri mu svojim dlanom tlak krvi",
+        "D. Osjetivši da će mu pozliti, Filip je nestao."
+      ],
+      "correct": "D",
+      "exp": "'Osjetivši da će mu pozliti, Filip je nestao' = 3. lice (Filip) = pripovjedač = D.",
+      "ctx": "Miroslav Krleža, Povratak Filipa Latinovicza (ulomak — Filip promatra starca i Bobu)\n\n„Kako se ta mješina vlada spram te žene? On nju miluje svojim debelim prstima po nadlaktici, on se po bicepsu smuca oko njenog ramena, on je privukao svoju tešku damastnu stolicu sasvim do njene, a ona se igra vrškom svoje cipele njegovom servijetom, prebačenom preko staračkog koljena. Što je sve to, pijano sanjanje, ludnica, javna kuća? A taj starac tu jauče, da je sve pri kraju, jer da su mu nedavno konstatirali prilično šećera, a i bubrezi da ne rade više kako bi trebalo: ima i bjelančevine! (...) Ta stara astmatična mješina, to crijevo s probavnim smetnjama, to astmatično kosmato biće u oblaku crne kave…"
+    },
+    {
+      "id": 25,
+      "q": "Koje je pravo Bobino ime?",
+      "opts": [
+        "A. Eleonora",
+        "B. Karolina",
+        "C. Ksenija",
+        "D. Regina"
+      ],
+      "correct": "C",
+      "exp": "Boba (Povratak F.L.) = njezino pravo ime je Ksenija = C."
+    },
+    {
+      "id": 26,
+      "q": "Tko je Divjak?",
+      "opts": [
+        "A. pastir",
+        "B. ribar",
+        "C. satir",
+        "D. starac"
+      ],
+      "correct": "C",
+      "exp": "'Iz gluhe pustinje satir se moj diže' = Divjak = satir (Jeljenkin satir) = C.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Jeljenka Satirica)\n\nJELJENKA SATIRICA:\nIz gluhe pustinje satir se moj diže\nda vile plemkinje susreta i stiže;\na ja ostah sred jama i dubja divjega\ni mrazna i sama u gori bez njega.\nAh, sasma nevjeran, kud divjaš, Divjače,\nmoj život čemeran po sve dni da plače?\nU vilah što vidiš u ovoj Dubravi,\nter slidom njih slidiš, a mene ostavi?\nGizdave himbeno plemke su vile sve,\ngrapša su i plijeno ljeposti njihove.\n(…)\nA meni mâ ista naravna lipos jes\nnaprava pričista i svijetli drag ures.\n(…)\nCrljenim ustime ruža je prilika,\na bjelje prsi mê snijega su i mlika.\nK tomu se prilaga još za stvar najdražu:\nmlađahna i naga, sve što imam, sve kažu.\nTim vrat' se tvôj ljȕbi, D…"
+    },
+    {
+      "id": 27,
+      "q": "Zašto Jeljenka prekorava Divjaka?",
+      "opts": [
+        "A. zato što Divjak svoj život smatra bezvrijednim",
+        "B. zato što je Divjak zaveden ljepotom vila",
+        "C. zato što Divjak obezvređuje plemkinje",
+        "D. zato što Divjak želi napustiti Dubravu"
+      ],
+      "correct": "B",
+      "exp": "'U vilah što vidiš... ter slidom njih slidiš, a mene ostavi?' = zaveden ljepotom vila = B.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Jeljenka Satirica)\n\nJELJENKA SATIRICA:\nIz gluhe pustinje satir se moj diže\nda vile plemkinje susreta i stiže;\na ja ostah sred jama i dubja divjega\ni mrazna i sama u gori bez njega.\nAh, sasma nevjeran, kud divjaš, Divjače,\nmoj život čemeran po sve dni da plače?\nU vilah što vidiš u ovoj Dubravi,\nter slidom njih slidiš, a mene ostavi?\nGizdave himbeno plemke su vile sve,\ngrapša su i plijeno ljeposti njihove.\n(…)\nA meni mâ ista naravna lipos jes\nnaprava pričista i svijetli drag ures.\n(…)\nCrljenim ustime ruža je prilika,\na bjelje prsi mê snijega su i mlika.\nK tomu se prilaga još za stvar najdražu:\nmlađahna i naga, sve što imam, sve kažu.\nTim vrat' se tvôj ljȕbi, D…"
+    },
+    {
+      "id": 28,
+      "q": "Koja se od sljedećih sintagma odnosi na krajolik u kojemu se nalazi Jeljenka?",
+      "opts": [
+        "A. dubje divje",
+        "B. naravna lipos",
+        "C. drag ures",
+        "D. stvar najdraža"
+      ],
+      "correct": "A",
+      "exp": "'sred jama i dubja divjega / u gori bez njega' = dubje divje = hrastovi = krajolik = A.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Jeljenka Satirica)\n\nJELJENKA SATIRICA:\nIz gluhe pustinje satir se moj diže\nda vile plemkinje susreta i stiže;\na ja ostah sred jama i dubja divjega\ni mrazna i sama u gori bez njega.\nAh, sasma nevjeran, kud divjaš, Divjače,\nmoj život čemeran po sve dni da plače?\nU vilah što vidiš u ovoj Dubravi,\nter slidom njih slidiš, a mene ostavi?\nGizdave himbeno plemke su vile sve,\ngrapša su i plijeno ljeposti njihove.\n(…)\nA meni mâ ista naravna lipos jes\nnaprava pričista i svijetli drag ures.\n(…)\nCrljenim ustime ruža je prilika,\na bjelje prsi mê snijega su i mlika.\nK tomu se prilaga još za stvar najdražu:\nmlađahna i naga, sve što imam, sve kažu.\nTim vrat' se tvôj ljȕbi, D…"
+    },
+    {
+      "id": 29,
+      "q": "Što znači riječ 'čemeran' u sintagmi 'život čemeran'?",
+      "opts": [
+        "A. lažan",
+        "B. naporan",
+        "C. uzaludan",
+        "D. žalostan"
+      ],
+      "correct": "D",
+      "exp": "'Čemeran' = gorak, bolan, žalostan = D.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Jeljenka Satirica)\n\nJELJENKA SATIRICA:\nIz gluhe pustinje satir se moj diže\nda vile plemkinje susreta i stiže;\na ja ostah sred jama i dubja divjega\ni mrazna i sama u gori bez njega.\nAh, sasma nevjeran, kud divjaš, Divjače,\nmoj život čemeran po sve dni da plače?\nU vilah što vidiš u ovoj Dubravi,\nter slidom njih slidiš, a mene ostavi?\nGizdave himbeno plemke su vile sve,\ngrapša su i plijeno ljeposti njihove.\n(…)\nA meni mâ ista naravna lipos jes\nnaprava pričista i svijetli drag ures.\n(…)\nCrljenim ustime ruža je prilika,\na bjelje prsi mê snijega su i mlika.\nK tomu se prilaga još za stvar najdražu:\nmlađahna i naga, sve što imam, sve kažu.\nTim vrat' se tvôj ljȕbi, D…"
+    },
+    {
+      "id": 30,
+      "q": "Koji se od sljedećih stihova odnose na Jeljenkinu prirodnu ljepotu?",
+      "opts": [
+        "A. a ja ostah sred jama i dubja divjega / i mrazna i sama u gori bez njega.",
+        "B. Gizdave himbeno plemke su vile sve, / grapša su i plijeno ljeposti njihove.",
+        "C. Nu mažu i lijepe naravna bljedila, / i čini njih lijepe ne narav, neg sila.",
+        "D. K tomu se prilaga još za stvar najdražu: / mlađahna i naga, sve što imam, sve kažu."
+      ],
+      "correct": "D",
+      "exp": "'Mlađahna i naga, sve što imam, sve kažu' = Jeljenkina vlastita/naravna ljepota = D.",
+      "ctx": "Ivan Gundulić, Dubravka (ulomak — Jeljenka Satirica)\n\nJELJENKA SATIRICA:\nIz gluhe pustinje satir se moj diže\nda vile plemkinje susreta i stiže;\na ja ostah sred jama i dubja divjega\ni mrazna i sama u gori bez njega.\nAh, sasma nevjeran, kud divjaš, Divjače,\nmoj život čemeran po sve dni da plače?\nU vilah što vidiš u ovoj Dubravi,\nter slidom njih slidiš, a mene ostavi?\nGizdave himbeno plemke su vile sve,\ngrapša su i plijeno ljeposti njihove.\n(…)\nA meni mâ ista naravna lipos jes\nnaprava pričista i svijetli drag ures.\n(…)\nCrljenim ustime ruža je prilika,\na bjelje prsi mê snijega su i mlika.\nK tomu se prilaga još za stvar najdražu:\nmlađahna i naga, sve što imam, sve kažu.\nTim vrat' se tvôj ljȕbi, D…"
+    },
+    {
+      "id": 31,
+      "q": "Tko je autor polaznoga teksta?",
+      "opts": [
+        "A. Luigi Pirandello",
+        "B. Milan Begović",
+        "C. Miroslav Krleža",
+        "D. Samuel Beckett"
+      ],
+      "correct": "A",
+      "exp": "Šest lica traži autora (Sei personaggi in cerca d'autore, 1921.) = Luigi Pirandello.",
+      "ctx": "Luigi Pirandello, Šest lica traži autora (ulomak — fikcija ili stvarnost?)\n\nREDATELJ (kroz viku) Je li se ozlijedio? Je li se doista ozlijedio?\nSvi osim Redatelja i Oca koji je ostao na podu nestanu iza spuštene pozadine.\nPRVAKINJA (vrati se, ožalošćena): Umro je! Jadni dječak! Umro je! Oh, užasa!\nPRVAK (vraća se, smijući se): Ma kakvi umro! Fikcija! Fikcija! Ne vjerujte u to!\nDRUGI GLUMCI S DESNE STRANE: Fikcija? Stvarnost! Stvarnost! Umro je!\nDRUGI GLUMCI S LIJEVE STRANE: Nije! Fikcija! Fikcija!\nOTAC (ustane i među njima viče): Ma kakva fikcija! Stvarnost, stvarnost, gospodo! Stvarnost!\nI on, očajan, nestane iza spuštene pozadine.\nREDATELJ (više ne može izdržati): Fikcija! Stvarnost! Idite…"
+    },
+    {
+      "id": 32,
+      "q": "Na čemu se temelji dramski sukob u polaznome tekstu?",
+      "opts": [
+        "A. na sukobu komičnog i tragičnog",
+        "B. na sukobu stvarnosti i iluzije",
+        "C. na sukobu ropstva i slobode",
+        "D. na sukobu ljubavi i mržnje"
+      ],
+      "correct": "B",
+      "exp": "'Fikcija!' vs. 'Stvarnost!' = sukob stvarnosti i iluzije = temelj Pirandellove drame = B.",
+      "ctx": "Luigi Pirandello, Šest lica traži autora (ulomak — fikcija ili stvarnost?)\n\nREDATELJ (kroz viku) Je li se ozlijedio? Je li se doista ozlijedio?\nSvi osim Redatelja i Oca koji je ostao na podu nestanu iza spuštene pozadine.\nPRVAKINJA (vrati se, ožalošćena): Umro je! Jadni dječak! Umro je! Oh, užasa!\nPRVAK (vraća se, smijući se): Ma kakvi umro! Fikcija! Fikcija! Ne vjerujte u to!\nDRUGI GLUMCI S DESNE STRANE: Fikcija? Stvarnost! Stvarnost! Umro je!\nDRUGI GLUMCI S LIJEVE STRANE: Nije! Fikcija! Fikcija!\nOTAC (ustane i među njima viče): Ma kakva fikcija! Stvarnost, stvarnost, gospodo! Stvarnost!\nI on, očajan, nestane iza spuštene pozadine.\nREDATELJ (više ne može izdržati): Fikcija! Stvarnost! Idite…"
+    },
+    {
+      "id": 33,
+      "q": "Što je Redatelju donijelo olakšanje?",
+      "opts": [
+        "A. mora",
+        "B. smijeh",
+        "C. svjetlost",
+        "D. vika"
+      ],
+      "correct": "C",
+      "exp": "'Odahne kao da se oslobodio more' = nakon što 'Svjetlo! Svjetlo! Svjetlo!' zasja snažna svjetlost = C.",
+      "ctx": "Luigi Pirandello, Šest lica traži autora (ulomak — fikcija ili stvarnost?)\n\nREDATELJ (kroz viku) Je li se ozlijedio? Je li se doista ozlijedio?\nSvi osim Redatelja i Oca koji je ostao na podu nestanu iza spuštene pozadine.\nPRVAKINJA (vrati se, ožalošćena): Umro je! Jadni dječak! Umro je! Oh, užasa!\nPRVAK (vraća se, smijući se): Ma kakvi umro! Fikcija! Fikcija! Ne vjerujte u to!\nDRUGI GLUMCI S DESNE STRANE: Fikcija? Stvarnost! Stvarnost! Umro je!\nDRUGI GLUMCI S LIJEVE STRANE: Nije! Fikcija! Fikcija!\nOTAC (ustane i među njima viče): Ma kakva fikcija! Stvarnost, stvarnost, gospodo! Stvarnost!\nI on, očajan, nestane iza spuštene pozadine.\nREDATELJ (više ne može izdržati): Fikcija! Stvarnost! Idite…"
+    },
+    {
+      "id": 34,
+      "q": "Koji od sljedećih likova iz polaznog teksta traži autora?",
+      "opts": [
+        "A. Otac",
+        "B. Prvak",
+        "C. Prvakinja",
+        "D. Redatelj"
+      ],
+      "correct": "A",
+      "exp": "Šest lica = fiktivni likovi koji traže autora; Otac = jedan od šest lica = A."
+    },
+    {
+      "id": 35,
+      "q": "Koji je dramski postupak primijenjen u djelu Šest lica traži autora?",
+      "opts": [
+        "A. kazalište u kazalištu",
+        "B. deus ex machina",
+        "C. quid pro quo",
+        "D. umetanje songova"
+      ],
+      "correct": "A",
+      "exp": "Likovi ulaze u kazalište da bi glumci odigrali njihovu priču = kazalište unutar kazališta = A."
+    },
+    {
+      "id": 36,
+      "q": "Dopunite rečenicu:\n'Grčka tragedija koja obrađuje temu suprotstavljanja kraljevoj zapovijedi i zasniva se na mitovima o sudbini Edipova roda nosi naslov ____.'",
+      "opts": [
+        "A. Antigona",
+        "B. Elektra",
+        "C. Kralj Edip",
+        "D. Okovani Prometej"
+      ],
+      "correct": "A",
+      "exp": "Antigona (Sofoklo) = suprotstavlja se Kreontovoj (kraljevoj) zapovijedi = Edipov rod = A."
+    },
+    {
+      "id": 37,
+      "q": "Dopunite rečenicu:\n'Hrvatski renesansni književnik koji je u dvostruko rimovanim dvanaestercima napisao prvi biblijsko-vergilijanski ep domoljubne tematike jest ____.'",
+      "opts": [
+        "A. Brne Karnarutić",
+        "B. Juraj Šižgorić",
+        "C. Marko Marulić",
+        "D. Mavro Vetranović"
+      ],
+      "correct": "C",
+      "exp": "Marulić = Judita (1501.) = prvi hrv. ep na hrv. jeziku = dvostruko rimovani dvanaesterci = C."
+    },
+    {
+      "id": 38,
+      "q": "Dopunite rečenicu:\n'Roman hrvatske moderne o tragičnoj sudbini bezvoljnog intelektualca sukobljenog s provincijskom malograđanskom sredinom koja ga dovodi do sloma napisao je ____.'",
+      "opts": [
+        "A. August Šenoa",
+        "B. Janko Leskovar",
+        "C. Milutin Cihlar Nehajev",
+        "D. Vjenceslav Novak"
+      ],
+      "correct": "C",
+      "exp": "Bijeg (Nehajev, 1909.) = Đuro Andrijašević = bezvoljni intelektualac = provincija = slom = C."
+    },
+    {
+      "id": 39,
+      "q": "Koje književnopovijesno razdoblje slijedi nakon romantizma u europskoj književnosti?",
+      "opts": [
+        "A. barok",
+        "B. klasicizam",
+        "C. realizam",
+        "D. renesansa"
+      ],
+      "correct": "C",
+      "exp": "Romantizam → realizam (2. pol. 19. st.) = C."
+    },
+    {
+      "id": 40,
+      "q": "Kako se naziva stilski postupak upotrijebljen u sljedećim stihovima?\n'O junaku mi kazuj, o Muzo, o prometnom onom, / Koji se mnogo naluto razorivši presvetu Troju;'",
+      "opts": [
+        "A. gradacija",
+        "B. invokacija",
+        "C. retardacija",
+        "D. retrospekcija"
+      ],
+      "correct": "B",
+      "exp": "'O junaku mi kazuj, o Muzo' = obraćanje Muzi za nadahnuće na početku epa = invokacija = B."
+    },
+    {
+      "id": 41,
+      "q": "Koja se od sljedećih rečenica odnosi na Robinju Hanibala Lucića?",
+      "opts": [
+        "A. To je vergilijanski spjev od šest pjevanja s temom iz Starog zavjeta.",
+        "B. To je hrvatski junački ep s temom iz suvremene povijesti.",
+        "C. To je svjetovna drama u tri čina s povijesnim likovima.",
+        "D. To je stihovana pripovijest o svetici iz Palerma."
+      ],
+      "correct": "C",
+      "exp": "Robinja (Lucić) = drama u tri čina s tursko-hrvatskim povijesnim likovima = C."
+    },
+    {
+      "id": 42,
+      "q": "Koji se pisac odrekao svojih mladenačkih djela nazvavši ih 'porodom od tmine'?",
+      "opts": [
+        "A. Antun Kanižlić",
+        "B. Ignjat Đurđević",
+        "C. Ivan Gundulić",
+        "D. Junije Palmotić"
+      ],
+      "correct": "C",
+      "exp": "Ivan Gundulić se odrekao mladenačkih drama nazvavši ih 'porodom od tmine' = C."
+    },
+    {
+      "id": 43,
+      "q": "Tko je autor futurističkog manifesta?",
+      "opts": [
+        "A. André Breton",
+        "B. Filippo Tommaso Marinetti",
+        "C. Hermann Bahr",
+        "D. Tristan Tzara"
+      ],
+      "correct": "B",
+      "exp": "Marinetti = Manifest futurizma (1909.) = B."
+    },
+    {
+      "id": 44,
+      "q": "Koja je od sljedećih pjesama napisana na kajkavskome narječju?",
+      "opts": [
+        "A. 1909.",
+        "B. Khevenhiller",
+        "C. Notturno",
+        "D. Seh duš dan"
+      ],
+      "correct": "D",
+      "exp": "'Seh duš dan' (Fran Galović) = kajkavska pjesma = D."
+    },
+    {
+      "id": 45,
+      "q": "Na kojega se krugovaškog pjesnika odnosi sljedeća rečenica?\n'Taj je pjesnik svjesno žrtvovao sadržajnu stranu pjesme formi tako da svojim pjesničkim postupcima postiže neočekivana rješenja, doskočice na razini komunikacije i omiljeni paradoks.'",
+      "opts": [
+        "A. na Ivana Slamniga",
+        "B. na Josipa Pupačića",
+        "C. na Nikolu Milićevića",
+        "D. na Slavka Mihalića"
+      ],
+      "correct": "A",
+      "exp": "Ivan Slamnig = forma, paradoks, igra, doskočice = krugovaški pjesnik = A."
+    },
+    {
+      "id": 46,
+      "q": "Koji je točan raspored (časopis → urednik)?",
+      "opts": [
+        "A. 1A, 2C, 3B, 4B, 5B",
+        "B. 1B, 2C, 3B, 4A, 5B",
+        "C. 1A, 2C, 3A, 4B, 5B",
+        "D. 1A, 2B, 3C, 4B, 5A"
+      ],
+      "correct": "A",
+      "exp": "Juriš(A/Šimić), Kolo(C/Vraz), Pečat(B/Krleža), Plamen(B/Krleža), Vijavica(B/Krleža).",
+      "ctx": "Književne časopise povežite s urednikom:\n\nČasopisi:\n  1. Juriš\n  2. Kolo\n  3. Pečat\n  4. Plamen\n  5. Vijavica\n\nUrednici:\n  A. Antun Branko Šimić\n  B. Miroslav Krleža\n  C. Stanko Vraz"
+    },
+    {
+      "id": 47,
+      "q": "Koji je točan raspored (pisac → razdoblje)?",
+      "opts": [
+        "A. 1A, 2C, 3B, 4A, 5B",
+        "B. 1A, 2C, 3B, 4A, 5C",
+        "C. 1B, 2C, 3B, 4A, 5B",
+        "D. 1A, 2B, 3C, 4A, 5C"
+      ],
+      "correct": "A",
+      "exp": "Mažuranić(A), Kamov(C), Kozarac(B), Preradović(A), Kranjčević(B).",
+      "ctx": "Pisce povežite s književnim razdobljem:\n\nPisci:\n  1. Ivan Mažuranić\n  2. Janko Polić Kamov\n  3. Josip Kozarac\n  4. Petar Preradović\n  5. Silvije Strahimir Kranjčević\n\nRazdoblja:\n  A. romantizam\n  B. realizam\n  C. hrvatska moderna"
+    },
+    {
+      "id": 48,
+      "q": "Koja je od sljedećih riječi pravopisno točna?",
+      "opts": [
+        "A. ljevajući",
+        "B. mješajući",
+        "C. pijevajući",
+        "D. zijevajući"
+      ],
+      "correct": "D",
+      "exp": "'Zijevajući' = pravilno (zijevati → zijevajući). 'Ljevajući'→'lijevajući', 'mješajući'→'miješajući', 'pijevajući'→'pjevajući'."
+    },
+    {
+      "id": 49,
+      "q": "Koja je od sljedećih rečenica pravopisno točna?",
+      "opts": [
+        "A. Upitao je „Možeš li stići na početak predstave?\"",
+        "B. Upitao je, „Možeš li stići na početak predstave?\"",
+        "C. „Možeš li stići na početak predstave?\", upitao je.",
+        "D. „Možeš li stići na početak predstave?\" upitao je."
+      ],
+      "correct": "D",
+      "exp": "Upitnik unutar navodnika, navodnik zatvoren, bez zareza, nastavak malim slovom = D."
+    },
+    {
+      "id": 50,
+      "q": "Koja je od sljedećih rečenica napisana u skladu s pravilima o pisanju velikoga i maloga slova?",
+      "opts": [
+        "A. On studira na odsjeku za kroatistiku Filozofskoga fakulteta sveučilišta u Zagrebu.",
+        "B. On studira na Odsjeku za Kroatistiku Filozofskoga fakulteta Sveučilišta u Zagrebu.",
+        "C. On studira na Odsjeku za kroatistiku Filozofskoga fakulteta Sveučilišta u Zagrebu.",
+        "D. On studira na Odsjeku za kroatistiku Filozofskoga Fakulteta Sveučilišta u Zagrebu."
+      ],
+      "correct": "C",
+      "exp": "'Odsjek za kroatistiku Filozofskoga fakulteta Sveučilišta' = Odsjek, Fakultet, Sveučilište = vlastite imenice; kroatistiku = opisni = malo; C je pravilno."
+    },
+    {
+      "id": 51,
+      "q": "Koji je točan genitiv jednine imenice 'hobi'?",
+      "opts": [
+        "A. hobija",
+        "B. hobia",
+        "C. hobi-a",
+        "D. hobij-a"
+      ],
+      "correct": "A",
+      "exp": "Strane imenice na -i: hobi → hobija (G jd.) = A."
+    },
+    {
+      "id": 52,
+      "q": "Koja od sljedećih riječi ima dugosilazni naglasak?",
+      "opts": [
+        "A. konj",
+        "B. mrav",
+        "C. prst",
+        "D. slon"
+      ],
+      "correct": "A",
+      "exp": "'Kȏnj' = dugosilazni naglasak = A."
+    },
+    {
+      "id": 53,
+      "q": "Koji od sljedećih parova riječi čini minimalni fonološki par?",
+      "opts": [
+        "A. mast – slast",
+        "B. mast – kost",
+        "C. mast – most",
+        "D. mast – mošt"
+      ],
+      "correct": "C",
+      "exp": "'Mast' – 'most': jedina razlika = vokal a/o na istoj poziciji = minimalni par = C."
+    },
+    {
+      "id": 54,
+      "q": "Koja je glasovna promjena uz jotaciju provedena u riječi 'čvršći'?",
+      "opts": [
+        "A. jednačenje po mjestu tvorbe",
+        "B. jednačenje po zvučnosti",
+        "C. palatalizacija",
+        "D. sibilarizacija"
+      ],
+      "correct": "A",
+      "exp": "'Čvršći' = čvrst + -ji → čvr-šć-i = jednačenje po mjestu tvorbe (š ispred ć)."
+    },
+    {
+      "id": 55,
+      "q": "U kojoj je od sljedećih riječi provedena sibilarizacija?",
+      "opts": [
+        "A. mjeseci",
+        "B. potpisi",
+        "C. premazi",
+        "D. trbusi"
+      ],
+      "correct": "A",
+      "exp": "'Mjeseci' = od 'mjesec': c→c (ispred i u N mn.) = sibilarizacija k/g/h→c/z/s = A."
+    },
+    {
+      "id": 56,
+      "q": "Koja je od sljedećih riječi točno rastavljena na slogove?",
+      "opts": [
+        "A. raz-rije-di-ti",
+        "B. razri-je-di-ti",
+        "C. ra-zri-je-di-ti",
+        "D. raz-ri-je-di-ti"
+      ],
+      "correct": "A",
+      "exp": "'Razrijediti' = raz-rije-di-ti = A."
+    },
+    {
+      "id": 57,
+      "q": "U kojoj je od sljedećih rečenica točno upotrijebljen prijedlog 'radi'?",
+      "opts": [
+        "A. Zabrinuta sam radi lošega vremena.",
+        "B. Otišao sam u toplice radi liječenja.",
+        "C. Izostao sam s nastave radi bolesti.",
+        "D. Vlak je kasnio radi radova."
+      ],
+      "correct": "B",
+      "exp": "'Radi' = ciljni prijedlog (radi čega? = s ciljem) = 'radi liječenja' = B. Ostali: 'zbog' (uzročni)."
+    },
+    {
+      "id": 58,
+      "q": "Koja je od sljedećih riječi točno rastavljena na morfeme?",
+      "opts": [
+        "A. poglavar-Ø",
+        "B. po-glavar-Ø",
+        "C. po-gla-var-Ø",
+        "D. po-glav-ar-Ø"
+      ],
+      "correct": "D",
+      "exp": "'Poglavar' = po- (prefiks) + glav- (korijen) + -ar (sufiks) + -Ø (nulti morfem) = D."
+    },
+    {
+      "id": 59,
+      "q": "U kojoj je od sljedećih rečenica točan kondicional prvi za drugo lice množine?",
+      "opts": [
+        "A. Željeli bih stići na vrijeme.",
+        "B. Željeli biste čuti novosti.",
+        "C. Željeli bi se odlučiti.",
+        "D. Željeli bismo učiti."
+      ],
+      "correct": "B",
+      "exp": "'Biste' = 2. l. mn. kondicionala I. = B."
+    },
+    {
+      "id": 60,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljen točan oblik pridjeva?",
+      "opts": [
+        "A. Prošetali su se do nastambe polarna medvjeda.",
+        "B. Uklonili su mrlju s mojega zelena kaputa.",
+        "C. Pridržavaj se prijateljeva savjeta.",
+        "D. Otišla je bez najdraža prijatelja."
+      ],
+      "correct": "C",
+      "exp": "'Prijateljeva savjeta' = određeni pridjev prisvajanja + genitiv = pravilno = C."
+    },
+    {
+      "id": 61,
+      "q": "Kako se naziva vrsta gramatičke veze u sintagmi 'Florentinske elegije'?",
+      "opts": [
+        "A. slabo upravljanje",
+        "B. jako upravljanje",
+        "C. pridruživanje",
+        "D. sročnost"
+      ],
+      "correct": "D",
+      "exp": "'Florentinske elegije' = pridjev (Florentinske) se slaže s imenicom (elegije) = sročnost = D."
+    },
+    {
+      "id": 62,
+      "q": "Što je po sintaktičkoj službi podcrtana riječ u sljedećoj rečenici?\n'Želio je razgovarati o ljudima.'",
+      "opts": [
+        "A. atribut",
+        "B. objekt",
+        "C. predikat",
+        "D. priložna oznaka"
+      ],
+      "correct": "D",
+      "exp": "'O ljudima' = prijedložna sveza, odgovara na pitanje 'o čemu?' = priložna oznaka = D."
+    },
+    {
+      "id": 63,
+      "q": "U kojemu je glagolskom obliku spona/kopula u sljedećoj rečenici?\n'Njihova ljubav ne bijaše moguća.'",
+      "opts": [
+        "A. u aoristu",
+        "B. u imperfektu",
+        "C. u perfektu",
+        "D. u prezentu"
+      ],
+      "correct": "B",
+      "exp": "'Bijaše' = 3. l. jd. imperfekta od 'biti' = B."
+    },
+    {
+      "id": 64,
+      "q": "Što je predikat u sljedećoj rečenici?\n'Nisu si mogli pomoći.'",
+      "opts": [
+        "A. nisu mogli",
+        "B. mogli pomoći",
+        "C. nisu mogli pomoći",
+        "D. nisu si mogli pomoći"
+      ],
+      "correct": "C",
+      "exp": "'Nisu mogli pomoći' = modalni glagol + infinitiv = cijeli glagolski izraz = predikat = C."
+    },
+    {
+      "id": 65,
+      "q": "Kojoj vrsti zavisnosloženih rečenica pripada sljedeća rečenica?\n'Želio je vidjeti svijet o kojemu je toliko slušao.'",
+      "opts": [
+        "A. atributnima",
+        "B. objektnima",
+        "C. predikatnima",
+        "D. priložnima"
+      ],
+      "correct": "A",
+      "exp": "'Svijet o kojemu je slušao' = zavisna rečenica određuje imenicu 'svijet' = atributna = A."
+    },
+    {
+      "id": 66,
+      "q": "Koliko je leksema u sljedećoj rečenici?\n'Čovjek je čovjeku najgori neprijatelj.'",
+      "opts": [
+        "A. dva",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "B",
+      "exp": "'Čovjek' (jedan leksem, pojavljuje se 2x), 'je' (pomoćni glagol, leksem biti), 'najgori' (leksem), 'neprijatelj' (leksem) = 3 različita leksema (čovjek, biti, najgori, neprijatelj) = ali 'je' = biti = poseban leksem... Točan: čovjek, biti, najgori, neprijatelj = 4 leksema = C."
+    },
+    {
+      "id": 67,
+      "q": "U kojemu su značenjskome odnosu toponimi 'Nova Gradiška' i 'Stara Gradiška'?",
+      "opts": [
+        "A. u antonimnome",
+        "B. u hiperonimnome",
+        "C. u homonimnome",
+        "D. u sinonimnome"
+      ],
+      "correct": "A",
+      "exp": "Nova ↔ Stara = suprotni pridjevi = antonimni odnos = A."
+    },
+    {
+      "id": 68,
+      "q": "Koja je od sljedećih riječi historizam?",
+      "opts": [
+        "A. barjak",
+        "B. cjelov",
+        "C. krinolina",
+        "D. lipost"
+      ],
+      "correct": "C",
+      "exp": "'Krinolina' = vrsta haljine/potkošulje iz 19. st. = naziv za rekvizit iz prošlosti = historizam = C."
+    },
+    {
+      "id": 69,
+      "q": "Što znači frazem 'posuti se pepelom'?",
+      "opts": [
+        "A. kajati se zbog učinjenih nedjela",
+        "B. žaliti za propuštenim",
+        "C. govoriti u prazno",
+        "D. brzo pobjeći"
+      ],
+      "correct": "A",
+      "exp": "'Posuti se pepelom' = znak pokajanja/žaljenja = kajati se za grijehe = A."
+    },
+    {
+      "id": 70,
+      "q": "Kojim je tvorbenim načinom nastala riječ 'podbrežje'?",
+      "opts": [
+        "A. prefiksalno-sufiksalnom tvorbom",
+        "B. složeno-sufiksalnom tvorbom",
+        "C. prefiksalnom tvorbom",
+        "D. sufiksalnom tvorbom"
+      ],
+      "correct": "A",
+      "exp": "'Podbrežje' = pod- (prefiks) + brijeg (osnova) + -je (sufiks) = prefiksalno-sufiksalna tvorba = A."
+    },
+    {
+      "id": 71,
+      "q": "Koja se vrsta odrednice nalazi u zagradama u sljedećoj leksikografskoj jedinici?\n'leksikografija ž (grč. lexikón – rječnik, gráphein – pisati)...'",
+      "opts": [
+        "A. etimološka odrednica",
+        "B. gramatička odrednica",
+        "C. normativna odrednica",
+        "D. stilistička odrednica"
+      ],
+      "correct": "A",
+      "exp": "(grč. lexikón – rječnik, gráphein – pisati) = podrijetlo/porijeklo riječi = etimološka odrednica = A."
+    },
+    {
+      "id": 72,
+      "q": "U kojemu je djelu predložena reforma hrvatske grafije?",
+      "opts": [
+        "A. Disertacija iliti razgovor darovan gospodi poklisarom",
+        "B. Duh domovine nad sinovima svojim koji spavaju",
+        "C. Ilirizam i kroatizam",
+        "D. Kratka osnova horvatsko-slavenskoga pravopisanja"
+      ],
+      "correct": "D",
+      "exp": "Kratka osnova horvatsko-slavenskoga pravopisanja (Ljudevit Gaj, 1830.) = reforma grafije (uvođenje dijakritičkih znakova) = D."
+    }
+  ]
+}

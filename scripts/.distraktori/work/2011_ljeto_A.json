@@ -1,0 +1,976 @@
+{
+  "examKey": "2011_ljeto_A",
+  "label": "Ljetni rok — Viša razina (A)",
+  "total": 76,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu književnome rodu pripada polazni tekst?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "A",
+      "exp": "Sonet = lirska pjesma = lirika.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 2,
+      "q": "Kojemu autoru sonet duguje slavu?",
+      "opts": [
+        "A. Gunduliću",
+        "B. Maruliću",
+        "C. Ovidiju",
+        "D. Petrarki"
+      ],
+      "correct": "D",
+      "exp": "Francesco Petrarca (1304.–1374.) = kodificirao sonet i dao mu slavu (Kanconijer)."
+    },
+    {
+      "id": 3,
+      "q": "Koja je tematika polaznoga teksta?",
+      "opts": [
+        "A. pejzažna",
+        "B. misaona",
+        "C. socijalna",
+        "D. ljubavna"
+      ],
+      "correct": "B",
+      "exp": "Refleksija o pjesnikovom životu, sumnji, slobodi, zavičaju = misaona tematika.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 4,
+      "q": "Koja je stilska figura uporabljena u sljedećem stihu?\n'Pa u nju gleda žarom suncokreta,'",
+      "opts": [
+        "A. personifikacija",
+        "B. metafora",
+        "C. hiperbola",
+        "D. ironija"
+      ],
+      "correct": "B",
+      "exp": "'Žarom suncokreta' = gledanje uspoređeno sa suncokretovim okretanjem prema suncu = metafora žara/predanosti.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 5,
+      "q": "U kojemu je stihu uporabljena poredba?",
+      "opts": [
+        "A. I traži tamjan neviđenog cvijeta",
+        "B. On je lik u mutnoj, uzburkanoj vodi",
+        "C. A kad padne, umre, bogzna gdje i kako,",
+        "D. Nek ti kao zvijezda pjeva za klobukom,"
+      ],
+      "correct": "D",
+      "exp": "'Kao zvijezda pjeva' = usporedba = poredba.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 6,
+      "q": "Koja je osobina pjesnika iskazana sljedećom rečenicom?\n'On o svemu dvoji.'",
+      "opts": [
+        "A. skromnost",
+        "B. plašljivost",
+        "C. umišljenost",
+        "D. sumnjičavost"
+      ],
+      "correct": "D",
+      "exp": "'Dvojiti' = sumnjati = sumnjičavost.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 7,
+      "q": "Kojim stihom Matoš predstavlja pjesnikovo životno okružje?",
+      "opts": [
+        "A. Pa u nju gleda žarom suncokreta,",
+        "B. On je lik u mutnoj, uzburkanoj vodi",
+        "C. On što nije nikad sebe radi plako",
+        "D. Ostavit će tražen cvijet u suzama."
+      ],
+      "correct": "B",
+      "exp": "'Lik u mutnoj, uzburkanoj vodi' = okružje je mutno, uzburkano = odraz životnog okružja.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 8,
+      "q": "Što označava sintagma 'samac brod' u stihu:\n'Gusarskom kad brazdom samac brod mu brodi.'",
+      "opts": [
+        "A. pjesnikov život",
+        "B. tajne želje",
+        "C. daleki put",
+        "D. neuslišanu ljubav"
+      ],
+      "correct": "A",
+      "exp": "'Samac brod' = jedini brod = metafora pjesnikovog usamljenog, autonomnog životnog puta.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 9,
+      "q": "Kakva je rima u polaznome tekstu?",
+      "opts": [
+        "A. abba abba cde dec",
+        "B. abba abba ccd eed",
+        "C. abab cdcd efg efg",
+        "D. abab cdcd eef ggf"
+      ],
+      "correct": "A",
+      "exp": "brodi/vodi/hodi (a), suncokreta/cvijeta/cvjeta (b) = abba; suzama/rukom/klobukom/muzama... = abba abba cde dec.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 10,
+      "q": "Koji glagolski oblik čine podcrtane riječi?\n'Žrtvovo kad budeš našim muzama.'",
+      "opts": [
+        "A. kondicional prvi",
+        "B. kondicional drugi",
+        "C. futur prvi",
+        "D. futur drugi"
+      ],
+      "correct": "D",
+      "exp": "'Budeš' + glagolski pridjev radni/radni = futur drugi (perfekat konjunktiv).",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 11,
+      "q": "Kako glasi infinitiv podcrtanog glagola?\n'On o svemu dvoji.'",
+      "opts": [
+        "A. izdvajati",
+        "B. dvojiti",
+        "C. zdvajati",
+        "D. udvojiti"
+      ],
+      "correct": "B",
+      "exp": "'Dvoji' = 3. l. jd. prezenta od 'dvojiti' = infinitiv je 'dvojiti'.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 12,
+      "q": "Kako glasi posljednji stih u neobilježenom redu riječi?\n'Žrtvovo kad budeš našim muzama.'",
+      "opts": [
+        "A. Kad žrtvovo budeš našim muzama.",
+        "B. Kad budeš žrtvovo našim muzama.",
+        "C. Našim muzama žrtvovo kad budeš.",
+        "D. Muzama našim kad budeš žrtvovo."
+      ],
+      "correct": "B",
+      "exp": "Neobilježeni red = subjekt + predikat + ostalo: 'Kad budeš žrtvovo našim muzama.' = B.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 13,
+      "q": "Prema kojemu je načelu napisan zarez u sljedećem stihu?\n'On za tobom, Dušo, lijepa i slijepa, hodi.'",
+      "opts": [
+        "A. nabrajanja",
+        "B. inverzije",
+        "C. suprotnosti",
+        "D. vokativnosti"
+      ],
+      "correct": "D",
+      "exp": "'Dušo' = dozivanje = vokativ = zarezi po načelu vokativnosti.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 14,
+      "q": "Koliko ima surečenica u sljedećim stihovima?\n'... Ali u slobodi / U koju sumnja, crkva mu je sveta, / Pa u nju gleda žarom suncokreta, / Gusarskom kad brazdom samac brod mu brodi.'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "C",
+      "exp": "1. 'Ali u slobodi' (eliptično) 2. 'U koju sumnja' 3. 'crkva mu je sveta' 4. 'Pa u nju gleda žarom suncokreta / Gusarskom kad brazdom samac brod mu brodi' + zavisna = 4 surečenice.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 15,
+      "q": "Koja su dva glagolska oblika pogrješno napisana u polaznome tekstu zbog metričkih razloga?",
+      "opts": [
+        "A. dvoji, pjeva",
+        "B. hodi, ostavit će",
+        "C. nije plako, budeš žrtvovo",
+        "D. brodi, uzmi"
+      ],
+      "correct": "C",
+      "exp": "'Plako' (umjesto 'plakao') i 'žrtvovo' (umjesto 'žrtvovao') = skraćeni glagolski pridjevi radni radi metra.",
+      "ctx": "Antun Gustav Matoš, Pjesnik (sonet)\n\nOn o svemu dvoji. Ali u slobodi\nU koju sumnja, crkva mu je sveta,\nPa u nju gleda žarom suncokreta,\nGusarskom kad brazdom samac brod mu brodi.\n\nOn je lik u mutnoj, uzburkanoj vodi\nI traži tamjan neviđenog cvijeta\nŠto samo u srcu raste i vječno cvjeta:\nOn za tobom, Dušo, lijepa i slijepa, hodi.\n\nA kad padne, umre, bogzna gdje i kako,\nOn što nije nikad sebe radi plako\nOstavit će tražen cvijet u suzama.\n\nUzmi ovo dúše, rode, bratskom rukom,\nNek ti kao zvijezda pjeva za klobukom,\nŽrtvovo kad budeš našim muzama.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 16,
+      "q": "Koju je antologijsku pjesmu napisao Antun Gustav Matoš?",
+      "opts": [
+        "A. Cvrčak",
+        "B. Bele rože",
+        "C. Pejzaž I.",
+        "D. Utjeha kose"
+      ],
+      "correct": "D",
+      "exp": "Utjeha kose = jedna od Matoševih najpoznatijih antologijskih pjesama (sonet)."
+    },
+    {
+      "id": 17,
+      "q": "U kojoj je književnosti nastala Odiseja?",
+      "opts": [
+        "A. u antičkoj grčkoj",
+        "B. u antičkoj rimskoj",
+        "C. u babilonsko-asirskoj",
+        "D. u staroegipatskoj"
+      ],
+      "correct": "A",
+      "exp": "Odiseja = Homer = antička grčka književnost.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 18,
+      "q": "Kojim je jezikom napisana Odiseja?",
+      "opts": [
+        "A. hebrejskim",
+        "B. latinskim",
+        "C. grčkim",
+        "D. talijanskim"
+      ],
+      "correct": "C",
+      "exp": "Homer piše na starogrčkom jeziku.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 19,
+      "q": "Kojoj književnoj vrsti pripada Odiseja?",
+      "opts": [
+        "A. didaktičkom epu",
+        "B. religioznoj poemi",
+        "C. nacionalnom mitu",
+        "D. pustolovnom epu"
+      ],
+      "correct": "D",
+      "exp": "Odiseja = pustolovni ep (Odisejeve avanture na putu kući).",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 20,
+      "q": "Što je bio Odisejev cilj u Odiseji?",
+      "opts": [
+        "A. osvetiti prijatelja",
+        "B. vratiti se kući",
+        "C. utemeljiti Rim",
+        "D. spaliti Troju"
+      ],
+      "correct": "B",
+      "exp": "Odiseja = nostos (povratak) = Odisejev cilj je povratak u Itaku.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 21,
+      "q": "Koja se tvrdnja odnosi na Odiseja?",
+      "opts": [
+        "A. Ahilejev je suborac u ratu.",
+        "B. Posljednji je trojanski junak.",
+        "C. Jedan je od olimpskih bogova.",
+        "D. Otimač je lijepe Helene."
+      ],
+      "correct": "A",
+      "exp": "Odisej i Ahilej = grčki junaci u Trojanskom ratu = suborci.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 22,
+      "q": "Tko je pripovjedač u polaznome tekstu?",
+      "opts": [
+        "A. pisac",
+        "B. glavni lik",
+        "C. intrigant",
+        "D. sporedni lik"
+      ],
+      "correct": "B",
+      "exp": "Odisej priča o sebi = glavni lik je pripovjedač.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 23,
+      "q": "Što se saznaje o Odisejevoj sudbini iz sljedećih stihova?\n'Teško je, kraljice, jade da kazujem svoje po redu, / Kojih su sila na me navalili nèbeski bozi;'",
+      "opts": [
+        "A. Bogovi su ga kaznili.",
+        "B. Poražen je u ratu.",
+        "C. Iznevjerio je ženu.",
+        "D. Odrekao se sina."
+      ],
+      "correct": "A",
+      "exp": "'Nebeski bozi su sila navalili na mene' = bogovi su ga progonili/kaznili.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 24,
+      "q": "Koji je smisao sljedećega stiha?\n'Al' ne okrenu srce u mojim grudima nikad.'",
+      "opts": [
+        "A. Odisej ne želi izdati drugove.",
+        "B. Odisej obećaje ljubav boginji Kalipso.",
+        "C. Odisej ostaje vjeran svojoj ženi.",
+        "D. Odisej ne prihvaća pomoć bogova."
+      ],
+      "correct": "C",
+      "exp": "Kalipsa nudi besmrtnost ali Odisej ne mijenja srce = ostaje vjeran Penelopi/kući.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 25,
+      "q": "Kako se boginja Kalipsa odnosi prema Odiseju?",
+      "opts": [
+        "A. prijetvorno",
+        "B. gostoljubivo",
+        "C. razočarano",
+        "D. neprijateljski"
+      ],
+      "correct": "B",
+      "exp": "'Usrdno čašćaše mene i hranjaše' = gostoljubivo ga prima i pazi.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 26,
+      "q": "Kakvo je more opisano u sljedećem primjeru?\n'... kada mi Zeus u iskričavome moru'",
+      "opts": [
+        "A. osunčano",
+        "B. mirno",
+        "C. olujno",
+        "D. hladno"
+      ],
+      "correct": "A",
+      "exp": "'Iskričavo' = sjajno, blještavo = more koje se iskri na suncu = osunčano.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 27,
+      "q": "Što kraljica traži od Odiseja?",
+      "opts": [
+        "A. da joj prizna gdje je bio",
+        "B. da prekine zavjet šutnje",
+        "C. da otkrije Kalipsino boravište",
+        "D. da priča o svojim doživljajima"
+      ],
+      "correct": "D",
+      "exp": "'Nego da kažem što pitaš' = kraljica je pitala = traži da priča o doživljajima.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 28,
+      "q": "Što je doživio Odisej prije jada o kojima priča kraljici?",
+      "opts": [
+        "A. otmicu žene",
+        "B. gubitak kraljevstva",
+        "C. veliku ljubav",
+        "D. propast Troje"
+      ],
+      "correct": "D",
+      "exp": "Odisej se vraća s trojanskog rata = propast Troje je prethodila svim jadima.",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 29,
+      "q": "Koja od navedenih sintagmi sadržava stalni epitet?",
+      "opts": [
+        "A. gorućim gromom",
+        "B. dosjetljivi Odisej",
+        "C. iskričavome moru",
+        "D. lađene grede"
+      ],
+      "correct": "B",
+      "exp": "'Dosjetljivi Odisej' = stalni epitet (uvijek isti uz Odisejevo ime u epovima).",
+      "ctx": "Homer, Odiseja (ulomak — Odisej priča Nausikaji)\n\nNjoj odgovarajuć ovo Odisej dosjetljivi reče:\nTeško je, kraljice, jade da kazujem svoje po redu,\nKojih su sila na me navalili nèbeski bozi;\nNego da kažem što pitaš i razbireš tî sad od mène.\nÙ moru ima dalèko Ogìgija, nekakav otok,\nGdjeno boginja strašna Kalìpsa prijevarna živi,\nBoga Atlasa kći ljepòkosa, s kojom se nitko\nNi od bògova vječnih ni ljúdi ne sastaje smrtnih.\nAl' bog je neki mene jadnika u njezinu kuću\nNaveo, kada mi Zeus u iskričavome moru\nLađu pritisnu brzu i razbi je gorućim gromom.\nTada mi valjani svi drugari izginu redom,\nÀ ja se rùkama hvȁtim lađène gréde, te dȅvet\nDana me nošaše voda, i desete noći me crne\nPrignaše onda na …"
+    },
+    {
+      "id": 30,
+      "q": "Koje od navedenih djela pripada istome književnopovijesnom razdoblju kao i Odiseja?",
+      "opts": [
+        "A. Gilgameš",
+        "B. Metamorfoze",
+        "C. Okovani Prometej",
+        "D. Pjesma o Cidu"
+      ],
+      "correct": "C",
+      "exp": "Okovani Prometej (Eshil) = grčka antika = isto razdoblje kao Odiseja."
+    },
+    {
+      "id": 31,
+      "q": "Što povezuje Odiseju i Ribanje i ribarsko prigovaranje?",
+      "opts": [
+        "A. opis putovanja",
+        "B. vrstu stiha",
+        "C. glavne likove",
+        "D. vrijeme nastanka"
+      ],
+      "correct": "A",
+      "exp": "Odiseja = putovanje morem; Ribanje = putovanje brodom/morem = opis putovanja."
+    },
+    {
+      "id": 32,
+      "q": "Kojim je postupkom autor oblikovao likove u polaznome tekstu?",
+      "opts": [
+        "A. opisom",
+        "B. komentarom",
+        "C. dijalogom",
+        "D. unutarnjim monologom"
+      ],
+      "correct": "C",
+      "exp": "Razgovor između pripovjedača i milostive gospođe = dijalog = karakterizacija putem dijaloga.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 33,
+      "q": "Čime je milostiva gospođa privukla pozornost svojeg sugovornika u polaznome tekstu?",
+      "opts": [
+        "A. čitanjem",
+        "B. podrijetlom",
+        "C. šutljivošću",
+        "D. skromnošću"
+      ],
+      "correct": "A",
+      "exp": "'Vi čitate, milostiva gospođo?' = sugovornik je primijetio da čita = čitanje.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 34,
+      "q": "O čemu razgovaraju pripovjedač i milostiva gospođa?",
+      "opts": [
+        "A. Preispituju svoje čitateljske sklonosti.",
+        "B. Nadmeću se poznavanjem književnih djela.",
+        "C. Prepiru se oko društvenih običaja.",
+        "D. Komentiraju aktualne društvene događaje."
+      ],
+      "correct": "A",
+      "exp": "'Što čitate, što volite' = preispitivanje čitateljskih sklonosti.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 35,
+      "q": "Kakav je ton razgovora pripovjedača i milostive gospođe?",
+      "opts": [
+        "A. opušten",
+        "B. napet",
+        "C. sentimentalan",
+        "D. vatren"
+      ],
+      "correct": "A",
+      "exp": "'Dosjetke', 'zabavlja me', 'Nu ne protivim se' = lagan, napet razgovor s duhovitošću = opušten.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 36,
+      "q": "Što o pripovjedaču govori sljedeća gospođina rečenica?\n'– Vi umujete brzo, gospodine!'",
+      "opts": [
+        "A. da je uobražen",
+        "B. da je brzoplet",
+        "C. da je dovitljiv",
+        "D. da je antipatičan"
+      ],
+      "correct": "C",
+      "exp": "'Umujete brzo' = brzo zaključujete, snalažljivi ste = dovitljiv.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 37,
+      "q": "Koja se rečenica odnosi na mišljenje milostive gospođe o kvaliteti domaće književnosti?",
+      "opts": [
+        "A. – Čitam romana, putopisa, novela, gospodarskih knjiga i toga više.",
+        "B. – A hrvatski?\n– Skoro ništa.",
+        "C. A čitajući sve te moguće naše pripovijetke, do zlovolje sam ih se nasitila.",
+        "D. Vazda jedno te isto."
+      ],
+      "correct": "C",
+      "exp": "'Do zlovolje sam ih se nasitila' = izravna kritika kvalitete domaće književnosti.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 38,
+      "q": "Kakav odnos prema milostivoj gospođi iskazuje pripovjedač sljedećom rečenicom?\n'– A ipak ste – Hrvatica!'",
+      "opts": [
+        "A. blagi prijekor",
+        "B. iskrenu zadivljenost",
+        "C. očitu netrpeljivost",
+        "D. otvorenu simpatiju"
+      ],
+      "correct": "A",
+      "exp": "'A ipak ste – Hrvatica!' = blagi prijekor što čita strane jezike, a ne hrvatski.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 39,
+      "q": "Koji je temeljni problem polaznoga teksta?",
+      "opts": [
+        "A. položaj žene u hrvatskome društvu",
+        "B. odnos naroda prema hrvatskome jeziku",
+        "C. navike hrvatske čitateljske publike",
+        "D. sukobi na hrvatskoj političkoj sceni"
+      ],
+      "correct": "C",
+      "exp": "Gospođa čita strane, ne domaće knjige, a domaća književnost je loše kvalitete = navike čitateljske publike.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 40,
+      "q": "Koje je preneseno značenje prve podcrtane riječi, a koje druge podcrtane sintagme?\n'A kakvu hranu davaju naši noveliste toj nestašnoj ptici koja leprša od mjesta do mjesta...'",
+      "opts": [
+        "A. državna politika i neobrazovani puk",
+        "B. književna djela i ženska čitateljska publika",
+        "C. strani kapital i oponašatelji stranih uzora",
+        "D. narodni jezik i nepoštivanje vlastitog jezika"
+      ],
+      "correct": "B",
+      "exp": "'Hrana' = književna djela; 'nestašna ptica' = ženska čitateljska publika = B.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 41,
+      "q": "Kakvo štivo čita milostiva gospođa kada kaže da čita humoresku?",
+      "opts": [
+        "A. roman u nastavcima",
+        "B. grčku komediju",
+        "C. kratki šaljivi tekst",
+        "D. ljubavni kanconijer"
+      ],
+      "correct": "C",
+      "exp": "'Humoreskа' = kratki šaljivi/duhoviti književni tekst.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 42,
+      "q": "Koju je namjeru imao Šenoa pišući Prijana Lovru, pričajući milostivoj gospođi priču o Lovri?",
+      "opts": [
+        "A. zavesti milostivu gospođu svojom domišljatošću",
+        "B. pokazati da i hrvatska stvarnost nudi zanimljive priče",
+        "C. dodvoriti se hrvatskim književnim kritičarima",
+        "D. upozoriti na slavne junake iz hrvatske povijesti"
+      ],
+      "correct": "B",
+      "exp": "Šenoa potiče na čitanje domaće književnosti pokazujući da hrvatska zbilja nudi zanimljive priče.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 43,
+      "q": "Koji je časopis uređivao August Šenoa?",
+      "opts": [
+        "A. Danicu ilirsku",
+        "B. Hrvatsku misao",
+        "C. Kolo",
+        "D. Vijenac"
+      ],
+      "correct": "D",
+      "exp": "August Šenoa = urednik Vijenca (1874.–1881.)."
+    },
+    {
+      "id": 44,
+      "q": "Kojoj vrsti leksema pripada riječ 'franceski'?",
+      "opts": [
+        "A. antroponimima",
+        "B. eponimima",
+        "C. egzotizmima",
+        "D. arhaizmima"
+      ],
+      "correct": "D",
+      "exp": "'Franceski' = zastarjeli oblik umjesto 'francuski' = arhaizam.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 45,
+      "q": "Koja je od navedenih rečenica napisana pravopisno točno?",
+      "opts": [
+        "A. „Vi čitate, milostiva gospođo?\", zapitah ponješto naivno.",
+        "B. „Vi čitate, milostiva gospođo\"? zapitah ponješto naivno.",
+        "C. „Vi čitate, milostiva gospođo?\" zapitah ponješto naivno.",
+        "D. „Vi čitate, milostiva gospođo?\", zapitah ponješto naivno.\""
+      ],
+      "correct": "C",
+      "exp": "Upitnik ostaje unutar navodnika, a navodnik se zatvara odmah iza njega, bez zareza: „...gospođo?\" zapitah... = C.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 46,
+      "q": "Koja se lingvistička disciplina bavi leksemima 'Hrvatica' i 'Napoleon'?",
+      "opts": [
+        "A. frazeologija",
+        "B. onomastika",
+        "C. povijest jezika",
+        "D. dijalektologija"
+      ],
+      "correct": "B",
+      "exp": "'Hrvatica' i 'Napoleon' = vlastita imena = onomastika (grana lingvistike koja proučava vlastita imena)."
+    },
+    {
+      "id": 47,
+      "q": "Koliko ima surečenica u sljedećoj rečenici?\n'Ženska ćud je strasna, fantazija bujna, misao živa i brza kao ptica.'",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "C",
+      "exp": "1.'Ženska ćud je strasna' 2.'fantazija (je) bujna' 3.'misao (je) živa' 4.'(i brza) kao ptica' = 4 surečenice.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 48,
+      "q": "Kako bi glasila rečenica s antonimskim parnjacima podcrtanog pridjeva i imenice?\n'Jer iz naše zajedničke antipatije proti Napoleonu i kruškama...'",
+      "opts": [
+        "A. Jer iz naše društvene privrženosti...",
+        "B. Jer iz naše opće netrpeljivosti...",
+        "C. Jer iz naše pojedinačne simpatije...",
+        "D. Jer iz naše dvostruke sumnjičavosti..."
+      ],
+      "correct": "C",
+      "exp": "Zajednička→pojedinačna (antonim) + antipatija→simpatija (antonim) = C.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 49,
+      "q": "Koji je glagolski oblik podcrtan?\n'Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam…'",
+      "opts": [
+        "A. infinitiv",
+        "B. imperativ",
+        "C. prezent",
+        "D. imperfekt"
+      ],
+      "correct": "B",
+      "exp": "'Dozvolite' = zapovijed/molba, 2. l. mn. = imperativ.",
+      "ctx": "August Šenoa, Prijan Lovro (ulomak — razgovor o čitanju)\n\n– Vi čitate, milostiva gospođo? – zapitah ponješto naivno.\n– Čitam – odvrati prostodušno – jer baš ne marim puno ni za župnikova Napoleona ni za sučeve kruške.\n– Na sreću, ne može ni mene ni jedno ni drugo ushititi.\n– Na sreću?\n– Svakako. Jer iz naše zajedničke antipatije proti Napoleonu i kruškama mora svakako postati neka vrst simpatije među nama.\n– Vi umujete brzo, gospodine! Nu ne protivim se vašoj logici jer me može zabavljati. Književnik ste i ne pišete, koliko je meni znano, gramatike; znat ćete dakle i sa ženskom govoriti.\n– Kad me moga zanata sjetiste, gospođo, dozvolite da vas upitam što čitate.\n– Humoresku iz lanjskih modni…"
+    },
+    {
+      "id": 50,
+      "q": "Čime se bavi Đuro Andrijašević?",
+      "opts": [
+        "A. Profesor je i pisac.",
+        "B. Glazbenik je i novinar.",
+        "C. Pravnik je i slikar.",
+        "D. Svećenik je i pjesnik."
+      ],
+      "correct": "A",
+      "exp": "Đuro Andrijašević = profesor + neuspješni pisac koji sanjari.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 51,
+      "q": "Što muči Đuru Andrijaševića u polaznome tekstu?",
+      "opts": [
+        "A. grižnja savjesti",
+        "B. oskudica",
+        "C. gubitak posla",
+        "D. nostalgija"
+      ],
+      "correct": "B",
+      "exp": "'Ostati gazdarici dužan... u džepu nije ostalo ništa' = financijska oskudica.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 52,
+      "q": "Što je to 'sve drugo' što muči Đuru Andrijaševića osim nedostatka novca?",
+      "opts": [
+        "A. Predosjeća skoru propast posla i raspad obitelji.",
+        "B. Obitelj ga nije dočekala kako je očekivao.",
+        "C. Saznao je da ga je otac razbaštinio.",
+        "D. Živi u provinciji i ima obveze prema zaručnici."
+      ],
+      "correct": "D",
+      "exp": "'A kuda da pobjegneš ovdje? Profesor...' = zarobljen je u provinciji s obvezama = D.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 53,
+      "q": "Koja od navedenih rečenica izriče problem romana Bijeg?",
+      "opts": [
+        "A. Još od najranije mladosti u njega je jaka sanjarska žica.",
+        "B. Ah, da je to veliki grad, bilo bi lako.",
+        "C. Život sa svojim formama nije ga nikada zanimao mnogo;",
+        "D. ... a ostalo su sve troškovi koji se ne dadu smanjiti."
+      ],
+      "correct": "A",
+      "exp": "'Sanjarska žica' = nesposobnost da se suoči s realnošću = temeljni problem Bijega.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 54,
+      "q": "Kako je Đuro Andrijašević zamišljao rješenje svoje situacije?",
+      "opts": [
+        "A. bijegom u prirodu",
+        "B. dobitkom na lutriji",
+        "C. preseljenjem",
+        "D. štednjom"
+      ],
+      "correct": "C",
+      "exp": "'Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi' = preseljenje kao rješenje.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 55,
+      "q": "Kojega se grada prisjeća Đuro Andrijašević u rečenici:\n'Ah, da je to veliki grad, bilo bi lako.'",
+      "opts": [
+        "A. Rijeke",
+        "B. Beča",
+        "C. Zdenaca",
+        "D. Praga"
+      ],
+      "correct": "B",
+      "exp": "Đuro se sjeća Beča (studijski grad) kao mjesta gdje je rješavao slične probleme.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 56,
+      "q": "Što su beskrajne fantazije značile Đuri Andrijaševiću?",
+      "opts": [
+        "A. Bile su mu inspiracija za roman.",
+        "B. Tada mu se činilo da je sa zaručnicom.",
+        "C. Maštao je kako ne bi pio.",
+        "D. Htio je pobjeći od stvarnosti."
+      ],
+      "correct": "D",
+      "exp": "'Dnevice sam sebe znao lišavati dojmova neugodnog sadašnjeg života' = bijeg od stvarnosti.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 57,
+      "q": "Kojom rečenicom Đuro Andrijašević opisuje svoje mjesto boravka kao provinciju?",
+      "opts": [
+        "A. A kuda da pobjegneš ovdje?",
+        "B. Kasno predvečer znao se Đuro vraćati sa svojih šetnja,...",
+        "C. ... uživajući u cijeloj toj veličajnoj slici, sastavljenoj od mekih i toplih boja mora...",
+        "D. Sve ga to uznosilo u neku ekstazu..."
+      ],
+      "correct": "A",
+      "exp": "'A kuda da pobjegneš ovdje?' = nema kamo pobjeći = zatvorenost provincije = A.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 58,
+      "q": "Kako završava lik Đure Andrijaševića na kraju romana?",
+      "opts": [
+        "A. ženidbom",
+        "B. odlaskom",
+        "C. prilagodbom",
+        "D. smrću"
+      ],
+      "correct": "D",
+      "exp": "Bijeg (Nehajev) = Đuro Andrijašević propada i na kraju umire."
+    },
+    {
+      "id": 59,
+      "q": "Koja je osobina Đurina karaktera iskazana u naslovu romana?",
+      "opts": [
+        "A. optimizam",
+        "B. gramzljivost",
+        "C. pasivnost",
+        "D. strastvenost"
+      ],
+      "correct": "C",
+      "exp": "Bijeg = bježi od realnosti, nikad ne djeluje = pasivnost."
+    },
+    {
+      "id": 60,
+      "q": "Kojom je proznom tehnikom napisan drugi odlomak polaznoga teksta?\n('Ah, da je to veliki grad...')",
+      "opts": [
+        "A. opisivanjem",
+        "B. unutarnjim monologom",
+        "C. dijalogom",
+        "D. retrospekcijom"
+      ],
+      "correct": "B",
+      "exp": "'Ah, da je to veliki grad... A kuda da pobjegneš ovdje? Profesor...' = Đurine misli = unutarnji monolog.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 61,
+      "q": "Koja je stilska figura uporabljena u podcrtanoj riječi?\n'Prvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.'",
+      "opts": [
+        "A. simbol",
+        "B. personifikacija",
+        "C. gradacija",
+        "D. metonimija"
+      ],
+      "correct": "D",
+      "exp": "'Džep' = novac (džep umjesto novca koji se u njemu čuva) = metonimija.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 62,
+      "q": "U kojemu je padežu podcrtana riječ?\n'... uzmeš jeftiniji stan, prištediš na hrani...'",
+      "opts": [
+        "A. u genitivu",
+        "B. u dativu",
+        "C. u akuzativu",
+        "D. u lokativu"
+      ],
+      "correct": "D",
+      "exp": "'Na hrani' = prijedlog 'na' + lokativ = lokativ.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 63,
+      "q": "Prema kojemu je načelu uvršten zarez u sljedećoj rečenici?\n'Da je to veliki grad, bilo bi lako.'",
+      "opts": [
+        "A. vokativnosti",
+        "B. nabrajanja",
+        "C. inverzije",
+        "D. suprotnosti"
+      ],
+      "correct": "C",
+      "exp": "Zavisna rečenica ispred glavne = inverzija = zarez po načelu inverzije.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 64,
+      "q": "Kojim je glagolskim oblikom izrečen podcrtani predikat?\n'... a u džepu mu ipak nije ostalo ništa.'",
+      "opts": [
+        "A. kondicionalom prvim",
+        "B. perfektom",
+        "C. futurom drugim",
+        "D. pluskvamperfektom"
+      ],
+      "correct": "B",
+      "exp": "'Nije ostalo' = nije + glagolski pridjev radni = perfekt.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 65,
+      "q": "Kojom se riječju može zamijeniti riječ 'ekstaza'?",
+      "opts": [
+        "A. uzbuđenje",
+        "B. ushit",
+        "C. veselje",
+        "D. sreća"
+      ],
+      "correct": "B",
+      "exp": "'Ekstaza' = stanje zanosa, oduševljenja = sinonim 'ushit'.",
+      "ctx": "Milutin Cihlar Nehajev, Bijeg (ulomak — Đuro Andrijašević)\n\nPrvoga lipnja dogodilo mu se pače da je morao ostati svojoj gazdarici dužan polovicu novaca za stan i jelo – a u džepu mu ipak nije ostalo ništa.\nTo ga je gotovo još više mučilo nego sve drugo.\n(...)\n„Ah, da je to veliki grad, bilo bi lako. Stisneš se jedan-dva mjeseca, uzmeš jeftiniji stan, prištediš na hrani – i opet sve prođe dobro. Na dva-tri mjeseca odaljiš se iz jednoga kotara u drugi, ne ideš među drugove – i sve se uredi. A kuda da pobjegneš ovdje? Profesor – valja da večeraš; na stanu se ne da prištedjeti ništa, odijela ne mogu da založim – a ostalo su sve troškovi koji se ne dadu smanjiti.\"\n(...)\nKasno podvečer znao se Đur…"
+    },
+    {
+      "id": 66,
+      "q": "Koji je točan raspored (stih → autor)?",
+      "opts": [
+        "A. 1C, 2A, 3B, 4D, 5F",
+        "B. 1B, 2A, 3C, 4D, 5F",
+        "C. 1C, 2A, 3E, 4D, 5F",
+        "D. 1C, 2A, 3B, 4E, 5F"
+      ],
+      "correct": "A",
+      "exp": "'Dugo u noć'=Tadijanović(C), 'Gledao sam te sinoć'=Matoš/Utjeha kose(A), 'Kako je teško biti slab'=Ujević(B), 'I lije na uglu'=Cesarić/Balada(D), 'Ubili su ga ciglama'=Slamnig(F). Šimić(E) nepovezan.",
+      "ctx": "Znamenitim stihovima pridružite njihove autore (jedno slovo ne može se povezati):\n\nStihovi:\n  1. Dugo u noć, u zimsku bijelu noć\n  2. Gledao sam te sinoć. U snu. Tužnu. Mrtvu.\n  3. Kako je teško biti slab,\n     kako je teško biti sam,\n     i biti star, a biti mlad.\n  4. I lije na uglu petrolejska lampa\n     Svjetlost crvenkastožutu\n  5. Ubili su ga ciglama, crvenim ciglama\n\nAutori:\n  A. Antun Gustav Matoš\n  B. Tin Ujević\n  C. Dragutin Tadijanović\n  D. Dobriša Cesarić\n  E. Antun Branko Šimić\n  F. Ivan Slamnig"
+    },
+    {
+      "id": 67,
+      "q": "Odaberite točan oblik:\n'Grad se nalazi u srcu Slavonije na istoku ___'\n— Republike Hrvatske ili Republike hrvatske?",
+      "opts": [
+        "A. Republike Hrvatske",
+        "B. Republike hrvatske",
+        "C. republike Hrvatske",
+        "D. republike hrvatske"
+      ],
+      "correct": "A",
+      "exp": "'Republika Hrvatska' = vlastito ime države = obje riječi velikim slovom = 'Republike Hrvatske'."
+    },
+    {
+      "id": 68,
+      "q": "Odaberite točan oblik:\n'Središte Đakova je ___ omeđen znamenitom katedralom'\n— Strossmayerov Trg ili Strossmayerov trg?",
+      "opts": [
+        "A. Strossmayerov Trg",
+        "B. Strossmayerov trg",
+        "C. strossmayerov trg",
+        "D. Strossmayerov TRG"
+      ],
+      "correct": "B",
+      "exp": "Naziv trga: 'Strossmayerov trg' = 'trg' = obična imenica = malo slovo."
+    },
+    {
+      "id": 69,
+      "q": "Odaberite točan oblik:\n'Prema riječima pape ___'\n— Ivana XXIII. ili Ivana XXIII?",
+      "opts": [
+        "A. Ivana XXIII.",
+        "B. Ivana XXIII",
+        "C. Ivana 23.",
+        "D. Ivana dvadesettrećega"
+      ],
+      "correct": "A",
+      "exp": "Redni broj rimskim znamenkama iza vlastite imenice = točka = 'Ivana XXIII.'"
+    },
+    {
+      "id": 70,
+      "q": "Odaberite točan oblik:\n'đakovačka je katedrala ___ crkva između Venecije i Carigrada'\n— najljepša ili naj ljepša?",
+      "opts": [
+        "A. najljepša",
+        "B. naj ljepša",
+        "C. naj-ljepša",
+        "D. najlypša"
+      ],
+      "correct": "A",
+      "exp": "Superlativ se piše zajedno = 'najljepša'."
+    },
+    {
+      "id": 71,
+      "q": "Odaberite točan oblik:\n'Druga su znamenitost Đakova plemeniti konji ___'\n— lipicanci ili Lipicanci?",
+      "opts": [
+        "A. lipicanci",
+        "B. Lipicanci",
+        "C. Lipizanci",
+        "D. lipizanci"
+      ],
+      "correct": "A",
+      "exp": "'Lipicanci' = naziv pasmine = obična imenica = malo slovo."
+    },
+    {
+      "id": 72,
+      "q": "Odaberite točan oblik:\n'...na otvaranju ___ zadivio je...'\n— Olimpijskih Igara ili Olimpijskih igara?",
+      "opts": [
+        "A. Olimpijskih Igara",
+        "B. Olimpijskih igara",
+        "C. olimpijskih igara",
+        "D. olimpijskih Igara"
+      ],
+      "correct": "B",
+      "exp": "'Olimpijske igre' = naziv manifestacije: Olimpijske (veliko) + igre (malo) = 'Olimpijskih igara'."
+    },
+    {
+      "id": 73,
+      "q": "Odaberite točan oblik:\n'...zadivio je ___ kraljicu Elizabetu II.'\n— Englesku ili englesku?",
+      "opts": [
+        "A. Englesku",
+        "B. englesku",
+        "C. Britansku",
+        "D. britansku"
+      ],
+      "correct": "B",
+      "exp": "'Engleska' kao pridjev (engleska = koji pripada Engleskoj) = opisni pridjev = malo slovo."
+    },
+    {
+      "id": 74,
+      "q": "Odaberite točan oblik:\n'Đakovo ima mnogo manifestacija od kojih se ističu ___'\n— Đakovački Vezovi ili Đakovački vezovi?",
+      "opts": [
+        "A. Đakovački Vezovi",
+        "B. Đakovački vezovi",
+        "C. đakovački vezovi",
+        "D. đakovački Vezovi"
+      ],
+      "correct": "A",
+      "exp": "'Đakovački vezovi' = vlastito ime manifestacije = obje sastavnice velikim slovom = 'Đakovački Vezovi'."
+    },
+    {
+      "id": 75,
+      "q": "Odaberite točan oblik:\n'...kola ukrašena ___ brojnih folklornih skupina'\n— cvijećem ili cvjećem?",
+      "opts": [
+        "A. cvijećem",
+        "B. cvjećem",
+        "C. cvećem",
+        "D. cvijetjem"
+      ],
+      "correct": "A",
+      "exp": "'Cvijeće' (dugi jat = ije) → instrumental = 'cvijećem' = pravilno."
+    },
+    {
+      "id": 76,
+      "q": "Odaberite točan oblik:\n'...u ___ mimohodu'\n— svečanom ili svećanom?",
+      "opts": [
+        "A. svečanom",
+        "B. svećanom",
+        "C. svéčanom",
+        "D. svecanom"
+      ],
+      "correct": "A",
+      "exp": "'Svečan' (od svečanost) → 'svečanom' = pravilno (č, ne ć)."
+    }
+  ]
+}

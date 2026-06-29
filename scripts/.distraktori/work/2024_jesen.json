@@ -1,0 +1,781 @@
+{
+  "examKey": "2024_jesen",
+  "label": "Jesenski rok",
+  "total": 62,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Koja je tema pjesme?",
+      "opts": [
+        "A. nastojanje da se ostvare snovi iz djetinjstva",
+        "B. želja da se skonča u rodnome kraju",
+        "C. borba za obiteljsko imanje",
+        "D. strah od smrti"
+      ],
+      "correct": "B",
+      "exp": "'Svoj časak smrtni ja ću dočekati / Na žalu s kojeg jednom i odbrodih' i 'Što sada trebam, vi ćete mi dati. / U krevet leć ću što se ù njem rodih' — lirski subjekt se vraća kući umrijeti. Tema je povratak u rodni kraj pred smrt.",
+      "ctx": "Vladimir Nazor, Posljednja pomast\n\nIznova k vama ja se vraćam, svete\nMasline, što vas sadio moj djedo\nI gajio moj otac, a još dijete –\nPod vama ja sam sanjareći sjȅdō.\n\nSa duga puta ja vam dođoh, svete\nMasline, crn i trȕl ko ì pānj zimi, –\nJer čas već stiže da i ono dijete,\nKo djed i otac, od vas dar svoj primi.\n\nIz vašeg ploda djed je začin hrani\nSàžimō rukom svojijeh težaka,\nA otac moj na svakoj vašoj grani\nPlamičak brao za dne zimskog mraka.\n\nŠto sada trebam, vi ćete mi dati.\nU krevet leć ću što se ù njem rodih.\nSvoj časak smrtni ja ću dočekati\nNa žalu s kojeg jednom i odbrodih.\n\nI vi im daste mâst i svjetlo: zdravlje\nTijelu, radost očima i duši.\nI još ste tu. I sunčevo vas slavlje\nJoš ra…"
+    },
+    {
+      "id": 2,
+      "q": "Koja se od sljedećih tvrdnja ne odnosi na lirski subjekt?",
+      "opts": [
+        "A. Kao dijete maštao je o tome da će uzgajati masline.",
+        "B. Napustivši rodni kraj, putovao je po svijetu.",
+        "C. Umrijet će u svojemu zavičaju.",
+        "D. Mediteranskoga je podrijetla."
+      ],
+      "correct": "A",
+      "exp": "'Pod vama ja sam sanjareći sjȅdō' — kao dijete sjedio je pod maslinama sanjajući, ali nije rečeno da je sanjao o uzgoju maslina. Sanjario je općenito, ne specifično o uzgoju. A nije u tekstu izravno potvrđeno.",
+      "ctx": "Vladimir Nazor, Posljednja pomast\n\nIznova k vama ja se vraćam, svete\nMasline, što vas sadio moj djedo\nI gajio moj otac, a još dijete –\nPod vama ja sam sanjareći sjȅdō.\n\nSa duga puta ja vam dođoh, svete\nMasline, crn i trȕl ko ì pānj zimi, –\nJer čas već stiže da i ono dijete,\nKo djed i otac, od vas dar svoj primi.\n\nIz vašeg ploda djed je začin hrani\nSàžimō rukom svojijeh težaka,\nA otac moj na svakoj vašoj grani\nPlamičak brao za dne zimskog mraka.\n\nŠto sada trebam, vi ćete mi dati.\nU krevet leć ću što se ù njem rodih.\nSvoj časak smrtni ja ću dočekati\nNa žalu s kojeg jednom i odbrodih.\n\nI vi im daste mâst i svjetlo: zdravlje\nTijelu, radost očima i duši.\nI još ste tu. I sunčevo vas slavlje\nJoš ra…"
+    },
+    {
+      "id": 3,
+      "q": "Kojom je stilskom figurom motiv maslina naglašen u prvoj strofi?",
+      "opts": [
+        "A. apostrofom",
+        "B. eufemizmom",
+        "C. gradacijom",
+        "D. hiperbolom"
+      ],
+      "correct": "A",
+      "exp": "'Iznova k vama ja se vraćam, svete / Masline' — obraćanje maslinama kao da su živa bića (apostrofa). Lirski subjekt se izravno obraća maslinama = apostrofa.",
+      "ctx": "Vladimir Nazor, Posljednja pomast\n\nIznova k vama ja se vraćam, svete\nMasline, što vas sadio moj djedo\nI gajio moj otac, a još dijete –\nPod vama ja sam sanjareći sjȅdō.\n\nSa duga puta ja vam dođoh, svete\nMasline, crn i trȕl ko ì pānj zimi, –\nJer čas već stiže da i ono dijete,\nKo djed i otac, od vas dar svoj primi.\n\nIz vašeg ploda djed je začin hrani\nSàžimō rukom svojijeh težaka,\nA otac moj na svakoj vašoj grani\nPlamičak brao za dne zimskog mraka.\n\nŠto sada trebam, vi ćete mi dati.\nU krevet leć ću što se ù njem rodih.\nSvoj časak smrtni ja ću dočekati\nNa žalu s kojeg jednom i odbrodih.\n\nI vi im daste mâst i svjetlo: zdravlje\nTijelu, radost očima i duši.\nI još ste tu. I sunčevo vas slavlje\nJoš ra…"
+    },
+    {
+      "id": 4,
+      "q": "Koje je značenje sljedećih stihova?\n'A otac moj na svakoj vašoj grani\nPlamičak brao za dne zimskog mraka.'",
+      "opts": [
+        "A. Otac je brao masline dok ne bi obrao i zadnju granu.",
+        "B. Masline su zimi svjetlucale na suncu.",
+        "C. Masline su davale ulje za svjetiljke.",
+        "D. Otac je masline brao i po mraku."
+      ],
+      "correct": "C",
+      "exp": "'Plamičak brao' — maslinovo ulje se upotrebljavalo za svjetlo/svjetiljke (kaganac). 'Plamičak' = plamen svjetiljke. Masline su davale ulje za svjetiljke = osvjetljavanje.",
+      "ctx": "Vladimir Nazor, Posljednja pomast\n\nIznova k vama ja se vraćam, svete\nMasline, što vas sadio moj djedo\nI gajio moj otac, a još dijete –\nPod vama ja sam sanjareći sjȅdō.\n\nSa duga puta ja vam dođoh, svete\nMasline, crn i trȕl ko ì pānj zimi, –\nJer čas već stiže da i ono dijete,\nKo djed i otac, od vas dar svoj primi.\n\nIz vašeg ploda djed je začin hrani\nSàžimō rukom svojijeh težaka,\nA otac moj na svakoj vašoj grani\nPlamičak brao za dne zimskog mraka.\n\nŠto sada trebam, vi ćete mi dati.\nU krevet leć ću što se ù njem rodih.\nSvoj časak smrtni ja ću dočekati\nNa žalu s kojeg jednom i odbrodih.\n\nI vi im daste mâst i svjetlo: zdravlje\nTijelu, radost očima i duši.\nI još ste tu. I sunčevo vas slavlje\nJoš ra…"
+    },
+    {
+      "id": 5,
+      "q": "Što od sljedećega simboliziraju masline?",
+      "opts": [
+        "A. težak život lirskoga subjekta",
+        "B. generacijsku povezanost",
+        "C. nadolazeću starost",
+        "D. krštenje"
+      ],
+      "correct": "B",
+      "exp": "Djed je sadio, otac gajio, lirski subjekt pod njima sanjao — tri generacije u istome prizoru s maslinama. I sada lirski subjekt traži od maslina 'dar' kao djed i otac = generacijska povezanost/kontinuitet.",
+      "ctx": "Vladimir Nazor, Posljednja pomast\n\nIznova k vama ja se vraćam, svete\nMasline, što vas sadio moj djedo\nI gajio moj otac, a još dijete –\nPod vama ja sam sanjareći sjȅdō.\n\nSa duga puta ja vam dođoh, svete\nMasline, crn i trȕl ko ì pānj zimi, –\nJer čas već stiže da i ono dijete,\nKo djed i otac, od vas dar svoj primi.\n\nIz vašeg ploda djed je začin hrani\nSàžimō rukom svojijeh težaka,\nA otac moj na svakoj vašoj grani\nPlamičak brao za dne zimskog mraka.\n\nŠto sada trebam, vi ćete mi dati.\nU krevet leć ću što se ù njem rodih.\nSvoj časak smrtni ja ću dočekati\nNa žalu s kojeg jednom i odbrodih.\n\nI vi im daste mâst i svjetlo: zdravlje\nTijelu, radost očima i duši.\nI još ste tu. I sunčevo vas slavlje\nJoš ra…"
+    },
+    {
+      "id": 6,
+      "q": "Koju životnu filozofiju zastupa Krele?",
+      "opts": [
+        "A. Ljudski je život besmislen ako se izgubi dostojanstvo.",
+        "B. U teškim vremenima najvažnije je preživjeti.",
+        "C. Za dobar život važno je dobro obrazovanje.",
+        "D. U životu se treba zabavljati."
+      ],
+      "correct": "B",
+      "exp": "'Treba sada živjeti. Sačuvati žive kosti ispod Čičkove vlasti, makar i lajući na elektriku' — Krelina filozofija je pragmatičan oportunizam: u teškim vremenima (rat, diktatura) preživljavanje je prioritet.",
+      "ctx": "Ranko Marinković, Kiklop (ulomak — Krele i Melkior)\n\nU trpezariji za doručkom do njega je sjeo \"Krele\". Željio je razgovarati s Melkiorom koji nije dodirnuo jela.\n\n– Nemoj se ljutiti – reče \"Krele\" gledajući krišku kruha ispred Melkiora namazanu nekom crnom marmeladom. – Ja sam ono tamo namjerno, znaš. Ti si ipak viši intelektualac, profesor, je li? To se i vidi. A meni je to, da ti kažem, zabavno. Uvijek sam volio lajati, to jest, vau-vau – pse imitirati. Mogu ih sve uzbuniti koliko god ih ima na dohvatu moga glasa.\n\n– Vjerujem ti, dragi...\n\n– Zovi me Krele. Mani, neka se naviknu, to je korisno. Jer ponos... šta, da budem ponosan? Ponosan regrut, ma šta kažete! A zašto ne jedeš? Nećeš? Mogu…"
+    },
+    {
+      "id": 7,
+      "q": "Zbog kojega se razloga Čičak okomio na Melkiora?",
+      "opts": [
+        "A. jer je Melkior intelektualno nadmoćan",
+        "B. jer Melkior odbija jesti vojničku hranu",
+        "C. jer su Melkior i Krele prijatelji",
+        "D. jer mu Melkior prkosi"
+      ],
+      "correct": "A",
+      "exp": "'Ti znaš Pitagorin poučak, a on – da konj ima četiri noge. Zato ga se čuvaj' — Čičak se okomio na Melkiora jer je intelektualac koji ga nadvisuje znanjem; vlast ne podnosi superiorne umove.",
+      "ctx": "Ranko Marinković, Kiklop (ulomak — Krele i Melkior)\n\nU trpezariji za doručkom do njega je sjeo \"Krele\". Željio je razgovarati s Melkiorom koji nije dodirnuo jela.\n\n– Nemoj se ljutiti – reče \"Krele\" gledajući krišku kruha ispred Melkiora namazanu nekom crnom marmeladom. – Ja sam ono tamo namjerno, znaš. Ti si ipak viši intelektualac, profesor, je li? To se i vidi. A meni je to, da ti kažem, zabavno. Uvijek sam volio lajati, to jest, vau-vau – pse imitirati. Mogu ih sve uzbuniti koliko god ih ima na dohvatu moga glasa.\n\n– Vjerujem ti, dragi...\n\n– Zovi me Krele. Mani, neka se naviknu, to je korisno. Jer ponos... šta, da budem ponosan? Ponosan regrut, ma šta kažete! A zašto ne jedeš? Nećeš? Mogu…"
+    },
+    {
+      "id": 8,
+      "q": "Na što se odnosi podcrtani izraz u sljedećoj rečenici?\n'E, ja imam i tu visoku školu, a Čičak je nema, njemu je vojska oblačila čakšire.'",
+      "opts": [
+        "A. na Krelino iskustvo krajnjega siromaštva",
+        "B. na Krelinu sposobnost oponašanja pasa",
+        "C. na Krelino poznavanje arheologije",
+        "D. na Krelino formalno obrazovanje"
+      ],
+      "correct": "A",
+      "exp": "'Visoka škola zakrpljene zadnjice' = metafora za iskustvo krajnjeg siromaštva (nositi zakrpljene/prorupane hlače). Krele se hvali da je tu 'školu' prošao za razliku od Čička kojemu je vojska davala odjeću.",
+      "ctx": "Ranko Marinković, Kiklop (ulomak — Krele i Melkior)\n\nU trpezariji za doručkom do njega je sjeo \"Krele\". Željio je razgovarati s Melkiorom koji nije dodirnuo jela.\n\n– Nemoj se ljutiti – reče \"Krele\" gledajući krišku kruha ispred Melkiora namazanu nekom crnom marmeladom. – Ja sam ono tamo namjerno, znaš. Ti si ipak viši intelektualac, profesor, je li? To se i vidi. A meni je to, da ti kažem, zabavno. Uvijek sam volio lajati, to jest, vau-vau – pse imitirati. Mogu ih sve uzbuniti koliko god ih ima na dohvatu moga glasa.\n\n– Vjerujem ti, dragi...\n\n– Zovi me Krele. Mani, neka se naviknu, to je korisno. Jer ponos... šta, da budem ponosan? Ponosan regrut, ma šta kažete! A zašto ne jedeš? Nećeš? Mogu…"
+    },
+    {
+      "id": 9,
+      "q": "Kako se Krele odnosi prema svojemu nadimku?",
+      "opts": [
+        "A. Prihvaća ga pragmatično.",
+        "B. Ljuti se zbog njega.",
+        "C. Ponosi se njime.",
+        "D. Srami ga se."
+      ],
+      "correct": "A",
+      "exp": "'Neka se naviknu, to je korisno. Jer ponos... šta, da budem ponosan?' — Krele pragmatično prihvaća nadimak kao korisnu etiketu. Nije se ljut, nije ponosan — samo pragmatičan.",
+      "ctx": "Ranko Marinković, Kiklop (ulomak — Krele i Melkior)\n\nU trpezariji za doručkom do njega je sjeo \"Krele\". Željio je razgovarati s Melkiorom koji nije dodirnuo jela.\n\n– Nemoj se ljutiti – reče \"Krele\" gledajući krišku kruha ispred Melkiora namazanu nekom crnom marmeladom. – Ja sam ono tamo namjerno, znaš. Ti si ipak viši intelektualac, profesor, je li? To se i vidi. A meni je to, da ti kažem, zabavno. Uvijek sam volio lajati, to jest, vau-vau – pse imitirati. Mogu ih sve uzbuniti koliko god ih ima na dohvatu moga glasa.\n\n– Vjerujem ti, dragi...\n\n– Zovi me Krele. Mani, neka se naviknu, to je korisno. Jer ponos... šta, da budem ponosan? Ponosan regrut, ma šta kažete! A zašto ne jedeš? Nećeš? Mogu…"
+    },
+    {
+      "id": 10,
+      "q": "Kakvim je tonom Krele izgovorio sljedeću rečenicu?\n'Kakva satisfakcija za trećega, a!'",
+      "opts": [
+        "A. ironičnim",
+        "B. ljutitim",
+        "C. rezigniranim",
+        "D. tužnim"
+      ],
+      "correct": "A",
+      "exp": "'Kakva satisfakcija za trećega, a!' — ironija: biti treće Cezarovo ubojstvo je 'satisfakcija' = gorka ironija. Krele koristi ironiju da kaže da je apsurdna jedina utjeha kad si mrtav.",
+      "ctx": "Ranko Marinković, Kiklop (ulomak — Krele i Melkior)\n\nU trpezariji za doručkom do njega je sjeo \"Krele\". Željio je razgovarati s Melkiorom koji nije dodirnuo jela.\n\n– Nemoj se ljutiti – reče \"Krele\" gledajući krišku kruha ispred Melkiora namazanu nekom crnom marmeladom. – Ja sam ono tamo namjerno, znaš. Ti si ipak viši intelektualac, profesor, je li? To se i vidi. A meni je to, da ti kažem, zabavno. Uvijek sam volio lajati, to jest, vau-vau – pse imitirati. Mogu ih sve uzbuniti koliko god ih ima na dohvatu moga glasa.\n\n– Vjerujem ti, dragi...\n\n– Zovi me Krele. Mani, neka se naviknu, to je korisno. Jer ponos... šta, da budem ponosan? Ponosan regrut, ma šta kažete! A zašto ne jedeš? Nećeš? Mogu…"
+    },
+    {
+      "id": 11,
+      "q": "S kojim je likom pripovjedač rodbinski povezan?",
+      "opts": [
+        "A. s gospođom Goupil",
+        "B. s gospođom Imbert",
+        "C. s gospođom Octave",
+        "D. s gospođom Rousseau"
+      ],
+      "correct": "C",
+      "exp": "'moja tetka' — tetka Octave je jedina s kojom je pripovjedač rodbinski povezan u tekstu. Ostale su susjede i poznanice tetke.",
+      "ctx": "Marcel Proust, Combray (ulomak — tetka Octave i Françoise)\n\nPošto se Françoise već pobrinula da moji roditelji dobiju sve što im treba, penjala se prvi put k tetki da joj dade pepsin i da je pita što želi za ručak.\n\n– Zamislite, Françoise, gospođa Goupil zakasnila je više od četvrt sata da dođe po svoju sestru; ako se još malo zadrži na putu, ne bih se nimalo začudila kad bi stigla na misu tek poslije podizanja.\n\n– Ah, to i ne bi bilo nikakvo čudo – odgovori Françoise.\n\n– Françoise, da ste došli prije pet minuta, vidjeli biste još kako prolazi gospođa Imbert i nosi dva puta veće šparoge od šparoga stare Callotove; pokušajte doznati od njezine služavke gdje ih je nabavila. Vi nama ove godine …"
+    },
+    {
+      "id": 12,
+      "q": "Koja se od sljedećih tvrdnja odnosi na gospođu Octave?",
+      "opts": [
+        "A. Smeta joj pripovijedanje o nesrećama.",
+        "B. Dijete joj se razboljelo.",
+        "C. Udovica je.",
+        "D. Slabo čuje."
+      ],
+      "correct": "C",
+      "exp": "'jednog ću dana preminuti kao gospođa Rousseau... poslije smrti mog sirotog Octavea' — tetka je udovica (sirotog Octavea = njezin umrli muž).",
+      "ctx": "Marcel Proust, Combray (ulomak — tetka Octave i Françoise)\n\nPošto se Françoise već pobrinula da moji roditelji dobiju sve što im treba, penjala se prvi put k tetki da joj dade pepsin i da je pita što želi za ručak.\n\n– Zamislite, Françoise, gospođa Goupil zakasnila je više od četvrt sata da dođe po svoju sestru; ako se još malo zadrži na putu, ne bih se nimalo začudila kad bi stigla na misu tek poslije podizanja.\n\n– Ah, to i ne bi bilo nikakvo čudo – odgovori Françoise.\n\n– Françoise, da ste došli prije pet minuta, vidjeli biste još kako prolazi gospođa Imbert i nosi dva puta veće šparoge od šparoga stare Callotove; pokušajte doznati od njezine služavke gdje ih je nabavila. Vi nama ove godine …"
+    },
+    {
+      "id": 13,
+      "q": "U kojemu slučaju gospođa Octave poziva Françoise ranije nego što je uobičajeno?",
+      "opts": [
+        "A. kad želi razgovarati o zanimljivim događajima",
+        "B. kad joj treba lijek za probavu",
+        "C. kad čuje zvono s crkve",
+        "D. kad je gladna"
+      ],
+      "correct": "A",
+      "exp": "'katkad su ti događaji zadobivali takav tajanstven i ozbiljan karakter da bi tetka osjetila da neće dočekati onaj trenutak kad će Françoise sama doći do nje, pa bi u kući četiri puta gromoglasno odjeknulo zvonce' — poziva je ranije kad su novosti previše uzbudljive.",
+      "ctx": "Marcel Proust, Combray (ulomak — tetka Octave i Françoise)\n\nPošto se Françoise već pobrinula da moji roditelji dobiju sve što im treba, penjala se prvi put k tetki da joj dade pepsin i da je pita što želi za ručak.\n\n– Zamislite, Françoise, gospođa Goupil zakasnila je više od četvrt sata da dođe po svoju sestru; ako se još malo zadrži na putu, ne bih se nimalo začudila kad bi stigla na misu tek poslije podizanja.\n\n– Ah, to i ne bi bilo nikakvo čudo – odgovori Françoise.\n\n– Françoise, da ste došli prije pet minuta, vidjeli biste još kako prolazi gospođa Imbert i nosi dva puta veće šparoge od šparoga stare Callotove; pokušajte doznati od njezine služavke gdje ih je nabavila. Vi nama ove godine …"
+    },
+    {
+      "id": 14,
+      "q": "Koja je od sljedećih gospođa viđena s djevojčicom koju gospođa Octave ne poznaje?",
+      "opts": [
+        "A. ona za kojom je zvonilo mrtvačko zvono",
+        "B. ona koja je kasnila po svoju sestru",
+        "C. ona koja je nosila velike šparoge",
+        "D. ona koja je otišla po liječnika"
+      ],
+      "correct": "B",
+      "exp": "'Nećete mi vjerovati da sam maloprije vidjela... gospođu Goupil s nekom curicom koju uopće ne poznajem!' — a gospođa Goupil je ona koja je kasnila po svoju sestru na početku teksta.",
+      "ctx": "Marcel Proust, Combray (ulomak — tetka Octave i Françoise)\n\nPošto se Françoise već pobrinula da moji roditelji dobiju sve što im treba, penjala se prvi put k tetki da joj dade pepsin i da je pita što želi za ručak.\n\n– Zamislite, Françoise, gospođa Goupil zakasnila je više od četvrt sata da dođe po svoju sestru; ako se još malo zadrži na putu, ne bih se nimalo začudila kad bi stigla na misu tek poslije podizanja.\n\n– Ah, to i ne bi bilo nikakvo čudo – odgovori Françoise.\n\n– Françoise, da ste došli prije pet minuta, vidjeli biste još kako prolazi gospođa Imbert i nosi dva puta veće šparoge od šparoga stare Callotove; pokušajte doznati od njezine služavke gdje ih je nabavila. Vi nama ove godine …"
+    },
+    {
+      "id": 15,
+      "q": "U kojoj je od sljedećih rečenica upotrijebljena ironija?",
+      "opts": [
+        "A. Pa valjda znate da kod njega uspijevaju samo neke sitne, bijedne, bezvrijedne šparoge.",
+        "B. Idem samo prigledati da mi se nije vatra ugasila.",
+        "C. Tako su Françoise i moja tetka na toj jutarnjoj sjednici pretresle prve događaje toga dana.",
+        "D. – Da vam nije zlo?"
+      ],
+      "correct": "C",
+      "exp": "'jutarnjoj sjednici pretresle prve događaje toga dana' — 'sjednica' je visoki politički termin primijenjen na tračarenje seoske žene i sluškinje. Pripovjedač ironično naziva svakovdnevno tračarenje 'jutarnjom sjednicom'.",
+      "ctx": "Marcel Proust, Combray (ulomak — tetka Octave i Françoise)\n\nPošto se Françoise već pobrinula da moji roditelji dobiju sve što im treba, penjala se prvi put k tetki da joj dade pepsin i da je pita što želi za ručak.\n\n– Zamislite, Françoise, gospođa Goupil zakasnila je više od četvrt sata da dođe po svoju sestru; ako se još malo zadrži na putu, ne bih se nimalo začudila kad bi stigla na misu tek poslije podizanja.\n\n– Ah, to i ne bi bilo nikakvo čudo – odgovori Françoise.\n\n– Françoise, da ste došli prije pet minuta, vidjeli biste još kako prolazi gospođa Imbert i nosi dva puta veće šparoge od šparoga stare Callotove; pokušajte doznati od njezine služavke gdje ih je nabavila. Vi nama ove godine …"
+    },
+    {
+      "id": 16,
+      "q": "Zašto Polonije kralju i kraljici govori o Hamletovoj i Ofelijinoj ljubavi?",
+      "opts": [
+        "A. Želi ukazati na njihovu dužnost prema sinu.",
+        "B. Želi objasniti Hamletovo ponašanje.",
+        "C. Želi dokazati da je dobar otac.",
+        "D. Želi opravdati Ofeliju."
+      ],
+      "correct": "B",
+      "exp": "'Dopustimo tad da je lud. Sad ostaje / Da pronađemo uzrok ovoga efekta' — Polonije prezentira ljubavnu priču kao uzrok Hamletova 'ludila'. Želi objasniti Hamletovo ponašanje.",
+      "ctx": "William Shakespeare, Hamlet (ulomak — Polonije i pismo)\n\nPOLONIJE: Kunem se, gospo, da se ne služim umijećem.\nDa je lud, istina je; istina je, šteta!\nI šteta što je istina! Glupe li slike!\nNek ide zbogom; neću se služiti umijećem.\nDopustimo tad da je lud. Sad ostaje\nDa pronađemo uzrok ovoga efekta –\nIl bolje reći, uzrok ovoga defekta;\nJer taj defektni efekat svoj uzrok ima.\nJa imam kćer – to jest, imam je dok je moja –\nKoja, kao savjesno i poslušno dijete,\nTo mi je dala.\n\n(Čita pismo.)\n\"Sumnjaj da su zvijezde vatra živa,\nSumnjaj da se kreće sunce jarko,\nSumnjaj da istina lašcem biva,\nAl ne sumnjaj da te ljubim žarko.\n\nO, draga Ofelijo, ja sam nespretan u slaganju stihova; nisam vješt u broje…"
+    },
+    {
+      "id": 17,
+      "q": "Koje je značenje sljedećih kraljičinih riječi?\n'Više srži, a manje umijeća.'",
+      "opts": [
+        "A. Kraljica smatra da kralj ne vlada dovoljno umješno.",
+        "B. Kraljica procjenjuje Hamletove sposobnosti.",
+        "C. Kraljica izražava svoje shvaćanje ludila.",
+        "D. Kraljica želi da Polonije ne okoliša."
+      ],
+      "correct": "D",
+      "exp": "Polonije dugo i opširno govori umjesto da dođe do poante. Kraljica ga prekida riječima 'Više srži, a manje umijeća' = daj nam suštinu, bez retoričkih ukrasa. Želi da ne okoliša.",
+      "ctx": "William Shakespeare, Hamlet (ulomak — Polonije i pismo)\n\nPOLONIJE: Kunem se, gospo, da se ne služim umijećem.\nDa je lud, istina je; istina je, šteta!\nI šteta što je istina! Glupe li slike!\nNek ide zbogom; neću se služiti umijećem.\nDopustimo tad da je lud. Sad ostaje\nDa pronađemo uzrok ovoga efekta –\nIl bolje reći, uzrok ovoga defekta;\nJer taj defektni efekat svoj uzrok ima.\nJa imam kćer – to jest, imam je dok je moja –\nKoja, kao savjesno i poslušno dijete,\nTo mi je dala.\n\n(Čita pismo.)\n\"Sumnjaj da su zvijezde vatra živa,\nSumnjaj da se kreće sunce jarko,\nSumnjaj da istina lašcem biva,\nAl ne sumnjaj da te ljubim žarko.\n\nO, draga Ofelijo, ja sam nespretan u slaganju stihova; nisam vješt u broje…"
+    },
+    {
+      "id": 18,
+      "q": "Kako je Polonije saznao za Ofelijinu i Hamletovu ljubav?",
+      "opts": [
+        "A. Upozorila ga je kraljica.",
+        "B. Hamlet mu se povjerio.",
+        "C. Saznao je od kralja.",
+        "D. Sam je primijetio."
+      ],
+      "correct": "D",
+      "exp": "'kad ovu žarku ljubav u zaletu primijetih – jer je opazih, to moram reći, prije nego kći mi kaza' — Polonije kaže da je PRIMIJETIO ljubav PRIJE nego mu je kćer rekla. Sam je opazio.",
+      "ctx": "William Shakespeare, Hamlet (ulomak — Polonije i pismo)\n\nPOLONIJE: Kunem se, gospo, da se ne služim umijećem.\nDa je lud, istina je; istina je, šteta!\nI šteta što je istina! Glupe li slike!\nNek ide zbogom; neću se služiti umijećem.\nDopustimo tad da je lud. Sad ostaje\nDa pronađemo uzrok ovoga efekta –\nIl bolje reći, uzrok ovoga defekta;\nJer taj defektni efekat svoj uzrok ima.\nJa imam kćer – to jest, imam je dok je moja –\nKoja, kao savjesno i poslušno dijete,\nTo mi je dala.\n\n(Čita pismo.)\n\"Sumnjaj da su zvijezde vatra živa,\nSumnjaj da se kreće sunce jarko,\nSumnjaj da istina lašcem biva,\nAl ne sumnjaj da te ljubim žarko.\n\nO, draga Ofelijo, ja sam nespretan u slaganju stihova; nisam vješt u broje…"
+    },
+    {
+      "id": 19,
+      "q": "Koje je značenje podcrtanoga izraza u sljedećim stihovima?\n'Gospodin Hamlet knez je, iznad tvoje zvijezde;\nTo ne smije biti.'",
+      "opts": [
+        "A. Ofelijin je društveni položaj nedostojan Hamletova.",
+        "B. Ofelija naivno idealizira Hamleta.",
+        "C. Hamlet je Ofelijin zaštitnik.",
+        "D. Hamlet ne mari za Ofeliju."
+      ],
+      "correct": "A",
+      "exp": "'iznad tvoje zvijezde' = metafora za socijalni položaj/sudbinu. Hamlet je knez = iznad Ofelijinog položaja = Ofelija nije dovoljno visoko na društvenoj ljestvici. A je točno.",
+      "ctx": "William Shakespeare, Hamlet (ulomak — Polonije i pismo)\n\nPOLONIJE: Kunem se, gospo, da se ne služim umijećem.\nDa je lud, istina je; istina je, šteta!\nI šteta što je istina! Glupe li slike!\nNek ide zbogom; neću se služiti umijećem.\nDopustimo tad da je lud. Sad ostaje\nDa pronađemo uzrok ovoga efekta –\nIl bolje reći, uzrok ovoga defekta;\nJer taj defektni efekat svoj uzrok ima.\nJa imam kćer – to jest, imam je dok je moja –\nKoja, kao savjesno i poslušno dijete,\nTo mi je dala.\n\n(Čita pismo.)\n\"Sumnjaj da su zvijezde vatra živa,\nSumnjaj da se kreće sunce jarko,\nSumnjaj da istina lašcem biva,\nAl ne sumnjaj da te ljubim žarko.\n\nO, draga Ofelijo, ja sam nespretan u slaganju stihova; nisam vješt u broje…"
+    },
+    {
+      "id": 20,
+      "q": "Koja je od sljedećih tvrdnja o Polonijevu odnosu prema Ofeliji točna?",
+      "opts": [
+        "A. Polonije se ljuti na Ofeliju zato što je neposlušna.",
+        "B. Polonije nastoji Ofeliji pronaći supruga.",
+        "C. Polonije štiti Ofelijinu privatnost.",
+        "D. Polonije vjeruje Ofeliji."
+      ],
+      "correct": "D",
+      "exp": "'Koja, kao savjesno i poslušno dijete, / To mi je dala' i 'A osim toga mi je povjerila sve / O njegovu udvaranju' — Polonije vjeruje Ofeliji jer mu je ona sama rekla i pokazala pismo.",
+      "ctx": "William Shakespeare, Hamlet (ulomak — Polonije i pismo)\n\nPOLONIJE: Kunem se, gospo, da se ne služim umijećem.\nDa je lud, istina je; istina je, šteta!\nI šteta što je istina! Glupe li slike!\nNek ide zbogom; neću se služiti umijećem.\nDopustimo tad da je lud. Sad ostaje\nDa pronađemo uzrok ovoga efekta –\nIl bolje reći, uzrok ovoga defekta;\nJer taj defektni efekat svoj uzrok ima.\nJa imam kćer – to jest, imam je dok je moja –\nKoja, kao savjesno i poslušno dijete,\nTo mi je dala.\n\n(Čita pismo.)\n\"Sumnjaj da su zvijezde vatra živa,\nSumnjaj da se kreće sunce jarko,\nSumnjaj da istina lašcem biva,\nAl ne sumnjaj da te ljubim žarko.\n\nO, draga Ofelijo, ja sam nespretan u slaganju stihova; nisam vješt u broje…"
+    },
+    {
+      "id": 21,
+      "q": "Koja je namjena polaznoga teksta?",
+      "opts": [
+        "A. objasniti dobivaju li zatvorenici manju kaznu ako priznaju zločin koji su počinili",
+        "B. informirati čitatelje o tome kako ponašanje životinja utječe na ljude",
+        "C. izraziti nepovjerenje u rezultate znanstvenih istraživanja",
+        "D. predstaviti prednosti suradničkoga ponašanja"
+      ],
+      "correct": "D",
+      "exp": "Cijeli tekst (simbioza u prirodi, Rapoportova strategija, Dawkinsova reformulacija poslovice) vodi zaključku da je suradničko ponašanje najpovoljnija strategija = prednosti suradnje.",
+      "ctx": "Saša Ceci, Milo za drago (popularno-znanstveni tekst)\n\nOsim uobičajenog odnosa žderač – klopa, u prirodi postoje i zanimljiviji slučajevi interakcije između vrsta: rak samac sa svojom moruzgvom, vlasulja i riba klaun, pa djetelina i ona bakterija koja može apsorbirati dušik (za štrebere: rizobija). Ljudima dugo nije bilo jasno kako je moguće da spontano dolazi do takvog, gotovo dobrohotnog ponašanja između vrsta (pamtimo iz osnovnjaka i križaljki da se to zove simbioza). A nije im bilo jasno, jer je o prirodi i društvu vladalo isto uvjerenje: da je i Bog prvo sebi stvorio bradu. U prijevodu – svatko se prvenstveno brine za sebe.\n\nKako je onda došlo do toga da neki rak naokolo tegli moruzgvu?…"
+    },
+    {
+      "id": 22,
+      "q": "Koja je preporučena strategija u igri 'dilema zatvorenika' ako se igra više krugova?",
+      "opts": [
+        "A. Ako drugi 'zatvorenik' u prvome krugu prizna, u drugome ti ne priznaj.",
+        "B. Ako drugi 'zatvorenik' surađuje s 'istražiteljem', oprosti mu.",
+        "C. Na početku surađuj s drugim 'zatvorenikom'.",
+        "D. Ni u kojemu slučaju nemoj priznati krivnju."
+      ],
+      "correct": "C",
+      "exp": "'(1) u prvom krugu ne priznaj (dakle, surađuj s drugim zatvorenikom)' — na početku se surađuje, a tek onda reagira na suparnikove poteze.",
+      "ctx": "Saša Ceci, Milo za drago (popularno-znanstveni tekst)\n\nOsim uobičajenog odnosa žderač – klopa, u prirodi postoje i zanimljiviji slučajevi interakcije između vrsta: rak samac sa svojom moruzgvom, vlasulja i riba klaun, pa djetelina i ona bakterija koja može apsorbirati dušik (za štrebere: rizobija). Ljudima dugo nije bilo jasno kako je moguće da spontano dolazi do takvog, gotovo dobrohotnog ponašanja između vrsta (pamtimo iz osnovnjaka i križaljki da se to zove simbioza). A nije im bilo jasno, jer je o prirodi i društvu vladalo isto uvjerenje: da je i Bog prvo sebi stvorio bradu. U prijevodu – svatko se prvenstveno brine za sebe.\n\nKako je onda došlo do toga da neki rak naokolo tegli moruzgvu?…"
+    },
+    {
+      "id": 23,
+      "q": "Koji izraz autor suprotstavlja izrazu 'da je i Bog prvo sebi stvorio bradu'?",
+      "opts": [
+        "A. odnos žderač – klopa",
+        "B. optimalna strategija",
+        "C. svjedok pokajnik",
+        "D. zločin"
+      ],
+      "correct": "B",
+      "exp": "Teza 'Bog prvo sebi stvorio bradu' = sebičnost. Suprotnost tome je 'optimalna strategija' milo za drago koja pokazuje da suradnja može biti bolja od sebičnosti.",
+      "ctx": "Saša Ceci, Milo za drago (popularno-znanstveni tekst)\n\nOsim uobičajenog odnosa žderač – klopa, u prirodi postoje i zanimljiviji slučajevi interakcije između vrsta: rak samac sa svojom moruzgvom, vlasulja i riba klaun, pa djetelina i ona bakterija koja može apsorbirati dušik (za štrebere: rizobija). Ljudima dugo nije bilo jasno kako je moguće da spontano dolazi do takvog, gotovo dobrohotnog ponašanja između vrsta (pamtimo iz osnovnjaka i križaljki da se to zove simbioza). A nije im bilo jasno, jer je o prirodi i društvu vladalo isto uvjerenje: da je i Bog prvo sebi stvorio bradu. U prijevodu – svatko se prvenstveno brine za sebe.\n\nKako je onda došlo do toga da neki rak naokolo tegli moruzgvu?…"
+    },
+    {
+      "id": 24,
+      "q": "Kojim je funkcionalnim stilom pisan polazni tekst?",
+      "opts": [
+        "A. administrativnim",
+        "B. književnoumjetničkim",
+        "C. popularno-znanstvenim",
+        "D. razgovornim"
+      ],
+      "correct": "C",
+      "exp": "Tekst kombinira stručne pojmove (simbioza, teorija igara, dilema zatvorenika) s popularnim/razgovornim izrazima ('skužili smo', 'za štrebere', 'zna on') = popularno-znanstveni stil.",
+      "ctx": "Saša Ceci, Milo za drago (popularno-znanstveni tekst)\n\nOsim uobičajenog odnosa žderač – klopa, u prirodi postoje i zanimljiviji slučajevi interakcije između vrsta: rak samac sa svojom moruzgvom, vlasulja i riba klaun, pa djetelina i ona bakterija koja može apsorbirati dušik (za štrebere: rizobija). Ljudima dugo nije bilo jasno kako je moguće da spontano dolazi do takvog, gotovo dobrohotnog ponašanja između vrsta (pamtimo iz osnovnjaka i križaljki da se to zove simbioza). A nije im bilo jasno, jer je o prirodi i društvu vladalo isto uvjerenje: da je i Bog prvo sebi stvorio bradu. U prijevodu – svatko se prvenstveno brine za sebe.\n\nKako je onda došlo do toga da neki rak naokolo tegli moruzgvu?…"
+    },
+    {
+      "id": 25,
+      "q": "Kojim se od sljedećih izraza autor ne koristi u polaznome tekstu?",
+      "opts": [
+        "A. stručnim pojmovima iz područja biologije",
+        "B. riječima iz engleskoga jezika",
+        "C. matematičkim formulama",
+        "D. žargonizmima"
+      ],
+      "correct": "C",
+      "exp": "Tekst ne sadrži matematičke formule. Ima: stručne biološke pojmove (simbioza, rizobija), engleske izraze (tit for tat, good guys finish first), žargonizme (skužili smo, štreberi). Nema formula.",
+      "ctx": "Saša Ceci, Milo za drago (popularno-znanstveni tekst)\n\nOsim uobičajenog odnosa žderač – klopa, u prirodi postoje i zanimljiviji slučajevi interakcije između vrsta: rak samac sa svojom moruzgvom, vlasulja i riba klaun, pa djetelina i ona bakterija koja može apsorbirati dušik (za štrebere: rizobija). Ljudima dugo nije bilo jasno kako je moguće da spontano dolazi do takvog, gotovo dobrohotnog ponašanja između vrsta (pamtimo iz osnovnjaka i križaljki da se to zove simbioza). A nije im bilo jasno, jer je o prirodi i društvu vladalo isto uvjerenje: da je i Bog prvo sebi stvorio bradu. U prijevodu – svatko se prvenstveno brine za sebe.\n\nKako je onda došlo do toga da neki rak naokolo tegli moruzgvu?…"
+    },
+    {
+      "id": 26,
+      "q": "Koja je namjena polaznoga teksta?",
+      "opts": [
+        "A. poučiti čitatelja o tome kako prepoznati i pripremiti svježu ribu",
+        "B. upozoriti na opasnosti konzumiranja nedovoljno svježe ribe",
+        "C. opisati vrste riba koje se nalaze na domaćemu tržištu",
+        "D. promovirati ribu kao važan sastojak zdrave prehrane"
+      ],
+      "correct": "A",
+      "exp": "Tekst sadrži savjete za prepoznavanje svježe ribe I recept za kuhanje = poučiti kako prepoznati i pripremiti. Dvostruka edukativna namjena.",
+      "ctx": "Lidija Šare, Mediteranska kuharica 2 (ulomak — kako kupiti i kuhati ribu)\n\nRazne vrste ribe, koje se obično nalaze na tržištu, brojne su i idu od riba masnoga mesa (sardele, skuše), srednje masnoga (inćuni, cipli, sabljarka, tuna, trlje) do izrazito mršavoga (arbun, obliš, grdobina, sarag, lubin, list, komarča, itd.). Bitno svojstvo ribe koju nikako ne smijete zanemariti jest njezina svježina.\n\nDa biste znali je li riba svježa, nudimo vam nekoliko korisnih savjeta: Pogledajte prije svega oko, koje mora biti živo i bistro. Ljuske moraju dobro prianjati uz tijelo. Boja se mora prelijevati, gotovo je metalna. Škrge moraju biti crvene i vlažne, listići netaknuti. Meso mora biti čvrsto, otporno n…"
+    },
+    {
+      "id": 27,
+      "q": "Koji je upotrijebljeni glagolski oblik tipičan za vrstu tekstova kojoj pripada polazni tekst?",
+      "opts": [
+        "A. futur I.",
+        "B. imperativ",
+        "C. kondicional I.",
+        "D. prezent"
+      ],
+      "correct": "B",
+      "exp": "'Pogledajte', 'Odbacite', 'Izbjegavajte', 'Pripremite', 'stavite' — imperativ je karakterističan za upućivačke/recepturne tekstove (kuharice, priručnici). Upućivački tekst daje naredbe/savjete imperativom.",
+      "ctx": "Lidija Šare, Mediteranska kuharica 2 (ulomak — kako kupiti i kuhati ribu)\n\nRazne vrste ribe, koje se obično nalaze na tržištu, brojne su i idu od riba masnoga mesa (sardele, skuše), srednje masnoga (inćuni, cipli, sabljarka, tuna, trlje) do izrazito mršavoga (arbun, obliš, grdobina, sarag, lubin, list, komarča, itd.). Bitno svojstvo ribe koju nikako ne smijete zanemariti jest njezina svježina.\n\nDa biste znali je li riba svježa, nudimo vam nekoliko korisnih savjeta: Pogledajte prije svega oko, koje mora biti živo i bistro. Ljuske moraju dobro prianjati uz tijelo. Boja se mora prelijevati, gotovo je metalna. Škrge moraju biti crvene i vlažne, listići netaknuti. Meso mora biti čvrsto, otporno n…"
+    },
+    {
+      "id": 28,
+      "q": "Koje od sljedećih obilježja mora imati svježa riba?",
+      "opts": [
+        "A. dignute ljuske",
+        "B. metalnu boju ljusaka",
+        "C. mršavo meso",
+        "D. otvorene škržne pločice"
+      ],
+      "correct": "B",
+      "exp": "'Boja se mora prelijevati, gotovo je metalna' — metalna boja ljusaka je znak svježe ribe. A: Kod nesvježe ribe ljuske su DIGNUTE (što je loš znak). D: Otvorene pločice su znak stare ribe.",
+      "ctx": "Lidija Šare, Mediteranska kuharica 2 (ulomak — kako kupiti i kuhati ribu)\n\nRazne vrste ribe, koje se obično nalaze na tržištu, brojne su i idu od riba masnoga mesa (sardele, skuše), srednje masnoga (inćuni, cipli, sabljarka, tuna, trlje) do izrazito mršavoga (arbun, obliš, grdobina, sarag, lubin, list, komarča, itd.). Bitno svojstvo ribe koju nikako ne smijete zanemariti jest njezina svježina.\n\nDa biste znali je li riba svježa, nudimo vam nekoliko korisnih savjeta: Pogledajte prije svega oko, koje mora biti živo i bistro. Ljuske moraju dobro prianjati uz tijelo. Boja se mora prelijevati, gotovo je metalna. Škrge moraju biti crvene i vlažne, listići netaknuti. Meso mora biti čvrsto, otporno n…"
+    },
+    {
+      "id": 29,
+      "q": "Što je court-bouillon?",
+      "opts": [
+        "A. knjiga recepata",
+        "B. lonac za kuhanje",
+        "C. sorta bijeloga vina",
+        "D. vrsta juhe"
+      ],
+      "correct": "D",
+      "exp": "'Pripremite prvo court-bouillon: uzavrite slanu vodu koju ste začinili... mrkvom, lukom, lovorom, peršinom, bijelim vinom' — court-bouillon je aromatizirana juha/temeljac za kuhanje ribe.",
+      "ctx": "Lidija Šare, Mediteranska kuharica 2 (ulomak — kako kupiti i kuhati ribu)\n\nRazne vrste ribe, koje se obično nalaze na tržištu, brojne su i idu od riba masnoga mesa (sardele, skuše), srednje masnoga (inćuni, cipli, sabljarka, tuna, trlje) do izrazito mršavoga (arbun, obliš, grdobina, sarag, lubin, list, komarča, itd.). Bitno svojstvo ribe koju nikako ne smijete zanemariti jest njezina svježina.\n\nDa biste znali je li riba svježa, nudimo vam nekoliko korisnih savjeta: Pogledajte prije svega oko, koje mora biti živo i bistro. Ljuske moraju dobro prianjati uz tijelo. Boja se mora prelijevati, gotovo je metalna. Škrge moraju biti crvene i vlažne, listići netaknuti. Meso mora biti čvrsto, otporno n…"
+    },
+    {
+      "id": 30,
+      "q": "Što je od sljedećega iskazano o rakovima u polaznome tekstu?",
+      "opts": [
+        "A. Trebaju se pripremati nakon što odstoje.",
+        "B. Moraju biti obloženi algama.",
+        "C. Kuhaju se vrlo kratko.",
+        "D. Nije ih lako nabaviti."
+      ],
+      "correct": "C",
+      "exp": "'Škampi i rakovi moraju biti bačeni u court-bouillon koji vrije i izvađeni tek što je vrenje ponovno počelo' — izvade se odmah čim voda zakuha = kuhaju se samo trenutak = vrlo kratko.",
+      "ctx": "Lidija Šare, Mediteranska kuharica 2 (ulomak — kako kupiti i kuhati ribu)\n\nRazne vrste ribe, koje se obično nalaze na tržištu, brojne su i idu od riba masnoga mesa (sardele, skuše), srednje masnoga (inćuni, cipli, sabljarka, tuna, trlje) do izrazito mršavoga (arbun, obliš, grdobina, sarag, lubin, list, komarča, itd.). Bitno svojstvo ribe koju nikako ne smijete zanemariti jest njezina svježina.\n\nDa biste znali je li riba svježa, nudimo vam nekoliko korisnih savjeta: Pogledajte prije svega oko, koje mora biti živo i bistro. Ljuske moraju dobro prianjati uz tijelo. Boja se mora prelijevati, gotovo je metalna. Škrge moraju biti crvene i vlažne, listići netaknuti. Meso mora biti čvrsto, otporno n…"
+    },
+    {
+      "id": 31,
+      "q": "U kojemu je od sljedećih stihova upotrijebljena sinestezija?\nA. Neprekinuti lanac sȓcā vodi / Od našeg sȑca u davnu davninu.\nB. Čuješ li grohot? To tvojoj slobodi / Smiju se pređi nestali u tminu.\nC. I kad mi riječi mirišu ko tamjan, / One su stigle nekud izdaleka,\nD. I kad mi kletva nagrne na usta, / Ona je neke davne kletve jeka!",
+      "opts": [
+        "A. A",
+        "B. B",
+        "C. C",
+        "D. D"
+      ],
+      "correct": "C",
+      "exp": "'Kad mi riječi mirišu ko tamjan' — 'mirišu' je mirisni (olfaktivni) podražaj primijenjen na 'riječi' (auditivni pojam). Miris riječima = sinestezija: miješanje različitih osjetilnih modaliteta."
+    },
+    {
+      "id": 32,
+      "q": "Koji se od sljedećih kompozicijskih dijelova upotrebljava u značenju posljednje scene u drami?",
+      "opts": [
+        "A. epilog",
+        "B. kulminacija",
+        "C. peripetija",
+        "D. prolog"
+      ],
+      "correct": "A",
+      "exp": "Epilog = završni dio drame koji slijedi nakon razrješenja radnje. Prolog = uvod, kulminacija = vrhunac napetosti, peripetija = obrat u radnji."
+    },
+    {
+      "id": 33,
+      "q": "S kojom se namjerom epski pjevač obraća boginji u invokaciji Ilijade sljedećim stihovima?\n'Srdžbu mi, boginjo, pjevaj Ahileja, Peleju sina, / Pogubnu, kojano zada Ahejcima tisuću jada,'",
+      "opts": [
+        "A. Želi biti siguran da će Ahejci pobijediti u ratu.",
+        "B. Traži pomoć da bi opjevao epska zbivanja.",
+        "C. Htio bi da se Ahilej prestane ljutiti.",
+        "D. Moli zaštitu za Pelejeva sina."
+      ],
+      "correct": "B",
+      "exp": "Invokacija (zaziv muze) = traženje nadahnuća i pomoći za pisanje/pjevanje epa. 'Srdžbu mi... pjevaj' = moli boginju (muzu) da mu pomogne opjevati Ahilejevu srdžbu = traži pomoć za pjevanje."
+    },
+    {
+      "id": 34,
+      "q": "Koji se od sljedećih pojmova odnosi na postupak koji je u komedijama često temelj dramskoga zapleta?",
+      "opts": [
+        "A. deus ex machina",
+        "B. in medias res",
+        "C. mimesis",
+        "D. qui pro quo"
+      ],
+      "correct": "D",
+      "exp": "Qui pro quo (lat. 'jedan umjesto drugoga') = zamjena identiteta, nesporazum — temeljni postupak komedije. Plaut, Molière, Držić grade zaplete na zamjenama identiteta."
+    },
+    {
+      "id": 35,
+      "q": "Koji se od sljedećih ženskih likova na početku drame pojavljuje odjeven u mušku odjeću?",
+      "opts": [
+        "A. Antigona",
+        "B. Dubravka",
+        "C. Ofelija",
+        "D. Rosaura"
+      ],
+      "correct": "D",
+      "exp": "Rosaura iz Calderónova Života je san dolazi prerušena u muškarca da pronađe Klotwalda koji joj je oduzeo čast. Otvara dramu prerušena u viteza."
+    },
+    {
+      "id": 36,
+      "q": "Koji književni lik izgovara sljedeći tekst?\n'Čuj, Alfrede! Ja sumnjam, ta reci jasno, otvoreno: Kad će to biti da me dođeš osloboditi iz ovih uza? Ja sjedim u onom starom naslonjaču med njegovim mrkim drugovima i često mi bude kao da se ova tijesna četiri zida sve stežu...'",
+      "opts": [
+        "A. barunica Castelli",
+        "B. Lotta",
+        "C. Lucija",
+        "D. Vivijana"
+      ],
+      "correct": "C",
+      "exp": "'Četiri zida se stežu', 'ugušit ću se', govori Alfredu — Lucija Stipančić iz romana Posljednji Stipančići Vjenceslava Novaka piše pisma Alfredu (Tintorovom prijatelju) u kojima opisuje svoju zarobljenost u kući."
+    },
+    {
+      "id": 37,
+      "q": "Koja se od sljedećih tvrdnja odnosi na Izabelu iz Cvijeta sa raskršća Antuna Gustava Matoša?",
+      "opts": [
+        "A. Oličenje je tjelesnoga i erosa kojemu se prepušta bez moralne odgovornosti.",
+        "B. Zbog patrijarhalnoga odgoja zakinuta je za prava koja je uživao njezin brat.",
+        "C. Neiskusna je i slijepa djevojka koja se zaljubljuje u nepoznatoga fotografa.",
+        "D. Tajanstvena je Poljakinja iz Beča koja svira violončelo."
+      ],
+      "correct": "D",
+      "exp": "Izabela iz Matoševog Cvijeta sa raskršća = tajanstvena Poljakinja iz Beča koja svira violončelo — fatalna žena koja je oličenje eroticizma i tajne."
+    },
+    {
+      "id": 38,
+      "q": "Koji je od sljedećih književnih likova romantičarski lik?",
+      "opts": [
+        "A. Leone iz Gospode Glembajevih",
+        "B. Miljenko iz Dubravke",
+        "C. Smail-aga iz Smrti Smail-age Čengića",
+        "D. Stanac iz Novele od Stanca"
+      ],
+      "correct": "C",
+      "exp": "Smail-aga Čengić je romantičarski negativac/tiranin — romantičarski idealiziran lik zla koji je u suprotnosti s heroičnim narodom. Mažuranićevo djelo je romantičarsko. Leone = modernistički, Miljenko = barokni, Stanac = renesansni."
+    },
+    {
+      "id": 39,
+      "q": "Na koje se književnopovijesno razdoblje odnosi sljedeća tvrdnja?\n'Ta je književna epoha određena mimetičkom teorijom umjetnosti, nastojanjem da književne konvencije ostvare iluziju zbilje i da književnost približe spoznajnoj ulozi znanosti.'",
+      "opts": [
+        "A. na barok",
+        "B. na klasicizam",
+        "C. na romantizam",
+        "D. na realizam"
+      ],
+      "correct": "D",
+      "exp": "Mimetička teorija (oponašanje stvarnosti), iluzija zbilje, spoznajna uloga (kao u znanosti) = realizam. Balzac, Flaubert, Tolstoj, Dostojevski — književnost kao 'istraživanje' društva."
+    },
+    {
+      "id": 40,
+      "q": "Za kojega je od sljedećih pjesnika karakteristična upotreba soneta te neopetrarkističkih i kozmičkih motiva?",
+      "opts": [
+        "A. za Antuna Branka Šimića",
+        "B. za Ivana Mažuranića",
+        "C. za Tina Ujevića",
+        "D. za Vladimira Nazora"
+      ],
+      "correct": "C",
+      "exp": "Tin Ujević = kozmička tematika (zvijezde, svemir), sonet kao forma, neopetrarkistički motivi (ljubav, bol, duša). Lelek sebra, Ojađeno zvono, Kolajna — karakteristični soneti s kozmičkim i ljubavnim motivima."
+    },
+    {
+      "id": 41,
+      "q": "S kojom je pjesmom Slavko Mihalić uspostavio intertekstualnu vezu u sljedećemu stihu?\n'Bolje da nitko ne vidi tvoje oči pune čuđenja.'",
+      "opts": [
+        "A. s uvodnim sonetom Kanconijera Francesca Petrarce",
+        "B. s pjesmom Mojsije Silvija Strahimira Kranjčevića",
+        "C. s pjesmom Albatros Charlesa Baudelairea",
+        "D. s pjesmom Pjesnici Antuna Branka Šimića"
+      ],
+      "correct": "D",
+      "exp": "'Pjesnici su čuđenje u svijetu / Oni idu zemljom i njihove oči / velike i nijeme rastu pored stvari' — Šimićevi Pjesnici. 'Oči pune čuđenja' direktna je aluzija na Šimićeve 'oči' pjesnika."
+    },
+    {
+      "id": 42,
+      "q": "Koje je od sljedećih obilježja karakteristično za klasicističku književnost?",
+      "opts": [
+        "A. deskriptivnost",
+        "B. ekspresivnost",
+        "C. moralističnost",
+        "D. subjektivnost"
+      ],
+      "correct": "C",
+      "exp": "Klasicizam (17. st.) = moralizam, razum, dužnost, red. Corneille, Racine, Molière — dužnost vs. strast, moralna pouka. Deskriptivnost = realizam/naturalizam, ekspresivnost = ekspresionizam, subjektivnost = romantizam."
+    },
+    {
+      "id": 43,
+      "q": "Koja je od sljedećih rečenica napisana u skladu s pravilima o pisanju velikog i malog početnog slova?",
+      "opts": [
+        "A. Europski parlament, europsko vijeće, Vijeće Europske unije i europska komisija glavne su institucije na čelu uprave Europske unije.",
+        "B. Somalijski poluotok koji strši u Arapsko more i leži duž južne strane Adenskoga zaljeva naziva se Afrički rog ili Rog Afrike.",
+        "C. I viola odorata (mirisna ljubica) i viola tricolor (divlja maćuhica, trobojna ljubica) pripadaju istoj biljnoj porodici.",
+        "D. Razdoblje Karolinške Renesanse odraz je utjecaja antičkoga Rima na kulturu germanskih Franaka."
+      ],
+      "correct": "B",
+      "exp": "'Afrički rog ili Rog Afrike' — ime geografskog objekta pišemo velikim slovom: 'Afrički rog' i 'Rog Afrike'. 'Arapsko more' = veliko slovo. B je pravilno. A: 'Europsko vijeće' (veliko), 'Europska komisija' (veliko); C: 'Viola' malo; D: 'karolinška renesansa' (malo)."
+    },
+    {
+      "id": 44,
+      "q": "Koji od sljedećih frazema ima značenje 'bez ustručavanja govoriti svoje mišljenje'?",
+      "opts": [
+        "A. nemati dlake na jeziku",
+        "B. pogoditi u dlaku točno",
+        "C. tražiti dlaku u jajetu",
+        "D. ići komu niz dlaku"
+      ],
+      "correct": "A",
+      "exp": "'Nemati dlake na jeziku' = govoriti slobodno, bez zadražavanja = bez ustručavanja govoriti što misli. B = biti točan, C = biti sitničav, D = udovoljavati nekome."
+    },
+    {
+      "id": 45,
+      "q": "Koja je sintagma u sljedećoj rečenici rezultat pridruživanja?\nIvan je netremice gledao u njezine oči.",
+      "opts": [
+        "A. Ivan je gledao",
+        "B. je netremice gledao",
+        "C. je gledao u oči",
+        "D. njezine oči"
+      ],
+      "correct": "D",
+      "exp": "'Njezine oči' = pridjev 'njezine' + imenica 'oči'. Sročna sintagma (pridjev se slaže s imenicom) nastala pridruživanjem. Pridruživanje = slaganje (sročnost)."
+    },
+    {
+      "id": 46,
+      "q": "U kojoj od sljedećih rečenica imenica 'cvijeće' ima službu atributa?",
+      "opts": [
+        "A. Pjesme su cvijeće koje pjesnici daruju voljenima.",
+        "B. 'Cvijeće cvijetu', govorio bi pružajući mi buket.",
+        "C. Nosila je haljinu s izvezenim cvijećem.",
+        "D. Tih me dana obasipao cvijećem."
+      ],
+      "correct": "C",
+      "exp": "'Haljinu s izvezenim cvijećem' — 'cvijećem' je u instrumentalu kao dio prijedložne sintagme koja modificira imenicu 'haljinu' = atributna funkcija. 'S izvezenim cvijećem' = atribut haljine."
+    },
+    {
+      "id": 47,
+      "q": "Koja je od sljedećih zavisnosloženih rečenica namjerna rečenica?",
+      "opts": [
+        "A. Svakako namjeravam doći ako dođeš i ti.",
+        "B. Naumio sam doći tamo gdje ćeš biti ti.",
+        "C. Doći ću da opet budem s tobom.",
+        "D. Znaš da ću ti doći."
+      ],
+      "correct": "C",
+      "exp": "'Doći ću da opet budem s tobom' — 'da budem s tobom' = namjerna rečenica (s kojom namjerom? = da budem s tobom). A = pogodbena, B = mjesta, D = objektna."
+    },
+    {
+      "id": 48,
+      "q": "Koja je od sljedećih rečenica gramatički točna?",
+      "opts": [
+        "A. Mirna mi je preporučila Rainer Maria Rilkeova Pisma mladom pjesniku.",
+        "B. Rekla mi je da ću sigurno požaliti odustanem li od putovanja.",
+        "C. U odlučivanju važnih stvari treba poslušati mudre savjete.",
+        "D. Pravila ponašanja vrijede za svih."
+      ],
+      "correct": "B",
+      "exp": "'Rekla mi je da ću sigurno požaliti odustanem li od putovanja' = pravilna složena rečenica. A: 'Rilkeova' = pravilno; C: 'pri odlučivanju' ili 'u donošenju odluka'; D: 'za sve' (ne 'za svih')."
+    },
+    {
+      "id": 49,
+      "q": "U kojoj su od sljedećih rečenica točno upotrijebljeni rečenični znakovi?",
+      "opts": [
+        "A. Vjerovala sam mu, jer me nikad prije nije iznevjerio.",
+        "B. 'Znala sam', vrisne Ana, 'da ćeš se vratiti!'",
+        "C. To se dogodilo u Zagrebu, 10. lipnja 2020.",
+        "D. Tebe je Draga, otac uvijek najviše volio."
+      ],
+      "correct": "B",
+      "exp": "'Znala sam', vrisne Ana, 'da ćeš se vratiti!' — upravi govor prekinut dijaloški tagom (vrisne Ana) između zareza = pravilno. A: bez zareza ispred 'jer'; C: bez zareza ispred datuma; D: bez zareza oko vokativa 'Draga'."
+    },
+    {
+      "id": 50,
+      "q": "Koliko je prednaglasnica u sljedećoj rečenici?\nNisam se sjetila pitati ga hoće li kupiti kruh na putu od škole do kuće.",
+      "opts": [
+        "A. tri",
+        "B. četiri",
+        "C. pet",
+        "D. šest"
+      ],
+      "correct": "B",
+      "exp": "Prednaglasnice (proklitike) = prijedlozi i veznici koji nemaju naglasak: 'se' (ne, enklitika), 'li', 'na', 'od', 'do' = prijedlozi/čestice. Prijedlozi 'na', 'od', 'do' + 'li' = 4 prednaglasnice."
+    },
+    {
+      "id": 51,
+      "q": "Koja je gramatička (oblikotvorna) osnova u riječi 'nogometaš'?",
+      "opts": [
+        "A. nog-",
+        "B. nogom-",
+        "C. nogomet-",
+        "D. nogometaš-"
+      ],
+      "correct": "C",
+      "exp": "'Nogometaš' = nogomet + ar (+ nulti morfem). Gramatička (oblikotvorna) osnova je 'nogometaš-' od koje se tvore oblici deklinacije. Ali... tvorbena osnova je 'nogomet'. 'Nogometaš-' = gramatička osnova."
+    },
+    {
+      "id": 52,
+      "q": "U kojemu je padežu zamjenica u sljedećoj rečenici?\nOstajem pri svojemu.",
+      "opts": [
+        "A. u dativu",
+        "B. u akuzativu",
+        "C. u lokativu",
+        "D. u instrumentalu"
+      ],
+      "correct": "C",
+      "exp": "'Pri svojemu' — prijedlog 'pri' zahtijeva lokativ. 'Ostati pri + lokativ' = pravilna rekcija."
+    },
+    {
+      "id": 53,
+      "q": "U kojoj je od sljedećih rečenica glagol u množini?",
+      "opts": [
+        "A. Svejednako mišljaše svoje.",
+        "B. Mirno življaše na selu.",
+        "C. I dalje govoraše isto.",
+        "D. Pojedoše u tišini."
+      ],
+      "correct": "D",
+      "exp": "'Pojedoše' — aorist 3. l. mn. od 'pojesti' (jeli su = množina). A, B, C su 3. l. jd. imperfekta/aorista."
+    },
+    {
+      "id": 54,
+      "q": "Koja je tvorenica u sljedećemu primjeru nastala složeno-sufiksalnom tvorbom?\n'Djed je bio kišobranar. S bakom se upoznao kad je otvorio kišobranarski obrt, a ona je imala slomljen kišobran i ušla je u radnju tražeći kišobranarov savjet.'",
+      "opts": [
+        "A. kišobranar",
+        "B. kišobranarski",
+        "C. kišobran",
+        "D. kišobranarov"
+      ],
+      "correct": "B",
+      "exp": "'Kišobranarski' = kišobran + ar + ski (složenica + sufiks) = složeno-sufiksalna tvorba. A = sufiksalna (kišobran + ar), C = složenica (kiša + bran), D = sufiksalna (kišobranar + ov)."
+    },
+    {
+      "id": 55,
+      "q": "U kojoj je od sljedećih rečenica podcrtana riječ metonimija?",
+      "opts": [
+        "A. Profesor mi je pričao da je jednom razgovarao s Krležom.",
+        "B. Mašta o tome da će jednoga dana pisati kao Krleža.",
+        "C. Krleža je jedan od najvećih hrvatskih pisaca.",
+        "D. Učenici premalo čitaju Krležu."
+      ],
+      "correct": "D",
+      "exp": "'Čitati Krležu' — 'Krleža' (ime autora) umjesto 'Krležina djela/knjige'. Metonimija = autor umjesto djela. 'Čitati Krležu' = čitati njegova književna djela."
+    },
+    {
+      "id": 56,
+      "q": "U kojoj je od podcrtanih riječi epentetski l?\nNaše polje daje i beskorisno grmlje i dragocjeno bilje od kojega pravimo ljekovito ulje.",
+      "opts": [
+        "A. polje",
+        "B. grmlje",
+        "C. bilje",
+        "D. ulje"
+      ],
+      "correct": "D",
+      "exp": "'Ulje' — ul + j + e: osnova 'ul-' (uliti/maslac), epentetsko j između osnove i sufiksa -e → ulje. Epentetski (umetni) j/l je karakteristično za derivate od osnova na labijal. Konkretno: u 'ulje' je epentetski l: ulje ← ul+j+e."
+    },
+    {
+      "id": 57,
+      "q": "Koja se od sljedećih tvrdnja odnosi na Ćirila i Metoda?",
+      "opts": [
+        "A. Utemeljili su najstariji slavenski književni jezik.",
+        "B. Napisali su tekst Bašćanske ploče.",
+        "C. Živjeli su oko 1100. godine.",
+        "D. Stvorili su pismo ćirilicu."
+      ],
+      "correct": "A",
+      "exp": "Ćiril (826.–869.) i Metod (815.–885.) su utemeljili staroslavenski (starocrkvenoslavenski) kao prvi književni jezik Slavena — prevodili Bibliju i liturgijske tekstove na slavenski jezik. Ćiril je stvorio glagoljicu (ne ćirilicu!)."
+    },
+    {
+      "id": 581,
+      "q": "...autori su imali svoju publiku, (1.) ________ nisu imali mogućnosti da se iskažu u oblicima komunikacije koje danas nazivamo književnim tržištem.\n\nOdaberite ispravan veznik.",
+      "opts": [
+        "A. ali",
+        "B. dakle",
+        "C. jer",
+        "D. nakon što"
+      ],
+      "correct": "A",
+      "exp": "'Autori su imali publiku, ALI nisu imali mogućnosti za književno tržište' — suprotni veznik 'ali' logički spaja dva suprotna iskaza."
+    },
+    {
+      "id": 582,
+      "q": "(2.) ________ je bilo malo, a (3.) ________ od dvora do dvora ili od jedne crkvene pisarne do druge vrlo sporo.\n\nOdaberite ispravni oblik za (2.) — množinu imenice 'manuskript'.",
+      "opts": [
+        "A. Manuskripata",
+        "B. Manuskripte",
+        "C. Manuskriptova",
+        "D. Manuskriptovi"
+      ],
+      "correct": "A",
+      "exp": "'Manuskripata je bilo malo' — genitiv množine imenice 'manuskript' (m.r.) je 'manuskripata' (G mn. s umetnutim -a-). 'Manuskriptova' nije standardni oblik."
+    },
+    {
+      "id": 583,
+      "q": "...(3.) ________ od dvora do dvora ili od jedne crkvene pisarne do druge vrlo sporo.\n\nOdaberite ispravan glagol (kružili su / putovali su u kontekstu širenja rukopisa).",
+      "opts": [
+        "A. jenjavali su",
+        "B. kasnili su",
+        "C. kolali su",
+        "D. slovili su"
+      ],
+      "correct": "C",
+      "exp": "'Kolali su od dvora do dvora' — 'kolati' = kružiti, prelaziti s mjesta na mjesto. Rukopisi su 'kolali' = kružili između dvorova i pisarnica. Jedino 'kolali su' odgovara kontekstu."
+    },
+    {
+      "id": 584,
+      "q": "...dvorski ili samostanski prepisivači mogli su u djelo unositi (4.) ________ osobne književne ambicije.\n\nOdaberite ispravnu zamjeničku prilogu (čije ambicije = prepisivačeve).",
+      "opts": [
+        "A. njegove",
+        "B. njihove",
+        "C. svoje",
+        "D. takve"
+      ],
+      "correct": "C",
+      "exp": "'Mogli su unositi SVOJE osobne književne ambicije' — povratna zamjenica 'svoje' pravilno se upotrebljava kad subjekt rečenice i posjedovalac referiraju na isti entitet (prepisivači su unosili prepisivačeve = svoje ambicije)."
+    },
+    {
+      "id": 585,
+      "q": "Od nekih poznatih djela sačuvano je (5.) ________ različitih inačica, katkad sa znatnim sadržajnim promjenama.\n\nOdaberite ispravan broj za neodređenu količinu.",
+      "opts": [
+        "A. desetak",
+        "B. desetero",
+        "C. desetica",
+        "D. desetka"
+      ],
+      "correct": "A",
+      "exp": "'Sačuvano je desetak različitih inačica' — 'desetak' = otprilike deset, neodređeni broj oko deset. 'Desetero' = brojevna imenica za ljude, 'desetica' = novčani iznos, 'desetka' = sportski termin."
+    }
+  ]
+}

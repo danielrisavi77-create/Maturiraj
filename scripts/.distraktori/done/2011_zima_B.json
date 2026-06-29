@@ -1,0 +1,354 @@
+{
+  "2011_zima_B__1": {
+    "B": "Polazni tekst nema naracije, fabule ni pripovjedača, pa ne pripada epici.",
+    "C": "U tekstu nema dramskih lica, dijaloga ni didaskalija, pa ne pripada drami."
+  },
+  "2011_zima_B__2": {
+    "B": "Rima nije ab cb db jer se prvi stih u paru ne rimuje s nekim trećim, nego s neposredno sljedećim (slap-kap).",
+    "C": "Rima nije ukrštena (ab ab ab) jer se rimuju susjedni stihovi, a ne svaki drugi.",
+    "D": "Nije aa aa aa jer se ne rimuju svi stihovi međusobno, nego svaki par za sebe (slap-kap, stvara-šara, sjati-tkati)."
+  },
+  "2011_zima_B__3": {
+    "B": "Tekst ne opisuje krajolik radi njega samog, nego slap služi kao misaona slika, pa nije pejzažna pjesma.",
+    "C": "U pjesmi nema ljubavnoga motiva ni odnosa među osobama, pa nije ljubavna.",
+    "D": "Nema domoljubnih motiva (domovine, naroda u nacionalnom smislu), pa nije domoljubna."
+  },
+  "2011_zima_B__4": {
+    "A": "Glagolu 'teče' ne pridaju se ljudske osobine, pa nema personifikacije, nego se ista riječ ponavlja.",
+    "C": "Nema namjernog preuveličavanja radi pojačanja dojma, pa nije hiperbola.",
+    "D": "Nema suprotnosti rečenoga i mišljenoga, pa nije ironija; riječ se jednostavno ponavlja."
+  },
+  "2011_zima_B__5": {
+    "B": "'Kap' i 'slap' nisu okamenjene metafore, nego doslovni pojmovi koji se tek u kontekstu suprotstavljaju po veličini.",
+    "C": "Nisu pravi sinonimi jer ne znače isto; naprotiv, suprotstavljeni su (malo prema velikom).",
+    "D": "Nisu oblični homonimi jer im se ni oblik ni značenje ne podudaraju na način svojstven homonimiji."
+  },
+  "2011_zima_B__6": {
+    "A": "Stih ne tvrdi da je kap važnija od slapa, nego da slap nastaje zbrajanjem svih kapi.",
+    "B": "Stih ne ističe nadmoć slapa nad kapi, nego njihovu međuovisnost.",
+    "C": "Tvrdnja 'kapi su samo kapi' umanjuje važnost kapi, a stih upravo naglašava njezin doprinos cjelini."
+  },
+  "2011_zima_B__7": {
+    "A": "Odnos more – val nije odnos cjeline i nezamjenjivoga doprinositelja na isti način kao slap – kap, nego prirodne pojave i njezina dijela bez naglašene simbolike pojedinca.",
+    "B": "Svemir – čovjek izražava nesrazmjer veličina, ali ne i ključnu misao da cjelina nastaje doprinosom svake jedinice.",
+    "D": "Nesebičnost – sebičnost odnos je suprotnih osobina, a ne odnos cjeline i njezina sastavnoga dijela."
+  },
+  "2011_zima_B__8": {
+    "A": "'sl-ap' je pogrešno jer se slog ne može odvojiti tako da suglasnička skupina 'sl' ostane bez samoglasnika; pravilno je s-lap.",
+    "B": "'nj-em' je pogrešno jer je 'nj' jedan glas (dvoslov) koji se ne rastavlja; riječ je jednosložna (njem).",
+    "D": "'dr-šće' je pogrešno jer prvi dio 'dr' nema samoglasnika i ne čini slog samostalno."
+  },
+  "2011_zima_B__9": {
+    "A": "Stih ima deset slogova, a ne osam, pa nije osmerac.",
+    "B": "Stih ima deset, a ne devet slogova, pa nije deveterac.",
+    "D": "Stih ima deset, a ne jedanaest slogova, pa nije jedanaesterac."
+  },
+  "2011_zima_B__10": {
+    "A": "Nije riječ o nabrajanju jer se ne navode različiti članovi niza, nego se ponavlja ista riječ.",
+    "C": "Zarez ne razdvaja suprotstavljene dijelove, pa nije po načelu suprotnosti.",
+    "D": "Nema dozivanja ni obraćanja, pa nije po načelu vokativnosti."
+  },
+  "2011_zima_B__11": {
+    "A": "Strofa nema samo jednu surečenicu jer postoje dva predikata (sjati, pomaže) odvojena zarezom i veznikom.",
+    "C": "Nema triju surečenica jer su prisutna samo dva predikata.",
+    "D": "Nema četiriju surečenica; broj predikata je dva."
+  },
+  "2011_zima_B__12": {
+    "A": "'Kap' i 'kaplja' nisu antonimi jer ne znače suprotno, nego upravo isto.",
+    "C": "Nisu homonimi jer im se značenje podudara, a homonimi imaju isti oblik uz različito značenje.",
+    "D": "Nisu kohiponimi jer nisu dvije različite vrste istoga nadređenoga pojma, nego ista riječ u dva oblika."
+  },
+  "2011_zima_B__13": {
+    "A": "'Imati' ne odgovara kontekstu stvaranja dúge u slapu, pa nije traženo preneseno značenje.",
+    "B": "'Plesti' je blisko doslovnom značenju tkanja, a traži se preneseno značenje stvaranja.",
+    "C": "'Pokretati' ne izražava stvaranje cjeline (sna, dúge), nego puko pokretanje, pa ne odgovara."
+  },
+  "2011_zima_B__14": {
+    "A": "Riječ nije pravopisno pogrešno napisana; odstupanje je u obliku riječi, ne u pisanju.",
+    "C": "Nije riječ o fonološkom odstupanju (glasovnoj promjeni), nego o izostavljenom morfološkom nastavku.",
+    "D": "Nema pogreške u rečeničnom ustrojstvu, pa nije sintaktičko odstupanje."
+  },
+  "2011_zima_B__15": {
+    "A": "'Svakidašnja jadikovka' je pjesma Tina Ujevića, a ne Cesarića.",
+    "B": "'Dugo u noć, u zimsku bijelu noć' je Ujevićeva pjesma, a ne Cesarićeva.",
+    "C": "'Utjeha kose' je pjesma A. G. Matoša, a ne Cesarića."
+  },
+  "2011_zima_B__16": {
+    "B": "Vergilije je rimski pjesnik, autor Eneide, a ne Ilijade.",
+    "C": "Ovidije je rimski pjesnik (Metamorfoze), a ne autor Ilijade.",
+    "D": "Hesiod je grčki didaktički pjesnik, a ne autor Ilijade."
+  },
+  "2011_zima_B__17": {
+    "A": "Ilijada nije nastala u babilonsko-asirskoj književnosti, nego u grčkoj.",
+    "B": "Ilijada nije djelo staroegipatske književnosti.",
+    "D": "Ilijada pripada grčkoj, a ne rimskoj antičkoj književnosti; rimska je npr. Eneida."
+  },
+  "2011_zima_B__18": {
+    "A": "Latinski je jezik rimske književnosti (npr. Eneide), a ne Ilijade.",
+    "C": "Ilijada nije napisana hebrejskim, nego starogrčkim jezikom.",
+    "D": "Sumerski je jezik mezopotamske književnosti (Ep o Gilgamešu), a ne Ilijade."
+  },
+  "2011_zima_B__19": {
+    "B": "Poema je novovjekovna lirsko-epska vrsta, a Ilijada je klasični junački ep.",
+    "C": "Mit je predaja o bogovima i junacima, a Ilijada je književno oblikovani ep, ne mit.",
+    "D": "Tragedija je dramska vrsta, a Ilijada je narativni ep."
+  },
+  "2011_zima_B__20": {
+    "A": "Prijam nije bog, nego smrtnik, trojanski kralj.",
+    "B": "Utemeljitelj Rima je Romul (prema legendi), a ne Prijam.",
+    "D": "Prijam nije vrač, nego kralj Troje."
+  },
+  "2011_zima_B__21": {
+    "B": "Prijam ne dolazi radi osvete, nego molećiv, da otkupi sinovo tijelo.",
+    "C": "Prijam ne dolazi uhoditi neprijatelja, nego javno, kao otac koji moli za sina.",
+    "D": "Prijam ne dolazi sklopiti mir, nego osobno otkupiti Hektorovo tijelo."
+  },
+  "2011_zima_B__22": {
+    "B": "Tekst ne govori da je Prijam nadmudrio neprijatelja, nego da je izgubio mnoge sinove.",
+    "C": "Nema podataka da je Prijam zaboravio svoje dužnosti.",
+    "D": "Nema spomena da se Prijam odrekao prijestolja."
+  },
+  "2011_zima_B__23": {
+    "A": "Ahilej se ne rasplakao od straha pred Prijamom, nego od sjećanja na oca i Patrokla.",
+    "B": "Plač nije izazvan grižnjom zbog ubijanja, nego osobnom tugom za ocem i prijateljem.",
+    "D": "Tekst ne navodi spoznaju o vlastitoj smrti kao razlog plača."
+  },
+  "2011_zima_B__24": {
+    "A": "'Gvozdeno srce' ovdje ne znači bešćutnost, nego iznimnu hrabrost da se uđe u neprijateljev logor.",
+    "B": "Izraz se ne odnosi na domišljatost, nego na hrabrost.",
+    "C": "Izraz ne govori o gubitku razuma, nego o smionosti."
+  },
+  "2011_zima_B__25": {
+    "A": "Ahilej nije licemjeran (prijetvoran); iskreno suosjeća, prima starca za ruku i žali ga.",
+    "C": "Ahilej se ne ponaša bahato, nego s poštovanjem prema starcu.",
+    "D": "Ahilej nije suzdržan; aktivno tješi Prijama i pomaže mu ustati."
+  },
+  "2011_zima_B__26": {
+    "A": "Ahilej ne govori općenito o životu punom tuge, nego konkretno o uzaludnosti plakanja.",
+    "B": "Ahilej ne tvrdi da upravlja sudbinom, nego priznaje da plač ništa ne mijenja.",
+    "D": "Ahilej ne poziva na hrabrost, nego na smirivanje plača jer ne pomaže."
+  },
+  "2011_zima_B__27": {
+    "A": "'Ahejske' uz 'lađe' ne dolazi stalno uz tu imenicu kao ustaljena oznaka, pa nije stalni epitet.",
+    "C": "'Strahoviti plač' je trenutni opisni epitet, a ne ustaljena oznaka uz imenicu.",
+    "D": "'Čitav' je samo količinska oznaka, a ne stalni (ukrasni) epitet."
+  },
+  "2011_zima_B__28": {
+    "B": "Beowulf je srednjovjekovni staroengleski ep, a ne djelo antike.",
+    "C": "Hamlet je djelo renesanse (Shakespeare), a ne antike.",
+    "D": "Don Quijote je renesansni roman (Cervantes), a ne antičko djelo."
+  },
+  "2011_zima_B__29": {
+    "A": "'Ahilova peta' ne znači puko ozlijeđeno mjesto, nego prenosivo slabu, ranjivu točku.",
+    "B": "Frazem ne znači cilj, nego ranjivost.",
+    "D": "Frazem ne znači podvalu ni lukavstvo, nego slabost."
+  },
+  "2011_zima_B__30": {
+    "A": "Grga nije Pavlov brat; on je samostalan negativac, brijač i spletkar.",
+    "C": "Grga nije svećenik koji se kaje, nego intrigant bez moralna preokreta.",
+    "D": "Grga je književni izmišljeni lik, a ne povijesna ličnost."
+  },
+  "2011_zima_B__31": {
+    "A": "Lik nije izgrađen pripovijedanjem o radnji, nego izravnim opisom njegove vanjštine.",
+    "C": "U ulomku nema unutarnjega monologa kojim bi se otkrivale junakove misli.",
+    "D": "Premda dijaloga ima, lik je karakteriziran ponajprije opisom izgleda, a ne dijalogom."
+  },
+  "2011_zima_B__32": {
+    "A": "Lik nije prikazan idealizirano (uljepšano), nego pretjerano negativno.",
+    "C": "Opis je vanjski i pretjeran, a ne psihološki produbljen.",
+    "D": "Riječ je o pretjeranom, grotesknom portretu, a ne o povijesnoj autentičnosti."
+  },
+  "2011_zima_B__33": {
+    "A": "Tekst ne objašnjava da su osobine uvjetovane podrijetlom; o podrijetlu se ne govori.",
+    "B": "O Grginu podrijetlu tekst ne donosi podatke, pa to nije ono što saznajemo.",
+    "C": "O Grginoj prošlosti tekst ne govori; iznosi izgled i karakter, a ne biografiju."
+  },
+  "2011_zima_B__34": {
+    "A": "Grga nije zabrinut, nego ogorčen i nezadovoljan zbog Dorina odbijanja.",
+    "C": "Grga nije ushićen; njegov je ton gorak i pakostan.",
+    "D": "Grga nije uspaničen, nego prkosno i zlovoljno govori o Dori."
+  },
+  "2011_zima_B__35": {
+    "A": "Grga ne tvrdi da je Dora nespretna i razmažena, nego da teži boljemu društvenom položaju.",
+    "B": "Grga ne misli na Dorinu želju za financijskom neovisnošću, nego za boljom udajom.",
+    "D": "Grga ne kaže da je Dora lijena; tvrdi da želi gospodstvo i bogatstvo."
+  },
+  "2011_zima_B__36": {
+    "A": "Grga se predstavlja kao skroman, ali njegov govor otkriva suprotno, pa to nije prava značajka.",
+    "B": "Grga se prikazuje poštenim, no zapravo je pokvaren; moralnost je samo glumljena.",
+    "D": "Iz obraćanja ne izbija razmetljivost, nego prikrivena pokvarenost i spletkarenje."
+  },
+  "2011_zima_B__37": {
+    "B": "Rečenica o puščanu prahu govori o crvenilu nosa, a ne o Grginu zanimanju.",
+    "C": "'Suhonjast trčuljak' opisuje građu tijela, a ne zanimanje.",
+    "D": "'Mene i moju bokčariju odbila' govori o odbijanju i siromaštvu, a ne o zanimanju."
+  },
+  "2011_zima_B__38": {
+    "B": "Razgovor nije tješenje; nitko se ne tješi, nego se Dora negativno ocrtava.",
+    "C": "Razgovor nije šala; ton je zajedljiv i pakostan, a ne šaljiv.",
+    "D": "Nije riječ o svađi među sugovornicima, nego o slaganju u ogovaranju Dore."
+  },
+  "2011_zima_B__39": {
+    "A": "Žene ne izriču žaljenje za Dorom, nego zlurado komentiraju vijest.",
+    "B": "Nema suosjećanja prema Dori; reakcija je podrugljiva.",
+    "D": "Žene nisu ogorčene; one se zlurado naslađuju, što potvrđuje 'zajedljivo'."
+  },
+  "2011_zima_B__40": {
+    "A": "Naslov se ne odnosi na Zagreb, nego na zlatarovu kćer Doru kao dragocjenost.",
+    "B": "'Zlato' nije metafora slobode, nego osobe, Dore.",
+    "C": "Naslov se ne odnosi na bana, nego na Doru."
+  },
+  "2011_zima_B__41": {
+    "A": "Šenoa ne pripada prosvjetiteljstvu (18. st.), nego drugoj polovici 19. stoljeća.",
+    "B": "Šenoa stvara nakon narodnoga preporoda; preporod je vremenski raniji.",
+    "D": "Šenoa pripada protorealizmu, prijelaznom razdoblju, a puni realizam nastupa nakon njega."
+  },
+  "2011_zima_B__42": {
+    "A": "Ujednačivanje grafije (slovopisa) zasluga je Gajeva, a ne Šenoina.",
+    "C": "Šenoa nije pokrenuo prve hrvatske književne novine; uređivao je Vijenac, ali to nisu prve novine.",
+    "D": "Šenoina zasluga nije mecenstvo, nego stvaranje čitateljske publike svojim romanima."
+  },
+  "2011_zima_B__43": {
+    "A": "Tvrdnja da su intriganti uvijek stranci ne odgovara Šenoinu načelu; Grga je domaći lik.",
+    "B": "Nisu svi likovi simboli povijesnih ličnosti; mnogi su izmišljeni.",
+    "D": "Tvrdnja da je povijest tek kulisa proturječi Šenoinoj namjeri da povijest poučno istakne."
+  },
+  "2011_zima_B__44": {
+    "A": "Djelo nije lirsko jer nije pjesma osobnoga doživljaja, nego scenski tekst.",
+    "B": "Djelo nije epsko jer nema pripovjedača i naracije, nego dijaloge i didaskalije."
+  },
+  "2011_zima_B__45": {
+    "A": "Glembaya ne muči savjest; on napada sina, a ne kaje se.",
+    "C": "Glembay nije ushićen, nego razdražen i napet.",
+    "D": "Glembay nije ravnodušan; ironično i ljutito reagira na sina."
+  },
+  "2011_zima_B__46": {
+    "A": "Odnos nije prijateljski; otac i sin se sukobljavaju i ne slušaju.",
+    "B": "Odnos nije poslovni; Leone izrijekom odbija poslovni okvir ('ne mislim juridički').",
+    "D": "Nije naglašeno suparništvo (borba za isti cilj), nego međusobno nerazumijevanje pogleda."
+  },
+  "2011_zima_B__47": {
+    "B": "Glembay ne hvali svoj odgoj sina; rečenicom prigovara da je Leone naslijedio majčinu narav.",
+    "C": "Glembay ne ističe utjecaj inozemstva, nego majčino podrijetlo (daniellijevsko).",
+    "D": "Rečenica ne govori o Leoneovu nerazumijevanju očeve ljubavi, nego o sličnosti s majkom."
+  },
+  "2011_zima_B__48": {
+    "A": "Ton nije sentimentalan jer nema raznježenosti, nego oštre podrugljivosti.",
+    "C": "Ton nije patetičan (uzvišeno svečan), nego ironično-sarkastičan.",
+    "D": "Ton nije ushićen; Glembay ne hvali aroganciju iskreno, nego je ismijava."
+  },
+  "2011_zima_B__49": {
+    "A": "Pojmovi nisu homonimi jer im se ni oblik ni značenje ne podudaraju.",
+    "C": "Pojmovi nisu sinonimi jer ne znače isto, nego su suprotstavljeni (boemi prema solidnim građanima)."
+  },
+  "2011_zima_B__50": {
+    "A": "Vratima se ne pridaju ljudske osobine, pa nema personifikacije.",
+    "C": "Nema preuveličavanja radi dojma, pa nije hiperbola.",
+    "D": "Izraz nije simbol s prenesenim trajnim značenjem, nego ublažavanje grube poruke."
+  },
+  "2011_zima_B__51": {
+    "A": "Leone ne optužuje suprugu za propast banke, nego za ljubavnu nevjeru.",
+    "B": "Leone je ne optužuje za smrt svoje majke, nego da ima ljubavnika.",
+    "C": "Riječ nije o nečasnim novčanim poslovima, nego o ljubavniku."
+  },
+  "2011_zima_B__52": {
+    "B": "Leone se ne bavi glazbom, nego slikarstvom.",
+    "C": "Leone nije književnik, nego slikar.",
+    "D": "Leone nije novinar, nego slikar."
+  },
+  "2011_zima_B__53": {
+    "A": "Grof Maksimilijan Axelrode nije Krležin lik koji se vraća kući nakon duga izbivanja.",
+    "B": "Student Vidović nije lik koji se vraća iz dugoga izbivanja poput Filipa Latinovicza.",
+    "C": "Kyriales nije lik koji se vraća kući nakon duga izbivanja iz Europe."
+  },
+  "2011_zima_B__54": {
+    "A": "Djelo nije nastalo početkom 19. st., nego 1929. godine.",
+    "B": "Djelo nije nastalo krajem 19. st., nego u prvoj polovici 20. stoljeća.",
+    "D": "Djelo nije nastalo krajem 20. st., nego 1929. godine."
+  },
+  "2011_zima_B__55": {
+    "A": "Vučjak i Golgota nisu dio glembajevske trilogije.",
+    "B": "Kraljevo i Legende ne pripadaju glembajevskom ciklusu.",
+    "D": "Aretej i Michelangelo Buonarroti nisu dio glembajevske trilogije."
+  },
+  "2011_zima_B__56": {
+    "A": "Prolog je uvodni dio djela, a ovdje je riječ o scenskoj uputi unutar teksta.",
+    "B": "Epilog je završni dio djela, a kosi je tekst scenska uputa, ne epilog.",
+    "D": "Replika je izgovoreni iskaz lika, a kosi tekst nije za izgovaranje, nego uputa."
+  },
+  "2011_zima_B__57": {
+    "B": "Nije dativ; uz prijedlog 'spram' ne dolazi dativ, nego genitiv.",
+    "C": "Nije akuzativ; oblik 'oca' uz 'spram' odgovara na pitanje koga (genitiv).",
+    "D": "Nije lokativ; lokativ dolazi s drugim prijedlozima (o, u, na, po, pri)."
+  },
+  "2011_zima_B__58": {
+    "A": "'grčka načina' nije ispravno jer pridjev mora biti u genitivu jednine muškoga roda (grčkoga).",
+    "C": "'grčkijega' nije standardni oblik genitiva pridjeva 'grčki'.",
+    "D": "'grčki načina' nije ispravno jer pridjev nije u genitivu, nego u nominativu."
+  },
+  "2011_zima_B__59": {
+    "B": "Riječ ne potječe iz njemačkoga, pa nije germanizam.",
+    "C": "Riječ ne potječe iz mađarskoga, pa nije hungarizam.",
+    "D": "Riječ ne potječe iz turskoga, pa nije turcizam."
+  },
+  "2011_zima_B__60": {
+    "A": "Rečenica nema dvije, nego tri surečenice, jer ima tri predikata.",
+    "C": "Rečenica nema četiri surečenice; predikata je tri.",
+    "D": "Rečenica nema pet surečenica; predikata je tri."
+  },
+  "2011_zima_B__61": {
+    "A": "'Tamna' je antonim pridjevu 'svijetla', a ne pridjevu 'mutna'.",
+    "B": "'Svijetla' je suprotnost 'tamna', a ne 'mutna'.",
+    "D": "'Nejasna' je sinonim, a ne antonim pridjevu 'mutna'."
+  },
+  "2011_zima_B__62": {
+    "B": "Nije kondicional drugi jer nedostaje 'bio' (bio bi želio); ovdje je samo 'bi + željio'.",
+    "C": "Nije futur prvi jer se ne tvori s 'ću, ćeš...', nego se rabi 'bi'.",
+    "D": "Nije futur drugi jer se ne tvori od prezenta glagola 'biti' i glagolskoga pridjeva radnog na način futura."
+  },
+  "2011_zima_B__63": {
+    "A": "Nije palatalizacija jer se g ne mijenja u ž ispred -e, nego u z ispred -i.",
+    "C": "Nije jotacija jer nema spajanja sa glasom j.",
+    "D": "Nije nepostojano a jer se nijedno a ne gubi ni umeće."
+  },
+  "2011_zima_B__64": {
+    "A": "'Očinska' se odnosi na oca, a 'familijarna' se odnosi na cijelu obitelj.",
+    "B": "'Prijateljska' nije značenje pridjeva 'familijaran' u ovom kontekstu obitelji.",
+    "C": "'Društvena' je šira od značenja 'obiteljski', pa ne odgovara kao sinonim."
+  },
+  "2011_zima_B__65": {
+    "A": "Nije genitiv; uz prijedlog 'pred' ne dolazi genitiv, nego instrumental.",
+    "B": "Nije dativ; 'pred' ne traži dativ, nego instrumental.",
+    "C": "Nije akuzativ; oblik 'Silberbrandtom' odgovara na pitanje pred kim (instrumental)."
+  },
+  "2011_zima_B__67": {
+    "B": "'Buzetskoj' velikim slovom nije ispravno jer se pridjevi izvedeni od mjesnih imena pišu malim slovom."
+  },
+  "2011_zima_B__68": {
+    "A": "'Ljevo' nije standardno; standardni ijekavski oblik glasi 'lijevo'."
+  },
+  "2011_zima_B__69": {
+    "B": "'Glagoljaštva' velikim slovom nije ispravno jer je riječ o općem pojmu, a ne vlastitom imenu."
+  },
+  "2011_zima_B__70": {
+    "A": "'Srednjo vjekovne' rastavljeno nije ispravno jer se taj složeni pridjev piše spojeno."
+  },
+  "2011_zima_B__71": {
+    "B": "'Korjene' nije standardno; ijekavski oblik glasi 'korijene' (ije)."
+  },
+  "2011_zima_B__72": {
+    "B": "'Moravskim' velikim slovom nije ispravno jer je riječ o opisnom pridjevu, koji se piše malim slovom."
+  },
+  "2011_zima_B__73": {
+    "B": "'Sveto pismo' s malim 'p' nije po pravilu za naziv svete knjige, koji se piše velikim slovom (Sveto Pismo)."
+  },
+  "2011_zima_B__74": {
+    "A": "'Spomen obilježje' bez crtice nije ispravno jer se složenice sa 'spomen-' pišu s crticom."
+  },
+  "2011_zima_B__75": {
+    "B": "'Poćinje' nije ispravno jer u toj riječi stoji glas č, a ne ć (počinje)."
+  },
+  "2011_zima_B__76": {
+    "B": "'Svijetskih' nije standardni oblik; ispravno je 'svjetskih' (od 'svijet')."
+  }
+}

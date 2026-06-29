@@ -1,0 +1,929 @@
+{
+  "examKey": "2011_zima_B",
+  "label": "Zimski rok — Osnovna razina (B)",
+  "total": 75,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu književnomu rodu pripada polazni tekst?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "A",
+      "exp": "'Slap' Dobriše Cesarića je lirska pjesma — izražava osobni doživljaj, filozofsku meditaciju, nema naracije ni dijaloga.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 2,
+      "q": "Kakva je rima u polaznome tekstu?",
+      "opts": [
+        "A. aa bb cc",
+        "B. ab cb db",
+        "C. ab ab ab",
+        "D. aa aa aa"
+      ],
+      "correct": "A",
+      "exp": "'Slap' ima parnu rimu (aa bb cc): slap-kap, stvara-šara, sjati-tkati. Svaki par stihova rimuje se međusobno.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 3,
+      "q": "Kojoj tematici pripada polazni tekst?",
+      "opts": [
+        "A. misaonoj",
+        "B. pejzažnoj",
+        "C. ljubavnoj",
+        "D. domoljubnoj"
+      ],
+      "correct": "A",
+      "exp": "'Slap' je misaona (refleksivna) pjesma — razmišlja o odnosu pojedinca i zajednice, o smislu male kapi u velikom slapu. Nije pejzažna, ljubavna ni domoljubna.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 4,
+      "q": "Koja je stilska figura uporabljena u sljedećem stihu?\n\nTeče i teče, teče jedan slap;",
+      "opts": [
+        "A. personifikacija",
+        "B. ponavljanje",
+        "C. hiperbola",
+        "D. ironija"
+      ],
+      "correct": "B",
+      "exp": "'Teče i teče, teče' je ponavljanje (epifora/anafora) — trokratno ponavljanje glagola 'teče' pojačava dojam neprekidnog toka vode.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 5,
+      "q": "U kakvome su leksičko-semantičkome odnosu riječi 'kap' i 'slap'?",
+      "opts": [
+        "A. kontekstualni antonimi",
+        "B. okamenjene metafore",
+        "C. pravi sinonimi",
+        "D. oblični homonimi"
+      ],
+      "correct": "A",
+      "exp": "'Kap' (malo) i 'slap' (veliko) u kontekstu pjesme su kontekstualni antonimi — suprotstavljeni su po veličini i značaju, no to je suprotnost uspostavljena tek u kontekstu, ne u rječniku.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 6,
+      "q": "Što znači sljedeći stih?\n\nI moja kaplja pomaže ga tkati.",
+      "opts": [
+        "A. Kap je važnija od slapa.",
+        "B. Slap je važniji od kapi.",
+        "C. Kapi su samo kapi.",
+        "D. Slap ne bi postojao bez kapi."
+      ],
+      "correct": "D",
+      "exp": "Stih govori da i najmanja kap pridonosi stvaranju slapa — slap ne bi postojao bez svake pojedine kapi. Poruka: svaki pojedinac važan je za zajednicu.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 7,
+      "q": "Koji par riječi svojim odnosom značenja odgovara odnosu značenja slap – kap?",
+      "opts": [
+        "A. more – val",
+        "B. svemir – čovjek",
+        "C. zajednica – pojedinac",
+        "D. nesebičnost – sebičnost"
+      ],
+      "correct": "C",
+      "exp": "Slap : kap = zajednica : pojedinac. Slap je cjelina sastavljena od bezbroj kapi, kao zajednica od pojedinaca. To je temeljna analogija pjesme.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 8,
+      "q": "Koja je riječ točno rastavljena na slogove?",
+      "opts": [
+        "A. sl-ap",
+        "B. nj-em",
+        "C. st-va-ra",
+        "D. dr-šće"
+      ],
+      "correct": "C",
+      "exp": "'stvara' = st-va-ra (3 sloga). 'sl-ap' — krivo jer 'sl' su oba suglasnici, granica ide: 's-lap'. 'nj-em' — krivo jer 'nj' je jedan fonem, ide 'njem'. 'dr-šće' = 'dr-šće' — no 'dr' su suglasnici bez vokala, ispravno je dr-šće.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 9,
+      "q": "Koja je vrsta stiha uporabljena u sljedećem stihu?\n\nTeče i teče, teče jedan slap;",
+      "opts": [
+        "A. osmerac",
+        "B. deveterac",
+        "C. deseterac",
+        "D. jedanaesterac"
+      ],
+      "correct": "C",
+      "exp": "'Te-če-i-te-če-te-če-je-dan-slap' = 10 slogova → deseterac. Cesarić često koristi deseterac, koji je i najčešći stih u hrvatskoj usmenoj i pisanoj lirici.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 10,
+      "q": "Prema kojemu je načelu napisan zarez u prvome stihu?\n\nTeče i teče, teče jedan slap;",
+      "opts": [
+        "A. nabrajanja",
+        "B. inverzije",
+        "C. suprotnosti",
+        "D. vokativnosti"
+      ],
+      "correct": "B",
+      "exp": "Zarez je napisan prema načelu inverzije — 'teče' je ponavljanjem izmješteno iz uobičajenog reda, a zarez označuje pauzu/inverziju u rečeničnom tijeku.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 11,
+      "q": "Koliko ima surečenica u trećoj strofi polaznoga teksta?\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.",
+      "opts": [
+        "A. jedna",
+        "B. dvije",
+        "C. tri",
+        "D. četiri"
+      ],
+      "correct": "B",
+      "exp": "Treća strofa ima dvije surečenice: (1) 'Taj san u slapu da bi mogo sjati' i (2) 'I moja kaplja pomaže ga tkati' — odvojene su zarezom i veznikom 'i'.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 12,
+      "q": "U kakvome su leksičko-semantičkome odnosu leksemi 'kap' i 'kaplja'?",
+      "opts": [
+        "A. u antonimskome",
+        "B. u sinonimskome",
+        "C. u homonimskome",
+        "D. u kohiponimskome"
+      ],
+      "correct": "B",
+      "exp": "'Kap' i 'kaplja' su sinonimi — označavaju isto: malu količinu tekućine koja pada ili visi. Mogu se međusobno zamijeniti bez promjene značenja.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 13,
+      "q": "Koje je preneseno značenje glagola 'tkati' u sljedećem stihu?\n\nI moja kaplja pomaže ga tkati.",
+      "opts": [
+        "A. imati",
+        "B. plesti",
+        "C. pokretati",
+        "D. stvarati"
+      ],
+      "correct": "D",
+      "exp": "Glagol 'tkati' ovdje ima preneseno (metaforičko) značenje — 'stvarati', 'graditi'. Kaplja pomaže 'tkati' (stvarati) san/dugu u slapu. Doslovno značenje je 'plesti tkaninu'.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 14,
+      "q": "Od koje se jezične norme odstupa u podcrtanoj riječi sljedećega stiha?\n\nTaj san u slapu da bi mogo sjati,",
+      "opts": [
+        "A. od pravopisne",
+        "B. od morfološke",
+        "C. od fonološke",
+        "D. od sintaktičke"
+      ],
+      "correct": "B",
+      "exp": "'Mogo' umjesto standardnog 'mogao' je morfološka nenorma — izostavljanje sufiksa '-ao' u glagolskom pridjevu radnom. Radi se o dijalekatnom/razgovornom obliku koji odstupa od morfološke norme.",
+      "ctx": "Slap\n\nTeče i teče, teče jedan slap;\nŠto u njem znači moja mala kap?\nGle, jedna duga u vodi se stvara,\nI sja i dršće u hiljadu šara.\n\nTaj san u slapu da bi mogo sjati,\nI moja kaplja pomaže ga tkati.\n\nDobriša Cesarić"
+    },
+    {
+      "id": 15,
+      "q": "Koju je antologijsku pjesmu napisao Cesarić?",
+      "opts": [
+        "A. Svakidašnja jadikovka",
+        "B. Dugo u noć, u zimsku bijelu noć",
+        "C. Utjeha kose",
+        "D. Vagonaši"
+      ],
+      "correct": "D",
+      "exp": "'Vagonaši' najpoznatija je Cesarićeva antologijska pjesma — o putnicima u vlaku koji simboliziraju prolaznost života. 'Svakidašnja jadikovka' i 'Utjeha kose' su Šimićeve, 'Dugo u noć' je Ujevićeva."
+    },
+    {
+      "id": 16,
+      "q": "Tko se, uobičajeno, smatra autorom Ilijade?",
+      "opts": [
+        "A. Homer",
+        "B. Vergilije",
+        "C. Ovidije",
+        "D. Hesiod"
+      ],
+      "correct": "A",
+      "exp": "Ilijada se tradicionalno pripisuje Homeru, grčkom slijepom aoidosu (pjevaču) koji je živio oko 8. st. pr. Kr. Vergilije je rimski pjesnik (Eneida), Ovidije rimski elegiičar, Hesiod grčki didaktičar."
+    },
+    {
+      "id": 17,
+      "q": "Kojoj književnosti pripada Ilijada?",
+      "opts": [
+        "A. babilonsko-asirskoj",
+        "B. staroegipatskoj",
+        "C. antičkoj grčkoj",
+        "D. antičkoj rimskoj"
+      ],
+      "correct": "C",
+      "exp": "Ilijada je temeljno djelo antičke grčke književnosti — epa o Trojanskom ratu napisan na starogrčkom jeziku."
+    },
+    {
+      "id": 18,
+      "q": "Kojim je jezikom napisana Ilijada?",
+      "opts": [
+        "A. latinskim",
+        "B. grčkim",
+        "C. hebrejskim",
+        "D. sumerskim"
+      ],
+      "correct": "B",
+      "exp": "Ilijada je napisana na starogrčkom (starojonski dijalekt s elementima eolskog) — poseban arhaični književni jezik antičke epike."
+    },
+    {
+      "id": 19,
+      "q": "Kako se naziva književna vrsta kojoj pripada Ilijada?",
+      "opts": [
+        "A. ep",
+        "B. poema",
+        "C. mit",
+        "D. tragedija"
+      ],
+      "correct": "A",
+      "exp": "Ilijada je ep (junački ep) — duga narativna pjesma koja opjevava herojska djela. Ep je najvažnija književna vrsta antike zajedno s tragedijom."
+    },
+    {
+      "id": 20,
+      "q": "Tko je Prijam?",
+      "opts": [
+        "A. olimpski bog",
+        "B. utemeljitelj Rima",
+        "C. trojanski kralj",
+        "D. glavni vrač"
+      ],
+      "correct": "C",
+      "exp": "Prijam je trojanski kralj — otac Hektora kojeg je ubio Ahilej. U ovom pjevanju dolazi Ahileju da otkupi sinovo tijelo. Utemeljitelj Rima je Romul (prema legendi), a Eneja.",
+      "ctx": "Ilijada, XXIV. pjevanje (ulomak)\n\nReče te pobudi žudnju u njemu, za ocem da plače,\nZa ruku starca primiv, Ahilej ga malo gurne.\nOd njih se dvojice jedan ljudomore Hektora sjeti\nI tužno plakaše savit Ahileju pred noge divnom,\nA svog sad plakaše oca Ahilej, a sad Patròkla\nPlakaše, te se plač njihov po čitavu šatoru dizo.\nA kad jauka već se Ahilej nadovolji divni\nTe mu za plakanjem želja iz údôvâ, iz srca ode,\nSa svog digne se stóca i podigne za ruku starca\nGlavu mu sijedu žaleć i sijedu njegovu bradu,\nBesjedu započne s njim i krilate prozbori r'ječi:\n\"Jadniče, doista zla si pretrpio mnogo u duši!\nKako si k ahejskim sam se usudio lađama doći\nNa oči čovjeku onom, što mnoge vàljânê sine\nTebi pòsm…"
+    },
+    {
+      "id": 21,
+      "q": "Zašto je Prijam došao Ahileju?",
+      "opts": [
+        "A. otkupiti mrtva sina",
+        "B. osvetiti se Ahileju",
+        "C. uhoditi neprijatelje",
+        "D. sklopiti mir s Ahejcima"
+      ],
+      "correct": "A",
+      "exp": "Prijam dolazi u Ahilejev šator s otkupninom da bi vratio tijelo svog sina Hektora — Ahilej ga je ubio i oskvrnio tijelo. To je jedna od najsnažnijih scena antičke književnosti.",
+      "ctx": "Ilijada, XXIV. pjevanje (ulomak)\n\nReče te pobudi žudnju u njemu, za ocem da plače,\nZa ruku starca primiv, Ahilej ga malo gurne.\nOd njih se dvojice jedan ljudomore Hektora sjeti\nI tužno plakaše savit Ahileju pred noge divnom,\nA svog sad plakaše oca Ahilej, a sad Patròkla\nPlakaše, te se plač njihov po čitavu šatoru dizo.\nA kad jauka već se Ahilej nadovolji divni\nTe mu za plakanjem želja iz údôvâ, iz srca ode,\nSa svog digne se stóca i podigne za ruku starca\nGlavu mu sijedu žaleć i sijedu njegovu bradu,\nBesjedu započne s njim i krilate prozbori r'ječi:\n\"Jadniče, doista zla si pretrpio mnogo u duši!\nKako si k ahejskim sam se usudio lađama doći\nNa oči čovjeku onom, što mnoge vàljânê sine\nTebi pòsm…"
+    },
+    {
+      "id": 22,
+      "q": "Što se saznaje o Prijamovu životu iz polaznoga teksta?",
+      "opts": [
+        "A. Izgubio je mnogo sinova.",
+        "B. Uspio je nadmudriti neprijatelja.",
+        "C. Zaboravio je svoje dužnosti.",
+        "D. Odrekao se svojega prijestolja."
+      ],
+      "correct": "A",
+      "exp": "Ahilej govori Prijamu: 'što mnoge vàljânê sine / Tebi pòsmicah već' — dakle Ahilej je poubijao mnogo Prijamovih sinova. Hektorova smrt samo je zadnji udarac.",
+      "ctx": "Ilijada, XXIV. pjevanje (ulomak)\n\nReče te pobudi žudnju u njemu, za ocem da plače,\nZa ruku starca primiv, Ahilej ga malo gurne.\nOd njih se dvojice jedan ljudomore Hektora sjeti\nI tužno plakaše savit Ahileju pred noge divnom,\nA svog sad plakaše oca Ahilej, a sad Patròkla\nPlakaše, te se plač njihov po čitavu šatoru dizo.\nA kad jauka već se Ahilej nadovolji divni\nTe mu za plakanjem želja iz údôvâ, iz srca ode,\nSa svog digne se stóca i podigne za ruku starca\nGlavu mu sijedu žaleć i sijedu njegovu bradu,\nBesjedu započne s njim i krilate prozbori r'ječi:\n\"Jadniče, doista zla si pretrpio mnogo u duši!\nKako si k ahejskim sam se usudio lađama doći\nNa oči čovjeku onom, što mnoge vàljânê sine\nTebi pòsm…"
+    },
+    {
+      "id": 23,
+      "q": "Zašto se Ahilej rasplakao?",
+      "opts": [
+        "A. Uplašio se Prijamova dolaska.",
+        "B. Žao mu je što je ubio mnogo ljudi.",
+        "C. Sjetio se oca i ubijenoga prijatelja.",
+        "D. Shvatio je da i on mora umrijeti."
+      ],
+      "correct": "C",
+      "exp": "Ahilej plakaše 'svog oca... a sad Patròkla' — Prijamov bol za sinom podsjetio ga je na vlastitog oca Peleja i na dragog prijatelja Patrokla kojeg je izgubio.",
+      "ctx": "Ilijada, XXIV. pjevanje (ulomak)\n\nReče te pobudi žudnju u njemu, za ocem da plače,\nZa ruku starca primiv, Ahilej ga malo gurne.\nOd njih se dvojice jedan ljudomore Hektora sjeti\nI tužno plakaše savit Ahileju pred noge divnom,\nA svog sad plakaše oca Ahilej, a sad Patròkla\nPlakaše, te se plač njihov po čitavu šatoru dizo.\nA kad jauka već se Ahilej nadovolji divni\nTe mu za plakanjem želja iz údôvâ, iz srca ode,\nSa svog digne se stóca i podigne za ruku starca\nGlavu mu sijedu žaleć i sijedu njegovu bradu,\nBesjedu započne s njim i krilate prozbori r'ječi:\n\"Jadniče, doista zla si pretrpio mnogo u duši!\nKako si k ahejskim sam se usudio lađama doći\nNa oči čovjeku onom, što mnoge vàljânê sine\nTebi pòsm…"
+    },
+    {
+      "id": 24,
+      "q": "Što o Prijamu misli Ahilej izgovarajući sljedeću rečenicu?\n\nU tebe je gvozdeno srce!",
+      "opts": [
+        "A. da je bešćutan",
+        "B. da je jako domišljat",
+        "C. da je izgubio razum",
+        "D. da je vrlo hrabar"
+      ],
+      "correct": "D",
+      "exp": "'Gvozdeno srce' u kontekstu znači da je Prijam nevjerojatno hrabar što se usudio sam doći u logor neprijatelja koji mu je ubio sina. Ahilej izražava divljenje.",
+      "ctx": "Ilijada, XXIV. pjevanje (ulomak)\n\nReče te pobudi žudnju u njemu, za ocem da plače,\nZa ruku starca primiv, Ahilej ga malo gurne.\nOd njih se dvojice jedan ljudomore Hektora sjeti\nI tužno plakaše savit Ahileju pred noge divnom,\nA svog sad plakaše oca Ahilej, a sad Patròkla\nPlakaše, te se plač njihov po čitavu šatoru dizo.\nA kad jauka već se Ahilej nadovolji divni\nTe mu za plakanjem želja iz údôvâ, iz srca ode,\nSa svog digne se stóca i podigne za ruku starca\nGlavu mu sijedu žaleć i sijedu njegovu bradu,\nBesjedu započne s njim i krilate prozbori r'ječi:\n\"Jadniče, doista zla si pretrpio mnogo u duši!\nKako si k ahejskim sam se usudio lađama doći\nNa oči čovjeku onom, što mnoge vàljânê sine\nTebi pòsm…"
+    },
+    {
+      "id": 25,
+      "q": "Kako se Ahilej ponaša prema Prijamu?",
+      "opts": [
+        "A. prijetvorno",
+        "B. ljubazno",
+        "C. bahato",
+        "D. suzdržano"
+      ],
+      "correct": "B",
+      "exp": "Ahilej 'za ruku starca primiv', 'Glavu mu sijedu žaleć', nudi mu stolac — ponaša se ljubazno, s poštovanjem i suosjećanjem, premda je Prijam neprijatelj.",
+      "ctx": "Ilijada, XXIV. pjevanje (ulomak)\n\nReče te pobudi žudnju u njemu, za ocem da plače,\nZa ruku starca primiv, Ahilej ga malo gurne.\nOd njih se dvojice jedan ljudomore Hektora sjeti\nI tužno plakaše savit Ahileju pred noge divnom,\nA svog sad plakaše oca Ahilej, a sad Patròkla\nPlakaše, te se plač njihov po čitavu šatoru dizo.\nA kad jauka već se Ahilej nadovolji divni\nTe mu za plakanjem želja iz údôvâ, iz srca ode,\nSa svog digne se stóca i podigne za ruku starca\nGlavu mu sijedu žaleć i sijedu njegovu bradu,\nBesjedu započne s njim i krilate prozbori r'ječi:\n\"Jadniče, doista zla si pretrpio mnogo u duši!\nKako si k ahejskim sam se usudio lađama doći\nNa oči čovjeku onom, što mnoge vàljânê sine\nTebi pòsm…"
+    },
+    {
+      "id": 26,
+      "q": "O čemu govori Ahilej u sljedećim stihovima?\nNego na stolac se deder posadi, i u srcu jade\nPustimo neka se smire, iako turobni mi smo,\nJer strahoviti plač pomòći ništa nam neće.",
+      "opts": [
+        "A. da je život pun tuge i boli",
+        "B. da on upravlja sudbinom",
+        "C. da od suza nema koristi",
+        "D. da treba biti hrabar u životu"
+      ],
+      "correct": "C",
+      "exp": "Ahilej govori da treba stati s plačem jer 'strahoviti plač pomòći ništa nam neće' — plakanje ne vraća mrtve niti mijenja sudbinu. Pragmatična mudrost epskog junaka.",
+      "ctx": "Ilijada, XXIV. pjevanje (ulomak)\n\nReče te pobudi žudnju u njemu, za ocem da plače,\nZa ruku starca primiv, Ahilej ga malo gurne.\nOd njih se dvojice jedan ljudomore Hektora sjeti\nI tužno plakaše savit Ahileju pred noge divnom,\nA svog sad plakaše oca Ahilej, a sad Patròkla\nPlakaše, te se plač njihov po čitavu šatoru dizo.\nA kad jauka već se Ahilej nadovolji divni\nTe mu za plakanjem želja iz údôvâ, iz srca ode,\nSa svog digne se stóca i podigne za ruku starca\nGlavu mu sijedu žaleć i sijedu njegovu bradu,\nBesjedu započne s njim i krilate prozbori r'ječi:\n\"Jadniče, doista zla si pretrpio mnogo u duši!\nKako si k ahejskim sam se usudio lađama doći\nNa oči čovjeku onom, što mnoge vàljânê sine\nTebi pòsm…"
+    },
+    {
+      "id": 27,
+      "q": "Koja od navedenih sintagmi sadržava stalni epitet?",
+      "opts": [
+        "A. ahejske lađe",
+        "B. divni Ahilej",
+        "C. strahoviti plač",
+        "D. čitav šator"
+      ],
+      "correct": "B",
+      "exp": "Stalni epitet (epitet ornans) je ustaljena pridjevska oznaka koja se uvijek veže uz određenu imenicu. 'Divni Ahilej' je stalni Homerov epitet — svaki put kad se Ahilej spominje, dolazi s tim epitetom.",
+      "ctx": "Ilijada, XXIV. pjevanje (ulomak)\n\nReče te pobudi žudnju u njemu, za ocem da plače,\nZa ruku starca primiv, Ahilej ga malo gurne.\nOd njih se dvojice jedan ljudomore Hektora sjeti\nI tužno plakaše savit Ahileju pred noge divnom,\nA svog sad plakaše oca Ahilej, a sad Patròkla\nPlakaše, te se plač njihov po čitavu šatoru dizo.\nA kad jauka već se Ahilej nadovolji divni\nTe mu za plakanjem želja iz údôvâ, iz srca ode,\nSa svog digne se stóca i podigne za ruku starca\nGlavu mu sijedu žaleć i sijedu njegovu bradu,\nBesjedu započne s njim i krilate prozbori r'ječi:\n\"Jadniče, doista zla si pretrpio mnogo u duši!\nKako si k ahejskim sam se usudio lađama doći\nNa oči čovjeku onom, što mnoge vàljânê sine\nTebi pòsm…"
+    },
+    {
+      "id": 28,
+      "q": "Koje od navedenih djela pripada istomu književnopovijesnomu razdoblju kao i Ilijada?",
+      "opts": [
+        "A. Antigona",
+        "B. Beowulf",
+        "C. Hamlet",
+        "D. Don Quijote"
+      ],
+      "correct": "A",
+      "exp": "Ilijada je antičko grčko djelo. Antigona (Sofoklo) je također antička grčka tragedija. Beowulf je staroengleski ep (srednji vijek), Hamlet je renesansna drama, Don Quijote je renesansni roman."
+    },
+    {
+      "id": 29,
+      "q": "Što znači izraz 'Ahilova peta'?",
+      "opts": [
+        "A. ozlijeđeno mjesto",
+        "B. određeni cilj",
+        "C. slaba strana",
+        "D. lukava podvala"
+      ],
+      "correct": "C",
+      "exp": "'Ahilova peta' je frazem koji znači slaba, ranjiva točka — jedino mjesto gdje je Ahilej bio ranjiv. Thetida ga je držala za petu dok ga je kupala u rijeci Stiks."
+    },
+    {
+      "id": 30,
+      "q": "Tko je Grga Čokolin u romanu Zlatarovo zlato?",
+      "opts": [
+        "A. ljubomorni i osvetoljubivi Pavlov brat",
+        "B. spletkar koji zlim djelima pokreće radnju",
+        "C. svećenik koji tek na kraju romana shvaća svoje pogrješke",
+        "D. povijesni lik važan u opisanim povijesnim zbivanjima"
+      ],
+      "correct": "B",
+      "exp": "Grga Čokolin je negativac, spletkar i intrigant koji pokreće radnju romana svojim zlim djelima. Tipičan je antagonist Šenoinih romana."
+    },
+    {
+      "id": 31,
+      "q": "Kojim je epskim postupkom okarakteriziran lik Grge Čokolina u polaznome tekstu?",
+      "opts": [
+        "A. pripovijedanjem",
+        "B. opisivanjem",
+        "C. unutarnjim monologom",
+        "D. dijalogom"
+      ],
+      "correct": "B",
+      "exp": "Lik Grge Čokolina okarakteriziran je opisivanjem — detaljan fizički opis (glava kao kupus, crven nos, bodljive oči) je direktna karakterizacija opisom.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 32,
+      "q": "Koji tip karakterizacije prepoznajete u prvome ulomku polaznoga teksta?",
+      "opts": [
+        "A. idealiziranje",
+        "B. karikiranje",
+        "C. psihološku produbljenost",
+        "D. povijesnu autentičnost"
+      ],
+      "correct": "B",
+      "exp": "Šenoa karikiranjem prikazuje Grgu — pretjerano naglašeni negativni fizički detalji (crven nos, tup, bodljive oči) stvaraju groteskno-komičan portret. To je karikatura.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 33,
+      "q": "Što saznajete o Grgi Čokolinu iz polaznoga teksta?",
+      "opts": [
+        "A. karakterne osobine uvjetovane podrijetlom",
+        "B. njegovo podrijetlo i ponašanje",
+        "C. njegovu prošlost i vanjštinu",
+        "D. vanjski izgled i karakterne osobine"
+      ],
+      "correct": "D",
+      "exp": "Iz teksta saznajemo Grgin vanjski izgled (fizički opis) i karakterne osobine (licemjeran, pokvaren) — dakle i fizičku i karakternu karakterizaciju.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 34,
+      "q": "Kako je raspoložen Grga Čokolin?",
+      "opts": [
+        "A. Zabrinut je.",
+        "B. Nezadovoljan je.",
+        "C. Ushićen je.",
+        "D. Uspaničen je."
+      ],
+      "correct": "B",
+      "exp": "Grga je nezadovoljan — Dora ga je odbila ('Mene i moju bokčariju odbila'), govori o tome ogorčeno. Nezadovoljstvo i gorčina prožimaju cijeli njegov govor.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 35,
+      "q": "Što o Dori misli Grga Čokolin u sljedećoj rečenici?\n\nOgrebla bi finu kožicu kao majstorica.",
+      "opts": [
+        "A. da je nespretna i razmažena",
+        "B. da želi biti financijski neovisna",
+        "C. da se želi dobro i bogato udati",
+        "D. da je lijena i ne želi raditi"
+      ],
+      "correct": "C",
+      "exp": "'Ogrebla bi finu kožicu kao majstorica' — Grga misli da Dora želi bogato, fino društvo, tj. želi se dobro udati za nekoga bogatijeg od njega. Ironična karakterizacija kroz Grgin govor.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 36,
+      "q": "Koja se značajka Grgine osobnosti otkriva u rečenicama kojima se obraća Freyovki?",
+      "opts": [
+        "A. skromnost",
+        "B. moralnost",
+        "C. pokvarenost",
+        "D. razmetljivost"
+      ],
+      "correct": "C",
+      "exp": "Grga se predstavlja kao 'dobričina' i 'pošten', ali ono što govori otkriva njegovu pravu narav — spletkarstvo i pokvarenost. Ironija između samopredstavljanja i stvarnog karaktera.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 37,
+      "q": "Koja od navedenih rečenica otkriva Grgino zanimanje?",
+      "opts": [
+        "A. ... lice olizano, nebradato, reći bi, živ cimer Grgine meštrije.",
+        "B. ... da se bojiš primaći mu puščana praha,...",
+        "C. Suhonjast trčuljak.",
+        "D. Mene i moju bokčariju odbila."
+      ],
+      "correct": "A",
+      "exp": "'Živ cimer Grgine meštrije' — 'cimer' znači natpis (ploča) iznad dućana, 'meštrija' je zanat/obrt. Dakle Grgin izgled je kao živi oglas za njegov zanat — time se otkriva da je obrtnik.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 38,
+      "q": "Koji tip razgovora vode Grga Čokolin i dvije Zagrepčanke?",
+      "opts": [
+        "A. ogovaranje",
+        "B. tješenje",
+        "C. šalu",
+        "D. svađu"
+      ],
+      "correct": "A",
+      "exp": "Grga ogovara Doru ('Zar cifrasta Dora?'), govori negativno o njoj iza leđa — to je tipično ogovaranje. Žene ga potiču uzgrednim pitanjima.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 39,
+      "q": "Što kramarica i Freyovka izriču svojim upitnim rečenicama?\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.",
+      "opts": [
+        "A. žaljenje",
+        "B. suosjećanje",
+        "C. zluradost",
+        "D. ogorčenost"
+      ],
+      "correct": "C",
+      "exp": "'Zapenta' i 'zapita zajedljivo' — obje žene reagiraju zlurado, s podsmijehom. 'Zajedljivo' direktno govori o tome. Ne žale Doru nego se zlurado raduju vijesti.",
+      "ctx": "August Šenoa, Zlatarovo zlato (ulomak)\n\n(...) Čudan svat taj Grga Čokolin! Suhonjast trčuljak. Glava mu debela, obla kao glava od kupusa, obrve guste, nad nosom svedene, oči male, crne, bodljive kad ih nije vinska magla zastirala; nos tup, širok, uzvinut, a crven da se bojiš primaći mu puščana praha, lice olizano, nebradato, reći bi, živ cimer Grgine meštrije. (...)\n\n– Je l' moguće? – zapenta kramarica.\n– Zar cifrasta Dora? – zapita zajedljivo Freyovka.\n– Da, Dora, Dora, Krupićeva Dora. Mene i moju bokčariju odbila. Premlada je, reče. Dakako, gospodstva joj se hoće. Ogrebla bi finu kožicu kao majstorica. Sad? – Sad je dobro, sad se dobavlja gospoštine, sad se bojim da će skoro i prestara bit…"
+    },
+    {
+      "id": 40,
+      "q": "Na koga ili na što se odnosi naslovna sintagma 'zlatarovo zlato'?",
+      "opts": [
+        "A. na Zagreb",
+        "B. na slobodu",
+        "C. na bana",
+        "D. na Doru"
+      ],
+      "correct": "D",
+      "exp": "'Zlatarovo zlato' je metafora za Doru — kćer zlatara Krupića, ona je pravo blago (zlato). Naslov upućuje na nju kao na dragocjenu osobu u romanu."
+    },
+    {
+      "id": 41,
+      "q": "U kojem književnopovijesnome razdoblju stvara August Šenoa?",
+      "opts": [
+        "A. u prosvjetiteljstvu",
+        "B. u hrvatskome narodnome preporodu",
+        "C. u protorealizmu",
+        "D. u realizmu"
+      ],
+      "correct": "C",
+      "exp": "August Šenoa (1838.–1881.) stvarao je u protorealizmu — prijelaznom razdoblju između romantizma i realizma u hrvatskoj književnosti. Šenoa je utemeljio moderan hrvatski roman."
+    },
+    {
+      "id": 42,
+      "q": "Koja je velika zasluga Augusta Šenoe za hrvatsku kulturu?",
+      "opts": [
+        "A. Ujednačio je hrvatsku grafiju.",
+        "B. Odgojio je hrvatsku čitateljsku publiku.",
+        "C. Pokrenuo je prve hrvatske književne novine.",
+        "D. Bio je veliki mecena hrvatskih pisaca."
+      ],
+      "correct": "B",
+      "exp": "Šenoa je 'odgojio' hrvatsku čitateljsku publiku — popularnim romanima privukao je čitatelje i stvorio temelje modernog hrvatskog književnog čitalaštva. Uređivao je Vijenac."
+    },
+    {
+      "id": 43,
+      "q": "Kako se u romanu Zlatarovo zlato ostvaruje Šenoino načelo da roman mora imati moralno-odgojnu i nacionalnu ulogu?",
+      "opts": [
+        "A. Likovi intriganata uvijek su stranci koji žele zavaditi Zagrepčane i učvrstiti stranu vlast.",
+        "B. Svi su likovi u romanu simboli važnih povijesnih ličnosti hrvatske prošlosti.",
+        "C. Šenoa upoznaje čitatelje sa zbivanjima iz hrvatske povijesti privukavši ih ljubavnom pričom.",
+        "D. U romanu je primarna ljubavna priča, a povijesna tek kulisa kojom se kreće dvoje zaljubljenih."
+      ],
+      "correct": "C",
+      "exp": "Šenoa je koristio ljubavnu priču kao okvir za prikaz povijesnih zbivanja i odgoj čitatelja u duhu narodnih i moralnih vrijednosti. Forma ljubavnog romana privlačila je čitatelje, a sadržaj ih je educirao."
+    },
+    {
+      "id": 44,
+      "q": "Kojemu književnomu rodu pripadaju Gospoda Glembajevi?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "C",
+      "exp": "Gospoda Glembajevi su drama — scenski tekst za izvođenje na pozornici, s dijalozima, didaskalijama i dramskim sukobima.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 45,
+      "q": "U kakvome je raspoloženju Glembay u polaznome tekstu?",
+      "opts": [
+        "A. Grize ga savjest.",
+        "B. Uznemiren je.",
+        "C. Ushićen je.",
+        "D. Ravnodušan je."
+      ],
+      "correct": "B",
+      "exp": "Glembay je uznemiren — napada Leonea, optužuje ga, govori uzbujenim tonom ('Biti arogantan spram svoga oca, to je naročito otmjeno!'). Didaskalija opisuje 'grmljavinu i munje' — paralelno s Glembayevim uzbuđenjem.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 46,
+      "q": "Kakav se odnos oca i sina iščitava u polaznome tekstu?",
+      "opts": [
+        "A. prijateljski odnos",
+        "B. poslovni odnos",
+        "C. odnos nerazumijevanja",
+        "D. suparnički odnos"
+      ],
+      "correct": "C",
+      "exp": "Otac i sin govore jedni uz drugoga, ali se ne razumiju — Glembay optužuje, Leone se brani, obojica imaju različite poglede na istu stvar. Temeljni je to odnos nerazumijevanja.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 47,
+      "q": "Što Glembay poručuje sinu u sljedećoj rečenici?\nTo je daniellijevski grčki način: gledati u oči i misliti svoje!",
+      "opts": [
+        "A. Leone je kao njegova majka.",
+        "B. Glembaj je dobro odgojio sina.",
+        "C. Boravak u inozemstvu učinio je svoje.",
+        "D. Leone ne razumije očevu ljubav."
+      ],
+      "correct": "A",
+      "exp": "'Daniellijevski' se odnosi na Leonovu majku (koja je bila Danielli po podrijetlu — Grkinja). Glembay govori da Leone ima karakter majke — inostran, hladnokrvan, arogan prema ocu.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 48,
+      "q": "Kojim tonom Glembay izriče sljedeću rečenicu?\nBiti arogantan spram svoga oca, to je naročito otmjeno!",
+      "opts": [
+        "A. sentimentalnim",
+        "B. ironičnim",
+        "C. patetičnim",
+        "D. ushićenim"
+      ],
+      "correct": "B",
+      "exp": "Rečenica je ironična — Glembay ne misli da je arognacija zaista 'otmjena', nego suprotno, sarkazam i ironija su alati kojim napada Leonea.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 49,
+      "q": "Kojim su leksičko-semantičkim odnosom predstavljeni Glembajevi u sljedećim rečenicama?\n… mi Glembajevi nismo boemi! Mi smo solidni konzervativni građani...",
+      "opts": [
+        "A. homonimijskim",
+        "B. antonimijskim",
+        "C. sinonimijskim"
+      ],
+      "correct": "B",
+      "exp": "'Boemi' i 'solidni konzervativni građani' su antonimi u Glembayevoj argumentaciji — on suprotstavlja dva načina života kao međusobno isključive. Antonimija je temelj retoričke figure.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 50,
+      "q": "Koja je stilska figura uporabljena u sljedećoj rečenici?\n\nPokazuješ mi na uljudan način vrata.",
+      "opts": [
+        "A. personifikacija",
+        "B. eufemizam",
+        "C. hiperbola",
+        "D. simbol"
+      ],
+      "correct": "B",
+      "exp": "'Pokazati vrata' je grubi izraz za izbacivanje — 'na uljudan način' ublažava brutalnost poruke. Eufemizam je zamjena neprimjerenog izraza blažim.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 51,
+      "q": "Što je Leone izjavio pred Silberbrandtom i pred Fabriczyjem o očevoj supruzi?",
+      "opts": [
+        "A. da je kriva za propast banke",
+        "B. da je odgovorna za smrt Leonove majke",
+        "C. da je upletena u nečasne novčane poslove",
+        "D. da ima ljubavnika"
+      ],
+      "correct": "D",
+      "exp": "Glembay pita Leonea zašto se 'na onaj način' izrazio pred Silberbrandtom i Fabriczyjem o supruzi — iz konteksta cjeline drame znamo da je Leone optužio barunicu Castelli da ima ljubavnika.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 52,
+      "q": "Čime se bavi Leone Glembay?",
+      "opts": [
+        "A. slikarstvom",
+        "B. glazbom",
+        "C. književnošću",
+        "D. novinarstvom"
+      ],
+      "correct": "A",
+      "exp": "Leone Glembay je slikar — likovni umjetnik koji se vratio iz Europe. Njegova umjetnička narav suprotstavlja se pragmatičnoj, buržoaskoj naravi oca Ignjata."
+    },
+    {
+      "id": 53,
+      "q": "Koji se Krležin lik također vraća kući nakon duga izbivanja?",
+      "opts": [
+        "A. grof Maksimilijan Axelrode",
+        "B. student Vidović",
+        "C. Kyriales",
+        "D. Filip Latinovicz"
+      ],
+      "correct": "D",
+      "exp": "Filip Latinovicz (roman 'Povratak Filipa Latinovicza', 1932.) je Krležin lik koji se vraća u Panoniju nakon dugog boravka u Europi — paralela s Leoneovim povratkom."
+    },
+    {
+      "id": 54,
+      "q": "Kada nastaje djelo Gospoda Glembajevi?",
+      "opts": [
+        "A. početkom 19. st.",
+        "B. krajem 19. st.",
+        "C. u prvoj pol. 20. st.",
+        "D. krajem 20. st."
+      ],
+      "correct": "C",
+      "exp": "Gospoda Glembajevi nastaju 1929. godine — u prvoj polovici 20. st. To je međuratno razdoblje, doba Krležine najplodnije dramatike."
+    },
+    {
+      "id": 55,
+      "q": "Koji naslovi s Gospodom Glembajevima čine trilogiju?",
+      "opts": [
+        "A. Vučjak i Golgota",
+        "B. Kraljevo i Legende",
+        "C. U agoniji i Leda",
+        "D. Aretej i Michelangelo Buonarroti"
+      ],
+      "correct": "C",
+      "exp": "Glembajevski dramski ciklus (trilogija): Gospoda Glembajevi, U agoniji i Leda. Sve tri drame tematiziraju propast buržoaske obitelji i moralne krize međuratnog doba."
+    },
+    {
+      "id": 56,
+      "q": "Kako se naziva dio polaznoga teksta otisnut kosim slovima?",
+      "opts": [
+        "A. prolog",
+        "B. epilog",
+        "C. didaskalija",
+        "D. replika"
+      ],
+      "correct": "C",
+      "exp": "Didaskalija (scenska uputa) je dio dramskog teksta pisan kosim slovima: 'Leone raste u nemiru i vidljivo se jedva svladava'. Nije namijenjena izgovaranju nego redatelju i glumcima.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 57,
+      "q": "U kojem je padežu podcrtana riječ u sljedećoj rečenici?\n\nBiti arogantan spram svoga oca...",
+      "opts": [
+        "A. u genitivu",
+        "B. u dativu",
+        "C. u akuzativu",
+        "D. u lokativu"
+      ],
+      "correct": "A",
+      "exp": "'Oca' je genitiv imenice 'otac'. Prijedlog 'spram' dolazi uz genitiv: 'spram oca'. Pitanje: spram koga? → genitiv.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 58,
+      "q": "Kako glasi genitiv sintagme 'grčki način'?",
+      "opts": [
+        "A. grčka načina",
+        "B. grčkoga načina",
+        "C. grčkijega načina",
+        "D. grčki načina"
+      ],
+      "correct": "B",
+      "exp": "Genitiv pridjeva 'grčki' u određenom obliku je 'grčkoga', genitiv imenice 'način' je 'načina'. Dakle: 'grčkoga načina'. Oblik 'grčkijega' nije standardan."
+    },
+    {
+      "id": 59,
+      "q": "Kojoj vrsti posuđenica pripada riječ 'džentlmenski'?",
+      "opts": [
+        "A. anglizmima",
+        "B. germanizmima",
+        "C. hungarizmima",
+        "D. turcizmima"
+      ],
+      "correct": "A",
+      "exp": "'Džentlmenski' dolazi od engleske riječi 'gentleman' — anglizam je. Germanizmi dolaze iz njemačkog, hungarizmi iz mađarskog, turcizmi iz turskog."
+    },
+    {
+      "id": 60,
+      "q": "Koliko ima surečenica u sljedećoj rečenici?\nJa nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal!",
+      "opts": [
+        "A. dvije",
+        "B. tri",
+        "C. četiri",
+        "D. pet"
+      ],
+      "correct": "B",
+      "exp": "Rečenica ima tri surečenice odvojene zarezima: (1) 'Ja nisam pravnik', (2) 'ja ne mislim juridički', (3) 'ja nisam ni burzovni senzal'. Svaka surečenica ima vlastiti predikat.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 61,
+      "q": "Kako bi glasio antonimski parnjak podcrtanoga pridjeva u sljedećoj sintagmi?\n\nmutna verzija",
+      "opts": [
+        "A. tamna verzija",
+        "B. svijetla verzija",
+        "C. bistra verzija",
+        "D. nejasna verzija"
+      ],
+      "correct": "C",
+      "exp": "Antonim pridjeva 'mutan' (nejasan, zamućen) je 'bistar' (jasan, proziran). 'Bistra verzija' znači jasna, nedvosmislena verzija — suprotnost 'mutnoj'.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 62,
+      "q": "Koji je glagolski oblik podcrtan u sljedećoj rečenici?\n\nTi bi dakle želio da ja odem?",
+      "opts": [
+        "A. kondicional prvi",
+        "B. kondicional drugi",
+        "C. futur prvi",
+        "D. futur drugi"
+      ],
+      "correct": "A",
+      "exp": "'Bi željio' je kondicional prvi (kondicionalis prezenta) — tvori se od kratkog oblika kondicionala pomoćnog glagola 'biti' (bi) + glagolski pridjev radni (željio).",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 63,
+      "q": "Koja se glasovna promjena dogodila u riječi 'supruzi' (supruga – supruzi)?",
+      "opts": [
+        "A. palatalizacija",
+        "B. sibilarizacija",
+        "C. jotacija",
+        "D. nepostojano a"
+      ],
+      "correct": "B",
+      "exp": "'Supruga' → 'supruzi': g → z pred nastavkom -i. To je sibilarizacija (G, K, H ispred -i prelaze u Z, C, S). Palatalizacija je G → Ž ispred -e u DL, sibilarizacija je G → Z ispred -i."
+    },
+    {
+      "id": 64,
+      "q": "Kojim bi se sinonimom mogla zamijeniti podcrtana riječ u sljedećoj sintagmi?\n\nfamilijarnu čistoću",
+      "opts": [
+        "A. očinsku",
+        "B. prijateljsku",
+        "C. društvenu",
+        "D. obiteljsku"
+      ],
+      "correct": "D",
+      "exp": "'Familijaran' dolazi od lat. 'familia' (obitelj) — znači 'obiteljski'. Sinonim je 'obiteljska čistoća'. 'Familijaran' u svakodnevnom govoru može značiti i 'prijatan, neformalan', ali ovdje je kontekst obitelji."
+    },
+    {
+      "id": 65,
+      "q": "U kojem je padežu podcrtana riječ u sljedećoj rečenici?\nŠto je tebi dalo pravo da se na onaj – ne ću da kažem kakav – način izraziš pred Silberbrandtom i pred Fabriczyjem o mojoj supruzi?",
+      "opts": [
+        "A. u genitivu",
+        "B. u dativu",
+        "C. u akuzativu",
+        "D. u instrumentalu"
+      ],
+      "correct": "D",
+      "exp": "'Pred Silberbrandtom' — prijedlog 'pred' s instrumentalom: pred kim/čim? Instrumental je. Genitiv bi bio 'od', dativ 'prema', akuzativ 'u'.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi (ulomak)\n\n(...) Grmljavina polagano nestaje. Munje se odražavaju u fosfornome osvjetljenju sobe, a detonacije zaostaju polagano. Vjetar i šum kiše. Leone raste u nemiru i vidljivo se jedva svladava.\n\nGLEMBAY: Ti bi dakle želio da ja odem? To znači: pokazuješ mi na uljudan način vrata!\nLEONE: Ja ti ne pokazujem na uljudan način vrata, ja te samo molim! Ja mislim da bi najbolje bilo da se rastanemo u miru. Ja nisam pravnik, ja ne mislim juridički, ja nisam ni burzovni senzal! Što bismo dakle nas dvojica mogli da izmešetarimo?\nGLEMBAY: Biti arogantan spram svoga oca, to je naročito otmjeno! To je grandezza! Da! To je daniellijevski grčki način: gledati u oči …"
+    },
+    {
+      "id": 67,
+      "q": "Koji je oblik ispravan u rečenici o Humu: '... Smješten je u ________ općini 14 kilometara udaljen od Buzeta'?",
+      "opts": [
+        "A. buzetskoj",
+        "B. Buzetskoj"
+      ],
+      "correct": "A",
+      "exp": "Pridjevi izvedeni od vlastitih imena pišu se malim slovom: 'buzetska općina', 'zagrebački' gradon. Malo slovo je pravilo za etničke i mjesne pridjeve."
+    },
+    {
+      "id": 68,
+      "q": "Koji je oblik ispravan: '... dolazi tunelom Učka do Roča i onda ________ uskom cestom'?",
+      "opts": [
+        "A. ljevo",
+        "B. lijevo"
+      ],
+      "correct": "B",
+      "exp": "Standardni ijekavski oblik je 'lijevo' (ne 'ljevo'). 'Ljevo' je nestandardni ekavski ili dijalektalni oblik."
+    },
+    {
+      "id": 69,
+      "q": "Koji je oblik ispravan: 'Roč i Hum kao središta ________ i hrvatske pismenosti'?",
+      "opts": [
+        "A. glagoljaštva",
+        "B. Glagoljaštva"
+      ],
+      "correct": "A",
+      "exp": "Opće imenice i pojmovi koji nisu vlastita imena pišu se malim slovom. 'Glagoljaštvo' je opći pojam, ne vlastito ime, pa se piše malo."
+    },
+    {
+      "id": 70,
+      "q": "Koji je oblik ispravan: 'Roč i Hum kao središta glagoljaštva i hrvatske ________ pismenosti'?",
+      "opts": [
+        "A. srednjo vjekovne",
+        "B. srednjovjekovne"
+      ],
+      "correct": "B",
+      "exp": "Složeni pridjevi pišu se spojeno: 'srednjovjekovni' (ne 'srednjo vjekovni'). Spojeno pisanje je pravilo za složene pridjeve koji se ne pišu s crticom."
+    },
+    {
+      "id": 71,
+      "q": "Koji je oblik ispravan: 'vuku ________ iz 9. stoljeća'?",
+      "opts": [
+        "A. korijene",
+        "B. korjene"
+      ],
+      "correct": "A",
+      "exp": "Standardni ijekavski oblik je 'korijene' (korijenov — ijekavski diftong 'ije'). Oblik 'korjene' je nestandardan."
+    },
+    {
+      "id": 72,
+      "q": "Koji je oblik ispravan: 'da šire bogoslužje među ________ Slavenima'?",
+      "opts": [
+        "A. moravskim",
+        "B. Moravskim"
+      ],
+      "correct": "A",
+      "exp": "Pridjevi izvedeni od vlastitih imena koji se koriste opisno pišu se malim slovom: 'moravski Slaveni'. Veliko slovo bi se pisalo samo ako je to dio vlastitog naziva (npr. 'Moravska biskupija')."
+    },
+    {
+      "id": 73,
+      "q": "Koji je oblik ispravan: 'Prevodeći ________ Ćiril je sastavio glagoljicu'?",
+      "opts": [
+        "A. Sveto Pismo",
+        "B. Sveto pismo"
+      ],
+      "correct": "A",
+      "exp": "Nazivi svetih knjiga velikih religija pišu se velikim slovom: 'Sveto Pismo' (Biblija). Isto vrijedi za 'Kuran', 'Tora'. Ovo je iznimka od pravila da se opisni nazivi pišu malim slovom."
+    },
+    {
+      "id": 74,
+      "q": "Koji je oblik ispravan: 'Aleja glagoljaša predstavlja ________ dugačko sedam kilometara'?",
+      "opts": [
+        "A. spomen obilježje",
+        "B. spomen-obilježje"
+      ],
+      "correct": "B",
+      "exp": "Složenice s prvim dijelom 'spomen-' pišu se s crticom: 'spomen-obilježje', 'spomen-ploča', 'spomen-park'. Ovo je utvrđeno pravopisno pravilo."
+    },
+    {
+      "id": 75,
+      "q": "Koji je oblik ispravan: '________ s dva metra visokim spomenikom Stup Čakavskoga sabora'?",
+      "opts": [
+        "A. Počinje",
+        "B. Poćinje"
+      ],
+      "correct": "A",
+      "exp": "Ispravni oblik je 'počinje' — glagol 'počinjati'. Oblik 'poćinje' ne postoji u standardnom hrvatskom — 'ć' bi bile netočan fonem."
+    },
+    {
+      "id": 76,
+      "q": "Koji je oblik ispravan: '...Hum se našao u Guinnesseovoj knjizi ________ rekorda'?",
+      "opts": [
+        "A. svjetskih",
+        "B. svijetskih"
+      ],
+      "correct": "A",
+      "exp": "'Svjetskih' dolazi od 'svijet' (the world) — 'svjetski rekordi' su rekordi u cijelome svijetu. 'Svijetlih' bi dolazilo od 'svjetlost'. 'Svijetskih' ne postoji kao standardni oblik."
+    }
+  ]
+}

@@ -1,0 +1,974 @@
+{
+  "examKey": "2010_ljeto_B",
+  "label": "Ljetni rok — Osnovna razina (B)",
+  "total": 77,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu književnomu rodu pripada prvi tekst?",
+      "opts": [
+        "A. epici",
+        "B. lirici",
+        "C. drami"
+      ],
+      "correct": "B",
+      "exp": "Sonet je lirska pjesma — kratka, subjektivna, s rimom. Lirski rod.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 2,
+      "q": "Kako se naziva oblik u kojem je napisana pjesma?",
+      "opts": [
+        "A. gazela",
+        "B. glosa",
+        "C. sonet",
+        "D. balada"
+      ],
+      "correct": "C",
+      "exp": "Pjesma ima 14 stihova raspoređenih u dva katrena i dvije tercine = sonet.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 3,
+      "q": "Kakva je rima u pjesmi?",
+      "opts": [
+        "A. abab cdcd eff egg",
+        "B. abab cdcd efe ege",
+        "C. abba abba cdc eed",
+        "D. abba abba cdd dee"
+      ],
+      "correct": "C",
+      "exp": "Katrenima abba abba (obgrljena rima), tercinama cdc eed = petrarkin sonet, tipična shema.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 4,
+      "q": "Kakvi su stihovi u posljednjoj strofi?",
+      "opts": [
+        "A. jedanaesterac, jedanaesterac, dvanaesterac",
+        "B. dvanaesterac, jedanaesterac, dvanaesterac",
+        "C. dvanaesterac, jedanaesterac, jedanaesterac",
+        "D. jedanaesterac, dvanaesterac, jedanaesterac"
+      ],
+      "correct": "A",
+      "exp": "'Pa, uzdignut nad zipkom i nad grobom' = 11 sl.; 'Da u tebi dišem i da živim s tobom' = 11 sl.; 'I onda, kad me više biti neće' = 12 sl.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 5,
+      "q": "Kakva je pjesma po tematici?",
+      "opts": [
+        "A. pejzažna",
+        "B. socijalna",
+        "C. misaona",
+        "D. domoljubna"
+      ],
+      "correct": "D",
+      "exp": "Pjesma je posveta i ljubavni iskaz prema hrvatskom jeziku = domoljubna tematika.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 6,
+      "q": "Koje osjetilne poticaje pjesnik spaja u sljedećem stihu?\n'Će ko žice, mirisati ko cvijeće'",
+      "opts": [
+        "A. olfaktivne i auditivne",
+        "B. gustativne i auditivne",
+        "C. vizualne i gustativne",
+        "D. vizualne i olfaktivne"
+      ],
+      "correct": "A",
+      "exp": "'Žice' = zvuk (auditivni); 'mirisati ko cvijeće' = miris (olfaktivni). Sinestezija zvuka i mirisa.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 7,
+      "q": "Koja je glavna poruka prvih dvaju stihova?",
+      "opts": [
+        "A. Pjesnik je doživio mnogo lijepih godina.",
+        "B. Hrvatski je lijep jezik.",
+        "C. Pjesnik se cijeli život izražavao hrvatskim jezikom.",
+        "D. Hrvatski je jezik davno nastao."
+      ],
+      "correct": "C",
+      "exp": "'U tebi sam vijek svoj proživiо / Drevni i lijepi jezice Hrvata' = cijeli vijek (život) proživi u/sa hrvatskim jezikom.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 8,
+      "q": "Pjesnik navodi da je podrijetlom",
+      "opts": [
+        "A. iz Slavonije",
+        "B. iz Like",
+        "C. iz Dalmacije",
+        "D. iz Zagorja"
+      ],
+      "correct": "C",
+      "exp": "'Čen na morskom pragu tvojih vrata' — morski prag = Dalmacija. Vladimir Nazor je iz Postira na Braču (Dalmacija).",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 9,
+      "q": "Kakav je odnos pjesnika prema vlastitu služenju hrvatskim jezikom?",
+      "opts": [
+        "A. Prirodno ga je usvojio rođenjem.",
+        "B. Naporno je njime ovladavao.",
+        "C. Naučio ga je u školi.",
+        "D. I dalje se trudi usavršavati u njemu."
+      ],
+      "correct": "B",
+      "exp": "'Polako sam te, uz trud, usvojiо' — 'uz trud' = naporno, s naporom je ovladavao jezikom.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 10,
+      "q": "U kojoj strofi pjesnik govori da je pomoću jezika puno naučio?",
+      "opts": [
+        "A. u prvoj strofi",
+        "B. u drugoj strofi",
+        "C. u trećoj strofi",
+        "D. u četvrtoj strofi"
+      ],
+      "correct": "B",
+      "exp": "'Povede ti me i gdje nisam bio. / Na vrhu gore i na kraju gata' — drugi katren (druga strofa): jezik ga odveo posvuda, naučio ga.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 11,
+      "q": "Zašto je pjesnik želio biti dobar pjesnik?",
+      "opts": [
+        "A. Zato da dobro zvuči poput glazbala.",
+        "B. Da pokaže kako ima bogat rječnik.",
+        "C. Da pjeva o temama od rođenja do smrti.",
+        "D. Da u svojim stihovima živi zauvijek."
+      ],
+      "correct": "D",
+      "exp": "'Pa, uzdignut nad zipkom i nad grobom, / Da u tebi dišem i da živim s tobom, / I onda, kad me više biti neće' = želi živjeti zauvijek u jeziku/pjesmama.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 12,
+      "q": "Koji Cesarićev stih iz Pjesme mrtvog pjesnika smislom odgovara sadržaju posljednje strofe u prvome tekstu?",
+      "opts": [
+        "A. Pred smrću ja se skrih (koliko mogoh) / u stihove",
+        "B. Moj prijatelju mene više nema.",
+        "C. Još koji časak htio bih da živim / u grudima ti",
+        "D. Sav život moj u tvojoj sad je ruci."
+      ],
+      "correct": "A",
+      "exp": "'Pa, uzdignut nad zipkom i nad grobom, / I onda, kad me više biti neće' = i poslije smrti živjeti u stihovima. Cesarić: 'Pred smrću ja se skrih u stihove' — ista ideja besmrtnosti kroz poeziju.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 13,
+      "q": "U kakvome su značenjskome odnosu riječi zipka i grob u tekstu?",
+      "opts": [
+        "A. u homonimnome",
+        "B. u sinonimnome",
+        "C. u antonimnome",
+        "D. u hiponimnome"
+      ],
+      "correct": "C",
+      "exp": "'Zipka' (rođenje/početak života) i 'grob' (smrt/kraj) su antonimi — suprotnog su značenja.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 14,
+      "q": "Kako bi u stilski neobilježenom izrazu glasio posljednji stih?",
+      "opts": [
+        "A. I onda, kad me više neće biti.",
+        "B. I onda, kad me više ne bude.",
+        "C. I onda, kad više ne budem."
+      ],
+      "correct": "A",
+      "exp": "'I onda, kad me više biti neće' = inverzija/stilska obilježenost. Stilski neutralno: 'I onda, kad me više neće biti.'",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 15,
+      "q": "Što znači riječ drevni?",
+      "opts": [
+        "A. voljeni",
+        "B. davni",
+        "C. jedinstveni",
+        "D. izražajni"
+      ],
+      "correct": "B",
+      "exp": "'Drevni' = star, davni, starodavan. 'Drevni i lijepi jezice Hrvata' = davni/stari jezik.",
+      "ctx": "Vladimir Nazor, sonet o hrvatskom jeziku\n\nU tebi sam vijek svoj proživiо,\nDrevni i lijepi jezice Hrvata;\nČen na morskom pragu tvojih vrata,\nPolako sam te, uz trud, usvojiо.\n\nPovede ti me i gdje nisam bio.\nNa vrhu gore i na kraju gata,\nU kolibici, u kući od zlata\nSvuda je meni glas tvoj žuborio.\n\nHtio sam biti glazbalo na kome\nĆe ko žice, mirisati ko cvijeće —\nRojevi riječi u govoru tvome.\n\nPa, uzdignut nad zipkom i nad grobom,\nDa u tebi dišem i da živim s tobom,\nI onda, kad me više biti neće\n\nVladimir Nazor"
+    },
+    {
+      "id": 16,
+      "q": "Kojoj književnoj vrsti pripada drugi tekst?",
+      "opts": [
+        "A. romanu",
+        "B. pjesmi",
+        "C. eseju",
+        "D. poemi"
+      ],
+      "correct": "C",
+      "exp": "Tekst je stručni/esejistički proznii odlomak iz književnopovijesne knjige — esej/stručni tekst.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 17,
+      "q": "Koju su kulturu zatekli Hrvati nakon dolaska na sunčane obale Sredozemlja?",
+      "opts": [
+        "A. grčku",
+        "B. rimsku",
+        "C. talijansku",
+        "D. tursku"
+      ],
+      "correct": "B",
+      "exp": "'Susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom' — latinskomanskom = rimska/latinska kultura.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 18,
+      "q": "Kako se još naziva hrvatska glagoljica?",
+      "opts": [
+        "A. prava",
+        "B. kurzivna",
+        "C. obla",
+        "D. uglata"
+      ],
+      "correct": "C",
+      "exp": "Hrvatska glagoljica = 'obla' ili 'okrugla' glagoljica (za razliku od bugarske uglate). 'Obla' je naziv za specifičan hrvatski oblik.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 19,
+      "q": "Tko su slavenski apostoli?",
+      "opts": [
+        "A. Držiha i Dobrovit",
+        "B. Rastislav i Mihajlo",
+        "C. Ćiril i Metod",
+        "D. Crnorizac Hrabar i pop Dukljanin"
+      ],
+      "correct": "C",
+      "exp": "Slavenski apostoli = Ćiril (Konstantin) i Metod — braća koja su stvorili glagoljicu i preveli Bibliju na staroslavenski.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 20,
+      "q": "Koji spomenik autor naziva 'dragocjenim kamenom'?",
+      "opts": [
+        "A. Trpimirov natpis",
+        "B. Zapis popa Martinca",
+        "C. Vinodolski zakon",
+        "D. Bašćansku ploču"
+      ],
+      "correct": "D",
+      "exp": "'Dragocjeni kamen' = Bašćanska ploča (kraj 11. st., Jurandvor, Krk) — prvi tekst na hrvatskom jeziku uklesan u kamen.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 21,
+      "q": "Kada je 'prvo pisano svjedočanstvo jezika (...) uklesano u jedan dragocjeni kamen'?",
+      "opts": [
+        "A. sredinom 9. stoljeća",
+        "B. potkraj 11. stoljeća",
+        "C. sredinom 15. stoljeća",
+        "D. početkom 16. stoljeća"
+      ],
+      "correct": "B",
+      "exp": "Bašćanska ploča nastala je oko 1100. g. = potkraj 11. / početak 12. stoljeća. Točan odgovor: potkraj 11. stoljeća.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 22,
+      "q": "Što je zapisano na 'dragocjenome kamenu' o kojem govori autor teksta?",
+      "opts": [
+        "A. opis hrvatskoga poraza na Krbavskome polju",
+        "B. uredba odnosa knezova i građana",
+        "C. darovnica benediktincima u Jurandvoru",
+        "D. godine kraljevske vladavine u Dalmaciji"
+      ],
+      "correct": "C",
+      "exp": "Bašćanska ploča = darovnica kralja Zvonimira benediktinskom samostanu u Jurandvoru na Krku.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 23,
+      "q": "Koji se hrvatski kralj spominje na 'dragocjenome kamenu' o kojem govori autor teksta?",
+      "opts": [
+        "A. Zvonimir",
+        "B. Tomislav",
+        "C. Petar Krešimir",
+        "D. Branimir"
+      ],
+      "correct": "A",
+      "exp": "Na Bašćanskoj ploči spominje se kralj Zvonimir koji je darovao zemlju benediktincima.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 24,
+      "q": "Što se saznaje o razvoju hrvatskoga jezika iz rečenice '... ali i o prirodnom rastu hrvatskoga jezika koji bi se, u uvjetima trajnije domaće vlasti, ... mnogo brže i sustavnije konstruirao u književni izraz'?",
+      "opts": [
+        "A. Hrvatski je jezik do 18. st. bio zaboravljen i nije se na njemu pisalo.",
+        "B. Hrvati stoljećima nemaju hrvatsku vlast pa se jezik i književnost sporije razvijaju.",
+        "C. Prirodni rast hrvatskoga jezika prekinut je dolaskom slavenskih apostola.",
+        "D. Dolaskom na nove prostore Hrvati su preuzeli jezik latinskoromanskih starosjedilaca."
+      ],
+      "correct": "B",
+      "exp": "'u uvjetima trajnije domaće vlasti... mnogo brže... konstruirao' = bez domaće vlasti razvoj je sporiji. Tuđinska vlast usporava razvoj jezika.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 25,
+      "q": "Koji svjetski epovi nastaju u istome književnopovijesnom razdoblju kao i 'dragocjeni kamen' o kojem govori autor teksta?",
+      "opts": [
+        "A. Ilijada i Odiseja",
+        "B. Gilgameš i Mahabharata",
+        "C. Bijesni Orlando i Oslobođeni Jeruzalem",
+        "D. Beowulf i Pjesma o Rolandu"
+      ],
+      "correct": "D",
+      "exp": "Bašćanska ploča = kraj 11. st. Beowulf i Pjesma o Rolandu su medievalni epovi (8.–11. st.) — isto književnopovijesno razdoblje.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 26,
+      "q": "Kako se zove prva hrvatska tiskana knjiga?",
+      "opts": [
+        "A. Misal po zakonu rimskoga dvora",
+        "B. Šibenska molitva",
+        "C. Lucidar",
+        "D. Biblija"
+      ],
+      "correct": "A",
+      "exp": "Misal po zakonu rimskoga dvora (1483.) = prva hrvatska tiskana knjiga, glagoljicom. Šibenska molitva je stariji rukopis, ali nije tiskana knjiga.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 27,
+      "q": "Koliko je pisama u uporabi u hrvatskoj srednjovjekovnoj književnosti?",
+      "opts": [
+        "A. jedno",
+        "B. dva",
+        "C. tri",
+        "D. nijedno"
+      ],
+      "correct": "C",
+      "exp": "Tri pisma: glagoljica, ćirilica (bosančica) i latinica — sva tri bila su u uporabi u hrvatskoj srednjovjekovnoj književnosti.",
+      "ctx": "Ivo Frangeš, Povijest hrvatske književnosti (ulomak o glagoljici)\n\nSpustivši se s dalekih zakarpatskih prostora na sunčane obale Sredozemlja, susreli su se Hrvati s velikom i bujnom latinskoromanskom kulturom. Pokršteni, oni su bez velikih napora, zahvaljujući djelu slavenskih apostola, s lakoćom prihvatili i jezik i pismo utemeljitelja slavenske pismenosti: jezik tada još neobično blizak govorima koji su se u Hrvatskoj upotrebljavali, pismo toliko prisno da se u kasnim stoljećima jedan njegov oblik počeo nazivati hrvatskom glagoljicom. Ona se, uza sve udarce i nepovoljne okolnosti, održala čak do u naše dane.\n\nPa i prvo pisano svjedočanstvo jezika koji više nije starocrkvenoslavenski, nego …"
+    },
+    {
+      "id": 28,
+      "q": "Tko se krije iza naslova djela Kuća lutaka?",
+      "opts": [
+        "A. lica koja su prave lutke",
+        "B. lica koja simboliziraju lutke",
+        "C. lica koja se igraju lutkama",
+        "D. lica koja bi željela biti lutke"
+      ],
+      "correct": "B",
+      "exp": "'Kuća lutaka' = metafora. Nora je 'lutka' u rukama muža (Helmera) — lica simboliziraju lutke kojima manipuliraju drugi.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 29,
+      "q": "Što je po književnoj vrsti djelo Kuća lutaka?",
+      "opts": [
+        "A. drama",
+        "B. roman",
+        "C. ep",
+        "D. pjesma"
+      ],
+      "correct": "A",
+      "exp": "Kuća lutaka (Et dukkehjem, 1879.) je drama — građanska/realistička drama Henrika Ibsena.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 30,
+      "q": "Tko je autor djela Kuća lutaka?",
+      "opts": [
+        "A. Miroslav Krleža",
+        "B. A. P. Čehov",
+        "C. Marcel Proust",
+        "D. Henrik Ibsen"
+      ],
+      "correct": "D",
+      "exp": "Kuća lutaka = Henrik Ibsen, norveški dramatičar, 1879.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 31,
+      "q": "Na čemu se temelji promjena Helmerova raspoloženja u tekstu?",
+      "opts": [
+        "A. na kontrastu",
+        "B. na metafori",
+        "C. na poredbi",
+        "D. na personifikaciji"
+      ],
+      "correct": "A",
+      "exp": "Helmer najprije bijesni ('O, ti nesretnice!'), a potom se smiri i govori blago ('Imam dovoljno široka krila...') — brza promjena raspoloženja utemeljena na kontrastu.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 32,
+      "q": "Kojemu dijelu pripadaju priloženi odlomci u strukturi djela?",
+      "opts": [
+        "A. početku",
+        "B. zapletu",
+        "C. vrhuncu",
+        "D. završetku"
+      ],
+      "correct": "D",
+      "exp": "Scena u kojoj Nora poručuje 'Nas dvoje imamo o mnogo čemu porazgovarati' i Helmer čita pismo (oslobođenje od ucjene) = završetak drame, pred Norin odlazak.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 33,
+      "q": "Kako se u svojoj najduljoj replici priloženih odlomaka Helmer obraća Nori?",
+      "opts": [
+        "A. pokroviteljski",
+        "B. ironično",
+        "C. komično",
+        "D. zaneseno"
+      ],
+      "correct": "A",
+      "exp": "'mala moja uplašena ptičice', 'Čuvat ću te kao progonjenu golubicu', 'ti moje malo, zbunjeno i bespomočno stvorenje' = paternalistički/pokroviteljski stav nadmoćnog muža.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 34,
+      "q": "Što Helmer saznaje u prvome pismu?",
+      "opts": [
+        "A. Da je Nora imala ljubavnika.",
+        "B. Da je Nora posudila novac.",
+        "C. Da ga Nora napušta.",
+        "D. Da Norina djeca nisu i njegova."
+      ],
+      "correct": "B",
+      "exp": "U kontekstu drame: Helmer saznaje da je Nora posudila novac (krivotvorenjem potpisa oca) od lihvara Krogstada. Prvo pismo = Krogstadovo pismo s otkrivanjem tajne.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 35,
+      "q": "Može li Helmer biti Norina istinska zaštita?",
+      "opts": [
+        "A. Može jer ga je pismo promijenilo.",
+        "B. Ne može jer se nije spreman istinski žrtvovati.",
+        "C. Može jer je shvatio veličinu Norine ljubavi.",
+        "D. Ne može jer je shvatio da je Nora svojom moralnom snagom jača od njega."
+      ],
+      "correct": "B",
+      "exp": "Helmer oprašta Nori tek kad saznaje da opasnosti nema, ali nije htio stati uz nju u teškoćama. Nije spreman na istinsku žrtvu = ne može biti prava zaštita.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 36,
+      "q": "Čime se autor poslužio u sljedećoj rečenici?\n'Imam dovoljno široka krila da te zakrilim njima.'",
+      "opts": [
+        "A. poredbom",
+        "B. personifikacijom",
+        "C. ironijom",
+        "D. metaforom"
+      ],
+      "correct": "D",
+      "exp": "'Široka krila... zakrilim' — Helmer ne govori o stvarnim krilima, nego svoju zaštitu naziva krilima = metafora (zamjena apstraktnog konkretnim).",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 37,
+      "q": "Koja rečenica iz priloženih odlomaka izriče problem kojim se bavi djelo Kuća lutaka?",
+      "opts": [
+        "A. Čuvat ću te u njem kao progonjenu golubicu...",
+        "B. Ne ću ti više morati ponavljati kako sam ti sve oprostio",
+        "C. Tako ona u dvostrukom smislu postaje njegovom svojinom.",
+        "D. Ne plaši se ni zbog čega, Nora, samo mi budi iskrena pa ću ti tako postati i tvoja volja i tvoja savjest."
+      ],
+      "correct": "C",
+      "exp": "'Tako ona u dvostrukom smislu postaje njegovom svojinom' — rečenica izriče temeljni problem: žena kao vlasništvo muža, odsustvo njezine autonomije = tema emancipacije.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 38,
+      "q": "Kojemu književnopovijesnom razdoblju pripada djelo Kuća lutaka?",
+      "opts": [
+        "A. romantizmu",
+        "B. realizmu",
+        "C. modernizmu",
+        "D. suvremenoj književnosti"
+      ],
+      "correct": "B",
+      "exp": "Ibsen (1828.–1906.) je realistički dramatičar. Kuća lutaka (1879.) = realistička/naturalistička drama 19. st.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 39,
+      "q": "Kojoj nacionalnoj književnosti pripada autor djela Kuća lutaka?",
+      "opts": [
+        "A. francuskoj",
+        "B. norveškoj",
+        "C. njemačkoj",
+        "D. engleskoj"
+      ],
+      "correct": "B",
+      "exp": "Henrik Ibsen (1828.–1906.) = norveški dramatičar.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 40,
+      "q": "Koje je djelo obilježilo početak razdoblja u kojem je napisana Kuća lutaka?",
+      "opts": [
+        "A. Cvjetovi zla",
+        "B. Otac Goriot",
+        "C. Preobražaj",
+        "D. Combray"
+      ],
+      "correct": "B",
+      "exp": "Kuća lutaka = realizam (19. st.). Realizam obilježava roman, a Otac Goriot (Balzac, 1835.) je jedno od prvih ključnih realističkih romana.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 41,
+      "q": "Koji niz djela pripada istomu književnomu rodu kao i Kuća lutaka?",
+      "opts": [
+        "A. Antigona, Zločin i kazna",
+        "B. Dubravka, Otac Goriot",
+        "C. Gospoda Glembajevi, Hamlet",
+        "D. Posljednji Stipančići, U agoniji"
+      ],
+      "correct": "C",
+      "exp": "Kuća lutaka = drama. Gospoda Glembajevi (Krleža) i Hamlet (Shakespeare) su također drame.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 42,
+      "q": "Koje vrste promjenjivih riječi nema u sljedećoj rečenici?\n'Činiće ti se sutra sve to posve drukčijim, a uskoro će sve biti kao i prije.'",
+      "opts": [
+        "A. imenice",
+        "B. zamjenice",
+        "C. glagola",
+        "D. pridjeva"
+      ],
+      "correct": "A",
+      "exp": "'ti' = zamjenica; 'će se, će biti' = glagoli; 'drukčijim' = pridjev; 'sutra, posve, uskoro, kao, i, a, prije' = nepromjenjive. Imenica u rečenici nema.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 43,
+      "q": "Koji je niz glagolskih oblika prisutan u sljedećoj rečenici?\n'Ne ću ti više morati ponavljati kako sam ti sve oprostio'",
+      "opts": [
+        "A. prezent, futur I., pluskvamperfekt",
+        "B. futur I., infinitiv, perfekt",
+        "C. infinitiv, infinitiv, kondicional I.",
+        "D. kondicional I., prezent, perfekt"
+      ],
+      "correct": "B",
+      "exp": "'Ne ću' = futur I.; 'morati ponavljati' = infinitiv + infinitiv; 'sam oprostio' = perfekt. Dakle: futur I., infinitiv, perfekt.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 44,
+      "q": "Po kojemu se načelu pišu zarezi u sljedećoj rečenici?\n'Ići će to malo pomalo, moja Noro, vjeruj mi.'",
+      "opts": [
+        "A. nabrajanja",
+        "B. vokativnosti",
+        "C. inverzije",
+        "D. nizanja"
+      ],
+      "correct": "B",
+      "exp": "'moja Noro' = vokatív (obraćanje) — zarezi se pišu oko vokativa. Načelo vokativnosti.",
+      "ctx": "Henrik Ibsen, Nora / Kuća lutaka (ulomak — Helmer i Nora)\n\nHELMER (teteravši se natrag): Je li to istina? Zar je istina što tu piše? Užasno! Ne, ne, nije moguće da je to istina.\nNORA: Istina je! Voljela sam te više od bilo čega na ovome svijetu.\nHELMER: Molim, samo bez glupavih isprika.\nNORA: Torvalde!\nHELMER: O, ti nesretnice, pa što si to učinila!\n\nHELMER: Nora! Ali ne, moram to još jednom pročitati. Ma jest! Točno. To je! Spašen sam! Nora, ja sam spašen!\nNORA: A ja?\nHELMER: Pa i ti, naravno! Oboje smo spašeni.\n\nHELMER: Ne, skini ga. A onda se pokušaj smiriti i ponovno sabrati, mala moja uplašena ptičice. Dobro se odmori i osjeti sigurnom. Imam dovoljno široka krila da te zakrilim njima. Č…"
+    },
+    {
+      "id": 45,
+      "q": "Kojemu književnopovijesnom razdoblju pripada djelo iz kojega je četvrti tekst?",
+      "opts": [
+        "A. romantizmu",
+        "B. realizmu",
+        "C. moderni",
+        "D. drugoj moderni"
+      ],
+      "correct": "C",
+      "exp": "A. G. Matoš (1873.–1914.) = moderna (kraj 19./početak 20. st.). Kip domovine = moderna.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 46,
+      "q": "Koja je riječ nositelj ironije u prvoj rečenici teksta?",
+      "opts": [
+        "A. učeprtljišu",
+        "B. grbova",
+        "C. financije",
+        "D. vojsku"
+      ],
+      "correct": "A",
+      "exp": "'Učeprtljišu' = komična, augmentativna forma od 'učeprtljati se' = satirično-ironično opisuje bunju kao sitnu čeprkanje/gužvu. Nositelj ironičnog/satiričnog tona.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 47,
+      "q": "Kakav je opis pejzaža u trećoj i četvrtoj rečenici?",
+      "opts": [
+        "A. ironičan",
+        "B. realistički",
+        "C. lirski",
+        "D. naturalistički"
+      ],
+      "correct": "C",
+      "exp": "'Jutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak...' — poetični, slikoviti, lirski opis neba i atmosphère.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 48,
+      "q": "Zašto je riječ buna u drugoj rečenici teksta napisana kosim slovima?",
+      "opts": [
+        "A. Iz pijeteta prema žrtvama pobune.",
+        "B. To je bilo pravo ime pobune.",
+        "C. Nije bilo prave pobune.",
+        "D. Želi se istaknuti važnost pobune."
+      ],
+      "correct": "C",
+      "exp": "'Bijaše to treći dan bune' — 'bune' u kurzivu/kosom pismu jer autor ironično sumnja u pravu bunu. Navodnici ili kurziv označavaju da termin nije prihvaćen doslovno = nije bila prava pobuna.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 49,
+      "q": "Kakvo je značenje sljedeće rečenice u kontekstu djela?\n'Za tren oka zabravilo vrata kućna i dućanska.'",
+      "opts": [
+        "A. Prošlo je radno vrijeme.",
+        "B. Sklonili su se od nevremena.",
+        "C. Nezainteresirani su za ono što se zbiva.",
+        "D. Svi su preplašeno pobjegli."
+      ],
+      "correct": "D",
+      "exp": "U kontekstu nadolazeće konjice i 'Soldati ideju, bežimo!' — svi su preplašeno pobjegli i zaključali vrata.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 50,
+      "q": "Zašto Pepica nije poslušala svojega muža?",
+      "opts": [
+        "A. Ponosna je.",
+        "B. Želi zaraditi.",
+        "C. Tvrdoglava je.",
+        "D. Radoznala je."
+      ],
+      "correct": "C",
+      "exp": "'Nedem, Jožkec, nedem! Kaj mi morejo oni grintavci? Ja nis ni' kriva!' — Pepica tvrdoglavo odbija bježati. Tvrdoglavost je njezina karakteristika.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 51,
+      "q": "Poznajući cjelovito djelo, odgovorite kako je umrla Pepica.",
+      "opts": [
+        "A. Od zalutaloga metka.",
+        "B. Od udarca husarskoga konja.",
+        "C. Prepuklo joj je srce od straha.",
+        "D. Streljali su je husari."
+      ],
+      "correct": "B",
+      "exp": "U Kip domovine, Pepica je ubijena udarcem husarskoga konja (kopitom konjice koja je gurnula pučanstvo).",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 52,
+      "q": "Kako autor oblikuje portret supružnika Pogačića?",
+      "opts": [
+        "A. karikaturalno",
+        "B. sentimentalno",
+        "C. realistički",
+        "D. idealizirano"
+      ],
+      "correct": "A",
+      "exp": "'Guravi piljar Pogačić i pretila gospa Pogačićka, koja se ujezerila na svom tronošku' — pretjerani, komički opis = karikatura.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 53,
+      "q": "Što simbolizira Pepica Pogačićka?",
+      "opts": [
+        "A. položaj žena u ondašnjem društvu",
+        "B. pojedinca koji je spreman na svjesnu žrtvu",
+        "C. tragičku junakinju u sukobu dobra i zla",
+        "D. nesretnu hrvatsku sudbinu"
+      ],
+      "correct": "D",
+      "exp": "Pepica = sitni 'mali' čovjek koji stradava u velikom povijesnom sukobu. Simbol je nesretne sudbine hrvatskog puka/domovine.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 54,
+      "q": "Na koga baca pogled Pepica Pogačićka u trenutku nailaska konjice?",
+      "opts": [
+        "A. na Bakačevu ulicu",
+        "B. na sunčano nebo",
+        "C. na Jelačićev kip",
+        "D. na supruga Jožkeca"
+      ],
+      "correct": "C",
+      "exp": "'Baci kao molitven pogled na sionog Bana: u sunčanom se zlatu blista kalpak i menten' — gleda na kip bana Jelačića na Trgu.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 55,
+      "q": "Što je bila Pepičina posljednja misao?",
+      "opts": [
+        "A. Žudnja da se vrati u selo svojega djetinjstva",
+        "B. Spoznaja da je sama i napuštena",
+        "C. Sjećanje na hrvatski narodni preporod",
+        "D. Odluka da učini dobro djelo"
+      ],
+      "correct": "C",
+      "exp": "'Baci kao molitven pogled na sionog Bana... u duši sine dan kada ga je djevojkom ovdje gledala s njegovim šilercima' — sjećanje na Jelačića i preporod u djetinjstvu.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 56,
+      "q": "Kojoj tematici pripada djelo Kip domovine leta 188*?",
+      "opts": [
+        "A. pustolovnoj",
+        "B. obiteljskoj",
+        "C. povijesnoj",
+        "D. domoljubnoj"
+      ],
+      "correct": "D",
+      "exp": "Kip domovine = domoljubna satira na položaj Hrvata pod austro-ugarskom upravom, prikazana kroz sudbinu maloga čovjeka.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 57,
+      "q": "Koji pisci stvaraju u istome razdoblju kao i A. G. Matoš?",
+      "opts": [
+        "A. Petar Preradović i Ljudevit Gaj",
+        "B. Vladimir Vidrić i Fran Galović",
+        "C. Tin Ujević i Dobriša Cesarić",
+        "D. Slavko Mihalić i Josip Pupačić"
+      ],
+      "correct": "B",
+      "exp": "Matoš = moderna (kraj 19./poč. 20. st.). Vladimir Vidrić (1875.–1909.) i Fran Galović (1887.–1914.) su pjesnici hrvatske moderne.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 58,
+      "q": "S kojom je od navedenih Matoševih pjesama tematikom povezano djelo Kip domovine leta 188*?",
+      "opts": [
+        "A. 1909.",
+        "B. Notturno",
+        "C. Utjeha kose",
+        "D. Jesenje veče"
+      ],
+      "correct": "A",
+      "exp": "'1909.' je Matoševa domoljubna/politička pjesma o stanju Hrvatske = isto tematsko polje kao Kip domovine leta 188* (domoljublje, bunt, politička situacija).",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 59,
+      "q": "Što znači kajkavizam kip u naslovu djela?",
+      "opts": [
+        "A. stanje",
+        "B. slika",
+        "C. sjećanje",
+        "D. simbol"
+      ],
+      "correct": "B",
+      "exp": "Kajkavski 'kip' = slika, figura, prikaz. 'Kip domovine' = slika/prikaz domovine (a ne skulptura u štokavskom smislu).",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 60,
+      "q": "Koja je od navedenih sintagmi frazem?",
+      "opts": [
+        "A. baciti u kljun",
+        "B. poštovani Pogačić",
+        "C. tili časak",
+        "D. ujezerila na tronošku"
+      ],
+      "correct": "C",
+      "exp": "'Za tili časak' = frazem koji znači 'za trenutak, odmah'. 'Tili časak' je ustaljeni izraz/frazem.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 61,
+      "q": "Elementima kojega se stila poslužio Matoš u sljedećoj rečenici?\n'... uz urnebesni hura i smijeh preskočio poštovanu ženku štovara nepoznatog purgara Pogačića'",
+      "opts": [
+        "A. znanstvenoga",
+        "B. novinarskoga",
+        "C. administrativnoga"
+      ],
+      "correct": "B",
+      "exp": "'Urnebesni hura', 'nepoznati purgar' — novinarsko/reportažno pisanje, kronikalački stil s ironičnim komentarom. Novinarski stil.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 62,
+      "q": "Kojoj vrsti pripada leksem 'onijeh' u prvoj rečenici teksta?",
+      "opts": [
+        "A. historizmima",
+        "B. arhaizmima",
+        "C. lokalizmima",
+        "D. egzotizmima"
+      ],
+      "correct": "B",
+      "exp": "'Onijeh' = arhajski genetivni oblik zamjenice 'oni' (standardno 'onih'). Arhaizam = zastarjela jezična forma.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 63,
+      "q": "Što znači riječ zarudi u sljedećoj rečenici?\n'I zarudi prvi red konjice.'",
+      "opts": [
+        "A. U daljini se pojavila konjica u crvenom.",
+        "B. Čuo se prigušeni topot konja kao jeka.",
+        "C. Konjica je galopom odlazila s mjesta događaja.",
+        "D. Plamena stihija stapala se s konjicom."
+      ],
+      "correct": "A",
+      "exp": "'Zarudi' = pocrvenjeti, pokazati se u crvenoj boji. 'Zarudi konjica' = u daljini se pojavila (blještavom crvenom uniformom) konjica.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 64,
+      "q": "Što znači izraz za tili časak?",
+      "opts": [
+        "A. veoma brzo",
+        "B. veoma sporo",
+        "C. malo prije",
+        "D. prije svega"
+      ],
+      "correct": "A",
+      "exp": "'Za tili časak' = odmah, za tren, veoma brzo. Frazem s intenzitetom brzine.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 65,
+      "q": "Kako glasi infinitiv glagola mniš?",
+      "opts": [
+        "A. mnijeti",
+        "B. mniti",
+        "C. mnijevati",
+        "D. mnijuti"
+      ],
+      "correct": "A",
+      "exp": "'Mniš' = prezent 2. l. jd. od 'mnijeti' (misliti, čini se). Infinitiv: mnijeti.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 66,
+      "q": "Kako na suvremenome hrvatskome jeziku glasi sljedeća rečenica?\n'Nedem, makar fratri padali!'",
+      "opts": [
+        "A. Nejdem, makar fratri padali!",
+        "B. Ne budem, makar fratri padali!",
+        "C. Ne idem, makar fratri padali!",
+        "D. Ne ću, makar fratri padali!"
+      ],
+      "correct": "C",
+      "exp": "'Nedem' (kajkavski) = 'Ne idem' (štokavski standardni). 'Fratri' = redovnici. Kajkavska replika prevedena na standardni.",
+      "ctx": "Antun Gustav Matoš, Kip domovine leta 188* (ulomak)\n\nKada se učeprtljišu Zagrepčani radi onijeh grbova na zgradi državne financije, zovne usplahirena vlast u pomoć vojsku.\n\nBijaše to treći dan bune.\n\nJutro toplo, sunčano. Nebom se nepomično pružio samo jedan, crn i duguljast oblak, mniš e je kroz pukotinu modrog plašta nebeskoga prokuljao dim.\n\n— Vojska ide, ide vojska!\n\nI za tili časak prsne šarena gužva. Odvulala se kao pred kakom grozovitom istragom, a na pustom Trgu Jelačevu ostadoše samo piljarički stolovi i stoci.\n\nZa tren oka zabravilo vrata kućna i dućanska. Tišina kao pred groznom bitkom!\n\nMalo, a iz Bakačeve ulice kao da šnu liše, kao da pljusnu kiša i diže se bahati kopita.\n\n— Sol…"
+    },
+    {
+      "id": 67,
+      "q": "Autorima pridružite djela:\n1. M. Proust — 2. J. W. Goethe — 3. H. de Balzac — 4. L. N. Tolstoj\nA. Patnje mladog Werthera — B. U traganju za izgubljenim vremenom — C. Ljudska komedija — D. Božanstvena komedija — E. Ana Karenjina\n\nKoji autor NIJE u popisu, a čije je djelo ponuđeno?",
+      "opts": [
+        "A. Balzaca — nije Božanstvena komedija",
+        "B. Prousta — nije U traganju...",
+        "C. Dante je autor Božanstvene komedije",
+        "D. Tolstoja — nije Ana Karenjina"
+      ],
+      "correct": "C",
+      "exp": "Sparivanje: Proust → U traganju za izgubljenim vremenom (B); Goethe → Patnje mladog Werthera (A); Balzac → Ljudska komedija (C); Tolstoj → Ana Karenjina (E). Božanstvena komedija (D) = Dante Alighieri = autor koji nije u popisu."
+    },
+    {
+      "id": 68,
+      "q": "Koji je točan oblik u rečenici o glazbi?\n'Ritam se ______ može objasniti kao niz tonova i stanki različitoga trajanja.'\n\nOdaberite: najjednostavnije ili najednostavnije?",
+      "opts": [
+        "A. najjednostavnije",
+        "B. najednostavnije"
+      ],
+      "correct": "A",
+      "exp": "'Najjednostavnije' = pravilno pisanje superlativa pridjeva 'jednostavan'. Prefiks 'naj-' + 'jednostavnije' = 'najjednostavnije'."
+    },
+    {
+      "id": 69,
+      "q": "Koji je točan oblik?\n'Ritamska trajanja mogu biti ______ ili dulja od pulsa'\n\nkraća ili kraće?",
+      "opts": [
+        "A. kraća",
+        "B. kraće"
+      ],
+      "correct": "A",
+      "exp": "'Kraća' = komparativ pridjeva 'kratko' u ž.r. mn. (trajanja su = ž.r. mn. → kraća)."
+    },
+    {
+      "id": 70,
+      "q": "Koji je točan oblik?\n'Ritam je ______ u temelje života.'\n\nugrađen ili ugradjen?",
+      "opts": [
+        "A. ugrađen",
+        "B. ugradjen"
+      ],
+      "correct": "A",
+      "exp": "'Ugrađen' = pravilno. Glagolski pridjev trpni od 'ugraditi': ugr-ađ-en (ij. zamjena: d+j → đ)."
+    },
+    {
+      "id": 71,
+      "q": "Koji je točan oblik?\n'______ glazbenoga'\n\nJačina ili Jačina?",
+      "opts": [
+        "A. Jačina (veliko slovo)",
+        "B. jačina (malo slovo)"
+      ],
+      "correct": "A",
+      "exp": "'Jačina' = početak rečenice ili novi odsjek teksta, piše se velikim slovom."
+    },
+    {
+      "id": 72,
+      "q": "Koji je točan oblik?\n'______ glazbenoga ______ kreće se u rasponu'\n\nizvođenja ili izvođenja?",
+      "opts": [
+        "A. izvođenja",
+        "B. izvođenja"
+      ],
+      "correct": "A",
+      "exp": "'Izvođenja' = imenica od 'izvoditi/izvesti' (jat→je, đ). Pravilno: izvođenja."
+    },
+    {
+      "id": 73,
+      "q": "Koji je točan oblik?\n'glazbenoga ______'\n\ndjela ili dijela?",
+      "opts": [
+        "A. djela",
+        "B. dijela"
+      ],
+      "correct": "A",
+      "exp": "'Glazbenog djela' = imenica 'djelo' u genitivu = 'djela'. 'Dijela' = genitiv od 'dio' = pogrešno u ovom kontekstu."
+    },
+    {
+      "id": 74,
+      "q": "Koji je točan oblik?\n'______ je'\n\nMelodija ili Melodia?",
+      "opts": [
+        "A. Melodia",
+        "B. Melodija"
+      ],
+      "correct": "B",
+      "exp": "'Melodija' = pravilno. Talijanski 'melodia' pohrvaćen kao 'melodija'."
+    },
+    {
+      "id": 75,
+      "q": "Koji je točan oblik?\n'______ tonova različite visine'\n\nslijed ili sljed?",
+      "opts": [
+        "A. slijed",
+        "B. sljed"
+      ],
+      "correct": "A",
+      "exp": "'Slijed' = pravilno (ije u dugom slogu: slí-jed). 'Sljed' je kratki slog = sȍljed, ali standardno je 'slijed' za 'sequentia'."
+    },
+    {
+      "id": 76,
+      "q": "Koji je točan oblik?\n'... koji se doživljavaju kao ______'\n\ncjelina ili cijelina?",
+      "opts": [
+        "A. cjelina",
+        "B. cijelina"
+      ],
+      "correct": "A",
+      "exp": "'Cjelina' = imenica od pridjeva 'cijel'. Pravilno: cjelina (kratki slog: cje-li-na). 'Cijelina' ne postoji."
+    },
+    {
+      "id": 77,
+      "q": "Koji je točan oblik?\n'Većina riječi kojima se označuje tempo potječe iz ______ jezika'\n\ntalijanskoga ili Talijanskoga?",
+      "opts": [
+        "A. talijanskoga",
+        "B. Talijanskoga"
+      ],
+      "correct": "A",
+      "exp": "'Talijanskoga' — pridjevi izvedeni od naziva naroda pišu se malim slovom: talijanski, njemački, engleski. Pravilno: 'iz talijanskoga jezika'."
+    }
+  ]
+}

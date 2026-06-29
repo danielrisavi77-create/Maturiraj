@@ -1,0 +1,890 @@
+{
+  "examKey": "2010_zima_B",
+  "label": "Zimski rok — Osnovna razina (B)",
+  "total": 72,
+  "questions": [
+    {
+      "id": 1,
+      "q": "Kojemu književnomu rodu pripada prvi tekst?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "A",
+      "exp": "Notturno je lirska pjesma — subjektivno izražava raspoloženje, nema naracije ni dramskog sukoba. Pripada lirici.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 2,
+      "q": "Kako se naziva pjesnički oblik kojemu pripada tekst?",
+      "opts": [
+        "A. elegija",
+        "B. sonet",
+        "C. oda",
+        "D. poema"
+      ],
+      "correct": "B",
+      "exp": "Notturno ima strukturu soneta: 14 stihova raspoređenih u dvije katrene i dvije tercine. Matoš je majstor soneta.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 3,
+      "q": "Kakva je rima u tekstu?",
+      "opts": [
+        "A. abab cdcd efe fef",
+        "B. abba cddc efg efg",
+        "C. abba abba cde cde",
+        "D. abab abab ccd eed"
+      ],
+      "correct": "C",
+      "exp": "Talijanski (petrarkistički) sonet ima shemu abba abba u katrinama i cde cde (ili varijante) u tercinama. Notturno prati tu shemu.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 4,
+      "q": "Kojim je stihovima napisan tekst?",
+      "opts": [
+        "A. osmercem i četvercem",
+        "B. devetercem i petercem",
+        "C. desetercem i petercem",
+        "D. jedanaestercem i četvercem"
+      ],
+      "correct": "A",
+      "exp": "Notturno je pisan osmercem (8 slogova) u katrinama i četvercem (4 sloga) u tercinama — karakteristična Matoševa metrika.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 5,
+      "q": "Što je notturno?",
+      "opts": [
+        "A. sjetno raspoloženje",
+        "B. pjesma o smrti",
+        "C. noćni prizor",
+        "D. tiha jadikovka"
+      ],
+      "correct": "C",
+      "exp": "Notturno (tal. notturno = noćni) je glazbeni i književni žanr koji prikazuje noćni prizor ili noćno raspoloženje.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 6,
+      "q": "Kakvo raspoloženje vlada u tekstu?",
+      "opts": [
+        "A. osjećaj tjeskobe",
+        "B. trajna ravnodušnost",
+        "C. osjećaj zadovoljstva",
+        "D. nestrpljivo iščekivanje"
+      ],
+      "correct": "C",
+      "exp": "Pjesma odaje osjećaj spokoja, blagostanja i zadovoljstva — priroda je u harmoniji, sve upućuje na ugodnu ljetnu noć.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 7,
+      "q": "U kakav se doživljaj sinestezijom pretvaraju zvukovi druge strofe?",
+      "opts": [
+        "A. u olfaktivni",
+        "B. u auditivni",
+        "C. u gustativni",
+        "D. u vizualni"
+      ],
+      "correct": "D",
+      "exp": "Sinestezija je preplitanje osjetila. 'Srebrn vir' — zvuk se pretvara u vizualni doživljaj (srebrnast, svjetlucav).",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 8,
+      "q": "Što znače sljedeći stihovi?\n\nS mrkog tornja bat\nBroji pospan sat,",
+      "opts": [
+        "A. vrijeme je stalo",
+        "B. vrijeme je buđenja",
+        "C. otkucava vrijeme",
+        "D. dolazi novi dan"
+      ],
+      "correct": "C",
+      "exp": "Bat toranjskog sata broji otkucaje — otkucava prolaženje vremena u tihoj noći.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 9,
+      "q": "Što znači sintagma 'pospan sat' u stihovima:\n\nS mrkog tornja bat\nBroji pospan sat,",
+      "opts": [
+        "A. kasno je doba noći",
+        "B. tiha je noć",
+        "C. sat pjeva uspavanku",
+        "D. vrijeme sporo teče"
+      ],
+      "correct": "D",
+      "exp": "'Pospan sat' je personifikacija — sat sporo, kao pospano broji prolaženje vremena.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 10,
+      "q": "Što simbolizira željeznica u posljednjem stihu?",
+      "opts": [
+        "A. gašenje života",
+        "B. odlazak na put",
+        "C. rastanak s voljenom",
+        "D. buđenje novoga dana"
+      ],
+      "correct": "A",
+      "exp": "Željeznica koja 'guta daljina' u zadnjem stihu simbolizira nestajanje, odlazak, gašenje — noć guta sve zvukove i prizore.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 11,
+      "q": "Koji je stih točno rastavljen na slogove?",
+      "opts": [
+        "A. Sit-ni cv-r-čak sjet-no cvr-či, jas-an",
+        "B. Sit-ni cvr-čak sje-tno cv-rči, jas-an",
+        "C. Si-tni cvr-čak sje-tno cvr-či, ja-san",
+        "D. Si-tni cv-r-čak sjet-no cvr-či, ja-san"
+      ],
+      "correct": "C",
+      "exp": "Pravilno slogovanje: Si-tni cvr-čak sje-tno cvr-či, ja-san = 8 slogova (osmerce).",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 12,
+      "q": "U kojem stihu prepoznajete aliteraciju?",
+      "opts": [
+        "A. Teške oči sklapaju se na san,",
+        "B. Mlačna noć; u selu lavež; kasan",
+        "C. Kroz samoću, muk,",
+        "D. Sitni cvrčak sjetno cvrči, jasan"
+      ],
+      "correct": "D",
+      "exp": "Aliteracija je ponavljanje istih suglasnika: 'Sitni cvrčak sjetno cvrči' ponavlja glasove s/c/č.",
+      "ctx": "Notturno\n\nMlačna noć; u selu lavež; kasan\nĆuk il netopir;\nLjubav cvijeća – miris jak i strasan\nSlavi tajni pir.\n\nSitni cvrčak sjetno cvrči, jasan\nKao srebrn vir;\nTeške oči sklapaju se na san,\nS neba rosi mir.\n\nS mrkog tornja bat\nBroji pospan sat,\nBlaga svjetlost sipi sa visina;\n\nKroz samoću, muk,\nSve je tiši huk:\nŽeljeznicu guta već daljina.\n\nAntun Gustav Matoš"
+    },
+    {
+      "id": 13,
+      "q": "Kako glasi sinonim arhaizma 'netopir'?",
+      "opts": [
+        "A. golub",
+        "B. šišmiš",
+        "C. leptir",
+        "D. sova"
+      ],
+      "correct": "B",
+      "exp": "Netopir je arhaični naziv za šišmiša — leteći sisavac koji lovi noću."
+    },
+    {
+      "id": 14,
+      "q": "Kako glasi genitiv sintagme 'kasan ćuk'?",
+      "opts": [
+        "A. kasnoga ćuka",
+        "B. kasnijega ćuka",
+        "C. kasan ćuka",
+        "D. kasna ćuka"
+      ],
+      "correct": "A",
+      "exp": "Genitiv pridjeva 'kasan' u određenom vidu je 'kasnoga', genitiv imenice 'ćuk' je 'ćuka': kasnoga ćuka."
+    },
+    {
+      "id": 15,
+      "q": "U kojem je književnopovijesnome razdoblju stvarao A. G. Matoš?",
+      "opts": [
+        "A. u hrvatskome narodnome preporodu",
+        "B. u realizmu",
+        "C. u moderni",
+        "D. u postmodernizmu"
+      ],
+      "correct": "C",
+      "exp": "Antun Gustav Matoš (1873.–1914.) ključni je predstavnik hrvatske moderne (1895.–1914.)."
+    },
+    {
+      "id": 16,
+      "q": "Što je Dekameron?",
+      "opts": [
+        "A. ljubavni kanconijer",
+        "B. zbirka bajki",
+        "C. roman u nastavcima",
+        "D. zbirka novela"
+      ],
+      "correct": "D",
+      "exp": "Dekameron (1353.) je zbirka od sto novela koje pripovijedaju deset mladića i djevojaka za deset dana.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 17,
+      "q": "Što znači naziv Dekameron?",
+      "opts": [
+        "A. sretan završetak",
+        "B. knjiga deset dana",
+        "C. sto zgoda i nezgoda",
+        "D. ispovijest duše"
+      ],
+      "correct": "B",
+      "exp": "Dekameron dolazi od grčkih riječi deka (deset) i hemera (dan) — 'knjiga deset dana'."
+    },
+    {
+      "id": 18,
+      "q": "Koju ulogu ima uvodni dio Dekamerona iz kojega je drugi tekst?",
+      "opts": [
+        "A. okvira",
+        "B. razrade",
+        "C. invokacije",
+        "D. in medias res"
+      ],
+      "correct": "A",
+      "exp": "Uvodni dio s deset pripovijedača koji izlaze iz grada je OKVIR (cornice) unutar kojeg se pripovijedaju novele.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 19,
+      "q": "Zašto su mladići i djevojke napustili svoj grad?",
+      "opts": [
+        "A. Izbio je rat.",
+        "B. Bio je potres.",
+        "C. Vladala je kuga.",
+        "D. Protjerani su."
+      ],
+      "correct": "C",
+      "exp": "U uvodu Dekamerona opisana je velika kuga (1348.) u Firenci. Skupina bježi na imanje da izbjegne zarazu.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 20,
+      "q": "Što ih je navelo da napuste grad prema Dioneovim riječima?",
+      "opts": [
+        "A. razumni prijedlog djevojaka",
+        "B. domišljatost mladića",
+        "C. roditeljski nagovor",
+        "D. želja da se zabave"
+      ],
+      "correct": "A",
+      "exp": "Dioneo kaže: 'ovamo nas je doveo više vaš razbor nego naša domišljatost' — djevojke su predložile odlazak.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 21,
+      "q": "Koja je uloga mladića i djevojaka u Dekameronu?",
+      "opts": [
+        "A. svi su dvorjani",
+        "B. pripovjedači su",
+        "C. putujući su glumci",
+        "D. učitelji su plesa"
+      ],
+      "correct": "B",
+      "exp": "Deset mladića i djevojaka su pripovjedači koji svaki dan govore po jednu novelu — ukupno sto novela za deset dana.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 22,
+      "q": "Što je započeo Panfilo?",
+      "opts": [
+        "A. pjesmu",
+        "B. priču",
+        "C. ples",
+        "D. natjecanje"
+      ],
+      "correct": "B",
+      "exp": "'Obrativ se potom Panfilu... ovako poče...' — Panfilo je počeo pripovijedati, tj. započeo prvu priču.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 23,
+      "q": "Kojim je epskim postupkom ostvaren drugi odlomak teksta?",
+      "opts": [
+        "A. monologom",
+        "B. opisivanjem",
+        "C. retardacijom",
+        "D. retrospekcijom"
+      ],
+      "correct": "B",
+      "exp": "Drugi odlomak opisuje dvorac i okoliš — to je opis, temeljni epski postupak.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 24,
+      "q": "Kakav ugođaj vlada u drugome odlomku teksta?",
+      "opts": [
+        "A. tmuran",
+        "B. mističan",
+        "C. fantastičan",
+        "D. idiličan"
+      ],
+      "correct": "D",
+      "exp": "Opis idiličnog dvorišta s vrtovima i cvijećem stvara idiličan ugođaj — suprotnost kugom zahvaćenom gradu.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 25,
+      "q": "Kakvo raspoloženje vlada među djevojkama i mladićima?",
+      "opts": [
+        "A. optimistično",
+        "B. pesimistično",
+        "C. cinično",
+        "D. turobno"
+      ],
+      "correct": "A",
+      "exp": "Dioneo poziva na smijeh i šalu — skupina je vesela i optimistična unatoč kuzi.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 26,
+      "q": "Kakvi su mladići i djevojke u tekstu?",
+      "opts": [
+        "A. razuzdani i raskalašeni",
+        "B. tužni i neutješni",
+        "C. smjerni i čestiti",
+        "D. ozbiljni i strogi"
+      ],
+      "correct": "C",
+      "exp": "Dioneo naglašava dostojanstvo: 'koliko se dolikuje našem dostojanstvu'. Skupina je smjerna i čestita.",
+      "ctx": "Giovanni Boccaccio, Dekameron — Uvod (ulomak)\n\nMladići isprva pomisle da one s njima šale zbijaju, no kad vidješe da ozbiljno misle, odgovore veselo da su spremni, te ni časa ne časeći odrede sve što bješe potrebito uraditi prije puta. Sutradan ujutro, to jest u srijedu, pošto su sav prtljag unaprijed poslali tamo kamo su nakanili otići, u osvit dana gospe s nekoliko svojih sluškinja i tri mladića sa svojim slugama iziđoše iz grada i dadu se na put. No ne udaljiše se ni dobre dvije milje, kadli stigoše na mjesto koje su unaprijed odredili.\n\nSpomenuto je mjesto ležalo na brežuljku, udaljeno od cesta, okruženo raznolikim, bujno olistalim grmljem i drvećem, da je bila milina pogledati. Navrh br…"
+    },
+    {
+      "id": 27,
+      "q": "Kojim je jezikom napisan Dekameron?",
+      "opts": [
+        "A. latinskim",
+        "B. staroslavenskim",
+        "C. talijanskim",
+        "D. grčkim"
+      ],
+      "correct": "C",
+      "exp": "Boccaccio je napisao Dekameron na toskanskom talijanskom (volgare), čime je doprinio razvoju talijanskog književnog jezika."
+    },
+    {
+      "id": 28,
+      "q": "Tko su dvojica pisaca koji s Boccacciom čine trolist predrenesanse?",
+      "opts": [
+        "A. Cervantes i Shakespeare",
+        "B. Ovidije i Plaut",
+        "C. Tasso i Ariosto",
+        "D. Dante i Petrarca"
+      ],
+      "correct": "D",
+      "exp": "Dante, Petrarca i Boccaccio čine 'tre corone' (tri krune) talijanske predrenesanse."
+    },
+    {
+      "id": 29,
+      "q": "Što znači izraz 'ni časa ne časeći'?",
+      "opts": [
+        "A. pričekati časak",
+        "B. gubiti vrijeme",
+        "C. radosno krenuti",
+        "D. odmah učiniti"
+      ],
+      "correct": "D",
+      "exp": "'Ni časa ne časeći' je frazem koji znači 'odmah', 'bez oklijevanja'."
+    },
+    {
+      "id": 30,
+      "q": "Kojoj književnoj vrsti pripada Dundo Maroje?",
+      "opts": [
+        "A. romanu",
+        "B. tragediji",
+        "C. komediji",
+        "D. noveli"
+      ],
+      "correct": "C",
+      "exp": "Dundo Maroje (1551.) Marina Držića je komedija — vesela dramska vrsta s komičnim zapletom.",
+      "ctx": "Marin Držić, Dundo Maroje (ulomak)\n\nPOMET: Ma se trijeba s brjemenom akomodavat; trijeba je bit vjertuozu tko hoće renjat na svijetu. Kralj je čovjek od ljudi kad se umije vladat. Nije ga imat dinar, er vidim mnoge s dinarmi potištene; nije ga bit doktur, er vidim mnoge te brigate fantastike; nije ga bit junak s mačem u ruci; er su ti većekrat ali ubijeni ali su ih pune tamnice, nije ga bit poeta ni kmedije umjet činit, er tizijem svak ore i svaki ga pijerhoće operat, kao bastaha, a umjesto zahvaljenja da mu reku: „Ne valja ništa, iždeni!\", i da mu neprijatelji ostanu; nije ga bit mužik, er tizijeh druzi čine pjet kad veću volju plakat imaju.\n\nTrijeba je bit pacijent i ugodit zlu brjemenu da…"
+    },
+    {
+      "id": 31,
+      "q": "Koje umjetnike spominje Pomet?",
+      "opts": [
+        "A. glumce i slikare",
+        "B. slikare i glazbenike",
+        "C. pjesnike i glumce",
+        "D. pjesnike i glazbenike"
+      ],
+      "correct": "D",
+      "exp": "Pomet spominje 'poeta' (pjesnik) i 'mužik' (glazbenik) — dakle pjesnike i glazbenike.",
+      "ctx": "Marin Držić, Dundo Maroje (ulomak)\n\nPOMET: Ma se trijeba s brjemenom akomodavat; trijeba je bit vjertuozu tko hoće renjat na svijetu. Kralj je čovjek od ljudi kad se umije vladat. Nije ga imat dinar, er vidim mnoge s dinarmi potištene; nije ga bit doktur, er vidim mnoge te brigate fantastike; nije ga bit junak s mačem u ruci; er su ti većekrat ali ubijeni ali su ih pune tamnice, nije ga bit poeta ni kmedije umjet činit, er tizijem svak ore i svaki ga pijerhoće operat, kao bastaha, a umjesto zahvaljenja da mu reku: „Ne valja ništa, iždeni!\", i da mu neprijatelji ostanu; nije ga bit mužik, er tizijeh druzi čine pjet kad veću volju plakat imaju.\n\nTrijeba je bit pacijent i ugodit zlu brjemenu da…"
+    },
+    {
+      "id": 32,
+      "q": "Kakav treba biti čovjek, prema Pometovim riječima, da bi uspio u životu?",
+      "opts": [
+        "A. istinoljubiv i činiti samo ono što želi",
+        "B. bogat i obdaren viteškim vrlinama",
+        "C. strpljiv i mudro djelovati u pravome času",
+        "D. ponizan i pokorno trpjeti životne nedaće"
+      ],
+      "correct": "C",
+      "exp": "'Trijeba je bit pacijent i ugodit zlu brjemenu da se pak dobro brijeme uživa' — strpljiv i u pravom trenutku.",
+      "ctx": "Marin Držić, Dundo Maroje (ulomak)\n\nPOMET: Ma se trijeba s brjemenom akomodavat; trijeba je bit vjertuozu tko hoće renjat na svijetu. Kralj je čovjek od ljudi kad se umije vladat. Nije ga imat dinar, er vidim mnoge s dinarmi potištene; nije ga bit doktur, er vidim mnoge te brigate fantastike; nije ga bit junak s mačem u ruci; er su ti većekrat ali ubijeni ali su ih pune tamnice, nije ga bit poeta ni kmedije umjet činit, er tizijem svak ore i svaki ga pijerhoće operat, kao bastaha, a umjesto zahvaljenja da mu reku: „Ne valja ništa, iždeni!\", i da mu neprijatelji ostanu; nije ga bit mužik, er tizijeh druzi čine pjet kad veću volju plakat imaju.\n\nTrijeba je bit pacijent i ugodit zlu brjemenu da…"
+    },
+    {
+      "id": 33,
+      "q": "Koju Pometovu osobinu prepoznajete u trećem tekstu?",
+      "opts": [
+        "A. naivnost",
+        "B. lukavost",
+        "C. škrtost",
+        "D. velikodušnost"
+      ],
+      "correct": "B",
+      "exp": "Pomet je lukavi sluga koji se prilagođava svima, ali strateški planira u svoju korist.",
+      "ctx": "Marin Držić, Dundo Maroje (ulomak)\n\nPOMET: Ma se trijeba s brjemenom akomodavat; trijeba je bit vjertuozu tko hoće renjat na svijetu. Kralj je čovjek od ljudi kad se umije vladat. Nije ga imat dinar, er vidim mnoge s dinarmi potištene; nije ga bit doktur, er vidim mnoge te brigate fantastike; nije ga bit junak s mačem u ruci; er su ti većekrat ali ubijeni ali su ih pune tamnice, nije ga bit poeta ni kmedije umjet činit, er tizijem svak ore i svaki ga pijerhoće operat, kao bastaha, a umjesto zahvaljenja da mu reku: „Ne valja ništa, iždeni!\", i da mu neprijatelji ostanu; nije ga bit mužik, er tizijeh druzi čine pjet kad veću volju plakat imaju.\n\nTrijeba je bit pacijent i ugodit zlu brjemenu da…"
+    },
+    {
+      "id": 34,
+      "q": "Zašto se Pomet 's brjemenom akomodava'?",
+      "opts": [
+        "A. Želi postati kralj i vladati svijetom.",
+        "B. Nada se da će tako svijet učiniti boljim.",
+        "C. Pokušava se obogatiti.",
+        "D. Želi uvijek dobro jesti i piti."
+      ],
+      "correct": "D",
+      "exp": "'Merita moj profumani trbuh da mu vjerno služim' — sve radi zbog dobre hrane i pića.",
+      "ctx": "Marin Držić, Dundo Maroje (ulomak)\n\nPOMET: Ma se trijeba s brjemenom akomodavat; trijeba je bit vjertuozu tko hoće renjat na svijetu. Kralj je čovjek od ljudi kad se umije vladat. Nije ga imat dinar, er vidim mnoge s dinarmi potištene; nije ga bit doktur, er vidim mnoge te brigate fantastike; nije ga bit junak s mačem u ruci; er su ti većekrat ali ubijeni ali su ih pune tamnice, nije ga bit poeta ni kmedije umjet činit, er tizijem svak ore i svaki ga pijerhoće operat, kao bastaha, a umjesto zahvaljenja da mu reku: „Ne valja ništa, iždeni!\", i da mu neprijatelji ostanu; nije ga bit mužik, er tizijeh druzi čine pjet kad veću volju plakat imaju.\n\nTrijeba je bit pacijent i ugodit zlu brjemenu da…"
+    },
+    {
+      "id": 35,
+      "q": "Kakvu ulogu ima Pomet u djelu Dundo Maroje?",
+      "opts": [
+        "A. Upravlja radnjom i sudbinama lica.",
+        "B. Publici tumači sva zbivanja na sceni.",
+        "C. Pojavljuje se kao deus ex machina.",
+        "D. Njegov lik nosi predstavu u predstavi."
+      ],
+      "correct": "A",
+      "exp": "Pomet je pokretač radnje — manipulira svim likovima i situacijama u korist svog gospodara Mara.",
+      "ctx": "Marin Držić, Dundo Maroje (ulomak)\n\nPOMET: Ma se trijeba s brjemenom akomodavat; trijeba je bit vjertuozu tko hoće renjat na svijetu. Kralj je čovjek od ljudi kad se umije vladat. Nije ga imat dinar, er vidim mnoge s dinarmi potištene; nije ga bit doktur, er vidim mnoge te brigate fantastike; nije ga bit junak s mačem u ruci; er su ti većekrat ali ubijeni ali su ih pune tamnice, nije ga bit poeta ni kmedije umjet činit, er tizijem svak ore i svaki ga pijerhoće operat, kao bastaha, a umjesto zahvaljenja da mu reku: „Ne valja ništa, iždeni!\", i da mu neprijatelji ostanu; nije ga bit mužik, er tizijeh druzi čine pjet kad veću volju plakat imaju.\n\nTrijeba je bit pacijent i ugodit zlu brjemenu da…"
+    },
+    {
+      "id": 36,
+      "q": "Kako se Pomet odnosi prema ljudima oko sebe?",
+      "opts": [
+        "A. Teško surađuje s ljudima jer je glup.",
+        "B. Iskorištava sve oko sebe zbog novca.",
+        "C. Iako ponekad nerado, svima ugađa.",
+        "D. Svadljiv je i lako gubi živce."
+      ],
+      "correct": "C",
+      "exp": "'Pomete, opravi mi – opravljam! Pođ za mene – idem; psuje me – podnosim' — ugađa svima, makar i nerado.",
+      "ctx": "Marin Držić, Dundo Maroje (ulomak)\n\nPOMET: Ma se trijeba s brjemenom akomodavat; trijeba je bit vjertuozu tko hoće renjat na svijetu. Kralj je čovjek od ljudi kad se umije vladat. Nije ga imat dinar, er vidim mnoge s dinarmi potištene; nije ga bit doktur, er vidim mnoge te brigate fantastike; nije ga bit junak s mačem u ruci; er su ti većekrat ali ubijeni ali su ih pune tamnice, nije ga bit poeta ni kmedije umjet činit, er tizijem svak ore i svaki ga pijerhoće operat, kao bastaha, a umjesto zahvaljenja da mu reku: „Ne valja ništa, iždeni!\", i da mu neprijatelji ostanu; nije ga bit mužik, er tizijeh druzi čine pjet kad veću volju plakat imaju.\n\nTrijeba je bit pacijent i ugodit zlu brjemenu da…"
+    },
+    {
+      "id": 37,
+      "q": "U kojem se gradu događa radnja Dunda Maroja?",
+      "opts": [
+        "A. u Dubrovniku",
+        "B. u Veneciji",
+        "C. u Rimu",
+        "D. u Splitu"
+      ],
+      "correct": "C",
+      "exp": "Radnja Dunda Maroja smještena je u Rim — Maro rasipa novac svog oca Maroja po Rimu."
+    },
+    {
+      "id": 38,
+      "q": "U kojem je književnopovijesnome razdoblju stvarao Marin Držić?",
+      "opts": [
+        "A. u romantizmu",
+        "B. u renesansi",
+        "C. u srednjem vijeku",
+        "D. u baroku"
+      ],
+      "correct": "B",
+      "exp": "Marin Držić (1508.–1567.) najveći je dubrovački renesansni dramatičar — 16. st."
+    },
+    {
+      "id": 39,
+      "q": "Koju dramsku tehniku prepoznajete u trećem tekstu?",
+      "opts": [
+        "A. dijalog",
+        "B. monolog",
+        "C. kulminaciju",
+        "D. didaskaliju"
+      ],
+      "correct": "B",
+      "exp": "Pometov govor je monolog — jedan lik govori sam, bez sugovornika.",
+      "ctx": "Marin Držić, Dundo Maroje (ulomak)\n\nPOMET: Ma se trijeba s brjemenom akomodavat; trijeba je bit vjertuozu tko hoće renjat na svijetu. Kralj je čovjek od ljudi kad se umije vladat. Nije ga imat dinar, er vidim mnoge s dinarmi potištene; nije ga bit doktur, er vidim mnoge te brigate fantastike; nije ga bit junak s mačem u ruci; er su ti većekrat ali ubijeni ali su ih pune tamnice, nije ga bit poeta ni kmedije umjet činit, er tizijem svak ore i svaki ga pijerhoće operat, kao bastaha, a umjesto zahvaljenja da mu reku: „Ne valja ništa, iždeni!\", i da mu neprijatelji ostanu; nije ga bit mužik, er tizijeh druzi čine pjet kad veću volju plakat imaju.\n\nTrijeba je bit pacijent i ugodit zlu brjemenu da…"
+    },
+    {
+      "id": 40,
+      "q": "Što je osnovno obilježje dramskoga djela?",
+      "opts": [
+        "A. metaforično izražavanje",
+        "B. pripovijedanje",
+        "C. razvijanje sukoba među licima",
+        "D. iskazivanje osobnih misli i osjećaja"
+      ],
+      "correct": "C",
+      "exp": "Drama se temelji na sukobu kao pokretaču radnje — bez sukoba nema dramskog napona."
+    },
+    {
+      "id": 41,
+      "q": "Čime se ostvaruje karakterizacija dramskih lica?",
+      "opts": [
+        "A. pripovijedanjem o dramskim licima",
+        "B. opisivanjem dramskih lica",
+        "C. popisom dramskih lica",
+        "D. postupcima dramskih lica"
+      ],
+      "correct": "D",
+      "exp": "U drami se likovi karakteriziraju postupcima, govorom, reakcijama — ne opisom izvana."
+    },
+    {
+      "id": 42,
+      "q": "Koji niz opisuje strukturu scenske izvedbe dramskoga djela?",
+      "opts": [
+        "A. retardacija, epizode i digresije",
+        "B. opis, pripovijedanje i karakteri",
+        "C. teme, motivi i fabula",
+        "D. činovi, prizori i slike"
+      ],
+      "correct": "D",
+      "exp": "Dramska struktura dijeli se na činove, prizore i slike."
+    },
+    {
+      "id": 43,
+      "q": "Koje djelo pripada istomu književnomu rodu kao i Dundo Maroje?",
+      "opts": [
+        "A. Kip domovine na početku leta 188*",
+        "B. Gospoda Glembajevi",
+        "C. Balada iz predgrađa",
+        "D. Posljednji Stipančići"
+      ],
+      "correct": "B",
+      "exp": "Dundo Maroje i Gospoda Glembajevi su oba drame. Kip domovine i Balada su lirika, Posljednji Stipančići je roman."
+    },
+    {
+      "id": 45,
+      "q": "Kojemu književnomu rodu pripada četvrti tekst?",
+      "opts": [
+        "A. lirici",
+        "B. epici",
+        "C. drami"
+      ],
+      "correct": "C",
+      "exp": "Gospoda Glembajevi (1929.) Miroslava Krleže je drama — scenski tekst s dijalozima i didaskalijama.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 46,
+      "q": "Kako se naziva dio teksta otisnut kosim slovima?",
+      "opts": [
+        "A. prolog",
+        "B. epilog",
+        "C. didaskalija",
+        "D. replika"
+      ],
+      "correct": "C",
+      "exp": "Didaskalija (scenska uputa) je dio dramskog teksta pisan kosim slovima koji opisuje scenu i pokrete likova.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 47,
+      "q": "Tko je Leone?",
+      "opts": [
+        "A. svećenik, ispovjednik baruničina sina",
+        "B. slikar, sin Ignjata Glembaya",
+        "C. pravni savjetnik obitelji Glembay",
+        "D. obiteljski liječnik i prijatelj"
+      ],
+      "correct": "B",
+      "exp": "Leone Glembay je likovni umjetnik (slikar) i sin Ignjata Glembaya."
+    },
+    {
+      "id": 48,
+      "q": "Što je pokrenulo dramatične sukobe među licima u djelu?",
+      "opts": [
+        "A. Leoneov povratak iz Europe zbog novčanih problema",
+        "B. ucjena lokalnoga bankara da Leone mora vratiti novac",
+        "C. nenadano Leoneovo otkriće tko mu je pravi otac",
+        "D. Leoneova izjava da očeva supruga ima ljubavnika"
+      ],
+      "correct": "D",
+      "exp": "Leoneova optužba da barunica Castelli vara oca Ignjata pokreće dramski sukob koji vodi prema katastrofi.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 49,
+      "q": "Čega se kriminalnog noćašnjeg Leone godinama bojao?",
+      "opts": [
+        "A. Da će ponovno pokleknuti pred starom ljubavnom strašću.",
+        "B. Da će se posvađati s bratom Ivanom i sestrom Alisom.",
+        "C. Da ne će moći kontrolirati svoju mržnju prema ocu.",
+        "D. Da ne će uspjeti sakriti da je potrošio majčino nasljedstvo."
+      ],
+      "correct": "A",
+      "exp": "Leone se boji da će pokleknuti pred strašću prema barunici Castelli — novoj ženi svog oca.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 50,
+      "q": "Zbog čega se Leone osjeća krivim u četvrtome tekstu?",
+      "opts": [
+        "A. zbog propasti tvrtke",
+        "B. zbog dugoga izbivanja",
+        "C. zbog bračne nevjere",
+        "D. zbog očeve smrti"
+      ],
+      "correct": "D",
+      "exp": "Leone klečeći govori Angeliki — upravo je ubio svog oca Ignjata (paternicide).",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 51,
+      "q": "Što Leone podrazumijeva pod 'glembajevskim imperativom'?",
+      "opts": [
+        "A. socijalnu osjetljivost",
+        "B. naslijeđene sklonosti",
+        "C. obiteljsku idilu",
+        "D. financijsku neovisnost"
+      ],
+      "correct": "B",
+      "exp": "'Glembajevski imperativ' je Leoneov termin za naslijeđene destruktivne impulse obitelji Glembay.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 52,
+      "q": "Koju karakterizaciju prepoznajete u prvoj Leoneovoj replici u tekstu?",
+      "opts": [
+        "A. naturalističku i psihološku",
+        "B. socijalnu i govornu",
+        "C. fizičku i podsvjesnu",
+        "D. realističnu i simbolističku"
+      ],
+      "correct": "A",
+      "exp": "Leone analizira vlastitu psihu i podsvjesne nagone — to je naturalistička i psihološka karakterizacija.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 53,
+      "q": "Koja je stilska figura prisutna u rečenici: 'Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu.'",
+      "opts": [
+        "A. hiperbola",
+        "B. poredba",
+        "C. simbol",
+        "D. personifikacija"
+      ],
+      "correct": "B",
+      "exp": "'Kao jaguar... tako sam obilazio' je poredba (simile) — usporedba s veznikom 'kao'.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 54,
+      "q": "Kako se s. Angelika odnosi prema Leoneu?",
+      "opts": [
+        "A. inspirativno",
+        "B. sa strahom",
+        "C. tješiteljski",
+        "D. s divljenjem"
+      ],
+      "correct": "C",
+      "exp": "Angelika 'miluje ga toplo i samilosno kao bolesno dijete' — njen odnos je tješiteljski, brižan.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 55,
+      "q": "U kakvome odnosu Krleža gradi lica s. Angelike i barunice Castelli?",
+      "opts": [
+        "A. ljepota – ružnoća",
+        "B. starost – mladost",
+        "C. selo – grad",
+        "D. duhovno – tjelesno"
+      ],
+      "correct": "D",
+      "exp": "Angelika je duhovna i milostiva, barunica tjelesna i strastvena — Krleža ih suprotstavlja kao duhovno vs. tjelesno.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 56,
+      "q": "Što je uzrok bijesnoga baruničina ponašanja u četvrtomu tekstu?",
+      "opts": [
+        "A. svađa sa suprugom",
+        "B. materijalna propast",
+        "C. novinski natpisi",
+        "D. gradski tračevi"
+      ],
+      "correct": "C",
+      "exp": "Barunica je 'deranžirana' zbog novinskih natpisa koji otkrivaju skandal.",
+      "ctx": "Miroslav Krleža, Gospoda Glembajevi — treći čin (ulomak)\n\nLEONE: Da, samo to! Eto, onog kriminalnog noćašnjeg ja sam se godinama bojao. Kao jaguar s podvinutim repom, tako sam obilazio ovu svoju tajnu. Ja jedanaest godina nisam dolazio u ovu kuću od straha pred zločinom, a kad sam se ipak jednog dana pojavio ovdje, namirisao sam odmah krv. U ovoj magli, među ovim mrtvacima, ja sam se instinktivno nečeg bojao, a opet sam u sebi perverzno uživao da će se ipak dati zgodna prilika. I kada se onda prilika doista vrlo zgodno stvorila, mjesto da se maknem od ponora, ja sam upravo majmunski neinteligentno skakao oko njega dok se onda sve skupa nije strovalilo! Još u posljednjoj sekundi meni je bilo …"
+    },
+    {
+      "id": 57,
+      "q": "Kojom replikom završavaju Gospoda Glembajevi?",
+      "opts": [
+        "A. SLUGA: Gospon doktor zaklali su barunicu.",
+        "B. LEONE: Mutno je sve to u nama, draga moja dobra Beatrice...",
+        "C. GLEMBAY: Ja sam osjećao da se nešto sprema!",
+        "D. ANGELIKA: Sve će biti dobro, Leone!"
+      ],
+      "correct": "A",
+      "exp": "Drama završava Sluginom replikam: 'Gospon doktor zaklali su barunicu' — Leone je ubio barunicu Castelli."
+    },
+    {
+      "id": 58,
+      "q": "Što povezuje Gospodu Glembajeve i Povratak Filipa Latinovicza?",
+      "opts": [
+        "A. uspon i pad patricijske obitelji",
+        "B. neostvarena ljubav i Edipov kompleks",
+        "C. isti životni put glavnoga junaka i tragični završetak",
+        "D. motiv povratka i umjetnička kriza glavnoga junaka"
+      ],
+      "correct": "D",
+      "exp": "Oba Krležina djela tematiziraju povratak intelektualca-umjetnika kući i krizu identiteta."
+    },
+    {
+      "id": 59,
+      "q": "S kojim dvama djelima Gospoda Glembajevi čine tzv. Glembajevski ciklus?",
+      "opts": [
+        "A. Povratak Filipa Latinovicza i Vučjak",
+        "B. U agoniji i Leda",
+        "C. Na rubu pameti i Balade Petrice Kerempuha",
+        "D. Kristofor Kolumbo i Zastave"
+      ],
+      "correct": "B",
+      "exp": "Glembajevski dramski ciklus: Gospoda Glembajevi, U agoniji i Leda."
+    },
+    {
+      "id": 60,
+      "q": "Kojemu je književnomu pravcu pripadao Miroslav Krleža na početku svojega stvaralaštva?",
+      "opts": [
+        "A. futurizmu",
+        "B. moderni",
+        "C. ekspresionizmu",
+        "D. nadrealizmu"
+      ],
+      "correct": "C",
+      "exp": "Krleža je na početku (1915.–1920.) bio pod utjecajem ekspresionizma."
+    },
+    {
+      "id": 61,
+      "q": "Koja ustanova u Republici Hrvatskoj nosi ime Miroslava Krleže?",
+      "opts": [
+        "A. Muzej suvremene umjetnosti",
+        "B. Institut za književnost",
+        "C. Leksikografski zavod",
+        "D. Hrvatsko narodno kazalište"
+      ],
+      "correct": "C",
+      "exp": "Leksikografski zavod Miroslav Krleža u Zagrebu nosi njegovo ime."
+    },
+    {
+      "id": 62,
+      "q": "Što znači imperativ u sintagmi 'glembajevski imperativ'?",
+      "opts": [
+        "A. izrečena zapovijed",
+        "B. strogi nazori",
+        "C. ono što je neizbježno",
+        "D. ono što je potrebno"
+      ],
+      "correct": "C",
+      "exp": "U ovom kontekstu 'imperativ' znači ono što je neizbježno, čemu se ne može oduprijeti."
+    },
+    {
+      "id": 63,
+      "q": "Prema kojem su načelu napisani zarezi u rečenici: 'Ne, Leone, sve to nije tako crno.'",
+      "opts": [
+        "A. vokativnosti",
+        "B. suprotnosti",
+        "C. inverzije",
+        "D. umetanja"
+      ],
+      "correct": "A",
+      "exp": "Zarez se piše uz vokativ — 'Leone' je vokativ. Zarezi uz vokativ pišu se prema načelu vokativnosti."
+    },
+    {
+      "id": 65,
+      "q": "Koji je oblik ispravan: 'devetnaestoga' ili 'devetnajstoga'?",
+      "opts": [
+        "A. devetnaestoga",
+        "B. devetnajstoga"
+      ],
+      "correct": "A",
+      "exp": "Standardni oblik je 'devetnaest'. Oblik s 'j' ('devetnajst') je nestandardan."
+    },
+    {
+      "id": 66,
+      "q": "Koji je oblik ispravan: 'dijelili' ili 'djelili'?",
+      "opts": [
+        "A. dijelili",
+        "B. djelili"
+      ],
+      "correct": "A",
+      "exp": "Glagol je 'dijeliti' (raspodijeliti). U ijekavici: 'dijelili'."
+    },
+    {
+      "id": 67,
+      "q": "Koji je oblik ispravan: 'nezadovoljstva' ili 'ne zadovoljstva'?",
+      "opts": [
+        "A. nezadovoljstva",
+        "B. ne zadovoljstva"
+      ],
+      "correct": "A",
+      "exp": "Prefiks 'ne-' s imenicama piše se spojeno: 'nezadovoljstvo'."
+    },
+    {
+      "id": 68,
+      "q": "Koji je oblik ispravan: 'civilizacije' ili 'civilizacie'?",
+      "opts": [
+        "A. civilizacije",
+        "B. civilizacie"
+      ],
+      "correct": "A",
+      "exp": "Ispravni oblik je 'civilizacije' — bez 'i' ispred 'j' nije standardno."
+    },
+    {
+      "id": 69,
+      "q": "Koji je oblik ispravan: 'svjeta' ili 'svijeta'?",
+      "opts": [
+        "A. svjeta",
+        "B. svijeta"
+      ],
+      "correct": "B",
+      "exp": "U ijekavici ispravno je 'svijet', genitiv 'svijeta'."
+    },
+    {
+      "id": 70,
+      "q": "Koji je oblik ispravan: 'u ime' ili 'uime'?",
+      "opts": [
+        "A. u ime",
+        "B. uime"
+      ],
+      "correct": "A",
+      "exp": "Prijedložni izraz 'u ime' piše se odvojeno."
+    },
+    {
+      "id": 71,
+      "q": "Koji je oblik ispravan: 'iracijonalnih' ili 'iracionalnih'?",
+      "opts": [
+        "A. iracijonalnih",
+        "B. iracionalnih"
+      ],
+      "correct": "B",
+      "exp": "Ispravni oblik je 'iracionalan' — latinizam bez 'j' u osnovi."
+    },
+    {
+      "id": 72,
+      "q": "Koji je oblik ispravan: 'občinjeni' ili 'opčinjeni'?",
+      "opts": [
+        "A. občinjeni",
+        "B. opčinjeni"
+      ],
+      "correct": "B",
+      "exp": "'Ob-' ispred 'č' prelazi u 'op-' prema jednačenju suglasnika po zvučnosti: 'opčinjen'."
+    },
+    {
+      "id": 73,
+      "q": "Koji je oblik ispravan: 'svjest' ili 'svijest'?",
+      "opts": [
+        "A. svjest",
+        "B. svijest"
+      ],
+      "correct": "B",
+      "exp": "U ijekavici ispravno je 'svijest'."
+    },
+    {
+      "id": 74,
+      "q": "Koji je oblik ispravan u kontekstu naziva pokreta: 'simbolizam' ili 'Simbolizam'?",
+      "opts": [
+        "A. simbolizam",
+        "B. Simbolizam"
+      ],
+      "correct": "A",
+      "exp": "Nazivi književnih pokreta pišu se malim slovom: simbolizam, realizam, romantizam."
+    }
+  ]
+}

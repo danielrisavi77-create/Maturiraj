@@ -1,0 +1,8 @@
+allowBuilds:
+  '@matrix-org/matrix-sdk-crypto-nodejs': true
+  esbuild: true
+  koffi: true
+  openclaw: true
+  protobufjs: true
+  sharp: true
+  unrs-resolver: true

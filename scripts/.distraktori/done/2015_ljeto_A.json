@@ -1,0 +1,402 @@
+{
+  "2015_ljeto_A__1": {
+    "B": "'Smion' ne znači opasan; riječ označuje odvažnost, a ne prijetnju.",
+    "C": "'Smion' nema veze sa smiješnim; ne radi se o komičnoj slici.",
+    "D": "'Smion' ne znači visok; visina tornja iskazana je drugim epitetima ('vitka')."
+  },
+  "2015_ljeto_A__2": {
+    "A": "Toranj je doživljen vizualno (obris, oblik), a ne kao zvuk.",
+    "B": "Jabuka je prikazana bojom (bakar zelenkaste boje), dakle vizualnim, ne auditivnim podražajem.",
+    "C": "Magla je dana vizualno ('olovne i tmaste'), a ne zvukom."
+  },
+  "2015_ljeto_A__3": {
+    "A": "Stih donosi samo vizualne i prostorne podatke (stijene, bridovi), bez spoja različitih osjetila.",
+    "C": "Spominje se isključivo boja (vizualni podražaj), pa nema prepletanja osjetila.",
+    "D": "Stih je slikovit i ironičan, ali ne spaja podražaje različitih osjetila."
+  },
+  "2015_ljeto_A__4": {
+    "A": "'Boje zelenkaste' samo je epitet boje, bez pridavanja ljudskih osobina.",
+    "B": "'Magle olovne' epitet je koji opisuje težinu i boju magle, a ne personifikacija.",
+    "D": "'Grmljavine glas' jest spoj zvuka i pojave, ali ne pripisuje predmetu ljudsku osobinu kao personifikacija."
+  },
+  "2015_ljeto_A__5": {
+    "A": "Shakespeareov sonet ima 14 stihova kao i ovaj osnovni dio; 'rep' znači stih više, a ne manje.",
+    "B": "Nejednak broj slogova nije obilježje soneta s repom; 'rep' se odnosi na dodatni stih.",
+    "C": "Prijenos rime iz katrena u tercine nije ono što čini sonet 'sonetom s repom'."
+  },
+  "2015_ljeto_A__6": {
+    "B": "Merkur ne pogubljuje nikoga; on prenosi Jupiterovu poruku.",
+    "C": "Merkur ne proriče budućnost; proročanstvo o Eneji dolazi od usuda, a Merkur ga samo prenosi.",
+    "D": "Merkur nije svećenik, nego bog glasnik koji nosi nalog."
+  },
+  "2015_ljeto_A__7": {
+    "B": "Stih je retoričko pitanje, prijekor zbog zanemarivanja sina, a ne navještaj budućnosti.",
+    "C": "Riječ je o pitanju i prijekoru, a ne o proricanju onoga što će se dogoditi.",
+    "D": "Stih je zapovijed (da otplovi), a ne proročanstvo o budućoj sudbini."
+  },
+  "2015_ljeto_A__8": {
+    "A": "U ulomku se ne kaže da vođi ide samo do slave, nego da zaboravlja zadaću.",
+    "C": "Vođa ne želi osvajati tuđe zemlje; prijekor je zbog zaboravljanja vlastite sudbine.",
+    "D": "Bog ga ne kori što želi otploviti u Kartagu, nego što ondje krzma i zaboravlja dužnosti."
+  },
+  "2015_ljeto_A__9": {
+    "B": "'Krzma' ne znači patiti, nego oklijevati i odugovlačiti.",
+    "C": "'Krzma' ne znači ratovati; upravo se prekorava jer ne radi ono što treba.",
+    "D": "'Krzma' ne znači vladati, nego besposleno oklijevati."
+  },
+  "2015_ljeto_A__10": {
+    "A": "Jupiter šalje Merkura, ali nije on taj koji je vođu spasio u Troji.",
+    "C": "Merkur je glasnik u ovom prizoru, a ne spasitelj iz Troje.",
+    "D": "Sin (Askanije) ne spašava vođu; život mu je spasila božica majka."
+  },
+  "2015_ljeto_A__11": {
+    "B": "Franciska nije osoba čije se oči uspoređuju s dvocijevkom; usporedba se odnosi na lik sa slike.",
+    "C": "Kamenski je promatrač koji osjeća pogled, a ne onaj čije su oči poput dvocijevke.",
+    "D": "Whistler je slikar portreta, a ne lik čije oči gledaju kao dvocijevka."
+  },
+  "2015_ljeto_A__12": {
+    "A": "'Obesvećivati' ne znači dovesti do nesvjestice (onesvijestiti).",
+    "C": "'Obesvećivati' ne znači osvetiti se nego oskvrnuti.",
+    "D": "'Obesvećivati' ne znači dovesti k svijesti, nego skrnaviti svetinju."
+  },
+  "2015_ljeto_A__13": {
+    "A": "'Koštunjavim rukama' epitet je u uobičajenom redoslijedu (ispred imenice), bez inverzije.",
+    "C": "'Nespokojne oči' epitet je u redovitom položaju ispred imenice, dakle bez inverzije.",
+    "D": "'Mrkog portraita' epitet stoji ispred imenice u uobičajenom redu, pa nema inverzije."
+  },
+  "2015_ljeto_A__14": {
+    "A": "Camao nije gavran; riječ je o egzotičnoj ptici koja govori.",
+    "B": "Camao nije orao.",
+    "D": "Camao nije slavuj, nego papagaj."
+  },
+  "2015_ljeto_A__15": {
+    "A": "Camao nije bajka; nema čudesnih bajkovitih elemenata ni tipične strukture bajke.",
+    "B": "Camao nije basna; likovi nisu personificirane životinje s poukom.",
+    "D": "Camao nije roman, nego kraće prozno djelo zaokružene radnje."
+  },
+  "2015_ljeto_A__16": {
+    "A": "Donošenje ribe (morskih listova) bio je svadbeni dar, a ne šala.",
+    "C": "Skrivanje boljih komada mesa nije rođakova šala, nego ono što muči nezadovoljne goste.",
+    "D": "U ulomku se rođakova šala sastoji u prskanju vode, a ne u nepristojnim riječima."
+  },
+  "2015_ljeto_A__17": {
+    "A": "Šutnja majke Bovary nije znak popustljivosti, nego povrijeđenosti jer je zaobiđena.",
+    "C": "Umor nije razlog njezine šutnje; uvrijeđena je što je nisu pitali za savjet.",
+    "D": "Nije stidljivost razlog šutnji, nego osjećaj zapostavljenosti."
+  },
+  "2015_ljeto_A__18": {
+    "A": "Rečenica pokazuje rođakovu uvrijeđenost (smatra Rouaulta oholim), a ne prijetvornost.",
+    "C": "Rečenica iskazuje povrijeđenost majke Bovary, a ne dvoličnost rođaka.",
+    "D": "Rečenica prikazuje muževljevu nemarnost, a ne prijetvornost rođaka."
+  },
+  "2015_ljeto_A__19": {
+    "A": "Gospodin Rouault sprječava nepristojnu šalu, ali se ne prikazuje kako se želi prikazati boljim no što jest.",
+    "C": "Majka Bovary u ulomku je povrijeđena i šuti, ne nastoji se prikazati boljom.",
+    "D": "Otac Bovary nije lik koji u ovom ulomku nastoji podići svoj ugled."
+  },
+  "2015_ljeto_A__20": {
+    "B": "Charles Bovary nije pravnik, pa 'ozbiljno zvanje' nije pravničko.",
+    "C": "Zet nije svećenik, nego liječnik.",
+    "D": "Zet nije učitelj; 'ozbiljno zvanje' odnosi se na liječništvo."
+  },
+  "2015_ljeto_A__21": {
+    "A": "'Prijelazne nijanse' označuju normalna stanja koja generaciji nedostaju, a ne sam način života.",
+    "B": "'Jasnija pokoljenja' upućuju na druge naraštaje, a ne na način života pripovjedačeve generacije.",
+    "D": "'Oslonac razuma' ne opisuje način života te generacije obilježen krajnostima."
+  },
+  "2015_ljeto_A__22": {
+    "A": "'Eksplozija panike' suprotnost je duhovnoj ravnoteži, a ne njoj blizak pojam.",
+    "C": "'Vrsta samozaštite' nije isto što i uravnoteženo duhovno stanje.",
+    "D": "'Zatajivanje duha' označuje apatiju, a ne duhovnu ravnotežu."
+  },
+  "2015_ljeto_A__23": {
+    "B": "Pripovjedač nije ravnodušan; pokazuje snažnu zaokupljenost sudbinom generacije.",
+    "C": "On se generaciji ne izruguje, nego suosjeća i samokritičan je.",
+    "D": "Nema divljenja; odnos je suosjećajan i bolan, a ne ushićen."
+  },
+  "2015_ljeto_A__24": {
+    "A": "'Tavorenje' nije paničarenje, nego mlitavo, jadno preživljavanje.",
+    "B": "'Tavorenje' ne znači promatrati nego mučno životariti.",
+    "C": "'Tavorenje' nije sažalijevanje, nego besciljno životarenje."
+  },
+  "2015_ljeto_A__25": {
+    "A": "Fonostilem nastaje glasovnim sredstvima, a ovdje je riječ o grafičkom isticanju velikim slovima.",
+    "C": "Morfostilem je obličko stilsko sredstvo, a ne isticanje pisanjem verzalom.",
+    "D": "Sintaktostilem se tiče rasporeda i ustroja rečenice, a ne grafičkog isticanja."
+  },
+  "2015_ljeto_A__26": {
+    "A": "Borba bogova protiv smrti nije spomenuta; uzaludan je napor samoga grada.",
+    "C": "Edipov otpor nije ono što svećenik smatra uzaludnim, nego napor grada protiv nesreće.",
+    "D": "Svećenik ne kaže da su molitve uzaludne; uzaludan je trud grada da se izbavi."
+  },
+  "2015_ljeto_A__27": {
+    "B": "Svećenik ne traži da Edip sluša zapovijedi boga, nego da pomogne narodu.",
+    "C": "Nema spomena pomoći u bijegu; traži se spas grada.",
+    "D": "Ne traži se gradnja oltara, nego izbavljenje naroda od pošasti."
+  },
+  "2015_ljeto_A__28": {
+    "A": "'Krilo majčino' odnosi se na umiranje nerođene djece, a ne na ime grada.",
+    "B": "'Božanstvo smrti' označuje silu koja širi kugu, a ne grad.",
+    "D": "'Crn Had' jest podzemlje koje se puni mrtvima, a ne naziv za grad."
+  },
+  "2015_ljeto_A__29": {
+    "A": "Stih je metaforičan (slabi za let), ali nema zamjene jednog pojma drugim po povezanosti.",
+    "C": "Stih opisuje neplodnost zemlje doslovno, bez metonimijske zamjene.",
+    "D": "'Molbe naše čuj' nije metonimija nego izravan zaziv."
+  },
+  "2015_ljeto_A__30": {
+    "B": "Otkriće ubojstva tebanskoga kralja zbiva se poslije; 'davna hrabrost' odnosi se na raniji čin sa Sfingom.",
+    "C": "Suprotstavljanje Kreontu nije ono na što upućuje 'davna hrabrost'.",
+    "D": "Svladavanje morske nemani nije Edipov pothvat; on je riješio Sfinginu zagonetku."
+  },
+  "2015_ljeto_A__31": {
+    "A": "Nora nije očekivala da joj suprug pročita pismo, nego da je obrani.",
+    "B": "Nije očekivala strpljivost, nego da uzme krivnju na sebe i zaštiti je.",
+    "C": "Nije očekivala da je zaposli, nego da je obrani pred svijetom."
+  },
+  "2015_ljeto_A__32": {
+    "A": "Helmer joj ne zamjera bračnu nevjeru; riječ je o krivotvorini i njezinoj nepromišljenosti.",
+    "C": "Predmet prijekora nije rastrošnost, nego nerazboritost.",
+    "D": "Helmer joj ne zamjera zanemarivanje djece, nego to što razmišlja kao nerazumno dijete."
+  },
+  "2015_ljeto_A__33": {
+    "B": "Norina spoznaja nije strah od osude sredine, nego uvid u vlastitu zabludu o braku.",
+    "C": "Ne žali za sigurnošću; razočarana je jer shvaća da je živjela uz stranca.",
+    "D": "Nije riječ o strepnji pred budućnošću, nego o spoznaji prošle zablude."
+  },
+  "2015_ljeto_A__34": {
+    "B": "Rečenica iskazuje Norinu spoznaju o braku, bez preuveličavanja kao u hiperboli.",
+    "C": "Rečenica je prijekor i poredba s djetetom, a ne hiperbola.",
+    "D": "Rečenica je Norina ocjena Helmera, bez preuveličavanja svojstvenog hiperboli."
+  },
+  "2015_ljeto_A__35": {
+    "A": "Lakoumno trošenje novca nije 'ta nesreća'; ona se odnosi na krivotvorenje potpisa.",
+    "C": "Smrt oca nije 'nesreća' iz rečenice, nego krivotvorenje njegova potpisa zbog zajma.",
+    "D": "Rankova bolest nije ono na što upućuje 'ta nesreća'."
+  },
+  "2015_ljeto_A__36": {
+    "A": "Savršenstvo forme i umjetnost radi umjetnosti obilježje su esteticizma, a ne ekspresionizma.",
+    "C": "Veličanje strojeva i napretka obilježje je futurizma, a ne ekspresionizma.",
+    "D": "Naglasak na psihoanalizi i potisnutom obilježje je nadrealizma, a ne ekspresionizma."
+  },
+  "2015_ljeto_A__37": {
+    "A": "Razrješenje sukoba zahvatom božanstva jest 'deus ex machina', a ne digresija.",
+    "B": "Zazivanje muza na početku epa jest invokacija, a ne digresija.",
+    "C": "Početak bez uvoda, u srce zbivanja, jest 'in medias res', a ne digresija."
+  },
+  "2015_ljeto_A__38": {
+    "A": "Grdan je lik iz drugoga djela, a ne sanjar iz Perivoja od Slave.",
+    "B": "Miljenko nije lik koji u snu vidi vilu u Perivoju od Slave.",
+    "C": "Stanac je lik iz Držićeve Novele od Stanca, a ne iz Zoranićevih Planina."
+  },
+  "2015_ljeto_A__39": {
+    "B": "Elegija je tužbalička lirska vrsta, a ne izvor tragedije.",
+    "C": "Epitaf je natpis na grobu, a ne osnova iz koje se razvila tragedija.",
+    "D": "Himna je svečana pohvalna pjesma, a tragedija je nastala iz ditiramba."
+  },
+  "2015_ljeto_A__40": {
+    "A": "Odiseja je ep, dakle pripada epskome, a ne dramskome rodu.",
+    "B": "Metamorfoze su epsko-pripovjedno djelo, a ne drama.",
+    "D": "Eneida je ep, pripada epskome rodu, a ne dramskome."
+  },
+  "2015_ljeto_A__41": {
+    "A": "Anadiploza ponavlja kraj jednoga stiha na početku idućega, čega ovdje nema.",
+    "B": "Anafora bi ponavljala istu riječ na početku stihova, a ovdje se ponavlja na kraju.",
+    "D": "Simploka spaja anaforu i epiforu, ali početci stihova nisu jednaki, pa nije simploka."
+  },
+  "2015_ljeto_A__42": {
+    "A": "Šižgorić nije pripadao dubrovačkome humanističkom krugu.",
+    "B": "Šižgorić nije hvarski, nego šibenski humanist.",
+    "C": "Šižgorić nije splitski, nego šibenski humanist."
+  },
+  "2015_ljeto_A__43": {
+    "B": "Prvi putopisni pjesnički zapis s pravog putovanja vezuje se uz Zoranića/druge autore, a ne uz Menčetića.",
+    "C": "Autor prve hrvatske svjetovne drame nije Menčetić (npr. Tirena je Držićeva), iako je Menčetić petrarkist.",
+    "D": "Prvi hrvatski roman u stihu i prozi (Planine) napisao je Zoranić, a ne Menčetić."
+  },
+  "2015_ljeto_A__44": {
+    "A": "Maroje je stari škrti otac, a ne snalažljivi 'kralj od ljudi'.",
+    "B": "Maro je rasipni sin, a ne lik koji vlada situacijom poput vjertuoza.",
+    "D": "Popiva je sluga, ali opis dovitljivog gospodara situacije odnosi se na Pometa."
+  },
+  "2015_ljeto_A__45": {
+    "A": "Góngora nije francuski pisac.",
+    "B": "Góngora nije njemački pisac.",
+    "D": "Góngora nije talijanski, nego španjolski barokni pjesnik."
+  },
+  "2015_ljeto_A__46": {
+    "A": "Bianchon je student medicine, a ne odbjegli robijaš.",
+    "B": "Rastignac je mladi ambiciozni student, a ne robijaš.",
+    "C": "Grof de Restaud nije odbjegli robijaš, nego pripadnik visokoga društva."
+  },
+  "2015_ljeto_A__47": {
+    "B": "Izmjena realizma i romantičarskih hajdučkih scena obilježje je Šenoina, a ne Nehajeva Bijega.",
+    "C": "Diplomatsko putovanje u Osmansko Carstvo nije tema Bijega.",
+    "D": "Propast senjske patricijske obitelji nije sadržaj Bijega (vezuje se uz druga djela)."
+  },
+  "2015_ljeto_A__48": {
+    "B": "Šimić nije krugovaš; krugovaši djeluju nakon Drugoga svjetskog rata.",
+    "C": "Šimić ne stvara u realizmu, nego u ekspresionizmu.",
+    "D": "Šimić nije moderna, nego ekspresionist (međuratno razdoblje)."
+  },
+  "2015_ljeto_A__49": {
+    "A": "Antun Vrančić nije glavni humanistički lik Pasa u trgovištu.",
+    "B": "Ilija Crijević nije lik toga romana.",
+    "D": "Juraj Šižgorić nije glavni lik Araličina romana."
+  },
+  "2015_ljeto_A__50": {
+    "A": "Tadijanović stvara kasnije (međuratno i poslijeratno doba), a ne u moderni.",
+    "C": "Pupačić pripada poslijeratnom naraštaju, a ne moderni.",
+    "D": "Kaštelan pripada poslijeratnoj književnosti, a ne moderni."
+  },
+  "2015_ljeto_A__51": {
+    "A": "Khevenhiller je djelo Antuna Šoljana (ili dr.), a ne Šimićeva pjesma.",
+    "C": "Srodnost nije Šimićeva pjesma.",
+    "D": "Vagonaši nisu Šimićeva pjesma (vezuju se uz drugoga autora)."
+  },
+  "2015_ljeto_A__52": {
+    "A": "Breton je autor nadrealističkog, a ne dadaističkog manifesta.",
+    "B": "Lorca nije autor Dada manifesta.",
+    "C": "Marinetti je autor futurističkog manifesta, a ne Dada manifesta."
+  },
+  "2015_ljeto_A__53": {
+    "A": "Pupačić nije autor zbirke Lelek sebra.",
+    "B": "Mihalić nije autor te zbirke.",
+    "D": "Vesna Parun nije autorica Leleka sebra."
+  },
+  "2015_ljeto_A__54": {
+    "A": "Joža Podravec nije lik koji skače u vatru po bika.",
+    "B": "Filip Latinovicz je promatrač i slikar, a ne onaj koji izvodi bika iz vatre.",
+    "D": "Silvije Liepach nije lik vezan uz taj prizor spašavanja bika."
+  },
+  "2015_ljeto_A__55": {
+    "A": "Šenoa nije autor tih stihova izgnaničke čežnje.",
+    "C": "Vraz nije autor tih stihova.",
+    "D": "Vidrić nije autor tih stihova (pripada moderni, a riječ je o romantičarskoj lirici)."
+  },
+  "2015_ljeto_A__56": {
+    "A": "Točna množina jest 'bjegovi' (ije→je), pa 'bijegovi' nije pravopisno točno.",
+    "C": "Točna množina jest 'cvjetovi' (ije→je), pa 'cvijetovi' nije točno.",
+    "D": "Množina 'snijeg' je 'snjegovi' (ije→je), pa 'snijegovi' nije točno."
+  },
+  "2015_ljeto_A__57": {
+    "A": "Ispravno je 'bešćutan/besživotan' (jednačenje), pa 'bezživotan' nije točno.",
+    "B": "Ispravno je 'iščetkan' (jednačenje s+č→šč), pa 'isčetkan' nije točno.",
+    "D": "Ispravno je 'uščuvan' (jednačenje), pa 'uzčuvan' nije točno."
+  },
+  "2015_ljeto_A__58": {
+    "A": "Osnova je 'svećenik' (ć), pa 'svečenički' (č) nije točno.",
+    "B": "Pogrešni su i 'sveč-' i nastavak '-ićki'; treba 'svećenički'.",
+    "D": "'Svećen-' je dobro, ali nastavak je '-nički', a ne '-nićki'."
+  },
+  "2015_ljeto_A__59": {
+    "B": "Nepostojano a u 'osoblje' nije provedeno; promjena je jotacija (b+j→blj).",
+    "C": "Palatalizacija mijenja k, g, h pred e/i, čega u 'osoblje' nema.",
+    "D": "Vokalizacije (l→o) ovdje nema; provedena je jotacija."
+  },
+  "2015_ljeto_A__60": {
+    "A": "Naglasak nije na prvom slogu (po-), nego na drugom (-tvr-).",
+    "C": "Naglasak nije na trećem slogu (-đi-).",
+    "D": "Naglasak nije na četvrtom slogu (-va-)."
+  },
+  "2015_ljeto_A__61": {
+    "A": "Prefiks 'hiper-' ne odvaja se crticom s razmacima; ne piše se 'hiper – produkcija'.",
+    "B": "Prefiks 'hiper-' ne piše se odvojeno od osnove razmakom.",
+    "C": "Prefiks 'hiper-' ne piše se s crticom; složenica se piše sastavljeno."
+  },
+  "2015_ljeto_A__62": {
+    "B": "U pridjevu 'primorsko-goranske' drugi se dio piše malim slovom, pa 'Goranske' nije točno.",
+    "C": "Opisni član 'zajednica' piše se malim slovom, pa 'Zajednice' nije točno.",
+    "D": "Pogrešni su i 'Zajednice' (treba malo) i 'Goranske' (treba malo)."
+  },
+  "2015_ljeto_A__63": {
+    "B": "Sufiks je '-it-', a nastavak '-i'; raščlamba '-i-ti' nije točna.",
+    "C": "Korijen je 'rub-', a ne 'rubi-'; raščlamba je pogrešna.",
+    "D": "Ne izdvaja se prefiks 'ob-' ni sufiks '-it-'; raščlamba 'obrub-iti' je nepotpuna."
+  },
+  "2015_ljeto_A__64": {
+    "A": "Strano ime na -y dobiva 'j' pred nastavkom: 'Bovaryja', ne 'Bovarija'.",
+    "B": "Treba umetnuti 'j' pred nastavak: 'Bovaryja', ne 'Bovaria'.",
+    "C": "Ne piše se crtica; pravilno je 'Bovaryja', a ne 'Bovary-a'."
+  },
+  "2015_ljeto_A__65": {
+    "A": "'Kamenje' uz 'bacali' nije u genitivu, nego u akuzativu (bacali što).",
+    "B": "Zbirna imenica 'kamenje' ima jedninski oblik, pa nije genitiv množine.",
+    "D": "'Kamenje' je zbirna imenica jedninskoga oblika, pa nije akuzativ množine."
+  },
+  "2015_ljeto_A__66": {
+    "A": "Komparativ od 'bijesan' jest 'bjesniji' (ije→je), pa 'bijesniji' nije točno.",
+    "B": "Komparativ od 'gibak' jest 'gibljiji', a ne 'gibkiji'.",
+    "D": "Komparativ od 'visok' jest 'viši', a ne 'višlji'."
+  },
+  "2015_ljeto_A__67": {
+    "A": "U niječnoj zamjenici prijedlog se umeće: 'ni za kim', pa 'za nikim' nije pravilno.",
+    "B": "Pravilan je oblik 'nitko', a ne 'niko'.",
+    "D": "Prijedlog treba doći među dijelove zamjenice ('ni od koga'), a oblik je manje čist od C."
+  },
+  "2015_ljeto_A__68": {
+    "A": "'Donesti' nije standardni infinitiv; pravilno je 'donijeti'.",
+    "C": "'Donositi' je nesvršeni glagol, a 'donesoše' je aorist svršenoga 'donijeti'.",
+    "D": "'Donjeti' je pravopisno netočno; pravilno je 'donijeti'."
+  },
+  "2015_ljeto_A__69": {
+    "A": "'Uđe li' jest prezent, ali u jednini i upitno; traži se 3. lice množine kao jasan primjer (B).",
+    "C": "'Uđoše' je aorist, a ne prezent.",
+    "D": "'Ulaze' je prezent glagola 'ulaziti', a ne 'ući'."
+  },
+  "2015_ljeto_A__70": {
+    "A": "'Nije' je samo dio glagolskoga predikata, a ne cijeli predikat.",
+    "B": "'Nije želio' ne uključuje infinitiv 'ostati' koji je dio glagolskoga predikata.",
+    "D": "'U kući' je priložna oznaka mjesta i ne ulazi u predikat."
+  },
+  "2015_ljeto_A__71": {
+    "A": "'Miris' je ovdje subjekt (miris se širio), a ne objekt.",
+    "B": "'Mirisu' je u dativu, dakle neizravni, a ne izravni objekt.",
+    "C": "'Mirisa' je u genitivu (dio sintagme), a ne izravni objekt u akuzativu."
+  },
+  "2015_ljeto_A__72": {
+    "A": "'Sretni i bezbrižni' odnose se na subjekt (predikatni proširak), a nisu atribut uz 'klupa'.",
+    "B": "'Običnoj drvenoj' sročni su atributi (slažu se u rodu, broju, padežu), a ne nesročni.",
+    "D": "Ovdje je glavna imenica 'naslon', a 'klupe' je nesročni atribut uz nju, ne uz 'klupa'."
+  },
+  "2015_ljeto_A__73": {
+    "B": "'Pridošlim Hrvatima' nije predikat; predikat je 'bila utočište'.",
+    "C": "Riječ je o objektu u dativu, a ne o priložnoj oznaci.",
+    "D": "Subjekt je 'vjera', a 'Pridošlim Hrvatima' je neizravni objekt."
+  },
+  "2015_ljeto_A__74": {
+    "A": "'Da sutra mora otići' ovdje je atributna (objasnidbena uz 'zapovijed'), a ne subjektna.",
+    "B": "Zavisna rečenica je pogodbena/objasnidbena uz 'sretan', a ne subjektna.",
+    "D": "'Petru su rekli da...' ima objektnu rečenicu, a ne subjektnu."
+  },
+  "2015_ljeto_A__75": {
+    "B": "'Glavom i bradom' (osobno) i 'glavom kroza zid' (uzaludno) nisu suprotni po značenju.",
+    "C": "'Izgubiti dobar glas' i 'doći na loš glas' bliskoznačni su, a ne suprotni.",
+    "D": "'Zaspati vječnim snom' i 'ispustiti dušu' istoznačni su (umrijeti), a ne suprotni."
+  },
+  "2015_ljeto_A__76": {
+    "A": "Riječi 'bôl' i 'Bôl' nisu suprotnoga značenja, pa nije antonimija.",
+    "B": "Homofonija je isti izgovor uz različit zapis; ovdje je zapis jednak, pa nije homofonija.",
+    "D": "Riječi nemaju isto značenje, pa nije sinonimija nego homografija."
+  },
+  "2015_ljeto_A__77": {
+    "A": "'Dokoljenica' nastaje prefiksalno-sufiksalno (do-+koljen-+-ica), a ne čistom sufiksacijom.",
+    "B": "'Nebriga' nastaje prefiksacijom (ne-+briga), a ne sufiksalno.",
+    "D": "'Rukometaš' je tvoren od složenice 'rukomet' (+ -aš), a osnova nije nastala čistom sufiksacijom kao kod 'pomorac'."
+  },
+  "2015_ljeto_A__78": {
+    "A": "'Zubarski' je cijela izvedenica, a ne tvorbena osnova.",
+    "B": "'Zubarsk' nije samostalna tvorbena osnova; osnova je 'zubar'.",
+    "D": "'Zub' je korijen, ali tvorbena je osnova riječi 'zubarski' upravo 'zubar'."
+  },
+  "2015_ljeto_A__79": {
+    "A": "'Kopački rit' je ime močvarnoga područja (hidronim/oronim), a ne naselja.",
+    "B": "'Plitvička jezera' su hidronim (jezera), a ne ime naselja.",
+    "D": "'Zagrebačka gora' je oronim (gora), a ne ekonim."
+  },
+  "2015_ljeto_A__80": {
+    "A": "Skup glagoljičnih isprava o granicama posjeda u Istri odnosi se na Istarski razvod, a ne na Vinodolski zakonik.",
+    "B": "Latinični tekst iz 1345. s pravilima za redovnice odnosi se na drugi spomenik, a ne na Vinodolski zakonik.",
+    "C": "Posjedovna ćirilična isprava iz 1250. nije Vinodolski zakonik (koji je glagoljični zakonik iz 1288.)."
+  }
+}
