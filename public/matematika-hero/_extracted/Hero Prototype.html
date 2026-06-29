@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<title>Calculator construction kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ed;
+    --ink: #1a1714;
+    --ink-soft: #6b6560;
+    --line: #d9d3cb;
+    --panel: #ffffff;
+    --accent: oklch(0.62 0.14 40);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    overflow: hidden;
+  }
+  .app {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    height: 100vh;
+    width: 100vw;
+  }
+  .stage {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: var(--bg);
+  }
+  .stage-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .calc-wrap {
+    position: relative;
+    z-index: 1;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+  .calc-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.12s ease-out;
+    will-change: transform;
+  }
+  .calc {
+    transform-style: preserve-3d;
+  }
+  /* key 3D */
+  .key {
+    transform-style: preserve-3d;
+    transform: translateZ(var(--key-z, 0px));
+    transition: transform 0.08s ease-out, background 0.1s;
+  }
+  .key:hover {
+    transform: translateZ(calc(var(--key-z, 0px) + 4px));
+  }
+  .key:active {
+    transform: translateZ(calc(var(--key-z, 0px) - 6px)) scale(0.97);
+  }
+  /* Key elevation presets */
+  .calc[data-depth="flat"] { --key-z: 0px; }
+  .calc[data-depth="raised"] { --key-z: 8px; }
+  .calc[data-depth="deep"] { --key-z: 18px; }
+  .calc[data-depth="floating"] { --key-z: 28px; }
+  .calc[data-depth="raised"] .key,
+  .calc[data-depth="deep"] .key,
+  .calc[data-depth="floating"] .key {
+    box-shadow: 0 2px 0 rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .calc[data-depth="deep"] .key,
+  .calc[data-depth="floating"] .key {
+    box-shadow: 0 4px 0 rgba(0,0,0,0.2), 0 8px 20px rgba(0,0,0,0.12);
+  }
+  /* Display float */
+  .display {
+    transform: translateZ(var(--disp-z, 0px));
+    transform-style: preserve-3d;
+    transition: transform 0.2s;
+  }
+  .calc[data-depth="raised"] .display { --disp-z: 4px; }
+  .calc[data-depth="deep"] .display { --disp-z: 10px; }
+  .calc[data-depth="floating"] .display { --disp-z: 16px; }
+  /* Perspective presets */
+  .calc-wrap[data-persp="flat"] { perspective: none; }
+  .calc-wrap[data-persp="subtle"] { perspective: 2000px; }
+  .calc-wrap[data-persp="normal"] { perspective: 1200px; }
+  .calc-wrap[data-persp="strong"] { perspective: 700px; }
+  .calc-wrap[data-persp="dramatic"] { perspective: 450px; }
+  /* Tilt modes */
+  .calc-3d[data-tilt="off"] { transform: none !important; }
+  /* ============ TWEAKS PANEL ============ */
+  .tweaks {
+    background: #faf8f4;
+    border-left: 1px solid var(--line);
+    overflow-y: auto;
+    padding: 20px 22px 80px;
+  }
+  .tweaks::-webkit-scrollbar { width: 8px; }
+  .tweaks::-webkit-scrollbar-track { background: transparent; }
+  .tweaks::-webkit-scrollbar-thumb { background: #d9d3cb; border-radius: 4px; }
+  .tweak-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .tweak-sub {
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .tweak-group {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .tweak-group:last-child { border-bottom: none; }
+  .tweak-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .tweak-label .val {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .chip {
+    font-size: 11px;
+    padding: 6px 10px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--ink);
+    transition: all 0.12s;
+    font-weight: 500;
+  }
+  .chip:hover { border-color: #a8a29a; }
+  .chip.active {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+  .swatch-row {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+  }
+  .swatch {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.12s;
+    position: relative;
+  }
+  .swatch.active {
+    border-color: var(--ink);
+    transform: scale(1.08);
+  }
+  .swatch::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 4px;
+    background: inherit;
+  }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 3px;
+    background: var(--line);
+    outline: none;
+    border-radius: 2px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--ink);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--ink);
+  }
+  .toggle-row {
+    display: flex;
+    gap: 8px;
+  }
+  .toggle {
+    flex: 1;
+    padding: 8px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+  .toggle.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* ============== CALCULATOR ============== */
+  .calc {
+    display: inline-block;
+    transition: all 0.25s ease;
+  }
+  .display {
+    padding: 22px 22px 18px;
+    text-align: right;
+    position: relative;
+    overflow: hidden;
+  }
+  .history {
+    font-size: 13px;
+    color: var(--ink-soft);
+    min-height: 18px;
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.75;
+  }
+  .current {
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    word-break: break-all;
+  }
+  .mode-badge {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    gap: 8px;
+  }
+  .mode-badge span.on { color: var(--accent); font-weight: 600; }
+  .keys {
+    display: grid;
+    gap: 1px;
+    padding: 0;
+  }
+  .key {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 18px 10px;
+    color: inherit;
+    background: transparent;
+    position: relative;
+    font-variant-numeric: tabular-nums;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .key.op { color: var(--accent); font-weight: 500; }
+  .key.fn { font-size: 14px; }
+  .key.eq { background: var(--accent); color: #fff; }
+  .key.util { font-size: 13px; color: var(--ink-soft); }
+  .key:hover { background: rgba(0,0,0,0.04); }
+  .key.eq:hover { background: var(--accent); filter: brightness(1.08); }
+
+  /* ====== STYLE VARIANTS ====== */
+  /* Shape presets */
+  .calc[data-shape="rounded"] { border-radius: 28px; }
+  .calc[data-shape="sharp"] { border-radius: 0; }
+  .calc[data-shape="soft"] { border-radius: 12px; }
+  .calc[data-shape="pill"] { border-radius: 48px; }
+
+  .calc[data-shape="rounded"] .key,
+  .calc[data-shape="soft"] .key { border-radius: 0; }
+  .calc[data-keyshape="circle"] .key { border-radius: 50%; margin: 2px; min-width: 48px; min-height: 48px; padding: 8px; }
+  .calc[data-keyshape="circle"] .keys { gap: 4px; padding: 8px; }
+  .calc[data-keyshape="pill"] .key { border-radius: 999px; margin: 2px; }
+  .calc[data-keyshape="pill"] .keys { gap: 4px; padding: 6px; }
+  .calc[data-keyshape="square"] .key { border-radius: 8px; margin: 1px; }
+  .calc[data-keyshape="square"] .keys { gap: 2px; padding: 4px; }
+  .calc[data-keyshape="sharp"] .key { border-radius: 0; }
+
+  /* Theme presets */
+  .calc[data-theme="paper"] {
+    background: #fdfcf9;
+    color: #1a1714;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 18px 40px rgba(0,0,0,0.08);
+    border: 1px solid #ebe6de;
+  }
+  .calc[data-theme="paper"] .keys { background: #ebe6de; }
+  .calc[data-theme="paper"] .key { background: #fdfcf9; }
+  .calc[data-theme="paper"] .key:hover { background: #f5f2ec; }
+
+  .calc[data-theme="carbon"] {
+    background: #0f0f10;
+    color: #f5f5f5;
+  }
+  .calc[data-theme="carbon"] .keys { background: #1a1a1c; }
+  .calc[data-theme="carbon"] .key { background: #0f0f10; }
+  .calc[data-theme="carbon"] .key:hover { background: #222; }
+  .calc[data-theme="carbon"] .history { color: #888; }
+  .calc[data-theme="carbon"] .mode-badge { color: #666; }
+
+  .calc[data-theme="blueprint"] {
+    background: #0a2540;
+    color: #e8f0fb;
+  }
+  .calc[data-theme="blueprint"] .keys { background: #0a2540; }
+  .calc[data-theme="blueprint"] .key { background: #0f2d4d; border: 1px solid #1a4073; }
+  .calc[data-theme="blueprint"] .key:hover { background: #143b63; }
+  .calc[data-theme="blueprint"] .history { color: #6b9dd8; }
+
+  .calc[data-theme="mint"] {
+    background: #e8f3ee;
+    color: #0d2e1e;
+  }
+  .calc[data-theme="mint"] .keys { background: #d4e8dc; }
+  .calc[data-theme="mint"] .key { background: #e8f3ee; }
+  .calc[data-theme="mint"] .key:hover { background: #d9ebe1; }
+
+  .calc[data-theme="cream"] {
+    background: #fef8e8;
+    color: #3d2e0a;
+  }
+  .calc[data-theme="cream"] .keys { background: #f0e6c6; }
+  .calc[data-theme="cream"] .key { background: #fef8e8; }
+  .calc[data-theme="cream"] .key:hover { background: #f7efd1; }
+
+  .calc[data-theme="lavender"] {
+    background: #f2eefa;
+    color: #2a1b4a;
+  }
+  .calc[data-theme="lavender"] .keys { background: #e4dbf2; }
+  .calc[data-theme="lavender"] .key { background: #f2eefa; }
+  .calc[data-theme="lavender"] .key:hover { background: #e8e0f4; }
+
+  .calc[data-theme="terminal"] {
+    background: #0d1117;
+    color: #7ee787;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .calc[data-theme="terminal"] .keys { background: #0d1117; }
+  .calc[data-theme="terminal"] .key { background: #161b22; border: 1px solid #30363d; color: #c9d1d9; }
+  .calc[data-theme="terminal"] .key:hover { background: #21262d; }
+  .calc[data-theme="terminal"] .key.op { color: #79c0ff; }
+  .calc[data-theme="terminal"] .key.eq { background: #238636; color: #fff; }
+  .calc[data-theme="terminal"] .history { color: #6e7681; }
+
+  .calc[data-theme="risograph"] {
+    background: #ffe8d6;
+    color: #1a1714;
+  }
+  .calc[data-theme="risograph"] .keys { background: #ffd6b3; }
+  .calc[data-theme="risograph"] .key { background: #fff4e6; }
+  .calc[data-theme="risograph"] .key.op { color: #e85d75; }
+  .calc[data-theme="risograph"] .key.eq { background: #2d5f8b; color: #ffe8d6; }
+
+  /* Shadow presets */
+  .calc[data-shadow="none"] { box-shadow: none; }
+  .calc[data-shadow="soft"] { box-shadow: 0 4px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04); }
+  .calc[data-shadow="strong"] { box-shadow: 0 30px 60px -15px rgba(0,0,0,0.25), 0 15px 30px -10px rgba(0,0,0,0.15); }
+  .calc[data-shadow="stamp"] { box-shadow: 8px 8px 0 var(--ink); }
+  .calc[data-shadow="glow"] { box-shadow: 0 0 60px oklch(0.62 0.14 40 / 0.25); }
+  .calc[data-shadow="inset"] { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
+  .calc[data-shadow="duo"] { box-shadow: 6px 6px 0 oklch(0.62 0.14 40 / 0.25), 12px 12px 0 oklch(0.62 0.14 40 / 0.12); }
+
+  /* Layout density */
+  .calc[data-density="compact"] .key { padding: 12px 8px; min-height: 42px; font-size: 16px; }
+  .calc[data-density="comfy"] .key { padding: 18px 10px; min-height: 52px; }
+  .calc[data-density="loose"] .key { padding: 24px 12px; min-height: 64px; font-size: 20px; }
+
+  /* Width */
+  .calc[data-width="narrow"] .keys { width: 280px; }
+  .calc[data-width="normal"] .keys { width: 340px; }
+  .calc[data-width="wide"] .keys { width: 400px; }
+
+  /* Display font */
+  .calc[data-dispfont="mono"] .current,
+  .calc[data-dispfont="mono"] .history { font-family: 'JetBrains Mono', monospace; }
+  .calc[data-dispfont="serif"] .current,
+  .calc[data-dispfont="serif"] .history { font-family: 'Fraunces', serif; font-weight: 500; }
+  .calc[data-dispfont="display"] .current { font-family: 'DM Serif Display', serif; font-size: 54px; }
+  .calc[data-dispfont="grotesk"] .current,
+  .calc[data-dispfont="grotesk"] .history { font-family: 'Space Grotesk', sans-serif; }
+
+  /* Display size */
+  .calc[data-dispsize="s"] .current { font-size: 34px; }
+  .calc[data-dispsize="m"] .current { font-size: 44px; }
+  .calc[data-dispsize="l"] .current { font-size: 58px; }
+  .calc[data-dispsize="xl"] .current { font-size: 72px; letter-spacing: -0.03em; }
+
+  /* Display alignment */
+  .calc[data-dispalign="left"] .display { text-align: left; }
+  .calc[data-dispalign="center"] .display { text-align: center; }
+  .calc[data-dispalign="right"] .display { text-align: right; }
+
+  /* Border */
+  .calc[data-border="none"] { border: none; }
+  .calc[data-border="thin"] { outline: 1px solid rgba(0,0,0,0.12); outline-offset: 0; }
+  .calc[data-border="thick"] { outline: 3px solid var(--ink); outline-offset: 0; }
+  .calc[data-border="accent"] { outline: 2px solid var(--accent); outline-offset: 0; }
+  .calc[data-border="double"] { outline: 1px solid var(--ink); outline-offset: 4px; box-shadow: 0 0 0 1px var(--ink); }
+
+  /* Separator between display and keys */
+  .calc[data-separator="line"] .display { border-bottom: 1px solid currentColor; border-color: rgba(0,0,0,0.12); }
+  .calc[data-separator="dashed"] .display { border-bottom: 1px dashed currentColor; border-color: rgba(0,0,0,0.3); }
+  .calc[data-separator="thick"] .display { border-bottom: 3px solid var(--accent); }
+  .calc[data-theme="carbon"][data-separator="line"] .display,
+  .calc[data-theme="blueprint"][data-separator="line"] .display,
+  .calc[data-theme="terminal"][data-separator="line"] .display { border-color: rgba(255,255,255,0.1); }
+
+  /* Stage backgrounds */
+  .stage[data-bg="neutral"] { background: var(--bg); }
+  .stage[data-bg="grid"] {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .stage[data-bg="dots"] {
+    background-color: var(--bg);
+    background-image: radial-gradient(rgba(0,0,0,0.14) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .stage[data-bg="blueprint"] {
+    background-color: #0a2540;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .stage[data-bg="paper"] {
+    background-color: #f5f2ed;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 31px, rgba(0,0,0,0.06) 31px 32px);
+  }
+  .stage[data-bg="warm"] { background: linear-gradient(135deg, #fde4cf 0%, #f5d4ba 100%); }
+  .stage[data-bg="cool"] { background: linear-gradient(135deg, #e8eff9 0%, #d4e2f5 100%); }
+  .stage[data-bg="dark"] { background: #0f0f10; }
+  .stage[data-bg="neural"] {
+    background: radial-gradient(ellipse at top left, #f5d4ba 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, #d4e2f5 0%, transparent 50%),
+                #faf8f4;
+  }
+
+  /* Watermark / math formulas decoration */
+  .math-deco {
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: rgba(0,0,0,0.05);
+    pointer-events: none;
+    user-select: none;
+  }
+  .math-deco.tl { top: 30px; left: 40px; font-size: 80px; }
+  .math-deco.br { bottom: 30px; right: 40px; font-size: 60px; }
+  .math-deco.ml { top: 50%; left: 60px; font-size: 48px; transform: translateY(-50%); }
+  .stage[data-bg="dark"] .math-deco,
+  .stage[data-bg="blueprint"] .math-deco { color: rgba(255,255,255,0.08); }
+
+  /* Heading above calculator */
+  .calc-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .calc-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .stage[data-bg="dark"] .calc-title,
+  .stage[data-bg="blueprint"] .calc-title { color: #fff; }
+  .stage[data-bg="dark"] .calc-subtitle,
+  .stage[data-bg="blueprint"] .calc-subtitle { color: #888; }
+
+  /* Keypad variants */
+  .keys[data-layout="basic"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .keys[data-layout="scientific"] {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .keys[data-layout="matura"] {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .keys[data-layout="extended"] {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* Matura features badge */
+  .matura-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  /* Header chrome */
+  .chrome {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .chrome-dots { display: flex; gap: 5px; }
+  .chrome-dot { width: 9px; height: 9px; border-radius: 50%; background: #d9d3cb; }
+  .chrome-dot:nth-child(1) { background: #ff5f57; }
+  .chrome-dot:nth-child(2) { background: #febc2e; }
+  .chrome-dot:nth-child(3) { background: #28c840; }
+  .calc[data-chrome="none"] .chrome { display: none; }
+
+  /* Labels under keys (matura mode annotations) */
+  .key sup { font-size: 10px; vertical-align: super; margin-left: 1px; }
+  .key sub { font-size: 10px; vertical-align: sub; margin-right: 1px; }
+
+  /* Special: fn key color variants */
+  .calc[data-opstyle="solid"] .key.op { background: var(--accent); color: #fff; }
+  .calc[data-opstyle="outline"] .key.op { box-shadow: inset 0 0 0 1px var(--accent); color: var(--accent); }
+  .calc[data-opstyle="underline"] .key.op { box-shadow: inset 0 -2px 0 var(--accent); }
+
+  /* Tweaks header with count */
+  .tw-head {
+    position: sticky;
+    top: 0;
+    background: #faf8f4;
+    padding-bottom: 14px;
+    margin: -20px -22px 16px;
+    padding: 20px 22px 14px;
+    border-bottom: 1px solid var(--line);
+    z-index: 5;
+  }
+  .tw-count {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .randomize {
+    width: 100%;
+    padding: 10px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 6px;
+    transition: transform 0.08s;
+  }
+  .randomize:hover { background: var(--accent); }
+  .randomize:active { transform: scale(0.98); }
+  .reset {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .reset:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* hint for upper functions (2nd modifier) */
+  .key .alt {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 8px;
+    color: var(--accent);
+    opacity: 0.7;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .calc[data-hints="off"] .key .alt { display: none; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- LEFT: STAGE -->
+  <div class="stage" id="stage" data-bg="neural">
+    <div class="stage-bg">
+      <div class="math-deco tl" id="deco1">∫</div>
+      <div class="math-deco ml" id="deco2">π</div>
+      <div class="math-deco br" id="deco3">ƒ(x)</div>
+    </div>
+    <div class="calc-wrap" id="calcWrap" data-persp="normal">
+      <div class="calc-title" id="calcTitle">Matura Kalkulator</div>
+      <div class="calc-subtitle" id="calcSubtitle">Matematika · Razina A i B</div>
+      <div class="calc-3d" id="calc3d" data-tilt="mouse">
+      <div class="calc" id="calc"
+        data-theme="paper"
+        data-shape="rounded"
+        data-keyshape="square"
+        data-shadow="strong"
+        data-density="comfy"
+        data-width="normal"
+        data-dispfont="mono"
+        data-dispsize="m"
+        data-dispalign="right"
+        data-border="none"
+        data-separator="line"
+        data-chrome="mac"
+        data-opstyle="text"
+        data-hints="on">
+        <div class="chrome">
+          <div class="chrome-dots"><span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span></div>
+          <div>matura.calc</div>
+          <div>v2.4</div>
+        </div>
+        <div class="display">
+          <div class="mode-badge"><span id="modeDeg" class="on">DEG</span><span id="mode2nd">2ⁿᵈ</span></div>
+          <div class="history" id="history">&nbsp;</div>
+          <div class="current" id="current">0</div>
+        </div>
+        <div class="keys" id="keys" data-layout="matura"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: TWEAKS -->
+  <aside class="tweaks">
+    <div class="tw-head">
+      <div class="tweak-title">Construction Kit</div>
+      <div class="tweak-sub">Calculator · <span class="tw-count" id="tweakCount">26 knobs</span></div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">3D · Tilt <span class="val" id="v-tilt">mouse</span></div>
+      <div class="chip-row" data-tweak="tilt">
+        <button class="chip" data-v="off">Off</button>
+        <button class="chip active" data-v="mouse">Follow mouse</button>
+        <button class="chip" data-v="auto">Auto-rotate</button>
+        <button class="chip" data-v="iso">Isometric</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">3D · Perspective <span class="val" id="v-persp">normal</span></div>
+      <div class="chip-row" data-tweak="persp">
+        <button class="chip" data-v="flat">Flat</button>
+        <button class="chip" data-v="subtle">Subtle</button>
+        <button class="chip active" data-v="normal">Normal</button>
+        <button class="chip" data-v="strong">Strong</button>
+        <button class="chip" data-v="dramatic">Dramatic</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">3D · Key depth <span class="val" id="v-depth">raised</span></div>
+      <div class="chip-row" data-tweak="depth">
+        <button class="chip" data-v="flat">Flat</button>
+        <button class="chip active" data-v="raised">Raised</button>
+        <button class="chip" data-v="deep">Deep</button>
+        <button class="chip" data-v="floating">Floating</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">3D · Tilt amount <span class="val" id="v-tiltamt">20°</span></div>
+      <input type="range" min="0" max="45" step="1" value="20" id="tiltRange">
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">3D · Rotate Y <span class="val" id="v-roty">0°</span></div>
+      <input type="range" min="-60" max="60" step="1" value="0" id="rotYRange">
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">01 · Layout <span class="val" id="v-layout">matura</span></div>
+      <div class="chip-row" data-tweak="layout">
+        <button class="chip" data-v="basic">Osnovna</button>
+        <button class="chip" data-v="scientific">Znanstvena</button>
+        <button class="chip active" data-v="matura">Matura</button>
+        <button class="chip" data-v="extended">Proširena</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">02 · Theme <span class="val" id="v-theme">paper</span></div>
+      <div class="chip-row" data-tweak="theme">
+        <button class="chip active" data-v="paper">Paper</button>
+        <button class="chip" data-v="carbon">Carbon</button>
+        <button class="chip" data-v="blueprint">Blueprint</button>
+        <button class="chip" data-v="mint">Mint</button>
+        <button class="chip" data-v="cream">Cream</button>
+        <button class="chip" data-v="lavender">Lavender</button>
+        <button class="chip" data-v="terminal">Terminal</button>
+        <button class="chip" data-v="risograph">Risograph</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">03 · Accent <span class="val" id="v-accent">terracotta</span></div>
+      <div class="swatch-row" data-tweak="accent" id="accentRow"></div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">04 · Shell shape <span class="val" id="v-shape">rounded</span></div>
+      <div class="chip-row" data-tweak="shape">
+        <button class="chip" data-v="sharp">Sharp</button>
+        <button class="chip" data-v="soft">Soft</button>
+        <button class="chip active" data-v="rounded">Rounded</button>
+        <button class="chip" data-v="pill">Pill</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">05 · Key shape <span class="val" id="v-keyshape">square</span></div>
+      <div class="chip-row" data-tweak="keyshape">
+        <button class="chip" data-v="sharp">Sharp</button>
+        <button class="chip active" data-v="square">Square</button>
+        <button class="chip" data-v="pill">Pill</button>
+        <button class="chip" data-v="circle">Circle</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">06 · Shadow <span class="val" id="v-shadow">strong</span></div>
+      <div class="chip-row" data-tweak="shadow">
+        <button class="chip" data-v="none">None</button>
+        <button class="chip" data-v="soft">Soft</button>
+        <button class="chip active" data-v="strong">Strong</button>
+        <button class="chip" data-v="stamp">Stamp</button>
+        <button class="chip" data-v="glow">Glow</button>
+        <button class="chip" data-v="inset">Inset</button>
+        <button class="chip" data-v="duo">Duo</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">07 · Border <span class="val" id="v-border">none</span></div>
+      <div class="chip-row" data-tweak="border">
+        <button class="chip active" data-v="none">None</button>
+        <button class="chip" data-v="thin">Thin</button>
+        <button class="chip" data-v="thick">Thick</button>
+        <button class="chip" data-v="accent">Accent</button>
+        <button class="chip" data-v="double">Double</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">08 · Density <span class="val" id="v-density">comfy</span></div>
+      <div class="chip-row" data-tweak="density">
+        <button class="chip" data-v="compact">Compact</button>
+        <button class="chip active" data-v="comfy">Comfy</button>
+        <button class="chip" data-v="loose">Loose</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">09 · Width <span class="val" id="v-width">normal</span></div>
+      <div class="chip-row" data-tweak="width">
+        <button class="chip" data-v="narrow">Narrow</button>
+        <button class="chip active" data-v="normal">Normal</button>
+        <button class="chip" data-v="wide">Wide</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">10 · Display font <span class="val" id="v-dispfont">mono</span></div>
+      <div class="chip-row" data-tweak="dispfont">
+        <button class="chip active" data-v="mono">Mono</button>
+        <button class="chip" data-v="serif">Serif</button>
+        <button class="chip" data-v="display">Display</button>
+        <button class="chip" data-v="grotesk">Grotesk</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">11 · Display size <span class="val" id="v-dispsize">m</span></div>
+      <div class="chip-row" data-tweak="dispsize">
+        <button class="chip" data-v="s">Small</button>
+        <button class="chip active" data-v="m">Medium</button>
+        <button class="chip" data-v="l">Large</button>
+        <button class="chip" data-v="xl">Extra</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">12 · Display align <span class="val" id="v-dispalign">right</span></div>
+      <div class="chip-row" data-tweak="dispalign">
+        <button class="chip" data-v="left">Left</button>
+        <button class="chip" data-v="center">Center</button>
+        <button class="chip active" data-v="right">Right</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">13 · Separator <span class="val" id="v-separator">line</span></div>
+      <div class="chip-row" data-tweak="separator">
+        <button class="chip" data-v="none">None</button>
+        <button class="chip active" data-v="line">Line</button>
+        <button class="chip" data-v="dashed">Dashed</button>
+        <button class="chip" data-v="thick">Thick</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">14 · Operator style <span class="val" id="v-opstyle">text</span></div>
+      <div class="chip-row" data-tweak="opstyle">
+        <button class="chip active" data-v="text">Text</button>
+        <button class="chip" data-v="solid">Solid</button>
+        <button class="chip" data-v="outline">Outline</button>
+        <button class="chip" data-v="underline">Underline</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">15 · Chrome <span class="val" id="v-chrome">mac</span></div>
+      <div class="chip-row" data-tweak="chrome">
+        <button class="chip active" data-v="mac">macOS</button>
+        <button class="chip" data-v="none">None</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">16 · 2nd-function hints <span class="val" id="v-hints">on</span></div>
+      <div class="chip-row" data-tweak="hints">
+        <button class="chip active" data-v="on">On</button>
+        <button class="chip" data-v="off">Off</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">17 · Angle mode <span class="val" id="v-angle">DEG</span></div>
+      <div class="chip-row" data-tweak="angle">
+        <button class="chip active" data-v="DEG">Stupnjevi</button>
+        <button class="chip" data-v="RAD">Radijani</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">18 · Decimals <span class="val" id="v-decimals">6</span></div>
+      <input type="range" min="0" max="12" step="1" value="6" id="decRange">
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">19 · Stage background <span class="val" id="v-bg">neural</span></div>
+      <div class="chip-row" data-tweak="bg">
+        <button class="chip" data-v="neutral">Neutral</button>
+        <button class="chip" data-v="grid">Grid</button>
+        <button class="chip" data-v="dots">Dots</button>
+        <button class="chip" data-v="paper">Paper</button>
+        <button class="chip" data-v="blueprint">Blueprint</button>
+        <button class="chip" data-v="warm">Warm</button>
+        <button class="chip" data-v="cool">Cool</button>
+        <button class="chip" data-v="dark">Dark</button>
+        <button class="chip active" data-v="neural">Neural</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">20 · Math decorations <span class="val" id="v-deco">on</span></div>
+      <div class="chip-row" data-tweak="deco">
+        <button class="chip active" data-v="on">On</button>
+        <button class="chip" data-v="off">Off</button>
+      </div>
+    </div>
+
+    <div class="tweak-group">
+      <div class="tweak-label">21 · Title <span class="val" id="v-title">on</span></div>
+      <div class="chip-row" data-tweak="title">
+        <button class="chip active" data-v="on">Show</button>
+        <button class="chip" data-v="off">Hide</button>
+      </div>
+    </div>
+
+    <button class="randomize" id="randomize">⤳ Randomize all</button>
+    <button class="reset" id="reset">Reset to defaults</button>
+  </aside>
+</div>
+
+<script>
+/* =========================================================
+   KEY LAYOUTS — matura-focused
+   Each key: { l: main label, a: alt (2nd fn), v: value/action, c: class }
+   ========================================================= */
+const LAYOUTS = {
+  basic: [
+    [{l:'AC',v:'ac',c:'util'},{l:'±',v:'neg',c:'util'},{l:'%',v:'pct',c:'util'},{l:'÷',v:'/',c:'op'}],
+    [{l:'7',v:'7'},{l:'8',v:'8'},{l:'9',v:'9'},{l:'×',v:'*',c:'op'}],
+    [{l:'4',v:'4'},{l:'5',v:'5'},{l:'6',v:'6'},{l:'−',v:'-',c:'op'}],
+    [{l:'1',v:'1'},{l:'2',v:'2'},{l:'3',v:'3'},{l:'+',v:'+',c:'op'}],
+    [{l:'0',v:'0'},{l:',',v:'.'},{l:'⌫',v:'back',c:'util'},{l:'=',v:'eq',c:'eq'}],
+  ],
+  scientific: [
+    [{l:'sin',v:'sin',c:'fn',a:'sin⁻¹'},{l:'cos',v:'cos',c:'fn',a:'cos⁻¹'},{l:'tan',v:'tan',c:'fn',a:'tan⁻¹'},{l:'AC',v:'ac',c:'util'},{l:'⌫',v:'back',c:'util'}],
+    [{l:'xʸ',v:'^',c:'fn'},{l:'√',v:'sqrt',c:'fn',a:'x²'},{l:'ln',v:'ln',c:'fn',a:'eˣ'},{l:'log',v:'log',c:'fn',a:'10ˣ'},{l:'÷',v:'/',c:'op'}],
+    [{l:'π',v:'pi',c:'fn'},{l:'7',v:'7'},{l:'8',v:'8'},{l:'9',v:'9'},{l:'×',v:'*',c:'op'}],
+    [{l:'e',v:'e',c:'fn'},{l:'4',v:'4'},{l:'5',v:'5'},{l:'6',v:'6'},{l:'−',v:'-',c:'op'}],
+    [{l:'!',v:'fact',c:'fn'},{l:'1',v:'1'},{l:'2',v:'2'},{l:'3',v:'3'},{l:'+',v:'+',c:'op'}],
+    [{l:'2ⁿᵈ',v:'second',c:'fn'},{l:'±',v:'neg',c:'util'},{l:'0',v:'0'},{l:',',v:'.'},{l:'=',v:'eq',c:'eq'}],
+  ],
+  matura: [
+    [{l:'sin',v:'sin',c:'fn',a:'sin⁻¹'},{l:'cos',v:'cos',c:'fn',a:'cos⁻¹'},{l:'tan',v:'tan',c:'fn',a:'tan⁻¹'},{l:'DEG',v:'angle',c:'util'},{l:'AC',v:'ac',c:'util'}],
+    [{l:'x²',v:'sqr',c:'fn'},{l:'xʸ',v:'^',c:'fn'},{l:'√',v:'sqrt',c:'fn',a:'ʸ√x'},{l:'|x|',v:'abs',c:'fn'},{l:'⌫',v:'back',c:'util'}],
+    [{l:'log',v:'log',c:'fn',a:'10ˣ'},{l:'ln',v:'ln',c:'fn',a:'eˣ'},{l:'(',v:'('},{l:')',v:')'},{l:'÷',v:'/',c:'op'}],
+    [{l:'π',v:'pi',c:'fn'},{l:'7',v:'7'},{l:'8',v:'8'},{l:'9',v:'9'},{l:'×',v:'*',c:'op'}],
+    [{l:'e',v:'e',c:'fn'},{l:'4',v:'4'},{l:'5',v:'5'},{l:'6',v:'6'},{l:'−',v:'-',c:'op'}],
+    [{l:'n!',v:'fact',c:'fn'},{l:'1',v:'1'},{l:'2',v:'2'},{l:'3',v:'3'},{l:'+',v:'+',c:'op'}],
+    [{l:'2ⁿᵈ',v:'second',c:'fn'},{l:'±',v:'neg',c:'util'},{l:'0',v:'0'},{l:',',v:'.'},{l:'=',v:'eq',c:'eq'}],
+  ],
+  extended: [
+    [{l:'sin',v:'sin',c:'fn',a:'sin⁻¹'},{l:'cos',v:'cos',c:'fn',a:'cos⁻¹'},{l:'tan',v:'tan',c:'fn',a:'tan⁻¹'},{l:'DEG',v:'angle',c:'util'},{l:'AC',v:'ac',c:'util'},{l:'⌫',v:'back',c:'util'}],
+    [{l:'x²',v:'sqr',c:'fn'},{l:'x³',v:'cube',c:'fn'},{l:'xʸ',v:'^',c:'fn'},{l:'√',v:'sqrt',c:'fn'},{l:'∛',v:'cbrt',c:'fn'},{l:'|x|',v:'abs',c:'fn'}],
+    [{l:'log',v:'log',c:'fn'},{l:'ln',v:'ln',c:'fn'},{l:'eˣ',v:'exp',c:'fn'},{l:'10ˣ',v:'ten',c:'fn'},{l:'(',v:'('},{l:')',v:')'}],
+    [{l:'π',v:'pi',c:'fn'},{l:'e',v:'e',c:'fn'},{l:'7',v:'7'},{l:'8',v:'8'},{l:'9',v:'9'},{l:'÷',v:'/',c:'op'}],
+    [{l:'n!',v:'fact',c:'fn'},{l:'mod',v:'mod',c:'fn'},{l:'4',v:'4'},{l:'5',v:'5'},{l:'6',v:'6'},{l:'×',v:'*',c:'op'}],
+    [{l:'nCr',v:'ncr',c:'fn'},{l:'nPr',v:'npr',c:'fn'},{l:'1',v:'1'},{l:'2',v:'2'},{l:'3',v:'3'},{l:'−',v:'-',c:'op'}],
+    [{l:'2ⁿᵈ',v:'second',c:'fn'},{l:'±',v:'neg',c:'util'},{l:'0',v:'0'},{l:',',v:'.'},{l:'+',v:'+',c:'op'},{l:'=',v:'eq',c:'eq'}],
+  ],
+};
+
+/* ============== STATE ============== */
+const DEFAULTS = {
+  layout:'matura', theme:'paper', accent:'terracotta',
+  shape:'rounded', keyshape:'square', shadow:'strong', border:'none',
+  density:'comfy', width:'normal', dispfont:'mono', dispsize:'m',
+  dispalign:'right', separator:'line', opstyle:'text', chrome:'mac',
+  hints:'on', angle:'DEG', decimals:6, bg:'neural', deco:'on', title:'on',
+  tilt:'mouse', persp:'normal', depth:'raised', tiltamt:20, roty:0
+};
+const state = { ...DEFAULTS };
+const ACCENTS = [
+  {name:'terracotta', val:'oklch(0.62 0.14 40)'},
+  {name:'rose',       val:'oklch(0.62 0.14 15)'},
+  {name:'amber',      val:'oklch(0.72 0.14 70)'},
+  {name:'olive',      val:'oklch(0.62 0.10 120)'},
+  {name:'forest',     val:'oklch(0.55 0.12 145)'},
+  {name:'teal',       val:'oklch(0.62 0.10 190)'},
+  {name:'ocean',      val:'oklch(0.55 0.14 240)'},
+  {name:'ultramarine',val:'oklch(0.48 0.18 275)'},
+  {name:'violet',     val:'oklch(0.58 0.16 300)'},
+  {name:'magenta',    val:'oklch(0.60 0.20 340)'},
+  {name:'ink',        val:'oklch(0.25 0.01 280)'},
+  {name:'bone',       val:'oklch(0.55 0.02 80)'},
+];
+
+/* ============== RENDER TWEAKS ============== */
+const accentRow = document.getElementById('accentRow');
+ACCENTS.forEach((a,i) => {
+  const s = document.createElement('button');
+  s.className = 'swatch' + (a.name===state.accent ? ' active':'');
+  s.style.background = a.val;
+  s.dataset.v = a.name;
+  s.title = a.name;
+  accentRow.appendChild(s);
+});
+
+/* ============== CALCULATOR ENGINE ============== */
+const calc = document.getElementById('calc');
+const displayCurrent = document.getElementById('current');
+const displayHistory = document.getElementById('history');
+const keysEl = document.getElementById('keys');
+const modeDeg = document.getElementById('modeDeg');
+const mode2nd = document.getElementById('mode2nd');
+
+let expr = '';
+let lastAnswer = 0;
+let second = false;
+
+function fmt(n) {
+  if (!isFinite(n)) return n === Infinity ? '∞' : 'Error';
+  if (Number.isNaN(n)) return 'Error';
+  const d = state.decimals;
+  let s = Number(n.toFixed(d)).toString();
+  return s.replace('.', ',');
+}
+
+function pretty(e) {
+  return e
+    .replace(/\*/g,'×').replace(/\//g,'÷').replace(/-/g,'−')
+    .replace(/pi/g,'π').replace(/sqrt/g,'√').replace(/\./g,',')
+    .replace(/abs\(/g,'|').replace(/\)\|/g,'|)');
+}
+
+function updateDisplay() {
+  displayCurrent.textContent = expr === '' ? '0' : pretty(expr);
+  modeDeg.textContent = state.angle;
+  modeDeg.className = 'on';
+  mode2nd.className = second ? 'on' : '';
+}
+
+function factorial(n){
+  n = Math.round(n);
+  if (n < 0 || n > 170) return NaN;
+  let r = 1; for (let i=2;i<=n;i++) r*=i; return r;
+}
+function toRad(x){ return state.angle==='DEG' ? x*Math.PI/180 : x; }
+function fromRad(x){ return state.angle==='DEG' ? x*180/Math.PI : x; }
+
+function evaluate(){
+  if (!expr) return;
+  let e = expr
+    .replace(/π/g,'Math.PI')
+    .replace(/\bpi\b/g,'Math.PI')
+    .replace(/(?<![a-z])e(?![a-z])/g,'Math.E')
+    .replace(/\^/g,'**')
+    .replace(/sin\(/g, (state.angle==='DEG'?'Math.sin((Math.PI/180)*(':'Math.sin(('))
+    .replace(/cos\(/g, (state.angle==='DEG'?'Math.cos((Math.PI/180)*(':'Math.cos(('))
+    .replace(/tan\(/g, (state.angle==='DEG'?'Math.tan((Math.PI/180)*(':'Math.tan(('))
+    .replace(/asin\(/g, (state.angle==='DEG'?'(180/Math.PI)*Math.asin(':'Math.asin('))
+    .replace(/acos\(/g, (state.angle==='DEG'?'(180/Math.PI)*Math.acos(':'Math.acos('))
+    .replace(/atan\(/g, (state.angle==='DEG'?'(180/Math.PI)*Math.atan(':'Math.atan('))
+    .replace(/ln\(/g,'Math.log(')
+    .replace(/log\(/g,'Math.log10(')
+    .replace(/sqrt\(/g,'Math.sqrt(')
+    .replace(/cbrt\(/g,'Math.cbrt(')
+    .replace(/abs\(/g,'Math.abs(')
+    .replace(/exp\(/g,'Math.exp(')
+    .replace(/tenx\(/g,'Math.pow(10,')
+    .replace(/mod/g,'%')
+    .replace(/fact\(([^)]+)\)/g, (_,a)=>`__f(${a})`)
+    .replace(/ncr\(([^,]+),([^)]+)\)/g, (_,a,b)=>`(__f(${a})/(__f(${b})*__f(${a}-${b})))`)
+    .replace(/npr\(([^,]+),([^)]+)\)/g, (_,a,b)=>`(__f(${a})/__f(${a}-${b}))`);
+
+  // balance parens
+  const open = (e.match(/\(/g)||[]).length;
+  const close = (e.match(/\)/g)||[]).length;
+  if (open > close) e += ')'.repeat(open-close);
+  try {
+    const fn = new Function('__f', 'return ('+e+')');
+    const result = fn(factorial);
+    displayHistory.textContent = pretty(expr) + ' =';
+    lastAnswer = result;
+    expr = fmt(result).replace(',', '.');
+    updateDisplay();
+  } catch(err) {
+    displayCurrent.textContent = 'Error';
+  }
+}
+
+function press(v) {
+  if (v === 'ac') { expr=''; displayHistory.textContent='\u00a0'; updateDisplay(); return; }
+  if (v === 'back') { expr = expr.slice(0,-1); updateDisplay(); return; }
+  if (v === 'eq') { evaluate(); return; }
+  if (v === 'neg') {
+    // toggle leading minus on last number
+    const m = expr.match(/(-?\d*\.?\d+)$/);
+    if (m) {
+      const n = m[1];
+      expr = expr.slice(0, expr.length-n.length) + (n.startsWith('-')?n.slice(1):'-'+n);
+    } else expr = '-'+expr;
+    updateDisplay(); return;
+  }
+  if (v === 'pct') { expr += '/100'; updateDisplay(); return; }
+  if (v === 'angle') {
+    state.angle = state.angle==='DEG'?'RAD':'DEG';
+    document.querySelectorAll('[data-tweak="angle"] .chip').forEach(c=>c.classList.toggle('active', c.dataset.v===state.angle));
+    document.getElementById('v-angle').textContent = state.angle;
+    updateDisplay(); return;
+  }
+  if (v === 'second') { second = !second; updateDisplay(); return; }
+
+  // Function tokens
+  const fnMap = {
+    sin: second?'asin(':'sin(', cos: second?'acos(':'cos(', tan: second?'atan(':'tan(',
+    sqrt: second?'^(1/':'sqrt(', sqr:'^2', cube:'^3',
+    log: second?'10^(':'log(', ln: second?'exp(':'ln(',
+    exp:'exp(', ten:'tenx(', cbrt:'cbrt(', abs:'abs(',
+    pi:'π', e:'e', fact:'fact(', ncr:'ncr(', npr:'npr(',
+    mod:' mod '
+  };
+  if (fnMap[v] != null) {
+    if (v==='sqr' || v==='cube') expr += fnMap[v];
+    else expr += fnMap[v];
+    if (second && (v==='sin'||v==='cos'||v==='tan'||v==='sqrt'||v==='log'||v==='ln')) second = false;
+    updateDisplay(); return;
+  }
+
+  // raw characters
+  if (v === '.') expr += '.';
+  else expr += v;
+  updateDisplay();
+}
+
+function renderKeys(){
+  const layout = LAYOUTS[state.layout];
+  keysEl.innerHTML='';
+  const cols = layout[0].length;
+  keysEl.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+  keysEl.dataset.layout = state.layout;
+  layout.forEach(row => {
+    row.forEach(k => {
+      const btn = document.createElement('button');
+      btn.className = 'key ' + (k.c || '');
+      btn.innerHTML = k.l + (k.a ? `<span class="alt">${k.a}</span>`:'');
+      btn.onclick = () => press(k.v);
+      keysEl.appendChild(btn);
+    });
+  });
+}
+
+/* ============== APPLY STATE ============== */
+function apply(){
+  // accent
+  const acc = ACCENTS.find(a=>a.name===state.accent);
+  document.documentElement.style.setProperty('--accent', acc.val);
+  // data-attrs on calc
+  Object.entries(state).forEach(([k,v])=>{
+    if (['accent','angle','decimals','bg','deco','title','tilt','persp','tiltamt','roty'].includes(k)) return;
+    calc.setAttribute('data-'+k, v);
+  });
+  // 3D attrs
+  document.getElementById('calcWrap').setAttribute('data-persp', state.persp);
+  document.getElementById('calc3d').setAttribute('data-tilt', state.tilt);
+  // stage
+  document.getElementById('stage').setAttribute('data-bg', state.bg);
+  document.querySelectorAll('.math-deco').forEach(d => d.style.display = state.deco==='on' ? '' : 'none');
+  document.getElementById('calcTitle').style.display = state.title==='on' ? '' : 'none';
+  document.getElementById('calcSubtitle').style.display = state.title==='on' ? '' : 'none';
+  // labels
+  Object.keys(state).forEach(k=>{
+    const el = document.getElementById('v-'+k);
+    if (el) el.textContent = state[k] + (k==='tiltamt'||k==='roty'?'°':'');
+  });
+  applyTransform();
+  renderKeys();
+  updateDisplay();
+}
+
+/* ============== 3D TRANSFORM ============== */
+const calc3d = document.getElementById('calc3d');
+const stage = document.getElementById('stage');
+let mouseX = 0, mouseY = 0, autoT = 0;
+function applyTransform(){
+  if (state.tilt==='off') { calc3d.style.transform='none'; return; }
+  let rx=0, ry=Number(state.roty);
+  if (state.tilt==='mouse') {
+    rx = -mouseY * state.tiltamt;
+    ry = mouseX * state.tiltamt + Number(state.roty);
+  } else if (state.tilt==='auto') {
+    rx = Math.sin(autoT*0.7) * state.tiltamt * 0.5;
+    ry = Math.sin(autoT) * state.tiltamt + Number(state.roty);
+  } else if (state.tilt==='iso') {
+    rx = -20; ry = -25 + Number(state.roty);
+  }
+  calc3d.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+}
+stage.addEventListener('mousemove', (e)=>{
+  const r = stage.getBoundingClientRect();
+  mouseX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+  mouseY = ((e.clientY - r.top) / r.height - 0.5) * 2;
+  if (state.tilt==='mouse') applyTransform();
+});
+stage.addEventListener('mouseleave', ()=>{
+  mouseX = 0; mouseY = 0;
+  if (state.tilt==='mouse') applyTransform();
+});
+// auto-rotate loop
+let lastT = performance.now();
+function tick(t){
+  const dt = (t - lastT) / 1000; lastT = t;
+  if (state.tilt==='auto') { autoT += dt; applyTransform(); }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+/* ============== WIRE UP ============== */
+document.querySelectorAll('[data-tweak]').forEach(row => {
+  const key = row.dataset.tweak;
+  row.addEventListener('click', (e)=>{
+    const c = e.target.closest('[data-v]');
+    if (!c) return;
+    row.querySelectorAll('.chip, .swatch').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    state[key] = c.dataset.v;
+    apply();
+  });
+});
+document.getElementById('decRange').addEventListener('input',(e)=>{
+  state.decimals = parseInt(e.target.value);
+  document.getElementById('v-decimals').textContent = state.decimals;
+  updateDisplay();
+});
+document.getElementById('tiltRange').addEventListener('input',(e)=>{
+  state.tiltamt = parseInt(e.target.value);
+  document.getElementById('v-tiltamt').textContent = state.tiltamt + '°';
+  applyTransform();
+});
+document.getElementById('rotYRange').addEventListener('input',(e)=>{
+  state.roty = parseInt(e.target.value);
+  document.getElementById('v-roty').textContent = state.roty + '°';
+  applyTransform();
+});
+
+document.getElementById('randomize').onclick = () => {
+  Object.entries({
+    layout:['basic','scientific','matura','extended'],
+    theme:['paper','carbon','blueprint','mint','cream','lavender','terminal','risograph'],
+    accent: ACCENTS.map(a=>a.name),
+    shape:['sharp','soft','rounded','pill'],
+    keyshape:['sharp','square','pill','circle'],
+    shadow:['none','soft','strong','stamp','glow','inset','duo'],
+    border:['none','thin','thick','accent','double'],
+    density:['compact','comfy','loose'],
+    width:['narrow','normal','wide'],
+    dispfont:['mono','serif','display','grotesk'],
+    dispsize:['s','m','l','xl'],
+    dispalign:['left','center','right'],
+    separator:['none','line','dashed','thick'],
+    opstyle:['text','solid','outline','underline'],
+    chrome:['mac','none'],
+    bg:['neutral','grid','dots','paper','blueprint','warm','cool','dark','neural'],
+    tilt:['off','mouse','auto','iso'],
+    persp:['flat','subtle','normal','strong','dramatic'],
+    depth:['flat','raised','deep','floating'],
+  }).forEach(([k,arr])=>{
+    state[k] = arr[Math.floor(Math.random()*arr.length)];
+  });
+  state.tiltamt = Math.floor(Math.random()*35)+5;
+  state.roty = Math.floor(Math.random()*80)-40;
+  syncUI();
+  apply();
+};
+document.getElementById('reset').onclick = () => {
+  Object.assign(state, DEFAULTS);
+  syncUI();
+  apply();
+};
+function syncUI(){
+  document.querySelectorAll('[data-tweak]').forEach(row => {
+    const key = row.dataset.tweak;
+    row.querySelectorAll('[data-v]').forEach(c=>{
+      c.classList.toggle('active', c.dataset.v === state[key]);
+    });
+  });
+  document.getElementById('decRange').value = state.decimals;
+  document.getElementById('tiltRange').value = state.tiltamt;
+  document.getElementById('rotYRange').value = state.roty;
+}
+
+/* keyboard support */
+window.addEventListener('keydown', (e)=>{
+  if (e.target.tagName === 'INPUT') return;
+  const k = e.key;
+  if (/^[0-9]$/.test(k)) press(k);
+  else if (k==='.'||k===',') press('.');
+  else if (k==='+'||k==='-'||k==='*'||k==='/') press(k);
+  else if (k==='('||k===')') press(k);
+  else if (k==='Enter' || k==='=') { e.preventDefault(); press('eq'); }
+  else if (k==='Backspace') press('back');
+  else if (k==='Escape') press('ac');
+  else if (k==='^') press('^');
+});
+
+apply();
+</script>
+</body>
+</html>
