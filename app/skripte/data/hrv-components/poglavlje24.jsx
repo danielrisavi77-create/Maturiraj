@@ -5162,6 +5162,26 @@ hr:not([class]){
     padding: 3px 8px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   KARTA NARJEČJA — realna silueta Hrvatske (redizajn)
+   Jedna prepoznatljiva silueta + 3 zone narječja (clip-ane na obris).
+   Aktivna zona po tabu preko .hr-map.act-kaj / .act-cak / .act-stk.
+   ═══════════════════════════════════════════════════════════════════ */
+.cro-base{fill:#141a24}
+.cro-outline{fill:none;stroke:#6b7787;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.reg{transition:opacity .35s ease;opacity:.2}
+.reg-kaj{fill:#4a90d9}
+.reg-cak{fill:#50c878}
+.reg-stk{fill:#e9b446}
+.hr-map.act-kaj .reg-kaj{opacity:.95}
+.hr-map.act-cak .reg-cak{opacity:.95}
+.hr-map.act-stk .reg-stk{opacity:.95}
+.isl{stroke:rgba(255,255,255,.28);stroke-width:.8}
+.hr-map .lbl{font-family:var(--mono);font-size:11px;font-weight:700;fill:#eef3f8;text-anchor:middle;paint-order:stroke;stroke:rgba(8,12,18,.7);stroke-width:2.6px;letter-spacing:.5px}
+.hr-map .lbl-sub{font-family:var(--mono);font-size:7.5px;font-weight:600;fill:#aeb9c6;text-anchor:middle;paint-order:stroke;stroke:rgba(8,12,18,.6);stroke-width:2px}
+.hr-map .lbl-kaj,.hr-map .lbl-cak,.hr-map .lbl-stk{opacity:.45;transition:opacity .35s ease}
+.hr-map.act-kaj .lbl-kaj,.hr-map.act-cak .lbl-cak,.hr-map.act-stk .lbl-stk{opacity:1}
 `;
 const STYLES_CSS = SHARED_LANG_CSS + '\n' + CHAPTER_CSS_DELTA;
 const SCRIPTS_JS = `/* ══ SUPABASE CONFIG ══ */
