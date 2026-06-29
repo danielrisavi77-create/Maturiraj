@@ -1,26 +1,19 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useOnboarding } from '@/lib/prijemni/onboardingStore'
+import { firePragConfetti } from '@/lib/effects/confetti'
+import { useABVariant } from '@/lib/ab/useABVariant'
 import {
   RAZRED_OPTIONS, INTERES_OPTIONS, PROSJEK_OPTIONS, CITY_OPTIONS,
   getNextActionRecommendation,
 } from '@/lib/prijemni/personalize'
 
-// Assign A/B variant once per browser — persists across sessions
-function getOrAssignVariant() {
-  if (typeof window === 'undefined') return 'A'
-  const stored = localStorage.getItem('ow_variant')
-  if (stored === 'A' || stored === 'B') return stored
-  const v = Math.random() < 0.5 ? 'A' : 'B'
-  localStorage.setItem('ow_variant', v)
-  return v
-}
-
 export default function OnboardingWizard({ onComplete, onAction, track, forceOpen: forceOpenProp = false, initialDraft = null, proStatus }) {
   const { shouldShow, complete, skip } = useOnboarding()
+  const { getVariant, trackConversion } = useABVariant()
+  const variant = getVariant('onboarding_length')  // 'a' | 'b', falls back to 'a' while loading
   const [open, setOpen] = useState(false)
   const [step, setStep] = useState(0)
-  const [variant, setVariant] = useState('A')
   const [draft, setDraft] = useState(
     initialDraft ?? {
       razred: null,
@@ -46,16 +39,14 @@ export default function OnboardingWizard({ onComplete, onAction, track, forceOpe
         skip()
         return
       }
-      const v = getOrAssignVariant()
-      setVariant(v)
       // 600ms delay — daj user-u da vidi page prvo
       const t = setTimeout(() => {
         setOpen(true)
-        track?.('onboarding_shown', null, null, null, { variant: v })
+        track?.('onboarding_shown', null, null, null, { variant })
       }, 600)
       return () => clearTimeout(t)
     }
-  }, [shouldShow, track])
+  }, [shouldShow, track, variant])
 
   useEffect(() => {
     if (open) {
@@ -67,7 +58,7 @@ export default function OnboardingWizard({ onComplete, onAction, track, forceOpe
   if (!open) return null
 
   // Variant A: full 4-step flow | Variant B: short 2-step flow
-  const STEPS = variant === 'B'
+  const STEPS = variant === 'b'
     ? ['Razred', 'Interesi']
     : ['Razred', 'Interesi', 'Profil', 'Sljedeći korak']
 
@@ -97,11 +88,14 @@ export default function OnboardingWizard({ onComplete, onAction, track, forceOpe
     complete(draft)
     setOpen(false)
     track?.('onboarding_completed', null, null, null, { ...draft, variant })
+    trackConversion('onboarding_length', 'onboarding_completed')
+    // Confetti reward — fires once on first onboarding complete
+    setTimeout(() => firePragConfetti('#4b7bff'), 200)
     onComplete?.(draft)
   }
 
-  // Recommendation only in variant A (step 3)
-  const recommendation = (variant === 'A' && step === 3)
+  // Recommendation only in variant a (step 3)
+  const recommendation = (variant === 'a' && step === 3)
     ? getNextActionRecommendation({ ...draft, completed_at: 'temp', skipped: false })
     : null
 
@@ -234,15 +228,15 @@ export default function OnboardingWizard({ onComplete, onAction, track, forceOpe
             <div className="ow-title">
               {step === 0 && 'Bok 👋 U kojem si razredu?'}
               {step === 1 && 'Što te zanima?'}
-              {step === 2 && variant === 'A' && 'Mali kontekst za personalizaciju'}
-              {step === 3 && variant === 'A' && 'Spremno — kreni odavde'}
+              {step === 2 && variant === 'a' && 'Mali kontekst za personalizaciju'}
+              {step === 3 && variant === 'a' && 'Spremno — kreni odavde'}
             </div>
             <div className="ow-sub">
               {step === 0 && 'Personaliziramo prikaz fakulteta za tvoju situaciju.'}
-              {step === 1 && variant === 'B' && 'Označi interese — odmah ćemo prilagoditi prikaz.'}
-              {step === 1 && variant === 'A' && 'Označi sve što te makar malo zanima — možeš mijenjati kasnije.'}
-              {step === 2 && variant === 'A' && 'Bez ovoga preporuka neće biti precizna.'}
-              {step === 3 && variant === 'A' && 'Bazirano na tvojim odgovorima, evo što ti najviše pomaže odmah.'}
+              {step === 1 && variant === 'b' && 'Označi interese — odmah ćemo prilagoditi prikaz.'}
+              {step === 1 && variant === 'a' && 'Označi sve što te makar malo zanima — možeš mijenjati kasnije.'}
+              {step === 2 && variant === 'a' && 'Bez ovoga preporuka neće biti precizna.'}
+              {step === 3 && variant === 'a' && 'Bazirano na tvojim odgovorima, evo što ti najviše pomaže odmah.'}
             </div>
             <button className="ow-skip" onClick={handleSkip}>Preskoči</button>
           </div>
@@ -352,15 +346,15 @@ export default function OnboardingWizard({ onComplete, onAction, track, forceOpe
                   track?.('onboarding_step', null, null, null, { step: step + 1, variant })
                 } else {
                   handleComplete()
-                  if (variant === 'A' && recommendation && onAction) {
+                  if (variant === 'a' && recommendation && onAction) {
                     setTimeout(() => onAction(recommendation.action), 250)
-                  } else if (variant === 'B' && onAction) {
+                  } else if (variant === 'b' && onAction) {
                     setTimeout(() => onAction('browse'), 250)
                   }
                 }
               }}>
               {step < STEPS.length - 1 ? 'Dalje →'
-                : variant === 'B' ? 'Pokaži mi fakultete →'
+                : variant === 'b' ? 'Pokaži mi fakultete →'
                 : `Idi na ${recommendation?.label || 'start'} →`}
             </button>
           </div>
