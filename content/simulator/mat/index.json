@@ -1,0 +1,707 @@
+{
+  "subject": "mat",
+  "count": 70,
+  "formule": "formule.mjs",
+  "exams": [
+    {
+      "key": "2025_jesen_A",
+      "year": 2025,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2025_jesen_A.mjs",
+      "questionCount": 50
+    },
+    {
+      "key": "2025_ljeto_A",
+      "year": 2025,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2025_ljeto_A.mjs",
+      "questionCount": 50
+    },
+    {
+      "key": "2024_jesen_A",
+      "year": 2024,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2024_jesen_A.mjs",
+      "questionCount": 51
+    },
+    {
+      "key": "2024_ljeto_A",
+      "year": 2024,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2024_ljeto_A.mjs",
+      "questionCount": 51
+    },
+    {
+      "key": "2023_jesen_A",
+      "year": 2023,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2023_jesen_A.mjs",
+      "questionCount": 51
+    },
+    {
+      "key": "2023_ljeto_A",
+      "year": 2023,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2023_ljeto_A.mjs",
+      "questionCount": 51
+    },
+    {
+      "key": "2022_jesen_A",
+      "year": 2022,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2022_jesen_A.mjs",
+      "questionCount": 51
+    },
+    {
+      "key": "2022_ljeto_A",
+      "year": 2022,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2022_ljeto_A.mjs",
+      "questionCount": 51
+    },
+    {
+      "key": "2021_jesen_A",
+      "year": 2021,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2021_jesen_A.mjs",
+      "questionCount": 49
+    },
+    {
+      "key": "2021_ljeto_A",
+      "year": 2021,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2021_ljeto_A.mjs",
+      "questionCount": 49
+    },
+    {
+      "key": "2020_jesen_A",
+      "year": 2020,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2020_jesen_A.mjs",
+      "questionCount": 49
+    },
+    {
+      "key": "2020_ljeto_A",
+      "year": 2020,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2020_ljeto_A.mjs",
+      "questionCount": 49
+    },
+    {
+      "key": "2019_jesen_A",
+      "year": 2019,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2019_jesen_A.mjs",
+      "questionCount": 49
+    },
+    {
+      "key": "2019_ljeto_A",
+      "year": 2019,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2019_ljeto_A.mjs",
+      "questionCount": 49
+    },
+    {
+      "key": "2018_jesen_A",
+      "year": 2018,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2018_jesen_A.mjs",
+      "questionCount": 49
+    },
+    {
+      "key": "2018_ljeto_A",
+      "year": 2018,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2018_ljeto_A.mjs",
+      "questionCount": 49
+    },
+    {
+      "key": "2017_jesen_A",
+      "year": 2017,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2017_jesen_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2017_ljeto_A",
+      "year": 2017,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2017_ljeto_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2016_jesen_A",
+      "year": 2016,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2016_jesen_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2016_ljeto_A",
+      "year": 2016,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2016_ljeto_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2015_jesen_A",
+      "year": 2015,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2015_jesen_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2015_ljeto_A",
+      "year": 2015,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2015_ljeto_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2014_jesen_A",
+      "year": 2014,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2014_jesen_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2014_ljeto_A",
+      "year": 2014,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2014_ljeto_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2013_jesen_A",
+      "year": 2013,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2013_jesen_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2013_ljeto_A",
+      "year": 2013,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2013_ljeto_A.mjs",
+      "questionCount": 47
+    },
+    {
+      "key": "2012_jesen_A",
+      "year": 2012,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2012_jesen_A.mjs",
+      "questionCount": 45
+    },
+    {
+      "key": "2012_ljeto_A",
+      "year": 2012,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2012_ljeto_A.mjs",
+      "questionCount": 45
+    },
+    {
+      "key": "2012_zima_A",
+      "year": 2012,
+      "season": "zima",
+      "razina": "A",
+      "label": "Zimski rok",
+      "durationSec": 10800,
+      "file": "exams/2012_zima_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2011_jesen_A",
+      "year": 2011,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2011_jesen_A.mjs",
+      "questionCount": 45
+    },
+    {
+      "key": "2011_ljeto_A",
+      "year": 2011,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2011_ljeto_A.mjs",
+      "questionCount": 45
+    },
+    {
+      "key": "2011_zima_A",
+      "year": 2011,
+      "season": "zima",
+      "razina": "A",
+      "label": "Zimski rok",
+      "durationSec": 10800,
+      "file": "exams/2011_zima_A.mjs",
+      "questionCount": 45
+    },
+    {
+      "key": "2010_jesen_A",
+      "year": 2010,
+      "season": "jesen",
+      "razina": "A",
+      "label": "Jesenski rok",
+      "durationSec": 10800,
+      "file": "exams/2010_jesen_A.mjs",
+      "questionCount": 45
+    },
+    {
+      "key": "2010_ljeto_A",
+      "year": 2010,
+      "season": "ljeto",
+      "razina": "A",
+      "label": "Ljetni rok",
+      "durationSec": 10800,
+      "file": "exams/2010_ljeto_A.mjs",
+      "questionCount": 46
+    },
+    {
+      "key": "2010_zima_A",
+      "year": 2010,
+      "season": "zima",
+      "razina": "A",
+      "label": "Zimski rok",
+      "durationSec": 10800,
+      "file": "exams/2010_zima_A.mjs",
+      "questionCount": 45
+    },
+    {
+      "key": "2025_jesen_B",
+      "year": 2025,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2025_jesen_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2025_ljeto_B",
+      "year": 2025,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2025_ljeto_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2024_jesen_B",
+      "year": 2024,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2024_jesen_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2024_ljeto_B",
+      "year": 2024,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2024_ljeto_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2023_jesen_B",
+      "year": 2023,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2023_jesen_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2023_ljeto_B",
+      "year": 2023,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2023_ljeto_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2022_jesen_B",
+      "year": 2022,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2022_jesen_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2022_ljeto_B",
+      "year": 2022,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2022_ljeto_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2021_jesen_B",
+      "year": 2021,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2021_jesen_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2021_ljeto_B",
+      "year": 2021,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2021_ljeto_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2020_jesen_B",
+      "year": 2020,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2020_jesen_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2020_ljeto_B",
+      "year": 2020,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2020_ljeto_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2019_jesen_B",
+      "year": 2019,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2019_jesen_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2019_ljeto_B",
+      "year": 2019,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2019_ljeto_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2018_jesen_B",
+      "year": 2018,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2018_jesen_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2018_ljeto_B",
+      "year": 2018,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2018_ljeto_B.mjs",
+      "questionCount": 40
+    },
+    {
+      "key": "2017_jesen_B",
+      "year": 2017,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2017_jesen_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2017_ljeto_B",
+      "year": 2017,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2017_ljeto_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2016_jesen_B",
+      "year": 2016,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2016_jesen_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2016_ljeto_B",
+      "year": 2016,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2016_ljeto_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2015_jesen_B",
+      "year": 2015,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2015_jesen_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2015_ljeto_B",
+      "year": 2015,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2015_ljeto_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2014_jesen_B",
+      "year": 2014,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2014_jesen_B.mjs",
+      "questionCount": 35
+    },
+    {
+      "key": "2014_ljeto_B",
+      "year": 2014,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2014_ljeto_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2013_jesen_B",
+      "year": 2013,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2013_jesen_B.mjs",
+      "questionCount": 34
+    },
+    {
+      "key": "2013_ljeto_B",
+      "year": 2013,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2013_ljeto_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2012_jesen_B",
+      "year": 2012,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2012_jesen_B.mjs",
+      "questionCount": 35
+    },
+    {
+      "key": "2012_ljeto_B",
+      "year": 2012,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2012_ljeto_B.mjs",
+      "questionCount": 35
+    },
+    {
+      "key": "2012_zima_B",
+      "year": 2012,
+      "season": "zima",
+      "razina": "B",
+      "label": "Zimski rok",
+      "durationSec": 9000,
+      "file": "exams/2012_zima_B.mjs",
+      "questionCount": 35
+    },
+    {
+      "key": "2011_jesen_B",
+      "year": 2011,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2011_jesen_B.mjs",
+      "questionCount": 35
+    },
+    {
+      "key": "2011_ljeto_B",
+      "year": 2011,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2011_ljeto_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2011_zima_B",
+      "year": 2011,
+      "season": "zima",
+      "razina": "B",
+      "label": "Zimski rok",
+      "durationSec": 9000,
+      "file": "exams/2011_zima_B.mjs",
+      "questionCount": 36
+    },
+    {
+      "key": "2010_jesen_B",
+      "year": 2010,
+      "season": "jesen",
+      "razina": "B",
+      "label": "Jesenski rok",
+      "durationSec": 9000,
+      "file": "exams/2010_jesen_B.mjs",
+      "questionCount": 35
+    },
+    {
+      "key": "2010_ljeto_B",
+      "year": 2010,
+      "season": "ljeto",
+      "razina": "B",
+      "label": "Ljetni rok",
+      "durationSec": 9000,
+      "file": "exams/2010_ljeto_B.mjs",
+      "questionCount": 35
+    },
+    {
+      "key": "2010_zima_B",
+      "year": 2010,
+      "season": "zima",
+      "razina": "B",
+      "label": "Zimski rok",
+      "durationSec": 9000,
+      "file": "exams/2010_zima_B.mjs",
+      "questionCount": 35
+    }
+  ]
+}
