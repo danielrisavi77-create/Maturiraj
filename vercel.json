@@ -1,0 +1,9 @@
+{
+  "crons": [
+    { "path": "/api/cron/scrape-azvo", "schedule": "0 3 * * 1" },
+    { "path": "/api/cron/notify-admin", "schedule": "0 9 * * 1" },
+    { "path": "/api/push/send-deadline-reminders", "schedule": "0 9 * * *" },
+    { "path": "/api/cron/medicinar/weekly-briefings", "schedule": "0 6 * * 1" },
+    { "path": "/api/cron/medicinar/archive-expired-targets", "schedule": "0 2 * * *" }
+  ]
+}

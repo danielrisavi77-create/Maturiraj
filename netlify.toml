@@ -1,0 +1,6 @@
+[build.environment]
+  # openclaw bundles WhatsApp Web's obfuscated JS which contains a string matching
+  # the Google API key pattern (AIzaSy…). It is Meta/WhatsApp's own key, not ours.
+  # Disabling heuristic-based smart detection eliminates this false positive.
+  # Standard secrets scanning (actual env var values) remains active and unaffected.
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"

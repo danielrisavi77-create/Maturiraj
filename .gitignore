@@ -40,10 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# one-off dev/debug scripts in repo root (not meant for history)
-/_*.js
-/_*.mjs
-/_*.py
+# one-off dev/debug artifacts in repo root — scripts, dumps, backups (not for history)
+/_*
+
+# logs
+*.log
+/build_log.txt
 
 # dev screenshots & scratch/backup dirs (not meant for history)
 /h[0-9]*.png
