@@ -1,3 +1,6 @@
+// proxy.js  <- ide u ROOT projekta (uz next.config.js)
+// (Next.js nova konvencija — zamjenjuje middleware.js. Logika preuzeta iz middleware.js.)
+
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
@@ -29,7 +32,7 @@ export async function proxy(request) {
   const { data: { user } } = await supabase.auth.getUser()
 
   // ── Rute koje zahtijevaju samo prijavu (besplatni i placeni) ───
-  const authRequired = ['/dashboard', '/plan-ucenja/dashboard']
+  const authRequired = ['/plan-ucenja/dashboard']
   const isAuthRequired = authRequired.some(route =>
     request.nextUrl.pathname.startsWith(route)
   )
@@ -131,7 +134,7 @@ export async function proxy(request) {
   const authRoutes = ['/prijava', '/registracija']
   if (authRoutes.includes(request.nextUrl.pathname) && user) {
     const url = request.nextUrl.clone()
-    url.pathname = '/dashboard'
+    url.pathname = '/'
     return NextResponse.redirect(url)
   }
 
