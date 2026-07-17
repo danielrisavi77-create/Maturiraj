@@ -13,7 +13,7 @@ import ProUpsellModal from './components/ProUpsellModal'
 import { buildFreePlan, buildProPlan, PREDMETI_PLAN } from './lib/planGenerator'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { useSavePlan } from '@/lib/hooks/useSavePlan'
-import { card } from '@/lib/dashboard/helpers'
+import { card, MATURA_DATE } from '@/lib/dashboard/helpers'
 
 /* ─── Card surface — glass (dijeljeno s dashboardom) ─────────────── */
 const cardStyle = { ...card }
@@ -48,7 +48,6 @@ export default function PlanUcenja() {
   const { user, isPaid, isPro } = useAuth()
   const { savePlan, saving } = useSavePlan()
 
-  const MATURA_DATE    = new Date('2026-06-01')
   const danas          = new Date()
   const danaDoMature   = Math.max(1, Math.ceil((MATURA_DATE - danas) / (1000 * 60 * 60 * 24)))
   const tjednaDoMature = Math.ceil(danaDoMature / 7)

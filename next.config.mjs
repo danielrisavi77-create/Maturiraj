@@ -56,6 +56,15 @@ const nextConfig = {
   // that cause "lock released because another request stole it" errors.
   reactStrictMode: false,
 
+  // Preusmjeri mrtve konverzijske rute (ugrađene u 100+ CTA-ova kroz skripte/poglavlja)
+  // na stvarnu cjenovničku stranicu. Query paramovi (?ctx=, ?promo=, ?cta=) se čuvaju.
+  async redirects() {
+    return [
+      { source: '/pricing', destination: '/pretplata', permanent: false },
+      { source: '/cijene', destination: '/pretplata', permanent: false },
+    ];
+  },
+
   async headers() {
     return [
       // CSP for the math simulator route — allows eval (graph plotting via new Function).
