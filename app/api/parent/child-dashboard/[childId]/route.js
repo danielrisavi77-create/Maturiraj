@@ -72,7 +72,9 @@ export async function GET(_request, { params } = {}) {
 
   // Admin reads are permitted only after the proof above.
   const admin = createAdminClient()
-  const [profileRes, targetsRes, progressRes, simRes] = await Promise.all([
+  // Aktivnost zadnja 14 dana (2 tjedna) — za dnevni graf, tjedni total i trend vs prošli tjedan.
+  const fourteenDaysAgoIso = new Date(Date.now() - 14 * 86400000).toISOString()
+  const [profileRes, targetsRes, progressRes, simRes, activityRes] = await Promise.all([
     admin
       .from('profiles')
       .select('id, email, plan_type')
@@ -96,9 +98,15 @@ export async function GET(_request, { params } = {}) {
       .eq('status', 'completed')
       .order('created_at', { ascending: false })
       .limit(10),
+    admin
+      .from('activity_events')
+      .select('section, duration_s, visited_at')
+      .eq('user_id', childId)
+      .gte('visited_at', fourteenDaysAgoIso)
+      .order('visited_at', { ascending: false }),
   ])
 
-  if ([profileRes, targetsRes, progressRes, simRes].some(result => result.error)) {
+  if ([profileRes, targetsRes, progressRes, simRes, activityRes].some(result => result.error)) {
     return NextResponse.json({ error: 'Podaci djeteta trenutačno nisu dostupni.' }, { status: 502 })
   }
 
@@ -106,12 +114,13 @@ export async function GET(_request, { params } = {}) {
   const targets = targetsRes.data || []
   const progress = progressRes.data || []
   const simAttempts = simRes.data || []
+  const activityEvents = activityRes.data || []
 
   let studiji = []
   if (targets.length > 0) {
     const { data, error } = await admin
       .from('studiji_view')
-      .select('id, naziv, fak_short, color, predmeti, prag_2025, sym, glyph_bg')
+      .select('id, naziv, fak_short, color, predmeti, prag_2025, sym, glyph_bg, prijava_do, prijava_do_iso, ispit, ispit_iso')
       .in('id', targets.map(target => target.studij_id))
     if (error) {
       return NextResponse.json({ error: 'Podaci studija trenutačno nisu dostupni.' }, { status: 502 })
@@ -140,6 +149,45 @@ export async function GET(_request, { params } = {}) {
     }
   })
 
+  // ── Aktivnost: 14 dnevnih bucketa (minute/dan), po sekciji, tjedni total + prošli tjedan ──
+  const DAY_MS = 86400000
+  const nowMs = Date.now()
+  const todayStart = new Date(); todayStart.setHours(0, 0, 0, 0)
+  const todayStartMs = todayStart.getTime()
+  const dailyMinutes = Array.from({ length: 14 }, () => 0) // index 13 = danas, 0 = prije 13 dana
+  const sectionSeconds = {}
+  let weekSeconds = 0
+  let prevWeekSeconds = 0
+  for (const ev of activityEvents) {
+    const t = new Date(ev.visited_at).getTime()
+    if (Number.isNaN(t)) continue
+    const dur = Number(ev.duration_s) || 0
+    const evDayStart = new Date(t); evDayStart.setHours(0, 0, 0, 0)
+    const dayIdx = 13 - Math.round((todayStartMs - evDayStart.getTime()) / DAY_MS)
+    if (dayIdx >= 0 && dayIdx < 14) dailyMinutes[dayIdx] += dur / 60
+    if (ev.section) sectionSeconds[ev.section] = (sectionSeconds[ev.section] || 0) + dur
+    const ageDays = (nowMs - t) / DAY_MS
+    if (ageDays <= 7) weekSeconds += dur
+    else prevWeekSeconds += dur
+  }
+  const activity = {
+    daily: dailyMinutes.map(m => Math.round(m)),
+    sections: Object.entries(sectionSeconds)
+      .map(([section, s]) => ({ section, minutes: Math.round(s / 60) }))
+      .sort((a, b) => b.minutes - a.minutes),
+    week_minutes: Math.round(weekSeconds / 60),
+    prev_week_minutes: Math.round(prevWeekSeconds / 60),
+  }
+
+  // Activity_events daju najsvježiju "zadnju aktivnost" (točnije od progress.last_activity_at).
+  const lastEventAt = activityEvents.length > 0 ? new Date(activityEvents[0].visited_at) : null
+  const lastActiveMerged = [lastActive, lastEventAt]
+    .filter(d => d && !Number.isNaN(d.getTime()))
+    .sort((a, b) => b.getTime() - a.getTime())[0] || null
+  const daysInactiveMerged = lastActiveMerged
+    ? Math.floor((Date.now() - lastActiveMerged.getTime()) / DAY_MS)
+    : null
+
   return NextResponse.json({
     child: {
       id: childId,
@@ -150,7 +198,8 @@ export async function GET(_request, { params } = {}) {
     targets: enrichedTargets,
     progress,
     sim_attempts: simAttempts,
-    last_active_at: lastActive?.toISOString() || null,
-    days_inactive: daysInactive,
+    activity,
+    last_active_at: lastActiveMerged?.toISOString() || null,
+    days_inactive: daysInactiveMerged,
   }, { headers: { 'Cache-Control': 'no-store' } })
 }
