@@ -5,12 +5,10 @@
 -- ključem mogao čitati i mijenjati tuđe rezultate (GPA, postoci).
 -- (Audit 2026-07, docs/AUDIT_P0_FIXES.md #1)
 --
--- ⚠️ OVISNOST O APP-STRANI PRIJE DEPLOYA:
--- Ova migracija UKLANJA anon RLS pristup. Gostujuća (nelogirana) perzistencija
--- rezultata MORA prijeći na poslužiteljski endpoint / SECURITY DEFINER RPC koji
--- veže `session_id` iz httpOnly cookieja i koristi service-role. Inače se
--- guest-flow (spremanje/čitanje rezultata bez logina) lomi.
--- Provjeriti pozivatelje: lib/prijemni/api.js, components/prijemni/*.
+-- ✅ APP-STRANA RIJEŠENA (commit fdd1cfb): guest perzistencija ide kroz
+-- app/api/prijemni/guest-scores (service-role + httpOnly `mat_guest_sid` cookie),
+-- lib/prijemni/scores.js zove endpoint. Sigurno za deploy.
+-- Preduvjet okoline: SUPABASE_SERVICE_ROLE_KEY mora biti postavljen.
 -- ─────────────────────────────────────────────────────────────────────────────
 
 alter table public.user_prijemni_scores enable row level security;

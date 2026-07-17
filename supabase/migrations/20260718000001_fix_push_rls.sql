@@ -5,10 +5,10 @@
 -- auth_key, user_agent) → curenje PII, masovno brisanje, hijack push-targetiranja.
 -- (Audit 2026-07, docs/AUDIT_P0_FIXES.md #2)
 --
--- ⚠️ OVISNOST O APP-STRANI PRIJE DEPLOYA:
--- Uklanja anon RLS pristup. Registracija push-a za goste MORA ići kroz
--- poslužiteljski endpoint (service-role) koji upisuje `session_id`, ne direktno
--- anon klijentom. Provjeriti: lib/prijemni/push.ts i pozivatelje.
+-- ✅ APP-STRANA RIJEŠENA (commit fdd1cfb): guest push ide kroz
+-- app/api/prijemni/guest-push (service-role + httpOnly `mat_guest_sid` cookie),
+-- lib/prijemni/push.ts zove endpoint. Sigurno za deploy.
+-- Preduvjet okoline: SUPABASE_SERVICE_ROLE_KEY mora biti postavljen.
 -- ─────────────────────────────────────────────────────────────────────────────
 
 alter table public.push_subscriptions enable row level security;
