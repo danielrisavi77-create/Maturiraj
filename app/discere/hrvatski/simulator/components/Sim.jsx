@@ -273,6 +273,12 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     window.scrollTo(0,0);
   }
 
+  // Auto-predaja ispita kad istekne vrijeme (timerDone). Guard `!done` sprječava dvostruku predaju.
+  useEffect(()=>{
+    if(timerDone && !done) submitExam();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[timerDone,done]);
+
   if(done){
     const autoQ=QSX.filter(q=>q.type==="mc");
     const manQ=QSX.filter(q=>q.type!=="mc");
