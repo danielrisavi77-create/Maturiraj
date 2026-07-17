@@ -31,7 +31,7 @@ export default function ParentShell({ children }) {
   const { parent, djeca, activeChild, activeChildId, setActiveChildId } = useParentContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  const totalUnread = djeca.flatMap(c => c.obavijesti.filter(o => !o.read)).length
+  const totalUnread = djeca.flatMap(c => (c.obavijesti || []).filter(o => !o.read)).length
 
   function go(href) {
     router.push(href)
@@ -55,7 +55,7 @@ export default function ParentShell({ children }) {
     const base = HEADINGS[pathname]
     if (pathname === '/roditelji/pregled') {
       return {
-        h: <><span>Dobar dan, </span><span className="r-g-gold">{parent.firstName}</span></>,
+        h: <><span>Dobar dan, </span><span className="r-g-gold">{parent?.firstName}</span></>,
         sub: base?.sub,
       }
     }
@@ -154,7 +154,7 @@ export default function ParentShell({ children }) {
                 <div className="r-eye" style={{ marginBottom: 8 }}>Vaša djeca</div>
                 <div className="r-csw">
                   {djeca.map(c => {
-                    const cWarns = c.obavijesti.filter(o => o.tip === 'warn' && !o.read).length
+                    const cWarns = (c.obavijesti || []).filter(o => o.tip === 'warn' && !o.read).length
                     const isActive = c.id === activeChildId
                     return (
                       <button key={c.id} className={`r-cbtn${isActive ? ' on' : ''}`}
