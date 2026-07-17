@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useParentContext } from '@/lib/roditelji/parentContext'
 import { childScore, childStatus } from '@/lib/roditelji/roditeljiUtils'
+import { createClient } from '@/lib/supabase/client'
 
 const TABS = [
   { href: '/roditelji/pregled',    label: '🏠 Pregled' },
@@ -43,7 +44,9 @@ export default function ParentShell({ children }) {
     setDrawerOpen(false)
   }
 
-  function handleLogout() {
+  async function handleLogout() {
+    // Prije je samo redirectao — Supabase sesija je ostajala aktivna.
+    try { await createClient().auth.signOut() } catch (e) { console.error('[logout]', e) }
     router.replace('/')
   }
 
