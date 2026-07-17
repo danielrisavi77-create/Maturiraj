@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { isAiEndpointsEnabled } from '@/lib/config/featureFlags'
 
 export async function POST(req) {
+  if (!isAiEndpointsEnabled()) {
+    return NextResponse.json(
+      { error: 'AI je privremeno nedostupan.', code: 'FEATURE_DISABLED' },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    )
+  }
+
   try {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()

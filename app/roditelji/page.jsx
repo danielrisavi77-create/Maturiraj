@@ -167,7 +167,7 @@ export default function RoditeljiPage() {
 
   const { isPro } = useAuth()
   const goRoditelji = () => router.push(isPro ? "/roditelji/pregled" : "/pro");
-  const goPlan = () => router.push("/uspjeh");
+  const goPlan = () => router.push("/pro");
 
   return (
     <>
@@ -385,7 +385,7 @@ export default function RoditeljiPage() {
               <div className="reveal reveal-left">
                 <div style={{ position: "relative", background: "var(--bg)", border: "1px solid rgba(233,180,70,.2)", borderRadius: 24, padding: "32px 30px", boxShadow: "0 0 0 1px rgba(233,180,70,.06), 0 24px 60px rgba(233,180,70,.06)" }}>
                   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg,transparent,#e9b446,transparent)", borderRadius: "24px 24px 0 0" }} />
-                  <div style={{ fontFamily: "var(--fh)", fontSize: 56, color: "var(--gold)", lineHeight: 0.7, marginBottom: 20, opacity: 0.5 }}>"</div>
+                  <div style={{ fontFamily: "var(--fh)", fontSize: 56, color: "var(--gold)", lineHeight: 0.7, marginBottom: 20, opacity: 0.5 }}>&ldquo;</div>
                   <p style={{ fontSize: 16, lineHeight: 1.85, color: "var(--text)", marginBottom: 24, fontStyle: "italic" }}>
                     Uložila sam u Maturiraj.hr umjesto u još jednog privatnog učitelja. Kći je imala pristup svim predmetima 24/7 — a ja sam pratila napredak bez da sam je stresirala s pitanjima.
                   </p>
@@ -405,7 +405,7 @@ export default function RoditeljiPage() {
                 {/* Second testimonial */}
                 <div className="reveal reveal-left" style={{ marginTop: 16 }}>
                   <div style={{ background: "var(--bg)", border: "1px solid rgba(192,132,252,.15)", borderRadius: 20, padding: "22px 24px" }}>
-                    <div style={{ fontFamily: "var(--fh)", fontSize: 36, color: "#c084fc", lineHeight: 0.7, marginBottom: 14, opacity: 0.5 }}>"</div>
+                    <div style={{ fontFamily: "var(--fh)", fontSize: 36, color: "#c084fc", lineHeight: 0.7, marginBottom: 14, opacity: 0.5 }}>&ldquo;</div>
                     <p style={{ fontSize: 14, lineHeight: 1.8, color: "var(--text)", marginBottom: 16, fontStyle: "italic" }}>
                       Svaki ponedjeljak dobijem izvješće. Vidim odmah što je slabo bez da moram pitati. Napokon se osjećam kao da nešto mogu učiniti.
                     </p>

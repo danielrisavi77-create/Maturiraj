@@ -1,48 +1,77 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { isParentLinkingV2Enabled } from '@/lib/config/featureFlags'
 
-// Reuse same formula as PuttingRateCard / medicinarMode for consistency
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+
+function parentV2Disabled() {
+  return NextResponse.json(
+    { error: 'Roditeljski pregled je privremeno nedostupan.', code: 'FEATURE_DISABLED' },
+    { status: 503, headers: { 'Cache-Control': 'no-store' } }
+  )
+}
+
 function calcPuttingRate(studij, progress) {
   const predmeti = (studij.predmeti || []).map(p => p.toLowerCase().split(' ')[0])
-  const rel = progress.filter(p => predmeti.includes(p.predmet))
-  if (rel.length === 0) return null
-  const avg = rel.reduce((sum, p) => {
-    const cov = p.skripte_total_chapters
-      ? (p.skripte_viewed_chapters / p.skripte_total_chapters) * 100 : 0
-    const mas = p.skripte_total_chapters
-      ? (p.skripte_mastered_chapters / p.skripte_total_chapters) * 100 : 0
-    const acc = p.vjezbe_accuracy ?? 0
-    const sim = p.simulator_best_score ?? 0
-    return sum + (cov * 0.2 + mas * 0.25 + acc * 0.25 + (sim > 0 ? sim * 0.3 : 0))
-  }, 0) / rel.length
-  return Math.max(5, Math.min(95, Math.round(avg)))
+  const relevant = progress.filter(p => predmeti.includes(p.predmet))
+  if (relevant.length === 0) return null
+
+  const average = relevant.reduce((sum, item) => {
+    const coverage = item.skripte_total_chapters
+      ? (item.skripte_viewed_chapters / item.skripte_total_chapters) * 100 : 0
+    const mastery = item.skripte_total_chapters
+      ? (item.skripte_mastered_chapters / item.skripte_total_chapters) * 100 : 0
+    const accuracy = item.vjezbe_accuracy ?? 0
+    const simulator = item.simulator_best_score ?? 0
+    return sum + (coverage * 0.2 + mastery * 0.25 + accuracy * 0.25 + (simulator > 0 ? simulator * 0.3 : 0))
+  }, 0) / relevant.length
+
+  return Math.max(5, Math.min(95, Math.round(average)))
 }
 
 // GET /api/parent/child-dashboard/[childId]
-export async function GET(request, { params }) {
+export async function GET(_request, { params } = {}) {
+  if (!isParentLinkingV2Enabled()) return parentV2Disabled()
+
+  const resolvedParams = await params
+  const childId = resolvedParams?.childId
+  if (!childId || !UUID_PATTERN.test(childId)) {
+    return NextResponse.json({ error: 'Neispravan child id.' }, { status: 400 })
+  }
+
   const supabase = await createClient()
-  const { data: { session } } = await supabase.auth.getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { childId } = await params
-
-  // Verify parent-child link is confirmed (status = 'linked')
-  const { data: link } = await supabase
+  // This regular RLS read is the authorization proof. No admin client exists
+  // until the authenticated parent owns a child-approved V2 relationship.
+  const { data: link, error: linkError } = await supabase
     .from('parent_children')
-    .select('id, child_email, child_name, status, child_id')
-    .eq('parent_id', session.user.id)
+    .select('id, child_id, child_email, child_name, status, consent_version, consent_decided_at')
+    .eq('parent_id', user.id)
     .eq('child_id', childId)
     .eq('status', 'linked')
+    .eq('consent_version', 'v2')
+    .not('consent_decided_at', 'is', null)
     .maybeSingle()
 
-  if (!link) {
+  if (linkError) {
+    return NextResponse.json({ error: 'Nije moguće potvrditi ovlaštenje.' }, { status: 500 })
+  }
+
+  const childApproved = link
+    && link.child_id === childId
+    && link.status === 'linked'
+    && link.consent_version === 'v2'
+    && Boolean(link.consent_decided_at)
+
+  if (!childApproved) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  // Fetch all child data using admin client (bypasses RLS, parent already verified above)
+  // Admin reads are permitted only after the proof above.
   const admin = createAdminClient()
-
   const [profileRes, targetsRes, progressRes, simRes] = await Promise.all([
     admin
       .from('profiles')
@@ -69,38 +98,43 @@ export async function GET(request, { params }) {
       .limit(10),
   ])
 
+  if ([profileRes, targetsRes, progressRes, simRes].some(result => result.error)) {
+    return NextResponse.json({ error: 'Podaci djeteta trenutačno nisu dostupni.' }, { status: 502 })
+  }
+
   const profile = profileRes.data
   const targets = targetsRes.data || []
   const progress = progressRes.data || []
   const simAttempts = simRes.data || []
 
-  // Fetch studij details for active targets
   let studiji = []
   if (targets.length > 0) {
-    const { data } = await admin
+    const { data, error } = await admin
       .from('studiji_view')
       .select('id, naziv, fak_short, color, predmeti, prag_2025, sym, glyph_bg')
-      .in('id', targets.map(t => t.studij_id))
+      .in('id', targets.map(target => target.studij_id))
+    if (error) {
+      return NextResponse.json({ error: 'Podaci studija trenutačno nisu dostupni.' }, { status: 502 })
+    }
     studiji = data || []
   }
 
-  // Compute last_active_at from progress rows
   const activityDates = progress
-    .map(p => p.last_activity_at)
+    .map(item => item.last_activity_at)
     .filter(Boolean)
-    .map(d => new Date(d))
+    .map(value => new Date(value))
+    .filter(value => !Number.isNaN(value.getTime()))
   const lastActive = activityDates.length > 0
-    ? new Date(Math.max(...activityDates.map(d => d.getTime())))
+    ? new Date(Math.max(...activityDates.map(value => value.getTime())))
     : null
-  const daysInactive = lastActive !== null
+  const daysInactive = lastActive
     ? Math.floor((Date.now() - lastActive.getTime()) / 86400000)
     : null
 
-  // Enrich targets with studij data and putting rate
-  const enrichedTargets = targets.map(t => {
-    const studij = studiji.find(s => s.id === t.studij_id) || null
+  const enrichedTargets = targets.map(target => {
+    const studij = studiji.find(item => item.id === target.studij_id) || null
     return {
-      ...t,
+      ...target,
       studij,
       putting_rate: studij ? calcPuttingRate(studij, progress) : null,
     }
@@ -118,5 +152,5 @@ export async function GET(request, { params }) {
     sim_attempts: simAttempts,
     last_active_at: lastActive?.toISOString() || null,
     days_inactive: daysInactive,
-  })
+  }, { headers: { 'Cache-Control': 'no-store' } })
 }

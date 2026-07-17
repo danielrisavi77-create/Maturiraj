@@ -2,8 +2,16 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextRequest, NextResponse } from 'next/server'
 import { runAgent } from '@/lib/agent-core/runAgent'
+import { isAgentApiEnabled } from '@/lib/config/featureFlags'
 
 export async function POST(request) {
+  if (!isAgentApiEnabled()) {
+    return NextResponse.json(
+      { error: 'AI agenti su privremeno nedostupni.', code: 'FEATURE_DISABLED' },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    )
+  }
+
   try {
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL,

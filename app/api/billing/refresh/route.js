@@ -5,6 +5,7 @@ import { getStripe } from '@/lib/stripe'
 import { syncSubscriptionToSupabase, getUserEntitlements } from '@/lib/billing/subscriptions'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { trackPaywallEventServer, PAYWALL_EVENTS } from '@/lib/analytics/paywallEvents'
+import { isBillingCheckoutEnabled } from '@/lib/config/featureFlags'
 
 // POST /api/billing/refresh
 // ─────────────────────────────────────────────────────────────────────────────
@@ -21,6 +22,15 @@ import { trackPaywallEventServer, PAYWALL_EVENTS } from '@/lib/analytics/paywall
 // Idempotent — safe to call multiple times (upsert logic inside syncSubscription)
 
 export async function POST(req) {
+  // Phase 0 containment: do not touch auth, Stripe, or the admin database while
+  // the canonical billing stack is disabled or only partially enabled.
+  if (!isBillingCheckoutEnabled()) {
+    return NextResponse.json(
+      { error: 'Naplata je privremeno nedostupna.', code: 'FEATURE_DISABLED' },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    )
+  }
+
   // ── Auth ────────────────────────────────────────────────────────────────────
   const cookieStore = await cookies()
   const supabase = createServerClient(

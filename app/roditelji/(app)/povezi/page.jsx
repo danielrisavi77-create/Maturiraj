@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
 import { PCard, PLabel } from '@/components/roditelji/ui'
 
 export default function PoweziPage() {
@@ -17,40 +16,29 @@ export default function PoweziPage() {
     setStatus('loading')
     setMsg('')
 
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-
-    if (!user) {
-      router.replace('/prijava?redirect=/roditelji/povezi')
+    let response
+    try {
+      response = await fetch('/api/parent/children', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          child_email: email,
+          child_name: name,
+        }),
+      })
+    } catch {
+      setMsg('Poziv trenutačno nije moguće poslati. Pokušaj ponovo.')
+      setStatus('error')
       return
     }
 
-    // Provjeri postoji li dijete s tim emailom
-    const { data: childProfile } = await supabase
-      .from('profiles')
-      .select('id')
-      .eq('email', email.trim().toLowerCase())
-      .single()
-
-    // Insert parent_children row
-    const childId   = childProfile?.id ?? null
-    const { error } = await supabase
-      .from('parent_children')
-      .insert({
-        parent_id:   user.id,
-        child_id:    childId,
-        child_email: email.trim().toLowerCase(),
-        child_name:  name.trim() || null,
-        status:      childId ? 'linked' : 'pending',
-        linked_at:   childId ? new Date().toISOString() : null,
-      })
-
-    if (error) {
-      if (error.code === '23505') {
-        setMsg('To dijete je već dodano.')
-      } else {
-        setMsg('Greška pri dodavanju. Pokušaj ponovo.')
-      }
+    const data = await response.json().catch(() => ({}))
+    if (response.status === 401) {
+      router.replace('/prijava?redirect=/roditelji/povezi')
+      return
+    }
+    if (!response.ok) {
+      setMsg(data.error || 'Poziv trenutačno nije moguće poslati. Pokušaj ponovo.')
       setStatus('error')
       return
     }
@@ -71,7 +59,7 @@ export default function PoweziPage() {
           <h1 style={styles.title}>Poveži dijete</h1>
           <p style={styles.subtitle}>
             Unesite email adresu vašeg djeteta koje koristi Maturiraj.hr.
-            Ako dijete ima račun, odmah ćete vidjeti njihov napredak.
+            Pristup napretku dobit ćete tek nakon što dijete prihvati poziv.
           </p>
         </div>
 
@@ -79,10 +67,10 @@ export default function PoweziPage() {
           <PCard style={{ textAlign: 'center' }}>
             <div style={{ fontSize: 36, marginBottom: 10 }}>✅</div>
             <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text)', marginBottom: 6 }}>
-              Dijete je dodano!
+              Poziv je poslan!
             </div>
             <div style={{ fontSize: 13, color: 'var(--muted)' }}>
-              Preusmjeravamo vas na pregled...
+              Čeka se prihvaćanje djeteta. Preusmjeravamo vas na pregled...
             </div>
           </PCard>
         ) : (
@@ -119,7 +107,7 @@ export default function PoweziPage() {
               )}
 
               <button type="submit" disabled={status === 'loading'} style={styles.btn}>
-                {status === 'loading' ? 'Dodajem...' : 'Poveži dijete →'}
+                {status === 'loading' ? 'Šaljem...' : 'Pošalji poziv →'}
               </button>
             </form>
           </PCard>

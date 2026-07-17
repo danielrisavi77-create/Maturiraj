@@ -1,8 +1,16 @@
 import { NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import Anthropic from '@anthropic-ai/sdk'
+import { isAiEndpointsEnabled } from '@/lib/config/featureFlags'
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+let anthropic
+
+function getAnthropic() {
+  if (!anthropic) {
+    anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+  }
+  return anthropic
+}
 
 function mondayOfWeek(d = new Date()) {
   const result = new Date(d)
@@ -14,6 +22,13 @@ function mondayOfWeek(d = new Date()) {
 }
 
 export async function POST(request) {
+  if (!isAiEndpointsEnabled()) {
+    return NextResponse.json(
+      { error: 'AI je privremeno nedostupan.', code: 'FEATURE_DISABLED' },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    )
+  }
+
   // Auth
   const authHeader = request.headers.get('authorization')
   const token = authHeader?.replace('Bearer ', '')
@@ -102,7 +117,7 @@ ${scores ? `Uneseni bodovi: prosjeci ${scores.prosjek_r1 || '-'}/${scores.prosje
 Generiraj tjedni briefing.`
 
   try {
-    const response = await anthropic.messages.create({
+    const response = await getAnthropic().messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 1200,
       system: systemPrompt,
