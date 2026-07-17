@@ -5,6 +5,7 @@ import { getOrCreateStripeCustomer } from '@/lib/billing/subscriptions'
 import { getStripe } from '@/lib/stripe'
 import { trackPaywallEventServer } from '@/lib/analytics/paywallEvents'
 import { PAYWALL_EVENTS } from '@/lib/analytics/paywallEvents'
+import { isBillingCheckoutEnabled } from '@/lib/config/featureFlags'
 
 const PLANOVI = {
   starter: process.env.NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PRICE_ID,
@@ -13,6 +14,13 @@ const PLANOVI = {
 }
 
 export async function POST(request) {
+  if (!isBillingCheckoutEnabled()) {
+    return NextResponse.json(
+      { error: 'Naplata je privremeno nedostupna.', code: 'FEATURE_DISABLED' },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    )
+  }
+
   try {
     const { plan, from } = await request.json()
 
@@ -43,6 +51,22 @@ export async function POST(request) {
 
     if (!user) {
       return NextResponse.json({ error: 'Nisi prijavljen' }, { status: 401 })
+    }
+
+    // ── Spriječi dvostruku pretplatu ─────────────────────────────────────────
+    // Ako korisnik već ima aktivnu/trialing pretplatu, ne otvaraj novi checkout
+    // (inače nastaje paralelna druga naplata) — vodi ga na upravljanje/portal.
+    const { data: existingSub } = await supabase
+      .from('subscriptions')
+      .select('status')
+      .eq('user_id', user.id)
+      .in('status', ['active', 'trialing'])
+      .maybeSingle()
+    if (existingSub) {
+      return NextResponse.json(
+        { error: 'Već imaš aktivnu pretplatu. Upravljaj njome kroz portal.', code: 'ALREADY_SUBSCRIBED' },
+        { status: 409 }
+      )
     }
 
     // ── Reuse Stripe customer — prevents duplicate customers ─────────────────
