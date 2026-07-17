@@ -113,7 +113,7 @@ export default function MatFullSimulator({ tier = 'free' }) {
           const meta = metaByKey[k] || {};
           EXAMS[k] = {
             key: k, year: meta.year, season: meta.season, razina: meta.razina,
-            label: meta.label, duration: meta.durationSec, qs: m.qs,
+            label: meta.label, duration: meta.durationSec, qs: (m.qs || []).filter(q => q && !q._META),
             locked: !allowed.has(k), // free tier → demo only; gate per discere-access
           };
           Object.assign(QIMG, m.qImages || {});

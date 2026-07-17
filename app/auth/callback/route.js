@@ -9,7 +9,11 @@ export async function GET(request) {
   const { searchParams, origin } = new URL(request.url)
   const code     = searchParams.get('code')
   const next     = searchParams.get('next') ?? '/'
-  const redirect = searchParams.get('redirect') ?? '/'
+  const redirectRaw = searchParams.get('redirect') ?? '/'
+  // Sigurnost: dozvoli samo relativne, same-origin putanje (spriječi open redirect)
+  const redirect = (redirectRaw.startsWith('/') && !redirectRaw.startsWith('//') && !redirectRaw.startsWith('/\\'))
+    ? redirectRaw
+    : '/'
 
   if (code) {
     const cookieStore = await cookies()
