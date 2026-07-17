@@ -38,33 +38,20 @@ export default function Kalkulator({ studij, fakColor, onResult }) {
   const [matura, setMatura] = useState({})
   const [posebno, setPosebno] = useState('')
 
-  // Handle null kalk (audicija, psihomotorika bez formule)
-  if (!k) {
-    return (
-      <div style={{padding:'40px 24px',textAlign:'center',borderRadius:14,background:'var(--s1)',border:'1px solid var(--bdr)'}}>
-        <div style={{fontSize:40,marginBottom:14,opacity:.7}}>🧮</div>
-        <div style={{fontSize:14,color:'var(--text)',fontWeight:600,marginBottom:8}}>Kalkulator nije dostupan</div>
-        <div style={{fontSize:13,color:'var(--muted)',maxWidth:460,margin:'0 auto',lineHeight:1.65}}>
-          {c('kalkulator.no_kalk', { STUDIJ: studij.naziv })}
-        </div>
-        <div style={{marginTop:20,padding:'14px 18px',borderRadius:11,background:'rgba(233,180,70,.06)',border:'1px solid rgba(233,180,70,.2)',fontSize:12.5,color:'var(--muted)',textAlign:'left',lineHeight:1.6}}>
-          💡 <strong style={{color:'var(--gold)'}}>Što možeš?</strong> Vidi karticu "Info" za gradivo i proces prijave, te "Datumi" za rokove. Pratiti službenu stranicu fakulteta za točna pravila bodovanja.
-        </div>
-      </div>
-    )
-  }
-
-  // Računanje bodova
+  // Računanje bodova — k može biti null (audicija/psihomotorika bez formule).
+  // Rani return je premješten NAKON svih hookova (rules-of-hooks), pa se ove
+  // funkcije moraju čuvati od null-a jer se izvršavaju i kad formule nema.
   const ocjeneBod = () => {
+    if (!k) return 0
     const vals = [prosjeci.r1, prosjeci.r2, prosjeci.r3, prosjeci.r4].map(v => parseFloat(v) || 0)
     return (vals.reduce((a, b) => a + b, 0) / 4 / 5) * k.ocjene_max
   }
-  const maturaBod = () => (k.polja || []).reduce((sum, p) => {
+  const maturaBod = () => (k?.polja || []).reduce((sum, p) => {
     const pct = parseFloat(matura[p.id]) || 0
     const bod = p.razina === 'B' ? (pct / 160) * p.max : (pct / 100) * p.max
     return sum + Math.min(bod, p.max)
   }, 0)
-  const posebnoBod = () => k.posebno ? ((parseFloat(posebno) || 0) / 100) * k.posebno.max : 0
+  const posebnoBod = () => k?.posebno ? ((parseFloat(posebno) || 0) / 100) * k.posebno.max : 0
 
   const ukupno = Math.round(ocjeneBod() + maturaBod() + posebnoBod())
   const animated = useCountUp(ukupno)
@@ -80,6 +67,33 @@ export default function Kalkulator({ studij, fakColor, onResult }) {
       tryFire(ukupno, studij.prag_2025)
     }
   }, [ukupno, studij.prag_2025, tryFire])
+
+  // Dojava rezultata roditelju kad se promijeni ukupan broj bodova.
+  // Prije je išlo preko inline ref callbacka (ref={el => onResult?.(ukupno)}) koji React
+  // detacha/reattacha na SVAKOM renderu → onResult (analytics track()) je pucao desetke
+  // puta tijekom count-up animacije. Sada okida samo kad se `ukupno` stvarno promijeni
+  // i kad je nešto uneseno. `onResult` je namjerno izostavljen iz deps (parent ga šalje
+  // inline pa mijenja identitet svaki render — pratimo vrijednost, ne referencu).
+  useEffect(() => {
+    if (prikazano) onResult?.(ukupno)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ukupno, prikazano])
+
+  // Rani return SADA nakon svih hookova (audicija/psihomotorika bez formule).
+  if (!k) {
+    return (
+      <div style={{padding:'40px 24px',textAlign:'center',borderRadius:14,background:'var(--s1)',border:'1px solid var(--bdr)'}}>
+        <div style={{fontSize:40,marginBottom:14,opacity:.7}}>🧮</div>
+        <div style={{fontSize:14,color:'var(--text)',fontWeight:600,marginBottom:8}}>Kalkulator nije dostupan</div>
+        <div style={{fontSize:13,color:'var(--muted)',maxWidth:460,margin:'0 auto',lineHeight:1.65}}>
+          {c('kalkulator.no_kalk', { STUDIJ: studij.naziv })}
+        </div>
+        <div style={{marginTop:20,padding:'14px 18px',borderRadius:11,background:'rgba(233,180,70,.06)',border:'1px solid rgba(233,180,70,.2)',fontSize:12.5,color:'var(--muted)',textAlign:'left',lineHeight:1.6}}>
+          💡 <strong style={{color:'var(--gold)'}}>Što možeš?</strong> Vidi karticu &quot;Info&quot; za gradivo i proces prijave, te &quot;Datumi&quot; za rokove. Pratiti službenu stranicu fakulteta za točna pravila bodovanja.
+        </div>
+      </div>
+    )
+  }
 
   const isAbovePrag = razlika !== null && razlika >= 0
 
@@ -197,7 +211,6 @@ export default function Kalkulator({ studij, fakColor, onResult }) {
       {/* Rezultat */}
       {prikazano && (
         <div
-          ref={el => { if(el) onResult?.(ukupno) }}
           className="pr-krez"
           style={{
             background: razlika === null

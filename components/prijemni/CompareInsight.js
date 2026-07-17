@@ -84,11 +84,15 @@ export default function CompareInsight({ open, studiji, userScores, scoresLoaded
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        // Ključevi (ime/fakultet/trajanje) su ugovor s /api/prijemni/compare-insight;
+        // vrijednosti moraju doći iz STVARNIH polja Studij objekta (lib/types/prijemni.js):
+        // naziv, fak_name/fak_short, trajanje_god. Prije su slana s.ime/s.fakultet_ime/
+        // s.trajanje (ne postoje) → AI je dobivao prazne nazive i davao beskoristan uvid.
         studiji: studiji.map(s => ({
-          ime:       s.ime,
-          fakultet:  s.fakultet_ime ?? s.naziv_fakulteta,
+          ime:       s.naziv,
+          fakultet:  s.fak_name ?? s.fak_short,
           prag_2025: s.prag_2025,
-          trajanje:  s.trajanje,
+          trajanje:  s.trajanje_god,
           predmeti:  s.predmeti,
         })),
         scores: userScores,
