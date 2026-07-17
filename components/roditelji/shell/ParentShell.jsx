@@ -25,10 +25,31 @@ const HEADINGS = {
   '/roditelji/medicinar':  { sub: 'Read-only pregled Medicinar Mode napretka vašeg djeteta.' },
 }
 
+function RStateBlock({ icon, title, desc, cta }) {
+  return (
+    <div style={{ maxWidth: 460, margin: '40px auto', textAlign: 'center', padding: '32px 24px', background: 'var(--s1)', border: '1px solid var(--bdr)', borderRadius: 16 }}>
+      <div style={{ fontSize: 40, marginBottom: 14, opacity: .8 }}>{icon}</div>
+      <div style={{ fontFamily: 'var(--fh)', fontSize: 19, fontWeight: 800, marginBottom: 8, color: 'var(--text)' }}>{title}</div>
+      {desc && <p style={{ color: 'var(--muted)', fontSize: 13.5, lineHeight: 1.7, marginBottom: cta ? 20 : 0 }}>{desc}</p>}
+      {cta}
+    </div>
+  )
+}
+
+function RLoading() {
+  return (
+    <div style={{ maxWidth: 720, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+      {[0, 1, 2].map(i => (
+        <div key={i} style={{ height: 88, borderRadius: 14, background: 'var(--s1)', border: '1px solid var(--bdr)', opacity: .55, animation: 'pulse-ring 1.6s ease-in-out infinite' }} />
+      ))}
+    </div>
+  )
+}
+
 export default function ParentShell({ children }) {
   const pathname = usePathname()
   const router   = useRouter()
-  const { parent, djeca, activeChild, activeChildId, setActiveChildId } = useParentContext()
+  const { parent, djeca, activeChild, activeChildId, setActiveChildId, loading, error, refetch } = useParentContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const totalUnread = djeca.flatMap(c => (c.obavijesti || []).filter(o => !o.read)).length
@@ -85,6 +106,24 @@ export default function ParentShell({ children }) {
     }
     return { h: <>Roditeljski portal</>, sub: '' }
   })()
+
+  // Sadržaj ovisno o stanju podataka. Postavke/povezi rade i s 0 djece (tamo se dijete
+  // DODAJE), pa im ne prikazujemo prazno "poveži dijete" stanje.
+  const worksWithoutChild = pathname.startsWith('/roditelji/postavke')
+    || pathname.startsWith('/roditelji/povezi')
+    || pathname.startsWith('/roditelji/rokovi')
+  let content = children
+  if (loading) {
+    content = <RLoading />
+  } else if (error === 'disabled') {
+    content = <RStateBlock icon="🔧" title="Roditeljski portal je privremeno nedostupan" desc="Radimo na njemu — pokušaj ponovno kasnije." />
+  } else if (error === 'unauth') {
+    content = <RStateBlock icon="🔒" title="Prijava potrebna" desc="Prijavi se kao roditelj da vidiš napredak svoje djece." cta={<Link href="/prijava?from=roditelji" className="r-btn r-bgh r-btn-sm" style={{ textDecoration: 'none' }}>Prijava</Link>} />
+  } else if (error) {
+    content = <RStateBlock icon="⚠️" title="Greška pri učitavanju" desc="Podaci trenutačno nisu dostupni." cta={<button className="r-btn r-bgh r-btn-sm" onClick={refetch}>Pokušaj ponovno</button>} />
+  } else if (djeca.length === 0 && !worksWithoutChild) {
+    content = <RStateBlock icon="👨‍👩‍👧" title="Još nema povezane djece" desc="Poveži račun svog djeteta da vidiš napredak, obavijesti i preporuke — bez zadiranja u privatnost djeteta." cta={<Link href="/roditelji/povezi" className="r-btn r-bgh r-btn-sm" style={{ textDecoration: 'none' }}>Poveži dijete</Link>} />
+  }
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
@@ -178,7 +217,7 @@ export default function ParentShell({ children }) {
 
         {/* Page content */}
         <div className="r-wrap" style={{ paddingTop: 32, paddingBottom: 80 }}>
-          {children}
+          {content}
         </div>
 
         {/* Footer */}
