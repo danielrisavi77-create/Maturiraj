@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { requireStandardOrPro } from "@/lib/billing/requirePro";
 import { isAiEndpointsEnabled } from "@/lib/config/featureFlags";
 
 const anthropic = new Anthropic({
@@ -31,6 +32,11 @@ export async function POST(req) {
   }
 
   try {
+    // Entitlement gate — Discere AI simulator je Standard+ značajka (vidi /uspjeh pricing).
+    // Prije je bilo dovoljno samo biti prijavljen (free korisnik je trošio Anthropic ključ).
+    const deny = await requireStandardOrPro(req, { source: "ai-simulator" });
+    if (deny) return deny;
+
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
