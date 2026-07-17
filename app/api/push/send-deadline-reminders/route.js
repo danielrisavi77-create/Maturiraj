@@ -37,8 +37,9 @@ function ensureWebPushConfigured() {
 }
 
 export async function GET(request) {
-  // Cron auth
-  if (request.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+  // Cron auth — fail-closed: ako CRON_SECRET nije postavljen, 'Bearer undefined' bi inače prošao
+  const cronSecret = process.env.CRON_SECRET
+  if (!cronSecret || request.headers.get('authorization') !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
