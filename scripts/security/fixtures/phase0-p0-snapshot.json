@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-07-15",
+  "snapshotCommit": "11cded5022b4c64681a96279f2d93401c0bf813a",
+  "contracts": [
+    {
+      "id": "SEC-P0-01",
+      "title": "Entitlement columns must not be writable by the profile owner",
+      "severity": "critical",
+      "status": "VULNERABLE_SOURCE_CONTRACT_PRESENT",
+      "riskPresent": true,
+      "acceptance": "An authenticated user cannot change tier, plan_type, pro_expires_at or any equivalent entitlement field; only a trusted billing path can do so.",
+      "evidence": [
+        {
+          "path": "supabase/migrations/20260627000000_sim_progress.sql",
+          "readableAtSnapshot": true,
+          "markers": [
+            { "id": "profiles-own-update-policy", "matched": true, "line": 26 },
+            { "id": "unrestricted-own-row-update", "matched": true, "line": 26 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SEC-P0-02",
+      "title": "Only the child may approve or decline a parent link",
+      "severity": "critical",
+      "status": "VULNERABLE_SOURCE_CONTRACT_PRESENT",
+      "riskPresent": true,
+      "acceptance": "A parent cannot change child_id, status or consent timestamps; a child-bound, one-time server workflow is required before any linked relationship can be read.",
+      "evidence": [
+        {
+          "path": "supabase/migrations/20260407000000_parent_children.sql",
+          "readableAtSnapshot": true,
+          "markers": [
+            { "id": "parent-broad-update-policy", "matched": true, "line": 39 },
+            { "id": "parent-row-update-without-column-guard", "matched": true, "line": 40 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BIL-P0-01",
+      "title": "Unknown Stripe prices must fail closed",
+      "severity": "critical",
+      "status": "VULNERABLE_SOURCE_CONTRACT_PRESENT",
+      "riskPresent": true,
+      "acceptance": "There is one canonical webhook and an unknown or unmapped Stripe price can never grant a paid entitlement.",
+      "evidence": [
+        {
+          "path": "app/api/stripe/webhook/route.js",
+          "readableAtSnapshot": true,
+          "markers": [
+            { "id": "unknown-price-pro-fallback", "matched": true, "line": 24 },
+            { "id": "legacy-webhook-admin-write", "matched": true, "line": 86 }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -56,7 +56,11 @@ export default function Page() {
     const params = new URLSearchParams(window.location.search);
     const forceIntro = params.get("intro") === "1";
 
-    setShowIntro(forceIntro || !hasSeenIntro);
+    const frame = window.requestAnimationFrame(() => {
+      setShowIntro(forceIntro || !hasSeenIntro);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -106,7 +110,7 @@ export default function Page() {
 
       <Hero
         onSkripte={() => (window.location.href = "/skripte")}
-        onPlan={() => (window.location.href = "/uspjeh")}
+        onPlan={() => (window.location.href = "/pro")}
         onChat={() => (window.location.href = "/ai-profesor")}
         onPrijemni={() => (window.location.href = "/prijemni")}
         onKalkulator={() => (window.location.href = "/kalkulator")}
@@ -121,11 +125,11 @@ export default function Page() {
 
       <Testimonijali />
 
-      <Compare onPlan={() => (window.location.href = "/uspjeh")} />
+      <Compare onPlan={() => (window.location.href = "/pro")} />
 
       <PlanUcenjaTeaser
         onPlanUcenja={() => (window.location.href = "/plan-ucenja")}
-        onPlan={() => (window.location.href = "/uspjeh")}
+        onPlan={() => (window.location.href = "/pro")}
       />
 
       <DanasUcim />
@@ -137,25 +141,25 @@ export default function Page() {
 
       <RoditeljiUrgency
         onRoditelji={() => (window.location.href = "/roditelji")}
-        onPlan={() => (window.location.href = "/uspjeh")}
+        onPlan={() => (window.location.href = "/pro")}
         onSkripte={() => (window.location.href = "/skripte")}
       />
 
       <Cijene
         onSkripte={() => (window.location.href = "/skripte")}
-        onPlan={() => (window.location.href = "/uspjeh")}
+        onPlan={() => (window.location.href = "/pro")}
       />
 
       <FAQ />
 
       <CTA
         onSkripte={() => (window.location.href = "/skripte")}
-        onPlan={() => (window.location.href = "/uspjeh")}
+        onPlan={() => (window.location.href = "/pro")}
       />
 
       <Footer
         onSkripte={() => (window.location.href = "/skripte")}
-        onPlan={() => (window.location.href = "/uspjeh")}
+        onPlan={() => (window.location.href = "/pro")}
         onPrijemni={() => (window.location.href = "/prijemni")}
         onKalkulator={() => (window.location.href = "/kalkulator")}
         onTermini={() => (window.location.href = "/termini")}

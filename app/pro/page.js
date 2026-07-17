@@ -10,9 +10,9 @@ const PLANS = [
     name:        'Standard',
     emoji:       '⭐',
     price:       { monthly: '9,99', yearly: '6,99' },
-    priceId:     {
-      monthly: process.env.NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PRICE_ID,
-      yearly:  process.env.NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PRICE_ID,
+    checkoutPlan: {
+      monthly: 'starter',
+      yearly:  null,
     },
     color:       'var(--orange)',
     colorRgb:    '255,107,43',
@@ -34,9 +34,9 @@ const PLANS = [
     name:        'Pro',
     emoji:       '✨',
     price:       { monthly: '19,99', yearly: '9,99' },
-    priceId:     {
-      monthly: process.env.NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PRICE_ID,
-      yearly:  process.env.NEXT_PUBLIC_STRIPE_PRO_YEARLY_PRICE_ID,
+    checkoutPlan: {
+      monthly: 'pro',
+      yearly:  'pro_god',
     },
     color:       'var(--blue)',
     colorRgb:    '75,123,255',
@@ -79,6 +79,7 @@ function ProContent() {
   const [billing,  setBilling]  = useState('monthly')
   const [loading,  setLoading]  = useState(null)
   const [error,    setError]    = useState(null)
+  const [notice,   setNotice]   = useState(null)
 
   // Ako je kupnja cancelirana, vrati ga na izvornu stranicu (ne na /pro)
   useEffect(() => {
@@ -92,27 +93,9 @@ function ProContent() {
     router.push(fromInfo.path)
   }
 
-  // URL na koji Stripe vraća nakon USPJEŠNE kupnje
-  const getSuccessUrl = () => {
-    if (typeof window === 'undefined') return ''
-    const base = window.location.origin
-    // Ako dolazi s kalkulatora — vrati s ?restored=1
-    if (fromKey === 'kalkulator') return `${base}/kalkulator?restored=1`
-    // Inače standardna success stranica, ali s informacijom odakle je došao
-    return `${base}/pro/success?from=${fromKey}`
-  }
-
-  // URL na koji Stripe vraća ako korisnik ODUSTANE od plaćanja
-  const getCancelUrl = () => {
-    if (typeof window === 'undefined') return ''
-    const base = window.location.origin
-    // Vrati ga nazad na izvornu stranicu (ne na /pro!)
-    if (fromKey) return `${base}${fromInfo.path}`
-    return `${base}/pro?canceled=1`
-  }
-
   const handleCheckout = async (plan) => {
     setError(null)
+    setNotice(null)
 
     if (!user) {
       // Pamti i "from" kroz login flow
@@ -120,31 +103,43 @@ function ProContent() {
       return
     }
 
-    const priceId = plan.priceId[billing]
-    if (!priceId) {
-      setError(`Price ID za ${plan.name} ${billing} nije postavljen u .env`)
+    const checkoutPlan = plan.checkoutPlan[billing]
+    if (!checkoutPlan) {
+      setNotice(`Godišnji ${plan.name} plan trenutačno nije dostupan. Odaberi mjesečnu naplatu.`)
       return
     }
 
     setLoading(plan.id)
     try {
-      const res  = await fetch('/api/stripe/checkout', {
+      const res  = await fetch('/api/checkout', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({
-          priceId,
-          planName:   plan.id,
-          successUrl: getSuccessUrl(),
-          cancelUrl:  getCancelUrl(),
+          plan: checkoutPlan,
+          from: fromKey || 'pro',
         }),
       })
-      const data = await res.json()
+      const data = await res.json().catch(() => ({}))
 
-      if (data.error) throw new Error(data.error)
-      if (data.url)   window.location.href = data.url
+      if (res.status === 401 || data.error === 'Nisi prijavljen') {
+        router.push(`/prijava?redirect=/pro${fromKey ? `?from=${fromKey}` : ''}`)
+        return
+      }
+
+      if (res.status === 503 || data.code === 'FEATURE_DISABLED') {
+        setNotice('Naplata je privremeno nedostupna. Tvoj račun i postojeći pristup nisu promijenjeni.')
+        return
+      }
+
+      if (!res.ok || !data.url) {
+        throw new Error(data.error || 'Checkout trenutačno nije dostupan.')
+      }
+
+      window.location.assign(data.url)
 
     } catch (e) {
       setError(e.message || 'Greška pri otvaranju checkout-a.')
+    } finally {
       setLoading(null)
     }
   }
@@ -166,9 +161,13 @@ function ProContent() {
   const getCtaLabel = (plan) => {
     if (loading === plan.id)           return 'Učitavam...'
     if (isPro && plan.id === 'pro')    return 'Upravljaj planom →'
+    if (!plan.checkoutPlan[billing])   return `Godišnji ${plan.name} uskoro`
     if (fromKey === 'kalkulator' && plan.id === 'pro') return '🔑 Otključaj kalkulator →'
     return `Uzmi ${plan.name} →`
   }
+
+  const isPlanActionAvailable = (plan) =>
+    (isPro && plan.id === 'pro') || Boolean(plan.checkoutPlan[billing])
 
   return (
     <div style={{
@@ -293,7 +292,11 @@ function ProContent() {
               { key: 'monthly', label: 'Mjesečno' },
               { key: 'yearly',  label: 'Godišnje', badge: '−50%' },
             ].map(b => (
-              <button key={b.key} onClick={() => setBilling(b.key)}
+              <button key={b.key} onClick={() => {
+                setBilling(b.key)
+                setNotice(null)
+                setError(null)
+              }}
                 className={`bill-opt${billing === b.key ? ' on' : ''}`}
                 style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
                 {b.label}
@@ -308,6 +311,15 @@ function ProContent() {
             ))}
           </div>
         </div>
+
+        {/* Neutral billing containment notice */}
+        {notice && (
+          <div role="status" style={{
+            marginBottom: 24, padding: '12px 16px', borderRadius: 14,
+            background: 'rgba(75,123,255,.07)', border: '1px solid rgba(75,123,255,.18)',
+            fontSize: 13, color: 'var(--muted)', textAlign: 'center', lineHeight: 1.6,
+          }}>ℹ️ {notice}</div>
+        )}
 
         {/* Error */}
         {error && (
@@ -386,20 +398,20 @@ function ProContent() {
               </div>
 
               <button
-                onClick={() => handleCheckout(plan)}
-                disabled={!!loading}
+                onClick={() => isPro && plan.id === 'pro' ? handlePortal() : handleCheckout(plan)}
+                disabled={!!loading || !isPlanActionAvailable(plan)}
                 style={{
                   width: '100%', padding: '14px', borderRadius: 16,
                   background: plan.gradient ?? `linear-gradient(135deg, rgba(${plan.colorRgb},1), rgba(${plan.colorRgb},.82))`,
                   color: plan.btnColor ?? '#fff',
-                  fontSize: 14, fontWeight: 900, cursor: loading ? 'not-allowed' : 'pointer',
+                  fontSize: 14, fontWeight: 900, cursor: loading || !isPlanActionAvailable(plan) ? 'not-allowed' : 'pointer',
                   fontFamily: 'var(--fb)',
                   boxShadow: `0 8px 32px rgba(${plan.colorRgb},.3)`,
                   transition: 'all .2s cubic-bezier(.16,1,.3,1)',
                   border: 'none',
-                  opacity: loading && loading !== plan.id ? 0.6 : 1,
+                  opacity: !isPlanActionAvailable(plan) || (loading && loading !== plan.id) ? 0.6 : 1,
                 }}
-                onMouseEnter={e => { if (!loading) e.currentTarget.style.transform = 'translateY(-2px)' }}
+                onMouseEnter={e => { if (!loading && isPlanActionAvailable(plan)) e.currentTarget.style.transform = 'translateY(-2px)' }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
               >
                 {getCtaLabel(plan)}

@@ -132,9 +132,10 @@ function App(){
   const[dysMode,setDysMode]=useState(()=>{try{return typeof localStorage!=='undefined'&&localStorage.getItem("discere_hrv_dys")==="1";}catch(e){return false;}});
   const[userData,updateUserData]=useUserData();
   const[achievementToast,setAchievementToast]=useState(null);
-  // PRO status — Supabase auth je autoritativan izvor; localStorage userData kao fallback
+  // PRO status — ISKLJUČIVO Supabase auth (localStorage userData je klijentski
+  // upravljiv, pa bi fallback bio paywall bypass: setItem('discere_hrv_user',{isPro:true})).
   const { user: authUser, isPro: authIsPro, isPaid } = useAuth();
-  const isPro = authIsPro || !!(userData?.isPro||userData?.plan==="pro"||userData?.plan==="standard");
+  const isPro = authIsPro;
   const userAccess = useMemo(() => buildUserAccess({ user: authUser, isPro, isPaid }), [authUser, isPro, isPaid]);
   // Proširi EXAMS s uvezenim ispitima
   const ALL_EXAMS=Object.assign({},EXAMS,customExams);

@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { NextResponse } from 'next/server'
 import { requirePro } from '@/lib/billing/requirePro'
+import { isAiEndpointsEnabled } from '@/lib/config/featureFlags'
 
 // POST /api/prijemni/compare-insight
 // ─────────────────────────────────────────────────────────────────────────────
@@ -14,7 +15,14 @@ import { requirePro } from '@/lib/billing/requirePro'
 //
 // Response: { insight: string }
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+let anthropic
+
+function getAnthropic() {
+  if (!anthropic) {
+    anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+  }
+  return anthropic
+}
 
 const SYSTEM_PROMPT =
   'Ti si nepristrani savjetnik za upis na fakultet u Hrvatskoj. ' +
@@ -34,6 +42,13 @@ const SAFE_SCORE_KEYS = new Set([
 ])
 
 export async function POST(req) {
+  if (!isAiEndpointsEnabled()) {
+    return NextResponse.json(
+      { error: 'AI je privremeno nedostupan.', code: 'FEATURE_DISABLED' },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    )
+  }
+
   const deny = await requirePro(req, { source: 'compare-insight' })
   if (deny) return deny
 
@@ -77,7 +92,7 @@ export async function POST(req) {
     `Uspoređujem ${studiji.length} studija:\n${studijiLines}\n\n${scoresLine}\n\n` +
     'Napiši 2-3 rečenice: koji studij mi najviše odgovara i zašto, ili koji je ključni kriterij koji bi trebao odlučiti moj izbor.'
 
-  const msg = await anthropic.messages.create({
+  const msg = await getAnthropic().messages.create({
     model:      'claude-3-5-haiku-20241022',
     max_tokens: 220,
     system:     SYSTEM_PROMPT,

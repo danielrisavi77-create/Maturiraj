@@ -7,7 +7,8 @@ export const metadata = {
 }
 
 export default async function ComparePage({ searchParams }) {
-  const ids = searchParams.ids?.split(',').filter(Boolean) || []
+  const sp = await searchParams
+  const ids = sp.ids?.split(',').filter(Boolean) || []
   if (ids.length < 2 || ids.length > 4) {
     redirect('/prijemni')
   }

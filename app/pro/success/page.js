@@ -1,121 +1,75 @@
-// app/pro/success/page.js
+// Legacy checkout return page. Phase 0 intentionally does not claim success:
+// this route cannot verify the old Stripe flow against the authenticated user.
 'use client'
-import { useEffect, useState, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
 
-const FROM_MAP = {
-  kalkulator:    '/kalkulator?restored=1',
-  'plan-ucenja': '/plan-ucenja',
-  discere:       '/discere',
-  pocetna:       '/',
-}
+import { useRouter } from 'next/navigation'
 
-function ProSuccessContent() {
-  const router   = useRouter()
-  const params   = useSearchParams()
-
-  const fromKey    = params.get('from') || ''
-  const returnPath = FROM_MAP[fromKey] || '/'
-  const returnLabel = fromKey === 'kalkulator' ? 'kalkulator' : fromKey || 'početna'
-
-  const [countdown, setCountdown] = useState(5)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCountdown(c => {
-        if (c <= 1) {
-          clearInterval(interval)
-          router.push(returnPath)
-          return 0
-        }
-        return c - 1
-      })
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [returnPath])
+export default function ProSuccessPage() {
+  const router = useRouter()
 
   return (
     <div style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      background: 'radial-gradient(ellipse at 50% 30%, rgba(75,123,255,.14), transparent 50%), var(--bg)',
-      padding: '24px',
+      background: 'radial-gradient(ellipse at 50% 30%, rgba(75,123,255,.1), transparent 50%), var(--bg)',
+      padding: 24,
     }}>
       <div style={{
         width: '100%', maxWidth: 480, textAlign: 'center',
         background: 'linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.015))',
-        border: '1px solid rgba(75,123,255,.25)',
+        border: '1px solid rgba(255,255,255,.1)',
         borderRadius: 32,
         boxShadow: '0 40px 100px rgba(0,0,0,.4)',
         padding: '48px 40px',
       }}>
-        <div style={{ fontSize: 64, marginBottom: 16 }}>🎉</div>
+        <div style={{ fontSize: 56, marginBottom: 16 }} aria-hidden="true">ℹ️</div>
 
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 7, marginBottom: 20,
           padding: '5px 14px', borderRadius: 999,
-          background: 'rgba(62,207,110,.1)', border: '1px solid rgba(62,207,110,.25)',
+          background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.1)',
           fontSize: 11, fontWeight: 800, letterSpacing: '.08em', textTransform: 'uppercase',
-          color: 'var(--green)',
+          color: 'var(--muted)',
         }}>
-          ✓ Plaćanje uspješno
+          Nepotvrđen stari povratni tok
         </div>
 
-        <div style={{
+        <h1 style={{
           fontFamily: 'var(--fh)', fontSize: 32, fontWeight: 900,
           letterSpacing: '-.025em', lineHeight: 1.1, marginBottom: 12,
         }}>
-          Dobrodošao u{' '}
-          <span style={{
-            background: 'linear-gradient(135deg, var(--blue), var(--violet))',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-          }}>Pro!</span>
-        </div>
+          Plaćanje nije potvrđeno
+        </h1>
 
-        <div style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, marginBottom: 32 }}>
-          Pristup je aktiviran. Odmah te vraćamo na <strong style={{ color: 'var(--txt)' }}>{returnLabel}</strong>{fromKey === 'kalkulator' ? ' s punim pristupom kalkulatoru.' : '.'}
-        </div>
+        <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, marginBottom: 32 }}>
+          Ova stara povratna stranica ne može sigurno potvrditi Stripe transakciju ni tvoj pristup.
+          Vrati se na planove ili početnu stranicu; ovdje se ništa ne mijenja automatski.
+        </p>
 
-        <div style={{
-          display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 32,
-          padding: '16px', borderRadius: 16,
-          background: 'rgba(255,255,255,.025)', border: '1px solid rgba(255,255,255,.06)',
-          textAlign: 'left',
-        }}>
-          {[
-            fromKey === 'kalkulator' && '📊 Kalkulator — puni pristup otključan',
-            '✨ AI Profesor 24/7 aktiviran',
-            '📅 Adaptivni plan učenja',
-            '⭐ Discere arhiva — svi predmeti',
-            '🎯 Simulacije ispita',
-          ].filter(Boolean).map(f => (
-            <div key={f} style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 8 }}>
-              {f}
-            </div>
-          ))}
-        </div>
-
-        <button
-          onClick={() => router.push(returnPath)}
-          style={{
-            width: '100%', padding: '14px', borderRadius: 16, border: 'none',
-            background: 'linear-gradient(135deg, var(--blue), var(--violet))',
-            color: '#fff', fontSize: 15, fontWeight: 900,
-            cursor: 'pointer', fontFamily: 'var(--fb)',
-            boxShadow: '0 8px 28px rgba(75,123,255,.35)',
-            marginBottom: 12,
-          }}
-        >
-          {fromKey === 'kalkulator' ? '📊 Idi na kalkulator →' : 'Idi na dashboard →'}
-        </button>
-
-        <div style={{ fontSize: 11, color: 'var(--muted)', fontWeight: 600 }}>
-          Automatski redirect za {countdown}s
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <button
+            onClick={() => router.push('/pro')}
+            style={{
+              width: '100%', padding: 14, borderRadius: 16, border: 'none',
+              background: 'linear-gradient(135deg, var(--blue), var(--violet))',
+              color: '#fff', fontSize: 15, fontWeight: 900,
+              cursor: 'pointer', fontFamily: 'var(--fb)',
+            }}
+          >
+            Pogledaj planove
+          </button>
+          <button
+            onClick={() => router.push('/')}
+            style={{
+              width: '100%', padding: 14, borderRadius: 16,
+              border: '1px solid var(--bdr)', background: 'transparent',
+              color: 'var(--text)', fontSize: 14, fontWeight: 700,
+              cursor: 'pointer', fontFamily: 'var(--fb)',
+            }}
+          >
+            Idi na početnu
+          </button>
         </div>
       </div>
     </div>
   )
-}
-
-export default function ProSuccessPage() {
-  return (<Suspense><ProSuccessContent /></Suspense>)
 }

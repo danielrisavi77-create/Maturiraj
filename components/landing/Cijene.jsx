@@ -65,7 +65,10 @@ const PLANS = [
 ];
 
 export default function Cijene({ onSkripte, onPlan }) {
-  const [billing, setBilling] = useState("god");
+  // Default "mj": mjesečne cijene imaju checkout (starter+pro). Godišnja/3mj/6mj
+  // Starter nema Stripe price ID → ne defaultati na necupljivu cijenu.
+  // TODO(billing #6): dodaj price ID-eve za 3mj/6mj/starter-god ili ih ukloni iz UI-a.
+  const [billing, setBilling] = useState("mj");
 
   const currentOption = BILLING_OPTIONS.find(o => o.id === billing);
 
