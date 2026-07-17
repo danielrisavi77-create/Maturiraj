@@ -62,8 +62,8 @@ export default function PregledPage() {
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
                         <span style={{ fontSize: 13, fontWeight: 700, color: p.color }}>{p.prog}%</span>
-                        <span style={{ fontSize: 12, fontWeight: 600, color: p.trend > 0 ? 'var(--green)' : 'var(--red)' }}>
-                          {p.trend > 0 ? `↑+${p.trend}%` : `↓${p.trend}%`}
+                        <span style={{ fontSize: 12, fontWeight: 600, color: p.trend > 0 ? 'var(--green)' : p.trend < 0 ? 'var(--red)' : 'var(--muted)' }}>
+                          {p.trend > 0 ? `↑+${p.trend}%` : p.trend < 0 ? `↓${p.trend}%` : '—'}
                         </span>
                       </div>
                     </div>
@@ -111,7 +111,7 @@ export default function PregledPage() {
               {[
                 { l: 'Aktivnih dana', v: `${activeDays}/7` },
                 { l: 'Prosjek/dan',   v: `${(child.aktivnost.reduce((a, b) => a + b, 0) / 7).toFixed(1)}h` },
-                { l: 'Najdulje',      v: `${Math.max(...child.aktivnost)}h` },
+                { l: 'Najdulje',      v: `${Math.max(...child.aktivnost, 0)}h` },
               ].map((s, i) => (
                 <div key={i} style={{ flex: 1, textAlign: 'center' }}>
                   <div style={{ fontFamily: 'var(--fh)', fontSize: 16, fontWeight: 900, color: 'var(--blue)' }}>{s.v}</div>
