@@ -373,18 +373,31 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
               <span className="topic-tag">{TOPIC_LABELS[q.topic] || q.topic || 'Tema'}</span>
               <span style={{ fontSize: 12, color: 'var(--muted)' }}>{TLBL[q.type] || q.type}</span>
             </div>
-            <AudioPlayer examKey={exam.key} topic={q.topic} razina={exam.razina} />
-            <ContextPanel examKey={exam.key} qid={q.id} examContext={examContext} />
-            <div style={{ fontSize: 15, lineHeight: 1.65, marginBottom: 16, whiteSpace: 'pre-wrap' }}>{q.q}</div>
+            {isLocked ? (
+              /* Zaključano: NE renderiraj stvarni sadržaj pitanja (tekst/opcije/audio/context).
+                 Prije su bili u DOM-u iza samo kozmetičkog blura → čitljivi preko devtoolsa
+                 (zaobilaženje paywalla). Skeleton teaser; BlurLockOverlay ide preko njega. */
+              <div aria-hidden="true" style={{ padding: '4px 0 8px' }}>
+                {[92, 76, 84, 58].map((w, i) => (
+                  <div key={i} style={{ height: 14, width: `${w}%`, borderRadius: 6, background: 'var(--s2)', margin: '12px 0' }} />
+                ))}
+              </div>
+            ) : (
+              <>
+                <AudioPlayer examKey={exam.key} topic={q.topic} razina={exam.razina} />
+                <ContextPanel examKey={exam.key} qid={q.id} examContext={examContext} />
+                <div style={{ fontSize: 15, lineHeight: 1.65, marginBottom: 16, whiteSpace: 'pre-wrap' }}>{q.q}</div>
 
-            {q.type === 'mc' && <MCQ q={q} a={answers[q.id]} setA={isLocked ? undefined : setAnswer} rev={!!rev[q.id]} />}
-            {q.type === 'ins' && <InsQ q={q} a={answers[q.id]} setA={isLocked ? undefined : setAnswer} rev={!!rev[q.id]} />}
-            {q.type === 'mat' && <MatQ q={q} a={answers[q.id]} setA={isLocked ? undefined : setAnswer} rev={!!rev[q.id]} />}
-            {q.type === 'fb' && <FbQ q={q} a={answers[q.id]} setA={isLocked ? undefined : setAnswer} rev={!!rev[q.id]} />}
-            {(q.type === 'sa' || q.type === 'es') && <SaQ q={q} a={answers[q.id]} setA={isLocked ? undefined : setAnswer} rev={!!rev[q.id]} />}
+                {q.type === 'mc' && <MCQ q={q} a={answers[q.id]} setA={setAnswer} rev={!!rev[q.id]} />}
+                {q.type === 'ins' && <InsQ q={q} a={answers[q.id]} setA={setAnswer} rev={!!rev[q.id]} />}
+                {q.type === 'mat' && <MatQ q={q} a={answers[q.id]} setA={setAnswer} rev={!!rev[q.id]} />}
+                {q.type === 'fb' && <FbQ q={q} a={answers[q.id]} setA={setAnswer} rev={!!rev[q.id]} />}
+                {(q.type === 'sa' || q.type === 'es') && <SaQ q={q} a={answers[q.id]} setA={setAnswer} rev={!!rev[q.id]} />}
 
-            {!!rev[q.id] && <FeedbackBox q={q} a={answers[q.id]} rev={true} />}
-            {!examMode && <AnswerHelper q={q} show={!!rev[q.id]} autoExpand={false} onToggle={isLocked ? openPaywall : checkAnswer} />}
+                {!!rev[q.id] && <FeedbackBox q={q} a={answers[q.id]} rev={true} />}
+                {!examMode && <AnswerHelper q={q} show={!!rev[q.id]} autoExpand={false} onToggle={checkAnswer} />}
+              </>
+            )}
 
             <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap', alignItems: 'center' }}>
               {!examMode && !rev[q.id] && <button className="btn btn-g" onClick={isLocked ? openPaywall : checkAnswer}>Provjeri</button>}
