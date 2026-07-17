@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js'
-import { getOrCreateSessionId } from '@/lib/prijemni/scores'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -83,15 +82,19 @@ export async function subscribeToPush(studijIds: string[] = []): Promise<boolean
 
     if (session?.user) {
       payload.user_id = session.user.id
+      const { error } = await supabase
+        .from('push_subscriptions')
+        .upsert(payload, { onConflict: 'endpoint' })
+      if (error) { console.error(error); return false }
     } else {
-      payload.session_id = getOrCreateSessionId()
+      // Gost: server veže session_id iz httpOnly cookieja (ne anon RLS)
+      const res = await fetch('/api/prijemni/guest-push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) { console.error('[guest-push] subscribe failed', res.status); return false }
     }
-
-    const { error } = await supabase
-      .from('push_subscriptions')
-      .upsert(payload, { onConflict: 'endpoint' })
-
-    if (error) { console.error(error); return false }
     return true
   } catch (err) {
     console.error('Push subscribe failed:', err)
@@ -103,10 +106,18 @@ export async function unsubscribeFromPush(): Promise<void> {
   if (!isPushSupported()) return
   const registration = await navigator.serviceWorker.ready
   const sub = await registration.pushManager.getSubscription()
-  if (sub) {
+  if (!sub) return
+  const { data: { session } } = await supabase.auth.getSession()
+  if (session?.user) {
     await supabase.from('push_subscriptions').delete().eq('endpoint', sub.endpoint)
-    await sub.unsubscribe()
+  } else {
+    await fetch('/api/prijemni/guest-push', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ endpoint: sub.endpoint }),
+    })
   }
+  await sub.unsubscribe()
 }
 
 export async function updatePushStudiji(studijIds: string[]): Promise<void> {
@@ -114,8 +125,17 @@ export async function updatePushStudiji(studijIds: string[]): Promise<void> {
   const registration = await navigator.serviceWorker.ready
   const sub = await registration.pushManager.getSubscription()
   if (!sub) return
-  await supabase
-    .from('push_subscriptions')
-    .update({ studij_ids: studijIds, updated_at: new Date().toISOString() })
-    .eq('endpoint', sub.endpoint)
+  const { data: { session } } = await supabase.auth.getSession()
+  if (session?.user) {
+    await supabase
+      .from('push_subscriptions')
+      .update({ studij_ids: studijIds, updated_at: new Date().toISOString() })
+      .eq('endpoint', sub.endpoint)
+  } else {
+    await fetch('/api/prijemni/guest-push', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ endpoint: sub.endpoint, studij_ids: studijIds }),
+    })
+  }
 }
