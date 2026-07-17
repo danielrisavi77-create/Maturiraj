@@ -106,7 +106,10 @@ function getSessionId(): string {
   }
 }
 
-let userIdCache: string | null = null
+// `undefined` = još nije dohvaćeno; `null` = dohvaćeno, nema usera. Ranije init na `null`
+// uz guard `!== undefined` je uvijek vraćao null (null !== undefined) i nikad ne bi dohvatio
+// sesiju → svi analytics eventi logiranih korisnika slani s user_id=null (RLS ih odbija).
+let userIdCache: string | null | undefined = undefined
 
 async function getUserId(): Promise<string | null> {
   if (userIdCache !== undefined) return userIdCache
