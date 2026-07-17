@@ -48,7 +48,7 @@ export default function DijeteDetailPage() {
           </div>
         </div>
         {childMeta.planType && (
-          <span style={styles.planBadge}>{childMeta.planType === 'pro' ? 'PRO' : 'Starter'}</span>
+          <span style={styles.planBadge}>{childMeta.planType === 'pro' ? 'PRO' : 'Standard'}</span>
         )}
       </div>
 

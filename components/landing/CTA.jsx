@@ -56,7 +56,7 @@ export default function CTA({ onSkripte, onPlan }) {
               </button>
               <div style={{borderTop:"1px solid rgba(255,255,255,.06)",paddingTop:16}}>
                 <div style={{fontSize:11,color:"var(--muted)",textAlign:"center",lineHeight:1.7}}>
-                  Starter od <strong style={{color:"var(--text)"}}>9,99 €/mj</strong> · Pro od <strong style={{color:"var(--text)"}}>19,99 €/mj</strong><br/>
+                  Standard od <strong style={{color:"var(--text)"}}>9,99 €/mj</strong> · Pro od <strong style={{color:"var(--text)"}}>19,99 €/mj</strong><br/>
                   <span style={{color:"var(--green)"}}>Uštedi 25% godišnjom pretplatom</span>
                 </div>
               </div>

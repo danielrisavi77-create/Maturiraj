@@ -1611,10 +1611,10 @@ function UpgradeModal({onClose}){
           style:{padding:"13px",fontSize:15,width:"100%"},
           onClick:()=>{ window.parent?.postMessage({type:"DISCERE_UPGRADE"},"*"); onClose(); }
         },"Nadogradi na Pro →"),
-        e("button",{className:"btn btn-g",style:{padding:"10px",width:"100%"},onClick:onClose},"Ostani na Starteru")
+        e("button",{className:"btn btn-g",style:{padding:"10px",width:"100%"},onClick:onClose},"Ostani na Standardu")
       ),
       e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:16}},
-        "Standardna objašnjenja s koracima rješenja dostupna su i na Starter planu."
+        "Standardna objašnjenja s koracima rješenja dostupna su i na Standard planu."
       )
     )
   );

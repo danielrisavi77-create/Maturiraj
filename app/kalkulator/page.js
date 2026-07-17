@@ -2509,7 +2509,7 @@ function KalkulatorInner() {
                           Još <strong style={{color:"var(--blue)"}}>{filtered.length}</strong> studija čeka na tebe
                         </div>
                         <div style={{fontSize:12,color:"var(--muted)",lineHeight:1.7,marginBottom:20,maxWidth:300,margin:"0 auto 20px"}}>
-                          Otključaj svih {filtered.length} studija i puni pregled šansi uz Starter ili Pro plan.
+                          Otključaj svih {filtered.length} studija i puni pregled šansi uz Standard ili Pro plan.
                         </div>
                         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"6px 16px",marginBottom:24,textAlign:"left",maxWidth:280,margin:"0 auto 24px"}}>
                           {["350+ studija bez ograničenja","Šanse i pregled pragova","Trendovi 2021–2025","Favoriti i usporedba"].map(f=>(
