@@ -2,6 +2,7 @@ import "./globals.css";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import ScrollReset from "./components/ScrollReset";
 import AnalyticsInitializer from "./components/AnalyticsInitializer";
+import ServiceWorkerRegistrar from "./components/ServiceWorkerRegistrar";
 import { AuthProvider } from "@/lib/hooks/useAuth";
 import Nav from "@/components/layout/Nav";
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <Nav noCountdown />
           <AnalyticsInitializer />
+          <ServiceWorkerRegistrar />
           <ScrollReset />
           {children}
           <ScrollToTopButton />

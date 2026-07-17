@@ -34,15 +34,11 @@ export async function GET(request) {
 
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     if (!error) {
-      const forwardedHost = request.headers.get('x-forwarded-host')
+      // Sigurnost: ne gradi odredište iz spoofabilnog `x-forwarded-host` headera.
+      // U produkciji koristi konfiguriranu kanonsku domenu; lokalno request origin.
       const isLocalEnv = process.env.NODE_ENV === 'development'
-      if (isLocalEnv) {
-        return NextResponse.redirect(`${origin}${redirect}`)
-      } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${redirect}`)
-      } else {
-        return NextResponse.redirect(`${origin}${redirect}`)
-      }
+      const base = isLocalEnv ? origin : (process.env.NEXT_PUBLIC_URL || origin)
+      return NextResponse.redirect(`${base}${redirect}`)
     }
   }
 

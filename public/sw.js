@@ -58,10 +58,11 @@ self.addEventListener('notificationclick', (event) => {
 
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clients) => {
-      // Ako je tab već otvoren, focus-aj ga
+      // Ako je tab već otvoren, focus-aj ga i navigiraj na URL
+      // (client.navigate umjesto postMessage — nema app-side listenera za 'navigate')
       for (const client of clients) {
-        if (client.url.includes('/prijemni') && 'focus' in client) {
-          client.postMessage({ type: 'navigate', url })
+        if ('focus' in client) {
+          if ('navigate' in client) client.navigate(url).catch(() => {})
           return client.focus()
         }
       }
