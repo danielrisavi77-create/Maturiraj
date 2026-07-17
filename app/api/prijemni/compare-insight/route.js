@@ -93,7 +93,7 @@ export async function POST(req) {
     'Napiši 2-3 rečenice: koji studij mi najviše odgovara i zašto, ili koji je ključni kriterij koji bi trebao odlučiti moj izbor.'
 
   const msg = await getAnthropic().messages.create({
-    model:      'claude-3-5-haiku-20241022',
+    model:      'claude-haiku-4-5',
     max_tokens: 220,
     system:     SYSTEM_PROMPT,
     messages:   [{ role: 'user', content: userMessage }],
