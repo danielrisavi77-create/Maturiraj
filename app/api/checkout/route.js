@@ -6,6 +6,7 @@ import { getStripe } from '@/lib/stripe'
 import { trackPaywallEventServer } from '@/lib/analytics/paywallEvents'
 import { PAYWALL_EVENTS } from '@/lib/analytics/paywallEvents'
 import { isBillingCheckoutEnabled } from '@/lib/config/featureFlags'
+import { isValidFromKey } from '@/lib/billing/fromMap'
 
 const PLANOVI = {
   starter: process.env.NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PRICE_ID,
@@ -79,6 +80,11 @@ export async function POST(request) {
 
     const stripe = getStripe()
 
+    // Sanitiziraj "from" (whitelist) prije ugrađivanja u Stripe URL-ove — tako se
+    // odredište prenosi kroz checkout i /pro obećanje "vraćamo te natrag" postaje istinito.
+    const safeFrom = isValidFromKey(from) ? from : ''
+    const fromQS = safeFrom ? `&from=${safeFrom}` : ''
+
     // ── Create checkout session ──────────────────────────────────────────────
     // user_id in both metadata AND subscription_data.metadata so
     // it's available on both checkout.session.completed and
@@ -92,8 +98,10 @@ export async function POST(request) {
       subscription_data: {
         metadata: { user_id: user.id, plan },
       },
-      success_url: `${process.env.NEXT_PUBLIC_URL}/uspjeh?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url:  `${process.env.NEXT_PUBLIC_URL}/#cijene`,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/uspjeh?session_id={CHECKOUT_SESSION_ID}${fromQS}`,
+      // Odustajanje vodi na /pro s canceled bannerom (koji je prije bio mrtav kod jer je
+      // cancel išao na /#cijene) uz očuvani "from" za povratni gumb.
+      cancel_url:  `${process.env.NEXT_PUBLIC_URL}/pro?canceled=1${fromQS}`,
       // Allow promo codes
       allow_promotion_codes: true,
     })

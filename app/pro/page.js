@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/lib/hooks/useAuth'
+import { FROM_MAP, DEFAULT_FROM } from '@/lib/billing/fromMap'
 
 const PLANS = [
   {
@@ -56,15 +57,8 @@ const PLANS = [
   },
 ]
 
-// Mapiranje "from" vrijednosti na stvarne putanje i labele
-const FROM_MAP = {
-  kalkulator:     { path: '/kalkulator',    label: 'kalkulator',       backLabel: '← Natrag na kalkulator' },
-  'plan-ucenja':  { path: '/plan-ucenja',  label: 'plan učenja',      backLabel: '← Natrag na plan učenja' },
-  discere:        { path: '/discere',      label: 'Discere',          backLabel: '← Natrag na Discere' },
-  pocetna:        { path: '/',             label: 'početnu stranicu', backLabel: '← Natrag' },
-}
-
-const DEFAULT_FROM = { path: '/', label: 'početnu stranicu', backLabel: '← Natrag' }
+// FROM_MAP / DEFAULT_FROM sada dolaze iz @/lib/billing/fromMap (dijeljeno s checkoutom
+// i /uspjeh) da se "from" odredište ne gubi kroz Stripe tok.
 
 function ProContent() {
   const router      = useRouter()
