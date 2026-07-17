@@ -429,7 +429,22 @@ export default function KemijaViewer({ subject, onBack }) {
   const [selectedModule, setSelectedModule] = useState(null)
   const [selectedChapter, setSelectedChapter] = useState(null)
 
-  const modules = subject?.modules || []
+  // Fallback: data.js 'kem' nema `modules`, samo `razine[].poglavlja[]`.
+  // Bez ovoga grid ostane prazan (razbijena stranica). Izvedi module iz
+  // razina; bez `_chapters` viewer ih prikazuje s "USKORO" badgeom.
+  const derived = (subject?.razine || [])
+    .flatMap((raz) => (raz.poglavlja || []).map((pog) => ({ raz, pog })))
+    .map(({ raz, pog }, i) => ({
+      slug: `${raz.id}-${i}`,
+      order: i + 1,
+      title: pog.naziv,
+      subtitle: `${raz.label} — ${(pog.teme || []).join(', ')}`,
+      icon: subject?.sym || '⚗',
+      color: subject?.color || '#34d399',
+      chapterMetas: (pog.teme || []).map((t) => ({ naziv: t })),
+      _chapters: [],
+    }))
+  const modules = subject?.modules?.length ? subject.modules : derived
 
   // Chapter detail view
   if (selectedChapter && selectedModule) {
