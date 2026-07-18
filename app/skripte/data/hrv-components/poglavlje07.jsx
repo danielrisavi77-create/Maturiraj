@@ -1685,7 +1685,7 @@ const BODY_HTML = `<a href="#main" class="skip-link">Preskači na sadržaj</a>
         </div>
         <div class="cit-txt">„Sve je istina."</div>
         <div class="cit-tez-row"><button type="button" class="cit-tez" onclick="citFilterByTez(4, this)">T4</button></div>
-        <div class="cit-use"><b>Kada koristiti</b> <em>motto realizma</em>. Balzac, utemeljitelj realizma. <b>Dostojevski čita Balzaca</b> — piše diplomski rad o <em>Ocu Goriotu</em>. Za povezivanje H07 s francuskim realizmom. Definicija poetike epohe.</div>
+        <div class="cit-use"><b>Kada koristiti</b> <em>motto realizma</em>. Balzac, utemeljitelj realizma. <b>Dostojevski čita Balzaca</b> — prevodi njegov roman <em>Eugénie Grandet</em> (1844., prvi Dostojevskijev književni rad). Za povezivanje H07 s francuskim realizmom. Definicija poetike epohe.</div>
       </div>
 
       <div class="cit-card" data-cat="kontekst" data-cit-id="h07c30" data-diff="advanced" data-tez="4">

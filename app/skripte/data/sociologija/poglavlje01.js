@@ -692,7 +692,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
       <div class="bw-ico">⚠️</div>
       <div class="bw-body">
         <div class="bw-title">Top 3 greške na maturi — Područje 1</div>
-        <div class="bw-txt">1. Miješanje <strong>sociološke imaginacije</strong> (Mills = sposobnost) i <strong>društvenih činjenica</strong> (Durkheim = pojave). 2. Zaboravljanje da <strong>anomija</strong> nastaje i kod pozitivnih ekonomskih promjena, ne samo negativnih. 3. Weber razlikuje <strong>4 tipa djelovanja</strong> — „instrumentalno" NIJE jedan od njih.</div>
+        <div class="bw-txt">1. Miješanje <strong>sociološke imaginacije</strong> (Mills = sposobnost) i <strong>društvenih činjenica</strong> (Durkheim = pojave). 2. Zaboravljanje da <strong>anomija</strong> nastaje i kod pozitivnih ekonomskih promjena, ne samo negativnih. 3. Weberova <strong>4 tipa djelovanja</strong>: svrhovito-racionalno (instrumentalno), vrijednosno-racionalno, afektivno, tradicionalno — „instrumentalno" JEST jedan od njih.</div>
       </div>
     </div>
 
