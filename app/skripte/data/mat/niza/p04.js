@@ -2431,7 +2431,7 @@ const HINTS=['a²+2ab+b².','(x+4)(x−4).','p+q=5,p·q=6.','a²−2ab+b².','2x
 const QUIZ_DATA=[
   {q:'Razvij: (x+4)².',opts:['x²+4x+16','x²+16','x²+8x+8','x²+8x+16'],ok:3,e:'x²+8x+16.'},
   {q:'Faktoriziraj: x²−25.',opts:['x(x−25)','(x−5)²','(x+5)(x−5)','(x+5)²'],ok:2,e:'Razlika kvadrata.'},
-  {q:'Faktoriziraj: x²+7x+12.',opts:['(x+4)(x+3)','(x+2)(x+6)','(x+12)(x+1)','(x+3)(x+4)'],ok:3,e:'3+4=7, 3·4=12.'},
+  {q:'Faktoriziraj: x²+7x+12.',opts:['(x+2)(x+5)','(x+2)(x+6)','(x+12)(x+1)','(x+3)(x+4)'],ok:3,e:'3+4=7, 3·4=12.'},
   {q:'Skrati: (x²−x)/(x).',opts:['1','x+1','x−1','x'],ok:2,e:'x(x−1)/x=x−1.'},
   {q:'x³+8=(x+2)·?',opts:['x²−4','x²−2x+4','x²+4','x²+2x+4'],ok:1,e:'Zbroj kubova: (x+2)(x²−2x+4).'},
   {q:'3. člen razvoja (x+1)³.',opts:['x²','3x','3x²','x³'],ok:1,e:'C(3,2)·x·1²=3x.'},

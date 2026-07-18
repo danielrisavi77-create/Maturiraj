@@ -1144,7 +1144,7 @@ const _bodyHTML = `<div class="shell">
     <div class="ncvvo-real-q">Kvadar a=2, b=3, c=6. Nađi prostornu dijagonalu i kut s plohom c.</div>
     <div class="ncvvo-real-stat">Najčešća greška: <strong>računaju d=√(a+b+c) umjesto √(a²+b²+c²)</strong></div>
     <button class="ncvvo-real-show" onclick="showAns(this)">Prikaži rješenje ↓</button>
-    <div class="ncvvo-real-ans">d=√(4+9+36)=√49=7. Dijagonala plohe ab=√13. cosα=√<span class="frac"><span class="num">13</span><span class="den">7</span></span>, α≈42.8°</div>
+    <div class="ncvvo-real-ans">d=√(4+9+36)=√49=7. Dijagonala plohe ab=√13. cosα=√<span class="frac"><span class="num">13</span><span class="den">7</span></span>, α≈59.0°</div>
   </div>
   <div class="ncvvo-real-item">
     <div class="ncvvo-real-meta"><span class="ncvvo-real-year">A razina · tipično</span>Sfera · ~35% netočnih<span class="ncvvo-live-stat neutral" id="nlive-sfe">sfera</span></div>
