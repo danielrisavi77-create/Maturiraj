@@ -152,8 +152,8 @@ export default function Kalkulator({ studij, fakColor, onResult }) {
         <div className="pr-kalk-r" style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr 1fr',gap:10}}>
           {['r1','r2','r3','r4'].map((r,i) => (
             <div key={r}>
-              <label style={lbl}>{i+1}. razred</label>
-              <input type="number" min="1" max="5" step="0.01" placeholder="4.75"
+              <label htmlFor={`pr-ocj-${r}`} style={lbl}>{i+1}. razred</label>
+              <input id={`pr-ocj-${r}`} type="number" min="1" max="5" step="0.01" placeholder="4.75"
                 value={prosjeci[r]} onChange={e => setProsjeci(p => ({...p, [r]: e.target.value}))}
                 onFocus={e => e.target.style.borderColor = fakColor + '66'}
                 onBlur={e => e.target.style.borderColor = 'var(--bdr)'}
@@ -174,8 +174,8 @@ export default function Kalkulator({ studij, fakColor, onResult }) {
         <div className="pr-kalk-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
           {k.polja.map(p => (
             <div key={p.id}>
-              <label style={lbl}>{p.label} <span style={{color:fakColor}}>max {p.max}</span></label>
-              <input type="number" min="0" max="100" placeholder="75"
+              <label htmlFor={`pr-mat-${p.id}`} style={lbl}>{p.label} <span style={{color:fakColor}}>max {p.max}</span></label>
+              <input id={`pr-mat-${p.id}`} type="number" min="0" max="100" placeholder="75"
                 value={matura[p.id] || ''} onChange={e => setMatura(m => ({...m, [p.id]: e.target.value}))}
                 onFocus={e => e.target.style.borderColor = fakColor + '66'}
                 onBlur={e => e.target.style.borderColor = 'var(--bdr)'}
@@ -201,6 +201,7 @@ export default function Kalkulator({ studij, fakColor, onResult }) {
           </div>
           <div style={{fontSize:12,color:'var(--muted)',marginBottom:10,lineHeight:1.6}}>{k.posebno.napomena}</div>
           <input type="number" min="0" max="100" placeholder="% riješenosti"
+            aria-label={k.posebno.label}
             value={posebno} onChange={e => setPosebno(e.target.value)}
             onFocus={e => e.target.style.borderColor = fakColor + '66'}
             onBlur={e => e.target.style.borderColor = 'var(--bdr)'}

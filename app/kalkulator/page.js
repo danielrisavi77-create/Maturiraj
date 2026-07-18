@@ -761,7 +761,7 @@ function StudijModal({ studij, totalBodova, onClose }) {
       <div className="modal-box">
         <div className="modal-header">
           <div><div className="modal-title">{studij.studij}</div></div>
-          <button className="modal-close" onClick={onClose}>×</button>
+          <button className="modal-close" onClick={onClose} aria-label="Zatvori">×</button>
         </div>
         <div className="modal-fak">{studij.fakultet} · {studij.grad}</div>
 
@@ -986,7 +986,7 @@ Odgovaraj kratko (2-4 rečenice), konkretno i na hrvatskom. Budi prijatan i moti
               <div className="chat-header-name">AI Upisnik</div>
               <div className="chat-header-sub">Zna tvoje bodove · Odgovara na hrvatskom</div>
             </div>
-            <button className="chat-header-close" onClick={onClose}>×</button>
+            <button className="chat-header-close" onClick={onClose} aria-label="Zatvori">×</button>
           </div>
         </div>
 
@@ -1464,7 +1464,7 @@ Samo JSON, bez komentara.`;
                 {faza==="anketa" ? `Korak ${korak+1} od ${ANKETA_KORACI.length}` : faza==="loading" ? "AI uspoređuje tvoje interese s bazom studija..." : "Na temelju tvojih interesa i bodova"}
               </div>
             </div>
-            <button style={{background:"transparent",border:"1px solid var(--border)",borderRadius:8,color:"var(--muted)",fontSize:18,cursor:"pointer",padding:"4px 10px",lineHeight:1,flexShrink:0}} onClick={onClose}>×</button>
+            <button style={{background:"transparent",border:"1px solid var(--border)",borderRadius:8,color:"var(--muted)",fontSize:18,cursor:"pointer",padding:"4px 10px",lineHeight:1,flexShrink:0}} onClick={onClose} aria-label="Zatvori">×</button>
           </div>
         </div>
 
@@ -1677,7 +1677,7 @@ function PrijemniKalkulator({ onClose, totalBodova:mainBodova }) {
         <div style={{padding:"12px 0 0"}}><div className="pr-handle"/></div>
         <div className="pr-header">
           <div><div className="pr-title">🎓 Prijemni kalkulator</div><div className="pr-subtitle">Detaljni izračun za MEF, AF i KIF · AZVO 2025</div></div>
-          <button className="pr-close" onClick={onClose}>×</button>
+          <button className="pr-close" onClick={onClose} aria-label="Zatvori">×</button>
         </div>
         <div className="pr-tabs">
           {Object.entries(PRIJEMNI_FAKULTETI).map(([key,f])=>(
@@ -1792,7 +1792,7 @@ function OnboardingWizard({ onClose }) {
               <div className="anketa-title">{s.title}</div>
               <div className="anketa-subtitle">{s.sub}</div>
             </div>
-            <button style={{background:"transparent",border:"1px solid var(--border)",borderRadius:8,color:"var(--muted)",fontSize:18,cursor:"pointer",padding:"4px 10px",lineHeight:1,flexShrink:0}} onClick={handleFinish}>×</button>
+            <button style={{background:"transparent",border:"1px solid var(--border)",borderRadius:8,color:"var(--muted)",fontSize:18,cursor:"pointer",padding:"4px 10px",lineHeight:1,flexShrink:0}} onClick={handleFinish} aria-label="Zatvori">×</button>
           </div>
         </div>
         <div className="anketa-body" style={{textAlign:"center",paddingTop:28,paddingBottom:20}}>
@@ -2117,7 +2117,7 @@ function KalkulatorInner() {
           <div className="modal-box">
             <div className="modal-header">
               <div className="modal-title">Usporedba studija</div>
-              <button className="modal-close" onClick={()=>setShowCompare(false)}>×</button>
+              <button className="modal-close" onClick={()=>setShowCompare(false)} aria-label="Zatvori">×</button>
             </div>
             <div className={`compare-grid cols-${compareList.length}`} style={{marginTop:16}}>
               {compareList.map((s,ci)=>{
@@ -2125,7 +2125,7 @@ function KalkulatorInner() {
                 const winner=diffovi[ci]===Math.max(...diffovi);
                 return(
                   <div key={s.studijKey} className={`compare-col ${winner?"compare-winner":""}`}>
-                    <button className="compare-remove" onClick={()=>toggleCmp(s)}>×</button>
+                    <button className="compare-remove" onClick={()=>toggleCmp(s)} aria-label="Ukloni iz usporedbe">×</button>
                     <div className="compare-col-title">{s.studij}</div>
                     <div className="compare-col-fak">{s.fakultet}·{s.grad}</div>
                     {[
