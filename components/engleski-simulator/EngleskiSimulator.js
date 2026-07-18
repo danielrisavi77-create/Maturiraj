@@ -157,7 +157,10 @@ function generateVirtualExam() {
   }
   const qs = Object.entries(targets).flatMap(([type, n]) => pickType(type, n))
     .sort(() => Math.random() - 0.5)
-    .map((q, i) => ({ ...q, id: q.id ?? ('virt_' + i) }))
+    // Virtualni ispit pooluje pitanja iz VIŠE ispita → izvorni q.id-ovi se mogu
+    // ponavljati (npr. dva različita 'mc1'). Dodijeli jedinstven id po poziciji
+    // da answers/qTimes/rev/bookmark ne kolidiraju između pitanja.
+    .map((q, i) => ({ ...q, id: 'v' + i + '_' + (q.id ?? 'q') }))
   const key = 'virtual_' + Date.now()
   return { key, year: new Date().getFullYear(), season: 'virtualni', label: 'Virtualni ispit', razina: 'osnovna', qs }
 }
