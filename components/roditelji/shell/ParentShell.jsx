@@ -148,7 +148,7 @@ export default function ParentShell({ children }) {
           <div className="r-pnav-right">
             <Link href="/" className="r-btn r-bgh r-btn-sm" style={{ fontSize: 12, textDecoration: 'none' }}>← Početna</Link>
             <button className="r-btn r-bgh r-btn-sm" style={{ fontSize: 12 }} onClick={handleLogout}>Odjava</button>
-            <button className={`r-burger${drawerOpen ? ' open' : ''}`} onClick={() => setDrawerOpen(v => !v)}>
+            <button className={`r-burger${drawerOpen ? ' open' : ''}`} onClick={() => setDrawerOpen(v => !v)} aria-label="Otvori izbornik" aria-expanded={drawerOpen}>
               <span /><span /><span />
             </button>
           </div>

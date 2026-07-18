@@ -103,6 +103,7 @@ export default function Nav({ onHome, onPlan, noCountdown = false }) {
           className={`nav-burger${menuOpen ? " open" : ""}`}
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Izbornik"
+          aria-expanded={menuOpen}
         >
           <span />
           <span />
