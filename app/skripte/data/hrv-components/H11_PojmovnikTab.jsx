@@ -66,7 +66,7 @@ const POJMOVI = [
 
   { id:"h11p13", cat:"kontekst", kw:"ilirski preporod gaj 19. st. narodni preporod zoranić anticipira hrv. književnost",
     word:"Ilirski preporod",
-    def:`Hrv. nacionalni kulturni pokret 19. st. (1835.–1850.) — standardizacija hrv. jezika, buđenje nacionalne svijesti. Vođa: Ljudevit Gaj. Zoranićeve <em>Planine</em> (1543.) anticipiraju Preporod za 300 godina — poziv na gradnju hrv. književne tradicije.` },
+    def:`Hrv. nacionalni kulturni pokret 19. st. (1835.–1850.) — standardizacija hrv. jezika, buđenje nacionalne svijesti. Vođa: Ljudevit Gaj. Zoranićeve <em>Planine</em> (1536.) anticipiraju Preporod za 300 godina — poziv na gradnju hrv. književne tradicije.` },
 
   { id:"h11p14", cat:"kontekst", kw:"otium slobodno vrijeme humanistički ideal hektorović ribanje kultura razgovor misao",
     word:"Otium",

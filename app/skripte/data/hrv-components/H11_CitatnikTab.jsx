@@ -143,7 +143,7 @@ const CITATI = [
 
   /* ── ZORANIĆ (5) ── */
   { id:"h11c24", cat:"zoranić", diff:"basic",    mustKnow:true,
-    author:"Petar Zoranić", loc:"Planine (~1543./1569.)",
+    author:"Petar Zoranić", loc:"Planine (~1536./1569.)",
     txt:`„Rasuta bašćina — rascjepkana domovina kojoj prijete Turci, koja plače za svojom slobodom i cjelovitošću."`,
     useHtml:`<b>Temeljni patriotski motiv hrv. renesanse.</b> Rasuta bašćina = razdrobljena Hrvatska pod Turcima. ★ Napamet — Teza 5.` },
 

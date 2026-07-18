@@ -345,7 +345,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
             <div><b style="color:var(--gold)">Marulić</b> · Split · 1450.–1524.<br>Judita 1501./1521. · 6 pjevanja · 2126 dvanaesteraca<br><em>Oloferno = Turci; Judita = Hrvatska</em></div>
             <div><b style="color:var(--gold)">Marin Držić</b> · Dubrovnik · 1508.–1567.<br>Novela od Stanca 1550. · 1 čin 7 prizora<br><em>farsa · mlado vs staro · obvezatno 2026.</em></div>
             <div><b style="color:var(--gold)">Hektorović</b> · Hvar · 1487.–1572.<br>Ribanje 1556. · ep/putopis/ekloga/poslanica<br><em>bugarštice · realizam · Hvar→Brač→Šolta</em></div>
-            <div><b style="color:var(--gold)">Zoranić</b> · Zadar · ~1508.–1569.<br>Planine ~1543./1569. · 24 poglavlja · proza+stih<br><em>Perivoj od Slave · rasuta bašćina · prvi hrv. roman</em></div>
+            <div><b style="color:var(--gold)">Zoranić</b> · Zadar · ~1508.–1543.<br>Planine ~1536./1569. · 24 poglavlja · proza+stih<br><em>Perivoj od Slave · rasuta bašćina · prvi hrv. roman</em></div>
             <div><b style="color:var(--gold)">Menčetić</b> · Dubrovnik · 1457.–1527.<br>Blažen čas i hip · I. gen. petrarkizma<br><em>svi stadiji ljubavi · dvostruki dvanaesterac</em></div>
             <div><b style="color:var(--gold)">Lucić</b> · Hvar · 1485.–1553.<br>Robinja 1530. · Jur nijedna na svit vila<br><em>II. gen. petrarkizma · osmesterac · prva hrv. drama</em></div>
           </div>
@@ -425,9 +425,9 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <div class="tl-item">
             <div class="tl-dot">3</div>
             <div class="tl-body">
-              <div class="tl-year">~1508.–1569.</div>
+              <div class="tl-year">~1508.–1543.</div>
               <div class="tl-title">Petar Zoranić — prvi hrv. romanopisac</div>
-              <div class="tl-desc">Zadar. <em>Planine</em> (nastale oko 1543., tisk. 1569.) — <strong>prvi hrv. roman</strong>. Alegorija lošeg stanja hrv. književnosti (<em>Perivoj od Slave</em>).</div>
+              <div class="tl-desc">Zadar. <em>Planine</em> (nastale oko 1536., tisk. 1569.) — <strong>prvi hrv. roman</strong>. Alegorija lošeg stanja hrv. književnosti (<em>Perivoj od Slave</em>).</div>
             </div>
           </div>
           <div class="tl-item">
@@ -491,7 +491,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <div class="box-key-txt" style="font-size:12.5px;line-height:2">
             <b>1450.</b> Marulić r. · <b>1457.</b> Menčetić r. · <b>1461.</b> Džore Držić r. · <b>1485.</b> Lucić r. · <b>1487.</b> Hektorović r. · <b>~1508.</b> Zoranić r. · <b>1508.</b> Marin Držić r. · <b>1515.</b> Krnarutić r. ·
             <b>1501.</b> Judita dovršena · <b>1507.</b> Ranjinin zbornik + Institucija · <b>1521.</b> Judita tiskana · <b>1526.</b> Bitka kod Mohača ·
-            <b>1530.</b> Robinja (Lucić) · <b>1548.</b> Pomet-družina · <b>1550.</b> Novela od Stanca ★ · <b>1551.</b> Dundo Maroje · <b>1556.</b> Ribanje + Skup · <b>1566.</b> Siget + Kosmografska poslanica · <b>1567.</b> Marin Držić † · <b>~1543./1569.</b> Planine · <b>1584.</b> Vazetje Sigeta
+            <b>1530.</b> Robinja (Lucić) · <b>1548.</b> Pomet-družina · <b>1550.</b> Novela od Stanca ★ · <b>1551.</b> Dundo Maroje · <b>1556.</b> Ribanje + Skup · <b>1566.</b> Siget + Kosmografska poslanica · <b>1567.</b> Marin Držić † · <b>~1536./1569.</b> Planine · <b>1584.</b> Vazetje Sigeta
           </div>
         </div>
 
@@ -574,7 +574,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
             <b>1461.–1501.</b> Džore Držić, Dubrovnik ·
             <b>1485.–1553.</b> Hanibal Lucić, Hvar ·
             <b>1487.–1572.</b> Petar Hektorović, Hvar ·
-            <b>~1508.–1569.</b> Petar Zoranić, Zadar ·
+            <b>~1508.–1543.</b> Petar Zoranić, Zadar ·
             <b>1508.–1567.</b> Marin Držić, Dubrovnik ·
             <b>1515.–1573.</b> Brne Krnarutić, Zadar<br>
             <b>1501.</b> Judita dovršena (tiskana 1521.) ·
@@ -588,7 +588,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
             <b>1551.</b> Marin Držić: Dundo Maroje · Njarnjas-družina ·
             <b>1556.</b> Hektorović: Ribanje · Marin Držić: Skup ·
             <b>1566.</b> Marin Držić: Kosmografska poslanica ·
-            <b>~1543./1569.</b> Zoranić: Planine ·
+            <b>~1536./1569.</b> Zoranić: Planine ·
             <b>1584.</b> Krnarutić: Vazetje Sigeta grada
           </div>
         </div>
@@ -751,7 +751,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
         <div class="tbl">
           <div class="cr"><div class="ck br" style="min-width:80px">PISAC</div><div class="cv"><b>Marko Marulić</b> · Split · 1450.–1524. · „otac hrv. književnosti"<br><em>Judita</em> (1501.) — ep, 6 pjevanja, 2126 dvanaesteraca; alegorija otpora Turcima. <em>Davidijada</em>, <em>Institucija</em> — latinska proza.</div></div>
           <div class="cr"><div class="ck go" style="min-width:80px">PISAC</div><div class="cv"><b>Petar Hektorović</b> · Hvar · 1487.–1572.<br><em>Ribanje i ribarsko prigovaranje</em> (1556.) — ep/putopis/ekloga/poslanica. Zapisuje bugarštice i narodne pjesme. Put Hvar–Brač–Šolta.</div></div>
-          <div class="cr"><div class="ck t" style="min-width:80px">PISAC</div><div class="cv"><b>Petar Zoranić</b> · Zadar · ~1508.–1569.<br><em>Planine</em> (nastale oko 1543., tisk. 1569.) — prvi hrv. roman. 24 poglavlja, mješavina proze i stiha. <em>Perivoj od Slave</em> — alegorija hrv. književnosti. Motiv „rasute bašćine".</div></div>
+          <div class="cr"><div class="ck t" style="min-width:80px">PISAC</div><div class="cv"><b>Petar Zoranić</b> · Zadar · ~1508.–1543.<br><em>Planine</em> (nastale oko 1536., tisk. 1569.) — prvi hrv. roman. 24 poglavlja, mješavina proze i stiha. <em>Perivoj od Slave</em> — alegorija hrv. književnosti. Motiv „rasute bašćine".</div></div>
           <div class="cr"><div class="ck pa" style="min-width:80px">PISAC</div><div class="cv"><b>Hanibal Lucić</b> · Hvar · 1485.–1553.<br><em>Jur nijedna na svit vila</em> — lirika u osmercima, 10 strofa. <em>Robinja</em> (1530.) — prva hrv. svjetovna drama, 3 čina.</div></div>
           <div class="cr"><div class="ck re" style="min-width:80px">PISAC</div><div class="cv"><b>Marin Držić</b> · Dubrovnik · 1508.–1567. · zvan „Vidra"<br><em>Novela od Stanca</em> (1550.) — farsa/pokladna igra, 1 čin 7 prizora, dvanaesterci. <em>Dundo Maroje</em> (1551.) — prozna komedija, 5 činova. <em>Skup</em> (1556.) — po Plautu. <strong>★ OBVEZATNO 2026.</strong></div></div>
         </div>
@@ -785,7 +785,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <div class="sc">
             <span class="sc-ico hchip pa">ZADAR</span>
             <div class="sc-name">Zadarski krug</div>
-            <div class="sc-desc">Sjeverni dalmatinski centar. Domovina Petra Zoranića (~1508.–1569.) i Brne Krnarutića (1515.–1573.). Tema turske opasnosti je naglašena (Vazetje Sigeta grada). Mješavina čakavštine i štokavštine.</div>
+            <div class="sc-desc">Sjeverni dalmatinski centar. Domovina Petra Zoranića (~1508.–1543.) i Brne Krnarutića (1515.–1573.). Tema turske opasnosti je naglašena (Vazetje Sigeta grada). Mješavina čakavštine i štokavštine.</div>
           </div>
           <div class="sc">
             <span class="sc-ico hchip re">ŠIBENIK</span>
@@ -928,7 +928,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <div class="sc">
             <span class="sc-ico hchip pa">VEZA</span>
             <div class="sc-name">Zoranić → Perivoj od Slave → manifesti 19. st.</div>
-            <div class="sc-desc">Zoranićev poziv na gradnju hrv. književnosti u <em>Planinama</em> (1543.) anticipira <b>Ilirski preporod</b> (1835.) za skoro 300 godina. <em>Motiv rasute bašćine</em> vraća se u rodoljubnoj poeziji Preporoda. <b>Zoranić kao preteča</b>.</div>
+            <div class="sc-desc">Zoranićev poziv na gradnju hrv. književnosti u <em>Planinama</em> (1536.) anticipira <b>Ilirski preporod</b> (1835.) za skoro 300 godina. <em>Motiv rasute bašćine</em> vraća se u rodoljubnoj poeziji Preporoda. <b>Zoranić kao preteča</b>.</div>
           </div>
           <div class="sc">
             <span class="sc-ico hchip re">VEZA</span>
@@ -1088,7 +1088,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
               <div class="scene-meta">DJELO</div>
             </summary>
             <div class="scene-body">
-              <div class="scene-quote">Perivoj od Slave je epizoda u Zoranićevim Planinama gdje protagonist Zoran ulazi u alegorijski vrt s četiri vile: Latinkom (latinska književnost), Grkinjom (grčka), Kaldejkom (istočnjačka) i Hrvaticom (hrvatska). Svaka čuva jabučnjak koji simbolizira stanje njezine književnosti. Hrvatska vila ima najmanje i najlošije jabuke — to je Zoranićeva alegorija za loše stanje hrv. književnosti 1543. Važnost: ovo je PRVI EKSPLICITNI KNJIŽEVNI MANIFEST NA HRVATSKOM — Zoranić poziva na gradnju hrv. nacionalne književnosti 300 godina prije Ilirskog preporoda. Ta ideja anticipira Gajevo buđenje nacionalne svijesti u 19. st.</div>
+              <div class="scene-quote">Perivoj od Slave je epizoda u Zoranićevim Planinama gdje protagonist Zoran ulazi u alegorijski vrt s četiri vile: Latinkom (latinska književnost), Grkinjom (grčka), Kaldejkom (istočnjačka) i Hrvaticom (hrvatska). Svaka čuva jabučnjak koji simbolizira stanje njezine književnosti. Hrvatska vila ima najmanje i najlošije jabuke — to je Zoranićeva alegorija za loše stanje hrv. književnosti 1536. Važnost: ovo je PRVI EKSPLICITNI KNJIŽEVNI MANIFEST NA HRVATSKOM — Zoranić poziva na gradnju hrv. nacionalne književnosti 300 godina prije Ilirskog preporoda. Ta ideja anticipira Gajevo buđenje nacionalne svijesti u 19. st.</div>
               <div class="scene-why"><b>Ključni pojmovi:</b> Perivoj od Slave, 4 vile, jabuke = književnost, Hrvatska vila, manifest, rasuta bašćina, anticipacija Preporoda.</div>
             </div>
           </details>
@@ -1168,10 +1168,10 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
             </div>
           </details>
           <details class="scene">
-            <summary class="scene-sum"><div class="scene-num">Z</div><div class="scene-ttl">Petar Zoranić — <em>prvi hrv. romanopisac</em></div><div class="scene-meta">ZADAR · ~1508.–1569.</div></summary>
+            <summary class="scene-sum"><div class="scene-num">Z</div><div class="scene-ttl">Petar Zoranić — <em>prvi hrv. romanopisac</em></div><div class="scene-meta">ZADAR · ~1508.–1543.</div></summary>
             <div class="scene-body">
-              <div class="scene-quote">Zadarski humanist. Planine (~1543./1569.): prvi hrv. roman, žanrovski hibrid (pastorala + putopis + alegorija + lirika), 24 poglavlja. Protagonist Zoran (alter ego). Perivoj od Slave: 4 vile, Hrvatska vila s najlošijim jabukama = alegorija lošeg stanja hrv. knj. Rasuta bašćina = razdrobljena domovina.</div>
-              <div class="scene-why"><b>Na prstu:</b> Zadar · Planine ~1543./1569. · prvi hrv. roman · Zoran · Perivoj od Slave · Hrvatska vila · rasuta bašćina · manifest.</div>
+              <div class="scene-quote">Zadarski humanist. Planine (~1536./1569.): prvi hrv. roman, žanrovski hibrid (pastorala + putopis + alegorija + lirika), 24 poglavlja. Protagonist Zoran (alter ego). Perivoj od Slave: 4 vile, Hrvatska vila s najlošijim jabukama = alegorija lošeg stanja hrv. knj. Rasuta bašćina = razdrobljena domovina.</div>
+              <div class="scene-why"><b>Na prstu:</b> Zadar · Planine ~1536./1569. · prvi hrv. roman · Zoran · Perivoj od Slave · Hrvatska vila · rasuta bašćina · manifest.</div>
             </div>
           </details>
           <details class="scene">
@@ -1203,7 +1203,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
 
         <div class="tbl">
           <div class="cr"><div class="ck br" style="min-width:110px">RENESANSNI IZVOR</div><div class="cv b">KASNIJA EPOHA / PISAC</div><div class="cv b">VEZA</div></div>
-          <div class="cr"><div class="ck go" style="min-width:110px">Zoranić — Perivoj od Slave (1543.)</div><div class="cv">Ilirski preporod — Gaj, Babukić (1835.)</div><div class="cv">Zoranić poziva na gradnju hrv. književnosti — 300 godina kasnije Preporod to ostvaruje. Isti apel, drugačija epoha.</div></div>
+          <div class="cr"><div class="ck go" style="min-width:110px">Zoranić — Perivoj od Slave (1536.)</div><div class="cv">Ilirski preporod — Gaj, Babukić (1835.)</div><div class="cv">Zoranić poziva na gradnju hrv. književnosti — 300 godina kasnije Preporod to ostvaruje. Isti apel, drugačija epoha.</div></div>
           <div class="cr"><div class="ck t" style="min-width:110px">Hektorović — bugarštice (1556.)</div><div class="cv">Vuk Stefanović Karadžić — sakuplja epske pjesme (19. st.)</div><div class="cv">Hektorović je zapisao narodne bugarštice 300 god. prije romantičara. Prvi arhivar hrv. usmene tradicije.</div></div>
           <div class="cr"><div class="ck re" style="min-width:110px">Držić — pohlepa i komedija (16. st.)</div><div class="cv">Krleža — Glembajevi, gospodska dekadencija (20. st.)</div><div class="cv">Oba kritiziraju moralnu dekadencu imućnog sloja — Držić komedijom, Krleža tragedijom. 400 god. tradicije.</div></div>
           <div class="cr"><div class="ck pa" style="min-width:110px">Marulić — Judita, alegorija (1501.)</div><div class="cv">Mažuranić — Smrt Smail-age (1846.)</div><div class="cv">Oba pišu ep o borbi s neprijateljem kao moralnoj dužnosti. Oba koriste ep kao politički i patriotski instrument.</div></div>
@@ -1228,7 +1228,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <div class="cr"><div class="ck re">Džore Držić — lirika</div><div class="cv">I. gen. petrarkizma, filozofičniji od Menčetića. Radmio i Ljubmir = prva hrv. pastoralna drama.</div><div class="cv">I. gen., neoplatonizam, pastoralna drama ≠ Marin Držić!</div></div>
           <div class="cr"><div class="ck pa">Lucić — Robinja + lirika</div><div class="cv">Robinja (1530.): prva hrv. drama s razrađenom radnjom, tema ropstva, moral. Jur nijedna: osmesterac, II. gen.</div><div class="cv">II. gen., osmesterac, prva hrv. drama, neoplatonizam</div></div>
           <div class="cr"><div class="ck g">Hektorović — Ribanje</div><div class="cv">Trodnevni putopis Hvar→Brač→Šolta. Bilježi bugarštice (Nikola Zet). Realizam ne alegorija. Ep+putopis+ekloga+poslanica.</div><div class="cv">Bugarštica, realizam, otium, Tvrdalj, Nikola Zet</div></div>
-          <div class="cr"><div class="ck br">Zoranić — Planine</div><div class="cv">Prvi hrv. roman (~1543./1569.). Perivoj od Slave: Hrvatska vila = loše jabuke = loše stanje hrv. knj. Rasuta bašćina = domovina pod Turcima.</div><div class="cv">Perivoj od Slave, rasuta bašćina, književni manifest, alter ego</div></div>
+          <div class="cr"><div class="ck br">Zoranić — Planine</div><div class="cv">Prvi hrv. roman (~1536./1569.). Perivoj od Slave: Hrvatska vila = loše jabuke = loše stanje hrv. knj. Rasuta bašćina = domovina pod Turcima.</div><div class="cv">Perivoj od Slave, rasuta bašćina, književni manifest, alter ego</div></div>
           <div class="cr"><div class="ck go">Marin Držić — Novela od Stanca ★</div><div class="cv">Farsa, 1 čin, 7 prizora, 1550. Poklade kao dramski uvjet. Stanec = naivni seljak. Bez moralne osude. ★ OBVEZATNO 2026.</div><div class="cv">Farsa, pokladna igra, komika situacije, dramska ironija, Vidra</div></div>
           <div class="cr"><div class="ck t">Krnarutić — Vazetje Sigeta</div><div class="cv">Prvi hrv. povijesni ep (1584.). Opsada Sigeta 1566., Zrinski. Bez alegorije — direktni opis stvarnog događaja.</div><div class="cv">Povijesni ep, Nikola Šubić Zrinski, Siget 1566.</div></div>
         </div>
@@ -1252,7 +1252,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <div class="box-int-lbl">🇭🇷 Od lokalnih govora prema književnoj tradiciji</div>
           <div class="box-int-txt">
             U 15.–16. st. ne postoji „hrv. književnost" kao svjesna kategorija — postoje <em>lokalne književne produkcije</em> u Splitu, Hvaru, Zadru, Dubrovniku. Svaka govori lokalnim idiomom, svaka ima vlastitu publiku. Ono što ih veže: <b>zajednički stih (dvanaesterac), zajednički pritisak (Turci), zajednički uzori (Petrarca, Vergilije, Sannazaro)</b>.<br><br>
-            Svjesna gradnja <em>hrv. književnog identiteta</em> počinje s Zoranićevim <b>Perivojem od Slave</b> (1543.) — to je prvi tekst koji eksplicitno govori o „hrvatskoj književnosti" kao kategoriji koja zaostaje i mora biti izgrađena. Ovo je ključni moment koji hrv. renesansu čini više od zbroja lokalnih produkcija — čini je <em>početkom nacionalne književne svijesti</em>.
+            Svjesna gradnja <em>hrv. književnog identiteta</em> počinje s Zoranićevim <b>Perivojem od Slave</b> (1536.) — to je prvi tekst koji eksplicitno govori o „hrvatskoj književnosti" kao kategoriji koja zaostaje i mora biti izgrađena. Ovo je ključni moment koji hrv. renesansu čini više od zbroja lokalnih produkcija — čini je <em>početkom nacionalne književne svijesti</em>.
           </div>
         </div>
 
@@ -1366,8 +1366,8 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <details class="scene">
             <summary class="scene-sum"><div class="scene-num">4</div><div class="scene-ttl">Što je Perivoj od Slave i zašto je književnopovijesno važan?</div><div class="scene-meta">DJELO</div></summary>
             <div class="scene-body">
-              <div class="scene-quote">Model odgovora: Perivoj od Slave je epizoda u Zoranićevim Planinama. 4 vile čuvaju jabučnjake: Latinka (latinska knj.), Grkinja (grčka), Kaldejka (istočnjačka), Hrvatska vila (hrv. knj.). Hrvatska ima najlošije jabuke = loše stanje hrv. književnosti. Važnost: to je 1543. — prvi eksplicitni poziv na gradnju hrv. književne tradicije, 300 godina prije Ilirskog preporoda.</div>
-              <div class="scene-why"><b>Provjeri:</b> Jesi li naveo/la 4 vile, jabuke kao alegoriju i datum (1543.) u kontekstu Preporoda?</div>
+              <div class="scene-quote">Model odgovora: Perivoj od Slave je epizoda u Zoranićevim Planinama. 4 vile čuvaju jabučnjake: Latinka (latinska knj.), Grkinja (grčka), Kaldejka (istočnjačka), Hrvatska vila (hrv. knj.). Hrvatska ima najlošije jabuke = loše stanje hrv. književnosti. Važnost: to je 1536. — prvi eksplicitni poziv na gradnju hrv. književne tradicije, 300 godina prije Ilirskog preporoda.</div>
+              <div class="scene-why"><b>Provjeri:</b> Jesi li naveo/la 4 vile, jabuke kao alegoriju i datum (1536.) u kontekstu Preporoda?</div>
             </div>
           </details>
 
@@ -1723,7 +1723,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
         <div class="box-key">
           <div class="box-key-lbl">💔 Hrvatičina jadikovka — interpretacija</div>
           <div class="box-key-txt">
-            Hrvatica plače jer je njezino voće <em>siromašno i malobrojno</em>. Razlog: <b>hrv. književnost je zapostavljena</b> — pisci pišu na latinskom (Marulić!), tuđim jezicima, ne razvijaju vlastiti književni standard. Zoranić ovim postavlja <strong>prvi eksplicitan književni manifest na hrvatskom</strong>: <em>treba pisati hrvatski, treba graditi nacionalnu književnost</em>. To je revolucionarna teza za 1543. godinu — pretječe Preporod (1830.) za 300 godina.
+            Hrvatica plače jer je njezino voće <em>siromašno i malobrojno</em>. Razlog: <b>hrv. književnost je zapostavljena</b> — pisci pišu na latinskom (Marulić!), tuđim jezicima, ne razvijaju vlastiti književni standard. Zoranić ovim postavlja <strong>prvi eksplicitan književni manifest na hrvatskom</strong>: <em>treba pisati hrvatski, treba graditi nacionalnu književnost</em>. To je revolucionarna teza za 1536. godinu — pretječe Preporod (1830.) za 300 godina.
           </div>
         </div>
 
@@ -2217,7 +2217,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
         <div class="box-signal">
           <div>
             <div class="box-signal-lbl">🔗 Krnarutić i Zoranić — zadarski krug</div>
-            <div class="box-signal-txt">Oba su zadarski humanisti s jakim patriotskim tonom. <b>Zoranić</b> (Planine, ~1543.) tematizira tursku opasnost alegorijski (rasuta bašćina). <b>Krnarutić</b> (Vazetje, 1584.) tematizira je direktno — <em>opis konkretne bitke, konkretnih junaka</em>. Zadarski krug zatvara krug hrv. renesanse: Marulić ga otvara alegorijom (Judita, 1501.), Krnarutić ga zatvara povijesnim epom (Vazetje, 1584.). <em>83 godine hrv. renesansne književnosti — od nade do komemoracije.</em></div>
+            <div class="box-signal-txt">Oba su zadarski humanisti s jakim patriotskim tonom. <b>Zoranić</b> (Planine, ~1536.) tematizira tursku opasnost alegorijski (rasuta bašćina). <b>Krnarutić</b> (Vazetje, 1584.) tematizira je direktno — <em>opis konkretne bitke, konkretnih junaka</em>. Zadarski krug zatvara krug hrv. renesanse: Marulić ga otvara alegorijom (Judita, 1501.), Krnarutić ga zatvara povijesnim epom (Vazetje, 1584.). <em>83 godine hrv. renesansne književnosti — od nade do komemoracije.</em></div>
           </div>
         </div>
 
@@ -2249,7 +2249,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <div class="cr"><div class="ck go">Ep</div><div class="cv">Marulić</div><div class="cv"><em>Judita</em> (1501./1521.)</div><div class="cv">Alegorija turske prijetnje. Judita = Hrvatska. Biblijska forma + kršćanski humanizam.</div></div>
           <div class="cr"><div class="ck go">Ep</div><div class="cv">Krnarutić</div><div class="cv"><em>Vazetje Sigeta</em> (1584.)</div><div class="cv">Povijesni ep bez alegorije. Zrinski kao hrv. heroj. Zatvara krug hrv. renesanse.</div></div>
           <div class="cr"><div class="ck t">Putopis / ekloga</div><div class="cv">Hektorović</div><div class="cv"><em>Ribanje</em> (1556.)</div><div class="cv">Dokumentarni realizam. Bugarštice. Demokratizacija humanizma.</div></div>
-          <div class="cr"><div class="ck re">Roman</div><div class="cv">Zoranić</div><div class="cv"><em>Planine</em> (~1543./1569.)</div><div class="cv">Književni manifest. Perivoj od Slave. Rasuta bašćina. Ljubav = domoljublje.</div></div>
+          <div class="cr"><div class="ck re">Roman</div><div class="cv">Zoranić</div><div class="cv"><em>Planine</em> (~1536./1569.)</div><div class="cv">Književni manifest. Perivoj od Slave. Rasuta bašćina. Ljubav = domoljublje.</div></div>
           <div class="cr"><div class="ck pa">Lirika — I. gen.</div><div class="cv">Menčetić, Džore Držić</div><div class="cv">Ranjinin zbornik (1507.)</div><div class="cv">Petrarkizam bez soneta. Dvanaesterci. Senzualnost (Menčetić) vs. idealizacija (Džore).</div></div>
           <div class="cr"><div class="ck g">Lirika — II. gen.</div><div class="cv">Lucić</div><div class="cv"><em>Jur nijedna na svit vila</em></div><div class="cv">Osmesterac. Neoplatonizam. Ljubav kao duhovna snaga prema Bogu.</div></div>
           <div class="cr"><div class="ck br">Drama — prva</div><div class="cv">Džore Držić</div><div class="cv"><em>Radmio i Ljubmir</em> (kraj 15. st.)</div><div class="cv">Prva hrv. pastoralna drama. Kratka, bez razvijene radnje.</div></div>
@@ -2265,7 +2265,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
           <div class="box-key-txt">
             <b>Marulić</b>: Judita (ep, 1501., alegorija, 6 pjev., 2126 dvanaest.) · Institucija (lat., prevedena) · Davidijada (lat. ep)<br>
             <b>Hektorović</b>: Ribanje (1556., ep/putopis/ekloga/poslanica, bugarštice, Hvar→Brač→Šolta)<br>
-            <b>Zoranić</b>: Planine (~1543./1569., prvi hrv. roman, 24 pogl., Perivoj od Slave, rasuta bašćina)<br>
+            <b>Zoranić</b>: Planine (~1536./1569., prvi hrv. roman, 24 pogl., Perivoj od Slave, rasuta bašćina)<br>
             <b>Menčetić</b>: Blažen čas i hip · I. gen. petrarkizam · senzualan<br>
             <b>Džore Držić</b>: idealizacija ljubavi · I. gen. petrarkizam · Radmio i Ljubmir (prva pastoralna drama)<br>
             <b>Lucić</b>: Robinja (1530., prva hrv. drama s razrađenom radnjom, 3 čina, tema ropstva, moral: ljubav pobjeđuje pohlepu) · Jur nijedna na svit vila (osmerci, neoplatonizam, II. gen.)<br>
@@ -2459,7 +2459,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
         <div class="box-key">
           <div class="box-key-lbl">📝 Uvod eseja o Planinama (model)</div>
           <div class="box-key-txt">
-            <em>„Petar Zoranić (~1508.–1569.), zadarski humanist, u djelu <b>Planine</b> (nastale oko 1543., tiskane 1569.) stvara <em>prvi hrv. roman</em> — žanrovski hibrid koji spaja pastoralni roman, putopis, alegoriju i liriku. Protagonist Zoran putuje zadarskim zaleđem kako bi izliječio neuzv. ljubav, ali Zoranić ga iskorištava za nešto veće: kroz epizodu <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić piše <em>prvi eksplicitni manifest hrv. književnosti</em> — 300 godina prije Preporoda. Pokazat ću kako su <b>ljubavna tematika i domoljubni apel</b> u Planinama nerazdvojivi — osobna bol postaje metafora nacionalne tuge."</em>
+            <em>„Petar Zoranić (~1508.–1543.), zadarski humanist, u djelu <b>Planine</b> (nastale oko 1536., tiskane 1569.) stvara <em>prvi hrv. roman</em> — žanrovski hibrid koji spaja pastoralni roman, putopis, alegoriju i liriku. Protagonist Zoran putuje zadarskim zaleđem kako bi izliječio neuzv. ljubav, ali Zoranić ga iskorištava za nešto veće: kroz epizodu <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić piše <em>prvi eksplicitni manifest hrv. književnosti</em> — 300 godina prije Preporoda. Pokazat ću kako su <b>ljubavna tematika i domoljubni apel</b> u Planinama nerazdvojivi — osobna bol postaje metafora nacionalne tuge."</em>
           </div>
         </div>
 
@@ -2523,14 +2523,14 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
         <div class="box-key">
           <div class="box-key-lbl">📄 Uvod (Teza: Planine kao književni manifest)</div>
           <div class="box-key-txt">
-            <em>„Petar Zoranić (~1508.–1569.), zadarski humanist, u žanrovski hibridnom djelu <b>Planine</b> (nastale oko 1543., tiskane 1569.) postiže nešto što nitko prije njega nije pokušao u hrv. književnosti: piše <em>manifest za gradnju nacionalne književne tradicije</em>. Kroz alegoriju <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić govori neposredno i rezolutno — <em>hrv. književnost kasni za Europom i to mora biti promijenjeno</em>. U ovom eseju pokazat ću kako Zoranić u Planinama spaja <b>osobnu melankoliju, patriotski apel i književnopovijesnu refleksiju</b> u djelo koje anticipira Ilirski preporod za 300 godina."</em>
+            <em>„Petar Zoranić (~1508.–1543.), zadarski humanist, u žanrovski hibridnom djelu <b>Planine</b> (nastale oko 1536., tiskane 1569.) postiže nešto što nitko prije njega nije pokušao u hrv. književnosti: piše <em>manifest za gradnju nacionalne književne tradicije</em>. Kroz alegoriju <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić govori neposredno i rezolutno — <em>hrv. književnost kasni za Europom i to mora biti promijenjeno</em>. U ovom eseju pokazat ću kako Zoranić u Planinama spaja <b>osobnu melankoliju, patriotski apel i književnopovijesnu refleksiju</b> u djelo koje anticipira Ilirski preporod za 300 godina."</em>
           </div>
         </div>
 
         <div class="box-key">
           <div class="box-key-lbl">📄 Razrada — Perivoj od Slave kao ključna epizoda</div>
           <div class="box-key-txt">
-            <em>„Ključna epizoda Planina je <b>Perivoj od Slave</b> — alegorijski vrt u kojemu četiri vile čuvaju jabučnjake koji simboliziraju nacionalne književnosti. Latina, Grkinja i Kaldejka imaju bujne, lijepe jabuke; Hrvatska vila stoji <em>sramežljivo i tužno</em> s najmalobrojnijim i najlošijim voćem. Ovaj prizor nije dekorativna alegorija — to je <b>književna dijagnoza</b> Zoranićeva doba: hrv. pisci pišu latinskim, zanemaruju vlastiti jezik, nema sustavne kulturne politike. Zoranić ne samo da opisuje problem — on poziva na buđenje. <em>Taj poziv dolazi 1543., puna tri vijeka prije Ilirskog preporoda.</em>"</em>
+            <em>„Ključna epizoda Planina je <b>Perivoj od Slave</b> — alegorijski vrt u kojemu četiri vile čuvaju jabučnjake koji simboliziraju nacionalne književnosti. Latina, Grkinja i Kaldejka imaju bujne, lijepe jabuke; Hrvatska vila stoji <em>sramežljivo i tužno</em> s najmalobrojnijim i najlošijim voćem. Ovaj prizor nije dekorativna alegorija — to je <b>književna dijagnoza</b> Zoranićeva doba: hrv. pisci pišu latinskim, zanemaruju vlastiti jezik, nema sustavne kulturne politike. Zoranić ne samo da opisuje problem — on poziva na buđenje. <em>Taj poziv dolazi 1536., puna tri vijeka prije Ilirskog preporoda.</em>"</em>
           </div>
         </div>
 
@@ -4268,7 +4268,7 @@ var DIAG_Q = [
   {topic:'Hektorović',q:'Što Hektorović zapisuje u Ribanju?',opts:['Bugarštice i narodne pjesme ribarâ','Latinske epigrame','Ljubavne petrarkističke sonete','Alegorijske pastorale'],ans:0,exp:'Hektorović bilježi bugarštice i narodne pjesme koje pjevaju ribari — dragocjen izvor za hrv. usm. tradiciju.'},
   {topic:'Marulić',q:'Tko je u Juditi alegorijski prikaz turske sile?',opts:['Holoferno','Ozija','Abra','David'],ans:0,exp:'Holoferno = turska vojska/sultan. Judita = Hrvatska. Betulija = hrv. gradovi pod opsadom.'},
   {topic:'Držić',q:'Odakle dolazi Stanac u Noveli od Stanca?',opts:['Iz Trebinja','Iz Splita','Iz Zadra','Iz Hvara'],ans:0,exp:'Stanac je stari seljak iz Trebinja — dolazi u Dubrovnik prodavati kozliće za poklade.'},
-  {topic:'Književnost',q:'Koji je autor prvog hrvatskog romana?',opts:['Petar Zoranić','Petar Hektorović','Hanibal Lucić','Brne Krnarutić'],ans:0,exp:'Petar Zoranić autor je Planina (~1543./1569.) — prvog hrv. romana (mješavina proze i stiha, 24 poglavlja).'},
+  {topic:'Književnost',q:'Koji je autor prvog hrvatskog romana?',opts:['Petar Zoranić','Petar Hektorović','Hanibal Lucić','Brne Krnarutić'],ans:0,exp:'Petar Zoranić autor je Planina (~1536./1569.) — prvog hrv. romana (mješavina proze i stiha, 24 poglavlja).'},
   {topic:'Petrarkizam',q:'Koja je razlika između I. i II. generacije hrv. petrarkista?',opts:['I. gen. = čisti petrarkizam; II. gen. = neoplatonizacija','I. gen. piše sonete; II. gen. piše dvanaesterce','I. gen. je iz Splita; II. gen. iz Dubrovnika','I. gen. piše na latinskom; II. gen. na hrvatskom'],ans:0,exp:'I. gen. (Menčetić, Džore Držić) = čisti petrarkistički motivi. II. gen. (Lucić) = neoplatonizacija, širi interes za čovjeka.'},
   {topic:'Kontekst',q:'Zašto hrv. renesansa procvjetava upravo u Dalmaciji i na otocima?',opts:['Geografska blizina Italije i razvijene trgovačke veze','Turci nisu dopirali do primorja','Habsburzi su financirali kulturu','Katolička Crkva tiskala je knjige u Splitu'],ans:0,exp:'Geografska blizina Italije, razvijene trgovačke veze i slobodna dubrovačka republika — to su uvjeti koji su omogućili procvat hrv. renesanse na obali.'}
 ];
@@ -4443,7 +4443,7 @@ var QZ_DATA=[
   {q:'Što je Perivoj od Slave u Planinama Petra Zoranića?',opts:['Alegorija hrv. književnosti kroz 4 vile','Opis planinarenja','Ljubavna priča o Zoranu','Katalog pisaca'],ans:0,exp:'4 vile (Latinka, Kaldejka, Grkinju, Hrvatica) = 4 nac. književnosti. Hrvatica se žali na loše stanje hrv. knj.'},
   {q:'Koja je najstarija poznata hrvatska prozna drama?',opts:['Dundo Maroje','Novela od Stanca','Robinja','Skup'],ans:0,exp:'Dundo Maroje (1551.) najstarija je poznata hrvatska prozna drama.'},
   {q:'Što je bugarštica?',opts:['Vrsta hrv. narodne epske pjesme u dugom stihu','Ljubavna lirika po Petrarci','Pastoralna drama','Kratka komična igra'],ans:0,exp:'Bugarštica je vrsta hrv. narodne epske pjesme u dugom stihu (15–16 slogova). Hektorović ih bilježi u Ribanju.'},
-  {q:'Koji je autor prvog hrvatskog romana?',opts:['Petar Zoranić','Petar Hektorović','Hanibal Lucić','Šiško Menčetić'],ans:0,exp:'Petar Zoranić autor je Planina — prvog hrv. romana (nastale ~1543., tiskane 1569.).'},
+  {q:'Koji je autor prvog hrvatskog romana?',opts:['Petar Zoranić','Petar Hektorović','Hanibal Lucić','Šiško Menčetić'],ans:0,exp:'Petar Zoranić autor je Planina — prvog hrv. romana (nastale ~1536., tiskane 1569.).'},
   {q:'Tko je žrtva prevare u Noveli od Stanca i odakle dolazi?',opts:['Stanac, seljak iz Trebinja','Dundo Maroje iz Dubrovnika','Skup, stari škrtac','Perivoj, putnik'],ans:0,exp:'Stanac je stari seljak iz Trebinja — žrtva dubrovačkih mladića koji ga uvjeravaju da ga je voda podmladila.'},
   {q:'Gdje se odvija radnja komedije Dundo Maroje?',opts:['U Rimu','U Dubrovniku','U Splitu','U Veneciji'],ans:0,exp:'Radnja Dunda Maroja odvija se u Rimu — neobično za hrv. dramu 16. st.'},
   {q:'Koja je drama Hanibala Lucića — prva hrv. drama s razrađenom radnjom?',opts:['Robinja','Radmio i Ljubmir','Novela od Stanca','Skup'],ans:0,exp:'Robinja Hanibala Lucića (praizvedena 1530.) — prva hrv. drama s razrađenom radnjom, zapletom i rasplatom.'},
