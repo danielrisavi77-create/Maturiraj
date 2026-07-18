@@ -2687,7 +2687,7 @@ const GON_DATA=[
 ];
 const DRILL_DATA=[
   {q:'2³·2²=?',opts:['2⁶=64','4⁵','2⁵=32','2⁵=16'],ok:2,diff:'easy',exp:'Zbroj eksponenata: 3+2=5.'},
-  {q:'(3²)³=?',opts:['3⁵','9³','3⁶=729','3⁸'],ok:2,diff:'easy',exp:'Potencija potencije: 2·3=6.'},
+  {q:'(3²)³=?',opts:['3⁵','9²','3⁶=729','3⁸'],ok:2,diff:'easy',exp:'Potencija potencije: 2·3=6.'},
   {q:'a⁰=?',opts:['0','1','a','−1'],ok:1,diff:'easy',exp:'Nulti eksponent = 1 (za a≠0).'},
   {q:'4^(1/2)=?',opts:['√2','4','8','2'],ok:3,diff:'easy',exp:'√4=2.'},
   {q:'log₂(16)=?',opts:['8','2','16','4'],ok:3,diff:'easy',exp:'2⁴=16.'},
@@ -2704,7 +2704,7 @@ const DRILL_DATA=[
   {q:'log₂(4·8)=?',opts:['5','6','12','7'],ok:0,diff:'med',exp:'log₂(4·8)=log₂(32)=5. (Pozor: 4+8=12 je zbroj baza, ne odgovor — log mijenja produkt u zbroj eksponenata.)'},
   {q:'Rijesi: log₂(x)=4.',opts:['x=8','x=16','x=4','x=2'],ok:1,diff:'med',exp:'x=2⁴=16.'},
   {q:'(1/2)ˣ=8. x=?',opts:['x=−3','x=3','x=−8','x=1/3'],ok:0,diff:'med',exp:'(1/2)ˣ=2⁻ˣ=8=2³→−x=3→x=−3.'},
-  {q:'√12·√3=?',opts:['√36=6','√15','6','12'],ok:2,diff:'med',exp:'√(12·3)=√36=6.'},
+  {q:'√12·√3=?',opts:['36','√15','6','12'],ok:2,diff:'med',exp:'√(12·3)=√36=6.'},
   {q:'log₅(25)=?',opts:['5','10','√5','2'],ok:3,diff:'med',exp:'5²=25.'},
   {q:'Racionaliziraj: 2/(√5−1).',opts:['(√5+1)/2','√5+1','2(√5+1)/4','(√5−1)/2'],ok:0,diff:'hard',exp:'×(√5+1)/(5−1)=2(√5+1)/4=(√5+1)/2.'},
   {q:'log₂(x)+log₂(x−2)=3. x=?',opts:['3','2','8','4'],ok:3,diff:'hard',exp:'log₂(x(x−2))=3→x²−2x=8→x=4 (x=−2 iskl.).'},
