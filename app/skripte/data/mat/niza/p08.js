@@ -2109,7 +2109,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     <div class="bug-task">y-isječak <span class="wrong">= (5,0)</span></div>
     <div class="bug-opts" id="bug3-opts">
       <div class="bug-opt" onclick="bugAns(3,0,this)">A) Točno — l=5 je y-isječak pa je točka (5,0).</div>
-      <div class="bug-opt" onclick="bugAns(3,1,this)">B) Greška — y-isječak je točka gdje pravac sijece Y-os (x=0): f(0)=5. Dakle (0,5), ne (5,0). Točka (5,0) je nultočka (isječak x-osi): y=0 → x=5/2=2.5, ne 5.</div>
+      <div class="bug-opt" onclick="bugAns(3,1,this)">B) Greška — y-isječak je točka gdje pravac sijece Y-os (x=0): f(0)=5. Dakle (0,5), ne (5,0). Nultočka (isječak x-osi) je gdje je y=0: 0=2x+5 → x=−5/2=−2.5, ne 5.</div>
       <div class="bug-opt" onclick="bugAns(3,2,this)">C) Y-isječak ne postoji jer pravac nije paralelan s y-osi.</div>
     </div>
     <div class="bug-expl" id="bug3-exp"></div>

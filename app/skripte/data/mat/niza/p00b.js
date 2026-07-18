@@ -725,7 +725,7 @@ a{color:inherit;text-decoration:none}
       <span class="sc-ico">⏱</span>
       <div class="sc-num" style="color:var(--cyan)" id="sc-min">0</div>
       <div class="sc-lbl">minuta</div>
-      <div class="sc-sub">~3.75 min / zadatak</div>
+      <div class="sc-sub">~6.25 min / zadatak</div>
     </div>
     <div class="sc" style="--sc-color:linear-gradient(90deg,var(--violet),var(--indigo))">
       <span class="sc-ico">📚</span>

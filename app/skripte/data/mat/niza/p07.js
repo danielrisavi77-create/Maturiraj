@@ -1915,8 +1915,8 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     3) Svedi na gornje-trokutni oblik (Gauss) ili dijagonalni (Gauss-Jordan)<br>
     4) Čitaj rješenje (back-substitution ili direktno)
   </div></div>
-  <div class="emph"><strong>Primjer:</strong> x+y+z=6, 2x+y=5, x+2z=7.<br>
-  Eliminacijom: x=1, y=3, z=2. Provjera: 1+3+2=6 ✓, 2+3=5 ✓, 1+4=7? (7≠5 — grešni primjer → koristiti točan).</div>
+  <div class="emph"><strong>Primjer:</strong> x+y+z=6, 2x+y=5, x+2z=5.<br>
+  Eliminacijom: x=1, y=3, z=2. Provjera: 1+3+2=6 ✓, 2·1+3=5 ✓, 1+2·2=5 ✓.</div>
 </div>
 
 <div class="sec-head"><span class="sec-badge">5 / 12</span><h3 class="sec-h">Mješoviti sustavi — lin-kvadratni</h3></div>

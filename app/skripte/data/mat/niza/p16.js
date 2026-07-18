@@ -3189,7 +3189,7 @@ const DRILL_DATA = [
       "4.5",
       "81",
       "3",
-      "√9"
+      "9"
     ],
     "ok": 2,
     "diff": "easy",
@@ -3507,11 +3507,11 @@ const QUIZ_DATA = [
     "opts": [
       "najveći podatak",
       "outlier",
-      "srednji podatak",
+      "redoslijed (raspored) podataka",
       "fᵢ (frekvencija)"
     ],
     "ok": 2,
-    "e": "Svi podaci utječu na x̄ — uključujući srednji. Trik pitanje: sredinska pozicija NE znači da broj nije uključen. Svaki podatak je u zbroju."
+    "e": "Aritmetička sredina x̄=(Σxᵢ)/n ovisi samo o zbroju i broju podataka — redoslijed (raspored) NE mijenja zbroj pa ne utječe. Najveći podatak, outlier i frekvencije mijenjaju zbroj → utječu."
   }
 ];
 const PBX_CH_DATA = [{"q": "Postavi parabolu tako da bude f(x) = x²", "check": {"a": 1, "b": 0, "c": 0, "tol": 0.15}}, {"q": "Postavi parabolu s tjemenom u točki (0, −5)", "check": {"type": "vertex", "p": 0, "q": -5, "tol": 0.3}}, {"q": "Postavi parabolu koja ima nultočke −2 i 2", "check": {"type": "roots", "roots": [-2, 2], "tol": 0.3}}, {"q": "Postavi parabolu otvorenu prema dolje s y-odsječkom 4", "check": {"type": "complex", "aneg": true, "c": 4, "tol": 0.4}}, {"q": "Postavi parabolu f(x) = (x − 3)² − 1 (tjeme u T(3, −1))", "check": {"type": "vertex", "p": 3, "q": -1, "tol": 0.3}}, {"q": "Postavi parabolu koja nema realnih nultočaka (D &lt; 0)", "check": {"type": "D", "sign": "neg"}}, {"q": "Postavi parabolu s dvostrukom nultočkom u x = 2 (D = 0)", "check": {"type": "double", "x": 2, "tol": 0.3}}, {"q": "Postavi parabolu f(x) = −2x² + 4 (max = 4)", "check": {"a": -2, "b": 0, "c": 4, "tol": 0.25}}, {"q": "Simuliraj projektil: tjeme u (3, 9), otvorena dolje", "check": {"type": "vertex", "p": 3, "q": 9, "aneg": true, "tol": 0.4}}, {"q": "Postavi funkciju f(x) = x² − 6x + 5 (nultočke 1 i 5)", "check": {"a": 1, "b": -6, "c": 5, "tol": 0.25}}, {"q": "Postavi parabolu koja siječe x-os u 0 i 4", "check": {"type": "roots", "roots": [0, 4], "tol": 0.3}}, {"q": "Postavi parabolu f(x) = 0.5x² − 2x (tjeme u (2, −2))", "check": {"a": 0.5, "b": -2, "c": 0, "tol": 0.25}}];

@@ -3258,9 +3258,9 @@ const DRILL_DATA = [
     "q": "Kocka 2×. P(zbroj 4) = ?",
     "opts": [
       "1/12",
-      "3/36",
+      "1/6",
       "4/36",
-      "1/9"
+      "1/18"
     ],
     "ok": 0,
     "diff": "med",
@@ -3342,25 +3342,25 @@ const DRILL_DATA = [
     "q": "Kutija: 4 bijele, 6 crnih. Izvlačiš 1. P(bijela)?",
     "opts": [
       "4/10",
-      "2/5",
+      "6/10",
       "2/3",
-      "0.4"
+      "1/2"
     ],
     "ok": 0,
     "diff": "hard",
-    "exp": "4/10 = 2/5 = 0.4 (više točnih, ali ponuđeni A je prvi)."
+    "exp": "P(bijela) = 4/(4+6) = 4/10. (6/10 = P(crna); 2/3 i 1/2 su netočni.)"
   },
   {
     "q": "2 kocke. P(zbroj je neparan) = ?",
     "opts": [
       "1/2",
       "1/4",
-      "18/36",
+      "1/3",
       "točno B i C"
     ],
     "ok": 0,
     "diff": "hard",
-    "exp": "Neparan → 1 paran + 1 neparan. 18/36 = 1/2."
+    "exp": "Neparan → 1 paran + 1 neparan: 1/2·1/2 + 1/2·1/2 = 1/2 (18 od 36 ishoda)."
   },
   {
     "q": "Bacaš kocku 2×. P(barem 1 šestica)?",

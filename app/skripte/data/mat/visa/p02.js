@@ -1185,7 +1185,7 @@ const _bodyHTML = `<div class="shell">
         <div class="icp-q-text">√4 + √9 = ?</div>
         <div class="icp-opts">
           <div class="icp-opt" onclick="icp('icp3','q3',this,false,'icp3q3fb')">√13</div>
-          <div class="icp-opt" onclick="icp('icp3','q3',this,false,'icp3q3fb')">√25 = 5</div>
+          <div class="icp-opt" onclick="icp('icp3','q3',this,false,'icp3q3fb')">13 (= 4 + 9)</div>
           <div class="icp-opt" onclick="icp('icp3','q3',this,true,'icp3q3fb')">5 (= 2 + 3)</div>
           <div class="icp-opt" onclick="icp('icp3','q3',this,false,'icp3q3fb')">6</div>
         </div>
@@ -2083,7 +2083,7 @@ var ALL_QUESTIONS=[
    proof:['a^(p/q) = (ᵠ√a)ᵖ — korijen PRVO','³√125 = 5  (jer 5³=125)','5² = 25 ✓']},
   {id:'q5',topic:'korijeni',meta:'zakon korijena · množenje',
    text:'Što je <code>√18 · √2</code>?',
-   opts:[{t:'√20',ok:false},{t:'6',ok:true},{t:'√36 = 6',ok:true},{t:'3√2',ok:false}],
+   opts:[{t:'√20',ok:false},{t:'6',ok:true},{t:'36',ok:false},{t:'3√2',ok:false}],
    c:'✓ Točno. √18·√2 = √(18·2) = √36 = 6.',
    w:'✗ Netočno. √a·√b = √(ab) → √(18·2) = √36 = 6.',
    proof:['√a·√b = √(ab)','√18·√2 = √(18·2) = √36','= 6 ✓']},

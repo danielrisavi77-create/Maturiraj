@@ -1640,7 +1640,7 @@ const _bodyHTML = `<div class="shell">
   <div class="cr"><div class="ck b">Skupovne operacije</div><div class="cv">A∪B (unija), A∩B (presjek), A\B (razlika), komplement A′ = Ω\A. ℕ⊂ℤ⊂ℚ⊂ℝ.</div></div>
   <div class="cr"><div class="ck c">Apsolutna vrijednost</div><div class="cv">|x|&lt;a ↔ −a&lt;x&lt;a &nbsp;·&nbsp; |x|&gt;a ↔ x&lt;−a ili x&gt;a &nbsp;·&nbsp; |x|=√x²</div></div>
   <div class="cr"><div class="ck i">Intervali</div><div class="cv">(a,b) otvoren, [a,b] zatvoren, [a,b) poluotvoren. Presjek i unija: iscrtaj na brojevnom pravcu!</div></div>
-  <div class="cr"><div class="ck a">Skupovi brojeva</div><div class="cv">ℕ⊂ℤ⊂ℚ⊂ℝ. ℕ={0,1,2,…} bez negativnih. ℤ sadrži negativne. ℚ=svi razlomci p/q.</div></div>
+  <div class="cr"><div class="ck a">Skupovi brojeva</div><div class="cv">ℕ⊂ℤ⊂ℚ⊂ℝ. ℕ={1,2,3,…} bez nule i negativnih. ℤ sadrži nulu i negativne. ℚ=svi razlomci p/q.</div></div>
   <div class="cr"><div class="ck r">Zamka</div><div class="cv">|x+1|&lt;3 ≠ x&lt;2! Razvij: −3&lt;x+1&lt;3 → −4&lt;x&lt;2. Uvijek obradi obje strane jednako!</div></div>
 </div>
 <div class="nav-row">
@@ -2028,7 +2028,7 @@ var clfData=[
   {n:'√4/2',ans:'ℕ',exp:'√4=2, 2/2=1 ∈ ℕ. Svedi i provjeri!'},
   {n:'−√9',ans:'ℤ',exp:'√9=3, ali −3 ∈ ℤ (nije ℕ jer je negativan).'},
   {n:'22/7',ans:'ℚ',exp:'22/7 je razlomak → ℚ. (π ≠ 22/7 — to je samo aproksimacija!)'},
-  {n:'√0',ans:'ℕ',exp:'√0=0. A 0? U HR kurikulumu 0 ∉ ℕ, ali 0 ∈ ℤ! Najuži: ℤ.'},
+  {n:'√0',ans:'ℤ',exp:'√0=0. A 0? U HR kurikulumu 0 ∉ ℕ, ali 0 ∈ ℤ! Najuži: ℤ.'},
   {n:'e',ans:'𝕀',exp:'Eulerova konstanta e ∈ 𝕀 — iracionalan i transcendentan.'},
   {n:'−49/7',ans:'ℤ',exp:'−49/7=−7 ∈ ℤ. Negativan cijeli broj.'},
   {n:'√121−11',ans:'ℤ',exp:'√121=11, 11−11=0. A 0 ∉ ℕ, ali 0 ∈ ℤ!'},

@@ -1986,7 +1986,7 @@ var ALL_QUESTIONS=[
    proof:['Uvrsti x=1: P(1) = 1²−3(1)+2','= 1−3+2 = 0 ✓','P(1)=0 → x=1 je nultočka']},
   {id:'q4',topic:'horner',meta:'Horner · faktorizacija',
    text:'Hornerov algoritam za P(x) = x³−x²−x+1 i c=1 daje ostatak 0. Koji je kvocijent?',
-   opts:[{t:'x²+x+1',ok:false},{t:'x²−1',ok:false},{t:'x²−x−1',ok:false},{t:'x²−1 = (x−1)(x+1)',ok:true}],
+   opts:[{t:'x²+x+1',ok:false},{t:'x²+1',ok:false},{t:'x²−x−1',ok:false},{t:'x²−1 = (x−1)(x+1)',ok:true}],
    c:'✓ Točno. Koef: 1|−1|−1|1, c=1: 1|0|−1|0. Kvocijent x²+0x−1 = x²−1 = (x−1)(x+1).',
    w:'✗ Netočno. Horner: 1|−1|−1|1, c=1 → 1|(−1+1)|(−1+0)|(1+(−1)) = 1|0|−1|0 → x²−1.',
    proof:['Horner: 1|−1|−1|1, c=1','Spusti 1, pa: 0=−1+1, −1=−1+0, 0=1+(−1)','Kvocijent: x²+0x−1 = x²−1 = (x−1)(x+1)']},
