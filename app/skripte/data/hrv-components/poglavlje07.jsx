@@ -432,7 +432,7 @@ const BODY_HTML = `<a href="#main" class="skip-link">Preskači na sadržaj</a>
             <tr><td><b>1812.–1870.</b></td><td>Charles Dickens</td></tr>
             <tr><td><b>1821.–1881.</b></td><td><strong>Fjodor Dostojevski</strong></td></tr>
             <tr><td><b>1828.–1910.</b></td><td>Lav Tolstoj</td></tr>
-            <tr><td><b>1829.–1884.</b></td><td>Gustave Flaubert</td></tr>
+            <tr><td><b>1821.–1880.</b></td><td>Gustave Flaubert</td></tr>
             <tr><td><b>1830.–1895.</b></td><td>Realizam kao epoha</td></tr>
             <tr><td><b>1830.</b></td><td>Stendhal · <em>Crveno i crno</em></td></tr>
             <tr><td><b>1835.</b></td><td>Balzac · <em>Otac Goriot</em></td></tr>

@@ -419,7 +419,7 @@ const BODY_HTML = `<a href="#main" class="skip-link">Preskači na sadržaj</a>
     <div class="box-20">
       <div class="b20-lbl">📌 Struktura Božanstvene komedije u 3 koraka</div>
       <ol class="b20-list b20-numbered">
-        <li class="b20-item"><span class="b20-num">1</span><div class="b20-txt"><b>INFERNO (Pakao) · 34 pjevanja</b> — Dante s Vergilijem silazi kroz <b>9 krugova</b> pakla. Svaki krug za drugi grijeh (požuda, proždrljivost, gnjev, nasilje, prijevara, izdaja). Najpoznatije: <em>Paolo i Francesca</em> (5. krug — požuda) i <em>Lucifer na dnu</em>. Pakao je <b>obrnuti stožac</b> s Luciferom na dnu.</div></li>
+        <li class="b20-item"><span class="b20-num">1</span><div class="b20-txt"><b>INFERNO (Pakao) · 34 pjevanja</b> — Dante s Vergilijem silazi kroz <b>9 krugova</b> pakla. Svaki krug za drugi grijeh (požuda, proždrljivost, gnjev, nasilje, prijevara, izdaja). Najpoznatije: <em>Paolo i Francesca</em> (2. krug — požuda) i <em>Lucifer na dnu</em>. Pakao je <b>obrnuti stožac</b> s Luciferom na dnu.</div></li>
         <li class="b20-item"><span class="b20-num">2</span><div class="b20-txt"><b>PURGATORIO (Čistilište) · 33 pjevanja</b> — Dante s Vergilijem penje se <b>brdom čistilišta</b> kroz 7 terasa (po 7 smrtnih grijeha). Duše se čiste i pripremaju za Raj. Na vrhu je <em>Zemaljski raj</em> gdje Vergilije odlazi — pogan ne može u Raj. Dante nastavlja s <b>Beatrice</b>.</div></li>
         <li class="b20-item"><span class="b20-num">3</span><div class="b20-txt"><b>PARADISO (Raj) · 33 pjevanja</b> — Dante s Beatrice putuje kroz <b>9 nebeskih sfera</b> (Mjesec, Merkur, Venera...) do Empireuma, prebivališta Boga. Završava vizijom Presvetog Trojstva. <em>Najteže pjevanje za čitanje</em> jer je puno teologije.</div></li>
       </ol>

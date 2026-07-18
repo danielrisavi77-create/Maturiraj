@@ -213,8 +213,8 @@ export function AuthorCardCamus({context='l0'}) {
    [2] TIMELINE — Camus životopis
 ============================================================ */
 const CAMUS_EVENTS = [
-  {date:'1913.', major:true,  title:'Rođenje u Mondoviju, Alžir',                 desc:'Pied-noir — Francuz rođen u alžirskoj koloniji. Otac Henri Camus: radnik na farmi. Majka Catherine: polugluha, nepismena, radi kao čistačica. Siromaštvo od prvog dana.'},
-  {date:'1914.', major:false, title:'Otac gine na Marni — nikad ga nije upoznao', desc:'Henri Camus umire u Prvom svjetskom ratu. Camus odrasta bez oca — taj gubitak direktno oblikuje njegov odnos prema apsurdu i odsutnosti smisla.'},
+  {date:'1913.', major:true,  title:'Rođenje u Mondoviju, Alžir',                 desc:'Pied-noir — Francuz rođen u alžirskoj koloniji. Otac Lucien Camus: radnik na farmi. Majka Catherine: polugluha, nepismena, radi kao čistačica. Siromaštvo od prvog dana.'},
+  {date:'1914.', major:false, title:'Otac gine na Marni — nikad ga nije upoznao', desc:'Lucien Camus umire u Prvom svjetskom ratu. Camus odrasta bez oca — taj gubitak direktno oblikuje njegov odnos prema apsurdu i odsutnosti smisla.'},
   {date:'1930.', major:false, title:'Tuberkuloza — kraj sporta',                   desc:'Dijagnoza tuberkuloze u 17. Ne može normalno studirati, ne može igrati nogomet (bio je golman FC Alžira). Suočava se s vlastitom smrtnošću — postaje egzistencijalni mislilac od tinejdžerske dobi.'},
   {date:'1935.', major:false, title:'Komunistička partija — kratko',               desc:'Pristupa KP-u iz anti-fašizma, izbačen 1937. zbog kritike Moskve. Cijeli život ostaje anti-totalitarian: ni fašizam ni staljinizam. Socijalno angažiran, ideološki neovisni.'},
   {date:'1942.', major:true,  title:'Stranac + Mit o Sizifu — usred Occupationa', desc:'Piše i objavljuje Stranca (roman) i Mit o Sizifu (esej) iste godine, u nacistički okupiranom Parizu. Gallimard odmah objavljuje. Intelektualna Francuska govori samo o njemu.'},

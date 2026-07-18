@@ -5923,7 +5923,7 @@ const POJM_DATA2 = [
   {kat:'osobe', term:'Klement Ohridski', def:'Učenik Ćirila i Metoda. Pripisuje mu se stvaranje ćirilice (kraj 9. st., Bugarska).', tag:''},
   {kat:'osobe', term:'Bartol Kašić', def:'Hrvatski isusovac (1575.-1650.) iz Paga. Autor prve hrvatske gramatike (1604.) i prvog prijevoda Biblije na hrvatski.', star:true, tag:'NCVVO ⭐'},
   {kat:'osobe', term:'Faust Vrančić', def:'Hrvatski polihistor (1551.-1617.). Autor peterojezičnog rječnika (1595./1631.).', tag:''},
-  {kat:'osobe', term:'Pavao Ritter Vitezović', def:'Hrvatski povjesničar i jezikoslovac (1652.-1713.). Autor „Lexicon" (1740.) — etimološki rječnik.', tag:''},
+  {kat:'osobe', term:'Pavao Ritter Vitezović', def:'Hrvatski povjesničar i jezikoslovac (1652.-1713.). Autor „Lexicon latino-illyricum" (rukopis, oko 1700.-1710.) — etimološki rječnik.', tag:''},
   {kat:'osobe', term:'Joakim Stulli', def:'Hrvatski leksikograf (1730.-1817.). Autor najvećeg hrv. rječnika 18. st. — „Lexicon" (1801.).', tag:''},
   {kat:'osobe', term:'Ljudevit Gaj', def:'Vodilac Hrvatskog narodnog preporoda (1809.-1872.). Reformirao hrvatsku latinicu (1830.) — uveo dijakritičke znakove.', star:true, tag:'NCVVO ⭐'},
   {kat:'osobe', term:'Ivan Mažuranić', def:'Hrvatski književnik i političar (1814.-1890.). Potpisnik Bečkog dogovora 1850., prvi hrvatski ban-pučanin.', tag:''},

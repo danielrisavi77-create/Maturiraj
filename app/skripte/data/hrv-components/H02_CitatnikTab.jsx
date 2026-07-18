@@ -59,7 +59,7 @@ const CITATI = [
     work:"Inferno, III. pjevanje — natpis iznad vrata Pakla",
     txt:"„Lasciate ogne speranza, voi ch'intrate” — „Napustite svaku nadu, vi koji ulazite.”",
     txtHighlight:["Lasciate ogne speranza, voi ch'intrate"],
-    use:"Opis pakla, srednjovjekovna slika vječnog prokletstva, simbolička moć pisanja u kamenu. Latinska forma ovoga citata ušla je u svjetsku kulturu."
+    use:"Opis pakla, srednjovjekovna slika vječnog prokletstva, simbolička moć pisanja u kamenu. Talijanska forma ovoga citata ušla je u svjetsku kulturu."
   },
   {
     id:"h02c08", cat:"dante", diff:"advanced", tez:[3,4], mustKnow:false,
@@ -137,8 +137,8 @@ const CITATI = [
   },
   {
     id:"h02c15", cat:"latinski", diff:"advanced", tez:[5], mustKnow:false,
-    author:"Sv. Toma Akvinski",
-    work:"Summa Theologica, 13. st.",
+    author:"Sv. Anselmo Canterburyjski",
+    work:"Proslogion (oko 1078.)",
     txt:"„Vjera traži razumijevanje.” (Fides quaerens intellectum)",
     txtHighlight:["Vjera traži razumijevanje"],
     use:"Pokazati duh srednjovjekovne teologije — vjera i razum nisu neprijatelji, nego se nadopunjuju. Temelj skolastike. Dobra referenca za opis Danteovog svijeta."
