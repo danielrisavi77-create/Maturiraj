@@ -4310,7 +4310,7 @@ function pbxChallengeNext() {
   const choice = pool[Math.floor(Math.random() * pool.length)];
   const idx = PBX_CH_DATA.indexOf(choice);
   pbxCh = Object.assign({}, choice, {idx, solved});
-  document.getElementById('pbx-challenge-task').textContent = choice.task;
+  document.getElementById('pbx-challenge-task').textContent = choice.q || choice.task;
   const fb = document.getElementById('pbx-challenge-fb');
   if (fb) { fb.classList.remove('show', 'ok', 'ng'); fb.innerHTML = ''; }
 }
