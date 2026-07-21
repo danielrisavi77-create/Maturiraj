@@ -12,6 +12,7 @@ Svih šest flagova je fail-closed. Samo točna vrijednost stringa `true` uključ
 | `PARENT_LINKING_V2_ENABLED` | `false` | Rezerviran za budući consent-based Parent V2 | Trenutačno ne može aktivirati nijednu hard-disabled rutu |
 | `AI_ENDPOINTS_ENABLED` | `false` | Pet izravnih/provider AI ruta i preduvjet za osam agent ruta | Agent API dodatno zahtijeva `AGENT_API_ENABLED=true` |
 | `AGENT_API_ENABLED` | `false` | Agent API | Mora istodobno biti `AI_ENDPOINTS_ENABLED=true` |
+| `GAME_MODE_ENABLED` | `false` | Prijavljeni korisnici Hrvatskog i `/api/game/*` | Uključiti nakon DB migracije i content QA gatea |
 
 Efektivna pravila:
 
@@ -24,6 +25,7 @@ parent linking   = HARD DISABLED, env flagovi ga ne mogu uključiti
 child dashboard  = HARD DISABLED, env flagovi ga ne mogu uključiti
 direct/provider AI routes = AI_ENDPOINTS_ENABLED
 eight agent routes        = AI_ENDPOINTS_ENABLED && AGENT_API_ENABLED
+Croatian Game Mode        = GAME_MODE_ENABLED
 ```
 
 `AI_ENDPOINTS_ENABLED` trenutačno izravno štiti ovih pet ruta:

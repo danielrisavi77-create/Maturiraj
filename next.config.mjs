@@ -19,6 +19,9 @@
 //     route keeps the rest of the app as locked-down as before.
 const isDev = process.env.NODE_ENV !== 'production';
 const SIM_PATH = '/discere/matematika';
+const localSupabaseConnectSrc = isDev
+  ? ' http://127.0.0.1:54321 http://localhost:54321 ws://127.0.0.1:54321 ws://localhost:54321'
+  : '';
 
 const buildCSP = (allowEval) => [
   "default-src 'self'",
@@ -30,7 +33,8 @@ const buildCSP = (allowEval) => [
   // Google Fonts actual font files
   "font-src 'self' https://fonts.gstatic.com",
   // Supabase API + own API routes + GA beacons
-  "connect-src 'self' https://*.supabase.co https://*.supabase.io https://www.google-analytics.com https://plausible.io",
+  "connect-src 'self' https://*.supabase.co https://*.supabase.io https://www.google-analytics.com https://plausible.io"
+    + localSupabaseConnectSrc,
   // Canvas toDataURL → data: / video/audio blobs → blob:
   "img-src 'self' data: blob:",
   // No Flash, no plugins

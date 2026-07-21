@@ -117,6 +117,11 @@ export type EventName =
   | 'discere_exam_started'           // { subject, examKey, mode }
   | 'discere_exam_completed'         // { subject, examKey, pct, grade, mode }
   | 'discere_skripta_opened'         // { subject, slug, djelo }
+  | 'game_session_started'           // { subject, recipe, variant, question_count }
+  | 'game_answer_locked'             // { subject, mode, question_index }
+  | 'game_session_completed'         // { subject, variant, runner_correct, runner_total }
+  | 'game_post_check_completed'      // { subject, correct, total }
+  | 'game_next_activity_selected'    // { subject, type }
 
 export interface EventPayload {
   name: EventName

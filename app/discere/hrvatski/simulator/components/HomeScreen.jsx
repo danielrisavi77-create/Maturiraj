@@ -186,7 +186,7 @@ function YearGroup({year,examList,onExam}){
   );
 }
 
-function Home({onExam,onPractice,onPracticeList,onFilter,onErrors,onBookmarks,onStats,onBrowse,onEsej,onSazetak,onLektire,onPojmovnik,onImporter,onDDay,onDaily,onAdaptive,onWrapped,onAIPlan,customQs,onClearCustom,onShowDisclaimer,userData,toggles}){
+function Home({onExam,onPractice,onPracticeList,onFilter,onErrors,onBookmarks,onStats,onBrowse,onEsej,onSazetak,onLektire,onPojmovnik,onImporter,onDDay,onDaily,onAdaptive,onGameMode,onWrapped,onAIPlan,customQs,onClearCustom,onShowDisclaimer,userData,toggles}){
   const examList=Object.values(EXAMS).filter(ex=>Array.isArray(ex.qs));
   const[bookmarkCount]=useState(()=>{try{return Object.keys(JSON.parse(localStorage.getItem("discere_hrv_bookmarks")||"{}")).length;}catch(err){return 0;}});
   const[showTopics,setShowTopics]=useState(false);
@@ -322,6 +322,13 @@ function Home({onExam,onPractice,onPracticeList,onFilter,onErrors,onBookmarks,on
 
         /* ── Secondary actions — 2-col grid ── */
         e("div",{className:"hg-actions"},
+          onGameMode&&e("div",{...accBtn,className:"hg-action",onClick:onGameMode},
+            e("span",{className:"hg-act-ico"},"🎮"),
+            e("div",{className:"hg-act-body"},
+              e("div",{className:"hg-act-title"},"Game Mode"),
+              e("div",{className:"hg-act-sub"},"10 pitanja · oko 5 minuta")
+            )
+          ),
           e("div",{...accBtn,className:"hg-action",onClick:onFilter},
             e("span",{className:"hg-act-ico"},"🔍"),
             e("div",{className:"hg-act-body"},

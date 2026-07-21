@@ -64,6 +64,11 @@ function PrijavaContent() {
 
   const handleGoogle = async () => {
     setLoading(true); setError(null)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      setError('Google prijava nije konfigurirana za lokalni Supabase. Za lokalni test odaberi Registracija i koristi email i lozinku.')
+      setLoading(false)
+      return
+    }
     const { error: e } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(redirect)}` },

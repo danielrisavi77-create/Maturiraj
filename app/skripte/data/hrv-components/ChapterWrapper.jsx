@@ -2241,6 +2241,8 @@ function applySkriptaEmbed() {
 export default function ChapterWrapper({ chapterId, bodyHtml, stylesCss, scriptsJs }) {
   const scriptsExecutedRef = useRef(false);
   const wrapRef = useRef(null);
+  const gameModeChapter = String(chapterId || '').toLowerCase();
+  const hasChapterBoost = ['h17','h18','h19','h20','h21','h22','h25','h26'].includes(gameModeChapter);
 
   // ── Stilovi se renderiraju u JSX-u (SSR) — vidi return ispod. ────────────
   // Ranije su se injektirali client-side u useEffect-u, ali otkad se poglavlje
@@ -2385,6 +2387,14 @@ if(document.readyState!=='loading'){document.dispatchEvent(new Event('DOMContent
     <>
       {/* Stilovi poglavlja — SSR-ani da nema FOUC-a (vidi gornji komentar). */}
       <style dangerouslySetInnerHTML={{ __html: stylesCss || '' }} />
+      {hasChapterBoost && <aside style={{ maxWidth: 1180, margin: '12px auto', padding: '0 16px' }}>
+        <a
+          href={`/game?recipe=chapter_boost&chapter=${gameModeChapter}`}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 16px', borderRadius: 999, background: 'linear-gradient(135deg,#ff6b35,#f5c85b)', color: '#160805', fontWeight: 800, textDecoration: 'none', boxShadow: '0 8px 26px rgba(255,107,53,.24)' }}
+        >
+          🎮 Odigraj kratko ponavljanje
+        </a>
+      </aside>}
       <div
         ref={wrapRef}
         suppressHydrationWarning

@@ -383,11 +383,11 @@ export const qs = [
       }
     ,
       {
-        txt: "Provjera: 24·(36·160)/(40·120)=24·4800/4800... Direktno: kg=24·(36/40)·(160/120)=24·0,9·1,333=28,8 ✗... zapravo B=26: kg proportional to m·širina = 36·160/(40·120)·24=24·(6/5)·(4/3)/... B=26 treba re-check.",
+        txt: "Provjera: 24·(36·160)/(40·120) = 24·5760/4800 = 24·1,2 = 28,8 kg ✓. Isto direktno: 24·(36/40)·(160/120) = 24·0,9·1,333… = 28,8 kg. Odgovor D.",
         note: "verifikacija"
       },
       {
-        txt: "A (20,8) — griješe u proporciji: (36·160)/(40·120)=1,2·1,333... ne 1,2. D (28,8) — previše faktora. C (28) — blizu ali krivo. Ispravno: 24·(36/40)·(160/120)=24·0,9·1,333=28,8... ali B=26 je točan?",
+        txt: "A (20,8) i B (26) — griješe u kombiniranju omjera (ne pomnože oba faktora ispravno). C (28) — zaokruže 1,333 na 1,3 pa dobiju 24·0,9·1,3≈28. Ispravno: 24·(36/40)·(160/120)=24·0,9·1,333…=28,8 kg → D.",
         note: "diagnostika"
       }],
     why: [

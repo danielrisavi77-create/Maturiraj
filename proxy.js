@@ -32,7 +32,7 @@ export async function proxy(request) {
   const { data: { user } } = await supabase.auth.getUser()
 
   // ── Rute koje zahtijevaju samo prijavu (besplatni i placeni) ───
-  const authRequired = ['/plan-ucenja/dashboard']
+  const authRequired = ['/plan-ucenja/dashboard', '/game']
   const isAuthRequired = authRequired.some(route =>
     request.nextUrl.pathname.startsWith(route)
   )

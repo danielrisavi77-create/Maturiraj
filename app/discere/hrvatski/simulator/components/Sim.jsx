@@ -503,6 +503,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
       e("div",{style:{marginTop:8,textAlign:"center",display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}},
         e("button",{className:"btn btn-g",onClick:onExit},"← Na početak"),
         wrongAutoQ.length>0&&onPracticeErrors&&e("button",{className:"btn btn-red",onClick:()=>onPracticeErrors(wrongAutoQ,exam)},"🔁 Vježbaj greške ("+wrongAutoQ.length+")"),
+        wrongAutoQ.length>0&&e("button",{className:"btn btn-gold",onClick:()=>window.location.assign('/game?recipe=mistake_review')},"🎮 Ponovi pogreške u Game Modeu"),
         e("button",{className:"btn btn-gold",onClick:()=>{onExit();setTimeout(()=>document.getElementById("exams")?.scrollIntoView({behavior:"smooth"}),100);}},"Pokušaj drugi ispit →")
       ),
       e("div",{style:{marginTop:24}},

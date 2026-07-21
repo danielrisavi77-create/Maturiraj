@@ -7,7 +7,7 @@ import confetti from 'canvas-confetti';
 import { EXAMS, ESEJI, SAZECI } from './hrvatskiSimulatorData';
 import './hrvatski-simulator-scoped.css';
 import { e, chk, calcXpGain, useUserData, updateStreak, playSuccessSound } from './utils/helpers';
-import { sm2Update, generateStrategyTips, calcTopicMastery, getDueReviews, calcTopicWeights, selectWarmupQuestions, selectAdaptiveMix } from './utils/pedagogy';
+import { sm2Update, generateStrategyTips, calcTopicMastery, getDueReviews, calcTopicWeights, selectWarmupQuestions, selectAdaptiveMix } from '@/lib/learning/hrv-engine';
 import { checkNewAchievements } from './utils/achievements';
 import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
 import { saveSimResult } from '@/lib/sim-progress';
@@ -401,6 +401,10 @@ function App(){
         answers:result.answers||{}, qTimes:result.qTimes||{},
         examMode:!!result.examMode, topic_breakdown:topicBreakdown, errorTags:[],
       }, undefined, 'hrv');
+      fetch('/api/game/discere-attempts',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({attemptId:crypto.randomUUID(),examKey:result.examKey,answers:result.answers||{},qTimes:result.qTimes||{},examMode:!!result.examMode})
+      }).catch(()=>{});
     } }catch(e){}
   }
 
@@ -532,7 +536,7 @@ function App(){
     )},
     e("div",{key:screen,className:"screen-slide"},
     screen==="upute"&&e(UputeModal,{onClose:()=>{setScreen(prevScreen);window.scrollTo(0,0);}}),
-    screen==="home"&&e(Home,{key:screen,onExam:goModeSelect,onPractice:goPractice,onFilter:goFilter,onErrors:goErrors,onBookmarks:goBookmarks,onStats:goStats,onBrowse:goBrowse,onEsej:goEsejList,onSazetak:goSazetakList,onShowDisclaimer:()=>setShowDisclaimer(true),onPracticeList:goPracticeList,onLektire:goLektire,onPojmovnik:()=>setShowPojmovnik(true),onImporter:()=>setShowImporter(true),onDDay:()=>setShowDDay(true),onDaily:goDaily,onAdaptive:goAdaptive,onWrapped:()=>setShowWrapped(true),onAIPlan:()=>setShowPlan(true),customQs,onClearCustom:clearCustomQs,userData,toggles}),
+    screen==="home"&&e(Home,{key:screen,onExam:goModeSelect,onPractice:goPractice,onFilter:goFilter,onErrors:goErrors,onBookmarks:goBookmarks,onStats:goStats,onBrowse:goBrowse,onEsej:goEsejList,onSazetak:goSazetakList,onShowDisclaimer:()=>setShowDisclaimer(true),onPracticeList:goPracticeList,onLektire:goLektire,onPojmovnik:()=>setShowPojmovnik(true),onImporter:()=>setShowImporter(true),onDDay:()=>setShowDDay(true),onDaily:goDaily,onAdaptive:goAdaptive,onGameMode:()=>window.location.assign('/game'),onWrapped:()=>setShowWrapped(true),onAIPlan:()=>setShowPlan(true),customQs,onClearCustom:clearCustomQs,userData,toggles}),
     screen==="modeselect"&&e(ModeSelect,{key:screen,examKey:pendingExamKey,onExamMode:goExamMode,onPractice:goPractice,onBack:goHome,onEsej:goEsej,onSazetak:goSazetak}),
     screen==="filter"&&e(TopicFilterScreen,{key:screen,onStart:goFilterSession,onBack:goHome,userData}),
     screen==="errors"&&e(ErrorsScreen,{key:screen,userData,onStart:goErrorSession,onBack:goHome}),
