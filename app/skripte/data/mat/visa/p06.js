@@ -1246,12 +1246,12 @@ const _bodyHTML = `<div class="shell">
       <p style="font-size:13px;color:var(--t2);margin-bottom:12px;font-family:var(--mono)">f(x)=1/x, g(x)=x−1. Učenik tvrdi D(f∘g)=D(g)=ℝ:</p>
       <div class="bug-task">D(f∘g) = <span class="wrong">ℝ</span></div>
       <div class="bug-opts">
-        <div class="bug-opt" onclick="bug(this,'b4',false,'b4e')">A) Točno, domena kompozicije jednaka je domeni g</div>
-        <div class="bug-opt" onclick="bug(this,'b4',true,'b4e')">B) Greška: (f∘g)(x)=1/(x−1) nije def. za x=1 → D(f∘g)=ℝ\{1}</div>
-        <div class="bug-opt" onclick="bug(this,'b4',false,'b4e')">C) Greška: D(f∘g)=D(f)=ℝ\{0}</div>
-        <div class="bug-opt" onclick="bug(this,'b4',false,'b4e')">D) Greška: D(f∘g)=(0,+∞)</div>
+        <div class="bug-opt" onclick="bug(this,'b4d',false,'b4de')">A) Točno, domena kompozicije jednaka je domeni g</div>
+        <div class="bug-opt" onclick="bug(this,'b4d',true,'b4de')">B) Greška: (f∘g)(x)=1/(x−1) nije def. za x=1 → D(f∘g)=ℝ\{1}</div>
+        <div class="bug-opt" onclick="bug(this,'b4d',false,'b4de')">C) Greška: D(f∘g)=D(f)=ℝ\{0}</div>
+        <div class="bug-opt" onclick="bug(this,'b4d',false,'b4de')">D) Greška: D(f∘g)=(0,+∞)</div>
       </div>
-      <div class="bug-expl" id="b4e"></div>
+      <div class="bug-expl" id="b4de"></div>
     </div>
   </div>
 
@@ -2105,7 +2105,7 @@ var ALL_QUESTIONS=[
    proof:['−f(x): negira svaki y','y → −y','refleksija na x-os']},
   {id:'q11',topic:'domena',meta:'A razina · kombinirana domena',
    text:'Domena f(x) = √(x+3) / (x²−1) je:',
-   opts:[{t:'x ≥ −3',ok:false},{t:'⟨−3,1) ∪ (1,+∞) bez −1',ok:false},{t:'⟨−3,−1) ∪ (−1,1) ∪ (1,+∞)',ok:true},{t:'(−3,+∞)',ok:false}],
+   opts:[{t:'x ≥ −3',ok:false},{t:'⟨−3,1) ∪ (1,+∞)',ok:false},{t:'⟨−3,−1) ∪ (−1,1) ∪ (1,+∞)',ok:true},{t:'(−3,+∞)',ok:false}],
    c:'✓ Točno. √: x≥−3. Razlomak: x²−1=(x−1)(x+1)≠0→x≠±1. Presjek: ⟨−3,−1)∪(−1,1)∪(1,+∞).',
    w:'✗ Netočno. Dva uvjeta: x+3≥0→x≥−3, i x²−1≠0→x≠1 i x≠−1. Presjek sva tri!',
    proof:['Uvjet 1: x+3≥0 → x≥−3','Uvjet 2: x²−1≠0 → x≠±1','Presjek: ⟨−3,−1)∪(−1,1)∪(1,+∞)']},

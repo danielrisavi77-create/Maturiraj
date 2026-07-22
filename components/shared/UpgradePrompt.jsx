@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 const PLAN_CONFIG = {
   starter: {
     emoji:  '⭐',
-    name:   'Starter',
+    name:   'Standard',
     price:  '6,99€/mj',
     color:  'rgba(255,107,43,1)',
     colorA: 'rgba(255,107,43,.18)',

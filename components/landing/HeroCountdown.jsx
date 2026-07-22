@@ -1,12 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import { MATURA_DATE } from "@/lib/dashboard/helpers";
 
 export default function HeroCountdown() {
   const [daysLeft, setDaysLeft] = useState(null);
 
   useEffect(() => {
     function calc() {
-      const diff = Math.ceil((new Date("2026-06-01") - new Date()) / 864e5);
+      const diff = Math.ceil((MATURA_DATE - new Date()) / 864e5);
       setDaysLeft(Math.max(0, diff));
     }
     calc();
@@ -24,7 +25,7 @@ export default function HeroCountdown() {
         {daysLeft}
       </span>
       <span style={{fontSize:12,color:"var(--muted)"}}>
-        dana do mature &middot; 1. lipnja 2026.
+        dana do mature &middot; ljetni rok {MATURA_DATE.getFullYear()}.
       </span>
     </div>
   );

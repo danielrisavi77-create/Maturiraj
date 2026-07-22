@@ -238,6 +238,12 @@ export default function DashboardHub() {
             <CardCta label={isPaid ? 'Otvori Discere →' : 'Otključaj simulator →'} />
           </HubCard>
 
+          <HubCard icon="🎮" title="Game Mode · Hrvatski" accent="#ff6b35" onClick={() => router.push('/game')}>
+            <div style={{ fontSize: 13, color: 'var(--text)', fontWeight: 600 }}>Brzo ponavljanje iz Discere banke.</div>
+            <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>10 pitanja · post-check · pristupačni način</div>
+            <CardCta label="Pokreni rundu →" />
+          </HubCard>
+
           {/* Skripte */}
           <HubCard icon="📖" title="Skripte" accent="var(--green)" onClick={() => router.push('/skripte')}>
             {resumeChapter ? (

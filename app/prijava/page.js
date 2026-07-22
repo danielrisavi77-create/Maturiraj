@@ -64,6 +64,11 @@ function PrijavaContent() {
 
   const handleGoogle = async () => {
     setLoading(true); setError(null)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      setError('Google prijava nije konfigurirana za lokalni Supabase. Za lokalni test odaberi Registracija i koristi email i lozinku.')
+      setLoading(false)
+      return
+    }
     const { error: e } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(redirect)}` },
@@ -200,6 +205,8 @@ function PrijavaContent() {
             <input
               type="text"
               placeholder="Ime i prezime"
+              aria-label="Ime i prezime"
+              autoComplete="name"
               value={name}
               onChange={e => setName(e.target.value)}
               style={inputStyle}
@@ -211,6 +218,8 @@ function PrijavaContent() {
             <input
               type="email"
               placeholder="Email djeteta za povezivanje"
+              aria-label="Email djeteta za povezivanje"
+              autoComplete="off"
               value={childEmail}
               onChange={e => setChildEmail(e.target.value)}
               style={inputStyle}
@@ -221,6 +230,8 @@ function PrijavaContent() {
           <input
             type="email"
             placeholder="Email adresa"
+            aria-label="Email adresa"
+            autoComplete="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             style={inputStyle}
@@ -230,6 +241,8 @@ function PrijavaContent() {
           <input
             type="password"
             placeholder="Lozinka"
+            aria-label="Lozinka"
+            autoComplete={mode === 'register' ? 'new-password' : 'current-password'}
             value={password}
             onChange={e => setPassword(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleEmailAuth()}

@@ -2041,7 +2041,7 @@ var ALL_QUESTIONS=[
    proof:['Uvjet: 3x−6 > 0','3x > 6','x > 2 → D=(2,+∞)']},
   {id:'q5',topic:'pravila',meta:'pravilo množenja',
    text:'log₃(27) + log₃(3) = ?',
-   opts:[{t:'log₃(30)',ok:false},{t:'4',ok:true},{t:'9',ok:false},{t:'log₃(81)',ok:false}],
+   opts:[{t:'log₃(30)',ok:false},{t:'4',ok:true},{t:'9',ok:false},{t:'log₃(9)',ok:false}],
    c:'✓ Točno. 3+1=4. Ili: log₃(27·3)=log₃(81)=4.',
    w:'✗ Netočno. log₃(27)=3, log₃(3)=1. Zbroj=4. Ili: log₃(81)=4 (81=3⁴).',
    proof:['log₃(27)=3, log₃(3)=1','3+1=4','Ili: log₃(27·3)=log₃(81)=4']},

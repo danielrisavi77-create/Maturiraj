@@ -432,7 +432,7 @@ const BODY_HTML = `<a href="#main" class="skip-link">Preskači na sadržaj</a>
             <tr><td><b>1812.–1870.</b></td><td>Charles Dickens</td></tr>
             <tr><td><b>1821.–1881.</b></td><td><strong>Fjodor Dostojevski</strong></td></tr>
             <tr><td><b>1828.–1910.</b></td><td>Lav Tolstoj</td></tr>
-            <tr><td><b>1829.–1884.</b></td><td>Gustave Flaubert</td></tr>
+            <tr><td><b>1821.–1880.</b></td><td>Gustave Flaubert</td></tr>
             <tr><td><b>1830.–1895.</b></td><td>Realizam kao epoha</td></tr>
             <tr><td><b>1830.</b></td><td>Stendhal · <em>Crveno i crno</em></td></tr>
             <tr><td><b>1835.</b></td><td>Balzac · <em>Otac Goriot</em></td></tr>
@@ -1685,7 +1685,7 @@ const BODY_HTML = `<a href="#main" class="skip-link">Preskači na sadržaj</a>
         </div>
         <div class="cit-txt">„Sve je istina."</div>
         <div class="cit-tez-row"><button type="button" class="cit-tez" onclick="citFilterByTez(4, this)">T4</button></div>
-        <div class="cit-use"><b>Kada koristiti</b> <em>motto realizma</em>. Balzac, utemeljitelj realizma. <b>Dostojevski čita Balzaca</b> — piše diplomski rad o <em>Ocu Goriotu</em>. Za povezivanje H07 s francuskim realizmom. Definicija poetike epohe.</div>
+        <div class="cit-use"><b>Kada koristiti</b> <em>motto realizma</em>. Balzac, utemeljitelj realizma. <b>Dostojevski čita Balzaca</b> — prevodi njegov roman <em>Eugénie Grandet</em> (1844., prvi Dostojevskijev književni rad). Za povezivanje H07 s francuskim realizmom. Definicija poetike epohe.</div>
       </div>
 
       <div class="cit-card" data-cat="kontekst" data-cit-id="h07c30" data-diff="advanced" data-tez="4">

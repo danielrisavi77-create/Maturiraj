@@ -952,7 +952,7 @@ const BODY_HTML = `<div class="read-progress" aria-hidden="true"><div class="rea
         <thead><tr><th>Element</th><th>Činjenica</th></tr></thead>
         <tbody>
           <tr><td><strong>Godina nastanka</strong></td><td>Napisan ~1845.–1846. · Objavljen <strong>1846.</strong></td></tr>
-          <tr><td><strong>Mjesto objave</strong></td><td>Almanah <em>Iskra</em> (Zadar)</td></tr>
+          <tr><td><strong>Mjesto objave</strong></td><td>Almanah <em>Iskra</em> (Zagreb)</td></tr>
           <tr><td><strong>Povod</strong></td><td>Narudžba Dimitrija Demetra za Iskru</td></tr>
           <tr><td><strong>Povijesni predmet</strong></td><td>Pogibija Smail-age Čengića u listopadu 1840.</td></tr>
           <tr><td><strong>Vrsta djela</strong></td><td>Romantičarski <strong>spjev</strong> (ne ep, ne balada) — hibridna forma</td></tr>

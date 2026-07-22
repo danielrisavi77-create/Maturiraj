@@ -28,12 +28,12 @@ const PLANS = [
     ],
   },
   {
-    id:"starter", name:"Starter", tag:null,
+    id:"starter", name:"Standard", tag:null,
     prices:{ mj:"9,99", "3mj":"8,99", "6mj":"7,99", god:"6,99" },
     totals:{ mj:null, "3mj":"26,97", "6mj":"47,94", god:"83,88" },
     per:"/mj",
     accent:"var(--orange)", accentD:"rgba(255,107,43,.08)", accentBdr:"rgba(255,107,43,.22)",
-    cta:"Počni s Starterom", ctaCls:"bs",
+    cta:"Počni sa Standardom", ctaCls:"bs",
     tagline:"Za jedan predmet.",
     feats:[
       {ok:true,  t:"Sve iz Besplatnog"},
@@ -54,7 +54,7 @@ const PLANS = [
     cta:"Odaberi Pro", ctaCls:"bp",
     tagline:"Kompletna priprema.",
     feats:[
-      {ok:true, t:"Sve iz Startera"},
+      {ok:true, t:"Sve iz Standarda"},
       {ok:true, t:"Discere — svi predmeti + prijemni"},
       {ok:true, t:"AI Profesor 24/7 — razgovorni chat"},
       {ok:true, t:"Roditeljski uvid"},

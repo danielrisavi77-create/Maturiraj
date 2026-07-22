@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
+import { useAuth } from '@/lib/hooks/useAuth'
 
 const PRICING_CSS = `
   .pricing-nav {
@@ -524,20 +524,13 @@ function BackButton() {
 }
 
 export default function PretplataPage() {
-  const [tier, setTier] = useState('free')
-
-  useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data }) => {
-      const serverTier = data?.user?.user_metadata?.tier
-      if (serverTier) {
-        setTier(serverTier)
-        try { localStorage.setItem('mt.tier', serverTier) } catch (e) {}
-      } else {
-        try { setTier(localStorage.getItem('mt.tier') || 'free') } catch (e) {}
-      }
-    })
-  }, [])
+  // Trenutni plan iz kanonskog izvora entitlementa (profiles.plan_type preko useAuth) —
+  // fail-closed + validacija isteka (pro_expires_at). Prije se čitao user_metadata.tier
+  // koji se NIGDJE u aplikaciji ne upisuje, uz fallback na localStorage 'mt.tier', pa su
+  // se stvarni pretplatnici prikazivali kao 'free' (i mogli ponovno kupovati isti plan).
+  // planType je null | 'starter' | 'pro'; ova stranica koristi 'standard' za 'starter'.
+  const { planType } = useAuth()
+  const tier = planType === 'pro' ? 'pro' : planType === 'starter' ? 'standard' : 'free'
 
   async function handleSubscribe(targetTier) {
     if (typeof window !== 'undefined' && window.dataLayer) {

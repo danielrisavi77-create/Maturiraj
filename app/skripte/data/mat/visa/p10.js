@@ -727,7 +727,7 @@ const _bodyHTML = `<div class="shell">
     <div class="cr"><div class="ck i">Udaljenost T(x₀,y₀) od pravca ax+by+c=0</div><div class="cv">d=|ax₀+by₀+c|/√(a²+b²) — apsolutna vrijednost u brojevniku!</div></div>
     <div class="cr"><div class="ck a">Jednadžba kružnice</div><div class="cv">(x−p)²+(y−q)²=r² · centar S(p,q), polumjer r. Opći: x²+y²+Dx+Ey+F=0.</div></div>
     <div class="cr"><div class="ck v">Pravac i kružnica</div><div class="cv">Uvrsti pravac u kružnicu → kvadratna → D>0: 2 presjeka, D=0: tangenta, D&lt;0: nema.</div></div>
-    <div class="cr"><div class="ck r">Tangenta iz točke</div><div class="cv">Tangenta ⊥ polumjer u T. Jednadžba: x₀(x−p)+y₀(y−q)=r² (za točku na kružnici).</div></div>
+    <div class="cr"><div class="ck r">Tangenta iz točke</div><div class="cv">Tangenta ⊥ polumjer u T. Jednadžba: (x₀−p)(x−p)+(y₀−q)(y−q)=r² (za točku na kružnici).</div></div>
     <div class="cr"><div class="ck r">Zamka</div><div class="cv">Iz općeg oblika x²+y²+Dx+Ey+F=0: centar je (−<span class="frac"><span class="num">D</span><span class="den">2</span></span>,−<span class="frac"><span class="num">E</span><span class="den">2</span></span>), ne (D,E)!</div></div>
   </div>
   <div class="nav-row"><button onclick="navigateChapter('p09')" class="nb">← P09 · Trigonometrija</button><span class="nb primary" onclick="sw(1)">Uči detaljno →</span></div>

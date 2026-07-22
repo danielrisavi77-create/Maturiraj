@@ -2015,14 +2015,9 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     </div>
     <div class="pbx-info" id="pbx-info">Pomakni slidere.</div>
     <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov</button>
+      
     </div>
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head"><span class="pbx-challenge-lbl">🎯 Izazov</span><span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong>/<strong id="pbx-ch-tot">0</strong></span></div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni".</div>
-      <div style="display:flex;gap:8px"><button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button><button class="pbx-btn" onclick="pbxChallengeNext()">Novi →</button></div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
+    
   </div>
 </div>
 
@@ -2400,7 +2395,7 @@ const GON_DATA=[
 const DRILL_DATA=[
   {q:'Razvij: (x+3)².',opts:['x²+6x+6','x²+3x+9','x²+6x+9','x²+9'],ok:2,diff:'easy',exp:'a²+2ab+b²=x²+6x+9.'},
   {q:'Faktoriziraj: x²−16.',opts:['x(x−16)','(x−4)²','(x+8)(x−2)','(x+4)(x−4)'],ok:3,diff:'easy',exp:'Razlika kvadrata: (x+4)(x−4).'},
-  {q:'Faktoriziraj: x²+5x+6.',opts:['(x+3)(x+2)','(x+1)(x+6)','(x+6)(x−1)','(x+2)(x+3)'],ok:3,diff:'easy',exp:'p+q=5, p·q=6 → (x+2)(x+3).'},
+  {q:'Faktoriziraj: x²+5x+6.',opts:['(x−2)(x−3)','(x+1)(x+6)','(x+6)(x−1)','(x+2)(x+3)'],ok:3,diff:'easy',exp:'p+q=5, p·q=6 → (x+2)(x+3).'},
   {q:'Razvij: (x−2)².',opts:['x²−4x+4','x²+4x+4','x²−4','x²−2x+4'],ok:0,diff:'easy',exp:'a²−2ab+b²=x²−4x+4.'},
   {q:'Zajednički faktor: 6x²+4x.',opts:['x(6x+4)','2(3x²+2x)','2x(3x+2)','6x(x+4)'],ok:2,diff:'easy',exp:'NZD=2x: 2x(3x+2).'},
   {q:'(a+b)(a−b)=?',opts:['a²−2ab+b²','2ab','a²−b²','a²+b²'],ok:2,diff:'easy',exp:'Razlika kvadrata.'},
@@ -2408,8 +2403,8 @@ const DRILL_DATA=[
   {q:'Faktoriziraj: 3x²−12.',opts:['3(x+2)(x−2)','3(x−4)(x+1)','3(x²−4)','(3x−2)(x+6)'],ok:0,diff:'easy',exp:'Izvuci 3: 3(x²−4). Zatim razlika kvadrata: 3(x+2)(x−2).'},
   {q:'Razvij: (2x+1)².',opts:['4x²+2x+1','2x²+4x+1','4x²+1','4x²+4x+1'],ok:3,diff:'easy',exp:'4x²+4x+1.'},
   {q:'Faktoriziraj: 4x²−9.',opts:['4(x²−9/4)','(4x+3)(x−3)','(2x−3)²','(2x+3)(2x−3)'],ok:3,diff:'easy',exp:'(2x)²−3²=(2x+3)(2x−3).'},
-  {q:'Faktoriziraj: x²+6x+9.',opts:['(x+6)(x+3)','(x+9)(x−3)','(x+3)²','(x+3)(x+3)'],ok:2,diff:'med',exp:'Potpuni kvadrat (x+3)².'},
-  {q:'Faktoriziraj: 2x²+5x+3.',opts:['(x+1)(2x+3)','(x+3)(2x+1)','(2x+1)(x+3)','2(x+1)(x+3/2)'],ok:0,diff:'med',exp:'D=1. x₁=−1, x₂=−3/2. 2(x+1)(x+3/2)=(x+1)(2x+3).'},
+  {q:'Faktoriziraj: x²+6x+9.',opts:['(x+6)(x+3)','(x+9)(x−3)','(x+3)²','(x−3)²'],ok:2,diff:'med',exp:'Potpuni kvadrat (x+3)².'},
+  {q:'Faktoriziraj: 2x²+5x+3.',opts:['(x+1)(2x+3)','(x+3)(2x+1)','(2x+3)(x−1)','(2x−1)(x+3)'],ok:0,diff:'med',exp:'D=1. x₁=−1, x₂=−3/2 → (x+1)(2x+3)=2x²+5x+3.'},
   {q:'Faktoriziraj: x³−8.',opts:['(x−2)³','(x−2)(x²+2x+4)','(x−2)(x+2)²','x(x²−8)'],ok:1,diff:'med',exp:'Razlika kubova: (x−2)(x²+2x+4).'},
   {q:'Skrati: (x²−9)/(x+3).',opts:['x+3','x−3','(x−3)/(x+3)','x²−3'],ok:1,diff:'med',exp:'(x+3)(x−3)/(x+3)=x−3.'},
   {q:'Faktoriziraj: x³+x²+x+1.',opts:['(x+1)(x²+1)','(x+1)(x+1)²','x²(x+1)','(x+1)³'],ok:0,diff:'med',exp:'Grupiranje: x²(x+1)+(x+1)=(x²+1)(x+1).'},
@@ -2431,7 +2426,7 @@ const HINTS=['a²+2ab+b².','(x+4)(x−4).','p+q=5,p·q=6.','a²−2ab+b².','2x
 const QUIZ_DATA=[
   {q:'Razvij: (x+4)².',opts:['x²+4x+16','x²+16','x²+8x+8','x²+8x+16'],ok:3,e:'x²+8x+16.'},
   {q:'Faktoriziraj: x²−25.',opts:['x(x−25)','(x−5)²','(x+5)(x−5)','(x+5)²'],ok:2,e:'Razlika kvadrata.'},
-  {q:'Faktoriziraj: x²+7x+12.',opts:['(x+4)(x+3)','(x+2)(x+6)','(x+12)(x+1)','(x+3)(x+4)'],ok:3,e:'3+4=7, 3·4=12.'},
+  {q:'Faktoriziraj: x²+7x+12.',opts:['(x+2)(x+5)','(x+2)(x+6)','(x+12)(x+1)','(x+3)(x+4)'],ok:3,e:'3+4=7, 3·4=12.'},
   {q:'Skrati: (x²−x)/(x).',opts:['1','x+1','x−1','x'],ok:2,e:'x(x−1)/x=x−1.'},
   {q:'x³+8=(x+2)·?',opts:['x²−4','x²−2x+4','x²+4','x²+2x+4'],ok:1,e:'Zbroj kubova: (x+2)(x²−2x+4).'},
   {q:'3. člen razvoja (x+1)³.',opts:['x²','3x','3x²','x³'],ok:1,e:'C(3,2)·x·1²=3x.'},

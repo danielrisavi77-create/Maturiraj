@@ -2209,21 +2209,10 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     </div>
     
     <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov (12 taskova)</button>
+      
     </div>
     
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head">
-        <span class="pbx-challenge-lbl">🎯 Izazov</span>
-        <span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong> / <strong id="pbx-ch-tot">0</strong></span>
-      </div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni" da krene izazov.</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button>
-        <button class="pbx-btn" onclick="pbxChallengeNext()">Novi izazov →</button>
-      </div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
+    
   </div>
 </div>
 <!-- ═══ PREMIUM GATE 2: MATURSKI TEST GENERATOR ═══ -->
@@ -3156,7 +3145,7 @@ const DRILL_DATA = [
     "q": "(2/5) · (5/8) = ?",
     "opts": [
       "10/13",
-      "2/8",
+      "3/8",
       "1/4",
       "5/40"
     ],
@@ -3240,13 +3229,13 @@ const DRILL_DATA = [
     "q": "0.45 = ?",
     "opts": [
       "9/20",
-      "45/100",
-      "0.45/1",
+      "9/25",
+      "20/9",
       "4/9"
     ],
     "ok": 0,
     "diff": "med",
-    "exp": "45/100 = 9/20 (NZD = 5)."
+    "exp": "0.45 = 45/100 = 9/20 (NZD = 5)."
   },
   {
     "q": "150‰ je koji postotak?",
@@ -3386,7 +3375,7 @@ const QUIZ_DATA = [
       "1/4",
       "1/2",
       "8/16",
-      "15/60"
+      "1/5"
     ],
     "ok": 0,
     "exp": "(5·3)/(6·10) = 15/60 = 1/4."

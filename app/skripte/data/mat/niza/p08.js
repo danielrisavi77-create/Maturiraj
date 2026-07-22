@@ -2035,17 +2035,9 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     </div>
     <div class="pbx-info" id="pbx-info">Pomakni slidere da mijenjaj pravac.</div>
     <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov (12 taskova)</button>
+      
     </div>
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head"><span class="pbx-challenge-lbl">🎯 Izazov</span><span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong> / <strong id="pbx-ch-tot">0</strong></span></div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni" da krene izazov.</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button>
-        <button class="pbx-btn" onclick="pbxChallengeNext()">Novi izazov →</button>
-      </div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
+    
   </div>
 </div>
 
@@ -2109,7 +2101,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     <div class="bug-task">y-isječak <span class="wrong">= (5,0)</span></div>
     <div class="bug-opts" id="bug3-opts">
       <div class="bug-opt" onclick="bugAns(3,0,this)">A) Točno — l=5 je y-isječak pa je točka (5,0).</div>
-      <div class="bug-opt" onclick="bugAns(3,1,this)">B) Greška — y-isječak je točka gdje pravac sijece Y-os (x=0): f(0)=5. Dakle (0,5), ne (5,0). Točka (5,0) je nultočka (isječak x-osi): y=0 → x=5/2=2.5, ne 5.</div>
+      <div class="bug-opt" onclick="bugAns(3,1,this)">B) Greška — y-isječak je točka gdje pravac sijece Y-os (x=0): f(0)=5. Dakle (0,5), ne (5,0). Nultočka (isječak x-osi) je gdje je y=0: 0=2x+5 → x=−5/2=−2.5, ne 5.</div>
       <div class="bug-opt" onclick="bugAns(3,2,this)">C) Y-isječak ne postoji jer pravac nije paralelan s y-osi.</div>
     </div>
     <div class="bug-expl" id="bug3-exp"></div>

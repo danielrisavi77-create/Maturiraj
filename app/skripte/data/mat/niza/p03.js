@@ -2015,14 +2015,9 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     </div>
     <div class="pbx-info" id="pbx-info">Pomakni slider baze a.</div>
     <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov</button>
+      
     </div>
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head"><span class="pbx-challenge-lbl">🎯 Izazov</span><span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong>/<strong id="pbx-ch-tot">0</strong></span></div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni".</div>
-      <div style="display:flex;gap:8px"><button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button><button class="pbx-btn" onclick="pbxChallengeNext()">Novi →</button></div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
+    
   </div>
 </div>
 
@@ -2687,7 +2682,7 @@ const GON_DATA=[
 ];
 const DRILL_DATA=[
   {q:'2³·2²=?',opts:['2⁶=64','4⁵','2⁵=32','2⁵=16'],ok:2,diff:'easy',exp:'Zbroj eksponenata: 3+2=5.'},
-  {q:'(3²)³=?',opts:['3⁵','9³','3⁶=729','3⁸'],ok:2,diff:'easy',exp:'Potencija potencije: 2·3=6.'},
+  {q:'(3²)³=?',opts:['3⁵','9²','3⁶=729','3⁸'],ok:2,diff:'easy',exp:'Potencija potencije: 2·3=6.'},
   {q:'a⁰=?',opts:['0','1','a','−1'],ok:1,diff:'easy',exp:'Nulti eksponent = 1 (za a≠0).'},
   {q:'4^(1/2)=?',opts:['√2','4','8','2'],ok:3,diff:'easy',exp:'√4=2.'},
   {q:'log₂(16)=?',opts:['8','2','16','4'],ok:3,diff:'easy',exp:'2⁴=16.'},
@@ -2704,9 +2699,9 @@ const DRILL_DATA=[
   {q:'log₂(4·8)=?',opts:['5','6','12','7'],ok:0,diff:'med',exp:'log₂(4·8)=log₂(32)=5. (Pozor: 4+8=12 je zbroj baza, ne odgovor — log mijenja produkt u zbroj eksponenata.)'},
   {q:'Rijesi: log₂(x)=4.',opts:['x=8','x=16','x=4','x=2'],ok:1,diff:'med',exp:'x=2⁴=16.'},
   {q:'(1/2)ˣ=8. x=?',opts:['x=−3','x=3','x=−8','x=1/3'],ok:0,diff:'med',exp:'(1/2)ˣ=2⁻ˣ=8=2³→−x=3→x=−3.'},
-  {q:'√12·√3=?',opts:['√36=6','√15','6','12'],ok:2,diff:'med',exp:'√(12·3)=√36=6.'},
+  {q:'√12·√3=?',opts:['36','√15','6','12'],ok:2,diff:'med',exp:'√(12·3)=√36=6.'},
   {q:'log₅(25)=?',opts:['5','10','√5','2'],ok:3,diff:'med',exp:'5²=25.'},
-  {q:'Racionaliziraj: 2/(√5−1).',opts:['(√5+1)/2','√5+1','2(√5+1)/4','(√5−1)/2'],ok:0,diff:'hard',exp:'×(√5+1)/(5−1)=2(√5+1)/4=(√5+1)/2.'},
+  {q:'Racionaliziraj: 2/(√5−1).',opts:['(√5+1)/2','√5+1','(√5+1)/4','(√5−1)/2'],ok:0,diff:'hard',exp:'×(√5+1)/(5−1)=2(√5+1)/4=(√5+1)/2.'},
   {q:'log₂(x)+log₂(x−2)=3. x=?',opts:['3','2','8','4'],ok:3,diff:'hard',exp:'log₂(x(x−2))=3→x²−2x=8→x=4 (x=−2 iskl.).'},
   {q:'4ˣ=2ˣ⁺³. x=?',opts:['4','3','2','6'],ok:1,diff:'hard',exp:'2²ˣ=2ˣ⁺³→2x=x+3→x=3.'},
   {q:'ln(e³)=?',opts:['e³','3','3e','1'],ok:1,diff:'hard',exp:'ln(eⁿ)=n.'},
@@ -2770,7 +2765,7 @@ const FD_EXPLANATIONS={
 };
 
 
-const PBX_CH_DATA = [{"q": "Postavi parabolu tako da bude f(x) = x²", "check": {"a": 1, "b": 0, "c": 0, "tol": 0.15}}, {"q": "Postavi parabolu s tjemenom u točki (0, −5)", "check": {"type": "vertex", "p": 0, "q": -5, "tol": 0.3}}, {"q": "Postavi parabolu koja ima nultočke −2 i 2", "check": {"type": "roots", "roots": [-2, 2], "tol": 0.3}}, {"q": "Postavi parabolu otvorenu prema dolje s y-odsječkom 4", "check": {"type": "complex", "aneg": true, "c": 4, "tol": 0.4}}, {"q": "Postavi parabolu f(x) = (x − 3)² − 1 (tjeme u T(3, −1))", "check": {"type": "vertex", "p": 3, "q": -1, "tol": 0.3}}, {"q": "Postavi parabolu koja nema realnih nultočaka (D &lt; 0)", "check": {"type": "D", "sign": "neg"}}, {"q": "Postavi parabolu s dvostrukom nultočkom u x = 2 (D = 0)", "check": {"type": "double", "x": 2, "tol": 0.3}}, {"q": "Postavi parabolu f(x) = −2x² + 4 (max = 4)", "check": {"a": -2, "b": 0, "c": 4, "tol": 0.25}}, {"q": "Simuliraj projektil: tjeme u (3, 9), otvorena dolje", "check": {"type": "vertex", "p": 3, "q": 9, "aneg": true, "tol": 0.4}}, {"q": "Postavi funkciju f(x) = x² − 6x + 5 (nultočke 1 i 5)", "check": {"a": 1, "b": -6, "c": 5, "tol": 0.25}}, {"q": "Postavi parabolu koja siječe x-os u 0 i 4", "check": {"type": "roots", "roots": [0, 4], "tol": 0.3}}, {"q": "Postavi parabolu f(x) = 0.5x² − 2x (tjeme u (2, −2))", "check": {"a": 0.5, "b": -2, "c": 0, "tol": 0.25}}];
+const PBX_CH_DATA = [{"q": "Postavi parabolu tako da bude f(x) = x²", "check": {"a": 1, "b": 0, "c": 0, "tol": 0.15}}, {"q": "Postavi parabolu s tjemenom u točki (0, −5)", "check": {"type": "vertex", "p": 0, "q": -5, "tol": 0.3}}, {"q": "Postavi parabolu koja ima nultočke −2 i 2", "check": {"type": "roots", "roots": [-2, 2], "tol": 0.3}}, {"q": "Postavi parabolu otvorenu prema dolje s y-odsječkom 4", "check": {"type": "complex", "aneg": true, "c": 4, "tol": 0.4}}, {"q": "Postavi parabolu f(x) = (x − 3)² − 1 (tjeme u T(3, −1))", "check": {"type": "vertex", "p": 3, "q": -1, "tol": 0.3}}, {"q": "Postavi parabolu koja nema realnih nultočaka (D < 0)", "check": {"type": "D", "sign": "neg"}}, {"q": "Postavi parabolu s dvostrukom nultočkom u x = 2 (D = 0)", "check": {"type": "double", "x": 2, "tol": 0.3}}, {"q": "Postavi parabolu f(x) = −2x² + 4 (max = 4)", "check": {"a": -2, "b": 0, "c": 4, "tol": 0.25}}, {"q": "Simuliraj projektil: tjeme u (3, 9), otvorena dolje", "check": {"type": "vertex", "p": 3, "q": 9, "aneg": true, "tol": 0.4}}, {"q": "Postavi funkciju f(x) = x² − 6x + 5 (nultočke 1 i 5)", "check": {"a": 1, "b": -6, "c": 5, "tol": 0.25}}, {"q": "Postavi parabolu koja siječe x-os u 0 i 4", "check": {"type": "roots", "roots": [0, 4], "tol": 0.3}}, {"q": "Postavi parabolu f(x) = 0.5x² − 2x (tjeme u (2, −2))", "check": {"a": 0.5, "b": -2, "c": 0, "tol": 0.25}}];
 const DRILL_HINTS = [
   "Opći oblik je ax²+bx+c.",
   "Ako nema x², nije kvadratna.",

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { resolveFrom } from '@/lib/billing/fromMap'
 
 const ACTIVE_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing'])
 const CONFIRMED_PLANS = new Set(['starter', 'pro'])
@@ -65,6 +66,17 @@ export default function Uspjeh() {
   const [attempt, setAttempt] = useState(0)
   const [countdown, setCountdown] = useState(5)
 
+  // Odredište nakon kupnje: "from" prenesen kroz checkout (npr. kalkulator) ili /discere
+  // kao default. Prije se uvijek išlo hardkodirano na /discere pa je /pro obećanje
+  // "automatski se vraćaš natrag na {from}" bilo lažno. Lazy init (bez efekta) — čita se
+  // jednom iz URL-a; ne renderira se prije async verifikacije pa nema hydration mismatcha.
+  const [nextDest] = useState(() => {
+    if (typeof window === 'undefined') return { path: '/discere', label: 'Discere' }
+    const from = new URLSearchParams(window.location.search).get('from')
+    const info = resolveFrom(from, { path: '/discere', label: 'Discere' })
+    return { path: info.path, label: info.label }
+  })
+
   useEffect(() => {
     const sessionId = new URLSearchParams(window.location.search).get('session_id')
     const controller = new AbortController()
@@ -116,7 +128,7 @@ export default function Uspjeh() {
       setCountdown(current => {
         if (current <= 1) {
           window.clearInterval(interval)
-          window.location.href = '/discere'
+          window.location.href = nextDest.path
           return 0
         }
         return current - 1
@@ -124,7 +136,7 @@ export default function Uspjeh() {
     }, 1000)
 
     return () => window.clearInterval(interval)
-  }, [isVerified])
+  }, [isVerified, nextDest.path])
 
   const content = isVerified
     ? PLAN_CONTENT[verification.plan]
@@ -165,8 +177,8 @@ export default function Uspjeh() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {isVerified ? (
-            <button onClick={() => { window.location.href = '/discere' }} style={{ width: '100%', padding: 13, borderRadius: 11, border: 'none', background: content.color, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--fb)' }}>
-              Otvori Discere
+            <button onClick={() => { window.location.href = nextDest.path }} style={{ width: '100%', padding: 13, borderRadius: 11, border: 'none', background: content.color, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--fb)' }}>
+              Nastavi na {nextDest.label}
             </button>
           ) : verification.state === 'error' || verification.state === 'pending' ? (
             <button onClick={() => {

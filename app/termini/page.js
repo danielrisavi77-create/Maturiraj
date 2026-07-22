@@ -67,7 +67,7 @@ export default function Termini() {
     upis:"var(--green)", ispit:"var(--teal)", prigovor:"var(--violet)", svjedodzba:"var(--gold)"
   })[t] || "var(--muted)"
 
-  const today = new Date("2026-03-18")
+  const today = new Date()
   const events = [
     {label:"Do ljetnog roka",   date:new Date("2026-06-01"), color:"var(--teal)"},
     {label:"Kraj prijave",      date:new Date("2026-02-15"), color:"var(--red)"},

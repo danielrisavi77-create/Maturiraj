@@ -84,7 +84,7 @@ const H15A_AUTHORPROFILEH15SENOA_HTML = `    <div class="author-card">
             <div>
               <div class="ac-work-title">Kletva</div>
               <div class="ac-work-meta">1880.–1881. · Povijesni roman (nedovršen)</div>
-              <div class="ac-work-desc">Tema: srednjovjekovni Zagreb. Šenoa umire prije završetka; roman dovršava <em>Vjekoslav Klaić</em>. Posthumno objavljivan.</div>
+              <div class="ac-work-desc">Tema: srednjovjekovni Zagreb. Šenoa umire prije završetka; roman dovršava <em>Josip Eugen Tomić</em>. Posthumno objavljivan.</div>
             </div>
           </div>
           <div class="ac-work-item">

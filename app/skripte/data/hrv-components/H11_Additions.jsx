@@ -763,7 +763,7 @@ const H11A_AUTHORPROFILEZORANICH11_HTML = `        <div class="author-card">
             <div class="ac-monogram">Z</div>
             <div class="ac-meta">
               <div class="ac-name">Petar Zoranić</div>
-              <div class="ac-dates">Zadar · ~1508.–1569.</div>
+              <div class="ac-dates">Zadar · ~1508.–1543.</div>
               <div class="ac-tags">
                 <span class="hchip go" style="font-size:8px">prvi hrv. roman</span>
                 <span class="hchip pa" style="font-size:8px">čakavsko-štokavski</span>
@@ -771,14 +771,14 @@ const H11A_AUTHORPROFILEZORANICH11_HTML = `        <div class="author-card">
             </div>
           </div>
           <div class="ac-body">
-            <p>Zoranić je zadarski plemić koji je <em>Planine</em> posvetio ninskom kanoniku Matiji Matijeviću. Djelo je tiskano 1569., ali posveta je datirana 1543. — nastalo je mnogo ranije.</p>
+            <p>Zoranić je zadarski plemić koji je <em>Planine</em> posvetio ninskom kanoniku Matiji Matijeviću. Djelo je dovršeno 1536. (završna bilješka: 20. rujna 1536.), a tiskano tek 1569. — nakon autorove smrti.</p>
             <div class="ac-works">
               <div class="ac-works-lbl">Ključno djelo</div>
               <div class="ac-work-item">
                 <div class="ac-badge">🏔️</div>
                 <div>
                   <div class="ac-work-title">Planine</div>
-                  <div class="ac-work-meta">Nastale ~1543. · Tiskane 1569. · 24 poglavlja · proza + stihovi</div>
+                  <div class="ac-work-meta">Nastale 1536. · Tiskane 1569. · 24 poglavlja · proza + stihovi</div>
                   <div class="ac-work-desc"><strong>Prvi hrvatski roman</strong> (mješavina proze i stiha). Glavni lik Zoran putuje zadarskim zaleđem, Dinarom i Velebitom kako bi izliječio patnju od neuzvraćene ljubavi. Na putu sreće vile i pastire koji pjevaju i pripovijedaju. Ključna alegorijska epizoda: <b>Perivoj od Slave</b> — 4 vile (Latinka, Kaldejka, Grkinju, <strong>Hrvatica</strong>) predstavljaju nacionalne književnosti. Hrvatica se žali na loše jabuke — alegorija lošeg stanja hrv. književnosti. Motiv <em>„rasute bašćine"</em> — razdrobljene domovine pod turskim pritiskom. Djelo spaja ljubavnu tematiku s patriotskim apelom.</div>
                 </div>
               </div>

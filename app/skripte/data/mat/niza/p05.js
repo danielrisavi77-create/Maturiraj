@@ -1945,15 +1945,6 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
       <button class="pbx-preset" onclick="pbxPreset('shifted',this)">|x−2|≤3</button>
     </div>
     <div class="pbx-info" id="pbx-info">Pomakni slidere.</div>
-    <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov</button>
-    </div>
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head"><span class="pbx-challenge-lbl">🎯 Izazov</span><span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong>/<strong id="pbx-ch-tot">0</strong></span></div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni".</div>
-      <div style="display:flex;gap:8px"><button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button><button class="pbx-btn" onclick="pbxChallengeNext()">Novi →</button></div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
   </div>
 </div>
 

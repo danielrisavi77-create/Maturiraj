@@ -2267,21 +2267,10 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     </div>
     
     <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov (12 taskova)</button>
+      
     </div>
     
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head">
-        <span class="pbx-challenge-lbl">🎯 Izazov</span>
-        <span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong> / <strong id="pbx-ch-tot">0</strong></span>
-      </div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni" da krene izazov.</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button>
-        <button class="pbx-btn" onclick="pbxChallengeNext()">Novi izazov →</button>
-      </div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
+    
   </div>
 </div>
 
@@ -2653,12 +2642,12 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 <div class="bug-box">
   <div class="bug-head">🐛 Prepoznaj grešku #4</div>
   <div class="bug-body">
-    <div class="bug-quote">Student riješi log_2 (x + 1) + log_2 (x − 3) = 2 i dobije rješenja x = 5 i x = −3, pa prihvati oba.</div>
-    <div class="bug-task">Rješenja x = 5, <span class="wrong">x = −3</span> — oba prihvaćena</div>
+    <div class="bug-quote">Student riješi log_2 (x + 3) + log_2 (x − 3) = 4 i dobije rješenja x = 5 i x = −5, pa prihvati oba.</div>
+    <div class="bug-task">Rješenja x = 5, <span class="wrong">x = −5</span> — oba prihvaćena</div>
     <div class="bug-opts" id="bug4-opts">
       <div class="bug-opt" onclick="bugAns(4, 0, this)">A) Točno — oba zadovoljavaju kvadratnu jednadžbu.</div>
       <div class="bug-opt" onclick="bugAns(4, 1, this)">B) Greška u aritmetici — trebalo je x = 5 i x = 1.</div>
-      <div class="bug-opt" onclick="bugAns(4, 2, this)">C) Greška — x = −3 daje log_2 (−2) koji nije definiran. Uvjet x − 3 &gt; 0 → samo x = 5.</div>
+      <div class="bug-opt" onclick="bugAns(4, 2, this)">C) Greška — x = −5 daje log_2 (−2) koji nije definiran. Uvjet x − 3 &gt; 0 → samo x = 5.</div>
     </div>
     <div class="bug-expl" id="bug4-exp"></div>
   </div>
@@ -3486,7 +3475,7 @@ const QUIZ_DATA = [
     "q": "Riješi 2^(x+1) + 2ˣ = 12.",
     "opts": [
       "x = 1",
-      "x = log₂ 4",
+      "x = log₂ 6",
       "x = 3",
       "x = 2"
     ],
@@ -5258,7 +5247,7 @@ const BUG_ANSWERS = {
   4: { correct: 2, explain: {
         0: '✗ Kvadratna jednadžba daje oba korijena, ali to ne znači da oba <strong>zadovoljavaju originalnu</strong> log. jednadžbu.',
         1: '✗ Aritmetika je ispravna. Problem je drugdje.',
-        2: '✓ Točno! Za log_2(x − 3) treba x − 3 &gt; 0, tj. x &gt; 3. x = −3 daje log_2(−6), nedefinirano. Odbaci! Samo x = 5.'
+        2: '✓ Točno! Za log_2(x − 3) treba x − 3 &gt; 0, tj. x &gt; 3. x = −5 daje log_2(−8), nedefinirano. Odbaci! Samo x = 5.'
       }}
 };
 

@@ -2237,21 +2237,10 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     </div>
     
     <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov (12 taskova)</button>
+      
     </div>
     
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head">
-        <span class="pbx-challenge-lbl">🎯 Izazov</span>
-        <span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong> / <strong id="pbx-ch-tot">0</strong></span>
-      </div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni" da krene izazov.</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button>
-        <button class="pbx-btn" onclick="pbxChallengeNext()">Novi izazov →</button>
-      </div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
+    
   </div>
 </div>
 
@@ -3258,9 +3247,9 @@ const DRILL_DATA = [
     "q": "Kocka 2×. P(zbroj 4) = ?",
     "opts": [
       "1/12",
-      "3/36",
+      "1/6",
       "4/36",
-      "1/9"
+      "1/18"
     ],
     "ok": 0,
     "diff": "med",
@@ -3342,25 +3331,25 @@ const DRILL_DATA = [
     "q": "Kutija: 4 bijele, 6 crnih. Izvlačiš 1. P(bijela)?",
     "opts": [
       "4/10",
-      "2/5",
+      "6/10",
       "2/3",
-      "0.4"
+      "1/2"
     ],
     "ok": 0,
     "diff": "hard",
-    "exp": "4/10 = 2/5 = 0.4 (više točnih, ali ponuđeni A je prvi)."
+    "exp": "P(bijela) = 4/(4+6) = 4/10. (6/10 = P(crna); 2/3 i 1/2 su netočni.)"
   },
   {
     "q": "2 kocke. P(zbroj je neparan) = ?",
     "opts": [
       "1/2",
       "1/4",
-      "18/36",
+      "1/3",
       "točno B i C"
     ],
     "ok": 0,
     "diff": "hard",
-    "exp": "Neparan → 1 paran + 1 neparan. 18/36 = 1/2."
+    "exp": "Neparan → 1 paran + 1 neparan: 1/2·1/2 + 1/2·1/2 = 1/2 (18 od 36 ishoda)."
   },
   {
     "q": "Bacaš kocku 2×. P(barem 1 šestica)?",

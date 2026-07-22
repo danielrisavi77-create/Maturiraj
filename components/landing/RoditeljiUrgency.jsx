@@ -171,7 +171,7 @@ export default function RoditeljiUrgency({ onRoditelji, onPlan, onSkripte }) {
               <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:16,maxWidth:520,margin:"0 auto 32px"}}>
                 {[
                   {l:"Besplatno odmah",      d:"Skripte bez registracije", c:"var(--green)", btn:"Otvori skripte", a:onSkripte},
-                  {l:"Starter — 9,99 €/mj", d:"3 predmeta + Discere",     c:"var(--teal)",  btn:"Počni Starter",  a:onPlan},
+                  {l:"Standard — 9,99 €/mj", d:"3 predmeta + Discere",     c:"var(--teal)",  btn:"Počni Standard",  a:onPlan},
                   {l:"Pro — 19,99 €/mj",    d:"Sve + AI + roditelji",      c:"var(--blue)",  btn:"Uzmi Pro",       a:onPlan},
                 ].map((o, i) => (
                   <div key={i} style={{background:"rgba(7,9,15,.6)",border:`1px solid ${o.c}33`,borderRadius:14,padding:"18px 16px",backdropFilter:"blur(8px)"}}>

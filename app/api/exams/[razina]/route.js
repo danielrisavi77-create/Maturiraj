@@ -27,7 +27,8 @@ function stripAnswers(exams) {
     out[key] = {
       ...exam,
       qs: (exam.qs || []).map((q) => {
-        const { sol, ...rest } = q; // eslint-disable-line no-unused-vars
+        // Strip both the answer key (`sol`) and the answer-revealing explanation (`exp`).
+        const { sol, exp, ...rest } = q; // eslint-disable-line no-unused-vars
         return rest;
       }),
     };

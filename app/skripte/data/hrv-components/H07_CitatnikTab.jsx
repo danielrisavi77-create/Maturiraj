@@ -193,7 +193,7 @@ const CITATI = [
   { id:"h07c29", cat:"kontekst", diff:"basic",    tez:[4],   mustKnow:false,
     author:"Honoré de Balzac", work:"Otac Goriot (1835.) — motto",
     txt:`„Sve je istina."`,
-    useHtml:`<em>motto realizma</em>. Balzac, utemeljitelj realizma. <b>Dostojevski čita Balzaca</b> — piše diplomski rad o <em>Ocu Goriotu</em>. Za povezivanje H07 s francuskim realizmom. Definicija poetike epohe.` },
+    useHtml:`<em>motto realizma</em>. Balzac, utemeljitelj realizma. <b>Dostojevski čita Balzaca</b> — prevodi njegov roman <em>Eugénie Grandet</em> (1844., prvi Dostojevskijev književni rad). Za povezivanje H07 s francuskim realizmom. Definicija poetike epohe.` },
 
   { id:"h07c30", cat:"kontekst", diff:"advanced", tez:[4],   mustKnow:false,
     author:"Mihail Bahtin", work:"Problemi poetike Dostojevskog (1929.)",

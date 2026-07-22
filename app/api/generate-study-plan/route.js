@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { requirePro } from '@/lib/billing/requirePro'
 import { isAiEndpointsEnabled } from '@/lib/config/featureFlags'
 
 export async function POST(req) {
@@ -11,11 +11,11 @@ export async function POST(req) {
   }
 
   try {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    // Server-side entitlement gate — personalizirani plan je Pro značajka (vidi /uspjeh
+    // pricing). Prije je bilo dovoljno samo biti prijavljen, pa je free korisnik mogao
+    // trošiti Anthropic ključ na Pro feature bez entitlementa.
+    const deny = await requirePro(req, { source: 'study-plan' })
+    if (deny) return deny
 
     const { prompt } = await req.json()
 
@@ -34,8 +34,9 @@ export async function POST(req) {
     })
 
     if (!res.ok) {
-      const errorText = await res.text()
-      return NextResponse.json({ error: errorText }, { status: 500 })
+      // Ne prosljeđuj sirovu Anthropic grešku klijentu (curenje internih detalja)
+      console.error('[generate-study-plan] Anthropic error:', res.status, await res.text())
+      return NextResponse.json({ error: 'Greška pri generiranju plana.' }, { status: 502 })
     }
 
     const data = await res.json()

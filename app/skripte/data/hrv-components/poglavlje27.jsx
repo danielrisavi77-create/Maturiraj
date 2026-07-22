@@ -11931,7 +11931,7 @@ const ESSAY_TOPICS = [
     guidelines: [
       'Glavna ljubavna priča (Pavao Gregorijanec — Dora)',
       'Povijesni kontekst (Stjepan Gregorijanec, građansko-plemićke tenzije)',
-      'Karakterizacija likova (Dora, Pavao, Klaudija)',
+      'Karakterizacija likova (Dora, Pavao, Klara)',
       'Šenoina romantičarska poetika',
       'Doprinos hrvatskoj književnosti'
     ]

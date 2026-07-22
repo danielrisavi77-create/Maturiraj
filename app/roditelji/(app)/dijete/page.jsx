@@ -76,8 +76,8 @@ export default function DijetePage() {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 9 }}>
                   <span style={{ fontFamily: 'var(--fh)', fontSize: 26, fontWeight: 900, color: p.color }}>{p.prog}%</span>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: p.trend > 0 ? 'var(--green)' : 'var(--red)' }}>
-                    {p.trend > 0 ? `↑ +${p.trend}%` : `↓ ${p.trend}%`} ovaj tjedan
+                  <span style={{ fontSize: 13, fontWeight: 600, color: p.trend > 0 ? 'var(--green)' : p.trend < 0 ? 'var(--red)' : 'var(--muted)' }}>
+                    {p.trend > 0 ? `↑ +${p.trend}%` : p.trend < 0 ? `↓ ${p.trend}%` : '—'} ovaj tjedan
                   </span>
                 </div>
                 <ProgressBar value={p.prog} color={p.color} />
@@ -106,7 +106,7 @@ export default function DijetePage() {
             {[
               { l: 'Ukupno sati',     v: `${child.aktivnost.reduce((a, b) => a + b, 0).toFixed(1)}h`, c: 'var(--blue)' },
               { l: 'Aktivnih dana',    v: `${child.aktivnost.filter(h => h > 0).length}/7`,            c: 'var(--green)' },
-              { l: 'Najdulje',         v: `${Math.max(...child.aktivnost)}h`,                           c: 'var(--gold)' },
+              { l: 'Najdulje',         v: `${Math.max(...child.aktivnost, 0)}h`,                         c: 'var(--gold)' },
               { l: 'Prosjek/dan',      v: `${(child.aktivnost.reduce((a, b) => a + b, 0) / 7).toFixed(1)}h`, c: 'var(--teal)' },
               { l: 'Aktivnih tjedana', v: child.tjedni,                                                  c: 'var(--violet)' },
             ].map((s, i) => (
@@ -144,7 +144,7 @@ export default function DijetePage() {
                     <div style={{ width: 7, height: 7, borderRadius: '50%', background: p.color, flexShrink: 0 }} />
                     <span style={{ flex: 1, fontSize: 13 }}>{p.name}</span>
                     <span style={{ fontWeight: 700, color: rs ? rs.color : 'var(--amber)' }}>{p.prog}%</span>
-                    <span style={{ fontSize: 12, color: 'var(--red)' }}>{p.trend}%</span>
+                    <span style={{ fontSize: 12, color: 'var(--red)' }}>{p.trend < 0 ? `${p.trend}%` : ''}</span>
                   </div>
                 )
               })}

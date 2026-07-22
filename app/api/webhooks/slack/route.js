@@ -37,7 +37,8 @@ export async function POST(request) {
 
   // Auth: cron secret OR admin JWT
   const auth = request.headers.get('authorization') ?? ''
-  const isCron = auth === `Bearer ${process.env.CRON_SECRET}`
+  // Fail-closed: ako CRON_SECRET nije postavljen, 'Bearer undefined' ne smije proći kao cron
+  const isCron = !!process.env.CRON_SECRET && auth === `Bearer ${process.env.CRON_SECRET}`
 
   if (!isCron) {
     // Verify admin JWT

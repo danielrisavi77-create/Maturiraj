@@ -2244,21 +2244,10 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     </div>
     
     <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov (12 taskova)</button>
+      
     </div>
     
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head">
-        <span class="pbx-challenge-lbl">🎯 Izazov</span>
-        <span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong> / <strong id="pbx-ch-tot">0</strong></span>
-      </div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni" da krene izazov.</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button>
-        <button class="pbx-btn" onclick="pbxChallengeNext()">Novi izazov →</button>
-      </div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
+    
   </div>
 </div>
 
@@ -3454,7 +3443,7 @@ const QUIZ_DATA = [
       "242",
       "484/3",
       "484",
-      "242·4/2"
+      "1456"
     ],
     "ok": 2,
     "e": "a₁ = 4, q = 3, n = 5. S₅ = 4·(3⁵−1)/(3−1) = 4·242/2 = 4·121 = 484."

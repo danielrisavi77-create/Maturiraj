@@ -273,6 +273,12 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     window.scrollTo(0,0);
   }
 
+  // Auto-predaja ispita kad istekne vrijeme (timerDone). Guard `!done` sprječava dvostruku predaju.
+  useEffect(()=>{
+    if(timerDone && !done) submitExam();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[timerDone,done]);
+
   if(done){
     const autoQ=QSX.filter(q=>q.type==="mc");
     const manQ=QSX.filter(q=>q.type!=="mc");
@@ -497,6 +503,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
       e("div",{style:{marginTop:8,textAlign:"center",display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}},
         e("button",{className:"btn btn-g",onClick:onExit},"← Na početak"),
         wrongAutoQ.length>0&&onPracticeErrors&&e("button",{className:"btn btn-red",onClick:()=>onPracticeErrors(wrongAutoQ,exam)},"🔁 Vježbaj greške ("+wrongAutoQ.length+")"),
+        wrongAutoQ.length>0&&e("button",{className:"btn btn-gold",onClick:()=>window.location.assign('/game?recipe=mistake_review')},"🎮 Ponovi pogreške u Game Modeu"),
         e("button",{className:"btn btn-gold",onClick:()=>{onExit();setTimeout(()=>document.getElementById("exams")?.scrollIntoView({behavior:"smooth"}),100);}},"Pokušaj drugi ispit →")
       ),
       e("div",{style:{marginTop:24}},

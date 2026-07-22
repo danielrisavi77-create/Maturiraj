@@ -3,7 +3,9 @@ import { NextResponse } from 'next/server'
 export async function GET(request) {
   // Vercel cron security — check header
   const authHeader = request.headers.get('authorization')
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  // Fail-closed: ako CRON_SECRET nije postavljen, 'Bearer undefined' bi inače prošao
+  const cronSecret = process.env.CRON_SECRET
+  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

@@ -1915,8 +1915,8 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     3) Svedi na gornje-trokutni oblik (Gauss) ili dijagonalni (Gauss-Jordan)<br>
     4) Čitaj rješenje (back-substitution ili direktno)
   </div></div>
-  <div class="emph"><strong>Primjer:</strong> x+y+z=6, 2x+y=5, x+2z=7.<br>
-  Eliminacijom: x=1, y=3, z=2. Provjera: 1+3+2=6 ✓, 2+3=5 ✓, 1+4=7? (7≠5 — grešni primjer → koristiti točan).</div>
+  <div class="emph"><strong>Primjer:</strong> x+y+z=6, 2x+y=5, x+2z=5.<br>
+  Eliminacijom: x=1, y=3, z=2. Provjera: 1+3+2=6 ✓, 2·1+3=5 ✓, 1+2·2=5 ✓.</div>
 </div>
 
 <div class="sec-head"><span class="sec-badge">5 / 12</span><h3 class="sec-h">Mješoviti sustavi — lin-kvadratni</h3></div>
@@ -2025,14 +2025,9 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     </div>
     <div class="pbx-info" id="pbx-info">Unesi koeficijente sustava.</div>
     <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
-      <button class="pbx-challenge-toggle" id="pbx-challenge-btn" onclick="pbxChallengeToggle()">🎯 Pokreni izazov</button>
+      
     </div>
-    <div class="pbx-challenge-wrap" id="pbx-challenge">
-      <div class="pbx-challenge-head"><span class="pbx-challenge-lbl">🎯 Izazov</span><span class="pbx-challenge-stats"><strong id="pbx-ch-score">0</strong>/<strong id="pbx-ch-tot">0</strong></span></div>
-      <div class="pbx-challenge-task" id="pbx-challenge-task">Klikni "Pokreni".</div>
-      <div style="display:flex;gap:8px"><button class="pbx-btn" style="border-color:var(--bd-p);color:var(--pink)" onclick="pbxChallengeCheck()">Provjeri</button><button class="pbx-btn" onclick="pbxChallengeNext()">Novi →</button></div>
-      <div class="pbx-challenge-fb" id="pbx-challenge-fb"></div>
-    </div>
+    
   </div>
 </div>
 
@@ -2728,7 +2723,7 @@ const DRILL_DATA=[
   {q:'Rijesi: 3x+y=8, x+3y=8.',opts:['(4,0)','(0,4)','(2,2)','(1,3)'],ok:2,diff:'med',exp:'Oduzimanje: 2x−2y=0→x=y. 4x=8→x=y=2.'},
   {q:'Rijesi: x/2+y=3, x+y/2=3.',opts:['(4,0)','(0,6)','(3,0)','(2,2)'],ok:3,diff:'med',exp:'Množimo s 2: x+2y=6, 2x+y=6. Oduzimanje: −x+y=0→x=y. 3x=6→x=2.'},
   {q:'Za koje m sustav mx+y=1, x+2y=3 nema jedinstveno rješenje?',opts:['m=1/2','m=2','m=−1','m=0'],ok:0,diff:'hard',exp:'D=2m−1=0→m=1/2.'},
-  {q:'Lin-kvadratni: y=x−1, y=x²−4x+5. Rješenja?',opts:['(1,0) i (3,2)','(2,1) i (3,2)','(2,1) i (1,0)','(3,2) i (2,1)'],ok:1,diff:'hard',exp:'x²−4x+5=x−1 → x²−5x+6=0 → (x−2)(x−3)=0 → x=2 (y=1) i x=3 (y=2).'},
+  {q:'Lin-kvadratni: y=x−1, y=x²−4x+5. Rješenja?',opts:['(1,0) i (3,2)','(2,1) i (3,2)','(2,1) i (1,0)','(2,3) i (3,4)'],ok:1,diff:'hard',exp:'x²−4x+5=x−1 → x²−5x+6=0 → (x−2)(x−3)=0 → x=2 (y=1) i x=3 (y=2).'},
   {q:'Rijesi: ax+by=1, bx+ay=1 za a≠b.',opts:['x=1/a,y=1/b','x=y=1/(a+b)','x=y=1','nema'],ok:1,diff:'hard',exp:'Supstitucija ili Cramer: D=a²−b². x=(a−b)/((a+b)(a−b))=1/(a+b).'},
   {q:'Brod uz/protiv struje: 60km/3h i 60km/5h. Brzine?',opts:['v=20,s=10','v=16,s=4','v=15,s=5','v=14,s=6'],ok:1,diff:'hard',exp:'v+s=20, v−s=12. 2v=32→v=16, s=4.'},
   {q:'Sustav: x+y+z=6, x+y=4, y+z=5. Rješenje?',opts:['(2,2,2)','(2,3,1)','(1,2,3)','(1,3,2)'],ok:3,diff:'hard',exp:'z=6−4=2. x=6−5=1. y=3. (1,3,2).'},
