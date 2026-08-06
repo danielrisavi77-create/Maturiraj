@@ -82,9 +82,19 @@ export default function ExamShell({ exam, onExit, onComplete }) {
       <main style={{minHeight:'100vh', background:'var(--bg)', color:'var(--text)', padding:'32px 18px'}}>
         <div style={{maxWidth:680, margin:'0 auto', background:'var(--s1)', border:'1px solid var(--bdr)', borderRadius:18, padding:24}}>
           <div className="sec-label">Rezultat</div>
-          <h1 style={{fontFamily:'var(--fh)', fontSize:34, margin:'8px 0 4px'}}>{result.percent}%</h1>
-          <p style={{color:'var(--muted)', marginTop:0}}>{result.earnedPoints} / {result.maxPoints} bodova</p>
-          {result.manualPending && <p style={{fontSize:13, color:'var(--muted)'}}>Dio odgovora zahtijeva ručno vrednovanje prema rubrici.</p>}
+          {result.manualPending ? (
+            <>
+              <h1 style={{fontFamily:'var(--fh)', fontSize:28, margin:'8px 0 4px'}}>Automatski provjereno</h1>
+              <p style={{fontSize:22, fontWeight:700, margin:'4px 0'}}>{result.earnedPoints} / {result.autoPossiblePoints} bodova</p>
+              <p style={{color:'var(--muted)', marginTop:4}}>Automatski dio: {result.autoPercent}%</p>
+              <p style={{fontSize:13, color:'var(--muted)'}}>Za ručnu provjeru: {result.manualPossiblePoints} {result.manualPossiblePoints === 1 ? 'bod' : 'bodova'}. Konačni rezultat ovisi o vrednovanju tih odgovora prema službenoj rubrici.</p>
+            </>
+          ) : (
+            <>
+              <h1 style={{fontFamily:'var(--fh)', fontSize:34, margin:'8px 0 4px'}}>{result.percent}%</h1>
+              <p style={{color:'var(--muted)', marginTop:0}}>{result.earnedPoints} / {result.maxPoints} bodova</p>
+            </>
+          )}
           <p style={{fontSize:13, color:'var(--muted)'}}>Neodgovoreno: {result.unanswered.length}</p>
           <button type="button" onClick={onExit} aria-label="Izlaz" style={{marginTop:18, padding:'10px 16px', borderRadius:10, border:'1px solid var(--bdr)', background:'var(--s2)', color:'var(--text)', cursor:'pointer'}}>Izlaz</button>
         </div>
