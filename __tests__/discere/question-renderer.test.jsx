@@ -15,6 +15,17 @@ describe('QuestionRenderer', () => {
     expect(onChange).toHaveBeenLastCalledWith('B')
   })
 
+  it('renders image assets for ordinary MC questions', () => {
+    const q = {
+      ...base,
+      type:'mc',
+      assets:[{type:'image',src:'/discere/bio/2026_ljeto/q03.webp',alt:'Vennov dijagram stanica'}],
+      options:[{id:'A',text:'A'},{id:'B',text:'B'}],
+    }
+    render(<QuestionRenderer question={q} value={null} onChange={() => {}} />)
+    expect(screen.getByAltText('Vennov dijagram stanica')).toBeTruthy()
+  })
+
   it('returns multi selections in source option order', async () => {
     const onChange = vi.fn()
     const q = { ...base, type:'multi', options:[{id:'A',text:'A'},{id:'B',text:'B'},{id:'C',text:'C'}] }
