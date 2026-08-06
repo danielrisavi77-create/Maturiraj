@@ -5,6 +5,20 @@
   "examPageUrl": "https://www.ncvvo.hr/drzavna-matura-2025-2026-prvi-rok/",
   "packageUrl": "https://www.ncvvo.hr/wp-content/uploads/2026/06/BIOLOGIJA_1_ROK_2025_2026.zip",
   "catalogUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/BIO-2026.pdf",
+  "sourceFiles": {
+    "package": {
+      "name": "BIOLOGIJA_1_ROK_2025_2026.zip",
+      "sha256": "ee284a4fa77a1675c2b7fe5b1c8c111a206b484765c6f833ecc3a9e50806e8ef"
+    },
+    "exam": {
+      "name": "BIO D-S068.pdf",
+      "sha256": "1bc76910927ec0d474155ee119a5078eaa347a20521bd220f5cc2238c4aa4952"
+    },
+    "answerKey": {
+      "name": "Ključ za odgovore Biologija.pdf",
+      "sha256": "be2c22b3b0d0228609fb3a5c778467cfb4498d488f00d8490f10a02b7a86b412"
+    }
+  },
   "examDate": "2026-06-03",
   "durationSec": 9000,
   "expectedTopLevelTasks": 48,
@@ -19,5 +33,5 @@
   },
   "usage": "free-student-preparation",
   "retrievedAt": "2026-08-06",
-  "sourcePackageStatus": "official-url-confirmed-download-not-yet-materialized"
+  "sourcePackageStatus": "materialized-and-verified"
 }
