@@ -1,0 +1,52 @@
+'use client'
+import React from 'react'
+import ChoiceQuestion from './question-renderers/ChoiceQuestion'
+import TextQuestion from './question-renderers/TextQuestion'
+import MatchingQuestion from './question-renderers/MatchingQuestion'
+import OrderingQuestion from './question-renderers/OrderingQuestion'
+import TrueFalseQuestion from './question-renderers/TrueFalseQuestion'
+import EssayQuestion from './question-renderers/EssayQuestion'
+import GroupQuestion from './question-renderers/GroupQuestion'
+import MediaQuestion from './question-renderers/MediaQuestion'
+
+export default function QuestionRenderer({ question, value, onChange, disabled = false }) {
+  function renderChild(child, childValue, childOnChange, childDisabled) {
+    return <QuestionRenderer question={child} value={childValue} onChange={childOnChange} disabled={childDisabled} />
+  }
+
+  const body = (() => {
+    switch (question.type) {
+      case 'mc':
+      case 'multi':
+        return <ChoiceQuestion question={question} value={value} onChange={onChange} disabled={disabled} />
+      case 'short':
+      case 'fill':
+        return <TextQuestion question={question} value={value} onChange={onChange} disabled={disabled} />
+      case 'matching':
+        return <MatchingQuestion question={question} value={value} onChange={onChange} disabled={disabled} />
+      case 'ordering':
+        return <OrderingQuestion question={question} value={value} onChange={onChange} disabled={disabled} />
+      case 'true_false':
+        return <TrueFalseQuestion question={question} value={value} onChange={onChange} disabled={disabled} />
+      case 'essay':
+        return <EssayQuestion question={question} value={value} onChange={onChange} disabled={disabled} />
+      case 'passage_group':
+      case 'audio_group':
+        return <GroupQuestion question={question} value={value} onChange={onChange} disabled={disabled} renderQuestion={renderChild} />
+      case 'media_response':
+        return <MediaQuestion question={question} value={value} onChange={onChange} disabled={disabled} renderQuestion={renderChild} />
+      default:
+        return <div role="alert">Nepodržana vrsta zadatka.</div>
+    }
+  })()
+
+  return (
+    <div data-question-id={question.id}>
+      <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', gap:12, marginBottom:12}}>
+        <h2 style={{fontSize:18, lineHeight:1.45, margin:0, whiteSpace:'pre-wrap'}}>{question.prompt}</h2>
+        {Number.isFinite(question.points) && <span style={{fontSize:12, color:'var(--muted)', whiteSpace:'nowrap'}}>{question.points} b.</span>}
+      </div>
+      {body}
+    </div>
+  )
+}
