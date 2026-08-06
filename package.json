@@ -11,7 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "discere:validate": "node scripts/discere-validate.mjs",
+    "discere:validate": "tsx scripts/discere-validate.mjs",
     "game:content-report": "tsx scripts/game-content-report.ts",
     "supabase:start": "supabase start --ignore-health-check",
     "supabase:stop": "supabase stop",
@@ -61,7 +61,7 @@
     "tsx": "^4.19.0",
     "vitest": "^4.1.4"
   },
-  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "description": "This is a [Next.js](https://github.com/vercel/next.js) project.",
   "main": "middleware.js",
   "directories": {
     "lib": "lib"
