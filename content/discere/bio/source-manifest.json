@@ -1,0 +1,23 @@
+{
+  "subject": "bio",
+  "session": "2026_ljeto",
+  "provider": "NCVVO",
+  "examPageUrl": "https://www.ncvvo.hr/drzavna-matura-2025-2026-prvi-rok/",
+  "packageUrl": "https://www.ncvvo.hr/wp-content/uploads/2026/06/BIOLOGIJA_1_ROK_2025_2026.zip",
+  "catalogUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/BIO-2026.pdf",
+  "examDate": "2026-06-03",
+  "durationSec": 9000,
+  "expectedTopLevelTasks": 48,
+  "expectedMultipleChoiceTasks": 35,
+  "expectedOpenTasks": 13,
+  "expectedMaxPoints": 70,
+  "closedSectionPoints": 35,
+  "openSectionPoints": 35,
+  "openTaskPointDistribution": {
+    "2_points": 4,
+    "3_points": 9
+  },
+  "usage": "free-student-preparation",
+  "retrievedAt": "2026-08-06",
+  "sourcePackageStatus": "official-url-confirmed-download-not-yet-materialized"
+}
