@@ -33,6 +33,15 @@ describe('Discere canonical scoring', () => {
     expect(scoreQuestion(q, { g1: 'dna', g2: 'krivo' }).earned).toBe(1)
   })
 
+  it('supports all-or-nothing fill scoring for official 0/1 tasks', () => {
+    const q = {
+      id: '3b', type: 'fill', points: 1, gaps: [{ id: 'g1' }, { id: 'g2' }],
+      answer: { kind: 'fill', accepted: { g1: ['DNA'], g2: ['RNA'] }, scoring: 'all_or_nothing' },
+    }
+    expect(scoreQuestion(q, { g1: 'dna', g2: 'krivo' }).earned).toBe(0)
+    expect(scoreQuestion(q, { g1: 'dna', g2: 'rna' }).earned).toBe(1)
+  })
+
   it('scores matching using explicit pair points', () => {
     const q = {
       id: '4', type: 'matching', points: 2,
@@ -40,6 +49,16 @@ describe('Discere canonical scoring', () => {
       answer: { kind: 'matching', pairs: { l1: 'r2', l2: 'r1' }, pairPoints: { l1: 1, l2: 1 } },
     }
     expect(scoreQuestion(q, { l1: 'r2', l2: 'r2' }).earned).toBe(1)
+  })
+
+  it('supports all-or-nothing matching scoring for official 0/1 tasks', () => {
+    const q = {
+      id: '4b', type: 'matching', points: 1,
+      left: [{ id: 'l1' }, { id: 'l2' }], right: [{ id: 'r1' }, { id: 'r2' }],
+      answer: { kind: 'matching', pairs: { l1: 'r2', l2: 'r1' }, scoring: 'all_or_nothing' },
+    }
+    expect(scoreQuestion(q, { l1: 'r2', l2: 'r2' }).earned).toBe(0)
+    expect(scoreQuestion(q, { l1: 'r2', l2: 'r1' }).earned).toBe(1)
   })
 
   it('scores ordering only when the full order is exact', () => {
