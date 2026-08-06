@@ -1,0 +1,56 @@
+{
+  "subject": "bio",
+  "examKey": "2026_ljeto",
+  "status": "verified",
+  "verifiedAt": "2026-08-06",
+  "sourcePackageSha256": "ee284a4fa77a1675c2b7fe5b1c8c111a206b484765c6f833ecc3a9e50806e8ef",
+  "checks": {
+    "topLevelQuestions": 48,
+    "multipleChoiceQuestions": 35,
+    "leafScoringItems": 70,
+    "maxPoints": 70,
+    "officialMultipleChoiceKeysMatched": 35,
+    "officialMultipleChoiceKeysTotal": 35,
+    "imageReferences": 20,
+    "imageFilesPrepared": 20,
+    "missingImageReferences": 0,
+    "orphanImageFiles": 0,
+    "automaticPossiblePoints": 54,
+    "manualRubricPoints": 16
+  },
+  "multipleChoiceKey": "CDDD BACB ABDD CBAC BDBC DBCD CCBBD DDDCD",
+  "manualRubricPolicy": "Složeni otvoreni odgovori koji zahtijevaju sadržajnu procjenu ne boduju se heurističkim string-matchom. Prikazuju se kao bodovi za ručnu provjeru prema službenoj rubrici.",
+  "notableVerification": [
+    {
+      "task": "37.1",
+      "check": "Službeni grafički ključ vizualno uspoređen s ispitom.",
+      "officialLayout": "Slijeva nadesno: D - A - B - C."
+    },
+    {
+      "task": "41.2",
+      "check": "Ponuđeni brojevi u UI-ju ostavljeni su neutralnim redom 1 - 2 - 3; službeni točan red je 3 - 1 - 2 kako se ključ ne bi otkrio prikazom."
+    }
+  ],
+  "assets": [
+    {"file":"q03.webp","sha256":"de6375856280ab83f29fff98784913918d80432c98981f0f56bfa25b33788eea"},
+    {"file":"q04.webp","sha256":"6f5ee838437fb840e3cc5cced49f3170e6a417d392f2cd01039ad7c6e5ecafcc"},
+    {"file":"q09.webp","sha256":"5c806d58e57ec03368a49d4add896bfdfa0cd5a030a59a7183796a65928cbc68"},
+    {"file":"q10.webp","sha256":"bd10c9085037cfc324e8deb963416a9971aee49633529b1c84db0c3b0f9e8e8f"},
+    {"file":"q11.webp","sha256":"8a7262567b785c55ed6043637fa9695238fd318030f9cc6e1906b5a47ffb0b65"},
+    {"file":"q14.webp","sha256":"1ec10f5d35ca260d031442d4a5d9aa4e4455dcaaf3aabd9ad9a39df2b5b9dc48"},
+    {"file":"q17.webp","sha256":"0b6adc5d0b2a55c62c0b57b727906a48010a63c57e6a0dbd155c3d7f207ce585"},
+    {"file":"q22.webp","sha256":"4179296a3b77eaff02faf9de7604e3dbb652aaac3e368b91930f5d354013b72b"},
+    {"file":"q27.webp","sha256":"680ae910932c108c01a407b175dbef42099be330be1732b91f83f5510e006eb2"},
+    {"file":"q28.webp","sha256":"6e47423cdd8c1e9800dc40368b27cd36db5a471959f0a81f22ee08ef5b70e3f5"},
+    {"file":"q29.webp","sha256":"2431bc9aa0bc68d94eb895e9519a5eb077d0073f231aed0659a0d615b84577ba"},
+    {"file":"q31.webp","sha256":"0581bcfdbeed05416937aa3d40998fa8dc6baf3aa6757a1701a6800153002747"},
+    {"file":"q35.webp","sha256":"50f99725a5f754729c8bd4b9d83c29e7f1bf8edaa0235028f6db9cdebb1df229"},
+    {"file":"q36.webp","sha256":"b9afce2010715e75679af755010dfa5d5453d15d8a792d6d9810c584685a78c4"},
+    {"file":"q37.webp","sha256":"4a5687337a1085a1b2be8af967911f1a1d88571017ad065b4bc3dfd057f3c9b9"},
+    {"file":"q39.webp","sha256":"37456920c34d7f4b2b6bd28800219a66d78af64ea157f8c7a34dcc7be29535c7"},
+    {"file":"q40.webp","sha256":"b81316cc3421ea11af82337a6740e3e624e508deae3bbf86b4d45a2a5b7e0b19"},
+    {"file":"q41.webp","sha256":"a52e295001e74c4109298193043c38fd3b1791de5007d124cffd7bdbf79bd15c"},
+    {"file":"q44.webp","sha256":"98793c3997601ea46b0e8ff8a27ee0e7b456c204ee946692dbd5bd8e451f3635"},
+    {"file":"q45.webp","sha256":"08bb481da4e8745d7c132d9ba095606cc4becfa6fc03ec4fe2f70436b84edf55"}
+  ]
+}
