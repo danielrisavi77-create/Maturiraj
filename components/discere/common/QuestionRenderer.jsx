@@ -9,6 +9,25 @@ import EssayQuestion from './question-renderers/EssayQuestion'
 import GroupQuestion from './question-renderers/GroupQuestion'
 import MediaQuestion from './question-renderers/MediaQuestion'
 
+const GROUP_TYPES = new Set(['passage_group', 'audio_group', 'media_response'])
+
+function LeafAssets({ assets = [] }) {
+  if (!assets.length) return null
+  return (
+    <div style={{display:'grid', gap:10, marginBottom:16}}>
+      {assets.map((asset, index) => {
+        if (asset.type === 'image') {
+          return <img key={`${asset.src}-${index}`} src={asset.src} alt={asset.alt || ''} style={{maxWidth:'100%', height:'auto', borderRadius:10}} />
+        }
+        if (asset.type === 'audio') {
+          return <audio key={`${asset.src}-${index}`} controls src={asset.src} style={{width:'100%'}} />
+        }
+        return null
+      })}
+    </div>
+  )
+}
+
 export default function QuestionRenderer({ question, value, onChange, disabled = false }) {
   function renderChild(child, childValue, childOnChange, childDisabled) {
     return <QuestionRenderer question={child} value={childValue} onChange={childOnChange} disabled={childDisabled} />
@@ -46,6 +65,7 @@ export default function QuestionRenderer({ question, value, onChange, disabled =
         <h2 style={{fontSize:18, lineHeight:1.45, margin:0, whiteSpace:'pre-wrap'}}>{question.prompt}</h2>
         {Number.isFinite(question.points) && <span style={{fontSize:12, color:'var(--muted)', whiteSpace:'nowrap'}}>{question.points} b.</span>}
       </div>
+      {!GROUP_TYPES.has(question.type) && <LeafAssets assets={question.assets} />}
       {body}
     </div>
   )
