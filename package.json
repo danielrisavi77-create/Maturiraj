@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "discere:validate": "node scripts/discere-validate.mjs",
     "game:content-report": "tsx scripts/game-content-report.ts",
     "supabase:start": "supabase start --ignore-health-check",
     "supabase:stop": "supabase stop",
