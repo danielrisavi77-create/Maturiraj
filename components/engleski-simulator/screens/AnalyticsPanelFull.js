@@ -1,6 +1,6 @@
 'use client'
 import { useState, useMemo } from 'react'
-import { TOPIC_LABELS, GC, LEVEL_NAMES, getLevel, xpProgress, xpToNext, grade } from '@/lib/engleski-simulator/constants'
+import { TOPIC_LABELS, GC, LEVEL_NAMES, getLevel, xpProgress, xpToNext, grade, LL } from '@/lib/engleski-simulator/constants'
 import { chk } from '@/lib/engleski-simulator/scoring'
 import { EXAMS } from '@/lib/engleski-simulator/exams'
 
@@ -829,7 +829,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
                         <div style={{ fontSize: 13, lineHeight: 1.5, marginBottom: item.q.opts ? 6 : 0 }}>{item.q.q}</div>
                         {item.q.opts && item.q.sol?.cl && (
                           <div style={{ fontSize: 11, color: 'var(--green)', background: 'var(--green-d)', padding: '4px 8px', borderRadius: 4, display: 'inline-block' }}>
-                            ✓ Točno: {item.q.sol.cl}) {item.q.opts['ABCDE'.indexOf(item.q.sol.cl)]}
+                            ✓ Točno: {item.q.sol.cl}) {item.q.opts[LL.indexOf(item.q.sol.cl)]}
                           </div>
                         )}
                         {item.q.exp && <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 6, fontStyle: 'italic' }}>💡 {item.q.exp}</div>}
@@ -1039,7 +1039,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
                           </div>
                           <div className="crit-q">{item.q.q}</div>
                           {item.q.sol?.cl && item.q.opts && (
-                            <div className="crit-ans">✓ {item.q.sol.cl}) {item.q.opts['ABCDE'.indexOf(item.q.sol.cl)] || ''}</div>
+                            <div className="crit-ans">✓ {item.q.sol.cl}) {item.q.opts[LL.indexOf(item.q.sol.cl)] || ''}</div>
                           )}
                         </div>
                       </div>

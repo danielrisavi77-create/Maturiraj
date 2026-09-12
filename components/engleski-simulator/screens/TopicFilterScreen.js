@@ -43,7 +43,7 @@ export default function TopicFilterScreen({ userData, onStartExam, onBack, mode 
       if (selTopic && q.topic !== selTopic) return false
       if (selType && q.type !== selType) return false
       return true
-    }).map(q => ({ ...q, examKey: k }))
+    }).map(q => ({ ...q, examKey: k, _examKey: k }))
   })
 
   const countByTopic = {}

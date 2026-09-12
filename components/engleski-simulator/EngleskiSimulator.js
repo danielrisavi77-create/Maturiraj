@@ -8,6 +8,8 @@ import { EXAMS } from '@/lib/engleski-simulator/exams'
 import { chk, grade, calcXpGain, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
 import { useTimer } from '@/lib/engleski-simulator/useTimer'
+import { LL } from '@/lib/engleski-simulator/constants'
+import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
 
 // Lazy load screens to reduce initial bundle and memory
 const Home = lazy(() => import('./screens/HomeScreen').then(m => ({ default: m.Home })))
@@ -39,7 +41,6 @@ function AnalyticsPanelWrapper(props) {
 }
 
 const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' }
-const LL = ['A', 'B', 'C', 'D', 'E', 'F']
 const TLBL = { mc: 'Višestruki izbor', ins: 'Umetanje', mat: 'Povezivanje', fb: 'Dopunjavanje', sa: 'Kratki odgovor', es: 'Esej' }
 const TBDG = { mc: 'b-mc', ins: 'b-ins', mat: 'b-mat', fb: 'b-fb', sa: 'b-sa', es: 'b-sa' }
 
@@ -149,7 +150,7 @@ function generateVirtualExam() {
   const allKeys = Object.keys(EXAMS)
   const usedIds = new Set()
   function pickType(type, count) {
-    const pool = allKeys.flatMap(k => (EXAMS[k].qs || []).filter(q => q.type === type && !usedIds.has(q.id)))
+    const pool = allKeys.flatMap(k => (EXAMS[k].qs || []).filter(q => q.type === type && !usedIds.has(q.id)).map(q => ({ ...q, _examKey: k })))
     const shuffled = [...pool].sort(() => Math.random() - 0.5)
     const picked = shuffled.slice(0, count)
     picked.forEach(q => usedIds.add(q.id))
@@ -162,7 +163,7 @@ function generateVirtualExam() {
     // da answers/qTimes/rev/bookmark ne kolidiraju između pitanja.
     .map((q, i) => ({ ...q, id: 'v' + i + '_' + (q.id ?? 'q') }))
   const key = 'virtual_' + Date.now()
-  return { key, year: new Date().getFullYear(), season: 'virtualni', label: 'Virtualni ispit', razina: 'osnovna', qs }
+  return { key, year: new Date().getFullYear(), season: 'virtualni', label: 'Virtualni ispit', razina: deriveRazina(qs, EXAMS), qs }
 }
 
 function AnalyticsPanel({ userData, defaultTab, onFilter, onFilterSession }) {
@@ -253,7 +254,7 @@ function AnalyticsPanel({ userData, defaultTab, onFilter, onFilterSession }) {
   )
 }
 
-function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro }) {
+function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup }) {
   const qs = exam?.qs || []
   const [cur, setCur] = useState(0)
   const [answers, setAnswers] = useState({})
@@ -387,7 +388,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
               </div>
             ) : (
               <>
-                <AudioPlayer examKey={exam.key} topic={q.topic} razina={exam.razina} />
+                <AudioPlayer examKey={exam.key} topic={q.topic} razina={exam.razina === 'mixed' ? examLookup?.[q._examKey]?.razina : exam.razina} />
                 <ContextPanel examKey={exam.key} qid={q.id} examContext={examContext} />
                 <div style={{ fontSize: 15, lineHeight: 1.65, marginBottom: 16, whiteSpace: 'pre-wrap' }}>{q.q}</div>
 
@@ -576,11 +577,11 @@ export default function EngleskiSimulator() {
         if (chk(q, result.answers?.[q.id]) === true) topic_breakdown[topic].correct++
       })
     }
+    const xpGain = calcXpGain(result.pct)
+    showXpFloat(xpGain)
+    if (soundOn) playSound('done')
     updateUserData(prev => {
       const base = updateStreak(prev)
-      const xpGain = calcXpGain(result.pct)
-      showXpFloat(xpGain)
-      if (soundOn) playSound('done')
       const next = {
         ...base,
         xp: (base.xp || 0) + xpGain,
@@ -678,9 +679,10 @@ export default function EngleskiSimulator() {
               onDone={onExamDone}
               userAccess={userAccess}
               isPro={isPro}
+              examLookup={examLookup}
             />
           )
-        
+
         case 'results':
           if (!selectedExam) navigate('home')
           return (
@@ -693,7 +695,7 @@ export default function EngleskiSimulator() {
               onBack={goBack}
               onPracticeErrors={(wrongQs, srcExam) => {
                 if (!wrongQs?.length) return
-                const virtual = { key: 'exam_errors_session', year: srcExam.year, season: srcExam.season, label: `${srcExam.label} — Greške`, qs: fisherYates([...wrongQs]) }
+                const virtual = { key: 'exam_errors_session', year: srcExam.year, season: srcExam.season, label: `${srcExam.label} — Greške`, razina: srcExam.razina, qs: fisherYates([...wrongQs]) }
                 setSelectedExamKey(virtual.key)
                 setExtraExams(prev => ({ ...prev, [virtual.key]: virtual }))
                 setExamMode(false)
@@ -786,7 +788,7 @@ export default function EngleskiSimulator() {
               userData={userData}
               examsMap={examLookup}
               onBack={goBack}
-              onDone={result => { onExamDone(result); navigate('results') }}
+              onDone={onExamDone}
             />
           )
 
@@ -801,6 +803,7 @@ export default function EngleskiSimulator() {
               examContext={examContext}
               onExit={goBack}
               onDone={onExamDone}
+              examLookup={examLookup}
             />
           )
         }
@@ -824,7 +827,7 @@ export default function EngleskiSimulator() {
               onBack={goBack}
               onStartExam={({ qs, label, isFiltered }) => {
                 const key = 'filter_session_' + Date.now()
-                const fExam = { key, year: new Date().getFullYear(), season: 'filter', label, razina: 'osnovna', qs }
+                const fExam = { key, year: new Date().getFullYear(), season: 'filter', label, razina: deriveRazina(qs, EXAMS), qs }
                 setExtraExams(prev => ({ ...prev, [key]: fExam }))
                 setSelectedExamKey(key)
                 setExamMode(false)

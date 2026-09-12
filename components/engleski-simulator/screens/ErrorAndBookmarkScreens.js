@@ -1,5 +1,6 @@
 'use client'
 import React, { createElement as e, useState, Fragment } from 'react'
+import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
 
 export function ErrorsScreen({ userData, onStart, onBack, examsMap, topicLabels, fisherYates }) {
   const [filter, setFilter] = useState('sve')
@@ -40,7 +41,7 @@ export function ErrorsScreen({ userData, onStart, onBack, examsMap, topicLabels,
     }).filter(Boolean)
     if (!qs.length) return
     const shuffled = fisherYates(qs)
-    onStart({ key: 'errors_session', year: 'Greške', season: 'session', label: 'Greške — ponavljanje', qs: shuffled, razina: 'osnovna' })
+    onStart({ key: 'errors_session', year: 'Greške', season: 'session', label: 'Greške — ponavljanje', qs: shuffled, razina: deriveRazina(qs, examsMap) })
   }
 
   return e(Fragment, null,
@@ -137,7 +138,8 @@ export function BookmarksScreen({ onBack, onStartSession, examsMap, topicLabels,
     if (filtered.length === 0) return
     const qs = filtered.map(b => ({ ...b.q, _examKey: b.examKey }))
     const shuffled = fisherYates(qs)
-    onStartSession({ key: 'bookmarks_session', year: 'Spremljena pitanja', season: 'session', label: 'Spremljena pitanja — vježbanje', qs: shuffled.slice(0, 40) })
+    const sessionQs = shuffled.slice(0, 40)
+    onStartSession({ key: 'bookmarks_session', year: 'Spremljena pitanja', season: 'session', label: 'Spremljena pitanja — vježbanje', qs: sessionQs, razina: deriveRazina(sessionQs, examsMap) })
   }
 
   return e(Fragment, null,

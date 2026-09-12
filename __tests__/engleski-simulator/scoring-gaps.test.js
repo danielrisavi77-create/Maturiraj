@@ -73,54 +73,77 @@ describe('updateStreak — leap-year edge cases', () => {
 });
 
 // ─── validateUserData — errorTracker sanitization ────────────────────────────
+// Ugovor je { q, topic, examKey, qid, count, lastDate? } pod ključem
+// "${examKey}_${qid}" (vidi EngleskiSimulator.js onExamDone i scoring.js
+// sanitizeErrorEntry). Stari format (errorTracker[key] = broj) nema
+// examKey/qid pa se odbacuje.
 
 describe('validateUserData — errorTracker', () => {
   it('preserves valid errorTracker entries unchanged', () => {
-    const r = validateUserData({ errorTracker: { q1: 3, q2: 0 } });
-    expect(r.errorTracker).toEqual({ q1: 3, q2: 0 });
+    const entry = { q: 'Pitanje?', topic: 'gramatika', examKey: 'exam1', qid: 'q1', count: 3 };
+    const r = validateUserData({ errorTracker: { exam1_q1: entry } });
+    expect(r.errorTracker).toEqual({ exam1_q1: entry });
   });
 
   it('drops errorTracker keys longer than 200 characters', () => {
     const longKey = 'a'.repeat(201);
-    const r = validateUserData({ errorTracker: { [longKey]: 5 } });
+    const entry = { examKey: 'exam1', qid: 'q1', count: 5 };
+    const r = validateUserData({ errorTracker: { [longKey]: entry } });
     expect(Object.keys(r.errorTracker)).toHaveLength(0);
   });
 
-  it('drops entries whose value is a string', () => {
+  it('drops entries whose value is a plain number (legacy format, no examKey/qid)', () => {
     const r = validateUserData({ errorTracker: { q1: 'oops' } });
     expect(Object.keys(r.errorTracker)).toHaveLength(0);
   });
 
-  it('drops entries whose value is null, undefined, or an object', () => {
-    const r = validateUserData({ errorTracker: { q1: null, q2: undefined, q3: {} } });
+  it('drops entries whose value is null, undefined, or an array', () => {
+    const r = validateUserData({ errorTracker: { q1: null, q2: undefined, q3: [] } });
     expect(Object.keys(r.errorTracker)).toHaveLength(0);
   });
 
-  it('drops entries whose value is Infinity or NaN (non-finite guards)', () => {
-    const r = validateUserData({ errorTracker: { q1: Infinity, q2: NaN, q3: -Infinity } });
+  it('drops entries whose count is Infinity or NaN (non-finite guards)', () => {
+    const base = { examKey: 'exam1', qid: 'q1' };
+    const r = validateUserData({
+      errorTracker: {
+        q1: { ...base, count: Infinity },
+        q2: { ...base, count: NaN },
+        q3: { ...base, count: -Infinity },
+      },
+    });
     expect(Object.keys(r.errorTracker)).toHaveLength(0);
   });
 
-  it('drops entries with negative values', () => {
-    const r = validateUserData({ errorTracker: { q1: -1 } });
+  it('drops entries with negative count', () => {
+    const r = validateUserData({ errorTracker: { q1: { examKey: 'exam1', qid: 'q1', count: -1 } } });
     expect(Object.keys(r.errorTracker)).toHaveLength(0);
   });
 
-  it('clamps errorTracker values that exceed 9999', () => {
-    const r = validateUserData({ errorTracker: { q1: 50000, q2: 10000 } });
-    expect(r.errorTracker.q1).toBe(9999);
-    expect(r.errorTracker.q2).toBe(9999);
+  it('clamps count values that exceed 9999', () => {
+    const r = validateUserData({
+      errorTracker: {
+        q1: { examKey: 'exam1', qid: 'q1', count: 50000 },
+        q2: { examKey: 'exam1', qid: 'q2', count: 10000 },
+      },
+    });
+    expect(r.errorTracker.q1.count).toBe(9999);
+    expect(r.errorTracker.q2.count).toBe(9999);
   });
 
-  it('value of 9999 is kept as-is (boundary)', () => {
-    const r = validateUserData({ errorTracker: { q1: 9999 } });
-    expect(r.errorTracker.q1).toBe(9999);
+  it('count of 9999 is kept as-is (boundary)', () => {
+    const r = validateUserData({ errorTracker: { q1: { examKey: 'exam1', qid: 'q1', count: 9999 } } });
+    expect(r.errorTracker.q1.count).toBe(9999);
   });
 
-  it('floors float errorTracker values', () => {
-    const r = validateUserData({ errorTracker: { q1: 3.9, q2: 0.1 } });
-    expect(r.errorTracker.q1).toBe(3);
-    expect(r.errorTracker.q2).toBe(0);
+  it('rounds float count values', () => {
+    const r = validateUserData({
+      errorTracker: {
+        q1: { examKey: 'exam1', qid: 'q1', count: 3.9 },
+        q2: { examKey: 'exam1', qid: 'q2', count: 0.1 },
+      },
+    });
+    expect(r.errorTracker.q1.count).toBe(4);
+    expect(r.errorTracker.q2.count).toBe(0);
   });
 
   it('returns empty errorTracker when field is missing', () => {
@@ -133,6 +156,16 @@ describe('validateUserData — errorTracker', () => {
 
   it('returns empty errorTracker when field is a string', () => {
     expect(validateUserData({ errorTracker: 'bad' }).errorTracker).toEqual({});
+  });
+
+  it('drops entries missing examKey or qid', () => {
+    const r = validateUserData({
+      errorTracker: {
+        q1: { qid: 'q1', count: 3 },
+        q2: { examKey: 'exam1', count: 3 },
+      },
+    });
+    expect(Object.keys(r.errorTracker)).toHaveLength(0);
   });
 });
 
