@@ -9,6 +9,30 @@ const __MAT = { Q_IMAGES: {} };
 const{createElement:e,useState,useEffect,useMemo,useRef,Fragment}=React;
 function vc(n){return"var("+n+")";}
 let IS_PRO = false;
+// Tier i plan dolaze iz DISCERE_CONFIG-a (jedan izvor istine u platformi).
+let IS_PAID = false;
+let PLAN_NAME = "Pro";
+let PLAN_PRICE = "";
+// CTA tekst za zaključane značajke: naziv plana + cijena iz configa.
+function planCta(){ return "🔒 Otključaj uz "+PLAN_NAME+(PLAN_PRICE?" — "+PLAN_PRICE:""); }
+// Poruka parentu da korisnik želi nadogradnju.
+function askUpgrade(){ try{ window.parent?.postMessage({type:"DISCERE_UPGRADE"},"*"); }catch(x){} }
+// 1.6: id zadatka zna imati zarez ("37,1"), registar slika koristi točku ("37.1").
+function __imgKey(ek,q){ const id=(q&&q._origId!==undefined)?q._origId:(q&&q.id); return String(ek)+"__"+String(id).replace(/,/g,"."); }
+// Jedinstveni AI poziv: ruta /api/ai-simulator, model bira server.
+let __AI_LAST_ERR="";
+function __aiErrMsg(){ return __AI_LAST_ERR||"Greška pri generiranju. Pokušaj ponovo."; }
+function __aiPost(prompt,maxTokens){
+  __AI_LAST_ERR="";
+  return fetch("/api/ai-simulator",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({max_tokens:maxTokens,messages:[{role:"user",content:prompt}]})})
+    .then(function(r){
+      if(r.status===429){ const ra=r.headers.get("Retry-After"); __AI_LAST_ERR="Previše zahtjeva. Pokušaj ponovo za "+(ra||"10")+" s."; throw new Error("rate_limited"); }
+      if(r.status===503){ __AI_LAST_ERR="AI je privremeno nedostupan. Pokušaj kasnije."; throw new Error("unavailable"); }
+      if(!r.ok){ __AI_LAST_ERR="Greška pri generiranju. Pokušaj ponovo."; throw new Error("http_"+r.status); }
+      return r.json();
+    });
+}
 // Per-subject branding/config singleton (Prirodni-engine family: mat/fiz/kem/bio).
 // Defaults preserve current mat behavior for any caller that never sets this.
 let SUBJECT = {
@@ -49,7 +73,15 @@ try {
   // Prihvati postMessage iz Next.js parent framea
   window.addEventListener("message", function(ev){
     const d=ev.data; if(!d) return;
-    if(d.type==="DISCERE_CONFIG"){ IS_PRO = !!d.isPro; try{window.dispatchEvent(new CustomEvent("discere-pro",{detail:IS_PRO}));}catch(e){} }
+    if(d.type==="DISCERE_CONFIG"){
+      IS_PRO = !!d.isPro;
+      // isPaid = bilo koji plaćeni plan (Standard ili Pro); fallback na isPro za starije parentove.
+      IS_PAID = (d.isPaid===undefined||d.isPaid===null) ? !!d.isPro : !!d.isPaid;
+      if(d.planName) PLAN_NAME = String(d.planName);
+      if(d.price!==undefined&&d.price!==null&&d.price!=="") PLAN_PRICE = String(d.price);
+      try{window.__DISCERE_TIER__={isPro:IS_PRO,isPaid:IS_PAID,planName:PLAN_NAME,price:PLAN_PRICE};}catch(e){}
+      try{window.dispatchEvent(new CustomEvent("discere-pro",{detail:IS_PRO}));}catch(e){}
+    }
     else if(d.type==="DISCERE_HYDRATE"){ window.__DISCERE_HYDRATE__ = d.state||{}; try{window.dispatchEvent(new CustomEvent("discere-hydrate"));}catch(e){} }
   });
 } catch(e){}
@@ -2519,9 +2551,8 @@ Ocijeni postupak i vrati ISKLJUČIVO JSON (bez markdown backtickova):
   "savjet": "1 kratak savjet"
 }`;
     try{
-      const res=await fetch("/api/ai-profesor",{method:"POST",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1024,messages:[{role:"user",content:prompt}]})});
-      const data=await res.json();
+      const data=await __aiPost(prompt,1024);
+      if(data?.error||!data?.content) throw new Error("api");
       const text=data?.content?.[0]?.text||"{}";
       setAiResult(JSON.parse(text.replace(/```json|```/g,"").trim()));
       setAiState("done");
@@ -2610,7 +2641,7 @@ Ocijeni postupak i vrati ISKLJUČIVO JSON (bez markdown backtickova):
         "AI analizira tvoj postupak..."
       ),
       aiState==="error"&&e("div",{style:{fontSize:13,color:"var(--red)"}},
-        "Greška. ",e("button",{className:"ah-ai-btn",onClick:runAiGrade},"Pokusaj ponovo")
+        __aiErrMsg()+" ",e("button",{className:"ah-ai-btn",onClick:runAiGrade},"Pokusaj ponovo")
       ),
       aiState==="done"&&aiResult&&(()=>{
         const bodovi=aiResult.bodovi??0;
@@ -3074,8 +3105,7 @@ function __aiGenQuestions(opts){
     +"U polju 'pitanje' koristi lijep zapis (x\u00b2, \u221a, razlomci, \u00b7) i NCVVO stil. "
     +"Vrati ISKLJU\u010cIVO JSON niz (bez markdowna, bez backtickova):\n"
     +'[{"tip":"jednadzba","tema":"kratka tema","pitanje":"Rije\u0161i jednad\u017ebu x\u00b2 \u2212 5x + 6 = 0.","izraz":"x^2-5*x+6=0","var":"x"}]';
-  return fetch("/api/ai-profesor",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1500,messages:[{role:"user",content:prompt}]})})
-    .then(function(r){return r.json();})
+  return __aiPost(prompt,1500)
     .then(function(data){
       if(data.error||!data.content) throw new Error("api");
       var t=(data.content[0]&&data.content[0].text)||"[]";
@@ -3131,8 +3161,8 @@ function AIPractice(props){
   function explain(){
     if(explS==="loading") return; var it=qs[idx]; setExplS("loading");
     var prompt="Rije\u0161i korak po korak (hrvatski, pedago\u0161ki, kratko) ovaj maturalni zadatak i objasni svaki korak. Vrati ISKLJU\u010cIVO JSON: {\"koraci\":[\"...\"],\"rjesenje\":\"konacno\"}.\nZadatak: "+it.pitanje+"\nTo\u010dno rje\u0161enje (provjereno): "+(it._ans&&it._ans.display)+"\n";
-    fetch("/api/ai-profesor",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:900,messages:[{role:"user",content:prompt}]})})
-      .then(function(r){return r.json();}).then(function(d){var t=(d.content&&d.content[0]&&d.content[0].text)||"{}";var o=JSON.parse(t.replace(/```json|```/g,"").trim());setExpl(o);setExplS("done");}).catch(function(){setExplS("error");});
+    __aiPost(prompt,900)
+      .then(function(d){var t=(d.content&&d.content[0]&&d.content[0].text)||"{}";var o=JSON.parse(t.replace(/```json|```/g,"").trim());setExpl(o);setExplS("done");}).catch(function(){setExplS("error");});
   }
 
   var hdr=e("div",{style:{display:"flex",alignItems:"center",gap:12,marginBottom:22}},
@@ -3182,7 +3212,7 @@ function AIPractice(props){
   if(st==="error"){
     return wrap(e("div",{style:{textAlign:"center",padding:"40px 20px",maxWidth:440,margin:"0 auto"}},
       e("div",{style:{fontSize:40,marginBottom:10}},"\u26a0\ufe0f"),
-      e("p",{style:{color:"var(--muted)",fontSize:14,lineHeight:1.6,marginBottom:18}},"Nije uspjelo dohvatiti zadatke. Provjeri vezu i poku\u0161aj ponovno."),
+      e("p",{style:{color:"var(--muted)",fontSize:14,lineHeight:1.6,marginBottom:18}},(__AI_LAST_ERR||"Nije uspjelo dohvatiti zadatke. Provjeri vezu i poku\u0161aj ponovno.")),
       e("button",{onClick:generate,style:{background:"var(--s1)",border:"1px solid var(--bdr2)",borderRadius:10,padding:"10px 18px",fontSize:14,fontWeight:600,cursor:"pointer",color:"var(--text)"}},"Poku\u0161aj ponovno")
     ));
   }
@@ -3571,17 +3601,18 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
                     const h=history.find(x=>x.examKey===ex.key);
                     const locked=ex.locked;
                     return e("div",{key:ex.key,className:"exam-btn",
-                      onClick:locked?undefined:()=>onExam(ex.key),
-                      style:{opacity:locked?.4:1,cursor:locked?"default":"pointer",
+                      title:locked?planCta():undefined,
+                      onClick:locked?()=>askUpgrade():()=>onExam(ex.key),
+                      style:{opacity:locked?.55:1,cursor:"pointer",
                         borderLeft:h?"3px solid var(--green)":undefined}},
                       e("span",{className:"exam-btn-ico"},
                         ex.season==="ljeto"?"☀️":ex.season==="jesen"?"🍂":"❄️"),
                       e("div",{className:"exam-btn-info"},
                         e("strong",null,ex.season==="ljeto"?"Ljetni rok":ex.season==="jesen"?"Jesenski rok":"Zimski rok"),
-                        e("span",null,locked?"Uskoro":ex.qs.length+" zad. · "+Math.floor(ex.duration/60)+" min")
+                        e("span",null,locked?planCta():ex.qs.length+" zad. · "+Math.floor(ex.duration/60)+" min")
                       ),
                       locked
-                        ?e("span",{style:{fontSize:10,color:"var(--muted)",background:"var(--s2)",padding:"2px 8px",borderRadius:99,border:"1px solid var(--bdr)"}},"Uskoro")
+                        ?e("span",{style:{fontSize:10,fontWeight:800,color:"var(--gold)",background:"var(--gold-d)",padding:"2px 8px",borderRadius:99,border:"1px solid var(--gold-b)"}},"🔒 Otključaj")
                         :h
                           ?e("div",{className:"exam-btn-score"},
                             e("div",{className:"pct",style:{color:GC[h.grade]||"var(--muted)"}},h.pct+"%"),
@@ -3990,7 +4021,7 @@ function MathAssistant({qText,qType,seed}){
     setAiState("loading"); setAiOut(null);
     var hint=(res&&res.ok&&res.output&&!res.error&&!res.note)?("\nProvjera (simbolicki izracun daje): "+String(res.output).replace(/\n/g," ; ")+". Uskladi rjesenje s time.\n"):"";
     var prompt="Ti si strpljiv profesor matematike za hrvatsku drzavnu maturu. Rijesi zadatak korak po korak, jasno i pedagoski, na hrvatskom jeziku. Objasni SVAKI korak (ne samo sto, nego zasto se radi). Koristi jednostavan zapis: x^2, sqrt(...), razlomci kao a/b, * za mnozenje, pi, <=, >=. Ako je zadatak rijecni ili geometrijski, prvo postavi matematicki model pa rijesi.\n\nZadatak: "+raw+"\n"+hint+"\nVrati ISKLJUCIVO JSON (bez markdown, bez backtickova):\n{\"koraci\":[\"korak 1 s objasnjenjem\",\"korak 2\",\"...\"],\"rjesenje\":\"konacni odgovor, jasno\",\"napomena\":\"cesta greska ILI kljucni uvid, 1 recenica\"}";
-    fetch("/api/ai-profesor",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1100,messages:[{role:"user",content:prompt}]})}).then(function(r){return r.json();}).then(function(data){ if(data.error||!data.content)throw new Error("api"); var t=(data.content[0]&&data.content[0].text)||"{}"; var o=JSON.parse(t.replace(/```json|```/g,"").trim()); if(!o.koraci||!o.koraci.length)throw new Error("fmt"); setAiOut(o); setAiState("done"); }).catch(function(){ setAiState("error"); });
+    __aiPost(prompt,1100).then(function(data){ if(data.error||!data.content)throw new Error("api"); var t=(data.content[0]&&data.content[0].text)||"{}"; var o=JSON.parse(t.replace(/```json|```/g,"").trim()); if(!o.koraci||!o.koraci.length)throw new Error("fmt"); setAiOut(o); setAiState("done"); }).catch(function(){ setAiState("error"); });
   }
 
   function norm(s){
@@ -4246,14 +4277,14 @@ function MathAssistant({qText,qType,seed}){
         e("span",{style:{fontSize:13,fontWeight:800,color:"#e9b446"}},"🎓 AI profesor"),
         !IS_PRO&&e("span",{style:{fontSize:9.5,fontWeight:800,letterSpacing:".06em",color:"#0b1b3a",background:"#e9b446",borderRadius:99,padding:"2px 7px"}},"PRO")),
       e("div",{style:{fontSize:11.5,color:"rgba(255,255,255,.55)",lineHeight:1.45,marginBottom:11}},"Rješenje s objašnjenim koracima — i za riječne, geometrijske i dokazne zadatke koje CAS ne računa."),
-      aiState==="error"&&e("div",{style:{fontSize:12,color:"#fca5a5",marginBottom:9}},"Greška pri generiranju. Pokušaj ponovo."),
+      aiState==="error"&&e("div",{style:{fontSize:12,color:"#fca5a5",marginBottom:9}},__aiErrMsg()),
       (aiState==="done"&&aiOut)?e("div",{style:{borderRadius:12,padding:"13px 15px",background:"rgba(233,180,70,.08)",border:"1px solid rgba(233,180,70,.35)"}},
         e("div",{style:{fontSize:11,fontWeight:800,letterSpacing:".05em",textTransform:"uppercase",color:"#e9b446",marginBottom:9}},"Korak po korak"),
         (aiOut.koraci||[]).map(function(k,i){return e("div",{key:i,style:{display:"flex",gap:9,marginBottom:9,fontSize:13,lineHeight:1.55,color:"rgba(255,255,255,.92)"}},e("span",{style:{flexShrink:0,width:20,height:20,borderRadius:99,background:"rgba(233,180,70,.2)",color:"#e9b446",fontSize:11,fontWeight:800,display:"flex",alignItems:"center",justifyContent:"center"}},i+1),e("span",null,pretty(k)));}),
         aiOut.rjesenje&&e("div",{style:{marginTop:4,paddingTop:11,borderTop:"1px solid var(--bdr2)",fontSize:14,fontWeight:700,color:"#fff"}},"✅ ",pretty(aiOut.rjesenje)),
         aiOut.napomena&&e("div",{style:{marginTop:9,fontSize:12,color:"rgba(255,255,255,.62)",lineHeight:1.5,fontStyle:"italic"}},"💡 ",pretty(aiOut.napomena)),
         e("button",{onClick:function(){setAiState("idle");setAiOut(null);},style:{marginTop:12,background:"transparent",border:"1px solid var(--bdr2)",color:"rgba(255,255,255,.6)",fontFamily:"var(--fb)",fontSize:11.5,fontWeight:600,padding:"6px 12px",borderRadius:8,cursor:"pointer"}},"↻ Novo pitanje"))
-      :e("button",{onClick:askProfessor,disabled:aiState==="loading",style:{width:"100%",padding:"11px",borderRadius:10,fontFamily:"var(--fb)",fontWeight:800,fontSize:13.5,cursor:aiState==="loading"?"default":"pointer",background:IS_PRO?"#e9b446":"rgba(233,180,70,.14)",color:IS_PRO?"#0b1b3a":"#fff",border:IS_PRO?"none":"1px solid rgba(233,180,70,.4)"}},aiState==="loading"?"⏳ Profesor piše…":IS_PRO?"✨ Objasni korak po korak":"🔒 Otključaj uz Pro — 19,99 €/mj"),
+      :e("button",{onClick:askProfessor,disabled:aiState==="loading",style:{width:"100%",padding:"11px",borderRadius:10,fontFamily:"var(--fb)",fontWeight:800,fontSize:13.5,cursor:aiState==="loading"?"default":"pointer",background:IS_PRO?"#e9b446":"rgba(233,180,70,.14)",color:IS_PRO?"#0b1b3a":"#fff",border:IS_PRO?"none":"1px solid rgba(233,180,70,.4)"}},aiState==="loading"?"⏳ Profesor piše…":IS_PRO?"✨ Objasni korak po korak":planCta()),
       (!IS_PRO&&aiState!=="done")&&e("div",{style:{position:"relative",marginTop:12}},
         e("div",{"aria-hidden":"true",style:{filter:"blur(3.5px)",opacity:.55,pointerEvents:"none",userSelect:"none"}},e("div",{style:{fontSize:12.5,lineHeight:1.6,color:"rgba(255,255,255,.85)"}},"1. Prebaci sve na lijevu stranu: x²−5x+6=0.  2. Rastavi na faktore: (x−2)(x−3)=0.  3. Nultočke: x=2 ili x=3…")),
         e("div",{style:{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center"}},e("span",{style:{fontSize:10.5,fontWeight:700,color:"#fff",background:"rgba(10,23,48,.6)",border:"1px solid rgba(255,255,255,.2)",borderRadius:99,padding:"4px 11px",backdropFilter:"blur(2px)"}},"🔒 Koraci s objašnjenjem — uz Pro")))),
@@ -5330,7 +5361,7 @@ function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,
   const onAnswerCb=React.useCallback(val=>{if(_cq)setAnswers(p=>({...p,[_cq.id]:val}));},[_cq&&_cq.id]);
   const mcStem=React.useMemo(()=>{
     if(!_cq||!_cq.img)return null;
-    const imgKey=(_cq._examKey||exam.key)+"__"+(_cq._origId!==undefined?_cq._origId:_cq.id);
+    const imgKey=__imgKey(_cq._examKey||exam.key,_cq);
     const fn=__MAT.Q_IMAGES[imgKey];return fn?fn():null;
   },[_cq&&_cq.id,_cq&&_cq._examKey,_cq&&_cq._origId]);
   React.useEffect(()=>{
@@ -5403,10 +5434,8 @@ function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,
         +"Vrati ISKLJU\u010cIVO JSON (bez markdown backtickova):\n"
         +'{"dijagnoza":"2-3 re\u010denice ZA\u0160TO se gube bodovi (uzroci, ne samo popis tema)","plan7":["5-7 konkretnih koraka za sljede\u0107ih 7 dana"],"poruka":"kratka motivacija u ti-formi"}';
       try{
-        const res=await fetch("/api/ai-profesor",{method:"POST",headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:900,messages:[{role:"user",content:prompt}]})});
-        const data=await res.json();
-        if(!res.ok||data.error||!data.content) throw new Error("api");
+        const data=await __aiPost(prompt,900);
+        if(data.error||!data.content) throw new Error("api");
         const text=data?.content?.[0]?.text||"{}";
         setAiRes(JSON.parse(text.replace(/```json|```/g,"").trim()));
         setAiResState("done");
@@ -5506,13 +5535,13 @@ function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,
               e("div",{style:{fontSize:15,fontWeight:700,color:"#fff",marginBottom:5}},"\uD83E\uDD16 AI analiza rezultata"),
               e("div",{style:{fontSize:12.5,lineHeight:1.6,color:"rgba(255,255,255,.8)",marginBottom:13,maxWidth:430}},
                 "Claude pregleda tvoje gre\u0161ke, objasni za\u0161to gubi\u0161 bodove na tim temama i slo\u017ei plan za sljede\u0107ih 7 dana."),
-              aiResState==="error"&&e("div",{style:{fontSize:12,color:"#fca5a5",marginBottom:10}},"Gre\u0161ka pri generiranju. Poku\u0161aj ponovo."),
+              aiResState==="error"&&e("div",{style:{fontSize:12,color:"#fca5a5",marginBottom:10}},__aiErrMsg()),
               e("button",{onClick:runAiResults,disabled:aiResState==="loading",
                 style:{background:IS_PRO?"#fff":"rgba(255,255,255,.16)",color:IS_PRO?"#0b1b3a":"#fff",
                   border:IS_PRO?"none":"1px solid rgba(255,255,255,.3)",fontFamily:"var(--fb)",fontSize:13.5,
                   fontWeight:700,padding:"11px 22px",borderRadius:10,cursor:"pointer",
                   boxShadow:IS_PRO?"0 6px 18px -6px rgba(0,0,0,.4)":"none"}},
-                aiResState==="loading"?"\u23f3 Analiziram...":IS_PRO?"\u2728 Generiraj analizu":"\uD83D\uDD12 Otklju\u010daj uz Pro \u2014 19,99 \u20ac/mj"),
+                aiResState==="loading"?"\u23f3 Analiziram...":IS_PRO?"\u2728 Generiraj analizu":planCta()),
               !IS_PRO&&aiResState!=="done"&&e("div",{style:{position:"relative",marginTop:14,borderTop:"1px solid rgba(255,255,255,.12)",paddingTop:14}},
                 e("div",{"aria-hidden":"true",style:{filter:"blur(3.5px)",opacity:.6,pointerEvents:"none",userSelect:"none"}},
                   e("div",{style:{fontSize:11,fontWeight:800,letterSpacing:".08em",textTransform:"uppercase",color:"#8fb4f5",marginBottom:7}},"Plan za 7 dana"),
@@ -5661,7 +5690,7 @@ function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,
                 flag[q.id]&&e("span",{style:{fontSize:11,fontWeight:800,color:"var(--red)"}},"⚑ označeno")
               ),
               !isColl&&e("div",null,e("div",{style:{fontSize:13,lineHeight:1.55,marginBottom:5}},renderQText(q.q)),
-              (()=>{const ik=(q._examKey||exam.key)+"__"+(q._origId!==undefined?q._origId:q.id);
+              (()=>{const ik=__imgKey(q._examKey||exam.key,q);
                 const fn=q.img?__MAT.Q_IMAGES[ik]:null;
                 return fn&&e("div",{style:{margin:"4px 0 8px",padding:"10px",background:"var(--s2)",
                   border:"1px solid var(--bdr)",borderRadius:10,display:"inline-block",maxWidth:"100%"}},fn());})(),
@@ -8068,9 +8097,8 @@ Vrati ISKLJUČIVO JSON (bez markdown backtickova):
 {"fokus":"jedna recenica glavni fokus","tjedni":[{"naslov":"Tjedan 1: ...","zadaci":["konkretan zadatak","konkretan zadatak"]}],"savjet":"jedan kratak motivacijski savjet"}
 Plan 3-4 tjedna, fokus na najslabije teme, zadaci konkretni i izvedivi.`;
     try{
-      const res=await fetch("/api/ai-profesor",{method:"POST",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1200,messages:[{role:"user",content:prompt}]})});
-      const data=await res.json();
+      const data=await __aiPost(prompt,1200);
+      if(data?.error||!data?.content) throw new Error("api");
       const text=data?.content?.[0]?.text||"{}";
       setAiPlan(JSON.parse(text.replace(/```json|```/g,"").trim()));
       setAiPlanState("done");
@@ -8109,9 +8137,9 @@ Plan 3-4 tjedna, fokus na najslabije teme, zadaci konkretni i izvedivi.`;
               e("div",{style:{fontSize:13,lineHeight:1.6,color:"rgba(255,255,255,.8)",marginBottom:14,maxWidth:440}},
                 "Claude analizira tvoj prosjek, trend i najslabije teme"+(topicList[0]?" (npr. "+topicList[0].label+")":"")+" pa sla\u017ee tjedni plan do mature."
               ),
-              aiPlanState==="error"&&e("div",{style:{fontSize:12,color:"#fca5a5",marginBottom:10}},"Gre\u0161ka pri generiranju. Poku\u0161aj ponovo."),
+              aiPlanState==="error"&&e("div",{style:{fontSize:12,color:"#fca5a5",marginBottom:10}},__aiErrMsg()),
               e("button",{onClick:runAiPlan,style:{background:IS_PRO?"#fff":"rgba(255,255,255,.16)",color:IS_PRO?"#0b1b3a":"#fff",border:IS_PRO?"none":"1px solid rgba(255,255,255,.3)",fontFamily:"var(--fb)",fontSize:13.5,fontWeight:700,padding:"11px 22px",borderRadius:10,cursor:"pointer",boxShadow:IS_PRO?"0 6px 18px -6px rgba(0,0,0,.4)":"none"}},
-                IS_PRO?"\u2728 Generiraj AI plan":"\uD83D\uDD12 Otklju\u010daj uz Pro"
+                IS_PRO?"\u2728 Generiraj AI plan":planCta()
               )
             )
     )
@@ -10195,7 +10223,7 @@ function AdaptiveTrening({userData,onExit,onHome,onStartErrorSession}){
 
   if(!curQ) return e("div",{className:"home",style:{padding:30,textAlign:"center",color:"var(--muted)"}},"Učitavanje…");
   var answered=sel!==null;
-  var ik=(curQ._examKey)+"__"+(curQ._origId!==undefined?curQ._origId:curQ.id);
+  var ik=__imgKey(curQ._examKey,curQ);
   var figFn=curQ.img?__MAT.Q_IMAGES[ik]:null;
   var qnum=log.length+1;
   return e("div",{className:"home",style:{maxWidth:760,margin:"0 auto",padding:"14px 16px"}},
@@ -10730,7 +10758,10 @@ function App(){
         date:new Date().toLocaleDateString("hr"),hour:new Date().getHours(),pct:result.pct,grade:result.grade,
         cor:result.cor,total:result.total,qTimes:result.qTimes||{},
         mode:result.examMode?"simulacija":"vježbanje",
-        topic_breakdown:result.topic_breakdown||{}
+        topic_breakdown:result.topic_breakdown||{},
+        // 1.5: sim_progress treba odgovore i tagove grešaka, ne samo agregat.
+        answers:result.answers||{},
+        errorTags:result.errorTags||{}
       }];
       const merged={...updated,xp:(prev.xp||0)+xpGain,history:newHistory,errorTracker,errorTagCounts:globalErrorTags,totalExams:(prev.totalExams||0)+1};
       return merged;
