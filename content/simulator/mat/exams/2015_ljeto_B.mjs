@@ -22,12 +22,12 @@ function SvgZad27c_2015LB(){
     e("text",{x:cx+4,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
     ...[-3,-2,-1,1].map(i=>e("text",{key:"lx"+i,x:cx+i*sc-5,y:cy+13,fill:"var(--muted)",fontSize:10},i)),
     ...[-4,-3,-2,-1,1,2].map(i=>e("text",{key:"ly"+i,x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
-    e("path",{d:path,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("path",{d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
     e("circle",{cx:cx-3*sc,cy:cy,r:4,fill:"#e8c547"}),
     e("circle",{cx:cx+1*sc,cy:cy,r:4,fill:"#e8c547"}),
     e("circle",{cx:cx-1*sc,cy:cy+4*sc,r:4,fill:"#3dd68c"}),
     e("text",{x:cx-1*sc+5,y:cy+4*sc+4,fill:"#3dd68c",fontSize:10},"tjeme"),
-    e("text",{x:cx+0.5*sc,y:cy-2*sc,fill:"#4a90d9",fontSize:10,fontStyle:"italic"},"y=x²+2x−3")
+    e("text",{x:cx+0.5*sc,y:cy-2*sc,fill:"var(--blue)",fontSize:10,fontStyle:"italic"},"y=x²+2x−3")
   );
 }
 
@@ -43,7 +43,7 @@ function SvgZad26_2015LB(){
     e("text",{x:A[0]-30,y:(A[1]+D[1])/2+4,fill:"var(--muted)",fontSize:12},"6,5 cm"),
     e("text",{x:B[0]+5,y:(B[1]+C[1])/2+4,fill:"var(--muted)",fontSize:12},"4 cm"),
     ...[["A",A,[-16,6]],["B",B,[6,6]],["C",C,[6,-4]],["D",D,[-16,-4]]].map(([n,p,[ox,oy]])=>
-      e("text",{key:n,x:p[0]+ox,y:p[1]+oy,fill:"#4a90d9",fontSize:14,fontStyle:"italic",fontWeight:"bold"},n)
+      e("text",{key:n,x:p[0]+ox,y:p[1]+oy,fill:"var(--blue)",fontSize:14,fontStyle:"italic",fontWeight:"bold"},n)
     )
   );
 }
@@ -106,11 +106,11 @@ function SvgZad16_2015LB(){
     ...makeGrid(leftX),
     // Krivulje
     e("path",{d:makePath(djevojcice.c95,leftX),fill:"none",stroke:"#1a1a1a",strokeWidth:2}),
-    e("path",{d:makePath(djevojcice.c50,leftX),fill:"none",stroke:"#94a3b8",strokeWidth:1.8}),
+    e("path",{d:makePath(djevojcice.c50,leftX),fill:"none",stroke:"var(--muted)",strokeWidth:1.8}),
     e("path",{d:makePath(djevojcice.c5,leftX), fill:"none",stroke:"rgba(148,163,184,0.3)",strokeWidth:1.8}),
     // Oznake centila
     e("text",{x:leftX+gW+3,y:topY+yh(173),fill:"#1a1a1a",fontSize:8,dominantBaseline:"middle"},"95. centil"),
-    e("text",{x:leftX+gW+3,y:topY+yh(164),fill:"#94a3b8",fontSize:8,dominantBaseline:"middle"},"50. centil"),
+    e("text",{x:leftX+gW+3,y:topY+yh(164),fill:"var(--muted)",fontSize:8,dominantBaseline:"middle"},"50. centil"),
     e("text",{x:leftX+gW+3,y:topY+yh(152),fill:"rgba(148,163,184,0.3)",fontSize:8,dominantBaseline:"middle"},"5. centil"),
     // Naslov i os
     e("text",{x:leftX+gW/2,y:18,fill:"var(--text)",fontSize:9,fontWeight:700,textAnchor:"middle"},"KRIVULJA RASTA DJEVOJČICA"),
@@ -121,10 +121,10 @@ function SvgZad16_2015LB(){
     // ── DJEČACI (desno) ──────────────────────────
     ...makeGrid(rightX),
     e("path",{d:makePath(djecaci.c95,rightX),fill:"none",stroke:"#1a1a1a",strokeWidth:2}),
-    e("path",{d:makePath(djecaci.c50,rightX),fill:"none",stroke:"#94a3b8",strokeWidth:1.8}),
+    e("path",{d:makePath(djecaci.c50,rightX),fill:"none",stroke:"var(--muted)",strokeWidth:1.8}),
     e("path",{d:makePath(djecaci.c5,rightX), fill:"none",stroke:"rgba(148,163,184,0.3)",strokeWidth:1.8}),
     e("text",{x:rightX+gW+3,y:topY+yh(192),fill:"#1a1a1a",fontSize:8,dominantBaseline:"middle"},"95. centil"),
-    e("text",{x:rightX+gW+3,y:topY+yh(177),fill:"#94a3b8",fontSize:8,dominantBaseline:"middle"},"50. centil"),
+    e("text",{x:rightX+gW+3,y:topY+yh(177),fill:"var(--muted)",fontSize:8,dominantBaseline:"middle"},"50. centil"),
     e("text",{x:rightX+gW+3,y:topY+yh(164),fill:"rgba(148,163,184,0.3)",fontSize:8,dominantBaseline:"middle"},"5. centil"),
     e("text",{x:rightX+gW/2,y:18,fill:"var(--text)",fontSize:9,fontWeight:700,textAnchor:"middle"},"KRIVULJA RASTA DJEČAKA"),
     e("text",{x:rightX+gW/2,y:topY+gH+24,fill:"var(--muted)",fontSize:8,textAnchor:"middle"},"Dob (godine)"),
@@ -138,7 +138,7 @@ function SvgZad13_2015LB(){
       "Grafička rješenja sustava jednadžbi:"),
     e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}},
       e("div",null,
-        e("div",{style:{fontSize:11,fontWeight:700,color:"#4a90d9",marginBottom:3}},"A."),
+        e("div",{style:{fontSize:11,fontWeight:700,color:"var(--blue)",marginBottom:3}},"A."),
         e(SvgZad13_2015LB_A,null)
       ),
       e("div",null,
@@ -162,7 +162,7 @@ function SvgZad13_2015LB_D(){
   return _makeSustav13Graf("D",{
     sx:1.5, sy:1.5,
     lines:[
-      {x1:-0.5,y1:3*(-0,5)-3, x2:2.5,y2:3*2.5-3, color:"#4a90d9"},
+      {x1:-0.5,y1:3*(-0,5)-3, x2:2.5,y2:3*2.5-3, color:"var(--blue)"},
       {x1:-3,  y1:-3/3+1,    x2:3,  y2:3/3+1,    color:"#f87171"},
     ]
   });
@@ -173,7 +173,7 @@ function SvgZad13_2015LB_C(){
   return _makeSustav13Graf("C",{
     sx:1, sy:0,
     lines:[
-      {x1:-0.5,y1:-3*(-0,5)+3, x2:2.5,y2:-3*2.5+3, color:"#4a90d9"},
+      {x1:-0.5,y1:-3*(-0,5)+3, x2:2.5,y2:-3*2.5+3, color:"var(--blue)"},
       {x1:-3,  y1:3/3-1,       x2:3,  y2:-3/3-1,  color:"#f87171"},
     ]
   });
@@ -184,7 +184,7 @@ function SvgZad13_2015LB_B(){
   return _makeSustav13Graf("B",{
     sx:0, sy:1,
     lines:[
-      {x1:-2.1,y1:3*(-2.1)+3, x2:0.8,y2:3*0.8+3, color:"#4a90d9"},
+      {x1:-2.1,y1:3*(-2.1)+3, x2:0.8,y2:3*0.8+3, color:"var(--blue)"},
       {x1:-3,  y1:-3/3+1,     x2:3,  y2:3/3+1,   color:"#f87171"},
     ]
   });
@@ -196,7 +196,7 @@ function SvgZad13_2015LB_A(){
   return _makeSustav13Graf("A",{
     sx:-1.5, sy:-1.5,
     lines:[
-      {x1:-2.1,y1:3*(-2.1)+3, x2:0.8,y2:3*0.8+3, color:"#4a90d9"},    // y=3x+3
+      {x1:-2.1,y1:3*(-2.1)+3, x2:0.8,y2:3*0.8+3, color:"var(--blue)"},    // y=3x+3
       {x1:-2.5,y1:-2.5/3-1,   x2:3,  y2:3/3-1,    color:"#f87171"},    // y=x/3-1
     ]
   });
@@ -689,8 +689,7 @@ export const qs = [
     {txt:"Pretvori u grame: 1000 mg = 1 g → 830 000 mg / 1000 = 830 g"},
     {txt:"Provjera: 830 g klora u 830 000 L vode = 1 mg / 1 L = zadana koncentracija ✓",final:true,note:"verifikacija"},{txt:"Intuicija: Dodatak (intuicija).",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: masa otopljenog spoja = volumen otopine · koncentracija (m = V · c). Pretvorba jedinica je ključna: c [mg/L] · V [L] = m [mg]; podijeli s 1000 za g. Intuicija: koncentracija = 'koliko spoja po jedinici volumena';...",note:"postupak",final:true},{txt:"Točan odgovor: 830 g ✓",note:"odgovor",final:true}
   ],
-  why:["Pravilo: masa otopljenog spoja = volumen otopine · koncentracija (m = V · c). Pretvorba jedinica je ključna: c [mg/L] · V [L] = m [mg]; podijeli s 1000 za g. Intuicija: koncentracija = 'koliko spoja po jedinici volumena'; ukupna masa je sumarno za sav volumen. Česta greška: zaboraviti pretvoriti mg u g (ostaviti 830 000 'g' umjesto 830 g) ili pomiješati protok s koncentracijom. Alt metoda: 1 mg/L = 1 g/1000 L → 830 000 L / 1000 = 830 g klora. Provjera: postotno = 830 g / 830 000 000 g = 10⁻⁶ = 1 ppm (uobičajena koncentracija klora u bazenu) ✓.","Provjera: dobiveni broj pripada traženom skupu (npr. ℕ, ℤ, ℚ, ℝ) — provjeri svojstva.","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO).","Veza s gradivom: skupovi brojeva su hijerarhijski (ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ) — osnova za sve matematike.","Provjera kategorije: uvijek provjeri pripadnost broja skupu (ℕ, ℤ, ℚ, ℝ) prije primjene operacija.","Tipičan propust: smatrati √2 racionalnim ili 0 prirodnim brojem (definicija ℕ se može razlikovati)."]},
-  {_META:true,auditStatus:"verified-full",rok:"2015_ljeto",razina:"B",serial:"D-S027",totalPoints:40,mcCount:16,saCount:20,verified:"vision+pdf+pedagogy-premium+verbatim",auditedAt:"2026-05-15",auditBy:"Claude+Daniel",auditNotes:"Pak G: verbatim PDF match svih 30 Q-ova (Q10 KRITIKA 100^(-2), Q17 KRITIKA 85,3·2^(2,75), Q19 KRITIKA iracionalni skup). Pak H: ASCII−→Unicode, decimalni zarez, [FRAC:] decimalne baze. Pak I: 6 Q_IMAGES bindova (Q12/13/16/26,1/26,2/27,3), rename legacy 26a/26b/27c → numerirano. Pak A-E: sol.cl/ans match s ključem. Pak F: pedagoška ekspanzija Q1/Q10/Q17/Q19 (pravilo+intuicija+greška+alt+provjera). Pak J: [SYS:] tag Q14, [FRAC:] u q-text. Pak G+I2: multi-part context format Zadatak X (Y. dio od N) za Q22-Q28.",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  why:["Pravilo: masa otopljenog spoja = volumen otopine · koncentracija (m = V · c). Pretvorba jedinica je ključna: c [mg/L] · V [L] = m [mg]; podijeli s 1000 za g. Intuicija: koncentracija = 'koliko spoja po jedinici volumena'; ukupna masa je sumarno za sav volumen. Česta greška: zaboraviti pretvoriti mg u g (ostaviti 830 000 'g' umjesto 830 g) ili pomiješati protok s koncentracijom. Alt metoda: 1 mg/L = 1 g/1000 L → 830 000 L / 1000 = 830 g klora. Provjera: postotno = 830 g / 830 000 000 g = 10⁻⁶ = 1 ppm (uobičajena koncentracija klora u bazenu) ✓.","Provjera: dobiveni broj pripada traženom skupu (npr. ℕ, ℤ, ℚ, ℝ) — provjeri svojstva.","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO).","Veza s gradivom: skupovi brojeva su hijerarhijski (ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ) — osnova za sve matematike.","Provjera kategorije: uvijek provjeri pripadnost broja skupu (ℕ, ℤ, ℚ, ℝ) prije primjene operacija.","Tipičan propust: smatrati √2 racionalnim ili 0 prirodnim brojem (definicija ℕ se može razlikovati)."]}
 ];
 
 export const qImages = {

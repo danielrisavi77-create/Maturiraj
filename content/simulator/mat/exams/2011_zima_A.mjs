@@ -4,14 +4,14 @@ const e = React.createElement;
 
 function SvgZad27_2011ZA(){
   const W=320,H=180,pad={l:30,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const PI=Math.PI;
   const xMin=-2*PI,xMax=2*PI,yMin=-3.5,yMax=3.5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",b=_BLUE,mu="#94a3b8";
+  const t="var(--text)",b=_BLUE,mu="var(--muted)";
   // Sample sin curve
   const pts=[];
   for(let x=xMin;x<=xMax;x+=0.05){
@@ -48,13 +48,13 @@ function SvgZad27_2011ZA(){
 
 function SvgZad26_2011ZA(){
   const W=300,H=240,pad={l:30,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=7,yMin=-5,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",b=_BLUE,g=_GOLD,mu="#94a3b8";
+  const t="var(--text)",b=_BLUE,g=_GOLD,mu="var(--muted)";
   // Linije
   // Padajuća y = -3x/4 + 1: from x=-3 (y=13/4=3.25) to x=7 (y=-17/4=-4.25)
   const f1=x=>-3*x/4+1;
@@ -89,13 +89,13 @@ function SvgZad26_2011ZA(){
 
 function SvgZad10_2011ZA(){
   const W=260,H=240,pad={l:30,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=3,yMin=-4,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",b=_BLUE,mu="#94a3b8";
+  const t="var(--text)",b=_BLUE,mu="var(--muted)";
   const A=[toX(-2),toY(-1)], B=[toX(1),toY(-3)], C=[toX(2),toY(2)], D=[toX(-2),toY(3)];
   function dot(p){return e("circle",{cx:p[0],cy:p[1],r:3,fill:_RED,stroke:t,strokeWidth:1.3});}
   function tk(x,y){return e("circle",{cx:x,cy:y,r:2.5,fill:_RED,stroke:t,strokeWidth:1.2});}
@@ -1964,7 +1964,7 @@ export const qs = [
       "Greška: koristiti (x, y) → (y, −x) kao CCW (krivo — to je CW); ili rotirati oko druge točke bez prethodne translacije."
     ]
   }
-,{_META:true,auditStatus:"verified-full",rok:"2011_zima",razina:"A",serial:"D-S005",totalPoints:68,mcCount:15,verified:"vision+pdf+pedagogy-premium+verbatim"}];
+];
 
 export const qImages = {
   "2011_zima_A__10": () => e(SvgZad10_2011ZA, null),

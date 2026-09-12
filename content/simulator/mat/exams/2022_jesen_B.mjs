@@ -18,15 +18,15 @@ function Svg29_2022JesenB() {
     // Oznaka x (gornja stranica)
     e('text',{x:(A[0]+B[0])/2, y:A[1]-8, fontSize:14, fill:t, fontStyle:'italic', textAnchor:'middle'}, 'x'),
     // Prazan kvadratić za z (desno, nasuprot x)
-    e('rect',{x:B[0]+8, y:(B[1]+C[1])/2-8, width:18, height:18, fill:'none', stroke:'#50c878', strokeWidth:1.5}),
+    e('rect',{x:B[0]+8, y:(B[1]+C[1])/2-8, width:18, height:18, fill:'none', stroke:'var(--green)', strokeWidth:1.5}),
     // Prazan kvadratić za y (hipotenuza, donji lijevi smjer)
-    e('rect',{x:(A[0]+C[0])/2-30, y:(A[1]+C[1])/2+10, width:18, height:18, fill:'none', stroke:'#50c878', strokeWidth:1.5})
+    e('rect',{x:(A[0]+C[0])/2-30, y:(A[1]+C[1])/2+10, width:18, height:18, fill:'none', stroke:'var(--green)', strokeWidth:1.5})
   );
 }
 
 function Svg26_2022JesenB() {
-  const W=260, H=220, t='var(--text)', g="#94a3b8";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const W=260, H=220, t='var(--text)', g="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ox=60, oy=120, sq=20;
   return e('svg', {viewBox:`0 0 ${W} ${H}`, width:'100%',
     style:{maxWidth:W, display:'block', margin:'0 auto'}},
@@ -59,8 +59,8 @@ function Svg26_2022JesenB() {
 }
 
 function Svg24_2022JesenB() {
-  const W=440, H=260, t='var(--text)', g="#94a3b8";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const W=440, H=260, t='var(--text)', g="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // 24 sata, vrijednosti od ~23.2 do 24.3 °C
   const data = [23.6,23.6,23.4,23.4,23.2,23.3,23.4,23.3,23.5,23.6,23.6,24.0,24.0,24.2,24.3,24.1,23.9,23.6,23.7,23.8,23.9,23.5,23.7,23.9];
   const sx=50, baseY=H-40;
@@ -91,7 +91,7 @@ function Svg24_2022JesenB() {
 
 function Svg13_2022JesenB() {
   const W=300, H=220, t='var(--text)';
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Trokut: vrh A s kutom α; stranice 13 (lijevo), 9 (desno), 7 (donja)
   const A=[150,40], B=[40,180], C=[260,180];
   return e('svg', {viewBox:`0 0 ${W} ${H}`, width:'100%',
@@ -143,8 +143,8 @@ function Svg12_2022JesenB() {
 }
 
 function Svg7_2022JesenB() {
-  const W=280, H=220, t='var(--text)', g="#94a3b8";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const W=280, H=220, t='var(--text)', g="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // PDF (pixel-verified @ 300 DPI):
   //   a⃗: rep (5, 1), glava (3, 3) — smjer (−2, +2), gore-lijevo
   //   b⃗: rep (2, 2), glava (2, −2) — smjer (0, −4), vertikalno dolje
@@ -453,7 +453,7 @@ export const qs = [
      "Alt metoda (provjera): testiraj vrijednost x = 1550 → 2021. = 5000 (granica, ali uvjet je > 5000); pa mora biti > 1550."
    ,"Provjera s x = 1600: 2021. = 4·1600 − 1200 = 5200 > 5000 ✓; s x = 1500 (manje od 1550): 2021. = 4·1500 − 1200 = 4800 < 5000 (ne zadovoljava) ✓","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:16,type:"mc",warn:"Pazi: d = 2; Sₙ = (n/2)(2·1 + (n − 1)·2) = n²; n² = 100 → n = 10.",topic:"nizovi",points:1,
+  {id:16,type:"mc",warn:"Pazi: d = 2; Sₙ = (n/2)(2·1 + (n − 1)·2) = n²; n² = 100 → n = 10.",topic:"niz",points:1,
    q:"Za aritmetički niz vrijedi a₁ = 1, a₂ = 3. Koliko članova niza treba zbrojiti da bi zbroj bio 100?",
    opts:["9","10","11","12"],
    sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -506,7 +506,7 @@ export const qs = [
      "Alt metoda (provjera): 9¹ = 9 < 31 < 81 = 9² → x ∈ ⟨1, 2⟩ ⊂ ⟨1, +∞⟩ ✓"
    ,"Provjera: 9¹ = 9; 9² = 81. 31 je između, pa je x između 1 i 2 — bliže 2. ✓","Tipičan propust: a^m · a^n = a^(m+n), ne a^(m·n); ili (a^m)^n = a^(m·n), ne a^(m+n)."]
   },
-  {id:19,type:"mc",warn:"Pazi: usporedi vjerojatnosti (povoljni/ukupni), ne biraj 'na osjećaj'.",topic:"vjer",points:1,
+  {id:19,type:"mc",warn:"Pazi: usporedi vjerojatnosti (povoljni/ukupni), ne biraj 'na osjećaj'.",topic:"stat",points:1,
    q:"Koji je od navedenih događaja najvjerojatniji ako slučajnim odabirom odaberemo jednoga maturanta?",
    opts:["Rođen je u petak.","Rođen je tijekom vikenda (u subotu ili nedjelju).","Rođen je u travnju.","Rođen je tijekom jeseni."],
    sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -678,7 +678,7 @@ export const qs = [
      "Alt metoda (provjera): aproksimativno, jer su sve vrijednosti blizu 24, prosjek mora biti oko 24,1-24,2."
    ,"Provjera: 24,12·5 = 120,60 — odgovara ukupnoj sumi pet najviših vrijednosti ✓","Tipičan propust: pomiješati aritmetičku sredinu i medijan; ili apsolutnu i relativnu frekvenciju."]
   },
-  {id:25.1,type:"sa",topic:"skupovi",points:1,
+  {id:25.1,type:"sa",topic:"br",points:1,
    context:"Zadatak 25 (1. dio od 2):",
    q:"Napišite dva elementa skupa ℝ \\ ⟨13, 42⟩.",
    sol:{ans:"a, b ∈ ⟨−∞, 13] ∪ [42, +∞⟩ npr. 1, 2",alt:["1 i 2","1, 2","0 i 100","-1, 50","npr. 1 i 2"]},
@@ -779,7 +779,7 @@ export const qs = [
      "Alt metoda (provjera): napiši kao stupac (a, −3) = (3, 3b) → a = 3, b = −1 ✓"
    ,"Provjera: 3i⃗ − 3j⃗ = 3(i⃗ + (−1)j⃗) = 3i⃗ − 3j⃗ ✓","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata."]
   },
-  {id:28.1,type:"sa",topic:"omjer",points:1,
+  {id:28.1,type:"sa",topic:"ostalo",points:1,
    context:"Zadatak 28 (1. dio od 2):",
    q:"U školi s 855 učenika omjer broja učenika nižih i viših razreda jest 10 : 9. Koliko je djevojčica u višim razredima ako je omjer dječaka i djevojčica u višim razredima 7 : 8?",
    sol:{ans:"216",alt:["216 djevojčica","216,0"]},
@@ -848,7 +848,7 @@ export const qs = [
      "Alt metoda (provjera): treći kut = 180° − 76° − 42,45° = 61,55°; provjeri sinusovim poučkom."
    ,"Provjera: 0,4533° = 27,2′ → 27′ 12″. ✓","Tipičan propust: koristiti DEG mode kad treba RAD (ili obratno); pomiješati sin/cos/tan."]
   },
-  {id:30.1,type:"sa",topic:"omjer",points:1,
+  {id:30.1,type:"sa",topic:"ostalo",points:1,
    context:"Zadatak 30 (1. dio od 2):",
    q:"Oka je stara mjerna jedinica za volumen za koju vrijedi: 1 oka = 1,282 dm³. Koliko oka iznosi 2,564 m³?",
    sol:{ans:"2000",alt:["2000 oka","2,000","2 000"]},
@@ -882,15 +882,6 @@ export const qs = [
      "Česta greška: koristiti BC u formuli (nije potrebno — formula koristi samo AB i AC).",
      "Alt metoda (provjera): postavi koordinatni sustav, izračunaj stranice romba kroz vektore."
    ,"Provjera s druge slične: r/BC = (AC − r)/AC → r/7,5 = (10 − r)/10 → 10r = 75 − 7,5r → 17,5r = 75 → r ≈ 4,29.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
-  },
-  {_META:true,
-  auditedAt: "2026-05-20",
-  auditSource: "MAT B (niža razina, jesenski rok 2022.)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  verified: "vision+pdf+pedagogy+verbatim",
-  notes: "Pak G+H+I+F kombinirani. Sve 40 Q-objekata produkcijski upgrade. 6 Q s img:true (Q7, Q12, Q13, Q24,1/.2, Q26,1, Q29,1). Sva sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation Unicode/[FRAC:]. Pedagoški upgrade: ≥3-7 steps + ≥4-5 why entries svuda.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 187}
   }
 ];
 

@@ -1,0 +1,25 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2020_ljeto",
+  "razina": "B",
+  "serial": "D-S050",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 24,
+  "verified": "sympy+pdf",
+  "note": "unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ],
+  "maintenanceAt_v310": "2026-05-26",
+  "maintenanceNotes_v310": [
+    "Pak I (visual): svih 12 vizuala (Q3/7/15/17/22.1/22.2/23.1/27.1/27.2/27.3/28.1/28.3) verified protiv PDF D-S050.",
+    "P1 fix Svg23a_2020Blj: graf y=2x-2 izmjenjen iz BLUE SOLID (izgledalo kao original problem) u GREEN DASHED (konvencija rješenje-highlight, sukladno Svg23a_2020Bjj).",
+    "P2 BACKLOG Svg3_2020Blj: shading shape uncertainty — SVG računa ~34% (≈ answer A), ali OCR-parsed NCVVO key bio garbled (možda A ili C). Treba ručna verifikacija NCVVO listing-a (Q3 = A = 33.33% vs C = 44.44%). Ostavljeno za sljedeću sesiju.",
+    "P2 BACKLOG Svg27a_2020Bjj: polygon shape ne odgovara točno PDF oblik, ali edge counts (8 vert × 1cm + 10 horiz × 2cm = 28 cm) match NCVVO Q27.1=28cm. Pedagoški OK, vizualno aproksimativno."
+  ]
+}

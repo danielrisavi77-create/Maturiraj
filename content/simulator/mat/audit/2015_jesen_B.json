@@ -1,0 +1,13 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2015_jesen",
+  "razina": "B",
+  "serial": "D-S030",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 20,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditedAt": "2026-05-15",
+  "auditBy": "Claude+Daniel",
+  "auditNotes": "Pak G: verbatim PDF (Q10 KRITIKA opts duplikat A=D, Q11 KRITIKA kubna→kvadratna, Q22,2 RENDERER ^{} → ^()). Pak H: ASCII−→Unicode, interval ) → ⟩, [B:nije]/[B:najmanji] emphasis. Pak I: 7 Q_IMAGES bindova (Q11/Q23,2/Q24,1/Q24,2/Q28,1/Q28,2/Q28,3), rename legacy 23b/24a/24b/28a/28b/28c → numerirano. Pak A-E: sol.cl/ans match s ključem. Pak F: pedagoška ekspanzija Q1/Q5/Q9/Q10/Q11. Pak J: [SYS:] tag Q22,1. Pak I2: 15 multi-part context dodatka u Q22-Q28."
+}

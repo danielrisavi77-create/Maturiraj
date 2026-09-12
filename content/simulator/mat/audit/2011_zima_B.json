@@ -1,0 +1,11 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2011_zima",
+  "razina": "B",
+  "serial": "D-S005",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 20,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditNotes": "G: Verbatim text audit — svih 36 Q sadrzajno match PDF original. Q26.1 sol.ans dodan. H: Q5 [FRAC:9^a|27], Q26.2 [FRAC:1|2] tagovi. A: final:true dodan na sve MC. Q24/Q27 q tekstovi skraceni. Q25.1/Q25.2 context polja dodana. F: diagnostika+verifikacija za svih 16 MC; verifikacija za svih 20 SA/num."
+}

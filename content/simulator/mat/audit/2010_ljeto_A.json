@@ -1,0 +1,14 @@
+{
+  "auditedAt": "2026-04-24",
+  "auditSource": "MAT A D-S002 (viša razina, svibanj 2010)",
+  "auditStatus": "verified-full",
+  "auditBy": "Claude+Daniel",
+  "issueCount": {
+    "critical": 11,
+    "medium": 12,
+    "low": 6,
+    "resolved": 29
+  },
+  "partialComplete": true,
+  "partialNote": "Q1-Q17 + Q26/Q27/Q30 imported; Q18-Q25, Q28-Q29 pending NCVVO PDF za rewrite"
+}

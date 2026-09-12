@@ -5,7 +5,7 @@ const e = React.createElement;
 function Svg7_2018Alj(){
   /* Pravokutnik 12.8×5 cm s upisanim polukrugom. Promjer na donjoj stranici. */
   const W=280,H=130;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const rx=15,ry=10,rw=250,rh=100;
   /* polukrug: promjer na dnu pravokutnika, krivulja ide gore */
   /* vizualno promjer ~ 65% širine, centriran lijevo */
@@ -25,7 +25,7 @@ function Svg7_2018Alj(){
 
 function Svg5_2018Alj(){
   const W=200,H=90;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cols=[0,100,200], rows=[0,30,55,80];
   const hdr=["Visina","Broj učenika"];
   const data=[["172 cm","5"],["176 cm","3"],["178 cm","10"]];
@@ -50,7 +50,7 @@ function Svg5_2018Alj(){
 
 function Svg28_2018Alj(){
   const W=240,H=220,pad={l:32,r:16,t:16,b:32};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-4,xMax=6,yMin=-4,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -121,7 +121,7 @@ function Svg28_2018Alj(){
 
 function Svg26_2018Alj(){
   const W=220,H=180,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-7,xMax=7,yMin=-5,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -156,7 +156,7 @@ function Svg26_2018Alj(){
 
 function Svg24b_2018Alj(){
   const W=260,H=180;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const A={x:50,y:155}, B={x:230,y:155}, C={x:170,y:25};
   /* E and D on line p at half height */
   const midH=(A.y+C.y)/2;
@@ -194,7 +194,7 @@ function Svg24a_2018Alj(){
      Diagonal DB = 12.35 cm. At vertex D: 73° between DA and DB, 29° between DB and DC.
      AB is the long base at bottom. DC shorter on top, offset right. */
   const W=300,H=190;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   /* Positions matching the reference image proportions */
   const D={x:50,y:30}, C={x:230,y:30};
   const A={x:20,y:160}, B={x:200,y:160};
@@ -230,7 +230,7 @@ function Svg24a_2018Alj(){
 
 function Svg22_2018Alj(){
   const W=200,H=180,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=14,yMin=-1,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -269,7 +269,7 @@ function Svg22_2018Alj(){
 
 function Svg22a_2018Alj(){
   const W=200,H=70;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     /* grid */
     e("rect",{x:0,y:0,width:W,height:30,fill:"var(--blue)",fillOpacity:0.12}),
@@ -288,7 +288,7 @@ function Svg22a_2018Alj(){
 
 function Svg21a_2018Alj(){
   const W=220,H=200,pad={l:20,r:20,t:20,b:20};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=W/2+20,cy=H/2-10;
   const R=60; /* radius for |z|=1.5 visually */
   const ang=210*Math.PI/180;
@@ -321,7 +321,7 @@ function Svg21a_2018Alj(){
 
 function Svg18a_2018Alj(){
   const W=300,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   /* Three horizontal parallel lines */
   const y1=35, y2=100, y3=175;
   /* Meeting point of two transversals on middle line */
@@ -358,7 +358,7 @@ function Svg15_2018Alj(){
      y-intercept small negative or near 0. Extends far up on both sides.
      f label at upper-left on the curve. Clean coord system with 0,1 marks. */
   const W=220,H=260,pad={l:40,r:20,t:20,b:40};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=3,yMin=-3,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -439,7 +439,7 @@ export const qs = [
     {txt:"Provjera: vektor od (1, 2) do (−4, 12) ima komponente (−4 − 1, 12 − 2) = (−5, 10) ✓",final:true,note:"verifikacija"},
     {txt:"Distraktori: B) (−4, −8) = krivi predznak y; C) (6, −8) = krivi predznaci obje; D) (6, 12) = krivi predznak x.",final:true,note:"diagnostika"},{txt:"Sažetak postupka: Pravilo: ako je v = (a, b) vektor i P = (x, y) početna točka, završna točka Q = P + v = (x + a, y + b).",note:"postupak",final:true},{txt:"Intuicija: Vektor v = ai + bj u standardnoj bazi: a komponenta po x-osi, b po y-osi.",note:"intuicija",final:true},{txt:"Provjera grafom: nacrtaj krivulje i vizualno potvrdi sjecište / dodir / paralelnost.",note:"verifikacija",final:true}
   ]},
-  {id:4,type:"mc",warn:"Pazi: geometrijski red ima konačnu sumu samo ako je |q| < 1.",topic:"seq",points:1,
+  {id:4,type:"mc",warn:"Pazi: geometrijski red ima konačnu sumu samo ako je |q| < 1.",topic:"niz",points:1,
   q:"Koji od navedenih geometrijskih redova ima konačnu sumu?",
   opts:["1 − 3 + 9 − ...","1 − 1/2 + 1/4 − ...","1 + 2 + 4 + ...","1 + 3/2 + 9/4 + ..."],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -893,7 +893,7 @@ export const qs = [
     {txt:"Provjera za k = 2: y = 9/3 = 3, x = 6. Provjera: √(6+3) = 3 ✓; 6/3 − 2 = 0 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) ukloni korijen kvadriranjem. 2) izrazi x kroz y iz druge. 3) uvrsti, riješi za y.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) ukloni korijen kvadriranjem. 2) iz druge jednadžbe izrazi x = ky. 3) uvrsti u prvu. 4) izvuci y.",note:"intuicija",final:true}
   ]},
-  {id:25.3,type:"sa",topic:"alg",points:1,
+  {id:25.3,type:"sa",topic:"al",points:1,
   context:"Zadatak 25 (3. dio od 3):",
   q:"Ako za x vrijedi (2x + 3)(5x − 8)¹⁰ = 0, koje sve vrijednosti može poprimiti izraz 5x − 8?",
   sol:{ans:"{0, −31/2}",solFormula:{pre:"5x − 8 ∈ "},alt:["0, -31/2","-31/2, 0","{0,-31/2}","0 i -31/2","{0,â31/2}","{0. â31/2}"]},
@@ -991,7 +991,7 @@ export const qs = [
   ],
   why:["Pravilo: ako je slika f-ja Y_f, onda slika a·f je |a|·Y_f (sa zrcaljenjem ako a < 0).","sin x ima sliku [−1, 1]. Za g = a · sin x: slika je [−|a|, |a|] (uz a ≠ 0).","Postupak: 1) odredi sliku osnovne sin/cos. 2) pomnoži s |koeficijent|. 3) ako je koef negativan, samo opseg (krajnje vrijednosti) ostaju iste, ali smjer se mijenja.","Intuicija: −2 sin x = 2 · (−sin x). −sin x ima istu sliku kao sin x ([−1, 1]). Pomnoženo s 2: [−2, 2].","Česta greška 1: izostaviti minus pa pisati [0, 2] ili [-2, 0] (krivo, slika ide od −2 do 2). Greška 2: pomiješati sliku i period.","Alt metoda: nacrtaj graf — vidi da maksimum 2 i minimum −2.","Provjera: za x = π/2: sin = 1, g = −2 (min); za x = 3π/2: sin = −1, g = 2 (max). Slika [−2, 2] ✓"]
 },
-  {id:28,img:true,type:"sa",topic:"fnk",points:2,
+  {id:28,img:true,type:"sa",topic:"fun",points:2,
   context:"Zadatak 28:",
   q:"Na slici je prikazan graf funkcije f koja je definirana na intervalu [−3, 5]. Neka je g funkcija takva da vrijedi g(x) = −2f(x + 3). Za koju vrijednost x funkcija g poprima maksimalnu vrijednost i koliko ta maksimalna vrijednost iznosi?",
   sol:{ans:"x = −4, max g = 6",solFormula:{pre:"x = "},alt:["x = -4, max = 6","x=-4; max g(x)=6","-4, 6","x=â4,maxg=6","x = â4. max g = 6","â4, max g = 6"]},
@@ -1055,7 +1055,7 @@ export const qs = [
     {txt:"Provjera: a₁ = 8/3, a₂ = 16/3, a₃ = 24/3 = 8, a₄ = 32/3. Razlika: 8/3 (konstantna) ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) primijeni uvjet konstantne razlike za aritm niz. 2) postavi sustav. 3) riješi za x, y. 4) primijeni formulu a_n.",final:true,note:"postupak"},{txt:"Intuicija: Da bi se 4 broja sastavila aritm niz: razlika između svih susjednih PAROVA mora biti ista (3 jednadžbe: d₁=d₂, d₂=d₃; ili ekvivalentno: 2 jednadžbe).",note:"intuicija",final:true}
   ]},
-  {id:29.4,type:"sa",topic:"eks",points:3,
+  {id:29.4,type:"sa",topic:"exp",points:3,
   context:"Zadatak 29 (4. dio od 5):",
   q:"Napunjenost baterije mobitela B(t) izražena je u postocima. Pri punjenju iz potpuno prazne: B(t) = 100(1 − a^(−t)), a ∈ ℝ⁺. Pri pražnjenju ako je u trenutku početka napunjena P %: B(t) = P − 3t. Potpuno prazna baterija napuni se do 99 % za 70 min. Ako se potpuno prazna baterija punila 25 min, za koliko će se vremena potpuno isprazniti?",
   sol:{ans:"≈ 26,9 min",solFormula:{pre:"t ≈ "},alt:["26,9","26,9","26,9 min","26,90","≈26,9","â 26,9 min"]},
@@ -1083,7 +1083,7 @@ export const qs = [
     {txt:"Provjera: udaljenost od 6x+10y+9=0 do 3x+5y-1=0 (=6x+10y-2=0)? d = |9 − (−2)|/√(36+100) = 11/√136 = 11/(2√34) ≈ 0,943. Udaljenost do drugog: |9 − 20|/√136 = 11/(2√34) ✓ (jednako)",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) provjeri jesu li pravci paralelni (isti A, B). 2) skup jednako udaljenih = paralelan pravac sa SREDNJOM vrijednosti slobodnog člana.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) provjeri paralelnost (isti A, B). 2) zbroji slobodne članove i podijeli s 2. 3) pomnoži cijelu jednadžbu da makneš decimal.",note:"intuicija",final:true}
   ]},
-  {id:30,type:"sa",topic:"pov",points:5,
+  {id:30,type:"sa",topic:"geom",points:5,
   context:"Zadatak 30:",
   q:"Ana je ukrasila kutiju za nakit bez poklopca. Izvana ju je oblijepila papirom i na vanjske rubove zalijepila ukrasnu nit. Kutija je u obliku kvadra kojemu je duljina dvostruko veća od širine. Za ukrašavanje svih vanjskih rubova kutije upotrijebila je točno 108 cm ukrasne niti. Kutija ima maksimalno moguć obujam, papiri se ne preklapaju, niti se nigdje ne preklapaju. Kolika je površina papira kojim je Ana oblijepila tu kutiju?",
   sol:{ans:"P = 396 cm²",solFormula:{pre:"P = "},alt:["396","396 cm²","396 cm^2","P=396cmÂ²"]},
@@ -1103,15 +1103,7 @@ export const qs = [
     {txt:"Točan odgovor: P = 396 cm².",final:true,note:"odgovor"},
     {txt:"Provjera s a = 6, h = 9: P = 2·6² + 6·6·9 = 72 + 324 = 396 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) zapiši uvjet bridova (108 cm ukupno). 2) uvjet papira (površina). 3) sustav 2x2 za a, h.",final:true,note:"postupak"},{txt:"Intuicija: Površina kvadra (sva 6 ploha): 2(ab + bc + ac). BEZ POKLOPCA: izostavi gornji ab (jedna ploha).",note:"intuicija",final:true}
-  ]},
-  {_META:true,
-  auditedAt: "2026-05-19",
-  auditSource: "MAT A (viša razina, ljetni rok 2018.)",
-  auditStatus: "verified-full-detailed",
-  auditBy: "claude-opus-4-7",
-  auditNotes: "Detailed v2 uplift iz verified-full-C1. Anatomija prisutna: Pravilo + Intuicija + Česta greška + Alt metoda + Provjera. Per-option distractor analiza za MC. Stats: avg 7,5 steps + 7,0 why (Q25,1 boosted 4→6 steps).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 49}
-  }
+  ]}
 ];
 
 export const qImages = {

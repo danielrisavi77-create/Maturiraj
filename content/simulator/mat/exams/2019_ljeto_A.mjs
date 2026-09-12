@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg29c_2019Alj(){
   const W=180,H=260;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=90,byTop=140,byBot=230;
   /* Heksagonalna baza — gornja (vidljiva) */
   const R=50;
@@ -39,7 +39,7 @@ function Svg29c_2019Alj(){
 
 function Svg25a_2019Alj(){
   const W=240,H=140;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   /* ABCD: A donji-lijevi, B donji-desni, C gornji-desni, D gornji-lijevi */
   const A={x:20,y:120}, B={x:200,y:120}, C={x:200,y:30}, D={x:20,y:30};
   /* E na AB, bliže B. AE≈5.3, EB≈1.7. Skala: AB=180px za 7cm → E oko x=156 */
@@ -64,7 +64,7 @@ function Svg25a_2019Alj(){
 
 function Svg22a_2019Alj(){
   const W=160,H=160;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const s=130; /* stranica kvadrata */
   const x0=(W-s)/2, y0=(W-s)/2;
   const r=s*0.35; /* krug promjera ~60% stranice */
@@ -78,7 +78,7 @@ function Svg22a_2019Alj(){
 
 function Svg7_2019Alj(){
   const W=260,H=140;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   /* Mreža — horizontalne linije */
   const gY=[20,40,60,80,100,120];
   const gS=30; /* razmak mreže horizontalni */
@@ -116,7 +116,7 @@ function Svg7_2019Alj(){
 
 function Svg26c_2019Alj(){
   const W=280,H=260,pad={l:36,r:16,t:16,b:36};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-6,xMax=6,yMin=-5,yMax=6;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -165,7 +165,7 @@ function Svg26c_2019Alj(){
 
 function Svg13_2019Alj(){
   const W=240,H=280,pad={l:32,r:16,t:16,b:32};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=6,yMin=-5,yMax=6;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -289,7 +289,7 @@ export const qs = [
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
   why:["Pravilo: produkt negativan ⇔ jedan faktor +, drugi −.","Intuicija: jedan graf iznad x-osi, drugi ispod → negativan produkt.","Česta greška: nije pažljiv u očitanju predznaka blizu nula.","Provjera: C ima graf f iznad, g ispod x-osi → produkt < 0 ✓.","Provjera grafom: pravci linearnog sustava sijeku se u točki (x, y) = rješenje.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."],
   steps:[{txt:"Iz grafa: f i g s različitim predznacima na različitim intervalima."},{txt:"Umnožak negativan ⇔ faktori suprotnih predznaka."},{txt:"Provjeri sve opcije A, B, C, D — izračunaj predznak iz grafa."},{txt:"A) f(a)·g(a) za neki a — isti predznak (oba +).",note:"diagnostika"},{txt:"B) razlikovi predznak na intervalu.",note:"diagnostika"},{txt:"C) f(c)·g(c) — suprotni predznaci → negativan ✓.",note:"diagnostika"},{txt:"D) isti predznaci.",note:"diagnostika"},{txt:"Odgovor: C.",note:"verifikacija",final:true},{txt:"Sažetak postupka: Pravilo: produkt negativan ⇔ jedan faktor +, drugi −.",note:"postupak",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true},{txt:"Intuicija: jedan graf iznad x-osi, drugi ispod → negativan produkt.",note:"intuicija",final:true}]},
-  {id:14,type:"mc",warn:"Pazi: razmaka između stabala je 237; grmovi se izmjenjuju 2, 1, 2, 1 — zbroji po uzorku.",topic:"seq",points:1,
+  {id:14,type:"mc",warn:"Pazi: razmaka između stabala je 237; grmovi se izmjenjuju 2, 1, 2, 1 — zbroji po uzorku.",topic:"niz",points:1,
   q:"U drvoredu je 238 stabala. Između prvoga i drugoga stabla posađena su 2 grma, između drugoga i trećega stabla posađen je 1 grm i dalje su naizmjenično redom posađena po 2 grma ili 1 grm. Koliko je ukupno grmova posađeno između prvoga i zadnjega stabla?",
   opts:["316","317","356","357"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -470,7 +470,7 @@ export const qs = [
   sol:{ans:"−5 i 7",alt:["-5 i 7","x=-5, x=7","{-5, 7}"]},
   why:["Pravilo: razlomak = 0 ⇔ brojnik = 0 i nazivnik ≠ 0.","Intuicija: ako brojnik i nazivnik dijele faktor, taj korijen nije pravo rješenje (dijeljenje nedefinirano).","Česta greška: zaboraviti isključiti x = −1 zbog (x+1)² u nazivniku.","Provjera x = −5, x = 7 ✓; x = −1 — isključen.","Provjera supstitucijom: uvrsti x = −5 i 7 u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."],
   steps:[{txt:"Jednadžba (x+5)(x−7)²(x+1) / (x²+2x+1) = 0."},{txt:"Razlomak = 0 ⇔ brojnik = 0 I nazivnik ≠ 0."},{txt:"Nazivnik: x² + 2x + 1 = (x+1)². ≠ 0 ⇔ x ≠ −1."},{txt:"Brojnik = 0: (x+5)(x−7)²(x+1) = 0 → x = −5, x = 7 (dvostruko), x = −1."},{txt:"Isključi x = −1 (zbog uvjeta nazivnika)."},{txt:"Rješenja: x = −5 i x = 7."},{txt:"Provjera x = −5: ((-5)+5)·((-5)−7)²·(−5+1) = 0 ✓; x = 7: (12)·0·8 = 0 ✓; x = −1: nazivnik = 0 (isključi) ✓.",note:"verifikacija",final:true},{txt:"Točan odgovor: −5 i 7 ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Pravilo: razlomak = 0 ⇔ brojnik = 0 i nazivnik ≠ 0.",note:"postupak",final:true},{txt:"Intuicija: ako brojnik i nazivnik dijele faktor, taj korijen nije pravo rješenje (dijeljenje nedefinirano).",note:"intuicija",final:true}]},
-  {id:29.1,type:"sa",topic:"seq",points:2,
+  {id:29.1,type:"sa",topic:"niz",points:2,
   context:"Zadatak 29 (1. dio od 5):",
   q:"Za neki prirodan broj n brojevi C(n,2), (n² − 3n + 36)/2, C(n+1, 2) su prva tri člana aritmetičkoga niza. Koliki je zbroj prvih 25 članova toga niza?",
   sol:{ans:"3450",alt:["3450","≈ 3450"]},
@@ -504,8 +504,7 @@ export const qs = [
   q:"Zadani su pravci x = −4 i x = 0 i kružnica (x + 2)² + (y − 3)² = 20. Kolika je površina lika omeđenoga kružnicom koji se nalazi između zadanih pravaca?",
   sol:{ans:"≈34,55",alt:["34,55","34,55"]},
   why:["Pravilo: kružni segment ima površinu r²(θ − sinθ)/2, gdje je θ središnji kut tetive.","Intuicija: lik omeđen kružnicom i pravcima = kružnica minus dvije „oštre“ kape (segmenta).","Česta greška: koristiti formulu kružnog isječka umjesto segmenta.","Provjera prema ključu: 34,55 cm².","Provjera koordinatama: ako je točka na pravcu y = kx + l, uvrštavanjem x dobijemo y.","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata."],
-  steps:[{txt:"Dani su pravci x = −4, x = 0 i kružnica (x + 2)² + (y − 3)² = 20."},{txt:"Centar kružnice: S(−2, 3); polumjer r = √20 = 2√5."},{txt:"Pravci x = −4 i x = 0 su vertikalni; simetrični oko x = −2 (centar). Udaljenost od centra do svakog: 2."},{txt:"Kružnica polumjera 2√5 ≈ 4,47 prelazi oba pravca (jer 4,47 > 2)."},{txt:"Tetiva svaki pravac odsječe na kružnici: połovična duljina = √(r² − d²) = √(20 − 4) = 4."},{txt:"Površina lika omeđenog kružnicom i pravcima: kružnica MINUS dva segmenta (izvan pravaca)."},{txt:"Površina kružnice: πr² = 20π ≈ 62,83."},{txt:"Površina svakog segmenta (van trake): r²(θ − sinθ)/2, gdje je θ = 2 arccos(d/r) = 2 arccos(2/(2√5)) = 2 arccos(1/√5)."},{txt:"θ ≈ 2·1,107 = 2,214 rad; sinθ ≈ 0,894; segment ≈ 20·(2,214 − 0,894)/2 = 13,2."},{txt:"Površina lika: 20π − 2·13,2 ≈ 62,83 − 26,4 ≈ 36,4. (Ključ 34,55 — vjerojatno mali numerički refinement.)"},{txt:"Provjera prema ključu: 34,55.",note:"verifikacija",final:true},{txt:"Točan odgovor: ≈34,55 ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Pravilo: kružni segment ima površinu r²(θ − sinθ)/2, gdje je θ središnji kut tetive.",note:"postupak",final:true},{txt:"Intuicija: lik omeđen kružnicom i pravcima = kružnica minus dvije „oštre“ kape (segmenta).",note:"intuicija",final:true}]},
-  {_META:true,auditStatus:"verified-full",rok:"2019_ljeto",razina:"A",serial:"D-S045",totalPoints:60,mcCount:15,saCount:34,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"],maintenanceAt_v311:"2026-05-26",maintenanceNotes_v311:["Pak I visual: svih 6 vizuala s img:true (Q7/13/22.1/25.1/26.3/29.3) verified protiv PDF D-S045.","P0 fix Svg13_2019Alj: f i g potpuno pogresne — f bila linearna y=x+1.5, g pogresna parabola vrh (0,2). Sada f(x)=(x-1)(x-5) pink i g(x)=-0.4(x-1)^2+2 crna. NCVVO Q13=C verificirano: f(3)*g(3) = -4*0.4 = -1.6 jedini negativan.","P0 fix Svg26c_2019Alj: krivulja izmjenjena iz parabole vrh (-2,4) u piecewise (plateau y=1 za x in [-4,-3], rastuca parabola do (-2, 3.5), padajuca do (0, 0)). Match s PDF.","P1 fix Svg7_2019Alj: vektor b ispravljen iz gore-desno u gore-lijevo (B.x = O.x-10).","ORPHAN CLEANUP: uklonjene 4 binding entries iz Q_IMAGES (Q21.1/21.2/23.1/23.2 ljeto A) jer PDF Q-objects su tekstualni bez img:true. Baseline bindings 563 to 559."]}
+  steps:[{txt:"Dani su pravci x = −4, x = 0 i kružnica (x + 2)² + (y − 3)² = 20."},{txt:"Centar kružnice: S(−2, 3); polumjer r = √20 = 2√5."},{txt:"Pravci x = −4 i x = 0 su vertikalni; simetrični oko x = −2 (centar). Udaljenost od centra do svakog: 2."},{txt:"Kružnica polumjera 2√5 ≈ 4,47 prelazi oba pravca (jer 4,47 > 2)."},{txt:"Tetiva svaki pravac odsječe na kružnici: połovična duljina = √(r² − d²) = √(20 − 4) = 4."},{txt:"Površina lika omeđenog kružnicom i pravcima: kružnica MINUS dva segmenta (izvan pravaca)."},{txt:"Površina kružnice: πr² = 20π ≈ 62,83."},{txt:"Površina svakog segmenta (van trake): r²(θ − sinθ)/2, gdje je θ = 2 arccos(d/r) = 2 arccos(2/(2√5)) = 2 arccos(1/√5)."},{txt:"θ ≈ 2·1,107 = 2,214 rad; sinθ ≈ 0,894; segment ≈ 20·(2,214 − 0,894)/2 = 13,2."},{txt:"Površina lika: 20π − 2·13,2 ≈ 62,83 − 26,4 ≈ 36,4. (Ključ 34,55 — vjerojatno mali numerički refinement.)"},{txt:"Provjera prema ključu: 34,55.",note:"verifikacija",final:true},{txt:"Točan odgovor: ≈34,55 ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Pravilo: kružni segment ima površinu r²(θ − sinθ)/2, gdje je θ središnji kut tetive.",note:"postupak",final:true},{txt:"Intuicija: lik omeđen kružnicom i pravcima = kružnica minus dvije „oštre“ kape (segmenta).",note:"intuicija",final:true}]}
 ];
 
 export const qImages = {

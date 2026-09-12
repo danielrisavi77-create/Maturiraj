@@ -6,7 +6,7 @@ function Svg39b_2022Aljeto(){
   // PDF: prazna mreža za rješavanje log₂(x-2) = |x-4|+1
   // Student crta sam grafove. NE renderiramo funkcije.
   const W=270,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const OX=80,OY=130,SX=24,SY=22;
   const elems=[];
   for(let i=-3;i<=8;i++) elems.push(e("line",{key:`gv${i}`,x1:OX+i*SX,y1:8,x2:OX+i*SX,y2:H-8,stroke:"var(--bdr)",strokeWidth:0.7}));
@@ -27,7 +27,7 @@ function Svg39b_2022Aljeto(){
 
 function Svg36b_2022Aljeto(){
   const W=270,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const OX=110,OY=80,SZ=20;
   const elems=[];
   for(let i=-5;i<=5;i++) elems.push(e("line",{key:`gv${i}`,x1:OX+i*SZ,y1:8,x2:OX+i*SZ,y2:H-8,stroke:"var(--bdr)",strokeWidth:0.7}));
@@ -129,9 +129,9 @@ function Svg35b_2022Aljeto(){
     // Horizontalna linija od oka
     ln(Oci,{x:Tlo_R.x,y:Oci.y},"hor","var(--muted)",1,"3,3"),
     // Linija pogleda na vrh zgrade
-    ln(Oci,VrhZgrade,"pog38","#4a90d9",1.3),
+    ln(Oci,VrhZgrade,"pog38","var(--blue)",1.3),
     // Linija pogleda na vrh antene
-    ln(Oci,VrhAntene,"pog43","#4a90d9",1.3),
+    ln(Oci,VrhAntene,"pog43","var(--blue)",1.3),
     // Kut elevacije oznake
     e("path",{key:"arc38",
       d:`M ${Oci.x+32},${Oci.y} A 32,32 0 0,0 ${Oci.x+28},${Oci.y-16}`,
@@ -161,7 +161,7 @@ function Svg35b_2022Aljeto(){
 
 function Svg35a_2022Aljeto(){
   const W=300,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const Plaz={x:25,y:155};
   const Riva={x:175,y:155};
   const Svjet={x:255,y:30};
@@ -217,7 +217,7 @@ function Svg35a_2022Aljeto(){
 
 function Svg33b_2022Aljeto(){
   const W=230,H=220,CX=115,CY=110,R=85;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems=[];
   elems.push(e("line",{key:"ax",x1:20,y1:CY,x2:W-15,y2:CY,stroke:"var(--text)",strokeWidth:1.3}));
   elems.push(e("line",{key:"ay",x1:CX,y1:15,x2:CX,y2:H-15,stroke:"var(--text)",strokeWidth:1.3}));
@@ -256,7 +256,7 @@ function Svg32a_2022Aljeto(){
   elems.push(e("text",{key:"l1y",x:OX-16,y:OY-SZ+4,fontSize:9,fill:"var(--muted)"},"1"));
   const x1=OX-5*SZ, y1=OY-(-0,5)*SZ;
   const x2=OX+5*SZ, y2=OY-(4.5)*SZ;
-  elems.push(e("line",{key:"line",x1,y1,x2,y2,stroke:"#4a90d9",strokeWidth:2}));
+  elems.push(e("line",{key:"line",x1,y1,x2,y2,stroke:"var(--blue)",strokeWidth:2}));
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }
 
@@ -283,7 +283,7 @@ function Svg30_2022Aljeto(){
   data.forEach((d,i)=>{
     const x=LEFT+i*(BW+4);
     const y=scaleY(d.v);
-    elems.push(e("rect",{key:"b"+i,x,y,width:BW,height:BOT-y,fill:"#4a90d9"}));
+    elems.push(e("rect",{key:"b"+i,x,y,width:BW,height:BOT-y,fill:"var(--blue)"}));
     elems.push(e("text",{key:"v"+i,x:x+BW/2,y:y-3,fontSize:6.5,fill:"var(--text)",textAnchor:"middle"},d.v.toFixed(2)));
     const px=x+BW/2, py2=BOT+8;
     elems.push(e("text",{key:"p"+i,x:px,y:py2,fontSize:6,fill:"var(--muted)",
@@ -296,7 +296,7 @@ function Svg30_2022Aljeto(){
 
 function Svg29a_2022Aljeto(){
   const W=240,H=190;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Pravokutni trokut s pravim kutom u T (gore)
   // Postavljamo geometriju tako da trokut izgleda nakošen kao u PDF-u:
   // T (gore, pravi kut) → A (dolje-lijevo) → B (dolje-desno)
@@ -366,7 +366,7 @@ function Svg20_2022Aljeto(){
   const FX=22, FY=170;
 
   const elems=[];
-  const BLUE="#4a90d9", GRAY="#94a3b8", LINE="#e2e8f0";
+  const BLUE="var(--blue)", GRAY="var(--muted)", LINE="var(--text)";
 
   // ── Prednja strana 3×3 (plava) ──
   for(let row=0;row<3;row++){
@@ -434,7 +434,7 @@ function Svg20_2022Aljeto(){
 
 function Svg16_2022Aljeto(){
   const W=260,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Ishodište: x=0 bude na 1/3 od lijevog ruba (jer kružnica ide i lijevo od y-osi)
   const OX=105,OY=148,SZ=26;
   const elems=[];
@@ -459,7 +459,7 @@ function Svg16_2022Aljeto(){
 
 function Svg13_2022Aljeto(){
   const W=240,H=230;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const V={x:120,y:18};
   const A={x:28,y:185},B={x:168,y:185},C={x:205,y:148},D={x:65,y:148};
   const ln=(p1,p2,k,col,w,dash)=>e("line",{key:k,x1:p1.x,y1:p1.y,x2:p2.x,y2:p2.y,
@@ -922,7 +922,7 @@ export const qs = [
      "Alt metoda (provjera): podijeli izraz s 3 → −(n + 1) ∈ ℤ za sve n ∈ ℕ ✓"
    ,"Provjera s n = 1: izraz = −6; sa n = 2: −9; oba djeljiva s 3 ✓","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
   },
-  {id:25,type:"sa",topic:"kp",points:1,
+  {id:25,type:"sa",topic:"der",points:1,
    q:"Odredite |z| ako je z = 3/5 − (4/5)i.",
    sol:{ans:"1",alt:["1","|z|=1"]},
   steps:[
@@ -972,7 +972,7 @@ export const qs = [
      "Alt metoda (provjera): razvij — (10⁵⁵ + 1)² = 10¹¹⁰ + 2·10⁵⁵ + 1; (10⁵⁵ − 1)² = 10¹¹⁰ − 2·10⁵⁵ + 1; razlika = 4·10⁵⁵ ✓"
    ,"Provjera s manjim eksponentom (10⁵⁵ → 10): ((11)² − (9)²)/10 = (121 − 81)/10 = 40/10 = 4 ✓","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
   },
-  {id:28,type:"sa",topic:"seq",points:1,
+  {id:28,type:"sa",topic:"niz",points:1,
    q:"Odredite opći član aritmetičkoga niza 8, 11, 14, 17, …",
    sol:{ans:"aₙ = 3n + 5",alt:["3n+5","aₙ=3n+5","a_n = 3n+5"]},
   steps:[
@@ -1313,7 +1313,7 @@ export const qs = [
      "Alt metoda (provjera): tangenta y = −x + 4 ima nagib −1; krivulja y = 4/x u (2, 2) ima nagib −1 (jer derivacija = −1) ✓"
    ,"Provjera u S: y(2) = −2 + 4 = 2 ✓ (točka leži na tangenti i na krivulji).","Tipičan propust: zaboraviti pravilo lanca (chain rule) za složene funkcije; ili pravilo kvocijenta."]
   },
-  {id:38.1,type:"sa",topic:"seq",points:2,
+  {id:38.1,type:"sa",topic:"niz",points:2,
    context:"Zadatak 38 (1. dio od 2):",
    q:"Brojevi x + 2, 14, 6x − 2 uzastopni su članovi rastućega geometrijskoga niza. Koliko iznosi idući član toga niza?",
    sol:{ans:"56",alt:["56","aₙ=56"], ex:"Geometrijski niz: tri uzastopna člana a, b, c zadovoljavaju b² = a·c. Iz toga slijedi kvadratna jednadžba u x; biramo rješenje koje daje rastući niz (q > 1)."},
@@ -1415,15 +1415,6 @@ export const qs = [
      "Česta greška: krivo prepoznati lik ABCD (jest paralelogram, ne kvadrat); ili pogrešno izračunati površinu.",
      "Alt metoda (provjera): trapez interpretacija — gledaj AB i CD kao paralelne osnovice, ali zapravo su jednake (paralelogram); površina = osnovica × visina = √(8/9 + 4/9·8/9)·x · ..., direktni paralelogram je lakši."
    ,"Provjera AB || CD: vektor AB = (2x/3, 2√2/3·x); vektor DC = (2x/3, 2√2/3·x) ✓ paralelni i jednake duljine → paralelogram.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
-  },
-  {_META:true,
-  auditedAt: "2026-05-20",
-  auditSource: "MAT A (viša razina, ljetni rok 2022.)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  verified: "vision+pdf+pedagogy+verbatim",
-  notes: "FULL REWRITE — Pak G+H+I+F kombinirani. Sve 51 Q-objekata production-ready pedagogy upgrade (5-7 steps s verifikacija/diagnostika + 4-5 specifičnih why entries). 3 Q s img:true (Q13, Q16, Q20); 8 sol.svgFn bindings (Q29,1, 30,1, 32,1, 33,2, 35,1, 35,2, 36,2, 39,2). Sve sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation potpuno Unicode/[FRAC:]. ex polja za 2pt+ SA.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 219}
   }
 ];
 

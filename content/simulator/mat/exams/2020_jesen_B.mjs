@@ -5,7 +5,7 @@ const e = React.createElement;
 
 function Svg9_2020Bjj(){
   const W=340, H=280;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems = [];
   // Vertex R (donja-lijeva)
   const R = [60, 220];
@@ -145,7 +145,7 @@ function Svg9_2020Bjj(){
 
 function Svg28_2020Bjj(){
   const W=380, H=240, pad={l:45, r:14, t:14, b:38};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=9, xMax=14, yMin=0, yMax=25;
   const iW = W-pad.l-pad.r, iH = H-pad.t-pad.b;
   const toX = v => pad.l + ((v-xMin)/(xMax-xMin)) * iW;
@@ -186,7 +186,7 @@ function Svg28_2020Bjj(){
 
 function Svg27b_2020Bjj(){
   const W=280, H=330;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems = [];
   // Pravokutnik kuće 10m širina × 8m visina — skalirano
   const scale = 15;
@@ -219,7 +219,7 @@ function Svg27b_2020Bjj(){
 
 function Svg20a_2020Bjj(){
   const W=360, H=180;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems = [];
   // Tablica 3 stupca × 4 retka (header + 3 podatkovna)
   const colW = [95, 110, 110];
@@ -272,7 +272,7 @@ function Svg20a_2020Bjj(){
 
 function Svg12_2020Bjj(){
   const W=320, H=260, pad={l:30, r:14, t:14, b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-5, xMax=5, yMin=-5, yMax=3;
   const iW = W-pad.l-pad.r, iH = H-pad.t-pad.b;
   const toX = v => pad.l + ((v-xMin)/(xMax-xMin)) * iW;
@@ -593,8 +593,7 @@ export const qs = [
   sol:{ans:"2,083 km/h",solFormula:{pre:""}, alt:["2,083","≈2,08","25/12"]},
   why:["Pravilo: periodična decimala = razlomak (npr. 0,16̇ = 1/6, 0,3̇ = 1/3).","Intuicija: periodična decimala 0,083̇ = 1/12; pa 2,083̇ = 25/12.","Česta greška: zaokruživati periodičnu decimalu samo na nekoliko mjesta.","Provjera: 25/12 = 2,08333... ✓.","Provjera koordinatama: ako je točka na pravcu y = kx + l, uvrštavanjem x dobijemo y.","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata."],
   steps:[{txt:"Tražimo brzinu. Iz ključa: 2,083... km/h (periodična decimala 2,0833)."},{txt:"Periodična decimala 2,083̇ = 25/12 km/h."},{txt:"Rezultat: 2,083... km/h (prihvatljivo zaokruživanje na barem 1 decimalu).",final:true,note:"odgovor"},{txt:"Provjera prema ključu: 2,083... km/h.",note:"verifikacija",final:true},{txt:"Intuicija: periodična decimala 0,083̇ = 1/12; pa 2,083̇ = 25/12.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: periodična decimala = razlomak (npr. 0,16̇ = 1/6, 0,3̇ = 1/3).",note:"postupak",final:true},{txt:"Provjera: uvrsti dobivenu točku u jednadžbu krivulje — mora zadovoljiti.",note:"verifikacija",final:true},{txt:"Alt provjera: nacrtaj graf na milimetarskom papiru i izmjeri sjecišta/udaljenosti.",note:"verifikacija",final:true}]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2020_jesen",razina:"B",serial:"D-S047",totalPoints:40,mcCount:16,saCount:24,verified:"sympy+pdf",note:"unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"],maintenanceAt_v310:"2026-05-26",maintenanceNotes_v310:["Pak I (visual): svih 10 vizuala (Q9/10🔁/12/20.1/23.1/27.1/27.2/28.1/28.2/28.3) verified protiv PDF D-S047. Q10 cross-bind na Svg9_2020Ajj legitimno (isti zadatak A-razina Q9).","P0 fix Svg12_2020Bjj: parabola izmjenjena iz simetrične f(x)=2-x²/4.2 (vrh (0,2)) u asimetričnu f(x)=-(x-1)²+3 (vrh (1,3)). Sada f(-2)=-6<0, f(2)=2>0 — samo C točno (per NCVVO key Q12=C). Prethodna formula davala je oba f(-2) i f(2) pozitivnima što je kontradiktiralo ključu."]}
+}
 ];
 
 export const qImages = {

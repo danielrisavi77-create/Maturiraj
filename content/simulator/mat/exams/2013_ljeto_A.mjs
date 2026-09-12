@@ -5,7 +5,7 @@ const e = React.createElement;
 
 function SvgGridEmpty_2013LjetoA(){
   const W=280,H=260,pad={l:30,r:15,t:15,b:30};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=6,yMin=-5,yMax=6;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+(v-xMin)/(xMax-xMin)*iW;
@@ -26,7 +26,7 @@ function SvgGridEmpty_2013LjetoA(){
 
 function SvgCircleEmpty_2013LjetoA(){
   const W=240,H=240,cx=120,cy=120,r=90;
-  const C={blue:"#4a90d9",text:"var(--text)",muted:"var(--muted)"};
+  const C={blue:"var(--blue)",text:"var(--text)",muted:"var(--muted)"};
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W}},
     // Osi
     e("line",{x1:20,y1:cy,x2:W-10,y2:cy,stroke:C.text,strokeWidth:1.5}),
@@ -69,7 +69,7 @@ function SvgZad22b_2013LA(){
     e("rect",{x:p.d,y:cy+4,width:p.k-p.d,height:5,fill:"#3dd68c",opacity:0.35,rx:3}),
     e("rect",{x:p.l,y:cy+4,width:p.m-p.l,height:5,fill:"#3dd68c",opacity:0.35,rx:3}),
     // Graf g
-    e("path",{d:path,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("path",{d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
     // Karakteristični krugovi
     ...[
       [p.b,cy],[p.d,cy+82],[p.k,cy],[p.l,cy-52],[p.m,cy],[p.n,cy+52]
@@ -78,7 +78,7 @@ function SvgZad22b_2013LA(){
     ...["a","b","c","d"].map(k=>e("text",{key:k,x:p[k]-4,y:cy+18,fill:"#e8c547",fontSize:12,fontStyle:"italic"},k)),
     ...["k","l","m","n"].map(k=>e("text",{key:k,x:p[k]-4,y:cy+18,fill:"#e8c547",fontSize:12,fontStyle:"italic"},k)),
     // Label grafa
-    e("text",{x:p.a+2,y:42,fill:"#4a90d9",fontSize:12,fontStyle:"italic"},"y = g(x)"),
+    e("text",{x:p.a+2,y:42,fill:"var(--blue)",fontSize:12,fontStyle:"italic"},"y = g(x)"),
     // Legenda
     e("text",{x:p.d,y:H+35,fill:"#3dd68c",fontSize:11,fontWeight:600},"g\u2019(x) > 0 na (d, k) \u222a (l, m)")
   );
@@ -97,8 +97,8 @@ function SvgZad14_2013LA(){
     e("line",{x1:145,y1:85,x2:112,y2:212,stroke:"var(--text)",strokeWidth:2.2}),
     e("line",{x1:112,y1:212,x2:148,y2:238,stroke:"var(--text)",strokeWidth:2.2}),
     // Pravci sekanti (produženja)
-    e("line",{x1:148,y1:238,x2:70,y2:272,stroke:"#4a90d9",strokeWidth:1.5,strokeDasharray:"4,3",opacity:0.7}),
-    e("line",{x1:112,y1:212,x2:70,y2:272,stroke:"#4a90d9",strokeWidth:1.5,strokeDasharray:"4,3",opacity:0.7}),
+    e("line",{x1:148,y1:238,x2:70,y2:272,stroke:"var(--blue)",strokeWidth:1.5,strokeDasharray:"4,3",opacity:0.7}),
+    e("line",{x1:112,y1:212,x2:70,y2:272,stroke:"var(--blue)",strokeWidth:1.5,strokeDasharray:"4,3",opacity:0.7}),
     // Kutovi - lukovi
     e("path",{d:"M 160,229 A 14,14 0 0,1 155,222",fill:"none",stroke:"#e8c547",strokeWidth:1.5}),
     e("text",{x:163,y:230,fill:"#e8c547",fontSize:12,fontStyle:"italic"},"\u03b1"),
@@ -110,16 +110,16 @@ function SvgZad14_2013LA(){
     e("text",{x:396,y:152,fill:"#3dd68c",fontSize:12,fontStyle:"italic"},"\u03b2"),
     // Točke
     e("circle",{cx:70,cy:272,r:5,fill:"#f87171"}),
-    e("circle",{cx:148,cy:238,r:4,fill:"#4a90d9"}),
-    e("circle",{cx:408,cy:138,r:4,fill:"#4a90d9"}),
-    e("circle",{cx:145,cy:85,r:4,fill:"#4a90d9"}),
-    e("circle",{cx:112,cy:212,r:4,fill:"#4a90d9"}),
+    e("circle",{cx:148,cy:238,r:4,fill:"var(--blue)"}),
+    e("circle",{cx:408,cy:138,r:4,fill:"var(--blue)"}),
+    e("circle",{cx:145,cy:85,r:4,fill:"var(--blue)"}),
+    e("circle",{cx:112,cy:212,r:4,fill:"var(--blue)"}),
     // Oznake točaka
     e("text",{x:50,y:288,fill:"#f87171",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"T"),
-    e("text",{x:151,y:256,fill:"#4a90d9",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"A"),
-    e("text",{x:413,y:137,fill:"#4a90d9",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"B"),
-    e("text",{x:148,y:78,fill:"#4a90d9",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"C"),
-    e("text",{x:93,y:212,fill:"#4a90d9",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"D"),
+    e("text",{x:151,y:256,fill:"var(--blue)",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"A"),
+    e("text",{x:413,y:137,fill:"var(--blue)",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"B"),
+    e("text",{x:148,y:78,fill:"var(--blue)",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"C"),
+    e("text",{x:93,y:212,fill:"var(--blue)",fontSize:14,fontStyle:"italic",fontWeight:"bold"},"D"),
     // Mjere
     e("text",{x:88,y:263,fill:"#e8c547",fontSize:11},"TA=3"),
     e("text",{x:75,y:240,fill:"#e8c547",fontSize:11},"TD=6"),
@@ -142,7 +142,7 @@ function SvgZad10_2013LA(){
   const cells=[];
   // Zaglavlje redaka
   cells.push(e("text",{key:"hx",x:x0-38,y:y0+rowH*0.72,fill:"var(--muted)",fontSize:12,fontWeight:"bold"},"x"));
-  cells.push(e("text",{key:"hf",x:x0-42,y:y0+rowH+rowH*0.72,fill:"#4a90d9",fontSize:12,fontWeight:"bold"},"f(x)"));
+  cells.push(e("text",{key:"hf",x:x0-42,y:y0+rowH+rowH*0.72,fill:"var(--blue)",fontSize:12,fontWeight:"bold"},"f(x)"));
   cells.push(e("text",{key:"hg",x:x0-42,y:y0+2*rowH+rowH*0.72,fill:"#e8c547",fontSize:12,fontWeight:"bold"},"g(x)"));
 
   xlbl.forEach((_,i)=>{
@@ -154,7 +154,7 @@ function SvgZad10_2013LA(){
     cells.push(e("text",{key:"xv"+i,x:cx,y:y0+rowH*0.72,textAnchor:"middle",
       fill:isHi?"#3dd68c":"var(--text)",fontSize:12,fontWeight:isHi?"bold":"normal"},xlbl[i]));
     cells.push(e("text",{key:"fv"+i,x:cx,y:y0+rowH+rowH*0.72,textAnchor:"middle",
-      fill:isFRes?"#f87171":"#4a90d9",fontSize:12,fontWeight:isFRes?"bold":"normal"},flbl[i]));
+      fill:isFRes?"#f87171":"var(--blue)",fontSize:12,fontWeight:isFRes?"bold":"normal"},flbl[i]));
     cells.push(e("text",{key:"gv"+i,x:cx,y:y0+2*rowH+rowH*0.72,textAnchor:"middle",
       fill:isHi?"#f87171":"#e8c547",fontSize:12,fontWeight:isHi?"bold":"normal"},glbl[i]));
   });
@@ -180,7 +180,7 @@ function SvgSolTrokut_2013LjetoA(){
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+(v-xMin)/(xMax-xMin)*iW;
   const toY=v=>pad.t+(yMax-v)/(yMax-yMin)*iH;
-  const C={blue:"#4a90d9",green:"#50c878",text:"var(--text)",muted:"var(--muted)"};
+  const C={blue:"var(--blue)",green:"var(--green)",text:"var(--text)",muted:"var(--muted)"};
   const A=[-2,1],B=[3,-2],Cv=[24/5,1];
   const pts=`${toX(A[0])},${toY(A[1])} ${toX(B[0])},${toY(B[1])} ${toX(Cv[0])},${toY(Cv[1])}`;
   const gx=[-2,-1,0,1,2,3,4,5],gy=[-2,-1,0,1,2];
@@ -228,12 +228,12 @@ function SvgSolParabola_2013LjetoA(){
     e("line",{x1:pad.l,y1:toY(0),x2:pad.l+iW,y2:toY(0),stroke:"var(--text)",strokeWidth:1.5}),
     e("line",{x1:toX(0),y1:pad.t,x2:toX(0),y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.5}),
     // Parabola
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"#e9b446",strokeWidth:2.2}),
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--gold)",strokeWidth:2.2}),
     // Tjeme (1,-4), nultočke (-1,0) i (3,0)
-    e("circle",{cx:toX(1),cy:toY(-4),r:4,fill:"#e9b446"}),
-    e("circle",{cx:toX(-1),cy:toY(0),r:4,fill:"#e9b446"}),
-    e("circle",{cx:toX(3),cy:toY(0),r:4,fill:"#e9b446"}),
-    e("text",{x:toX(3.5),y:toY(3),fontSize:9,fill:"#e9b446"},"x²−2x−3"),
+    e("circle",{cx:toX(1),cy:toY(-4),r:4,fill:"var(--gold)"}),
+    e("circle",{cx:toX(-1),cy:toY(0),r:4,fill:"var(--gold)"}),
+    e("circle",{cx:toX(3),cy:toY(0),r:4,fill:"var(--gold)"}),
+    e("text",{x:toX(3.5),y:toY(3),fontSize:9,fill:"var(--gold)"},"x²−2x−3"),
     e("text",{x:pad.l+iW+4,y:toY(0)+4,fontSize:10,fill:"var(--text)"},"x"),
     e("text",{x:toX(0)+3,y:pad.t-3,fontSize:10,fill:"var(--text)"},"y"),
     e("text",{x:toX(1)-4,y:toY(0)+13,fontSize:9,fill:"var(--muted)",textAnchor:"middle"},"1"),
@@ -255,11 +255,11 @@ function SvgSolLine_2013LjetoA(){
     e("line",{x1:pad.l,y1:toY(0),x2:pad.l+iW,y2:toY(0),stroke:"var(--text)",strokeWidth:1.5}),
     e("line",{x1:toX(0),y1:pad.t,x2:toX(0),y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.5}),
     // Pravac y=3x-1
-    e("line",{x1:toX(-0.5),y1:toY(f(-0,5)),x2:toX(2.5),y2:toY(f(2.5)),stroke:"#4a90d9",strokeWidth:2.2}),
+    e("line",{x1:toX(-0.5),y1:toY(f(-0,5)),x2:toX(2.5),y2:toY(f(2.5)),stroke:"var(--blue)",strokeWidth:2.2}),
     // Sjecišta s osima
-    e("circle",{cx:toX(1/3),cy:toY(0),r:4,fill:"#4a90d9"}),
-    e("circle",{cx:toX(0),cy:toY(-1),r:4,fill:"#4a90d9"}),
-    e("text",{x:toX(2.6),y:toY(f(2.6))-6,fontSize:9,fill:"#4a90d9"},"y=3x−1"),
+    e("circle",{cx:toX(1/3),cy:toY(0),r:4,fill:"var(--blue)"}),
+    e("circle",{cx:toX(0),cy:toY(-1),r:4,fill:"var(--blue)"}),
+    e("text",{x:toX(2.6),y:toY(f(2.6))-6,fontSize:9,fill:"var(--blue)"},"y=3x−1"),
     e("text",{x:pad.l+iW+4,y:toY(0)+4,fontSize:10,fill:"var(--text)"},"x"),
     e("text",{x:toX(0)+3,y:pad.t-3,fontSize:10,fill:"var(--text)"},"y"),
     e("text",{x:toX(1)-4,y:toY(0)+13,fontSize:9,fill:"var(--muted)",textAnchor:"middle"},"1"),
@@ -298,7 +298,7 @@ function SvgZad23a_2013LA(){
     e("text",{x:cx+4,y:cy-r-3,fill:"var(--muted)",fontSize:11},"1"),
     e("text",{x:cx+4,y:cy+r+13,fill:"var(--muted)",fontSize:11},"-1"),
     // Krak do E
-    e("line",{x1:cx,y1:cy,x2:ex,y2:ey,stroke:"#4a90d9",strokeWidth:2}),
+    e("line",{x1:cx,y1:cy,x2:ex,y2:ey,stroke:"var(--blue)",strokeWidth:2}),
     // Kut luk
     e("path",{d:`M ${cx+35},${cy} A 35,35 0 0,0 ${arcEx},${arcEy}`,fill:"none",stroke:"#e8c547",strokeWidth:1.5}),
     e("text",{x:cx+38,y:cy-12,fill:"#e8c547",fontSize:12,fontStyle:"italic"},"t"),
@@ -311,8 +311,8 @@ function SvgZad23a_2013LA(){
     e("circle",{cx:ex,cy:ey,r:6,fill:"#e8c547"}),
     e("text",{x:ex+8,y:ey-5,fill:"#e8c547",fontSize:13,fontWeight:"bold"},"E(t)"),
     // Info kutija
-    e("rect",{x:240,y:45,width:148,height:76,rx:8,fill:"var(--s3)",stroke:"#4a90d9",strokeWidth:1}),
-    e("text",{x:250,y:64,fill:"#4a90d9",fontSize:12,fontWeight:"bold"},"tg(t) = 2 > 0"),
+    e("rect",{x:240,y:45,width:148,height:76,rx:8,fill:"var(--s3)",stroke:"var(--blue)",strokeWidth:1}),
+    e("text",{x:250,y:64,fill:"var(--blue)",fontSize:12,fontWeight:"bold"},"tg(t) = 2 > 0"),
     e("text",{x:250,y:81,fill:"#3dd68c",fontSize:12},"cos(t) > 0"),
     e("text",{x:250,y:98,fill:"#e8c547",fontSize:12},"\u21d2 1. kvadrant"),
     e("text",{x:250,y:113,fill:"var(--muted)",fontSize:11},"t \u2248 63\u00b026'")
@@ -361,7 +361,7 @@ export const qs = [
   ],
   why:["Pravilo: uzastopne postotne promjene = produkt faktora; +20% tada −30% ≠ −10%.","Svaka promjena se primjenjuje na tekuću vrijednost, ne na početnu.","Česta greška (najčešće): +20% − 30% = −10% (zbrajanje umjesto množenja) → opcija A.","Realan primjer: cijena 100kn → 120kn (+ 20%) → 120 · 0,7 = 84kn → snižena za 16% ✓","Provjera: dobiveni broj pripada traženom skupu (npr. ℕ, ℤ, ℚ, ℝ) — provjeri svojstva.","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
 },
-  {id:4,type:"mc",warn:"Pazi: 1 min = 60 s → y = 60x (sekundi ima VIŠE, pa množiš).",topic:"mj",points:1,
+  {id:4,type:"mc",warn:"Pazi: 1 min = 60 s → y = 60x (sekundi ima VIŠE, pa množiš).",topic:"ostalo",points:1,
   q:"Vrijeme mjereno u minutama označeno je s x. Isto to vrijeme mjereno u sekundama označeno je s y. Koja je jednakost točna?",
   opts:["xy = 1/60","y = x/60","xy = 60","y = 60x"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -385,7 +385,7 @@ export const qs = [
   ],
   why:["Formula: supstitucija u sustavu s razlomcima — neka 1/x=u, 1/y=v, tada linearni sustav au+bv=c.","Metoda zbrajanja/oduzimanja jednadžbi eliminira po jednu varijablu.","Česta greška (najčešće): pokušaj direktnog rješavanja bez supstitucije → kvadratna jednadžba u neoznakama.","Provjera: 1/x = 4 → x = [FRAC:1|4]; 1/y = -1 → y = -1; provjera u sustavu: 4+(−1)=3 ✓, 4−(−1)=5 ✓","Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
 },
-  {id:6,type:"mc",warn:"Pazi: log_(1/b)(1/x) = log_b(x) (i baza i argument recipročni → predznaci se ponište).",topic:"log",points:1,
+  {id:6,type:"mc",warn:"Pazi: log_(1/b)(1/x) = log_b(x) (i baza i argument recipročni → predznaci se ponište).",topic:"exp",points:1,
   q:"Čemu je jednako log_(1⁄b)​([FRAC:1|x]), gdje je b > 0, b ≠ 1, x > 0, x ≠ 1?",
   opts:["−log_b(x)","−log_x(b)","log_b(x)","log_x(b)"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -399,7 +399,7 @@ export const qs = [
   ],
   why:["Formula prelaska na drugu bazu: logₐ x = log_c x / log_c a.","log(1/a) = −log a (logaritam inverzije).","Česta greška (najčešće): A(−log_b x) — točan odgovor za log_{1/b}(x), ne log_{1/b}(1/x); dva negativa daju pozitivno.","Konceptualna intuicija: baza < 1 i argument < 1 → logaritam pozitivan (i baza i argument 'ispod' 1).","Provjera: log_[FRAC:1|b](1/x) = log_b x (probaj b=2, x=4: log_[FRAC:1|2](1/4)=log_[FRAC:1|2](1/2)²=2=log_2 4 ✓)","Provjera: log_a(a^x) = x i a^(logₐx) = x — bazične identitete."]
 },
-  {id:7,type:"mc",warn:"Pazi: geometrijski red ima konačan zbroj samo ako je |q| < 1.",topic:"red",points:1,
+  {id:7,type:"mc",warn:"Pazi: geometrijski red ima konačan zbroj samo ako je |q| < 1.",topic:"niz",points:1,
   q:"Koji od navedenih geometrijskih redova ima konačan zbroj?",
   opts:["3 − 9 + 27 − 81 + …","6 + 12 + 24 + 48 + …","8 − 12 + 18 − 27 + …","125 + 75 + 45 + 27 + …"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -471,7 +471,7 @@ export const qs = [
   ex:"Logaritamska jednadžba: prepiši u eksponencijalnu formu, izračunaj vrijednost, provjeri uvjet domene.",
   why:["Formula: logₐ b = c ⟺ aᶜ = b; logₐ b > 0 ⟺ b > 1 za a>1.","Kod jednadžbe s korijenom kvadriramo, ali moramo provjeriti rješenja u izvornoj jednadžbi.","Česta greška (najčešće): C — kvadriranjem dobijemo x=3,5 (razlomak), ali studenti ne verificiraju.","Strategija: za svaku opciju brzo provjeri je li rješenje cijeli broj. B: x=-1 — jedini cijeli.","Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
 },
-  {id:12,type:"mc",warn:"Pazi: sin(3x) = −1/2; argument 3x prolazi [0, 3π], pa nađi sva rješenja u tom rasponu.",topic:"trg",points:2,
+  {id:12,type:"mc",warn:"Pazi: sin(3x) = −1/2; argument 3x prolazi [0, 3π], pa nađi sva rješenja u tom rasponu.",topic:"trig",points:2,
   q:"Koliko rješenja ima jednadžba 2 sin(3x) + 1 = 0 na intervalu [0, π]?",
   opts:["jedno","dva","tri","četiri"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -486,7 +486,7 @@ export const qs = [
   ex:"Trigonometrijska jednadžba s višekratnošću kuta: sinx=k → izračunaj x, provjeri je li u zadanom intervalu.",
   why:["Formula: sin(3x) = k → 3x = arcsin(k) + 2kπ ili π−arcsin(k)+2kπ; provjeri interval.","sin(x) = k na intervalu duljine 2π ima najviše 2 rješenja.","Česta greška (najčešće): C(tri) — brojevna os [0,3π] ima 3π duljinu, studenti misle da ima 3 'periode'.","Vizualizacija: sin u = -1/2 na [0,3π] ≃ 1,5 perioda → 2 rješenja: u=7π/6 i u=11π/6; sljedeće bi 19π/6 > 3π.","Provjera: 2sin(3x)+1=0 → sin(3x)=−1/2; 3x=7π/6+2kπ ili 11π/6+2kπ; x∈[0,π] → 3x∈[0,3π]; rješenja: 7π/6, 11π/6, 7π/6+2π=19π/6>3π — znači 2 rješenja ✓ → C","Provjera: kut između 0 i 360° (ili 0 i 2π) — provjeri kvadrant."]
 },
-  {id:13,type:"mc",warn:"Pazi: iz V = B·h nađi bazu B (pravilni šesterokut B = (3√3/2)a²) pa stranicu a; oplošje = 2B + plašt.",topic:"geo",points:2,
+  {id:13,type:"mc",warn:"Pazi: iz V = B·h nađi bazu B (pravilni šesterokut B = (3√3/2)a²) pa stranicu a; oplošje = 2B + plašt.",topic:"geom",points:2,
   q:"Obujam pravilne šesterostrane prizme je 540√3 cm³, a visina prizme je 10 cm. Koliko je oplošje te prizme?",
   opts:["547,06 cm²","594,53 cm²","732,21 cm²","782,35 cm²"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -501,7 +501,7 @@ export const qs = [
   ex:"Pravilna šestostrana prizma: volumen = Baza · h; Baza = (3√3/2)a².",
   why:["Pravilni šesterokut: B = (3√3/2)a² (šest jednakostraničnih trokuta stranice a).","Oplošje prizme = 2 · baza + pobočje; pobočje = opseg · visina.","Česta greška (najčešće): B(594,53) — koriste formulu za površinu trokuta ili krivi broj stranica; C/D — krivi izraz za bazu šesterokuta.","Derivacija: šesterokut = 6 jednakostraničnih trokuta, svaki P = (√3/4)a², ukupno = 6·(√3/4)a² = (3√3/2)a².","Provjera: V = (3√3/2)·6²·10/3 = (3√3/2)·36·10/3 = 180√3 ≠ 540√3; ispravno: V=Baza·h gdje Baza=(3√3/2)a²=54√3; h=V/Baza=540√3/54√3=10cm; a=6cm ✓ → B","Provjera dimenzija: jedinice (m, m², m³) moraju biti konzistentne."]
 },
-  {id:14,img:true,type:"mc",warn:"Pazi: α + γ = 180° → tetivni četverokut; koristi potenciju točke ili slične trokute u T.",topic:"geo",points:2,img:true,
+  {id:14,img:true,type:"mc",warn:"Pazi: α + γ = 180° → tetivni četverokut; koristi potenciju točke ili slične trokute u T.",topic:"geom",points:2,img:true,
   q:"Na skici je prikazan konveksan četverokut ABCD u kojemu je α + γ = β + δ = 180°. Pravci AB i CD sijeku se u točki T. Točka T je 3 cm udaljena od točke A, 6 cm od točke D i 10 cm od točke C. Kolika je duljina stranice AB?",
   opts:["13 cm","15 cm","17 cm","19 cm"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -543,7 +543,7 @@ export const qs = [
   ],
   why:["Definicija: NZV(a,b) = najmanji zajednički višekratnik; NZD(a,b)·NZV(a,b) = a·b.","Kod NZV-a uzimamo MAX potenciju svakog prostog faktora.","Razlika NZD/NZV: NZD uzima MIN potenciju, NZV uzima MAX.","Provjera: 840/60=14 ✓; 840/168=5 ✓; Česta greška: koriste produkt 60·168.","Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno).","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
 },
-  {id:17,type:"sa",topic:"mj",points:1,
+  {id:17,type:"sa",topic:"ostalo",points:1,
   q:"Pretvorite [FRAC:13π|9] radijana u stupnjeve.",
   sol:{ans:"260°",alt:["260","260°"]},
   steps:[
@@ -668,7 +668,7 @@ export const qs = [
   ],
   why:["Veza derivacije i monotonosti: g′(x) > 0 ⇒ g strogo raste; g′(x) < 0 ⇒ g strogo pada.","U ekstremima (lokalni min/max za diferencijabilnu funkciju) je g′(x) = 0.","Provjera: izračunaj f(x) za nekoliko x i provjeri pripadnost grafu.","Tipičan propust: pomiješati domenu (ulaz) i sliku (izlaz) funkcije; ili zanemariti restrikcije domene (dijeljenje s 0, korijen iz negativnog).","Veza s gradivom: funkcije su jezik matematike — od osnovnih (linearnih) do složenih (eksponencijalnih, trigonometrijskih).","Provjera tablicom vrijednosti: izračunaj f(x) za nekoliko x i provjeri pripadnost grafu."]
 },
-  {id:23.1,type:"sa",topic:"trg",points:1,img:true,
+  {id:23.1,type:"sa",topic:"trig",points:1,img:true,
   context:"Zadatak 23 (1. dio od 2):",
   q:"Na brojevnoj (trigonometrijskoj) kružnici označite točku E(t) za koju je tg t = 2 i cos t > 0.",
   sol:{ans:"točka u I. kvadrantu, t = arctg 2 ≈ 63,43° (E ≈ (0,447; 0,894))",alt:["I. kvadrant","arctg 2"],svgFn:()=>e(SvgZad23a_2013LA,null)},
@@ -680,7 +680,7 @@ export const qs = [
   ],
   why:["Jedinična kružnica: točka (cos t, sin t).","Predznak tangensa i kosinusa određuje jedinstveni kvadrant (zajedno).","Provjera identitetom: sin²α + cos²α = 1 — uvijek vrijedi.","Tipičan propust: DEG vs RAD mod na kalkulatoru; znak sin/cos po kvadrantu.","Veza s gradivom: trigonometrija povezuje geometriju i analizu.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:23.2,type:"sa",topic:"trg",points:1,
+  {id:23.2,type:"sa",topic:"trig",points:1,
   context:"Zadatak 23 (2. dio od 2):",
   q:"Zrakoplov se pri uzlijetanju otisne brzinom od 315 km/h pod kutom od 22° prema ravnini piste. Na kojoj se visini, izraženoj u metrima, zrakoplov nalazi nakon 8 s?",
   sol:{ans:"h ≈ 262,22 m",alt:["262,22","262,22","≈262 m"]},
@@ -692,7 +692,7 @@ export const qs = [
   ],
   why:["Pretvorba km/h → m/s: dijelimo sa 3,6 (= 3600/1000).","Vertikalna komponenta pomaka: h = s · sin α.","Provjera kalkulatorom: paziti na DEG/RAD mode.","Tipičan propust: DEG vs RAD mod na kalkulatoru; znak sin/cos po kvadrantu.","Veza s gradivom: trigonometrija povezuje geometriju i analizu.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:24.1,type:"sa",topic:"trg",points:1,
+  {id:24.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 24 (1. dio od 2):",
   q:"Kolika je mjera najmanjega kuta u trokutu kojemu su stranice duljina 7 cm, 8 cm i 9 cm?",
   sol:{ans:"≈ 48°11′23″",alt:["48°11'23\"","48,19°","≈48°11'"]},
@@ -703,7 +703,7 @@ export const qs = [
   ],
   why:["Kosinusov poučak: a² = b² + c² − 2bc · cos α (gdje je α nasuprot a).","Što je stranica kraća, to je nasuprotni kut manji.","Provjera: kut između 0 i 360° (ili 0 i 2π) — provjeri kvadrant.","Tipičan propust: DEG vs RAD mod na kalkulatoru; znak sin/cos po kvadrantu.","Veza s gradivom: trigonometrija povezuje geometriju i analizu.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:24.2,type:"sa",topic:"trg",points:1,
+  {id:24.2,type:"sa",topic:"trig",points:1,
   context:"Zadatak 24 (2. dio od 2):",
   q:"Kolika je površina trokuta kojemu je jedna stranica duljine 5 cm, a mjere kutova uz tu stranicu 24°36′ i 55°?",
   sol:{ans:"≈ 4,33 cm²",alt:["4,33","4,33"]},
@@ -715,7 +715,7 @@ export const qs = [
   ],
   why:["Sinusov poučak: a/sin α = b/sin β = c/sin γ.","Površina trokuta s dvije stranice i kutom među njima: P = (1/2) · a · b · sin γ.","Provjera identitetom: sin²α + cos²α = 1 — uvijek vrijedi.","Tipičan propust: DEG vs RAD mod na kalkulatoru; znak sin/cos po kvadrantu.","Veza s gradivom: trigonometrija povezuje geometriju i analizu.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:25.1,type:"sa",topic:"geo",points:1,
+  {id:25.1,type:"sa",topic:"geom",points:1,
   context:"Zadatak 25 (1. dio od 3):",
   q:"Izračunajte udaljenost točke (5, 6) od pravca x − 4y + 8 = 0.",
   sol:{ans:"d = [FRAC:11√17|17] ≈ 2,67",alt:["11/√17","11√17/17","2,67","≈2,67"]},
@@ -727,7 +727,7 @@ export const qs = [
   ],
   why:["Udaljenost točke od pravca: d = |Ax₀ + By₀ + C|/√(A² + B²) (apsolutna vrijednost!).","Racionalizacija nazivnika: pomnožimo brojnik i nazivnik s √17.","Provjera identitetom: zbroj kutova trokuta = 180°; četverokuta = 360°.","Tipičan propust: zamijeniti opseg i površinu; pomiješati polumjer i promjer.","Veza s gradivom: planimetrija (2D) prethodi stereometriji (3D).","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:25.2,type:"sa",topic:"geo",points:1,
+  {id:25.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 25 (2. dio od 3):",
   q:"Izračunajte kut što ga pravac 2x − 3y − 7 = 0 zatvara s pozitivnom zrakom osi x.",
   sol:{ans:"α ≈ 33°41′24″",alt:["33°41'24\"","33,69°","≈33°41'"]},
@@ -738,7 +738,7 @@ export const qs = [
   ],
   why:["Kut pravca s pozitivnom zrakom osi x: tg α = k (gdje je k nagib).","Nagib je koeficijent uz x u eksplicitnom obliku pravca y = kx + l.","Provjera: skiciraj figuru i izmjeri svojstvo geometrijski.","Tipičan propust: zamijeniti opseg i površinu; pomiješati polumjer i promjer.","Veza s gradivom: planimetrija (2D) prethodi stereometriji (3D).","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:25.3,type:"sa",topic:"geo",points:1,
+  {id:25.3,type:"sa",topic:"geom",points:1,
   context:"Zadatak 25 (3. dio od 3):",
   q:"Odredite jednadžbu kružnice koja dira os y i kojoj je središte u točki (-3, 2).",
   sol:{ans:"(x + 3)² + (y − 2)² = 9",alt:["(x+3)² + (y-2)² = 9","(x+3)^2 + (y-2)^2 = 9"]},
@@ -770,7 +770,7 @@ export const qs = [
   ],
   why:["Sjecište s x-osi: y = 0 ⇒ brojnik = 0 (uz uvjet definiranosti).","Sjecište s y-osi: x = 0 ⇒ f(0).","Provjera: izračunaj f(x) za nekoliko x i provjeri pripadnost grafu.","Tipičan propust: pomiješati domenu (ulaz) i sliku (izlaz) funkcije; ili zanemariti restrikcije domene (dijeljenje s 0, korijen iz negativnog).","Veza s gradivom: funkcije su jezik matematike — od osnovnih (linearnih) do složenih (eksponencijalnih, trigonometrijskih).","Provjera tablicom vrijednosti: izračunaj f(x) za nekoliko x i provjeri pripadnost grafu."]
 },
-  {id:27.1,type:"sa",topic:"geo",points:1,
+  {id:27.1,type:"sa",topic:"geom",points:1,
   context:"Zadatak 27 (1. dio od 2):",
   q:"Zadan je stožac kojemu je baza krug polumjera 4 cm, a duljina izvodnice 5 cm. Koliki je obujam toga stošca?",
   sol:{ans:"V = 16π cm³ ≈ 50,27 cm³",alt:["16π","16π cm³","50,27","≈50,27"]},
@@ -781,7 +781,7 @@ export const qs = [
   ],
   why:["Obujam stošca: V = (1/3) · B · h = (1/3) · r²π · h.","Pitagorin poučak u osnom presjeku stošca: l² = r² + h².","Provjera dimenzija: jedinice (m, m², m³) moraju biti konzistentne.","Tipičan propust: zamijeniti opseg i površinu; pomiješati polumjer i promjer.","Veza s gradivom: planimetrija (2D) prethodi stereometriji (3D).","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:27.2,type:"sa",topic:"geo",points:1,
+  {id:27.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 27 (2. dio od 2): Stožac: r = 4 cm, l = 5 cm",
   q:"Plašt toga uspravnog stošca razvijen u ravnini je kružni isječak. Kolika je mjera središnjega kuta toga kružnog isječka?",
   sol:{ans:"288°",alt:["288","288°"]},
@@ -826,7 +826,7 @@ export const qs = [
   ],
   why:["Tangenta na graf u točki (x₀, f(x₀)): y − f(x₀) = f ′(x₀)(x − x₀).","Koeficijent smjera tangente jednak je derivaciji u toj točki.","Provjera ekstrema: f'(x₀) = 0 i predznak f'' (ili f') oko x₀ daje min/max.","Tipičan propust: pomiješati domenu (ulaz) i sliku (izlaz) funkcije; ili zanemariti restrikcije domene (dijeljenje s 0, korijen iz negativnog).","Veza s gradivom: funkcije su jezik matematike — od osnovnih (linearnih) do složenih (eksponencijalnih, trigonometrijskih).","Provjera tablicom vrijednosti: izračunaj f(x) za nekoliko x i provjeri pripadnost grafu."]
 },
-  {id:29.1,type:"sa",topic:"al",points:1,
+  {id:29.1,img:true,type:"sa",topic:"al",points:1,
   context:"Zadatak 29 (1. dio od 5):",
   q:"Operacija ⊗ s realnim brojevima definirana je pravilom a ⊗ b = a − 2b + 2. Izračunajte koliko je 2 ⊗ 5.",
   sol:{ans:"-6",alt:["-6","2-2·5+2=-6","a⊠b=a-2b+2"]},
@@ -835,7 +835,7 @@ export const qs = [
   ],
   why:["Direktno uvrštavanje u definiciju operacije.","Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost.","Tipičan propust: zanemariti predznake pri premještanju članova kroz jednakost."]
 },
-  {id:29.2,type:"sa",topic:"al",points:3,
+  {id:29.2,img:true,type:"sa",topic:"al",points:3,
   context:"Zadatak 29 (2. dio od 5):",
   q:"U nekome aritmetičkom nizu 200. član je broj 99, a 268. član je broj 167. Odredite 234. član toga niza. Odredite zbroj svih članova od 235. do 312. zadanoga niza, tj. a₂₃₅ + a₂₃₆ + … + a₃₁₂.",
   sol:{ans:"a₂₃₄ = 133; S = 13 455",alt:["a₂₃₄=133, S=13455","133 i 13455"]},
@@ -848,7 +848,7 @@ export const qs = [
   ],
   why:["Aritmetički niz: aₙ = a₁ + (n − 1)d; razlika d je ista između uzastopnih članova.","Zbroj uzastopnih članova od k-tog do l-tog: ((l − k + 1)/2)(aₖ + aₗ).","Provjera supstitucijom: uvrsti x = a₂₃₄ = 133; S = 13 455 u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:29.3,type:"sa",topic:"al",points:2,
+  {id:29.3,img:true,type:"sa",topic:"al",points:2,
   context:"Zadatak 29 (3. dio od 5):",
   q:"Izrazite a iz formule p = ab + 2(a + b)v.",
   sol:{ans:"a = [FRAC:p − 2bv|b + 2v]",alt:["(p - 2bv)/(b + 2v)","a = (p-2bv)/(b+2v)"]},
@@ -859,7 +859,7 @@ export const qs = [
   ],
   why:["Izražavanje varijable iz formule: izoliramo traženu varijablu pomoću ekvivalentnih algebarskih transformacija.","Faktorizacija pomaže izvući zajedničku varijablu.","Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:29.4,type:"sa",topic:"al",points:2,
+  {id:29.4,img:true,type:"sa",topic:"al",points:2,
   context:"Zadatak 29 (4. dio od 5):",
   q:"Skratite razlomak [FRAC:2a² − ab + 2a − b|4a² − b²].",
   sol:{ans:"[FRAC:a + 1|2a + b]",alt:["(a+1)/(2a+b)","[FRAC:a+1|2a+b]"]},
@@ -871,7 +871,7 @@ export const qs = [
   ],
   why:["Razlika kvadrata: x² − y² = (x − y)(x + y).","Grupiranje: traži zajednički faktor u parovima članova.","Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:29.5,type:"sa",topic:"al",points:2,
+  {id:29.5,img:true,type:"sa",topic:"al",points:2,
   context:"Zadatak 29 (5. dio od 5):",
   q:"Za koje vrijednosti realnoga parametra a je rješenje x jednadžbe 2x(a + 3) + a(x − 5) = 3ax − 6 veće od 2?",
   sol:{ans:"a > [FRAC:18|5]",alt:["a > 18/5","a > 3,6","a>18/5"]},
@@ -885,7 +885,7 @@ export const qs = [
   ],
   why:["Kod jednadžbe s parametrom: rješenje izražavamo preko parametra, pa primjenjujemo dodatni uvjet.","6 > 0, pa množenje s 6 ne mijenja smjer nejednakosti.","Provjera supstitucijom: uvrsti x = a > [FRAC:18|5] u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:30,type:"proof",topic:"geo",points:4,graphType:"coord",graphRef:{pts:["A(-2,1)","B(3,-2)","C(24/5,1)"]},
+  {id:30,type:"proof",topic:"geom",points:4,graphType:"coord",graphRef:{pts:["A(-2,1)","B(3,-2)","C(24/5,1)"]},
   q:"Odredite površinu trokuta ABC ako je O ishodište koordinatnoga sustava, vektor OA⃗ = -2i⃗ + j⃗, vektor AB⃗ = 5i⃗ − 3j⃗, vektor AC⃗ je usporedan s vektorom i⃗, a skalarni umnožak AB⃗ · BC⃗ = 0.",
   sol:{ans:"P = [FRAC:51|5] = 10,2 kvadratnih jedinica",alt:["10,2","51/5","10,2"],svgFn:()=>e(SvgSolTrokut_2013LjetoA,null)},
   steps:[
@@ -901,19 +901,7 @@ export const qs = [
   ],
   ex:"Površina trokuta koordinatnom metodom: P = |½(x₁(y₂−y₃)+x₂(y₃−y₁)+x₃(y₁−y₂))|.",
   why:["Formula: XY⃗ = Y−X; |XY⃗|² = (Δx)²+(Δy)²; skalarni umnožak: a⃗·b⃗=a₁b₁+a₂b₂=|a⃗||b⃗|cosφ.","Površina trokuta s vrhovima A, B, C: P = (1/2)|AB⃗ × AC⃗| (gdje je križni produkt determinanta).","Uvjet AB⃗ ⊥ BC⃗ ⇔ AB⃗ · BC⃗ = 0.","Alternativa: Shoelace P = ½|x_A(y_B−y_C)+x_B(y_C−y_A)+x_C(y_A−y_B)|.","Provjera Shoelace: P = ½|(-2)(-3)+0+(24/5)·3| = ½·102/5 = 10,2 ✓","Česta greška: zbrajati površine pojedinih trokuta umjesto koristiti koordinatnu formulu; pažnja na predznak pri računanju površine Gaussovim obrascem."]
-},
-  {_META:true,
-  auditedAt: "2026-05-04",
-  auditSource: "MAT A D-S015 (viša razina, ljetni rok 2013)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  issueCount: {critical:0,medium:0,low:0,resolved:0},
-  notes: "Audit sesija 2026-05-04: Pak G verbatim čisto; Pak H 3→0 (Q6 why); Pak I Q_IMAGES 10 bindinga OK; Pak A-E 15/15 MC + SA točni (Q18,1 Unicode); Pak F 34→0 (pravilo/check/ex/error/topic); Pak J [FRAC:] u Q2,Q4,Q11,Q18,1,Q21,1; META: verified-full."
-,
-  verified:"sympy+pdf+verbatim+visual"
-,
-  auditNotes:"Pak G: čisto; Pak I: Q_IMAGES konfirmirani; Pak H: 3→0 (Q6 why fracs); Pak A-E: 15/15 MC + SA točni (Q18,1 Unicode fix); Pak F: 34→0 nalaza (pravilo/check/ex/error/topic); Pak J: [FRAC:] u Q2,Q4,Q11,Q18,1,Q21,1; auditDate:2026-05-04"
-  }
+}
 ];
 
 export const qImages = {

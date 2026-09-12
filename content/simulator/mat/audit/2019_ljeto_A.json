@@ -1,0 +1,25 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2019_ljeto",
+  "razina": "A",
+  "serial": "D-S045",
+  "totalPoints": 60,
+  "mcCount": 15,
+  "saCount": 34,
+  "verified": "sympy+pdf",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ],
+  "maintenanceAt_v311": "2026-05-26",
+  "maintenanceNotes_v311": [
+    "Pak I visual: svih 6 vizuala s img:true (Q7/13/22.1/25.1/26.3/29.3) verified protiv PDF D-S045.",
+    "P0 fix Svg13_2019Alj: f i g potpuno pogresne — f bila linearna y=x+1.5, g pogresna parabola vrh (0,2). Sada f(x)=(x-1)(x-5) pink i g(x)=-0.4(x-1)^2+2 crna. NCVVO Q13=C verificirano: f(3)*g(3) = -4*0.4 = -1.6 jedini negativan.",
+    "P0 fix Svg26c_2019Alj: krivulja izmjenjena iz parabole vrh (-2,4) u piecewise (plateau y=1 za x in [-4,-3], rastuca parabola do (-2, 3.5), padajuca do (0, 0)). Match s PDF.",
+    "P1 fix Svg7_2019Alj: vektor b ispravljen iz gore-desno u gore-lijevo (B.x = O.x-10).",
+    "ORPHAN CLEANUP: uklonjene 4 binding entries iz Q_IMAGES (Q21.1/21.2/23.1/23.2 ljeto A) jer PDF Q-objects su tekstualni bez img:true. Baseline bindings 563 to 559."
+  ]
+}

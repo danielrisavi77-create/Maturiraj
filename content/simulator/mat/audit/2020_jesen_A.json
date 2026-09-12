@@ -1,0 +1,26 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2020_jesen",
+  "razina": "A",
+  "serial": "D-S047",
+  "totalPoints": 60,
+  "mcCount": 15,
+  "saCount": 34,
+  "excludedTasks": [
+    "z14_mc",
+    "z27,1_sa"
+  ],
+  "verified": "sympy+pdf",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ],
+  "maintenanceAt_v39": "2026-05-26",
+  "maintenanceNotes_v39": [
+    "Pak F (pedagoški drift): Q18.1 (Vièteove formule x₁x₂=c/a), Q19.1 (algebra eksponenata), Q26.3 (logaritmiranje eksponencijalne inflacije), Q29.3🖼 (elipsa žarišta 5,1m + uklonjen duplicirani img:true property) — sve generic placeholder steps/why zamijenjeni konkretnom matematikom za svaki Q.",
+    "Pak I (visual): svih 6 vizuala (Q9/11/15/20.2/29.3/29.4) pixel-verified protiv PDF D-S047 — bez bugova."
+  ]
+}

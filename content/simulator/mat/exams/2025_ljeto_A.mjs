@@ -3,8 +3,8 @@ import React from 'react';
 const e = React.createElement;
 
 function Svg9_2025Alj(){
-  const txt="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252";
+  const txt="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)";
   const W=640, H=560;
   
   function panel(ox, oy, drawFn, label){
@@ -80,7 +80,7 @@ function Svg9_2025Alj(){
 }
 
 function Svg7_2025Alj(){
-  const txt="var(--text)"; const blue="#4a90d9"; const gold="#e9b446"; const bgHead="#1e3a5f";
+  const txt="var(--text)"; const blue="var(--blue)"; const gold="var(--gold)"; const bgHead="var(--s3,#1e3a5f)";
   const W=240, rH=40, colW=[80,80,80];
   const cells=[
     [{v:"x",italic:true,head:true},{v:"\u22121",head:true},{v:"7",head:true}],
@@ -100,7 +100,7 @@ function Svg7_2025Alj(){
 }
 
 function Svg5_2025Alj(){
-  const txt="var(--text)"; const blue="#4a90d9"; const bgHead="#1e3a5f"; const altRow="#0a1525";
+  const txt="var(--text)"; const blue="var(--blue)"; const bgHead="var(--s3,#1e3a5f)"; const altRow="var(--s2,#0a1525)";
   const rows=[
    ["Ponedjeljak","40 %"],["Utorak","75 %"],["Srijeda","75 %"],
    ["Četvrtak","75 %"],["Petak","80 %"],["Subota","80 %"],["Nedjelja","40 %"]
@@ -146,8 +146,8 @@ function Svg38a_2025Alj(){
 }
 
 function Svg36_2025Alj(){
-  const txt="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const txt="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=380, H=300; const ox=180, oy=200; const u=30;
   const pxF=(x)=>ox+x*u; const pyF=(y)=>oy-y*u;
   // A=(-4,0), B=(1,0), C=(2,3)
@@ -179,9 +179,9 @@ function Svg36_2025Alj(){
     e("circle",{key:"u1x",cx:pxF(1),cy:oy,r:2,fill:muted}),
     e("circle",{key:"u1y",cx:ox,cy:pyF(1),r:2,fill:muted}),
     // Vertex dots
-    e("circle",{key:"dA",cx:A[0],cy:A[1],r:5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
-    e("circle",{key:"dB",cx:B[0],cy:B[1],r:5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
-    e("circle",{key:"dC",cx:C[0],cy:C[1],r:5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+    e("circle",{key:"dA",cx:A[0],cy:A[1],r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
+    e("circle",{key:"dB",cx:B[0],cy:B[1],r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
+    e("circle",{key:"dC",cx:C[0],cy:C[1],r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
     // Vertex labels
     e("text",{key:"lA",x:A[0]-12,y:A[1]+22,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"A"),
     e("text",{key:"lB",x:B[0]+10,y:B[1]+22,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"B"),
@@ -238,7 +238,7 @@ function Svg25_2025Alj(){
 }
 
 function Svg17_2025Alj(){
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=340, H=300; const cx=170, cy=150, r=110;
   const deg=(d)=>d*Math.PI/180;
   // PDF: A bottom-left, B bottom-right, C right, D top-right, E top-left, F left
@@ -298,14 +298,14 @@ function Svg17_2025Alj(){
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"340px",width:"100%",display:"block",margin:"12px auto"}},
     e("polygon",{key:"hex",points:poly.map(p=>p.join(",")).join(" "),fill:"rgba(74,144,217,0.08)",stroke:blue,strokeWidth:2}),
-    ...poly.map((p,i)=>e("circle",{key:"d"+i,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5})),
+    ...poly.map((p,i)=>e("circle",{key:"d"+i,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
     ...poly.map((p,i)=>e("text",{key:"l"+i,x:p[0]+labelOffsets[i][0],y:p[1]+labelOffsets[i][1],
       fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},labels[i]))
   );
 }
 
 function Svg15_2025Alj(){
-  const blue="#4a90d9"; const blueD="#3a6aa0"; const red="#e05252"; const gold="#e9b446";
+  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
   const W=420, H=460;
   // Tall kvadar: footprint AB ~ 160, depth ~ 60, height ~ 220
   const A=[80,380],B=[260,380],C=[340,320],D=[160,320];
@@ -327,14 +327,14 @@ function Svg15_2025Alj(){
       stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
     ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blue,strokeWidth:2})),
-    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5})),
+    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
     ...verts.map(([n,p,dx,dy])=>e("text",{key:"t"+n,x:p[0]+dx,y:p[1]+dy,
       fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n))
   );
 }
 
 function Svg13_2025Alj(){
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446"; const txt="var(--text)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
   const W=460, H=300;
   const A=[60,240], B=[220,240], E=[400,240], D=[130,80], C=[290,80];
   // Vertices, edges (paralelogram + extension to E)
@@ -353,7 +353,7 @@ function Svg13_2025Alj(){
     e("path",{key:"a3",d:`M ${E[0]-30},${E[1]} A 30,30 0 0 1 ${E[0]-22},${E[1]-22}`,fill:"none",stroke:gold,strokeWidth:1.6}),
     // Vertex dots
     ...[["A",A],["B",B],["C",C],["D",D],["E",E]].map(([n,p])=>
-      e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5})),
+      e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
     // Vertex labels
     e("text",{key:"lA",x:A[0]-14,y:A[1]+18,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"A"),
     e("text",{key:"lB",x:B[0]-8,y:B[1]+22,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"B"),
@@ -368,8 +368,8 @@ function Svg13_2025Alj(){
 }
 
 function Svg11_2025Alj(){
-  const txt="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const blueLight="rgba(74,144,217,0.10)"; const red="#e05252"; const gold="#e9b446";
+  const txt="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const blueLight="rgba(74,144,217,0.10)"; const red="var(--red)"; const gold="var(--gold)";
   const W=360, H=320; const cx=180, cy=160, r=100;
   const deg=(d)=>d*Math.PI/180;
   // E(t) in III quadrant: cos(t)=-3/5, sin(t)=-4/5 → angle ~233°
@@ -400,7 +400,7 @@ function Svg11_2025Alj(){
     e("text",{key:"1y",x:cx+5,y:cy-r+6,fontSize:12,fontFamily:"Georgia,serif",fontWeight:"bold",fill:txt},"1"),
     e("text",{key:"1x",x:cx+r-5,y:cy+15,fontSize:12,fontFamily:"Georgia,serif",fontWeight:"bold",fill:txt},"1"),
     // Point E(t)
-    e("circle",{key:"E",cx:Ex,cy:Ey,r:5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+    e("circle",{key:"E",cx:Ex,cy:Ey,r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
     e("text",{key:"lE",x:Ex-26,y:Ey+18,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"E(t)"),
     // Line from origin to E (showing angle)
     e("line",{key:"OE",x1:cx,y1:cy,x2:Ex,y2:Ey,stroke:gold,strokeWidth:1.4,strokeDasharray:"4 3"})
@@ -467,7 +467,7 @@ export const qs = [
   {
     id:6,
     type:"mc",warn:"Pazi: radi se o aritmetičkom nizu (20 članova, prvi 30, razlika 8) — koristi formulu za zbroj.",
-    topic:"seq",
+    topic:"niz",
     points:1,
     q:"Potrebno je iskopati bunar dubok 20 m. Za kopanje prvoga metra cijena je 30 eura, a za svaki sljedeći 8 eura više od prethodnoga metra. Kolika je cijena cijeloga iskopa?",
     opts:["752 eura","1140 eura","1520 eura","2120 eura"],
@@ -594,7 +594,7 @@ export const qs = [
     id:17,
     img:true,
     type:"mc",warn:"Pazi: vektore zbrajaš 'rep na glavu'; redoslijed smiješ promijeniti (AD + FA = FA + AD).",
-    topic:"vekt",
+    topic:"vek",
     points:1,
     q:"Na skici je prikazan pravilan šesterokut ABCDEF. Koji je od navedenih vektora jednak AD⃗ + FA⃗?",
     opts:["AC⃗","CE⃗","DF⃗","FB⃗"],
@@ -799,7 +799,7 @@ export const qs = [
     why:["Pravila: A ∪ B = B ⟺ A ⊆ B; ℝ je nadskup svake podskupa.","Postupak: 1) uvjet podskupa. 2) odaberi nadskup.","Intuicija: dodavanje ne mijenja ako je već unutra.","Česta greška 1: navesti B ⊂ A.","Česta greška 2: B = A (trivijalno, ne pokazuje razumijevanje).","Alt metoda — najjednostavnije: B = ℝ.","Provjera: za x ∈ A: 1 < x < 11/6; sigurno u ℝ ✓."]
   },
   {
-    id:"36,1",
+    id:"36.1",
     img:true,
     type:"sa",
     topic:"anal",
@@ -811,7 +811,7 @@ export const qs = [
     why:["Pravila: visina = okomica iz vrha na nasuprotnu stranicu.","Postupak: 1) pravac stranice. 2) udaljenost vrha.","Intuicija: udaljenost točke od osi x = apsolutna y-koordinata.","Česta greška 1: udaljenost od kraja stranice umjesto od pravca.","Česta greška 2: |x| umjesto |y|.","Alt metoda: pravac AB: y = 0; udaljenost (2,3) od y=0 je |3| = 3 ✓.","Provjera s formulom površine: P = 3, |AB| = 2 → v = 3 ✓."]
   },
   {
-    id:"36,2",
+    id:"36.2",
     img:true,
     type:"sa",
     topic:"anal",
@@ -823,7 +823,7 @@ export const qs = [
     why:["Pravila: d((x₁,y₁),(x₂,y₂)) = √((Δx)² + (Δy)²).","Postupak: 1) formula udaljenosti. 2) ostavi u korijenu.","Intuicija: Pitagora u koordinatnom sustavu.","Česta greška 1: zaboraviti korijen (ostaviti 13).","Česta greška 2: manhattan distance (|Δx| + |Δy| = 5).","Alt metoda — vektor: BC = (2,3); |BC| = √13 ✓.","Provjera: 3 < √13 < 4 (jer 9 < 13 < 16) ✓."]
   },
   {
-    id:"37,1",
+    id:"37.1",
     type:"sa",
     topic:"trig",
     points:1,
@@ -845,7 +845,7 @@ export const qs = [
     why:["Pravilo: P trapeza = [FRAC:(a+c)·h|2].","Postupak: 1) h. 2) formula.","Intuicija: srednja osnovica · visina.","Česta greška 1: koristiti formulu paralelograma.","Česta greška 2: koristiti samo jednu osnovicu.","Alt metoda — kroz dijagonale: P = [FRAC:1|2]·d₁·d₂·sin(α) (za neke trapeze).","Provjera: 57,24 između 8·5,45 = 43,6 i 13·5,45 = 70,9 ✓."]
   },
   {
-    id:"38,1",
+    id:"38.1",
     img:true,
     type:"sa",
     topic:"trig",
@@ -948,8 +948,7 @@ export const qs = [
     sol:{ans:"18",alt:["18 kvadratnih jedinica","P_max = 18"]},
     steps:[{txt:"Parna kvadratna s max 9: f(x) = ax² + 9, a < 0."},{txt:"Nultočka −3√3: 27a + 9 = 0 → a = −[FRAC:1|3]. f(x) = −[FRAC:x²|3] + 9."},{txt:"C(x_C, y_C) na grafu u 1. kv: 0 < x_C < 3√3, y_C = 9 − [FRAC:x_C²|3]."},{txt:"A = (0, y_C); B = (x_C, −y_C)."},{txt:"|AC| = x_C (vodoravan); |CB| = 2y_C (vertikalan); ⊥ kod C."},{txt:"P = [FRAC:1|2]·x_C·2y_C = x_C·y_C = x_C(9 − [FRAC:x_C²|3]) = 9x_C − [FRAC:x_C³|3]."},{txt:"Maksimum: P'(x_C) = 9 − x_C² = 0 → x_C = 3 (pozitivni, u rasponu)."},{txt:"y_C = 9 − 3 = 6; P_max = 3·6 = 18."},{txt:"Točan odgovor: P_max = 18.",note:"odgovor",final:true},{txt:"Provjera: P''(x_C) = −2x_C < 0 → konkavna → max ✓; rubovi P(0⁺) = 0, P(3√3⁻) = 0 — niže od 18 ✓.",note:"verifikacija",final:true},{txt:"Postupak: 1) odredi f. 2) parametriziraj C. 3) izrazi P(x_C). 4) maks derivacijom. 5) provjeri.",note:"postupak",final:true},{txt:"Intuicija: optimalan C balansira x i y vrijednosti — ne preblizu osi.",note:"intuicija",final:true}],
     why:["Pravila: parna f → samo x² član; max kvadratne u tjemenu; ortogonalne projekcije; optimizacija kroz f' = 0.","Postupak: 1) parametrizacija f. 2) geometrija. 3) P(x). 4) optimum. 5) rubovi.","Intuicija: kombinacija geometrije i kalkulusa za optimum.","Česta greška 1: ne uvidjeti pravokutnost u C.","Česta greška 2: zaboraviti provjeriti dozvoljen raspon x_C.","Alt metoda — AM-GM: x_C·(9 − x_C²/3) max kad je t = x_C² takav da... (derivacija je čistija).","Provjera s drugim x: x=1 → P ≈ 8,67; x=4 → P ≈ 14,67; x=3 → P = 18 (max) ✓."]
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2025_ljeto",razina:"A",serial:"D-S072",totalPoints:60,mcCount:20,saCount:25,verified:"sympy+pdf+vision+verbatim+key",maintenanceAt:"2026-06-21",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)","Pak G verbatim+key full (2026-06-21): 45/45 Q tekst vs PDF D-S072, svi odgovori vs kljuc 100%; fix Q13 (verbatim), Q18 (x+By-1; bilo -10), Q39.2 (+prirodno podrucje definicije)"]}
+  }
 ];
 
 export const qImages = {

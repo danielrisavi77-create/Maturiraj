@@ -28,7 +28,7 @@ function SvgCjenik28_2013Bj(){
       row.forEach((cell,ci)=>items.push(e("text",{key:"rc"+uid+ri+ci,
         x:x0+(ci===0?col0/2:col0+(ci-0.5)*colW),y:ry+rH*0.68,
         fontSize:9,textAnchor:"middle",
-        fill:ci===0?"var(--text)":"#4a90d9"},cell)));
+        fill:ci===0?"var(--text)":"var(--blue)"},cell)));
     });
     return items;
   }
@@ -60,7 +60,7 @@ function SvgGraf25_2013Bj(){
   const lx=72,rx=W-18,ty=14,by=H-26;
   const years=[1900,1920,1940,1960,1980,2000,2020];
   const yw=y=>lx+(y-1900)/(2020-1900)*(rx-lx);
-  const colors=["#e05a6a","#e07a30","#c4a82e","#4ab56e","#4a90d9","#9b6fd4"];
+  const colors=["#e05a6a","#e07a30","#c4a82e","#4ab56e","var(--blue)","#9b6fd4"];
   const persons=[
     {name:"Filip",   segs:[[1984,1997]]},
     {name:"Ena",     segs:[[1978,2008]]},
@@ -147,7 +147,7 @@ function SvgTablica23_2013Bj(){
       fontWeight:"600",textAnchor:"middle",fill:"var(--text)"},h)),
     // Values — unique keys "val"+i
     ...values.map((v,i)=>e("text",{key:"val"+i,x:cx(i),y:y0+rowH+rowH*0.65,fontSize:10,
-      textAnchor:"middle",fill:"#4a90d9"},v))
+      textAnchor:"middle",fill:"var(--blue)"},v))
   );
 }
 
@@ -163,23 +163,23 @@ function SvgTablica22_2013Bj(){
     ...[1,2,3].map(i=>e("line",{key:"v"+i,x1:xs[i],y1:y0,x2:xs[i],y2:y0+2*rowH,stroke:"var(--text)",strokeWidth:1})),
     // Row x
     e("text",{x:x0+colW[0]/2,y:y0+rowH*0.65,fontSize:12,fontStyle:"italic",textAnchor:"middle",fill:"var(--text)"},"x"),
-    e("text",{x:xs[1]+colW[1]/2,y:y0+rowH*0.65,fontSize:12,textAnchor:"middle",fill:"#4a90d9"},"\u22122"),
+    e("text",{x:xs[1]+colW[1]/2,y:y0+rowH*0.65,fontSize:12,textAnchor:"middle",fill:"var(--blue)"},"\u22122"),
     // 1/8 kao razlomak SVG
-    e("text",{x:xs[2]+colW[2]/2-4,y:y0+rowH*0.42,fontSize:10,textAnchor:"middle",fill:"#4a90d9"},"1"),
-    e("line",{x1:xs[2]+colW[2]/2-10,y1:y0+rowH*0.52,x2:xs[2]+colW[2]/2+10,y2:y0+rowH*0.52,stroke:"#4a90d9",strokeWidth:1}),
-    e("text",{x:xs[2]+colW[2]/2,y:y0+rowH*0.72,fontSize:10,textAnchor:"middle",fill:"#4a90d9"},"8"),
+    e("text",{x:xs[2]+colW[2]/2-4,y:y0+rowH*0.42,fontSize:10,textAnchor:"middle",fill:"var(--blue)"},"1"),
+    e("line",{x1:xs[2]+colW[2]/2-10,y1:y0+rowH*0.52,x2:xs[2]+colW[2]/2+10,y2:y0+rowH*0.52,stroke:"var(--blue)",strokeWidth:1}),
+    e("text",{x:xs[2]+colW[2]/2,y:y0+rowH*0.72,fontSize:10,textAnchor:"middle",fill:"var(--blue)"},"8"),
     e("text",{x:xs[3]+colW[3]/2,y:y0+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"#e8c547"},"?"),
     // Row f(x)
     e("text",{x:x0+colW[0]/2,y:y0+rowH+rowH*0.65,fontSize:11,fontStyle:"italic",textAnchor:"middle",fill:"var(--text)"},"f(x)"),
     e("text",{x:xs[1]+colW[1]/2,y:y0+rowH+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"#e8c547"},"?"),
     e("text",{x:xs[2]+colW[2]/2,y:y0+rowH+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"#e8c547"},"?"),
-    e("text",{x:xs[3]+colW[3]/2,y:y0+rowH+rowH*0.65,fontSize:12,textAnchor:"middle",fill:"#4a90d9"},"10")
+    e("text",{x:xs[3]+colW[3]/2,y:y0+rowH+rowH*0.65,fontSize:12,textAnchor:"middle",fill:"var(--blue)"},"10")
   );
 }
 
 function SvgPravac18_2013Bj(){
   const W=260,H=230,cx=110,cy=130,sc=32;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const slope=3/2;
   const b=3;
   // Vidljivi raspon: x od -3.5 do 3.5
@@ -218,7 +218,7 @@ function SvgSkica15_2013Bj(){
   // - Desni gornji istak: x×x kvadrat usječen u gornjem-desnom kutu
   //   + još x × x odmah lijevo od njega (vidi kotice na slici)
   const W=310,H=190,s=16;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ox=18,oy=170;      // ishodište (dolje-lijevo)
   const a=16*s;            // 16 jedinica = 256px (proporcija iz slike)
   const bh=9*s;            // 9 jedinica visina
@@ -299,7 +299,7 @@ function SvgSkica15_2013Bj(){
 
 function SvgGrid19_2013Bj(){
   const W=240,H=210,cx=100,cy=120,sc=32;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
     e("defs",null,
@@ -325,7 +325,7 @@ function SvgGrid19_2013Bj(){
 
 function SvgParalelni11_2013Bj(){
   const W=320,H=160;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // A=(40,130), B=(150,130) na p; C=(60,40), D=(240,40) na q
   const A={x:40,y:130}, B={x:160,y:130};
   const C={x:60,y:40}, D={x:250,y:40};
@@ -386,12 +386,12 @@ function SvgSol19_2013Bj(){
     e("text",{x:cx+sc-4,y:cy+13,fontSize:9,fill:"var(--muted)"},"1"),
     e("circle",{cx,cy:cy-sc,r:3.5,fill:"var(--bg)",stroke:"var(--muted)",strokeWidth:1}),
     e("text",{x:cx+3,y:cy-sc+4,fontSize:9,fill:"var(--muted)"},"1"),
-    e("line",{x1:pxa,y1:pya,x2:pxb,y2:pyb,stroke:"#4a90d9",strokeWidth:2.2}),
-    e("circle",{cx:px0,cy:py2,r:5,fill:"#4a90d9"}),
-    e("text",{x:px0+5,y:py2-6,fontSize:9,fill:"#4a90d9",fontWeight:"bold"},"(0,2)"),
-    e("circle",{cx:px4,cy:py0,r:5,fill:"#4a90d9"}),
-    e("text",{x:px4+5,y:py0-6,fontSize:9,fill:"#4a90d9",fontWeight:"bold"},"(4,0)"),
-    e("text",{x:cx+4*sc+4,y:cy-0.5*4*sc-sc+18,fontSize:9,fill:"#4a90d9",fontStyle:"italic"},"y=\u22121/2x+2")
+    e("line",{x1:pxa,y1:pya,x2:pxb,y2:pyb,stroke:"var(--blue)",strokeWidth:2.2}),
+    e("circle",{cx:px0,cy:py2,r:5,fill:"var(--blue)"}),
+    e("text",{x:px0+5,y:py2-6,fontSize:9,fill:"var(--blue)",fontWeight:"bold"},"(0,2)"),
+    e("circle",{cx:px4,cy:py0,r:5,fill:"var(--blue)"}),
+    e("text",{x:px4+5,y:py0-6,fontSize:9,fill:"var(--blue)",fontWeight:"bold"},"(4,0)"),
+    e("text",{x:cx+4*sc+4,y:cy-0.5*4*sc-sc+18,fontSize:9,fill:"var(--blue)",fontStyle:"italic"},"y=\u22121/2x+2")
   );
 }
 
@@ -944,8 +944,7 @@ export const qs = [
     "Jednadžba: 60π = πR²/8 ⇒ R² = 480 ⇒ R = √480 = 4√30 ≈ 21,91 cm.",
     "Ključna intuicija: π se kraći s obje strane — radi s omjerima površina bez π.",
     "Najčešća greška: zaborava kvadriranja polumjera (koristiti r ne r² u formuli za površinu)."
-  ,"Provjera Pitagorom: ako je trokut pravokutan, a² + b² = c² mora vrijediti.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]},
-  {_META:true,auditStatus:"verified-full",rok:"2013_jesen",razina:"B",serial:"D-S015",totalPoints:40,mcCount:16,saCount:18,verified:"sympy+pdf+verbatim+visual",auditNotes:"G: Verbatim vision audit komplet. J1 Q5 a(a-1)(a+2) KRITIČNO, J2 Q6 verbatim, J3 Q14 verbatim, J4 Q15 verbatim, J5 Q24 [SYS:], J6 Q28,2 osmine. H: Q1 [B:ne pripada], Q7 verbatim, Q10 [B:litara][B:promjer]. J: Q1/Q3/Q16 opts FRAC, Q3 q FRAC. I: Q11+Q12+Q15 MC bound, Q23/Q25/Q28 SA corrected bindings.",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  ,"Provjera Pitagorom: ako je trokut pravokutan, a² + b² = c² mora vrijediti.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]}
 ];
 
 export const qImages = {

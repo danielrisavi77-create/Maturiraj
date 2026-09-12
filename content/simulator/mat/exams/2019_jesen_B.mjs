@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg28_2019Bj(){
   const W=280,H=200,pad={l:40,r:60,t:14,b:50};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const groups=["15\u201317","18\u201323","24\u201326","27\u201330"];
   const mins=[100,80,65,45];
@@ -41,7 +41,7 @@ function Svg28_2019Bj(){
 
 function Svg27c_2019Bj(){
   const W=200,H=160;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const B={x:15,y:15},A={x:185,y:15},C={x:100,y:140};
   const M={x:(B.x+A.x)/2,y:B.y};
   const midBA={x:(B.x+A.x)/2,y:B.y};
@@ -66,7 +66,7 @@ function Svg27c_2019Bj(){
 
 function Svg27b_2019Bj(){
   const W=220,H=200;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const A={x:15,y:180},B={x:195,y:180},C={x:50,y:20};
   /* Upisana kružnica: središte I, polumjer r */
   const a=Math.sqrt((B.x-C.x)**2+(B.y-C.y)**2);
@@ -101,7 +101,7 @@ function Svg27b_2019Bj(){
 
 function Svg27a_2019Bj(){
   const W=160,H=170;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=80,cy=75,R=60;
   const pts=[];
   for(let i=0;i<5;i++){const a=-Math.PI/2+i*2*Math.PI/5;pts.push({x:cx+R*Math.cos(a),y:cy+R*Math.sin(a)})}
@@ -118,7 +118,7 @@ function Svg27a_2019Bj(){
 
 function Svg25a_2019Bj(){
   const W=220,H=200,pad={l:30,r:14,t:14,b:30};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-1,xMax=11,yMin=-2,yMax=7;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -153,7 +153,7 @@ function Svg25a_2019Bj(){
 
 function Svg24b_2019Bj(){
   const W=220,H=220,pad={l:30,r:14,t:14,b:30};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-5,xMax=4,yMin=-5,yMax=6;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -179,7 +179,7 @@ function Svg24b_2019Bj(){
 
 function SvgT24a_2019Bj(){
   const W=260,H=80;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cols=[0,65,130,195,260],cw=65;
   const hdr=["x","0","2",""];
   const vals=["f(x)","\u221242","28","0"];
@@ -198,7 +198,7 @@ function Svg13_2019Bj(){
   /* Parabola otvorena gore, min na x=4: f(x) = (5/9)(x-4)^2 - 4
      Prolazi (0,5.0), (1,1), (2,-1.78), (3,-3.44), (4,-4), (5,-3.44), (6,-1.78) */
   const W=220,H=250,pad={l:30,r:14,t:14,b:30};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-0.5,xMax=5.8,yMin=-5,yMax=7;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -231,7 +231,7 @@ function Svg13_2019Bj(){
 
 function Svg1_2019Bj(){
   const W=260,H=40;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const x0=30,x1=230,y=20;
   const toX=v=>x0+(v-2)/(8-2)*(x1-x0);
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
@@ -660,7 +660,7 @@ export const qs = [
     {txt:"Provjera: x = 80, y = 60. Nakon prelijevanja 1/8: prva 80 − 10 = 70 L; druga 60 + 10 = 70 L ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) označi nepoznate. 2) postavi dvije jednadžbe (ukupno + uvjet jednakosti). 3) riješi sustav.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) definiraj varijable PRIJE prelijevanja. 2) izrazi količine POSLIJE u terminima x i y. 3) postavi uvjet jednakosti.",note:"intuicija",final:true}
   ]},
-  {id:24.1,img:true,type:"sa",topic:"func",points:1,img:true,
+  {id:24.1,img:true,type:"sa",topic:"fun",points:1,img:true,
   context:"Zadatak 24 (1. dio od 2):",
   q:"U tablicu linearne funkcije f upišite odgovarajuću vrijednost za x.",
   sol:{ans:"[FRAC:6|5]",solFormula:{frac:[["6","5"]]},alt:["1,2","1,2","x=6/5","6/5"]},
@@ -723,7 +723,7 @@ export const qs = [
     {txt:"Provjera: 3/17 ≈ 0,176 (najmanji); √0,5 ≈ 0,707 (srednji); 0,85 (najveći) ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: pretvori svaki broj u decimalni oblik (ili istu vrstu), pa usporedi.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) pretvori sve brojeve u decimalne. 2) sortiraj po veličini.",note:"intuicija",final:true}
   ]},
-  {id:26.1,type:"sa",topic:"func",points:1,
+  {id:26.1,type:"sa",topic:"fun",points:1,
   context:"Zadatak 26 (1. dio od 2):",
   q:"Izračunajte vrijednost funkcije f(x) = 4 · 10^(1+x) za x = −3.",
   sol:{ans:"0,04",alt:["0,04","4/100","0,0","0,0","0"]},
@@ -844,8 +844,7 @@ export const qs = [
     {txt:"Provjera: 56 % od 125 = 0,56 · 125 = 70 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) identificiraj ulaznu vrijednost (70 min online) i njen postotak (56 %). 2) podijeli s postotkom (kao decimal) da dobiješ cjelinu.",final:true,note:"postupak"},
     {txt:"Intuicija: 56 % je iznad 50 %, pa cjelina je manje od dvostruke vrijednosti (manje od 140). 125 je u tom rasponu.",final:true,note:"intuicija"}
-  ]},
-  {_META:true,auditStatus:"verified-full",rok:"2019_jesen",razina:"B",serial:"D-S043",totalPoints:40,mcCount:16,saCount:24,verified:"sympy+pdf",note:"unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3); fixed Q17/Q18 points:2→1",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  ]}
 ];
 
 export const qImages = {

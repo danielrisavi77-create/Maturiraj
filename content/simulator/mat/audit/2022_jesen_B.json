@@ -1,0 +1,14 @@
+{
+  "auditedAt": "2026-05-20",
+  "auditSource": "MAT B (niža razina, jesenski rok 2022.)",
+  "auditStatus": "verified-full",
+  "auditBy": "Claude+Daniel",
+  "verified": "vision+pdf+pedagogy+verbatim",
+  "notes": "Pak G+H+I+F kombinirani. Sve 40 Q-objekata produkcijski upgrade. 6 Q s img:true (Q7, Q12, Q13, Q24,1/.2, Q26,1, Q29,1). Sva sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation Unicode/[FRAC:]. Pedagoški upgrade: ≥3-7 steps + ≥4-5 why entries svuda.",
+  "issueCount": {
+    "critical": 0,
+    "medium": 0,
+    "low": 0,
+    "resolved": 187
+  }
+}

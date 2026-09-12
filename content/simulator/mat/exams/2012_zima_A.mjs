@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function SvgGraf26_2012Az(){
   const W=240,H=260;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=80,cy=150,sc=36;
   const rows=[-3,-2,-1,1,2,3], cols=[-2,-1,1,2,3];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
@@ -37,7 +37,7 @@ function SvgGraf26_2012Az(){
 
 function SvgGraf24b_2012Az(){
   const W=280,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const lx=35,rx=W-18,by=H-35,ty=15;
   const pi2x=rx-10; // x koordinata 2π
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
@@ -126,15 +126,15 @@ function SvgKruznica14_2012Az(){
   const arcD=`M ${arcStart.x},${arcStart.y} A ${aR},${aR} 0 0,0 ${arcEnd.x},${arcEnd.y}`;
   // Boje točaka per palette
   const pts=[
-    {x:ax,y:ay,n:"A",dx:-14,dy:14, c:"#50c878"},   // zelena (vertex of angle)
-    {x:ox,y:oy,n:"O",dx:-4, dy:20, c:"#4a90d9"},   // plava — label spušten ispod linije AB
-    {x:bx,y:by,n:"B",dx:6,  dy:14, c:"#4a90d9"},   // plava
-    {x:xx,y:xy,n:"X",dx:8,  dy:-12,c:"#e9b446"},   // gold — label podignut iznad linija AX/OX
-    {x:yx,y:yy,n:"Y",dx:6,  dy:-6, c:"#e05252"}    // crvena
+    {x:ax,y:ay,n:"A",dx:-14,dy:14, c:"var(--green)"},   // zelena (vertex of angle)
+    {x:ox,y:oy,n:"O",dx:-4, dy:20, c:"var(--blue)"},   // plava — label spušten ispod linije AB
+    {x:bx,y:by,n:"B",dx:6,  dy:14, c:"var(--blue)"},   // plava
+    {x:xx,y:xy,n:"X",dx:8,  dy:-12,c:"var(--gold)"},   // gold — label podignut iznad linija AX/OX
+    {x:yx,y:yy,n:"Y",dx:6,  dy:-6, c:"var(--red)"}    // crvena
   ];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     // Kružnica (PLAVA per palette)
-    e("circle",{cx:ox,cy:oy,r,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("circle",{cx:ox,cy:oy,r,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
     // Linije unutar/oko kružnice
     e("line",{x1:ax,y1:ay,x2:bx,y2:by,stroke:"var(--text)",strokeWidth:1.8}),
     e("line",{x1:ax,y1:ay,x2:xx,y2:xy,stroke:"var(--text)",strokeWidth:1.8}),
@@ -143,9 +143,9 @@ function SvgKruznica14_2012Az(){
     e("line",{x1:ox,y1:oy,x2:yx,y2:yy,stroke:"var(--text)",strokeWidth:1.8}),
     e("line",{x1:xx,y1:xy,x2:yx,y2:yy,stroke:"var(--text)",strokeWidth:1.8}),
     // Open arc kuta α (PDF style — tanki gold luk koji NE prelazi linije)
-    e("path",{d:arcD,fill:"none",stroke:"#e9b446",strokeWidth:2.2,strokeLinecap:"round"}),
+    e("path",{d:arcD,fill:"none",stroke:"var(--gold)",strokeWidth:2.2,strokeLinecap:"round"}),
     // Oznaka α — pozicionirana IZNAD luka, dalje od linija AB i AX (unutar trokuta AOX)
-    e("text",{x:ax+24,y:ay-7,fontSize:14,fontStyle:"italic",fontWeight:"700",fill:"#e9b446"},"\u03b1"),
+    e("text",{x:ax+24,y:ay-7,fontSize:14,fontStyle:"italic",fontWeight:"700",fill:"var(--gold)"},"\u03b1"),
     // Točke (colorful, fill po paleti)
     ...pts.map(p=>e(React.Fragment,{key:p.n},
       e("circle",{cx:p.x,cy:p.y,r:5,fill:p.c,stroke:"var(--bg)",strokeWidth:2}),
@@ -160,24 +160,24 @@ function SvgSol29a_2012ZimaA(){
   const ticks=[-3,-2,-1,1];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx_sl29Za",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"#e2e8f0"})),
-      e("marker",{id:"ary_sl29Za",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"#e2e8f0"}))
+      e("marker",{id:"arx_sl29Za",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
+      e("marker",{id:"ary_sl29Za",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#arx_sl29Za)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#ary_sl29Za)"}),
-    e("text",{x:cx-12,y:cy+13,fontSize:8,fill:"#94a3b8"},"0"),
+    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx_sl29Za)"}),
+    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary_sl29Za)"}),
+    e("text",{x:cx-12,y:cy+13,fontSize:8,fill:"var(--muted)"},"0"),
     ticks.map(t=>e("g",{key:t},
-      e("line",{x1:cx+t*sc,y1:cy-3,x2:cx+t*sc,y2:cy+3,stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:cx+t*sc-(t<0?10:3),y:cy+12,fontSize:8,fill:"#94a3b8"},t)
+      e("line",{x1:cx+t*sc,y1:cy-3,x2:cx+t*sc,y2:cy+3,stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:cx+t*sc-(t<0?10:3),y:cy+12,fontSize:8,fill:"var(--muted)"},t)
     )),
     [2,4,6,8].map(t=>e("g",{key:t},
-      e("line",{x1:cx-3,y1:cy-t*sc,x2:cx+3,y2:cy-t*sc,stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:cx-14,y:cy-t*sc+4,fontSize:8,fill:"#94a3b8"},t)
+      e("line",{x1:cx-3,y1:cy-t*sc,x2:cx+3,y2:cy-t*sc,stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:cx-14,y:cy-t*sc+4,fontSize:8,fill:"var(--muted)"},t)
     )),
-    e("path",{d:"M"+pts,fill:"none",stroke:"#4a90d9",strokeWidth:2.2}),
-    e("circle",{cx:cx,cy:cy-5*sc,r:3,fill:"#50c878"}),
-    e("text",{x:cx+4,y:cy-5*sc-4,fontSize:8,fill:"#50c878"},"(0,5)"),
-    e("text",{x:cx+4,y:cy-6*sc,fontSize:8,fill:"#94a3b8"},"y=3x+5")
+    e("path",{d:"M"+pts,fill:"none",stroke:"var(--blue)",strokeWidth:2.2}),
+    e("circle",{cx:cx,cy:cy-5*sc,r:3,fill:"var(--green)"}),
+    e("text",{x:cx+4,y:cy-5*sc-4,fontSize:8,fill:"var(--green)"},"(0,5)"),
+    e("text",{x:cx+4,y:cy-6*sc,fontSize:8,fill:"var(--muted)"},"y=3x+5")
   );
 }
 
@@ -187,23 +187,23 @@ function SvgSol26_2012ZimaA(){
   const pts=[]; for(let i=-60;i<=140;i++){const x=i/40;pts.push(`${cx+x*sc},${cy-f(x)*sc}`);}
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx_sl26Za",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"#e2e8f0"})),
-      e("marker",{id:"ary_sl26Za",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"#e2e8f0"}))
+      e("marker",{id:"arx_sl26Za",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
+      e("marker",{id:"ary_sl26Za",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#arx_sl26Za)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#ary_sl26Za)"}),
-    e("text",{x:cx-12,y:cy+13,fontSize:8,fill:"#94a3b8"},"0"),
+    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx_sl26Za)"}),
+    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary_sl26Za)"}),
+    e("text",{x:cx-12,y:cy+13,fontSize:8,fill:"var(--muted)"},"0"),
     [-1,1,2,3].map(t=>e("g",{key:t},
-      e("line",{x1:cx+t*sc,y1:cy-3,x2:cx+t*sc,y2:cy+3,stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:cx+t*sc-(t<0?10:3),y:cy+12,fontSize:8,fill:"#94a3b8"},t)
+      e("line",{x1:cx+t*sc,y1:cy-3,x2:cx+t*sc,y2:cy+3,stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:cx+t*sc-(t<0?10:3),y:cy+12,fontSize:8,fill:"var(--muted)"},t)
     )),
     [2,3,4].map(t=>e("g",{key:t},
-      e("line",{x1:cx-3,y1:cy-t*sc,x2:cx+3,y2:cy-t*sc,stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:cx-12,y:cy-t*sc+4,fontSize:8,fill:"#94a3b8"},t)
+      e("line",{x1:cx-3,y1:cy-t*sc,x2:cx+3,y2:cy-t*sc,stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:cx-12,y:cy-t*sc+4,fontSize:8,fill:"var(--muted)"},t)
     )),
-    e("circle",{cx:cx+sc,cy:cy-2*sc,r:3,fill:"#50c878"}),
-    e("text",{x:cx+sc+4,y:cy-2*sc-4,fontSize:8,fill:"#50c878"},"T(1,2)"),
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinejoin:"round"})
+    e("circle",{cx:cx+sc,cy:cy-2*sc,r:3,fill:"var(--green)"}),
+    e("text",{x:cx+sc+4,y:cy-2*sc-4,fontSize:8,fill:"var(--green)"},"T(1,2)"),
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinejoin:"round"})
   );
 }
 
@@ -213,22 +213,22 @@ function SvgSol24b_2012ZimaA(){
   const pts=[]; for(let i=0;i<=120;i++){const x=i/120*2*pi;pts.push(`${tx(x)},${ty2(-3*Math.sin(x))}`);}
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx_sl24Za",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"#e2e8f0"})),
-      e("marker",{id:"ary_sl24Za",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"#e2e8f0"}))
+      e("marker",{id:"arx_sl24Za",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
+      e("marker",{id:"ary_sl24Za",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    e("line",{x1:lx,y1:by,x2:rx,y2:by,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#arx_sl24Za)"}),
-    e("line",{x1:lx,y1:by,x2:lx,y2:ty,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#ary_sl24Za)"}),
-    e("text",{x:rx-6,y:by+13,fontSize:9,fill:"#e2e8f0"},"x"),
-    e("text",{x:lx+3,y:ty+8,fontSize:9,fill:"#e2e8f0"},"y"),
+    e("line",{x1:lx,y1:by,x2:rx,y2:by,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx_sl24Za)"}),
+    e("line",{x1:lx,y1:by,x2:lx,y2:ty,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary_sl24Za)"}),
+    e("text",{x:rx-6,y:by+13,fontSize:9,fill:"var(--text)"},"x"),
+    e("text",{x:lx+3,y:ty+8,fontSize:9,fill:"var(--text)"},"y"),
     [["π",1],["2π",2]].map(([l,k])=>e("g",{key:l},
-      e("line",{x1:tx(k*pi),y1:by-3,x2:tx(k*pi),y2:by+3,stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:tx(k*pi)-8,y:by+12,fontSize:8,fill:"#94a3b8"},l)
+      e("line",{x1:tx(k*pi),y1:by-3,x2:tx(k*pi),y2:by+3,stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:tx(k*pi)-8,y:by+12,fontSize:8,fill:"var(--muted)"},l)
     )),
     [[-3,"−3"],[3,"3"]].map(([v,l])=>e("g",{key:l},
-      e("line",{x1:lx-3,y1:ty2(v),x2:lx+3,y2:ty2(v),stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:lx-18,y:ty2(v)+4,fontSize:8,fill:"#94a3b8"},l)
+      e("line",{x1:lx-3,y1:ty2(v),x2:lx+3,y2:ty2(v),stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:lx-18,y:ty2(v)+4,fontSize:8,fill:"var(--muted)"},l)
     )),
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinejoin:"round"})
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinejoin:"round"})
   );
 }
 
@@ -253,7 +253,7 @@ export const qs = [
     "Provjera: √16 = 4 (ne zadovoljava 4 < √a) i √25 = 5 (ne zadovoljava √a < 5), tako da 16 i 25 stvarno nisu rješenja."
   ]
 },
-{id:2,type:"mc",warn:"Pazi: to je formula za tg(A + B); 5π/7 + 6π/7 = 11π/7; izračunaj tg(11π/7) pa zaokruži.",topic:"trg",points:1,
+{id:2,type:"mc",warn:"Pazi: to je formula za tg(A + B); 5π/7 + 6π/7 = 11π/7; izračunaj tg(11π/7) pa zaokruži.",topic:"trig",points:1,
   q:"Koliko je [FRAC:tg(5π/7) + tg(6π/7)|1 − tg(5π/7)·tg(6π/7)], zaokruženo na četiri decimale?",
   opts:["−4,3813","−2,3394","−1,1786","−0,4816"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -499,7 +499,7 @@ export const qs = [
     "Provjera za male brojeve: 3⁴ = 81 → zadnja 1; 3⁸ = 6561 → zadnja 1; 3¹² = 531441 → zadnja 1. Svaki eksponent djeljiv s 4 daje zadnju znamenku 1 ✓."
   ]
 },
-{id:14,img:true,type:"mc",warn:"Pazi: kut nad promjerom je pravi (Talesov poučak); iskoristi jednakokračne trokute (|OX| = |XY|).",topic:"geo",points:2,
+{id:14,img:true,type:"mc",warn:"Pazi: kut nad promjerom je pravi (Talesov poučak); iskoristi jednakokračne trokute (|OX| = |XY|).",topic:"geom",points:2,
   img:true,
   q:"Na skici je prikazana kružnica sa središtem O, njezin promjer AB, šiljasti kut ∠BAX mjere α te točka Y na polupravcu AX za koju je |OX| = |XY|. Kolika je mjera kuta ∠BOY?",
   opts:["6α/5","5α/4","4α/3","3α/2"],
@@ -524,7 +524,7 @@ export const qs = [
     "Provjera za konkretnu vrijednost: za α = 30° → ∠BOX = 60°, ∠XOY = 15°, ∠BOY = 60° − 15° = 45° = 3·30°/2 ✓."
   ]
 },
-{id:15,type:"mc",warn:"Pazi: rotacijom nastaje krnji stožac; odredi oba polumjera i visinu iz dimenzija trapeza.",topic:"geo",points:2,
+{id:15,type:"mc",warn:"Pazi: rotacijom nastaje krnji stožac; odredi oba polumjera i visinu iz dimenzija trapeza.",topic:"geom",points:2,
   q:"Mjera šiljastog kuta pravokutnog trapeza je 50°. Duljine njegovih osnovica iznose 4 cm i 6 cm. Koliki je obujam tijela koje se dobije rotacijom zadanog trapeza oko dulje osnovice?",
   opts:["79,13 cm³","83,29 cm³","87,82 cm³","91,09 cm³"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -731,7 +731,7 @@ export const qs = [
     "Provjera dimenzionalne analize: [stan/km²] · [km²] = [stan] ✓. Provjera kroz Betu: 20 000 · 63 = 1 260 000 ✓."
   ]
 },
-{id:22.1,type:"sa",topic:"trg",points:1,
+{id:22.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 22 (1. dio od 2):",
   q:"Površina tupokutnog trokuta je 28,67 cm². Duljine dviju kraćih stranica tog trokuta su 7 cm i 10 cm. Kolika je mjera tupog kuta?",
   sol:{ans:"γ ≈ 125°",alt:["125","125°","≈125°","124,9°"]},
@@ -752,7 +752,7 @@ export const qs = [
     "Pedagoški savjet: ako problem traži kut iz sin = vrijednosti, UVIJEK provjeri koji od dva moguća kuta (šiljasti ili tupi) odgovara dodatnim uvjetima problema (tip trokuta, kvadrant, kontekst)."
   ]
 },
-{id:22.2,type:"sa",topic:"geo",points:1,
+{id:22.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 22 (2. dio od 2):",
   q:"U trokutu ABC duljine stranica su |AB| = 8 cm, |AC| = 10 cm i |BC| = 12 cm. Na stranici BC nalazi se točka D tako da je |BD|/|DC| = 2. Koliko su udaljene točke A i D?",
   sol:{ans:"|AD| = √56 = 2√14 ≈ 7,48 cm",alt:["√56","2√14","√56 cm","7,48","7.48"]},
@@ -774,7 +774,7 @@ export const qs = [
     "Provjera: √56 = 2√14 ≈ 2 · 3,742 ≈ 7,48 cm. Razumno: |AD| treba biti između najkraće (|AB| = 8) i najduže (|AC| = 10) stranice — stvarno je nešto manje od 8."
   ]
 },
-{id:23.1,type:"sa",topic:"geo",points:1,
+{id:23.1,type:"sa",topic:"geom",points:1,
   context:"Zadatak 23 (1. dio od 2): Ljestve duljina 4,2 m i 5,6 m naslonjene su na zid i dosežu istu visinu. Podnožje duljih ljestava je za 1,96 m udaljenije od zida nego podnožje kraćih ljestava.",
   q:"Koliko je podnožje kraćih ljestava udaljeno od zida?",
   sol:{ans:"2,52 m",alt:["2,52","2.52","2,52 m"]},
@@ -792,7 +792,7 @@ export const qs = [
   ],
   why:["Za ljestve naslonjene na zid: duljina² = udaljenost² + visina² (Pitagorin poučak).","Istovremeno dostizanje iste visine daje jednadžbu u kojoj se x² poništi.","Kraće ljestve: duljina 4,2 m, podnožje na udaljenosti d od zida.","Dulje ljestve: duljina 5,6 m, podnožje na d + 1,96.","Iste visine: 4,2² − d² = 5,6² − (d+1,96)² → riješiti za d."]
 },
-{id:23.2,type:"sa",topic:"geo",points:1,
+{id:23.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 23 (2. dio od 2): Ljestve duljina 4,2 m i 5,6 m naslonjene su na zid i dosežu istu visinu. Podnožje duljih ljestava je za 1,96 m udaljenije od zida nego podnožje kraćih ljestava.",
   q:"Na kojoj su visini od poda ljestve naslonjene na zid?",
   sol:{ans:"h = 3,36 m",alt:["3,36","3.36","3,36 m"]},
@@ -811,7 +811,7 @@ export const qs = [
     "Pedagoški: ako su Q23.1 i Q23.2 nezavisno rješavani i daju različite visine, znak je da je Q23.1 pogrešan. Konzistentnost dvaju izračuna je bitna provjera."
   ]
 },
-{id:24.1,type:"sa",topic:"trg",points:1,
+{id:24.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 24 (1. dio od 2):",
   q:"Odredite x ∈ ⟨π, 2π⟩ za koji je cos x = −√3/2.",
   sol:{ans:"x = [FRAC:7π|6]",alt:["7π/6","7pi/6","210°"]},
@@ -832,7 +832,7 @@ export const qs = [
     "Pedagoški savjet: za sve trigonometrijske jednadžbe kao prvi korak nacrtaj jediničnu kružnicu i označi sve rješenja u (0, 2π), zatim filtriraj prema zadanom intervalu."
   ]
 },
-{id:24.2,type:"proof",topic:"trg",points:1,
+{id:24.2,type:"proof",topic:"trig",points:1,
   graphType:"trig",
   graphRef:{pts:[[0,0],[1.571,-3],[3.14,0],[4.712,3],[6.283,0]]},
   img:true,
@@ -1044,7 +1044,7 @@ export const qs = [
     "Verifikacija po danima: dan 1 → 2 kn (dug 1 998), dan 2 → 4 (dug 1 994), ..., dan 9 → 512 (dug 978), dan 10 → 978 ✓. Ukupno vraćeno: 510 + 512 + 978 = 2 000 kn ✓."
   ]
 },
-{id:29.1,type:"proof",topic:"geo",points:3,
+{id:29.1,type:"proof",topic:"geom",points:3,
   graphType:"line",
   graphRef:{pts:[[-3,-4],[0,5]]},
   img:true,
@@ -1066,7 +1066,7 @@ export const qs = [
   ],
   why:["Simetrala dužine je skup svih točaka koje su jednako udaljene od njezinih krajnjih točaka.","Ako je k₁ · k₂ = −1, pravci su okomiti.","Simetrala dužine AB = skup točaka jednako udaljenih od A i B.","Polovište M = ((−4+2)/2, (3+1)/2) = (−1, 2). Nagib AB: (1−3)/(2+4) = −1/3; nagib simetrale: 3.","Jednadžba: y − 2 = 3(x + 1) → y = 3x + 5."]
 },
-{id:29.2,type:"proof",topic:"geo",points:1,
+{id:29.2,type:"proof",topic:"geom",points:1,
   context:"Zadatak 29 (2. dio od 5):",
   q:"Zadane su točke M(−2, −3), N(3, 4) i P(−1, 3). Vektor MN⃗ + NP⃗ prikažite kao linearnu kombinaciju jediničnih okomitih vektora i⃗ i j⃗.",
   sol:{ans:"MN⃗ + NP⃗ = i⃗ + 6j⃗",alt:["i⃗ + 6j⃗","i + 6j","(1, 6)","MP⃗ = i + 6j"],
@@ -1160,8 +1160,7 @@ export const qs = [
     "Česta greška: zaboravljanje uvjeta k ≤ 4 (drugi u-korijen mora biti pozitivan). Bez tog uvjeta dobiješ samo a² < 5, što uključuje slučajeve s manje od 4 rješenja.",
     "Rubni slučajevi: za a² = 1 (k = 4) imamo u₂ = 0 → samo 3 rješenja x. Za a² = 5 (k = 0) imamo u₁ = u₂ = 4 → samo 2 rješenja x. Zato je interval STROGO otvoren ⟨ ⟩, ne zatvoren."
   ]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2012_zima",razina:"A",serial:"D-S009",totalPoints:60,mcCount:15,saCount:31,verified:"vision+pdf+pedagogy-premium+verbatim",auditNotes:"A: Q8 distractor + Q24.1 interval. B: Q27 split (3→27.1+27.2 1pt) + Q29.2/3/4/5 bodovi (4→1/2/2/2). C: Q23.2 why fix (d=2,52→h=3,36) + Q21.2/Q23.2 context spoilers uklonjeni. D: 110× ASCII − → Unicode −. F.1-F.5: pedagoška nadogradnja svih 33 Q-ova ispod premium standarda — distractor analiza za sve MC, ≥3 why s konceptom/alt metodom/tipičnom greškom/provjerom za sve, clean restruktura Q22.2 (Stewart confusion), Q14 img:true duplikat fix. Total 70→60 ✓ NCVVO. Avg steps 3.7→6.0, avg why 2.1→4.6. G: Verbatim text audit done — sadržajno match PDF za svih 30 Q-ova; modernizacije kept (decimalni zarez, eksplicitno · za množenje, modern HR konvencija). G.1: Q5 \"najmanje\" emphasis restored ([B:...] tag). G.2: Q18.2 sustav refactored s [SYS:...|...] standard. Q27 INTENTIONAL UX SPLIT: PDF ima jedan Q27 s 2 pitanja (2 bod total); sim split u Q27.1 (domena, 1 bod) + Q27.2 (jednadžba, 1 bod) za zasebne answer fields i jasniji student UX. Total bodova ostaje 60 ✓. H: Math notation audit per MATH_STANDARD — H.1+H.2: Q22.1 (0°, 180°) → ⟨0°, 180°⟩ (NCVVO open interval). H.3: Q11 (x⁴)^k → (x⁴)^(k) (konzistentnost zagrada eksponenta). H.4: Q2 q upgrade na [FRAC:num|den] display-style razlomak (match PDF original); plus FIX renderer bug — [FRAC:...] tag check je gledao za otvorenu zagradu umjesto za [FRAC: prefix — bug aktivirao 20 [FRAC:] tagova kroz cijeli sim koji su bili dormant. False positives skipped: compound hyphens (k-ti, x-osi, 1-1), Q references (Q21.1), sol.alt liberalniji format, n* optimum notation. I: Visual audit + UPGRADE — verificirano + Q14 vizualni upgrade: kružnica plava #4a90d9, kut alpha zatvoren s gold sector fill #e9b446 opacity 28%. SvgKruznica14_2012Az (Q14 kružnica diagram), SvgGraf24b/26_2012Az (prazni gridovi za sin x i parabolu), SvgGraf29a_2012Az (skup točaka grid). Sve koriste var(--text)/var(--bg) theme-aware boje (monokromatski match s NCVVO PDF print original). Q_IMAGES bindings već postojeći u sim.html — moj prvi audit propustio zbog regex bug-a u tool-u koji nije match-ao funkcijski format vrijednosti."}
+}
 
 ];
 

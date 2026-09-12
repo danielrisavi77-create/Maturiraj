@@ -1,0 +1,16 @@
+{
+  "auditedAt": "2026-05-16",
+  "auditSource": "MAT A (viša razina, ljetni rok 2015., D-S027)",
+  "auditStatus": "verified-full",
+  "auditBy": "claude+daniel (full pipeline + Pak F-deep augmentation)",
+  "verified": "sympy+pdf+visual+pedagogy-deep",
+  "issueCount": {
+    "critical": 0,
+    "medium": 0,
+    "low": 0,
+    "resolved": 240
+  },
+  "metricsSteps": 6,
+  "metricsWhy": 6.8,
+  "notes": "Stages 1-5 applied: math fixes (Unicode super, [FRAC:], decimal point, context multi-part); orphan cleanup (legacy bindings removed); alt expansion; smart augmenter (Pak F-DEEP, 18 topic templates); ex polje za MC 2pt. Avg steps 6,0 (ref 6,0), why 6,8 (ref 4,7). Tool false positives (PED-WHY-LOW, PED-STEPS-LOW na Q-ovima s [FRAC:] tagovima u entries) prihvaćeni — accepted limitation (Bug #5/#7, isti root cause kao u prethodnim auditima)."
+}

@@ -1,0 +1,16 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2011_ljeto",
+  "razina": "A",
+  "serial": "D-S004",
+  "totalPoints": 62,
+  "mcCount": 15,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

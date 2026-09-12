@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2025_ljeto",
+  "razina": "A",
+  "serial": "D-S072",
+  "totalPoints": 60,
+  "mcCount": 20,
+  "saCount": 25,
+  "verified": "sympy+pdf+vision+verbatim+key",
+  "maintenanceAt": "2026-06-21",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)",
+    "Pak G verbatim+key full (2026-06-21): 45/45 Q tekst vs PDF D-S072, svi odgovori vs kljuc 100%; fix Q13 (verbatim), Q18 (x+By-1; bilo -10), Q39.2 (+prirodno podrucje definicije)"
+  ]
+}

@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg15_2021Bljeto(){
   const W=260,H=200;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const tri=(x,y,s,k)=>{
     const h=s*Math.sqrt(3)/2;
     return e("polygon",{key:k,
@@ -25,7 +25,7 @@ function Svg15_2021Bljeto(){
 
 function Svg13_2021Bljeto(){
   const W=240,H=180;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const OX=90,OY=120,SX=35,SY=30;
   const elems=[];
   // Osi
@@ -57,7 +57,7 @@ function Svg13_2021Bljeto(){
 
 function Svg12_2021Bljeto(){
   const W=340,H=200;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const data=[{l:"E",v:1257},{l:"F",v:1563},{l:"G",v:1376},{l:"H",v:943},{l:"I",v:435}];
   const maxV=2000,BAR=38,GAP=16,LEFT=38,BOT=160,TOP=15;
   const scaleY=(v)=>BOT-v*(BOT-TOP)/maxV;
@@ -110,7 +110,7 @@ function Svg24b_2021Bljeto(){
 
 function Svg23b_2021Bljeto(){
   const W=280,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // PDF-verified vertices: A(-4,0), B(5,0), C(5,4), D(-3,4)
   // P = (AB+DC)/2 · h = (9+8)/2 · 4 = 34 — match NCVVO ključa
   // Y-os u lijevoj trećini (od x=-5 do x=+6)
@@ -382,8 +382,7 @@ export const qs = [
  q:"U autobusu je bilo 57 putnika. Na prvoj su stanici neki putnici izišli iz autobusa, a ušlo ih je 11. Na sljedećoj je stanici iz autobusa izišla trećina putnika, a ušla su tri putnika. Nakon toga je u autobusu bilo 25 putnika. Koliko je putnika izišlo na prvoj stanici?",
  sol:{ans:"35",alt:["35","≈ 35"]},
  steps:[{txt:"Traži se cjelobrojni rezultat iz konteksta zadatka."},{txt:"Tipično: postotni ili kombinatorni broj."},{txt:"Rezultat: 35.",final:true,note:"odgovor"},{txt:"Provjera prema ključu: 35.",note:"verifikacija",final:true},{txt:"Intuicija: 35.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: ovisno o kontekstu.",note:"postupak",final:true},{txt:"Alt provjera: izračunaj rezultat na kalkulatoru i usporedi s ručno dobivenim.",note:"verifikacija",final:true}],
- why:["Pravilo: ovisno o kontekstu.","Intuicija: 35.","Česta greška: krivi izračun.","Provjera ključa: 35.","Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno).","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]},
-  {_META:true,auditStatus:"verified-full",rok:"2021_ljeto",razina:"B",serial:"D-S051",totalPoints:40,mcCount:16,saCount:24,verified:"sympy+pdf",note:"unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"],maintenanceAt:"2026-05-26",maintenanceNotes_v37b:["Pak I (visual P0): Svg23b_2021Bljeto — trapez vrijednosti A(-4,0) B(5,0) C(5,4) D(-3,4) (bilo A(-4,1) B(4,1) C(4,3) D(-2,3)); površina = 34 sad match s NCVVO ključem","Pak I (visual P0): Svg24b_2021Bljeto — uklonjena pre-drawn linija f(x)=-x+3; sad samo prazna mreža (student crta sam)"]}
+ why:["Pravilo: ovisno o kontekstu.","Intuicija: 35.","Česta greška: krivi izračun.","Provjera ključa: 35.","Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno).","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]}
 ];
 
 export const qImages = {

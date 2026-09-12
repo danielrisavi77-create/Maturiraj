@@ -12,28 +12,28 @@ function Svg9_2017Aj(){
     e("circle",{cx,cy,r:2.5,fill:"var(--muted)"}),
     e("text",{x:cx+4,y:cy+12,fontSize:9,fontStyle:"italic",fill:"var(--muted)"},"S"),
     // Tangenta p u T
-    e("line",{x1:Tx-30,y1:Ty-40,x2:Tx+50,y2:Ty+20,stroke:"#4a90d9",strokeWidth:1.5}),
-    e("text",{x:Tx+10,y:Ty-30,fontSize:10,fontStyle:"italic",fill:"#4a90d9"},"p"),
+    e("line",{x1:Tx-30,y1:Ty-40,x2:Tx+50,y2:Ty+20,stroke:"var(--blue)",strokeWidth:1.5}),
+    e("text",{x:Tx+10,y:Ty-30,fontSize:10,fontStyle:"italic",fill:"var(--blue)"},"p"),
     // Točka T
-    e("circle",{cx:Tx,cy:Ty,r:3,fill:"#4a90d9"}),
-    e("text",{x:Tx-10,y:Ty-5,fontSize:10,fontWeight:600,fontStyle:"italic",fill:"#4a90d9"},"T"),
+    e("circle",{cx:Tx,cy:Ty,r:3,fill:"var(--blue)"}),
+    e("text",{x:Tx-10,y:Ty-5,fontSize:10,fontWeight:600,fontStyle:"italic",fill:"var(--blue)"},"T"),
     // Točka B
-    e("circle",{cx:Bx,cy:By,r:3,fill:"#e05252"}),
-    e("text",{x:Bx+5,y:By-3,fontSize:10,fontWeight:600,fontStyle:"italic",fill:"#e05252"},"B"),
+    e("circle",{cx:Bx,cy:By,r:3,fill:"var(--red)"}),
+    e("text",{x:Bx+5,y:By-3,fontSize:10,fontWeight:600,fontStyle:"italic",fill:"var(--red)"},"B"),
     // Tetiva TB
     e("line",{x1:Tx,y1:Ty,x2:Bx,y2:By,stroke:"var(--text)",strokeWidth:1.2}),
     // Polumjer SB
     e("line",{x1:cx,y1:cy,x2:Bx,y2:By,stroke:"var(--muted)",strokeWidth:1,strokeDasharray:"4,3"}),
     // Kut β kod T
-    e("text",{x:Tx+18,y:Ty+6,fontSize:10,fontStyle:"italic",fill:"#4a90d9"},"\u03b2"),
+    e("text",{x:Tx+18,y:Ty+6,fontSize:10,fontStyle:"italic",fill:"var(--blue)"},"\u03b2"),
     // Kut 40° kod B
-    e("text",{x:Bx-25,y:By-5,fontSize:9,fill:"#e05252"},"40\u00b0")
+    e("text",{x:Bx-25,y:By-5,fontSize:9,fill:"var(--red)"},"40\u00b0")
   );
 }
 
 function Svg8_2017Aj(){
   const W=180,H=150,s=30,ox=15,oy=10;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const labels="ABCDE FGHIJ KLMNO PQRST".split(" ");
   const els=[];
   for(let r=0;r<4;r++)for(let c=0;c<5;c++){
@@ -68,17 +68,17 @@ function Svg28c_2017Aj(){
     e("text",{x:toX(1),y:oy+12,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},"1"),
     e("text",{x:ox-7,y:toY(1)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},"1"),
     // Vertikalna asimptota x=-3
-    e("line",{x1:toX(-3),y1:pad.t,x2:toX(-3),y2:pad.t+iH,stroke:"#e05252",strokeWidth:1,strokeDasharray:"4,3",opacity:.5}),
-    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2}),
-    e("circle",{cx:toX(-2),cy:oy,r:3.5,fill:"#50c878",stroke:"var(--bg)",strokeWidth:1}),
-    e("circle",{cx:toX(1),cy:toY(2),r:3.5,fill:"#50c878",stroke:"var(--bg)",strokeWidth:1}),
-    e("text",{x:toX(2),y:toY(2.5),fontSize:9,fontStyle:"italic",fill:"#4a90d9"},"f")
+    e("line",{x1:toX(-3),y1:pad.t,x2:toX(-3),y2:pad.t+iH,stroke:"var(--red)",strokeWidth:1,strokeDasharray:"4,3",opacity:.5}),
+    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2}),
+    e("circle",{cx:toX(-2),cy:oy,r:3.5,fill:"var(--green)",stroke:"var(--bg)",strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:toY(2),r:3.5,fill:"var(--green)",stroke:"var(--bg)",strokeWidth:1}),
+    e("text",{x:toX(2),y:toY(2.5),fontSize:9,fontStyle:"italic",fill:"var(--blue)"},"f")
   );
 }
 
 function Svg27_2017Aj(){
   const W=200,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-7,xMax=2,yMin=-4,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -117,7 +117,7 @@ function Svg27_2017Aj(){
 
 function Svg21_2017Aj(){
   const W=220,H=180,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=6,yMin=-2,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -174,13 +174,13 @@ function Svg19a_2017Aj(){
     e("text",{x:ox-9,y:oy+12,fontSize:7,fill:"var(--muted)"},"0"),
     e("text",{x:toX(1),y:oy+12,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},"1"),
     e("text",{x:ox-7,y:toY(1)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},"1"),
-    e("polygon",{points:Ax+","+Ay+" "+Bx+","+By+" "+Cx+","+Cy,fill:"rgba(74,144,217,0.1)",stroke:"#4a90d9",strokeWidth:1.8}),
-    e("circle",{cx:Ax,cy:Ay,r:3.5,fill:"#e05252"}),
-    e("circle",{cx:Bx,cy:By,r:3.5,fill:"#50c878"}),
-    e("circle",{cx:Cx,cy:Cy,r:3.5,fill:"#e9b446"}),
-    e("text",{x:Ax-2,y:Ay+14,fontSize:10,fontWeight:700,fontStyle:"italic",fill:"#e05252"},"A"),
-    e("text",{x:Bx+5,y:By+4,fontSize:10,fontWeight:700,fontStyle:"italic",fill:"#50c878"},"B"),
-    e("text",{x:Cx-12,y:Cy+4,fontSize:10,fontWeight:700,fontStyle:"italic",fill:"#e9b446"},"C")
+    e("polygon",{points:Ax+","+Ay+" "+Bx+","+By+" "+Cx+","+Cy,fill:"rgba(74,144,217,0.1)",stroke:"var(--blue)",strokeWidth:1.8}),
+    e("circle",{cx:Ax,cy:Ay,r:3.5,fill:"var(--red)"}),
+    e("circle",{cx:Bx,cy:By,r:3.5,fill:"var(--green)"}),
+    e("circle",{cx:Cx,cy:Cy,r:3.5,fill:"var(--gold)"}),
+    e("text",{x:Ax-2,y:Ay+14,fontSize:10,fontWeight:700,fontStyle:"italic",fill:"var(--red)"},"A"),
+    e("text",{x:Bx+5,y:By+4,fontSize:10,fontWeight:700,fontStyle:"italic",fill:"var(--green)"},"B"),
+    e("text",{x:Cx-12,y:Cy+4,fontSize:10,fontWeight:700,fontStyle:"italic",fill:"var(--gold)"},"C")
   );
 }
 
@@ -196,7 +196,7 @@ function Svg12_2017Aj(){
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"8px auto"}},
     e("polygon",{points:Ax+","+Ay+" "+Bx+","+By+" "+Cx+","+Cy,fill:"none",stroke:"var(--text)",strokeWidth:1.5}),
     // Osjenčani dio
-    e("polygon",{points:mx1+","+my1+" "+mx2+","+my2+" "+nx2+","+ny2+" "+nx1+","+ny1,fill:"rgba(74,144,217,0.2)",stroke:"#4a90d9",strokeWidth:1}),
+    e("polygon",{points:mx1+","+my1+" "+mx2+","+my2+" "+nx2+","+ny2+" "+nx1+","+ny1,fill:"rgba(74,144,217,0.2)",stroke:"var(--blue)",strokeWidth:1}),
     // Oznake
     e("text",{x:Ax-6,y:Ay+14,fontSize:11,fontWeight:600,fontStyle:"italic",fill:"var(--text)"},"A"),
     e("text",{x:Bx+2,y:By+14,fontSize:11,fontWeight:600,fontStyle:"italic",fill:"var(--text)"},"B"),
@@ -415,7 +415,7 @@ export const qs = [
     {txt:"Postupak: 1) postavi geometriju (pravilna trostrana piramida). 2) iz dijedarskog kuta izvuci visinu pomoću pravokutnih trokuta.",final:true,note:"postupak"},{txt:"Postupak: 1) postavi pravokutne trokute u presjeku. 2) iz dijedarskog kuta izvuci visinu.",note:"diagnostika",final:true},{txt:"Intuicija: Dijedarski kut između pobočki = kut na zajedničkoj bridi (= brid od vrha piramide do vrha baze).",note:"intuicija",final:true}
   ],
   why:["Pravilo pravilne trostrane piramide: baza je jednakostraničan trokut. Sve pobočke su sukladne.","Dijedarski kut između pobočki = kut na zajedničkoj bridi (= brid od vrha piramide do vrha baze).","Postupak: 1) postavi pravokutne trokute u presjeku. 2) iz dijedarskog kuta izvuci visinu.","Intuicija: ako su pobočke 'blizu' (mali kut), piramida je 'oštra' (visoka). Ako su 'razdvojene' (velik kut), piramida je 'plitka'.","Česta greška 1: pomiješati dijedarski kut s ostalim kutovima piramide. Greška 2: krivo postaviti geometrijske pravokutne trokute.","Alt metoda: konkretno koristi formule pravilne piramide."]},
-  {id:15,type:"mc",warn:"Pazi: tri uzastopna člana (a, aq, aq²) su stranice trokuta ako vrijedi nejednakost trokuta — provjeri q.",topic:"seq",points:2,
+  {id:15,type:"mc",warn:"Pazi: tri uzastopna člana (a, aq, aq²) su stranice trokuta ako vrijedi nejednakost trokuta — provjeri q.",topic:"niz",points:2,
   q:"Broj q količnik je geometrijskoga niza s pozitivnim članovima. Za koji od navedenih količnika q tri uzastopna člana geometrijskoga niza mogu biti duljine stranica nekoga trokuta?",
   opts:["za q=0,25","za q=0,5","za q=1,5","za q=2"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},exp:"",ex:"Matematički 2-bodovni: zahtjeva integriran pristup više pojmova.",
@@ -571,7 +571,7 @@ export const qs = [
   ],
   why:["Pravilo crtanja kvadratne: 3-4 ključne točke + smjer otvaranja.","Postupak: 1) tjeme. 2) nul-točke. 3) y-presjek. 4) glatka krivulja kroz njih.","Intuicija: a < 0 = otvor dolje = 'brdo'.","Česta greška: krivi smjer otvaranja (dolje vs gore).","Provjera: f(0) = 20/9 (y-presjek pozitivan, kao i tjeme) ✓","Provjera diskriminantom: D = b²−4ac (D>0 → dva rješenja; D=0 → jedno; D<0 → nema realnih)."]},
   {id:22.1,type:"sa",
-  context:"Zadatak 22 (1. dio od 2):",topic:"seq",points:1,
+  context:"Zadatak 22 (1. dio od 2):",topic:"niz",points:1,
   q:"Zadan je niz (aₙ) za koji vrijedi aₙ = aₙ₋₁ − 0,7, n > 1 i a₁ = 10. Koliko iznosi osmi član toga niza?",
   sol:{ans:"5,1",alt:["5,1","51/10","5"]},exp:"",
   steps:[
@@ -822,7 +822,7 @@ export const qs = [
     {txt:"Postupak: 1) izračunaj kompoziciju. 2) postavi jednadžbu. 3) supstitucija t = 4^x. 4) riješi za x.",final:true,note:"postupak"},{txt:"Intuicija: Pravilo eksponencijala: 2^(2x+1) = 2 · 2^(2x) = 2 · 4^x.",note:"intuicija",final:true},{txt:"Provjera: izračunaj eksponencijalnu vrijednost na kalkulatoru i usporedi.",note:"verifikacija",final:true}
   ],
   why:["Pravilo kompozicije: (g ∘ f)(x) = g(f(x)).","Pravilo eksponencijala: 2^(2x+1) = 2 · 2^(2x) = 2 · 4^x.","Postupak: 1) kompozicija. 2) supstituiraj t = 4^x. 3) riješi linearnu u t. 4) logaritmiraj.","Česta greška 1: pomiješati 2^(2x+1) i 2^(2x) + 1. Greška 2: krivi predznak u jednadžbi.","Provjera ✓","Provjera logaritmiranjem: ako je a^x = b, onda x = logₐb (provjeri obrat)."]},
-  {id:29.3,type:"pa",topic:"dif",points:3,
+  {id:29.3,type:"pa",topic:"der",points:3,
   context:"Zadatak 29 (3. dio od 4):",
   q:"Koje su koordinate točke u kojoj funkcija f(x) = (2x − 1)/(x² + 2) postiže lokalni maksimum?",
   sol:{ans:"(2, [FRAC:1|2])",alt:["(2,1/2)","x=2 y=1/2"]},
@@ -852,7 +852,7 @@ export const qs = [
     {txt:"Postupak: 1) Vièteov teorem za zbroj i umnožak. 2) izrazi razliku rješenja preko ovih. 3) riješi za p. 4) izračunaj konkretne korijene za svaku vrijednost p.",final:true,note:"postupak"},{txt:"Intuicija: Pravilo razlike: (x₁ − x₂)² = (x₁ + x₂)² − 4·x₁·x₂.",note:"intuicija",final:true}
   ],
   why:["Pravilo Vièteov teorem za ax² + bx + c = 0: x₁ + x₂ = −b/a; x₁·x₂ = c/a.","Pravilo razlike: (x₁ − x₂)² = (x₁ + x₂)² − 4·x₁·x₂.","Postupak: 1) Vièteov. 2) razlika. 3) riješi za parametar.","Česta greška: zaboraviti oba slučaja p = ±36 (samo jedan).","Provjera ✓","Provjera Vièteovim formulama: x₁+x₂ = −b/a i x₁·x₂ = c/a."]},
-  {id:30,type:"pa",topic:"seq",points:4,
+  {id:30,type:"pa",topic:"niz",points:4,
   q:"U kocku čija je duljina brida 10 cm upisana je sfera, u tu je sferu upisana nova kocka, a u tu je kocku upisana nova sfera. Na taj se način nastavljaju upisivati iduće kocke i sfere. Izračunajte zbroj oplošja tako dobivenih sfera čije su duljine polumjera veće od 0,1 cm.",
   sol:{ans:"471,167 cm²",alt:["471,167","471,17"]},exp:"",
   steps:[
@@ -873,8 +873,7 @@ export const qs = [
   why:["Pravilo upisanih: kugla u kocku (r = brid/2); kocka u kuglu (brid = 2r/√3).","Geom niz: zbroj prvih N članova S_N = a·(1 − q^N)/(1 − q), uz |q| < 1.","Postupak: 1) uspostavi rekurziju polumjera. 2) odrediti N (rub kad r > 0,1). 3) zbroj oplošja.","Česta greška: pomiješati formule upisanih, ili krivi q.","Provjera: niz polumjera 5, 5/√3, 5/3, ... ✓","Provjera: za aritmetički niz, razlika d je konstantna; za geometrijski, omjer q je konstantan."]},
   {_META:{rok:"JESEN 2017",examCode:"D-S037",razina:"A",
   totalQ:30,totalPts:40,
-  auditStatus:"verified-full",auditDate:"2026-04-26"}},
-  {_META:true,auditStatus:"verified-full",rok:"2017_jesen",razina:"A",serial:"D-S037",totalPoints:60,mcCount:15,saCount:26,verified:"sympy+pdf",auditNotes:"F: 15/15 MC Pak F done; H: math_lint 0 findings",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  auditStatus:"verified-full",auditDate:"2026-04-26"}}
 ];
 
 export const qImages = {

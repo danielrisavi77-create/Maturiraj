@@ -4,9 +4,9 @@ const e = React.createElement;
 
 function SvgZad7_2010ZB(){
   const SW=148,SH=128,GAP=6;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const W=SW*2+GAP, H=SH*2+GAP;
-  const t="var(--text)",mu="#94a3b8";
+  const t="var(--text)",mu="var(--muted)";
   // Paleta: A=blue, B=gold, C=green, D=red
   const COLORS=["var(--blue)","var(--gold)","var(--green)","var(--red)"];
 
@@ -41,12 +41,12 @@ function SvgZad7_2010ZB(){
 
 function SvgZad27_2010ZB(){
   const W=300,H=185,pad={l:34,r:12,t:12,b:26};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=0,xMax=2.1,yMin=0,yMax=1.12;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
-  const t="var(--text)",b=_BLUE,m="#94a3b8",mu="var(--muted)";
+  const t="var(--text)",b=_BLUE,m="var(--muted)",mu="var(--muted)";
   // Grid: svaka 0.1 na oba
   const grid=[];
   for(let i=0;i<=20;i++) grid.push(
@@ -93,13 +93,13 @@ function SvgZad27_2010ZB(){
 function SvgZad24_2010ZB(){
   // Empty grid — student crta liniju y=2x+3 (Bug 16: ne smije pokazati rješenje)
   const W=260,H=220,pad={l:28,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-4,xMax=5,yMin=-4,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",m="#94a3b8",mu="var(--muted)";
+  const t="var(--text)",m="var(--muted)",mu="var(--muted)";
   const grid=[];
   for(let i=xMin;i<=xMax;i++) grid.push(
     e("line",{key:"gx"+i,x1:toX(i),y1:pad.t,x2:toX(i),y2:pad.t+iH,
@@ -126,13 +126,13 @@ function SvgZad24_2010ZB(){
 
 function SvgZad21_2010ZB(){
   const W=260,H=240,pad={l:24,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-4,xMax=4,yMin=-2,yMax=6;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",m="#94a3b8";
+  const t="var(--text)",m="var(--muted)";
   const grid=[];
   for(let i=xMin;i<=xMax;i++) grid.push(
     e("line",{key:"gx"+i,x1:toX(i),y1:pad.t,x2:toX(i),y2:pad.t+iH,
@@ -159,8 +159,8 @@ function SvgZad21_2010ZB(){
 
 function SvgZad23_2010ZB(){
   const W=340,H=112;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",b=_BLUE,g=_GOLD,m="#94a3b8",mu="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",b=_BLUE,g=_GOLD,m="var(--muted)",mu="var(--muted)";
   const s1="var(--s1)",s2="var(--s2)";
   // Širine stupaca: labela | col1 | col2
   const cw=[148,96,96];
@@ -219,7 +219,7 @@ function SvgZad23_2010ZB(){
 function SvgZad13_2010ZB(){
   // Original: 184×184px → SVG 180×175
   const W=185,H=180, sc=175/184;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const t="var(--text)";
   // Kvadrat vrhovi (skaliran)
   const s=p=>`${(p[0]*sc).toFixed(1)},${(p[1]*sc).toFixed(1)}`;
@@ -247,11 +247,11 @@ function SvgZad11_2010ZB(){
   // Original: 495×340px, origin=(181,156), scale=37.6px/unit
   // SVG: proporcionalno smanjeno na W=240 → scale=240/495*37.6=18.24px/unit
   const W=240, H=Math.round(240*340/495);
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8"; // H=165
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)"; // H=165
   const scX=240/495, scY=H/340;
   const ox=181*scX, oy=156*scY;  // origin u SVG: (87.7, 75.7)
   const sc=37.6*scX;              // scale: 18.24px/unit
-  const t="var(--text)",b=_BLUE,m="#94a3b8",mu="var(--muted)";
+  const t="var(--text)",b=_BLUE,m="var(--muted)",mu="var(--muted)";
 
   const toX=v=>ox+v*sc;
   const toY=v=>oy-v*sc;  // SVG y inverted
@@ -825,7 +825,7 @@ id:15,type:"mc",warn:"Pazi: na dan 600/40 = 15 ulaznica; pretprodaja 15 + 5 = 20
     {txt:"→ 25 članova",final:true}
   ,{txt:"Brojčana provjera ✓",final:true,note:"verifikacija"},{txt:"Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod).",final:true,note:"postupak"}]}
 ,
-,{_META:true,auditStatus:"verified-full",rok:"2010_zima",razina:"B",serial:"D-S003",totalPoints:40,mcCount:16,saCount:19,verified:"sympy+pdf+verbatim+visual+rendering",auditNotes:"G: verbatim match PDF; Q3 bold, Q13 q fix. H: Q22 sol.ans Unicode−. I: img:true Q7/11/13/21/23.2/27.1-3; img_key Q23.1/24.1. F: distractor analiza 16 MC. J: [FRAC:] Q1/10/13/14/18/20/22/25.1/15/28.1; Q10 steps correctness fix."}
+
 ];
 
 export const qImages = {

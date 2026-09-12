@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg29c_2021Aljeto(){
   const W=300,H=240,elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   elems.push(e("polygon",{key:"abc",points:"30,210 240,210 190,40",
     fill:"rgba(95,169,255,0.07)",stroke:"var(--text)",strokeWidth:1.5}));
   [["A",15,222],["B",244,222],["C",188,32]].forEach(([l,x,y])=>
@@ -32,7 +32,7 @@ function Svg29c_2021Aljeto(){
 
 function Svg25cGrid_2021Aljeto(){
   const W=290,H=250,elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const grid=[];
   [40,80,120,160,200,240].forEach(x=>grid.push(e("line",{key:`vx${x}`,x1:x,y1:10,x2:x,y2:240,stroke:_BLUE,strokeWidth:0.6})));
   [50,90,130,170,210].forEach(y=>grid.push(e("line",{key:`hy${y}`,x1:10,y1:y,x2:280,y2:y,stroke:_BLUE,strokeWidth:0.6})));
@@ -51,7 +51,7 @@ function Svg25cGrid_2021Aljeto(){
 
 function Svg23bGrid_2021Aljeto(){
   const W=260,H=240,elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const grid=[];
   [40,80,120,160,200].forEach(x=>grid.push(e("line",{key:`vx${x}`,x1:x,y1:20,x2:x,y2:220,stroke:_BLUE,strokeWidth:0.6})));
   [40,80,120,160,200].forEach(y=>grid.push(e("line",{key:`hy${y}`,x1:15,y1:y,x2:245,y2:y,stroke:_BLUE,strokeWidth:0.6})));
@@ -70,7 +70,7 @@ function Svg23bGrid_2021Aljeto(){
 
 function Svg20b_2021Aljeto(){
   const W=300,H=205,elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ln=(x1,y1,x2,y2,k)=>e("line",{key:k,x1,y1,x2,y2,stroke:_BLUE,strokeWidth:1.5});
   elems.push(ln(20,175,275,175,"base"));
   elems.push(ln(75,175,50,35,"t"));
@@ -89,7 +89,7 @@ function Svg20b_2021Aljeto(){
 
 function Svg19a_2021Aljeto(){
   const W=320,H=210,elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   elems.push(e("polygon",{key:"tri",points:"50,50 155,185 260,65",
     fill:"rgba(95,169,255,0.1)",stroke:"var(--text)",strokeWidth:1.6}));
   // Luk 67°25' kod A (unutar trokuta)
@@ -116,15 +116,15 @@ function Svg11_2021Aljeto(){
   for(let y=-2;y<=4;y++) grid.push(e("line",{key:`hy${y}`,x1:10,y1:sy(y),x2:290,y2:sy(y),stroke:"#1e2a38",strokeWidth:0.6}));
   elems.push(e("g",{key:"grid"},grid));
   // Osi
-  elems.push(e("line",{key:"xa",x1:10,y1:130,x2:285,y2:130,stroke:"#94a3b8",strokeWidth:1.5}));
-  elems.push(e("line",{key:"ya",x1:120,y1:10,x2:120,y2:250,stroke:"#94a3b8",strokeWidth:1.5}));
-  elems.push(e("polygon",{key:"ax",points:"285,130 277,126 277,134",fill:"#94a3b8"}));
-  elems.push(e("polygon",{key:"ay",points:"120,10 116,18 124,18",fill:"#94a3b8"}));
-  elems.push(e("text",{key:"lx",x:288,y:134,fontSize:11,fill:"#94a3b8"},"x"));
-  elems.push(e("text",{key:"ly",x:124,y:8,fontSize:11,fill:"#94a3b8"},"y"));
-  elems.push(e("text",{key:"l0",x:108,y:143,fontSize:11,fill:"#94a3b8"},"0"));
-  elems.push(e("text",{key:"l1y",x:117,y:123,fontSize:11,fill:"#94a3b8"},"1"));
-  elems.push(e("text",{key:"l1x",x:158,y:143,fontSize:11,fill:"#94a3b8"},"1"));
+  elems.push(e("line",{key:"xa",x1:10,y1:130,x2:285,y2:130,stroke:"var(--muted)",strokeWidth:1.5}));
+  elems.push(e("line",{key:"ya",x1:120,y1:10,x2:120,y2:250,stroke:"var(--muted)",strokeWidth:1.5}));
+  elems.push(e("polygon",{key:"ax",points:"285,130 277,126 277,134",fill:"var(--muted)"}));
+  elems.push(e("polygon",{key:"ay",points:"120,10 116,18 124,18",fill:"var(--muted)"}));
+  elems.push(e("text",{key:"lx",x:288,y:134,fontSize:11,fill:"var(--muted)"},"x"));
+  elems.push(e("text",{key:"ly",x:124,y:8,fontSize:11,fill:"var(--muted)"},"y"));
+  elems.push(e("text",{key:"l0",x:108,y:143,fontSize:11,fill:"var(--muted)"},"0"));
+  elems.push(e("text",{key:"l1y",x:117,y:123,fontSize:11,fill:"var(--muted)"},"1"));
+  elems.push(e("text",{key:"l1x",x:158,y:143,fontSize:11,fill:"var(--muted)"},"1"));
   // Crna crta -x+2: od x=-1(80,50) do x=4.5(300,210)
   elems.push(e("line",{key:"g",x1:sx(-1),y1:sy(3),x2:sx(4.5),y2:sy(-2.5),stroke:"var(--text)",strokeWidth:2}));
   // Ružičasta |x+1|
@@ -134,7 +134,7 @@ function Svg11_2021Aljeto(){
   elems.push(e("circle",{key:"T",cx:sx(0.5),cy:sy(1.5),r:5,fill:"#e05095"}));
   elems.push(e("text",{key:"tT",x:sx(0.5)+6,y:sy(1.5)-4,fontSize:13,fill:"var(--text)",fontWeight:"bold",fontStyle:"italic"},"T"));
   // Otvorena točka na ishodištu
-  elems.push(e("circle",{key:"o",cx:sx(0),cy:sy(0),r:4,fill:"var(--bg)",stroke:"#94a3b8",strokeWidth:1.5}));
+  elems.push(e("circle",{key:"o",cx:sx(0),cy:sy(0),r:4,fill:"var(--bg)",stroke:"var(--muted)",strokeWidth:1.5}));
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }
 
@@ -343,7 +343,7 @@ export const qs = [
      "Alt metoda: uvrsti a=3: (2 − 7/3)/((4−6)/81) = (−1/3)/(−2/81) = (1/3)·(81/2) = 27/2 = 9·3/2 ✓ — formula vrijedi."
    ,"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:9,type:"mc",warn:"Pazi: aritmetički niz ima STALNU razliku susjednih članova — provjeri razlike.",topic:"seq",points:1,
+  {id:9,type:"mc",warn:"Pazi: aritmetički niz ima STALNU razliku susjednih članova — provjeri razlike.",topic:"niz",points:1,
    q:"Koji je od navedenih nizova aritmetički niz?",
    opts:["5, 6, 8, ...","5, 8, 11, ...","5, 9, 4, ...","5, 10, 20, ..."],
    sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -381,7 +381,7 @@ export const qs = [
      "Alt metoda: ekscentricitet e = c/a = 4/8 = 0,5. Za e < 1 → elipsa ✓."
    ,"Provjera koordinatama: ako je točka na pravcu y = kx + l, uvrštavanjem x dobijemo y.","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata."]
   },
-  {id:11,img:true,type:"mc",warn:"Pazi: u sjecištu obje funkcije imaju istu vrijednost; provjeri koji se par siječe u T.",topic:"func",points:1,
+  {id:11,img:true,type:"mc",warn:"Pazi: u sjecištu obje funkcije imaju istu vrijednost; provjeri koji se par siječe u T.",topic:"fun",points:1,
    q:"Sjecište grafova kojega od navedenih parova funkcija jest točka T istaknuta na slici?",
    opts:["f(x)=|x-1| i g(x)=x+2","f(x)=|x+1| i g(x)=x+2","f(x)=|x-1| i g(x)=−x+2","f(x)=|x+1| i g(x)=−x+2"],
    sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -511,7 +511,7 @@ export const qs = [
      "Alt metoda (provjera): jednadžba se može i direktno faktorizirati: x⁴ + 35x² − 36 = (x² + 36)(x² − 1) = (x²+36)(x−1)(x+1). Rješenja: x = ±1, ±6i."
    ,"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:17.1,type:"sa",topic:"func",points:1,
+  {id:17.1,type:"sa",topic:"fun",points:1,
    context:"Zadatak 17 (1. dio od 2):",
    q:"Jezero je poribljeno novom vrstom ribe. Očekuje se da će se broj riba te vrste mijenjati prema formuli B = 2000(1 + 3t) / (1 + 0,05t), t ≥ 0 gdje je B broj riba, a t vrijeme u godinama. Koliko je riba te vrste doneseno u jezero?",
    sol:{ans:"2000", alt:["2000","≈ 2000"]},
@@ -528,7 +528,7 @@ export const qs = [
      "Provjera: B(0) = 2000 ✓ (zadatak dao podatak da je 'novom vrstom' poribljeno → moramo dobiti smislen pozitivan broj na početku)."
    ,"Provjera: f(x) tablica vrijednosti — usporedba s rezultatom.","Tipičan propust: zanemariti domenu/sliku funkcije; krivo interpretirati graf."]
   },
-  {id:17.2,type:"sa",topic:"func",points:1,
+  {id:17.2,type:"sa",topic:"fun",points:1,
    context:"Zadatak 17 (2. dio od 2):",
    q:"Nakon koliko će godina prema toj formuli u jezeru biti 61 000 riba te vrste?",
    sol:{ans:"t = 20", alt:["20","t=20"]},
@@ -761,7 +761,7 @@ export const qs = [
      "Alt metoda (provjera): ako se zapiše z = r·e^(iφ), uvjet postaje r(cos φ + sin φ) = 0 → r = 0 ili cos φ = −sin φ → tan φ = −1 → φ = 3π/4 ili 7π/4 (drugi i četvrti kvadrant) — opet pravac y = −x."
    ,"Provjera supstitucijom: uvrsti x = pravac y = −x u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:24.1,type:"sa",topic:"func",points:1,
+  {id:24.1,type:"sa",topic:"fun",points:1,
    context:"Zadatak 24 (1. dio od 2):",
    q:"Odredite domenu funkcije f(x) = √(x/3 − 5).",
    sol:{ans:"[15, +∞⟩", alt:["[15, +∞⟩","x≥15","x>=15"]},
@@ -887,7 +887,7 @@ export const qs = [
      "Alt metoda (provjera): ako je C bilo gdje na gornjem polukrugu, vektori CA i CB su okomiti — uvijek (skalarni umnožak = 0). Direktan dokaz koordinatama."
    ,"Provjera dimenzija: opseg [m], površina [m²], volumen [m³] — jedinice se moraju slagati.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
   },
-  {id:26.3,type:"sa",topic:"func",points:1,
+  {id:26.3,type:"sa",topic:"fun",points:1,
    context:"Zadatak 26 (3. dio od 3):",
    q:"Linearna je funkcija f(x) = kx − 13,5 padajuća. Poredajte po veličini od najmanje do najveće f(-16), f(0) i f(52).",
    sol:{ans:"f(52) < f(0) < f(−16)", alt:["F(52) < f(0) < f(−16)","f(52) < f(0) < f(−16)","f(52)<f(0)<f(−16)","≈ f(52) < f(0) < f(−16)"]},
@@ -1019,7 +1019,7 @@ export const qs = [
      "Alt metoda: logaritmiraj obje strane (baza 5): log₅(5^(x−5)) = log₅(0,04) → x − 5 = log₅(1/25) = −2 → x = 3 ✓"
    ,"Provjera: izračunaj eksponencijalnu vrijednost na kalkulatoru i usporedi.","Tipičan propust: a^m · a^n = a^(m+n), ne a^(m·n); ili (a^m)^n = a^(m·n), ne a^(m+n)."]
   },
-  {id:29.3,img:true,type:"sa",topic:"seq",points:2,img:true,
+  {id:29.3,img:true,type:"sa",topic:"niz",points:2,img:true,
    context:"Zadatak 29 (3. dio od 5):",
    q:"Težištem trokuta ABC povučena je paralela sa stranicom AB koja siječe stranice AC i BC u točkama A₁ i B₁. Težištem trokuta A₁B₁C povučena je paralela sa stranicom AB koja siječe stranice AC i BC u točkama A₂ i B₂ itd. kao što je prikazano na skici. Zbroj duljina svih beskonačno mnogo težišnica iz vrha C trokuta ABC, A₁B₁C, A₂B₂C itd. iznosi 501 cm. Izračunajte duljinu težišnice iz vrha C u trokutu ABC.",
    sol:{ans:"167 cm", alt:["167 cm","167"], ex:"Geometrijski niz s |q| < 1 ima konačan beskonačan zbroj S = a₁/(1 − q). Težište dijeli težišnicu u omjeru 2:1; paralela kroz težište reze trokut na 2/3."},
@@ -1039,7 +1039,7 @@ export const qs = [
      "Alt metoda (provjera): omjer površina trokuta (k² = 4/9), ali zadatak je o linearnim mjerama → koristi k = 2/3. Suma geom. reda S∞ = a/(1−q) za |q| < 1."
    ,"Provjera: za aritmetički niz, razlika d je konstantna; za geometrijski, omjer q je konstantan.","Tipičan propust: aritmetički niz koristi razliku d, geometrijski koristi omjer q — ne miješati."]
   },
-  {id:29.4,type:"sa",topic:"opt",points:3,
+  {id:29.4,type:"sa",topic:"ostalo",points:3,
    context:"Zadatak 29 (4. dio od 5):",
    q:"Od žice duljine 120 cm napravljen je model kvadrata i model pravokutnika kojemu je jedna stranica trostruko dulja od druge. Kolika treba biti duljina stranice kvadrata da bi zbroj površina tih likova bio minimalan?",
    sol:{ans:"[FRAC:90|7] cm", alt:["90/7","90/7 cm","≈12,86"], ex:"Optimizacija s ograničenjem: izrazi jednu varijablu iz constrainta (žica), uvrsti u funkciju cilja, deriviraj ili traži tjeme."},
@@ -1100,8 +1100,7 @@ export const qs = [
      "Česta greška: kratiti faktor koji može biti 0 ili negativan; brkati < 0 (suprotni predznaci) s > 0 (isti); zaboraviti uvjete domene (n ≠ 7 i n ∈ ℕ).",
      "Alt metoda (provjera): bez supstitucije, koristi (n+1)! = (n+1)·n! i 8! = 8·7!. Tada A = 7!·(n+1)·n! i B = 8·7!·n!. Razlomak postaje [7!·n!]²·[(n+1)² − 8(n+1) − 2·64]/[(7!·n!)²·((n+1)² − 64)]. Pojednostavljuje na isti rezultat (n−15)/(n−7) (poslije više algebre)."
    ,"Provjera supstitucijom: uvrsti x = n ∈ {8, 9, 10, 11, 12, 13, 14} u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2021_ljeto",razina:"A",serial:"D-S051",totalPoints:60,mcCount:15,saCount:34,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  }
 ];
 
 export const qImages = {

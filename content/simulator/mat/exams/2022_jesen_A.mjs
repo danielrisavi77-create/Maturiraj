@@ -9,8 +9,8 @@ function Svg7_2022Ajesen(){
   //   Vektor a⃗: od (5, 2) do (3, 4) — strelica pokazuje GORE-LIJEVO (smjer (−2,+2))
   //   Vektor b⃗: od (2, 2) do (2, 0) — strelica pokazuje DOLJE (smjer (0,−2))
   //   Vektor c⃗: od (3, −1) do (5, −1) — strelica pokazuje DESNO (smjer (+2,0))
-  const stroke="var(--text)", grid="#94a3b8", muted="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const s=30, ox=90, oy=230;
   const px=x=>ox+x*s, py=y=>oy-y*s;
   return e('svg',{viewBox:"0 0 360 320",xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"360px",width:"100%",display:"block",margin:"12px auto"}},
@@ -51,8 +51,8 @@ function Svg7_2022Ajesen(){
 
 function Svg6_2022Ajesen(){
   // Tablica 2x4: zaglavlje x|1|2|3, drugi red y|3|?|-3
-  const stroke="var(--text)", muted="#94a3b8", accent="#c060c0";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", muted="var(--muted)", accent="#c060c0";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e('svg',{viewBox:"0 0 340 110",xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"340px",width:"100%",display:"block",margin:"12px auto"}},
     // Horizontalne linije
     e('line',{key:'ht',x1:20,y1:15,x2:320,y2:15,stroke:_BLUE,strokeWidth:1.5}),
@@ -81,8 +81,8 @@ function Svg6_2022Ajesen(){
 function Svg39a_2022Ajesen(){
   // Četverokutno zemljište: 150m, 210m, 125m, kut 58°44' (vrh A gore-lijevo) i 63°25' (vrh B dolje-desno)
   // ZATVORENI LUKOVI za kutove
-  const stroke="var(--text)", muted="#94a3b8";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Vrhovi prema PDF skici:
   //   A (gore lijevo) — kut 58°44' ovdje
   //   B (gore desno)
@@ -122,7 +122,7 @@ function Svg39a_2022Ajesen(){
 
 function Svg36a_2022Ajesen(){
   // Pravokutni trokut s x na hipotenuzi i 2 prazna kvadratića za y, z
-  const stroke="var(--text)", muted="var(--muted)", boxClr="#e05252";
+  const stroke="var(--text)", muted="var(--muted)", boxClr="var(--red)";
   return e('svg',{viewBox:"0 0 320 280",xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"320px",width:"100%",display:"block",margin:"12px auto"}},
     // Trokut: vrhovi A(50,40), B(220,40), C(220,230)
     // x je hipotenuza (od A do C) — krivo. Pogledamo PDF: x je gornja kateta (od A do B horizontal)
@@ -144,8 +144,8 @@ function Svg36a_2022Ajesen(){
 
 function Svg35b_2022Ajesen(){
   // Kružnica S(0,1), r=4, na koord. sustavu — verificirano pixel-count @ 300 DPI
-  const stroke="var(--text)", grid="#94a3b8", muted="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // viewBox 360x340, origin (180,200), 1 jed = 25px (r=4 → 100px)
   return e('svg',{viewBox:"0 0 360 340",xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"360px",width:"100%",display:"block",margin:"12px auto"}},
     // grid
@@ -170,8 +170,8 @@ function Svg35b_2022Ajesen(){
 
 function Svg34a_2022Ajesen(){
   // Brojevna kružnica (jedinična, r=1) na koord. mreži, s točkom (0,1) označenom
-  const stroke="var(--text)", grid="#94a3b8", muted="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // viewBox 320x320, origin (160,160), 1 jed = 50px (kružnica r=50)
   return e('svg',{viewBox:"0 0 320 320",xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"320px",width:"100%",display:"block",margin:"12px auto"}},
     // grid (10x10)
@@ -196,8 +196,8 @@ function Svg34a_2022Ajesen(){
 
 function Svg32_2022Ajesen(){
   // Linijski dijagram temperatura - ČITLJIVIJI (veći labeli, više razmaka)
-  const stroke="var(--text)", grid="#94a3b8", muted="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const data=[23.6,23.6,23.4,23.4,23.2,23.3,23.4,23.3,23.5,23.6,23.6,24.0,24.0,24.2,24.3,24.1,23.9,23.6,23.7,23.8,23.9,23.5,23.7,23.9];
   // viewBox 720x400
   // x: 70 → 700 (range 630), 24 hours → step ≈ 27
@@ -233,8 +233,8 @@ function Svg16_2022Ajesen(){
   //   Strelica iz tornja prema gore (mjerni instrument)
   //   Kosa linija odozgo-lijevo (vrh tornja) do DESNO-dolje (točka na tlu udaljena 60,7m)
   //   Kut između kose linije i tla (28°) kod desne točke
-  const stroke="var(--text)", muted="#94a3b8", fillT="rgba(180,180,180,0.4)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", muted="var(--muted)", fillT="rgba(180,180,180,0.4)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e('svg',{viewBox:"0 0 420 260",xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"420px",width:"100%",display:"block",margin:"12px auto"}},
     // Tlo
     e('line',{key:'g',x1:30,y1:220,x2:400,y2:220,stroke:stroke,strokeWidth:1.5}),
@@ -269,7 +269,7 @@ function Svg14_2022Ajesen(){
   //   Gornji sloj (z=1): (0,0,1), (1,0,1)  [iznad stražnjeg reda]
   // Painter algorithm za z-ordering: back-to-front
   const stroke="var(--text)", accent="#7a9a58";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ex=28, ey=16, ez=34;
   const ox=185, oy=140;
   const P=(x,y,z)=>[ox+(x-y)*ex, oy+(x+y)*ey-z*ez];
@@ -386,7 +386,7 @@ export const qs = [
      "Alt metoda (provjera): za d = 100, e = 130 − 1,2 = 128,8 EUR (gotovo punih 130 ali 1,2 EUR manje) ✓"
    ,"Provjera: za d = 0 (ništa za zamjenu), e = −1,2 → gubitak 1,2 EUR (= naknada banke) ✓","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:5,type:"mc",warn:"Pazi: 'za 5 % više nego prethodno' → aritmetički niz (30, 35, 40…), ne postotak od prethodnog.",topic:"seq",points:1,
+  {id:5,type:"mc",warn:"Pazi: 'za 5 % više nego prethodno' → aritmetički niz (30, 35, 40…), ne postotak od prethodnog.",topic:"niz",points:1,
    q:"Trkač je u prvoj minuti istrčao 30 % duljine staze, a u svakoj sljedećoj minuti za 5 % više nego u prethodnoj. Koja je od navedenih tvrdnja točna nakon prve 3 minute utrke?",
    opts:["Trkač je istrčao cijelu stazu za manje od 3 minute.","Trkač se nalazi točno na cilju.","Trkaču je preostalo manje od 4 % duljine staze.","Trkaču je preostalo više od 4 % duljine staze."],
    sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -811,7 +811,7 @@ export const qs = [
      "Alt metoda (provjera): (z̄)̄ = z (konjugat konjugata je sam broj) ✓"
    ,"Provjera: konjugat od (7 − 8i) je 7 − (−8)i = 7 + 8i ✓","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:28,type:"sa",topic:"seq",points:1,
+  {id:28,type:"sa",topic:"niz",points:1,
    q:"Odredite opći član geometrijskoga niza 1, 3, 9, …",
    sol:{ans:"3^(n−1)",alt:["3^(n-1)","3^{n-1}","aₙ=3^(n-1)","a_n = 3^(n-1)"]},
   steps:[
@@ -1247,15 +1247,6 @@ export const qs = [
      "Alt metoda (provjera): druga derivacija P''(k) = −256/k³ > 0 za k < 0 → konveksna → točka k = −2 je MINIMUM (ne maksimum) ✓",
      "Provjera neograničenosti: vrhunac k → 0⁻ ili k → −∞ — oba slučaja P → +∞, pa supremum nije postignut."
    ,"Provjera analize: za pravac kroz T(8, 16) s nagibom k = −2 — y = −2x + 32; x-presjek 16, y-presjek 32; P = (1/2)·16·32 = 256 ✓ (minimum, ne maksimum)."]
-  },
-  {_META:true,
-  auditedAt: "2026-05-20",
-  auditSource: "MAT A (viša razina, jesenski rok 2022.)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  verified: "vision+pdf+pedagogy+verbatim",
-  notes: "FULL REWRITE — Pak G+H+I+F kombinirani. Sve 51 Q-objekata production-ready pedagogy upgrade (5-7 steps s verifikacija/diagnostika + 4-5 specifičnih why entries). 4 Q s img:true (Q6, Q7, Q14, Q16); 6 sol.svgFn bindings (Q32,1, 32,2, 34,1, 35,2, 36,1, 39,1). Sve sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation potpuno Unicode/[FRAC:]. ex polja za 2pt+ SA. Q40 ima 4pt SA s detaljnim eksplanacijom rubne situacije (max ne postoji).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 213}
   }
 ];
 

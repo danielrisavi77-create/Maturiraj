@@ -20,20 +20,20 @@ function SvgZad30_2014LA(){
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",background:"var(--s2)",borderRadius:8}},
     // Kružnice
-    e("circle",{cx:S1[0],cy:S1[1],r:r1,fill:"rgba(74,144,217,0.08)",stroke:"#4a90d9",strokeWidth:2}),
+    e("circle",{cx:S1[0],cy:S1[1],r:r1,fill:"rgba(74,144,217,0.08)",stroke:"var(--blue)",strokeWidth:2}),
     e("circle",{cx:S2[0],cy:S2[1],r:r2,fill:"rgba(232,197,71,0.08)",stroke:"#e8c547",strokeWidth:2}),
     // Tangente (unakrsne)
     e("line",{x1:A[0],y1:A[1],x2:Dpt[0],y2:Dpt[1],stroke:"#3dd68c",strokeWidth:2}),
     e("line",{x1:C[0],y1:C[1],x2:B[0],y2:B[1],stroke:"#3dd68c",strokeWidth:2}),
     // Središta
-    e("circle",{cx:S1[0],cy:S1[1],r:3,fill:"#4a90d9"}),
+    e("circle",{cx:S1[0],cy:S1[1],r:3,fill:"var(--blue)"}),
     e("circle",{cx:S2[0],cy:S2[1],r:3,fill:"#e8c547"}),
     // Spojnica središta
     e("line",{x1:S1[0],y1:S1[1],x2:S2[0],y2:S2[1],stroke:"var(--muted)",strokeWidth:1,strokeDasharray:"4,3"}),
     // Oznake
-    e("text",{x:S1[0]-4,y:S1[1]+4,fill:"#4a90d9",fontSize:11,fontStyle:"italic"},"S₁"),
+    e("text",{x:S1[0]-4,y:S1[1]+4,fill:"var(--blue)",fontSize:11,fontStyle:"italic"},"S₁"),
     e("text",{x:S2[0]+4,y:S2[1]+4,fill:"#e8c547",fontSize:11,fontStyle:"italic"},"S₂"),
-    e("text",{x:S1[0]-14,y:S1[1]-r1-6,fill:"#4a90d9",fontSize:10},"r₁=30"),
+    e("text",{x:S1[0]-14,y:S1[1]-r1-6,fill:"var(--blue)",fontSize:10},"r₁=30"),
     e("text",{x:S2[0]+5,y:S2[1]-r2-6,fill:"#e8c547",fontSize:10},"r₂=60"),
     e("text",{x:(S1[0]+S2[0])/2-14,y:S1[1]+14,fill:"var(--muted)",fontSize:10},"d=180 m")
   );
@@ -63,18 +63,18 @@ function SvgZad28b_2014LA(){
     ...[-3,-2,-1,1,2].map(i=>e("text",{key:"ly"+i,x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
     // Asimptota x=0 (y-os)
     e("line",{x1:cx,y1:10,x2:cx,y2:H-10,stroke:"#f87171",strokeWidth:1.5,strokeDasharray:"4,3"}),
-    e("path",{d:path,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("path",{d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
     e("circle",{cx:cx+1*sc,cy:cy,r:4,fill:"#e8c547"}),
     e("text",{x:cx+1*sc+4,y:cy-6,fill:"#e8c547",fontSize:10},"(1,0)"),
     e("circle",{cx:cx+2*sc,cy:cy-1*sc,r:4,fill:"#e8c547"}),
     e("text",{x:cx+2*sc+4,y:cy-1*sc-4,fill:"#e8c547",fontSize:10},"(2,1)"),
-    e("text",{x:cx+2.5*sc,y:cy-2.5*sc,fill:"#4a90d9",fontSize:11,fontStyle:"italic"},"y=log₂x")
+    e("text",{x:cx+2.5*sc,y:cy-2.5*sc,fill:"var(--blue)",fontSize:11,fontStyle:"italic"},"y=log₂x")
   );
 }
 
 function Svg28_2014Aj(){
   const W=220,H=180,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=3,yMin=-5,yMax=8;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -124,7 +124,7 @@ function SvgZad24b_2014LA(){
     e("text",{x:W-8,y:cy+4,fill:"var(--muted)",fontSize:12,fontStyle:"italic"},"x"),
     e("text",{x:cx+4,y:10,fill:"var(--muted)",fontSize:12,fontStyle:"italic"},"y"),
     e("text",{x:cx+4,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
-    e("path",{d:path,fill:"rgba(74,144,217,0.1)",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("path",{d:path,fill:"rgba(74,144,217,0.1)",stroke:"var(--blue)",strokeWidth:2.5}),
     // Oznake osi
     ...[[-3,0],[3,0],[0,-2],[0,2]].map(([ax,ay])=>
       e("circle",{key:`${ax}${ay}`,cx:cx+ax*scX,cy:cy-ay*scY,r:4,fill:"#e8c547"})
@@ -133,13 +133,13 @@ function SvgZad24b_2014LA(){
     e("text",{x:cx-3*scX-14,y:cy+14,fill:"#e8c547",fontSize:11},"-3"),
     e("text",{x:cx+4,y:cy-2*scY-4,fill:"#e8c547",fontSize:11},"2"),
     e("text",{x:cx+4,y:cy+2*scY+4,fill:"#e8c547",fontSize:11},"-2"),
-    e("text",{x:cx-30,y:cy-scY,fill:"#4a90d9",fontSize:11,fontStyle:"italic"},"x²/9+y²/4=1")
+    e("text",{x:cx-30,y:cy-scY,fill:"var(--blue)",fontSize:11,fontStyle:"italic"},"x²/9+y²/4=1")
   );
 }
 
 function Svg24_2014Alj(){
   const W=220,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-4,xMax=4,yMin=-3,yMax=3;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -193,9 +193,9 @@ function SvgZad23a_2014LA(){
     ...[1,2,3,4,5,6,7,8].map(i=>e("text",{key:"lx"+i,x:cx+i*sc-5,y:cy+13,fill:"var(--muted)",fontSize:10},i)),
     ...[1,2,3,4,5,6,7].map(i=>e("text",{key:"ly"+i,x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
     // Vektor MN
-    e("line",{x1:M[0],y1:M[1],x2:N[0],y2:N[1],stroke:"#4a90d9",strokeWidth:2.5}),
-    e("polygon",{points:`${N[0]},${N[1]} ${N[0]-8},${N[1]+3} ${N[0]-5},${N[1]-5}`,fill:"#4a90d9"}),
-    e("text",{x:(M[0]+N[0])/2+3,y:(M[1]+N[1])/2-6,fill:"#4a90d9",fontSize:12,fontWeight:"bold"},"MN→"),
+    e("line",{x1:M[0],y1:M[1],x2:N[0],y2:N[1],stroke:"var(--blue)",strokeWidth:2.5}),
+    e("polygon",{points:`${N[0]},${N[1]} ${N[0]-8},${N[1]+3} ${N[0]-5},${N[1]-5}`,fill:"var(--blue)"}),
+    e("text",{x:(M[0]+N[0])/2+3,y:(M[1]+N[1])/2-6,fill:"var(--blue)",fontSize:12,fontWeight:"bold"},"MN→"),
     // Točke
     e("circle",{cx:K[0],cy:K[1],r:5,fill:"#e8c547"}),
     e("text",{x:K[0]+4,y:K[1]-4,fill:"#e8c547",fontSize:12,fontStyle:"italic",fontWeight:"bold"},"K"),
@@ -208,7 +208,7 @@ function SvgZad23a_2014LA(){
 
 function Svg23_2014Aj(){
   const W=180,H=180,cx=90,cy=90,sc=30;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     // Mreža
     ...[1,2,3,4].map(i=>e("line",{key:"gxp"+i,x1:cx+i*sc,y1:20,x2:cx+i*sc,y2:W-20,stroke:"var(--bdr)",strokeWidth:.5})),
@@ -261,8 +261,8 @@ function SvgZad22b_2014LA(){
     e("text",{x:cx+4,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
     ...[-3,-2,-1,1,2,3].map(i=>e("text",{key:"lx"+i,x:cx+i*sc-5,y:cy+13,fill:"var(--muted)",fontSize:10},i)),
     ...[-2,-1,1,2].map(i=>e("text",{key:"ly"+i,x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
-    e("path",{d:path,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
-    e("text",{x:cx+3*sc-10,y:cy-20,fill:"#4a90d9",fontSize:11,fontStyle:"italic"},"y=f(x)"),
+    e("path",{d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
+    e("text",{x:cx+3*sc-10,y:cy-20,fill:"var(--blue)",fontSize:11,fontStyle:"italic"},"y=f(x)"),
     // Istakni f(-1)=2
     e("circle",{cx:cx-sc,cy:cy-2*sc,r:5,fill:"#e8c547"}),
     e("text",{x:cx-sc+6,y:cy-2*sc-4,fill:"#e8c547",fontSize:10},"f(−1)=2")
@@ -290,7 +290,7 @@ function SvgZad22a_2014LA(){
     e("text",{x:cx+3,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
     ...[1,2,3,4].map(i=>e("text",{key:"lx"+i,x:cx+i*sc-5,y:cy+13,fill:"var(--muted)",fontSize:10},i)),
     ...[-3,-2,-1,1].map(i=>e("text",{key:"ly"+i,x:cx-18,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
-    e("path",{d:path,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("path",{d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
     e("circle",{cx:cx,cy:cy,r:4,fill:"#e8c547"}),
     e("circle",{cx:cx+4*sc,cy:cy,r:4,fill:"#e8c547"}),
     e("circle",{cx:cx+2*sc,cy:cy+4*sc,r:4,fill:"#3dd68c"}),
@@ -300,7 +300,7 @@ function SvgZad22a_2014LA(){
 
 function Svg21_2014Aj(){
   const W=220,H=180,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=4,yMin=-2,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -770,7 +770,7 @@ export const qs = [
     "Provjera ✓: Za x=0 (unutar ⟨−⅕, ½⟩): (0−½)(0+⅕)=−0,1 < 0 → ne zadovoljava ≥0 ✓",
     "Česta greška: Kvadratna ≥0 s a>0 ima rješenja IZVANA (ne između) korijena. Granice (nultočke) se uključuju jer vrijedi ≥."
   ,"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]},
-  {id:21.1,type:"sa",topic:"seq",points:1,
+  {id:21.1,img:true,type:"sa",topic:"niz",points:1,
   context:"Zadatak 21 (1. dio od 2):",
   q:"Odredite trinaesti član geometrijskoga niza 5 120, 2 560, 1 280, ...",
   sol:{ans:"1,25",alt:["1,25","5/4"]},
@@ -786,7 +786,7 @@ export const qs = [
     "Alt interpretacija: prosječna brzina porasta. Provjera s ključem: 1,25 vjerojatno je prosječna vrijednost ili specifičan izračun.",
     "Napomena: kontekst Q21,1 i Q21,2 u LJETO 2014 može biti drugačiji od pretpostavke — provjeriti originalni PDF za točan tekst."
   ,"Provjera: izračunaj prvih nekoliko članova niza po formuli — mora se slagati.","Tipičan propust: aritmetički niz koristi razliku d, geometrijski koristi omjer q — ne miješati."]},
-  {id:21.2,type:"sa",topic:"seq",points:1,
+  {id:21.2,img:true,type:"sa",topic:"niz",points:1,
   context:"Zadatak 21 (2. dio od 2):",
   q:"U aritmetičkome je nizu a₅ = 0 i a₁₅ = 4. Koliki je zbroj prvih petnaest članova toga niza?",
   sol:{ans:"18",alt:["18","≈ 18"]},
@@ -840,7 +840,7 @@ export const qs = [
     "Sjecište dvaju pravaca: rješavamo sustav njihovih jednadžbi. Rezultat S(10,9) uvrštavamo natrag za provjeru.",
     "Provjera ✓: S(10,9) zadovoljava obje jednadžbe pravaca ✓"
   ,"Provjera koordinatama: ako je točka na pravcu y = kx + l, uvrštavanjem x dobijemo y.","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata.","Veza s gradivom: analitička geometrija povezuje algebru i geometriju — temelj za diferencijalni račun.","Provjera koordinatama: uvrsti točku u jednadžbu krivulje."]},
-  {id:23.2,type:"sa",topic:"anal",points:1,
+  {id:23.2,img:true,type:"sa",topic:"anal",points:1,
   context:"Zadatak 23 (2. dio od 2):",
   q:"Zadani su vektori a⃗ = 2i⃗ + 4j⃗ i b⃗ = 5i⃗ + kj⃗. Odredite sve realne k za koje je kut između vektora a⃗ i b⃗ šiljast.",
   sol:{ans:"k > -5/2",alt:["k>-2,5","k>-5/2"]},
@@ -854,7 +854,7 @@ export const qs = [
     "Q23,2 odgovor k > −2,5. Kontekst: vjerojatno uvjet diskriminante kvadratne jednadžbe > 0 ili geometrijski uvjet za sjecište.",
     "Provjera ✓: granična vrijednost k=−2,5 daje D=0 (dvostruko rješenje) ✓"
   ,"Provjera grafom: nacrtaj krivulje i vizualno potvrdi sjecište / dodir / paralelnost.","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata.","Veza s gradivom: analitička geometrija povezuje algebru i geometriju — temelj za diferencijalni račun.","Provjera koordinatama: uvrsti točku u jednadžbu krivulje."]},
-  {id:24.1,type:"sa",topic:"anal",points:1,
+  {id:24.1,img:true,type:"sa",topic:"anal",points:1,
   context:"Zadatak 24 (1. dio od 2):",
   q:"Odredite jednadžbu kružnice opisane trokutu ABC ako je A(8,1), B(0,7), C(0,1).",
   sol:{ans:"(x-4)²+(y-4)²=25",alt:["(x-4)²+(y-4)²=25","≈ (x-4)²+(y-4)²=25"]},
@@ -982,7 +982,7 @@ export const qs = [
     "Površina trokuta=r·(dijagonala/2) daje r=4√2. Rotacijom nastaju 2 stošca s istim polumjerom baze.",
     "Provjera ✓: Izračunaj volumen tijela (kvadar+piramida ili samo piramida) s a=8 cm i potvrdi ✓"
   ,"Provjera dimenzija: opseg [m], površina [m²], volumen [m³] — jedinice se moraju slagati."]},
-  {id:28.1,type:"sa",topic:"exp",points:1,
+  {id:28.1,img:true,type:"sa",topic:"exp",points:1,
   context:"Zadatak 28 (1. dio od 3):",
   q:"Odredite domenu funkcije f(x) = log(14−x) + log(x-5) i napišite je s pomoću intervala.",
   sol:{ans:"⟨5, 14⟩",alt:["5<x<14","(5,14)"]},
@@ -1012,7 +1012,7 @@ export const qs = [
     "Graf logaritamske funkcije log₂x: prolazi (1,0) i (2,1). Raste sporije od linearne. Asimptota x=0. Za sve x>0 definiran.",
     "Provjera točaka: log₂(1)=0 ✓; log₂(2)=1 ✓; log₂(4)=2 ✓"
   ,"Provjera logaritmiranjem: ako je a^x = b, onda x = logₐb (provjeri obrat).","Tipičan propust: a^m · a^n = a^(m+n), ne a^(m·n); ili (a^m)^n = a^(m·n), ne a^(m+n).","Veza s gradivom: eksponencijalne funkcije modeliraju rast (populacija, kamata, radioaktivnost).","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]},
-  {id:28.3,type:"sa",topic:"exp",points:1,
+  {id:28.3,img:true,type:"sa",topic:"exp",points:1,
   context:"Zadatak 28 (3. dio od 3):",
   q:"Pojednostavnite razlomak log₂(√a) / log₂(aᵏ).",
   sol:{ans:"[FRAC:1|2k]",alt:["[FRAC:1|2k]","≈ [FRAC:1|2k]"]},
@@ -1124,13 +1124,7 @@ export const qs = [
     "Alt metoda: Direktno izračunati prvih nekoliko članova i provjeriti konvergenciju.",
     "Unakrsna tangenta: L=√(d²−(r₁+r₂)²). Kutovi lukova: polumjer ⊥ tangenti, pa kut=2(π/2+α)=4π/3.",
     "Provjera ✓: Uvrsti nultočke u polinom i potvrdi da je rezultat 0 ✓"
-  ]},
-  {_META:true,
-  auditStatus: "verified-full",
-  auditedAt: "2026-05-06",
-  auditBy: "Claude+Daniel",
-  verified: "pdf+verbatim+visual+pedagogy+P0+P1+P2+P3+cross_check"
-  }
+  ]}
 ];
 
 export const qImages = {

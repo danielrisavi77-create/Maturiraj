@@ -8,11 +8,11 @@ function Svg30_2024Ajes(){
   const W=440, H=260;
   const cx=130, cy=130, r=90;
   const segs=[
-    {p:16, col:"#50c878", lbl:"nedovoljan (1)"},
-    {p:28, col:"#e05252", lbl:"dovoljan (2)"},
+    {p:16, col:"var(--green)", lbl:"nedovoljan (1)"},
+    {p:28, col:"var(--red)", lbl:"dovoljan (2)"},
     {p:24, col:"#9ca3af", lbl:"dobar (3)"},
-    {p:20, col:"#e9b446", lbl:"vrlo dobar (4)"},
-    {p:12, col:"#4a90d9", lbl:"odličan (5)"}
+    {p:20, col:"var(--gold)", lbl:"vrlo dobar (4)"},
+    {p:12, col:"var(--blue)", lbl:"odličan (5)"}
   ];
   let cumStart = -Math.PI/2;
   const arcs=[], labels=[], legend=[];
@@ -26,7 +26,7 @@ function Svg30_2024Ajes(){
     const y1v = cy + r*Math.sin(a1);
     const large = sweep > Math.PI ? 1 : 0;
     const d = `M ${cx} ${cy} L ${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${x1v.toFixed(2)} ${y1v.toFixed(2)} Z`;
-    arcs.push(e("path",{key:"s"+i,d:d,fill:s.col,stroke:"#060910",strokeWidth:1.5}));
+    arcs.push(e("path",{key:"s"+i,d:d,fill:s.col,stroke:"var(--bg,#060910)",strokeWidth:1.5}));
     const am = (a0+a1)/2;
     const lx = cx + (r+16)*Math.cos(am);
     const ly = cy + (r+16)*Math.sin(am);
@@ -252,8 +252,8 @@ function Svg26_2024Bjes(){
 }
 
 function Svg21a_2024Bjes(){
-  const txt="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const txt="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=620, H=160;
   const marginL=50, marginR=50;
   const yLine=70;
@@ -268,7 +268,7 @@ function Svg21a_2024Bjes(){
     const hasLbl = labels.hasOwnProperty(i);
     const hasRef = refs.hasOwnProperty(i);
     dots.push(e("circle",{key:"d"+i, cx:px(i), cy:yLine, r:hasLbl?5:3.5, 
-      fill:hasLbl?red:muted, stroke:hasLbl?"#0a0f1a":"none", strokeWidth:1.5}));
+      fill:hasLbl?red:muted, stroke:hasLbl?"var(--s1,#0a0f1a)":"none", strokeWidth:1.5}));
     if(hasLbl){
       dots.push(e("text",{key:"l"+i,x:px(i),y:yLine-14,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",textAnchor:"middle",fill:gold},labels[i]));
     }
@@ -291,7 +291,7 @@ function Svg21a_2024Bjes(){
 
 function Svg20_2024Bjes(){
   const st="var(--text)"; const muted="var(--muted,#94a3b8)";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=380, H=340;
   const ox=170, oy=170; const u=30;
   const pxF=(x)=>ox+x*u; const pyF=(y)=>oy-y*u;
@@ -330,14 +330,14 @@ function Svg20_2024Bjes(){
     e("line",{key:"prav",x1:pxF(px1),y1:pyF(py1),x2:pxF(px2),y2:pyF(py2),stroke:blue,strokeWidth:2.4}),
     e("text",{key:"lp",x:pxF(px2)+4,y:pyF(py2)+18,fontSize:17,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"p"),
     // Točka A — RED
-    e("circle",{key:"A",cx:pxF(Ax),cy:pyF(Ay),r:5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+    e("circle",{key:"A",cx:pxF(Ax),cy:pyF(Ay),r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
     e("text",{key:"lA",x:pxF(Ax)+8,y:pyF(Ay)+18,fontSize:17,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"A")
   );
 }
 
 function Svg15_2024Bjes(){
   const W=400, H=300;
-  const blue="#4a90d9"; const blueLight="rgba(74,144,217,0.08)"; const red="#e05252"; const gold="#e9b446"; const txt="var(--text)";
+  const blue="var(--blue)"; const blueLight="rgba(74,144,217,0.08)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
   const cx=200, cy=160, r=110;
   const deg=(d)=>d*Math.PI/180;
   // PDF: B bot-left, C bot-right, A top-left, D top-right (from earlier render)
@@ -360,7 +360,7 @@ function Svg15_2024Bjes(){
     // Vertex labels
     ...[[A,"A",-18,-6],[B,"B",-16,18],[C,"C",8,18],[D,"D",10,-6]].map(([p,l,dx,dy],i)=>
       e("g",{key:"v"+i},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
         e("text",{x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},l)
       )
     )
@@ -368,8 +368,8 @@ function Svg15_2024Bjes(){
 }
 
 function Svg11_2024Bjes(){
-  const st="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const st="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=640, H=460;
   const panelW=290, panelH=200;
   const panels=[
@@ -502,7 +502,7 @@ export const qs = [
   steps:[{txt:"Standardni oblik: x² − 2x + m = 0; a = 1, b = −2, c = m."},{txt:"Definicija \"dvostruko rješenje\": kvadratna ima JEDNO realno rješenje s multiplicitetom 2 ⇔ DISKRIMINANTA = 0."},{txt:"D = b² − 4ac = (−2)² − 4·1·m = 4 − 4m."},{txt:"Postavljanje uvjeta: 4 − 4m = 0 ⇒ m = 1."},{txt:"Provjera: x² − 2x + 1 = (x − 1)² = 0 → x = 1 (dvostruko)."},{txt:"Geometrijska interpretacija: parabola y = x² − 2x + 1 DOTIČE x-os u jednoj točki (tjeme parabole leži na x-osi).",note:"verifikacija"},{txt:"Distractor analiza:\n  A) −4: D = 4 + 16 = 20 > 0 → dva različita rješenja.\n  B) −1: D = 4 + 4 = 8 > 0 → dva različita.\n  D) 4: D = 4 − 16 = −12 < 0 → bez realnih rješenja.",note:"diagnostika"},{txt:"Odgovor: C — m = 1.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: parabola dotiče x-os u jednoj točki kada tjeme leži na x-osi; to se događa kada je D = 0.",note:"intuicija",final:true},{txt:"Definicija: dvostruko rješenje znači da je x₀ NULTOČKA polinoma multipliciteta 2 (tj. (x − x₀)² je faktor).",note:"postupak",final:true}],
    why:["Pravilo: kvadratna ax² + bx + c = 0 ima:\n  D > 0 → 2 različita realna rješenja\n  D = 0 → 1 realno rješenje (dvostruko)\n  D < 0 → bez realnih (2 kompleksna).","Definicija: dvostruko rješenje znači da je x₀ NULTOČKA polinoma multipliciteta 2 (tj. (x − x₀)² je faktor).","Intuicija: parabola dotiče x-os u jednoj točki kada tjeme leži na x-osi; to se događa kada je D = 0.","Alt metoda: prepoznati kvadratni trinom (x − a)² = x² − 2ax + a²; ovdje je a = 1, pa a² = 1 = m.","Česta greška: tumačiti \"dvostruko rješenje\" kao \"dva rješenja\" — krivo, znači JEDNO rješenje s multiplicitetom 2.","Tipičan propust: zaboraviti predznak b² = (−2)² = +4 (kvadrat negativnog je pozitivan).","Veza s gradivom: diskriminanta određuje broj i prirodu rješenja; povezana s grafičkom interpretacijom.","Provjera: x² − 2x + 1 = (x − 1)² ✓."]
   },
-  {id:11,img:true,type:"mc",warn:"Pazi: raste (nagib > 0) I siječe os y ISPOD ishodišta (odsječak < 0).",topic:"func",points:1,
+  {id:11,img:true,type:"mc",warn:"Pazi: raste (nagib > 0) I siječe os y ISPOD ishodišta (odsječak < 0).",topic:"fun",points:1,
    q:"Koji je od prikazanih grafova graf linearne funkcije s pozitivnim koeficijentom smjera i negativnim odsječkom na osi y?",
    opts:["A","B","C","D"],
    sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -510,14 +510,14 @@ export const qs = [
    why:["Pravilo: y = kx + n. k = ΔY/Δx (nagib, mjeri brzinu promjene); n = y-odsječak (vrijednost kod x = 0).","Definicija: pozitivan nagib k > 0 ⇒ funkcija raste; negativan k < 0 ⇒ pada. Pravac s nagibom 0 je vodoravni.","Intuicija: dva NEZAVISNA uvjeta — jedan o smjeru rasta (nagib), drugi o vertikalnoj poziciji (odsječak).","Alt metoda: vizualno — zamisli \"kockicu\" koja klizi po pravcu s lijeva nadesno. Ide li gore ili dolje? Gdje siječe y-os?","Česta greška: brkati nagib i odsječak — to su NEZAVISNI parametri, svaki ima svoj uvjet.","Tipičan propust: zaboraviti uvjet na predznak odsječka — odsječak može biti bilo gdje na y-osi.","Veza s gradivom: linearne funkcije, analitička geometrija pravca, sustav linearnih jednadžbi.","Provjera: pravac koji raste i siječe y-os ispod x-osi — to je opcija A ✓."],
    img:"2024_jesen_B__11"
   },
-  {id:12,type:"mc",warn:"Pazi: ukupno = 70·(broj dana) + 9; linearna (9 je fiksni član).",topic:"func",points:1,
+  {id:12,type:"mc",warn:"Pazi: ukupno = 70·(broj dana) + 9; linearna (9 je fiksni član).",topic:"fun",points:1,
    q:"Cijeni najma apartmana od 70 eura po danu boravka dodaje se jednokratni trošak čišćenja koji iznosi 9 eura. Koja funkcija opisuje ovisnost cijene C o broju dana d provedenih u apartmanu?",
    opts:["C(d) = (9/70)·d","C(d) = (70/9)·d","C(d) = 9d + 70","C(d) = 70d + 9"],
    sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
   steps:[{txt:"Identifikacija modela: linearna ovisnost cijene C o broju dana d. C(d) = (varijabilni dio) + (fiksni dio)."},{txt:"Varijabilni dio: ovisi o broju dana → cijena najma. 70 € PO DANU znači 70d za d dana."},{txt:"Fiksni dio: NE ovisi o broju dana → jednokratni trošak čišćenja = 9 € (plaća se JEDNOM, bez obzira na d)."},{txt:"Kombinacija: C(d) = 70d + 9."},{txt:"Provjera za d = 0 (nema boravka): C(0) = 0 + 9 = 9 € (samo čišćenje, hipotetski)."},{txt:"Provjera za d = 1 (jedan dan): C(1) = 70 + 9 = 79 € (jedan dan + čišćenje).",note:"verifikacija"},{txt:"Distractor analiza:\n  A) C(d) = (9/70)·d — krivo skaliranje, nema fiksnog dijela.\n  B) C(d) = (70/9)·d — krivo skaliranje.\n  C) C(d) = 9d + 70 — zamijenjeni fiksni i varijabilni dio (čišćenje DNEVNO, najam JEDNOKRATNO — nelogično).",note:"diagnostika"},{txt:"Odgovor: D — C(d) = 70d + 9.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: pomisli \"ako je d = 0, koliko platim?\" — to je fiksni iznos b. \"Ako je d = 1, koliko više?\" — to je stopa a.",note:"intuicija",final:true},{txt:"Definicija: u modelu y = kx + n, k je koeficijent smjera (varijabilna komponenta), n je slobodni član (fiksna komponenta).",note:"postupak",final:true}],
    why:["Pravilo: linearni model troška C(d) = a·d + b, gdje a = varijabilna stopa (po jedinici), b = fiksni iznos.","Definicija: u modelu y = kx + n, k je koeficijent smjera (varijabilna komponenta), n je slobodni član (fiksna komponenta).","Intuicija: pomisli \"ako je d = 0, koliko platim?\" — to je fiksni iznos b. \"Ako je d = 1, koliko više?\" — to je stopa a.","Alt metoda: razmišljati o \"graničnim slučajevima\" — d = 0, d = 1 — i provjeriti koja opcija daje smislene vrijednosti.","Česta greška: zamijeniti varijabilni i fiksni dio (uzeti 9 kao stopu po danu i 70 kao fiksno) — daje distractor C.","Tipičan propust: pomisliti da je čišćenje DNEVNO — pažljivo pročitati \"JEDNOKRATNI trošak\".","Veza s gradivom: linearni modeli se primjenjuju u financiranje, fiziku, ekonomiju (fiksni vs varijabilni troškovi).","Provjera: za 3 dana, C(3) = 210 + 9 = 219 €; za 7 dana, C(7) = 490 + 9 = 499 € — smisleni iznosi ✓."]
   },
-  {id:13,type:"mc",warn:"Pazi: nazivnik ≠ 0 → x ≠ −3; domena je ℝ bez −3.",topic:"func",points:1,
+  {id:13,type:"mc",warn:"Pazi: nazivnik ≠ 0 → x ≠ −3; domena je ℝ bez −3.",topic:"fun",points:1,
    q:"Što je domena funkcije f(x) = (x − 2)/(x + 3)?",
    opts:["ℝ ∖ {-3}","ℝ ∖ {-2}","ℝ ∖ {2}","ℝ ∖ {3}"],
    sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -723,14 +723,7 @@ export const qs = [
    sol:{ans:"dovoljan (2)",alt:["dovoljan","dovoljan (2)","2","Dovoljan (2)","ocjena 2"]},
    why:["Pravilo: MOD (modus) = vrijednost s NAJVEĆOM frekvencijom; jedan ili više moda mogući.","Definicija: tri mjere centralne tendencije — sredina (aritmetička), medijan (sredinski), mod (najčešći).","Intuicija: mod je \"najpopularnija\" vrijednost u uzorku.","Alt metoda: iz pita dijagrama, traži najveći isječak — taj odgovara modu.","Česta greška: brkati mod s medijanom (sredinski podatak po veličini) ili sredinom (prosjek).","Tipičan propust: dati BROJ pojavljivanja (= 7) umjesto VRIJEDNOSTI (= ocjena 2) koja se najčešće pojavljuje.","Veza s gradivom: statistika, pokazatelji centralne tendencije, raspored frekvencija.","Provjera: u kružnom dijagramu, segment 28 % (dovoljan) je najveći ✓."],
    img:"2024_jesen_B__30,2"
-  },
-  {_META:true,
-   auditedAt: "2026-05-21",
-   auditSource: "MAT B (osnovna razina, jesenski rok 2024., D-S068)",
-   auditStatus: "verified-full-max-pakG-qtext-resolved",
-   auditBy: "Daniel+Claude (Pak G+H+I+F-MAX + P1 + PakG cross-check + q-tekst audit)",
-   verified: "pdf+kljuc+vision+pedagogy-maximum+geometry+verbatim-key+qtext-verified",
-   notes: "Pak G q-tekst audit: 20/20 MC q-tekstovi cross-verified s PDF (D-S068). 10/10 SA q-tekstovi cross-verified. Nije bilo P0 razlika. Sim Q26,2 koristi supstituirani oblik f(x) = −x² − 2x + 1 (a = −1 iz Q26,1), PDF kaže 'f' generičko — semantički identično. math_lint: 0, pedagogy_scanner: 0 P0/P1/P2."}
+  }
 ];
 
 export const qImages = {

@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function SvgTabl24_2011LB(){
   const colW=[120,70,80,90];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";  // labela, c1, c2, c3
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";  // labela, c1, c2, c3
   const W=colW.reduce((a,b)=>a+b,0)+2, rh=32;
   const H=rh*2+2;
   const ox=1, oy=1;
@@ -18,11 +18,11 @@ function SvgTabl24_2011LB(){
   ];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     // Outer border
-    e("rect",{x:ox,y:oy,width:W-2,height:H-2,fill:"none",stroke:"#94a3b8",strokeWidth:1}),
+    e("rect",{x:ox,y:oy,width:W-2,height:H-2,fill:"none",stroke:"var(--muted)",strokeWidth:1}),
     // Vertical dividers (interior)
-    ...xs.slice(1,-1).map((xv,i)=>e("line",{key:"v"+i,x1:xv,y1:oy,x2:xv,y2:oy+rh*2,stroke:"#94a3b8",strokeWidth:0.8})),
+    ...xs.slice(1,-1).map((xv,i)=>e("line",{key:"v"+i,x1:xv,y1:oy,x2:xv,y2:oy+rh*2,stroke:"var(--muted)",strokeWidth:0.8})),
     // Horizontal divider (between rows)
-    e("line",{x1:ox,y1:oy+rh,x2:ox+W-2,y2:oy+rh,stroke:"#94a3b8",strokeWidth:0.8}),
+    e("line",{x1:ox,y1:oy+rh,x2:ox+W-2,y2:oy+rh,stroke:"var(--muted)",strokeWidth:0.8}),
     // Left column header background (var(--s2))
     e("rect",{x:ox,y:oy,width:colW[0],height:rh,fill:"var(--s2)"}),
     e("rect",{x:ox,y:oy+rh,width:colW[0],height:rh,fill:"var(--s2)"}),
@@ -54,13 +54,13 @@ function SvgZad27_2011LB(){
   // Igralište NMKJ; vertices iz pixel scana PDF reference (4× rez).
   // N(-20,30), M(20,30), K(20,-10), J(-10,-20). 1 podjela = 10 m.
   const W=300,H=260,pad={l:32,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-30,xMax=30,yMin=-30,yMax=40;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",b=_BLUE,mu="#94a3b8";
+  const t="var(--text)",b=_BLUE,mu="var(--muted)";
   // Pravokutnik vertices
   const N=[toX(-20),toY(30)];
   const M=[toX(20), toY(30)];
@@ -114,8 +114,8 @@ function SvgZad16_2011LB(){
   // α = kut AEB pri vrhu E (NCVVO: 45°). Verifikacija: ED=DA=a, ∠EDA=150°,
   //     ∠DEA=15°, ∠DEC=60°, α=∠AEC=∠DEC-∠DEA=60°-15°=45°.
   const W=180,H=240;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",b=_BLUE,g=_GOLD,mu="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",b=_BLUE,g=_GOLD,mu="var(--muted)";
   const side=110;
   // Square ABCD: A i B dolje, C i D gore
   const A=[35,            205];
@@ -204,8 +204,8 @@ function SvgZad14_2011LB(){
   // Cabinet projection (depth at 30°, scaled for clarity)
   // Vertex layout: front face ABFE, back face DCGH (offset by depth)
   const W=270,H=180;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",b=_BLUE,mu="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",b=_BLUE,mu="var(--muted)";
   const sc=12;  // 1 cm = 12 px
   const ang=30*Math.PI/180;
   const dx=sc*4*Math.cos(ang)*0.85;  // depth offset x
@@ -261,13 +261,13 @@ function SvgZad11_2011LB(){
   // Parabola: f(x) = -(2/9)·x·(x-6); tjeme (3,2); nultočke 0 i 6
   // Verified by pixel scan + polyfit on PDF reference (4× resolution).
   const W=240,H=180,pad={l:30,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-1.2,xMax=7.5,yMin=-2.5,yMax=2.8;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",b=_BLUE,mu="#94a3b8";
+  const t="var(--text)",b=_BLUE,mu="var(--muted)";
   // Sample parabola
   const pts=[];
   for(let x=xMin;x<=xMax;x+=0.06){
@@ -1046,8 +1046,7 @@ export const qs = [
     "Provjera: 24 točnih · 15 = 360; 16 netočnih · (−5) = −80; 360 − 80 = 280 ✓.",
     "Greška: zaboraviti minus pri 5(40 − t) (postaje +5(40 − t) → krivi t = 12)."
   ,"Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake."]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2011_ljeto",razina:"B",serial:"D-S004",totalPoints:40,mcCount:16,saCount:20,verified:"vision+pdf+pedagogy-premium+verbatim",auditNotes:"Q11/Q14/Q16/Q27 SVG redone iz pixel-verified PDF reference (Bug 22 protocol). Sadržajna paleta (#4a90d9 plava primary, #e05252 crvena, #50c878 zelena, #e9b446 gold) — Bug 37 compliant. Q11 parabola: vertex (3,2), zeros 0,6 (polyfit). Q27 vertices: N(−20,30), M(20,30), K(20,−10), J(−10,−20). Q17 i Q27,2: NCVVO ključ je TOČAN (−3/7 i √2600); prethodne tvrdnje o NCVVO greški su povučene. Multi-part Q-ovi imaju \"Zadatak X (Y. dio od Z): \" prefiks (Bug 36/38). Steps ≥4, why = 5 stavki (CONTENT QUALITY STANDARDS).",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+}
 ];
 
 export const qImages = {

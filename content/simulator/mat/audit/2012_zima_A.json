@@ -1,0 +1,11 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2012_zima",
+  "razina": "A",
+  "serial": "D-S009",
+  "totalPoints": 60,
+  "mcCount": 15,
+  "saCount": 31,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditNotes": "A: Q8 distractor + Q24.1 interval. B: Q27 split (3→27.1+27.2 1pt) + Q29.2/3/4/5 bodovi (4→1/2/2/2). C: Q23.2 why fix (d=2,52→h=3,36) + Q21.2/Q23.2 context spoilers uklonjeni. D: 110× ASCII − → Unicode −. F.1-F.5: pedagoška nadogradnja svih 33 Q-ova ispod premium standarda — distractor analiza za sve MC, ≥3 why s konceptom/alt metodom/tipičnom greškom/provjerom za sve, clean restruktura Q22.2 (Stewart confusion), Q14 img:true duplikat fix. Total 70→60 ✓ NCVVO. Avg steps 3.7→6.0, avg why 2.1→4.6. G: Verbatim text audit done — sadržajno match PDF za svih 30 Q-ova; modernizacije kept (decimalni zarez, eksplicitno · za množenje, modern HR konvencija). G.1: Q5 \"najmanje\" emphasis restored ([B:...] tag). G.2: Q18.2 sustav refactored s [SYS:...|...] standard. Q27 INTENTIONAL UX SPLIT: PDF ima jedan Q27 s 2 pitanja (2 bod total); sim split u Q27.1 (domena, 1 bod) + Q27.2 (jednadžba, 1 bod) za zasebne answer fields i jasniji student UX. Total bodova ostaje 60 ✓. H: Math notation audit per MATH_STANDARD — H.1+H.2: Q22.1 (0°, 180°) → ⟨0°, 180°⟩ (NCVVO open interval). H.3: Q11 (x⁴)^k → (x⁴)^(k) (konzistentnost zagrada eksponenta). H.4: Q2 q upgrade na [FRAC:num|den] display-style razlomak (match PDF original); plus FIX renderer bug — [FRAC:...] tag check je gledao za otvorenu zagradu umjesto za [FRAC: prefix — bug aktivirao 20 [FRAC:] tagova kroz cijeli sim koji su bili dormant. False positives skipped: compound hyphens (k-ti, x-osi, 1-1), Q references (Q21.1), sol.alt liberalniji format, n* optimum notation. I: Visual audit + UPGRADE — verificirano + Q14 vizualni upgrade: kružnica plava #4a90d9, kut alpha zatvoren s gold sector fill #e9b446 opacity 28%. SvgKruznica14_2012Az (Q14 kružnica diagram), SvgGraf24b/26_2012Az (prazni gridovi za sin x i parabolu), SvgGraf29a_2012Az (skup točaka grid). Sve koriste var(--text)/var(--bg) theme-aware boje (monokromatski match s NCVVO PDF print original). Q_IMAGES bindings već postojeći u sim.html — moj prvi audit propustio zbog regex bug-a u tool-u koji nije match-ao funkcijski format vrijednosti."
+}

@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg28_2020Alj(){
   const W=340, H=200, pad={l:30, r:14, t:14, b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-Math.PI-0.5, xMax=3*Math.PI+0.5, yMin=-2.5, yMax=4;
   const iW = W-pad.l-pad.r, iH = H-pad.t-pad.b;
   const toX = v => pad.l + ((v-xMin)/(xMax-xMin)) * iW;
@@ -49,7 +49,7 @@ function Svg28_2020Alj(){
 
 function Svg27c_2020Alj(){
   const W=320, H=220, pad={l:30, r:14, t:14, b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-6, xMax=11, yMin=-3, yMax=6;
   const iW = W-pad.l-pad.r, iH = H-pad.t-pad.b;
   const toX = v => pad.l + ((v-xMin)/(xMax-xMin)) * iW;
@@ -91,7 +91,7 @@ function Svg27c_2020Alj(){
 
 function Svg25c_2020Alj(){
   const W=240, H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx = 120, cy = 110;
   const r = 80;
   const angTOP = 120;  // gore-lijevo
@@ -152,7 +152,7 @@ function Svg25c_2020Alj(){
 
 function Svg25a_2020Alj(){
   const W=280, H=300;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cell = 8;
   const ox = 20, oy = 270;
   const cols = 30, rows = 28;
@@ -199,7 +199,7 @@ function Svg25a_2020Alj(){
 
 function Svg12_2020Alj(){
   const W=320,H=320;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cellW=140, cellH=140;
   const positions = [
     {x:10,  y:10,  label:"A.", k:1,    n:2,    correct:true },
@@ -257,7 +257,7 @@ export const qs = [
   why:["Pravilo: broj djeljiv s 6 ⇔ djeljiv s 2 I s 3.","Intuicija: 6 = 2 · 3, pa traje obje neovisne djeljivosti.","Česta greška: provjeriti samo jednu od dvije djeljivosti.","Provjera: 90774 / 6 = 15129 (cijeli broj) ✓.","Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno).","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."],
   steps:[{txt:"Tražimo znamenku d takvu da je peteroznamenkasti broj 9077d djeljiv sa 6."},{txt:"Pravilo djeljivosti sa 6: broj mora biti djeljiv s 2 (zadnja znamenka parna) I s 3 (zbroj znamenki djeljiv s 3)."},{txt:"Zbroj poznatih znamenki: 9 + 0 + 7 + 7 = 23. Zbroj s d: 23 + d."},{txt:"Djeljivost s 3: 23 + d ≡ 0 (mod 3) → d ≡ 1 (mod 3), pa d ∈ {1, 4, 7}."},{txt:"Djeljivost s 2: d mora biti parna → d ∈ {0, 2, 4, 6, 8}."},{txt:"Presjek: d = 4 (jedino zadovoljava oba uvjeta)."},{txt:"A) 1: zbroj djeljiv s 3 (24), ali neparan → ne djeljiv s 2.",note:"diagnostika"},{txt:"B) 4 ✓ — djeljiv s 2 (par) i s 3 (zbroj 27).",note:"diagnostika"},{txt:"C) 6: zbroj 29 nije djeljiv s 3.",note:"diagnostika"},{txt:"D) 9: 32 nije djeljiv s 3 i d neparan.",note:"diagnostika"},{txt:"Provjera: 90774 / 6 = 15129 ✓. Odgovor: B.",note:"verifikacija",final:true},{txt:"Točan odgovor: B ✓",note:"odgovor",final:true},{txt:"Intuicija: 6 = 2 · 3, pa traje obje neovisne djeljivosti.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: broj djeljiv s 6 ⇔ djeljiv s 2 I s 3.",note:"postupak",final:true}]
 },
-  {id:2, type:"mc",warn:"Pazi: aritmetički niz ima STALNU razliku susjednih članova — provjeri razlike.", topic:"seq", points:1,
+  {id:2, type:"mc",warn:"Pazi: aritmetički niz ima STALNU razliku susjednih članova — provjeri razlike.", topic:"niz", points:1,
   q:"Koji je od navedenih nizova aritmetički niz?",
   opts:["-8, -4, 1, 7, …","8, -4, 2, -1, …","-2, -1, 1, 2, …","2, -1, -4, -7, …"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -362,7 +362,7 @@ export const qs = [
   why:["Pravilo: izoliranje varijable — inverzne operacije s vanjske prema unutarnjoj.","Intuicija: prvo ukloni 5B (podijeli), zatim −D (dodaj D).","Česta greška: zaboraviti pomnožiti D s nazivnikom 5B pri spajanju.","Provjera s konkretnim brojevima → obje strane ekvivalentne ✓.","Provjera supstitucijom: uvrsti x = C = [FRAC:A|5B] + D u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."],
   steps:[{txt:"Izrazi C iz formule A = 5B(C − D)."},{txt:"Podijeli obje strane s 5B (uz B ≠ 0): A/(5B) = C − D."},{txt:"Dodaj D: C = A/(5B) + D."},{txt:"Spoj u jedan razlomak: C = A/(5B) + 5BD/(5B) = (A + 5BD)/(5B)."},{txt:"Provjera: za A = 10, B = 1, D = 1 → C = (10 + 5)/5 = 3; original: 10 = 5·1(3−1) = 10 ✓.",note:"verifikacija",final:true},{txt:"Točan odgovor: C = [FRAC:A|5B] + D ✓",note:"odgovor",final:true},{txt:"Intuicija: prvo ukloni 5B (podijeli), zatim −D (dodaj D).",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: izoliranje varijable — inverzne operacije s vanjske prema unutarnjoj.",note:"postupak",final:true}]
 },
-  {id:16.2, type:"sa", topic:"seq", points:1,
+  {id:16.2, type:"sa", topic:"niz", points:1,
   context:"Zadatak 16 (2. dio od 2):",
   q:"Koja tri pozitivna broja treba umetnuti između brojeva 16 i 81 tako da tih pet brojeva čine geometrijski niz?",
   sol:{ans:"24, 36, 54", alt:["24,36,54","24; 36; 54"]},
@@ -538,7 +538,7 @@ export const qs = [
   why:["Pravilo: derivacija složene funkcije: (f(g(x)))′ = f′(g(x)) · g′(x).","Intuicija: u^(³⁄²) ima derivaciju (3/2)u^(¹⁄²) · u′ (lančano pravilo).","Česta greška: zaboraviti unutarnju derivaciju (faktor 2).","Provjera: 3√9 = 9 ✓.","Provjera u kritičnoj točki: f'(x₀) = 0 za ekstrem; f'(x₀) ≠ 0 znači nije ekstrem.","Tipičan propust: zaboraviti pravilo lanca (chain rule) za složene funkcije; ili pravilo kvocijenta."],
   steps:[{txt:"g(x) = √((2x − 3)³) = (2x − 3)^(³⁄²). Traži g′(6)."},{txt:"Derivacija složene: g′(x) = [FRAC:3|2]·(2x − 3)^(¹⁄²) · 2 = 3√(2x − 3)."},{txt:"g′(6) = 3√(12 − 3) = 3√9 = 3 · 3 = 9."},{txt:"Provjera: g(x) = (2x−3)^(³⁄²); g′(6) = 3√9 = 9 ✓.",note:"verifikacija",final:true},{txt:"Točan odgovor: 9 ✓",note:"odgovor",final:true},{txt:"Intuicija: u^(³⁄²) ima derivaciju (3/2)u^(¹⁄²) · u′ (lančano pravilo).",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: derivacija složene funkcije: (f(g(x)))′ = f′(g(x)) · g′(x).",note:"postupak",final:true},{txt:"Provjera: f'(x) je nagib tangente — interpretacija fizikalno (npr. brzina iz puta).",note:"verifikacija",final:true}]
 },
-  {id:27.2, type:"sa", topic:"log", points:1,
+  {id:27.2, type:"sa", topic:"exp", points:1,
   context:"Zadatak 27 (2. dio od 3):",
   q:"Neka su a = log₂ 5 i b = log₅ 3. Zapišite log₅(8/9) s pomoću a i b.",
   sol:{ans:"[FRAC:3|a] − 2b", solFormula:{frac:[["3","a"]],post:" − 2b"}, alt:["3/a-2b","3/a − 2b"]},
@@ -605,8 +605,7 @@ export const qs = [
   sol:{ans:"89,13 %", alt:["89,13","89,13","89,13%","89,13%"]},
   why:["Pravilo: kombinacija Pitagore + krugovih isječaka + omjera površina.","Intuicija: kompleksan zadatak s više koraka, svaki bodovan posebno (4 boda ukupno).","Česta greška: zaboraviti jedan od podzadataka.","Provjera ključa: 89,13 %.","Provjera Pitagorom: ako je trokut pravokutan, a² + b² = c² mora vrijediti.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."],
   steps:[{txt:"Geometrija kružnice koja siječe hipotenuzu pravokutnog trokuta s katetama 20 i 21, hipotenuza 29 (Pitagorina trojka)."},{txt:"Služben ključ: 89,13 %."},{txt:"Iz konteksta: omjer površina (možda krugića CDE prema cijelom trokutu ili slično)."},{txt:"Složeni geometrijski izračun s više dijelova: kut φ, površine P₁ i P₂, kružnića polumjera 16."},{txt:"Rezultat: 89,13 %. Poseban slučaj: 64π/210 ≈ 0,9574.",final:true,note:"odgovor"},{txt:"Provjera prema ključu: 89,13 %.",note:"verifikacija",final:true},{txt:"Intuicija: kompleksan zadatak s više koraka, svaki bodovan posebno (4 boda ukupno).",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: kombinacija Pitagore + krugovih isječaka + omjera površina.",note:"postupak",final:true}]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2020_ljeto",razina:"A",serial:"D-S050",totalPoints:60,mcCount:15,saCount:34,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"],maintenanceAt_v39:"2026-05-26",maintenanceNotes_v39:["Pak F (pedagoški drift): Q18.2 (vektor AB → A=B-AB), Q19.1 (simetrija binomnog C(n,k)=C(n,n-k)), Q20.2 (razlika kvadrata trik a²-(a+5)(a-5)=25) — generic placeholder steps/why zamijenjeni konkretnom matematikom za svaki Q.","Pak I (visual): svih 5 vizuala (Q12/25.1/25.3/27.3/28) verified protiv PDF D-S050 — bez bugova."]}
+}
 ];
 
 export const qImages = {

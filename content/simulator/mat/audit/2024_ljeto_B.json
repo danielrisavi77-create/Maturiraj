@@ -1,0 +1,8 @@
+{
+  "auditedAt": "2026-05-21",
+  "auditSource": "MAT B (osnovna razina, ljetni rok 2024., D-S066)",
+  "auditStatus": "verified-full-max-pakG-qtext-resolved",
+  "auditBy": "Daniel+Claude (Pak G+H+I+F-MAX + P1 + PakG cross-check + q-tekst audit)",
+  "verified": "pdf+kljuc+vision+pedagogy-maximum+geometry+verbatim-key+qtext-verified",
+  "notes": "Pak G q-tekst audit: 20/20 MC q-tekstovi cross-verified s PDF (D-S066). Q11 step 2 transformacija jednadžbe iz 4x²=5x+1 na standardni oblik dodana. Q20 distractor ne spominje 'odlične ocjene' (krivi kontekst). Q21,2 ans 'npr. 30' → 'npr. 115' (match ključ). Q22,2 pedagogy tumačenje fiksirano da odgovara službenom ključu 62/283 (vjerojatnost odabranog TRSA s 4 grozda). SA q-tekstovi spot-check OK. math_lint: 0, pedagogy_scanner: 0 P0/P1/P2."
+}

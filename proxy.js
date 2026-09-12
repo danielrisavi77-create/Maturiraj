@@ -3,6 +3,7 @@
 
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
+import { getEffectiveTier, isPaidTier, isProTier } from '@/lib/billing/getEffectiveTier'
 
 export async function proxy(request) {
   let supabaseResponse = NextResponse.next({ request })
@@ -50,6 +51,26 @@ export async function proxy(request) {
     request.nextUrl.pathname.startsWith(route)
   )
 
+  // Dev bypass — owner email zaobilazi SAMO paid gate (/discere), nikad Pro rute.
+  // Pro rute moraju ostati usklađene sa serverskim guardom (requirePro → getUserTier),
+  // koji bypass ne poznaje; inače se stranica otvori, a njezini AI pozivi vraćaju 403.
+  const isDevBypass = !!process.env.DEV_BYPASS_EMAIL && !!user?.email
+    && user.email === process.env.DEV_BYPASS_EMAIL
+
+  // Tier se čita najviše jednom po zahtjevu (isti helper kao useAuth i requirePro).
+  let effectiveTier = null
+  async function readTier() {
+    if (effectiveTier !== null) return effectiveTier
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('plan_type, pro_expires_at')
+      .eq('id', user.id)
+      .single()
+
+    effectiveTier = getEffectiveTier(profile)
+    return effectiveTier
+  }
+
   if (isPaidRequired) {
     if (!user) {
       const url = request.nextUrl.clone()
@@ -58,21 +79,7 @@ export async function proxy(request) {
       return NextResponse.redirect(url)
     }
 
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('plan_type, pro_expires_at')
-      .eq('id', user.id)
-      .single()
-
-    // Dev bypass — owner email zaobilazi plan gate
-    const isDevBypass = process.env.DEV_BYPASS_EMAIL && user.email === process.env.DEV_BYPASS_EMAIL
-
-    const hasPaid =
-      isDevBypass ||
-      ((profile?.plan_type === 'pro' || profile?.plan_type === 'starter') &&
-      (!profile?.pro_expires_at || new Date(profile.pro_expires_at) > new Date()))
-
-    if (!hasPaid) {
+    if (!isDevBypass && !isPaidTier(await readTier())) {
       const url = request.nextUrl.clone()
       url.pathname = '/pro'
       url.searchParams.set('from', 'discere')
@@ -94,17 +101,7 @@ export async function proxy(request) {
       return NextResponse.redirect(url)
     }
 
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('plan_type, pro_expires_at')
-      .eq('id', user.id)
-      .single()
-
-    const isPro =
-      profile?.plan_type === 'pro' &&
-      (!profile?.pro_expires_at || new Date(profile.pro_expires_at) > new Date())
-
-    if (!isPro) {
+    if (!isProTier(await readTier())) {
       const url = request.nextUrl.clone()
       url.pathname = '/pro'
       return NextResponse.redirect(url)

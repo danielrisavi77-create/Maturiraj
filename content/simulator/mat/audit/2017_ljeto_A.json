@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2017_ljeto",
+  "razina": "A",
+  "serial": "D-S038",
+  "totalPoints": 60,
+  "mcCount": 15,
+  "saCount": 26,
+  "verified": "sympy+pdf",
+  "auditNotes": "F: 15/15 MC Pak F done; H: math_lint 0 findings",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}
