@@ -3,8 +3,95 @@
 /* AUTO-GENERATED engine core from mat-simulator monolith (AST-extracted).
    SVG (628) + exam data (70) + Q_IMAGES externalized. Exposes Sim + ErrorBoundary + __setQImages. */
 import React from 'react';
+// 3.2: ocjenjivanje kratkih odgovora je jedan izvor istine (lib/mat-grading.ts).
+import { isAnswerCorrect, normalizeAnswer, numEquals } from "@/lib/mat-grading";
 let EXAMS = {};
 const __MAT = { Q_IMAGES: {} };
+
+// ── 2.1: ispiti se ucitavaju na zahtjev ─────────────────────────────────────
+// Engine vise ne dobiva gotov EXAMS (7 MB); dobiva katalog iz index.json i loader.
+// Pitanja stizu s loadExam(key), a cross-exam modovi s loadAllExams(onProgress).
+let __examLoader = null;
+const __examSubs = new Set();
+const __examPending = {};
+function __notifyExams(){ __examSubs.forEach(function(f){ try{ f(); }catch(e){} }); }
+export function __onExamsChanged(fn){ __examSubs.add(fn); return function(){ __examSubs.delete(fn); }; }
+export function __setExamLoader(fn){ __examLoader = (typeof fn === "function") ? fn : null; }
+// Katalog = meta bez pitanja (index.json). Home se iscrtava bez ijednog chunka.
+export function __setExamCatalog(list){
+  const next = {};
+  (list||[]).forEach(function(m){
+    if(!m || !m.key) return;
+    next[m.key] = { key:m.key, year:m.year, season:m.season, razina:m.razina, label:m.label,
+      duration:(m.durationSec||m.duration), questionCount:(m.questionCount||0),
+      locked:!!m.locked, qs:[], _loaded:false };
+  });
+  EXAMS = next; __notifyExams();
+}
+// Spajanje gotovih ispita (uvezeni/custom) — dolaze s pitanjima, nista se ne dohvaca.
+export function __addExams(map){
+  Object.keys(map||{}).forEach(function(k){ const x=map[k]; if(x) EXAMS[k]=Object.assign({},x,{_loaded:true}); });
+  __notifyExams();
+}
+export function isExamLoaded(k){ const x=EXAMS[k]; return !!(x && (x._loaded || (x.qs && x.qs.length))); }
+export function allExamsLoaded(){ return Object.keys(EXAMS).every(isExamLoaded); }
+export function loadExam(key, quiet){
+  const ex = EXAMS[key];
+  if(!ex) return Promise.resolve(null);
+  if(isExamLoaded(key) || !__examLoader) return Promise.resolve(ex);
+  if(__examPending[key]) return __examPending[key];
+  __examPending[key] = Promise.resolve().then(function(){ return __examLoader(key); }).then(function(m){
+    const qs = (m && m.qs) ? m.qs.filter(function(q){ return q && !q._META; }) : (EXAMS[key].qs||[]);
+    EXAMS[key] = Object.assign({}, EXAMS[key], { qs:qs, _loaded:true });
+    if(m && m.qImages) Object.assign(__MAT.Q_IMAGES, m.qImages);
+    delete __examPending[key];
+    if(!quiet) __notifyExams();
+    return EXAMS[key];
+  }).catch(function(err){
+    delete __examPending[key];
+    try{ console.warn("[mat] loadExam", key, err); }catch(e){}
+    return EXAMS[key];
+  });
+  return __examPending[key];
+}
+// Postupno ucitavanje svih ispita uz progress (0..1) za cross-exam modove.
+export function loadAllExams(onProgress){
+  const keys = Object.keys(EXAMS).filter(function(k){ return !isExamLoaded(k); });
+  const total = keys.length;
+  if(!total || !__examLoader){ if(onProgress) onProgress(1); return Promise.resolve(); }
+  let done = 0;
+  if(onProgress) onProgress(0);
+  const B = 6;
+  function step(i){
+    if(i >= total){ __notifyExams(); return Promise.resolve(); }
+    return Promise.all(keys.slice(i, i+B).map(function(k){
+      return loadExam(k, true).then(function(){ done++; if(onProgress) onProgress(done/total); });
+    })).then(function(){ __notifyExams(); return step(i+B); });
+  }
+  return step(0);
+}
+// ── 2.2: nerdamer (436 KB) tek kad zatreba — kalkulator, solver, provjera ───
+let __ndPromise = null;
+function __ensureNerdamer(){
+  if(typeof window === "undefined") return Promise.resolve(null);
+  if(window.nerdamer) return Promise.resolve(window.nerdamer);
+  if(__ndPromise) return __ndPromise;
+  __ndPromise = new Promise(function(res){
+    try{
+      if(window.__MAT_ENSURE_NERDAMER__){ window.__MAT_ENSURE_NERDAMER__().then(function(){ res(window.nerdamer||null); }); return; }
+      const ID = "mat-nerdamer";
+      let sc = document.getElementById(ID);
+      if(!sc){
+        sc = document.createElement("script");
+        sc.id = ID; sc.src = "/sim/nerdamer.js"; sc.async = true;
+        document.head.appendChild(sc);
+      }
+      sc.addEventListener("load", function(){ res(window.nerdamer||null); }, {once:true});
+      sc.addEventListener("error", function(){ res(null); }, {once:true});
+    }catch(e){ res(null); }
+  });
+  return __ndPromise;
+}
 "use strict";
 const{createElement:e,useState,useEffect,useMemo,useRef,Fragment}=React;
 function vc(n){return"var("+n+")";}
@@ -391,700 +478,14 @@ function _svg29e_2011LjetoA(showCurve){
   }
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"0 auto"}},...els);
 }
-const QS_2012_JESEN_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 2. rok 2012.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2010_JESEN_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 2. rok 2010.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v29 alat)",
-  driftAuditResult: "Q9, Q23.1, Q27.2 — sve intermediate vrijednosti complex izračuna (oplošje, EUR→HRK procjene, Pitagora squarings). intermediates field dodan; 0 CRITICAL nakon alat v29.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2010_LJETO_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 1. rok 2010.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v29 alat)",
-  driftAuditResult: "Q27.3 (Karmela Pitagora path) — intermediates field dodan. Plus fix: koordinate ŠKOLA(1200,500) → ŠKOLA(1200, 500) s razmakom (NUM_RE false positive 1200,500 = 1200.5).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2013_JESEN_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 2. rok 2013.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2012_ZIMA_B_META = {
-  auditedAt: "2026-05-16",
-  auditSource: "MAT B (osnovna razina, zimski rok 2012., D-S033)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude+daniel (full pipeline + Pak F-deep augmentation)",
-  verified: "sympy+pdf+visual+pedagogy-deep",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 110},
-  metricsSteps: 6.1,
-  metricsWhy: 8.4,
-  notes: "Stages 1-5 applied: math fixes (Unicode super, [FRAC:], decimal point, context multi-part); orphan cleanup (legacy bindings removed); alt expansion; smart augmenter (Pak F-DEEP, 18 topic templates); ex polje za MC 2pt. Avg steps 6.1 (ref 6.0), why 8.4 (ref 4.7). Tool false positives (PED-WHY-LOW, PED-STEPS-LOW na Q-ovima s [FRAC:] tagovima u entries) prihvaćeni — accepted limitation (Bug #5/#7, isti root cause kao u prethodnim auditima)."
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2011_JESEN_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 2. rok 2011.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "Q13 (aritmetička sredina A=-100,C=-46 sum 146), Q28.1 (energetske kcal vrijednosti iz tablice 341,60) — intermediates field × 2.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2011_ZIMA_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, zima 2011.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2010_ZIMA_B_META = {
-  auditedAt: "2026-05-16",
-  auditSource: "MAT B (osnovna razina, zimski rok 2010., D-S036)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude+daniel (full pipeline + Pak F-deep augmentation)",
-  verified: "sympy+pdf+visual+pedagogy-deep",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 130},
-  metricsSteps: 6.1,
-  metricsWhy: 10.0,
-  notes: "Stages 1-5 applied: math fixes (Unicode super, [FRAC:], decimal point, context multi-part); orphan cleanup (legacy bindings removed); alt expansion; smart augmenter (Pak F-DEEP, 18 topic templates); ex polje za MC 2pt. Avg steps 6.1 (ref 6.0), why 10.0 (ref 4.7). Tool false positives (PED-WHY-LOW, PED-STEPS-LOW na Q-ovima s [FRAC:] tagovima u entries) prihvaćeni — accepted limitation (Bug #5/#7, isti root cause kao u prethodnim auditima)."
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2010_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2010.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2014_JESEN_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 2. rok 2014.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2015_JESEN_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 2. rok 2015.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2017_LJETO_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 1. rok 2017.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2019_LJETO_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 1. rok 2019.) — D-S045",
-  auditStatus: "verified-full",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  visionAuditedAt: "2026-05-23",
-  visionAuditSource: "Bojan Kovačić rješenja",
-  maintenanceNotes_v312: [
-    "Q19.1: steps rewrite — pravi brojevi iz tablice (7787, 7911, 8620); prošli audit koristio halucinirane brojeve (8050, 7990, 8278) koji slučajno daju isti zbroj.",
-    "Q25.2: steps rewrite — pravi brojevi posjetitelja (481, 1952, 3327, ukupno 5760); prošli audit imao generičko 'pretpostavi 90° i 148°'.",
-    "Q26.1: steps rewrite — konkretni trapez s a=6.5, b=4, h=10 (P=(a+b)/2·h=52.5); prošli audit bio vrlo generičan.",
-    "Q27.1: steps pojednostavljeni — simetrija f oko x=2, uklonjena confused logika o nul-točkama.",
-    "Q27.2: steps rewrite — pravi cjelobrojne točke g (−1,−4), (0,−1), (1,2), (2,5); prošli audit koristio halucinirane točke (−1,0) i (2,9)."
-  ],
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 5}
-};
-const QS_2019_JESEN_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 2. rok 2019.) — D-S043",
-  auditStatus: "verified-full",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  visionAuditedAt: "2026-05-23",
-  visionAuditSource: "Bojan Kovačić rješenja",
-  maintenanceNotes_v312: [
-    "Q1: SVG interval krajnja točka 6→6.5 (otvoreni rub na 6.5, ne 6); steps+why rewrite za ⟨4, 6.5⟩; duplikat img:true uklonjen.",
-    "Q13: SVG polinom zamijenjen kvartna→parabola (5/9)(x-4)²-4 (min točno na x=4, samo opcija D zadovoljava NCVVO key); steps rewrite.",
-    "Q24.1: SVG tablica reorder (nepoznato sad u zadnjem stupcu, brojevi −42/28/0 točno raspoređeni po PDF-u).",
-    "Q25.1: SVG koordinate B(9,0) D(9,5) H(5,5) E(0,2) (shoelace = 28.5 ✓ NCVVO key); steps rewrite s konkretnim koordinatama.",
-    "Q25.2: sol.alt prošireno na 6 varijanti.",
-    "Q27.1: uklonjen kopirani 'Pitagora' step (peterokut zadatak, irrelevant).",
-    "Q28.1: steps rewrite — postotci 60/56/36/24 (prošli audit imao 60/80/36/36 = halucinacija, ne match PDF-u i Q28.3 zadatku).",
-    "Q28.3: uklonjen kopirani 'ℕ ℤ ℚ ℝ' step (irrelevant za postotak/brojevni zadatak)."
-  ],
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 8}
-};
-const QS_2020_LJETO_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 1. rok 2020.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2021_JESEN_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 2. rok 2021.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  visionAuditedAt: "2026-05-23",
-  visionAuditSource: "Bojan Kovačić rješenja",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v26 alat)",
-  driftAuditResult: "0 CRITICAL, 0 WARN — SVG data array (Svg26_2021Bjesen, Svg27_2021Bjesen) već sadrži sve podatke za Q26.1/Q26.2/Q27.3",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2022_JESEN_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 2. rok 2022.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: dodani notes (odgovor, postupak, intuicija) i 2-3 nove why entries (Provjera, Tipičan propust, Veza). Anatomy zaokružena na 100%.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2020_JESEN_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 2. rok 2020.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2021_LJETO_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 1. rok 2021.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2024_LJETO_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 1. rok 2024.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2022_LJETO_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 1. rok 2022.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: dodani notes (odgovor, postupak, intuicija) i 2-3 nove why entries (Provjera, Tipičan propust, Veza). Anatomy zaokružena na 100%.",
-  visionAuditedAt: "2026-05-23",
-  visionAuditSource: "Bojan Kovačić rješenja",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v28 alat)",
-  driftAuditResult: "0 CRITICAL — Svg6_2022LjetoB već sadrži years/dos/ods arrays s realnim podacima. Alat v28 dodao generic numeric array extraction (ANY const X = [N,N,N,...]).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2025_LJETO_B_META = {
-  auditedAt: "2026-05-22",
-  auditSource: "MAT B (osnovna razina, ljetni rok 2025., D-S072)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakGNote: "Q-text + opts + sol verbatim iz PDF; sol.cl niz 100% match s PDF KEY (D C C B D C C B B D A B D C A D B D C C).",
-  pakFDeepNote: "Pak F-DEEP upgrade za sve 40 Q-ova: 8+ steps (s note:odgovor/verifikacija/diagnostika/postupak/intuicija) + 6-7 why entries (Pravilo + Postupak numerirano + Intuicija + Greška 1 + Greška 2 + Alt metoda + Provjera). Razina ekvivalentna 2019/2020 verified-full-detailed ispitima.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 14}
-};
-const QS_2023_LJETO_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 1. rok 2023.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: dodani notes (odgovor, postupak, intuicija) i 2-3 nove why entries (Provjera, Tipičan propust, Veza). Anatomy zaokružena na 100%.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2023_JESEN_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 2. rok 2023.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: dodani notes (odgovor, postupak, intuicija) i 2-3 nove why entries (Provjera, Tipičan propust, Veza). Anatomy zaokružena na 100%.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2025_JESEN_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 2. rok 2025.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "Q32,1 (kosinusov za |BC| u trokutu) — intermediates field; Q35,1 (godine 2021./2011. u opts/context) — alat v30 NUM_RE fix dopušta trailing dot ako followed by non-digit.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2012_LJETO_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 1. rok 2012.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2012_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2012.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2011_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2011.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2011_LJETO_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 1. rok 2011.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy 100%; topic-aware contextual content; sol.alt coverage 100%.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2013_LJETO_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 1. rok 2013.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2014_LJETO_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 1. rok 2014.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2015_LJETO_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 1. rok 2015.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2017_JESEN_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 2. rok 2017.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2024_JESEN_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 2. rok 2024.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v29 alat)",
-  driftAuditResult: "Q3 (godine s . suffix u opts) — fixed by alat v29 opts pre-process; Q28.1, Q28.2 (trig SAS formula + kosinusov) — intermediates field dodan. 0 CRITICAL nakon alat v29.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2016_JESEN_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 2. rok 2016.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2016_LJETO_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 1. rok 2016.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2018_LJETO_B_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT B (osnovna razina, 1. rok 2018.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2018_JESEN_B_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT B (osnovna razina, 2. rok 2018.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2010_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2010.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2012_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2012.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2013_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2013.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2013_JESEN_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 2. rok 2013.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2014_LJETO_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 1. rok 2014.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "Q30 (trkaća staza osmica — vanjska tangenta + kružni lukovi) — intermediates field dodan. 4 CRIT → 0.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2014_JESEN_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 2. rok 2014.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v29 alat)",
-  driftAuditResult: "Q13 (trapez √272 quadratic), Q29.3 (četverokut kosinusov BD² 29708) — intermediates field × 2.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2015_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2015.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2015_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2015.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2016_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2016.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2016_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2016.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2017_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2017.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2017_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2017.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2018_LJETO_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 1. rok 2018.)",
-  auditStatus: "verified-full-audit-2026-05",
-  auditBy: "claude-opus-4-7",
-  pakAudit2026Note: "Pak F-DEEP corrections: Q26.2 + Q28 field order swapped (steps↔why). Drift clean. Content_lint G1/G2 false positive za [...] u alt strings — alat bug, data OK.",
-  visionAuditedAt: "2026-05-23",
-  visionAuditSource: "Bojan Kovačić rješenja + Pak F-DEEP",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL drift",
-  pedagogyAuditedAt: "2026-05-27",
-  pedagogyAuditResult: "P0=0, P1=0 (all real bugs fixed)",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 3}
-};
-const QS_2018_JESEN_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 2. rok 2018.)",
-  auditStatus: "verified-full-audit-2026-05",
-  auditBy: "claude-opus-4-7",
-  pakAudit2026Note: "Pak F-DEEP corrections: Q4 [FRAC:] u opts → Unicode fraction slash (Bug R1), Q22.2 field order swapped (steps↔why). Drift clean. Content_lint G1 false positive za [...] u alt strings — alat bug, data OK.",
-  visionAuditedAt: "2026-05-23",
-  visionAuditSource: "Bojan Kovačić rješenja + Pak F-DEEP",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL drift",
-  pedagogyAuditedAt: "2026-05-27",
-  pedagogyAuditResult: "P0=0, P1=0 (all real bugs fixed)",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 3}
-};
-const QS_2019_LJETO_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 1. rok 2019.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2019_JESEN_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 2. rok 2019.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "0 CRITICAL — intermediates field dodan za auxiliary calc values (final sweep batch).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2020_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2020.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2020_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2020.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2021_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2021.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2021_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2021.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: anatomy normalizirana (svi notes), why entries ≥6, dodani postupak/intuicija/verifikacija steps gdje su manjkali.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2022_LJETO_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 1. rok 2022.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v30 alat)",
-  driftAuditResult: "Q35.1 (Maja/Iva put, kosinusov poučak za stranicu nasuprot tupom kutu) — intermediates field dodan. 4 CRIT → 0.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2022_JESEN_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 2. rok 2022.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: dodani notes (odgovor, postupak, intuicija) i 2-3 nove why entries (Provjera, Tipičan propust, Veza). Anatomy zaokružena na 100%.",
-  visionAuditedAt: "2026-05-23",
-  visionAuditSource: "Bojan Kovačić rješenja",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v27 alat)",
-  driftAuditResult: "0 CRITICAL — Q39.1 fix: steps[5] P₂ harmoniziran s sol (11296,5 → 11306,51 m²); intermediates field dodan za kompleksne trig međuvrijednosti.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 1}
-};
-const QS_2023_LJETO_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 1. rok 2023.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v29 alat)",
-  driftAuditResult: "Q40 (4 odašiljača na otoku, lens/preklapanje kružnica, arccos+sqrt izračun) — intermediates field dodan. 5 CRIT → 0.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2023_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2023.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP boost: dodani notes (odgovor, postupak, intuicija) i 2-3 nove why entries (Provjera, Tipičan propust, Veza). Anatomy zaokružena na 100%.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2024_LJETO_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 1. rok 2024.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP normalizacija: distractor analiza→diagnostika; dodani missing notes (odgovor, postupak, intuicija, verifikacija). Anatomy 100% za sve Q-ove. Steps i why entries već su bili Pak F-DEEP standardu.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2024_JESEN_A_META = {
-  auditedAt: "2026-05-23",
-  auditSource: "MAT A (viša razina, 2. rok 2024.)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakFDeepNote: "Pak F-DEEP normalizacija: distractor analiza→diagnostika; dodani missing notes (odgovor, postupak, intuicija, verifikacija). Anatomy 100% za sve Q-ove. Steps i why entries već su bili Pak F-DEEP standardu.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-, visionAuditedAt: "2026-05-23", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2025_LJETO_A_META = {
-  auditedAt: "2026-06-21",
-  auditSource: "MAT A (viša razina, ljetni rok 2025., D-S072)",
-  auditStatus: "verified-vision-confirmed-PDF-verbatim",
-  auditBy: "claude-opus-4-7 (odgovori) + verbatim pass 2026-06-21",
-  pakGNote: "Sol.cl niz 100% match s PDF KEY (B C C D C D B C A D B D C A D A A B C C); svih 25 SA + podzadataka sol.ans 100% match s kljucem.",
-  pakGVerbatimNote: "Puni verbatim Pak G (2026-06-21): svih 45 Q tekstova vizualno usporedjeno s PDF D-S072 @ 200 DPI. Fixevi: Q13 (verbatim 'prikazan na skici', maknut filler i (=kut CBE)); Q18 (drugi pravac x+By-1=0, ranije pogresno -10 - ne utjece na tocan odgovor B jer kut ovisi samo o nagibu); Q39.2 (dodano 'prirodno podrucje definicije'). Figure Q5/7/9/11/13/15/17/25/36/38 prisutne, podaci tocni (odgovori 100%); SVG-render fidelity nije pixel-provjerena.",
-  pakFDeepNote: "Pak F-DEEP upgrade za svih 50 Q-objekata (20 MC + 24 SA + 6 extended response). 8+ steps s note:odgovor/verifikacija/diagnostika/postupak/intuicija + 6-7 why entries (Pravilo + Postupak + Intuicija + Greška 1 + Greška 2 + Alt + Provjera).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 153}
-};
-const QS_2025_JESEN_A_META = {
-  auditedAt: "2026-05-22",
-  auditSource: "MAT A (viša razina, jesenski rok 2025., D-S069)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "claude-opus-4-7",
-  pakGNote: "Sol.cl niz 100% match s PDF KEY (D A B B C C D D A A C C C B B C B D A B); 26/29 SA sol.ans verbatim match.",
-  pakFDeepNote: "Pak F-DEEP upgrade za svih 50 Q-objekata (20 MC + 24 SA + 6 extended response). 8+ steps s note:odgovor/verifikacija/diagnostika/postupak/intuicija + 6-7 why entries (Pravilo + Postupak + Intuicija + Greška 1 + Greška 2 + Alt + Provjera).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 150}
-};
-const QS_2011_JESEN_A_META = {
-  auditedAt: "2026-05-27",
-  auditSource: "MAT A (viša razina, 2. rok 2011.)",
-  auditStatus: "verified-full-drift-clean",
-  auditBy: "claude-opus-4-7",
-  driftAuditedAt: "2026-05-27",
-  driftAuditBy: "steps_content_audit v1.0 (v29 alat)",
-  driftAuditResult: "Q8 (210° iz 7π/6), Q25.1 (1586 = 61·26 vector cross), Q30 (kompleksni kružni vijenac s arccos) — intermediates field × 3.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 0}
-};
-const QS_2010_ZIMA_A_META = {
-  auditedAt: "2026-04-24",
-  auditSource: "MAT A D-S003 (viša razina, zimski rok 2010)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "Claude+Daniel",
-  issueCount: {
-    critical: 8,
-    medium: 25,
-    low: 5,
-    resolved: 38
-  }
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2011_ZIMA_A_META = {
-  auditedAt: "2026-04-24",
-  auditSource: "MAT A D-S005 (viša razina, zimski rok 2011)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "Claude+Daniel",
-  issueCount: {
-    critical: 5,
-    medium: 18,
-    low: 4,
-    resolved: 27
-  },
-  notes: "MC ključevi: 14/15 korektni, [15] bio D → popravljen na B. KRITIČNO popravljeno: [5] opts notation ⟨⟩; [13] opts B i D pogrešni sadržaj (x⁴-3x²+2 i log x² − log x); [15] q \"|BD|=10\" → \"|BD|=√10\" (OCR greška, isti pattern kao ZIMA 2010 [9]), sol.cl D → B; [28a] typo \"žoarišta\" → \"žarišta\". Q dopune za 2, 4, 9, 14, 16, 17, 27, 29a, 29b, 29d, 29e, 30. Context blokovi za multi-part (19, 20, 21, 23, 24, 25, 28). Img flagovi za 10, 15, 20a, 20b, 26, 27."
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-const QS_2012_ZIMA_A_META = {
-  auditedAt: "2026-04-24",
-  auditSource: "MAT A D-S009 (viša razina, zimski rok 2012)",
-  auditStatus: "verified-vision-confirmed-PDF",
-  auditBy: "Claude+Daniel",
-  issueCount: {
-    critical: 6,
-    medium: 18,
-    low: 5,
-    resolved: 29
-  }
-, visionAuditedAt: "2026-05-24", visionAuditSource: "Bojan Kovačić rješenja"};
-function nrm(s){return(s||"").toLowerCase().trim().replace(/[.,!?;:]/g,"").replace(",",".")}
-function numEq(a,b){
-  const pa=parseFloat((a||"").replace(",",".")),pb=parseFloat((b||"").replace(",","."));
-  if(isNaN(pa)||isNaN(pb)) return nrm(a)===nrm(b);
-  return Math.abs(pa-pb)<0.01;
-}
+// 5.2: QS_*_META audit bilješke (70 konstanti) maknute iz klijentskog bundlea — žive u content/simulator/mat/audit/.
+// 3.2: nrm/numEq/chk su samo tanki omotaci oko lib/mat-grading.ts.
+function nrm(s){return normalizeAnswer(s);}
+function numEq(a,b){return numEquals(a,b);}
+function __nd(){ try{ return (typeof window!=="undefined" && window.nerdamer) || null; }catch(e){ return null; } }
 function hasAns(a){if(a===undefined||a===null||a==="")return false;if(Array.isArray(a))return a.length>0;return true}
-function chk(q,a){
-  if(q.type==="mc") return q.sol.cl==="?"?null:a===q.sol.cl;
-  if(q.type==="num"||q.type==="calc"){
-    const alts=[q.sol.ans,...(q.sol.alt||[])];
-    return alts.some(x=>numEq(String(x),String(a)));
-  }
-  if(q.type==="sa"||q.type==="pa"){
-    const alts=[q.sol.ans,...(q.sol.alt||[])];
-    return alts.some(x=>nrm(x)===nrm(a));
-  }
-  return null;
-}
+// Vraca true | false | null (null = ne moze se automatski ocijeniti, npr. proof).
+function chk(q,a){ return isAnswerCorrect(q,a,{nerdamer:__nd()}); }
 function grade(p){return p>=85?5:p>=70?4:p>=55?3:p>=40?2:1}
 function calcXpGain(pct,total){return Math.round(pct*0.5+total*2+(pct>=70?20:0))}
 function fmt2(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
@@ -1656,23 +1057,23 @@ function UpgradeModal({onClose}){
       style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)",padding:"32px 28px",maxWidth:400,width:"100%",textAlign:"center",boxShadow:"var(--shadow-lg)"}
     },
       e("div",{style:{fontSize:44,marginBottom:16}},"✨"),
-      e("div",{style:{fontFamily:"var(--fh)",fontSize:22,marginBottom:8}},"Discere Pro"),
+      e("div",{style:{fontFamily:"var(--fh)",fontSize:22,marginBottom:8}},PLAN_NAME),
       e("div",{style:{fontSize:14,color:"var(--muted)",lineHeight:1.7,marginBottom:24}},
         "AI ocjena tvojeg postupka rješavanja dostupna je na ",
-        e("strong",{style:{color:"var(--text)"}},"Pro planu"),
+        e("strong",{style:{color:"var(--text)"}},PLAN_NAME+" planu"),
         ".",e("br"),
-        "Pro korisnici dobivaju personaliziranu povratnu informaciju  -  AI analizira tvoj postupak, daje djelomične bodove i objašnjava točno gdje si pogriješio."
+        PLAN_NAME+" korisnici dobivaju personaliziranu povratnu informaciju  -  AI analizira tvoj postupak, daje djelomične bodove i objašnjava točno gdje si pogriješio."
       ),
       e("div",{style:{display:"flex",flexDirection:"column",gap:10}},
         e("button",{
           className:"btn btn-gold",
           style:{padding:"13px",fontSize:15,width:"100%"},
-          onClick:()=>{ window.parent?.postMessage({type:"DISCERE_UPGRADE"},"*"); onClose(); }
-        },"Nadogradi na Pro →"),
-        e("button",{className:"btn btn-g",style:{padding:"10px",width:"100%"},onClick:onClose},"Ostani na Standardu")
+          onClick:()=>{ askUpgrade(); onClose(); }
+        },planCta()),
+        e("button",{className:"btn btn-g",style:{padding:"10px",width:"100%"},onClick:onClose},"Ne sada")
       ),
       e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:16}},
-        "Standardna objašnjenja s koracima rješenja dostupna su i na Standard planu."
+        "Standardna objašnjenja s koracima rješenja dostupna su i bez "+PLAN_NAME+" plana."
       )
     )
   );
@@ -2505,6 +1906,7 @@ function CalcQuestion({q,answer,onAnswer,isReviewed,isPractice,isExamMode,onViz}
   const[aiResult,setAiResult]=useState(null);
   const[showSolution,setShowSolution]=useState(true);
   const[checked,setChecked]=useState(false);
+  const[,_bumpNd]=useState(0);
 
   useEffect(()=>{
     setPostupak("");setAiState("idle");setAiResult(null);
@@ -2512,17 +1914,11 @@ function CalcQuestion({q,answer,onAnswer,isReviewed,isPractice,isExamMode,onViz}
   },[q.id]);
 
   const needsFinalAnswer=q.type==="num"||q.type==="calc"||q.type==="sa"||q.type==="pa";
-  const finalCorrect=needsFinalAnswer?(()=>{
-    if(!hasAns(answer)) return null;
-    if(q.type==="sa"||q.type==="pa"){
-      const alts=[q.sol.ans,...(q.sol.alt||[])];
-      return alts.some(x=>nrm(String(x))===nrm(String(answer)));
-    }
-    const alts=[q.sol.ans,...(q.sol.alt||[])];
-    return alts.some(x=>numEq(String(x),String(answer)));
-  })():null;
+  const finalCorrect=needsFinalAnswer?(hasAns(answer)?chk(q,answer):null):null;
 
   function handleCheck(){
+    // 2.2: CAS se ucitava tek na provjeru; kad stigne, ponovo ocijeni.
+    __ensureNerdamer().then(function(nd){ if(nd) _bumpNd(function(x){ return x+1; }); });
     setChecked(true);
     if(finalCorrect===true) window._playSound?.("correct");
     else if(finalCorrect===false) window._playSound?.("wrong");
@@ -2659,7 +2055,7 @@ Ocijeni postupak i vrati ISKLJUČIVO JSON (bez markdown backtickova):
             ),
             e("div",null,
               e("div",{style:{fontWeight:700,fontSize:14,color:col}},aiResult.ocjena||""),
-              e("div",{style:{fontSize:11,color:"var(--muted)"}},"AI ocjena \u00B7 Discere Pro")
+              e("div",{style:{fontSize:11,color:"var(--muted)"}},"AI ocjena \u00B7 "+PLAN_NAME)
             )
           ),
           (aiResult.točno||[]).map((t,i)=>e("div",{key:"t"+i,style:{fontSize:12,color:"var(--green)",marginBottom:3}},"\u2705 "+t)),
@@ -3110,7 +2506,8 @@ function __aiGenQuestions(opts){
     +"U polju 'pitanje' koristi lijep zapis (x\u00b2, \u221a, razlomci, \u00b7) i NCVVO stil. "
     +"Vrati ISKLJU\u010cIVO JSON niz (bez markdowna, bez backtickova):\n"
     +'[{"tip":"jednadzba","tema":"kratka tema","pitanje":"Rije\u0161i jednad\u017ebu x\u00b2 \u2212 5x + 6 = 0.","izraz":"x^2-5*x+6=0","var":"x"}]';
-  return __aiPost(prompt,1500)
+  // Rjesenja provjerava CAS, pa ga ucitaj prije poziva.
+  return __ensureNerdamer().then(function(){ return __aiPost(prompt,1500); })
     .then(function(data){
       if(data.error||!data.content) throw new Error("api");
       var t=(data.content[0]&&data.content[0].text)||"[]";
@@ -4010,6 +3407,8 @@ function calcFmt(n){
 }
 function MathAssistant({qText,qType,seed}){
   var ND=(typeof window!=="undefined"&&window.nerdamer)?window.nerdamer:(typeof nerdamer!=="undefined"?nerdamer:null);
+  var _ndb=React.useState(0),_bumpNdA=_ndb[1];
+  React.useEffect(function(){ __ensureNerdamer().then(function(x){ if(x) _bumpNdA(function(y){ return y+1; }); }); },[]);
   var _in=React.useState(seed!=null?String(seed):""),input=_in[0],setInput=_in[1];
   var _op=React.useState("auto"),op=_op[0],setOp=_op[1];
   var _res=React.useState(null),res=_res[0],setRes=_res[1];
@@ -10509,6 +9908,23 @@ function App(){
     return()=>{mo.disconnect();document.removeEventListener("keydown",onKey);};
   },[]);
   const[pendingExamKey,setPendingExamKey]=useState(null);
+  // 2.1: EXAMS se puni lazy — ponovo iscrtaj kad ispit stigne.
+  const[,_bumpExams]=useState(0);
+  const[examLoad,setExamLoad]=useState(null); // null | {pct}
+  useEffect(()=>__onExamsChanged(()=>_bumpExams(x=>x+1)),[]);
+  // Home je iscrtan iz kataloga; ostatak se dovlaci u pozadini za cross-exam modove.
+  useEffect(()=>{const t=setTimeout(()=>{loadAllExams();},1500);return()=>clearTimeout(t);},[]);
+  function withExam(k,fn){
+    if(!k||isExamLoaded(k)) return fn();
+    setExamLoad({pct:0});
+    loadExam(k).then(()=>{setExamLoad(null);fn();});
+  }
+  function withAllExams(fn){
+    if(allExamsLoaded()) return fn();
+    setExamLoad({pct:0});
+    loadAllExams(p=>setExamLoad({pct:p})).then(()=>{setExamLoad(null);fn();});
+  }
+  function goAll(sc){ withAllExams(()=>{setScreen(sc);window.scrollTo(0,0);}); }
   const[dDayOpen,setDDayOpen]=useState(false);
   const[xpGains,setXpGains]=React.useState([]);
   const[darkMode,setDarkMode]=useState(()=>{try{
@@ -10531,8 +9947,8 @@ function App(){
   const pendingResumeRef=React.useRef(null);
   const resumeInfo=(()=>{try{const r=JSON.parse(DS.get("mat_resume")||"null");
     return r&&r.key&&EXAMS[r.key]&&Object.keys(r.answers||{}).length>0&&(Date.now()-(r.ts||0)<48*3600*1000)?r:null;}catch(e){return null;}})();
-  function goResume(){if(!resumeInfo)return;pendingResumeRef.current=resumeInfo;setExamKey(resumeInfo.key);
-    setScreen(resumeInfo.examMode?"exammode":resumeInfo.timedPractice?"practice_timed":resumeInfo.practice?"practice":"exam");window.scrollTo(0,0);}
+  function goResume(){if(!resumeInfo)return;withExam(resumeInfo.key,()=>{pendingResumeRef.current=resumeInfo;setExamKey(resumeInfo.key);
+    setScreen(resumeInfo.examMode?"exammode":resumeInfo.timedPractice?"practice_timed":resumeInfo.practice?"practice":"exam");window.scrollTo(0,0);});}
   function discardResume(){try{DS.set("mat_resume","");}catch(e){}pendingResumeRef.current=null;_bumpResume(x=>x+1);}
 
   useEffect(()=>{
@@ -10596,18 +10012,18 @@ function App(){
   },[]);
 
   function goHome(){pendingResumeRef.current=null;navStackRef.current=[];_setScreen("home");window.scrollTo(0,0);}
-  function goExam(k){setExamKey(k);setScreen("exam");window.scrollTo(0,0);}
+  function goExam(k){withExam(k,()=>{setExamKey(k);setScreen("exam");window.scrollTo(0,0);});}
   function goModeSelect(k){setPendingExamKey(k);setScreen("modeselect");window.scrollTo(0,0);}
-  function goPractice(k){setExamKey(k||Object.keys(EXAMS)[0]);setScreen("practice");window.scrollTo(0,0);}
-  function goPracticeTimer(k){setExamKey(k||pendingExamKey||Object.keys(EXAMS)[0]);setScreen("practice_timed");window.scrollTo(0,0);}
-  function goExamMode(k){setExamKey(k||pendingExamKey||Object.keys(EXAMS)[0]);setScreen("exammode");window.scrollTo(0,0);}
-  function goStats(){setScreen("stats");window.scrollTo(0,0);}
-  function goAdaptive(){setScreen("adaptive");window.scrollTo(0,0);}
+  function goPractice(k){const kk=k||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("practice");window.scrollTo(0,0);});}
+  function goPracticeTimer(k){const kk=k||pendingExamKey||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("practice_timed");window.scrollTo(0,0);});}
+  function goExamMode(k){const kk=k||pendingExamKey||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("exammode");window.scrollTo(0,0);});}
+  function goStats(){goAll("stats");}
+  function goAdaptive(){goAll("adaptive");}
   function goFormule(){setScreen("formule");window.scrollTo(0,0);}
   function goPDFReport(){setScreen("pdf_report");window.scrollTo(0,0);}
   function goGuide(){setScreen("guide");window.scrollTo(0,0);}
-  function goFilter(){setScreen("filter");window.scrollTo(0,0);}
-  function goSRS(){setScreen("srs");window.scrollTo(0,0);}
+  function goFilter(){goAll("filter");}
+  function goSRS(){goAll("srs");}
   function goAIPractice(){setScreen("aipractice");window.scrollTo(0,0);}
   function goDDay(){setDDayOpen(true);}
   function goFilterSession(virtualExam){
@@ -10617,7 +10033,8 @@ function App(){
     setScreen("filter_session");
     window.scrollTo(0,0);
   }
-  function goVirtualExam(razina){
+  function goVirtualExam(razina){ withAllExams(()=>__goVirtualExam(razina)); }
+  function __goVirtualExam(razina){
     const target=razina||"B";
     const examKeys=Object.keys(EXAMS).filter(k=>EXAMS[k].razina===target && !k.startsWith("_virtual_"));
     const allQs=[];
@@ -10639,14 +10056,15 @@ function App(){
       qs:selected,
       duration:(target==="A"?180:150)*60
     };
+    vex._loaded=true;
     window._virtualExam=vex;
     EXAMS[vex.key]=vex;
     setExamKey(vex.key);
     setScreen("virtual_exam");
     window.scrollTo(0,0);
   }
-  function goErrors(){setScreen("errors");window.scrollTo(0,0);}
-  function goBrowse(){setScreen("browse");window.scrollTo(0,0);}
+  function goErrors(){goAll("errors");}
+  function goBrowse(){goAll("browse");}
   function goBookmarks(){setScreen("bookmarks");window.scrollTo(0,0);}
   function goBookmarkSession(virtualExam){
     if(!virtualExam.razina) virtualExam.razina=userRazina||"B";
@@ -10655,14 +10073,15 @@ function App(){
     setScreen("practice");
     window.scrollTo(0,0);
   }
-  function goFlashcards(){setScreen("flashcards");window.scrollTo(0,0);}
-  function goDailyChallenge(){setScreen("daily");window.scrollTo(0,0);}
+  function goFlashcards(){goAll("flashcards");}
+  function goDailyChallenge(){goAll("daily");}
 
   function goPracticeExamErrors(wrongQs,srcExam){
     const virtualExam={key:"exam_errors_session",year:srcExam.year,season:srcExam.season,label:srcExam.label+"  -  Greške",qs:[...wrongQs].sort(()=>Math.random()-.5),duration:30*60};
     setExamKey(virtualExam.key);window._virtualExam=virtualExam;setScreen("errors_session");window.scrollTo(0,0);
   }
-  function goPracticeSimilar(topic,topicLabel){
+  function goPracticeSimilar(topic,topicLabel){ withAllExams(()=>__goPracticeSimilar(topic,topicLabel)); }
+  function __goPracticeSimilar(topic,topicLabel){
     // Skupi sve zadatke iste teme iz SVIH ispita
     const allQs=[];
     Object.values(EXAMS).forEach(exam=>{
@@ -10681,7 +10100,8 @@ function App(){
     setExamKey(virtualExam.key);window._virtualExam=virtualExam;
     setScreen("similar_session");window.scrollTo(0,0);
   }
-  function goMixedTopics(){
+  function goMixedTopics(){ withAllExams(()=>__goMixedTopics()); }
+  function __goMixedTopics(){
     const lvl=userRazina||"B";
     // slabost iz povijesti (topic_breakdown), >=3 pokušaja i pct<60%
     const acc={};
@@ -10713,6 +10133,7 @@ function App(){
     var labels=weak.map(function(t){return TOPIC_LABELS[t]||t;});
     var vex={ key:"mixed_session_"+Date.now(), year:"Mije\u0161ane teme", season:"session", razina:lvl,
       label:labels.slice(0,3).join(" \u00b7 ")+(labels.length>3?" +"+(labels.length-3):""), qs:qs, duration:Math.max(20,qs.length*3)*60 };
+    vex._loaded=true;
     setExamKey(vex.key); window._virtualExam=vex; EXAMS[vex.key]=vex;
     setScreen("similar_session"); window.scrollTo(0,0);
   }
@@ -10800,6 +10221,13 @@ function App(){
   return e("div",{className:"app-shell",style:{minHeight:"100vh",background:"var(--bg)",color:"var(--text)"}},
     (showOnboarding||!userRazina)&&e(OnboardingModal,{initialRazina:userRazina,initialGrade:(()=>{const g=parseInt(DS.get("mat_target_grade"));return g>=2&&g<=5?g:null;})(),onSave:saveOnboarding,onClose:()=>setShowOnboarding(false),canClose:!!userRazina}),
     showDisclaimer&&e(DisclaimerModal,{onClose:()=>setShowDisclaimer(false)}),
+    // 2.1: progress dok se ispiti dovlace (jedan ispit ili cijeli set za cross-exam modove).
+    examLoad&&e("div",{style:{position:"fixed",inset:0,zIndex:320,background:"rgba(6,9,16,.72)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center",padding:20}},
+      e("div",{style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)",padding:"22px 24px",maxWidth:320,width:"100%",textAlign:"center",boxShadow:"var(--shadow-lg)"}},
+        e("div",{style:{fontSize:13,fontWeight:700,color:"var(--text)",marginBottom:12}},"Učitavam zadatke…"),
+        e("div",{style:{height:6,borderRadius:99,background:"var(--s3)",overflow:"hidden"}},
+          e("div",{style:{height:"100%",width:Math.max(6,Math.round((examLoad.pct||0)*100))+"%",background:"linear-gradient(90deg,var(--blue),#7b9fff)",borderRadius:99,transition:"width .25s ease"}})),
+        e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:8}},Math.round((examLoad.pct||0)*100)+"%"))),
     dDayOpen&&e(DDayModal,{razina:userRazina,history:(userData&&userData.history)||[],onStart:function(k){setDDayOpen(false);goExamMode(k);},onClose:function(){setDDayOpen(false);}}),
     e(XpFloater,{gains:xpGains}),
     badgeToast&&e("div",{style:{position:"fixed",bottom:20,left:20,zIndex:160,display:"flex",gap:10,alignItems:"center",
