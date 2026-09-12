@@ -18,6 +18,8 @@ import { useRouter } from 'next/navigation';
 import { allowedExamKeys } from '@/lib/discere-access';
 import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
 import { saveSimResult } from '@/lib/sim-progress';
+import { isPaidTier, isProTier } from '@/lib/billing/getEffectiveTier';
+import { upgradeOffer } from '@/lib/billing/plans';
 
 const REAL_EXAM = /^\d{4}_[a-zšđčćž]+_[AB]$/; // skip virtual/practice sessions for sim_progress
 
@@ -136,8 +138,19 @@ export default function MatFullSimulator({ tier = 'free' }) {
 
         core.__setExams(EXAMS);
         core.__setQImages(QIMG);
-        // pro features (AI asistent/analiza/plan) — engine reads IS_PRO via DISCERE_CONFIG
-        try { window.postMessage({ type: 'DISCERE_CONFIG', isPro: tier === 'pro' }, '*'); } catch {}
+        // pro features (AI asistent/analiza/plan) — engine reads IS_PRO via DISCERE_CONFIG.
+        // Tier pravilo i cijena dolaze iz lib/billing (jedan izvor istine, nema hardkoda u engineu).
+        try {
+          const offer = upgradeOffer();
+          window.postMessage({
+            type: 'DISCERE_CONFIG',
+            tier,
+            isPro: isProTier(tier),
+            isPaid: isPaidTier(tier),
+            planName: offer.planName,
+            price: offer.price,
+          }, '*');
+        } catch {}
 
         partsRef.current = { App: core.App, ErrorBoundary: core.ErrorBoundary };
         setPhase('ready');
@@ -288,6 +301,7 @@ function setupBridge(saved, router) {
 
 function flushAttempt(hRec) {
   if (!hRec || !REAL_EXAM.test(hRec.examKey || '')) return; // skip virtual/practice sessions
+  const qTimes = hRec.qTimes || {};
   saveSimResult({
     examKey: hRec.examKey,
     examLabel: hRec.examLabel,
@@ -296,12 +310,24 @@ function flushAttempt(hRec) {
     grade: hRec.grade,
     cor: hRec.cor,
     total: hRec.total,
-    answers: {},                 // history record carries no per-answer map; full data in blob
-    qTimes: hRec.qTimes || {},
+    answers: hRec.answers || {},
+    qTimes,
     examMode: hRec.mode === 'simulacija',
     topic_breakdown: hRec.topic_breakdown || {},
-    errorTags: [],
-  });
+    errorTags: hRec.errorTags || [],
+  }, durationSec(hRec, qTimes));
+}
+
+// duration_sec: zapis iz enginea ako postoji, inače zbroj vremena po pitanju.
+function durationSec(hRec, qTimes) {
+  const direct = Number(hRec.duration_sec ?? hRec.durationSec);
+  if (Number.isFinite(direct) && direct > 0) return Math.round(direct);
+  let sum = 0;
+  for (const k of Object.keys(qTimes)) {
+    const t = Number(qTimes[k]);
+    if (Number.isFinite(t) && t > 0) sum += t;
+  }
+  return sum > 0 ? Math.round(sum) : undefined;
 }
 
 // Strategy coach: post-exam tips from the saved history entry (qTimes + topic_breakdown).
