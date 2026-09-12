@@ -1,11 +1,12 @@
 'use client'
 import { useState } from 'react'
-import { EXAMS } from '@/lib/engleski-simulator/exams'
+import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
 import { grade } from '@/lib/engleski-simulator/scoring'
 
 // ── Tab: Usporedi ispite ──
 // Deklarirano izvan CompareScreen-a (na razini modula) da se komponenta ne stvara iznova pri svakom renderu
-function SelfCompare({ history }) {
+function SelfCompare({ history, examsMap }) {
+  const EXAMS = examsMap || getLoadedSync()
   if (history.length < 2) return (
     <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--muted)' }}>
       <div style={{ fontSize: 36, marginBottom: 12 }}>⚖️</div>
@@ -167,7 +168,8 @@ function ModeCompare({ history }) {
 
 // ── Tab: Razine ──
 // Deklarirano izvan CompareScreen-a (na razini modula) da se komponenta ne stvara iznova pri svakom renderu
-function RazinaCompare({ history }) {
+function RazinaCompare({ history, examsMap }) {
+  const EXAMS = examsMap || getLoadedSync()
   const os = history.filter(h => {
     const ex = EXAMS[h.examKey]; return ex && ex.razina === 'osnovna'
   })
@@ -218,7 +220,7 @@ function RazinaCompare({ history }) {
   )
 }
 
-export default function CompareScreen({ userData, onBack }) {
+export default function CompareScreen({ userData, onBack, examsMap }) {
   const [tab, setTab] = useState('ispiti')
   const history = userData?.history || []
 
@@ -245,9 +247,9 @@ export default function CompareScreen({ userData, onBack }) {
           ))}
         </div>
 
-        {tab === 'ispiti' && <SelfCompare history={history} />}
+        {tab === 'ispiti' && <SelfCompare history={history} examsMap={examsMap} />}
         {tab === 'modovi' && <ModeCompare history={history} />}
-        {tab === 'razine' && <RazinaCompare history={history} />}
+        {tab === 'razine' && <RazinaCompare history={history} examsMap={examsMap} />}
       </div>
     </div>
   )

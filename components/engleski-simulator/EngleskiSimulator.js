@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useMemo, lazy, Suspense } from 'rea
 import { useAuth } from '@/lib/hooks/useAuth'
 import { SimulatorPreviewGate, LockedAnalysisSection, buildUserAccess } from '@/components/discere/paywall'
 import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers'
-import { EXAMS } from '@/lib/engleski-simulator/exams'
+import { getExamsIndex, getLoadedSync, isRazinaLoaded, loadRazina, razinaForKey, RAZINE } from '@/lib/engleski-simulator/examsLoader'
 import { chk, grade, calcXpGain, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
 import { useTimer, warnMessage } from '@/lib/engleski-simulator/useTimer'
@@ -19,6 +19,9 @@ import {
   buildCloudBlob, parseCloudBlob, shouldHydrateFromCloud, shouldCloudSave, mergeUserData, toSimProgressPayload,
   loadEngCloudState, saveEngCloudState, saveEngSimResult,
 } from '@/lib/engleski-simulator/cloudSync'
+
+// Lagani indeks ispita (bez pitanja) — jedini podaci o ispitima u početnom bundleu.
+const EXAMS_INDEX = getExamsIndex()
 
 // Lazy load screens to reduce initial bundle and memory
 const Home = lazy(() => import('./screens/HomeScreen').then(m => ({ default: m.Home })))
@@ -39,6 +42,10 @@ const TopicFilterScreen = lazy(() => import('./screens/TopicFilterScreen'))
 function ScreenLoader() {
   return <div style={{ padding: '20px', textAlign: 'center', color: 'var(--muted)' }}>Učitavamo...</div>
 }
+
+// Ekrani koji analiziraju cijelu povijest ili sva pitanja trebaju OBJE razine —
+// bez njih bi analitika, filter i PDF tiho radili samo s učitanom razinom.
+const FULL_EXAMS_SCREENS = ['stats', 'browse', 'errors', 'bookmarks', 'daily', 'filter', 'vocab', 'compare', 'pdf_report', 'analytics']
 
 // Wrapper so AnalyticsPanelFull can be passed as a prop to e()-based screens
 function AnalyticsPanelWrapper(props) {
@@ -118,7 +125,7 @@ function playSound(type) {
 }
 
 // ── generateVirtualExam ──
-function generateVirtualExam() {
+function generateVirtualExam(EXAMS) {
   const targets = { mc: 16, mat: 6, fb: 10, sa: 1 }
   const allKeys = Object.keys(EXAMS)
   const usedIds = new Set()
@@ -473,11 +480,23 @@ export default function EngleskiSimulator() {
   const [soundOn, setSoundOn] = useState(() => { try { return localStorage.getItem('eng_sound') !== '0' } catch { return true } })
   const [filteredExam, setFilteredExam] = useState(null)
   const [extraExams, setExtraExams] = useState({})
+  // Učitane razine ispita (spojena mapa iz examsLoader keša) + indikator učitavanja.
+  const [examsMap, setExamsMap] = useState(getLoadedSync)
+  const [examsLoading, setExamsLoading] = useState(false)
   const [showGuide, setShowGuide] = useState(false)
   // Brojač promjena bookmarka — samo okidač za cloud debounce (bookmarki žive u localStorageu).
   const [bookmarkRev, setBookmarkRev] = useState(0)
 
-  const examLookup = useMemo(() => ({ ...EXAMS, ...extraExams }), [extraExams])
+  const examLookup = useMemo(() => ({ ...examsMap, ...extraExams }), [examsMap, extraExams])
+
+  // Results i Stats ekrani ne prosljeđuju examsMap analitici, pa ga injektiramo
+  // ovdje — inače AnalyticsPanelFull pada na fallback s nepotpunom mapom.
+  const AnalyticsPanelBound = useMemo(
+    () => function AnalyticsPanelInjected(props) {
+      return <AnalyticsPanelWrapper examsMap={examLookup} {...props} />
+    },
+    [examLookup],
+  )
   const selectedExam = selectedExamKey ? examLookup[selectedExamKey] : null
 
   // Dark mode effect
@@ -592,15 +611,55 @@ export default function EngleskiSimulator() {
   const toggles = (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginLeft: 'auto' }}>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setShowGuide(true)} title="Vodič za korištenje" aria-label="Vodič za korištenje">ℹ️</button>
-      <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => navigate('stats')} title="Statistike" aria-label="Statistike">📊</button>
+      <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => ensureAllExams(() => navigate('stats'))} title="Statistike" aria-label="Statistike">📊</button>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setSoundOn(s => !s)} title={soundOn ? 'Isključi zvuk' : 'Uključi zvuk'} aria-label={soundOn ? 'Isključi zvuk' : 'Uključi zvuk'} aria-pressed={!soundOn}>{soundOn ? '🔊' : '🔇'}</button>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setDarkMode(d => !d)} title={darkMode ? 'Svjetli mod' : 'Tamni mod'} aria-label={darkMode ? 'Prebaci na svjetli mod' : 'Prebaci na tamni mod'} aria-pressed={darkMode}>{darkMode ? '☀️' : '🌙'}</button>
     </div>
   )
 
+  // Učitaj tražene razine (keširano i deduplicirano u examsLoaderu) pa izvrši
+  // nastavak — navigaciju. Dok traje učitavanje prikazuje se ScreenLoader.
+  function ensureExams(razine, then) {
+    if (razine.every(r => isRazinaLoaded(r))) {
+      then(getLoadedSync())
+      return
+    }
+    setExamsLoading(true)
+    Promise.all(razine.map(r => loadRazina(r)))
+      .then(() => {
+        const map = getLoadedSync()
+        setExamsMap(map)
+        setExamsLoading(false)
+        then(map)
+      })
+      .catch(err => {
+        console.error('Učitavanje ispita nije uspjelo:', err)
+        setExamsLoading(false)
+      })
+  }
+
+  // Ekrani koji analiziraju cijelu povijest trebaju obje razine.
+  function ensureAllExams(then) {
+    ensureExams(RAZINE, then)
+  }
+
+  // Sigurnosna mreža: ako se na ekran koji treba obje razine dođe putem koji je
+  // preskočio ensureAllExams (npr. povratak u povijest ili novi prop), razine se
+  // dovlače ovdje. Za 'results' je dovlačenje u pozadini (bez loadera) jer
+  // analitika na tom ekranu gleda cijelu povijest.
+  useEffect(() => {
+    if (!FULL_EXAMS_SCREENS.includes(screen) && screen !== 'results') return
+    if (RAZINE.every(r => isRazinaLoaded(r))) return
+    Promise.all(RAZINE.map(r => loadRazina(r)))
+      .then(() => setExamsMap(getLoadedSync()))
+      .catch(err => console.error('Učitavanje ispita nije uspjelo:', err))
+  }, [screen])
+
   function onModeSelect(examKey) {
-    setSelectedExamKey(examKey)
-    navigate('modeselect')
+    ensureExams([razinaForKey(examKey)], () => {
+      setSelectedExamKey(examKey)
+      navigate('modeselect')
+    })
   }
 
   function onStartExam(mode) {
@@ -695,6 +754,10 @@ export default function EngleskiSimulator() {
   }
 
   const renderScreen = () => {
+    if (examsLoading) return <ScreenLoader />
+    // Ekran koji treba obje razine ne renderiramo s nepotpunom mapom — effect
+    // iznad ih dovlači, a dotad stoji loader.
+    if (FULL_EXAMS_SCREENS.includes(screen) && !RAZINE.every(r => isRazinaLoaded(r))) return <ScreenLoader />
     const screenContent = (() => {
       switch (screen) {
         case 'home':
@@ -703,17 +766,17 @@ export default function EngleskiSimulator() {
               onModeSelect={onModeSelect}
               userData={userData}
               toggles={toggles}
-              goErrors={() => navigate('errors')}
-              goBookmarks={() => navigate('bookmarks')}
-              goStats={() => navigate('stats')}
-              goBrowse={() => navigate('browse')}
-              goDailyChallenge={() => navigate('daily')}
-              goVirtualExam={() => { const v = generateVirtualExam(); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') }}
-              goFilter={() => navigate('filter')}
-              goVocab={() => navigate('vocab')}
-              goCompare={() => navigate('compare')}
+              goErrors={() => ensureAllExams(() => navigate('errors'))}
+              goBookmarks={() => ensureAllExams(() => navigate('bookmarks'))}
+              goStats={() => ensureAllExams(() => navigate('stats'))}
+              goBrowse={() => ensureAllExams(() => navigate('browse'))}
+              goDailyChallenge={() => ensureAllExams(() => navigate('daily'))}
+              goVirtualExam={() => ensureAllExams(map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
+              goFilter={() => ensureAllExams(() => navigate('filter'))}
+              goVocab={() => ensureAllExams(() => navigate('vocab'))}
+              goCompare={() => ensureAllExams(() => navigate('compare'))}
               visaLoaded={true}
-              examsMap={EXAMS}
+              examsIndex={EXAMS_INDEX}
               levelNames={LEVEL_NAMES}
               getLevel={getLevel}
               xpProgress={xpProgress}
@@ -725,7 +788,7 @@ export default function EngleskiSimulator() {
           return (
             <EngModeSelect
               examKey={selectedExamKey}
-              examsMap={EXAMS}
+              examsMap={examLookup}
               onBack={goBack}
               onPractice={() => onStartExam('practice')}
               onPracticeTimer={() => onStartExam('timed')}
@@ -769,8 +832,8 @@ export default function EngleskiSimulator() {
                 setExamMode(false)
                 navigate('exam')
               }}
-              onGoFilter={() => navigate('filter')}
-              onGoStats={() => navigate('stats')}
+              onGoFilter={() => ensureAllExams(() => navigate('filter'))}
+              onGoStats={() => ensureAllExams(() => navigate('stats'))}
               chk={chk}
               grade={grade}
               GC={GC}
@@ -778,7 +841,7 @@ export default function EngleskiSimulator() {
               TOPIC_LABELS={TOPIC_LABELS}
               LL={LL}
               AnswerHelper={AnswerHelper}
-              AnalyticsPanel={AnalyticsPanelWrapper}
+              AnalyticsPanel={AnalyticsPanelBound}
               LEVEL_NAMES={LEVEL_NAMES}
               getLevel={getLevel}
             />
@@ -794,14 +857,14 @@ export default function EngleskiSimulator() {
             <StatsScreen 
               userData={userData}
               onBack={goBack}
-              onFilter={() => navigate('filter')}
-              onFilterSession={() => navigate('errors')}
-              onPDFReport={() => navigate('pdf_report')}
+              onFilter={() => ensureAllExams(() => navigate('filter'))}
+              onFilterSession={() => ensureAllExams(() => navigate('errors'))}
+              onPDFReport={() => ensureAllExams(() => navigate('pdf_report'))}
               LEVEL_NAMES={LEVEL_NAMES}
               getLevel={getLevel}
               xpProgress={xpProgress}
               xpToNext={xpToNext}
-              AnalyticsPanel={AnalyticsPanelWrapper}
+              AnalyticsPanel={AnalyticsPanelBound}
             />
           )
         
@@ -809,7 +872,7 @@ export default function EngleskiSimulator() {
           return (
             <BrowseScreen 
               onBack={goBack}
-              EXAMS={EXAMS}
+              EXAMS={examsMap}
               TLBL={TLBL}
               TBDG={TBDG}
               TOPIC_LABELS={TOPIC_LABELS}
@@ -827,7 +890,7 @@ export default function EngleskiSimulator() {
                 navigate('exam')
               }}
               onBack={goBack}
-              examsMap={EXAMS}
+              examsMap={examsMap}
               topicLabels={TOPIC_LABELS}
               fisherYates={fisherYates}
             />
@@ -843,7 +906,7 @@ export default function EngleskiSimulator() {
                 setExamMode(false)
                 navigate('exam')
               }}
-              examsMap={EXAMS}
+              examsMap={examsMap}
               topicLabels={TOPIC_LABELS}
               fisherYates={fisherYates}
               validateBookmarks={validateBookmarks}
@@ -879,13 +942,13 @@ export default function EngleskiSimulator() {
         }
 
         case 'vocab':
-          return <VocabScreen userData={userData} onBack={goBack} />
+          return <VocabScreen userData={userData} onBack={goBack} examsMap={examLookup} />
 
         case 'compare':
-          return <CompareScreen userData={userData} onBack={goBack} />
+          return <CompareScreen userData={userData} onBack={goBack} examsMap={examLookup} />
 
         case 'pdf_report':
-          return <PDFReportScreen userData={userData} onBack={goBack} />
+          return <PDFReportScreen userData={userData} onBack={goBack} examsMap={examLookup} />
 
         case 'guide':
           return <GuideScreen onBack={goBack} />
@@ -895,9 +958,10 @@ export default function EngleskiSimulator() {
             <TopicFilterScreen
               userData={userData}
               onBack={goBack}
+              examsMap={examsMap}
               onStartExam={({ qs, label, isFiltered }) => {
                 const key = 'filter_session_' + Date.now()
-                const fExam = { key, year: new Date().getFullYear(), season: 'filter', label, razina: deriveRazina(qs, EXAMS), qs }
+                const fExam = { key, year: new Date().getFullYear(), season: 'filter', label, razina: deriveRazina(qs, examsMap), qs }
                 setExtraExams(prev => ({ ...prev, [key]: fExam }))
                 setSelectedExamKey(key)
                 setExamMode(false)
@@ -910,7 +974,7 @@ export default function EngleskiSimulator() {
           return (
             <div className="eng-sim"><div className="sim-card">
               <button className="btn btn-ghost" style={{ marginBottom: 16 }} onClick={goBack}>← Natrag</button>
-              <AnalyticsPanelFull userData={userData} onFilter={() => navigate('filter')} />
+              <AnalyticsPanelFull userData={userData} examsMap={examsMap} onFilter={() => navigate('filter')} />
             </div></div>
           )
 
@@ -920,17 +984,17 @@ export default function EngleskiSimulator() {
               onModeSelect={onModeSelect}
               userData={userData}
               toggles={toggles}
-              goErrors={() => navigate('errors')}
-              goBookmarks={() => navigate('bookmarks')}
-              goStats={() => navigate('stats')}
-              goBrowse={() => navigate('browse')}
-              goDailyChallenge={() => navigate('daily')}
-              goVirtualExam={() => { const v = generateVirtualExam(); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') }}
-              goFilter={() => navigate('filter')}
-              goVocab={() => navigate('vocab')}
-              goCompare={() => navigate('compare')}
+              goErrors={() => ensureAllExams(() => navigate('errors'))}
+              goBookmarks={() => ensureAllExams(() => navigate('bookmarks'))}
+              goStats={() => ensureAllExams(() => navigate('stats'))}
+              goBrowse={() => ensureAllExams(() => navigate('browse'))}
+              goDailyChallenge={() => ensureAllExams(() => navigate('daily'))}
+              goVirtualExam={() => ensureAllExams(map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
+              goFilter={() => ensureAllExams(() => navigate('filter'))}
+              goVocab={() => ensureAllExams(() => navigate('vocab'))}
+              goCompare={() => ensureAllExams(() => navigate('compare'))}
               visaLoaded={true}
-              examsMap={EXAMS}
+              examsIndex={EXAMS_INDEX}
               levelNames={LEVEL_NAMES}
               getLevel={getLevel}
               xpProgress={xpProgress}

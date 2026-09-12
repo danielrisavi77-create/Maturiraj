@@ -1,10 +1,10 @@
 'use client'
 import { useState, useMemo, useEffect } from 'react'
-import { EXAMS } from '@/lib/engleski-simulator/exams'
+import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
 import { chk } from '@/lib/engleski-simulator/scoring'
 
 // Pick fill-in-blank vocab questions from exams
-function getVocabQuestions(limit = 30) {
+function getVocabQuestions(EXAMS, limit = 30) {
   const allKeys = Object.keys(EXAMS || {})
   const pool = allKeys.flatMap(k =>
     (EXAMS[k].qs || []).filter(q =>
@@ -15,8 +15,9 @@ function getVocabQuestions(limit = 30) {
   return [...pool].sort(() => Math.random() - 0.5).slice(0, limit)
 }
 
-export default function VocabScreen({ userData, onBack }) {
-  const qs = useMemo(() => getVocabQuestions(30), [])
+export default function VocabScreen({ userData, onBack, examsMap }) {
+  const EXAMS = examsMap || getLoadedSync()
+  const qs = useMemo(() => getVocabQuestions(EXAMS, 30), [EXAMS])
   const [mode, setMode] = useState('menu') // menu | quiz | results
   const [idx, setIdx] = useState(0)
   const [input, setInput] = useState('')

@@ -32,7 +32,7 @@ export function Home({
   goVocab,
   goCompare,
   visaLoaded,
-  examsMap,
+  examsIndex,
   levelNames,
   getLevel,
   xpProgress,
@@ -42,14 +42,16 @@ export function Home({
   const [homeSearch, setHomeSearch] = useState('')
   const [homeRazina, setHomeRazina] = useState('sve')
   const [homeListState, setHomeListState] = useState({ open: false, ver: 0 })
-  const examList = Object.values(examsMap || {})
+  // Popis ispita dolazi iz laganog indeksa (bez pitanja) — puni ispiti se
+  // učitavaju tek na odabir, po razini.
+  const examList = examsIndex || []
 
   function YearGroup({ year, yearExams, razina, defaultOpen, userData: ud }) {
     const ssKey = 'ygopen_' + razina + '_' + year
     const [open, setOpen] = useState(() => {
       try { const v = sessionStorage.getItem(ssKey); return v !== null ? v === '1' : !!defaultOpen } catch { return !!defaultOpen }
     })
-    const totalQY = yearExams.reduce((a, ex) => a + ex.qs.length, 0)
+    const totalQY = yearExams.reduce((a, ex) => a + (ex.qCount || 0), 0)
     const history = ud?.history || []
     const isVisa = razina === 'visa'
     return e('div', { className: 'year-group' + (isVisa ? ' visa' : '') },
@@ -69,7 +71,7 @@ export function Home({
           return e('div', { key: ex.key, className: 'exrow-sub' + (isVisa ? ' visa' : ''), role: 'button', tabIndex: 0, onClick: () => onModeSelect(ex.key), onKeyDown: ev => { if (ev.key === ' ' || ev.key === 'Enter') { ev.preventDefault(); onModeSelect(ex.key) } } },
             e('span', { className: 'exrow-sub-season ' + (ex.season === 'ljeto' ? 'ljeto' : ex.season === 'zima' ? 'zima' : 'jesen'), style: isVisa ? { color: '#8b5cf6' } : {} }, ex.season === 'ljeto' ? '☀️ Ljetni' : ex.season === 'zima' ? '❄️ Zimski' : '🍂 Jesenski'),
             e('span', { className: 'exrow-sub-info' },
-              ex.qs.length + ' pitanja',
+              (ex.qCount || 0) + ' pitanja',
               isVisa && e('span', { className: 'razina-badge visa', style: { marginLeft: 8 } }, '★ Viša'),
               ex.hasListening === false && e('span', { style: { marginLeft: 8, fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 99, background: 'rgba(233,180,70,.12)', border: '1px solid rgba(233,180,70,.25)', color: 'var(--gold)' } }, 'bez 🎧'),
               ex.hasReading === false && e('span', { style: { marginLeft: 8, fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 99, background: 'rgba(32,69,184,.1)', border: '1px solid rgba(32,69,184,.25)', color: 'var(--blue)' } }, 'bez 📖'),

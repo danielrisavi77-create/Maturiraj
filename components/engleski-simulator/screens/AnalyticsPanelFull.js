@@ -2,7 +2,7 @@
 import { useState, useMemo } from 'react'
 import { TOPIC_LABELS, GC, LEVEL_NAMES, getLevel, xpProgress, xpToNext, grade, LL } from '@/lib/engleski-simulator/constants'
 import { chk } from '@/lib/engleski-simulator/scoring'
-import { EXAMS } from '@/lib/engleski-simulator/exams'
+import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
 
 // ── TrendGraph ────────────────────────────────────────────────────
 function TrendGraph({ history }) {
@@ -318,7 +318,10 @@ function DailySummary({ userData }) {
 }
 
 // ── AnalyticsPanelFull ────────────────────────────────────────────
-export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
+export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap }) {
+  // Ispiti dolaze propom kad ih roditelj ima; inače iz keša loadera (roditelj
+  // zajamči loadAllRazine() prije ulaska u ekran koji renderira ovaj panel).
+  const EXAMS = examsMap || getLoadedSync()
   const [tab, setTab] = useState(defaultTab || 'danas')
   const [drillTopic, setDrillTopic] = useState(null)
   const [tooltip, setTooltip] = useState(null)
@@ -374,7 +377,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
     return Object.values(map)
       .map(x => ({ ...x, avgTime: Math.round(x.totalTime / x.count) }))
       .sort((a, b) => b.avgTime - a.avgTime).slice(0, 10)
-  }, [history])
+  }, [history, EXAMS])
 
   function getRecommendations() {
     const recs = []
