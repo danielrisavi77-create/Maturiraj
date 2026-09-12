@@ -53,6 +53,7 @@ describe('feature flags', () => {
       PARENT_LINKING_V2: 'PARENT_LINKING_V2_ENABLED',
       AI_ENDPOINTS: 'AI_ENDPOINTS_ENABLED',
       AGENT_API: 'AGENT_API_ENABLED',
+      GAME_MODE: 'GAME_MODE_ENABLED',
     })
   })
 
