@@ -18,6 +18,8 @@ import { useRouter } from 'next/navigation';
 import { allowedExamKeys } from '@/lib/discere-access';
 import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
 import { saveSimResult } from '@/lib/sim-progress';
+import { isPaidTier, isProTier } from '@/lib/billing/getEffectiveTier';
+import { upgradeOffer } from '@/lib/billing/plans';
 
 const REAL_EXAM = /^\d{4}_[a-zšđčćž]+_[AB]$/; // skip virtual/practice sessions for sim_progress
 
@@ -136,8 +138,23 @@ export default function MatFullSimulator({ tier = 'free' }) {
 
         core.__setExams(EXAMS);
         core.__setQImages(QIMG);
-        // pro features (AI asistent/analiza/plan) — engine reads IS_PRO via DISCERE_CONFIG
-        try { window.postMessage({ type: 'DISCERE_CONFIG', isPro: tier === 'pro' }, '*'); } catch {}
+        // pro features (AI asistent/analiza/plan) — engine reads IS_PRO via DISCERE_CONFIG.
+        // Tier pravilo dolazi iz lib/billing (isto pravilo kao proxy i requirePro).
+        // NAPOMENA: engine iz ove poruke trenutno čita SAMO `isPro`; planName/price
+        // šaljemo unaprijed, ali cijena je u MatEngineCore još hardkodirana u
+        // paywall stringovima, pa promjena PLANS.pro.priceLabel NIJE dovoljna sama
+        // za sebe — treba je i u engineu preuzeti iz DISCERE_CONFIG.
+        try {
+          const offer = upgradeOffer();
+          window.postMessage({
+            type: 'DISCERE_CONFIG',
+            tier,
+            isPro: isProTier(tier),
+            isPaid: isPaidTier(tier),
+            planName: offer.planName,
+            price: offer.price,
+          }, '*');
+        } catch {}
 
         partsRef.current = { App: core.App, ErrorBoundary: core.ErrorBoundary };
         setPhase('ready');
@@ -286,8 +303,16 @@ function setupBridge(saved, router) {
   };
 }
 
+// UPOZORENJE: zapis povijesti koji engine gradi (MatEngineCore, newHistory) NEMA
+// per-answer mapu ni tagove grešaka — sadrži samo examLabel/examKey/razina/date/
+// hour/pct/grade/cor/total/qTimes/mode/topic_breakdown. `answers` i `errorTags`
+// zato u praksi ostaju prazni (puni podatak je samo u result objektu proslijeđenom
+// u onDone). Čitamo ih tolerantno da zapis bude potpun čim ih engine počne
+// spremati u povijest, ali roditeljski dashboard/analiza grešaka do tada nemaju
+// per-answer podatke — nije riješeno ovom promjenom.
 function flushAttempt(hRec) {
   if (!hRec || !REAL_EXAM.test(hRec.examKey || '')) return; // skip virtual/practice sessions
+  const qTimes = hRec.qTimes || {};
   saveSimResult({
     examKey: hRec.examKey,
     examLabel: hRec.examLabel,
@@ -296,12 +321,37 @@ function flushAttempt(hRec) {
     grade: hRec.grade,
     cor: hRec.cor,
     total: hRec.total,
-    answers: {},                 // history record carries no per-answer map; full data in blob
-    qTimes: hRec.qTimes || {},
+    answers: hRec.answers || {},
+    qTimes,
     examMode: hRec.mode === 'simulacija',
     topic_breakdown: hRec.topic_breakdown || {},
-    errorTags: [],
-  });
+    errorTags: normalizeErrorTags(hRec.errorTags),
+  }, durationSec(hRec, qTimes));
+}
+
+// error_tags je jsonb niz. Engine tagove drži kao { qid: [tag, ...] }, pa objekt
+// spljoštimo u niz — inače bi potrošači koji očekuju niz dobili objekt.
+function normalizeErrorTags(raw) {
+  if (Array.isArray(raw)) return raw;
+  if (!raw || typeof raw !== 'object') return [];
+  const out = [];
+  for (const tags of Object.values(raw)) {
+    if (Array.isArray(tags)) out.push(...tags);
+    else if (tags != null) out.push(tags);
+  }
+  return out;
+}
+
+// duration_sec: zapis iz enginea ako postoji, inače zbroj vremena po pitanju.
+function durationSec(hRec, qTimes) {
+  const direct = Number(hRec.duration_sec ?? hRec.durationSec);
+  if (Number.isFinite(direct) && direct > 0) return Math.round(direct);
+  let sum = 0;
+  for (const k of Object.keys(qTimes)) {
+    const t = Number(qTimes[k]);
+    if (Number.isFinite(t) && t > 0) sum += t;
+  }
+  return sum > 0 ? Math.round(sum) : undefined;
 }
 
 // Strategy coach: post-exam tips from the saved history entry (qTimes + topic_breakdown).
