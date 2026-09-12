@@ -12,11 +12,16 @@ let IS_PRO = false;
 // Tier i plan dolaze iz DISCERE_CONFIG-a (jedan izvor istine u platformi).
 let IS_PAID = false;
 let PLAN_NAME = "Pro";
-let PLAN_PRICE = "";
+// Fallback na trenutnu produkcijsku cijenu dok DISCERE_CONFIG ne stigne (ili je ne salje),
+// da paywall CTA nikad ne ostane bez cijene.
+let PLAN_PRICE = "19,99 €/mj";
 // CTA tekst za zaključane značajke: naziv plana + cijena iz configa.
 function planCta(){ return "🔒 Otključaj uz "+PLAN_NAME+(PLAN_PRICE?" — "+PLAN_PRICE:""); }
 // Poruka parentu da korisnik želi nadogradnju.
-function askUpgrade(){ try{ window.parent?.postMessage({type:"DISCERE_UPGRADE"},"*"); }catch(x){} }
+function askUpgrade(){ try{ const msg={type:"DISCERE_UPGRADE"};
+  if(typeof window!=="undefined"&&window.__DISCERE_NATIVE_SAVE__){ window.__DISCERE_NATIVE_SAVE__(msg); return; }
+  if(typeof window!=="undefined"&&window.parent&&window.parent!==window) window.parent.postMessage(msg,"*");
+}catch(x){} }
 // 1.6: id zadatka zna imati zarez ("37,1"), registar slika koristi točku ("37.1").
 function __imgKey(ek,q){ const id=(q&&q._origId!==undefined)?q._origId:(q&&q.id); return String(ek)+"__"+String(id).replace(/,/g,"."); }
 // Jedinstveni AI poziv: ruta /api/ai-simulator, model bira server.
