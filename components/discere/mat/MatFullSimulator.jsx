@@ -139,7 +139,11 @@ export default function MatFullSimulator({ tier = 'free' }) {
         core.__setExams(EXAMS);
         core.__setQImages(QIMG);
         // pro features (AI asistent/analiza/plan) — engine reads IS_PRO via DISCERE_CONFIG.
-        // Tier pravilo i cijena dolaze iz lib/billing (jedan izvor istine, nema hardkoda u engineu).
+        // Tier pravilo dolazi iz lib/billing (isto pravilo kao proxy i requirePro).
+        // NAPOMENA: engine iz ove poruke trenutno čita SAMO `isPro`; planName/price
+        // šaljemo unaprijed, ali cijena je u MatEngineCore još hardkodirana u
+        // paywall stringovima, pa promjena PLANS.pro.priceLabel NIJE dovoljna sama
+        // za sebe — treba je i u engineu preuzeti iz DISCERE_CONFIG.
         try {
           const offer = upgradeOffer();
           window.postMessage({
@@ -299,6 +303,13 @@ function setupBridge(saved, router) {
   };
 }
 
+// UPOZORENJE: zapis povijesti koji engine gradi (MatEngineCore, newHistory) NEMA
+// per-answer mapu ni tagove grešaka — sadrži samo examLabel/examKey/razina/date/
+// hour/pct/grade/cor/total/qTimes/mode/topic_breakdown. `answers` i `errorTags`
+// zato u praksi ostaju prazni (puni podatak je samo u result objektu proslijeđenom
+// u onDone). Čitamo ih tolerantno da zapis bude potpun čim ih engine počne
+// spremati u povijest, ali roditeljski dashboard/analiza grešaka do tada nemaju
+// per-answer podatke — nije riješeno ovom promjenom.
 function flushAttempt(hRec) {
   if (!hRec || !REAL_EXAM.test(hRec.examKey || '')) return; // skip virtual/practice sessions
   const qTimes = hRec.qTimes || {};
@@ -314,8 +325,21 @@ function flushAttempt(hRec) {
     qTimes,
     examMode: hRec.mode === 'simulacija',
     topic_breakdown: hRec.topic_breakdown || {},
-    errorTags: hRec.errorTags || [],
+    errorTags: normalizeErrorTags(hRec.errorTags),
   }, durationSec(hRec, qTimes));
+}
+
+// error_tags je jsonb niz. Engine tagove drži kao { qid: [tag, ...] }, pa objekt
+// spljoštimo u niz — inače bi potrošači koji očekuju niz dobili objekt.
+function normalizeErrorTags(raw) {
+  if (Array.isArray(raw)) return raw;
+  if (!raw || typeof raw !== 'object') return [];
+  const out = [];
+  for (const tags of Object.values(raw)) {
+    if (Array.isArray(tags)) out.push(...tags);
+    else if (tags != null) out.push(tags);
+  }
+  return out;
 }
 
 // duration_sec: zapis iz enginea ako postoji, inače zbroj vremena po pitanju.

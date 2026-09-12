@@ -51,6 +51,12 @@ export async function proxy(request) {
     request.nextUrl.pathname.startsWith(route)
   )
 
+  // Dev bypass — owner email zaobilazi SAMO paid gate (/discere), nikad Pro rute.
+  // Pro rute moraju ostati usklađene sa serverskim guardom (requirePro → getUserTier),
+  // koji bypass ne poznaje; inače se stranica otvori, a njezini AI pozivi vraćaju 403.
+  const isDevBypass = !!process.env.DEV_BYPASS_EMAIL && !!user?.email
+    && user.email === process.env.DEV_BYPASS_EMAIL
+
   // Tier se čita najviše jednom po zahtjevu (isti helper kao useAuth i requirePro).
   let effectiveTier = null
   async function readTier() {
@@ -61,9 +67,7 @@ export async function proxy(request) {
       .eq('id', user.id)
       .single()
 
-    // Dev bypass — owner email zaobilazi plan gate
-    const devBypass = !!process.env.DEV_BYPASS_EMAIL && user.email === process.env.DEV_BYPASS_EMAIL
-    effectiveTier = getEffectiveTier(profile, { devBypass })
+    effectiveTier = getEffectiveTier(profile)
     return effectiveTier
   }
 
@@ -75,7 +79,7 @@ export async function proxy(request) {
       return NextResponse.redirect(url)
     }
 
-    if (!isPaidTier(await readTier())) {
+    if (!isDevBypass && !isPaidTier(await readTier())) {
       const url = request.nextUrl.clone()
       url.pathname = '/pro'
       url.searchParams.set('from', 'discere')
