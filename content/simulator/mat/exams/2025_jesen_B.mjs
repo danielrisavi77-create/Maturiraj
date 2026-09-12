@@ -3,24 +3,24 @@ import React from 'react';
 const e = React.createElement;
 
 function Svg35_2025Bjes(){
-  const ax="#e2e8f0";
+  const ax="var(--text)";
   const data2011 = [
     {name:"Istarska", pct:33.69, color:"#e8a2d8"},
     {name:"Primorsko-goranska", pct:19.00, color:"#f0a878"},
     {name:"Splitsko-dalmatinska", pct:17.21, color:"#f0d840"},
-    {name:"Zadarska", pct:10.24, color:"#4a90d9"},
+    {name:"Zadarska", pct:10.24, color:"var(--blue)"},
     {name:"Dubrovačko-neretvanska", pct:8.15, color:"#7c5cbf"},
-    {name:"Šibensko-kninska", pct:6.35, color:"#50c878"},
-    {name:"Ostale", pct:5.36, color:"#e05252"}
+    {name:"Šibensko-kninska", pct:6.35, color:"var(--green)"},
+    {name:"Ostale", pct:5.36, color:"var(--red)"}
   ];
   const data2021 = [
     {name:"Istarska", pct:32.94, color:"#e8a2d8"},
     {name:"Primorsko-goranska", pct:17.58, color:"#f0a878"},
     {name:"Splitsko-dalmatinska", pct:19.52, color:"#f0d840"},
-    {name:"Zadarska", pct:11.18, color:"#4a90d9"},
+    {name:"Zadarska", pct:11.18, color:"var(--blue)"},
     {name:"Dubrovačko-neretvanska", pct:6.74, color:"#7c5cbf"},
-    {name:"Šibensko-kninska", pct:5.92, color:"#50c878"},
-    {name:"Ostale", pct:6.12, color:"#e05252"}
+    {name:"Šibensko-kninska", pct:5.92, color:"var(--green)"},
+    {name:"Ostale", pct:6.12, color:"var(--red)"}
   ];
   
   function pie(data, cx, cy, r, title) {
@@ -72,7 +72,7 @@ function Svg35_2025Bjes(){
 }
 
 function Svg32_2025Bjes(){
-  const W=340,H=420,ax="#e2e8f0",blue="#4a90d9",red="#e05252",gold="#e9b446";
+  const W=340,H=420,ax="var(--text)",blue="var(--blue)",red="var(--red)",gold="var(--gold)";
   // Postavke:
   // A u donjem lijevom, B u donjem desnom, C sjecište u gornjoj trećini
   const A=[70, 370], B=[310, 370], C=[170, 180];
@@ -80,7 +80,7 @@ function Svg32_2025Bjes(){
   // E lijevo-gore, D desno-gore
   const E=[135, 85], D=[220, 85];
   
-  const pt = (p) => `<circle cx="${p[0]}" cy="${p[1]}" r="2.5" fill="${red}" stroke="#0a0f1a" stroke-width="1.5"/>`;
+  const pt = (p) => `<circle cx="${p[0]}" cy="${p[1]}" r="2.5" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.5"/>`;
   
   return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:{display:'block',margin:'8px auto'}},
     React.createElement('g',{dangerouslySetInnerHTML:{__html:
@@ -111,7 +111,7 @@ function Svg32_2025Bjes(){
 
 function Svg25_2025Bjes(){
   const W=380,H=320,ox=150,oy=180,sc=28;
-  const st="#94a3b8",ax="#e2e8f0",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-4;i<=8;i++){
@@ -142,7 +142,7 @@ function Svg25_2025Bjes(){
 }
 
 function Svg22_2025Bjes(){
-  const txt="var(--text)"; const blue="#4a90d9"; const gold="#e9b446";
+  const txt="var(--text)"; const blue="var(--blue)"; const gold="var(--gold)";
   const rows=[
     ["Postotak riješenosti","Ocjena"],
     ["0 % \u2013 49 %","nedovoljan (1)"],
@@ -156,7 +156,7 @@ function Svg22_2025Bjes(){
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"380px",width:"100%",display:"block",margin:"12px auto"}},
     rows.map((r,i)=>e("g",{key:"r"+i},
-      e("rect",{x:1,y:3+i*rH,width:W-2,height:rH-1,fill:i===0?"rgba(74,144,217,0.18)":(i%2===1?"#0a1525":"transparent"),stroke:blue,strokeWidth:1.2}),
+      e("rect",{x:1,y:3+i*rH,width:W-2,height:rH-1,fill:i===0?"rgba(74,144,217,0.18)":(i%2===1?"var(--s2,#0a1525)":"transparent"),stroke:blue,strokeWidth:1.2}),
       e("line",{x1:col1W,y1:3+i*rH,x2:col1W,y2:3+(i+1)*rH-1,stroke:blue,strokeWidth:1.2}),
       e("text",{x:12,y:3+i*rH+20,fontSize:13,fontFamily:"Georgia,serif",fontWeight:i===0?"bold":"normal",fill:i===0?gold:txt},r[0]),
       e("text",{x:col1W+12,y:3+i*rH+20,fontSize:13,fontFamily:"Georgia,serif",fontWeight:i===0?"bold":"normal",fill:i===0?gold:txt},r[1])
@@ -165,7 +165,7 @@ function Svg22_2025Bjes(){
 }
 
 function Svg19_2025Bjes(){
-  const txt="var(--text)"; const blue="#4a90d9"; const gold="#e9b446";
+  const txt="var(--text)"; const blue="var(--blue)"; const gold="var(--gold)";
   const rows = [
     ["2","0 0 1 2 3 9"],
     ["3","0 0 4 4 5 5 7 7 7"],
@@ -178,7 +178,7 @@ function Svg19_2025Bjes(){
   rows.forEach((r,i)=>{
     const y = 50 + i*rowH;
     // Alt background for rows
-    if(i%2===0) html += `<rect x="0" y="${y-22}" width="${W}" height="${rowH}" fill="#0a1525" opacity="0.5"/>`;
+    if(i%2===0) html += `<rect x="0" y="${y-22}" width="${W}" height="${rowH}" fill="var(--s2,#0a1525)" opacity="0.5"/>`;
     html += `<text x="${stemW}" y="${y}" fill="${blue}" font-size="16" font-family="monospace" text-anchor="end" font-weight="bold">${r[0]}</text>`;
     html += `<line x1="${stemW+8}" y1="${y-20}" x2="${stemW+8}" y2="${y+6}" stroke="${gold}" stroke-width="1.6"/>`;
     html += `<text x="${stemW+16}" y="${y}" fill="${txt}" font-size="15" font-family="monospace" letter-spacing="2">${r[1]}</text>`;
@@ -190,8 +190,8 @@ function Svg19_2025Bjes(){
 
 function Svg18_2025Bjes(){
   const W=420,H=400,ox=200,oy=290,sc=28;
-  const st="#94a3b8",ax="#e2e8f0",bg="var(--bg,#060910)";
-  const blue="#4a90d9", red="#e05252", gold="#e9b446", green="#50c878";
+  const st="var(--muted)",ax="var(--text)",bg="var(--bg,#060910)";
+  const blue="var(--blue)", red="var(--red)", gold="var(--gold)", green="var(--green)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-5;i<=5;i++){
@@ -239,7 +239,7 @@ function Svg18_2025Bjes(){
 }
 
 function Svg17_2025Bjes(){
-  const blue="#4a90d9"; const blueD="#3a6aa0"; const red="#e05252"; const gold="#e9b446";
+  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
   const W=380, H=340;
   const A=[80,280],B=[240,280],C=[320,220],D=[160,220];
   const vE=[80,120],vF=[240,120],vG=[320,60],vH=[160,60];
@@ -258,7 +258,7 @@ function Svg17_2025Bjes(){
       stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
     ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blue,strokeWidth:2})),
-    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5})),
+    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
     ...verts.map(([n,p,dx,dy])=>e("text",{key:"t"+n,x:p[0]+dx,y:p[1]+dy,
       fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n))
   );
@@ -266,7 +266,7 @@ function Svg17_2025Bjes(){
 
 function Svg11_2025Bjes(){
   const W=320,H=280,ox=120,oy=180,sc=36;
-  const st="#94a3b8",ax="#e2e8f0",cu="#4a90d9",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",cu="var(--blue)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-2;i<=4;i++){
@@ -373,7 +373,7 @@ export const qs = [
   {
     id:7,
     type:"mc",warn:"Pazi: više cijevi → KRAĆE vrijeme (obrnuta proporcija); pazi na uvjet zadatka.",
-    topic:"om",
+    topic:"ostalo",
     points:1,
     q:"Gradski bazen može se puniti vodom s najviše pet cijevi kroz koje za isto vrijeme proteče jednaka količina vode. Bazen će biti pun ako ga svih pet cijevi puni 12 sati. Za koliko bi sati bazen bio pun ako ga pune samo tri cijevi?",
     opts:["15","18","20","22"],
@@ -384,7 +384,7 @@ export const qs = [
   {
     id:8,
     type:"mc",warn:"Pazi: riješi svaku nejednadžbu pa uzmi PRESJEK rješenja.",
-    topic:"neje",
+    topic:"mat",
     points:1,
     q:"Koji je interval skup svih rješenja sustava nejednadžbi { 3 − x ≥ x/2 ;  x + 1 > 0 } ?",
     opts:["⟨−∞, −2]","⟨−2, −1]","⟨−1, 2]","⟨2, ∞⟩"],
@@ -395,7 +395,7 @@ export const qs = [
   {
     id:9,
     type:"mc",warn:"Pazi: log₇a = c ⇔ 7ᶜ = a (definicija logaritma).",
-    topic:"log",
+    topic:"exp",
     points:1,
     q:"Što od navedenoga vrijedi ako je log₇ a = c, pri čemu je a > 0?",
     opts:["a⁷ = c","a^c = 7","7^a = c","7^c = a"],
@@ -429,7 +429,7 @@ export const qs = [
   {
     id:12,
     type:"mc",warn:"Pazi: parna ⇔ simetrija oko OSI Y (f(−x) = f(x)).",
-    topic:"funk",
+    topic:"fun",
     points:1,
     q:"Koja od navedenih tvrdnja vrijedi za graf svake parne funkcije?",
     opts:["Simetričan je s obzirom na ishodište koordinatnoga sustava.","Simetričan je s obzirom na pravac y = x.","Simetričan je s obzirom na os x.","Simetričan je s obzirom na os y."],
@@ -497,7 +497,7 @@ export const qs = [
     id:18,
     img:true,
     type:"mc",warn:"Pazi: zbroj vektora = zbroj komponenti (x s x, y s y).",
-    topic:"vekt",
+    topic:"vek",
     points:1,
     q:"Na slici su prikazani vektori m, n, p i r. Koji je od navedenih vektora zbroj vektora a = 2i + 5j i vektora b = −4i + 2j?",
     opts:["m","n","p","r"],
@@ -520,7 +520,7 @@ export const qs = [
   {
     id:20,
     type:"mc",warn:"Pazi: ukupno 2³ = 8 ishoda; povoljnih (PPG, PGP, GPP) = 3 → vjerojatnost 3/8.",
-    topic:"vjer",
+    topic:"stat",
     points:1,
     q:"Tri puta bacamo novčić. Koliko iznosi vjerojatnost da je dva puta palo pismo i jednom glava?",
     opts:["1/2","1/4","1/8","3/8"],
@@ -643,7 +643,7 @@ export const qs = [
     why:["Pravila potencija: dijeljenje s istom bazom: [FRAC:aᵐ|aⁿ] = a^(m−n); za znanstveni zapis: [FRAC:a · 10ᵏ|b · 10ˡ] = [FRAC:a|b] · 10^(k−l).","Postupak: 1) razdvoji koeficijente i potencije. 2) izračunaj omjer koeficijenata. 3) izračunaj razliku eksponenata. 4) spoji.","Intuicija: \"koliko puta veći\" znači dijeljenje; \"x puta veći\" znači x = [FRAC:većei|manji].","Česta greška 1: zbrojiti eksponente kod dijeljenja: 10¹⁰⁰ / 10⁹⁸ = 10^(100+98) = 10¹⁹⁸ (krivo). Treba ODUZETI: 10^(100−98) = 10².","Česta greška 2: dijeliti brojeve direktno bez razdvajanja: [FRAC:12,15 · 10¹⁰⁰|405 · 10⁹⁸] računati kao da su sve množitelji u jednoj liniji — laka greška za eksponente.","Alt metoda: pretvori oba broja u znanstveni zapis prvo: A = 4,05 · 10¹⁰⁰ (iz prvog dijela), B = 12,15 · 10¹⁰⁰. Sad isti eksponent: [FRAC:B|A] = [FRAC:12,15|4,05] = 3 ✓.","Provjera: 3 · A = 3 · 4,05 · 10¹⁰⁰ = 12,15 · 10¹⁰⁰ = B ✓; uspoređivanje koeficijenata: 12,15 / 4,05 = 3 ✓."]
   },
   {
-    id:"32,1",
+    id:"32.1",
     img:true,
     type:"sa",
     topic:"geom",
@@ -656,7 +656,7 @@ export const qs = [
     why:["Pravila: trokuti slični po AA (Angle-Angle); kosinusov poučak: c² = a² + b² − 2ab·cos(C).","Postupak: 1) prepoznaj sličnost (omogućuje 2. dio). 2) primijeni kosinusov poučak za 3. stranicu.","Intuicija: ako znaš 2 stranice + kut između, koristi kosinusov poučak za 3.","Česta greška 1: koristiti Pitagoru bez pažnje (vrijedi samo za 90°).","Česta greška 2: pomiješati uloge stranica u formuli.","Alt metoda — sinusov poučak ako su poznati svi kutovi (ovdje moramo prvo izračunati 3. kut).","Provjera dimenzionalno: 18,61 cm ∈ (|20 − 16,8|, 20 + 16,8) = (3,2, 36,8) ✓."]
   },
   {
-    id:"32,2",
+    id:"32.2",
     img:true,
     type:"sa",
     topic:"geom",
@@ -712,7 +712,7 @@ export const qs = [
     why:["Pravila: po dijelovima definirane funkcije; linearna ovisnost iznad praga.","Postupak: 1) formula prije i poslije praga. 2) za k > 5 koristi gradijent.","Intuicija: cijena raste linearno s nagibom 1 €/km nakon praga.","Česta greška 1: napisati C(k) = 4 + k (zaboraviti odbiti početnih 5 km koje su već u 4 €).","Česta greška 2: C(k) = 4 + k/1 = 4 + k (ista greška, dijeljenje cijena umjesto razlike).","Alt metoda — vizualno: graf je linearan s nagibom 1, počinje u točki (5, 4); jednadžba y = 1·(x − 5) + 4 = x − 1.","Provjera s ekstremnim k: k = 100 → C = 99 € (95 km iznad praga · 1 € + 4 €) ✓."]
   },
   {
-    id:"35,1",
+    id:"35.1",
     img:true,
     type:"sa",
     topic:"stat",
@@ -724,7 +724,7 @@ export const qs = [
     why:["Pravila: porast postotka = postotak_novi − postotak_stari (razlika percentnih bodova).","Postupak: 1) tablica usporedbi. 2) razlike. 3) max pozitivna.","Intuicija: pažnja — \"porast u %\" je razlika postotnih bodova, ne relativna promjena.","Česta greška 1: dati pad (negativan porast) — npr. Istarska je smanjena, ne porasla.","Česta greška 2: izračunati relativnu promjenu ((novi - stari)/stari) umjesto razlike percentnih bodova.","Alt metoda — sortiraj sve razlike, najveća pozitivna je odgovor.","Provjera: provjeri da Splitsko-dalmatinska JE u oba dijagrama (postoji za usporedbu) ✓."]
   },
   {
-    id:"35,2",
+    id:"35.2",
     img:true,
     type:"sa",
     topic:"stat",
@@ -734,8 +734,7 @@ export const qs = [
     sol:{ans:"54 760 000",alt:["54760000","~ 54 760 000","≈ 54 760 000"]},
     steps:[{txt:"8,15 % od ukupno = 4 462 940."},{txt:"Ukupno = [FRAC:4 462 940|0,0815] = 54 759 386,5 ≈ 54 760 000 (zaokruženo na tisuće)."},{txt:"Točan odgovor: ≈ 54 760 000 noćenja.",note:"odgovor",final:true},{txt:"Provjera: 54 760 000 · 0,0815 = 4 462 940 ≈ 4 462 940 ✓.",note:"verifikacija",final:true},{txt:"Provjera proporcijom: ako je 8,15 % = 4 462 940, onda je 100 % = (4 462 940/8,15) · 100 = 54 759 386 ≈ 54 760 000 ✓.",note:"diagnostika",final:true},{txt:"Postupak: 1) postavi postotak. 2) podijeli s decimalnim postotkom (ili pomnoži s 100/postotak).",note:"postupak",final:true},{txt:"Intuicija: ako 1 dio = x, ukupno = x · (100/postotak).",note:"intuicija",final:true},{txt:"Provjera: zbroj svih relativnih frekvencija = 1 (ili 100%).",note:"verifikacija",final:true}],
     why:["Pravila: postotak P % od ukupnog T = (P/100)·T; obrnuto: T = vrijednost / (P/100) = vrijednost · 100 / P.","Postupak: 1) zna se \"dio\" i \"postotak\"; 2) ukupno = dio · 100 / postotak.","Intuicija: ako 8,15 % je oko 4,5 milijuna, onda je 100 % oko 12× više = ~55 milijuna.","Česta greška 1: pomnožiti dio s postotkom (ne podijeliti) → 4 462 940 · 0,0815 = ~364 000 (besmisleno malo).","Česta greška 2: ne raditi razliku između postotka u % i decimalu (8,15 vs 0,0815).","Alt metoda — proporcija: 8,15 / 100 = 4 462 940 / T → T = 4 462 940 · 100 / 8,15 ≈ 54 760 000.","Provjera s drugom županijom: Istarska 33,69 % od 54 760 000 ≈ 18,447 milijuna — razuman broj za vodeću turističku županiju ✓."]
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2025_jesen",razina:"B",serial:"D-S069",totalPoints:40,mcCount:20,saCount:20,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  }
 ];
 
 export const qImages = {

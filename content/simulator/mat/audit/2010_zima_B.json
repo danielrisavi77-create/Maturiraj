@@ -1,0 +1,11 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2010_zima",
+  "razina": "B",
+  "serial": "D-S003",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 19,
+  "verified": "sympy+pdf+verbatim+visual+rendering",
+  "auditNotes": "G: verbatim match PDF; Q3 bold, Q13 q fix. H: Q22 sol.ans Unicode−. I: img:true Q7/11/13/21/23.2/27.1-3; img_key Q23.1/24.1. F: distractor analiza 16 MC. J: [FRAC:] Q1/10/13/14/18/20/22/25.1/15/28.1; Q10 steps correctness fix."
+}

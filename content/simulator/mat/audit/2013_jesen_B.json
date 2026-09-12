@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2013_jesen",
+  "razina": "B",
+  "serial": "D-S015",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 18,
+  "verified": "sympy+pdf+verbatim+visual",
+  "auditNotes": "G: Verbatim vision audit komplet. J1 Q5 a(a-1)(a+2) KRITIČNO, J2 Q6 verbatim, J3 Q14 verbatim, J4 Q15 verbatim, J5 Q24 [SYS:], J6 Q28,2 osmine. H: Q1 [B:ne pripada], Q7 verbatim, Q10 [B:litara][B:promjer]. J: Q1/Q3/Q16 opts FRAC, Q3 q FRAC. I: Q11+Q12+Q15 MC bound, Q23/Q25/Q28 SA corrected bindings.",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

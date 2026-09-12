@@ -1,0 +1,13 @@
+{
+  "auditedAt": "2026-05-19",
+  "auditSource": "MAT A (viša razina, ljetni rok 2018.)",
+  "auditStatus": "verified-full-detailed",
+  "auditBy": "claude-opus-4-7",
+  "auditNotes": "Detailed v2 uplift iz verified-full-C1. Anatomija prisutna: Pravilo + Intuicija + Česta greška + Alt metoda + Provjera. Per-option distractor analiza za MC. Stats: avg 7,5 steps + 7,0 why (Q25,1 boosted 4→6 steps).",
+  "issueCount": {
+    "critical": 0,
+    "medium": 0,
+    "low": 0,
+    "resolved": 49
+  }
+}

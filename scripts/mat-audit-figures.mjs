@@ -39,5 +39,10 @@ for (const f of readdirSync(dir).filter((x) => x.endsWith('.mjs')).sort()) {
   }
 }
 console.log(`\nTOTAL flagged=${totals.flagged} svg=${totals.svg} missing=${totals.missing} orphan=${totals.orphan} commaIdMismatch=${totals.comma}`);
-if (jsonOut) { writeFileSync(resolve(jsonOut), JSON.stringify({ totals, exams: report }, null, 2)); console.log(`→ ${jsonOut}`); }
+if (jsonOut) {
+  // "missing" (oznaka img:true bez SVG-a) je popis za Fazu 6 — ne crta se ovdje.
+  const todoPhase6 = report.filter((r) => r.missing.length).map((r) => ({ key: r.key, ids: r.missing }));
+  writeFileSync(resolve(jsonOut), JSON.stringify({ totals, todoPhase6Note: 'missing = nema SVG-a; nacrtati u Fazi 6 prema PDF-u (ne ovdje)', exams: report, todoPhase6 }, null, 2));
+  console.log(`→ ${jsonOut}`);
+}
 process.exit(totals.missing || totals.orphan || totals.comma ? 1 : 0);

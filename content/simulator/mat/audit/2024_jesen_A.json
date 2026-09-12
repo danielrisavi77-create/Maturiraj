@@ -1,0 +1,8 @@
+{
+  "auditedAt": "2026-05-22",
+  "auditSource": "MAT A (viša razina, jesenski rok 2024., D-S068)",
+  "auditStatus": "verified-full-max-pakG-qtext-resolved",
+  "auditBy": "Daniel+Claude (Pak G+H+I+F-MAX + PakG cross-check + q-tekst audit)",
+  "verified": "pdf+kljuc+pedagogy-maximum-A+verbatim-key+qtext-verified+content-corrected",
+  "notes": "Pak F-MAX + Pak G verbatim PDF check + Q-tekst audit. 51 Q-objekata. MC 24/24 + SA 27/27 sol ✓ (s P0 fixevima: Q31,1, Q31,2, Q38,1, Q39,1 resolved u prijašnjoj sesiji). P0 pedagogy rewrites za 14 Q-objekata: Q1 (faktorizacija), Q3 (permutacija s ponavljanjem 12 600), Q5 (padajuća + odsj > 0), Q6 (T(v) = −0,8v + 22), Q7 (|x−8|=5), Q9 (Vièteov produkt c/a = -8), Q11 (težište-središte = 4 cm), Q12 (sličnost k²), Q13 (jednakokraki krak = 2√3), Q14 (Poučak sinusa β = 11°44′), Q15 (kvadar udaljenost), Q16 (paralelni pravac), Q17 (kanonska kružnice (-1,3) r=7), Q19 (geometrijski niz 2^(4-n)), Q21 (z₂=−z₁ → |φ−φ|=π), Q22 (sin x − x), Q23 (lim x=3 ≠ 0), Q24 (f'(x)=-k/x²), Q27 ((p-1)²=0), Q28 (Gaussova ravnina w=-4+i), Q32,1 (log d=-98), Q34,1 (udvostručenje 15,38h), Q34,2 (15 m max), Q36,2 (valjak 490π), Q37,1 (prostorna dij 40°18′), Q37,2 (stožac upisan 90π). math_lint 0, pedagogy 0 P0/P1/P2."
+}

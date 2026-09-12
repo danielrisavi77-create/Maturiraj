@@ -5,7 +5,7 @@ const e = React.createElement;
 
 function Svg29d_2020Ajj(){
   const W=280, H=300;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems = [];
   // 3D projekcija kvadra
   const vA = [50, 240], vB = [170, 240], vC = [210, 190], vD = [90, 190];
@@ -45,7 +45,7 @@ function Svg29d_2020Ajj(){
 
 function Svg29c_2020Ajj(){
   const W=340, H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems = [];
   // Skala: 1m = 15px, ali a=10m → 150px poluširina; ukupna širina = 300px. Poluelipsa + donji pravokutnik.
   // Centar elipse na (170, 100). a=150, b=90 (6m × 15).
@@ -79,7 +79,7 @@ function Svg29c_2020Ajj(){
 
 function Svg20b_2020Ajj(){
   const W=320, H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems = [];
   const cols = 20, rows = 13;
   const dotR = 1.2;
@@ -107,7 +107,7 @@ function Svg20b_2020Ajj(){
 
 function Svg15_2020Ajj(){
   const W=260, H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const pad = 30;
   const R = 70; // polumjer u px
   const a = R * (2 - Math.SQRT2) / 2; // stranica kvadrata u px
@@ -143,7 +143,7 @@ function Svg15_2020Ajj(){
 
 function Svg11_2020Ajj(){
   const W=340, H=220, pad={l:28, r:14, t:14, b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-5, xMax=6, yMin=-2, yMax=3.5;
   const iW = W-pad.l-pad.r, iH = H-pad.t-pad.b;
   const toX = v => pad.l + ((v-xMin)/(xMax-xMin)) * iW;
@@ -214,7 +214,7 @@ export const qs = [
   why:["Pravilo: vagani prosjek = Σ(vrijednost · težina) / Σ(težina).","Intuicija: ako prosjek 1/3 dijela pada ispod ukupnog, ostatak mora vući prosjek gore.","Česta greška: aritmetički prosjek (70,1+69,3)/2 = 69,7 — IGNORIRA težine.","Provjera: 23,1 + 47,0 = 70,1 ✓.","Provjera medijanom: za sortirane podatke, medijan je sredina (ili prosjek dvije).","Tipičan propust: pomiješati aritmetičku sredinu i medijan; ili apsolutnu i relativnu frekvenciju."],
   steps:[{txt:"Prosjek svih: 70,1 g. Trećina (N peciva) ima prosjek 69,3 g. Preostale dvije trećine (2N peciva) imaju prosjek x."},{txt:"Ukupna masa = 3N · 70,1 = 210,3N."},{txt:"Ukupna masa = N · 69,3 + 2N · x = 69,3N + 2Nx."},{txt:"Izjednači: 210,3 = 69,3 + 2x → 2x = 141 → x = 70,5 g."},{txt:"A) 69,7: aritmetički prosjek (70,1 i 69,3)/2.",note:"diagnostika"},{txt:"B) 69,9: krivi izračun.",note:"diagnostika"},{txt:"C) 70,5 ✓ — točan vagani prosjek.",note:"diagnostika"},{txt:"D) 70,9: predaleko.",note:"diagnostika"},{txt:"Provjera: (1/3)·69,3 + (2/3)·70,5 = 23,1 + 47,0 = 70,1 ✓. Odgovor: C.",note:"verifikacija",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true},{txt:"Intuicija: ako prosjek 1/3 dijela pada ispod ukupnog, ostatak mora vući prosjek gore.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: vagani prosjek = Σ(vrijednost · težina) / Σ(težina).",note:"postupak",final:true}]
 },
-  {id:6, type:"mc",warn:"Pazi: a₃ = a₅/q² (dva člana unatrag → dijeli s q²).", topic:"seq", points:1,
+  {id:6, type:"mc",warn:"Pazi: a₃ = a₅/q² (dva člana unatrag → dijeli s q²).", topic:"niz", points:1,
   q:"Peti član geometrijskoga niza iznosi 1296, a kvocijent niza jednak je 6/5. Koliko iznosi treći član toga niza?",
   opts:["432","518","750","900"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -384,7 +384,7 @@ export const qs = [
   why:["Zadatak je izuzet i ne boduje se.","Provjera ekstrema: f'(x₀) = 0 i predznak f'' (ili f') oko x₀ daje min/max.","Tipičan propust: pomiješati domenu (ulaz) i sliku (izlaz) funkcije; ili zanemariti restrikcije domene (dijeljenje s 0, korijen iz negativnog).","Veza s gradivom: funkcije su jezik matematike — od osnovnih (linearnih) do složenih (eksponencijalnih, trigonometrijskih).","Provjera tablicom vrijednosti: izračunaj f(x) za nekoliko x i provjeri pripadnost grafu.","Tipičan propust: pomiješati domenu i sliku funkcije."],
   steps:[{txt:"Zadatak izuzet — ne boduje se", final:true},{txt:"Točan odgovor: izuzet ✓",note:"odgovor",final:true},{txt:"Intuicija: Dodatak (intuicija).",note:"intuicija",final:true},{txt:"Sažetak postupka: Zadatak je izuzet i ne boduje se.",note:"postupak",final:true},{txt:"Zadatak je izuzet i ne boduje se.",note:"verifikacija",final:true},{txt:"Provjera domene: dobivene x-vrijednosti moraju biti unutar dozvoljenog područja funkcije.",note:"verifikacija",final:true},{txt:"Alt provjera: nacrtaj graf funkcije i očitaj traženu vrijednost.",note:"verifikacija",final:true},{txt:"Sažetak metode: 1) odredi domenu; 2) izračunaj f(x) za zadane x; 3) analiziraj svojstva (monotonost, ekstremi).",note:"postupak",final:true}]
 },
-  {id:23.1, type:"sa", topic:"log", points:1,
+  {id:23.1, type:"sa", topic:"exp", points:1,
   context:"Zadatak 23 (1. dio od 2):",
   q:"Napišite izraz 2 log a + log b − log c s pomoću jednoga logaritma.",
   sol:{ans:"log([FRAC:a²b|c])", solFormula:{pre:"log ",frac:[["a²b","c"]]}, alt:["log(a² b/c)","log(a²·b/c)","log(a²bc⁻¹)"]},
@@ -509,7 +509,7 @@ export const qs = [
   why:["Pravilo: V piramide = (1/3) · baza · visina; baza je kvadrat za pravilnu četverostranu.","Intuicija: 3D zadaci zahtijevaju pažljivu identifikaciju visine (od vrha do ravnine baze, NE bočnog brida).","Česta greška: pomiješati visinu piramide s bočnim bridom ili apotemom.","Alt metoda: za pravilne piramide može se koristiti V = (1/3) · P_baze · v gdje je P_baze površina baze.","Provjera ključa: 14,63 cm³ — podaci konzistentni s formulom.","Provjera dimenzija: opseg [m], površina [m²], volumen [m³] — jedinice se moraju slagati."],
   steps:[{txt:"Piramida ABCG (vidi sliku 3D s kvadrom, dijagonala baze d = 2,7 cm, visina v, kut 63°)."},{txt:"Trigonometrija u trokutu (kut 63°): tan 63° = v / d → v = d · tan 63° = 2,7 · 1,9626 ≈ 5,299 cm."},{txt:"Stranica baze b iz Pitagore: b = d / √2 = 2,7 / 1,414 ≈ 1,909 cm."},{txt:"Obujam piramide V = (1/3) · baza · visina = (1/3) · b² · v = (1/3) · 1,909² · 5,299 ≈ (1/3) · 3,644 · 5,299 ≈ 6,44 cm³."},{txt:"Služben ključ: 14,63 cm³ (možda različiti pristup ili različiti podaci u zadatku)."},{txt:"Provjera prema ključu: 14,63 cm³.",note:"verifikacija",final:true},{txt:"Točan odgovor: 14,63 cm³ ✓",note:"odgovor",final:true},{txt:"Intuicija: 3D zadaci zahtijevaju pažljivu identifikaciju visine (od vrha do ravnine baze, NE bočnog brida).",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: V piramide = (1/3) · baza · visina; baza je kvadrat za pravilnu četverostranu.",note:"postupak",final:true}]
 },
-  {id:29.5, type:"sa", topic:"seq", points:3,
+  {id:29.5, type:"sa", topic:"niz", points:3,
   context:"Zadatak 29 (5. dio od 5):",
   q:"Zadan je niz realnih brojeva a₁, a₂, a₃, … Za zbroj prvih n članova toga niza vrijedi Sₙ = 2n² + 3n. Članovi a₁, a₃, a₅, … na neparnim mjestima zadanoga niza čine novi niz. Izračunajte zbroj prvih 100 članova tako dobivenoga novog niza.",
   sol:{ans:"40 100", alt:["40 100","40100","≈ 40 100"]},
@@ -521,8 +521,7 @@ export const qs = [
   sol:{ans:"⟨-1/12, 0]",solFormula:"⟨−[FRAC:1|12], 0]", alt:["⟨-1/12, 0]","⟨-1/12, 0]","x∈⟨-1/12, 0]"]},
   why:["Pravilo: za kompozitne nejednadžbe (log + irac + kvad) odredi domu svake komponente i uzmi presjek.","Intuicija: konačno rješenje = presjek svih uvjeta + rješenje glavne nejednadžbe.","Česta greška: zaboraviti uvjet logaritma ili kvadrirati nejednadžbu bez provjere predznaka.","Provjera ključa: ⟨−1/12, 0].","Provjera supstitucijom: uvrsti x = ⟨-1/12, 0] u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."],
   steps:[{txt:"Traže se realni brojevi koji zadovoljavaju kombinaciju logaritamske + iracionalne + kvadratne nejednadžbe."},{txt:"Iz uvjeta logaritma: log_a(arg) definiran → odredi doma."},{txt:"Iz iracionalne (1 − x ≥ 0 i x + 1 ≥ 0): x ≤ 1 i x ≥ −1, pa x ∈ [−1, 1]."},{txt:"Iz kvadratne nejednadžbe: riješi i odredi presjek s prethodnim uvjetima."},{txt:"Iz logaritamske: dodatne ograde za x."},{txt:"Služben rezultat: x ∈ ⟨−1/12, 0]."},{txt:"Provjera prema ključu: ⟨−1/12, 0].",note:"verifikacija",final:true},{txt:"Točan odgovor: ⟨-1/12, 0] ✓",note:"odgovor",final:true},{txt:"Intuicija: konačno rješenje = presjek svih uvjeta + rješenje glavne nejednadžbe.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: za kompozitne nejednadžbe (log + irac + kvad) odredi domu svake komponente i uzmi presjek.",note:"postupak",final:true}]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2020_jesen",razina:"A",serial:"D-S047",totalPoints:60,mcCount:15,saCount:34,excludedTasks:["z14_mc","z27,1_sa"],verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"],maintenanceAt_v39:"2026-05-26",maintenanceNotes_v39:["Pak F (pedagoški drift): Q18.1 (Vièteove formule x₁x₂=c/a), Q19.1 (algebra eksponenata), Q26.3 (logaritmiranje eksponencijalne inflacije), Q29.3🖼 (elipsa žarišta 5,1m + uklonjen duplicirani img:true property) — sve generic placeholder steps/why zamijenjeni konkretnom matematikom za svaki Q.","Pak I (visual): svih 6 vizuala (Q9/11/15/20.2/29.3/29.4) pixel-verified protiv PDF D-S047 — bez bugova."]}
+}
 ];
 
 export const qImages = {

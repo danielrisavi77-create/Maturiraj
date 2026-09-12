@@ -1,0 +1,8 @@
+{
+  "auditedAt": "2026-05-22",
+  "auditSource": "MAT A (viša razina, ljetni rok 2024., D-S066)",
+  "auditStatus": "verified-full-max-pakG-qtext-resolved",
+  "auditBy": "Daniel+Claude (Pak G+H+I+F-MAX + PakG cross-check + q-tekst audit)",
+  "verified": "pdf+kljuc+pedagogy-maximum-A+verbatim-key+qtext-verified",
+  "notes": "Pak F-MAX + Pak G verbatim PDF check + Q-tekst audit. 51 Q-objekata. MC 24/24 + SA 27/27 sol ✓. P0 pedagogy rewrites za 19 Q-objekata: Q5 (omjer 5:7), Q7 (Vièteove formule), Q11 (opcija A fixed na 2^(x+5), pedagogy rewritten), Q14 (interval f'<0), Q15 (težišnica), Q16 (konkretizirano), Q18 (udaljenost ravnine BDF = 4√2, ne 8√3), Q22 (Poučak kosinusa), Q23 (prostorna dijagonala D = c√2), Q24 (σ invar), Q26 (točka 5,5), Q27 (skup c), Q30,1 (cijene 0,51-0,99), Q31,1 (p<0), Q32,1 (full rewrite 502 € → 59 upita), Q34,1 (plaća 9 mj), Q34,2 (20 mj), Q35,1+Q35,2 (trapez), Q36,1+Q36,2+Q37,1+Q37,2 (3D). math_lint 0, pedagogy 0 P0/P1/P2."
+}

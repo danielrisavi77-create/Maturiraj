@@ -5,7 +5,7 @@ const e = React.createElement;
 function Svg26a_2023Bj(){
   // Q26.1: učenik treba nacrtati pravac y = (4/3)x. Prazna mreža.
   const st="var(--text)", W=280, H=280;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ox=140, oy=140, u=22;
   const px=(x)=>ox+x*u, py=(y)=>oy-y*u;
   const gridLines=[];
@@ -36,10 +36,10 @@ function Svg25_2023Bj(){
   // Pie chart on left
   const pcx=130, pcy=140, pr=90;
   const data = [
-    {lbl:"dva", val:2, color:"#4a90d9"},      // plavo
-    {lbl:"tri", val:11, color:"#e05252"},     // crveno/narančasto
-    {lbl:"četiri", val:8, color:"#50c878"},   // zeleno
-    {lbl:"pet", val:3, color:"#e9b446"},      // žuto
+    {lbl:"dva", val:2, color:"var(--blue)"},      // plavo
+    {lbl:"tri", val:11, color:"var(--red)"},     // crveno/narančasto
+    {lbl:"četiri", val:8, color:"var(--green)"},   // zeleno
+    {lbl:"pet", val:3, color:"var(--gold)"},      // žuto
   ];
   const total = data.reduce((s,d)=>s+d.val, 0);
   let acc = 0;
@@ -95,7 +95,7 @@ function Svg25_2023Bj(){
     // X-labels
     ...labels.map((l,i)=>e("text",{key:"xl"+i,x:bxForBar(i)+barW/2,y:by+bh-15,textAnchor:"middle",fontSize:10,fontFamily:"sans-serif",fill:st},l)),
     // Only first bar is given — "dva" = 2 (as in PDF)
-    e("rect",{key:"bar0",x:bxForBar(0),y:byForVal(2),width:barW,height:(by+bh-30)-byForVal(2),fill:"#4a90d9",fillOpacity:0.6,stroke:st,strokeWidth:1.2}),
+    e("rect",{key:"bar0",x:bxForBar(0),y:byForVal(2),width:barW,height:(by+bh-30)-byForVal(2),fill:"var(--blue)",fillOpacity:0.6,stroke:st,strokeWidth:1.2}),
     e("text",{key:"xbl",x:bx+bw/2,y:by+bh+5,textAnchor:"middle",fontSize:10,fontFamily:"sans-serif",fill:st},"broj obroka dnevno")
   );
 }
@@ -110,7 +110,7 @@ function Svg17_2023Bj(){
   //   - 220° je REFLEX kut na S (preko gornjeg dijela, obuhvaća C)
   //   - α, β — kutovi pri bazi trokuta
   const st="var(--text)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const W=480, H=380;
   // Kružnica
   const cx=240, cy=200, r=160;
@@ -190,7 +190,7 @@ function Svg17_2023Bj(){
 function Svg14_2023Bj(){
   // Q14: Vektor a⃗ od (0,0) do (4, 2). Pitanje se odnosi na (3/2)a⃗.
   const st="var(--text)", W=340, H=280;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ox=120, oy=180, u=26;
   const px=(x)=>ox+x*u, py=(y)=>oy-y*u;
   const T=[0,0], HD=[4,2];
@@ -514,7 +514,7 @@ export const qs = [
      "Alt metoda (provjera): 22 = (5·21 + x)/6 → 132 = 105 + x → x = 27 ✓"
    ,"Provjera: nakon 27 u zadnjoj — ukupno 105 + 27 = 132 golova; prosjek 132/6 = 22 ✓","Tipičan propust: pomiješati aritmetičku sredinu i medijan; ili apsolutnu i relativnu frekvenciju."]
 },
-  {id:11,type:"mc",warn:"Pazi: jednak porast svake godine → linearno; nagib = (150 − 50)/5.",topic:"seq",points:1,
+  {id:11,type:"mc",warn:"Pazi: jednak porast svake godine → linearno; nagib = (150 − 50)/5.",topic:"niz",points:1,
   q:"Godišnja proizvodnja meda 2017. godine bila je 50 kg, a 2022. godine 150 kg. Godišnja se proizvodnja meda svake godine poveća za istu količinu. Kojom se formulom može izračunati godišnja proizvodnja meda gdje je t broj godina nakon 2017. godine?",
   opts:["m(t) = 3t + 50","m(t) = 3t + 150","m(t) = 20t + 50","m(t) = 20t + 150"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -660,7 +660,7 @@ export const qs = [
      "Alt metoda (provjera): drugi kut β = 90° − α ≈ 57°05'41''; α + β = 90° ✓"
    ,"Provjera: 32°54'19'' u decimalama = 32 + 54/60 + 19/3600 ≈ 32,905° ≈ arctan(0,647) ✓","Tipičan propust: koristiti DEG mode kad treba RAD (ili obratno); pomiješati sin/cos/tan."]
 },
-  {id:19,type:"mc",warn:"Pazi: aritmetički → stalna razlika; provjeri razlike susjednih članova.",topic:"seq",points:1,
+  {id:19,type:"mc",warn:"Pazi: aritmetički → stalna razlika; provjeri razlike susjednih članova.",topic:"niz",points:1,
   q:"Koji od navedenih nizova nije aritmetički niz?",
   opts:["−5, −2, 1, 4","−3, −2, −1, 0","1, −1, 1, −1","3, 1, −1, −3"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -1045,16 +1045,7 @@ export const qs = [
      "Česta greška: uključiti −1 u sliku (zatvoren interval [−1, +∞⟩; ili krivi smjer.",
      "Alt metoda (provjera): horizontalna asimptota y = −1; f raste neograničeno desno ✓"
    ,"Provjera: za x → −∞, 10^(2x − 8) → 0 → f → −1 (nedostiže); za x → +∞, f → +∞ ✓","Tipičan propust: a^m · a^n = a^(m+n), ne a^(m·n); ili (a^m)^n = a^(m·n), ne a^(m+n)."]
-},
-  {_META:true,
-  auditedAt: "2026-05-20",
-  auditSource: "MAT B (osnovna razina, jesenski rok 2023.)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  verified: "vision+pdf+pedagogy+verbatim",
-  notes: "FULL REWRITE — Pak G+H+I+F kombinirani. Sve 40 Q-objekata (20 MC + 20 SA dvodijelni) production-ready pedagogy upgrade (5-7 steps s verifikacija/diagnostika + 4-5 specifičnih why entries). 6 Q s img:true (Q12, Q14, Q17, Q25,1, Q25,2, Q26,1). Sve sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation potpuno Unicode/[FRAC:].",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 197}
-  }
+}
 ];
 
 export const qImages = {

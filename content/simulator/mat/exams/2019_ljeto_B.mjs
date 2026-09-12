@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function SvgT28_2019Blj(){
   const W=280,H=68;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const hdr=["Prije\u0111eni put\nu kilometrima (km)","0","225","480"];
   const vals=["Koli\u010dina goriva u\nspremniku u litrama (L)","41,2","26,8","10,48"];
   const cw=[130,45,45,45];
@@ -27,7 +27,7 @@ function SvgT28_2019Blj(){
 
 function Svg27_2019Blj(){
   const W=240,H=260,pad={l:30,r:14,t:14,b:30};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=6,yMin=-5.5,yMax=6.5;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -80,7 +80,7 @@ function Svg27_2019Blj(){
 
 function Svg26a_2019Blj(){
   const W=220,H=170;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const A={x:30,y:145},B={x:185,y:145};
   const D={x:30,y:30},C={x:185,y:80};
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
@@ -137,7 +137,7 @@ function Svg25b_2019Blj(){
 
 function Svg25a_2019Blj(){
   const W=220,H=150;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const A={x:15,y:130},B={x:195,y:130},C={x:195,y:30},D={x:15,y:30};
   const E={x:152,y:130};
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
@@ -166,7 +166,7 @@ function Svg25a_2019Blj(){
 
 function SvgT19a_2019Blj(){
   const W=340,H=70;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const hdr=["Mjesec","I.","II.","III.","IV.","V.","VI."];
   const vals=["Neto pla\u0107a (kn)","7787","7911","8620","7712","7832","8253"];
   const cw=[90,38,38,38,38,38,38];
@@ -363,7 +363,7 @@ export const qs = [
     {txt:"Provjera: Marko: 350 + 47·28 = 350 + 1316 = 1666 kn. Ivan: 210 + 52·28 = 210 + 1456 = 1666 kn ✓",final:true,note:"verifikacija"},
     {txt:"Distraktori: A) 5 = računska greška (140/47 ≈ 5? krivi pristup); C) 112 = pomnožio krivim faktorom; D) 140 = uzeo razliku 350−210 bez dijeljenja s 5.",final:true,note:"diagnostika"},{txt:"Sažetak postupka: Postupak: postavi dvije linearne funkcije troška (po broju rasvjetnih tijela), izjednači, riješi za n.",note:"postupak",final:true},{txt:"Intuicija: Pravilo: 'cijene jednake' znači y₁(n) = y₂(n). Ovo je standardni 'break-even' problem.",note:"intuicija",final:true}
   ]},
-  {id:12,type:"mc",warn:"Pazi: nultočka → f(x) = 0 → (2/3)x = −4 → x = −6; točka (−6, 0).",topic:"func",points:1,
+  {id:12,type:"mc",warn:"Pazi: nultočka → f(x) = 0 → (2/3)x = −4 → x = −6; točka (−6, 0).",topic:"fun",points:1,
   q:"Koje koordinate ima nultočka funkcije f(x) = (2/3)x + 4?",
   opts:["(−6, 0)","(0, −6)","(0, 4)","(4, 0)"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -631,7 +631,7 @@ export const qs = [
     {txt:"Provjera: (0,01)^(3·2 − 6) = (0,01)^0 = 1. 1 − 1 = 0 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: prebaci konstantu (1) na drugu stranu, prepoznaj da a^n = 1 daje n = 0 (za a ≠ 1), riješi linearno.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) izoliraj eksponencijalni izraz na jednoj strani (= 1 ili = neki broj). 2) ako je 1, eksponent = 0. Ako je drugi broj, logaritmiraj.",note:"intuicija",final:true}
   ]},
-  {id:24.1,type:"sa",topic:"func",points:1,
+  {id:24.1,type:"sa",topic:"fun",points:1,
   context:"Zadatak 24 (1. dio od 2):",
   q:"Zadana je funkcija f(x) = (2/7)x − 3/7. Za koji je x vrijednost funkcije f(x) za 2 veća od f(12)?",
   sol:{ans:"19",alt:["x=19","x = 19","19,0","= 19","19,0"]},
@@ -646,7 +646,7 @@ export const qs = [
     {txt:"Provjera: f(19) = (2/7)·19 − 3/7 = 38/7 − 3/7 = 35/7 = 5. f(12) = 3. 5 − 3 = 2 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) izračunaj f(12). 2) postavi f(x) = f(12) + 2. 3) riješi za x.",final:true,note:"postupak"},{txt:"Intuicija: Brže rješenje: a = 2/7. f(x) − f(12) = 2 → [FRAC:2|7](x − 12) = 2 → x − 12 = 7 → x = 19. Bez izračuna f(12).",note:"intuicija",final:true}
   ]},
-  {id:24.2,type:"sa",topic:"func",points:1,
+  {id:24.2,type:"sa",topic:"fun",points:1,
   context:"Zadatak 24 (2. dio od 2):",
   q:"U jednome uredu sakuplja se papir za recikliranje. U razdoblju od n tjedana sakupljeno je ukupno P(n) kilograma papira gdje se P(n) može izraziti formulom P(n) = 2,63n. Koliko je ukupno papira sakupljeno u tome uredu tijekom petoga i šestoga tjedna?",
   sol:{ans:"5,26",alt:["5,26","5,26 kg","5,3","5,3","5"]},
@@ -745,7 +745,7 @@ export const qs = [
     {txt:"Postupak: 1) prepoznaj smjer otvorenosti parabole. 2) nađi ekstremnu točku. 3) očitaj cjelobrojne koordinate.",final:true,note:"postupak"},
     {txt:"Intuicija: za parabolu otvorenu prema dolje, tjeme je MAKSIMUM. Vrijednost y_T = 5 je najveća za graf f.",final:true,note:"intuicija"}
   ]},
-  {id:27.2,img:true,type:"sa",topic:"func",points:1,
+  {id:27.2,img:true,type:"sa",topic:"fun",points:1,
   context:"Zadatak 27 (2. dio od 3):",
   q:"Napišite koeficijent smjera grafa linearne funkcije g.",
   sol:{ans:"3",alt:["k=3","k = 3","3,0","=3","3,00"]},
@@ -773,7 +773,7 @@ export const qs = [
     {txt:"Postupak: 1) algebarski: postavi f(x) = g(x), riješi kvadratnu. 2) grafički: očitaj presjeke.",final:true,note:"postupak"},
     {txt:"Intuicija: parabola i pravac mogu se sijeci u 0, 1 ili 2 točke (ovisno o diskriminanti).",final:true,note:"intuicija"},{txt:"Provjera Vièteovim formulama: x₁+x₂ = −b/a i x₁·x₂ = c/a.",note:"verifikacija",final:true}
   ]},
-  {id:28.1,img:true,type:"sa",topic:"func",points:1,img:true,
+  {id:28.1,img:true,type:"sa",topic:"fun",points:1,img:true,
   context:"Zadatak 28 (1. dio od 3):",
   q:"Količina goriva u spremniku automobila mijenja se linearno ovisno o broju prijeđenih kilometara. U tablici su navedeni podatci o količini goriva tijekom jednoga putovanja. Ako je na početku toga putovanja spremnik goriva bio 80 % napunjen, koliki je ukupni kapacitet spremnika?",
   sol:{ans:"51,5",alt:["51,5","51,5 L","52"]},
@@ -788,7 +788,7 @@ export const qs = [
     {txt:"Postupak: identificiraj početnu količinu goriva iz tablice (41,2 L), prepoznaj da je to 80 % kapaciteta, riješi proporcijom.",final:true,note:"postupak"},
     {txt:"Intuicija: spremnik je za 1/5 prazan kad putovanje počne, pa ukupan kapacitet je 41,2 / 0,8 = 51,5 L.",final:true,note:"intuicija"}
   ]},
-  {id:28.2,img:true,type:"sa",topic:"func",points:1,img:true,
+  {id:28.2,img:true,type:"sa",topic:"fun",points:1,img:true,
   context:"Zadatak 28 (2. dio od 3):",
   q:"Koliko je goriva potrošio taj automobil za prijeđenih 100 km na tome putovanju?",
   sol:{ans:"6,4",alt:["6,4","6,4 L","6"]},
@@ -803,7 +803,7 @@ export const qs = [
     {txt:"Postupak: izračunaj potrošnju po km iz tablice (linearno), pomnoži s 100.",final:true,note:"postupak"},
     {txt:"Intuicija: prosječna potrošnja po km mora biti konstantna (linearno). Pomnoženo sa 100 daje 'litre na 100 km' — standardna jedinica.",final:true,note:"intuicija"}
   ]},
-  {id:28.3,img:true,type:"sa",topic:"func",points:1,img:true,
+  {id:28.3,img:true,type:"sa",topic:"fun",points:1,img:true,
   context:"Zadatak 28 (3. dio od 3):",
   q:"Zapišite G(s) kao funkciju od s gdje je s prijeđeni put u kilometrima, a G(s) količina goriva u spremniku tijekom toga putovanja.",
   sol:{ans:"G(s) = 41,2 − 0,064s",alt:["G(s)=41,2-0,064s","41,2-0,064s","G(s) = 41,2 − 0,064·s","G(s)=41,2−0,064s","G(s) = 41,2 − 0,064s","G(s) = 41,2 - 0,064s"]},
@@ -818,8 +818,7 @@ export const qs = [
     {txt:"Provjera za s = 225: G = 41,2 − 0,064·225 = 41,2 − 14,4 = 26,8 ✓. Za s = 480: G = 41,2 − 0,064·480 = 41,2 − 30,72 = 10,48 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) iz G(0) odredi konstantu b. 2) iz Δgoriva/Δs odredi nagib (s negativnim predznakom jer gorivo pada).",final:true,note:"postupak"},
     {txt:"Intuicija: linearna funkcija oblika G(s) = početno − potrošnja·s. Početno = 41,2. Potrošnja = 0,064 L/km. Pa funkcija pada kao automobil putuje.",final:true,note:"intuicija"}
-  ]},
-  {_META:true,auditStatus:"verified-full",rok:"2019_ljeto",razina:"B",serial:"D-S045",totalPoints:40,mcCount:16,saCount:24,verified:"sympy+pdf",note:"unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3); fixed Q17/Q18 points:2→1",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  ]}
 ];
 
 export const qImages = {

@@ -5,7 +5,7 @@ const e = React.createElement;
 
 function Svg7_2020Blj(){
   const W=520,H=360,elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const poly=(pts,k)=>e("polygon",{key:k,points:pts,fill:"rgba(200,200,200,0.18)",stroke:"var(--text)",strokeWidth:1.5});
   const box=(x,y,w,h,k)=>e("rect",{key:k,x,y,width:w,height:h,fill:"rgba(200,200,200,0.18)",stroke:_BLUE,strokeWidth:1.5});
   // ── A: kvadrat + 4 trokuta (TOČAN) ──
@@ -37,7 +37,7 @@ function Svg7_2020Blj(){
 
 function Svg28c_2020Blj(){
   const W=300, H=240;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems=[];
   // Točke (B = pravi kut, A gore, C desno)
   const Bx=50, By=190, Ax=50, Ay=40, Cx=250, Cy=190;
@@ -73,7 +73,7 @@ function Svg28c_2020Blj(){
 
 function Svg28a_2020Blj(){
   const W=280, H=280;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const pad=30;
   const S=220; // kvadrat side pixels
   const elems=[];
@@ -134,7 +134,7 @@ function Svg28a_2020Blj(){
 
 function Svg27_2020Blj(){
   const W=400, H=200, elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const rows=[
     ["Namirnica (100 g)","Energija / kcal","Ugljikohidrati / g","Bjelančevine / g"],
     ["ananas","56","13","0"],
@@ -198,7 +198,7 @@ function Svg27_2020Blj(){
 
 function Svg22b_2020Blj(){
   const W=340,H=260,elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ln=(x1,y1,x2,y2,k)=>e("line",{key:k,x1,y1,x2,y2,stroke:_BLUE,strokeWidth:1.5});
   // Lijeva crta: gore-lijevo → V1(140,120)
   elems.push(ln(62,45,140,120,"lc"));
@@ -227,7 +227,7 @@ function Svg22b_2020Blj(){
 
 function Svg22a_2020Blj(){
   const W=300, H=220, elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const x0=30, y0=30, W2=220, H2=140;
 
   // Pravokutnik
@@ -263,7 +263,7 @@ function Svg22a_2020Blj(){
 
 function Svg17_2020Blj(){
   const W=340, H=80, elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const x0=30, x1=310, y=40;
   const xMin=-4, xMax=8;
   const toX=v=>x0+(v-xMin)/(xMax-xMin)*(x1-x0);
@@ -305,7 +305,7 @@ function Svg17_2020Blj(){
 
 function Svg15_2020Blj(){
   const W=340, H=280, pad={l:44,r:20,t:24,b:36};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-4, xMax=8, yMin=-4, yMax=10;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -359,7 +359,7 @@ function Svg15_2020Blj(){
 
 function Svg3_2020Blj(){
   const W=290,H=270,elems=[];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Mreža 3x3
   [[30,30],[100,30],[170,30],[30,100],[100,100],[170,100],[30,170],[100,170],[170,170]].forEach(([x,y],i)=>
     elems.push(e("rect",{key:`g${i}`,x,y,width:70,height:70,fill:"none",stroke:_BLUE,strokeWidth:1})));
@@ -381,7 +381,7 @@ function Svg3_2020Blj(){
 
 function Svg23a_2020Blj(){
   const W=300, H=280, pad={l:44,r:20,t:24,b:36};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3, xMax=6, yMin=-5, yMax=6;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -495,7 +495,7 @@ export const qs = [
   steps:[{txt:"Pravilna trostrana prizma: baza je jednakostranični trokut sa stranicom 8 cm."},{txt:"Površina baze: P_b = (a²√3)/4 = (64√3)/4 = 16√3 cm²."},{txt:"Visina prizme (bočni brid): h = 2 cm."},{txt:"Obujam: V = P_b · h = 16√3 · 2 = 32√3 cm³."},{txt:"Numerički: 32 · 1,732 ≈ 55,4 cm³."},{txt:"A) 28: krivi obračun površine baze.",note:"diagnostika"},{txt:"B) 42,7: koristio krivu formulu (možda kvadrat).",note:"diagnostika"},{txt:"C) 48: različito približavanje √3.",note:"diagnostika"},{txt:"D) 55,4 ✓ — točno: 32√3.",note:"diagnostika"},{txt:"Provjera: V = 16√3 · 2 = 32√3 ≈ 55,4 ✓. Odgovor: D.",note:"verifikacija",final:true},{txt:"Točan odgovor: D ✓",note:"odgovor",final:true},{txt:"Intuicija: √3/4 ≈ 0,433 je faktor za jednakostranični trokut.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: V prizme = (površina baze) · (visina). Baza za jednakostranični trokut: P = a²√3 / 4.",note:"postupak",final:true}],
    why:["Pravilo: V prizme = (površina baze) · (visina). Baza za jednakostranični trokut: P = a²√3 / 4.","Intuicija: √3/4 ≈ 0,433 je faktor za jednakostranični trokut.","Česta greška: koristiti formulu za pravokutni trokut umjesto jednakostranični.","Provjera: 32 · 1,732 = 55,42 cm³ ✓.","Provjera Pitagorom: ako je trokut pravokutan, a² + b² = c² mora vrijediti.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
   },
-  {id:11,type:"mc",warn:"Pazi: nagib −2 → funkcija pada → najmanja vrijednost za NAJVEĆI x.",topic:"func",points:1,
+  {id:11,type:"mc",warn:"Pazi: nagib −2 → funkcija pada → najmanja vrijednost za NAJVEĆI x.",topic:"fun",points:1,
    q:"Za koju je od navedenih vrijednosti varijable x vrijednost funkcije f(x) = -2x + 1 najmanja?",
    opts:["x = -11/3","x = -5/14","x = 5/14","x = 11/3"],
    sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -609,14 +609,14 @@ export const qs = [
    steps:[{txt:"Tražimo kut γ u nekom trokutu/mnogokutu. Iz ključa: γ = 101°."},{txt:"Najvjerojatnije: zbroj kutova u trokutu = 180°, pa γ = 180° − α − β."},{txt:"Ili: vanjski kut, sukladni kutevi, paralelne crte."},{txt:"Rezultat: γ = 101°.",final:true,note:"odgovor"},{txt:"Provjera prema ključu: γ = 101°.",note:"verifikacija",final:true},{txt:"Intuicija: vanjski kut = zbroj dvaju nasuprotnih unutarnjih.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: u trokutu zbroj kutova = 180°.",note:"postupak",final:true}],
    why:["Pravilo: u trokutu zbroj kutova = 180°.","Intuicija: vanjski kut = zbroj dvaju nasuprotnih unutarnjih.","Česta greška: pomiješati unutarnji i vanjski kut.","Provjera ključa: γ = 101°.","Provjera dimenzija: opseg [m], površina [m²], volumen [m³] — jedinice se moraju slagati.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
   },
-  {id:23.1,img:true,type:"sa",topic:"func",points:1,
+  {id:23.1,img:true,type:"sa",topic:"fun",points:1,
    context:"Zadatak 23 (1. dio od 2):",
    q:"U zadanome koordinatnom sustavu nacrtajte graf linearne funkcije za koju vrijedi f(0) = -2 i f(3) = 4.",
    sol:{ans:"y = 2x − 2", alt:["y=2x-2","f(x)=2x-2"]},
    steps:[{txt:"Linearna funkcija s f(0) = −2 i f(3) = 4."},{txt:"Slobodni član: l = f(0) = −2."},{txt:"Nagib: k = (4 − (−2))/(3 − 0) = 6/3 = 2."},{txt:"Formula: f(x) = 2x − 2."},{txt:"Crtaj pravac kroz (0, −2) i (3, 4): raste slijeva-na-desno."},{txt:"Sjecište x-osi: 2x − 2 = 0 → x = 1 → (1, 0)."},{txt:"Provjera: f(1) = 0 ✓; pravac prolazi kroz (0, −2), (1, 0), (3, 4) ✓.",note:"verifikacija",final:true},{txt:"Točan odgovor: y = 2x − 2 ✓",note:"odgovor",final:true},{txt:"Intuicija: pozitivni nagib → raste slijeva-na-desno.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: linearna funkcija f(x) = kx + l kroz dvije točke; k = (y₂−y₁)/(x₂−x₁), l = f(0).",note:"postupak",final:true}],
    why:["Pravilo: linearna funkcija f(x) = kx + l kroz dvije točke; k = (y₂−y₁)/(x₂−x₁), l = f(0).","Intuicija: pozitivni nagib → raste slijeva-na-desno.","Česta greška: zamijeniti x₁ i x₂ u izračunu nagiba (predznak).","Provjera: pravac kroz (0, −2) i (3, 4) ima nagib 2 i slobodni član −2 ✓.","Provjera: f(x) tablica vrijednosti — usporedba s rezultatom.","Tipičan propust: zanemariti domenu/sliku funkcije; krivo interpretirati graf."]
   },
-  {id:23.2,type:"sa",topic:"func",points:1,
+  {id:23.2,type:"sa",topic:"fun",points:1,
    context:"Zadatak 23 (2. dio od 2):",
    q:"Za koji je broj x vrijednost funkcije f(x) = 5x − 17 jednaka 348?",
    sol:{ans:"73", alt:["73","x=73"]},
@@ -683,7 +683,7 @@ export const qs = [
    steps:[{txt:"Iz konteksta: izračun mase ili sl. Iz ključa: 82,3 g."},{txt:"Najvjerojatnije: postotak od ukupne mase ili kombinatornički račun."},{txt:"Rezultat: 82,3 g.",final:true,note:"odgovor"},{txt:"Provjera prema ključu: 82,3 g.",note:"verifikacija",final:true},{txt:"Intuicija: 82,3 sugerira konkretni decimalni izračun.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: postotni račun ili proporcija.",note:"postupak",final:true},{txt:"Provjera redom veličine: rezultat je u očekivanom intervalu (npr. postotak između 0 i 100).",note:"verifikacija",final:true},{txt:"Alt provjera: izračunaj rezultat na kalkulatoru i usporedi s ručno dobivenim.",note:"verifikacija",final:true}],
    why:["Pravilo: postotni račun ili proporcija.","Intuicija: 82,3 sugerira konkretni decimalni izračun.","Česta greška: pomiješati postotak osnovne i preostale mase.","Provjera ključa: 82,3 g.","Provjera: dobiveni broj pripada traženom skupu (npr. ℕ, ℤ, ℚ, ℝ) — provjeri svojstva.","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
   },
-  {id:27.3,img:true,type:"sa",topic:"func",points:1,
+  {id:27.3,img:true,type:"sa",topic:"fun",points:1,
    context:"Zadatak 27 (3. dio od 3):",
    q:"Energetska vrijednost namirnica može se izražavati u kilokalorijama (kcal) i kilodžulima (kJ). Napišite formulu koja pretvara količinu energije x kcal u y kJ ako je energetska vrijednost 100 grama breskvi 192 kJ.",
    sol:{ans:"y = [FRAC:96x|23]",
@@ -715,8 +715,7 @@ export const qs = [
    sol:{ans:"138,92 m", alt:["138,92 m","138,92","≈138,92","10√193"]},
    steps:[{txt:"Tražimo duljinu. Iz ključa: 138,92 cm = 10√193."},{txt:"10√193 = 10 · 13,892... ≈ 138,92."},{txt:"Vjerojatno iz Pitagorinog poučka u 3D ili kompleksnoj geometriji."},{txt:"Rezultat: 138,92 cm (10√193).",final:true,note:"odgovor"},{txt:"Provjera: 138,92² ≈ 19298,77; 100 · 193 = 19300 ✓ (priznaje se ne 138, jer to znači 138,0).",note:"verifikacija",final:true},{txt:"Intuicija: 193 nije potpuni kvadrat, pa √193 ostaje kao iracionalni broj.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: ako rezultat = a√b, mora se najpreciznije ostaviti u korijenom obliku.",note:"postupak",final:true},{txt:"Provjera: skiciraj figuru s mjernim brojevima i vizualno potvrdi rezultat.",note:"verifikacija",final:true}],
    why:["Pravilo: ako rezultat = a√b, mora se najpreciznije ostaviti u korijenom obliku.","Intuicija: 193 nije potpuni kvadrat, pa √193 ostaje kao iracionalni broj.","Česta greška: zaokruživanje na premali broj decimala (138 ≈ 138,92 nije dovoljno).","Provjera: 10√193 ≈ 138,924 cm ✓.","Provjera Pitagorom: ako je trokut pravokutan, a² + b² = c² mora vrijediti.","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2020_ljeto",razina:"B",serial:"D-S050",totalPoints:40,mcCount:16,saCount:24,verified:"sympy+pdf",note:"unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"],maintenanceAt_v310:"2026-05-26",maintenanceNotes_v310:["Pak I (visual): svih 12 vizuala (Q3/7/15/17/22.1/22.2/23.1/27.1/27.2/27.3/28.1/28.3) verified protiv PDF D-S050.","P1 fix Svg23a_2020Blj: graf y=2x-2 izmjenjen iz BLUE SOLID (izgledalo kao original problem) u GREEN DASHED (konvencija rješenje-highlight, sukladno Svg23a_2020Bjj).","P2 BACKLOG Svg3_2020Blj: shading shape uncertainty — SVG računa ~34% (≈ answer A), ali OCR-parsed NCVVO key bio garbled (možda A ili C). Treba ručna verifikacija NCVVO listing-a (Q3 = A = 33.33% vs C = 44.44%). Ostavljeno za sljedeću sesiju.","P2 BACKLOG Svg27a_2020Bjj: polygon shape ne odgovara točno PDF oblik, ali edge counts (8 vert × 1cm + 10 horiz × 2cm = 28 cm) match NCVVO Q27.1=28cm. Pedagoški OK, vizualno aproksimativno."]}
+  }
 ];
 
 export const qImages = {

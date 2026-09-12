@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg30_2022LjetoB() {
   const W=320, H=220, t='var(--text)';
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Pravac a gore, pravac b dolje (paralelni)
   // Dva transverzala se sijeku u sredini, presijecaju paralele
   // Označi segmente: x (na pravcu a između presjeka), 5 (na transverzali 1 gore),
@@ -37,7 +37,7 @@ function Svg30_2022LjetoB() {
 
 function Svg27_2022LjetoB() {
   const W=260, H=180, t='var(--text)';
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Pravokutni trokut: kateta x (gore), kateta 2x (desno), hipotenuza dolje
   // Pravi kut u gornjem desnom vrhu
   const A=[40,50], B=[200,50], C=[230,140];  // A gornji lijevi, B pravi kut, C donji desno
@@ -151,7 +151,7 @@ function Svg13_2022LjetoB() {
 
 function Svg11_2022LjetoB() {
   const W=320, H=200, t='var(--text)';
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Trokut: A vrh kut α; stranice 14 (lijevo), 23 (gore), 16 (donja)
   const A=[80,40], B=[60,160], C=[280,160];  // približno
   return e('svg', {viewBox:`0 0 ${W} ${H}`, width:'100%',
@@ -281,7 +281,7 @@ export const qs = [
      "Alt metoda (provjera): 16⁻¹ = 1/16; pa razlomak = (4·64¹⁰⁰)·16 = 4³⁰¹·4² = 4³⁰³ ✓"
    ,"Provjera pravila eksponenata: aᵐ/aⁿ = aᵐ⁻ⁿ; (−2) → 301 − (−2) = 303 ✓","Tipičan propust: a^m · a^n = a^(m+n), ne a^(m·n); ili (a^m)^n = a^(m·n), ne a^(m+n)."]
   },
-  {id:5,type:"mc",warn:"Pazi: a₃ = a₁·q² → a₁ = 40/((−2)²) = 40/4.",topic:"nizovi",points:1,
+  {id:5,type:"mc",warn:"Pazi: a₃ = a₁·q² → a₁ = 40/((−2)²) = 40/4.",topic:"niz",points:1,
    q:"Za geometrijski niz vrijedi a₃ = 40, q = −2. Koliko iznosi prvi član toga niza?",
    opts:["−160","−10","10","160"],
    sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -354,7 +354,7 @@ export const qs = [
      "Alt metoda (provjera): konačno > 5x ⟺ 3x + 500 > 5x ⟺ 500 > 2x ⟺ x < 250 ✓"
    ,"Provjera s x = 200: konačno = 3·200 + 500 = 1100; 5x = 1000. 1100 > 1000 ✓ (uvjet zadovoljen). Za x = 250: 3·250 + 500 = 1250 = 5·250 — NIJE strogo veće. ✓","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:9,type:"mc",warn:"Pazi: koliko lozinki od 5 JEDNAKIH znamenaka? Vjerojatnost = 1/(taj broj).",topic:"vjer",points:1,
+  {id:9,type:"mc",warn:"Pazi: koliko lozinki od 5 JEDNAKIH znamenaka? Vjerojatnost = 1/(taj broj).",topic:"stat",points:1,
    q:"Znamo da se lozinka sastoji od pet jednakih znamenaka. Kolika je vjerojatnost da pogodimo lozinku iz prvoga pokušaja?",
    opts:["0,1","0,2","0,5","0,9"],
    sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -674,7 +674,7 @@ export const qs = [
      "Alt metoda (provjera): koristi logaritam: log(√(b⁷·√b)) = ([FRAC:1|2])·log(b⁷·b^([FRAC:1|2])) = ([FRAC:1|2])·(7+[FRAC:1|2])·log b = ([FRAC:15|4])·log b → b^([FRAC:15|4]) ✓"
    ,"Provjera s b = 2: izvorni = √(128·√2) = √(128·1,414) ≈ √181 ≈ 13,45; b^([FRAC:15|4]) = 2^([FRAC:15|4]) ≈ 13,45 ✓","Tipičan propust: a^m · a^n = a^(m+n), ne a^(m·n); ili (a^m)^n = a^(m·n), ne a^(m+n)."]
   },
-  {id:24.1,type:"sa",topic:"omjer",points:1,
+  {id:24.1,type:"sa",topic:"ostalo",points:1,
    context:"Zadatak 24 (1. dio od 2):",
    q:"U smjesi od 276 kg bijeloga i integralnoga brašna jest 138 kg integralnog brašna. Odredite omjer količine bijeloga i integralnoga brašna.",
    sol:{ans:"1 : 1",alt:["1:1","1/1","jednako"]},
@@ -740,7 +740,7 @@ export const qs = [
      "Alt metoda (provjera): provjeri da je prosjek > 14 (svi su) — 14,283 > 14 ✓"
    ,"Provjera: 14,2833·3 = 42,85 ✓; svaka od triju vrijednosti > 14 ✓","Tipičan propust: pomiješati aritmetičku sredinu i medijan; ili apsolutnu i relativnu frekvenciju."]
   },
-  {id:26.1,type:"sa",topic:"skupovi",points:1,
+  {id:26.1,type:"sa",topic:"br",points:1,
    context:"Zadatak 26 (1. dio od 2):",
    q:"Napišite jedan broj koji pripada skupu ⟨3, 4⟩ ∩ [7/2, 5⟩.",
    sol:{ans:"k ∈ [7/2, 4⟩, npr. 3,7",alt:["3,7","3,8","3,9","[7/2, 4⟩"], solFormula:{type:"text", text:"k ∈ [[FRAC:7|2], 4⟩, npr. 3,7"}},
@@ -913,15 +913,6 @@ export const qs = [
      "Česta greška: krivo identificirati 'odgovarajuće' segmente; ili obrnuti omjer.",
      "Alt metoda (provjera): pretvori u koordinatni sustav, postavi paralelne pravce kao y = 0 i y = c."
    ,"Provjera (Tales): omjer 2/5 = 3/(?) → ? = 15/2 = 7,5; ili x/3 = 5/2 → x = 7,5 ✓","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
-  },
-  {_META:true,
-  auditedAt: "2026-05-20",
-  auditSource: "MAT B (niža razina, ljetni rok 2022.)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  verified: "vision+pdf+pedagogy+verbatim",
-  notes: "Pak G+H+I+F kombinirani. Sve 40 Q-objekata produkcijski upgrade. 6 Q s img:true (Q6, Q11, Q13, Q25,1/.2, Q27,1, Q30,2). Sva sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation potpuno Unicode/[FRAC:]. Pedagoški upgrade: ≥3-7 steps + ≥4-5 why entries svuda.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 197}
   }
 ];
 

@@ -36,19 +36,19 @@ function Svg28_2017JesenB(){
     )),
     e("text",{key:u(),x:pad.l-5,y:toY(0)+12,textAnchor:"end",fontSize:9,fill:"var(--muted)"},"0"),
     // A (čvrsta) — automobilist
-    e("polyline",{key:u(),points:Aline,fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
-    e("text",{key:u(),x:toX(0.5),y:toY(5.4),fontSize:11,fill:"#4a90d9",fontWeight:700,fontStyle:"italic"},"A"),
+    e("polyline",{key:u(),points:Aline,fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
+    e("text",{key:u(),x:toX(0.5),y:toY(5.4),fontSize:11,fill:"var(--blue)",fontWeight:700,fontStyle:"italic"},"A"),
     // B (isprekidana) — biciklist
-    e("line",{key:u(),x1:Bline_x1,y1:Bline_y1,x2:Bline_x2,y2:Bline_y2,stroke:"#e05252",strokeWidth:2,strokeDasharray:"5,3",strokeLinecap:"round"}),
-    e("text",{key:u(),x:toX(0.5),y:toY(1.2),fontSize:11,fill:"#e05252",fontWeight:700,fontStyle:"italic"},"B"),
+    e("line",{key:u(),x1:Bline_x1,y1:Bline_y1,x2:Bline_x2,y2:Bline_y2,stroke:"var(--red)",strokeWidth:2,strokeDasharray:"5,3",strokeLinecap:"round"}),
+    e("text",{key:u(),x:toX(0.5),y:toY(1.2),fontSize:11,fill:"var(--red)",fontWeight:700,fontStyle:"italic"},"B"),
     // Početne točke
-    e("circle",{key:u(),cx:toX(0),cy:toY(6),r:3,fill:"#4a90d9"}),
-    e("circle",{key:u(),cx:toX(0),cy:toY(0),r:3,fill:"#e05252"}),
+    e("circle",{key:u(),cx:toX(0),cy:toY(6),r:3,fill:"var(--blue)"}),
+    e("circle",{key:u(),cx:toX(0),cy:toY(0),r:3,fill:"var(--red)"}),
     // Susreti — gdje obje linije presijecaju
     // Sjecište 1: oko t=4, s=2.6 (B na toj t je 0.65·4=2.6)
-    e("circle",{key:u(),cx:toX(4),cy:toY(2),r:3,fill:"none",stroke:"#e9b446",strokeWidth:1.5}),
+    e("circle",{key:u(),cx:toX(4),cy:toY(2),r:3,fill:"none",stroke:"var(--gold)",strokeWidth:1.5}),
     // Sjecište 2: oko t=7, s=4.55
-    e("circle",{key:u(),cx:toX(7),cy:toY(4.55),r:3,fill:"none",stroke:"#e9b446",strokeWidth:1.5})
+    e("circle",{key:u(),cx:toX(7),cy:toY(4.55),r:3,fill:"none",stroke:"var(--gold)",strokeWidth:1.5})
   );
 }
 
@@ -86,13 +86,13 @@ function Svg24p2_2017JesenB(){
       e("text",{x:toX(0)-6,y:toY(y)+3,textAnchor:"end",fontSize:8,fill:"var(--muted)"},y)
     )),
     // Parabola (a < 0, otvor prema dolje)
-    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"#50c878",strokeWidth:2.4,strokeLinecap:"round"}),
+    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"var(--green)",strokeWidth:2.4,strokeLinecap:"round"}),
     // Nultočke
-    e("circle",{key:u(),cx:toX(-1),cy:toY(0),r:4,fill:"#e05252"}),
-    e("circle",{key:u(),cx:toX(5),cy:toY(0),r:4,fill:"#e05252"}),
+    e("circle",{key:u(),cx:toX(-1),cy:toY(0),r:4,fill:"var(--red)"}),
+    e("circle",{key:u(),cx:toX(5),cy:toY(0),r:4,fill:"var(--red)"}),
     // Tjeme (2, 4)
-    e("circle",{key:u(),cx:toX(2),cy:toY(4),r:4,fill:"#4a90d9"}),
-    e("text",{key:u(),x:toX(2)+6,y:toY(4)-2,fill:"#4a90d9",fontSize:10,fontWeight:600},"(2, 4)")
+    e("circle",{key:u(),cx:toX(2),cy:toY(4),r:4,fill:"var(--blue)"}),
+    e("text",{key:u(),x:toX(2)+6,y:toY(4)-2,fill:"var(--blue)",fontSize:10,fontWeight:600},"(2, 4)")
   );
 }
 
@@ -116,7 +116,7 @@ function Svg23p2_2017JesenB(){
     e("text",{key:u(),x:W-pad.r+3,y:toY(0)+12,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"r"),
     e("text",{key:u(),x:pad.l-20,y:pad.t-1,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"o(r)"),
     // Pravac o = 2πr
-    e("line",{key:u(),x1:toX(0),y1:toY(0),x2:toX(3),y2:toY(2*Math.PI*3),stroke:"#50c878",strokeWidth:2.2}),
+    e("line",{key:u(),x1:toX(0),y1:toY(0),x2:toX(3),y2:toY(2*Math.PI*3),stroke:"var(--green)",strokeWidth:2.2}),
     // Ticks i labels
     ...[1,2,3].map(r=>e("g",{key:"tr"+r},
       e("line",{x1:toX(r),y1:toY(0)-3,x2:toX(r),y2:toY(0)+3,stroke:"var(--muted)",strokeWidth:0.8}),
@@ -127,7 +127,7 @@ function Svg23p2_2017JesenB(){
       e("text",{x:pad.l-5,y:toY(o)+3,textAnchor:"end",fontSize:9,fill:"var(--muted)"},o)
     )),
     e("text",{key:u(),x:pad.l-5,y:toY(0)+12,textAnchor:"end",fontSize:9,fill:"var(--muted)"},"0"),
-    e("text",{key:u(),x:toX(2.5)-30,y:toY(2*Math.PI*2.5)-4,fontSize:10,fill:"#50c878",fontWeight:700},"o = 2π·r")
+    e("text",{key:u(),x:toX(2.5)-30,y:toY(2*Math.PI*2.5)-4,fontSize:10,fill:"var(--green)",fontWeight:700},"o = 2π·r")
   );
 }
 
@@ -158,14 +158,14 @@ function Svg23p1_2017JesenB(){
     // Trokut
     e("polygon",{key:u(),points:`${toX(A[0])},${toY(A[1])} ${toX(B[0])},${toY(B[1])} ${toX(C[0])},${toY(C[1])}`,fill:"rgba(74,144,217,0.1)",stroke:"var(--text)",strokeWidth:1.3}),
     // AB najdulja — istaknuto crvenom
-    e("line",{key:u(),x1:toX(A[0]),y1:toY(A[1]),x2:toX(B[0]),y2:toY(B[1]),stroke:"#e05252",strokeWidth:2}),
+    e("line",{key:u(),x1:toX(A[0]),y1:toY(A[1]),x2:toX(B[0]),y2:toY(B[1]),stroke:"var(--red)",strokeWidth:2}),
     // Točke
-    e("circle",{key:u(),cx:toX(A[0]),cy:toY(A[1]),r:3.5,fill:"#4a90d9"}),
-    e("text",{key:u(),x:toX(A[0])-10,y:toY(A[1])+12,fontSize:12,fontStyle:"italic",fill:"#4a90d9",fontWeight:700},"A"),
-    e("circle",{key:u(),cx:toX(B[0]),cy:toY(B[1]),r:3.5,fill:"#4a90d9"}),
-    e("text",{key:u(),x:toX(B[0])+5,y:toY(B[1])+4,fontSize:12,fontStyle:"italic",fill:"#4a90d9",fontWeight:700},"B"),
-    e("circle",{key:u(),cx:toX(C[0]),cy:toY(C[1]),r:3.5,fill:"#4a90d9"}),
-    e("text",{key:u(),x:toX(C[0])-12,y:toY(C[1])-3,fontSize:12,fontStyle:"italic",fill:"#4a90d9",fontWeight:700},"C")
+    e("circle",{key:u(),cx:toX(A[0]),cy:toY(A[1]),r:3.5,fill:"var(--blue)"}),
+    e("text",{key:u(),x:toX(A[0])-10,y:toY(A[1])+12,fontSize:12,fontStyle:"italic",fill:"var(--blue)",fontWeight:700},"A"),
+    e("circle",{key:u(),cx:toX(B[0]),cy:toY(B[1]),r:3.5,fill:"var(--blue)"}),
+    e("text",{key:u(),x:toX(B[0])+5,y:toY(B[1])+4,fontSize:12,fontStyle:"italic",fill:"var(--blue)",fontWeight:700},"B"),
+    e("circle",{key:u(),cx:toX(C[0]),cy:toY(C[1]),r:3.5,fill:"var(--blue)"}),
+    e("text",{key:u(),x:toX(C[0])-12,y:toY(C[1])-3,fontSize:12,fontStyle:"italic",fill:"var(--blue)",fontWeight:700},"C")
   );
 }
 
@@ -201,25 +201,25 @@ function Svg20_2017JesenB(){
     e("line",{key:u(),x1:toX(A[0]),y1:toY(A[1]),x2:toX(C[0]),y2:toY(C[1]),stroke:"var(--muted)",strokeWidth:1,strokeDasharray:"3,2"}),
     e("line",{key:u(),x1:toX(B[0]),y1:toY(B[1]),x2:toX(D[0]),y2:toY(D[1]),stroke:"var(--muted)",strokeWidth:1,strokeDasharray:"3,2"}),
     // Točke A, B, D
-    e("circle",{key:u(),cx:toX(A[0]),cy:toY(A[1]),r:3.5,fill:"#4a90d9"}),
-    e("text",{key:u(),x:toX(A[0])-12,y:toY(A[1])+4,fontSize:12,fontStyle:"italic",fill:"#4a90d9",fontWeight:700},"A"),
+    e("circle",{key:u(),cx:toX(A[0]),cy:toY(A[1]),r:3.5,fill:"var(--blue)"}),
+    e("text",{key:u(),x:toX(A[0])-12,y:toY(A[1])+4,fontSize:12,fontStyle:"italic",fill:"var(--blue)",fontWeight:700},"A"),
     e("circle",{key:u(),cx:toX(B[0]),cy:toY(B[1]),r:3,fill:"var(--text)"}),
     e("text",{key:u(),x:toX(B[0])+5,y:toY(B[1])+4,fontSize:12,fontStyle:"italic",fill:"var(--text)"},"B"),
     e("circle",{key:u(),cx:toX(D[0]),cy:toY(D[1]),r:3,fill:"var(--text)"}),
     e("text",{key:u(),x:toX(D[0])-12,y:toY(D[1])+4,fontSize:12,fontStyle:"italic",fill:"var(--text)"},"D"),
     // S (središte)
-    e("circle",{key:u(),cx:toX(2),cy:toY(1),r:3,fill:"#e9b446"}),
-    e("text",{key:u(),x:toX(2)+5,y:toY(1)-3,fontSize:11,fontStyle:"italic",fill:"#e9b446",fontWeight:700},"S(2,1)"),
+    e("circle",{key:u(),cx:toX(2),cy:toY(1),r:3,fill:"var(--gold)"}),
+    e("text",{key:u(),x:toX(2)+5,y:toY(1)-3,fontSize:11,fontStyle:"italic",fill:"var(--gold)",fontWeight:700},"S(2,1)"),
     // C (otvorena točka, traženi)
-    e("circle",{key:u(),cx:toX(C[0]),cy:toY(C[1]),r:4,fill:"none",stroke:"#e05252",strokeWidth:1.8}),
-    e("text",{key:u(),x:toX(C[0])+5,y:toY(C[1])+4,fontSize:12,fontStyle:"italic",fill:"#e05252",fontWeight:700},"C(?,?)")
+    e("circle",{key:u(),cx:toX(C[0]),cy:toY(C[1]),r:4,fill:"none",stroke:"var(--red)",strokeWidth:1.8}),
+    e("text",{key:u(),x:toX(C[0])+5,y:toY(C[1])+4,fontSize:12,fontStyle:"italic",fill:"var(--red)",fontWeight:700},"C(?,?)")
   );
 }
 
 function Svg15_2017JesenB(){
   const u=(()=>{let n=0;
   return()=>"j17j15_"+(++n)})();
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const W=260,H=180;
   // Veliki kvadar (otprilike isometric)
   // Front face bottom-left (40, 130) — širina 140, visina 30
@@ -288,10 +288,10 @@ function Svg10_2017JesenB(){
     // Chord T-B
     e("line",{key:u(),x1:Tx,y1:Ty,x2:Bx,y2:By,stroke:"var(--text)",strokeWidth:1.2}),
     // Kut β kod T (između tangente i tetive TB)
-    e("path",{key:u(),d:`M ${Tx+12} ${Ty} A 12 12 0 0 1 ${Tx+8} ${Ty+8}`,fill:"none",stroke:"#4a90d9",strokeWidth:1.4}),
-    e("text",{key:u(),x:Tx+18,y:Ty+8,fontSize:12,fontStyle:"italic",fill:"#4a90d9",fontWeight:600},"β"),
+    e("path",{key:u(),d:`M ${Tx+12} ${Ty} A 12 12 0 0 1 ${Tx+8} ${Ty+8}`,fill:"none",stroke:"var(--blue)",strokeWidth:1.4}),
+    e("text",{key:u(),x:Tx+18,y:Ty+8,fontSize:12,fontStyle:"italic",fill:"var(--blue)",fontWeight:600},"β"),
     // 40° label kod B
-    e("text",{key:u(),x:Bx-22,y:By,fontSize:10,fill:"#e05252",fontWeight:600},"40°")
+    e("text",{key:u(),x:Bx-22,y:By,fontSize:10,fill:"var(--red)",fontWeight:600},"40°")
   );
 }
 
@@ -544,8 +544,7 @@ export const qs = [
   sol:{ans:"od 0 do 4 min i od 5 do 7 min",alt:["0-4 i 5-7 min","od 0 do 4 min i od 5 do 7 min","[0,4] ∪ [5,7] min"]},
   exp:"Kada se približavaju: od 0 do 4 min (susret) i od 5 do 7 min (drugi susret).",steps:[{txt:"Udaljenost: |s_A(t) - s_B(t)|. Pita kad se smanjuje."},{txt:"Korak 1 — Smanjuje se kad se A i B približavaju jedan drugome."},{txt:"Korak 2 — Iz grafa: 0 do 4 min, A se približava B (A pada od 6, B raste); razlika |s_A - s_B| se smanjuje."},{txt:"Korak 3 — Od 4 do 5 min, A miruje na s = 2, B raste — udaljenost se SMANJUJE jer se prvi susret nastavlja."},{txt:"Korak 4 — Wait — sjecište je u t = 4, tada A miruje od 4 do 5 i B nastavlja rasti (od B(4) ≈ 2,6 do B(5) ≈ 3,3) i prelazi A. Razlika |B - A| RASTE od 0 (u t=4 sastav) pa do ≈ 1,3 (u t = 5)."},{txt:"Korak 5 — Od 5 do 7 min, A raste brzo (od 2 do oko 4,5), B raste sporije; A sustigne B u t = 7. Razlika se SMANJUJE."},{txt:"Korak 6 — Intervali smanjenja: od 0 do 4 min i od 5 do 7 min.",final:true},{txt:"Provjera s ključem: \"od 0 do 4 min i od 5 do 7 min\" ✓",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Pravilo: udaljenost se smanjuje kad se objekti približavaju (kreću u suprotnim smjerovima ili brži sustiže sporijeg).",note:"postupak",final:true},{txt:"Intuicija: Postupak: analiziraj graf po intervalima, prati monotonost |s_A - s_B|.",note:"intuicija",final:true},{txt:"Točan odgovor: od 0 do 4 min i od 5 do 7 min ✓",note:"odgovor",final:true}],
    why:["Pravilo: udaljenost se smanjuje kad se objekti približavaju (kreću u suprotnim smjerovima ili brži sustiže sporijeg).","Postupak: analiziraj graf po intervalima, prati monotonost |s_A - s_B|.","Intuicija: presjeci linija = trenuci kad je razlika 0 (susreti). Između susreta razlika prolazi kroz max i min.","Česta greška: ne razlikovati približavanje od kretanja (oboje se gibaju ali u istom smjeru = razlika konstantna ili raste sporo).","Specifična: u t = 4 do 5 A miruje, B raste → razlika RASTE (nakon presjeka udaljavanje).","Provjera s ključem: 0-4 min i 5-7 min ✓."],
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2017_jesen",razina:"B",serial:"D-S037",totalPoints:40,mcCount:16,saCount:20,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  }
 ];
 
 export const qImages = {

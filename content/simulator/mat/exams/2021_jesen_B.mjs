@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg4_2021Bjesen(){
   const W=340,H=370;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // 4 tablice: 2×2 raspored
   const tables=[
     {label:"A.",rows:[[-1,5],[2,-4],[3,3]]},
@@ -49,7 +49,7 @@ function Svg4_2021Bjesen(){
 
 function Svg3_2021Bjesen(){
   const W=220,H=195,CX=110,CY=90,R=72;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const toRad=d=>d*Math.PI/180;
   const s=toRad(-90), split=toRad(-90+200);
   const x1=CX+R*Math.cos(s),    y1=CY+R*Math.sin(s);
@@ -60,7 +60,7 @@ function Svg3_2021Bjesen(){
   const lOx=CX+(R*0.58)*Math.cos(midOs), lOy=CY+(R*0.58)*Math.sin(midOs);
   const lSx=CX+(R*0.52)*Math.cos(midOst),lSy=CY+(R*0.52)*Math.sin(midOst);
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    e("path",{key:"ost",d:dOst,fill:"#94a3b8",stroke:"var(--bg,#060910)",strokeWidth:1.5}),
+    e("path",{key:"ost",d:dOst,fill:"var(--muted)",stroke:"var(--bg,#060910)",strokeWidth:1.5}),
     e("path",{key:"osb",d:dOs, fill:_BLUE,stroke:"var(--bg,#060910)",strokeWidth:1.5}),
     e("text",{key:"t1",x:lOx,  y:lOy,   fontSize:10,fill:"var(--bg,#060910)",textAnchor:"middle",fontWeight:"bold"},"Osobni"),
     e("text",{key:"t2",x:lOx,  y:lOy+13,fontSize:10,fill:"var(--bg,#060910)",textAnchor:"middle",fontWeight:"bold"},"automobili"),
@@ -71,7 +71,7 @@ function Svg3_2021Bjesen(){
 
 function Svg11_2021Bjesen(){
   const W=280,H=205;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const A={x:42,y:168},B={x:158,y:168},C={x:198,y:143},D={x:82,y:143};
   const EE={x:42,y:90}, FF={x:158,y:90}, GG={x:198,y:65}, HH={x:82,y:65};
   const PP={x:(D.x+HH.x)/2,y:(D.y+HH.y)/2};
@@ -81,7 +81,7 @@ function Svg11_2021Bjesen(){
   const tx=(x,y,t,k)=>e("text",{key:k,x,y,fontSize:10,fill:"var(--text)",fontStyle:"italic"},t);
   const shadePts=[A,B,C,PP].map(p=>`${p.x},${p.y}`).join(" ");
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    e("polygon",{key:"sh",points:shadePts,fill:"#94a3b8",fillOpacity:0.35,stroke:"none"}),
+    e("polygon",{key:"sh",points:shadePts,fill:"var(--muted)",fillOpacity:0.35,stroke:"none"}),
     ln(A,B,"ab"),ln(B,C,"bc"),ln(C,GG,"cg"),ln(GG,HH,"gh"),
     ln(HH,EE,"he"),ln(EE,FF,"ef"),ln(FF,GG,"fg"),ln(FF,B,"fb"),
     ln(EE,A,"ea"),ln(HH,D,"hd"),
@@ -104,7 +104,7 @@ function Svg11_2021Bjesen(){
 
 function Svg23b_2021Bjesen(){
   const W=280,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // PDF-verified (pixel-counted): f(x) = (x-3)² + 2 = x² − 6x + 11
   //   Tjeme: (3, 2) — IZNAD x-osi (parabola NIKAD ne siječe x-os).
   //   y-os je u lijevoj trećini grafikona; vidljiv raspon x ≈ [-1, 7], y ≈ [-1, 8].
@@ -145,7 +145,7 @@ function Svg23b_2021Bjesen(){
 
 function Svg9_2021Bjesen(){
   const W=240,H=240;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // V = zajednička točka gdje se susreću trokut, kvadrat i peterokut.
   // Stranice koje izlaze iz V (kutovi u screen-coord, y-prema-dolje):
   //   trokut:  T1 @ -120°  (gore-lijevo)   |  T2 @ 180° (lijevo, shared with kvadrat top)
@@ -204,7 +204,7 @@ function Svg9_2021Bjesen(){
 
 function Svg27_2021Bjesen(){
   const W=280,H=200;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const LEFT=52,BOT=170,TOP=15,RIGHT=W-15;
   const maxT=6,maxKn=260;
   const toX=t=>LEFT+t*(RIGHT-LEFT)/maxT;
@@ -256,7 +256,7 @@ function Svg27_2021Bjesen(){
 
 function Svg26_2021Bjesen(){
   const W=400,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const data=[
     {name:"Njemačka", v19:5100,v20:4500},
     {name:"Italija",  v19:5300,v20:3900},
@@ -288,7 +288,7 @@ function Svg26_2021Bjesen(){
     const x=LEFT+i*(2*BW+GAP+GRP);
     const y19=scaleY(d.v19), y20=scaleY(d.v20);
     // 2019 sivi
-    elems.push(e("rect",{key:"b19"+i,x,y:y19,width:BW,height:BOT-y19,fill:"#94a3b8"}));
+    elems.push(e("rect",{key:"b19"+i,x,y:y19,width:BW,height:BOT-y19,fill:"var(--muted)"}));
     // 2020 rozi
     elems.push(e("rect",{key:"b20"+i,x:x+BW+GAP,y:y20,width:BW,height:BOT-y20,fill:_BLUE}));
     // Oznaka zemlje — skraćeno
@@ -300,7 +300,7 @@ function Svg26_2021Bjesen(){
   elems.push(e("line",{key:"ax",x1:LEFT,y1:BOT,x2:W-8,y2:BOT,stroke:_BLUE,strokeWidth:1.3}));
 
   // Legenda
-  elems.push(e("rect",{key:"l19r",x:LEFT,y:H-20,width:10,height:10,fill:"#94a3b8"}));
+  elems.push(e("rect",{key:"l19r",x:LEFT,y:H-20,width:10,height:10,fill:"var(--muted)"}));
   elems.push(e("text",{key:"l19t",x:LEFT+13,y:H-11,fontSize:8,fill:"var(--muted)"},"I.–IV. 2019."));
   elems.push(e("rect",{key:"l20r",x:LEFT+75,y:H-20,width:10,height:10,fill:_BLUE}));
   elems.push(e("text",{key:"l20t",x:LEFT+88,y:H-11,fontSize:8,fill:"var(--muted)"},"I.–IV. 2020."));
@@ -547,8 +547,7 @@ export const qs = [
  q:"Za koliko je pao tržišni udio toga trgovačkog lanca u prvih pet godina njegova rada?",
  sol:{ans:"3,4",alt:["3,4","3,4 postotna boda"]},
  steps:[{txt:"Decimalni rezultat. Ključ: 3,4 (priznaje se 3,4 % i 0,034)."},{txt:"Postotni izračun — iste vrijednosti u % ili decimali."},{txt:"Provjera prema ključu: 3,4.",note:"verifikacija",final:true},{txt:"Točan odgovor: 3,4 ✓",note:"odgovor",final:true},{txt:"Intuicija: oba zapisa su priznata (3,4 % = 0,034).",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: postotak = decimala × 100.",note:"postupak",final:true},{txt:"Provjera Vièteovim formulama: x₁+x₂ = −b/a i x₁·x₂ = c/a.",note:"verifikacija",final:true},{txt:"Alt provjera: koristi Vièteove formule (zbroj i produkt korijena) za neovisnu provjeru.",note:"verifikacija",final:true}],
- why:["Pravilo: postotak = decimala × 100.","Intuicija: oba zapisa su priznata (3,4 % = 0,034).","Česta greška: pomiješati postotak i decimalu.","Provjera ključa: 3,4.","Provjera diskriminantom: D = b²−4ac (D>0 → dva rješenja; D=0 → jedno; D<0 → nema realnih).","Tipičan propust: zaboraviti drugo rješenje (kvadratna ima do 2 korijena); ili kriviti predznak diskriminante."]},
-  {_META:true,auditStatus:"verified-full",rok:"2021_jesen",razina:"B",serial:"D-S052",totalPoints:40,mcCount:16,saCount:24,verified:"sympy+pdf",note:"unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"],maintenanceAt:"2026-05-26",maintenanceNotes_v37b:["Pak I (visual P0): 5 orphan img:true added (Q26.1/26.2/27.1/27.2/27.3) → Svg26_2021Bjesen i Svg27_2021Bjesen sad se renderiraju studentu","Pak I (visual P0): Svg9_2021Bjesen — trokut polygon fix [V,T1,T2] (NE [T1,T2,T3]), pentagon kut korigiran -30°→-18° za α=102°, sve stranice usklađene na SIDE=62","Pak I (visual P0): Svg23b_2021Bjesen — parabola formula fix x²-2x-3 → x²-6x+11 (vertex (3,2) iznad x-osi, tangenta y=2x-5 u (4,3) — match NCVVO ključa)","Pak I (visual P1): Svg11_2021Bjesen — shadePts 5-vrh→4-vrh konveksna silueta [A,B,C,P] (D je interior)"],maintenanceAt_v39:"2026-05-26",maintenanceNotes_v39:["Pak F (pedagoški drift): Q26.1/Q26.2 (chart-reading izvoz), Q27.1 (sjecište pravaca štednje), Q27.2 (čitanje k i n iz grafa), Q27.3 (piecewise linearni model) — geografski placeholder steps/why zamijenjeni konkretnom chart-reading + linear-model pedagogijom.","Preostali drift (NON-VISUAL Q): 3 instance u Q-objects bez img:true — neopasno za visual audit, ostalo za zaseban Pak F pass."]}
+ why:["Pravilo: postotak = decimala × 100.","Intuicija: oba zapisa su priznata (3,4 % = 0,034).","Česta greška: pomiješati postotak i decimalu.","Provjera ključa: 3,4.","Provjera diskriminantom: D = b²−4ac (D>0 → dva rješenja; D=0 → jedno; D<0 → nema realnih).","Tipičan propust: zaboraviti drugo rješenje (kvadratna ima do 2 korijena); ili kriviti predznak diskriminante."]}
 ];
 
 export const qImages = {

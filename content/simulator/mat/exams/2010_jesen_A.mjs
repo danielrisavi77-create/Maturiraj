@@ -4,9 +4,9 @@ const e = React.createElement;
 
 function Svg17_2010Aj(){
   const W=280,H=220,ox=120,oy=140,scX=30,scY=50;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const toX=v=>ox+v*scX, toY=v=>oy-v*scY;
-  const t="var(--text)",b=_BLUE,g=_GREEN,gold=_GOLD,mu="#94a3b8",bg="var(--bg)";
+  const t="var(--text)",b=_BLUE,g=_GREEN,gold=_GOLD,mu="var(--muted)",bg="var(--bg)";
   function tk(x,y,col){return e("circle",{cx:x,cy:y,r:3,fill:bg,stroke:col,strokeWidth:1.5});}
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     e("line",{x1:2,y1:oy,x2:W-2,y2:oy,stroke:t,strokeWidth:1.5}),
@@ -30,7 +30,7 @@ function Svg17_2010Aj(){
 
 function Svg9_2010Aj(){
   const W=220,H=205;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const t="var(--text)",b=_BLUE,g=_GREEN,gold=_GOLD,r2=_RED;
   const APEX=[104,46],LEFT_TIP=[12,115];
   const SQ_TL=[50,147],SQ_TR=[146,147],SQ_BL=[50,195],SQ_BR=[146,195];
@@ -61,8 +61,8 @@ function Svg9_2010Aj(){
 
 function Svg7_2010Aj(){
   const W=220,H=160,rL=32,rT=28,rW=148,rH=94;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",b=_BLUE,g=_GREEN,gold=_GOLD,mu="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",b=_BLUE,g=_GREEN,gold=_GOLD,mu="var(--muted)";
   const A=[rL,rT+rH], B=[rL+rW,rT+rH], C=[rL,rT];
   function dot(p,col){return e("circle",{cx:p[0],cy:p[1],r:4,fill:col,stroke:"var(--bg)",strokeWidth:1.5});}
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
@@ -81,9 +81,9 @@ function Svg7_2010Aj(){
 
 function Svg6_2010Aj(){
   const W=220,H=170,ox=60,oy=120,scX=32,scY=25;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const toX=v=>ox+v*scX, toY=v=>oy-v*scY;
-  const t="var(--text)",b=_BLUE,r2=_RED,g=_GREEN,mu="#94a3b8",bg="var(--bg)";
+  const t="var(--text)",b=_BLUE,r2=_RED,g=_GREEN,mu="var(--muted)",bg="var(--bg)";
   const pts=[];
   for(let x=-0.97;x<=4.6;x+=0.04){
     const y=Math.log2(x+1);
@@ -113,8 +113,8 @@ function Svg6_2010Aj(){
 
 function Svg4_2010Aj(){
   const W=345,H=165;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",b=_BLUE,g=_GREEN,gold=_GOLD,mu="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",b=_BLUE,g=_GREEN,gold=_GOLD,mu="var(--muted)";
   const angA_deg=43, angB_deg=78;
   const angA_rad=angA_deg*Math.PI/180;
   const sc=26;
@@ -2109,20 +2109,6 @@ export const qs = [
         txt: "→ vB ≈ 3,161 m/s",
         final: true
       },{txt:"Intuicija: Smjer A: iz A(2,0) za 1 s u T(4,4; 0,7) → vektor smjera (2,4; 0,7). Parametarski: (x,y) = (2+2,4t; 0,7t).",note:"intuicija",final:true},{txt:"Sudarište: (2+2,4·3; 0,7·3) = (9,2; 2,1). Put B od B(0; 4,4): d = √(9,2² + (2,1−4,4)²) = √89,93 ≈ 9,483 m.",note:"verifikacija",final:true},{txt:"Sažetak postupka: Jednoliko gibanje znači konstantna brzina; A i B se 'sudaraju' kad imaju iste koordinate u istom trenutku t.",note:"postupak",final:true},{txt:"Točan odgovor: vB ≈ 3,161 m/s ✓",note:"odgovor",final:true},{txt:"Provjera grafom: nacrtaj krivulje i vizualno potvrdi sjecište / dodir / paralelnost.",note:"verifikacija",final:true},{txt:"Alt provjera: nacrtaj graf na milimetarskom papiru i izmjeri sjecišta/udaljenosti.",note:"verifikacija",final:true},{txt:"Sažetak metode: 1) postavi jednadžbu krivulje; 2) uvrsti točke ili uvjete; 3) riješi sustav.",note:"postupak",final:true},{txt:"Strategija: prvo identificiraj što je dano, što se traži, pa biraj formulu — ne obrnuto.",note:"postupak",final:true}]
-  },
-  {_META:true,
-  auditedAt: "2026-04-24",
-  auditSource: "MAT A D-S001 (viša razina, jesenski rok 2010)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  issueCount: {
-    critical: 4,
-    medium: 19,
-    low: 3,
-    resolved: 26
-  },
-  partialComplete: true,
-  partialNote: "Q1-Q17 + Q26/Q27/Q30 imported; Q18-Q25, Q28-Q29 pending NCVVO PDF za rewrite"
   }
 ];
 

@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2012_ljeto",
+  "razina": "B",
+  "serial": "D-S012",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 19,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditNotes": "G+F+H+I+J kompletno. Q23,1 fix. why arrays 14 MC rewritten (cross-contam fixed). Q27,1/27,2 steps expanded. J Q4/Q13 frac",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

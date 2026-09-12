@@ -13,7 +13,7 @@ function Svg9z11(){
   const right=[[x0+bw,y0],[x0+bw+bd,y0-bh],[x0+bw+bd,y0-hh-bh],[x0+bw,y0-hh]];
   const top=[[x0,y0-hh],[x0+bw,y0-hh],[x0+bw+bd,y0-hh-bh],[x0+bd,y0-hh-bh]];
   const pts=arr=>arr.map(p=>p.join(",")).join(" ");
-  const st="#4a90d9", sw=1.6; // standardna plava
+  const st="var(--blue)", sw=1.6; // standardna plava
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     // Plohe — semi-transparent fill koji ne pokriva tamnu pozadinu
     e("polygon",{points:pts(front),fill:"rgba(74,144,217,.12)",stroke:st,strokeWidth:sw}),
@@ -23,12 +23,12 @@ function Svg9z11(){
     e("line",{x1:x0,y1:y0,x2:x0+bd,y2:y0-bh,stroke:st,strokeWidth:1,strokeDasharray:"5 3",opacity:.55}),
     e("line",{x1:x0+bd,y1:y0-bh,x2:x0+bw+bd,y2:y0-bh,stroke:st,strokeWidth:1,strokeDasharray:"5 3",opacity:.55}),
     // Strelica visine + oznaka 8 dm
-    e("line",{x1:x0-22,y1:y0,x2:x0-22,y2:y0-hh,stroke:"#e9b446",strokeWidth:1.4}),
-    e("polygon",{points:`${x0-22},${y0-hh} ${x0-26},${y0-hh+7} ${x0-18},${y0-hh+7}`,fill:"#e9b446"}),
-    e("polygon",{points:`${x0-22},${y0} ${x0-26},${y0-7} ${x0-18},${y0-7}`,fill:"#e9b446"}),
-    e("text",{x:x0-44,y:y0-hh/2+4,fontSize:13,fill:"#e9b446",fontWeight:700},"8 dm"),
+    e("line",{x1:x0-22,y1:y0,x2:x0-22,y2:y0-hh,stroke:"var(--gold)",strokeWidth:1.4}),
+    e("polygon",{points:`${x0-22},${y0-hh} ${x0-26},${y0-hh+7} ${x0-18},${y0-hh+7}`,fill:"var(--gold)"}),
+    e("polygon",{points:`${x0-22},${y0} ${x0-26},${y0-7} ${x0-18},${y0-7}`,fill:"var(--gold)"}),
+    e("text",{x:x0-44,y:y0-hh/2+4,fontSize:13,fill:"var(--gold)",fontWeight:700},"8 dm"),
     // Oznaka osnovice 500 cm²
-    e("text",{x:x0+bw/2,y:y0+22,fontSize:12,fill:"#50c878",fontWeight:700,textAnchor:"middle"},"B = 500 cm²")
+    e("text",{x:x0+bw/2,y:y0+22,fontSize:12,fill:"var(--green)",fontWeight:700,textAnchor:"middle"},"B = 500 cm²")
   );
 }
 
@@ -36,16 +36,16 @@ function Svg28z11(){
   // Tablica pakiranja s kolor-kodiranim stupcima A/B/C
   const c={padding:"9px 14px",border:"1px solid rgba(74,144,217,.25)",fontSize:13,textAlign:"center"};
   // Header — tamno plava pozadina, bijeli tekst
-  const h={...c,fontWeight:800,background:"rgba(74,144,217,.18)",color:"#4a90d9"};
+  const h={...c,fontWeight:800,background:"rgba(74,144,217,.18)",color:"var(--blue)"};
   // Row label (lijeva kolona)
   const rl={...c,fontWeight:700,background:"rgba(74,144,217,.08)",color:"var(--text)",textAlign:"left"};
   // Vrijednosti — alternating slight tint
   const v1={...c,background:"rgba(74,144,217,.04)"};
   const v2={...c,background:"rgba(80,200,120,.05)"};
   // Distinct colors za pakiranja A/B/C — prepoznatljive boje
-  const colA={...h,background:"rgba(80,200,120,.20)",color:"#50c878"};   // A — zelena
-  const colB={...h,background:"rgba(233,180,70,.20)",color:"#e9b446"};   // B — žuta
-  const colC={...h,background:"rgba(224,82,82,.20)",color:"#e05252"};    // C — crvena
+  const colA={...h,background:"rgba(80,200,120,.20)",color:"var(--green)"};   // A — zelena
+  const colB={...h,background:"rgba(233,180,70,.20)",color:"var(--gold)"};   // B — žuta
+  const colC={...h,background:"rgba(224,82,82,.20)",color:"var(--red)"};    // C — crvena
   return e("div",{style:{overflowX:"auto",margin:"12px 0"}},
     e("table",{style:{borderCollapse:"collapse",fontSize:13,width:"100%",borderRadius:6,overflow:"hidden"}},
       e("thead",null,e("tr",null,
@@ -101,14 +101,14 @@ function Svg27z11(){
     data.map((f,i)=>f>0&&e("rect",{key:"b"+i,
       x:toX(i)-barW/2, y:toY(f),
       width:barW, height:f/maxF*iH,
-      fill: f===maxF ? "#e05252" : "#4a90d9",
+      fill: f===maxF ? "var(--red)" : "var(--blue)",
       stroke: f===maxF ? "#c93030" : "#2e6cad",
       strokeWidth:0.8, rx:1.5})),
     // Vrijednost iznad svakog stupca (frekvencija)
     data.map((f,i)=>f>0&&e("text",{key:"v"+i,
       x:toX(i), y:toY(f)-3,
       textAnchor:"middle", fontSize:9, fontWeight:700,
-      fill: f===maxF ? "#e05252" : "#4a90d9"}, f)),
+      fill: f===maxF ? "var(--red)" : "var(--blue)"}, f)),
     // X tick oznake (1-12)
     data.map((_,i)=>e("g",{key:"xt"+i},
       e("line",{x1:toX(i),y1:pad.t+iH,x2:toX(i),y2:pad.t+iH+3,stroke:"var(--text)",strokeWidth:1}),
@@ -129,7 +129,7 @@ function Svg26z11(){
 
 function Svg24z11(){
   const c={padding:"8px 12px",border:"1px solid var(--bdr2)",fontSize:12,textAlign:"center"};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const h={...c,fontWeight:700,background:"var(--s2)"};
   const v={...c,background:"var(--s1)"};
   const em={...c,background:"rgba(233,180,70,.06)",border:"1px dashed var(--gold)",color:"var(--gold)",fontSize:11};
@@ -151,7 +151,7 @@ function Svg20z11(){
   return e(KoordOs,{W:240,H:200,xMin:-3,xMax:4,yMin:-3,yMax:3},
     (toX,toY)=>{
       const A=[toX(-2),toY(-2)], B=[toX(3),toY(-2)], C=[toX(1),toY(1)];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
       const pts=`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]}`;
       return e("g",null,
         e("polygon",{points:pts,fill:"rgba(74,144,217,.12)",stroke:_BLUE,strokeWidth:2}),
@@ -632,7 +632,7 @@ export const qs = [
   why:["Cilj: minimizirati cijenu pri točnoj masi. Strategija: što više od najjeftinijeg pakiranja, ostatak nadopunjavati manjim.","Cijena po kg je ključni pokazatelj: A=9,80; B=6,86; C=5,67 kn/kg. C je 42% jeftinije od A.","Diophantska restrikcija: ne smijemo prijeći 28 kg jer onda kupujemo višak, što ne smatramo 'najmanji iznos za 28 kg'.","Greška 1: uzeti B umjesto A za ostatak 4 kg (1×B = 5 kg, što je više od potrebnih 4).","Greška 2: ne provjeriti je li ukupna masa točno 28 kg — npr. 2×C + 1×A = 25 kg (ne 28).","Provjera: 2·12 + 4·1 + 0·5 = 24 + 4 = 28 kg ✓; cijena = 175,20 kn.","Pravilo: postotak p% od vrijednosti V iznosi (p/100) · V.","Intuicija: postotak povećava ili smanjuje proporcionalno bazi.","Alt metoda: koristi pravilo trojno ili postotni račun.","Postupak: postavi proporciju ili postotak, riješi jednadžbu."],
   context:"Zadatak 28 (2. dio od 2): Prašak za pranje prodaje se u pakiranjima A, B i C. Mase i cijene prikazane su u tablici (vidi sliku)."}
 ,
-,{_META:true,auditStatus:"verified-full",rok:"2011_zima",razina:"B",serial:"D-S005",totalPoints:40,mcCount:16,saCount:20,verified:"vision+pdf+pedagogy-premium+verbatim",auditNotes:"G: Verbatim text audit — svih 36 Q sadrzajno match PDF original. Q26.1 sol.ans dodan. H: Q5 [FRAC:9^a|27], Q26.2 [FRAC:1|2] tagovi. A: final:true dodan na sve MC. Q24/Q27 q tekstovi skraceni. Q25.1/Q25.2 context polja dodana. F: diagnostika+verifikacija za svih 16 MC; verifikacija za svih 20 SA/num."}
+
 ];
 
 export const qImages = {

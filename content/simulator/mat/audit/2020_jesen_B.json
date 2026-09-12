@@ -1,0 +1,23 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2020_jesen",
+  "razina": "B",
+  "serial": "D-S047",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 24,
+  "verified": "sympy+pdf",
+  "note": "unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ],
+  "maintenanceAt_v310": "2026-05-26",
+  "maintenanceNotes_v310": [
+    "Pak I (visual): svih 10 vizuala (Q9/10🔁/12/20.1/23.1/27.1/27.2/28.1/28.2/28.3) verified protiv PDF D-S047. Q10 cross-bind na Svg9_2020Ajj legitimno (isti zadatak A-razina Q9).",
+    "P0 fix Svg12_2020Bjj: parabola izmjenjena iz simetrične f(x)=2-x²/4.2 (vrh (0,2)) u asimetričnu f(x)=-(x-1)²+3 (vrh (1,3)). Sada f(-2)=-6<0, f(2)=2>0 — samo C točno (per NCVVO key Q12=C). Prethodna formula davala je oba f(-2) i f(2) pozitivnima što je kontradiktiralo ključu."
+  ]
+}

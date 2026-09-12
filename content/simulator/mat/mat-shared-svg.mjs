@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg29_2013Aj(){
   const W=200,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=4,yMin=-1,yMax=9;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -42,7 +42,7 @@ function Svg29_2013Aj(){
 
 function Svg9_2020Ajj(){
   const W=340, H=430;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems = [];
   
   // Arc helper
@@ -178,7 +178,7 @@ function Svg9_2020Ajj(){
 
 function Svg27a_2020Bjj(){
   const W=300, H=240;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const elems = [];
   const cell = 22;
   const ox = 30, oy = 20;
@@ -216,7 +216,7 @@ function Svg27a_2020Bjj(){
 
 function Svg23a_2020Bjj(){
   const W=300, H=260, pad={l:30, r:14, t:14, b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3, xMax=7, yMin=-3, yMax=5;
   const iW = W-pad.l-pad.r, iH = H-pad.t-pad.b;
   const toX = v => pad.l + ((v-xMin)/(xMax-xMin)) * iW;
@@ -254,7 +254,7 @@ function Svg7_2023Alj(){
   // Q7: f(x)=-0.5x+1. Sva 4 grafa nagib ±0.5, y-odsječak ±1.
   // A: -0.5x+1 (TOČNO), B: -0.5x-1, C: +0.5x+1, D: +0.5x-1
   const st="var(--text)", W=460, H=340;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const panel = (ox, oy, k, n, letter) => {
     const pw=180, ph=120, cx=ox+pw/2, cy=oy+ph/2, u=18;
     const xLim=(pw/2)/u, yLim=(ph/2)/u;
@@ -292,7 +292,7 @@ function Svg7_2023Alj(){
 
 function Svg14_2023Alj(){
   const st="var(--text)", W=420, H=300;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const E=[210,40], A=[60,240], B=[370,240];
   const Dx = E[0] + (A[0]-E[0])*3/8, Dy = E[1] + (A[1]-E[1])*3/8;
   const Cx = E[0] + (B[0]-E[0])*3/8, Cy = E[1] + (B[1]-E[1])*3/8;
@@ -328,7 +328,7 @@ function Svg14_2023Alj(){
 function Svg10_2023Alj(){
   // Q10: Vektor a⃗ od (-2,4) do (1,0). Label a⃗ pomaknut u prazan prostor lijevo.
   const st="var(--text)", W=340, H=300;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ox=150, oy=180, u=26;
   const px=(x)=>ox+x*u, py=(y)=>oy-y*u;
   const T=[-2,4], HD=[1,0];
@@ -366,9 +366,9 @@ function KoordOs({W=260,H=220,xMin=-4,xMax=4,yMin=-4,yMax=4,step=1,children,labe
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0), oy=toY(0);
-  const AX="#94a3b8";        /* osi: prigušena siva */
+  const AX="var(--muted)";        /* osi: prigušena siva */
   const ACC="var(--blue)";   /* labele: plavi accent */
-  const TICK="#94a3b8";
+  const TICK="var(--muted)";
   const TICKLBL="var(--muted)";
   const ticks=[];
   for(let x=Math.ceil(xMin);x<=Math.floor(xMax);x++){

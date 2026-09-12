@@ -3,8 +3,8 @@ import React from 'react';
 const e = React.createElement;
 
 function Svg7_2023Ajesen(){
-  const stroke="var(--text)", grid="#94a3b8";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Helper: pravac na mini-koordinatnom sustavu. Svaki mini ima prefix u ključevima.
   // Pravac CLIPED u pravokutnik mini grafa da ne izlazi van
   const mini=(slope, intercept, label, xo, yo)=>{
@@ -38,8 +38,8 @@ function Svg7_2023Ajesen(){
       e('line',{key:p+'xa',x1:ox-3*s,y1:oy,x2:ox+3*s,y2:oy,stroke:_BLUE,strokeWidth:1}),
       e('line',{key:p+'ya',x1:ox,y1:oy-3*s,x2:ox,y2:oy+3*s,stroke:_BLUE,strokeWidth:1}),
       e('circle',{key:p+'c01',cx:ox,cy:py(1),r:2,fill:"var(--bg,#060910)",stroke:_BLUE,strokeWidth:0.8}),
-      e('text',{key:p+'t01',x:ox-10,y:py(1)+4,fontSize:9,fill:"#94a3b8"},"1"),
-      e('text',{key:p+'t00',x:ox-10,y:oy+11,fontSize:9,fill:"#94a3b8"},"0"),
+      e('text',{key:p+'t01',x:ox-10,y:py(1)+4,fontSize:9,fill:"var(--muted)"},"1"),
+      e('text',{key:p+'t00',x:ox-10,y:oy+11,fontSize:9,fill:"var(--muted)"},"0"),
       e('text',{key:p+'tx',x:ox+3*s+3,y:oy+4,fontSize:10,fontStyle:"italic",fill:stroke},"x"),
       e('text',{key:p+'ty',x:ox+3,y:oy-3*s-2,fontSize:10,fontStyle:"italic",fill:stroke},"y"),
       // Pravac CLIPED u pravokutnik
@@ -62,8 +62,8 @@ function Svg7_2023Ajesen(){
 }
 
 function Svg39b_2023Ajesen(){
-  const stroke="var(--text)", grid="#94a3b8", muted="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // viewBox 600x340. x od -π do 2π (3π jedinica), scale ≈ 180 px/π
   // Centriramo na x=0 u pixel ox=220, y=0 na oy=150
   const sx=180/Math.PI, sy=40;  // 40 px/jed y
@@ -103,8 +103,8 @@ function Svg39b_2023Ajesen(){
 }
 
 function Svg33b_2023Ajesen(){
-  const stroke="var(--text)", muted="#94a3b8";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // viewBox 380x240
   // A(40,200), B(340,200), C(280,50)
   // D na AB: (40 + (18/30)·(340−40), 200) = (220, 200) (AD=18 iz odgovora, ali 
@@ -142,7 +142,7 @@ function Svg33b_2023Ajesen(){
 
 function Svg32_2023Ajesen(){
   const stroke="var(--text)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const headers=["I.","II.","III.","IV.","V.","VI.","VII.","VIII.","IX.","X.","XI.","XII."];
   const values=["55","54","56","57","59","57","59","58","54","57","55","57"];
   const labelW=180, cellW=62, rowH=42;
@@ -170,8 +170,8 @@ function Svg32_2023Ajesen(){
 }
 
 function Svg24_2023Ajesen(){
-  const stroke="var(--text)", grid="#94a3b8", muted="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // viewBox 400x300. os x: -3 do 2, os y: -2 do 3, scale 55 px/jed (x), 50 px/jed (y)
   const sx=55, sy=50, ox=200, oy=150;
   const px=x=>ox+x*sx, py=y=>oy-y*sy;
@@ -208,8 +208,8 @@ function Svg24_2023Ajesen(){
 }
 
 function Svg19_2023Ajesen(){
-  const stroke="var(--text)", grid="#94a3b8", muted="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // viewBox 320x320. Centar (160, 160). Radius 110 (1 jedinica = 110 px)
   const cx=160, cy=160, r=110;
   // Točka E(t) na kružnici u 4. kvadrantu (približno kut -60° od +x-osi)
@@ -240,8 +240,8 @@ function Svg19_2023Ajesen(){
 }
 
 function Svg17_2023Ajesen(){
-  const stroke="var(--text)", muted="#94a3b8", green="rgba(150,200,100,0.55)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", muted="var(--muted)", green="rgba(150,200,100,0.55)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // viewBox 380x340. Kvadar "rastavljen" ugao:
   //   A(100,260) — donji prednji lijevo
   //   B(300,260) — donji prednji desno
@@ -311,7 +311,7 @@ function Svg14_2023Ajesen(){
   // Pixel koordinate (math CCW od +x, iz S):  A=194.8°, V=106.8°, B=337.9°
   // Skalirano na viewBox 0 0 500 440, S=(250,220), R=180.
   const stroke="var(--text)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=250, cy=220, r=180;
   const A=[76.00, 266.00];    // lijevi vrh (α)
   const V=[198.00, 47.70];    // gornji vrh (apex)
@@ -354,8 +354,8 @@ function Svg14_2023Ajesen(){
 }
 
 function Svg10_2023Ajesen(){
-  const stroke="var(--text)", grid="#94a3b8", muted="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const stroke="var(--text)", grid="var(--muted)", muted="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const s=30, ox=160, oy=200;
   const px=x=>ox+x*s, py=y=>oy-y*s;
   return e('svg',{viewBox:"0 0 380 320",xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"380px",width:"100%",display:"block",margin:"12px auto"}},
@@ -751,7 +751,7 @@ export const qs = [
      "Alt metoda (provjera): 4k − 5 = 4(k−1) − 1; i^(4(k−1)−1) = i^(−1) = −i ✓"
    ,"Provjera s k = 1: i^(4 − 5) = i^(−1) = 1/i = −i ✓; s k = 2: i^(8 − 5) = i³ = −i ✓","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:21,type:"mc",warn:"Pazi: aritmetički niz ima STALNU razliku susjednih članova — provjeri razlike.",topic:"seq",points:1,
+  {id:21,type:"mc",warn:"Pazi: aritmetički niz ima STALNU razliku susjednih članova — provjeri razlike.",topic:"niz",points:1,
    q:"Koji od navedenih nizova nije aritmetički niz?",
    opts:["−5, −2, 1, 4","−3, −2, −1, 0","1, −1, 1, −1","3, 1, −1, −3"],
    sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -1244,7 +1244,7 @@ export const qs = [
      "Alt metoda (provjera): a⃗·(a⃗ + v⃗) = |a⃗|² + a⃗·v⃗ = (64+225) + (−8k + 15(k−2)) = 289 + 7k − 30 = 7k + 259 ✓"
    ,"Provjera s k = 13: v⃗ = (13, 11); a⃗ + v⃗ = (5, 26); a⃗·(a⃗+v⃗) = (−8)·5 + 15·26 = −40 + 390 = 350 ✓","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata."]
   },
-  {id:39.1,type:"sa",topic:"seq",points:3,
+  {id:39.1,type:"sa",topic:"niz",points:3,
    context:"Zadatak 39 (1. dio od 2):",
    q:"Tri uzastopna člana geometrijskoga niza ujedno su prvi, devetnaesti i trideset prvi član padajućega aritmetičkog niza. Ako je prvi član aritmetičkog niza 24, odredite deseti član toga niza.",
    sol:{ans:"20",alt:["20","a₁₀ = 20"], ex:"Uvjet: tri uzastopna člana geometrijskog niza zadovoljavaju srednji² = umnožak krajnjih. Iskoristi to za određivanje d aritmetičkog niza."},
@@ -1310,15 +1310,6 @@ export const qs = [
      "Alt metoda (provjera): polumjer upisane kružnice r = (B_trokuta)/(s) gdje je s poluopseg; isti rezultat.",
      "Provjera kuta: tg 62° = H/r → H = r·tg 62°; 3,84·1,881 ≈ 7,22 ✓"
    ,"Provjera: V_piramide ovisi o B i H linearno; B ≈ 94 cm², H ≈ 7,2 cm → V ≈ 226 cm³ ✓"]
-  },
-  {_META:true,
-  auditedAt: "2026-05-20",
-  auditSource: "MAT A (viša razina, jesenski rok 2023.)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  verified: "vision+pdf+pedagogy+verbatim",
-  notes: "FULL REWRITE — Pak G+H+I+F kombinirani. Sve 51 Q-objekata production-ready pedagogy upgrade (5-7 steps s verifikacija/diagnostika + 4-5 specifičnih why entries). 6 Q s img:true (Q7, Q10, Q14, Q17, Q24, Q39,2). Sve sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation potpuno Unicode/[FRAC:]. ex polja za 2pt+ SA i 3pt+ kompleksne (Q38,1, Q38,2, Q39,1, Q39,2, Q40).",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 219}
   }
 ];
 

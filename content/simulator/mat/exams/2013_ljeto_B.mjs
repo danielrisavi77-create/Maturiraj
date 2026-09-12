@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function SvgHistogram27_2013Blj(){
   const W=340,H=240;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const lx=50,rx=W-15,by=H-35,ty=15;
   // Podaci: intervali po 10, od 10 do 100
   // Frekvencije: 2,5,9,15,20,35,44,16,6
@@ -64,9 +64,9 @@ function SvgTablica22_2013Blj(){
     e("text",{x:x0+colW[0]/2,y:y0+rowH*0.65,fontSize:12,fontWeight:"700",
       textAnchor:"middle",fill:"var(--text)"},"In\u010d"),
     e("text",{x:xs[1]+colW[1]/2,y:y0+rowH*0.65,fontSize:12,
-      textAnchor:"middle",fill:"#4a90d9"},"10"),
+      textAnchor:"middle",fill:"var(--blue)"},"10"),
     e("text",{x:xs[2]+colW[2]/2,y:y0+rowH*0.65,fontSize:12,
-      textAnchor:"middle",fill:"#4a90d9"},"130,5"),
+      textAnchor:"middle",fill:"var(--blue)"},"130,5"),
     e("text",{x:xs[3]+colW[3]/2,y:y0+rowH*0.65,fontSize:14,fontWeight:"700",
       textAnchor:"middle",fill:"#e8c547"},"?"),
 
@@ -74,17 +74,17 @@ function SvgTablica22_2013Blj(){
     e("text",{x:x0+colW[0]/2,y:y0+rowH+rowH*0.65,fontSize:12,fontWeight:"700",
       textAnchor:"middle",fill:"var(--text)"},"Milimetar"),
     e("text",{x:xs[1]+colW[1]/2,y:y0+rowH+rowH*0.65,fontSize:12,
-      textAnchor:"middle",fill:"#4a90d9"},"254"),
+      textAnchor:"middle",fill:"var(--blue)"},"254"),
     e("text",{x:xs[2]+colW[2]/2,y:y0+rowH+rowH*0.65,fontSize:14,fontWeight:"700",
       textAnchor:"middle",fill:"#e8c547"},"?"),
     e("text",{x:xs[3]+colW[3]/2,y:y0+rowH+rowH*0.65,fontSize:12,
-      textAnchor:"middle",fill:"#4a90d9"},"13,3096")
+      textAnchor:"middle",fill:"var(--blue)"},"13,3096")
   );
 }
 
 function SvgGrid20_2013Blj(){
   const W=220,H=230,cx=110,cy=130,sc=36;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
       e("pattern",{id:"g20blj",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
@@ -136,14 +136,14 @@ function SvgSol20_2013Blj(){
     e("text",{x:toX(-1)-10,y:cy+12,fontSize:8,fill:"var(--muted)"},"\u22121"),
     e("circle",{cx,cy:toY(1),r:3.5,fill:"var(--bg)",stroke:"var(--muted)",strokeWidth:1}),
     e("text",{x:cx+4,y:toY(1)+4,fontSize:8,fill:"var(--muted)"},"1"),
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinejoin:"round"}),
-    e("circle",{cx:toX(0),cy:toY(1),r:5,fill:"#4a90d9"}),
-    e("text",{x:toX(0)+6,y:toY(1)-5,fontSize:9,fill:"#4a90d9",fontWeight:"bold"},"T(0,1)"),
-    e("circle",{cx:toX(1),cy:toY(0),r:5,fill:"#4a90d9"}),
-    e("text",{x:toX(1)+5,y:toY(0)-5,fontSize:9,fill:"#4a90d9",fontWeight:"bold"},"(1,0)"),
-    e("circle",{cx:toX(-1),cy:toY(0),r:5,fill:"#4a90d9"}),
-    e("text",{x:toX(-1)-30,y:toY(0)-5,fontSize:9,fill:"#4a90d9",fontWeight:"bold"},"(\u22121,0)"),
-    e("text",{x:toX(1.2),y:toY(f(1.2))-8,fontSize:9,fill:"#4a90d9",fontStyle:"italic"},"f(x)=\u2212x\u00b2+1")
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinejoin:"round"}),
+    e("circle",{cx:toX(0),cy:toY(1),r:5,fill:"var(--blue)"}),
+    e("text",{x:toX(0)+6,y:toY(1)-5,fontSize:9,fill:"var(--blue)",fontWeight:"bold"},"T(0,1)"),
+    e("circle",{cx:toX(1),cy:toY(0),r:5,fill:"var(--blue)"}),
+    e("text",{x:toX(1)+5,y:toY(0)-5,fontSize:9,fill:"var(--blue)",fontWeight:"bold"},"(1,0)"),
+    e("circle",{cx:toX(-1),cy:toY(0),r:5,fill:"var(--blue)"}),
+    e("text",{x:toX(-1)-30,y:toY(0)-5,fontSize:9,fill:"var(--blue)",fontWeight:"bold"},"(\u22121,0)"),
+    e("text",{x:toX(1.2),y:toY(f(1.2))-8,fontSize:9,fill:"var(--blue)",fontStyle:"italic"},"f(x)=\u2212x\u00b2+1")
   );
 }
 
@@ -228,7 +228,7 @@ export const qs = [
     {txt:"y = 3×(−13)+50 = 11"},{txt:"Analiza distractora: B(12)/C/D: greška u rješavanju sustava jednadžbi.",final:true,note:"diagnostika"},{txt:"Provjera: x=-13; y=3(-13)+50=11 ✓",final:true,note:"verifikacija"},{txt:"Točan odgovor: A ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Sustav jednadžbi: iz jedne izrazit y i uvrsti u drugu. Provjeri.",note:"postupak",final:true},{txt:"Intuicija: Dodatak (intuicija).",note:"intuicija",final:true}
   ],
   why:["Sustav jednadžbi: iz jedne izrazit y i uvrsti u drugu. Provjeri.","Provjera supstitucijom: uvrsti x = A u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost.","Tipičan propust: zanemariti predznake pri premještanju članova kroz jednakost."]},
-  {id:8,type:"mc",warn:"Pazi: rastavi strjelicu na pravokutnik i trokut(e); zbroji površine.",img:true,topic:"geo",points:1,
+  {id:8,type:"mc",warn:"Pazi: rastavi strjelicu na pravokutnik i trokut(e); zbroji površine.",img:true,topic:"geom",points:1,
   q:"Koliko kvadratnih jedinica iznosi površina strjelice prikazane na slici?",
   opts:["13","14","15","16"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -671,8 +671,7 @@ export const qs = [
     "Paran broj stranica ⇒ n neparnih + n parnih. Kapacitet = 17n+30n = 47n maraka.",
     "Nedostaju 4 ⇒ album bi trebao imati 1504 mjesta. 47n=1504 ⇒ n=32 ⇒ 2n=64 stranice.",
     "Najčešća greška: 47n=1500 (bez +4) ili ne shvaćanje da su parni i neparni u jednakom broju."
-  ,"Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije."]},
-  {_META:true,auditStatus:"verified-full",rok:"2013_ljeto",razina:"B",serial:"D-S013",totalPoints:39,mcCount:15,saCount:20,verified:"sympy+pdf+verbatim+visual",auditNotes:"G: Verbatim vision audit komplet. L1 Q5 typo slicće+zrakoplov, L2 Q7 jednadžba 3x+50=y+[SYS:], L3 Q15 verbatim, L4 Q19 FRAC. Notacijske moderizacije OK. H: L1Q1 bold cijelih. J: Q7/Q9/Q11/Q16 opts FRAC, Q16 q FRAC. I: Q8+Q10 MC bindings, SA Q22/Q27 img:true+bindings added.",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  ,"Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije."]}
 ];
 
 export const qImages = {

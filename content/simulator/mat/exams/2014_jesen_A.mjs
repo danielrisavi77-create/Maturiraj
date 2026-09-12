@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function SvgGrid30_2014JA() {
   const W=280, H=280, cell=20, ox=140, oy=140;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const t='var(--text)';
   const grid_lines = [];
   // Vertikalne linije
@@ -50,8 +50,8 @@ function SvgZad14_2014JA(){
   const circles=[];
   let idx=0;
   while(r>2 && x+r<W-10 && idx<5){
-    circles.push(e("circle",{key:"c"+idx,cx:x+r,cy:y0,r:r,fill:"rgba(74,144,217,0.1)",stroke:"#4a90d9",strokeWidth:1.5}));
-    if(idx<3) circles.push(e("text",{key:"k"+idx,x:x+r,y:y0+4,fill:"#4a90d9",fontSize:11,textAnchor:"middle"},`K${idx+1}`));
+    circles.push(e("circle",{key:"c"+idx,cx:x+r,cy:y0,r:r,fill:"rgba(74,144,217,0.1)",stroke:"var(--blue)",strokeWidth:1.5}));
+    if(idx<3) circles.push(e("text",{key:"k"+idx,x:x+r,y:y0+4,fill:"var(--blue)",fontSize:11,textAnchor:"middle"},`K${idx+1}`));
     x+=2*r; r/=2; idx++;
   }
   circles.push(e("text",{key:"dots",x:x+10,y:y0+4,fill:"var(--muted)",fontSize:14},"..."));
@@ -147,7 +147,7 @@ function SvgZad12_2014JA(){
       stroke:"#f87171",strokeWidth:2}),
     // Pravac vidljivosti do vrha zida/krova (kut 26°)
     e("line",{x1:obs,y1:gnd,x2:(wallL+wallR)/2,y2:wallTop,
-      stroke:"#4a90d9",strokeWidth:2,strokeDasharray:"6,3"}),
+      stroke:"var(--blue)",strokeWidth:2,strokeDasharray:"6,3"}),
     // Horizontalni pravac od promatrača
     e("line",{x1:obs-60,y1:gnd,x2:obs,y2:gnd,stroke:"var(--muted)",strokeWidth:1}),
 
@@ -156,11 +156,11 @@ function SvgZad12_2014JA(){
       fill:"none",stroke:"#f87171",strokeWidth:1.5}),
     // Luk za kut 26°
     e("path",{d:`M ${obs-38},${gnd} A 38,38 0 0,0 ${obs-38*Math.cos(26*Math.PI/180)},${gnd-38*Math.sin(26*Math.PI/180)}`,
-      fill:"none",stroke:"#4a90d9",strokeWidth:1.5}),
+      fill:"none",stroke:"var(--blue)",strokeWidth:1.5}),
 
     // Oznake kutova — jasne i čitljive
     e("text",{x:obs-62,y:gnd-36,fill:"#f87171",fontSize:14,fontWeight:"bold"},"33°"),
-    e("text",{x:obs-50,y:gnd-14,fill:"#4a90d9",fontSize:14,fontWeight:"bold"},"26°"),
+    e("text",{x:obs-50,y:gnd-14,fill:"var(--blue)",fontSize:14,fontWeight:"bold"},"26°"),
 
     // Promatrač (točka na tlu)
     e("circle",{cx:obs,cy:gnd,r:5,fill:"var(--muted)"}),
@@ -192,10 +192,10 @@ function SvgZad10_2014JA(){
     e("text",{x:cx+3,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
     ...[1,2,3].map(i=>e("text",{key:"lx"+i,x:cx+i*sc-5,y:cy+13,fill:"var(--muted)",fontSize:10},i)),
     ...[-3,-2,-1,1,2].map(i=>e("text",{key:"ly"+i,x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
-    e("path",{d:path,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("path",{d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
     e("circle",{cx:cx,cy:cy+3*sc,r:4,fill:"#e8c547"}),
     e("text",{x:cx+5,y:cy+3*sc+4,fill:"#e8c547",fontSize:10},"(0,−3)"),
-    e("text",{x:cx+2*sc,y:cy-0.8*sc,fill:"#4a90d9",fontSize:11,fontStyle:"italic"},"y=2ˣ−4")
+    e("text",{x:cx+2*sc,y:cy-0.8*sc,fill:"var(--blue)",fontSize:11,fontStyle:"italic"},"y=2ˣ−4")
   );
 }
 
@@ -240,13 +240,13 @@ function SvgQ29_3_2014JA() {
   // Mjere stranica (labele uz polovicu stranice, ofset od linije)
   // AB=146m (gore)
   els.push(e('text',{key:'mAB',x:(A[0]+B[0])/2,y:(A[1]+B[1])/2-10,
-    fill:'#e9b446',fontSize:11,textAnchor:'middle'},'146 m'));
+    fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'146 m'));
   // AD=57m (lijevo) — ofset ulijevo
   els.push(e('text',{key:'mAD',x:(A[0]+D[0])/2-24,y:(A[1]+D[1])/2+3,
-    fill:'#e9b446',fontSize:11,textAnchor:'middle'},'57 m'));
+    fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'57 m'));
   // BC=123m (desno) — ofset udesno
   els.push(e('text',{key:'mBC',x:(B[0]+C[0])/2+24,y:(B[1]+C[1])/2+3,
-    fill:'#e9b446',fontSize:11,textAnchor:'middle'},'123 m'));
+    fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'123 m'));
 
   // Labele vrhova
   els.push(e('text',{key:'lA',x:A[0]-15,y:A[1]+4,fill:t,fontSize:12,fontWeight:'bold'},'A'));
@@ -307,13 +307,13 @@ function SvgQ29_1_2014JA() {
   // Labele "a"
   // Gornja stranica kvadrata
   els.push(e('text',{key:'a1',x:qx+a/2,y:qy-7,
-    fill:'#e9b446',fontSize:12,textAnchor:'middle'},'a'));
+    fill:'var(--gold)',fontSize:12,textAnchor:'middle'},'a'));
   // Lijeva stranica kvadrata
   els.push(e('text',{key:'a2',x:qx-15,y:qy+a/2+4,
-    fill:'#e9b446',fontSize:12,textAnchor:'middle'},'a'));
+    fill:'var(--gold)',fontSize:12,textAnchor:'middle'},'a'));
   // Apotem label (unutar gornjeg trokuta, desno od dashed linije)
   els.push(e('text',{key:'a3',x:qx+a/2+7,y:qy-ht/2+5,
-    fill:'#e9b446',fontSize:11},'a'));
+    fill:'var(--gold)',fontSize:11},'a'));
 
   return e('svg',{viewBox:`0 0 ${W} ${H}`,style:{width:'100%',maxWidth:W}}, ...els);
 }
@@ -350,7 +350,7 @@ function SvgQ25_2_2014JA() {
   const rA=22;
   els.push(e('path',{key:'arcA',
     d:`M ${(Ax+rA).toFixed(1)},${Ay} A ${rA} ${rA} 0 0 0 ${(Ax+rA*Math.cos(angAC)).toFixed(1)},${(Ay+rA*Math.sin(angAC)).toFixed(1)}`,
-    fill:'none',stroke:'#e9b446',strokeWidth:1.5}));
+    fill:'none',stroke:'var(--gold)',strokeWidth:1.5}));
 
   // Kut ∠BCD — luk kod C (od CB prema CD)
   const angCB=Math.atan2(By-Cy,Bx-Cx);
@@ -360,12 +360,12 @@ function SvgQ25_2_2014JA() {
   // angCB ≈ 1.2 rad, angCD ≈ 1.5 rad (oba gore-desno)
   els.push(e('path',{key:'arcC',
     d:`M ${(Cx+rC*Math.cos(angCB)).toFixed(1)},${(Cy+rC*Math.sin(angCB)).toFixed(1)} A ${rC} ${rC} 0 0 0 ${(Cx+rC*Math.cos(angCD)).toFixed(1)},${(Cy+rC*Math.sin(angCD)).toFixed(1)}`,
-    fill:'none',stroke:'#e9b446',strokeWidth:1.5}));
+    fill:'none',stroke:'var(--gold)',strokeWidth:1.5}));
 
   // Mjere stranica
-  els.push(e('text',{key:'mAC',x:(Ax+Cx)/2-16,y:(Ay+Cy)/2+2,fill:'#e9b446',fontSize:11,textAnchor:'middle'},'9 cm'));
-  els.push(e('text',{key:'mBC',x:(Bx+Cx)/2+16,y:(By+Cy)/2+2,fill:'#e9b446',fontSize:11,textAnchor:'middle'},'5 cm'));
-  els.push(e('text',{key:'mAB',x:(Ax+Bx)/2,y:Ay+17,fill:'#e9b446',fontSize:11,textAnchor:'middle'},'12 cm'));
+  els.push(e('text',{key:'mAC',x:(Ax+Cx)/2-16,y:(Ay+Cy)/2+2,fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'9 cm'));
+  els.push(e('text',{key:'mBC',x:(Bx+Cx)/2+16,y:(By+Cy)/2+2,fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'5 cm'));
+  els.push(e('text',{key:'mAB',x:(Ax+Bx)/2,y:Ay+17,fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'12 cm'));
 
   // Labele vrhova
   els.push(e('text',{key:'lA',x:Ax-13,y:Ay+5,fill:t,fontSize:12,fontStyle:'italic'},'A'));
@@ -378,7 +378,7 @@ function SvgQ25_2_2014JA() {
 
 function SvgQ23_2014JA() {
   const W=220, H=200, pad=30;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3, xMax=3, yMin=-2, yMax=6;
   const t='var(--text)', g='rgba(148,163,184,0.2)';
   const toX = x => pad + (x-xMin)/(xMax-xMin)*(W-2*pad);
@@ -412,7 +412,7 @@ function SvgQ23_2014JA() {
 
 function SvgQ21_2014JA() {
   const W=260, H=220, pad=32;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3, xMax=5, yMin=-3, yMax=6;
   const t='var(--text)', g='rgba(148,163,184,0.2)';
   const toX = x => pad + (x-xMin)/(xMax-xMin)*(W-2*pad);
@@ -444,7 +444,7 @@ function SvgQ14_2014JA() {
   // K₁ r=40, K₂ r=20, K₃ r=10, K₄ r=5 (px)
   // Centri NA pravcu — tangentni izvana: c₂.x = c₁.x+r₁+r₂
   const r=[40,20,10,5];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=[]; cx[0]=45;
   for(let i=1;i<4;i++) cx[i]=cx[i-1]+r[i-1]+r[i];
   // cx = [45, 105, 135, 150]
@@ -522,17 +522,17 @@ function SvgQ13_2014JA() {
 
   // Mjera 6 cm (gornja osnovica) — iznad
   els.push(e('text',{key:'m6',x:(Dx+Cx)/2,y:Dy-10,
-    fill:'#e9b446',fontSize:12,textAnchor:'middle'},'6 cm'));
+    fill:'var(--gold)',fontSize:12,textAnchor:'middle'},'6 cm'));
 
   // Mjera 4 cm (visina, lijevo) sa strelicama
-  els.push(e('line',{key:'vl',x1:Ax-16,y1:Dy,x2:Ax-16,y2:Ay,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('line',{key:'vlT',x1:Ax-20,y1:Dy,x2:Ax-12,y2:Dy,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('line',{key:'vlB',x1:Ax-20,y1:Ay,x2:Ax-12,y2:Ay,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('text',{key:'m4',x:Ax-28,y:(Dy+Ay)/2+4,fill:'#e9b446',fontSize:12,textAnchor:'middle'},'4 cm'));
+  els.push(e('line',{key:'vl',x1:Ax-16,y1:Dy,x2:Ax-16,y2:Ay,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('line',{key:'vlT',x1:Ax-20,y1:Dy,x2:Ax-12,y2:Dy,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('line',{key:'vlB',x1:Ax-20,y1:Ay,x2:Ax-12,y2:Ay,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('text',{key:'m4',x:Ax-28,y:(Dy+Ay)/2+4,fill:'var(--gold)',fontSize:12,textAnchor:'middle'},'4 cm'));
 
   // Mjera 10 cm (donja osnovica) — ispod
   els.push(e('text',{key:'m10',x:(Ax+Bx)/2,y:Ay+18,
-    fill:'#e9b446',fontSize:12,textAnchor:'middle'},'10 cm'));
+    fill:'var(--gold)',fontSize:12,textAnchor:'middle'},'10 cm'));
 
   return e('svg',{viewBox:`0 0 ${W} ${H}`,style:{width:'100%',maxWidth:W}}, ...els);
 }
@@ -561,16 +561,16 @@ function SvgQ12_2014JA() {
   els.push(e('line',{key:'v',x1:roofX,y1:40,x2:roofX,y2:hBot,stroke:t,strokeWidth:0.7,strokeDasharray:'3,3'}));
 
   // Mjera h (lijevo)
-  els.push(e('line',{key:'hv',x1:25,y1:hTop,x2:25,y2:hBot,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('line',{key:'ht',x1:20,y1:hTop,x2:30,y2:hTop,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('line',{key:'hb',x1:20,y1:hBot,x2:30,y2:hBot,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('text',{key:'hl',x:12,y:(hTop+hBot)/2+4,fill:'#e9b446',fontSize:12,fontStyle:'italic'},'h'));
+  els.push(e('line',{key:'hv',x1:25,y1:hTop,x2:25,y2:hBot,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('line',{key:'ht',x1:20,y1:hTop,x2:30,y2:hTop,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('line',{key:'hb',x1:20,y1:hBot,x2:30,y2:hBot,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('text',{key:'hl',x:12,y:(hTop+hBot)/2+4,fill:'var(--gold)',fontSize:12,fontStyle:'italic'},'h'));
 
   // Mjera 1.5 m (antena)
-  els.push(e('line',{key:'av',x1:roofX+12,y1:antY,x2:roofX+12,y2:roofY,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('line',{key:'att',x1:roofX+8,y1:antY,x2:roofX+16,y2:antY,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('line',{key:'atb',x1:roofX+8,y1:roofY,x2:roofX+16,y2:roofY,stroke:'#e9b446',strokeWidth:1}));
-  els.push(e('text',{key:'am',x:roofX+18,y:(antY+roofY)/2+4,fill:'#e9b446',fontSize:10},'1.5 m'));
+  els.push(e('line',{key:'av',x1:roofX+12,y1:antY,x2:roofX+12,y2:roofY,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('line',{key:'att',x1:roofX+8,y1:antY,x2:roofX+16,y2:antY,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('line',{key:'atb',x1:roofX+8,y1:roofY,x2:roofX+16,y2:roofY,stroke:'var(--gold)',strokeWidth:1}));
+  els.push(e('text',{key:'am',x:roofX+18,y:(antY+roofY)/2+4,fill:'var(--gold)',fontSize:10},'1.5 m'));
 
   // Sight lines
   els.push(e('line',{key:'sl1',x1:obsX,y1:obsY,x2:roofX,y2:roofY,stroke:t,strokeWidth:1.2}));
@@ -621,7 +621,7 @@ function SvgQ12_2014JA() {
 
 function SvgQ10_2014JA() {
   const W=240, H=210, pad=38;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const t='var(--text)', g='rgba(148,163,184,0.18)';
   // Grid: x od -4 do 3 (7 stupaca), y od -5 do 4 (9 redova)  
   const xMin=-4, xMax=3, yMin=-5, yMax=4;
@@ -713,12 +713,12 @@ function SvgSol30_2014JA() {
     e('line',{x1:ox+cell,y1:oy-3,x2:ox+cell,y2:oy+3,stroke:t,strokeWidth:1}),
     e('line',{x1:ox-3,y1:oy-cell,x2:ox+3,y2:oy-cell,stroke:t,strokeWidth:1}),
     // Grafovi
-    e('path',{d:fPath,fill:'none',stroke:'#4a90d9',strokeWidth:2}),
-    e('path',{d:gPath,fill:'none',stroke:'#e9b446',strokeWidth:2}),
+    e('path',{d:fPath,fill:'none',stroke:'var(--blue)',strokeWidth:2}),
+    e('path',{d:gPath,fill:'none',stroke:'var(--gold)',strokeWidth:2}),
     // Sjecišta
     ...ints.map(([xi,yi],idx)=>
       e('circle',{key:'i'+idx,cx:sx(xi),cy:sy(yi),r:4,
-        fill:'#e05252',stroke:'white',strokeWidth:1.5})
+        fill:'var(--red)',stroke:'white',strokeWidth:1.5})
     ),
     ...labels.map(([l,x,y])=>e('text',{key:l,x,y,fontSize:11,fill:t,fontFamily:'serif'},l))
   );
@@ -780,7 +780,7 @@ function SvgTbl24_2014JA() {
       const isTotal = ci===4;
       els.push(e('text',{key:'r'+ri+'c'+ci,
         x:cx,y:ry+rowH/2+4,
-        fill:isTotal?'#50c878':t,
+        fill:isTotal?'var(--green)':t,
         fontSize:11,textAnchor:'middle',fontWeight:isTotal?'700':'400'},val));
     });
   });
@@ -828,13 +828,13 @@ function SvgSol23_1_2014JA() {
   const px=toX(0), py=toY(4);
 
   // Dashed linija od O do točke
-  els.push(e('line',{key:'dl',x1:px,y1:toY(0),x2:px,y2:py,stroke:'#e05252',strokeWidth:1.2,strokeDasharray:'4,3'}));
+  els.push(e('line',{key:'dl',x1:px,y1:toY(0),x2:px,y2:py,stroke:'var(--red)',strokeWidth:1.2,strokeDasharray:'4,3'}));
   // Projekcija — kratka vodoravna crtica
-  els.push(e('line',{key:'proj',x1:px-6,y1:py,x2:px+6,y2:py,stroke:'#e9b446',strokeWidth:1.4}));
+  els.push(e('line',{key:'proj',x1:px-6,y1:py,x2:px+6,y2:py,stroke:'var(--gold)',strokeWidth:1.4}));
   // Točka
-  els.push(e('circle',{key:'pt',cx:px,cy:py,r:5,fill:'#e05252',stroke:'none'}));
+  els.push(e('circle',{key:'pt',cx:px,cy:py,r:5,fill:'var(--red)',stroke:'none'}));
   // Label
-  els.push(e('text',{key:'lbl',x:px+8,y:py-2,fill:'#e05252',fontSize:11,fontStyle:'italic'},'z = 4i'));
+  els.push(e('text',{key:'lbl',x:px+8,y:py-2,fill:'var(--red)',fontSize:11,fontStyle:'italic'},'z = 4i'));
 
   return e('svg',{viewBox:'0 0 '+W+' '+H,style:{width:'100%',maxWidth:W}}, ...els);
 }
@@ -973,7 +973,7 @@ export const qs = [
     "Provjera ✓: 2·2−4·1=4−4=0 ✓ → A je kolinearan s (2,4) ✓"
   ]
 },
-  {id:8,type:"mc",warn:"Pazi: u IV. kvadrantu sin < 0 → sin x = −0,8; pa cos(x − π/3) = cos x·cos π/3 + sin x·sin π/3.",topic:"trg",points:1,
+  {id:8,type:"mc",warn:"Pazi: u IV. kvadrantu sin < 0 → sin x = −0,8; pa cos(x − π/3) = cos x·cos π/3 + sin x·sin π/3.",topic:"trig",points:1,
   q:"Ako je cos x = 0,6 i x ∈ ⟨3π/2, 2π⟩, koliko je cos(x − π/3)?",
   opts:["-0,44720","-0,39282","0,1","0,5"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -1050,7 +1050,7 @@ export const qs = [
     "Kompozicija: (f ∘ g)(x) = f(g(x)) — uvrstimo g(x) na mjesto x u f."
   ,"Provjera ekstrema: f'(x₀) = 0 i predznak f'' (ili f') oko x₀ daje min/max."]
 },
-  {id:12,img:true,type:"mc",warn:"Pazi: dvije jednadžbe (tan 33° i tan 26°) s istom udaljenošću; oduzmi da eliminiraš antenu.",topic:"trg",points:2,img:true,
+  {id:12,img:true,type:"mc",warn:"Pazi: dvije jednadžbe (tan 33° i tan 26°) s istom udaljenošću; oduzmi da eliminiraš antenu.",topic:"trig",points:2,img:true,
   q:"Kolika je visina h kuće prikazane na skici? (Ispred kuće promatrač gleda vrh antene pod kutom 33° i vrh krova pod kutom 26°. Antena je 1,5 m iznad vrha krova.)",
   opts:["4,2 m","4,5 m","5,1 m","5,4 m"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -1071,7 +1071,7 @@ export const qs = [
     "Provjera ✓: Uvrsti h=5,1 u obje tg jednadžbe i potvrdi konzistentnost udaljenosti ✓"
   ]
 },
-  {id:13,img:true,type:"mc",warn:"Pazi: okomiti krak je visina trapeza; ostalo iz pravokutnog trokuta (razlika osnovica 10 − 6).",topic:"geo",points:2,img:true,
+  {id:13,img:true,type:"mc",warn:"Pazi: okomiti krak je visina trapeza; ostalo iz pravokutnog trokuta (razlika osnovica 10 − 6).",topic:"geom",points:2,img:true,
   q:"Na skici je prikazan trapez kojemu je jedan krak okomit na osnovice. Duljine osnovica iznose 10 cm i 6 cm, a duljina kraka okomitoga na osnovice iznosi 4 cm. Povučena je dužina usporedna s osnovicama i ona taj trapez dijeli na dva dijela jednakih površina. Na kojoj je udaljenosti od kraće osnovice trapeza povučena ta dužina?",
   intermediates:[32, 16, 144, 128, 272],
   opts:["2,057 cm","2,246 cm","2,793 cm","2,918 cm"],
@@ -1093,7 +1093,7 @@ export const qs = [
     "Provjera ✓: Izračunaj duljinu paralelne dužine na zadanoj visini trapeza i provjeri ✓"
   ]
 },
-  {id:14,img:true,type:"mc",warn:"Pazi: polumjeri čine geometrijski niz; zbroj je geometrijski red (konvergira jer |q| < 1).",topic:"geo",points:2,img:true,
+  {id:14,img:true,type:"mc",warn:"Pazi: polumjeri čine geometrijski niz; zbroj je geometrijski red (konvergira jer |q| < 1).",topic:"geom",points:2,img:true,
   q:"Zadano je beskonačno mnogo krugova kojima su središta na jednome pravcu i koji se dodiruju izvana kao što je prikazano na skici. Krug K₁ ima polumjer 10 cm. Promjer kruga K₂ jednak je polumjeru kruga K₁, promjer kruga K₃ jednak je polumjeru kruga K₂ itd. Koliki je zbroj površina svih tih beskonačno mnogo krugova?",
   opts:["75π cm²","125π cm²","400π/3 cm²","500π/3 cm²"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -1271,7 +1271,7 @@ export const qs = [
     "Provjera ✓: x=10: (3/2)·(50−4) = (3/2)·46 = 69; 7·10−1 = 69; 69 ≤ 69 ✓ (granični slučaj). x=11: (3/2)·51=76,5 > 76 ✗"
   ]
 },
-  {id:20.2,type:"sa",topic:"geo",points:1,
+  {id:20.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 20 (2. dio od 2):",
   q:"Odredite jednadžbu pravca koji prolazi točkama A(2, -2) i B(8, 1).",
   sol:{ans:"x − 2y − 6 = 0",alt:["x-2y-6=0","y = x/2 - 3"]},
@@ -1465,7 +1465,7 @@ export const qs = [
     "Provjera ✓: p=6 → ravnalica x=−3. T(4,y): udaljenost = 4−(−3) = 7 ✓. Jednadžba y²=12x — za T(4,y): y²=48 → T je na paraboli ✓"
   ]
 },
-  {id:25.2,type:"sa",topic:"geo",points:1,img:true,
+  {id:25.2,type:"sa",topic:"geom",points:1,img:true,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Duljine stranica trokuta ABC prikazanoga na skici iznose |AB| = 12 cm, |BC| = 5 cm i |AC| = 9 cm. Za kutove vrijedi ∠BAC ≅ ∠BCD. Izračunajte duljinu dužine CD.",
   sol:{ans:"|CD| = 3,75 cm",alt:["3,75","15/4"]},
@@ -1484,7 +1484,7 @@ export const qs = [
     "Provjera ✓: BC/BA = 5/12 = 0,417; CD/CA = 3,75/9 = 0,417 ✓. Omjeri jednaki → sličnost potvrđena ✓"
   ]
 },
-  {id:26.1,type:"sa",topic:"trg",points:1,
+  {id:26.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 26 (1. dio od 2):",
   q:"Koliki je temeljni period funkcije f(x) = 2 · cos(8x)?",
   sol:{ans:"T = [FRAC:π|4]",alt:["π/4","pi/4"]},
@@ -1502,7 +1502,7 @@ export const qs = [
     "Provjera ✓: f(0)=2·cos(0)=2; f(π/4)=2·cos(2π)=2 ✓ — period je π/4 ✓"
   ]
 },
-  {id:26.2,type:"sa",topic:"trg",points:1,
+  {id:26.2,type:"sa",topic:"trig",points:1,
   context:"Zadatak 26 (2. dio od 2):",
   q:"Odredite opće rješenje jednadžbe tg x = 2.",
   sol:{ans:"x = arctg 2 + kπ ≈ 1,107149 + kπ, k ∈ ℤ",alt:["arctg(2) + kπ","1,107149 + kπ","x = arctg 2 + kπ"]},
@@ -1642,7 +1642,7 @@ export const qs = [
     "Provjera ✓: f′(0) = 1/1² = 1. Numerički: [f(0+h)−f(0)]/h za mali h: [(5h+2)/(2h+1)−2]/h = [(5h+2−2(2h+1))/(2h+1)]/h = [h/(2h+1)]/h = 1/(2h+1) → 1 za h→0 ✓"
   ]
 },
-  {id:29.1,type:"proof",topic:"geo",points:2,img:true,
+  {id:29.1,type:"proof",topic:"geom",points:2,img:true,
   context:"Zadatak 29 (1. dio od 4):",
   q:"Na skici je prikazana mreža uspravnoga tijela. Mreža se sastoji od kvadrata i sukladnih jednakokračnih trokuta. Izračunajte obujam toga tijela ako je a = 5 cm.",
   sol:{ans:"V = [FRAC:125√3|6] cm³ ≈ 36,08 cm³",alt:["125√3/6","≈36,08"]},
@@ -1662,7 +1662,7 @@ export const qs = [
     "Provjera ✓: V = (1/3)·25·(5√3/2) = 125√3/6. √3 ≈ 1,732 → V ≈ 125·1,732/6 ≈ 216,5/6 ≈ 36,08 cm³ ✓"
   ]
 },
-  {id:29.2,type:"sa",topic:"geo",points:2,
+  {id:29.2,type:"sa",topic:"geom",points:2,
   context:"Zadatak 29 (2. dio od 4):",
   q:"Zadan je vektor AB⃗ = 2i⃗ + 5j⃗ i točke C(1, 3) i D(4, -7). Odredite mjeru kuta između vektora AB⃗ i CD⃗.",
   sol:{ans:"≈ 141°29′58″",alt:["141°29'58\"","≈141,5°"]},
@@ -1682,7 +1682,7 @@ export const qs = [
     "Provjera ✓: cos(141°29′58″) = cos(141,5°) ≈ −0,783 ≈ −44/56,2 ✓"
   ]
 },
-  {id:29.3,type:"proof",topic:"trg",points:3,img:true,
+  {id:29.3,type:"proof",topic:"trig",points:3,img:true,
   context:"Zadatak 29 (3. dio od 4):",
   q:"Odredite opseg četverokuta prikazanoga na skici (poznate stranice 146 m, 57 m, 123 m i kutovi 108° i 122° između susjednih stranica).",
   intermediates:[3249, 21316, 16644, 24565, 5143, 29708, 172.36, 35.68, 361.68, 0.309, 0.530],
@@ -1748,13 +1748,7 @@ export const qs = [
     "Alt metoda: d(x)=f(x)−g(x) mijenja predznak 3 puta (teorem o međuvrijednosti) → 3 nultočke → 3 rješenja.",
     "Provjera ✓: d(−4,95)>0, d(−4,5)<0, d(−2,5)<0, d(−2)≈−0,19, d(0)≈+0,7 → mijenja predznak točno 3× ✓"
   ,"Provjera domene: dobivene x-vrijednosti moraju biti unutar dozvoljenog područja funkcije."]
-},
-  {_META:true,
-  auditStatus: "verified-full",
-  auditedAt: "2026-05-06",
-  auditBy: "Claude+Daniel",
-  verified: "pdf+verbatim+visual+pedagogy+P0+P1+P2+P3+cross_check"
-  }
+}
 ];
 
 export const qImages = {

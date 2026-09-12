@@ -10,7 +10,7 @@ function SvgTable5_2012ZimaB(){
   const vals=["f(x)",...ys.map(String)];
   for(let c=0;c<cols;c++){
     const cx2=ox+c*rw;
-    cells.push(e("rect",{key:"h"+c,x:cx2,y:oy,width:rw,height:rh,fill:c===0?"#4a90d9":"var(--bg)",fillOpacity:c===0?0.25:1,stroke:"var(--text)",strokeWidth:1,strokeOpacity:0.4}));
+    cells.push(e("rect",{key:"h"+c,x:cx2,y:oy,width:rw,height:rh,fill:c===0?"var(--blue)":"var(--bg)",fillOpacity:c===0?0.25:1,stroke:"var(--text)",strokeWidth:1,strokeOpacity:0.4}));
     cells.push(e("text",{key:"ht"+c,x:cx2+rw/2,y:oy+rh/2+5,textAnchor:"middle",fontSize:13,fontStyle:c===0?"italic":"normal",fontWeight:"bold",fill:"var(--text)"},hdrs[c]));
     cells.push(e("rect",{key:"v"+c,x:cx2,y:oy+rh,width:rw,height:rh,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1,strokeOpacity:0.4}));
     cells.push(e("text",{key:"vt"+c,x:cx2+rw/2,y:oy+rh+rh/2+5,textAnchor:"middle",fontSize:13,fontStyle:c===0?"italic":"normal",fill:"var(--text)"},vals[c]));
@@ -42,7 +42,7 @@ function SvgKoord4_2012ZimaB(){
     e("text",{x:cx+3,y:cy-sc+3,fontSize:10,fill:"var(--text)"},"1"),
     e("text",{x:cx-10,y:cy+12,fontSize:10,fill:"var(--text)"},"0"),
     // Points
-    ...pts.map(p=>e("circle",{key:"p"+p.t,cx:cx+p.x*sc,cy:cy-p.y*sc,r:4,fill:"#4a90d9"})),
+    ...pts.map(p=>e("circle",{key:"p"+p.t,cx:cx+p.x*sc,cy:cy-p.y*sc,r:4,fill:"var(--blue)"})),
     ...pts.map(p=>e("text",{key:"l"+p.t,x:cx+p.x*sc+(p.x>=0?7:-14),y:cy-p.y*sc+(p.y<=0?14:-5),fontSize:13,fontWeight:"bold",fill:"var(--text)"},p.t))
   );
 }
@@ -67,7 +67,7 @@ function SvgTable28_2012ZimaB(){
   for(let r=0;r<rows.length;r++){
     for(let c=0;c<2;c++){
       const x=ox+(c===0?0:rw[0]),y=oy+r*rh,w=c===0?rw[0]:rw[1],h=rh;
-      cells.push(e("rect",{key:`r${r}c${c}`,x,y,width:w,height:h,fill:r===0?"#4a90d9":"var(--bg)",fillOpacity:r===0?0.25:1,stroke:"var(--text)",strokeWidth:0.8,strokeOpacity:0.4}));
+      cells.push(e("rect",{key:`r${r}c${c}`,x,y,width:w,height:h,fill:r===0?"var(--blue)":"var(--bg)",fillOpacity:r===0?0.25:1,stroke:"var(--text)",strokeWidth:0.8,strokeOpacity:0.4}));
       cells.push(e("text",{key:`t${r}c${c}`,x:x+4,y:y+h/2+4,fontSize:10,fontWeight:r===0?"bold":"normal",fill:"var(--text)"},rows[r][c]));
     }
   }
@@ -78,7 +78,7 @@ function SvgTable28_2012ZimaB(){
   for(let r=0;r<airRows.length;r++){
     let cx2=ox;
     for(let c=0;c<airRows[r].length;c++){
-      cells.push(e("rect",{key:`ar${r}c${c}`,x:cx2,y:airY+14+r*rh,width:arw[c],height:rh,fill:r===0?"#4a90d9":"var(--bg)",fillOpacity:r===0?0.25:1,stroke:"var(--text)",strokeWidth:0.8,strokeOpacity:0.4}));
+      cells.push(e("rect",{key:`ar${r}c${c}`,x:cx2,y:airY+14+r*rh,width:arw[c],height:rh,fill:r===0?"var(--blue)":"var(--bg)",fillOpacity:r===0?0.25:1,stroke:"var(--text)",strokeWidth:0.8,strokeOpacity:0.4}));
       cells.push(e("text",{key:`at${r}c${c}`,x:cx2+2,y:airY+14+r*rh+rh/2+4,fontSize:9,fontWeight:r===0?"bold":"normal",fill:"var(--text)"},airRows[r][c]));
       cx2+=arw[c];
     }
@@ -105,7 +105,7 @@ function SvgParabola16_2012ZimaB(){
     e("text",{x:W-8,y:cy-6,fontSize:11,fill:"var(--text)"},"x"),
     e("text",{x:cx+4,y:12,fontSize:11,fill:"var(--text)"},"y"),
     e("text",{x:cx-12,y:cy+12,fontSize:11,fill:"var(--text)"},"0"),
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2})
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2})
   );
 }
 
@@ -127,7 +127,7 @@ function SvgGrid12_2012ZimaB(){
   // Scale arrows
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     ...lines,
-    e("path",{d:shapePath,fill:"#4a90d9",fillOpacity:0.2,stroke:"#4a90d9",strokeWidth:2.2}),
+    e("path",{d:shapePath,fill:"var(--blue)",fillOpacity:0.2,stroke:"var(--blue)",strokeWidth:2.2}),
     // Scale labels
     e("line",{x1:ox+1*sc,y1:oy-12,x2:ox+2*sc,y2:oy-12,stroke:"var(--text)",strokeWidth:1.5}),
     e("text",{x:ox+1.5*sc,y:oy-15,textAnchor:"middle",fontSize:10,fill:"var(--text)"},"10 m"),
@@ -149,21 +149,21 @@ function Svg24_2sol_2012ZimaB(){
   const ticks=[-2,-1,1,2];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx24b",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"#e2e8f0"})),
-      e("marker",{id:"ary24b",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"#e2e8f0"}))
+      e("marker",{id:"arx24b",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
+      e("marker",{id:"ary24b",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#arx24b)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#ary24b)"}),
-    e("text",{x:W-10,y:cy+13,fontSize:10,fill:"#e2e8f0"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:10,fill:"#e2e8f0"},"y"),
-    e("text",{x:cx-12,y:cy+13,fontSize:9,fill:"#94a3b8"},"0"),
-    ...ticks.map(t=>e("text",{key:t,x:cx+t*sc-(t<0?10:3),y:cy+12,fontSize:8,fill:"#94a3b8"},t)),
-    e("text",{x:cx+3,y:cy-sc+4,fontSize:8,fill:"#94a3b8"},"1"),
+    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx24b)"}),
+    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary24b)"}),
+    e("text",{x:W-10,y:cy+13,fontSize:10,fill:"var(--text)"},"x"),
+    e("text",{x:cx+4,y:14,fontSize:10,fill:"var(--text)"},"y"),
+    e("text",{x:cx-12,y:cy+13,fontSize:9,fill:"var(--muted)"},"0"),
+    ...ticks.map(t=>e("text",{key:t,x:cx+t*sc-(t<0?10:3),y:cy+12,fontSize:8,fill:"var(--muted)"},t)),
+    e("text",{x:cx+3,y:cy-sc+4,fontSize:8,fill:"var(--muted)"},"1"),
     // Označi tjeme (0,-4) i nultočke (±2,0)
-    e("circle",{cx:cx,cy:cy+4*sc,r:3,fill:"#e05252"}),
-    e("circle",{cx:cx-2*sc,cy:cy,r:3,fill:"#50c878"}),
-    e("circle",{cx:cx+2*sc,cy:cy,r:3,fill:"#50c878"}),
-    e("path",{d,fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"})
+    e("circle",{cx:cx,cy:cy+4*sc,r:3,fill:"var(--red)"}),
+    e("circle",{cx:cx-2*sc,cy:cy,r:3,fill:"var(--green)"}),
+    e("circle",{cx:cx+2*sc,cy:cy,r:3,fill:"var(--green)"}),
+    e("path",{d,fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"})
   );
 }
 
@@ -174,17 +174,17 @@ function Svg24_1sol_2012ZimaB(){
   const ticks=[-2,-1,1,2,3,4];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx24a",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"#e2e8f0"})),
-      e("marker",{id:"ary24a",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"#e2e8f0"}))
+      e("marker",{id:"arx24a",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
+      e("marker",{id:"ary24a",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#arx24a)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#ary24a)"}),
-    e("text",{x:W-10,y:cy+13,fontSize:10,fill:"#e2e8f0"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:10,fill:"#e2e8f0"},"y"),
-    e("text",{x:cx-12,y:cy+13,fontSize:9,fill:"#94a3b8"},"0"),
-    ...ticks.map(t=>e("text",{key:t,x:cx+t*sc-(t<0?10:3),y:cy+12,fontSize:8,fill:"#94a3b8"},t)),
-    e("text",{x:cx+3,y:cy-sc+4,fontSize:8,fill:"#94a3b8"},"1"),
-    e("path",{d:"M"+pts,fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round"})
+    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx24a)"}),
+    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary24a)"}),
+    e("text",{x:W-10,y:cy+13,fontSize:10,fill:"var(--text)"},"x"),
+    e("text",{x:cx+4,y:14,fontSize:10,fill:"var(--text)"},"y"),
+    e("text",{x:cx-12,y:cy+13,fontSize:9,fill:"var(--muted)"},"0"),
+    ...ticks.map(t=>e("text",{key:t,x:cx+t*sc-(t<0?10:3),y:cy+12,fontSize:8,fill:"var(--muted)"},t)),
+    e("text",{x:cx+3,y:cy-sc+4,fontSize:8,fill:"var(--muted)"},"1"),
+    e("path",{d:"M"+pts,fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"})
   );
 }
 
@@ -242,7 +242,7 @@ export const qs = [
     "Česta greška: brojati −5 dva puta (jer ima predznak) — predznak ne mijenja klasifikaciju (i −5 i 5 su cijeli)."
   ,"Diagnostic: A) jedan; B) tri ✓; C) pet; D) sedam.","Pravilo: broj se promatra kao racionalan/iracionalan; provjeri vrstu i operaciju.","Intuicija: rezultat između minimalne i maksimalne moguće vrijednosti ✓","Alt metoda: provjeri brojčano supstitucijom ili drugačijim postupkom.","Provjera: brojčana provjera: rezultat realan i konzistentan ✓","Postupak: razdvoji brojnik i nazivnik, pretvori u istu jedinicu, izračunaj."]
 },
-{id:4,img:true,type:"mc",warn:"Pazi: traži se NETOČNA tvrdnja; pažljivo očitaj koordinate sa slike.",img:true,topic:"geo",points:1,
+{id:4,img:true,type:"mc",warn:"Pazi: traži se NETOČNA tvrdnja; pažljivo očitaj koordinate sa slike.",img:true,topic:"geom",points:1,
   q:"Koja je tvrdnja netočna za točke prikazane na slici?",
   opts:["Druga koordinata točke A je pozitivan broj.","Točka B pripada drugome kvadrantu.","Prva koordinata točke C je negativan broj.","Točka D pripada prvome kvadrantu."],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -380,7 +380,7 @@ export const qs = [
     "Domena: izraz definiran samo ako svaki nazivnik ≠ 0 → a ≠ 4 i a ≠ −4 (pa zato uvjet ‚za sve a za koje je izraz definiran‘ u q tekstu)."
   ,"Diagnostic: A) (a+7)/(au00b2u221216) ✓; B) (au22121)/(au00b2u2212*; C) (2au22127)/(au00b2u221*; D) (2a+2)/(au00b2u221216).","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Česta greška: krivo primjeniti pravilo, zaboraviti znak, ili preskočiti korak.","Alt metoda: provjeri rezultat drugačijim pristupom.","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-{id:12,img:true,type:"mc",warn:"Pazi: izbroji rubne stranice u jedinicama mreže, pa pomnoži s 10 m.",img:true,topic:"geo",points:1,
+{id:12,img:true,type:"mc",warn:"Pazi: izbroji rubne stranice u jedinicama mreže, pa pomnoži s 10 m.",img:true,topic:"geom",points:1,
   q:"Koliki je opseg zemljišta na slici ako stranice u kvadratnoj mreži imaju duljinu 10 m? (Napomena: odgovor je zaokružen na najbliži cijeli broj.)",
   opts:["173 m","178 m","183 m","188 m"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -432,7 +432,7 @@ export const qs = [
     "Česta greška: dati razliku BROJA novčanica (9 − 7 = 2) umjesto razliku IZNOSA (180 − 70 = 110); pažljivo čitati pitanje."
   ,"Diagnostic: A) za 90 kn; B) za 100 kn; C) za 110 kn ✓; D) za 120 kn.","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-{id:15,type:"mc",warn:"Pazi: označi stranice; postavi jednadžbu prema uvjetu o izmijenjenim stranicama.",topic:"geo",points:2,
+{id:15,type:"mc",warn:"Pazi: označi stranice; postavi jednadžbu prema uvjetu o izmijenjenim stranicama.",topic:"geom",points:2,
   q:"Pravokutnik: razlika stranica je 7 cm. Drugi pravokutnik: dulja stranica smanjena za 2 cm, kraća povećana za 1 cm. Površine su jednake. Koliki je veći opseg?",
   opts:["29 cm","34 cm","39 cm","44 cm"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},ex:"MC 2-bodovni iz područja: geo. Kombinacija pojmova ili viša razina primjene.",
@@ -685,7 +685,7 @@ export const qs = [
     "Česta greška: zamijeniti znak eksponenta — 1/100 = 10² (krivo!), umjesto 10⁻²."
   ,"Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-{id:26.1,type:"sa",topic:"trg",points:1,
+{id:26.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 26 (1. dio od 2): Riješite zadatke s jednakokračnim trokutima.",
   q:"Mjera kuta nasuprot osnovici jednakokračnog trokuta jednaka je 72°12′. Kolika je mjera kuta uz osnovicu?",
   sol:{ans:"53°54'",alt:["53°54'","rezultat","odgovor"]},
@@ -703,7 +703,7 @@ export const qs = [
     "Česta greška: zaboraviti da β i γ moraju biti jednaki — stavljati ih kao različite varijable."
   ,"Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-{id:26.2,type:"sa",topic:"trg",points:1,
+{id:26.2,type:"sa",topic:"trig",points:1,
   context:"Zadatak 26 (2. dio od 2): Riješite zadatke s jednakokračnim trokutima.",
   q:"Duljina osnovice jednakokračnog trokuta je 22 cm, a duljina njegova kraka 25 cm. Izračunajte površinu tog trokuta.",
   sol:{ans:"66√14 cm²", alt:["66√14", "66*sqrt(14)", "≈ 246,95 cm²", "247 cm²"]},
@@ -804,8 +804,7 @@ export const qs = [
     "Provjera: za 1140 g (J.Amerika) — 57·1,70 = 96,90 kn dop.; (Europa) — 57·1,00 = 57 kn; razlika = 39,90 ✓",
     "Česta greška: koristiti ukupnu cijenu (osnovnu + dopunsku) — osnovna se poništava, treba samo dopunska razlika."
   ,"Pravilo: aritmetička sredina = suma podataka / broj podataka.","Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.","Alt metoda: izračunaj korak po korak iz definicije.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."]
-},
-{_META:true,auditStatus:"verified-full",rok:"2012_zima",razina:"B",serial:"D-S009",totalPoints:40,mcCount:16,saCount:19,verified:"vision+pdf+pedagogy-premium+verbatim",auditNotes:"G+F+H+I+J kompletno. H: Q21 notation. I: Q24.1+Q24.2 binding dodani. Q23 why×4, Q24.1/Q24.2 steps×5. J: Q3,Q13 frac"}
+}
 ];
 
 export const qImages = {

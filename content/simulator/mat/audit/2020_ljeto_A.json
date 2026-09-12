@@ -1,0 +1,22 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2020_ljeto",
+  "razina": "A",
+  "serial": "D-S050",
+  "totalPoints": 60,
+  "mcCount": 15,
+  "saCount": 34,
+  "verified": "sympy+pdf",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ],
+  "maintenanceAt_v39": "2026-05-26",
+  "maintenanceNotes_v39": [
+    "Pak F (pedagoški drift): Q18.2 (vektor AB → A=B-AB), Q19.1 (simetrija binomnog C(n,k)=C(n,n-k)), Q20.2 (razlika kvadrata trik a²-(a+5)(a-5)=25) — generic placeholder steps/why zamijenjeni konkretnom matematikom za svaki Q.",
+    "Pak I (visual): svih 5 vizuala (Q12/25.1/25.3/27.3/28) verified protiv PDF D-S050 — bez bugova."
+  ]
+}

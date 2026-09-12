@@ -10,8 +10,8 @@ function SvgZad8_2010ZA(){
   // D = -log3(x)    (os y lijevo, samo x>0, asimptota x→0+, pada ispod)
 
   const sw=158,sh=122,gapX=20,gapY=16;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",mu="var(--muted)",m="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",mu="var(--muted)",m="var(--muted)";
   const COLORS=["var(--blue)","var(--gold)","var(--green)","var(--red)"];
   const LBLS=["A.","B.","C.","D."];
 
@@ -94,12 +94,12 @@ function SvgZad15_2010ZA(){
   // Q15: Trokut — A(0,0), C(40,0), B(80,0), D(20,30), G(60,21)
   // Opseg GDC = GD(41) + DC(10√13) + GC(29) = 70+10√13 ✓
   const W=300,H=170;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const scX=3.2,scY=3.4,ox=30,oy=160; // scale i offset
   const toX=x=>ox+x*scX;
   const toY=y=>oy-y*scY;
   const A=[0,0],C=[40,0],B=[80,0],D=[20,30],G=[60,21];
-  const t="var(--text)",b=_BLUE,g=_GOLD,mu="#94a3b8";
+  const t="var(--text)",b=_BLUE,g=_GOLD,mu="var(--muted)";
   const thin={stroke:t,strokeWidth:1,fill:"none"};
   const bold={stroke:b,strokeWidth:2.5,fill:"none"};
   return e("svg",{viewBox:"0 0 300 170",style:{width:"100%",maxWidth:300,display:"block"}},
@@ -2206,20 +2206,7 @@ export const qs = [
     ]
   }
 
-  ,{_META:true,
-  auditedAt: "2026-04-24",
-  auditSource: "MAT A D-S003 (viša razina, zimski rok 2010)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  issueCount: {
-    critical: 8,
-    medium: 25,
-    low: 5,
-    resolved: 38
-  },
-  partialComplete: true,
-  partialNote: "Q1-Q17 + Q26/Q27/Q30 imported; Q18-Q25, Q28-Q29 pending NCVVO PDF za rewrite"
-  }
+  
 ];
 
 export const qImages = {

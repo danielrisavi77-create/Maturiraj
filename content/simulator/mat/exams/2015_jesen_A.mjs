@@ -53,7 +53,7 @@ function SvgZad8_2015JA(){
   // Vector formula: a = -3i + 4j  i  b = -6i + j
   // Arrow above each vector letter
   const u=_uid15ja;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ar=(x,y)=>[
     e("line",{key:u(),x1:x,y1:y-2,x2:x+8,y2:y-2,stroke:_BLUE,strokeWidth:1.1}),
     e("polyline",{key:u(),points:`${x+5},${y-5} ${x+8},${y-2} ${x+5},${y+1}`,fill:"none",stroke:_BLUE,strokeWidth:1,strokeLinecap:"round",strokeLinejoin:"round"})
@@ -100,10 +100,10 @@ function SvgZad6_2015JA(){
     e("text",{key:u(),x:cx+r+3,y:cy+12,fill:"var(--muted)",fontSize:10},"1"),
     e("text",{key:u(),x:cx+4,y:cy+12,fill:"var(--muted)",fontSize:10},"0"),
     e("circle",{key:u(),cx,cy,r,fill:"none",stroke:"var(--text)",strokeWidth:1.5}),
-    e("circle",{key:u(),cx:ex,cy:ey,r:5,fill:"#4a90d9"}),
-    e("text",{key:u(),x:ex-33,y:ey+5,fill:"#4a90d9",fontSize:12,fontStyle:"italic"},"E(t)"),
-    e("line",{key:u(),x1:ex,y1:ey,x2:ex,y2:cy,stroke:"#4a90d9",strokeWidth:0.8,strokeDasharray:"3,2"}),
-    e("line",{key:u(),x1:ex,y1:ey,x2:cx,y2:ey,stroke:"#4a90d9",strokeWidth:0.8,strokeDasharray:"3,2"})
+    e("circle",{key:u(),cx:ex,cy:ey,r:5,fill:"var(--blue)"}),
+    e("text",{key:u(),x:ex-33,y:ey+5,fill:"var(--blue)",fontSize:12,fontStyle:"italic"},"E(t)"),
+    e("line",{key:u(),x1:ex,y1:ey,x2:ex,y2:cy,stroke:"var(--blue)",strokeWidth:0.8,strokeDasharray:"3,2"}),
+    e("line",{key:u(),x1:ex,y1:ey,x2:cx,y2:ey,stroke:"var(--blue)",strokeWidth:0.8,strokeDasharray:"3,2"})
   );
 }
 
@@ -186,7 +186,7 @@ function SvgZad28c_2015JA(){
     e("text",{key:u(),x:cx+4,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
     ...[1,2,3,4].map(i=>e("text",{key:u(),x:cx+i*sc-4,y:cy+14,fill:"var(--muted)",fontSize:10},i)),
     ...[-1,1,2,3,4].map(i=>e("text",{key:u(),x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
-    e("path",{key:u(),d:path,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("path",{key:u(),d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
     e("circle",{key:u(),cx:cx+2*sc,cy:cy,r:5,fill:"#e8c547"}),
     e("text",{key:u(),x:cx+2*sc+5,y:cy-6,fill:"#e8c547",fontSize:10},"tjeme(2,0)"),
     e("circle",{key:u(),cx,cy:cy-4*sc,r:4,fill:"#3dd68c"}),
@@ -196,7 +196,7 @@ function SvgZad28c_2015JA(){
 
 function SvgZad26_2015JA(){
   const W=300,H=180,cx=60,cy=90,sc=50;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const u=_uid15ja;
   const grid=[];
   // vertical grid lines
@@ -321,7 +321,7 @@ function SvgZad24a_2015JA(){
 
 function SvgZad22b_2015JA(){
   const W=260,H=200;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const u=_uid15ja;
   const C=[60,160], B=[60,40], A=[220,160];
   const pts=arr=>arr.map(p=>p.join(",")).join(" ");
@@ -1122,7 +1122,7 @@ export const qs = [
     "Česta greška: zamijeniti velikom i malu poluos (postaviti fokuse na y-osu kada bi trebali biti na x); ili pomiješati c² = A² − B² s c² = A² + B².",
     "Provjera ✓: T(8, 3) na elipsi: 64/100 + 9/25 = 0,64 + 0,36 = 1 ✓. Tjeme (0, 5) na elipsi: 0 + 25/25 = 1 ✓. Fokusi: c² + B² = 75 + 25 = 100 = A² ✓"
   ]},
-  {id:30,type:"sa",topic:"seq",points:4,ex:"Mješoviti niz — geometrijski i aritmetički naizmjenično. Test integracije: postavljanje algebarskog sustava iz dvaju različitih nizovskih svojstava, rješavanje kvadratne jednadžbe, dvostruko rješenje.",
+  {id:30,type:"sa",topic:"niz",points:4,ex:"Mješoviti niz — geometrijski i aritmetički naizmjenično. Test integracije: postavljanje algebarskog sustava iz dvaju različitih nizovskih svojstava, rješavanje kvadratne jednadžbe, dvostruko rješenje.",
   q:"Zadana su četiri broja. Prva tri čine geometrijski niz, a posljednja tri aritmetički niz. Zbroj prvoga i četvrtoga broja jednak je 32, a zbroj drugoga i trećega broja jednak je 24. Odredite zadane brojeve.",
   sol:{ans:"{2, 6, 18, 30}  i  {32, 16, 8, 0}",alt:["2,6,18,30","32,16,8,0"]},
   steps:[
@@ -1140,39 +1140,7 @@ export const qs = [
     "Alt metoda: postavi alternativne oznake — npr. b, c kao zadani, pa izrazi a = b/r i d = 2c − b. Vodi do iste kvadratne za r.",
     "Česta greška: dati samo JEDNO rješenje (zaboraviti drugu mogućnost r-a); ili krivo aritmetičko/geometrijsko: zamijeniti uvjete (npr. tretirati a+d = aritm., kad to nije u zadatku).",
     "Provjera ✓ za {2, 6, 18, 30}: geom 2, 6, 18 (omjer 3) ✓; aritm 6, 18, 30 (razlika 12) ✓; 2+30=32 ✓; 6+18=24 ✓. Za {32, 16, 8, 0}: geom 32, 16, 8 (omjer 1/2) ✓; aritm 16, 8, 0 (razlika −8) ✓; 32+0=32 ✓; 16+8=24 ✓"
-  ]},
-  {_META:true,
-  auditStatus: "verified-full",
-  auditedAt: "2026-05-15",
-  auditBy: "Claude+Daniel",
-  verified: "sympy+pdf+verbatim+visual+pedagogy-full",
-  issueCount: 0,
-  examCode: "MAT A D-S029",
-  season: "JESEN",
-  year: 2015,
-  level: "viša razina",
-  totalTasks: 30,
-  mcCount: 15,
-  saCount: 31,
-  totalPoints: 50,
-  mcKey: {1:"C",2:"A",3:"B",4:"B",5:"D",6:"D",7:"B",8:"B",9:"C",10:"D",11:"B",12:"C",13:"C",14:"A",15:"C"},
-  notes: [
-    "Pak G (verbatim PDF compare) — 2026-05-15: P0=1 (Q19,2 endpoint inclusion fix), P1=2 (Q6 namatanje pravca napomena, Q23,1 binomna formula napomena) → SVE PRIMIJENJENO.",
-    "Pak H (math notation, math_lint) — 2026-05-15: 51 → 10 nalaza (preostali: 10× kozmetički A2 ^(razlomak) Unicode super suggestion, ne blokira verified-full).",
-    "Pak I (visual bindings) — 2026-05-15: 11 Q_IMAGES bindings ↔ 11 img:true Q-ova ručno verificirano (orphan_binding_audit ima regex bug s intermediate poljima topic/points).",
-    "Pak F (pedagoški upgrade) — 2026-05-15: MC dio (Q1-Q15) UPGRADE-AN s verifikacija + diagnostika steps, why split Pravilo/Intuicija/Greška/Provjera, ex polje za mc/2pt.",
-    "Pak F SA (Q16-Q30) — 2026-05-15: Završen. Svi sa/1pt dobili ≥3 steps + 4 why entries; sa/2pt (Q29,1, Q29,2) ≥5 steps + 5 why + Alt + ex; sa/3pt (Q29,3, Q29,4) ≥6 steps + 5 why + Alt + ex; sa/4pt (Q30) ≥6 steps + 6 why + Alt + ex. Verifikacija step + Provjera why entry u svakom Q-u.",
-    "Multi-part context: 28 Q-ova (Q18,1-Q29,4) dobilo zaseban context:'Zadatak X (Y. dio od Z):' field (Bug 38 fix).",
-    "z3: promjer 7,8mm=0,78cm → B=3,38g ✓",
-    "z12: nejednadžba je ≤4 → 4 prirodna broja → C",
-    "z19,2 FIX: sol.ans bila ⟨−∞, 3/2⟩∪[2,+∞⟩ (krivo: 3/2 trebao biti UKLJUČEN); ispravno: ⟨−∞, 3/2]∪[2,+∞⟩ (oba ruba uključena jer nejednakost ≤0).",
-    "z21,2: izraz ima (a-2b)/b (ne b/(a-2b)) → 1/(2b) ✓",
-    "z23,2: ∛(x·∛(x·...))=L, L²=x → x=100 ✓",
-    "z29,1: c²=19 (formula: 4m²=2b²+2c²-a²) → c=√19 ✓",
-    "Svi exp legacy fieldi uklonjeni; ID format decimalni",
-    "Matematika verificirana SymPy-om: sve zadatke"
-  ]
-  }
+  ]}
 ];
 
 export const qImages = {

@@ -1,11 +1,12 @@
 {
   "totals": {
-    "flagged": 578,
+    "flagged": 605,
     "svg": 585,
     "missing": 21,
-    "orphan": 28,
-    "comma": 11
+    "orphan": 1,
+    "comma": 0
   },
+  "todoPhase6Note": "missing = nema SVG-a; nacrtati u Fazi 6 prema PDF-u (ne ovdje)",
   "exams": [
     {
       "key": "2010_jesen_A",
@@ -83,20 +84,6 @@
       "commaIdMismatch": []
     },
     {
-      "key": "2013_ljeto_A",
-      "flagged": 6,
-      "svg": 11,
-      "missing": [],
-      "orphan": [
-        "2013_ljeto_A__29.1",
-        "2013_ljeto_A__29.2",
-        "2013_ljeto_A__29.3",
-        "2013_ljeto_A__29.4",
-        "2013_ljeto_A__29.5"
-      ],
-      "commaIdMismatch": []
-    },
-    {
       "key": "2013_ljeto_B",
       "flagged": 8,
       "svg": 7,
@@ -105,110 +92,58 @@
       ],
       "orphan": [],
       "commaIdMismatch": []
-    },
+    }
+  ],
+  "todoPhase6": [
     {
-      "key": "2014_ljeto_A",
-      "flagged": 7,
-      "svg": 13,
-      "missing": [],
-      "orphan": [
-        "2014_ljeto_A__21.1",
-        "2014_ljeto_A__21.2",
-        "2014_ljeto_A__23.2",
-        "2014_ljeto_A__24.1",
-        "2014_ljeto_A__28.1",
-        "2014_ljeto_A__28.3"
-      ],
-      "commaIdMismatch": []
-    },
-    {
-      "key": "2018_jesen_B",
-      "flagged": 8,
-      "svg": 13,
-      "missing": [],
-      "orphan": [
-        "2018_jesen_B__26.1",
-        "2018_jesen_B__26.2",
-        "2018_jesen_B__28.1",
-        "2018_jesen_B__28.2",
-        "2018_jesen_B__28.3"
-      ],
-      "commaIdMismatch": []
-    },
-    {
-      "key": "2024_jesen_A",
-      "flagged": 3,
-      "svg": 10,
-      "missing": [],
-      "orphan": [
-        "2024_jesen_A__15",
-        "2024_jesen_A__16",
-        "2024_jesen_A__19",
-        "2024_jesen_A__23",
-        "2024_jesen_A__28",
-        "2024_jesen_A__37.1",
-        "2024_jesen_A__37.2"
-      ],
-      "commaIdMismatch": []
-    },
-    {
-      "key": "2024_ljeto_A",
-      "flagged": 7,
-      "svg": 11,
-      "missing": [],
-      "orphan": [
-        "2024_ljeto_A__14",
-        "2024_ljeto_A__15",
-        "2024_ljeto_A__35.1",
-        "2024_ljeto_A__35.2"
-      ],
-      "commaIdMismatch": []
-    },
-    {
-      "key": "2025_jesen_A",
-      "flagged": 13,
-      "svg": 13,
-      "missing": [],
-      "orphan": [],
-      "commaIdMismatch": [
-        "2025_jesen_A__37,1",
-        "2025_jesen_A__37,2",
-        "2025_jesen_A__38,2"
+      "key": "2010_jesen_A",
+      "ids": [
+        "2010_jesen_A__25a",
+        "2010_jesen_A__25b",
+        "2010_jesen_A__25c",
+        "2010_jesen_A__29e"
       ]
     },
     {
-      "key": "2025_jesen_B",
-      "flagged": 10,
-      "svg": 10,
-      "missing": [],
-      "orphan": [],
-      "commaIdMismatch": [
-        "2025_jesen_B__32,1",
-        "2025_jesen_B__32,2",
-        "2025_jesen_B__35,1",
-        "2025_jesen_B__35,2"
+      "key": "2010_ljeto_A",
+      "ids": [
+        "2010_ljeto_A__29e"
       ]
     },
     {
-      "key": "2025_ljeto_A",
-      "flagged": 11,
-      "svg": 11,
-      "missing": [],
-      "orphan": [],
-      "commaIdMismatch": [
-        "2025_ljeto_A__36,1",
-        "2025_ljeto_A__36,2",
-        "2025_ljeto_A__38,1"
+      "key": "2010_zima_A",
+      "ids": [
+        "2010_zima_A__25a",
+        "2010_zima_A__25b",
+        "2010_zima_A__25c",
+        "2010_zima_A__28a",
+        "2010_zima_A__28b",
+        "2010_zima_A__28c",
+        "2010_zima_A__29.5"
       ]
     },
     {
-      "key": "2025_ljeto_B",
-      "flagged": 9,
-      "svg": 9,
-      "missing": [],
-      "orphan": [],
-      "commaIdMismatch": [
-        "2025_ljeto_B__33,1"
+      "key": "2011_jesen_A",
+      "ids": [
+        "2011_jesen_A__19.1",
+        "2011_jesen_A__19.2",
+        "2011_jesen_A__25.1",
+        "2011_jesen_A__25.2",
+        "2011_jesen_A__25.3"
+      ]
+    },
+    {
+      "key": "2011_ljeto_A",
+      "ids": [
+        "2011_ljeto_A__19a",
+        "2011_ljeto_A__21a",
+        "2011_ljeto_A__29e"
+      ]
+    },
+    {
+      "key": "2013_ljeto_B",
+      "ids": [
+        "2013_ljeto_B__8"
       ]
     }
   ]

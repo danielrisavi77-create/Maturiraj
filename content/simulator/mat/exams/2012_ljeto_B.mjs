@@ -103,7 +103,7 @@ function SvgDijagram28_2012Blj(){
 
 function SvgTablica21_2012Blj(){
   const xs=[1,2,3], ys=[1,4,7];
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const W=240,H=80,c0=60,cw=54,rh=30;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("rect",{x:c0,y:2,width:cw*3,height:rh,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:1}),
@@ -121,7 +121,7 @@ function SvgTablica21_2012Blj(){
 
 function SvgParabole16_2012Blj(){
   const W=320,H=280;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const panels=[
     {label:"A.",cx:80, cy:80, a:1, vx:-1, vy:1,  color:"#8b7cf8"},
     {label:"B.",cx:240,cy:80, a:1, vx:1,  vy:0,  color:"#3dd68c"},
@@ -159,7 +159,7 @@ function SvgParabole16_2012Blj(){
 
 function SvgPravokutnik14_2012Blj(){
   const W=280,H=180;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const mx=30,my=20,rw=210,rh=110;
   const A={x:mx,y:my+rh}, B={x:mx+rw,y:my+rh};
   const C={x:mx+rw,y:my}, D={x:mx,y:my};
@@ -793,8 +793,7 @@ export const qs = [
     "Česta greška: zanemariti negativne potencijale (D=−40V) i tražiti samo među pozitivnima",
     "Provjera: |20−(−40)| = |60| = 60 V✓; ostali parovi ne daju točno 60 V"
   ,"Provjera grafom: nacrtaj krivulje i vizualno potvrdi sjecište / dodir / paralelnost."]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2012_ljeto",razina:"B",serial:"D-S012",totalPoints:40,mcCount:16,saCount:19,verified:"vision+pdf+pedagogy-premium+verbatim",auditNotes:"G+F+H+I+J kompletno. Q23,1 fix. why arrays 14 MC rewritten (cross-contam fixed). Q27,1/27,2 steps expanded. J Q4/Q13 frac",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+}
 ];
 
 export const qImages = {

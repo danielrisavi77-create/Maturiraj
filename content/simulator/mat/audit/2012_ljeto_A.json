@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2012_ljeto",
+  "razina": "A",
+  "serial": "D-S012",
+  "totalPoints": 60,
+  "mcCount": 14,
+  "saCount": 30,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditNotes": "G: Q13 MC dodan (missing), Q12 steps contamination fixed; F: 15/15 MC; H: Q1 ^(1,34); I: Q29,1 hiperbola SVG; Q13 composite 4-graphs SVG (reciprocal linear fn)",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

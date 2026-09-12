@@ -3,7 +3,7 @@ import React from 'react';
 const e = React.createElement;
 
 function Svg8_2025Blj(){
-  const txt="var(--text)"; const blue="#4a90d9"; const gold="#e9b446";
+  const txt="var(--text)"; const blue="var(--blue)"; const gold="var(--gold)";
   const W=240, rH=40, colW=[80,80,80];
   const cells=[
     [{v:"x",italic:true,head:true},{v:"\u22121",head:true},{v:"7",head:true}],
@@ -23,7 +23,7 @@ function Svg8_2025Blj(){
 }
 
 function Svg6_2025Blj(){
-  const txt="var(--text)"; const blue="#4a90d9"; const altRow="#0a1525";
+  const txt="var(--text)"; const blue="var(--blue)"; const altRow="var(--s2,#0a1525)";
   const rows=[
    ["Ponedjeljak","40 %"],["Utorak","75 %"],["Srijeda","75 %"],
    ["Četvrtak","75 %"],["Petak","80 %"],["Subota","80 %"],["Nedjelja","40 %"]
@@ -43,7 +43,7 @@ function Svg6_2025Blj(){
 
 function Svg33_2025Blj(){
   const W=340,H=260,ox=150,oy=130,sc=28;
-  const st="#94a3b8",ax="#e2e8f0",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-4;i<=5;i++){
@@ -74,7 +74,7 @@ function Svg33_2025Blj(){
 }
 
 function Svg30_2025Blj(){
-  const ax="#e2e8f0",st="#475569";
+  const ax="var(--text)",st="#475569";
   const hd="rgba(148,163,184,0.18)", s1="rgba(148,163,184,0.06)";
   
   // === TABLICA (gore) ===
@@ -109,10 +109,10 @@ function Svg30_2025Blj(){
   const cx=230, cy=tH + 160, r=95;
   const total = 523;
   const data = [
-    {label:"Dovoljan (2)", n:96,  color:"#4a90d9"},
-    {label:"Dobar (3)",    n:218, color:"#e05252"},
-    {label:"Vrlo dobar (4)", n:144, color:"#94a3b8"},
-    {label:"Odličan (5)",  n:65,  color:"#e9b446"}
+    {label:"Dovoljan (2)", n:96,  color:"var(--blue)"},
+    {label:"Dobar (3)",    n:218, color:"var(--red)"},
+    {label:"Vrlo dobar (4)", n:144, color:"var(--muted)"},
+    {label:"Odličan (5)",  n:65,  color:"var(--gold)"}
   ];
   let startAngle = -Math.PI/2;
   let pieHtml = "";
@@ -149,7 +149,7 @@ function Svg30_2025Blj(){
 
 function Svg18_2025Blj(){
   const W=380,H=340,ox=120,oy=170,sc=30;
-  const st="#94a3b8",ax="#e2e8f0",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-4;i<=6;i++){
@@ -198,7 +198,7 @@ function Svg18_2025Blj(){
 }
 
 function Svg16_2025Blj(){
-  const blue="#4a90d9"; const blueD="#3a6aa0"; const red="#e05252"; const gold="#e9b446";
+  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
   const W=420, H=380;
   const A=[80,300],B=[260,300],C=[340,240],D=[160,240];
   const vE=[80,140],vF=[260,140],vG=[340,80],vH=[160,80];
@@ -217,7 +217,7 @@ function Svg16_2025Blj(){
       stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
     ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blue,strokeWidth:2})),
-    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5})),
+    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
     ...verts.map(([n,p,dx,dy])=>e("text",{key:"t"+n,x:p[0]+dx,y:p[1]+dy,
       fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n))
   );
@@ -225,7 +225,7 @@ function Svg16_2025Blj(){
 
 function Svg15_2025Blj(){
   const W=400, H=320;
-  const blue="#4a90d9"; const blueLight="rgba(74,144,217,0.08)"; const red="#e05252"; const gold="#e9b446"; const txt="var(--text)";
+  const blue="var(--blue)"; const blueLight="rgba(74,144,217,0.08)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
   const cx=200, cy=160, r=110;
   const deg=(d)=>d*Math.PI/180;
   const A=[cx - r, cy];
@@ -244,7 +244,7 @@ function Svg15_2025Blj(){
     // Vertices
     ...[[A,"A",-18,5],[B,"B",10,5],[C,"C",-6,-10]].map(([p,l,dx,dy],i)=>
       e("g",{key:"v"+i},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
         e("text",{x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},l)
       )
     )
@@ -253,7 +253,7 @@ function Svg15_2025Blj(){
 
 function Svg12_2025Blj(){
   const W=440,H=300,ox=170,oy=150,sc=28;
-  const st="#94a3b8",ax="#e2e8f0",cu="#4a90d9",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",cu="var(--blue)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-5;i<=7;i++){
@@ -335,8 +335,8 @@ function Svg12_2025Blj(){
 }
 
 function Svg11_2025Blj(){
-  const st="#94a3b8",ax="#e2e8f0",cu="#4a90d9",bg="var(--bg,#060910)";
-  const red="#e05252", gold="#e9b446";
+  const st="var(--muted)",ax="var(--text)",cu="var(--blue)",bg="var(--bg,#060910)";
+  const red="var(--red)", gold="var(--gold)";
   function mini(ox,oy,sc,curveFn,labelPos,vertex){
     const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
     let g="";
@@ -355,7 +355,7 @@ function Svg11_2025Blj(){
       `<text x="${tx(3.9)-6}" y="${ty(0)+13}" fill="${ax}" font-size="11" font-style="italic" font-family="serif">x</text>`+
       `<text x="${tx(0)+5}" y="${ty(3)-2}" fill="${ax}" font-size="11" font-style="italic" font-family="serif">y</text>`;
     // Vertex marker RED
-    const vmark = `<circle cx="${tx(vertex[0])}" cy="${ty(vertex[1])}" r="3.5" fill="${red}" stroke="#0a0f1a" stroke-width="1.2"/>`;
+    const vmark = `<circle cx="${tx(vertex[0])}" cy="${ty(vertex[1])}" r="3.5" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.2"/>`;
     return g+
       `<line x1="${tx(-3)}" y1="${ty(0)}" x2="${tx(3.9)}" y2="${ty(0)}" stroke="${ax}" stroke-width="1.2"/>`+
       `<line x1="${tx(0)}" y1="${ty(-4)}" x2="${tx(0)}" y2="${ty(3)}" stroke="${ax}" stroke-width="1.2"/>`+
@@ -540,7 +540,7 @@ export const qs = [
   {
     id:13,
     type:"mc",warn:"Pazi: cijene čine aritmetički niz (a₁ = 30, d = 8); ukupno = zbroj prvih 20 članova.",
-    topic:"alg",
+    topic:"al",
     points:1,
     q:"Potrebno je iskopati bunar dubok 20 m. Za kopanje prvoga metra cijena je 30 eura, a za svaki sljedeći 8 eura više od prethodnoga metra. Kolika je cijena cijeloga iskopa?",
     opts:["752 eura","1140 eura","1520 eura","2120 eura"],
@@ -620,7 +620,7 @@ export const qs = [
   {
     id:20,
     type:"mc",warn:"Pazi: vjerojatnost = povoljni/ukupni (20); pazi koliko je povoljnih po uvjetu.",
-    topic:"vjer",
+    topic:"stat",
     points:1,
     q:"U Larinome je razredu 20 učenika. Nastavnik slučajnim odabirom proziva jednoga učenika. Koliko iznosi vjerojatnost da NIJE prozvana Lara?",
     opts:["0,8","0,9","0,95","0,99"],
@@ -732,7 +732,7 @@ export const qs = [
   {
     id:"31,1",
     type:"sa",
-    topic:"alg",
+    topic:"al",
     points:1,
     context:"Zadatak 31 (1. dio od 2): Navedene izraze zapišite kao potencije s bazom 5.",
     q:"Zapišite izraz 125^(n+1) : 25^n kao potenciju s bazom 5.",
@@ -743,7 +743,7 @@ export const qs = [
   {
     id:"31,2",
     type:"sa",
-    topic:"alg",
+    topic:"al",
     points:1,
     context:"Zadatak 31 (2. dio od 2): Navedene izraze zapišite kao potencije s bazom 5.",
     q:"Zapišite izraz 10 · 5²⁰⁴ − 5²⁰⁵ kao potenciju s bazom 5.",
@@ -765,7 +765,7 @@ export const qs = [
   {
     id:"32,2",
     type:"sa",
-    topic:"alg",
+    topic:"al",
     points:1,
     context:"Zadatak 32 (2. dio od 2): U ponudi trgovine su čokoladni i voćni bomboni.",
     q:"Ivan je 100 grama čokoladnih i 100 grama voćnih bombona platio ukupno pet eura, a Sara 200 grama čokoladnih i 100 grama voćnih bombona osam eura. Koliko iznosi cijena 100 grama čokoladnih bombona?",
@@ -774,7 +774,7 @@ export const qs = [
     why:["Pravilo: sustav dvije linearne jednadžbe s dvije nepoznanice ima jedinstveno rješenje ako determinanta ≠ 0. Metoda: eliminacija (oduzimanje istog člana) ili supstitucija.","Postupak: 1) označi nepoznanice. 2) izvedi jednadžbe iz uvjeta. 3) eliminacija (gdje koeficijent isti) ili supstitucija. 4) provjera u obje jednadžbe.","Intuicija: prepoznaj \"razliku\" u dva scenarija — Sara ima 100 g više čokoladnih i plaća 3 € više; znači 100 g čokoladnih = 3 €.","Česta greška 1: pisati samo jednu jednadžbu, npr. 300 g čokoladnih i 200 g voćnih = 13 € (Ivan + Sara), pa pokušati riješiti — 1 jedadžba, 2 nepoznanice → ne može jedinstveno.","Česta greška 2: pomiješati varijable (recimo c = ukupna količina čokoladnih, ne cijena 100 g) — dovodi do različite jednadžbe i krivog rezultata.","Alt metoda — supstitucija: iz prve v = 5 − c; uvrsti u drugu: 2c + (5 − c) = 8 → c + 5 = 8 → c = 3 ✓.","Provjera: v = 2 → 100 g voćnih = 2 €. Voće je jeftinije od čokolade (3 € > 2 €) — razumno cijene."]
   },
   {
-    id:"33,1",
+    id:"33.1",
     img:true,
     type:"sa",
     topic:"fun",

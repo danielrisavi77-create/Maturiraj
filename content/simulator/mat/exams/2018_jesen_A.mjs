@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg29c_2018Aj(){
   const W=280,H=160;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   /* Pravokutnik stakla */
   const rx=20,ry=10,rw=230,rh=120;
   /* Isječak: središte u donjem desnom dijelu pravokutnika, r=55 vizualno */
@@ -32,7 +32,7 @@ function Svg29c_2018Aj(){
 
 function Svg28_2018Aj_new(){
   const W=240,H=240,pad={l:36,r:16,t:16,b:36};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-5,xMax=6,yMin=-5,yMax=4;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -60,7 +60,7 @@ function Svg28_2018Aj_new(){
 
 function Svg26_2018Aj(){
   const W=240,H=200,pad={l:32,r:16,t:16,b:32};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=7,yMin=-2,yMax=5;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -95,7 +95,7 @@ function Svg26_2018Aj(){
 
 function Svg22b_2018Aj(){
   const W=240,H=240,pad={l:36,r:16,t:16,b:36};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=5,yMin=-4,yMax=4;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -136,7 +136,7 @@ function Svg22b_2018Aj(){
 
 function Svg20b_2018Aj(){
   const W=300,H=140,pad={l:22,r:12,t:12,b:22};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const xMin=0, xMax=3*Math.PI;
   const toX=v=>pad.l+(v/xMax)*iW;
@@ -170,7 +170,7 @@ function Svg20b_2018Aj(){
 
 function Svg20a_2018Aj(){
   const W=180,H=180;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=90,cy=90,R=65;
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     /* kružnica */
@@ -192,7 +192,7 @@ function Svg20a_2018Aj(){
 
 function Svg19a_2018Aj(){
   const W=330,H=170;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   /* Iz slike: širok trokut, baza gotovo vodoravna.
      A = donji lijevi (kut α, mali ~15°)
      B = donji desni (kut 127°43', tupi, unutar trokuta)
@@ -397,7 +397,7 @@ export const qs = [
     {txt:"Postupak: provjeri svaku operaciju o zatvorenosti — količnik je tipičan kontraprimjer.",final:true,note:"postupak"},{txt:"Intuicija: Definicija polinoma: konačan zbroj a_n x^n s nenegativnim cjelobrojnim eksponentima.",note:"intuicija",final:true},{txt:"Postupak: provjeri zatvorenost svake operacije. Najlakše s konkretnim primjerima.",note:"diagnostika",final:true}
   ],
   why:["Pravilo (algebarska struktura polinoma): {polinomi} čine PRSTEN pod + i ·, ali NIJE polje (jer dijeljenje općenito daje racionalne funkcije).","Definicija polinoma: konačan zbroj a_n x^n s nenegativnim cjelobrojnim eksponentima.","Postupak: provjeri zatvorenost svake operacije. Najlakše s konkretnim primjerima.","Intuicija: zbroj/razlika polinoma — kombinira članove istog stupnja. Umnožak — distribucija (svi članovi). Dijeljenje — može uvesti x^(−1) ili razlomak.","Česta greška 1: misliti da su SVE 4 operacije zatvorene (krivo za dijeljenje). Greška 2: pomiješati polinome s racionalnim funkcijama.","Alt metoda: primjer (x² − 1)/(x − 1) = x + 1 — DA je polinom! Ali to je posebno (factor 'pokriva'). Općenito nije polinom: x/(x² + 1).","Provjera: D je NIJE istinita za SVE parove polinoma (postoji par za koji nije) ✓"]},
-  {id:11,type:"mc",warn:"Pazi: geometrijski niz s q = −3/5 (|q| < 1) → suma S = a₁/(1 − q).",topic:"seq",points:1,
+  {id:11,type:"mc",warn:"Pazi: geometrijski niz s q = −3/5 (|q| < 1) → suma S = a₁/(1 − q).",topic:"niz",points:1,
   q:"Koliki je zbroj svih članova beskonačnoga niza 1, -3/5, 9/25, -27/125, …?",
   opts:["5/8","68/125","272/125","5/2"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},exp:"",
@@ -439,7 +439,7 @@ export const qs = [
     {txt:"Distraktori: B) log_3(y+5) = krivi predznak; C, D) = razdvojeni log pa krivo.",final:true,note:"diagnostika"},{txt:"Intuicija: Pravilo: log_a(uv) = log_a u + log_a v ALI log_a(u − v) ≠ log_a u − log_a v. Tako log_3(y − 5) NIJE log_3 y − log_3 5.",note:"intuicija",final:true},{txt:"Provjera: izračunaj eksponencijalnu vrijednost na kalkulatoru i usporedi.",note:"verifikacija",final:true}
   ],
   why:["Pravilo: a^x = b ⟺ x = log_a b. Inverzna operacija eksponencijala je logaritam s istom bazom.","Pravilo: log_a(uv) = log_a u + log_a v ALI log_a(u − v) ≠ log_a u − log_a v. Tako log_3(y − 5) NIJE log_3 y − log_3 5.","Postupak: 1) izolacija eksponencijalne (oduzmi 5). 2) primjena log s istom bazom.","Intuicija: x je 'skriven' u eksponentu. Logaritam ga 'oslobađa'.","Česta greška 1: razdvojiti log_3(y − 5) = log_3 y − log_3 5 (krivo, pravilo log ne važi za zbrajanje/oduzimanje argumenata). Greška 2: krivi predznak (log_3(y + 5)).","Alt metoda: graf — invertiraj funkciju 3^x + 5 oko y = x. Inverzna je log_3(x − 5).","Provjera: za x = 0, y = 1 + 5 = 6 → log_3(6 − 5) = log_3 1 = 0 = x ✓"]},
-  {id:14,type:"mc",warn:"Pazi: između lokalnog maksimuma i minimuma funkcija PADA; izvan njih raste — skiciraj tijek.",topic:"dif",points:1,
+  {id:14,type:"mc",warn:"Pazi: između lokalnog maksimuma i minimuma funkcija PADA; izvan njih raste — skiciraj tijek.",topic:"der",points:1,
   q:"Funkcija f definirana na skupu realnih brojeva neprekinuta je i ima točno dvije stacionarne točke. U točki (3, f(3)) poprima lokalni maksimum, a u točki (8, f(8)) lokalni minimum. Što vrijedi za derivaciju f′ funkcije f?",
   opts:["f′ je negativna na ⟨−∞,3⟩∪⟨8,+∞⟩ i pozitivna na ⟨3,8⟩","f′ je pozitivna na ⟨−∞,3⟩∪⟨8,+∞⟩ i negativna na ⟨3,8⟩","f′ je negativna na ⟨−∞,3⟩ i pozitivna na ⟨8,+∞⟩","f′ je pozitivna na ⟨−∞,3⟩ i negativna na ⟨8,+∞⟩"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},exp:"",
@@ -614,7 +614,7 @@ export const qs = [
     {txt:"Postupak: 1) prepoznaj pomak (x − π/3). 2) izračunaj karakteristične točke. 3) nacrtaj.",final:true,note:"postupak"},{txt:"Intuicija: Standardni sin: amplituda 1, period 2π, max u π/2, min u 3π/2, nul-točke u 0, π, 2π.",note:"intuicija",final:true}
   ],
   why:["Pravilo pomaka: f(x − a) je POMAK funkcije UDESNO za a. f(x + a) ULIJEVO.","Standardni sin: amplituda 1, period 2π, max u π/2, min u 3π/2, nul-točke u 0, π, 2π.","Postupak za crtanje: 1) označi karakteristične točke standardne sin. 2) sve pomakni za a. 3) povezi krivuljom.","Intuicija: pomak nije skaliranje — sve točke se POMIČU za istu vrijednost.","Česta greška 1: krivi smjer pomaka — sin(x − a) je UDESNO, ne ulijevo. Greška 2: pomiješati pomak s skaliranjem.","Alt metoda: izračunaj f u 5-6 točaka i poveži.","Provjera: f(π/3) = sin 0 = 0 ✓ (pomak za π/3 — onde gdje je 'nova nula')."]},
-  {id:21.1,type:"sa",topic:"alg",points:1,
+  {id:21.1,type:"sa",topic:"al",points:1,
   context:"Zadatak 21 (1. dio od 2):",
   q:"Izraz [FRAC:1|1 − b] : [FRAC:a|b] − [FRAC:1|a − ab] napišite kao jedan do kraja skraćen razlomak za sve a, b za koje je taj izraz definiran.",
   sol:{ans:"−[FRAC:1|a]",solFormula:{pre:"−"},alt:["-1/a","−1/a","-(1/a)"]},
@@ -627,7 +627,7 @@ export const qs = [
     {txt:"Provjera za a=2, b=1/2: izvorni izraz = 2 · 1/4 − 1/(2 − 1) = 1/2 − 1 = −1/2 = −1/a ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) dijeljenje → recipročno množenje. 2) faktorizacija a − ab = a(1−b). 3) zajednički nazivnik. 4) skratiti.",final:true,note:"postupak"},{txt:"Intuicija: Faktorizacija: a − ab = a(1 − b). Ključno za zajednički nazivnik.",note:"intuicija",final:true},{txt:"Provjera red veličine: rezultat je u očekivanom rasponu za zadani problem.",note:"verifikacija",final:true}
   ]},
-  {id:21.2,type:"sa",topic:"fnk",points:1,
+  {id:21.2,type:"sa",topic:"fun",points:1,
   context:"Zadatak 21 (2. dio od 2):",
   q:"Koliko je (f ∘ g)([FRAC:7|2]) ako su f(x) = 12x⁵ i g(x) = x − 3?",
   sol:{ans:"[FRAC:3|8]",solFormula:{frac:[["3","8"]]},alt:["3/8","0,375","0,375","0,38","0,38"]},
@@ -680,7 +680,7 @@ export const qs = [
     {txt:"Provjera: parametar p = 8 (udaljenost od tjemena do fokusa) ✓; jednadžba točna ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) prepoznaj standardni oblik na osnovu pozicije tjemena i fokusa. 2) izračunaj p. 3) zapiši jednadžbu.",final:true,note:"postupak"},{txt:"Intuicija: - y² = 4px: tjeme (0,0), fokus (p, 0), os je x-os, otvara se desno (p > 0).",note:"intuicija",final:true},{txt:"Provjera grafom: nacrtaj krivulje i vizualno potvrdi sjecište / dodir / paralelnost.",note:"verifikacija",final:true}
   ]},
-  {id:23.2,type:"sa",topic:"fnk",points:1,
+  {id:23.2,type:"sa",topic:"fun",points:1,
   context:"Zadatak 23 (2. dio od 2):",
   q:"Odredite vrijednost realnoga broja d tako da graf funkcije f(x) = (5x + 6)/(7x + d − 3) NE siječe os y.",
   sol:{ans:"d = 3",solFormula:{pre:"d = "},alt:["3","d=3"]},
@@ -692,7 +692,7 @@ export const qs = [
     {txt:"Provjera: za d = 3, f(x) = (5x+6)/(7x) — domena x ≠ 0, pa f(0) nedefinirana ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) sjecište s y-osi se događa u x = 0. 2) za 'ne siječe', f(0) nedefinirana → nazivnik = 0 u x = 0.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) izračunaj nazivnik u x = 0. 2) postavi da bude 0. 3) riješi za d.",note:"intuicija",final:true},{txt:"Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu/uvjet — mora vrijediti.",note:"verifikacija",final:true},{txt:"Alt provjera: rastavi problem na manje korake i rješi svaki neovisno.",note:"verifikacija",final:true}
   ]},
-  {id:24.1,type:"sa",topic:"log",points:1,
+  {id:24.1,type:"sa",topic:"exp",points:1,
   context:"Zadatak 24 (1. dio od 2):",
   q:"Riješite jednadžbu log_x [FRAC:1|64] = 3.",
   sol:{ans:"x = [FRAC:1|4]",solFormula:{pre:"x = ",frac:[["1","4"]]},alt:["1/4","0,25","0,25","x = 0,25","x=[FRAC:1|4]","x = [FRAC:1|4]"]},
@@ -704,7 +704,7 @@ export const qs = [
     {txt:"Provjera: [FRAC:1|4]³ = [FRAC:1|64] ✓; log_([FRAC:1|4])([FRAC:1|64]) = 3 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) iskoristi definiciju log: log_a b = c ⟺ a^c = b. 2) podigni desnu stranu na 1/c.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) pretvori log u eksponencijalan oblik. 2) riješi za nepoznatu bazu.",note:"intuicija",final:true},{txt:"Provjera domene: argument logaritma mora biti > 0.",note:"verifikacija",final:true},{txt:"Alt provjera: eksponentiraj logaritamsku jednadžbu (a^L = a^D).",note:"verifikacija",final:true}
   ]},
-  {id:24.2,type:"sa",topic:"log",points:1,
+  {id:24.2,type:"sa",topic:"exp",points:1,
   context:"Zadatak 24 (2. dio od 2):",
   q:"Napišite izraz log_b 35 − [FRAC:1|2]·log_(√b) 6 kao jedan logaritam po bazi b.",
   sol:{ans:"log_b [FRAC:35|6]",solFormula:{pre:"log_b "},alt:["log_b(35/6)","log_b 35/6","log(b)(35/6)","5,8333","5,833","5,8333"]},
@@ -717,7 +717,7 @@ export const qs = [
     {txt:"Provjera: za b = 7, log_7 35 ≈ 1,827; (1/2)·log_(√7) 6 = (1/2)·log_(√7) 6 ≈ (1/2)·1,841 ≈ 0,921. Razlika ≈ 0,906. log_7(35/6) ≈ 0,906 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) primijeni pravilo promjene baze za log_(√b) → log_b s faktorom 2. 2) primijeni log_a x − log_a y = log_a(x/y).",final:true,note:"postupak"},{txt:"Intuicija: Pravilo log razlike: log_a x − log_a y = log_a(x/y).",note:"intuicija",final:true},{txt:"Provjera baze: log uvijek > 0 ako je argument > 1 (za bazu > 1); < 0 ako je argument < 1.",note:"verifikacija",final:true}
   ]},
-  {id:25.1,type:"sa",topic:"jed",points:1,
+  {id:25.1,type:"sa",topic:"mat",points:1,
   context:"Zadatak 25 (1. dio od 3):",
   q:"Riješite jednadžbu x + [FRAC:2x − 1|3] = [FRAC:4x + 1|2] − [FRAC:x + 7|6].",
   sol:{ans:"x = 2",solFormula:{pre:"x = "},alt:["2","x=2"]},
@@ -732,7 +732,7 @@ export const qs = [
     {txt:"Provjera: lijeva: 2 + (4−1)/3 = 2 + 1 = 3. Desna: (8+1)/2 − (2+7)/6 = 4,5 − 1,5 = 3 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) ukloni razlomke (LCM). 2) razvij. 3) sredi.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) LCM. 2) pomnoži obje strane. 3) razvij sve zagrade. 4) izoliraj x.",note:"intuicija",final:true}
   ]},
-  {id:25.2,type:"sa",topic:"ne",points:1,
+  {id:25.2,type:"sa",topic:"mat",points:1,
   context:"Zadatak 25 (2. dio od 3):",
   q:"Riješite nejednadžbu (x − [FRAC:1|2])(x + [FRAC:1|5]) ≥ 0 i napišite rješenje s pomoću intervala.",
   sol:{ans:"x ∈ ⟨−∞, −[FRAC:1|5]] ∪ [[FRAC:1|2], +∞⟩",solFormula:{pre:"x ∈ "},alt:["(-inf, -1/5] U [1/2, +inf)","x ≤ -1/5 ili x ≥ 1/2","⟨−∞,-1/5]∪[1/2,+∞⟩","xââ¨ââ,â[FRAC:1|5]]âª[[FRAC:1|2],+ââ©","0,2","0,2"]},
@@ -818,7 +818,7 @@ export const qs = [
   ],
   why:["Pravilo trig identiteta: sin²x + cos²x = 1 → cos²x = 1 − sin²x = (1 − sin x)(1 + sin x).","Razlika kvadrata: a² − b² = (a − b)(a + b).","Postupak: 1) koristi identitet da prepisuješ cos². 2) skrati zajednički faktor.","Intuicija: imenovec 1 − sin x je faktor u brojniku (poslije razlike kvadrata) — skraćuje se.","Domena: 1 − sin x ≠ 0 → sin x ≠ 1 → x ≠ π/2 + 2kπ.","Česta greška 1: ne prepoznati cos²x kao razliku kvadrata. Greška 2: zaboraviti − 1 na kraju.","Alt metoda: numerička provjera s nekoliko x — daje sin x.","Provjera za x = π/4: sin = √2/2; izraz = (1/2)/(1 − √2/2) − 1 = (1/2)/((2 − √2)/2) − 1 = 1/(2 − √2) − 1 = (2 + √2)/((2 − √2)(2 + √2)) − 1 = (2 + √2)/2 − 1 = √2/2 = sin(π/4) ✓"]},
   {id:27.2,type:"sa",
-  context:"Zadatak 27 (2. dio od 3):",topic:"dif",points:1,
+  context:"Zadatak 27 (2. dio od 3):",topic:"der",points:1,
   q:"Derivirajte funkciju f(x) = cos⁶x.",
   sol:{ans:"f′(x) = -6cos⁵x·sinx",alt:["-6sin(x)cos^5(x)","f′(x)=-6cos⁵x·sinx"]},exp:"",
   steps:[
@@ -858,7 +858,7 @@ export const qs = [
     {txt:"Postupak: 1) pojednostavi √(x²−2x+1) na |x−1|. 2) nacrtaj |x|, pomakni desno za 1 i dolje za 3.",final:true,note:"postupak"},{txt:"Intuicija: Pravilo transformacija: |x − a| je |x| pomaknuto UDESNO za a. |x − a| − b je dodatno pomaknuto DOLJE za b.",note:"intuicija",final:true}
   ],
   why:["Pravilo: √(a²) = |a| (apsolutna vrijednost). Tako √((x−1)²) = |x−1|, ne x−1.","Pravilo transformacija: |x − a| je |x| pomaknuto UDESNO za a. |x − a| − b je dodatno pomaknuto DOLJE za b.","Postupak: 1) prepoznaj 'savršeni kvadrat' pod korijenom. 2) primijeni √(a²) = |a|. 3) primijeni transformacije.","Intuicija: graf |x| je V-oblik s tjemenom u (0, 0). Pomicanje translatira V.","Česta greška 1: pojednostaviti √((x−1)²) = x − 1 (krivo, za x < 1 daje negativan broj, što nije moguće za korijen). Greška 2: krivi smjer pomaka (x − 1 je UDESNO, ne ulijevo).","Alt metoda: izračunaj g u nekoliko točaka i poveži.","Provjera: nul-točke gdje |x − 1| = 3 → x = 4 ili x = −2 ✓"]},
-  {id:29.1,type:"pa",topic:"seq",points:2,
+  {id:29.1,type:"pa",topic:"niz",points:2,
   context:"Zadatak 29 (1. dio od 5):",
   q:"Odredite opći član aritmetičkoga niza (aₙ) kojemu je peti član 51/2, a šesnaesti 53.",
   sol:{ans:"aₙ = 13 + [FRAC:5n|2]",alt:["13+5n/2","aₙ=5n/2+13"]},exp:"",
@@ -920,7 +920,7 @@ export const qs = [
     {txt:"Postupak: 1) iz brida i visine izračunaj stranicu baze. 2) postavi prav. trokut s katetama h i a/2. 3) tg(kut) = h/(a/2).",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) iz dijagonala/bridova izračunaj a. 2) pravokutni trokut s katetama h i a/2. 3) tg = h/(a/2) → kut = arctg.",note:"intuicija",final:true}
   ],
   why:["Pravilo: u pravilnoj 4-stranoj piramidi, kut između pobočke i osnovke se mjeri između AKSIJALNIH ravnina. Pravi trokut: visina piramide h, apotem osnovke a/2 (od sredine baze do sredine stranice).","Postupak: 1) iz dijagonala/bridova izračunaj a. 2) pravokutni trokut s katetama h i a/2. 3) tg = h/(a/2) → kut = arctg.","Intuicija: ako je piramida 'oštra' (h veliko, a malo), kut je velik (blizu 90°). Ako 'plitka' (h malo), kut je mali.","Česta greška 1: koristiti a (cijelu stranicu) umjesto a/2 (apotem). Greška 2: pomiješati visinu piramide s apotemom pobočke.","Alt metoda: koristi pobočku piramide (trokut s visinom apotema) i izračunaj kut.","Provjera: a = 4√5 ≈ 8,944; a/2 ≈ 4,472; tg = 9/4,472 ≈ 2,012; arctg ≈ 63,58° ≈ 63°34' ✓"]},
-  {id:29.5,type:"pa",topic:"seq",points:3,
+  {id:29.5,type:"pa",topic:"niz",points:3,
   context:"Zadatak 29 (5. dio od 5):",
   q:"Umnožak prvih n prirodnih brojeva je 272 puta veći od umnoška prvih n − 2 prirodnih brojeva. Odredite koeficijent uz x¹⁵ u razvoju binoma (x + 4)ⁿ.",
   sol:{ans:"2176",alt:["2176","odgovor","rezultat","rješenje"]},exp:"",
@@ -935,7 +935,7 @@ export const qs = [
     {txt:"Postupak: 1) iz uvjeta n!/(n−2)! = 272 izvuci n. 2) iz binomnog teorema identificiraj k. 3) izračunaj koeficijent C(n, k)·a^k.",final:true,note:"postupak"},{txt:"Intuicija: Binomni teorem: (x + a)^n = Σ_{k=0}^{n} C(n, k)·x^(n−k)·a^k. Član s x^m: k = n − m.",note:"intuicija",final:true}
   ],
   why:["Pravilo: n!/(n−2)! = n(n−1). Tako jednadžba postaje kvadratna.","Binomni teorem: (x + a)^n = Σ_{k=0}^{n} C(n, k)·x^(n−k)·a^k. Član s x^m: k = n − m.","Postupak: 1) iz uvjeta n!/(n−2)! = ratio izračunaj n. 2) iz binomne formule k = n − m. 3) koeficijent = C(n, k)·a^k.","Intuicija: rezultat 2176 je 'lijep' cijeli broj — sugerira da je sustav konzistentan.","Česta greška 1: zaboraviti faktor a^k pri koeficijentu (ne samo C(n, k)). Greška 2: krivo izračunati n(n−1) = 272 (pokušaj n = 17 ili n = −16, treba pozitivan).","Alt metoda: provjera n = 17: 17·16 = 272 ✓.","Provjera: C(17, 2) = 17!/(2!·15!) = (17·16)/2 = 136 ✓; 136·16 = 2176 ✓"]},
-  {id:30,type:"pa",topic:"dif",points:4,
+  {id:30,type:"pa",topic:"der",points:4,
   q:"Odredite točku pravca y = 7x − 15 koja je najbliža grafu funkcije f(x) = 1/8·x⁴ + 3x − 4.",
   sol:{ans:"([FRAC:27|10], [FRAC:39|10])",alt:["(27/10,39/10)","(2,7,3,9)"]},exp:"",
   steps:[
@@ -954,8 +954,7 @@ export const qs = [
   why:["Pravilo: najbliža točka pravca grafu (krivulji) je tamo gdje je TANGENTA na krivulju paralelna pravcu.","Postupak: 1) f'(x) = nagib pravca → riješi za x. 2) izračunaj (x, f(x)) — točka na grafu. 3) projekcija te točke na pravac = traženo.","Projekcija točke (x₀, y₀) na pravac Ax + By + C = 0: pomak po normali, x' = x₀ − A·(Ax₀ + By₀ + C)/(A² + B²); y' = y₀ − B·(Ax₀ + By₀ + C)/(A² + B²).","Intuicija: udaljenost krivulje od pravca je minimalna gdje su 'normalni smjerovi' kolinearni — što odgovara paralelnim tangentama.","Česta greška 1: misliti da je najbliža točka direktno (x_f, y_f) (krivo, to je točka na grafu, ne na pravcu). Greška 2: krivo izračunati projekciju.","Alt metoda: minimiziraj kvadrat udaljenosti od (2, 4) na pravac.","Provjera: (27/10, 39/10) na pravcu y = 7x − 15 → 7·2,7 − 15 = 18,9 − 15 = 3,9 = 39/10 ✓"]},
   {_META:{rok:"JESEN 2018",examCode:"D-S039",razina:"A",
   totalQ:30,totalPts:60,
-  auditStatus:"verified-full",auditDate:"2026-04-26"}},
-  {_META:true,auditStatus:"verified-full",rok:"2018_jesen",razina:"A",serial:"D-S039",totalPoints:60,mcCount:15,saCount:28,verified:"sympy+pdf",auditNotes:"F: 15/15 MC Pak F done; H: math_lint 0 findings",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  auditStatus:"verified-full",auditDate:"2026-04-26"}}
 ];
 
 export const qImages = {

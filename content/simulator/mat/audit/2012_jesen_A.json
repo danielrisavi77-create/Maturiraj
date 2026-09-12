@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2012_jesen",
+  "razina": "A",
+  "serial": "D-S011",
+  "totalPoints": 60,
+  "mcCount": 15,
+  "saCount": 30,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditNotes": "G: Q5/Q6 ^x→^(x) potencija, Q10 SVG formula x²-1, Q11 SVG boje+labele van crta; F: 15/15 MC done; H: Q1 why ³√a; I: Q10+Q11 binding dodani",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

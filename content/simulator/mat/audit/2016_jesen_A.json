@@ -1,0 +1,16 @@
+{
+  "auditedAt": "2026-05-16",
+  "auditSource": "MAT A (viša razina, jesenski rok 2016., D-S026)",
+  "auditStatus": "verified-full",
+  "auditBy": "claude+daniel (full pipeline + Pak F-deep augmentation)",
+  "verified": "sympy+pdf+verbatim+visual+pedagogy-deep",
+  "issueCount": {
+    "critical": 0,
+    "medium": 0,
+    "low": 0,
+    "resolved": 92
+  },
+  "metricsSteps": 6,
+  "metricsWhy": 6,
+  "notes": "Full audit + Pak F-DEEP smart augmentation. Avg steps 6,0 (ref 6,0), avg why 6,0 (ref 4,7). Each Q ima: original pedagogy + Diagnostic (MC analiza ili Alt SA pristup) + Alt metoda + Provjera + Postupak + Intuicija (po topic-u). Smart augmenter preserved postojeću kvalitetu i dodao samo missing kategorije."
+}

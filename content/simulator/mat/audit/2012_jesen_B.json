@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2012_jesen",
+  "razina": "B",
+  "serial": "D-S011",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 19,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditNotes": "G+F+H+I+J kompletno. Q24 trokut fix. Pak F 16/16 MC. J opts frac. I: Q9,10,13,16,27,28 img:true [STRUKTURA]",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}
