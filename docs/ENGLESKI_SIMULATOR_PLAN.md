@@ -46,7 +46,9 @@ Napomena: 1.3 i 1.4 oba diraju `EngleskiSimulator.js` → **jedan agent** radi o
 | 2.2 | Jedna kopija CSS-a: zadržati `app/engleski-simulator/simulator.css`, obrisati `public/engleski-simulator/simulator.css`, provjeriti da ništa ne referencira `/engleski-simulator/simulator.css` | CSS + grep |
 | 2.3 | Tekstualne i podatkovne sitnice: "5 pitanja danas" → stvarni broj; "NCE" → "NCVVO" u AnalyticsPanelFull i Home; `hasListening`/`hasReading` za `2010_jesen` i `2010_zima`; prikaz upozorenja timera na 10 i 5 min (onWarn → toast); odluka o rutama: `/engleski-simulator` postaje redirect na `/discere/engleski/simulator` | `HomeScreen.js`, `AnalyticsPanelFull.js`, `exams.js` (samo dvije zastavice), `EngleskiSimulator.js` (timer), `app/engleski-simulator/page.js` |
 
-2.1 i 2.3 dijele `EngleskiSimulator.js` → sekvencijalno (2.1 pa 2.3).
+| 2.4 | **Podatkovni bug otkriven u fazi 1**: 64 mc pitanja tipa `reading_cloze4` (viša razina 2022–2025) imaju `sol.cl` kao riječ (npr. "seen") umjesto slova, a banka opcija ima 11–13 riječi. Ta pitanja su neocjenjiva. Skriptom (deterministički, `opts.indexOf(sol.cl)`) pretvoriti u slovo, proširiti `LL` na A–O, dodati test da je svako mc `sol.cl` slovo unutar duljine `opts`. Ovo je jedina dozvoljena izmjena `exams.js` u fazi 2. | `scripts/fix-eng-cloze-letters.mjs`, `exams.js` (samo 64 `sol.cl`), `constants.js` (LL), `__tests__/engleski-simulator/mc-letters.test.js` |
+
+2.1 i 2.3 dijele `EngleskiSimulator.js` → sekvencijalno (2.1 pa 2.3). 2.4 dira `constants.js` koji dira i 2.1 → 2.4 ide u isti agent kao 2.1 ili nakon njega.
 
 ## Faza 3 — Arhitektura (Opus 5, sekvencijalno, svaki zadatak zaseban commit)
 
@@ -110,6 +112,22 @@ return results.filter(Boolean)
 ```
 
 Za fazu 3 isti obrazac, ali `args.model = 'opus'`, `tasks` se šalju **jedan po jedan** (svaki zadatak zaseban Workflow poziv i commit), jer svi diraju `EngleskiSimulator.js`.
+
+## Struktura ispita prema NCVVO (za zadatak 3.3)
+
+Izvor: službeni ispitni katalog 2025./2026. (https://www.ncvvo.hr/wp-content/uploads/2025/09/ENG-2026.pdf), tekst izvučen iz PDF-a i provjeren. Sekundarni izvori (gradivo.hr, srednja.hr) krivo navode udjele na višoj razini kao proporcionalne bodovima; katalog kaže da je svaka cjelina 1/3.
+
+| | Viša razina (A) | Osnovna razina (B) |
+|---|---|---|
+| Ukupno | 180 min | 105 min |
+| Čitanje | 70 min, 40 bodova, udio 1/3 | Čitanje + Pisanje jedan blok od 75 min; Čitanje 30 bodova, udio 40 % |
+| Pisanje | 75 min, 20 bodova, udio 1/3, raspravljački esej 200–250 riječi | unutar bloka od 75 min; 10 bodova, udio 30 %; kraći tekst |
+| Slušanje | približno 35 min (uklj. 5 min za prijenos odgovora), 25 bodova, udio 1/3 | približno 30 min (uklj. 5 min), 20 bodova, udio 30 % |
+| Ukupno bodova | 85 | 60 |
+
+Formula konačnog rezultata (osnovna, iz kataloga): `[(0.4 · Čitanje/30) + (0.3 · Pisanje/10) + (0.3 · Slušanje/20)] · 60`. Viša: svaka cjelina ponderirana na 1/3.
+
+Posljedice za simulator: timer po cjelini umjesto fiksnih 90 min; na osnovnoj razini Čitanje i Pisanje dijele jedan blok od 75 min; postotak na rezultatima mora se računati ponderirano po cjelini (ne kao udio točnih pitanja), a Pisanje (1/3 odnosno 30 %) treba jasno označiti kao neocijenjeno.
 
 ## Redoslijed i ovisnosti
 

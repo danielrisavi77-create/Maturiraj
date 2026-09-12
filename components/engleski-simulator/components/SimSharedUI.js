@@ -2,8 +2,7 @@
 import React, { createElement as e, useState, useEffect, useRef, Fragment } from 'react'
 import { nrm, chk } from '@/lib/engleski-simulator/scoring'
 import { trackAiHelpRequested } from '@/lib/engleski-simulator/analytics'
-
-const LL = ['A', 'B', 'C', 'D', 'E', 'F']
+import { LL } from '@/lib/engleski-simulator/constants'
 
 const _AI_COOLDOWN_MS = 8000
 const _AI_SS_KEY = 'eng_ai_last'
