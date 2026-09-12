@@ -1,7 +1,9 @@
 'use client'
 import React, { createElement as e, useState, useEffect, Fragment } from 'react'
 import ShareStoryCard from '@/components/shared/ShareStoryCard'
-import { sectionScores, weightedEstimate } from '@/lib/engleski-simulator/examStructure'
+import { sectionScores, weightedEstimate, scoringUnits } from '@/lib/engleski-simulator/examStructure'
+import { isRealExamKey } from '@/lib/engleski-simulator/cloudSync'
+import { GRADE_NOTE, GRADE_NOTE_WRITING } from '@/lib/engleski-simulator/constants'
 
 function AnimatedRing({ pct, gc, g }) {
   const r = 54
@@ -46,7 +48,15 @@ function BreakdownCard({ label, correct, total, color }) {  const pct = total ? 
   )
 }
 
-export function Results({
+// Rana zaštita: bez ispita (npr. povratak na 'results' bez odabranog ispita)
+// renderiranje bi palo na exam.qs — roditelj u tom slučaju prikazuje fallback.
+// Guard je u omotaču da hookovi u ResultsInner nikad ne budu uvjetni.
+export function Results(props) {
+  if (!props.exam || !Array.isArray(props.exam.qs)) return null
+  return e(ResultsInner, props)
+}
+
+function ResultsInner({
   exam,
   answers,
   onBack,
@@ -100,6 +110,12 @@ export function Results({
   const secScores = sectionScores(exam, answers, chk)
   const weighted = weightedEstimate(secScores)
   const hasManualUnit = secScores.some(su => !su.autoGraded)
+  // Objašnjenje pondera se generira iz strukture razine, filtrirano na cjeline
+  // koje se u ovom ispitu stvarno pojavljuju (npr. ispit bez slušanja).
+  const weightNote = scoringUnits(exam.razina)
+    .filter(u => secScores.some(su => su.id === u.id))
+    .map(u => u.label + ' ' + (Math.abs(u.weight - 1 / 3) < 0.01 ? '1/3' : Math.round(u.weight * 100) + ' %'))
+    .join(', ')
   const topicList = Object.values(topicBreak).filter(t => t.total > 0).sort((a, b) => a.correct / a.total - b.correct / b.total)
   const [showAll, setShowAll] = useState(false)
 
@@ -116,7 +132,7 @@ export function Results({
           e('h2', { style: { margin: 0 } }, exam.year + '. ' + exam.label),
           examMode && e('span', { className: 'exam-mode-chip' }, 'Simulacija'),
         ),
-        e('div', { style: { fontSize: 11, color: 'var(--muted)', marginBottom: 6 } }, 'Orijentacijska ocjena — NCVVO pragove određuje za svaki rok. Pisanje nije bodovano.'),
+        e('div', { style: { fontSize: 11, color: 'var(--muted)', marginBottom: 6 } }, GRADE_NOTE + (hasManualUnit ? GRADE_NOTE_WRITING : '')),
         e('p', { style: { color: 'var(--muted)', fontSize: 14, marginTop: 6 } },
           (() => {
             const history = (userData?.history || [])
@@ -169,7 +185,9 @@ export function Results({
           manQ.length > 0 && e('div', { className: 'stat', style: { minWidth: 90 } }, e('div', { className: 'statn', style: { color: 'var(--gold)' } }, manQ.length), e('div', { className: 'statl' }, 'Za provjeru')),
         ),
       ),
-      secScores.length > 0 && e('div', { style: { marginBottom: 22 } },
+      // Kartica po ispitnim cjelinama ima smisla samo za prave (službene) ispite —
+      // virtualne sesije i filtrirana vježbanja nemaju NCVVO strukturu cjelina.
+      secScores.length > 0 && isRealExamKey(exam.key) && e('div', { style: { marginBottom: 22 } },
         e('div', { className: 'results-section-title' }, 'Po ispitnim cjelinama'),
         e('div', { style: { display: 'flex', flexDirection: 'column', gap: 6 } },
           secScores.map(su => {
@@ -188,9 +206,7 @@ export function Results({
         weighted.pct !== null && e('div', { style: { marginTop: 8, fontSize: 13, fontWeight: 700 } },
           'Ponderirana procjena' + (hasManualUnit ? ' (bez pisanja)' : '') + ': ' + weighted.pct + ' %'),
         e('div', { style: { marginTop: 6, fontSize: 11, color: 'var(--muted)', lineHeight: 1.55 } },
-          exam.razina === 'visa'
-            ? 'NCVVO ponderira svaku ispitnu cjelinu s 1/3 konačne ocjene (bodovi nisu udio).'
-            : 'NCVVO ponderira Čitanje 40 %, Pisanje 30 % i Slušanje 30 % konačne ocjene.'),
+          'NCVVO ponderira ' + weightNote + ' konačne ocjene (bodovi nisu udio).'),
         e('div', { style: { marginTop: 2, fontSize: 11, color: 'var(--muted)', lineHeight: 1.55 } },
           'Ponderirana procjena uzima samo automatski ocijenjene cjeline i ponovno skalira njihove udjele na 100 %.'),
       ),

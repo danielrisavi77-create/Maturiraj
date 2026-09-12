@@ -8,6 +8,9 @@ import {
   shouldCloudSave,
   mergeUserData,
   toSimProgressPayload,
+  resolveLocalOwnership,
+  isRealExamKey,
+  ENG_CLOUD_UID_KEY,
 } from '../../lib/engleski-simulator/cloudSync.js'
 
 const baseUser = {
@@ -290,5 +293,101 @@ describe('shouldCloudSave (zaštita od spremanja prije hidracije)', () => {
     user = { id: 'u2' }
     hydrated = false
     expect(shouldCloudSave(user, hydrated)).toBe(false)
+  })
+})
+
+// ─── resolveLocalOwnership ────────────────────────────────────────────────────
+describe('resolveLocalOwnership', () => {
+  it('bez zapisanog uid-a → unclaimed (prva prijava na uređaju)', () => {
+    expect(resolveLocalOwnership(null, 'u1')).toBe('unclaimed')
+    expect(resolveLocalOwnership(undefined, 'u1')).toBe('unclaimed')
+    expect(resolveLocalOwnership('', 'u1')).toBe('unclaimed')
+    expect(resolveLocalOwnership('   ', 'u1')).toBe('unclaimed')
+  })
+
+  it('isti uid → same', () => {
+    expect(resolveLocalOwnership('u1', 'u1')).toBe('same')
+  })
+
+  it('drugi uid → foreign (stanje tuđeg računa)', () => {
+    expect(resolveLocalOwnership('u1', 'u2')).toBe('foreign')
+  })
+
+  it('zapisan uid a nepoznat korisnik → foreign (ne migriraj)', () => {
+    expect(resolveLocalOwnership('u1', null)).toBe('foreign')
+    expect(resolveLocalOwnership('u1', undefined)).toBe('foreign')
+    expect(resolveLocalOwnership('u1', '')).toBe('foreign')
+  })
+
+  it('ključ za uid je stabilan', () => {
+    expect(ENG_CLOUD_UID_KEY).toBe('eng_cloud_uid')
+  })
+})
+
+// ─── isRealExamKey ────────────────────────────────────────────────────────────
+describe('isRealExamKey', () => {
+  it('pravi ispiti', () => {
+    expect(isRealExamKey('2024_ljeto')).toBe(true)
+    expect(isRealExamKey('vis_2015_jesen')).toBe(true)
+    expect(isRealExamKey('vis_2024_prvi')).toBe(true)
+  })
+
+  it('virtualne sesije i smeće', () => {
+    const keys = ['virtual_1700000000000', 'filter_session_1', 'errors_session', 'bookmarks_session', 'exam_errors_session', 'daily_123', '', null, undefined, 42]
+    keys.forEach(k => expect(isRealExamKey(k)).toBe(false))
+  })
+})
+
+// ─── mergeUserData: limiti i zapisi s 'at' ────────────────────────────────────
+describe('mergeUserData — limiti (validateUserData na kraju)', () => {
+  it('history je ograničen na 1000 zapisa', () => {
+    const mk = (n, tag) => Array.from({ length: n }, (_, i) => ({
+      examKey: '2024_ljeto', examLabel: 'x', date: tag + i, pct: 50, grade: 3, cor: 5, total: 10,
+    }))
+    const out = mergeUserData({ ...baseUser, history: mk(700, 'a') }, { ...baseUser, history: mk(700, 'b') })
+    expect(out.history).toHaveLength(1000)
+  })
+
+  it('bookmarks su ograničeni na 500', () => {
+    const mk = (n, tag) => Array.from({ length: n }, (_, i) => ({ id: tag + i }))
+    const out = mergeUserData({ ...baseUser, bookmarks: mk(400, 'a') }, { ...baseUser, bookmarks: mk(400, 'b') })
+    expect(out.bookmarks).toHaveLength(500)
+  })
+
+  it('errorTracker je ograničen na 2000 unosa', () => {
+    const mk = (n, tag) => Object.fromEntries(Array.from({ length: n }, (_, i) => [
+      tag + i, { q: 'Pitanje', topic: 'reading', examKey: '2024_ljeto', qid: 'mc' + i, count: 1 },
+    ]))
+    const out = mergeUserData({ ...baseUser, errorTracker: mk(1500, 'a') }, { ...baseUser, errorTracker: mk(1500, 'b') })
+    expect(Object.keys(out.errorTracker)).toHaveLength(2000)
+  })
+})
+
+describe("mergeUserData — identitet zapisa po 'at'", () => {
+  const withAt = (at, pct = 80) => ({ examKey: '2024_ljeto', examLabel: 'x', date: '10. 9. 2026.', pct, grade: 4, cor: 8, total: 10, at })
+
+  it('isti at → jedan zapis', () => {
+    const out = mergeUserData({ ...baseUser, history: [withAt(1000)] }, { ...baseUser, history: [withAt(1000)] })
+    expect(out.history).toHaveLength(1)
+  })
+
+  it('dva pokušaja istog ispita isti dan s istim pct se ne gube (različit at)', () => {
+    const out = mergeUserData({ ...baseUser, history: [withAt(1000)] }, { ...baseUser, history: [withAt(1000), withAt(2000)] })
+    expect(out.history).toHaveLength(2)
+    expect(out.history.map(h => h.at)).toEqual([1000, 2000])
+  })
+
+  it('stari zapisi bez at: multiset brojanje zadržava max broj pojavljivanja', () => {
+    const legacy = { examKey: '2024_ljeto', examLabel: 'x', date: '10. 9. 2026.', pct: 80, grade: 4, cor: 8, total: 10 }
+    const out = mergeUserData({ ...baseUser, history: [legacy] }, { ...baseUser, history: [legacy, { ...legacy }] })
+    expect(out.history).toHaveLength(2)
+    const out2 = mergeUserData({ ...baseUser, history: [legacy, { ...legacy }] }, { ...baseUser, history: [legacy] })
+    expect(out2.history).toHaveLength(2)
+  })
+
+  it('zapis bez at i zapis s at nisu isti identitet', () => {
+    const legacy = { examKey: '2024_ljeto', examLabel: 'x', date: '10. 9. 2026.', pct: 80, grade: 4, cor: 8, total: 10 }
+    const out = mergeUserData({ ...baseUser, history: [legacy] }, { ...baseUser, history: [withAt(1000)] })
+    expect(out.history).toHaveLength(2)
   })
 })

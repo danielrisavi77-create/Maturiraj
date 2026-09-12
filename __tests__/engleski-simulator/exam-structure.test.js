@@ -80,6 +80,14 @@ describe('getExamBlocks — stvarni ispiti', () => {
     expect(blocks[0].qIdx.length).toBe(exam.qs.length)
   })
 
+  it('2010_jesen (bez slušanja): samo blok čitanje+pisanje', () => {
+    const exam = EXAMS['2010_jesen']
+    expect(exam.hasListening).toBe(false)
+    const blocks = getExamBlocks(exam)
+    expect(blocks.map(b => b.id)).toEqual(['reading_writing'])
+    expect(blocks[0].qIdx.length).toBe(exam.qs.length)
+  })
+
   it('2010_ljeto (samo slušanje): samo blok slušanja', () => {
     const exam = EXAMS['2010_ljeto']
     expect(exam.hasReading).toBe(false)

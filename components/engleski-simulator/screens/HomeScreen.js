@@ -1,7 +1,7 @@
 'use client'
 import React, { createElement as e, useState, useEffect, Fragment } from 'react'
 import { FocusTrap } from '../components/SimSharedUI'
-import { DAILY_COUNT } from './DailyChallengeScreen'
+import { DAILY_COUNT } from '@/lib/engleski-simulator/constants'
 
 export function DisclaimerModal({ onClose }) {
   return e('div', { className: 'disclaimer-modal-overlay', onClick: ev => { if (ev.target === ev.currentTarget) onClose() } },

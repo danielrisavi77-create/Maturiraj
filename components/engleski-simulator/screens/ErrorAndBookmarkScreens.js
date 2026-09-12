@@ -104,7 +104,7 @@ export function ErrorsScreen({ userData, onStart, onBack, examsMap, topicLabels,
   )
 }
 
-export function BookmarksScreen({ onBack, onStartSession, examsMap, topicLabels, fisherYates, validateBookmarks }) {
+export function BookmarksScreen({ onBack, onStartSession, examsMap, topicLabels, fisherYates, validateBookmarks, onBookmarkChange }) {
   const [bookmarks, setBookmarks] = useState(() => {
     try { return validateBookmarks(JSON.parse(localStorage.getItem('disc_eng_bookmarks') || '{}')) } catch { return {} }
   })
@@ -132,6 +132,10 @@ export function BookmarksScreen({ onBack, onStartSession, examsMap, topicLabels,
       try { localStorage.setItem('disc_eng_bookmarks', JSON.stringify(next)) } catch {}
       return next
     })
+    // Signal roditelju da pokrene cloud debounce (bookmarki nisu dio userData).
+    // NAPOMENA: cloud merge bookmarka je unija, pa se brisanje ne propagira na
+    // druge uređaje — poznato ograničenje (vidi docs/ENGLESKI_SIMULATOR_PLAN.md).
+    if (onBookmarkChange) onBookmarkChange()
   }
 
   function startSession() {
