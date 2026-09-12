@@ -43,27 +43,20 @@ export default function MatFullSimulator({ tier = 'free' }) {
     return () => window.removeEventListener('mat-coach', onCoach);
   }, []);
 
-  // ── engine stylesheet + fonts: inject only while mounted (full-screen light/dark takeover) ──
+  // ── engine stylesheet: inject only while mounted (full-screen light/dark takeover) ──
+  // Fontovi (DM Serif Display + Instrument Sans) su self-hosted @font-face u mat-engine.css (2.3),
+  // više se ne dovlače s Google Fonts CDN-a.
   useEffect(() => {
     const ID = 'mat-engine-styles';
-    const FONT_ID = 'mat-engine-fonts';
     if (typeof document !== 'undefined') {
       if (!document.getElementById(ID)) {
         const link = document.createElement('link');
         link.id = ID; link.rel = 'stylesheet'; link.href = '/sim/mat-engine.css';
         document.head.appendChild(link);
       }
-      // Fonts the monolith loads in <head> (DM Serif Display + Instrument Sans → var(--fh)/--fb)
-      if (!document.getElementById(FONT_ID)) {
-        const f = document.createElement('link');
-        f.id = FONT_ID; f.rel = 'stylesheet';
-        f.href = 'https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap';
-        document.head.appendChild(f);
-      }
     }
     return () => {
       document.getElementById(ID)?.remove();
-      document.getElementById(FONT_ID)?.remove();
       // engine toggles these on <body>; clear them so the rest of the app isn't affected
       document.body.classList.remove('dark-mode', 'light-mode', 'cb-mode', 'dys-mode');
     };
