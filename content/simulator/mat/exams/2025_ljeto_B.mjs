@@ -620,7 +620,7 @@ export const qs = [
   {
     id:20,
     type:"mc",warn:"Pazi: vjerojatnost = povoljni/ukupni (20); pazi koliko je povoljnih po uvjetu.",
-    topic:"komb",
+    topic:"stat",
     points:1,
     q:"U Larinome je razredu 20 učenika. Nastavnik slučajnim odabirom proziva jednoga učenika. Koliko iznosi vjerojatnost da NIJE prozvana Lara?",
     opts:["0,8","0,9","0,95","0,99"],

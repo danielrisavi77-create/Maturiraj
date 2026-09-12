@@ -531,7 +531,7 @@ export const qs = [
   why:["Pravilo: opisana kružnica trokuta = središte u sjecištu simetrala stranica.","Intuicija: simetrala stranice = sve točke jednako udaljene od krajeva.","Česta greška: koristiti težište (sjecište težišnica) umjesto središte opisane.","Provjera: svi vrhovi na udaljenosti 5 od (4, 4) ✓.","Provjera: uvrsti dobivenu točku u jednadžbu krivulje — mora zadovoljiti.","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata."],
   steps:[{txt:"Kružnica opisana oko trokuta A(8, 1), B(0, 7), C(0, 1)."},{txt:"Trokut: A, B, C nisu kolinearne. Središte kružnice = sjecište simetrala stranica."},{txt:"Simetrala AC (A(8,1), C(0,1)): polovište (4, 1), okomita na AC (horizontalna), pa vertikalna kroz (4, 1): x = 4."},{txt:"Simetrala BC (B(0,7), C(0,1)): polovište (0, 4), okomita na BC (vertikalna), pa horizontalna kroz (0, 4): y = 4."},{txt:"Sjecište: S(4, 4). Polumjer = |SA| = √((8−4)²+(1−4)²) = √(16+9) = √25 = 5."},{txt:"Kružnica: (x − 4)² + (y − 4)² = 25."},{txt:"Provjera: A(8,1): 16 + 9 = 25 ✓; B(0,7): 16 + 9 = 25 ✓; C(0,1): 16 + 9 = 25 ✓.",note:"verifikacija",final:true},{txt:"Točan odgovor: (x − 4)² + (y − 4)² = 25 ✓",note:"odgovor",final:true},{txt:"Intuicija: simetrala stranice = sve točke jednako udaljene od krajeva.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: opisana kružnica trokuta = središte u sjecištu simetrala stranica.",note:"postupak",final:true}]
 },
-  {id:27.1, type:"sa", topic:"anal", points:1,
+  {id:27.1, type:"sa", topic:"der", points:1,
   context:"Zadatak 27 (1. dio od 3):",
   q:"Koliko je g'(6) ako je g(x) = √((2x − 3)³)?",
   sol:{ans:"9", alt:["9","≈ 9"]},
@@ -586,7 +586,7 @@ export const qs = [
   why:["Pravilo: sin x ∈ [−1, 1] za svaki realni x; jednadžba sinθ = c rješiva ⇔ |c| ≤ 1.","Intuicija: domena trigonometrijskih funkcija ograničava parametre koji daju realna rješenja.","Česta greška: ne provjeriti domu (uzeti bilo koje a).","Alt metoda: grafski — sjecište krivulje y = sin x s horizontalnim y = c.","Provjera s rubnim a = 1 i a = 5 → oba ispunjavaju nejednakost ✓.","Provjera kvadrantom: znak sin/cos/tan mora odgovarati kvadrantu kuta."],
   steps:[{txt:"Iz trigonometrije: (1/2) sin 2x = (3 − a)/4."},{txt:"Domena sin: −1 ≤ (3 − a)/2 ≤ 1."},{txt:"−2 ≤ 3 − a ≤ 2 → −5 ≤ −a ≤ −1 → 1 ≤ a ≤ 5."},{txt:"Rezultat: a ∈ [1, 5].",final:true,note:"odgovor"},{txt:"Provjera: a = 1 → (3−1)/2 = 1 = sin(π/2) ✓; a = 5 → (3−5)/2 = −1 = sin(−3π/2) ✓; a = 3 → 0 ✓.",note:"verifikacija",final:true},{txt:"Intuicija: domena trigonometrijskih funkcija ograničava parametre koji daju realna rješenja.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: sin x ∈ [−1, 1] za svaki realni x; jednadžba sinθ = c rješiva ⇔ |c| ≤ 1.",note:"postupak",final:true},{txt:"Provjera identitetom: sin²α + cos²α = 1 mora vrijediti za dobivene vrijednosti.",note:"verifikacija",final:true}]
 },
-  {id:29.5, type:"sa", topic:"anal", points:3,
+  {id:29.5, type:"sa", topic:"der", points:3,
   context:"Zadatak 29 (5. dio od 5):",
   q:"Zadana je funkcija f(x) = (x − 6)/(x + 3). Tangenta na graf te funkcije u točki A toga grafa zatvara s pozitivnim smjerom osi x kut mjere 45°. Odredite koordinate točke A, ako se ona nalazi u drugome kvadrantu.",
   sol:{ans:"A(-6, 4)", alt:["(-6,4)","A(-6,4)","(-6, 4)"]},

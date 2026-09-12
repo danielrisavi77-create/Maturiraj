@@ -848,7 +848,7 @@ export const qs = [
      "Alt metoda (provjera): brid male ∛6,859 = 1,9; velika 5,7; P = 6·32,49 ≈ 195 ✓"
    ,"Provjera: 5,7² = 32,49 ✓; 6·32,49 = 194,94 ✓","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
   },
-  {id:21,type:"mc",warn:"Pazi: podijeli brojnik i nazivnik s n → 1/(2 + 3/n); član 3/n teži 0.",topic:"anal",points:1,
+  {id:21,type:"mc",warn:"Pazi: podijeli brojnik i nazivnik s n → 1/(2 + 3/n); član 3/n teži 0.",topic:"lim",points:1,
    q:"Koliko je lim_{n→∞} n/(2n + 3)?",
    opts:["0","1/5","1/2","∞"],
    sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -922,7 +922,7 @@ export const qs = [
      "Alt metoda (provjera): podijeli izraz s 3 → −(n + 1) ∈ ℤ za sve n ∈ ℕ ✓"
    ,"Provjera s n = 1: izraz = −6; sa n = 2: −9; oba djeljiva s 3 ✓","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
   },
-  {id:25,type:"sa",topic:"kompl",points:1,
+  {id:25,type:"sa",topic:"der",points:1,
    q:"Odredite |z| ako je z = 3/5 − (4/5)i.",
    sol:{ans:"1",alt:["1","|z|=1"]},
   steps:[
@@ -1277,7 +1277,7 @@ export const qs = [
      "Alt metoda (provjera): za parabole — ako je f(x) = (x − p)² + q, onda f(a) = f(b) ⟺ |a − p| = |b − p|."
    ,"Provjera: f(−2) = f(3) iz grafa — provjeri identičnu visinu obje točke ✓","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."]
   },
-  {id:37.1,type:"sa",topic:"anal",points:1,
+  {id:37.1,type:"sa",topic:"der",points:1,
    context:"Zadatak 37 (1. dio od 2):",
    q:"Odredite derivaciju funkcije f(x) = 11(x³ − √5).",
    sol:{ans:"f′(x) = 33x²",alt:["33x²","f'(x)=33x²","33·x²"]},
@@ -1295,7 +1295,7 @@ export const qs = [
      "Alt metoda (provjera): primjena pravila lančanog — f(x) = 11·g(x) gdje g(x) = x³ − √5; g'(x) = 3x²; f' = 11·3x² = 33x² ✓"
    ,"Provjera s pravilom umnoška k·f(x), (kf)' = k·f' — derivacija je linearna ✓","Tipičan propust: zaboraviti pravilo lanca (chain rule) za složene funkcije; ili pravilo kvocijenta."]
   },
-  {id:37.2,type:"sa",topic:"anal",points:1,
+  {id:37.2,type:"sa",topic:"der",points:1,
    context:"Zadatak 37 (2. dio od 2):",
    q:"Kako glasi jednadžba tangente na krivulju y = 4/x u točki S(2, y) te krivulje?",
    sol:{ans:"y = −x + 4",alt:["y=-x+4","y = -x + 4"]},

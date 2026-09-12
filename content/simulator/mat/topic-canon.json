@@ -1,20 +1,176 @@
 {
-  "_comment": "Kanonska tablica tema (zadatak 3.1, docs/MAT_SIMULATOR_PLAN.md). Generira/provjerava scripts/mat-normalize-topics.mjs. Ovo je popis za sinkronizaciju TOPIC_LABELS u components/simulator/MatEngineCore.tsx (dira grupa engine) — ovaj repo (grupa data) ne smije mijenjati engine niti docs/ osim mat-figure-audit.json, pa kanon živi ovdje.",
-  "al": "Algebra",
-  "br": "Brojevi",
-  "geom": "Geometrija",
-  "kon": "Konusni presjeci",
-  "kv": "Kvadratna funkcija",
-  "lin": "Linearna funkcija",
-  "trig": "Trigonometrija",
-  "fun": "Funkcije",
-  "anal": "Analiza (derivacije, limesi)",
-  "stat": "Statistika",
-  "exp": "Eksponencijalne i logaritamske funkcije",
-  "niz": "Nizovi",
-  "fin": "Financijska matematika",
-  "kompl": "Kompleksni brojevi",
-  "vek": "Vektori",
-  "komb": "Kombinatorika i vjerojatnost",
-  "ostalo": "Ostalo"
+  "_comment": "Kanonska tablica tema (zadatak 3.1, docs/MAT_SIMULATOR_PLAN.md). Generira/provjerava scripts/mat-normalize-topics.mjs. Labele su DOSLOVNO one koje zivi engine (TOPIC_LABELS u components/simulator/MatEngineCore.tsx) vec prikazuje za taj kod — normalizacija smije spajati samo kodove unutar iste labele, inace bi zadaci u UI-u dobili krivu temu i postojeca povijest (topic_breakdown) bi se razdvojila. Ovaj repo (grupa data) ne mijenja engine niti docs/ osim mat-figure-audit.json, pa kanon zivi ovdje.",
+  "_invariant": "CANON[kod].label === TOPIC_LABELS[kod] za svaki kanonski kod i svaki alias; provjerava assertCanonMatchesEngine() u scripts/mat-normalize-topics.mjs.",
+  "br": {
+    "label": "Skupovi i brojevi",
+    "aliases": [
+      "br",
+      "skupovi"
+    ]
+  },
+  "al": {
+    "label": "Algebarski izrazi",
+    "aliases": [
+      "al",
+      "alg"
+    ]
+  },
+  "lin": {
+    "label": "Linearne funkcije",
+    "aliases": [
+      "lin"
+    ]
+  },
+  "kv": {
+    "label": "Kvadratne funkcije",
+    "aliases": [
+      "kv"
+    ]
+  },
+  "exp": {
+    "label": "Eksponencijalne i log.",
+    "aliases": [
+      "exp",
+      "ek",
+      "eks",
+      "log"
+    ]
+  },
+  "trig": {
+    "label": "Trigonometrija",
+    "aliases": [
+      "trig",
+      "trg"
+    ]
+  },
+  "geom": {
+    "label": "Geometrija",
+    "aliases": [
+      "geom",
+      "geo",
+      "ge",
+      "3d",
+      "pov"
+    ]
+  },
+  "anal": {
+    "label": "Analitička geometrija",
+    "aliases": [
+      "anal",
+      "koo"
+    ]
+  },
+  "kon": {
+    "label": "Analitička geometrija",
+    "aliases": [
+      "kon"
+    ]
+  },
+  "vek": {
+    "label": "Analitička geometrija",
+    "aliases": [
+      "vek",
+      "vekt"
+    ]
+  },
+  "niz": {
+    "label": "Nizovi i redovi",
+    "aliases": [
+      "niz",
+      "nizovi",
+      "seq",
+      "red"
+    ]
+  },
+  "lim": {
+    "label": "Nizovi i redovi",
+    "aliases": [
+      "lim",
+      "limes"
+    ]
+  },
+  "stat": {
+    "label": "Statistika i vjerojatnost",
+    "aliases": [
+      "stat",
+      "st",
+      "vjer",
+      "ver"
+    ]
+  },
+  "fin": {
+    "label": "Financijska matematika",
+    "aliases": [
+      "fin",
+      "pos"
+    ]
+  },
+  "mat": {
+    "label": "Matrice i sustavi",
+    "aliases": [
+      "mat",
+      "je",
+      "jed",
+      "ne",
+      "neje"
+    ]
+  },
+  "komb": {
+    "label": "Kombinatorika",
+    "aliases": [
+      "komb",
+      "comb"
+    ]
+  },
+  "komp": {
+    "label": "Kombinatorika",
+    "aliases": [
+      "komp"
+    ]
+  },
+  "kompl": {
+    "label": "Kombinatorika",
+    "aliases": [
+      "kompl"
+    ]
+  },
+  "kompleks": {
+    "label": "Kompleksni brojevi",
+    "aliases": [
+      "kompleks"
+    ]
+  },
+  "fun": {
+    "label": "Funkcije",
+    "aliases": [
+      "fun",
+      "func",
+      "fn",
+      "fnk",
+      "funk",
+      "funkc",
+      "grf"
+    ]
+  },
+  "der": {
+    "label": "Derivacije i integrali",
+    "aliases": [
+      "der",
+      "de",
+      "dif",
+      "kp"
+    ]
+  },
+  "ostalo": {
+    "label": "Ostalo",
+    "aliases": [
+      "ostalo",
+      "om",
+      "omj",
+      "omjer",
+      "opt",
+      "ord",
+      "mj"
+    ]
+  }
 }

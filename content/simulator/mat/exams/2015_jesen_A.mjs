@@ -717,7 +717,7 @@ export const qs = [
     "Alt metoda: testiranje točaka. Uvrsti x=0: −2(0)+0−6 = −6 ≤ 0 ✓ (0 je u rješenju). Uvrsti x=1,75: −2(3,0625)+7(1,75)−6 = 0,125 > 0 (1,75 NIJE u rješenju). Potvrda rješenja.",
     "Provjera ✓: x=3/2 → −2(9/4)+7(3/2)−6 = −9/2+21/2−6 = 0 ≤ 0 ✓ (uključeno). x=2 → −8+14−6 = 0 ≤ 0 ✓ (uključeno)."
   ,"Provjera Vièteovim formulama: x₁+x₂ = −b/a i x₁·x₂ = c/a."]},
-  {id:20.1,type:"sa",topic:"kompl",points:1,
+  {id:20.1,type:"sa",topic:"komp",points:1,
   context:"Zadatak 20 (1. dio od 2):",
   q:"Kompleksni broj z = (4i²¹⁹)/(i-1) + i napišite u obliku z = a + bi gdje su a, b ∈ ℝ.",
   sol:{ans:"z = -2 + 3i",alt:["Z = -2 + 3i","z = -2 + 3i","z=-2+3i","≈ z = -2 + 3i"]},
@@ -734,7 +734,7 @@ export const qs = [
     "Česta greška: pomiješati pravilo i² = −1 s i³ = −i; ili koristiti pogrešan konjugat (konjugat od (i−1) je (i+1), ne (−i+1) ili (−i−1)).",
     "Provjera ✓: z(i−1) − i(i−1) = 4i²¹⁹. (−2+3i)(i−1) = −2i+2+3i²−3i = −2i+2−3−3i = −1−5i. Onda −1−5i − i(i−1) = −1−5i − (i²−i) = −1−5i + 1 + i = −4i = 4·(−i) = 4i²¹⁹ ✓"
   ,"Provjera red veličine: rezultat je u očekivanom rasponu za zadani problem."]},
-  {id:20.2,type:"sa",topic:"kompl",points:1,
+  {id:20.2,type:"sa",topic:"komp",points:1,
   context:"Zadatak 20 (2. dio od 2):",
   q:"Odredite jedan kompleksan broj w za koji vrijedi w = ∛(8i).",
   sol:{ans:"√3 + i  (ili  −√3 + i  ili  -2i)",alt:["sqrt(3)+i","-sqrt(3)+i","-2i","1,732+i"]},
@@ -866,7 +866,7 @@ export const qs = [
     "Česta greška: zamijeniti redoslijed (y₁ − y₂) i (x₂ − x₁) — pazi da je u istom smjeru. Također, kad je 'f(0) = 1', odsječak je 1, ne −1.",
     "Provjera: f(0) = −2·0 + 1 = 1 ✓; f(−1) = −2·(−1) + 1 = 3 ✓"
   ,"Provjera: uvrsti rješenje u sve jednadžbe sustava — svaka mora biti zadovoljena.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."]},
-  {id:24.2,img:true,type:"sa",topic:"anal",points:1,img:true,
+  {id:24.2,img:true,type:"sa",topic:"der",points:1,img:true,
   context:"Zadatak 24 (2. dio od 2):",
   q:"Slika prikazuje graf funkcije f na intervalu ⟨1,11⟩. Odredite interval/intervale na kojemu/kojima je funkcija padajuća i postiže vrijednosti manje od 2.",
   sol:{ans:"⟨5, 8⟩",alt:["(5,8)","5<x<8"]},
@@ -882,7 +882,7 @@ export const qs = [
     "Česta greška: dati UNIJU (gdje vrijedi bilo koji uvjet) umjesto PRESJEKA (gdje vrijede oba istovremeno).",
     "Provjera: u sredini intervala ⟨5, 8⟩, npr. x = 6,5: graf je u padu i vrijednost f(6,5) < 2 (npr. f(6,5) ≈ 1) ✓"
   ,"Provjera u kritičnoj točki: f'(x₀) = 0 za ekstrem; f'(x₀) ≠ 0 znači nije ekstrem.","Tipičan propust: zaboraviti pravilo lanca (chain rule) za složene funkcije; ili pravilo kvocijenta."]},
-  {id:25.1,type:"sa",topic:"anal",points:1,
+  {id:25.1,type:"sa",topic:"der",points:1,
   context:"Zadatak 25 (1. dio od 2):",
   q:"Odredite derivaciju funkcije f(x) = tg(3x).",
   sol:{ans:"f′(x) = [FRAC:3|cos²](3x)",alt:["3/cos^2(3x)","3sec²(3x)"]},
@@ -899,7 +899,7 @@ export const qs = [
     "Česta greška: zaboraviti faktor 3 (derivaciju unutarnje funkcije), tj. napisati samo 1/cos²(3x) — ovo je TIPIČNA greška kod pravila lanca.",
     "Provjera ✓: numerički provjeri u x = 0: f(0) = tg(0) = 0; f′(0) = 3/cos²(0) = 3/1 = 3. Alternativno preko granice: lim_{h→0} (tg(3h) − 0)/h = 3 (jer tg(3h) ≈ 3h za male h) ✓"
   ,"Provjera derivacijom unazad: integriranjem f' moramo dobiti f (do konstante)."]},
-  {id:25.2,type:"sa",topic:"anal",points:1,
+  {id:25.2,type:"sa",topic:"der",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Odredite jednadžbu tangente na graf funkcije f(x) = √x u točki s apscisom x = 16.",
   sol:{ans:"y = [FRAC:x|8] + 2",alt:["y=x/8+2","y-4=1/8(x-16)"]},

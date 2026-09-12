@@ -356,7 +356,7 @@ export const qs = [
   ],
   why:["Pravilo: redoslijed računskih operacija — najprije zbrajanje (A+B), pa dijeljenje s C, pa množenje s D.","Opcija C je ekvivalentna, ali prema standardu zapisa s razlomkom je B (bez znaka dijeljenja).","Česta greška (najčešće): A(AB/CD) — dijele s umnoškom CD, ali treba dijeliti samo s C pa množiti s D.","Provjera: A=2,B=3,C=4,D=5 → (2+3)/4·5 = 5/4·5 = 6,25; B: (2+3)·5/4 = 6,25 ✓","Provjera redom veličine: rezultat je u očekivanom intervalu (npr. postotak između 0 i 100).","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
 },
-  {id:3,type:"mc",warn:"Pazi: 1 g/cm³ = 1000 kg/m³ → množi s 1000.",topic:"br",points:1,
+  {id:3,type:"mc",warn:"Pazi: 1 g/cm³ = 1000 kg/m³ → množi s 1000.",topic:"ostalo",points:1,
   q:"Kolika je gustoća od 1,8 g/cm³ izražena u kg/m³?",
   opts:["1,8 kg/m³","18 kg/m³","180 kg/m³","1 800 kg/m³"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},

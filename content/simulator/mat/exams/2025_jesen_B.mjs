@@ -373,7 +373,7 @@ export const qs = [
   {
     id:7,
     type:"mc",warn:"Pazi: više cijevi → KRAĆE vrijeme (obrnuta proporcija); pazi na uvjet zadatka.",
-    topic:"al",
+    topic:"ostalo",
     points:1,
     q:"Gradski bazen može se puniti vodom s najviše pet cijevi kroz koje za isto vrijeme proteče jednaka količina vode. Bazen će biti pun ako ga svih pet cijevi puni 12 sati. Za koliko bi sati bazen bio pun ako ga pune samo tri cijevi?",
     opts:["15","18","20","22"],
@@ -384,7 +384,7 @@ export const qs = [
   {
     id:8,
     type:"mc",warn:"Pazi: riješi svaku nejednadžbu pa uzmi PRESJEK rješenja.",
-    topic:"al",
+    topic:"mat",
     points:1,
     q:"Koji je interval skup svih rješenja sustava nejednadžbi { 3 − x ≥ x/2 ;  x + 1 > 0 } ?",
     opts:["⟨−∞, −2]","⟨−2, −1]","⟨−1, 2]","⟨2, ∞⟩"],
@@ -520,7 +520,7 @@ export const qs = [
   {
     id:20,
     type:"mc",warn:"Pazi: ukupno 2³ = 8 ishoda; povoljnih (PPG, PGP, GPP) = 3 → vjerojatnost 3/8.",
-    topic:"komb",
+    topic:"stat",
     points:1,
     q:"Tri puta bacamo novčić. Koliko iznosi vjerojatnost da je dva puta palo pismo i jednom glava?",
     opts:["1/2","1/4","1/8","3/8"],

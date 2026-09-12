@@ -1071,7 +1071,7 @@ export const qs = [
      "Alt metoda (provjera): graf g(x) je strogo padajuća funkcija (jer −√ je padajući) → max na lijevom rubu domene = x = 2."
    ,"Provjera: za jednadžbu pravca y = kx + l, dvije točke na pravcu daju isti k.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."]
   },
-  {id:25.3,type:"sa",topic:"anal",points:1,
+  {id:25.3,type:"sa",topic:"der",points:1,
    context:"Zadatak 25 (3. dio od 3):",
    q:"Odredite derivaciju funkcije h(x) = 19 + sin²x.",
    sol:{ans:"h′(x) = 2 sin x cos x",alt:["sin 2x","2sinxcosx"]},
@@ -1216,7 +1216,7 @@ export const qs = [
      "Alt metoda (provjera): f(0) = 0, f(1) = 4, f(2) = 16 − 56 + 40 = 0, f(3) = 81 − 189 + 90 = −18, f(4) = −32, f(5) = 625 − 875 + 250 = 0 → minimum oko x = 4 ✓"
    ,"Provjera diskriminantom: D = b²−4ac (D>0 → dva rješenja; D=0 → jedno; D<0 → nema realnih).","Tipičan propust: zaboraviti drugo rješenje (kvadratna ima do 2 korijena); ili kriviti predznak diskriminante."]
   },
-  {id:29.1,type:"sa",topic:"kompl",points:2,
+  {id:29.1,type:"sa",topic:"der",points:2,
    context:"Zadatak 29 (1. dio od 5):",
    q:"Odredite realne brojeve a i b za koje vrijedi (a + bi − 2i)/i + b − ai = 4 − 2i.",
    sol:{ans:"a = 1, b = 3",alt:["a=1 b=3","a=1, b=3"], ex:"Jednadžba s kompleksnim brojevima: izjednači realne i imaginarne dijelove odvojeno → dva uvjeta, dvije nepoznate. Ključno: 1/i = −i."},

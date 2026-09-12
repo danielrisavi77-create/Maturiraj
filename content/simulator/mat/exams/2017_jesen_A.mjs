@@ -822,7 +822,7 @@ export const qs = [
     {txt:"Postupak: 1) izračunaj kompoziciju. 2) postavi jednadžbu. 3) supstitucija t = 4^x. 4) riješi za x.",final:true,note:"postupak"},{txt:"Intuicija: Pravilo eksponencijala: 2^(2x+1) = 2 · 2^(2x) = 2 · 4^x.",note:"intuicija",final:true},{txt:"Provjera: izračunaj eksponencijalnu vrijednost na kalkulatoru i usporedi.",note:"verifikacija",final:true}
   ],
   why:["Pravilo kompozicije: (g ∘ f)(x) = g(f(x)).","Pravilo eksponencijala: 2^(2x+1) = 2 · 2^(2x) = 2 · 4^x.","Postupak: 1) kompozicija. 2) supstituiraj t = 4^x. 3) riješi linearnu u t. 4) logaritmiraj.","Česta greška 1: pomiješati 2^(2x+1) i 2^(2x) + 1. Greška 2: krivi predznak u jednadžbi.","Provjera ✓","Provjera logaritmiranjem: ako je a^x = b, onda x = logₐb (provjeri obrat)."]},
-  {id:29.3,type:"pa",topic:"anal",points:3,
+  {id:29.3,type:"pa",topic:"der",points:3,
   context:"Zadatak 29 (3. dio od 4):",
   q:"Koje su koordinate točke u kojoj funkcija f(x) = (2x − 1)/(x² + 2) postiže lokalni maksimum?",
   sol:{ans:"(2, [FRAC:1|2])",alt:["(2,1/2)","x=2 y=1/2"]},

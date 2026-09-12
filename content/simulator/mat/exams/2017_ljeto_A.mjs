@@ -504,7 +504,7 @@ export const qs = [
     {txt:"Distraktori: A) 7, B) 250, D) 875 000 = krivi izračuni.",final:true,note:"diagnostika"},{txt:"Intuicija: Volumen otopine = volumen insekticida + volumen vode (uz pretpostavku zanemarivih efekata mješanja).",note:"intuicija",final:true}
   ],
   why:["Pravilo: stechiometrija mješavine — koliko 'doza' insekticida ima u pakiranju.","Volumen otopine = volumen insekticida + volumen vode (uz pretpostavku zanemarivih efekata mješanja).","Postupak: 1) doze = pakiranje/jedinica_insekticida_po_dozi. 2) ukupan volumen otopine = doze · (insekticid + voda). 3) površina = otopina / utrošak po m².","Intuicija: 750 mL insekticida × (otopina/insekticid omjer) = puno otopine → puno m².","Česta greška 1: zaboraviti dodati volumen vode (računati samo s insekticidom). Greška 2: krivi izračun doza.","Alt metoda: 750/1,5 = 500 doza. Svaka doza pokrije: 2001,5/250 = 8,006 m². Ukupno: 500 · 8,006 ≈ 4003 m² ✓.","Provjera: 4003 ≈ 4000 m² (zaokruženo) je reazonabilan rezultat."]},
-  {id:15,img:true,type:"mc",warn:"Pazi: gdje je derivacija pozitivna funkcija raste, gdje negativna pada; nultočke derivacije = ekstremi.",topic:"anal",points:2,img:true,
+  {id:15,img:true,type:"mc",warn:"Pazi: gdje je derivacija pozitivna funkcija raste, gdje negativna pada; nultočke derivacije = ekstremi.",topic:"der",points:2,img:true,
   q:"U koordinatnome sustavu prikazan je graf funkcije g. Koji je od prikazanih grafova graf funkcije čija je derivacija prikazana na slici 1.?",
   opts:["graf A","graf B","graf C","graf D"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},exp:"",ex:"Matematički 2-bodovni: zahtjeva integriran pristup više pojmova.",
@@ -889,7 +889,7 @@ export const qs = [
     {txt:"Postupak: 1) uvjet za √ (≥ 0). 2) uvjet za log (> 0). 3) presjek skupova.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) odredi domenu svakog dijela. 2) presjek (mora vrijediti za SVE).",note:"intuicija",final:true},{txt:"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.",note:"verifikacija",final:true}
   ],
   why:["Pravilo domene: √ → ≥ 0; log → > 0.","Postupak: 1) odredi domenu svakog dijela. 2) presjek (mora vrijediti za SVE).","Intuicija: oba uvjeta su strogi (jedan ≥ 0 može biti = 0, drugi > 0 strogo).","Česta greška 1: pomiješati 'strict' uvjete log s 'inclusive' uvjete √. Greška 2: zaboraviti presjek.","Alt metoda: za svaki x ∈ [0, 5], probaj kako su oba uvjeta. Rub: x = 5/2 → log(0) nedefinirano ✗; x = 4 → √0 = 0 ✓, log 3 ≈ 0,48 ✓ — TUS uključen.","Provjera: x = 4 je U domeni (zatvoreni rub); x = 5/2 NIJE (otvoreni rub) ✓"]},
-  {id:29.2,type:"pa",topic:"anal",points:2,
+  {id:29.2,type:"pa",topic:"der",points:2,
   context:"Zadatak 29 (2. dio od 4):",
   q:"Napišite jednadžbu tangente na graf funkcije f(x) = (3x − 1)/(x + 2) u točki s apscisom 5.",
   sol:{ans:"y = 1/7·x + [FRAC:9|7]",alt:["y=x/7+9/7","x-7y+9=0"],solFormula:"y = (1/7)x + (9/7)"},exp:"",

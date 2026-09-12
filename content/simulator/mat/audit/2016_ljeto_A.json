@@ -1,1 +1,21 @@
-{}
+{
+  "auditStatus": "verified-full",
+  "rok": "2016_ljeto",
+  "razina": "A",
+  "serial": "D-S032",
+  "totalPoints": 60,
+  "mcCount": 15,
+  "saCount": 26,
+  "verified": "sympy+pdf+verbatim+visual+pedagogy",
+  "auditedAt": "2026-05-16",
+  "auditNotes": "Full pipeline G→H→I→A-E→F→J→_META complete. 15/15 MC + 26/26 SA + 5/5 PA verified against PDF key.",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak G: verbatim PDF compare (D-S032, 24p) — match svih Q-ova",
+    "Pak H: 3 solFormula additions (Q25,2, Q27,1, Q29,1)",
+    "Pak I: 🔴 P0 Q5 SVG fix (parabola→elipsa); 🔴 P0 Q29,3 SVG dodan (3 sukladne kružnice); orphan Q_IMAGES __20, __28 uklonjen; __24 split na __24,1+__24,2",
+    "Pak F: 220→0 nalaza (proširen why s 1→3-5 entries za svih 30 Q-ova; +verifikacijski steps; +distractor analiza; +ex polje za Q11-Q15; topic fixes Q6/Q16/Q17/Q28,1)",
+    "Pak J: math_lint 0, content_lint 0 (osim _META)",
+    "Tool issues flag: orphan_binding_audit i exam_structure_validator daju false positives (P2 fix u repo)"
+  ]
+}

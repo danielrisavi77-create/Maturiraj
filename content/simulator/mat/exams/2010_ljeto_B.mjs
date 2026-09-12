@@ -531,7 +531,7 @@ export const qs = [
       "Provjera: 80 · 0,08 = 6,4 ✓",
       "Greška: računati 8% od 6,4 = 0,512 (zamijeniti osnovu s dijelom).","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."]
 },
-  {id:18,type:"num",topic:"al",points:1,
+  {id:18,type:"num",topic:"mat",points:1,
   q:"U sustavu jednadžbi [SYS:x = 2y + 4|y = 2x + 7] izračunajte nepoznanicu x.",
   warn:"Pazi: ne zbuniti koja jednadžba se uvršta u koju.",
   formulaLabel:"Sustav jednadžbi",

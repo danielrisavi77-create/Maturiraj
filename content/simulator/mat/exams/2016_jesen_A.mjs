@@ -311,7 +311,7 @@ export const qs = [
     {txt:"y-presjek = f(0) = c < 0 (ispod x-osi).",final:true}
   ,{txt:"Iz grafa: a<0, x_v>0, c>0 → b = -2a·x_v > 0",final:true,note:"verifikacija"},{txt:"Provjera: ako b>0 i c>0 → opcija C ✓",final:true,note:"verifikacija"},{txt:"Diagnostic: A) b < 0, c < 0; B) b < 0, c > 0; C) b > 0, c < 0 ✓; D) b > 0, c > 0.",final:true,note:"diagnostika"},{txt:"Postupak: standardni oblik → diskriminanta → kvadratna formula → oba rješenja.",final:true,note:"postupak"},{txt:"Intuicija: iz grafa — tjeme je u 1. kvadrantu (x_v > 0, y_v > 0), graf otvoren dolje (a < 0). Onda x_v = -b/(2a) > 0 → kako je a < 0, b > 0. Iz f(0) = c > 0 (presjek s pozitivnim y).",note:"intuicija",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true}],
   why:["Pravilo: za f(x) = ax²+bx+c — predznak b određuje smjer pomaka tjemena (x_v = -b/(2a)); predznak c određuje y-presjek (f(0) = c).","Intuicija: iz grafa — tjeme je u 1. kvadrantu (x_v > 0, y_v > 0), graf otvoren dolje (a < 0). Onda x_v = -b/(2a) > 0 → kako je a < 0, b > 0. Iz f(0) = c > 0 (presjek s pozitivnim y).","Česta greška: tretirati y-presjek kao tjeme; ili miješati znakove.","Alt metoda: izračunaj iz konkretne fitirane funkcije (npr. f(x) = -(x-2)²+4 → c = 0 i b = 4, ali zadana ima c > 0 → drugačiji oblik).","Provjera: ako b > 0 i c > 0 → opcija C ✓","Diagnostic: A) b < 0, c < 0; B) b < 0, c > 0; C) b > 0, c < 0 ✓; D) b > 0, c > 0."]},
-  {id:11,type:"mc",warn:"Pazi: usporedna s y = 5x → isti nagib 5 → f′(x) = 5; riješi 3x² − 12x + 17 = 5.",topic:"anal",points:2,
+  {id:11,type:"mc",warn:"Pazi: usporedna s y = 5x → isti nagib 5 → f′(x) = 5; riješi 3x² − 12x + 17 = 5.",topic:"der",points:2,
   q:"Na graf funkcije f(x) = x³ − 6x² + 17x povučena je tangenta usporedna s pravcem y = 5x. Koja je od navedenih jednadžba te tangente?",
   opts:["y = 5x − 5","y = 5x − 3","y = 5x + 6","y = 5x + 8"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},ex:"Tangenta na grafu y=f(x) u točki (x₀, f(x₀)) ima nagib f′(x₀). Paralelnost s zadanim pravcem znači jednak nagib.",
@@ -436,7 +436,7 @@ export const qs = [
     {txt:"x=0 ili x=2",final:true}
   ,{txt:"Provjera: x⁴-6x³+12x²-8x = x(x-2)³ = 0 → x=0 ili x=2 ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: x⁴-6x³+12x²-8x = x(x³-6x²+12x-8) = x(x-2)³. Nul rješenja: x = 0 ili x = 2 (trostruka).",note:"intuicija",final:true},{txt:"Točan odgovor: x = 0  i  x = 2 ✓",note:"odgovor",final:true}],
   why:["Pravilo: faktorizacija — izvuci zajednički faktor pa zero-product.","Intuicija: x⁴-6x³+12x²-8x = x(x³-6x²+12x-8) = x(x-2)³. Nul rješenja: x = 0 ili x = 2 (trostruka).","Česta greška: ne prepoznati (x-2)³ → propustiti rješenje x = 2.","Provjera: x = 2: 16-48+48-16 = 0 ✓; x = 0: 0 ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
-  {id:21.2,img:true,type:"sa",topic:"anal",points:1,img:true,
+  {id:21.2,img:true,type:"sa",topic:"der",points:1,img:true,
   context:"Zadatak 21 (2. dio od 2):",
   q:"Na slici je prikazan graf funkcije koja je definirana na intervalu ⟨-4, 4⟩. Na kojemu intervalu ta funkcija raste?",
   sol:{ans:"⟨-2, 1⟩",alt:["(-2,1)","⟨-2,1⟩","x∈⟨-2,1⟩","-2<x<1"]},
@@ -502,7 +502,7 @@ export const qs = [
     {txt:"a = 3 (0·x=2, nemoguće)",final:true}
   ,{txt:"Provjera: a=3 → 3x - 2 = 3x → -2 = 0 (kontradikcija) ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: ax - 2 = 3x → (a-3)x = 2. Da nema rješenja: a - 3 = 0 → a = 3 (i 2 ≠ 0 ✓).",note:"intuicija",final:true},{txt:"Točan odgovor: a = 3 ✓",note:"odgovor",final:true}],
   why:["Pravilo: linearna jednadžba ax + b = 0 nema rješenja kad je a = 0 i b ≠ 0.","Intuicija: ax - 2 = 3x → (a-3)x = 2. Da nema rješenja: a - 3 = 0 → a = 3 (i 2 ≠ 0 ✓).","Česta greška: tražiti a takav da postoji jedinstveno rješenje (a ≠ 3) — to je suprotno traženom.","Provjera: a = 3 → 3x - 2 = 3x → -2 = 0 → kontradikcija ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
-  {id:25.1,type:"sa",topic:"kompl",points:1,
+  {id:25.1,type:"sa",topic:"komp",points:1,
   context:"Zadatak 25 (1. dio od 2):",
   q:"Odredite realan broj b ako je (4 − 2i)(-1 + bi) = 10i.",
   sol:{ans:"b = 2",alt:["2","b=2","b = 2"]},
@@ -511,7 +511,7 @@ export const qs = [
     {txt:"Realni dio: -4+2b=0 → b=2. Imaginarni: 4·2+2=10 ✓",final:true}
   ,{txt:"Provjera: (4-2i)(-1+2i) = -4+8i+2i+4 = 10i ✓ → b = 2",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: (4-2i)(-1+bi) = (-4 - 2b) + (4b + 2)i. Zadana vrijednost 10i → realni dio = 0, imaginarni = 10. -4-2b = 0 → b = -2... ali zadano je b = 2.",note:"intuicija",final:true},{txt:"Točan odgovor: b = 2 ✓",note:"odgovor",final:true}],
   why:["Pravilo: kompleksno množenje (a+bi)(c+di) = (ac-bd) + (ad+bc)i.","Intuicija: (4-2i)(-1+bi) = (-4 - 2b) + (4b + 2)i. Zadana vrijednost 10i → realni dio = 0, imaginarni = 10. -4-2b = 0 → b = -2... ali zadano je b = 2.","Česta greška: pomiješati realni i imaginarni dio; ili greška u znaku kod (a+bi)(c+di).","Provjera: (4-2i)(-1+2i) = -4+8i+2i-4i² = -4+10i+4 = 10i ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
-  {id:25.2,type:"sa",topic:"kompl",points:1,
+  {id:25.2,type:"sa",topic:"komp",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Koliki je argument φ u trigonometrijskome zapisu kompleksnoga broja z = i·(cos(π/3) + i·sin(π/3))?",
   sol:{ans:"φ = [FRAC:5π|6]",alt:["5pi/6","φ=5π/6","5π/6","150°"]},
@@ -634,7 +634,7 @@ export const qs = [
     {txt:"A'=2F−A: (12/5-4, -6/5+2) = (-8/5, [FRAC:4|5])",final:true}
   ,{txt:"Provjera: polovište A i P' leži na zadanom pravcu ✓; AP' okomit na pravac ✓",final:true,note:"verifikacija"},{txt:"Provjera: udaljenost A od pravca = udaljenost A' od pravca; AA' ⊥ pravac ✓",final:true,note:"verifikacija"},{txt:"Postupak: parametriziraj geometrijski objekt, postavi uvjet, riješi sustav.",final:true,note:"postupak"},{txt:"Intuicija: A(4, -2) → spusti okomicu na zadani pravac, nađi presjek N (nogu okomice). P' = 2N - A.",note:"intuicija",final:true},{txt:"Točan odgovor: (-8/5, [FRAC:4|5]) ✓",note:"odgovor",final:true}],
   why:["Pravilo: simetrična točka P' obzirom na pravac p ima istu udaljenost od p kao P, ali na suprotnoj strani; PP' okomit na p.","Intuicija: A(4, -2) → spusti okomicu na zadani pravac, nađi presjek N (nogu okomice). P' = 2N - A.","Česta greška: zrcaliti obzirom na os umjesto na zadani pravac; ili ne dvostruko preljeti N (samo do njega).","Alt metoda: postavi parametarsku jednadžbu okomice kroz A, presjek s pravcem N, P' = A + 2·(N - A).","Provjera: P' = (-8/5, 4/5); polovište AP' = ((4-8/5)/2, (-2+4/5)/2) = (12/10, -6/10) = (6/5, -3/5) — leži na pravcu? ✓","Postupak: parametriziraj geometrijski objekt, postavi uvjet, riješi sustav."]},
-  {id:30,type:"sa",topic:"anal",points:4,
+  {id:30,type:"sa",topic:"der",points:4,
   q:"Zatvorena limenka u obliku valjka izrađena je od materijala čija je cijena 70 kn/m². Kolika je cijena materijala potrebnoga za izradu jedne limenke čiji je obujam 0,35 L ako je za njezinu izradu potrošeno najmanje materijala? (1 L = 1 dm³, debljinu i otpad zanemariti.)",
   sol:{ans:"1,92 kn",alt:["1,92","1,92","1,92 kn","≈1,92"]},
   steps:[

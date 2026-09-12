@@ -565,7 +565,7 @@ export const qs = [
       "Greška: računati 11% od 35,2 = 3,872 — to je 11% od pogrešnog broja (zamijenili osnovu i dio).",
       "Alt provjera: 35,2 / 0,11 = 320 (dijeljenje postotkom u decimalu daje osnovu).","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."]
 },
-  {id:18,type:"num",topic:"al",points:1,
+  {id:18,type:"num",topic:"mat",points:1,
   q:"U sustavu jednadžbi [SYS:x = [FRAC:3|5] + 2y|x = −[FRAC:2|5] + 7y] izračunajte nepoznanicu y.",
   warn:"Pazi: prepoznaj da su lijeve strane iste i pokušati eliminirati drugu varijablu.",
   formulaLabel:"Sustav jednadžbi",
@@ -756,7 +756,7 @@ export const qs = [
       "Greška: promijeniti k (nagib) umjesto n → dobiju presječni, ne paralelni pravac.",
       "Udaljenost između y=3x−2 i y=3x−7 je konstantna (=|−2−(−7)|/√(1+9)=5/√10) — tipično za paralelne.","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:25.1,type:"num",context:"Zadatak 25 (1. dio od 2):",topic:"al",points:1,
+  {id:25.1,type:"num",context:"Zadatak 25 (1. dio od 2):",topic:"mat",points:1,
   q:"Riješite jednadžbu x = [FRAC:4|3](x − 3).",
   warn:"Pazi: pomnožiti obje strane s 3 da bi se riješio razlomak.",
   sol:{ans:"12",alt:["12","12,0"]},
@@ -775,7 +775,7 @@ export const qs = [
       "Provjera: 12−3=9; (4/3)·9 = 36/3 = 12 ✓ — LHS = RHS.",
       "Greška: 3x = 4x−3 (zaboraviti pomnožiti −3 s 4) → x=3 (pogrešno).","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:25.2,type:"sa",topic:"al",points:1,
+  {id:25.2,type:"sa",topic:"mat",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Riješite nejednadžbu [FRAC:x − 4|3] − [FRAC:2x|5] > 0.",
   warn:"Pazi: pri množenju nejednadžbe s negativnim brojem mijenja se smjer znaka nejednakosti.",
@@ -831,7 +831,7 @@ export const qs = [
       "Intuicija: 1 km ≈ 0,62 milje → 100 km ≈ 62 milje — odgovor 62,15 je razuman ✓",
       "Greška: množiti 100 · 1,609 = 160,9 (to je 100 milja u km, a ne km u milje!).","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:27.1,img:true,type:"proof",img:true,topic:"geom",points:1,
+  {id:27.1,img:true,type:"proof",img:true,topic:"anal",points:1,
   graphType:"point",
   graphRef:{point:[150,-75],knownPts:[{lbl:"A",coord:[-75,100]},{lbl:"B",coord:[-75,-75]}]},
   graphRange:{xMin:-200,xMax:250,yMin:-150,yMax:150,scale:25},
@@ -851,7 +851,7 @@ export const qs = [
       "Razmjer 25m/jed.: pretvori koordinate: 150/25=6 jed. desno, 75/25=3 jed. dolje.",
       "Provjera: T je u IV. kvadrantu (x pozitivno, y negativno) ✓ — konzistentno s koordinatama.","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Česta greška: krivo primjeniti pravilo, zaboraviti znak, ili preskočiti korak.","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:27.2,img:true,type:"num",topic:"geom",points:1,
+  {id:27.2,img:true,type:"num",topic:"anal",points:1,
   q:"Odredite udaljenost točaka A(−75, 100) i T(150, −75) i zaokružite je na cijeli broj. (Koordinate su u metrima.)",
   intermediates:[50625, 30625, 81250, 225, 175, 285.04, 81225, 81796],
   warn:"Pazi: formula za udaljenost: d = √((x₂−x₁)² + (y₂−y₁)²). Zaokruži na CIJELI broj.",
@@ -872,7 +872,7 @@ export const qs = [
       "Usporedba: 285² = 81225, 286² = 81796 → √81250 bliže 285 (razlika 25 vs 546) ✓",
       "Greška: Δx = 150−75 = 75 (zaboraviti minus A-koordinate) → d = √(75²+175²) ≈ 189 (pogrešno).","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:27.3,img:true,type:"num",topic:"geom",points:1,
+  {id:27.3,img:true,type:"num",topic:"anal",points:1,
   q:"Iz svojega položaja T(150, −75) grupa može doći do položaja A(−75, 100) izravno ili preko točke B(−75, −75). Za koliko je dulji put preko točke B? (Koordinate su u metrima.)",
   warn:"Pazi: izračunaj put T→B→A (dva segmenta) i oduzmi izravni T→A.",
   context:"Zadatak 27 (3. dio od 3):",

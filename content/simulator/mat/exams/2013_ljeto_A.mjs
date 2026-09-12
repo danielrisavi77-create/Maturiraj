@@ -361,7 +361,7 @@ export const qs = [
   ],
   why:["Pravilo: uzastopne postotne promjene = produkt faktora; +20% tada −30% ≠ −10%.","Svaka promjena se primjenjuje na tekuću vrijednost, ne na početnu.","Česta greška (najčešće): +20% − 30% = −10% (zbrajanje umjesto množenja) → opcija A.","Realan primjer: cijena 100kn → 120kn (+ 20%) → 120 · 0,7 = 84kn → snižena za 16% ✓","Provjera: dobiveni broj pripada traženom skupu (npr. ℕ, ℤ, ℚ, ℝ) — provjeri svojstva.","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
 },
-  {id:4,type:"mc",warn:"Pazi: 1 min = 60 s → y = 60x (sekundi ima VIŠE, pa množiš).",topic:"br",points:1,
+  {id:4,type:"mc",warn:"Pazi: 1 min = 60 s → y = 60x (sekundi ima VIŠE, pa množiš).",topic:"ostalo",points:1,
   q:"Vrijeme mjereno u minutama označeno je s x. Isto to vrijeme mjereno u sekundama označeno je s y. Koja je jednakost točna?",
   opts:["xy = 1/60","y = x/60","xy = 60","y = 60x"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -543,7 +543,7 @@ export const qs = [
   ],
   why:["Definicija: NZV(a,b) = najmanji zajednički višekratnik; NZD(a,b)·NZV(a,b) = a·b.","Kod NZV-a uzimamo MAX potenciju svakog prostog faktora.","Razlika NZD/NZV: NZD uzima MIN potenciju, NZV uzima MAX.","Provjera: 840/60=14 ✓; 840/168=5 ✓; Česta greška: koriste produkt 60·168.","Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno).","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
 },
-  {id:17,type:"sa",topic:"br",points:1,
+  {id:17,type:"sa",topic:"ostalo",points:1,
   q:"Pretvorite [FRAC:13π|9] radijana u stupnjeve.",
   sol:{ans:"260°",alt:["260","260°"]},
   steps:[

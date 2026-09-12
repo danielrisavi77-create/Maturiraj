@@ -309,7 +309,7 @@ export const qs = [
     "Česta greška: zamijeniti ⟨ i ]. Mnemonik: ] 'drži' broj (zatvoren=uključuje); ⟩ 'ispušta' broj (otvoren=isključuje).",
     "Provjera: −1<x≤5. Granica lijevo (−1) isključena → C. Granica desno (5) uključena → C. ✓"
   ,"Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno)."]},
-  {id:2,type:"mc",warn:"Pazi: izrazi sve visine preko jedne osobe pa usporedi.",topic:"br",points:1,
+  {id:2,type:"mc",warn:"Pazi: izrazi sve visine preko jedne osobe pa usporedi.",topic:"ostalo",points:1,
   q:"Marija je 7 cm viša od Jelene koja je 12 cm niža od Vlaste, a Branka je 8 cm viša od Marije. Koja je od navedenih djevojaka najviša?",
   opts:["Branka","Jelena","Marija","Vlasta"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -614,7 +614,7 @@ export const qs = [
   ,
     "Česta greška: Krivi predznak kod 1/(2−a)=−1/(a−2). Promjena redosljeda faktora mijenja predznak!"
   ]},
-  {id:16,type:"mc",warn:"Pazi: C = (3/4)·2x = 1,5x; izrazi tvrdnje preko x pa usporedi.",topic:"al",points:2,
+  {id:16,type:"mc",warn:"Pazi: C = (3/4)·2x = 1,5x; izrazi tvrdnje preko x pa usporedi.",topic:"fin",points:2,
   q:"Osoba A zaradila je x kuna, osoba B dvostruko više od osobe A, a osoba C tri četvrtine zarade osobe B. Koja od navedenih tvrdnji nije točna?",
   opts:[
     "Osoba C zaradila je 50% više od osobe A.",
@@ -643,7 +643,7 @@ export const qs = [
   ,
     "Česta greška: Misliti C−A=3x/2 (to je ukupna zarada C, ne razlika). Razlika=C−A=x/2."
   ]},
-  {id:17,type:"sa",topic:"br",points:1,
+  {id:17,type:"sa",topic:"ostalo",points:1,
   q:"Štap je dug 2 m i 40 mm. Ako se štap prepolovi, kolika je duljina svakog dobivenog dijela štapa u centimetrima?",
   sol:{ans:"102 cm",alt:["102","102 cm","≈ 102 cm"]},
   exp:"2 m 40 mm = 200 cm + 4 cm = 204 cm. 204/2 = 102 cm.",

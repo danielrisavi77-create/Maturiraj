@@ -506,7 +506,7 @@ export const qs = [
      "Alt metoda (provjera): 9¹ = 9 < 31 < 81 = 9² → x ∈ ⟨1, 2⟩ ⊂ ⟨1, +∞⟩ ✓"
    ,"Provjera: 9¹ = 9; 9² = 81. 31 je između, pa je x između 1 i 2 — bliže 2. ✓","Tipičan propust: a^m · a^n = a^(m+n), ne a^(m·n); ili (a^m)^n = a^(m·n), ne a^(m+n)."]
   },
-  {id:19,type:"mc",warn:"Pazi: usporedi vjerojatnosti (povoljni/ukupni), ne biraj 'na osjećaj'.",topic:"komb",points:1,
+  {id:19,type:"mc",warn:"Pazi: usporedi vjerojatnosti (povoljni/ukupni), ne biraj 'na osjećaj'.",topic:"stat",points:1,
    q:"Koji je od navedenih događaja najvjerojatniji ako slučajnim odabirom odaberemo jednoga maturanta?",
    opts:["Rođen je u petak.","Rođen je tijekom vikenda (u subotu ili nedjelju).","Rođen je u travnju.","Rođen je tijekom jeseni."],
    sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -678,7 +678,7 @@ export const qs = [
      "Alt metoda (provjera): aproksimativno, jer su sve vrijednosti blizu 24, prosjek mora biti oko 24,1-24,2."
    ,"Provjera: 24,12·5 = 120,60 — odgovara ukupnoj sumi pet najviših vrijednosti ✓","Tipičan propust: pomiješati aritmetičku sredinu i medijan; ili apsolutnu i relativnu frekvenciju."]
   },
-  {id:25.1,type:"sa",topic:"al",points:1,
+  {id:25.1,type:"sa",topic:"br",points:1,
    context:"Zadatak 25 (1. dio od 2):",
    q:"Napišite dva elementa skupa ℝ \\ ⟨13, 42⟩.",
    sol:{ans:"a, b ∈ ⟨−∞, 13] ∪ [42, +∞⟩ npr. 1, 2",alt:["1 i 2","1, 2","0 i 100","-1, 50","npr. 1 i 2"]},
@@ -779,7 +779,7 @@ export const qs = [
      "Alt metoda (provjera): napiši kao stupac (a, −3) = (3, 3b) → a = 3, b = −1 ✓"
    ,"Provjera: 3i⃗ − 3j⃗ = 3(i⃗ + (−1)j⃗) = 3i⃗ − 3j⃗ ✓","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata."]
   },
-  {id:28.1,type:"sa",topic:"al",points:1,
+  {id:28.1,type:"sa",topic:"ostalo",points:1,
    context:"Zadatak 28 (1. dio od 2):",
    q:"U školi s 855 učenika omjer broja učenika nižih i viših razreda jest 10 : 9. Koliko je djevojčica u višim razredima ako je omjer dječaka i djevojčica u višim razredima 7 : 8?",
    sol:{ans:"216",alt:["216 djevojčica","216,0"]},
@@ -848,7 +848,7 @@ export const qs = [
      "Alt metoda (provjera): treći kut = 180° − 76° − 42,45° = 61,55°; provjeri sinusovim poučkom."
    ,"Provjera: 0,4533° = 27,2′ → 27′ 12″. ✓","Tipičan propust: koristiti DEG mode kad treba RAD (ili obratno); pomiješati sin/cos/tan."]
   },
-  {id:30.1,type:"sa",topic:"al",points:1,
+  {id:30.1,type:"sa",topic:"ostalo",points:1,
    context:"Zadatak 30 (1. dio od 2):",
    q:"Oka je stara mjerna jedinica za volumen za koju vrijedi: 1 oka = 1,282 dm³. Koliko oka iznosi 2,564 m³?",
    sol:{ans:"2000",alt:["2000 oka","2,000","2 000"]},

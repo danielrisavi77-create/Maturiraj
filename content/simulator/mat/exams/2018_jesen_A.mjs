@@ -439,7 +439,7 @@ export const qs = [
     {txt:"Distraktori: B) log_3(y+5) = krivi predznak; C, D) = razdvojeni log pa krivo.",final:true,note:"diagnostika"},{txt:"Intuicija: Pravilo: log_a(uv) = log_a u + log_a v ALI log_a(u − v) ≠ log_a u − log_a v. Tako log_3(y − 5) NIJE log_3 y − log_3 5.",note:"intuicija",final:true},{txt:"Provjera: izračunaj eksponencijalnu vrijednost na kalkulatoru i usporedi.",note:"verifikacija",final:true}
   ],
   why:["Pravilo: a^x = b ⟺ x = log_a b. Inverzna operacija eksponencijala je logaritam s istom bazom.","Pravilo: log_a(uv) = log_a u + log_a v ALI log_a(u − v) ≠ log_a u − log_a v. Tako log_3(y − 5) NIJE log_3 y − log_3 5.","Postupak: 1) izolacija eksponencijalne (oduzmi 5). 2) primjena log s istom bazom.","Intuicija: x je 'skriven' u eksponentu. Logaritam ga 'oslobađa'.","Česta greška 1: razdvojiti log_3(y − 5) = log_3 y − log_3 5 (krivo, pravilo log ne važi za zbrajanje/oduzimanje argumenata). Greška 2: krivi predznak (log_3(y + 5)).","Alt metoda: graf — invertiraj funkciju 3^x + 5 oko y = x. Inverzna je log_3(x − 5).","Provjera: za x = 0, y = 1 + 5 = 6 → log_3(6 − 5) = log_3 1 = 0 = x ✓"]},
-  {id:14,type:"mc",warn:"Pazi: između lokalnog maksimuma i minimuma funkcija PADA; izvan njih raste — skiciraj tijek.",topic:"anal",points:1,
+  {id:14,type:"mc",warn:"Pazi: između lokalnog maksimuma i minimuma funkcija PADA; izvan njih raste — skiciraj tijek.",topic:"der",points:1,
   q:"Funkcija f definirana na skupu realnih brojeva neprekinuta je i ima točno dvije stacionarne točke. U točki (3, f(3)) poprima lokalni maksimum, a u točki (8, f(8)) lokalni minimum. Što vrijedi za derivaciju f′ funkcije f?",
   opts:["f′ je negativna na ⟨−∞,3⟩∪⟨8,+∞⟩ i pozitivna na ⟨3,8⟩","f′ je pozitivna na ⟨−∞,3⟩∪⟨8,+∞⟩ i negativna na ⟨3,8⟩","f′ je negativna na ⟨−∞,3⟩ i pozitivna na ⟨8,+∞⟩","f′ je pozitivna na ⟨−∞,3⟩ i negativna na ⟨8,+∞⟩"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},exp:"",
@@ -717,7 +717,7 @@ export const qs = [
     {txt:"Provjera: za b = 7, log_7 35 ≈ 1,827; (1/2)·log_(√7) 6 = (1/2)·log_(√7) 6 ≈ (1/2)·1,841 ≈ 0,921. Razlika ≈ 0,906. log_7(35/6) ≈ 0,906 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) primijeni pravilo promjene baze za log_(√b) → log_b s faktorom 2. 2) primijeni log_a x − log_a y = log_a(x/y).",final:true,note:"postupak"},{txt:"Intuicija: Pravilo log razlike: log_a x − log_a y = log_a(x/y).",note:"intuicija",final:true},{txt:"Provjera baze: log uvijek > 0 ako je argument > 1 (za bazu > 1); < 0 ako je argument < 1.",note:"verifikacija",final:true}
   ]},
-  {id:25.1,type:"sa",topic:"al",points:1,
+  {id:25.1,type:"sa",topic:"mat",points:1,
   context:"Zadatak 25 (1. dio od 3):",
   q:"Riješite jednadžbu x + [FRAC:2x − 1|3] = [FRAC:4x + 1|2] − [FRAC:x + 7|6].",
   sol:{ans:"x = 2",solFormula:{pre:"x = "},alt:["2","x=2"]},
@@ -732,7 +732,7 @@ export const qs = [
     {txt:"Provjera: lijeva: 2 + (4−1)/3 = 2 + 1 = 3. Desna: (8+1)/2 − (2+7)/6 = 4,5 − 1,5 = 3 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) ukloni razlomke (LCM). 2) razvij. 3) sredi.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) LCM. 2) pomnoži obje strane. 3) razvij sve zagrade. 4) izoliraj x.",note:"intuicija",final:true}
   ]},
-  {id:25.2,type:"sa",topic:"al",points:1,
+  {id:25.2,type:"sa",topic:"mat",points:1,
   context:"Zadatak 25 (2. dio od 3):",
   q:"Riješite nejednadžbu (x − [FRAC:1|2])(x + [FRAC:1|5]) ≥ 0 i napišite rješenje s pomoću intervala.",
   sol:{ans:"x ∈ ⟨−∞, −[FRAC:1|5]] ∪ [[FRAC:1|2], +∞⟩",solFormula:{pre:"x ∈ "},alt:["(-inf, -1/5] U [1/2, +inf)","x ≤ -1/5 ili x ≥ 1/2","⟨−∞,-1/5]∪[1/2,+∞⟩","xââ¨ââ,â[FRAC:1|5]]âª[[FRAC:1|2],+ââ©","0,2","0,2"]},
@@ -818,7 +818,7 @@ export const qs = [
   ],
   why:["Pravilo trig identiteta: sin²x + cos²x = 1 → cos²x = 1 − sin²x = (1 − sin x)(1 + sin x).","Razlika kvadrata: a² − b² = (a − b)(a + b).","Postupak: 1) koristi identitet da prepisuješ cos². 2) skrati zajednički faktor.","Intuicija: imenovec 1 − sin x je faktor u brojniku (poslije razlike kvadrata) — skraćuje se.","Domena: 1 − sin x ≠ 0 → sin x ≠ 1 → x ≠ π/2 + 2kπ.","Česta greška 1: ne prepoznati cos²x kao razliku kvadrata. Greška 2: zaboraviti − 1 na kraju.","Alt metoda: numerička provjera s nekoliko x — daje sin x.","Provjera za x = π/4: sin = √2/2; izraz = (1/2)/(1 − √2/2) − 1 = (1/2)/((2 − √2)/2) − 1 = 1/(2 − √2) − 1 = (2 + √2)/((2 − √2)(2 + √2)) − 1 = (2 + √2)/2 − 1 = √2/2 = sin(π/4) ✓"]},
   {id:27.2,type:"sa",
-  context:"Zadatak 27 (2. dio od 3):",topic:"anal",points:1,
+  context:"Zadatak 27 (2. dio od 3):",topic:"der",points:1,
   q:"Derivirajte funkciju f(x) = cos⁶x.",
   sol:{ans:"f′(x) = -6cos⁵x·sinx",alt:["-6sin(x)cos^5(x)","f′(x)=-6cos⁵x·sinx"]},exp:"",
   steps:[
@@ -935,7 +935,7 @@ export const qs = [
     {txt:"Postupak: 1) iz uvjeta n!/(n−2)! = 272 izvuci n. 2) iz binomnog teorema identificiraj k. 3) izračunaj koeficijent C(n, k)·a^k.",final:true,note:"postupak"},{txt:"Intuicija: Binomni teorem: (x + a)^n = Σ_{k=0}^{n} C(n, k)·x^(n−k)·a^k. Član s x^m: k = n − m.",note:"intuicija",final:true}
   ],
   why:["Pravilo: n!/(n−2)! = n(n−1). Tako jednadžba postaje kvadratna.","Binomni teorem: (x + a)^n = Σ_{k=0}^{n} C(n, k)·x^(n−k)·a^k. Član s x^m: k = n − m.","Postupak: 1) iz uvjeta n!/(n−2)! = ratio izračunaj n. 2) iz binomne formule k = n − m. 3) koeficijent = C(n, k)·a^k.","Intuicija: rezultat 2176 je 'lijep' cijeli broj — sugerira da je sustav konzistentan.","Česta greška 1: zaboraviti faktor a^k pri koeficijentu (ne samo C(n, k)). Greška 2: krivo izračunati n(n−1) = 272 (pokušaj n = 17 ili n = −16, treba pozitivan).","Alt metoda: provjera n = 17: 17·16 = 272 ✓.","Provjera: C(17, 2) = 17!/(2!·15!) = (17·16)/2 = 136 ✓; 136·16 = 2176 ✓"]},
-  {id:30,type:"pa",topic:"anal",points:4,
+  {id:30,type:"pa",topic:"der",points:4,
   q:"Odredite točku pravca y = 7x − 15 koja je najbliža grafu funkcije f(x) = 1/8·x⁴ + 3x − 4.",
   sol:{ans:"([FRAC:27|10], [FRAC:39|10])",alt:["(27/10,39/10)","(2,7,3,9)"]},exp:"",
   steps:[

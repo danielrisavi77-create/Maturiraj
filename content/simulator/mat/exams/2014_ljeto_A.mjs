@@ -485,7 +485,7 @@ export const qs = [
     "Analiza D: (x³−x²−2x+6)/(x²−4) — numerator nije točan za f(g(x)).",
     "Provjera ✓: za x=2: g(2)=4−3=1; f(1)=(1+3)/(1−1)=4/0 (nedefiniran — to potvrđuje x≠2 u domeni). Za x=3: g(3)=6; f(6)=9/5; direktno: 9/(9−4)=9/5 ✓"
   ]},
-  {id:8,type:"mc",warn:"Pazi: broj je realan ako mu je imaginarni dio 0; pojednostavi svaki (pazi na i² = −1).",topic:"kompl",points:1,
+  {id:8,type:"mc",warn:"Pazi: broj je realan ako mu je imaginarni dio 0; pojednostavi svaki (pazi na i² = −1).",topic:"komp",points:1,
   q:"Koji je od navedenih kompleksnih brojeva realan?",
   opts:["2(cosπ + i·sinπ)","4(cosπ/2 + i·sinπ/2)","6(cosπ/3 + i·sinπ/3)","8(cosπ/4 + i·sinπ/4)"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -503,7 +503,7 @@ export const qs = [
     "Analiza D: θ=π/4. cos=sin=√2/2. 8(√2/2+i√2/2) = 4√2+4√2·i — kompleksan.",
     "Provjera ✓: 2(cos π + i·sin π) = 2(−1+0) = −2 ∈ ℝ ✓. Imaginarni dio = 0 ✓"
   ]},
-  {id:9,type:"mc",warn:"Pazi: z − 3 = (1 − 3) + 2i = −2 + 2i; modul = √((−2)² + 2²).",topic:"kompl",points:1,
+  {id:9,type:"mc",warn:"Pazi: z − 3 = (1 − 3) + 2i = −2 + 2i; modul = √((−2)² + 2²).",topic:"komp",points:1,
   q:"Zadan je kompleksan broj z = 1 + 2i. Koliko je |z − 3|?",
   opts:["0","2√2","√5 − 3","3 − √3"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -908,7 +908,7 @@ export const qs = [
   why:[
     "Q25,2 rješenje x=3. Provjera uvrstiti x=3 u originalnu jednadžbu ✓"
   ,"Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost.","Tipičan propust: zanemariti predznake pri premještanju članova kroz jednakost."]},
-  {id:26.1,type:"sa",topic:"anal",points:1,
+  {id:26.1,type:"sa",topic:"der",points:1,
   context:"Zadatak 26 (1. dio od 2):",
   q:"Odredite derivaciju funkcije f(x) = 5x⁴ + sin x.",
   sol:{ans:"f′(x) = 20x³ + cos x",alt:["F′(x) = 20x³ + cos x","f′(x) = 20x³ + cos x","f′(x)=20x³+cosx","≈ f′(x) = 20x³ + cos x"]},
@@ -1045,7 +1045,7 @@ export const qs = [
     "Prepoznaj kvadrat trinoma: a²-2ab+b²=(a−b)². Ovdje a=2x, b=3y. Zatim faktoriziraj zajednički faktor.",
     "Provjera ✓: Razvij (2x−3y)(2x−3y+1) i potvrdi da dobivamo polazni polinom ✓"
   ]},
-  {id:29.2,type:"sa",topic:"kompl",points:2,
+  {id:29.2,type:"sa",topic:"komp",points:2,
   context:"Zadatak 29 (2. dio od 4):",
   q:"Odredite sva četiri rješenja jednadžbe x⁴ − 5x² − 36 = 0 u skupu kompleksnih brojeva.",
   sol:{ans:"x = 3,  x = -3,  x = 2i,  x = -2i",alt:["X = 3,  x = -3,  x = 2i,  x = -2i","x = 3,  x = -3,  x = 2i,  x = -2i","x = 3.  x = -3.  x = 2i.  x = -2i","x=3,x=-3,x=2i,x=-2i","≈ x = 3,  x = -3,  x = 2i,  x = -2i"]},
@@ -1086,7 +1086,7 @@ export const qs = [
     "Provjera ✓: x=6/5, y=24/5: x+y=6 ✓; |6/5−24/5|=|−18/5|=18/5=3·6/5=3x ✓",
     "Apsolutna vrijednost daje dva slučaja. Provjera je obavezna jer slučaj 1 vodi do protivurječja."
   ]},
-  {id:29.4,type:"sa",topic:"anal",points:4,
+  {id:29.4,type:"sa",topic:"der",points:4,
   context:"Zadatak 29 (4. dio od 4):",
   q:"Odredite točke lokalnoga minimuma i lokalnoga maksimuma funkcije f(x) = 2x³+3x²-12x+2.",
   sol:{ans:"Lok. min (1,-5),  lok. max (-2,22)",alt:["Lok. min (1,-5),  lok. max (-2,22)","Lok. min (1.-5).  lok. max (-2.22)","Lok.min(1,-5),lok.max(-2,22)","lok. min (1,-5),  lok. max (-2,22)","≈ Lok. min (1,-5),  lok. max (-2,22)"]},

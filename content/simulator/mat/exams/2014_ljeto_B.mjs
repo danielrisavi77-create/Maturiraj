@@ -398,7 +398,7 @@ export const qs = [
     "Česta greška: studenti zamijene punu i šuplju. Mnemonik: puna = pun — uključuje sve; šuplja = prazna — isključuje taj broj.",
     "Provjera: B kaže ≥2 i <7. Uvrsti granicu: x=2→2≥2 ✓, x=7→7<7 ✗ (isključen) ✓"
   ,"Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno)."]},
-  {id:2,type:"mc",warn:"Pazi: svedi na isti oblik (decimalni/razlomak) prije usporedbe.",topic:"br",points:1,
+  {id:2,type:"mc",warn:"Pazi: svedi na isti oblik (decimalni/razlomak) prije usporedbe.",topic:"ostalo",points:1,
   q:"Koja je od navedenih nejednakosti točna?",
   opts:["−1/2 < −1","1/2 < 1/3","0,5 > 1/2","1,3 > 1/3"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -678,7 +678,7 @@ export const qs = [
   ,
     "Provjera: 19,17%·240=46,008≈46 učenika ✓"
   ,"Provjera redom veličine: rezultat je u očekivanom intervalu (npr. postotak između 0 i 100)."]},
-  {id:15,type:"mc",warn:"Pazi: cijena po litri = 473,72/45,55; pa primijeni na traženi uvjet.",topic:"al",points:2,
+  {id:15,type:"mc",warn:"Pazi: cijena po litri = 473,72/45,55; pa primijeni na traženi uvjet.",topic:"ostalo",points:2,
   q:"Vlasnik automobila natočio je u spremnik 45,55 L goriva za 473,72 kn. Koliko bi goriva natočio za isti novčani iznos ako je gorivo jeftinije 10 lipa po litri?",
   opts:["45,12 L","45,99 L","46,91 L","46,98 L"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -740,7 +740,7 @@ export const qs = [
     "Česta greška: uzeti b=1/4 jer je zadnji član 1/4. Točno: b je KORIJEN zadnjeg člana, b=√(1/4)=1/2.",
     "Primjena: kvadrat binoma bitna je za kvadratnu nadopunu i faktorizaciju. Prepoznavanje ovog oblika = temeljna vještina."
   ,"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan."]},
-  {id:18,type:"sa",topic:"br",points:1,
+  {id:18,type:"sa",topic:"ostalo",points:1,
   q:"Izrazite površinu zemljišta od 1/4 km² u arima. (1 ar = 100 m²)",
   sol:{ans:"2500 ara",alt:["2500 ara","≈ 2500 ara"]},
   exp:"1 km²=1 000 000 m²=10 000 ara. 1/4·10 000=2 500 ara.",
@@ -893,7 +893,7 @@ export const qs = [
     "Česta greška: f(1/2)=0 jer 'to je nultočka' — KRIVO. Nultočka f je pri x=2 (2x−4=0→x=2), ne x=1/2.",
     "Provjera: f(1/2)=2·0,5−4=1−4=−3. (1/2)·196+(−3)=98−3=95 ✓"
   ,"Provjera grafom: pravci linearnog sustava sijeku se u točki (x, y) = rješenje.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."]},
-  {id:24.1,type:"sa",topic:"al",points:1,
+  {id:24.1,type:"sa",topic:"fin",points:1,
   q:"Za koliko je posto zaposlenikova plaća u lipnju veća od plaće u travnju?",
   sol:{ans:"8,1%",alt:["8,1","8"]},
   context:"Zadatak 24 (1. dio od 2):",
@@ -913,7 +913,7 @@ export const qs = [
   ,
     "Česta greška: Zbrajati postotke: +15%−6%=+9%. Krivo! Treba množiti faktore: 1,15·0,94=1,081≠1,09."
   ,"Provjera obrnutim postupkom: ako primijenimo inverznu operaciju, vraćamo se na početak."]},
-  {id:24.2,type:"sa",topic:"al",points:1,
+  {id:24.2,type:"sa",topic:"fin",points:1,
   q:"Ako je zaposlenikova plaća u lipnju iznosila 4 903,87 kn, kolika mu je plaća isplaćena u travnju?",
   sol:{ans:"4 536,42 kn",alt:["4 536,42","4 536,42 kn","4 536.42 kn","4536,42","≈ 4 536,42 kn"]},
   context:"Zadatak 24 (2. dio od 2):",

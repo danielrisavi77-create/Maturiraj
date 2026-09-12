@@ -614,7 +614,7 @@ export const qs = [
     "Česta greška: zaboraviti pretvoriti minute u sekunde (ostaviti t = 20) → rezultat 1000× premali; ili krivi zapis (npr. 36·10¹⁰ umjesto 3,6·10¹¹).",
     "Provjera ✓: 3,6·10¹¹ m = 360 000 000 km. Za usporedbu: prosječna udaljenost Zemlja–Sunce ≈ 1,5·10¹¹ m, pa 20 minuta na brzini svjetlosti ≈ 2,4 AU — razumno ✓"
   ,"Alt metoda: provjeri brojčano supstitucijom ili drugačijim postupkom.","Postupak: razdvoji brojnik i nazivnik, pretvori u istu jedinicu, izračunaj."]},
-  {id:18.2,type:"sa",topic:"kompl",points:1,
+  {id:18.2,type:"sa",topic:"komp",points:1,
   context:"Zadatak 18 (2. dio od 2):",
   q:"Zadan je kompleksan broj z = 3(cos(2π/7) + i·sin(2π/7)). Koja je vrijednost argumenta φ broja z⁶?",
   sol:{ans:"[FRAC:12π|7]",alt:["12pi/7","odgovor: [FRAC:12π|7]","odgovor","rezultat"]},
@@ -815,7 +815,7 @@ export const qs = [
     "Intuicija: razlomak je negativan tamo gdje brojnik i nazivnik 'idu u različitim smjerovima' (jedan pozitivan, drugi negativan).",
     "Česta greška: uključiti rubove (−5 ili 2). Otvorena nejednakost (< 0) ne uključuje granicu gdje je razlomak = 0; nazivnik = 0 je definitivno isključen jer nije definirano."
   ,"Alt metoda: provjeri rezultat drugačijim pristupom.","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]},
-  {id:24.2,type:"sa",topic:"anal",points:1,
+  {id:24.2,type:"sa",topic:"der",points:1,
   context:"Zadatak 24 (2. dio od 2):",
   q:"Neprekidna funkcija definirana za sve realne brojeve ima točno dvije točke lokalnoga minimuma A(-1, 2) i B(4, -3) i samo jednu točku lokalnog maksimuma C(1, 3). Odredite interval/intervale rasta funkcije na cijeloj domeni.",
   sol:{ans:"⟨-1, 1⟩ ∪ ⟨4, +∞⟩",alt:["(-1,1)U(4,inf)","⟨-1,1⟩∪⟨4,+∞⟩","odgovor: ⟨-1, 1⟩ ∪ ⟨4, +∞⟩"]},
@@ -832,7 +832,7 @@ export const qs = [
     "Česta greška: uključiti rubove (lokalne ekstreme) u interval rasta. Rast je STROGI (otvoreni interval) — u samoj točki minimum/maximum derivacija je 0 (ili nedefinirana), ne pozitivna.",
     "Provjera ✓: A(−1, 2) min → desno raste; C(1, 3) max → desno pada; B(4, −3) min → desno raste. Intervali rasta: ⟨−1, 1⟩ ∪ ⟨4, +∞⟩ ✓"
   ,"Alt metoda: numerička diferencijacija ((f(x+h)-f(x))/h) za malu h.","Postupak: primijeni pravila deriviranja (kombinacije, lančano), uvrsti."]},
-  {id:25.1,type:"sa",topic:"anal",points:1,
+  {id:25.1,type:"sa",topic:"der",points:1,
   context:"Zadatak 25 (1. dio od 2):",
   q:"Odredite prvu derivaciju funkcije f(x) = tg(3x).",
   sol:{ans:"f′(x) = [FRAC:3|cos²](3x)",alt:["3/cos^2(3x)","3·sec²(3x)"]},
@@ -849,7 +849,7 @@ export const qs = [
     "Česta greška: zaboraviti faktor 3 (derivaciju unutarnje funkcije), napisati 1/cos²(3x) — TIPIČNA greška kod pravila lanca.",
     "Provjera ✓: u x = 0, f(0) = tg(0) = 0; f′(0) = 3/cos²(0) = 3/1 = 3. Numerički gradijent: (tg(0,01·3) − 0)/0,01 ≈ 3 ✓"
   ,"Alt metoda: numerička diferencijacija ((f(x+h)-f(x))/h) za malu h.","Postupak: primijeni pravila deriviranja (kombinacije, lančano), uvrsti."]},
-  {id:25.2,type:"sa",topic:"anal",points:1,
+  {id:25.2,type:"sa",topic:"der",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Napišite jednadžbu tangente na graf funkcije f(x) = x³ + 2x + 1 u točki s apscisom x₀ = 1.",
   sol:{ans:"y = 5x − 1",alt:["y=5x-1","y=5x−1","odgovor: y = 5x − 1"]},

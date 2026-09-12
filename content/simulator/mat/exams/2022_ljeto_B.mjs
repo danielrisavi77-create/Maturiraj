@@ -354,7 +354,7 @@ export const qs = [
      "Alt metoda (provjera): konačno > 5x ⟺ 3x + 500 > 5x ⟺ 500 > 2x ⟺ x < 250 ✓"
    ,"Provjera s x = 200: konačno = 3·200 + 500 = 1100; 5x = 1000. 1100 > 1000 ✓ (uvjet zadovoljen). Za x = 250: 3·250 + 500 = 1250 = 5·250 — NIJE strogo veće. ✓","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:9,type:"mc",warn:"Pazi: koliko lozinki od 5 JEDNAKIH znamenaka? Vjerojatnost = 1/(taj broj).",topic:"komb",points:1,
+  {id:9,type:"mc",warn:"Pazi: koliko lozinki od 5 JEDNAKIH znamenaka? Vjerojatnost = 1/(taj broj).",topic:"stat",points:1,
    q:"Znamo da se lozinka sastoji od pet jednakih znamenaka. Kolika je vjerojatnost da pogodimo lozinku iz prvoga pokušaja?",
    opts:["0,1","0,2","0,5","0,9"],
    sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -674,7 +674,7 @@ export const qs = [
      "Alt metoda (provjera): koristi logaritam: log(√(b⁷·√b)) = ([FRAC:1|2])·log(b⁷·b^([FRAC:1|2])) = ([FRAC:1|2])·(7+[FRAC:1|2])·log b = ([FRAC:15|4])·log b → b^([FRAC:15|4]) ✓"
    ,"Provjera s b = 2: izvorni = √(128·√2) = √(128·1,414) ≈ √181 ≈ 13,45; b^([FRAC:15|4]) = 2^([FRAC:15|4]) ≈ 13,45 ✓","Tipičan propust: a^m · a^n = a^(m+n), ne a^(m·n); ili (a^m)^n = a^(m·n), ne a^(m+n)."]
   },
-  {id:24.1,type:"sa",topic:"al",points:1,
+  {id:24.1,type:"sa",topic:"ostalo",points:1,
    context:"Zadatak 24 (1. dio od 2):",
    q:"U smjesi od 276 kg bijeloga i integralnoga brašna jest 138 kg integralnog brašna. Odredite omjer količine bijeloga i integralnoga brašna.",
    sol:{ans:"1 : 1",alt:["1:1","1/1","jednako"]},
@@ -740,7 +740,7 @@ export const qs = [
      "Alt metoda (provjera): provjeri da je prosjek > 14 (svi su) — 14,283 > 14 ✓"
    ,"Provjera: 14,2833·3 = 42,85 ✓; svaka od triju vrijednosti > 14 ✓","Tipičan propust: pomiješati aritmetičku sredinu i medijan; ili apsolutnu i relativnu frekvenciju."]
   },
-  {id:26.1,type:"sa",topic:"al",points:1,
+  {id:26.1,type:"sa",topic:"br",points:1,
    context:"Zadatak 26 (1. dio od 2):",
    q:"Napišite jedan broj koji pripada skupu ⟨3, 4⟩ ∩ [7/2, 5⟩.",
    sol:{ans:"k ∈ [7/2, 4⟩, npr. 3,7",alt:["3,7","3,8","3,9","[7/2, 4⟩"], solFormula:{type:"text", text:"k ∈ [[FRAC:7|2], 4⟩, npr. 3,7"}},

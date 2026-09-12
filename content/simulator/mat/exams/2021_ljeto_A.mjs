@@ -725,7 +725,7 @@ export const qs = [
      "Alt metoda (provjera): 5-12-13 je poznati pitagorin trojac. Vidjevši (25, 60) prepoznaj da je to (5, 12) · 5 → odmah znaš da je →u = (5, 12)."
    ,"Provjera grafom: nacrtaj krivulje i vizualno potvrdi sjecište / dodir / paralelnost.","Tipičan propust: krivo postaviti formulu udaljenosti dviju točaka — kvadrati razlika, ne razlika kvadrata."]
   },
-  {id:23.1,type:"sa",topic:"kompl",points:1,
+  {id:23.1,type:"sa",topic:"kompleks",points:1,
    context:"Zadatak 23 (1. dio od 2):",
    q:"Izračunajte apsolutnu vrijednost kompleksnoga broja  w = (2 − i) / i²⁰²¹.",
    sol:{ans:"|w| = √5 = 2,236...", alt:["√5","sqrt(5)","2,236","2,24"]},
@@ -980,7 +980,7 @@ export const qs = [
      "Alt metoda (provjera): geometrijski — y − x = arcsin(0,5) = π/6 ili 5π/6 (+ 2kπ). Kombinirajući s y = 2x − π/3 dobivaš x kao zbroj kontradikcija."
    ,"Provjera identitetom: sin²α + cos²α = 1 mora vrijediti za dobivene vrijednosti.","Tipičan propust: koristiti DEG mode kad treba RAD (ili obratno); pomiješati sin/cos/tan."]
   },
-  {id:29.1,type:"sa",topic:"anal",points:2,
+  {id:29.1,type:"sa",topic:"der",points:2,
    context:"Zadatak 29 (1. dio od 5):",
    q:"Odredite koordinate dirališta tangenata s koeficijentom smjera −5 na graf funkcije f(x) = x³ + 6x² − 5x + 2.",
    sol:{ans:"(−4, 54) i (0, 2)", alt:["(-4,54) i (0,2)","(-4,54),(0,2)"], ex:"Tangenta sa zadanim koeficijentom smjera k: postavi f′(x) = k i riješi za x; svako rješenje daje točku diraja (x, f(x))."},
@@ -1039,7 +1039,7 @@ export const qs = [
      "Alt metoda (provjera): omjer površina trokuta (k² = 4/9), ali zadatak je o linearnim mjerama → koristi k = 2/3. Suma geom. reda S∞ = a/(1−q) za |q| < 1."
    ,"Provjera: za aritmetički niz, razlika d je konstantna; za geometrijski, omjer q je konstantan.","Tipičan propust: aritmetički niz koristi razliku d, geometrijski koristi omjer q — ne miješati."]
   },
-  {id:29.4,type:"sa",topic:"anal",points:3,
+  {id:29.4,type:"sa",topic:"ostalo",points:3,
    context:"Zadatak 29 (4. dio od 5):",
    q:"Od žice duljine 120 cm napravljen je model kvadrata i model pravokutnika kojemu je jedna stranica trostruko dulja od druge. Kolika treba biti duljina stranice kvadrata da bi zbroj površina tih likova bio minimalan?",
    sol:{ans:"[FRAC:90|7] cm", alt:["90/7","90/7 cm","≈12,86"], ex:"Optimizacija s ograničenjem: izrazi jednu varijablu iz constrainta (žica), uvrsti u funkciju cilja, deriviraj ili traži tjeme."},
