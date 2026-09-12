@@ -9,12 +9,33 @@ const __MAT = { Q_IMAGES: {} };
 const{createElement:e,useState,useEffect,useMemo,useRef,Fragment}=React;
 function vc(n){return"var("+n+")";}
 let IS_PRO = false;
+// Per-subject branding/config singleton (Prirodni-engine family: mat/fiz/kem/bio).
+// Defaults preserve current mat behavior for any caller that never sets this.
+let SUBJECT = {
+  id: 'mat', name: 'Matematika', shortName: 'Matematika',
+  symbol: '∑', storagePrefix: 'mat_', appId: 'discere-mat',
+  navLabel: '∑ Matematika',
+  onboardingTitle: 'Što je Discere Matematika?',
+  shareTitle: '📐 Matematika  -  Državna matura',
+  shareLogo: '∑ Discere - Matematika · Državna matura',
+  docTitleTpl: function(razina){ return 'Matematika '+(razina||'A·B')+' — Simulator mature · maturiraj.hr'; },
+};
+// Rewrites the "mat_"-prefixed localStorage key literals scattered through this
+// file to the active subject's prefix, so fiz/kem/bio don't collide with mat
+// (or each other) in the same browser's localStorage. Call sites keep their
+// original "mat_..." literals; only the actual storage key is remapped.
+function __rk(k){ return (typeof k==='string' && k.indexOf('mat_')===0) ? SUBJECT.storagePrefix+k.slice(4) : k; }
+export function __setSubject(cfg){
+  SUBJECT = Object.assign({}, SUBJECT, cfg);
+  if (cfg && cfg.topicLabels) TOPIC_LABELS = cfg.topicLabels;
+  if (cfg && cfg.formule) FORMULE_DATA = cfg.formule;
+}
 const DS = (function(){
   const timers={};
   let linked=false;
-  function lg(k){try{return localStorage.getItem(k)}catch(e){return null}}
-  function ls(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-  function ld(k){try{localStorage.removeItem(k)}catch(e){}}
+  function lg(k){try{return localStorage.getItem(__rk(k))}catch(e){return null}}
+  function ls(k,v){try{localStorage.setItem(__rk(k),v)}catch(e){}}
+  function ld(k){try{localStorage.removeItem(__rk(k))}catch(e){}}
   function toParent(msg){try{if(typeof window!=="undefined"&&window.__DISCERE_NATIVE_SAVE__){window.__DISCERE_NATIVE_SAVE__(msg);return;}if(window.parent&&window.parent!==window)window.parent.postMessage(msg,"*");}catch(e){}}
   return {
     get(key){ return lg(key); },
@@ -32,7 +53,7 @@ try {
     else if(d.type==="DISCERE_HYDRATE"){ window.__DISCERE_HYDRATE__ = d.state||{}; try{window.dispatchEvent(new CustomEvent("discere-hydrate"));}catch(e){} }
   });
 } catch(e){}
-const TOPIC_LABELS={
+let TOPIC_LABELS={
   "br":   "Skupovi i brojevi",
   "skupovi":"Skupovi i brojevi",
   "al":   "Algebarski izrazi",
@@ -2302,7 +2323,7 @@ function FormulaModal({onClose,razina}){
       e("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:20}},
         e("div",null,
           e("div",{style:{fontFamily:"var(--fh)",fontSize:18,fontWeight:700}},"📐 Knjižica formula"),
-          e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:2}},"Matematika · "+(r==="A"?"viša razina (A)":"osnovna razina (B)")+" · identična onoj na maturi")
+          e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:2}},SUBJECT.name+" · "+(r==="A"?"viša razina (A)":"osnovna razina (B)")+" · identična onoj na maturi")
         ),
         e("button",{onClick:onClose,style:{background:"none",border:"none",fontSize:20,cursor:"pointer",color:"var(--muted)",padding:"4px 8px"}},"✕")
       ),
@@ -2690,7 +2711,7 @@ function AboutModal({onClose}){
               fontSize:22}},"∑"),
             e("div",null,
               e("div",{style:{fontWeight:700,color:"var(--bg,#060910)",fontSize:16,fontFamily:"var(--fh)"}},
-                "Discere Matematika"),
+                "Discere "+SUBJECT.name),
               e("div",{style:{fontSize:11,color:"rgba(255,255,255,.55)",marginTop:1}},
                 "Simulator državne mature · v2.0")
             )
@@ -3340,7 +3361,7 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
 
     // ── NAV ──
     e("div",{className:"nav nav-home"+(navScrolled?" nav-scrolled":"")},
-      e("span",{className:"ntitle"},"∑ Matematika"),
+      e("span",{className:"ntitle"},SUBJECT.navLabel),
       e("span",{className:"nbadge"},"Simulator mature"),
       e("span",{className:"nsp"}),
       
@@ -3480,7 +3501,7 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
         e("span",null,"\uD83D\uDCBE Sigurnosna kopija:"),
         e("button",{onClick:()=>{try{
             const keys=["mat_sim_v1","mat_bookmarks","mat_razina","mat_target_grade","mat_dark","mat_sound","mat_resume"];
-            const data={_app:"discere-mat",_v:1,_ts:new Date().toISOString()};
+            const data={_app:SUBJECT.appId,_v:1,_ts:new Date().toISOString()};
             keys.forEach(k=>{const v=DS.get(k);if(v!=null&&v!=="")data[k]=v;});
             const blob=new Blob([JSON.stringify(data,null,1)],{type:"application/json"});
             const a=document.createElement("a");a.href=URL.createObjectURL(blob);
@@ -3495,7 +3516,7 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
             const rd=new FileReader();
             rd.onload=()=>{try{
                 const data=JSON.parse(rd.result);
-                if(!data||data._app!=="discere-mat"||!data.mat_sim_v1) throw new Error("bad");
+                if(!data||data._app!==SUBJECT.appId||!data.mat_sim_v1) throw new Error("bad");
                 if(!window.confirm("Uvoz zamjenjuje sav trenutni napredak ovom kopijom. Nastaviti?")) return;
                 DS.set("mat_import_pending",JSON.stringify(data));
                 window.location.reload();
@@ -4282,8 +4303,8 @@ function ScratchPad({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,an
   const[showOfficial,setShowOfficial]=React.useState(false);
   const autoEq=React.useMemo(()=>extractSolverEq(qText),[]);
   React.useEffect(()=>{ if(autoEq && !((saved&&saved.solveInput)||"").trim()){ setSolveInput(autoEq); } },[]);
-  const[intro,setIntro]=React.useState(()=>{try{return !localStorage.getItem("mat_ws_intro_v1");}catch(e){return false;}});
-  function dismissIntro(){ try{localStorage.setItem("mat_ws_intro_v1","1");}catch(e){} setIntro(false); }
+  const[intro,setIntro]=React.useState(()=>{try{return !localStorage.getItem(__rk("mat_ws_intro_v1"));}catch(e){return false;}});
+  function dismissIntro(){ try{localStorage.setItem(__rk("mat_ws_intro_v1"),"1");}catch(e){} setIntro(false); }
   const colorRef=React.useRef(color), widthRef=React.useRef(width), toolRef=React.useRef(tool), axesRef=React.useRef(axes), gridRef=React.useRef(grid);
   React.useEffect(()=>{colorRef.current=color;},[color]);
   React.useEffect(()=>{widthRef.current=width;},[width]);
@@ -5035,15 +5056,15 @@ function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,
   const[showKbd,setShowKbd]=useState(false);
   const[scratchOpen,setScratchOpen]=useState(false);
   const[spAsk,setSpAsk]=useState(null);
-  const[spSeen,setSpSeen]=useState(()=>{try{return !!localStorage.getItem("mat_sp_seen");}catch(e){return true;}});
-  React.useEffect(()=>{ if(scratchOpen&&!spSeen){ try{localStorage.setItem("mat_sp_seen","1");}catch(e){} setSpSeen(true); } },[scratchOpen]);
+  const[spSeen,setSpSeen]=useState(()=>{try{return !!localStorage.getItem(__rk("mat_sp_seen"));}catch(e){return true;}});
+  React.useEffect(()=>{ if(scratchOpen&&!spSeen){ try{localStorage.setItem(__rk("mat_sp_seen"),"1");}catch(e){} setSpSeen(true); } },[scratchOpen]);
   React.useEffect(()=>{ document.body.classList.toggle("sp-docked", scratchOpen); return ()=>document.body.classList.remove("sp-docked"); },[scratchOpen]);
   const workspaceRef=React.useRef({});
   const[toolsOpen,setToolsOpen]=useState(false);
   const[navMore,setNavMore]=useState(false);
   const[vizOpen,setVizOpen]=useState(null);
   const[helpOpen,setHelpOpen]=useState(false);
-  const[warmup,setWarmup]=useState(()=>practice&&!examMode&&!resume&&typeof window!=="undefined"&&!localStorage.getItem("mat_warmup_off"));
+  const[warmup,setWarmup]=useState(()=>practice&&!examMode&&!resume&&typeof window!=="undefined"&&!localStorage.getItem(__rk("mat_warmup_off")));
   const[selfExpl,setSelfExpl]=useState({});
   const[zenSeen,setZenSeen]=useState(()=>{try{return DS.get("mat_zen_seen")==="1"}catch(e){return false}});
   const[showReview,setShowReview]=useState(false);
@@ -5933,7 +5954,7 @@ function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,
         e("button",{onClick:()=>setWarmup(false),style:{width:"100%",marginTop:14,padding:"13px",borderRadius:"var(--r)",border:"none",background:"var(--blue)",color:"#fff",fontSize:15,fontWeight:800,cursor:"pointer",fontFamily:"var(--fb)"}},"Spreman/na — kreni! →"),
         e("div",{style:{display:"flex",justifyContent:"center",gap:18,marginTop:12}},
           e("button",{onClick:()=>setWarmup(false),style:{background:"none",border:"none",color:"var(--muted)",fontSize:12,cursor:"pointer",fontFamily:"var(--fb)",textDecoration:"underline"}},"Preskoči"),
-          e("button",{onClick:()=>{try{localStorage.setItem("mat_warmup_off","1");}catch(e){}setWarmup(false);},style:{background:"none",border:"none",color:"var(--muted)",fontSize:12,cursor:"pointer",fontFamily:"var(--fb)",textDecoration:"underline"}},"Ne prikazuj više"))
+          e("button",{onClick:()=>{try{localStorage.setItem(__rk("mat_warmup_off"),"1");}catch(e){}setWarmup(false);},style:{background:"none",border:"none",color:"var(--muted)",fontSize:12,cursor:"pointer",fontFamily:"var(--fb)",textDecoration:"underline"}},"Ne prikazuj više"))
       )
     ),
 
@@ -6275,7 +6296,7 @@ function GuideScreen({onBack}){
 
   const sections=[
     {
-      id:"sto",icon:"📚",title:"Što je Discere Matematika?",
+      id:"sto",icon:"📚",title:SUBJECT.onboardingTitle,
       content:e("div",null,
         e("p",{style:{fontSize:13,color:"var(--muted)",lineHeight:1.7,marginBottom:14}},
           "Simulator državne mature iz matematike - osnovna (B) i viša (A) razina. Sva originalna pitanja NCVVO-a s korak-po-korak rješenjima i AI objašnjenjima."),
@@ -6420,7 +6441,7 @@ function GuideScreen({onBack}){
         e("div",{style:{position:"absolute",right:-8,bottom:-18,fontSize:100,
           fontFamily:"var(--fh)",opacity:.05,lineHeight:1,userSelect:"none"}},"∑"),
         e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".09em",textTransform:"uppercase",
-          color:"rgba(255,255,255,.5)",marginBottom:8}},"Discere Matematika"),
+          color:"rgba(255,255,255,.5)",marginBottom:8}},"Discere "+SUBJECT.name),
         e("div",{style:{fontFamily:"var(--fh)",fontSize:22,color:"var(--bg,#060910)",marginBottom:6}},
           "Sve što trebaš znati"),
         e("div",{style:{fontSize:13,color:"rgba(255,255,255,.65)",lineHeight:1.6}},
@@ -6546,7 +6567,7 @@ function DisclaimerModal({onClose}){
   return e("div",{className:"disclaimer-modal-overlay",onClick:onClose},
     e("div",{className:"disclaimer-modal",onClick:ev=>ev.stopPropagation()},
       e("div",{className:"dm-tag"},"ℹ️ O aplikaciji"),
-      e("h3",{style:{fontFamily:"var(--fh)",fontSize:20,marginBottom:10}},"Discere  -  Matematika"),
+      e("h3",{style:{fontFamily:"var(--fh)",fontSize:20,marginBottom:10}},"Discere  -  "+SUBJECT.name),
       e("p",{style:{fontSize:13,color:"var(--muted)",lineHeight:1.7}},
         "Simulator državne mature iz matematike  -  osnovna (B) i viša (A) razina. Trenutno sadrži ",
         e("strong",null,totalExams+" ispita"),
@@ -7575,7 +7596,7 @@ function PDFReportScreen({userData,onBack}){
         borderRadius:18,padding:"22px 24px",marginBottom:22,background:"linear-gradient(135deg,#0b1b3a 0%,#143a7a 50%,#2d6ad4 100%)"
       }},
         e("div",null,
-          e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".09em",textTransform:"uppercase",color:"rgba(255,255,255,.5)",marginBottom:4}},"Discere - Matematika"),
+          e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".09em",textTransform:"uppercase",color:"rgba(255,255,255,.5)",marginBottom:4}},"Discere - "+SUBJECT.name),
           e("div",{style:{fontFamily:"var(--fh)",fontSize:20,color:"var(--bg,#060910)",marginBottom:4}},"Izvještaj o napretku"),
           e("div",{style:{fontSize:12,color:"rgba(255,255,255,.6)"}},today)
         ),
@@ -7697,13 +7718,13 @@ function ShareCard({exam,pct,g,gc,cor,total,userData}){
   const levelName=LEVEL_NAMES[getLevel(userData?.xp||0)]||"Početnik";
 
   function copyText(){
-    const text=`📐 Matematika  -  Državna matura\n${exam.season==="session"?exam.label:exam.year+". "+exam.label} (${exam.razina==="A"?"Viša":"Osnovna"} razina)\n\nOcjena: ${g}/5 (${pct}%)\nTočnih: ${cor}/${total}\n\nVježbao/la na Discere 🎓`;
+    const text=`${SUBJECT.shareTitle}\n${exam.season==="session"?exam.label:exam.year+". "+exam.label} (${exam.razina==="A"?"Viša":"Osnovna"} razina)\n\nOcjena: ${g}/5 (${pct}%)\nTočnih: ${cor}/${total}\n\nVježbao/la na Discere 🎓`;
     navigator.clipboard?.writeText(text).then(()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);});
   }
 
   return e("div",{className:"share-card-wrap"},
     e("div",{className:"share-card-inner"},
-      e("div",{className:"share-card-logo"},"∑ Discere - Matematika · Državna matura"),
+      e("div",{className:"share-card-logo"},SUBJECT.shareLogo),
       e("div",{className:"share-grade-big"},gradeEmoji[g]||"🎓"),
       e("div",{style:{fontFamily:"var(--fh)",fontSize:56,color:"var(--bg,#060910)",lineHeight:1,marginBottom:6,textShadow:"0 2px 12px rgba(0,0,0,.3)"}},g+"/5"),
       e("div",{className:"share-pct"},pct+"% · "+cor+"/"+total+" točnih"),
@@ -9681,8 +9702,8 @@ function BrowseScreen({onBack}){
   );
 }
 function FlashcardScreen({onBack,userData,onUpdateUserData}){
-  // ── Baza formula i pojmova ──
-  const FORMULA_CARDS=[
+  // ── Baza formula i pojmova (SUBJECT.flashcards overrides for fiz/kem/bio) ──
+  const FORMULA_CARDS=SUBJECT.flashcards||[
     // TRIGONOMETRIJA
     {id:"t1",topic:"trig",front:"Što je osnovni trigonometrijski identitet?",back:"sin²x + cos²x = 1",hint:"Vrijedi za svaki kut x"},
     {id:"t2",topic:"trig",front:"Koliko iznosi sin 30°?",back:"sin 30° = 1/2",hint:"Upamti: 30-60-90 trokut"},
@@ -10471,7 +10492,7 @@ function App(){
   const[,_bumpResume]=useState(0);
   const[,_bumpPro]=useState(0);
   useEffect(()=>{const f=()=>_bumpPro(x=>x+1);window.addEventListener("discere-pro",f);return()=>window.removeEventListener("discere-pro",f);},[]);
-  useEffect(()=>{try{document.title="Matematika "+(userRazina||"A\u00b7B")+" \u2014 Simulator mature \u00b7 maturiraj.hr";}catch(e){}},[userRazina]);
+  useEffect(()=>{try{document.title=SUBJECT.docTitleTpl(userRazina);}catch(e){}},[userRazina]);
   const[badgeToast,setBadgeToast]=useState(null);
   function goPatchResult(patch){updateUserData(p=>{const h=[...(p.history||[])];if(!h.length)return p;h[h.length-1]={...h[h.length-1],...patch};return{...p,history:h};});}
   const pendingResumeRef=React.useRef(null);

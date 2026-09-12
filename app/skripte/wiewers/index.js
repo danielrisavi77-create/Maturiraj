@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { getMissingSubjectIds } from '@/lib/data/subjectCategories'
 
 // Lazy-load each viewer — compiled only when user opens that subject.
 // Without this, opening /skripte forces Turbopack to compile all 258 data
@@ -9,6 +10,7 @@ const KemijaViewer = dynamic(() => import('./kem/KemijaViewer'), { ssr: false })
 const EngleskiViewer = dynamic(() => import('./eng/EngleskiViewer'), { ssr: false })
 const SociologijaViewer = dynamic(() => import('./soc/SociologijaViewer'), { ssr: false })
 const MatematikaViewer = dynamic(() => import('./mat/MatematikaViewer'), { ssr: false })
+const StructuredSkriptaViewer = dynamic(() => import('./shared/StructuredSkriptaViewer'), { ssr: false })
 const BasicSubjectViewer = dynamic(() => import('./fallback/BasicSubjectViewer'), { ssr: false })
 
 const SUBJECT_VIEWERS = {
@@ -17,6 +19,9 @@ const SUBJECT_VIEWERS = {
   kem: KemijaViewer,
   eng: EngleskiViewer,
   soc: SociologijaViewer,
+  // Predmeti generirani preko scripts/gen-skripta.mjs (vidi lib/data/subjectCategories.js)
+  // svi dijele isti generički prikaz strukturiranog sadržaja.
+  ...Object.fromEntries(getMissingSubjectIds().map((id) => [id, StructuredSkriptaViewer])),
 }
 
 export function getSubjectViewer(subjectId) {
