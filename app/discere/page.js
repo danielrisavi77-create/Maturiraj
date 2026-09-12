@@ -1,58 +1,22 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/lib/hooks/useAuth'
 import { usePageTracking } from '@/lib/hooks/usePageTracking'
+import { DISCERE_SUBJECTS, getDiscereGroups } from '@/lib/discere/subject-registry'
 
-// minPlan: 'starter' = Standard or Pro; 'pro' = Pro only
-// When more subjects launch: first 3 active = 'starter', rest = 'pro'
-const PREDMETI_REG = [
-  { id:"hrv",   name:"Hrvatski jezik",          sym:"✍",  color:"#f87171", group:"Obvezni",         status:"active",  minPlan:"starter" },
-  { id:"mat",   name:"Matematika",              sym:"π",   color:"#818cf8", group:"Obvezni",         status:"active",  minPlan:"starter" },
-  { id:"eng",   name:"Engleski jezik",          sym:"En",  color:"#c084fc", group:"Strani jezici",   status:"active",  minPlan:"starter" },
-  { id:"nje",   name:"Njemački jezik",          sym:"De",  color:"#a78bfa", group:"Strani jezici",   status:"soon",    minPlan:"starter" },
-  { id:"fra",   name:"Francuski jezik",         sym:"Fr",  color:"#60a5fa", group:"Strani jezici",   status:"soon",    minPlan:"starter" },
-  { id:"tal",   name:"Talijanski jezik",        sym:"It",  color:"#34d399", group:"Strani jezici",   status:"soon",    minPlan:"starter" },
-  { id:"spn",   name:"Španjolski jezik",        sym:"Es",  color:"#fb923c", group:"Strani jezici",   status:"soon",    minPlan:"starter" },
-  { id:"rus",   name:"Ruski jezik",             sym:"Ru",  color:"#f87171", group:"Strani jezici",   status:"soon",    minPlan:"starter" },
-  { id:"lat",   name:"Latinski jezik",          sym:"Lat", color:"#ff6b2b", group:"Klasični jezici", status:"soon",    minPlan:"starter" },
-  { id:"grk",   name:"Starogrčki jezik",        sym:"Grk", color:"#fbbf24", group:"Klasični jezici", status:"soon",    minPlan:"starter" },
-  { id:"bio",   name:"Biologija",               sym:"⊕",   color:"#2dd4bf", group:"Prirodoslovno",   status:"soon",    minPlan:"starter" },
-  { id:"kem",   name:"Kemija",                  sym:"⚗",   color:"#34d399", group:"Prirodoslovno",   status:"soon",    minPlan:"starter" },
-  { id:"fiz",   name:"Fizika",                  sym:"⚡",  color:"#fbbf24", group:"Prirodoslovno",   status:"soon",    minPlan:"starter" },
-  { id:"inf",   name:"Informatika",             sym:"⌨",   color:"#818cf8", group:"Prirodoslovno",   status:"soon",    minPlan:"starter" },
-  { id:"pov",   name:"Povijest",                sym:"📜",  color:"#fb923c", group:"Društveno",       status:"soon",    minPlan:"starter" },
-  { id:"geo",   name:"Geografija",              sym:"◉",   color:"#38bdf8", group:"Društveno",       status:"soon",    minPlan:"starter" },
-  { id:"soc",   name:"Sociologija",             sym:"⚖",   color:"#ff6b2b", group:"Društveno",       status:"active",  minPlan:"starter" },
-  { id:"psi",   name:"Psihologija",             sym:"🧠",  color:"#a78bfa", group:"Društveno",       status:"soon",    minPlan:"starter" },
-  { id:"pol",   name:"Politika i gospodarstvo", sym:"🏛",  color:"#60a5fa", group:"Društveno",       status:"soon",    minPlan:"starter" },
-  { id:"filo",  name:"Filozofija",              sym:"φ",   color:"#f0abfc", group:"Društveno",       status:"soon",    minPlan:"starter" },
-  { id:"likov", name:"Likovna umjetnost",       sym:"🎨",  color:"#f472b6", group:"Umjetnički",      status:"soon",    minPlan:"starter" },
-  { id:"glaz",  name:"Glazbena umjetnost",      sym:"♪",   color:"#c084fc", group:"Umjetnički",      status:"soon",    minPlan:"starter" },
-  { id:"etika", name:"Etika",                   sym:"⚖",   color:"#6ee7b7", group:"Ostali izborni",  status:"soon",    minPlan:"starter" },
-  { id:"vjero", name:"Vjeronauk",               sym:"✝",   color:"#fcd34d", group:"Ostali izborni",  status:"soon",    minPlan:"starter" },
-]
-
-const etaMap = {
-  hrv:"travanj 2026.", eng:"travanj 2026.", bio:"svibanj 2026.",
-  kem:"svibanj 2026.", fiz:"svibanj 2026.", pov:"lipanj 2026.", geo:"lipanj 2026."
-}
-
-const predmetRoutes = {
-  hrv: '/discere/hrvatski/simulator',
-  eng: '/discere/engleski/simulator',
-  mat: '/discere/matematika',
-  soc: '/discere/sociologija',
-}
-
+// Subject list is driven by lib/discere/subject-registry.js (the canonical
+// registry ported from feat/all-subjects), which already encodes the four
+// existing hardcoded-active subjects (hrv/mat/eng/soc — capabilities.practice.status
+// === 'legacy_available') at their exact pre-existing routes, alongside every
+// canonical-runtime subject (bio/fiz/kem/pov/geo/etc.) gated by its own
+// capabilities.practice.status ('qa' | 'soon' | 'published'). This replaces
+// the previously hand-maintained PREDMETI_REG/etaMap/predmetRoutes arrays
+// while keeping the same visual design.
 export default function Discere() {
   usePageTracking('discere')
   const [activePredmet, setActivePredmet] = useState(null)
-  const [xp] = useState(0)
   const router = useRouter()
-  const { isPaid } = useAuth()
-
-  const groups = [...new Set(PREDMETI_REG.map(p => p.group))]
+  const groups = getDiscereGroups()
 
   return (
     <div style={{minHeight:"100vh", background:"var(--bg)", color:"var(--text)", fontFamily:"var(--fb)"}}>
@@ -73,66 +37,67 @@ export default function Discere() {
             </div>
 
             {groups.map(grp => {
-              const predmeti = PREDMETI_REG.filter(p => p.group === grp)
+              const predmeti = DISCERE_SUBJECTS.filter(subject => subject.group === grp)
               return (
                 <div key={grp} style={{marginBottom:36}}>
                   <div style={{display:"flex", alignItems:"center", gap:10, marginBottom:14}}>
                     <div style={{fontSize:11, fontWeight:700, letterSpacing:".1em", textTransform:"uppercase", color:"var(--muted)"}}>{grp}</div>
                     <div style={{flex:1, height:1, background:"var(--bdr)"}}/>
-                    <div style={{fontSize:11, color:"var(--muted)"}}>{predmeti.filter(p => p.status === "active").length}/{predmeti.length} dostupno</div>
+                    <div style={{fontSize:11, color:"var(--muted)"}}>{predmeti.filter(subject => ['legacy_available','published'].includes(subject.capabilities.practice.status)).length}/{predmeti.length} dostupno</div>
                   </div>
 
                   <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))", gap:10}}>
-                    {predmeti.map(p => {
-                      const isActive = p.status === "active"
+                    {predmeti.map(subject => {
+                      const isActive = ['legacy_available','published'].includes(subject.capabilities.practice.status)
+                      const isQa = subject.capabilities.practice.status === 'qa'
 
                       return (
                         <div
-                          key={p.id}
+                          key={subject.id}
                           onClick={() => {
                             if (!isActive) return
-                            setActivePredmet(p.id)
-                            const nextRoute = predmetRoutes[p.id]
-                            if (nextRoute) router.push(nextRoute)
+                            setActivePredmet(subject.id)
+                            if (subject.route) router.push(subject.route)
                           }}
                           style={{
                             padding:"18px 16px",
                             borderRadius:14,
-                            border:`1px solid ${activePredmet === p.id ? p.color+"88" : isActive ? p.color+"33" : "var(--bdr)"}`,
-                            background: activePredmet === p.id ? p.color+"12" : isActive ? "var(--s1)" : "rgba(255,255,255,.02)",
+                            border:`1px solid ${activePredmet === subject.id ? subject.color+"88" : isActive ? subject.color+"33" : "var(--bdr)"}`,
+                            background: activePredmet === subject.id ? subject.color+"12" : isActive ? "var(--s1)" : "rgba(255,255,255,.02)",
                             cursor: isActive ? "pointer" : "default",
                             transition:"all .2s",
                             position:"relative",
                             overflow:"hidden",
-                            opacity: isActive ? 1 : .55
+                            opacity: isActive ? 1 : isQa ? .72 : .55
                           }}
                           onMouseEnter={e => {
                             if (isActive) {
-                              e.currentTarget.style.borderColor = p.color+"66"
+                              e.currentTarget.style.borderColor = subject.color+"66"
                               e.currentTarget.style.transform = "translateY(-3px)"
-                              if (activePredmet !== p.id) e.currentTarget.style.background = p.color+"0d"
+                              if (activePredmet !== subject.id) e.currentTarget.style.background = subject.color+"0d"
                             }
                           }}
                           onMouseLeave={e => {
                             if (isActive) {
-                              e.currentTarget.style.borderColor = activePredmet === p.id ? p.color+"88" : p.color+"33"
+                              e.currentTarget.style.borderColor = activePredmet === subject.id ? subject.color+"88" : subject.color+"33"
                               e.currentTarget.style.transform = "none"
-                              e.currentTarget.style.background = activePredmet === p.id ? p.color+"12" : "var(--s1)"
+                              e.currentTarget.style.background = activePredmet === subject.id ? subject.color+"12" : "var(--s1)"
                             }
                           }}
                         >
                           {!isActive && (
                             <div style={{position:"absolute", top:10, right:10, fontSize:10, fontWeight:700, color:"var(--muted)", background:"var(--s2)", border:"1px solid var(--bdr)", borderRadius:99, padding:"2px 7px", letterSpacing:".06em"}}>
-                              USKORO
+                              {isQa ? 'U PROVJERI' : 'USKORO'}
                             </div>
                           )}
                           {isActive && (
                             <div style={{position:"absolute", top:10, right:10, width:8, height:8, borderRadius:"50%", background:"var(--green)", boxShadow:"0 0 6px var(--green)"}}/>
                           )}
-                          <div style={{fontSize:22, marginBottom:10, color:p.color}}>{p.sym}</div>
-                          <div style={{fontWeight:700, fontSize:13, lineHeight:1.3, marginBottom:4}}>{p.name}</div>
-                          {isActive && <div style={{fontSize:11, color:p.color, fontWeight:600, marginTop:4}}>Vježbaj →</div>}
-                          {!isActive && <div style={{fontSize:11, color:"var(--muted)", marginTop:4}}>ETA: {etaMap[p.id] || "2026./27."}</div>}
+                          <div style={{fontSize:22, marginBottom:10, color:subject.color}}>{subject.sym}</div>
+                          <div style={{fontWeight:700, fontSize:13, lineHeight:1.3, marginBottom:4}}>{subject.name}</div>
+                          {isActive && <div style={{fontSize:11, color:subject.color, fontWeight:600, marginTop:4}}>Vježbaj →</div>}
+                          {isQa && <div style={{fontSize:11, color:"var(--muted)", marginTop:4}}>Sadržaj prolazi provjeru</div>}
+                          {!isActive && !isQa && <div style={{fontSize:11, color:"var(--muted)", marginTop:4}}>Priprema se</div>}
                         </div>
                       )
                     })}
@@ -143,8 +108,7 @@ export default function Discere() {
 
             <div style={{marginTop:20, padding:"18px 22px", borderRadius:14, background:"var(--s1)", border:"1px solid var(--bdr)", fontSize:13, color:"var(--muted)", lineHeight:1.65}}>
               <strong style={{color:"var(--text)", display:"block", marginBottom:6}}>📦 Dodavanje novih predmeta</strong>
-              Svaki predmet se dodaje kao zaseban modul. Trenutno dostupni: Hrvatski, Engleski, Kemija i Sociologija.
-              Novi predmeti se dodaju postepeno — pratite obavijesti.
+              Trenutno dostupni: Hrvatski, Matematika, Engleski i Sociologija. Novi predmeti prolaze sadržajnu i tehničku provjeru prije objave.
             </div>
           </div>
         </div>

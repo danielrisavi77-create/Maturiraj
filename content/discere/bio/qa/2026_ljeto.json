@@ -1,0 +1,171 @@
+{
+  "subject": "bio",
+  "examKey": "2026_ljeto",
+  "status": "structural-pass",
+  "verifiedAt": null,
+  "checkedAt": "2026-09-11T15:48:41.158460+00:00",
+  "sourcePackageSha256": "ee284a4fa77a1675c2b7fe5b1c8c111a206b484765c6f833ecc3a9e50806e8ef",
+  "checks": {
+    "topLevelQuestions": 48,
+    "multipleChoiceQuestions": 35,
+    "maxPoints": 70,
+    "officialMultipleChoiceKeysMatched": 35,
+    "officialMultipleChoiceKeysTotal": 35,
+    "imageReferences": 20,
+    "imageFilesPrepared": 20,
+    "missingImageReferences": 0,
+    "automaticPossiblePoints": 55,
+    "manualRubricPoints": 15
+  },
+  "verificationScope": "Source package/exam/key hashes,35 MC keys,20 source-bound image crops; open prompts/keys36.1-48.3 reviewed;33 MC prompts and140 options matched normalized extraction and two tables visually checked. Open-answer semantic variants, all response formats, expert and real-auth/pilot acceptance remain pending.",
+  "assetManifest": "2026_ljeto-assets.json",
+  "publicationBlockers": [
+    "Official material requires free student preparation; current Discere route is paid.",
+    "Five-pilot runtime, persistence and mobile acceptance not complete.",
+    "Open-answer semantic variants, remaining response formats and independent expert review need approval."
+  ],
+  "historicalEvidence": {
+    "subject": "bio",
+    "examKey": "2026_ljeto",
+    "status": "verified",
+    "verifiedAt": "2026-08-06",
+    "sourcePackageSha256": "ee284a4fa77a1675c2b7fe5b1c8c111a206b484765c6f833ecc3a9e50806e8ef",
+    "checks": {
+      "topLevelQuestions": 48,
+      "multipleChoiceQuestions": 35,
+      "leafScoringItems": 70,
+      "maxPoints": 70,
+      "officialMultipleChoiceKeysMatched": 35,
+      "officialMultipleChoiceKeysTotal": 35,
+      "imageReferences": 20,
+      "imageFilesPrepared": 20,
+      "missingImageReferences": 0,
+      "orphanImageFiles": 0,
+      "automaticPossiblePoints": 54,
+      "manualRubricPoints": 16
+    },
+    "multipleChoiceKey": "CDDD BACB ABDD CBAC BDBC DBCD CCBBD DDDCD",
+    "manualRubricPolicy": "Složeni otvoreni odgovori koji zahtijevaju sadržajnu procjenu ne boduju se heurističkim string-matchom. Prikazuju se kao bodovi za ručnu provjeru prema službenoj rubrici.",
+    "notableVerification": [
+      {
+        "task": "37.1",
+        "check": "Službeni grafički ključ vizualno uspoređen s ispitom.",
+        "officialLayout": "Slijeva nadesno: D - A - B - C."
+      },
+      {
+        "task": "41.2",
+        "check": "Ponuđeni brojevi u UI-ju ostavljeni su neutralnim redom 1 - 2 - 3; službeni točan red je 3 - 1 - 2 kako se ključ ne bi otkrio prikazom."
+      }
+    ],
+    "assets": [
+      {
+        "file": "q03.webp",
+        "sha256": "de6375856280ab83f29fff98784913918d80432c98981f0f56bfa25b33788eea"
+      },
+      {
+        "file": "q04.webp",
+        "sha256": "6f5ee838437fb840e3cc5cced49f3170e6a417d392f2cd01039ad7c6e5ecafcc"
+      },
+      {
+        "file": "q09.webp",
+        "sha256": "5c806d58e57ec03368a49d4add896bfdfa0cd5a030a59a7183796a65928cbc68"
+      },
+      {
+        "file": "q10.webp",
+        "sha256": "bd10c9085037cfc324e8deb963416a9971aee49633529b1c84db0c3b0f9e8e8f"
+      },
+      {
+        "file": "q11.webp",
+        "sha256": "8a7262567b785c55ed6043637fa9695238fd318030f9cc6e1906b5a47ffb0b65"
+      },
+      {
+        "file": "q14.webp",
+        "sha256": "1ec10f5d35ca260d031442d4a5d9aa4e4455dcaaf3aabd9ad9a39df2b5b9dc48"
+      },
+      {
+        "file": "q17.webp",
+        "sha256": "0b6adc5d0b2a55c62c0b57b727906a48010a63c57e6a0dbd155c3d7f207ce585"
+      },
+      {
+        "file": "q22.webp",
+        "sha256": "4179296a3b77eaff02faf9de7604e3dbb652aaac3e368b91930f5d354013b72b"
+      },
+      {
+        "file": "q27.webp",
+        "sha256": "680ae910932c108c01a407b175dbef42099be330be1732b91f83f5510e006eb2"
+      },
+      {
+        "file": "q28.webp",
+        "sha256": "6e47423cdd8c1e9800dc40368b27cd36db5a471959f0a81f22ee08ef5b70e3f5"
+      },
+      {
+        "file": "q29.webp",
+        "sha256": "2431bc9aa0bc68d94eb895e9519a5eb077d0073f231aed0659a0d615b84577ba"
+      },
+      {
+        "file": "q31.webp",
+        "sha256": "0581bcfdbeed05416937aa3d40998fa8dc6baf3aa6757a1701a6800153002747"
+      },
+      {
+        "file": "q35.webp",
+        "sha256": "50f99725a5f754729c8bd4b9d83c29e7f1bf8edaa0235028f6db9cdebb1df229"
+      },
+      {
+        "file": "q36.webp",
+        "sha256": "b9afce2010715e75679af755010dfa5d5453d15d8a792d6d9810c584685a78c4"
+      },
+      {
+        "file": "q37.webp",
+        "sha256": "4a5687337a1085a1b2be8af967911f1a1d88571017ad065b4bc3dfd057f3c9b9"
+      },
+      {
+        "file": "q39.webp",
+        "sha256": "37456920c34d7f4b2b6bd28800219a66d78af64ea157f8c7a34dcc7be29535c7"
+      },
+      {
+        "file": "q40.webp",
+        "sha256": "b81316cc3421ea11af82337a6740e3e624e508deae3bbf86b4d45a2a5b7e0b19"
+      },
+      {
+        "file": "q41.webp",
+        "sha256": "a52e295001e74c4109298193043c38fd3b1791de5007d124cffd7bdbf79bd15c"
+      },
+      {
+        "file": "q44.webp",
+        "sha256": "98793c3997601ea46b0e8ff8a27ee0e7b456c204ee946692dbd5bd8e451f3635"
+      },
+      {
+        "file": "q45.webp",
+        "sha256": "08bb481da4e8745d7c132d9ba095606cc4becfa6fc03ec4fe2f70436b84edf55"
+      }
+    ],
+    "note": "Previous-session claims retained for traceability, not accepted as current verification. Asset hashes superseded by the source-bound crop manifest."
+  },
+  "sourceReviewCheckpoints": [
+    {
+      "task": "37.1",
+      "evidence": "docs/learning/evidence/bio-cladogram-source-fix.json",
+      "change": "Graphical official key represented by four fill fields, one all-or-nothing point; automatic55/manual15; full source QA still pending."
+    },
+    {
+      "tasks": "36.1-48.3",
+      "evidence": "docs/learning/evidence/bio-open-source-wording.json",
+      "change": "35 official key transcriptions with PDF page references; 10 child prompts and shortened group introductions restored. Matching variants explicitly separate. Full MC text/response-format audit and publication approval remain pending."
+    },
+    {
+      "tasks": "1-35",
+      "evidence": "docs/learning/evidence/bio-mc-source-review.json",
+      "change": "33 prompts and140 options match normalized extraction; two table transcriptions visually checked and task6 skeleton cells corrected. All MC keys and budgets unchanged; full acceptance remains pending."
+    },
+    {
+      "tasks": "44.1,47.1,48.1",
+      "evidence": "docs/learning/evidence/bio-answer-variants.json",
+      "change": "Explicit equivalent pair-order/notation and terminal-period variants accepted; incomplete/wrong cases rejected; source keys and55/15 budget unchanged."
+    },
+    {
+      "tasks": "3,6,39",
+      "evidence": "docs/learning/evidence/bio-table-stimuli.json",
+      "change": "Verified source values rendered as shared captioned tables with row/column headers. Digital captions and flattened header labels disclosed; keys, IDs and scoring unchanged. Source version v6."
+    }
+  ]
+}

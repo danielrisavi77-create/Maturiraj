@@ -1,0 +1,23 @@
+.workbench { margin: 22px 0; color: var(--text); }
+.grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; align-items: start; }
+.panel { min-width: 0; padding: 18px; border: 1px solid var(--bdr,var(--border)); background: var(--s2,var(--surface-2)); border-radius: 14px; }
+.panel h3 { margin: 0 0 8px; font-family: var(--subject-content-font,Georgia,serif); font-size: 22px; }
+.eyebrow { color: var(--subject-accent,var(--blue)); font: 700 11px/1.5 sans-serif; text-transform: uppercase; letter-spacing: .09em; margin: 0 0 8px; }
+.note { color: var(--muted); font-size: 14px; line-height: 1.65; }
+.poem { margin: 20px 0 10px; padding: 0; border: 0; min-width: 0; }
+.legend { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+.line { display: grid; grid-template-columns: 18px 20px minmax(0,1fr); gap: 8px; align-items: start; padding: 10px 4px; min-height: 44px; box-sizing: border-box; font-family: var(--subject-content-font,Georgia,serif); font-size: 16px; line-height: 1.6; border-radius: 6px; cursor: pointer; }
+.line[data-stanza-start] { margin-top: 14px; }
+.line:has(input:checked) { background: var(--subject-accent-soft,rgba(210,160,70,.13)); }
+.line input { margin: 5px 0 0; accent-color: var(--subject-accent,var(--blue)); width: 17px; height: 17px; }
+.number { color: var(--muted); font: 12px/26px sans-serif; }
+.field { display: grid; gap: 8px; font-size: 14px; font-weight: 700; margin: 16px 0; }
+.field textarea { width: 100%; min-width: 0; box-sizing: border-box; padding: 12px; border-radius: 10px; border: 1px solid var(--bdr,var(--border)); background: var(--s1,var(--surface)); color: var(--text); font: 400 16px/1.65 var(--subject-content-font,Georgia,serif); resize: vertical; }
+.annotation { margin: 16px 0; padding-top: 4px; border-top: 1px solid var(--bdr,var(--border)); }
+.annotation blockquote { margin: 12px 0; padding-left: 12px; border-left: 3px solid var(--subject-accent,var(--blue)); font: 16px/1.65 var(--subject-content-font,Georgia,serif); }
+.annotation cite { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.button { min-height: 44px; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--subject-accent-border,var(--bdr)); background: var(--subject-accent-soft,var(--s1)); color: var(--text); font: 700 14px/1.5 sans-serif; cursor: pointer; }
+.button:disabled { opacity: .6; cursor: default; }
+.link { display: inline-block; padding: 10px 0; min-height: 44px; box-sizing: border-box; color: var(--subject-accent,var(--blue)); text-decoration: underline; }
+.workbench :is(button,input,textarea,a):focus-visible { outline: 2px solid var(--subject-accent,var(--blue)); outline-offset: 3px; }
+@media(max-width:720px) { .grid { grid-template-columns: minmax(0,1fr); } .panel { padding: 14px; } }

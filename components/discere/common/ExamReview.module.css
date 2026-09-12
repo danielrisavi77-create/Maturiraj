@@ -1,0 +1,17 @@
+.review { max-width: 920px; margin: 32px auto 0; }
+.review > h2 { font-family: var(--fh); font-size: 26px; margin: 0 0 8px; }
+.intro, .reference { color: var(--muted); line-height: 1.65; }
+.intro { font-size: 14px; margin: 0 0 20px; }
+.task { margin: 12px 0; border: 1px solid var(--bdr); border-radius: 14px; background: var(--s1); }
+.summary { padding: 16px 20px; min-height: 24px; font-weight: 700; cursor: pointer; border-radius: 14px; }
+.summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.body { padding: 4px 20px 20px; overflow-wrap: anywhere; }
+.label { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: 11px; font-weight: 700; }
+.key { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--bdr); }
+.key h3 { font-size: 16px; margin: 0 0 12px; }
+.text { white-space: pre-wrap; line-height: 1.7; font-size: 14px; margin: 10px 0; }
+.pending { padding: 12px 14px; background: var(--s2); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.65; }
+.reference { font-size: 12px; }
+.explanation { margin-top: 18px; padding: 16px; border-radius: 10px; background: var(--s2); }
+.explanation h4 { font-size: 13px; margin: 0; }
+@media (max-width: 480px) { .body { padding: 4px 16px 16px; } .summary { padding: 16px; } }

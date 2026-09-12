@@ -1,0 +1,1344 @@
+{
+  "schemaVersion": 1,
+  "scope": "Registered source availability only; curriculum, media and runtime acceptance are not certified",
+  "subjects": [
+    {
+      "id": "bio",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "bio",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/BIO-2026.pdf",
+          "sourceSha256": "df0fed4eb687451efb707fe646a5e31248cce369889a11186a83482b0a6f96d1"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 6,
+          "sourceAvailable": 1,
+          "published": 0,
+          "status": "legacy_available"
+        },
+        "practice": {
+          "status": "qa"
+        },
+        "exams": {
+          "status": "qa"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 1,
+          "sourceAvailable": 1
+        }
+      ],
+      "unassignedLevelLessons": 5,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "eng",
+      "levels": [
+        "A",
+        "B"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "eng",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/ENG-2026.pdf",
+          "sourceSha256": "a4a267b33b7f0226d285e3aa94de4cec26a02f33b2c593d4b3fae7d5e2ced0e9"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 37,
+          "sourceAvailable": 37,
+          "published": 0,
+          "status": "legacy_available"
+        },
+        "practice": {
+          "status": "legacy_available"
+        },
+        "exams": {
+          "status": "legacy_available"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "A",
+          "identified": 21,
+          "sourceAvailable": 21
+        },
+        {
+          "level": "B",
+          "identified": 16,
+          "sourceAvailable": 16
+        }
+      ],
+      "unassignedLevelLessons": 0,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "eti",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "eti",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/ETI-2026.pdf",
+          "sourceSha256": "9c7cd58da275c992bcc5e2ee411e0917f52ce22d64358f2b2eb73546e78c6f1f"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 3,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 3,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "fil",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "fil",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/FIL-2026.pdf",
+          "sourceSha256": "e86cb9ff31094407d6e2de71cf56d2e649f441e9975de1525085016da7ec2678"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 4,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 4,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "fiz",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "fiz",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/FIZ-2026.pdf",
+          "sourceSha256": "43c37dd85a539e67d9d97684a25438ecb4f64fb9258a813f0f1d90e478a958c1"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 8,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 8,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "fra",
+      "levels": [
+        "A",
+        "B"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "fra",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/FRA-2026.pdf",
+          "sourceSha256": "3d714ca79fb638fa35487da7d991dfdc113fda6ad7ff2d4b1567ddbae5f8cfb5"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 4,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "A",
+          "identified": 0,
+          "sourceAvailable": 0
+        },
+        {
+          "level": "B",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 4,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "geo",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "geo",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/GEO-2026.pdf",
+          "sourceSha256": "39b3c52906d8e82dd5966c77ddd0ca77e48d3084fb56e4c273649cde96234943"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 4,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 4,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "gla",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "gla",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/GLU-2026.pdf",
+          "sourceSha256": "6721a7e6b16c9995cf83da86a7db99d676eeb9c63246db2c9327d917297fbd7e"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 3,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 3,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "grk",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "grk",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/GRK-2026.pdf",
+          "sourceSha256": "056823a4236fb25fd985994782018e5d239e29f7a258883756263f322c36731a"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 2,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 2,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "hrv",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "hrv",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/HRV-2026.pdf",
+          "sourceSha256": "1e233a3df6994faee2937fc88ec3e3991ce18c1b9e898d74c38a40642033791e"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 29,
+          "sourceAvailable": 29,
+          "published": 0,
+          "status": "legacy_available"
+        },
+        "practice": {
+          "status": "legacy_available"
+        },
+        "exams": {
+          "status": "legacy_available"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 29,
+          "sourceAvailable": 29
+        }
+      ],
+      "unassignedLevelLessons": 0,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "inf",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "inf",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/INF-2026.pdf",
+          "sourceSha256": "77afd67268c727c23080492a32535fd4e9db6020599ef2fdf7f359dc63b1e2dd"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 5,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 5,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "kem",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "kem",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/KEM-2026.pdf",
+          "sourceSha256": "cb81c78df578ecfb814d9c251a6ab48a6cc56db9e1e48801a0d4c48c09a7550b"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 40,
+          "sourceAvailable": 5,
+          "published": 0,
+          "status": "legacy_available"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 40,
+          "sourceAvailable": 5
+        }
+      ],
+      "unassignedLevelLessons": 0,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "lat",
+      "levels": [
+        "A",
+        "B"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "lat",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/LAT-2026.pdf",
+          "sourceSha256": "0c798f04d1a66faaca015b5c0c724aff5ffc30f6bc54da39fd97602e88e41bec"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 2,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "A",
+          "identified": 0,
+          "sourceAvailable": 0
+        },
+        {
+          "level": "B",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 2,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "lik",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "lik",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/LIU-2026.pdf",
+          "sourceSha256": "67b3489dfa90627d179a7305265f71d2260f8f9a26e66a731f516d658f0227ff"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 3,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 3,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "log",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "log",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/LOG-2026.pdf",
+          "sourceSha256": "8fe51c0ab62d814862506e82fdcbb370790b3e799f04bf355c07fbee9bb57197"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 3,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 3,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "mat",
+      "levels": [
+        "A",
+        "B"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "mat",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/MAT-2026.pdf",
+          "sourceSha256": "949c4531870f707417ca8356d8e5e5ed41f989f6b708731b0415f2706116de80"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 46,
+          "sourceAvailable": 46,
+          "published": 0,
+          "status": "legacy_available"
+        },
+        "practice": {
+          "status": "legacy_available"
+        },
+        "exams": {
+          "status": "legacy_available"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "A",
+          "identified": 24,
+          "sourceAvailable": 24
+        },
+        {
+          "level": "B",
+          "identified": 22,
+          "sourceAvailable": 22
+        }
+      ],
+      "unassignedLevelLessons": 0,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "nje",
+      "levels": [
+        "A",
+        "B"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "nje",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/NJEM-2026.pdf",
+          "sourceSha256": "3f52c447a5c972ddfe01b1e2fc17aee4487a67d2dd349c9e5706bdd479728064"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 5,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "A",
+          "identified": 0,
+          "sourceAvailable": 0
+        },
+        {
+          "level": "B",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 5,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "pig",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "pig",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/PIG-2026.pdf",
+          "sourceSha256": "2fbf95d253c209de2496ddcd485ac2871ade8f3719a6b1d0f287ba20c86c18d3"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 4,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 4,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "pov",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "pov",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/POV-2026.pdf",
+          "sourceSha256": "7b13cdf98f22c76bfa73daab4214ccff167760520e93d69c4f0a012a60ec57cd"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 4,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 4,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "psi",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "psi",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/PSI-2026.pdf",
+          "sourceSha256": "6d0d55f956e225712757e8bddfb5b563cc34fffeb3b3581e48a5046aba4d237b"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 5,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 5,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "soc",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "soc",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/SOC-2026.pdf",
+          "sourceSha256": "1890de5ad2f766e67f0fc47d3f4e17a45bd57e73d266dee8f7fcabb2dac6ecd3"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 1,
+          "sourceAvailable": 1,
+          "published": 0,
+          "status": "legacy_available"
+        },
+        "practice": {
+          "status": "legacy_available"
+        },
+        "exams": {
+          "status": "legacy_available"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 1,
+          "sourceAvailable": 1
+        }
+      ],
+      "unassignedLevelLessons": 0,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "spn",
+      "levels": [
+        "A",
+        "B"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "spn",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/SPA-2026.pdf",
+          "sourceSha256": "91e4bd5bad84f09e0c4f515b20aa1eb259e9380b0381a33d4ddb6d1033793706"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 4,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "A",
+          "identified": 0,
+          "sourceAvailable": 0
+        },
+        {
+          "level": "B",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 4,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "tal",
+      "levels": [
+        "A",
+        "B"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "tal",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/TAL-2026.pdf",
+          "sourceSha256": "e6f4b8ce0fba96dd801c3105fd7c2afbf3f48c73fc0bc7a822663207d5f800ea"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 4,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "A",
+          "identified": 0,
+          "sourceAvailable": 0
+        },
+        {
+          "level": "B",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 4,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    },
+    {
+      "id": "vje",
+      "levels": [
+        "single"
+      ],
+      "catalogue": {
+        "targetYear": "2026/2027",
+        "basisYear": "2025/2026",
+        "status": "unverified",
+        "basisReview": {
+          "status": "levels_and_duration_reviewed",
+          "evidence": "docs/learning/evidence/t02-catalogue-basis.json",
+          "subjectId": "vje",
+          "sourceUrl": "https://www.ncvvo.hr/wp-content/uploads/2025/09/VJE-2026.pdf",
+          "sourceSha256": "0d63a49344b755a2d09ff0adb7155efa0b46211399b87adc951e23b49b127246"
+        }
+      },
+      "capabilities": {
+        "lessons": {
+          "identified": 3,
+          "sourceAvailable": 0,
+          "published": 0,
+          "status": "missing"
+        },
+        "practice": {
+          "status": "missing"
+        },
+        "exams": {
+          "status": "missing"
+        },
+        "review": {
+          "status": "unverified"
+        },
+        "audio": {
+          "status": "unverified"
+        }
+      },
+      "byLevel": [
+        {
+          "level": "single",
+          "identified": 0,
+          "sourceAvailable": 0
+        }
+      ],
+      "unassignedLevelLessons": 3,
+      "questions": null,
+      "media": null,
+      "outcomes": null,
+      "blockers": [
+        "catalogue_outcomes_unverified",
+        "content_and_runtime_acceptance_pending",
+        "question_media_review_inventory_pending"
+      ]
+    }
+  ]
+}

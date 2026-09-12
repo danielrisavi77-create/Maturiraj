@@ -29,3 +29,25 @@ function pickNewestPerRazina(ex: any[]) {
   for (const e of ex) if (!n[e.razina] || e.key > n[e.razina].key) n[e.razina] = e
   return Object.values(n)
 }
+
+// --- Canonical-registry (lib/discere/subject-registry.js) tier gating ---
+// bio/fiz/kem/pov/geo/etc. go through the generic Discere engine
+// (components/discere/common/GenericSubjectApp) instead of MatEngineCore's
+// SUBJECT singleton, so they don't use the PrirodniSubject/INDEXES map
+// above. They still need the SAME real entitlement semantics fixed in
+// useAuth (see agents/bugs.md): `isPaid` — not a destructured `profile` —
+// gates all of Discere, `isPro` gates Pro-only features. This is enforced
+// at the route boundary by <PlanGate> (app/discere/hrvatski/simulator/PlanGate.jsx,
+// reused by app/discere/[subject]/page.jsx) which reads `isPaid` straight
+// from useAuth(); canAccessCanonicalSubject exists so any code that needs to
+// answer "can this tier open this canonical subject" without mounting a
+// component (e.g. server-side checks, tests) can reuse one source of truth
+// instead of re-deriving it.
+export function canAccessCanonicalSubject(isPaid: boolean, subjectStatus: 'active' | 'qa' | 'soon'): boolean {
+  if (!isPaid) return false
+  if (subjectStatus === 'soon') return false
+  // 'qa' subjects (e.g. Biologija) are additionally restricted to
+  // non-production at the route level (app/discere/[subject]/page.jsx) —
+  // this helper only answers the tier question, not the environment one.
+  return subjectStatus === 'active' || subjectStatus === 'qa'
+}

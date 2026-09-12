@@ -1,0 +1,18 @@
+{
+  "subject": "bio",
+  "count": 1,
+  "exams": [
+    {
+      "key": "2026_ljeto",
+      "year": 2026,
+      "season": "ljeto",
+      "level": null,
+      "label": "Biologija - 1. rok 2026.",
+      "durationSec": 9000,
+      "questionCount": 48,
+      "maxPoints": 70,
+      "file": "exams/2026_ljeto.mjs",
+      "qaStatus": "structural-pass"
+    }
+  ]
+}

@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "discere:validate": "tsx scripts/discere-validate.mjs",
     "game:content-report": "tsx scripts/game-content-report.ts",
     "supabase:start": "supabase start --ignore-health-check",
     "supabase:stop": "supabase stop",
@@ -42,6 +43,7 @@
     "react-window": "^1.8.11",
     "recharts": "^3.8.1",
     "semver": "^7.7.4",
+    "sharp": "0.34.5",
     "stripe": "^20.4.1",
     "web-push": "^3.6.7"
   },
