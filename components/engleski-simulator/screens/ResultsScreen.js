@@ -110,6 +110,7 @@ export function Results({
           e('h2', { style: { margin: 0 } }, exam.year + '. ' + exam.label),
           examMode && e('span', { className: 'exam-mode-chip' }, 'Simulacija'),
         ),
+        e('div', { style: { fontSize: 11, color: 'var(--muted)', marginBottom: 6 } }, 'Orijentacijska ocjena — NCVVO pragove određuje za svaki rok. Pisanje nije bodovano.'),
         e('p', { style: { color: 'var(--muted)', fontSize: 14, marginTop: 6 } },
           (() => {
             const history = (userData?.history || [])

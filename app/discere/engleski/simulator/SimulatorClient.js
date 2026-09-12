@@ -1,5 +1,5 @@
 'use client'
-import '../../../engleski-simulator/simulator.css'
+import './simulator.css'
 import dynamic from 'next/dynamic'
 
 // Loaded client-side only — simulator uses localStorage, timers, fetch

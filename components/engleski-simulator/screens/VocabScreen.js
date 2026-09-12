@@ -22,7 +22,9 @@ export default function VocabScreen({ userData, onBack }) {
   const [input, setInput] = useState('')
   const [answers, setAnswers] = useState({})
   const [showFb, setShowFb] = useState(false)
-  const [startTime] = useState(Date.now())
+  const [startTime] = useState(() => Date.now())
+  // Postavlja se u handleru (goNext) kad kviz završi — ne izravno u tijelu komponente
+  const [endTime, setEndTime] = useState(null)
 
   if (!qs.length) return (
     <div className="eng-sim">
@@ -61,7 +63,7 @@ export default function VocabScreen({ userData, onBack }) {
           <ul style={{ margin: 0, paddingLeft: 20, color: 'var(--muted)', lineHeight: 1.8 }}>
             <li>Pročitaj rečenicu i upiši nedostajuću riječ</li>
             <li>Provjeri odgovor i nastavi dalje</li>
-            <li>Klikni "Pokaži savjet" za pomoć</li>
+            <li>Klikni &quot;Pokaži savjet&quot; za pomoć</li>
           </ul>
         </div>
         <button className="btn btn-primary" style={{ width: '100%', padding: '14px' }} onClick={() => setMode('quiz')}>
@@ -77,7 +79,7 @@ export default function VocabScreen({ userData, onBack }) {
       return a && chk(q, a) === true
     }).length
     const pct = Math.round(correct / qs.length * 100)
-    const elapsed = Math.round((Date.now() - startTime) / 1000)
+    const elapsed = Math.round((endTime - startTime) / 1000)
     const mins = Math.floor(elapsed / 60), secs = elapsed % 60
     const gc = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--gold)' : 'var(--red)'
     return (
@@ -126,7 +128,10 @@ export default function VocabScreen({ userData, onBack }) {
     setShowFb(false)
     setInput('')
     if (idx < qs.length - 1) setIdx(idx + 1)
-    else setMode('results')
+    else {
+      setEndTime(Date.now())
+      setMode('results')
+    }
   }
 
   const isCorrect = chk(q, ans) === true

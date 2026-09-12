@@ -1,6 +1,7 @@
 'use client'
-import React, { createElement as e, useState, useEffect, useRef, Fragment } from 'react'
+import React, { createElement as e, useState, useEffect, Fragment } from 'react'
 import { FocusTrap } from '../components/SimSharedUI'
+import { DAILY_COUNT } from './DailyChallengeScreen'
 
 export function DisclaimerModal({ onClose }) {
   return e('div', { className: 'disclaimer-modal-overlay', onClick: ev => { if (ev.target === ev.currentTarget) onClose() } },
@@ -42,8 +43,6 @@ export function Home({
   const [homeRazina, setHomeRazina] = useState('sve')
   const [homeListState, setHomeListState] = useState({ open: false, ver: 0 })
   const examList = Object.values(examsMap || {})
-  const osnoRef = useRef(null)
-  const visaRef = useRef(null)
 
   function YearGroup({ year, yearExams, razina, defaultOpen, userData: ud }) {
     const ssKey = 'ygopen_' + razina + '_' + year
@@ -108,7 +107,7 @@ export function Home({
         e('div', { className: 'xp-label' }, e('span', null, 'Razina ' + (getLevel(userData.xp || 0) + 1)), xpToNext(userData.xp || 0) > 0 && e('span', null, xpToNext(userData.xp || 0) + ' XP do sljedeće razine')),
       ),
       e('div', { className: 'razine-grid', style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 32 } },
-        e('button', { className: 'razina-card osnovna', onClick: () => osnoRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), type: 'button', 'aria-label': 'Osnovna razina — skoči na pregled ispita' },
+        e('button', { className: 'razina-card osnovna', onClick: () => document.getElementById('exams-osnovna')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), type: 'button', 'aria-label': 'Osnovna razina — skoči na pregled ispita' },
           e('div', { className: 'razina-card-header' },
             e('span', { className: 'razina-card-tag osnovna' }, 'B razina'),
             e('span', { className: 'razina-card-level' }, 'B2'),
@@ -120,7 +119,7 @@ export function Home({
             e('span', { className: 'razina-card-cta' }, 'Odaberi ispit →'),
           ),
         ),
-        e('button', { className: 'razina-card visa', onClick: () => visaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), type: 'button', 'aria-label': 'Viša razina — skoči na pregled ispita' },
+        e('button', { className: 'razina-card visa', onClick: () => document.getElementById('exams-visa')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), type: 'button', 'aria-label': 'Viša razina — skoči na pregled ispita' },
           e('div', { className: 'razina-card-header' },
             e('span', { className: 'razina-card-tag visa' }, 'A razina'),
             e('span', { className: 'razina-card-level' }, 'C1'),
@@ -155,7 +154,7 @@ export function Home({
             e('div', { className: 'alati-card-ico' }, '⚖'),
             e('div', { className: 'alati-card-body' },
               e('div', { className: 'alati-card-title' }, 'Usporedi ispite'),
-              e('div', { className: 'alati-card-desc' }, 'Ljetni vs jesenski, osnovna vs viša, ja vs NCE'),
+              e('div', { className: 'alati-card-desc' }, 'Ljetni vs jesenski, osnovna vs viša, ja vs NCVVO'),
             ),
             e('div', { className: 'alati-card-arrow' }, '→'),
           ),
@@ -189,7 +188,7 @@ export function Home({
             e('div', { className: 'alati-sm-ico alati-ico-green' }, '⚡'),
             e('div', { className: 'alati-sm-body' },
               e('div', { className: 'alati-sm-title' }, 'Dnevni izazov'),
-              e('div', { className: 'alati-sm-sub' }, '5 pitanja danas'),
+              e('div', { className: 'alati-sm-sub' }, DAILY_COUNT + ' pitanja danas'),
             ),
           ),
           e('button', {
@@ -270,22 +269,24 @@ export function Home({
           const isFiltered = !!s
           const noResults = osnovniYears.length === 0 && visaYears.length === 0
 
-          function RazinaGroup({ label, color, years, exams, razina, anchorId, sectionRef, globalOpen, userData: ud }) {
+          function RazinaGroup({ label, color, years, exams, razina, anchorId, globalOpen, userData: ud }) {
             const [allOpen, setAllOpen] = useState(false)
             const [resetKey, setResetKey] = useState(0)
+            const globalOpenVer = globalOpen?.ver
+            const globalOpenOpen = globalOpen?.open
             useEffect(() => {
-              if (globalOpen && globalOpen.ver > 0) {
-                setAllOpen(globalOpen.open)
+              if (globalOpenVer > 0) {
+                setAllOpen(globalOpenOpen)
                 setResetKey(k => k + 1)
               }
-            }, [globalOpen?.ver, globalOpen?.open])
+            }, [globalOpenVer, globalOpenOpen])
             function toggleAll() {
               setAllOpen(o => !o)
               setResetKey(k => k + 1)
             }
             return e(Fragment, null,
               e('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, marginTop: visaYears.length > 0 && razina === 'osnovna' ? 20 : 0 } },
-                e('div', { id: anchorId, ref: sectionRef, className: 'exhdr-visa', style: { color, margin: 0, flex: 1 } }, label),
+                e('div', { id: anchorId, className: 'exhdr-visa', style: { color, margin: 0, flex: 1 } }, label),
                 e('div', { style: { display: 'flex', gap: 6 } },
                   e('button', { className: 'exams-toggle-btn', onClick: toggleAll }, allOpen ? 'Zatvori sve ▲' : 'Otvori sve ▼'),
                 ),
@@ -321,7 +322,6 @@ export function Home({
               exams: visa,
               razina: 'visa',
               anchorId: 'exams-visa',
-              sectionRef: visaRef,
               globalOpen: homeListState,
               userData,
             }),
@@ -332,7 +332,6 @@ export function Home({
               exams: osnovni,
               razina: 'osnovna',
               anchorId: 'exams-osnovna',
-              sectionRef: osnoRef,
               globalOpen: homeListState,
               userData,
             }),

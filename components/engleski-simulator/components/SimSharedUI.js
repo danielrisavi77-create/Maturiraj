@@ -1,5 +1,5 @@
 'use client'
-import React, { createElement as e, useState, useEffect, useRef, Fragment } from 'react'
+import React, { createElement as e, useState, useEffect, useId, useCallback, Fragment } from 'react'
 import { nrm, chk } from '@/lib/engleski-simulator/scoring'
 import { trackAiHelpRequested } from '@/lib/engleski-simulator/analytics'
 import { LL } from '@/lib/engleski-simulator/constants'
@@ -50,10 +50,12 @@ function getAudioTrack(examKey, topic, razina) {
 }
 
 export function FocusTrap({ label, onClose, className, children }) {
-  const ref = useRef(null)
+  // Element se pronalazi preko stabilnog id-a (useId) umjesto refa da bi se izbjeglo
+  // proslijeđivanje refa kroz createElement (vidi napomenu o react-hooks/refs niže u datoteci)
+  const domId = 'focus-trap-' + useId()
   useEffect(() => {
     const prev = document.activeElement
-    const getEls = () => Array.from(ref.current?.querySelectorAll('button:not([disabled]),a[href]:not([disabled]),[tabindex="0"]:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[role="radio"]:not([disabled]),[role="checkbox"]:not([disabled]),[role="option"]:not([disabled])') || [])
+    const getEls = () => Array.from(document.getElementById(domId)?.querySelectorAll('button:not([disabled]),a[href]:not([disabled]),[tabindex="0"]:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[role="radio"]:not([disabled]),[role="checkbox"]:not([disabled]),[role="option"]:not([disabled])') || [])
     const els = getEls()
     if (els[0]) els[0].focus()
     function onKey(ev) {
@@ -79,13 +81,12 @@ export function FocusTrap({ label, onClose, className, children }) {
       document.removeEventListener('keydown', onKey)
       prev?.focus()
     }
-  }, [onClose])
-  return e('div', { className, ref, role: 'dialog', 'aria-modal': 'true', 'aria-label': label }, children)
+  }, [onClose, domId])
+  return e('div', { id: domId, className, role: 'dialog', 'aria-modal': 'true', 'aria-label': label }, children)
 }
 
 export function MCQ({ q, a, setA, rev }) {
-  const containerRef = useRef(null)
-  return e('div', { className: 'opts', role: 'radiogroup', ref: containerRef }, q.opts.map((opt, i) => {
+  return e('div', { className: 'opts', role: 'radiogroup' }, q.opts.map((opt, i) => {
     const L = LL[i]
     const sel = a === L
     const ok = rev && L === q.sol.cl
@@ -108,7 +109,8 @@ export function MCQ({ q, a, setA, rev }) {
       }
       if (ni >= 0) {
         setA(LL[ni])
-        containerRef.current?.querySelectorAll('[role="radio"]')[ni]?.focus()
+        // čita se iz eventa (ne iz refa) da izbjegnemo pristup refu tijekom renderiranja
+        ev.currentTarget.parentElement?.querySelectorAll('[role="radio"]')[ni]?.focus()
       }
     }
     return e('div', { key: i, className: 'opt' + (ok ? ' ok' : bad ? ' bad' : sel ? ' sel' : ''), role: 'radio', 'aria-checked': sel, tabIndex: sel ? 0 : -1, onClick: () => !rev && setA(L), onKeyDown: handleKey },
@@ -118,8 +120,7 @@ export function MCQ({ q, a, setA, rev }) {
 
 export function InsQ({ q, a, setA, rev }) {
   const cur = a || ''
-  const containerRef = useRef(null)
-  return e('div', { className: 'opts', role: 'radiogroup', ref: containerRef },
+  return e('div', { className: 'opts', role: 'radiogroup' },
     q.opts.map((opt, i) => {
       const letter = String.fromCharCode(65 + i)
       const sel = cur === letter
@@ -143,7 +144,8 @@ export function InsQ({ q, a, setA, rev }) {
         }
         if (ni >= 0) {
           setA(String.fromCharCode(65 + ni))
-          containerRef.current?.querySelectorAll('[role="radio"]')[ni]?.focus()
+          // čita se iz eventa (ne iz refa) da izbjegnemo pristup refu tijekom renderiranja
+          ev.currentTarget.parentElement?.querySelectorAll('[role="radio"]')[ni]?.focus()
         }
       }
       return e('div', {
@@ -327,13 +329,11 @@ export function FeedbackBox({ q, a, rev }) {
 }
 
 export function AnswerHelper({ q, show, onToggle, autoExpand }) {
+  // Reset AI stanja pri promjeni pitanja postiže se preko `key={q.id}` na pozivatelju
+  // (vidi EngleskiSimulator.js), umjesto efekta koji resetira state — izbjegava se
+  // setState-in-effect obrazac.
   const [aiState, setAiState] = useState('idle')
   const [aiText, setAiText] = useState('')
-
-  useEffect(() => {
-    setAiState('idle')
-    setAiText('')
-  }, [q.id])
 
   function getContent() {
     if (q.type === 'mc') {
@@ -346,7 +346,7 @@ export function AnswerHelper({ q, show, onToggle, autoExpand }) {
     return null
   }
 
-  async function fetchAi() {
+  const fetchAi = useCallback(async () => {
     trackAiHelpRequested({ topic: q.topic || 'ostalo', question_type: q.type, examKey: q.examKey || '' })
     const now = Date.now()
     const lastMs = Number(sessionStorage.getItem(_AI_SS_KEY) || 0)
@@ -396,7 +396,7 @@ export function AnswerHelper({ q, show, onToggle, autoExpand }) {
     } catch {
       setAiState('error')
     }
-  }
+  }, [q])
 
   if (!show && !autoExpand) return e('button', { className: 'ah-toggle-btn', onClick: onToggle }, '💡 Pokaži odgovor')
   return e('div', { className: 'ah-wrap' },
@@ -473,19 +473,25 @@ export function ModeSelect({ examKey, examObj, examsMap, onExamMode, onPractice,
 }
 
 export function AudioPlayer({ examKey, topic, razina }) {
+  // Napomena: pozivatelj mora renderirati ovu komponentu s key={examKey + '_' + topic}
+  // da bi se phase/iframeFallback ispravno resetirali pri promjeni pitanja (remount
+  // umjesto reset-efekta koji bi mijenjao state unutar efekta).
   const audio = getAudioTrack(examKey, topic, razina)
   const [phase, setPhase] = useState('first')
-  const [iframeFallback, setIframeFallback] = useState(false)
-  const iframeRef = useRef(null)
-  const fallbackTimerRef = useRef(null)
+  const [iframeLoaded, setIframeLoaded] = useState(false)
+  const [fallbackDue, setFallbackDue] = useState(false)
+  // Prikazan fallback samo ako je timeout istekao, a iframe se u međuvremenu nije učitao
+  // (izvedena vrijednost — ne dodatni state, izbjegava setState unutar tijela efekta)
+  const iframeFallback = fallbackDue && !iframeLoaded
 
+  // Kad se iframe učita (iframeLoaded postane true), cleanup funkcija čisti eventualni
+  // pending timeout umjesto da se ref čita unutar onLoad handlera (izbjegava se čitanje
+  // refa unutar funkcije proslijeđene kroz createElement)
   useEffect(() => {
-    setPhase('first')
-    setIframeFallback(false)
-    clearTimeout(fallbackTimerRef.current)
-    fallbackTimerRef.current = setTimeout(() => setIframeFallback(true), 5000)
-    return () => clearTimeout(fallbackTimerRef.current)
-  }, [topic, examKey])
+    if (iframeLoaded) return
+    const t = setTimeout(() => setFallbackDue(true), 5000)
+    return () => clearTimeout(t)
+  }, [iframeLoaded])
 
   if (!audio) return null
 
@@ -510,12 +516,11 @@ export function AudioPlayer({ examKey, topic, razina }) {
           e('button', { className: 'btn', style: { fontSize: 11, padding: '3px 10px', background: 'var(--green-d)', color: 'var(--green)', border: '1px solid rgba(30,122,62,.3)' }, onClick: () => setPhase('done') }, '✓ Završio/la'))),
       e('div', { className: 'audio-iframe-wrap' },
         e('iframe', {
-          ref: iframeRef,
           key: fileId,
           src: iframeSrc,
           allow: 'autoplay',
           title: 'Audio player — ' + topic,
-          onLoad: () => { clearTimeout(fallbackTimerRef.current); setIframeFallback(false) },
+          onLoad: () => setIframeLoaded(true),
           style: { width: '100%', height: 54, border: 'none', borderRadius: 8, background: 'var(--s2)', display: iframeFallback ? 'none' : 'block' },
         }),
         iframeFallback && e('div', { className: 'audio-fallback' },

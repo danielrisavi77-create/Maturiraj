@@ -18,23 +18,14 @@ function allMcQuestions() {
   return out
 }
 
-// Napomena: mali broj mc pitanja (topic reading_cloze4, npr. vis_2022_ljeto r33)
-// ima sol.cl postavljen na cijelu riječ umjesto na slovo opcije — to je zaseban,
-// pre-postojeći problem u exams.js koji ova zadaća ne dira (izvan opsega 1.1).
-// Ovdje provjeravamo samo pitanja čiji je sol.cl jedno veliko slovo (A-Z),
-// tj. stvarni MC-po-slovu odgovori na koje se odnosi LL A-F -> A-J proširenje.
-function letterBasedMcQuestions() {
-  return allMcQuestions().filter(q => /^[A-Z]$/.test(q.sol.cl))
-}
-
-describe('MC slova A-J (LL)', () => {
-  it('nijedno mc pitanje sa slovnim sol.cl nije izvan LL', () => {
-    const bad = letterBasedMcQuestions().filter(q => !LL.includes(q.sol.cl))
+describe('MC slova A-O (LL)', () => {
+  it('svako mc pitanje ima sol.cl slovo iz LL', () => {
+    const bad = allMcQuestions().filter(q => !LL.includes(q.sol.cl))
     expect(bad.length).toBe(0)
   })
 
-  it('svako mc pitanje sa slovnim sol.cl ima indeks unutar duljine opts', () => {
-    for (const q of letterBasedMcQuestions()) {
+  it('svako mc pitanje ima indeks sol.cl unutar duljine opts', () => {
+    for (const q of allMcQuestions()) {
       expect(LL.indexOf(q.sol.cl)).toBeGreaterThanOrEqual(0)
       expect(LL.indexOf(q.sol.cl)).toBeLessThan(q.opts.length)
     }

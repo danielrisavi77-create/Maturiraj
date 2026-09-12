@@ -4,6 +4,10 @@ import { chk, grade } from '@/lib/engleski-simulator/scoring'
 import { TOPIC_LABELS } from '@/lib/engleski-simulator/constants'
 import { MCQ, MatQ, FbQ, FeedbackBox } from '@/components/engleski-simulator/components/SimSharedUI'
 
+// broj pitanja po tipu u dnevnom izazovu — dijeli se s HomeScreen radi točnog prikaza
+export const DAILY_TARGETS = { mc: 10, mat: 4, fb: 6 }
+export const DAILY_COUNT = Object.values(DAILY_TARGETS).reduce((a, b) => a + b, 0)
+
 function getDailyChallengeQuestions(examsMap) {
   const seed = Math.floor(Date.now() / 86400000)
   function pseudoRandom(n, s) {
@@ -23,7 +27,7 @@ function getDailyChallengeQuestions(examsMap) {
   }
 
   const usedIds = new Set()
-  const targets = { mc: 10, mat: 4, fb: 6 }
+  const targets = DAILY_TARGETS
   const qs = []
   Object.entries(targets).forEach(([type, cnt]) => {
     qs.push(...pickFromType(type, cnt, usedIds))
@@ -43,7 +47,9 @@ export default function DailyChallengeScreen({ userData, onDone, onBack, examsMa
 
   const today = new Date().toLocaleDateString('hr')
   const history = userData?.history || []
-  const alreadyDone = history.some(h => h.examKey === 'daily_' + Math.floor(Date.now() / 86400000))
+  // Izračunato u lazy useState initializeru (ne izravno u tijelu komponente) da render ostane čist
+  const [todayKey] = useState(() => Math.floor(Date.now() / 86400000))
+  const alreadyDone = history.some(h => h.examKey === 'daily_' + todayKey)
 
   if (!qs.length) return (
     <div className="eng-sim">
@@ -78,6 +84,7 @@ export default function DailyChallengeScreen({ userData, onDone, onBack, examsMa
             <div className="results-grade-row">
               <span style={{ color: gc, fontSize: 28, fontWeight: 800 }}>Ocjena {g}</span>
             </div>
+            <div style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 6 }}>Orijentacijska ocjena — NCVVO pragove određuje za svaki rok. Pisanje nije bodovano.</div>
             <div className="results-stat-row">
               <div className="results-stat"><div className="results-stat-val">{correct}</div><div className="results-stat-lbl">Točnih</div></div>
               <div className="results-stat"><div className="results-stat-val">{qs.length - correct}</div><div className="results-stat-lbl">Grešaka</div></div>

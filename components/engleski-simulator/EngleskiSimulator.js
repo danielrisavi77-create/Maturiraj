@@ -7,8 +7,12 @@ import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers'
 import { EXAMS } from '@/lib/engleski-simulator/exams'
 import { chk, grade, calcXpGain, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
-import { useTimer } from '@/lib/engleski-simulator/useTimer'
-import { LL } from '@/lib/engleski-simulator/constants'
+import { useTimer, warnMessage } from '@/lib/engleski-simulator/useTimer'
+import { LL, TLBL, TBDG, TOPIC_LABELS, LEVEL_NAMES, getLevel, xpProgress, xpToNext } from '@/lib/engleski-simulator/constants'
+
+// GC ostaje lokalno definiran (ne iz constants.js) jer se boje ocjena 2-4 razlikuju
+// od dijeljene konstante i ne smiju se tiho promijeniti izvan zadatka 2.3
+const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' }
 import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
 
 // Lazy load screens to reduce initial bundle and memory
@@ -40,20 +44,6 @@ function AnalyticsPanelWrapper(props) {
   )
 }
 
-const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' }
-const TLBL = { mc: 'Višestruki izbor', ins: 'Umetanje', mat: 'Povezivanje', fb: 'Dopunjavanje', sa: 'Kratki odgovor', es: 'Esej' }
-const TBDG = { mc: 'b-mc', ins: 'b-ins', mat: 'b-mat', fb: 'b-fb', sa: 'b-sa', es: 'b-sa' }
-
-const TOPIC_LABELS = {
-  reading_a: 'Reading A', reading_b: 'Reading B', reading_c: 'Reading C', reading_d: 'Reading D', reading_e: 'Reading E', reading_f: 'Reading F',
-  reading_match: 'Reading matching', reading_ins: 'Reading insertion', reading_mc4: 'Reading MC', reading_cloze4: 'Reading cloze', reading_opencloze: 'Reading open cloze',
-  listening_a: 'Listening A', listening_b: 'Listening B', listening_c: 'Listening C', listening_d: 'Listening D', listening_match: 'Listening matching', listening_mc3: 'Listening MC', listening_books: 'Listening books',
-  writing_essay: 'Writing essay', writing_a: 'Writing A', writing_b: 'Writing B', writing_email: 'Writing email',
-  use_cloze: 'Use of English cloze', use_mc: 'Use of English MC', use_wf: 'Word formation', use_of_english: 'Use of English',
-}
-
-const LEVEL_NAMES = ['Početnik', 'Vježbač', 'Napredni', 'Matura Pro', 'Matura Master']
-
 function fisherYates(arr) {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
@@ -61,28 +51,6 @@ function fisherYates(arr) {
     ;[a[i], a[j]] = [a[j], a[i]]
   }
   return a
-}
-
-function getLevel(xp = 0) {
-  if (xp >= 2500) return 4
-  if (xp >= 1400) return 3
-  if (xp >= 700) return 2
-  if (xp >= 250) return 1
-  return 0
-}
-
-function xpProgress(xp = 0) {
-  const steps = [0, 250, 700, 1400, 2500, 4000]
-  const lv = getLevel(xp)
-  const lo = steps[lv]
-  const hi = steps[lv + 1] ?? (steps[lv] + 1000)
-  return Math.max(0, Math.min(100, Math.round(((xp - lo) / (hi - lo)) * 100)))
-}
-
-function xpToNext(xp = 0) {
-  const steps = [250, 700, 1400, 2500, 4000]
-  const next = steps.find(x => xp < x)
-  return next ? next - xp : 0
 }
 
 // ── XpFloater animation component ──
@@ -254,7 +222,7 @@ function AnalyticsPanel({ userData, defaultTab, onFilter, onFilterSession }) {
   )
 }
 
-function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup }) {
+function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup, soundOn }) {
   const qs = exam?.qs || []
   const [cur, setCur] = useState(0)
   const [answers, setAnswers] = useState({})
@@ -263,6 +231,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
   const [bookmarks, setBookmarks] = useState(() => {
     try { return validateBookmarks(JSON.parse(localStorage.getItem('disc_eng_bookmarks') || '{}')) } catch { return {} }
   })
+  const [toast, setToast] = useState(null)
   const startedAtRef = useRef(Date.now())
 
   const { d: timerDisplay, cls: timerClass } = useTimer(
@@ -272,6 +241,13 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
     // re-registers the interval callback every render, so this always invokes the latest finish().
     () => { if (examMode) finish() },
     [600, 300],
+    seconds => {
+      const msg = warnMessage(seconds)
+      if (!msg) return
+      setToast(msg)
+      if (soundOn) playSound('wrong')
+      setTimeout(() => setToast(t => (t === msg ? null : t)), 4000)
+    },
   )
 
   useEffect(() => {
@@ -343,6 +319,14 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
 
   return (
     <div style={{ maxWidth: 860, margin: '0 auto', padding: '16px 20px 70px' }}>
+      {toast && (
+        <div role="status" aria-live="polite" style={{
+          position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 9999,
+          background: 'var(--gold-d)', border: '1px solid var(--gold-b)', color: 'var(--gold)',
+          borderRadius: 'var(--r)', padding: '8px 16px', fontSize: 13, fontWeight: 600,
+          boxShadow: '0 4px 16px rgba(0,0,0,.2)',
+        }}>⏱ {toast}</div>
+      )}
       <div className="nav">
         <button className="btn btn-g" style={{ fontSize: 13, padding: '6px 12px' }} onClick={() => {
           if (examMode && !window.confirm('Izaći bez predaje? Napredak neće biti spremljen.')) return
@@ -388,7 +372,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
               </div>
             ) : (
               <>
-                <AudioPlayer examKey={exam.key} topic={q.topic} razina={exam.razina === 'mixed' ? examLookup?.[q._examKey]?.razina : exam.razina} />
+                <AudioPlayer key={exam.key + '_' + q.topic} examKey={exam.key} topic={q.topic} razina={exam.razina === 'mixed' ? examLookup?.[q._examKey]?.razina : exam.razina} />
                 <ContextPanel examKey={exam.key} qid={q.id} examContext={examContext} />
                 <div style={{ fontSize: 15, lineHeight: 1.65, marginBottom: 16, whiteSpace: 'pre-wrap' }}>{q.q}</div>
 
@@ -399,7 +383,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
                 {(q.type === 'sa' || q.type === 'es') && <SaQ q={q} a={answers[q.id]} setA={setAnswer} rev={!!rev[q.id]} />}
 
                 {!!rev[q.id] && <FeedbackBox q={q} a={answers[q.id]} rev={true} />}
-                {!examMode && <AnswerHelper q={q} show={!!rev[q.id]} autoExpand={false} onToggle={checkAnswer} />}
+                {!examMode && <AnswerHelper key={q.id} q={q} show={!!rev[q.id]} autoExpand={false} onToggle={checkAnswer} />}
               </>
             )}
 
@@ -464,7 +448,16 @@ export default function EngleskiSimulator() {
   const [examMode, setExamMode] = useState(false)
   const [timedMode, setTimedMode] = useState(false)
   const [examAnswers, setExamAnswers] = useState({})
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState(() => {
+    try {
+      const stored = localStorage.getItem('engleski_simulator_user')
+      const parsed = stored ? JSON.parse(stored) : null
+      return validateUserData(parsed)
+    } catch (err) {
+      console.error('Error loading user data:', err)
+      return { xp: 0, streak: 0, lastDate: null, history: [], totalExams: 0, errorTracker: {}, bookmarks: [] }
+    }
+  })
   const [qTimes, setQTimes] = useState({})
   const [examContext, setExamContext] = useState(null)
   const [xpFloaters, setXpFloaters] = useState([])
@@ -495,18 +488,6 @@ export default function EngleskiSimulator() {
       .then(r => r.json())
       .then(data => setExamContext(data))
       .catch(() => setExamContext({}))
-  }, [])
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('engleski_simulator_user')
-      const parsed = stored ? JSON.parse(stored) : null
-      const valid = validateUserData(parsed)
-      setUserData(valid)
-    } catch (err) {
-      console.error('Error loading user data:', err)
-      setUserData({ xp: 0, streak: 0, lastDate: null, history: [], totalExams: 0, errorTracker: {}, bookmarks: [] })
-    }
   }, [])
 
   useEffect(() => {
@@ -680,6 +661,7 @@ export default function EngleskiSimulator() {
               userAccess={userAccess}
               isPro={isPro}
               examLookup={examLookup}
+              soundOn={soundOn}
             />
           )
 
@@ -804,6 +786,7 @@ export default function EngleskiSimulator() {
               onExit={goBack}
               onDone={onExamDone}
               examLookup={examLookup}
+              soundOn={soundOn}
             />
           )
         }

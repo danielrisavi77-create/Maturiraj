@@ -48,7 +48,9 @@ Napomena: 1.3 i 1.4 oba diraju `EngleskiSimulator.js` → **jedan agent** radi o
 
 | 2.4 | **Podatkovni bug otkriven u fazi 1**: 64 mc pitanja tipa `reading_cloze4` (viša razina 2022–2025) imaju `sol.cl` kao riječ (npr. "seen") umjesto slova, a banka opcija ima 11–13 riječi. Ta pitanja su neocjenjiva. Skriptom (deterministički, `opts.indexOf(sol.cl)`) pretvoriti u slovo, proširiti `LL` na A–O, dodati test da je svako mc `sol.cl` slovo unutar duljine `opts`. Ovo je jedina dozvoljena izmjena `exams.js` u fazi 2. | `scripts/fix-eng-cloze-letters.mjs`, `exams.js` (samo 64 `sol.cl`), `constants.js` (LL), `__tests__/engleski-simulator/mc-letters.test.js` |
 
-2.1 i 2.3 dijele `EngleskiSimulator.js` → sekvencijalno (2.1 pa 2.3). 2.4 dira `constants.js` koji dira i 2.1 → 2.4 ide u isti agent kao 2.1 ili nakon njega.
+| 2.5 | **Lint čišćenje** (naslijeđeno, 28 grešaka + 4 upozorenja, sve React Compiler pravila: refs tijekom rendera, setState u effectu, Date.now u renderu, komponente stvorene u renderu, neescapirani navodnici). Popraviti bez promjene ponašanja. | sve datoteke simulatora, zadnji korak faze |
+
+Redoslijed u fazi 2: paralelno [2.1+2.4] i [2.2]; zatim 2.3; zatim 2.5 (dira sve datoteke pa ide zadnji). CSS se seli u `app/discere/engleski/simulator/simulator.css` jer stara ruta postaje redirect.
 
 ## Faza 3 — Arhitektura (Opus 5, sekvencijalno, svaki zadatak zaseban commit)
 
