@@ -61,6 +61,16 @@ Redoslijed u fazi 2: paralelno [2.1+2.4] i [2.2]; zatim 2.3; zatim 2.5 (dira sve
 | 3.3 | **Realistična simulacija** | Timer po razini i po dijelu ispita (Reading / Writing / Listening imaju vlastite limite; vrijednosti uzeti iz važećeg NCVVO ispitnog kataloga, ne pogađati). Simulacija prolazi dijelove redom, bez povratka. Rezultat jasno označava da Writing nije bodovan i prikazuje postotak samo za auto-ocjenjive dijelove, uz napomenu o udjelu Writinga u konačnoj ocjeni. Pragovi ocjena dobivaju oznaku "orijentacijski". |
 | 3.4 | **Slušanje** | Kod: AudioPlayer prelazi s Google Drive iframea na `<audio>` element s izvorom iz Supabase Storage ili `public/audio/eng/`. Mapping `examKey → task → datoteka` u JSON-u, ne u komponenti. **Blokirano na sadržaju**: audio datoteke NCVVO-a treba nabaviti i uploadati; do tada fallback ostaje tekst uz jasnu oznaku. |
 
+### Status 3.1 (implementirano)
+
+- Novi `lib/engleski-simulator/cloudSync.js`: čiste funkcije `buildCloudBlob` / `parseCloudBlob` / `shouldHydrateFromCloud` / `mergeUserData` / `toSimProgressPayload` + tanki async omotači (`loadEngCloudState`, `saveEngCloudState`, `saveEngSimResult`) s lazy `import()` Supabase modula.
+- `EngleskiSimulator.js`: na mountu s prijavljenim korisnikom hidrira iz `discere_sim_state` (`subject='eng'`) ako je cloud noviji od `eng_synced_at`; ako je cloud prazan a lokalno ima povijest, migrira localStorage stanje u cloud. Debounce (1500 ms) sprema `engleski_simulator_user` + `disc_eng_bookmarks` na svaku promjenu `userData` i na svaki toggle bookmarka (prop `onBookmarkChange`).
+- Svaki pravi ispit (`/^(vis_)?\d{4}_/`) upisuje red u `sim_progress` sa `subject='eng'` i razinom `visa→A` / `osnovna→B`; virtualne sesije (virtual/filter/errors/bookmarks/daily) se preskaču.
+- Neprijavljeni korisnici rade isključivo na localStorageu — nema nijednog Supabase poziva bez korisnika. Paywall nije dirani.
+- Zaštita od race-a: `useAuth()` prvo vrati `user=null`, pa tek naknadno pravog korisnika. Zato svaka promjena `user` sinkrono postavlja `_hydrated.current = false` i otkazuje zakazani upload; spremanje je dopušteno samo kroz `shouldCloudSave(user, _hydrated.current)`, a efekt spremanja se nakon završene hidracije ponovno pokreće preko okidača `hydrateRev`. Time staro lokalno stanje ne može pregaziti svježije cloud stanje.
+- Testovi: `__tests__/engleski-simulator/cloud-sync.test.js` (39 testova) pokriva sve čiste funkcije. `app/dashboard/page.js` već ima `eng` u `SUBJECT_LABELS`, pa dashboard label ne treba promjenu.
+- Ostaje: RLS/migracije za `discere_sim_state` i `sim_progress` moraju biti primijenjene na produkciji (moduli tiho degradiraju na localStorage ako tablica ne postoji); sync konflikt između dva uređaja rješava se po `_savedAt` (last-write-wins uz merge povijesti).
+
 ## Faza 4 — Verifikacija (Sonnet 5 za provjere, Opus 5 za završni review)
 
 1. Za svaki zadatak iz faza 1–3 jedan agent-skeptik: dobiva tvrdnju iz prihvatnog kriterija i pokušava je oboriti (pokreće testove, čita diff). Zadatak se vraća u rad ako skeptik obori tvrdnju.

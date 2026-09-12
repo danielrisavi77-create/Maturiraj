@@ -14,6 +14,11 @@ import { LL, TLBL, TBDG, TOPIC_LABELS, LEVEL_NAMES, getLevel, xpProgress, xpToNe
 // od dijeljene konstante i ne smiju se tiho promijeniti izvan zadatka 2.3
 const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' }
 import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
+import {
+  ENG_USER_KEY, ENG_BOOKMARKS_KEY, ENG_SYNCED_AT_KEY,
+  buildCloudBlob, parseCloudBlob, shouldHydrateFromCloud, shouldCloudSave, mergeUserData, toSimProgressPayload,
+  loadEngCloudState, saveEngCloudState, saveEngSimResult,
+} from '@/lib/engleski-simulator/cloudSync'
 
 // Lazy load screens to reduce initial bundle and memory
 const Home = lazy(() => import('./screens/HomeScreen').then(m => ({ default: m.Home })))
@@ -222,7 +227,7 @@ function AnalyticsPanel({ userData, defaultTab, onFilter, onFilterSession }) {
   )
 }
 
-function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup, soundOn }) {
+function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup, soundOn, onBookmarkChange }) {
   const qs = exam?.qs || []
   const [cur, setCur] = useState(0)
   const [answers, setAnswers] = useState({})
@@ -297,6 +302,8 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
       try { localStorage.setItem('disc_eng_bookmarks', JSON.stringify(next)) } catch {}
       return next
     })
+    // Signal roditelju da pokrene cloud debounce (bookmarki nisu dio userData).
+    if (onBookmarkChange) onBookmarkChange()
   }
 
   function finish() {
@@ -467,6 +474,8 @@ export default function EngleskiSimulator() {
   const [filteredExam, setFilteredExam] = useState(null)
   const [extraExams, setExtraExams] = useState({})
   const [showGuide, setShowGuide] = useState(false)
+  // Brojač promjena bookmarka — samo okidač za cloud debounce (bookmarki žive u localStorageu).
+  const [bookmarkRev, setBookmarkRev] = useState(0)
 
   const examLookup = useMemo(() => ({ ...EXAMS, ...extraExams }), [extraExams])
   const selectedExam = selectedExamKey ? examLookup[selectedExamKey] : null
@@ -493,6 +502,74 @@ export default function EngleskiSimulator() {
   useEffect(() => {
     if (userData) localStorage.setItem('engleski_simulator_user', JSON.stringify(userData))
   }, [userData])
+
+  // ── Cross-device cloud sync (Supabase discere_sim_state, subject 'eng') ──
+  // Na mountu s prijavljenim korisnikom: hidriraj ako je cloud noviji, a ako je
+  // cloud prazan a lokalno ima povijest — migriraj lokalno stanje u cloud.
+  // Neprijavljeni korisnik ne radi nijedan Supabase poziv.
+  // _hydrated je ref jer se mora zatvoriti sinkrono (useAuth() prvo vrati null,
+  // pa user tek naknadno postane pravi), a hydrateRev je samo okidač koji efekt
+  // spremanja ponovno pokreće kad hidracija završi.
+  const _hydrated = useRef(false)
+  const [hydrateRev, setHydrateRev] = useState(0)
+  const _saveTimer = useRef(null)
+
+  useEffect(() => {
+    let cancelled = false
+    // Svaka promjena korisnika (npr. null → prijavljen) zatvara vrata spremanju
+    // i otkazuje već zakazani upload dok se cloud stanje ne pročita i spoji.
+    _hydrated.current = false
+    clearTimeout(_saveTimer.current)
+    if (!user) return
+    ;(async () => {
+      const blob = await loadEngCloudState()
+      if (cancelled) return
+      const { userData: cloudUser, bookmarks: cloudBm, savedAt: cloudAt } = parseCloudBlob(blob)
+      let localAt = 0
+      try { localAt = Number(localStorage.getItem(ENG_SYNCED_AT_KEY) || 0) } catch {}
+      if (cloudUser && shouldHydrateFromCloud(cloudAt, localAt)) {
+        let localBm = {}
+        try { localBm = JSON.parse(localStorage.getItem(ENG_BOOKMARKS_KEY) || '{}') } catch {}
+        try { localStorage.setItem(ENG_BOOKMARKS_KEY, JSON.stringify({ ...localBm, ...cloudBm })) } catch {}
+        try { localStorage.setItem(ENG_SYNCED_AT_KEY, String(cloudAt)) } catch {}
+        if (!cancelled) {
+          setUserData(prev => mergeUserData(prev, cloudUser))
+          setBookmarkRev(r => r + 1)
+        }
+      } else if (!cloudUser) {
+        // Prva prijava: pošalji postojeće lokalno stanje u cloud.
+        let localUser = null
+        try { localUser = JSON.parse(localStorage.getItem(ENG_USER_KEY) || 'null') } catch {}
+        if (localUser && Array.isArray(localUser.history) && localUser.history.length) {
+          let localBm = {}
+          try { localBm = JSON.parse(localStorage.getItem(ENG_BOOKMARKS_KEY) || '{}') } catch {}
+          const at = Date.now()
+          try { localStorage.setItem(ENG_SYNCED_AT_KEY, String(at)) } catch {}
+          await saveEngCloudState(buildCloudBlob({ userData: localUser, bookmarks: localBm, savedAt: at }))
+        }
+      }
+      if (!cancelled) {
+        _hydrated.current = true
+        setHydrateRev(r => r + 1)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [user])
+
+  // Debounce-spremanje cijelog stanja (userData + bookmarki) u cloud.
+  useEffect(() => {
+    void hydrateRev // ovisnost-okidač: efekt se ponovno vrti nakon hidracije
+    if (!shouldCloudSave(user, _hydrated.current)) return
+    clearTimeout(_saveTimer.current)
+    _saveTimer.current = setTimeout(() => {
+      let bm = {}
+      try { bm = JSON.parse(localStorage.getItem(ENG_BOOKMARKS_KEY) || '{}') } catch {}
+      const at = Date.now()
+      try { localStorage.setItem(ENG_SYNCED_AT_KEY, String(at)) } catch {}
+      saveEngCloudState(buildCloudBlob({ userData: userData || {}, bookmarks: bm, savedAt: at }))
+    }, 1500)
+    return () => clearTimeout(_saveTimer.current)
+  }, [userData, bookmarkRev, user, hydrateRev])
 
   const navigate = (newScreen) => {
     setScreen(newScreen)
@@ -606,6 +683,14 @@ export default function EngleskiSimulator() {
       return next
     })
 
+    // Pravi ispit (ne virtualna sesija) → jedan red u sim_progress, subject 'eng'.
+    if (user) {
+      try {
+        const payload = toSimProgressPayload(result, topic_breakdown, examLookup[result.examKey]?.razina)
+        if (payload) saveEngSimResult(payload)
+      } catch {}
+    }
+
     navigate('results')
   }
 
@@ -662,6 +747,7 @@ export default function EngleskiSimulator() {
               isPro={isPro}
               examLookup={examLookup}
               soundOn={soundOn}
+              onBookmarkChange={() => setBookmarkRev(r => r + 1)}
             />
           )
 
@@ -787,6 +873,7 @@ export default function EngleskiSimulator() {
               onDone={onExamDone}
               examLookup={examLookup}
               soundOn={soundOn}
+              onBookmarkChange={() => setBookmarkRev(r => r + 1)}
             />
           )
         }
