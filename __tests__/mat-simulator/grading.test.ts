@@ -59,6 +59,48 @@ describe('mat-grading: sol.ans i sol.alt iz stvarnih podataka', () => {
   }
 });
 
+/** Prvi broj bilo gdje u normaliziranom zapisu — ono što je stara rezerva uspoređivala. */
+function leadingNumber(s: string): string | null {
+  const m = normalizeAnswer(s).match(/[+-]?(?:\d+\.?\d*|\.\d+)/);
+  return m ? m[0] : null;
+}
+
+/** Cijeli normalizirani zapis je broj ili razlomak? */
+function isPureNumber(n: string): boolean {
+  return /^[+-]?(?:\d+\.?\d*|\.\d+)(?:\/[+-]?(?:\d+\.?\d*|\.\d+))?$/.test(n);
+}
+
+describe('mat-grading: goli broj iz nenumeričkog rješenja nije točan', () => {
+  it('nijedan od 70 ispita ne prihvaća "prvi broj iz sol.ans" kao odgovor', async () => {
+    const falsePositives: string[] = [];
+    let checked = 0;
+    for (const file of examFiles()) {
+      const qs = await loadExam(file);
+      for (const q of qs) {
+        if (!q.sol || !GRADABLE.has(String(q.type)) || q.type === 'mc') continue;
+        const ans = q.sol.ans;
+        if (ans === undefined || ans === null || String(ans).trim() === '') continue;
+        const norm = normalizeAnswer(String(ans));
+        if (!norm || isPureNumber(norm)) continue; // numeričko rješenje — broj je legitiman odgovor
+        const raw = leadingNumber(String(ans));
+        if (raw === null) continue;
+        const lead = normalizeAnswer(raw);
+        if (!lead) continue;
+        // ako je taj broj i sam jedna od ponuđenih varijanti (autor ga je prihvatio),
+        // prolaz je ispravan i ne broji se kao lažni pozitiv
+        if (answerVariants(q).some((v) => normalizeAnswer(v) === lead || numEquals(v, lead))) continue;
+        checked++;
+        if (isAnswerCorrect(q, lead) === true) {
+          falsePositives.push(`${file} q${q.id} (${q.type}): ${JSON.stringify(String(ans))} ← ${lead}`);
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(100);
+    expect(falsePositives.slice(0, 20)).toEqual([]);
+    expect(falsePositives.length).toBe(0);
+  });
+});
+
 describe('mat-grading: ručni slučajevi', () => {
   const cases: Array<[string, string, string, boolean]> = [
     // [tip, točan odgovor u podacima, korisnikov unos, očekivano]
@@ -77,7 +119,23 @@ describe('mat-grading: ručni slučajevi', () => {
     ['num', '100', '100,05', true], // unutar 1e-3 relativno
     ['num', '100', '101', false],
     ['sa', '24, 36, 54', '24; 36; 54', true],
-    ['num', '20 000', '20,000', true],
+    // zarez je decimalni separator: "20,000" je 20, a ne 20000 (tisućice se pišu razmakom)
+    ['num', '20 000', '20,000', false],
+    ['num', '1375', '1,375', false],
+    ['num', '1,375', '1375', false],
+    // paritet sa starim numEq-om: apsolutna tolerancija 0,01 za male brojeve
+    ['num', '1,76784', '1,77', true],
+    ['num', '1,76784', '1,8', false],
+    // goli broj iz nenumeričkog rješenja NIJE točan odgovor
+    ['num', '√2', '2', false],
+    ['num', '2√3', '2', false],
+    ['num', '2π', '2', false],
+    ['num', '148°40′17″', '148', false],
+    ['sa', 'z = 3(cos(3π/2) + i·sin(3π/2))', '3', false],
+    ['sa', 'y = −a − 14', '-14', false],
+    ['sa', 'x ≤ [FRAC:−11|10]', '-11', false],
+    ['pa', '90 paketa, 1440 kg', '90', false],
+    ['num', '260π/3 cm³', '260', false],
   ];
 
   for (const [type, ans, input, expected] of cases) {
@@ -101,8 +159,25 @@ describe('mat-grading: ručni slučajevi', () => {
     expect(numEquals('3/4', '0,75')).toBe(true);
     expect(numEquals('1,5', '1.5')).toBe(true);
     expect(numEquals('2', '2,0001')).toBe(true);
-    expect(numEquals('2', '2,01')).toBe(false);
+    // paritet sa starim numEq-om (|a−b| < 0,01); izvan te granice tek 2,02
+    expect(numEquals('2', '2,01')).toBe(true);
+    expect(numEquals('2', '2,02')).toBe(false);
     expect(numEquals('', '')).toBe(false);
+  });
+
+  it('numEquals ne uspoređuje "prvi broj u stringu"', () => {
+    expect(numEquals('√5−1', '5')).toBe(false);
+    expect(numEquals('x₁ = √5−1, x₂ = √5+1', '5')).toBe(false);
+    expect(numEquals('x > [FRAC:19|4]', '19')).toBe(false);
+    expect(numEquals('3 cm i 4 cm', '3')).toBe(false);
+    // identičan zapis i dalje prolazi
+    expect(numEquals('148°40′17″', '148°40′17″')).toBe(true);
+  });
+
+  it('numEquals zadržava apsolutnu toleranciju 0,01 starog enginea', () => {
+    expect(numEquals('1,76784', '1,77')).toBe(true);
+    expect(numEquals('0,333', '0,3333')).toBe(true);
+    expect(numEquals('2', '2,02')).toBe(false);
   });
 
   it('prazan odgovor nije točan', () => {

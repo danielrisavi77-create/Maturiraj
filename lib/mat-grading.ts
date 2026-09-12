@@ -21,6 +21,12 @@ export type GradingOpts = {
 /** Relativna i apsolutna tolerancija za numeričku usporedbu. */
 const REL_TOL = 1e-3;
 const ABS_TOL = 1e-6;
+/**
+ * Apsolutna tolerancija starog enginea (numEq: |a-b| < 0.01).
+ * Zadržana uz relativnu da ništa što danas prolazi ne padne:
+ * za male brojeve (npr. 1,76784 vs 1,77) relativna granica je preuska.
+ */
+const LEGACY_ABS_TOL = 0.01;
 
 /** Jedinice koje se brišu s kraja odgovora (nakon uklanjanja razmaka). */
 const UNITS = [
@@ -142,42 +148,27 @@ function strictNum(t: string): number {
   return a / b;
 }
 
-/** "20,000" / "1,375" — zarez kao separator tisućica (pojavljuje se u alt listama). */
-function thousandsNum(raw: string): number {
-  const t = String(raw).trim().replace(/\s/g, '');
-  return /^[+-]?\d{1,3}(,\d{3})+$/.test(t) ? Number(t.replace(/,/g, '')) : NaN;
-}
-
-/** Blaga rezerva — isto ponašanje kao parseFloat u starom numEq. */
-function leadingNum(t: string): number {
-  const m = t.match(/[+-]?(?:\d+\.?\d*|\.\d+)/);
-  return m ? Number(m[0]) : NaN;
-}
-
-/** Numerička usporedba s relativnom tolerancijom i podrškom za razlomke. */
+/**
+ * Numerička usporedba s tolerancijom i podrškom za razlomke.
+ *
+ * Obje strane moraju biti CIJELE brojevne vrijednosti (broj ili razlomak) nakon
+ * normalizacije. Namjerno nema rezerve tipa "uzmi prvi broj iz stringa":
+ * za sol.ans "z = 3(cos(3π/2)+i·sin(3π/2))" ili "x₁ = √5−1, x₂ = √5+1" takva bi
+ * rezerva goli unos "3" odnosno "5" proglasila točnim (masovni lažni pozitiv).
+ * Zarez je u hrvatskom zapisu decimalni separator (normalizeAnswer ga pretvara u
+ * točku), a tisućice se razdvajaju razmakom — pa "1,375" nikad ne znači 1375.
+ */
 export function numEquals(a: string, b: string): boolean {
   const na = normalizeAnswer(a);
   const nb = normalizeAnswer(b);
   if (!na || !nb) return false;
   if (na === nb) return true;
-  let pa = strictNum(na);
-  let pb = strictNum(nb);
-  if (isNaN(pa) || isNaN(pb)) {
-    pa = leadingNum(na);
-    pb = leadingNum(nb);
-  }
-  const ta = thousandsNum(a);
-  const tb = thousandsNum(b);
-  const candA = [pa, ta].filter((x) => !isNaN(x));
-  const candB = [pb, tb].filter((x) => !isNaN(x));
-  if (!candA.length || !candB.length) return false;
-  for (const x of candA) {
-    for (const y of candB) {
-      const diff = Math.abs(x - y);
-      if (diff <= Math.max(ABS_TOL, REL_TOL * Math.max(Math.abs(x), Math.abs(y)))) return true;
-    }
-  }
-  return false;
+  const pa = strictNum(na);
+  const pb = strictNum(nb);
+  if (isNaN(pa) || isNaN(pb)) return false;
+  const diff = Math.abs(pa - pb);
+  if (diff < LEGACY_ABS_TOL) return true;
+  return diff <= Math.max(ABS_TOL, REL_TOL * Math.max(Math.abs(pa), Math.abs(pb)));
 }
 
 /** Samo znakovi koje nerdamer sigurno probavi. */
