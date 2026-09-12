@@ -8,6 +8,7 @@ import { getExamsIndex, getLoadedSync, isRazinaLoaded, loadRazina, razinaForKey,
 import { chk, grade, calcXpGain, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
 import { useTimer, warnMessage } from '@/lib/engleski-simulator/useTimer'
+import { getExamBlocks, totalMinutes, sectionScores, weightedEstimate } from '@/lib/engleski-simulator/examStructure'
 import { LL, TLBL, TBDG, TOPIC_LABELS, LEVEL_NAMES, getLevel, xpProgress, xpToNext } from '@/lib/engleski-simulator/constants'
 
 // GC ostaje lokalno definiran (ne iz constants.js) jer se boje ocjena 2-4 razlikuju
@@ -234,8 +235,16 @@ function AnalyticsPanel({ userData, defaultTab, onFilter, onFilterSession }) {
   )
 }
 
+// Timer jedne ispitne cjeline. Roditelj ga MORA renderirati s key={blockIdx} —
+// useTimer čita 'totalSeconds' samo pri mountu, pa je remount preko keya način
+// resetiranja odbrojavanja bez setState-a u efektu (React Compiler pravila).
+function BlockTimer({ totalSeconds, run, onExpire, onWarn }) {
+  const { d, cls } = useTimer(totalSeconds, run, onExpire, [600, 300], onWarn)
+  return <span className={`timer${cls ? ' ' + cls : ''}`}>{d}</span>
+}
+
 function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup, soundOn, onBookmarkChange }) {
-  const qs = exam?.qs || []
+  const qs = useMemo(() => exam?.qs || [], [exam])
   const [cur, setCur] = useState(0)
   const [answers, setAnswers] = useState({})
   const [rev, setRev] = useState({})
@@ -244,27 +253,33 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
     try { return validateBookmarks(JSON.parse(localStorage.getItem('disc_eng_bookmarks') || '{}')) } catch { return {} }
   })
   const [toast, setToast] = useState(null)
-  const startedAtRef = useRef(Date.now())
+  const [blockIdx, setBlockIdx] = useState(0)
 
-  const { d: timerDisplay, cls: timerClass } = useTimer(
-    90 * 60,
-    !!(examMode || timedMode),
-    // finish() closes over the current render's `answers` state — safe because React
-    // re-registers the interval callback every render, so this always invokes the latest finish().
-    () => { if (examMode) finish() },
-    [600, 300],
-    seconds => {
-      const msg = warnMessage(seconds)
-      if (!msg) return
-      setToast(msg)
-      if (soundOn) playSound('wrong')
-      setTimeout(() => setToast(t => (t === msg ? null : t)), 4000)
-    },
-  )
+  // Simulacija ide blok po blok prema NCVVO strukturi razine (viša 70/75/35,
+  // osnovna 75/30); vježbanje i vježbanje s timerom ostaju slobodna navigacija.
+  const blocks = useMemo(() => (examMode ? getExamBlocks(exam) : []), [examMode, exam])
+  const block = blocks[blockIdx] || null
+  const isLastBlock = !block || blockIdx >= blocks.length - 1
+  // Globalni indeksi pitanja koja su trenutno dostupna (u simulaciji samo tekući blok)
+  const visIdx = useMemo(() => (block ? block.qIdx : qs.map((_, i) => i)), [block, qs])
+  // Ako 'cur' ne pripada tekućem bloku (npr. početna nula u ispitu bez čitanja),
+  // vrijedi prvo pitanje bloka — izvedena vrijednost, bez setState-a u efektu
+  const curIdx = block && !block.qIdx.includes(cur) ? block.qIdx[0] : cur
+  // Trajanje timera: po cjelini u simulaciji, ukupno propisano trajanje u timed vježbanju
+  const timerSeconds = (block ? block.minutes : totalMinutes(exam) || 90) * 60
+  const curQid = qs[curIdx]?.id
 
+  // Vrijeme po pitanju mjerimo u efektu — Date.now() se ne smije zvati tijekom
+  // rendera (React Compiler, pravilo čistoće). Cleanup se izvrši kad se pitanje
+  // (ili blok) promijeni pa tada pribilježi protekle sekunde.
   useEffect(() => {
-    startedAtRef.current = Date.now()
-  }, [cur])
+    if (!curQid) return
+    const startedAt = Date.now()
+    return () => {
+      const elapsed = Math.max(0, Math.round((Date.now() - startedAt) / 1000))
+      if (elapsed > 0) setQTimes(prev => ({ ...prev, [curQid]: (prev[curQid] || 0) + elapsed }))
+    }
+  }, [curQid])
 
   if (!exam || !qs.length) {
     return (
@@ -275,7 +290,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
     )
   }
 
-  const q = qs[cur]
+  const q = qs[curIdx]
   const bkKey = `${exam.key}_${q.id}`
   const isBookmarked = !!bookmarks[bkKey]
 
@@ -283,10 +298,41 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
     setAnswers(prev => ({ ...prev, [q.id]: next }))
   }
 
-  function goTo(i) {
-    const elapsed = Math.max(0, Math.round((Date.now() - startedAtRef.current) / 1000))
-    setQTimes(prev => ({ ...prev, [q.id]: (prev[q.id] || 0) + elapsed }))
-    setCur(Math.max(0, Math.min(qs.length - 1, i)))
+  const pos = visIdx.indexOf(curIdx)
+
+  // 'p' je pozicija unutar dostupnih pitanja (u simulaciji: unutar tekućeg bloka)
+  function goToPos(p) {
+    if (p < 0 || p >= visIdx.length) return
+    setCur(visIdx[p])
+  }
+
+  function goToBlock(next) {
+    const nb = blocks[next]
+    if (!nb) return
+    setBlockIdx(next)
+    setCur(nb.qIdx[0])
+  }
+
+  function showToast(msg) {
+    setToast(msg)
+    if (soundOn) playSound('wrong')
+    setTimeout(() => setToast(t => (t === msg ? null : t)), 4000)
+  }
+
+  function onTimerWarn(seconds) {
+    const msg = warnMessage(seconds)
+    if (msg) showToast(msg)
+  }
+
+  // Istek timera: u simulaciji automatski prelaz na sljedeću cjelinu, na zadnjoj predaja.
+  // finish() zatvara nad trenutnim renderom `answers` — sigurno jer useTimer u efektu
+  // osvježava ref na callback pri svakom renderu, pa interval zove najnoviju verziju.
+  function onTimerExpire() {
+    if (!examMode) return
+    if (!block) { finish(); return }
+    showToast('Vrijeme za ' + block.label + ' je isteklo')
+    if (isLastBlock) finish()
+    else goToBlock(blockIdx + 1)
   }
 
   function checkAnswer() {
@@ -318,6 +364,9 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
     const cor = autoQ.filter(x => chk(x, answers[x.id]) === true).length
     const pct = autoQ.length ? Math.round((cor / autoQ.length) * 100) : 0
     const g = grade(pct)
+    // Rezultat po ispitnim cjelinama s NCVVO ponderima; 'pct' ostaje udio točnih
+    // auto-ocjenjivih pitanja radi kompatibilnosti s povijesti i statistikama.
+    const scores = sectionScores(exam, answers, chk)
     onDone({
       examKey: exam.key,
       examLabel: `${exam.year}. — ${exam.label}`,
@@ -328,6 +377,8 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
       answers,
       qTimes,
       examMode,
+      sectionScores: scores,
+      weighted: weightedEstimate(scores),
     })
   }
 
@@ -346,12 +397,20 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
           if (examMode && !window.confirm('Izaći bez predaje? Napredak neće biti spremljen.')) return
           onExit()
         }}>← Natrag</button>
-        <span className="ntitle">{examMode ? 'Simulacija' : timedMode ? 'Vježbanje ⏱' : 'Vježbanje'}</span>
+        <span className="ntitle">{examMode
+          ? 'Simulacija' + (block ? ` · ${block.label} (${blockIdx + 1}/${blocks.length})` : '')
+          : timedMode ? 'Vježbanje ⏱' : 'Vježbanje'}</span>
         {(examMode || timedMode) && (
-          <span className={`timer${timerClass ? ' ' + timerClass : ''}`}>{timerDisplay}</span>
+          <BlockTimer
+            key={examMode ? 'block_' + blockIdx : 'all'}
+            totalSeconds={timerSeconds}
+            run={true}
+            onExpire={onTimerExpire}
+            onWarn={onTimerWarn}
+          />
         )}
         <span className="nsp" />
-        <span className="nbadge">{cur + 1}/{qs.length}</span>
+        <span className="nbadge">{(pos < 0 ? 0 : pos) + 1}/{visIdx.length}</span>
         <button
           className="btn btn-g"
           style={{ fontSize: 15, padding: '4px 9px', color: isBookmarked ? 'var(--gold)' : undefined, borderColor: isBookmarked ? 'var(--gold-b)' : undefined }}
@@ -359,9 +418,26 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
           title={isBookmarked ? 'Ukloni bookmark' : 'Dodaj bookmark'}
         >🔖</button>
       </div>
+      {examMode && blocks.length > 1 && (
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 12 }}>
+          {blocks.map((b, i) => {
+            const state = i < blockIdx ? 'done' : i === blockIdx ? 'active' : 'todo'
+            const col = state === 'done' ? 'var(--green)' : state === 'active' ? 'var(--blue)' : 'var(--muted)'
+            return (
+              <span key={b.id} style={{
+                fontSize: 11, fontWeight: 700, padding: '3px 9px', borderRadius: 99,
+                border: '1px solid', borderColor: state === 'todo' ? 'var(--bdr2)' : col,
+                background: state === 'todo' ? 'var(--s2)' : col + '1a', color: col,
+              }}>
+                {state === 'done' ? '✓ ' : ''}{b.label} · {b.minutes} min
+              </span>
+            )
+          })}
+        </div>
+      )}
       <SimulatorPreviewGate
         userAccess={userAccess}
-        currentQuestionIndex={cur}
+        currentQuestionIndex={curIdx}
         totalQuestions={qs.length}
         from="eng-simulator"
         previewScore={(() => {
@@ -403,13 +479,18 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
 
             <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap', alignItems: 'center' }}>
               {!examMode && !rev[q.id] && <button className="btn btn-g" onClick={isLocked ? openPaywall : checkAnswer}>Provjeri</button>}
-              <button className="btn btn-g" disabled={cur === 0} onClick={() => goTo(cur - 1)}>← Prethodno</button>
-              <button className="btn btn-g" disabled={cur === qs.length - 1} onClick={() => goTo(cur + 1)}>Sljedeće →</button>
+              <button className="btn btn-g" disabled={pos <= 0} onClick={() => goToPos(pos - 1)}>← Prethodno</button>
+              <button className="btn btn-g" disabled={pos < 0 || pos >= visIdx.length - 1} onClick={() => goToPos(pos + 1)}>Sljedeće →</button>
               <button className="btn btn-gold" style={{ marginLeft: 'auto' }} onClick={() => {
                 if (isLocked) { openPaywall(); return }
+                if (examMode && !isLastBlock) {
+                  if (!window.confirm('Nakon prelaska ne možeš se vratiti na ovaj dio.')) return
+                  goToBlock(blockIdx + 1)
+                  return
+                }
                 if (examMode && !window.confirm('Jesi li siguran/na da želiš predati ispit?')) return
                 finish()
-              }}>{examMode ? 'Predaj ispit' : 'Vidi rezultate'}</button>
+              }}>{examMode ? (isLastBlock ? 'Predaj ispit' : 'Završi dio →') : 'Vidi rezultate'}</button>
             </div>
           </div>
         )}
@@ -417,13 +498,14 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
 
       {/* Question navigation grid */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, padding: '14px 2px 0' }}>
-        {qs.map((item, i) => {
+        {visIdx.map((gi, i) => {
+          const item = qs[gi]
           const a = answers[item.id]
           const hasA = item.type === 'mat'
             ? (a && typeof a === 'object' && Object.values(a).some(v => v))
             : (a !== undefined && a !== null && a !== '')
           const reviewed = !!rev[item.id]
-          const isCur = i === cur
+          const isCur = gi === curIdx
           const isCorrect = reviewed ? chk(item, a) === true : null
           const isWrong = reviewed ? chk(item, a) === false : null
           const btnColor = isCur
@@ -434,7 +516,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
           return (
             <button
               key={item.id}
-              onClick={() => goTo(i)}
+              onClick={() => goToPos(i)}
               style={{
                 minWidth: 44, minHeight: 44, borderRadius: 6,
                 fontSize: 11, fontWeight: isCur ? 800 : 600,

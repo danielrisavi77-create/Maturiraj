@@ -3,6 +3,7 @@ import React, { createElement as e, useState, useEffect, useId, useCallback, Fra
 import { nrm, chk } from '@/lib/engleski-simulator/scoring'
 import { trackAiHelpRequested } from '@/lib/engleski-simulator/analytics'
 import { LL } from '@/lib/engleski-simulator/constants'
+import { getExamBlocks, totalMinutes } from '@/lib/engleski-simulator/examStructure'
 
 const _AI_COOLDOWN_MS = 8000
 const _AI_SS_KEY = 'eng_ai_last'
@@ -431,6 +432,10 @@ export function ContextPanel({ examKey, qid, examContext }) {
 
 export function ModeSelect({ examKey, examObj, examsMap, onExamMode, onPractice, onPracticeTimer, onBack, toggles }) {
   const exam = (examsMap && examsMap[examKey]) || examObj || {}
+  // Trajanje po ispitnim cjelinama prema NCVVO katalogu (viša 180, osnovna 105 min)
+  const blocks = getExamBlocks(exam)
+  const totalMin = totalMinutes(exam)
+  const blocksLabel = blocks.map(b => b.label + ' ' + b.minutes).join(', ')
   return e(Fragment, null,
     e('div', { className: 'nav' },
       e('button', { className: 'btn btn-g', style: { fontSize: 13, padding: '6px 12px' }, onClick: onBack }, '← Natrag'),
@@ -465,9 +470,9 @@ export function ModeSelect({ examKey, examObj, examsMap, onExamMode, onPractice,
           e('div', { className: 'mode-card-title' }, 'Simulacija ispita'),            (exam.hasListening === false || exam.hasReading === false) && e('div', { style: { display: 'flex', gap: 5, flexWrap: 'wrap', marginBottom: 6 } },
               exam.hasListening === false && e('span', { style: { fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 99, background: 'rgba(233,180,70,.12)', border: '1px solid rgba(233,180,70,.25)', color: 'var(--gold)' } }, 'bez 🎧'),
               exam.hasReading === false && e('span', { style: { fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 99, background: 'rgba(32,69,184,.1)', border: '1px solid rgba(32,69,184,.25)', color: 'var(--blue)' } }, 'bez 📖'),
-            ),          e('div', { className: 'mode-card-desc' }, exam.hasListening === false ? 'Uvjeti ispita bez Listening dijela (audio nije dostupan).' : 'Pravi uvjeti ispita: 90 minuta, bez odgovora dok ne predaš.'),
+            ),          e('div', { className: 'mode-card-desc' }, exam.hasListening === false ? 'Uvjeti ispita bez Listening dijela (audio nije dostupan).' : 'Pravi uvjeti ispita: ' + totalMin + ' min po ispitnim cjelinama, bez povratka na prethodni dio.'),
           e('div', { className: 'mode-card-features' },
-            e('div', { className: 'mode-feature on' }, '✓ Vremensko ograničenje 90 min'),
+            e('div', { className: 'mode-feature on' }, '✓ Vremensko ograničenje ' + totalMin + ' min (' + blocksLabel + ')'),
             e('div', { className: 'mode-feature off' }, '– Odgovori tek po predaji'),
             e('div', { className: 'mode-feature off' }, '– Nema objašnjenja tijekom ispita'))))))
 }
