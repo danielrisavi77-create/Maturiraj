@@ -17,7 +17,7 @@ function SvgGrid9_2012JesenB(){
   const arrowY2=ox-20,arrowX2=oy;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     ...lines,
-    e("polygon",{points:pts,fill:"#4a90d9",fillOpacity:0.18,stroke:"#4a90d9",strokeWidth:2}),
+    e("polygon",{points:pts,fill:"var(--blue)",fillOpacity:0.18,stroke:"var(--blue)",strokeWidth:2}),
     ...lbl.map(l=>e("text",{key:l.t,x:l.x,y:l.y,fontSize:13,fontWeight:"bold",fill:"var(--text)",fontFamily:"inherit"},l.t)),
     // Scale indicator
     e("line",{x1:ox,y1:oy-12,x2:ox+sc,y2:oy-12,stroke:"var(--text)",strokeWidth:1.5,markerStart:"url(#arr9s)",markerEnd:"url(#arr9e)"}),
@@ -48,7 +48,7 @@ function SvgQ13_2012JesenB(){
     return e("text",{x,y,fontSize:size||12,fill:col,fontFamily:"'JetBrains Mono',monospace",dominantBaseline:"middle"},s);
   }
 
-  const B="#4a90d9", W2="rgba(226,232,240,0.75)", G="#94a3b8";
+  const B="var(--blue)", W2="rgba(226,232,240,0.75)", G="var(--muted)";
   const r1y=rh*0.5+4, r2y=rh*1.5+4;  // middle y of each row
 
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
@@ -96,7 +96,7 @@ function SvgTable28_2012JesenB(){
     for(let c=0;c<(r===0?2:rows[r][1]?2:1);c++){
       const x=ox+(c===0?0:rw[0]),y=oy+r*rh,w=c===0?rw[0]:(r>0&&!rows[r][1]?rw[0]+rw[1]:rw[1]),h=rh;
       const isHdr=r===0||c===0&&r===0;
-      const bg=r===0?"#4a90d9":r===rows.length-1?"#4a90d9":"var(--bg)";
+      const bg=r===0?"var(--blue)":r===rows.length-1?"var(--blue)":"var(--bg)";
       const bgOp=r===0?0.25:r===rows.length-1?0.1:1;
       cells.push(e("rect",{key:`r${r}c${c}`,x,y,width:w,height:h,fill:bg,fillOpacity:bgOp,stroke:"var(--text)",strokeWidth:0.8,strokeOpacity:0.4}));
       const txt=c<rows[r].length?rows[r][c]:rows[r][0];
@@ -140,10 +140,10 @@ function SvgGraf27_2012JesenB(){
     )),
     e("text",{x:ox-6,y:toY(0)+4,textAnchor:"end",fontSize:10,fill:"var(--text)"},"0"),
     // The line: y=(3/20)x → goes from (0,0) to (80,12)
-    e("line",{x1:toX(0),y1:toY(0),x2:toX(80),y2:toY(12),stroke:"#4a90d9",strokeWidth:2.2}),
+    e("line",{x1:toX(0),y1:toY(0),x2:toX(80),y2:toY(12),stroke:"var(--blue)",strokeWidth:2.2}),
     // Reference points
-    e("circle",{cx:toX(20),cy:toY(3),r:4,fill:"white",stroke:"#4a90d9",strokeWidth:1.5}),
-    e("circle",{cx:toX(0),cy:toY(0),r:4,fill:"white",stroke:"#4a90d9",strokeWidth:1.5})
+    e("circle",{cx:toX(20),cy:toY(3),r:4,fill:"white",stroke:"var(--blue)",strokeWidth:1.5}),
+    e("circle",{cx:toX(0),cy:toY(0),r:4,fill:"white",stroke:"var(--blue)",strokeWidth:1.5})
   );
 }
 
@@ -178,8 +178,8 @@ function SvgParabola16_2012JesenB(){
     e("text",{x:cx+5,y:12,fontSize:11,fill:"var(--text)"},"y"),
     e("text",{x:cx-12,y:cy+12,fontSize:11,fill:"var(--text)"},"0"),
     // y-intercept dot at (0,4) → pixel (cx, cy-4*sc)
-    e("circle",{cx:cx,cy:cy-4*sc,r:3,fill:"#4a90d9"}),
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2})
+    e("circle",{cx:cx,cy:cy-4*sc,r:3,fill:"var(--blue)"}),
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2})
   );
 }
 
@@ -191,7 +191,7 @@ function SvgTable10_2012JesenB(){
   const vals=["f(x)",...ys.map(String)];
   for(let c=0;c<cols;c++){
     const cx=ox+c*rw;
-    cells.push(e("rect",{key:"h"+c,x:cx,y:oy,width:rw,height:rh,fill:c===0?"#4a90d9":"var(--bg)",fillOpacity:c===0?0.25:1,stroke:"var(--text)",strokeWidth:1,strokeOpacity:0.4}));
+    cells.push(e("rect",{key:"h"+c,x:cx,y:oy,width:rw,height:rh,fill:c===0?"var(--blue)":"var(--bg)",fillOpacity:c===0?0.25:1,stroke:"var(--text)",strokeWidth:1,strokeOpacity:0.4}));
     cells.push(e("text",{key:"ht"+c,x:cx+rw/2,y:oy+rh/2+5,textAnchor:"middle",fontSize:13,fontStyle:c===0?"italic":"normal",fontWeight:"bold",fill:"var(--text)"},hdrs[c]));
     cells.push(e("rect",{key:"v"+c,x:cx,y:oy+rh,width:rw,height:rh,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1,strokeOpacity:0.4}));
     cells.push(e("text",{key:"vt"+c,x:cx+rw/2,y:oy+rh+rh/2+5,textAnchor:"middle",fontSize:13,fontStyle:c===0?"italic":"normal",fill:"var(--text)"},vals[c]));
@@ -342,7 +342,7 @@ export const qs = [
     "Provjera: 2·(−2)/(−2−2) = −4/−4 = 1 (krivi odgovor A bi bio 2+(−2)=0)"
   ,"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan."]
 },
-  {id:9,img:true,type:"mc",warn:"Pazi: izbroji rubne stranice u jedinicama mreže, pa pomnoži s 15 m.",img:true,topic:"geo",points:1,
+  {id:9,img:true,type:"mc",warn:"Pazi: izbroji rubne stranice u jedinicama mreže, pa pomnoži s 15 m.",img:true,topic:"geom",points:1,
   q:"Koliki je opseg zemljišta na slici ako stranice u kvadratnoj mreži imaju duljinu 15 m? (Napomena: odgovor je zaokružen na najbliži cijeli broj.)",
   opts:["333 m","335 m","337 m","339 m"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -449,7 +449,7 @@ export const qs = [
     "Provjera: (x+y)²−2xy = 9−2 = 7 ✓"
   ,"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
 },
-  {id:15,type:"mc",warn:"Pazi: ukupna obložena površina / površina pločice (20×20 = 400 cm²); pazi na jedinice.",topic:"geo",points:2,
+  {id:15,type:"mc",warn:"Pazi: ukupna obložena površina / površina pločice (20×20 = 400 cm²); pazi na jedinice.",topic:"geom",points:2,
   q:"Pločicama kvadratnog oblika duljine stranice 20 cm popločano je dno i sve bočne strane bazena. Bazen je oblika kvadra dimenzija 50 m × 25 m × 2,6 m. S koliko je pločica bazen popločan?",
   opts:["sa 16 000","s 32 250","s 41 000","s 81 250"],
   sol:{cl:"C",ex:"Površina = 1640 m²; pločica = 0,04 m²; broj = 41 000"},
@@ -644,7 +644,7 @@ export const qs = [
     "Provjera: f(1)=1−1=0 ✓, f(0)=−1 ✓, f(2)=4−1=3 ✓"
   ,"Provjera: izračunaj f(x) za nekoliko x i provjeri pripadnost grafu."]
 },
-  {id:24.1,type:"num",topic:"geo",points:1,
+  {id:24.1,type:"num",topic:"geom",points:1,
   context:"Zadatak 24 (1. dio od 2): Zadan je jednakokračan trokut.",
   q:"Mjera kuta uz osnovicu jednakokračnog trokuta jednaka je 41°37'. Kolika je mjera kuta nasuprot osnovici?",
   sol:{ans:"96°46'",alt:["96°46'","96 stupnjeva 46 minuta","96,767"]},
@@ -663,7 +663,7 @@ export const qs = [
     "Provjera: 41°37' + 41°37' + 96°46' = 83°14' + 96°46' = 179°60' = 180° ✓"
   ,"Provjera dimenzija: jedinice (m, m², m³) moraju biti konzistentne."]
 },
-  {id:24.2,type:"num",topic:"geo",points:1,
+  {id:24.2,type:"num",topic:"geom",points:1,
   context:"Zadatak 24 (2. dio od 2): Jednakostranični trokut.",
   q:"Površina jednakostraničnog trokuta je 31,3 cm². Kolika je duljina stranice tog trokuta?",
   sol:{ans:"8,5 cm",alt:["8,5","8,5","8,5 cm","8,5 cm","≈8,5"]},
@@ -838,8 +838,7 @@ export const qs = [
     "Česta greška: dodati PDV na 60 kn umjesto na 30 kn (50% od 60)",
     "Provjera: 30·1,23 = 36,90 kn ✓",
     "Pravilo povrata: pošiljatelj plaća 50% tarife prijevoza + PDV 23%","Provjera redom veličine: rezultat je u očekivanom intervalu (npr. postotak između 0 i 100)."]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2012_jesen",razina:"B",serial:"D-S011",totalPoints:40,mcCount:16,saCount:19,verified:"vision+pdf+pedagogy-premium+verbatim",auditNotes:"G+F+H+I+J kompletno. Q24 trokut fix. Pak F 16/16 MC. J opts frac. I: Q9,10,13,16,27,28 img:true [STRUKTURA]",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+}
 ];
 
 export const qImages = {

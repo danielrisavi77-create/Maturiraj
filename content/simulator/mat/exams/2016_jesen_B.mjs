@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg28_2016Bj(){
   const W=240,H=160,pad={l:38,r:14,t:18,b:32};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=t=>pad.l+((t-6)/13)*iW;
   const toY=v=>pad.t+((30-v)/24)*iH;
@@ -47,7 +47,7 @@ function Svg28_2016Bj(){
 
 function Svg24_2016Bj(){
   const W=200,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=7,yMin=-4,yMax=3;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -88,19 +88,19 @@ function SvgZad20_2016Bj(){
   const u=(()=>{let n=0;return()=>"b16z20_"+(++n)})();
   return e("svg",{viewBox:"0 0 280 200",style:{width:"100%",maxWidth:280,display:"block",margin:"8px auto"}},
     // Parallel lines a
-    e("line",{key:u(),x1:60,y1:50,x2:250,y2:50,stroke:"#4a90d9",strokeWidth:1.5}),
-    e("line",{key:u(),x1:30,y1:140,x2:220,y2:140,stroke:"#4a90d9",strokeWidth:1.5}),
-    e("text",{key:u(),x:252,y:46,fill:"#4a90d9",fontSize:12,fontStyle:"italic",fontWeight:600},"a"),
-    e("text",{key:u(),x:222,y:136,fill:"#4a90d9",fontSize:12,fontStyle:"italic",fontWeight:600},"a"),
+    e("line",{key:u(),x1:60,y1:50,x2:250,y2:50,stroke:"var(--blue)",strokeWidth:1.5}),
+    e("line",{key:u(),x1:30,y1:140,x2:220,y2:140,stroke:"var(--blue)",strokeWidth:1.5}),
+    e("text",{key:u(),x:252,y:46,fill:"var(--blue)",fontSize:12,fontStyle:"italic",fontWeight:600},"a"),
+    e("text",{key:u(),x:222,y:136,fill:"var(--blue)",fontSize:12,fontStyle:"italic",fontWeight:600},"a"),
     // Transverzala b
-    e("line",{key:u(),x1:100,y1:10,x2:200,y2:190,stroke:"#e05252",strokeWidth:1.5}),
-    e("text",{key:u(),x:195,y:180,fill:"#e05252",fontSize:12,fontStyle:"italic",fontWeight:600},"b"),
+    e("line",{key:u(),x1:100,y1:10,x2:200,y2:190,stroke:"var(--red)",strokeWidth:1.5}),
+    e("text",{key:u(),x:195,y:180,fill:"var(--red)",fontSize:12,fontStyle:"italic",fontWeight:600},"b"),
     // Kut 74° (at upper intersection)
-    e("path",{key:u(),d:"M 165,50 A 20 20 0 0 1 148,34",fill:"none",stroke:"#e9b446",strokeWidth:1.5}),
-    e("text",{key:u(),x:155,y:32,fill:"#e9b446",fontSize:12,fontWeight:700},"74\u00b0"),
+    e("path",{key:u(),d:"M 165,50 A 20 20 0 0 1 148,34",fill:"none",stroke:"var(--gold)",strokeWidth:1.5}),
+    e("text",{key:u(),x:155,y:32,fill:"var(--gold)",fontSize:12,fontWeight:700},"74\u00b0"),
     // Kut β (at lower intersection)
-    e("path",{key:u(),d:"M 140,140 A 22 22 0 0 0 120,155",fill:"none",stroke:"#50c878",strokeWidth:1.5}),
-    e("text",{key:u(),x:108,y:165,fill:"#50c878",fontSize:14,fontStyle:"italic",fontWeight:700},"\u03b2")
+    e("path",{key:u(),d:"M 140,140 A 22 22 0 0 0 120,155",fill:"none",stroke:"var(--green)",strokeWidth:1.5}),
+    e("text",{key:u(),x:108,y:165,fill:"var(--green)",fontSize:14,fontStyle:"italic",fontWeight:700},"\u03b2")
   );
 }
 
@@ -127,11 +127,11 @@ function SvgZad13_2016Bj(){
     e("line",{key:u(),x1:toX(0)-3,y1:toY(1),x2:toX(0)+3,y2:toY(1),stroke:"var(--muted)",strokeWidth:0.8}),
     e("text",{key:u(),x:toX(0)-14,y:toY(1)+4,fill:"var(--muted)",fontSize:9},"1"),
     // Pravac p (through about (-3,3) to (4,0.7))
-    e("line",{key:u(),x1:toX(-3.5),y1:toY(3.2),x2:toX(4.5),y2:toY(0.5),stroke:"#4a90d9",strokeWidth:1.8}),
-    e("text",{key:u(),x:toX(-3.2),y:toY(3.2)-6,fill:"#4a90d9",fontSize:12,fontStyle:"italic",fontWeight:600},"p"),
+    e("line",{key:u(),x1:toX(-3.5),y1:toY(3.2),x2:toX(4.5),y2:toY(0.5),stroke:"var(--blue)",strokeWidth:1.8}),
+    e("text",{key:u(),x:toX(-3.2),y:toY(3.2)-6,fill:"var(--blue)",fontSize:12,fontStyle:"italic",fontWeight:600},"p"),
     // Točka T
-    e("circle",{key:u(),cx:toX(-2),cy:toY(1),r:4.5,fill:"#e05252"}),
-    e("text",{key:u(),x:toX(-2)-15,y:toY(1)-6,fill:"#e05252",fontSize:13,fontStyle:"italic",fontWeight:700},"T")
+    e("circle",{key:u(),cx:toX(-2),cy:toY(1),r:4.5,fill:"var(--red)"}),
+    e("text",{key:u(),x:toX(-2)-15,y:toY(1)-6,fill:"var(--red)",fontSize:13,fontStyle:"italic",fontWeight:700},"T")
   );
 }
 
@@ -139,15 +139,15 @@ function SvgZad10_2016Bj(){
   const u=(()=>{let n=0;return()=>"b16z10_"+(++n)})();
   return e("svg",{viewBox:"0 0 340 180",style:{width:"100%",maxWidth:340,display:"block",margin:"8px auto"}},
     e("polygon",{key:u(),points:"30,150 310,150 220,30",fill:"rgba(74,144,217,0.07)",stroke:"var(--text)",strokeWidth:1.8,strokeLinejoin:"round"}),
-    e("line",{key:u(),x1:220,y1:30,x2:220,y2:150,stroke:"#e9b446",strokeWidth:1.2,strokeDasharray:"5,3"}),
-    e("rect",{key:u(),x:212,y:142,width:8,height:8,fill:"none",stroke:"#e9b446",strokeWidth:1}),
+    e("line",{key:u(),x1:220,y1:30,x2:220,y2:150,stroke:"var(--gold)",strokeWidth:1.2,strokeDasharray:"5,3"}),
+    e("rect",{key:u(),x:212,y:142,width:8,height:8,fill:"none",stroke:"var(--gold)",strokeWidth:1}),
     e("text",{key:u(),x:15,y:165,fill:"var(--text)",fontSize:14,fontWeight:700,fontStyle:"italic"},"A"),
     e("text",{key:u(),x:312,y:165,fill:"var(--text)",fontSize:14,fontWeight:700,fontStyle:"italic"},"B"),
     e("text",{key:u(),x:218,y:20,fill:"var(--text)",fontSize:14,fontWeight:700,fontStyle:"italic"},"C"),
     e("text",{key:u(),x:218,y:165,fill:"var(--text)",fontSize:14,fontWeight:700,fontStyle:"italic"},"D"),
-    e("text",{key:u(),x:115,y:165,fill:"#4a90d9",fontSize:12,textAnchor:"middle",fontWeight:600},"AD = 10 cm"),
-    e("text",{key:u(),x:208,y:95,fill:"#50c878",fontSize:12,textAnchor:"end",fontWeight:600},"CD = 3"),
-    e("text",{key:u(),x:275,y:85,fill:"#e05252",fontSize:12,fontWeight:600},"BC = 5")
+    e("text",{key:u(),x:115,y:165,fill:"var(--blue)",fontSize:12,textAnchor:"middle",fontWeight:600},"AD = 10 cm"),
+    e("text",{key:u(),x:208,y:95,fill:"var(--green)",fontSize:12,textAnchor:"end",fontWeight:600},"CD = 3"),
+    e("text",{key:u(),x:275,y:85,fill:"var(--red)",fontSize:12,fontWeight:600},"BC = 5")
   );
 }
 
@@ -760,8 +760,7 @@ export const qs = [
     "Intuicija: 'potrošeno' = zbroj svih SILAZNIH segmenata (vožnja); 'uneseno' = početno + skokovi gore.",
     "Česta greška: zaboraviti POČETNO stanje; ili pomiješati 'gorivo u spremniku' s 'potrošeno'.",
     "Provjera ✓: 36 L za 13h vožnje ≈ 2,8 L/h prosječna potrošnja — realno za auto u prometu."
-  ,"Alt metoda: izračunaj korak po korak iz definicije.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."]},
-  {_META:true,auditStatus:"verified-full+pedagogy-full",auditedAt:"2026-05-16",auditBy:"Claude+Daniel",rok:"2016_jesen",razina:"B",serial:"D-S033",totalPoints:40,mcCount:16,saCount:20,verified:"sympy+pdf+verbatim+pedagogy-full",notes:["Pak G (verbatim PDF, 2026-05-16): Q1-Q28 svi tekstovi/opcije/odgovori usklađeni s originalnim PDF-om D-S033. Klju NCVVO verificiran.","Pak G1 (ghost cleanup): uklonjeni duplikati Q24a i Q26a (string ID artefakti).","Pak G2 (sadržajni fixevi): Q23,1 −d²−2c (sympy verified), Q23,2 poredak (PDF traži 1/x, √x, x ne x², 1/x, x), Q25,2 točan eksponent (x/3), Q26,2 točan izraz |2m−3|−|1−m|+m. Sve verificirano s SymPy ili kalkulacijom.","Pak F MC (Q1-Q16): pedagoški upgrade — mc/1pt ≥3 steps (verifikacija+diagnostika) + ≥4 why (Pravilo/Intuicija/Greška/Provjera); mc/2pt ≥4 steps + ≥4 why + ex polje.","Pak F SA (Q17-Q28,3): pedagoški upgrade za 20 sub-Q-ova; sa/1pt ≥3 steps + ≥3-4 why.","PED-FINAL swap: 16 swapova (verifikacija na zadnju poziciju).","Pak I (visual): Q_IMAGES rename \"24\" → \"24,2\" i \"28\" → \"28,1\"; aliasi 28,2, 28,3 dodani (isti SVG); Q24,1 img:true uklonjen (zadatak je CRTANJE, ne čitanje).","Preostali nalazi: 10 false positive — 1 PED-FIELD (scanner ne parsa ⟨ ⟩ u opcijama Q2), 9 PED-TOPIC (keyword)."]}
+  ,"Alt metoda: izračunaj korak po korak iz definicije.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."]}
 ];
 
 export const qImages = {

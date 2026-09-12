@@ -27,10 +27,10 @@ function Svg28_2017Blj(){
     e("text",{x:pad.l+iW+2,y:pad.t+iH+4,fontSize:8,fontStyle:"italic",fill:"var(--text)"},"t (min)"),
     e("text",{x:pad.l-2,y:pad.t-2,fontSize:8,fontStyle:"italic",fill:"var(--text)"},"T (\u00b0C)"),
     e("text",{x:pad.l+3,y:pad.t+iH+14,fontSize:7,fill:"var(--muted)"},"0"),
-    p1.length>1&&e("polyline",{points:p1.join(" "),fill:"none",stroke:"#e05252",strokeWidth:2}),
-    p2.length>1&&e("polyline",{points:p2.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2}),
-    e("text",{x:toX(8),y:toY(2+1.2*8)-6,fontSize:8,fill:"#e05252"},"3 dL"),
-    e("text",{x:toX(8),y:toY(14+0.8*8)-6,fontSize:8,fill:"#4a90d9"},"2 dL")
+    p1.length>1&&e("polyline",{points:p1.join(" "),fill:"none",stroke:"var(--red)",strokeWidth:2}),
+    p2.length>1&&e("polyline",{points:p2.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2}),
+    e("text",{x:toX(8),y:toY(2+1.2*8)-6,fontSize:8,fill:"var(--red)"},"3 dL"),
+    e("text",{x:toX(8),y:toY(14+0.8*8)-6,fontSize:8,fill:"var(--blue)"},"2 dL")
   );
 }
 
@@ -38,7 +38,7 @@ function Svg26a_2017Blj(){
   const W=160,H=160,cx=80,cy=75,r=55;
   const pcts=[40,10,25,25];
   const labels=["salata","per\u0161in","mrkva","gra\u0161ak"];
-  const colors=["#50c878","#e9b446","#e05252","#4a90d9"];
+  const colors=["var(--green)","var(--gold)","var(--red)","var(--blue)"];
   let startAngle=-Math.PI/2;
   const arcs=[];
   pcts.forEach((p,i)=>{
@@ -79,10 +79,10 @@ function Svg24_2017Blj(){
     e("text",{x:ox-9,y:oy+12,fontSize:7,fill:"var(--muted)"},"0"),
     ...[1,2,3,4,5].map(x=>e("text",{key:"lx"+x,x:toX(x),y:oy+12,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},x)),
     ...[-3,-2,-1,1].map(y=>e("text",{key:"ly"+y,x:ox-7,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)),
-    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:"#50c878",strokeWidth:2}),
-    e("circle",{cx:toX(2.5),cy:toY(-3),r:3.5,fill:"#e05252",stroke:"var(--bg)",strokeWidth:1.2}),
-    e("circle",{cx:toX(0),cy:oy,r:3,fill:"#4a90d9",stroke:"var(--bg)",strokeWidth:1}),
-    e("circle",{cx:toX(5),cy:oy,r:3,fill:"#4a90d9",stroke:"var(--bg)",strokeWidth:1})
+    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--green)",strokeWidth:2}),
+    e("circle",{cx:toX(2.5),cy:toY(-3),r:3.5,fill:"var(--red)",stroke:"var(--bg)",strokeWidth:1.2}),
+    e("circle",{cx:toX(0),cy:oy,r:3,fill:"var(--blue)",stroke:"var(--bg)",strokeWidth:1}),
+    e("circle",{cx:toX(5),cy:oy,r:3,fill:"var(--blue)",stroke:"var(--bg)",strokeWidth:1})
   );
 }
 
@@ -98,10 +98,10 @@ function Svg23a_2017Blj(){
       e("line",{x1:toX(v),y1:21,x2:toX(v),y2:29,stroke:"var(--text)",strokeWidth:1}),
       e("text",{x:toX(v),y:42,textAnchor:"middle",fontSize:9,fill:"var(--muted)"},v)
     )),
-    e("circle",{cx:toX(-1.2),cy:25,r:4,fill:"#e05252",stroke:"var(--bg)",strokeWidth:1.2}),
-    e("text",{x:toX(-1.2),y:14,textAnchor:"middle",fontSize:10,fontWeight:700,fill:"#e05252"},"B"),
-    e("circle",{cx:toX(1.5),cy:25,r:4,fill:"#4a90d9",stroke:"var(--bg)",strokeWidth:1.2}),
-    e("text",{x:toX(1.5),y:14,textAnchor:"middle",fontSize:10,fontWeight:700,fill:"#4a90d9"},"A")
+    e("circle",{cx:toX(-1.2),cy:25,r:4,fill:"var(--red)",stroke:"var(--bg)",strokeWidth:1.2}),
+    e("text",{x:toX(-1.2),y:14,textAnchor:"middle",fontSize:10,fontWeight:700,fill:"var(--red)"},"B"),
+    e("circle",{cx:toX(1.5),cy:25,r:4,fill:"var(--blue)",stroke:"var(--bg)",strokeWidth:1.2}),
+    e("text",{x:toX(1.5),y:14,textAnchor:"middle",fontSize:10,fontWeight:700,fill:"var(--blue)"},"A")
   );
 }
 
@@ -142,14 +142,14 @@ function Svg28_2017LjetoB(){
     )),
     e("text",{key:u(),x:pad.l-5,y:toY(0)+12,textAnchor:"end",fontSize:9,fill:"var(--muted)"},"0"),
     // T1 line (posuda 3 dL)
-    e("polyline",{key:u(),points:ptsT1.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round"}),
-    e("text",{key:u(),x:toX(15)+5,y:toY(2+1.2*15)-2,fontSize:9,fill:"#4a90d9",fontWeight:600},"3 dL"),
+    e("polyline",{key:u(),points:ptsT1.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"}),
+    e("text",{key:u(),x:toX(15)+5,y:toY(2+1.2*15)-2,fontSize:9,fill:"var(--blue)",fontWeight:600},"3 dL"),
     // T2 line (posuda 2 dL)
-    e("polyline",{key:u(),points:ptsT2.join(" "),fill:"none",stroke:"#e05252",strokeWidth:2.2,strokeLinecap:"round"}),
-    e("text",{key:u(),x:toX(15)+5,y:toY(14+0.8*15)-2,fontSize:9,fill:"#e05252",fontWeight:600},"2 dL"),
+    e("polyline",{key:u(),points:ptsT2.join(" "),fill:"none",stroke:"var(--red)",strokeWidth:2.2,strokeLinecap:"round"}),
+    e("text",{key:u(),x:toX(15)+5,y:toY(14+0.8*15)-2,fontSize:9,fill:"var(--red)",fontWeight:600},"2 dL"),
     // Početne točke
-    e("circle",{key:u(),cx:toX(0),cy:toY(2),r:3,fill:"#4a90d9"}),
-    e("circle",{key:u(),cx:toX(0),cy:toY(14),r:3,fill:"#e05252"})
+    e("circle",{key:u(),cx:toX(0),cy:toY(2),r:3,fill:"var(--blue)"}),
+    e("circle",{key:u(),cx:toX(0),cy:toY(14),r:3,fill:"var(--red)"})
   );
 }
 
@@ -158,10 +158,10 @@ function Svg26p1_2017LjetoB(){
   const W=280,H=220,cx=W/2,cy=H/2-5,r=75;
   // Salata=40%, peršin=10%, mrkva=20%, grašak=30%
   const segments=[
-    {label:"salata", pct:40, color:"#4a90d9", text:"40%"},
-    {label:"peršin", pct:10, color:"#e9b446", text:"10%"},
-    {label:"mrkva",  pct:20, color:"#e05252", text:"mrkva"},
-    {label:"grašak", pct:30, color:"#50c878", text:"grašak"},
+    {label:"salata", pct:40, color:"var(--blue)", text:"40%"},
+    {label:"peršin", pct:10, color:"var(--gold)", text:"10%"},
+    {label:"mrkva",  pct:20, color:"var(--red)", text:"mrkva"},
+    {label:"grašak", pct:30, color:"var(--green)", text:"grašak"},
   ];
   let acc=0;
   const arcs=segments.map(s=>{
@@ -219,13 +219,13 @@ function Svg24p2_2017LjetoB(){
       e("text",{x:toX(0)-6,y:toY(y)+3,textAnchor:"end",fontSize:8,fill:"var(--muted)"},y)
     )),
     // Parabola
-    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"#50c878",strokeWidth:2.4,strokeLinecap:"round"}),
+    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"var(--green)",strokeWidth:2.4,strokeLinecap:"round"}),
     // Nultočke (0 i 5)
-    e("circle",{key:u(),cx:toX(0),cy:toY(0),r:4,fill:"#e05252"}),
-    e("circle",{key:u(),cx:toX(5),cy:toY(0),r:4,fill:"#e05252"}),
+    e("circle",{key:u(),cx:toX(0),cy:toY(0),r:4,fill:"var(--red)"}),
+    e("circle",{key:u(),cx:toX(5),cy:toY(0),r:4,fill:"var(--red)"}),
     // Tjeme
-    e("circle",{key:u(),cx:toX(2.5),cy:toY(-3),r:4,fill:"#4a90d9"}),
-    e("text",{key:u(),x:toX(2.5)+6,y:toY(-3)+4,fill:"#4a90d9",fontSize:10,fontWeight:600},"(2,5; −3)")
+    e("circle",{key:u(),cx:toX(2.5),cy:toY(-3),r:4,fill:"var(--blue)"}),
+    e("text",{key:u(),x:toX(2.5)+6,y:toY(-3)+4,fill:"var(--blue)",fontSize:10,fontWeight:600},"(2,5; −3)")
   );
 }
 
@@ -248,11 +248,11 @@ function Svg23p1_2017LjetoB(){
     // Minor ticks at 0.5
     ...[-1.5,-0.5,0.5,1.5].map(x=>e("line",{key:"mt"+x,x1:toX(x),y1:y-3,x2:toX(x),y2:y+3,stroke:"var(--muted)",strokeWidth:0.8})),
     // Točka A(1.5)
-    e("circle",{key:u(),cx:toX(1.5),cy:y,r:4,fill:"#e05252"}),
-    e("text",{key:u(),x:toX(1.5),y:y-10,textAnchor:"middle",fontSize:12,fontWeight:700,fill:"#e05252"},"A"),
+    e("circle",{key:u(),cx:toX(1.5),cy:y,r:4,fill:"var(--red)"}),
+    e("text",{key:u(),x:toX(1.5),y:y-10,textAnchor:"middle",fontSize:12,fontWeight:700,fill:"var(--red)"},"A"),
     // Točka B(-1.2)
-    e("circle",{key:u(),cx:toX(-1.2),cy:y,r:4,fill:"#4a90d9"}),
-    e("text",{key:u(),x:toX(-1.2),y:y-10,textAnchor:"middle",fontSize:12,fontWeight:700,fill:"#4a90d9"},"B")
+    e("circle",{key:u(),cx:toX(-1.2),cy:y,r:4,fill:"var(--blue)"}),
+    e("text",{key:u(),x:toX(-1.2),y:y-10,textAnchor:"middle",fontSize:12,fontWeight:700,fill:"var(--blue)"},"B")
   );
 }
 
@@ -329,7 +329,7 @@ export const qs = [
   steps:[{txt:"Zadano: 3 krojačice · 5 dana → 12 košulja."},{txt:"Korak 1 — produktivnost po čovjek-danu: 12 / (3·5) = 12/15 = 0,8 košulja/čovjek-dan."},{txt:"Korak 2 — novi rad: 4 krojačice · 7 dana = 28 čovjek-dana."},{txt:"Korak 3 — količina: 28 · 0,8 = 22,4 košulja."},{txt:"Korak 4 — fizički realno: ne može se sašiti 22,4 košulje, mora biti cijeli broj. Treba zaokružiti."},{txt:"U kontekstu radnih danâ obično se uzima na niže: 22 košulje (ili razmotrenje izbora opcija).",final:true},{txt:"Provjera: 22 košulja u 28 čovjek-dana = 0,786 košulja/čovjek-dan ≈ 0,8 ✓ → C",final:true,note:"verifikacija"},{txt:"Intuicija: više krojačica I više dana → proporcionalno više košulja.",note:"diagnostika",final:true},{txt:"Sažetak postupka: Pravilo: produktivnost je linearna kad svi rade isto. Količina = stopa × čovjek-dani.",note:"postupak",final:true},{txt:"Intuicija: Postupak: izračunaj stopu iz prvog uvjeta, primijeni na drugi.",note:"intuicija",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true}],
    why:["Pravilo: produktivnost je linearna kad svi rade isto. Količina = stopa × čovjek-dani.","Postupak: izračunaj stopu iz prvog uvjeta, primijeni na drugi.","Intuicija: više krojačica I više dana → proporcionalno više košulja.","Česta greška: zbrojiti samo broj radnica ili dana, bez množenja → potpuno krivi rezultat.","Diagnostic: A) 16 — bez stope; B) 18 — krivi izračun; C) 22 ✓ (zaokruženo dolje); D) 28 — čovjek-dani umjesto košulja.","Alt metoda: omjeri — 4 krojačice / 3 = 4/3×; 7 dana / 5 = 7/5×; 12 · (4/3) · (7/5) = 22,4 → 22."],
   },
-  {id:10,type:"mc",warn:"Pazi: os ordinata → x = 0 → f(0) = −6; točka (0, −6).",topic:"func",points:1,
+  {id:10,type:"mc",warn:"Pazi: os ordinata → x = 0 → f(0) = −6; točka (0, −6).",topic:"fun",points:1,
    q:"Koje su koordinate sjecišta grafa funkcije f(x) = 0,5x − 6 s osi ordinata?",
    opts:["(0, -6)","(0, 0,5)","(-5,5; 0)","(12, 0)"],
    sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -522,7 +522,7 @@ export const qs = [
    
    why:["Pravilo: razlomak a/b je prirodan broj akko b | a (b dijeli a) i a/b > 0.","Postupak: nađi sve djelitelje 5 (pozitivne i negativne), izračunaj odgovarajući n, filtriraj na prirodne i pozitivne rezultate.","Intuicija: broj 5 ima malo djelitelja (1, 5, -1, -5) jer je prost.","Česta greška: zaboraviti slučaj n=1 (gdje je n-2 = -1 → daje -5, nije prirodan).","Specifična: prirodan broj = {1, 2, 3, ...} (pozitivan cijeli ≥ 1, ne uključuje 0 ni negativne).","Alt: tabelarno provjeri n = 1, 2, 3, 4, 5, 6, 7, 8 — samo n=3 i n=7 daju prirodne rezultate."]
   },
-  {id:27.2,type:"sa",topic:"func",points:1,
+  {id:27.2,type:"sa",topic:"fun",points:1,
    context:"Zadatak 27 (2. dio od 2):",
    q:"Zadana je funkcija f(x) = kx + 3. Odredite vrijednost realnog broja k ako je f(2) = -5.",
    sol:{ans:"-4", alt:["-4","k=-4"]},
@@ -531,7 +531,7 @@ export const qs = [
    
    why:["Pravilo: linearna funkcija f(x) = kx + n; k je nagib, n je slobodni član (sjecište s y-osi).","Postupak: uvrsti zadanu vrijednost (x, f(x)) u jednadžbu, riješi za nepoznati parametar.","Intuicija: f(2) je vrijednost funkcije u x = 2; ovdje je -5, što daje uvjet na k.","Česta greška: zamijeniti k i n (broj 3 je n, ne k).","Specifična: k može biti negativan; -4 daje funkciju koja \"pada\" (lijevo viša, desno niža).","Provjera: f(2) = 2·(-4) + 3 = -5 ✓."],
   },
-  {id:28.1,img:true,type:"sa",img:true,topic:"func",points:1,
+  {id:28.1,img:true,type:"sa",img:true,topic:"fun",points:1,
    context:"Zadatak 28 (1. dio od 3):",
    q:"Zagrijavamo posudu s 3 dL vode (+6°C/5 min) i posudu s 2 dL (+4°C/5 min). Grafovi su prikazani. Koja je početna temperatura vode u posudi od 2 dL?",
    sol:{ans:"14°C", alt:["14","14 °C"]},
@@ -540,7 +540,7 @@ export const qs = [
    
    why:["Pravilo: graf linearne funkcije y = at + b — y-presjek je b (vrijednost u t = 0).","Postupak: identificiraj koja linija odgovara kojoj posudi (po stopi rasta ili labeli), očitaj y-presjek.","Intuicija: pri t = 0 nije bila zagrijavanja → temperatura je INICIJALNA = y-presjek.","Česta greška: očitati presjek druge linije (3 dL ima nižu početnu temperaturu, npr. 2°C).","Diagnostic: graf pokazuje 2 dL liniju koja kreće više (jer već topla); 3 dL kreće niže (hladnija početno).","Provjera s formulom: T_2dL = 14 + 0,8t; t=0 → 14°C ✓."]
   },
-  {id:28.2,img:true,type:"sa",img:true,topic:"func",points:1,
+  {id:28.2,img:true,type:"sa",img:true,topic:"fun",points:1,
    context:"Zadatak 28 (2. dio od 3):",
    q:"Posuda 3 dL grije se +6°C/5 min, posuda 2 dL grije se +4°C/5 min. Koliko se svake minute smanjuje razlika temperatura voda u tim posudama?",
    sol:{ans:"0,4°C", alt:["0,4","0,4 °C","-0,4","2/5"]},
@@ -549,7 +549,7 @@ export const qs = [
    
    why:["Pravilo: brzina promjene razlike dvaju linearnih veličina = razlika njihovih stopa (algebarska).","Postupak: identificiraj stope, oduzmi (sporiji od bržeg za smanjenje razlike).","Intuicija: ako se hladnija posuda zagrijava brže, sustigat će toplu — razlika se smanjuje.","Česta greška: ZBROJITI stope umjesto oduzeti (krivi smjer logike).","Specifična: razlika temperatura ovdje znači APSOLUTNU razliku |T_3dL - T_2dL|, a ne usmjerenu.","Provjera s konkretnim vrijednostima u 1 min: razlika smanjila za 0,4°C ✓."]
   },
-  {id:28.3,img:true,type:"sa",img:true,topic:"func",points:1,
+  {id:28.3,img:true,type:"sa",img:true,topic:"fun",points:1,
    context:"Zadatak 28 (3. dio od 3):",
    q:"Posuda 3 dL: početna temp. 2°C, grije se +1,2°C/min. Posuda 2 dL: početna temp. 14°C, grije se +0,8°C/min. Nakon koliko minuta će temperature biti jednake?",
    sol:{ans:"30", alt:["30 min","30"]},
@@ -557,8 +557,7 @@ export const qs = [
    steps:[{txt:"Treba t kad su temperature jednake: T_3dL(t) = T_2dL(t)."},{txt:"Korak 1 — postavi formule: T_3dL(t) = 2 + 1,2t; T_2dL(t) = 14 + 0,8t."},{txt:"Korak 2 — izjednači: 2 + 1,2t = 14 + 0,8t."},{txt:"Korak 3 — premjeji: 1,2t - 0,8t = 14 - 2 → 0,4t = 12."},{txt:"Korak 4 — t = 12 / 0,4 = 30 min.",final:true},{txt:"Provjera: T_3dL(30) = 2 + 36 = 38°C; T_2dL(30) = 14 + 24 = 38°C ✓ (jednake).",final:true,note:"verifikacija"},{txt:"Alt brzo: razlika 12°C, smanjenje 0,4°C/min → t = 12/0,4 = 30 min ✓",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Pravilo: dva linearna procesa s različitim stopama susreću se kad razlika dosegne 0.",note:"postupak",final:true},{txt:"Intuicija: Postupak: postavi formule za oba procesa, izjednači, riješi linearnu jednadžbu za t.",note:"intuicija",final:true},{txt:"Točan odgovor: 30 ✓",note:"odgovor",final:true}],
    
    why:["Pravilo: dva linearna procesa s različitim stopama susreću se kad razlika dosegne 0.","Postupak: postavi formule za oba procesa, izjednači, riješi linearnu jednadžbu za t.","Intuicija: razlika 12°C smanjuje se 0,4°C/min → 12/0,4 = 30 min do izjednačavanja.","Česta greška: zamijeniti koja posuda raste brže ili krivo postaviti formule.","Diagnostic: 3 dL kreće hladnija ali raste brže → eventualno sustigne 2 dL.","Provjera: pri t = 30: 2 + 36 = 38; 14 + 24 = 38 ✓.","Alt: graf ili tablica vrijednosti — sve metode daju t = 30 min."]
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2017_ljeto",razina:"B",serial:"D-S038",totalPoints:40,mcCount:16,saCount:20,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  }
 ];
 
 export const qImages = {

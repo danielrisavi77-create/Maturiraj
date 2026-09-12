@@ -3,7 +3,7 @@ import React from 'react';
 const e = React.createElement;
 
 function Svg30a_2024Blj(){
-  const txt="var(--text)"; const blue="#4a90d9"; const gold="#e9b446";
+  const txt="var(--text)"; const blue="var(--blue)"; const gold="var(--gold)";
   const rows=[
     ["Broj posađenih stabala","60","61","62","..."],
     ["Prosječan urod po stablu","18","17,8","17,6","..."]
@@ -283,8 +283,8 @@ function Svg18_2024Blj(){
 }
 
 function Svg14_2024Blj(){
-  const st="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const st="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=520, H=280;
   const cell=34; const cols=14, rows=6;
   const ox=30, oy=32;
@@ -306,7 +306,7 @@ function Svg14_2024Blj(){
   const drawTri=(pts,label,lp)=>[
     e("polygon",{key:label+"fill", points:`${pts[0][0]},${pts[0][1]} ${pts[1][0]},${pts[1][1]} ${pts[2][0]},${pts[2][1]}`,
       fill:blue, fillOpacity:0.15, stroke:blue, strokeWidth:2.2, strokeLinejoin:"round"}),
-    ...pts.map((p,i)=>e("circle",{key:label+"d"+i, cx:p[0], cy:p[1], r:3, fill:red, stroke:"#0a0f1a", strokeWidth:1.2})),
+    ...pts.map((p,i)=>e("circle",{key:label+"d"+i, cx:p[0], cy:p[1], r:3, fill:red, stroke:"var(--s1,#0a0f1a)", strokeWidth:1.2})),
     e("text",{key:label+"l", x:lp[0], y:lp[1], textAnchor:"middle", fontSize:18,
       fontStyle:"italic", fontFamily:"Georgia,serif", fill:gold, fontWeight:"bold"}, label)
   ];
@@ -412,14 +412,14 @@ export const qs = [
   steps:[{txt:"Označavanje: neka je P početna cijena ulaznice."},{txt:"Prvo poskupljenje za 60 %: nova cijena = P · (1 + 0,60) = 1,6P."},{txt:"Drugo pojeftinjenje za 50 % (od NOVE cijene 1,6P): krajnja = 1,6P · (1 − 0,50) = 1,6P · 0,5 = 0,8P."},{txt:"Usporedba s početnom: krajnja = 0,8P = 80 % od P, što znači smanjenje za 20 %."},{txt:"Provjera s konkretnim brojem: P = 100. Nakon +60 %: 160. Nakon −50 % od 160: 80. Razlika: 100 − 80 = 20 = 20 % od početne.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) +20 % bi značilo da povećanje pretežu nad smanjenjem — krivo, smanjenje 50 % od veće cijene je veliko.\n  C) Bez promjene — krivo razmišljanje da se postoci ANULIRAJU.\n  D) +10 % — pretpostavka aditivnog kombiniranja postotaka (60 − 50 = 10).",note:"diagnostika"},{txt:"Odgovor: B — krajnja cijena je SMANJENA za 20 % u odnosu na početnu.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: kad cijena porasten za 60 %, pa padne za 50 %, pad je polovica VEĆE cijene (1,6P), a to je više od polovice POČETNE — pa krajnja PADA ispod početne.",note:"intuicija",final:true},{txt:"Definicija: postotak je razlomak s nazivnikom 100; postotna promjena se uvijek računa u odnosu na trenutnu vrijednost.",note:"postupak",final:true}],
    why:["Pravilo: postotne promjene se MULTIPLICATIVNO kompoziraju, ne aditivno. Faktor +x % = (1 + x/100), faktor −y % = (1 − y/100). Sekvencijalna promjena = umnožak faktora.","Definicija: postotak je razlomak s nazivnikom 100; postotna promjena se uvijek računa u odnosu na trenutnu vrijednost.","Intuicija: kad cijena porasten za 60 %, pa padne za 50 %, pad je polovica VEĆE cijene (1,6P), a to je više od polovice POČETNE — pa krajnja PADA ispod početne.","Alt metoda: usporedi s \"jednostavnom kombinacijom\" — (1 + 0,6)(1 − 0,5) = 1,6 · 0,5 = 0,8 = −0,2 = −20 %.","Česta greška: pomislii da 60 − 50 = +10 % povećanje (aditivna intuicija) — daje distractor D.","Tipičan propust: računati pad od POČETNE cijene umjesto od povećane (1,6P) — daje povratak na P (distractor C).","Provjera: P = 100€ → 160€ → 80€; (100 − 80)/100 = 20 % smanjenje ✓."]
   },
-  {id:8,type:"mc",warn:"Pazi: fiksna cijena usluge je slobodni član b, cijena po ruži je nagib a.",topic:"func",points:1,
+  {id:8,type:"mc",warn:"Pazi: fiksna cijena usluge je slobodni član b, cijena po ruži je nagib a.",topic:"fun",points:1,
    q:"Cijena buketa ruža u cvjećarnici ovisi o broju x kupljenih ruža i cijeni usluge izrade buketa. Sve ruže imaju istu cijenu. Ako se navedena ovisnost može prikazati izrazom P = Qx + R, koje je značenje koeficijenta R, pri čemu su P, Q i R pozitivni brojevi?",
    opts:["broj kupljenih ruža","cijena buketa ruža","cijena jedne ruže","cijena usluge izrade buketa ruža"],
    sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
   steps:[{txt:"Identifikacija modela: P = Qx + R je linearna funkcija ovisnosti UKUPNE cijene P o broju ruža x."},{txt:"Interpretacija koeficijenata: Q je nagib (cijena PO JEDINICI = cijena pojedine ruže), R je slobodni član (vrijednost kod x = 0 = fiksni dodatak neovisan o x)."},{txt:"Posebni slučaj x = 0: ako kupiš 0 ruža, P = Q·0 + R = R. To znači — bez ruža, plaćaš samo R; to je trošak ne-vezan za broj ruža → trošak IZRADE BUKETA."},{txt:"Provjera koeficijenta Q: ako kupiš 1 ruzu, P = Q + R; razlika P − R = Q = cijena jedne ruže."},{txt:"Distractor analiza:\n  A) Q kao \"broj ruža\" — krivo, x je broj ruža, ne Q.\n  B) Q · R kao \"ukupna cijena\" — krivo, ukupna cijena ovisi o x.\n  C) Q kao \"cijena ruža\" — pomiješano s onim što R znači; Q je SAMO cijena jedne ruže, ne R.",note:"diagnostika"},{txt:"Odgovor: D — R predstavlja CIJENU USLUGE IZRADE BUKETA (fiksni dio).",final:true,note:"odgovor"},{txt:"Intuicija: izrada buketa ima dvije komponente — ruže (varijabilni dio, koliko ih ima) i sam rad slaganja buketa (fiksno, neovisno o broju ruža). Fiksni dio se zove R u modelu.",note:"intuicija",final:true},{txt:"Definicija: fiksni trošak = trošak koji ne ovisi o količini; varijabilni trošak = trošak koji LINEARNO raste s količinom.",note:"postupak",final:true},{txt:"Provjera: ako kupiš 0 ruža, ukupno platiš P = R; jedino tumačenje je da je R fiksna naknada (cijena izrade) ✓.",note:"verifikacija",final:true}],
    why:["Pravilo: u linearnoj funkciji y = mx + b, m je nagib (stopa promjene), b je odsječak na y-osi (vrijednost kod x = 0).","Definicija: fiksni trošak = trošak koji ne ovisi o količini; varijabilni trošak = trošak koji LINEARNO raste s količinom.","Intuicija: izrada buketa ima dvije komponente — ruže (varijabilni dio, koliko ih ima) i sam rad slaganja buketa (fiksno, neovisno o broju ruža). Fiksni dio se zove R u modelu.","Alt metoda: nacrtaj graf P kao funkciju x; presjek s y-osi (x = 0) daje R (= fiksni trošak), nagib daje Q.","Česta greška: brkati uloge Q i R; pažljivo pročitati: pitanje pita za R (slobodni član), ne Q (nagib).","Tipičan propust: tumačenje koeficijenta Q kao \"ukupne cijene ruža\" — to bi bilo Qx (umnožak), ne sam Q.","Provjera: ako kupiš 0 ruža, ukupno platiš P = R; jedino tumačenje je da je R fiksna naknada (cijena izrade) ✓."]
   },
-  {id:9,type:"mc",warn:"Pazi: nagib −3 → ako x raste za 1, vrijednost PADA za 3.",topic:"func",points:1,
+  {id:9,type:"mc",warn:"Pazi: nagib −3 → ako x raste za 1, vrijednost PADA za 3.",topic:"fun",points:1,
    q:"Zadana je funkcija f(x) = −3x. Kako će se promijeniti vrijednost funkcije f poveća li se vrijednost varijable x za dva?",
    opts:["Smanjit će se za šest","Smanjit će se za tri","Povećat će se za tri","Povećat će se za šest"],
    sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -447,7 +447,7 @@ export const qs = [
   steps:[{txt:"Identifikacija niza: aritmetički niz s općim članom aₙ = a₁ + (n−1)d, gdje je d konstantna razlika."},{txt:"Razlika dvaju članova niza: aₘ − aₙ = (m−n) · d."},{txt:"Primjena na zadano: a₈ − a₄ = (8 − 4) · d = 4d. Imamo a₈ = 89, a₄ = 41, pa 89 − 41 = 48 = 4d, što daje d = 12."},{txt:"Izračun a₆: a₆ = a₄ + (6 − 4) · d = 41 + 2 · 12 = 41 + 24 = 65."},{txt:"Alternativa: a₆ je SREDINA između a₄ i a₈ (jer 6 = (4 + 8)/2 i niz je aritmetički). a₆ = (a₄ + a₈)/2 = (41 + 89)/2 = 130/2 = 65.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) 41 = a₄ (samo zamjena indeksa); B) 53 = a₅ (jedan dalje); D) 77 = a₇ (jedan unazad).",note:"diagnostika"},{txt:"Odgovor: C = 65.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: niz raste linearno; možeš ga zamišljati kao \"step\" funkciju s istom visinom koraka.",note:"intuicija",final:true},{txt:"Definicija: aritmetički niz je niz brojeva u kojem je razlika izme svih uzastopnih članova konstantna.",note:"postupak",final:true}],
    why:["Pravilo: u aritmetičkom nizu, razlika ANY dva člana = (broj koraka) · konstantna razlika d.","Definicija: aritmetički niz je niz brojeva u kojem je razlika izme svih uzastopnih članova konstantna.","Intuicija: niz raste linearno; možeš ga zamišljati kao \"step\" funkciju s istom visinom koraka.","Alt metoda: izračunaj d direktno iz formule d = (aₘ − aₙ)/(m−n), pa onda primjeni aₚ = aₖ + (p−k)·d za bilo koji p.","Česta greška: pomiješati indekse (n−m vs m−n) — pažljivo s predznakom.","Tipičan propust: zaboraviti da je a₆ između a₄ i a₈ — alternativno možeš samo usrednjiti.","Veza s gradivom: aritmetički niz ima sumu Sₙ = n(a₁ + aₙ)/2; razlika ovdje je linearno raspoređena.","Provjera: a₄ = 41, a₅ = 53, a₆ = 65, a₇ = 77, a₈ = 89 ✓ (svaki +12)."]
   },
-  {id:13,type:"mc",warn:"Pazi: [0, +∞⟩ tipično je domena √x (potkorijena ≥ 0).",topic:"func",points:1,
+  {id:13,type:"mc",warn:"Pazi: [0, +∞⟩ tipično je domena √x (potkorijena ≥ 0).",topic:"fun",points:1,
    q:"Kojoj je od navedenih funkcija domena interval [0, +∞⟩?",
    opts:["f(x) = 2/x","f(x) = √(2x)","f(x) = log(x/2)","f(x) = 2|x|"],
    sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -577,14 +577,14 @@ export const qs = [
    sol:{ans:"3,5 L",alt:["3,5","3,5 L","3,5 L","3,5"]},
    why:["Pravilo: proporcionalne veličine — ako se jedna povećava k puta, druga se također povećava k puta.","Definicija: konstantni omjer između dvije veličine = recept proporcionalnosti (npr. 0,7 L : 150 g je konstanta).","Intuicija: 750 g je 5 puta veće od 150 g, pa i mlijeko mora biti 5 puta veće od 0,7 L = 3,5 L.","Alt metoda: izračunaj omjer po gramu — 0,7 L / 150 g ≈ 0,00467 L/g; pa za 750 g = 0,00467 · 750 ≈ 3,5 L.","Česta greška: zbrojiti umjesto množiti — 0,7 + 5 = 5,7 (krivo); proporcionalnost koristi MNOŽENJE faktorom skaliranja.","Tipičan propust: ne provjeriti je li veza linearna ili neke druge prirode (kvadratne, eksponencijalne); ovdje je linearna.","Veza s gradivom: proporcije se primjenjuju u recepturama, skaliranju mapa, brzini i vremenu.","Provjera: 3,5/0,7 = 5; 750/150 = 5; faktori jednaki ⇒ proporcionalno ✓."]
   },
-  {id:26.1,type:"sa",topic:"func",points:1,
+  {id:26.1,type:"sa",topic:"fun",points:1,
    context:"Zadatak 26 (1. dio od 2):",
    q:"Odredite nultočku funkcije f(x) = log₇(2x − 5).",
   steps:[{txt:"Definicija nultočke funkcije: vrijednost x za koju je f(x) = 0."},{txt:"Postavka: f(x) = log₇(2x − 5) = 0."},{txt:"Definicija logaritma: logₐ(b) = c ⇔ aᶜ = b. Specijalno: logₐ(b) = 0 ⇔ b = a⁰ = 1."},{txt:"Primjena na našu jednadžbu: log₇(2x − 5) = 0 ⇒ 2x − 5 = 7⁰ = 1."},{txt:"Rješavanje linearne jednadžbe: 2x − 5 = 1 → 2x = 6 → x = 3."},{txt:"Provjera definicije domene: 2x − 5 > 0 (argument logaritma mora biti pozitivan); za x = 3: 2·3 − 5 = 1 > 0 ✓.",note:"verifikacija"},{txt:"Završna provjera: f(3) = log₇(2·3 − 5) = log₇(1) = 0 ✓.",note:"verifikacija"},{txt:"Odgovor: x = 3.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: logaritam baze a od 1 je 0, neovisno o bazi (jer a⁰ = 1 za svaki a > 0).",note:"intuicija",final:true},{txt:"Definicija: logaritam logₐ(b) (a > 0, a ≠ 1, b > 0) je eksponent na koji se baza a mora dignuti da daje b.",note:"postupak",final:true}],
    sol:{ans:"3",alt:["3","x = 3","x=3"]},
    why:["Pravilo: nultočka funkcije f(x) je x za koji f(x) = 0; za logaritamsku f(x) = logₐ(g(x)), to je x gdje je g(x) = 1.","Definicija: logaritam logₐ(b) (a > 0, a ≠ 1, b > 0) je eksponent na koji se baza a mora dignuti da daje b.","Intuicija: logaritam baze a od 1 je 0, neovisno o bazi (jer a⁰ = 1 za svaki a > 0).","Alt metoda: postavi log₇(y) = 0 → y = 1; zatim riješi 2x − 5 = 1 odvojeno.","Česta greška: zaboraviti da log = 0 znači ARGUMENT = 1 (a ne 0); često mislja se na \"argument = 0\" što je nedefinirano.","Tipičan propust: zaboraviti provjeriti je li x = 3 u domeni (2x − 5 > 0); ovdje 1 > 0 ✓.","Veza s gradivom: logaritamske jednadžbe se rješavaju koristeći inverzni odnos s eksponencijalnim funkcijama.","Provjera: log₇(1) = 0 jer 7⁰ = 1 ✓."]
   },
-  {id:26.2,type:"sa",topic:"func",points:1,
+  {id:26.2,type:"sa",topic:"fun",points:1,
    context:"Zadatak 26 (2. dio od 2):",
    q:"Ako je log₃(a) = c i log₃(b) = d, čemu je jednako log₃(ab) zapisano uz pomoć c i d?",
   steps:[{txt:"Identifikacija svojstva: tražimo logₐ(a · b) izraženo preko logₐ(a) = c i logₐ(b) = d."},{txt:"Pravilo logaritma umnoška: logₐ(xy) = logₐ(x) + logₐ(y) za sve x, y > 0."},{txt:"Primjena: logₐ(ab) = logₐ(a) + logₐ(b)."},{txt:"Supstitucija zadanih vrijednosti: logₐ(a) = c, logₐ(b) = d. Dakle log₃(ab) = c + d."},{txt:"Provjera s konkretnim brojem: a = 9, b = 27 (baza 3). log₃(9) = 2 = c; log₃(27) = 3 = d. log₃(9 · 27) = log₃(243) = log₃(3⁵) = 5 = 2 + 3 = c + d ✓.",note:"verifikacija"},{txt:"Geometrijski/algebarski uvid: log \"linearizuje\" multiplikaciju — pretvara množenje u zbrajanje (osnovna primjena: računske tablice prije ere kalkulatora).",note:"diagnostika"},{txt:"Odgovor: c + d (zbroj zadanih logaritama).",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: logaritam je \"obrnuta operacija\" potencije; pretvara množenje (potencije) u zbrajanje (eksponenata).",note:"intuicija",final:true},{txt:"Definicija: pravila logaritma proizlaze iz pravila potencija: ako aᵐ = x i aⁿ = y, onda aᵐ⁺ⁿ = xy, pa logₐ(xy) = m + n.",note:"postupak",final:true}],
@@ -624,7 +624,7 @@ export const qs = [
    why:["Pravilo: u pravokutnom trokutu, sin(α) = nasuprotna/hipotenuza, cos(α) = uz/hipotenuza, tan(α) = nasuprotna/uz.","Definicija: arcsin(x) je inverzna funkcija sinusa; daje kut čiji je sinus jednak x.","Intuicija: najkraća stranica je nasuprot najmanjeg kuta; najduža (hipotenuza) je nasuprot pravom kutu (90°).","Alt metoda: koristiti tan umjesto sin — daje isti rezultat, samo kroz drugačiji omjer kateta.","Česta greška: koristiti najkraću stranicu kao hipotenuzu — pažljivo identificirati elemente trokuta.","Tipičan propust: zaboraviti da je 10² + 24² = 676 = 26² (Pitagorina trojka 5, 12, 13 skalirana s 2).","Veza s gradivom: trigonometrija pravokutnog trokuta = osnova analitičke geometrije i trigonometrije općenito.","Provjera: sin(22°37′12″) ≈ 0,3846 ≈ 5/13 ✓."],
    img:"2024_ljeto_B__28,2"
   },
-  {id:29.1,img:true,type:"sa",topic:"func",points:1,
+  {id:29.1,img:true,type:"sa",topic:"fun",points:1,
    context:"Zadatak 29 (1. dio od 2):",
    q:"Odredite jednadžbu pravca prikazanoga na slici (prolazi kroz (0, 3) i siječe os x u točki (6, 0)).",
   steps:[{txt:"Iz prikazanoga grafa: pravac prolazi kroz dvije lako čitljive točke (0, 3) i (6, 0) (presjeke s osima)."},{txt:"Izračun nagiba (koeficijenta smjera): k = [FRAC:Δy|Δx] = [FRAC:0 − 3|6 − 0] = [FRAC:−3|6] = −[FRAC:1|2]."},{txt:"Odsječak na y-osi: n = 3 (vrijednost y kad x = 0)."},{txt:"Jednadžba pravca (eksplicitni oblik): y = kx + n = −[FRAC:1|2]x + 3."},{txt:"Provjera s drugom točkom: za x = 6, y = −[FRAC:1|2] · 6 + 3 = −3 + 3 = 0 ✓ (točka (6, 0))."},{txt:"Alternativni oblik (opći): −[FRAC:1|2]x − y + 3 = 0 ili x + 2y − 6 = 0 (pomnoženo s −2).",note:"verifikacija"},{txt:"Odgovor: y = −[FRAC:1|2]x + 3 (ili ekvivalent x + 2y = 6).",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: pravac koji ide od (0, 3) do (6, 0) \"pada\" — pa nagib mora biti negativan.",note:"intuicija",final:true},{txt:"Definicija: nagib je promjena y po jedinici x; pozitivni rast, negativni pad.",note:"postupak",final:true}],
@@ -639,7 +639,7 @@ export const qs = [
    sol:{ans:"224π cm²",alt:["224π","224π cm²","224 π","≈703,72 cm²","703,72","≈704"]},
    why:["Pravilo: oplošje stošca O = πr² + πrl = πr(r + l), gdje r = polumjer baze, l = izvodnica.","Definicija: stožac = tijelo ograničeno kružnom bazom i konusnim plaštem koji povezuje rub baze s vrhom.","Intuicija: oplošje stošca = baza (πr²) + plašt (πrl). Plašt je razvijen u kružni isječak.","Alt metoda: izračunaj svaku komponentu posebno; krug + isječak (razvoj plašta) = oplošje.","Česta greška: zaboraviti uključiti bazu (računati samo plašt) — daje samo dio oplošja.","Tipičan propust: brkati l (izvodnica) i h (visina) — h se mjeri OKOMITO od vrha do baze, l je KOSA stranica.","Veza s gradivom: formula za stošac ima paralelu s formulom za stožac (V = ⅓ · πr²h), zaobljena tijela.","Provjera: 90π = 25π + 65π ✓; r = 5, h = 12, l = 13 čine pravokutni trokut (Pitagorina trojka 5-12-13) ✓."]
   },
-  {id:30.1,img:true,type:"sa",topic:"func",points:1,
+  {id:30.1,img:true,type:"sa",topic:"fun",points:1,
    context:"Zadatak 30 (1. dio od 2):",
    q:"Za 60 posađenih stabala predviđa se prosječni urod 18 kg po stablu. Za svako dodatno stablo iznad 60 urod se smanjuje za 0,2 kg po stablu. Koliki se prosječni urod očekuje po stablu ako se posadi 85 stabala?",
   steps:[{txt:"Identifikacija obrasca: tablica daje broj posađenih stabala (n) i prosječan urod po stablu (kg)."},{txt:"Iz tablice se vidi: za 60 stabala, urod je 18 kg/stablo. Razlika između sukcesivnih unosa: −0,2 kg/stablo za svako dodatno stablo."},{txt:"Linearni model: urod(n) = 18 − 0,2 · (n − 60) kg/stablo, gdje n je broj stabala."},{txt:"Za n = 85: urod = 18 − 0,2 · (85 − 60) = 18 − 0,2 · 25 = 18 − 5 = 13 kg/stablo."},{txt:"Provjera koherentnosti: za n = 60 → 18 kg/stablo (zadano) ✓; za n = 70 → 18 − 0,2·10 = 16 kg/stablo (provjera s tablicom).",note:"verifikacija"},{txt:"Odgovor: prosječni urod po stablu = 13 kg.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: svako dodatno stablo \"smanjuje\" urod po stablu za 0,2 kg (zbog konkurencije za resurse); to je linearno padajuće.",note:"intuicija",final:true},{txt:"Definicija: aritmetička progresija — niz brojeva s konstantnom razlikom među susjednim članovima.",note:"postupak",final:true}],
@@ -653,14 +653,7 @@ export const qs = [
   steps:[{txt:"Formula za UKUPNI urod: ukupno = broj stabala · prosječni urod po stablu = n · urod(n)."},{txt:"Iz prethodnog: urod(n) = 18 − 0,2(n − 60) = 30 − 0,2n."},{txt:"Ukupni urod kao funkcija od n: f(n) = n · (30 − 0,2n) = 30n − 0,2n²."},{txt:"To je kvadratna funkcija s koeficijentom uz n² jednakim −0,2 (< 0) → parabola se otvara prema dolje → ima MAXIMUM u tjemenu."},{txt:"X-koordinata tjemena: n* = −b/(2a) = −30/(2·(−0,2)) = −30/(−0,4) = 75."},{txt:"Provjera: f(75) = 75 · (30 − 15) = 75 · 15 = 1125 kg; provjera s nekim drugim n: f(70) = 70·16 = 1120 (manje); f(80) = 80·14 = 1120 (manje). Tjeme je oko 75 ✓.",note:"verifikacija"},{txt:"Odgovor: vinogradar treba posaditi 75 stabala za maksimalni ukupni urod (1125 kg).",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: previše stabala = svako daje manje uroda; premalo stabala = ukupno premalo. Postoji \"zlatna sredina\".",note:"intuicija",final:true},{txt:"Definicija: tjeme parabole = točka u kojoj parabola dosjeguje maksimum (ili minimum, ovisno o znaku a).",note:"postupak",final:true}],
    sol:{ans:"75",alt:["75","75 stabala","x = 75"]},
    why:["Pravilo: za kvadratnu funkciju f(x) = ax² + bx + c s a < 0, MAKSIMUM je u tjemenu x* = −b/(2a).","Definicija: tjeme parabole = točka u kojoj parabola dosjeguje maksimum (ili minimum, ovisno o znaku a).","Intuicija: previše stabala = svako daje manje uroda; premalo stabala = ukupno premalo. Postoji \"zlatna sredina\".","Alt metoda: koristiti derivaciju (matura A-razina) — f′(n) = 30 − 0,4n = 0 → n = 75; f′′ < 0 potvrđuje maksimum.","Česta greška: zaboraviti znak koeficijenta a — bez tog ne znaš je li tjeme maksimum ili minimum.","Tipičan propust: tražiti maksimum samo \"urod po stablu\" (= 18, za 60 stabala), umjesto UKUPNOG uroda (= n · urod) — drugačije pitanje.","Veza s gradivom: optimizacija s kvadratnim funkcijama — standardna primjena u ekonomiji, fizici, biologiji.","Provjera: tjeme n = 75 daje maksimum (1125 kg); susjedne vrijednosti (n = 74, 76) daju manje ✓."]
-  },
-  {_META:true,
-   auditedAt: "2026-05-21",
-   auditSource: "MAT B (osnovna razina, ljetni rok 2024., D-S066)",
-   auditStatus: "verified-full-max-pakG-qtext-resolved",
-   auditBy: "Daniel+Claude (Pak G+H+I+F-MAX + P1 + PakG cross-check + q-tekst audit)",
-   verified: "pdf+kljuc+vision+pedagogy-maximum+geometry+verbatim-key+qtext-verified",
-   notes: "Pak G q-tekst audit: 20/20 MC q-tekstovi cross-verified s PDF (D-S066). Q11 step 2 transformacija jednadžbe iz 4x²=5x+1 na standardni oblik dodana. Q20 distractor ne spominje 'odlične ocjene' (krivi kontekst). Q21,2 ans 'npr. 30' → 'npr. 115' (match ključ). Q22,2 pedagogy tumačenje fiksirano da odgovara službenom ključu 62/283 (vjerojatnost odabranog TRSA s 4 grozda). SA q-tekstovi spot-check OK. math_lint: 0, pedagogy_scanner: 0 P0/P1/P2."}
+  }
 ];
 
 export const qImages = {

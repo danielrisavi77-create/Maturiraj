@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2013_ljeto",
+  "razina": "B",
+  "serial": "D-S013",
+  "totalPoints": 39,
+  "mcCount": 15,
+  "saCount": 20,
+  "verified": "sympy+pdf+verbatim+visual",
+  "auditNotes": "G: Verbatim vision audit komplet. L1 Q5 typo slicće+zrakoplov, L2 Q7 jednadžba 3x+50=y+[SYS:], L3 Q15 verbatim, L4 Q19 FRAC. Notacijske moderizacije OK. H: L1Q1 bold cijelih. J: Q7/Q9/Q11/Q16 opts FRAC, Q16 q FRAC. I: Q8+Q10 MC bindings, SA Q22/Q27 img:true+bindings added.",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

@@ -11,14 +11,14 @@ function SvgIndeksZagadjenja_2014LB() {
   return e('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',style:{maxWidth:W,display:'block',margin:'0 auto'}},
     ...Array.from({length:9},(_,i)=>e('line',{key:'gx'+i,x1:xAx(i*3),y1:mt,x2:xAx(i*3),y2:mt+ph,stroke:'rgba(148,163,184,0.2)',strokeWidth:.5})),
     ...Array.from({length:9},(_,i)=>e('line',{key:'gy'+i,x1:ml,y1:yAx(i*20),x2:ml+pw,y2:yAx(i*20),stroke:'rgba(148,163,184,0.2)',strokeWidth:.5})),
-    e('line',{x1:ml,y1:mt+ph,x2:ml+pw,y2:mt+ph,stroke:'#94a3b8',strokeWidth:1.5}),
-    e('line',{x1:ml,y1:mt,x2:ml,y2:mt+ph,stroke:'#94a3b8',strokeWidth:1.5}),
-    ...[0,3,6,9,12,15,18,21,24].map(h=>e('text',{key:'t'+h,x:xAx(h),y:mt+ph+13,textAnchor:'middle',fontSize:7,fill:'#94a3b8'},`${(7+h)%24}h`)),
-    ...[25,50,75,100,125,142].map(v=>e('text',{key:'y'+v,x:ml-4,y:yAx(v)+3,textAnchor:'end',fontSize:7.5,fill:'#94a3b8'},v)),
-    e('polyline',{points:`${xAx(0)},${yAx(25)} ${xAx(9)},${yAx(142)} ${xAx(24)},${yAx(25)}`,fill:'none',stroke:'#4a90d9',strokeWidth:2.5}),
-    e('circle',{cx:xAx(0),cy:yAx(25),r:3,fill:'#e05252'}),
-    e('circle',{cx:xAx(9),cy:yAx(142),r:3,fill:'#e9b446'}),
-    e('text',{x:xAx(9)+4,y:yAx(142)-4,fontSize:8,fill:'#e9b446'},'142')
+    e('line',{x1:ml,y1:mt+ph,x2:ml+pw,y2:mt+ph,stroke:'var(--muted)',strokeWidth:1.5}),
+    e('line',{x1:ml,y1:mt,x2:ml,y2:mt+ph,stroke:'var(--muted)',strokeWidth:1.5}),
+    ...[0,3,6,9,12,15,18,21,24].map(h=>e('text',{key:'t'+h,x:xAx(h),y:mt+ph+13,textAnchor:'middle',fontSize:7,fill:'var(--muted)'},`${(7+h)%24}h`)),
+    ...[25,50,75,100,125,142].map(v=>e('text',{key:'y'+v,x:ml-4,y:yAx(v)+3,textAnchor:'end',fontSize:7.5,fill:'var(--muted)'},v)),
+    e('polyline',{points:`${xAx(0)},${yAx(25)} ${xAx(9)},${yAx(142)} ${xAx(24)},${yAx(25)}`,fill:'none',stroke:'var(--blue)',strokeWidth:2.5}),
+    e('circle',{cx:xAx(0),cy:yAx(25),r:3,fill:'var(--red)'}),
+    e('circle',{cx:xAx(9),cy:yAx(142),r:3,fill:'var(--gold)'}),
+    e('text',{x:xAx(9)+4,y:yAx(142)-4,fontSize:8,fill:'var(--gold)'},'142')
   );
 }
 
@@ -38,23 +38,23 @@ function SvgGrafikonGoriva_2014LB() {
     ...gxV.map(x=>e("line",{key:"gx"+x,x1:xA(x),y1:mt,x2:xA(x),y2:mt+ph,stroke:"rgba(148,163,184,0.15)",strokeWidth:.5})),
     ...gyV.map(y=>e("line",{key:"gy"+y,x1:ml,y1:yA(y),x2:ml+pw,y2:yA(y),stroke:"rgba(148,163,184,0.15)",strokeWidth:.5})),
     // Osi
-    e("line",{x1:ml,y1:mt+ph,x2:ml+pw+mr,y2:mt+ph,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("line",{x1:ml,y1:mt,x2:ml,y2:mt+ph,stroke:"#94a3b8",strokeWidth:1.5}),
+    e("line",{x1:ml,y1:mt+ph,x2:ml+pw+mr,y2:mt+ph,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("line",{x1:ml,y1:mt,x2:ml,y2:mt+ph,stroke:"var(--muted)",strokeWidth:1.5}),
     // X labels (km)
-    ...gxV.filter(x=>x>0).map(x=>e("text",{key:"tx"+x,x:xA(x),y:mt+ph+14,textAnchor:"middle",fontSize:8,fill:"#94a3b8"},x)),
+    ...gxV.filter(x=>x>0).map(x=>e("text",{key:"tx"+x,x:xA(x),y:mt+ph+14,textAnchor:"middle",fontSize:8,fill:"var(--muted)"},x)),
     // Y labels (L)
-    ...gyV.filter(y=>y>0).map(y=>e("text",{key:"ty"+y,x:ml-5,y:yA(y)+3,textAnchor:"end",fontSize:8,fill:"#94a3b8"},y)),
+    ...gyV.filter(y=>y>0).map(y=>e("text",{key:"ty"+y,x:ml-5,y:yA(y)+3,textAnchor:"end",fontSize:8,fill:"var(--muted)"},y)),
     // Axis labels
-    e("text",{x:ml+pw+mr,y:mt+ph+14,textAnchor:"end",fontSize:9,fill:"#94a3b8",fontStyle:"italic"},"km"),
-    e("text",{x:ml-10,y:mt-4,textAnchor:"middle",fontSize:10,fill:"#94a3b8",fontWeight:"bold"},"L"),
+    e("text",{x:ml+pw+mr,y:mt+ph+14,textAnchor:"end",fontSize:9,fill:"var(--muted)",fontStyle:"italic"},"km"),
+    e("text",{x:ml-10,y:mt-4,textAnchor:"middle",fontSize:10,fill:"var(--muted)",fontWeight:"bold"},"L"),
     // Auto A: (0,80) → (720,0) — solid, plava
-    e("line",{x1:xA(0),y1:yA(80),x2:xA(720),y2:yA(0),stroke:"#4a90d9",strokeWidth:2.2}),
-    e("text",{x:xA(50),y:yA(74),fontSize:9,fill:"#4a90d9",fontWeight:"bold",fontStyle:"italic"},"A"),
+    e("line",{x1:xA(0),y1:yA(80),x2:xA(720),y2:yA(0),stroke:"var(--blue)",strokeWidth:2.2}),
+    e("text",{x:xA(50),y:yA(74),fontSize:9,fill:"var(--blue)",fontWeight:"bold",fontStyle:"italic"},"A"),
     // Auto B: (0,60) → (900,0) — dashed, žuta
-    e("line",{x1:xA(0),y1:yA(60),x2:xA(900),y2:yA(0),stroke:"#e9b446",strokeWidth:2.2,strokeDasharray:"6,3"}),
-    e("text",{x:xA(50),y:yA(54),fontSize:9,fill:"#e9b446",fontWeight:"bold",fontStyle:"italic"},"B"),
+    e("line",{x1:xA(0),y1:yA(60),x2:xA(900),y2:yA(0),stroke:"var(--gold)",strokeWidth:2.2,strokeDasharray:"6,3"}),
+    e("text",{x:xA(50),y:yA(54),fontSize:9,fill:"var(--gold)",fontWeight:"bold",fontStyle:"italic"},"B"),
     // Sjecište (450, 30)
-    e("circle",{cx:xA(450),cy:yA(30),r:4,fill:"#e05252"})
+    e("circle",{cx:xA(450),cy:yA(30),r:4,fill:"var(--red)"})
   );
 }
 
@@ -72,22 +72,22 @@ function SvgZad25_2014LB(){
   const lx2=cx+(3.5)*sc, ly2=cy-(-2*(3.5)+3)*sc; // x=3.5: y=-4
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
     ...vL,...hL,
-    e("line",{x1:10,y1:cy,x2:W-10,y2:cy,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("line",{x1:cx,y1:10,x2:cx,y2:H-10,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("polygon",{points:`${W-10},${cy} ${W-20},${cy-4} ${W-20},${cy+4}`,fill:"#94a3b8"}),
-    e("polygon",{points:`${cx},10 ${cx-4},20 ${cx+4},20`,fill:"#94a3b8"}),
-    e("text",{x:W-8,y:cy-6,fontSize:11,fill:"#94a3b8",fontStyle:"italic"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:11,fill:"#94a3b8",fontStyle:"italic"},"y"),
-    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"#94a3b8"},"0"),
-    e("text",{x:cx+sc+2,y:cy+14,fontSize:10,fill:"#94a3b8"},"1"),
+    e("line",{x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("line",{x1:cx,y1:10,x2:cx,y2:H-10,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("polygon",{points:`${W-10},${cy} ${W-20},${cy-4} ${W-20},${cy+4}`,fill:"var(--muted)"}),
+    e("polygon",{points:`${cx},10 ${cx-4},20 ${cx+4},20`,fill:"var(--muted)"}),
+    e("text",{x:W-8,y:cy-6,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"x"),
+    e("text",{x:cx+4,y:14,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"y"),
+    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"var(--muted)"},"0"),
+    e("text",{x:cx+sc+2,y:cy+14,fontSize:10,fill:"var(--muted)"},"1"),
     // Pravac y=-2x+3
-    e("line",{x1:cx+(-2)*sc,y1:cy-7*sc,x2:cx+(3.2)*sc,y2:cy-(-2*3.2+3)*sc,stroke:"#4a90d9",strokeWidth:2.2}),
+    e("line",{x1:cx+(-2)*sc,y1:cy-7*sc,x2:cx+(3.2)*sc,y2:cy-(-2*3.2+3)*sc,stroke:"var(--blue)",strokeWidth:2.2}),
     // Točke A(-2,7), B(-1,5), C(0,3), D(3,-3)
     ...([["A",[-2,7]],["B",[-1,5]],["C",[0,3]],["D",[3,-3]]]).map(([lbl,[gx,gy]])=>{
       const px=cx+gx*sc, py=cy-gy*sc;
       return e("g",{key:lbl},
-        e("circle",{cx:px,cy:py,r:4,fill:"#e9b446"}),
-        e("text",{x:px+6,y:py-4,fontSize:11,fill:"#e9b446",fontStyle:"italic"},`${lbl}(${gx},${gy})`)
+        e("circle",{cx:px,cy:py,r:4,fill:"var(--gold)"}),
+        e("text",{x:px+6,y:py-4,fontSize:11,fill:"var(--gold)",fontStyle:"italic"},`${lbl}(${gx},${gy})`)
       );
     })
   );
@@ -96,7 +96,7 @@ function SvgZad25_2014LB(){
 function SvgZad23a_2014LB(){
   // Q23.1: Prazna koordinatna mreža — student sam crta f(x)=2x-4
   const W=320,H=260,G=25;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=140,cy=140;
   const hL=[],vL=[];
   for(let i=Math.ceil(-cx/G);i<=Math.floor((W-cx)/G);i++)
@@ -105,15 +105,15 @@ function SvgZad23a_2014LB(){
     hL.push(e("line",{key:"h"+i,x1:0,y1:cy+i*G,x2:W,y2:cy+i*G,stroke:"rgba(148,163,184,0.2)",strokeWidth:.5}));
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
     ...vL,...hL,
-    e("line",{x1:0,y1:cy,x2:W,y2:cy,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("line",{x1:cx,y1:0,x2:cx,y2:H,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("polygon",{points:`${W},${cy} ${W-7},${cy-3.5} ${W-7},${cy+3.5}`,fill:"#94a3b8"}),
-    e("polygon",{points:`${cx},0 ${cx-3.5},7 ${cx+3.5},7`,fill:"#94a3b8"}),
-    e("text",{x:W-10,y:cy-7,fontSize:11,fill:"#94a3b8",fontStyle:"italic"},"x"),
-    e("text",{x:cx+5,y:12,fontSize:11,fill:"#94a3b8",fontStyle:"italic"},"y"),
-    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"#94a3b8"},"0"),
-    e("text",{x:cx+G+2,y:cy+14,fontSize:10,fill:"#94a3b8"},"1"),
-    e("text",{x:cx+3,y:cy-G+5,fontSize:10,fill:"#94a3b8"},"1")
+    e("line",{x1:0,y1:cy,x2:W,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("line",{x1:cx,y1:0,x2:cx,y2:H,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("polygon",{points:`${W},${cy} ${W-7},${cy-3.5} ${W-7},${cy+3.5}`,fill:"var(--muted)"}),
+    e("polygon",{points:`${cx},0 ${cx-3.5},7 ${cx+3.5},7`,fill:"var(--muted)"}),
+    e("text",{x:W-10,y:cy-7,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"x"),
+    e("text",{x:cx+5,y:12,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"y"),
+    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"var(--muted)"},"0"),
+    e("text",{x:cx+G+2,y:cy+14,fontSize:10,fill:"var(--muted)"},"1"),
+    e("text",{x:cx+3,y:cy-G+5,fontSize:10,fill:"var(--muted)"},"1")
   );
 }
 
@@ -142,29 +142,29 @@ function SvgZad9_2014LB(){
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",margin:"0 auto"}},
     ...gridLines,
     // Osi
-    e("line",{x1:10,y1:cy,x2:W-10,y2:cy,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("line",{x1:cx,y1:H-10,x2:cx,y2:10,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("polygon",{points:`${W-10},${cy} ${W-20},${cy-4} ${W-20},${cy+4}`,fill:"#94a3b8"}),
-    e("polygon",{points:`${cx},10 ${cx-4},20 ${cx+4},20`,fill:"#94a3b8"}),
-    e("text",{x:W-8,y:cy-6,fontSize:11,fill:"#94a3b8",fontStyle:"italic"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:11,fill:"#94a3b8",fontStyle:"italic"},"y"),
-    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"#94a3b8"},"0"),
-    e("text",{x:cx+sc+2,y:cy+14,fontSize:10,fill:"#94a3b8"},"1"),
-    e("text",{x:cx+3,y:cy-sc+5,fontSize:10,fill:"#94a3b8"},"1"),
+    e("line",{x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("line",{x1:cx,y1:H-10,x2:cx,y2:10,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("polygon",{points:`${W-10},${cy} ${W-20},${cy-4} ${W-20},${cy+4}`,fill:"var(--muted)"}),
+    e("polygon",{points:`${cx},10 ${cx-4},20 ${cx+4},20`,fill:"var(--muted)"}),
+    e("text",{x:W-8,y:cy-6,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"x"),
+    e("text",{x:cx+4,y:14,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"y"),
+    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"var(--muted)"},"0"),
+    e("text",{x:cx+sc+2,y:cy+14,fontSize:10,fill:"var(--muted)"},"1"),
+    e("text",{x:cx+3,y:cy-sc+5,fontSize:10,fill:"var(--muted)"},"1"),
     // Parabola y=−x² (žuta)
     e("path",{d:pD,fill:"none",stroke:"#e8c547",strokeWidth:2.5}),
     // Pravac x+2y=−6 → y=−x/2−3 (plava)
-    e("line",{x1:lx1,y1:ly1,x2:lx2,y2:ly2,stroke:"#4a90d9",strokeWidth:2.2}),
+    e("line",{x1:lx1,y1:ly1,x2:lx2,y2:ly2,stroke:"var(--blue)",strokeWidth:2.2}),
     // Sjecišta
-    e("circle",{cx:cx+2*sc,cy:cy+4*sc,r:5,fill:"#50c878"}),
-    e("circle",{cx:cx-1.5*sc,cy:cy+2.25*sc,r:5,fill:"#50c878"})
+    e("circle",{cx:cx+2*sc,cy:cy+4*sc,r:5,fill:"var(--green)"}),
+    e("circle",{cx:cx-1.5*sc,cy:cy+2.25*sc,r:5,fill:"var(--green)"})
   );
 }
 
 function SvgAtetraza_2014LB(){
   // Atletska staza: 5 traka oko pravokutnog terena (110m x 70m)
   const W=320,H=200,ml=20,mt=20;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const fw=200,fh=100; // football field (scaled)
   const fx=(W-fw)/2,fy=(W-fh)/2-10;
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
@@ -173,7 +173,7 @@ function SvgAtetraza_2014LB(){
       const pw=fw+2*(5-i)*8, ph=fh+2*(5-i)*8;
       const px=(W-pw)/2, py=(H-ph)/2;
       const rx=ph/2; // polumjer polukruga
-      return e("rect",{key:"t"+i,x:px+rx,y:py,width:pw-2*rx,height:ph,rx:0,fill:i===0?"rgba(74,144,217,0.15)":"none",stroke:"#94a3b8",strokeWidth:i===0?1.5:1});
+      return e("rect",{key:"t"+i,x:px+rx,y:py,width:pw-2*rx,height:ph,rx:0,fill:i===0?"rgba(74,144,217,0.15)":"none",stroke:"var(--muted)",strokeWidth:i===0?1.5:1});
     }),
     // Polukrugovi (lijevo i desno)
     ...[5,4,3,2,1,0].map(i=>{
@@ -182,12 +182,12 @@ function SvgAtetraza_2014LB(){
       const rx=ph/2;
       const cx_l=px+rx, cx_r=px+pw-rx, cy=py+ph/2;
       return [
-        e("path",{key:"cl"+i,d:`M ${cx_l} ${py} A ${rx} ${rx} 0 0 0 ${cx_l} ${py+ph}`,fill:"none",stroke:"#94a3b8",strokeWidth:i===0?1.5:1}),
-        e("path",{key:"cr"+i,d:`M ${cx_r} ${py} A ${rx} ${rx} 0 0 1 ${cx_r} ${py+ph}`,fill:"none",stroke:"#94a3b8",strokeWidth:i===0?1.5:1})
+        e("path",{key:"cl"+i,d:`M ${cx_l} ${py} A ${rx} ${rx} 0 0 0 ${cx_l} ${py+ph}`,fill:"none",stroke:"var(--muted)",strokeWidth:i===0?1.5:1}),
+        e("path",{key:"cr"+i,d:`M ${cx_r} ${py} A ${rx} ${rx} 0 0 1 ${cx_r} ${py+ph}`,fill:"none",stroke:"var(--muted)",strokeWidth:i===0?1.5:1})
       ];
     }).flat(),
     // Tereni (unutarnji pravokutnik — siv)
-    e("rect",{x:(W-fw)/2+(fh/2),y:(H-fh)/2,width:fw-fh,height:fh,fill:"rgba(148,163,184,0.3)",stroke:"#94a3b8",strokeWidth:1.5})
+    e("rect",{x:(W-fw)/2+(fh/2),y:(H-fh)/2,width:fw-fh,height:fh,fill:"rgba(148,163,184,0.3)",stroke:"var(--muted)",strokeWidth:1.5})
   );
 }
 
@@ -205,20 +205,20 @@ function SvgZad20_2014LB(){
   const dL=[[68,28],[272,187]];
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
     // b i c (paralelni) — tanje crte
-    e("line",{x1:bL[0][0],y1:bL[0][1],x2:bL[1][0],y2:bL[1][1],stroke:"#4a90d9",strokeWidth:2}),
-    e("line",{x1:cL[0][0],y1:cL[0][1],x2:cL[1][0],y2:cL[1][1],stroke:"#4a90d9",strokeWidth:2}),
+    e("line",{x1:bL[0][0],y1:bL[0][1],x2:bL[1][0],y2:bL[1][1],stroke:"var(--blue)",strokeWidth:2}),
+    e("line",{x1:cL[0][0],y1:cL[0][1],x2:cL[1][0],y2:cL[1][1],stroke:"var(--blue)",strokeWidth:2}),
     // a i d
-    e("line",{x1:aL[0][0],y1:aL[0][1],x2:aL[1][0],y2:aL[1][1],stroke:"#4a90d9",strokeWidth:2}),
-    e("line",{x1:dL[0][0],y1:dL[0][1],x2:dL[1][0],y2:dL[1][1],stroke:"#4a90d9",strokeWidth:2}),
+    e("line",{x1:aL[0][0],y1:aL[0][1],x2:aL[1][0],y2:aL[1][1],stroke:"var(--blue)",strokeWidth:2}),
+    e("line",{x1:dL[0][0],y1:dL[0][1],x2:dL[1][0],y2:dL[1][1],stroke:"var(--blue)",strokeWidth:2}),
     // Kutovi
-    e("text",{x:P1[0]+6,y:P1[1]-12,fontSize:11,fill:"#e9b446",fontWeight:"bold"},"54°"),
-    e("text",{x:P2[0]+6,y:P2[1]+16,fontSize:12,fill:"#e05252",fontStyle:"italic",fontWeight:"bold"},"φ"),
-    e("text",{x:P3[0]-36,y:P3[1]-4,fontSize:11,fill:"#e9b446",fontWeight:"bold"},"101°"),
+    e("text",{x:P1[0]+6,y:P1[1]-12,fontSize:11,fill:"var(--gold)",fontWeight:"bold"},"54°"),
+    e("text",{x:P2[0]+6,y:P2[1]+16,fontSize:12,fill:"var(--red)",fontStyle:"italic",fontWeight:"bold"},"φ"),
+    e("text",{x:P3[0]-36,y:P3[1]-4,fontSize:11,fill:"var(--gold)",fontWeight:"bold"},"101°"),
     // Labele pravaca
-    e("text",{x:aL[0][0]+2,y:aL[0][1]+4,fontSize:13,fill:"#4a90d9",fontStyle:"italic",fontWeight:"bold"},"a"),
-    e("text",{x:bL[1][0]+3,y:bL[1][1]+4,fontSize:13,fill:"#4a90d9",fontStyle:"italic",fontWeight:"bold"},"b"),
-    e("text",{x:cL[1][0]+3,y:cL[1][1]+4,fontSize:13,fill:"#4a90d9",fontStyle:"italic",fontWeight:"bold"},"c"),
-    e("text",{x:dL[0][0]+4,y:dL[0][1]+4,fontSize:13,fill:"#4a90d9",fontStyle:"italic",fontWeight:"bold"},"d")
+    e("text",{x:aL[0][0]+2,y:aL[0][1]+4,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"a"),
+    e("text",{x:bL[1][0]+3,y:bL[1][1]+4,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"b"),
+    e("text",{x:cL[1][0]+3,y:cL[1][1]+4,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"c"),
+    e("text",{x:dL[0][0]+4,y:dL[0][1]+4,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"d")
   );
 }
 
@@ -251,9 +251,9 @@ function SvgZad12_2014LB(){
     e("line",{x1:D[0],y1:D[1],x2:A[0],y2:A[1],stroke:"var(--muted)",strokeWidth:1,strokeDasharray:"4,3"}),
     e("line",{x1:D[0],y1:D[1],x2:Hv[0],y2:Hv[1],stroke:"var(--muted)",strokeWidth:1,strokeDasharray:"4,3"}),
     // Osjenčana piramida ABCDP (površine)
-    e("polygon",{points:pts([A,B,P]),fill:"rgba(74,144,217,0,25)",stroke:"#4a90d9",strokeWidth:1.5}),
-    e("polygon",{points:pts([B,C,P]),fill:"rgba(74,144,217,0.15)",stroke:"#4a90d9",strokeWidth:1.5}),
-    e("polygon",{points:pts([A,D,P]),fill:"rgba(74,144,217,0.2)",stroke:"#4a90d9",strokeWidth:1.5,strokeDasharray:"4,3"}),
+    e("polygon",{points:pts([A,B,P]),fill:"rgba(74,144,217,0,25)",stroke:"var(--blue)",strokeWidth:1.5}),
+    e("polygon",{points:pts([B,C,P]),fill:"rgba(74,144,217,0.15)",stroke:"var(--blue)",strokeWidth:1.5}),
+    e("polygon",{points:pts([A,D,P]),fill:"rgba(74,144,217,0.2)",stroke:"var(--blue)",strokeWidth:1.5,strokeDasharray:"4,3"}),
     // Baza piramide ABCD
     e("polygon",{points:pts([A,B,C,D]),fill:"rgba(232,197,71,0.1)",stroke:"#e8c547",strokeWidth:1.5,strokeDasharray:"3,3"}),
     // Kvadar (vidljivi bridovi)
@@ -285,22 +285,22 @@ function SvgZad11_2014LB(){
   const W=300,H=240;
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
     // Trapez ABCD
-    e("polygon",{points:[A,B,C,D].map(p=>p.join(",")).join(" "),fill:"rgba(74,144,217,0.08)",stroke:"#4a90d9",strokeWidth:2}),
+    e("polygon",{points:[A,B,C,D].map(p=>p.join(",")).join(" "),fill:"rgba(74,144,217,0.08)",stroke:"var(--blue)",strokeWidth:2}),
     // CF — okomita dashed linija od C do F
-    e("line",{x1:C[0],y1:C[1],x2:F[0],y2:F[1],stroke:"#4a90d9",strokeWidth:1.8,strokeDasharray:"5,3"}),
+    e("line",{x1:C[0],y1:C[1],x2:F[0],y2:F[1],stroke:"var(--blue)",strokeWidth:1.8,strokeDasharray:"5,3"}),
     // Pravokutni kut na F
-    e("rect",{x:F[0]-14,y:F[1]-14,width:12,height:12,fill:"none",stroke:"#50c878",strokeWidth:1.5}),
+    e("rect",{x:F[0]-14,y:F[1]-14,width:12,height:12,fill:"none",stroke:"var(--green)",strokeWidth:1.5}),
     // Mjere: FB=1.3 cm
-    e("text",{x:(F[0]+B[0])/2,y:218,textAnchor:"middle",fontSize:11,fill:"#94a3b8"},"1,3 cm"),
+    e("text",{x:(F[0]+B[0])/2,y:218,textAnchor:"middle",fontSize:11,fill:"var(--muted)"},"1,3 cm"),
     // Mjere: FC=2.6 cm (desno od CF)
-    e("text",{x:F[0]+6,y:(F[1]+C[1])/2+4,fontSize:11,fill:"#94a3b8"},"2,6 cm"),
+    e("text",{x:F[0]+6,y:(F[1]+C[1])/2+4,fontSize:11,fill:"var(--muted)"},"2,6 cm"),
     // Mjere: AB=4.5 cm (ispod AB)
-    e("text",{x:(A[0]+B[0])/2,y:218,textAnchor:"middle",fontSize:11,fill:"#94a3b8"},"4,5 cm"),
+    e("text",{x:(A[0]+B[0])/2,y:218,textAnchor:"middle",fontSize:11,fill:"var(--muted)"},"4,5 cm"),
     // Oznake vrhova + F
     ...([["A",A,[-16,4]],["B",B,[6,4]],["C",C,[6,-4]],["D",D,[-16,-4]],["F",F,[-4,16]]]).map(([n,p,[ox,oy]])=>
       e("g",{key:n},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:n==="F"?"#e9b446":"#4a90d9"}),
-        e("text",{x:p[0]+ox,y:p[1]+oy,fill:n==="F"?"#e9b446":"#4a90d9",fontSize:13,fontStyle:"italic",fontWeight:"bold"},n)
+        e("circle",{cx:p[0],cy:p[1],r:4,fill:n==="F"?"var(--gold)":"var(--blue)"}),
+        e("text",{x:p[0]+ox,y:p[1]+oy,fill:n==="F"?"var(--gold)":"var(--blue)",fontSize:13,fontStyle:"italic",fontWeight:"bold"},n)
       )
     )
   );
@@ -319,10 +319,10 @@ function SvgZad1_2014LB(){
     // Oznake
     nums.forEach(n=>items.push(e("text",{key:`n${yPos}${n}`,x:x0+n*sc-4,y:yPos+14,fill:"var(--muted)",fontSize:10},n)));
     // Osjenčano područje
-    items.push(e("rect",{key:"fill"+yPos,x:x0+fillStart*sc,y:yPos-6,width:(fillEnd-fillStart)*sc,height:12,fill:correct?"#4a90d9":"#6b6888",opacity:0.3}));
+    items.push(e("rect",{key:"fill"+yPos,x:x0+fillStart*sc,y:yPos-6,width:(fillEnd-fillStart)*sc,height:12,fill:correct?"var(--blue)":"#6b6888",opacity:0.3}));
     // Točke
-    items.push(e("circle",{key:"l"+yPos,cx:x0+fillStart*sc,cy:yPos,r:4,fill:leftOpen?"var(--s2)":"#4a90d9",stroke:"#4a90d9",strokeWidth:1.5}));
-    items.push(e("circle",{key:"r"+yPos,cx:x0+fillEnd*sc,cy:yPos,r:4,fill:rightOpen?"var(--s2)":"#4a90d9",stroke:"#4a90d9",strokeWidth:1.5}));
+    items.push(e("circle",{key:"l"+yPos,cx:x0+fillStart*sc,cy:yPos,r:4,fill:leftOpen?"var(--s2)":"var(--blue)",stroke:"var(--blue)",strokeWidth:1.5}));
+    items.push(e("circle",{key:"r"+yPos,cx:x0+fillEnd*sc,cy:yPos,r:4,fill:rightOpen?"var(--s2)":"var(--blue)",stroke:"var(--blue)",strokeWidth:1.5}));
     // Label
     items.push(e("text",{key:"lbl"+yPos,x:12,y:yPos+4,fill:correct?"#3dd68c":"var(--muted)",fontSize:12,fontWeight:correct?"bold":"normal"},optLabel));
     return items;
@@ -356,24 +356,24 @@ function SvgQ23_1_Sol_2014LB(){
   const x2s=cx+4*G, y2s=cy-4*G;  // x=4, y=4
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
     ...vL,...hL,
-    e("line",{x1:0,y1:cy,x2:W,y2:cy,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("line",{x1:cx,y1:0,x2:cx,y2:H,stroke:"#94a3b8",strokeWidth:1.5}),
-    e("polygon",{points:`${W},${cy} ${W-7},${cy-3.5} ${W-7},${cy+3.5}`,fill:"#94a3b8"}),
-    e("polygon",{points:`${cx},0 ${cx-3.5},7 ${cx+3.5},7`,fill:"#94a3b8"}),
-    e("text",{x:W-10,y:cy-7,fontSize:11,fill:"#94a3b8",fontStyle:"italic"},"x"),
-    e("text",{x:cx+5,y:12,fontSize:11,fill:"#94a3b8",fontStyle:"italic"},"y"),
-    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"#94a3b8"},"0"),
-    e("text",{x:cx+G+2,y:cy+14,fontSize:10,fill:"#94a3b8"},"1"),
-    e("text",{x:cx+3,y:cy-G+5,fontSize:10,fill:"#94a3b8"},"1"),
+    e("line",{x1:0,y1:cy,x2:W,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("line",{x1:cx,y1:0,x2:cx,y2:H,stroke:"var(--muted)",strokeWidth:1.5}),
+    e("polygon",{points:`${W},${cy} ${W-7},${cy-3.5} ${W-7},${cy+3.5}`,fill:"var(--muted)"}),
+    e("polygon",{points:`${cx},0 ${cx-3.5},7 ${cx+3.5},7`,fill:"var(--muted)"}),
+    e("text",{x:W-10,y:cy-7,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"x"),
+    e("text",{x:cx+5,y:12,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"y"),
+    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"var(--muted)"},"0"),
+    e("text",{x:cx+G+2,y:cy+14,fontSize:10,fill:"var(--muted)"},"1"),
+    e("text",{x:cx+3,y:cy-G+5,fontSize:10,fill:"var(--muted)"},"1"),
     // Pravac f(x)=2x-4
-    e("line",{x1:x1s,y1:y1s,x2:x2s,y2:y2s,stroke:"#4a90d9",strokeWidth:2.5}),
+    e("line",{x1:x1s,y1:y1s,x2:x2s,y2:y2s,stroke:"var(--blue)",strokeWidth:2.5}),
     // Ključne točke
-    e("circle",{cx:cx,cy:cy+4*G,r:4,fill:"#e9b446"}),
-    e("text",{x:cx+5,y:cy+4*G-5,fontSize:9,fill:"#e9b446"},"(0,−4)"),
-    e("circle",{cx:cx+2*G,cy:cy,r:4,fill:"#e9b446"}),
-    e("text",{x:cx+2*G+5,y:cy-5,fontSize:9,fill:"#e9b446"},"(2,0)"),
+    e("circle",{cx:cx,cy:cy+4*G,r:4,fill:"var(--gold)"}),
+    e("text",{x:cx+5,y:cy+4*G-5,fontSize:9,fill:"var(--gold)"},"(0,−4)"),
+    e("circle",{cx:cx+2*G,cy:cy,r:4,fill:"var(--gold)"}),
+    e("text",{x:cx+2*G+5,y:cy-5,fontSize:9,fill:"var(--gold)"},"(2,0)"),
     // Label
-    e("text",{x:x2s-30,y:y2s-8,fontSize:10,fill:"#4a90d9",fontStyle:"italic"},"f(x)=2x−4")
+    e("text",{x:x2s-30,y:y2s-8,fontSize:10,fill:"var(--blue)",fontStyle:"italic"},"f(x)=2x−4")
   );
 }
 
@@ -398,7 +398,7 @@ export const qs = [
     "Česta greška: studenti zamijene punu i šuplju. Mnemonik: puna = pun — uključuje sve; šuplja = prazna — isključuje taj broj.",
     "Provjera: B kaže ≥2 i <7. Uvrsti granicu: x=2→2≥2 ✓, x=7→7<7 ✗ (isključen) ✓"
   ,"Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno)."]},
-  {id:2,type:"mc",warn:"Pazi: svedi na isti oblik (decimalni/razlomak) prije usporedbe.",topic:"ord",points:1,
+  {id:2,type:"mc",warn:"Pazi: svedi na isti oblik (decimalni/razlomak) prije usporedbe.",topic:"br",points:1,
   q:"Koja je od navedenih nejednakosti točna?",
   opts:["−1/2 < −1","1/2 < 1/3","0,5 > 1/2","1,3 > 1/3"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -678,7 +678,7 @@ export const qs = [
   ,
     "Provjera: 19,17%·240=46,008≈46 učenika ✓"
   ,"Provjera redom veličine: rezultat je u očekivanom intervalu (npr. postotak između 0 i 100)."]},
-  {id:15,type:"mc",warn:"Pazi: cijena po litri = 473,72/45,55; pa primijeni na traženi uvjet.",topic:"omj",points:2,
+  {id:15,type:"mc",warn:"Pazi: cijena po litri = 473,72/45,55; pa primijeni na traženi uvjet.",topic:"al",points:2,
   q:"Vlasnik automobila natočio je u spremnik 45,55 L goriva za 473,72 kn. Koliko bi goriva natočio za isti novčani iznos ako je gorivo jeftinije 10 lipa po litri?",
   opts:["45,12 L","45,99 L","46,91 L","46,98 L"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -740,7 +740,7 @@ export const qs = [
     "Česta greška: uzeti b=1/4 jer je zadnji član 1/4. Točno: b je KORIJEN zadnjeg člana, b=√(1/4)=1/2.",
     "Primjena: kvadrat binoma bitna je za kvadratnu nadopunu i faktorizaciju. Prepoznavanje ovog oblika = temeljna vještina."
   ,"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan."]},
-  {id:18,type:"sa",topic:"mj",points:1,
+  {id:18,type:"sa",topic:"br",points:1,
   q:"Izrazite površinu zemljišta od 1/4 km² u arima. (1 ar = 100 m²)",
   sol:{ans:"2500 ara",alt:["2500 ara","≈ 2500 ara"]},
   exp:"1 km²=1 000 000 m²=10 000 ara. 1/4·10 000=2 500 ara.",
@@ -893,7 +893,7 @@ export const qs = [
     "Česta greška: f(1/2)=0 jer 'to je nultočka' — KRIVO. Nultočka f je pri x=2 (2x−4=0→x=2), ne x=1/2.",
     "Provjera: f(1/2)=2·0,5−4=1−4=−3. (1/2)·196+(−3)=98−3=95 ✓"
   ,"Provjera grafom: pravci linearnog sustava sijeku se u točki (x, y) = rješenje.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."]},
-  {id:24.1,type:"sa",topic:"pos",points:1,
+  {id:24.1,type:"sa",topic:"al",points:1,
   q:"Za koliko je posto zaposlenikova plaća u lipnju veća od plaće u travnju?",
   sol:{ans:"8,1%",alt:["8,1","8"]},
   context:"Zadatak 24 (1. dio od 2):",
@@ -913,7 +913,7 @@ export const qs = [
   ,
     "Česta greška: Zbrajati postotke: +15%−6%=+9%. Krivo! Treba množiti faktore: 1,15·0,94=1,081≠1,09."
   ,"Provjera obrnutim postupkom: ako primijenimo inverznu operaciju, vraćamo se na početak."]},
-  {id:24.2,type:"sa",topic:"pos",points:1,
+  {id:24.2,type:"sa",topic:"al",points:1,
   q:"Ako je zaposlenikova plaća u lipnju iznosila 4 903,87 kn, kolika mu je plaća isplaćena u travnju?",
   sol:{ans:"4 536,42 kn",alt:["4 536,42","4 536,42 kn","4 536.42 kn","4536,42","≈ 4 536,42 kn"]},
   context:"Zadatak 24 (2. dio od 2):",
@@ -1109,8 +1109,7 @@ export const qs = [
     "Alternativa: indeks pada za 39 čestica (142−103). Svaki sat pada 7,8 čestica. t=39/7,8=5 h.",
     "Česta greška: računati od 7:00 (a ne od 16:00). Daje 7:00+5h=12:00 (krivo).",
     "Provjera: 142−7,8·5=142−39=103 ✓"
-  ,"Provjera: uvrsti rješenje u sve jednadžbe sustava — svaka mora biti zadovoljena."]},
-  {_META:true,auditStatus:"verified-full",rok:"2014_ljeto",razina:"B",serial:"D-S024",totalPoints:40,mcCount:16,saCount:20,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  ,"Provjera: uvrsti rješenje u sve jednadžbe sustava — svaka mora biti zadovoljena."]}
 ];
 
 export const qImages = {

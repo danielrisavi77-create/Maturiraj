@@ -53,7 +53,7 @@ function SvgZad8_2015JA(){
   // Vector formula: a = -3i + 4j  i  b = -6i + j
   // Arrow above each vector letter
   const u=_uid15ja;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ar=(x,y)=>[
     e("line",{key:u(),x1:x,y1:y-2,x2:x+8,y2:y-2,stroke:_BLUE,strokeWidth:1.1}),
     e("polyline",{key:u(),points:`${x+5},${y-5} ${x+8},${y-2} ${x+5},${y+1}`,fill:"none",stroke:_BLUE,strokeWidth:1,strokeLinecap:"round",strokeLinejoin:"round"})
@@ -100,10 +100,10 @@ function SvgZad6_2015JA(){
     e("text",{key:u(),x:cx+r+3,y:cy+12,fill:"var(--muted)",fontSize:10},"1"),
     e("text",{key:u(),x:cx+4,y:cy+12,fill:"var(--muted)",fontSize:10},"0"),
     e("circle",{key:u(),cx,cy,r,fill:"none",stroke:"var(--text)",strokeWidth:1.5}),
-    e("circle",{key:u(),cx:ex,cy:ey,r:5,fill:"#4a90d9"}),
-    e("text",{key:u(),x:ex-33,y:ey+5,fill:"#4a90d9",fontSize:12,fontStyle:"italic"},"E(t)"),
-    e("line",{key:u(),x1:ex,y1:ey,x2:ex,y2:cy,stroke:"#4a90d9",strokeWidth:0.8,strokeDasharray:"3,2"}),
-    e("line",{key:u(),x1:ex,y1:ey,x2:cx,y2:ey,stroke:"#4a90d9",strokeWidth:0.8,strokeDasharray:"3,2"})
+    e("circle",{key:u(),cx:ex,cy:ey,r:5,fill:"var(--blue)"}),
+    e("text",{key:u(),x:ex-33,y:ey+5,fill:"var(--blue)",fontSize:12,fontStyle:"italic"},"E(t)"),
+    e("line",{key:u(),x1:ex,y1:ey,x2:ex,y2:cy,stroke:"var(--blue)",strokeWidth:0.8,strokeDasharray:"3,2"}),
+    e("line",{key:u(),x1:ex,y1:ey,x2:cx,y2:ey,stroke:"var(--blue)",strokeWidth:0.8,strokeDasharray:"3,2"})
   );
 }
 
@@ -186,7 +186,7 @@ function SvgZad28c_2015JA(){
     e("text",{key:u(),x:cx+4,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
     ...[1,2,3,4].map(i=>e("text",{key:u(),x:cx+i*sc-4,y:cy+14,fill:"var(--muted)",fontSize:10},i)),
     ...[-1,1,2,3,4].map(i=>e("text",{key:u(),x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
-    e("path",{key:u(),d:path,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
+    e("path",{key:u(),d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
     e("circle",{key:u(),cx:cx+2*sc,cy:cy,r:5,fill:"#e8c547"}),
     e("text",{key:u(),x:cx+2*sc+5,y:cy-6,fill:"#e8c547",fontSize:10},"tjeme(2,0)"),
     e("circle",{key:u(),cx,cy:cy-4*sc,r:4,fill:"#3dd68c"}),
@@ -196,7 +196,7 @@ function SvgZad28c_2015JA(){
 
 function SvgZad26_2015JA(){
   const W=300,H=180,cx=60,cy=90,sc=50;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const u=_uid15ja;
   const grid=[];
   // vertical grid lines
@@ -321,7 +321,7 @@ function SvgZad24a_2015JA(){
 
 function SvgZad22b_2015JA(){
   const W=260,H=200;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const u=_uid15ja;
   const C=[60,160], B=[60,40], A=[220,160];
   const pts=arr=>arr.map(p=>p.join(",")).join(" ");
@@ -717,7 +717,7 @@ export const qs = [
     "Alt metoda: testiranje točaka. Uvrsti x=0: −2(0)+0−6 = −6 ≤ 0 ✓ (0 je u rješenju). Uvrsti x=1,75: −2(3,0625)+7(1,75)−6 = 0,125 > 0 (1,75 NIJE u rješenju). Potvrda rješenja.",
     "Provjera ✓: x=3/2 → −2(9/4)+7(3/2)−6 = −9/2+21/2−6 = 0 ≤ 0 ✓ (uključeno). x=2 → −8+14−6 = 0 ≤ 0 ✓ (uključeno)."
   ,"Provjera Vièteovim formulama: x₁+x₂ = −b/a i x₁·x₂ = c/a."]},
-  {id:20.1,type:"sa",topic:"komp",points:1,
+  {id:20.1,type:"sa",topic:"kompl",points:1,
   context:"Zadatak 20 (1. dio od 2):",
   q:"Kompleksni broj z = (4i²¹⁹)/(i-1) + i napišite u obliku z = a + bi gdje su a, b ∈ ℝ.",
   sol:{ans:"z = -2 + 3i",alt:["Z = -2 + 3i","z = -2 + 3i","z=-2+3i","≈ z = -2 + 3i"]},
@@ -734,7 +734,7 @@ export const qs = [
     "Česta greška: pomiješati pravilo i² = −1 s i³ = −i; ili koristiti pogrešan konjugat (konjugat od (i−1) je (i+1), ne (−i+1) ili (−i−1)).",
     "Provjera ✓: z(i−1) − i(i−1) = 4i²¹⁹. (−2+3i)(i−1) = −2i+2+3i²−3i = −2i+2−3−3i = −1−5i. Onda −1−5i − i(i−1) = −1−5i − (i²−i) = −1−5i + 1 + i = −4i = 4·(−i) = 4i²¹⁹ ✓"
   ,"Provjera red veličine: rezultat je u očekivanom rasponu za zadani problem."]},
-  {id:20.2,type:"sa",topic:"komp",points:1,
+  {id:20.2,type:"sa",topic:"kompl",points:1,
   context:"Zadatak 20 (2. dio od 2):",
   q:"Odredite jedan kompleksan broj w za koji vrijedi w = ∛(8i).",
   sol:{ans:"√3 + i  (ili  −√3 + i  ili  -2i)",alt:["sqrt(3)+i","-sqrt(3)+i","-2i","1,732+i"]},
@@ -866,7 +866,7 @@ export const qs = [
     "Česta greška: zamijeniti redoslijed (y₁ − y₂) i (x₂ − x₁) — pazi da je u istom smjeru. Također, kad je 'f(0) = 1', odsječak je 1, ne −1.",
     "Provjera: f(0) = −2·0 + 1 = 1 ✓; f(−1) = −2·(−1) + 1 = 3 ✓"
   ,"Provjera: uvrsti rješenje u sve jednadžbe sustava — svaka mora biti zadovoljena.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."]},
-  {id:24.2,img:true,type:"sa",topic:"der",points:1,img:true,
+  {id:24.2,img:true,type:"sa",topic:"anal",points:1,img:true,
   context:"Zadatak 24 (2. dio od 2):",
   q:"Slika prikazuje graf funkcije f na intervalu ⟨1,11⟩. Odredite interval/intervale na kojemu/kojima je funkcija padajuća i postiže vrijednosti manje od 2.",
   sol:{ans:"⟨5, 8⟩",alt:["(5,8)","5<x<8"]},
@@ -882,7 +882,7 @@ export const qs = [
     "Česta greška: dati UNIJU (gdje vrijedi bilo koji uvjet) umjesto PRESJEKA (gdje vrijede oba istovremeno).",
     "Provjera: u sredini intervala ⟨5, 8⟩, npr. x = 6,5: graf je u padu i vrijednost f(6,5) < 2 (npr. f(6,5) ≈ 1) ✓"
   ,"Provjera u kritičnoj točki: f'(x₀) = 0 za ekstrem; f'(x₀) ≠ 0 znači nije ekstrem.","Tipičan propust: zaboraviti pravilo lanca (chain rule) za složene funkcije; ili pravilo kvocijenta."]},
-  {id:25.1,type:"sa",topic:"der",points:1,
+  {id:25.1,type:"sa",topic:"anal",points:1,
   context:"Zadatak 25 (1. dio od 2):",
   q:"Odredite derivaciju funkcije f(x) = tg(3x).",
   sol:{ans:"f′(x) = [FRAC:3|cos²](3x)",alt:["3/cos^2(3x)","3sec²(3x)"]},
@@ -899,7 +899,7 @@ export const qs = [
     "Česta greška: zaboraviti faktor 3 (derivaciju unutarnje funkcije), tj. napisati samo 1/cos²(3x) — ovo je TIPIČNA greška kod pravila lanca.",
     "Provjera ✓: numerički provjeri u x = 0: f(0) = tg(0) = 0; f′(0) = 3/cos²(0) = 3/1 = 3. Alternativno preko granice: lim_{h→0} (tg(3h) − 0)/h = 3 (jer tg(3h) ≈ 3h za male h) ✓"
   ,"Provjera derivacijom unazad: integriranjem f' moramo dobiti f (do konstante)."]},
-  {id:25.2,type:"sa",topic:"der",points:1,
+  {id:25.2,type:"sa",topic:"anal",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Odredite jednadžbu tangente na graf funkcije f(x) = √x u točki s apscisom x = 16.",
   sol:{ans:"y = [FRAC:x|8] + 2",alt:["y=x/8+2","y-4=1/8(x-16)"]},
@@ -1122,7 +1122,7 @@ export const qs = [
     "Česta greška: zamijeniti velikom i malu poluos (postaviti fokuse na y-osu kada bi trebali biti na x); ili pomiješati c² = A² − B² s c² = A² + B².",
     "Provjera ✓: T(8, 3) na elipsi: 64/100 + 9/25 = 0,64 + 0,36 = 1 ✓. Tjeme (0, 5) na elipsi: 0 + 25/25 = 1 ✓. Fokusi: c² + B² = 75 + 25 = 100 = A² ✓"
   ]},
-  {id:30,type:"sa",topic:"seq",points:4,ex:"Mješoviti niz — geometrijski i aritmetički naizmjenično. Test integracije: postavljanje algebarskog sustava iz dvaju različitih nizovskih svojstava, rješavanje kvadratne jednadžbe, dvostruko rješenje.",
+  {id:30,type:"sa",topic:"niz",points:4,ex:"Mješoviti niz — geometrijski i aritmetički naizmjenično. Test integracije: postavljanje algebarskog sustava iz dvaju različitih nizovskih svojstava, rješavanje kvadratne jednadžbe, dvostruko rješenje.",
   q:"Zadana su četiri broja. Prva tri čine geometrijski niz, a posljednja tri aritmetički niz. Zbroj prvoga i četvrtoga broja jednak je 32, a zbroj drugoga i trećega broja jednak je 24. Odredite zadane brojeve.",
   sol:{ans:"{2, 6, 18, 30}  i  {32, 16, 8, 0}",alt:["2,6,18,30","32,16,8,0"]},
   steps:[
@@ -1140,39 +1140,7 @@ export const qs = [
     "Alt metoda: postavi alternativne oznake — npr. b, c kao zadani, pa izrazi a = b/r i d = 2c − b. Vodi do iste kvadratne za r.",
     "Česta greška: dati samo JEDNO rješenje (zaboraviti drugu mogućnost r-a); ili krivo aritmetičko/geometrijsko: zamijeniti uvjete (npr. tretirati a+d = aritm., kad to nije u zadatku).",
     "Provjera ✓ za {2, 6, 18, 30}: geom 2, 6, 18 (omjer 3) ✓; aritm 6, 18, 30 (razlika 12) ✓; 2+30=32 ✓; 6+18=24 ✓. Za {32, 16, 8, 0}: geom 32, 16, 8 (omjer 1/2) ✓; aritm 16, 8, 0 (razlika −8) ✓; 32+0=32 ✓; 16+8=24 ✓"
-  ]},
-  {_META:true,
-  auditStatus: "verified-full",
-  auditedAt: "2026-05-15",
-  auditBy: "Claude+Daniel",
-  verified: "sympy+pdf+verbatim+visual+pedagogy-full",
-  issueCount: 0,
-  examCode: "MAT A D-S029",
-  season: "JESEN",
-  year: 2015,
-  level: "viša razina",
-  totalTasks: 30,
-  mcCount: 15,
-  saCount: 31,
-  totalPoints: 50,
-  mcKey: {1:"C",2:"A",3:"B",4:"B",5:"D",6:"D",7:"B",8:"B",9:"C",10:"D",11:"B",12:"C",13:"C",14:"A",15:"C"},
-  notes: [
-    "Pak G (verbatim PDF compare) — 2026-05-15: P0=1 (Q19,2 endpoint inclusion fix), P1=2 (Q6 namatanje pravca napomena, Q23,1 binomna formula napomena) → SVE PRIMIJENJENO.",
-    "Pak H (math notation, math_lint) — 2026-05-15: 51 → 10 nalaza (preostali: 10× kozmetički A2 ^(razlomak) Unicode super suggestion, ne blokira verified-full).",
-    "Pak I (visual bindings) — 2026-05-15: 11 Q_IMAGES bindings ↔ 11 img:true Q-ova ručno verificirano (orphan_binding_audit ima regex bug s intermediate poljima topic/points).",
-    "Pak F (pedagoški upgrade) — 2026-05-15: MC dio (Q1-Q15) UPGRADE-AN s verifikacija + diagnostika steps, why split Pravilo/Intuicija/Greška/Provjera, ex polje za mc/2pt.",
-    "Pak F SA (Q16-Q30) — 2026-05-15: Završen. Svi sa/1pt dobili ≥3 steps + 4 why entries; sa/2pt (Q29,1, Q29,2) ≥5 steps + 5 why + Alt + ex; sa/3pt (Q29,3, Q29,4) ≥6 steps + 5 why + Alt + ex; sa/4pt (Q30) ≥6 steps + 6 why + Alt + ex. Verifikacija step + Provjera why entry u svakom Q-u.",
-    "Multi-part context: 28 Q-ova (Q18,1-Q29,4) dobilo zaseban context:'Zadatak X (Y. dio od Z):' field (Bug 38 fix).",
-    "z3: promjer 7,8mm=0,78cm → B=3,38g ✓",
-    "z12: nejednadžba je ≤4 → 4 prirodna broja → C",
-    "z19,2 FIX: sol.ans bila ⟨−∞, 3/2⟩∪[2,+∞⟩ (krivo: 3/2 trebao biti UKLJUČEN); ispravno: ⟨−∞, 3/2]∪[2,+∞⟩ (oba ruba uključena jer nejednakost ≤0).",
-    "z21,2: izraz ima (a-2b)/b (ne b/(a-2b)) → 1/(2b) ✓",
-    "z23,2: ∛(x·∛(x·...))=L, L²=x → x=100 ✓",
-    "z29,1: c²=19 (formula: 4m²=2b²+2c²-a²) → c=√19 ✓",
-    "Svi exp legacy fieldi uklonjeni; ID format decimalni",
-    "Matematika verificirana SymPy-om: sve zadatke"
-  ]
-  }
+  ]}
 ];
 
 export const qImages = {

@@ -11,7 +11,7 @@ function Svg30_2011LjetoA(){
   // TOČAN α = 36°52'12'' ≈ 36.8699° (3-4-5 trokut: cos α = 4/5 = 0.8, sin α = 0.6)
   const W=320,H=320,cx=160,cy=180,R=130;
   const t="var(--text)",mu="var(--muted)";
-  const PRIM="#4a90d9",ACC="#e05252",GOLD="#e9b446";
+  const PRIM="var(--blue)",ACC="var(--red)",GOLD="var(--gold)";
   // α u radijanima (mjereno CCW od +x; u SVG y-os je obrnuta pa koristimo -a)
   const aDeg=36+52/60+12/3600;
   const a=aDeg*Math.PI/180;
@@ -121,7 +121,7 @@ function Svg26_2011LjetoA(){
   const scale=20,offX=18,offY=170;
   const sx=p=>p[0]*scale+offX, sy=p=>offY-p[1]*scale;
   const t="var(--text)",mu="var(--muted)";
-  const PRIM="#4a90d9",MED="#50c878",GOLD="#e9b446";
+  const PRIM="var(--blue)",MED="var(--green)",GOLD="var(--gold)";
   // Točke
   const pts={
     A:{x:sx(A),y:sy(A)},
@@ -168,7 +168,7 @@ function Svg7_2011LjetoA(){
   // C: y=log_3(x) rastući log (kroz (1,0))
   // D: y=-log_3(x) padajući log (kroz (1,0))
   const t="var(--text)",mu="var(--muted)",bdr="var(--bdr)";
-  const C="#4a90d9";
+  const C="var(--blue)";
   function mini(label, fn, opts, color){
     const W=130,H=110,pad={l:18,r:8,t:14,b:18};
     const xMin=opts.xMin,xMax=opts.xMax,yMin=opts.yMin,yMax=opts.yMax;
@@ -208,10 +208,10 @@ function Svg7_2011LjetoA(){
     );
   }
   return e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,maxWidth:340,margin:"0 auto"}},
-    mini("A.",x=>Math.pow(3,x),{xMin:-3,xMax:2,yMin:-1,yMax:6},"#4a90d9"),
-    mini("B.",x=>Math.pow(3,-x),{xMin:-2,xMax:3,yMin:-1,yMax:6},"#e05252"),
-    mini("C.",x=>Math.log(x)/Math.log(3),{xMin:0.05,xMax:6,yMin:-3,yMax:2},"#50c878"),
-    mini("D.",x=>-Math.log(x)/Math.log(3),{xMin:0.05,xMax:6,yMin:-2,yMax:3},"#e9b446")
+    mini("A.",x=>Math.pow(3,x),{xMin:-3,xMax:2,yMin:-1,yMax:6},"var(--blue)"),
+    mini("B.",x=>Math.pow(3,-x),{xMin:-2,xMax:3,yMin:-1,yMax:6},"var(--red)"),
+    mini("C.",x=>Math.log(x)/Math.log(3),{xMin:0.05,xMax:6,yMin:-3,yMax:2},"var(--green)"),
+    mini("D.",x=>-Math.log(x)/Math.log(3),{xMin:0.05,xMax:6,yMin:-2,yMax:3},"var(--gold)")
   );
 }
 
@@ -1581,8 +1581,7 @@ export const qs = [
       "Greška: pomiješati α u stupnjevima i radijanima → daje krivi sin²α i krivi α; ili izostaviti pretvorbu π/180."
     ,"Provjera: skiciraj figuru i izmjeri svojstvo geometrijski."],
     img: true
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2011_ljeto",razina:"A",serial:"D-S004",totalPoints:62,mcCount:15,verified:"vision+pdf+pedagogy-premium+verbatim",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  }
 ];
 
 export const qImages = {

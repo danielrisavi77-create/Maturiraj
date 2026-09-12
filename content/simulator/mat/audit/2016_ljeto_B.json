@@ -1,0 +1,19 @@
+{
+  "auditStatus": "verified-full+pedagogy-full",
+  "auditedAt": "2026-05-15",
+  "auditBy": "Claude+Daniel",
+  "rok": "2016_ljeto",
+  "razina": "B",
+  "serial": "D-S032",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 20,
+  "verified": "sympy+pdf+pedagogy-full",
+  "notes": [
+    "Pak H (2026-05-15): dodano context polje za 15 multi-part Q-ova (Q22,1-Q28,3).",
+    "Pak F MC (Q1-Q16): pedagoški upgrade — verifikacija step + diagnostika + why split (Pravilo/Intuicija/Greška/Provjera). mc/2pt: ex polje dodano za Q13-Q16.",
+    "Pak F SA (Q17-Q28,3): pedagoški upgrade za 20 sub-Q-ova; sa/1pt: ≥3 steps + ≥3 why.",
+    "PED-FINAL swap: 16 swapova (verifikacija step na poziciju ZADNJEG).",
+    "Preostali nalazi: 4 PED-TOPIC (kozmetički keyword), 1 PED-FIELD (false positive — scanner ne zna parsati ⟨ ⟩ uglate zagrade u Q3 opcijama)."
+  ]
+}

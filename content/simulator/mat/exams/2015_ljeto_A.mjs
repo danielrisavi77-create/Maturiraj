@@ -15,9 +15,9 @@ function SvgZad6_2015LA(){
     e("text",{key:u(),x:ox-9,y:oy+11,fill:"var(--muted)",fontSize:9},"0"),
     e("text",{key:u(),x:ox+r-1,y:oy+11,fill:"var(--muted)",fontSize:9},"1"),
     e("circle",{key:u(),cx:ox,cy:oy,r,fill:"none",stroke:"var(--text)",strokeWidth:1.5}),
-    e("circle",{key:u(),cx:ex,cy:ey,r:4,fill:"#4a90d9"}),
-    e("line",{key:u(),x1:ox,y1:oy,x2:ex,y2:ey,stroke:"#4a90d9",strokeWidth:1,strokeDasharray:"3,2"}),
-    e("text",{key:u(),x:ex+(ex<ox?-30:6),y:ey+(ey<oy?-6:14),fill:"#4a90d9",fontSize:11,fontStyle:"italic"},"E(t)"),
+    e("circle",{key:u(),cx:ex,cy:ey,r:4,fill:"var(--blue)"}),
+    e("line",{key:u(),x1:ox,y1:oy,x2:ex,y2:ey,stroke:"var(--blue)",strokeWidth:1,strokeDasharray:"3,2"}),
+    e("text",{key:u(),x:ex+(ex<ox?-30:6),y:ey+(ey<oy?-6:14),fill:"var(--blue)",fontSize:11,fontStyle:"italic"},"E(t)"),
     e("text",{key:u(),x:ox-r-4,y:oy+r+16,fill:"var(--text)",fontSize:13,fontWeight:700},label)
   ];
   // A: II quadrant (x<0,y>0), B: III quadrant (x<0,y<0)
@@ -35,7 +35,7 @@ function SvgZad6_2015LA(){
 function SvgZad5_2015LA(){
   const u=(()=>{let n=0;
   return()=>"la5_"+(++n)})();
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{viewBox:"0 0 360 220",style:{width:"100%",maxWidth:360,display:"block",margin:"8px auto"}},
     // Triangle
     e("line",{key:u(),x1:30,y1:180,x2:320,y2:180,stroke:_BLUE,strokeWidth:1.8}),
@@ -60,20 +60,20 @@ function SvgZad29d_2015LA(){
   return e("svg",{viewBox:"0 0 360 160",style:{width:"100%",maxWidth:360,display:"block",margin:"8px auto"}},
     e("polygon",{key:u(),points:"30,120 330,120 290,40 70,40",fill:"rgba(74,144,217,0.07)",stroke:"var(--text)",strokeWidth:1.8,strokeLinejoin:"round"}),
     // Bottom label
-    e("text",{key:u(),x:180,y:140,fill:"#4a90d9",fontSize:13,textAnchor:"middle",fontWeight:600},"105 m"),
+    e("text",{key:u(),x:180,y:140,fill:"var(--blue)",fontSize:13,textAnchor:"middle",fontWeight:600},"105 m"),
     // Top label
-    e("text",{key:u(),x:180,y:32,fill:"#50c878",fontSize:13,textAnchor:"middle",fontWeight:600},"87.5 m"),
+    e("text",{key:u(),x:180,y:32,fill:"var(--green)",fontSize:13,textAnchor:"middle",fontWeight:600},"87.5 m"),
     // Angle marks
-    e("path",{key:u(),d:"M 55,120 A 25 25 0 0 0 42,100",fill:"none",stroke:"#e9b446",strokeWidth:1.5}),
-    e("text",{key:u(),x:48,y:106,fill:"#e9b446",fontSize:11,fontWeight:600},"25°"),
-    e("path",{key:u(),d:"M 305,120 A 25 25 0 0 1 316,100",fill:"none",stroke:"#e05252",strokeWidth:1.5}),
-    e("text",{key:u(),x:296,y:106,fill:"#e05252",fontSize:11,fontWeight:600},"145°")
+    e("path",{key:u(),d:"M 55,120 A 25 25 0 0 0 42,100",fill:"none",stroke:"var(--gold)",strokeWidth:1.5}),
+    e("text",{key:u(),x:48,y:106,fill:"var(--gold)",fontSize:11,fontWeight:600},"25°"),
+    e("path",{key:u(),d:"M 305,120 A 25 25 0 0 1 316,100",fill:"none",stroke:"var(--red)",strokeWidth:1.5}),
+    e("text",{key:u(),x:296,y:106,fill:"var(--red)",fontSize:11,fontWeight:600},"145°")
   );
 }
 
 function Svg29_2015Alj(){
   const W=220,H=220,pad={l:32,r:14,t:14,b:32};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-4,xMax=8,yMin=-9,yMax=3;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -147,10 +147,10 @@ function SvgZad26_2015LA(){
     e("text",{key:u(),x:xZero-20,y:toY(-1)+4,fill:"var(--muted)",fontSize:10},"-1"),
     e("text",{key:u(),x:xZero-20,y:toY(-3)+4,fill:"var(--muted)",fontSize:10},"-3"),
     // The curve — colorful gradient effect with thick stroke
-    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"#e05252",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
+    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"var(--red)",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
     // Mark max/min points
-    e("circle",{key:u(),cx:toX(Math.PI/6),cy:toY(1),r:3.5,fill:"#50c878"}),
-    e("circle",{key:u(),cx:toX(Math.PI/2),cy:toY(-3),r:3.5,fill:"#4a90d9"})
+    e("circle",{key:u(),cx:toX(Math.PI/6),cy:toY(1),r:3.5,fill:"var(--green)"}),
+    e("circle",{key:u(),cx:toX(Math.PI/2),cy:toY(-3),r:3.5,fill:"var(--blue)"})
   );
 }
 
@@ -171,19 +171,19 @@ function SvgZad23a_2015LA(){
     // Fill shape
     e("polygon",{key:u(),points:`${bl},${by} ${br},${by} ${trx},${tly} ${tl},${tly}`,fill:"rgba(74,144,217,0.08)",stroke:"var(--text)",strokeWidth:1.8,strokeLinejoin:"round"}),
     // Right angle marks
-    e("rect",{key:u(),x:tl,y:tly,width:10,height:10,fill:"none",stroke:"#e9b446",strokeWidth:1.2}),
-    e("rect",{key:u(),x:bl,y:by-10,width:10,height:10,fill:"none",stroke:"#e9b446",strokeWidth:1.2}),
+    e("rect",{key:u(),x:tl,y:tly,width:10,height:10,fill:"none",stroke:"var(--gold)",strokeWidth:1.2}),
+    e("rect",{key:u(),x:bl,y:by-10,width:10,height:10,fill:"none",stroke:"var(--gold)",strokeWidth:1.2}),
     // Labels — colored
-    e("text",{key:u(),x:(bl+br)/2,y:by+18,fill:"#4a90d9",fontSize:13,textAnchor:"middle",fontWeight:600},"3"),
-    e("text",{key:u(),x:bl-18,y:(by+tly)/2+4,fill:"#e9b446",fontSize:13,textAnchor:"middle",fontWeight:600},"5.6"),
-    e("text",{key:u(),x:(br+trx)/2+14,y:(by+tly)/2+4,fill:"#e05252",fontSize:13,textAnchor:"middle",fontWeight:600},"6.3"),
-    e("text",{key:u(),x:(tl+trx)/2,y:tly-10,fill:"#50c878",fontSize:14,textAnchor:"middle",fontWeight:700,fontStyle:"italic"},"a")
+    e("text",{key:u(),x:(bl+br)/2,y:by+18,fill:"var(--blue)",fontSize:13,textAnchor:"middle",fontWeight:600},"3"),
+    e("text",{key:u(),x:bl-18,y:(by+tly)/2+4,fill:"var(--gold)",fontSize:13,textAnchor:"middle",fontWeight:600},"5.6"),
+    e("text",{key:u(),x:(br+trx)/2+14,y:(by+tly)/2+4,fill:"var(--red)",fontSize:13,textAnchor:"middle",fontWeight:600},"6.3"),
+    e("text",{key:u(),x:(tl+trx)/2,y:tly-10,fill:"var(--green)",fontSize:14,textAnchor:"middle",fontWeight:700,fontStyle:"italic"},"a")
   );
 }
 
 function Svg22_2015Alj(){
   const W=220,H=180,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-1,xMax=7,yMin=-3,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -222,7 +222,7 @@ function Svg22_2015Alj(){
 
 function Svg20_2015Alj(){
   const W=200,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-6,xMax=8,yMin=-4,yMax=2;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -265,7 +265,7 @@ function Svg20_2015Alj(){
 function SvgZad10_2015LA(){
   const u=(()=>{let n=0;
   return()=>"la10_"+(++n)})();
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=180,cy=160,r=120;
   // B at top (~70°), A at right (~340°), C at bottom (~260°)
   const angB=70,angA=-20,angC=260;
@@ -614,7 +614,7 @@ export const qs = [
     "Česta greška: zaboraviti pretvoriti minute u sekunde (ostaviti t = 20) → rezultat 1000× premali; ili krivi zapis (npr. 36·10¹⁰ umjesto 3,6·10¹¹).",
     "Provjera ✓: 3,6·10¹¹ m = 360 000 000 km. Za usporedbu: prosječna udaljenost Zemlja–Sunce ≈ 1,5·10¹¹ m, pa 20 minuta na brzini svjetlosti ≈ 2,4 AU — razumno ✓"
   ,"Alt metoda: provjeri brojčano supstitucijom ili drugačijim postupkom.","Postupak: razdvoji brojnik i nazivnik, pretvori u istu jedinicu, izračunaj."]},
-  {id:18.2,type:"sa",topic:"komp",points:1,
+  {id:18.2,type:"sa",topic:"kompl",points:1,
   context:"Zadatak 18 (2. dio od 2):",
   q:"Zadan je kompleksan broj z = 3(cos(2π/7) + i·sin(2π/7)). Koja je vrijednost argumenta φ broja z⁶?",
   sol:{ans:"[FRAC:12π|7]",alt:["12pi/7","odgovor: [FRAC:12π|7]","odgovor","rezultat"]},
@@ -815,7 +815,7 @@ export const qs = [
     "Intuicija: razlomak je negativan tamo gdje brojnik i nazivnik 'idu u različitim smjerovima' (jedan pozitivan, drugi negativan).",
     "Česta greška: uključiti rubove (−5 ili 2). Otvorena nejednakost (< 0) ne uključuje granicu gdje je razlomak = 0; nazivnik = 0 je definitivno isključen jer nije definirano."
   ,"Alt metoda: provjeri rezultat drugačijim pristupom.","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]},
-  {id:24.2,type:"sa",topic:"der",points:1,
+  {id:24.2,type:"sa",topic:"anal",points:1,
   context:"Zadatak 24 (2. dio od 2):",
   q:"Neprekidna funkcija definirana za sve realne brojeve ima točno dvije točke lokalnoga minimuma A(-1, 2) i B(4, -3) i samo jednu točku lokalnog maksimuma C(1, 3). Odredite interval/intervale rasta funkcije na cijeloj domeni.",
   sol:{ans:"⟨-1, 1⟩ ∪ ⟨4, +∞⟩",alt:["(-1,1)U(4,inf)","⟨-1,1⟩∪⟨4,+∞⟩","odgovor: ⟨-1, 1⟩ ∪ ⟨4, +∞⟩"]},
@@ -832,7 +832,7 @@ export const qs = [
     "Česta greška: uključiti rubove (lokalne ekstreme) u interval rasta. Rast je STROGI (otvoreni interval) — u samoj točki minimum/maximum derivacija je 0 (ili nedefinirana), ne pozitivna.",
     "Provjera ✓: A(−1, 2) min → desno raste; C(1, 3) max → desno pada; B(4, −3) min → desno raste. Intervali rasta: ⟨−1, 1⟩ ∪ ⟨4, +∞⟩ ✓"
   ,"Alt metoda: numerička diferencijacija ((f(x+h)-f(x))/h) za malu h.","Postupak: primijeni pravila deriviranja (kombinacije, lančano), uvrsti."]},
-  {id:25.1,type:"sa",topic:"der",points:1,
+  {id:25.1,type:"sa",topic:"anal",points:1,
   context:"Zadatak 25 (1. dio od 2):",
   q:"Odredite prvu derivaciju funkcije f(x) = tg(3x).",
   sol:{ans:"f′(x) = [FRAC:3|cos²](3x)",alt:["3/cos^2(3x)","3·sec²(3x)"]},
@@ -849,7 +849,7 @@ export const qs = [
     "Česta greška: zaboraviti faktor 3 (derivaciju unutarnje funkcije), napisati 1/cos²(3x) — TIPIČNA greška kod pravila lanca.",
     "Provjera ✓: u x = 0, f(0) = tg(0) = 0; f′(0) = 3/cos²(0) = 3/1 = 3. Numerički gradijent: (tg(0,01·3) − 0)/0,01 ≈ 3 ✓"
   ,"Alt metoda: numerička diferencijacija ((f(x+h)-f(x))/h) za malu h.","Postupak: primijeni pravila deriviranja (kombinacije, lančano), uvrsti."]},
-  {id:25.2,type:"sa",topic:"der",points:1,
+  {id:25.2,type:"sa",topic:"anal",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Napišite jednadžbu tangente na graf funkcije f(x) = x³ + 2x + 1 u točki s apscisom x₀ = 1.",
   sol:{ans:"y = 5x − 1",alt:["y=5x-1","y=5x−1","odgovor: y = 5x − 1"]},
@@ -896,7 +896,7 @@ export const qs = [
     "Česta greška: pomiješati formulu — koristiti T = 2π·B (umjesto T = 2π/B); rezultat bi bio B = 1/3 umjesto 3.",
     "Provjera ✓: B = 3 ⇒ 2π/B = 2π/3 ≈ 2,094. Tri perioda u [0, 2π]: 3 · (2π/3) = 2π ✓"
   ,"Alt metoda: jedinična kružnica ili graf sin/cos.","Postupak: pretvori u sin/cos baznih kutova, koristi identitete."]},
-  {id:27.1,type:"sa",topic:"seq",points:1,
+  {id:27.1,type:"sa",topic:"niz",points:1,
   context:"Zadatak 27 (1. dio od 3):",
   q:"Zadan je geometrijski niz 3/4, 1/2, 1/3, ... Koji je šesti član zadanoga niza?",
   sol:{ans:"[FRAC:8|81]",alt:["8/81","odgovor: [FRAC:8|81]","odgovor","rezultat"]},
@@ -913,7 +913,7 @@ export const qs = [
     "Česta greška: pomiješati 'n-1' i 'n' u eksponentu — peti član je a₁·q⁴, ne a₁·q⁵.",
     "Provjera ✓: niz: 3/4, 1/2, 1/3, 2/9, 4/27, 8/81 — šesti član je 8/81 ✓ (svaki uzastopni se množi s 2/3)."
   ,"Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]},
-  {id:27.2,type:"sa",topic:"seq",points:1,
+  {id:27.2,type:"sa",topic:"niz",points:1,
   context:"Zadatak 27 (2. dio od 3):",
   q:"Prvi je član geometrijskoga reda 0,5, a suma je toga geometrijskoga reda 1,25. Koliko iznosi kvocijent toga geometrijskoga reda?",
   sol:{ans:"0,6",alt:["0,6","3/5"]},
@@ -928,7 +928,7 @@ export const qs = [
     "Česta greška: pretpostaviti q = 0,6 = 3/5 bez provjere |q| < 1 (ovdje je OK, 0,6 < 1). Ili izračunati 1 − q = 0,4 i odgovoriti q = 0,4 (zaboraviti oduzeti od 1).",
     "Provjera ✓: a₁ = 0,5, q = 0,6. S = 0,5/(1 − 0,6) = 0,5/0,4 = 1,25 ✓"
   ,"Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]},
-  {id:27.3,type:"sa",topic:"seq",points:1,
+  {id:27.3,type:"sa",topic:"niz",points:1,
   context:"Zadatak 27 (3. dio od 3):",
   q:"Zlatko je odlučio štedjeti. Prvi je dan u kasicu ubacio 1 kunu. Svaki sljedeći dan ubacit će 50 lipa više nego što je ubacio prethodnoga dana. Koliko će ukupno kuna uštedjeti na taj način za 45 dana?",
   sol:{ans:"540 kn",alt:["540","540kn","odgovor: 540 kn"]},
@@ -1088,18 +1088,7 @@ export const qs = [
     "Alt metoda: derivacija. f(x) = √(4−3x) − √(x+1); f′(x) = (−3)/(2√(4−3x)) − 1/(2√(x+1)) — uvijek NEGATIVAN u unutrašnjosti domene → f je strogo padajuća → rješenje > 2 je 'lijevo' od granice.",
     "Česta greška: zaboraviti domenu (uključiti rješenja izvan [−1, 4/3]); ili zaboraviti UVJET znaka prije kvadriranja (npr. −(4x+1) = 4√(x+1) zahtijeva 4x+1 ≤ 0); ili dati interval suprotnog smjera ⟨⟨−3/4, 4/3] umjesto [−1, −3/4⟩⟩.",
     "Provjera ✓: x = −3/4: √(4 + 9/4) − √(1/4) = √(25/4) − 1/2 = 5/2 − 1/2 = 2 (jednakost, isključen) ✓. x = −0,9 (unutar [−1, −3/4⟩⟩: √(4 + 2,7) − √(0,1) = √6,7 − √0,1 ≈ 2,588 − 0,316 = 2,272 > 2 ✓"
-  ,"Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]},
-  {_META:true,
-  auditedAt: "2026-05-16",
-  auditSource: "MAT A (viša razina, ljetni rok 2015., D-S027)",
-  auditStatus: "verified-full",
-  auditBy: "claude+daniel (full pipeline + Pak F-deep augmentation)",
-  verified: "sympy+pdf+visual+pedagogy-deep",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 240},
-  metricsSteps: 6.0,
-  metricsWhy: 6.8,
-  notes: "Stages 1-5 applied: math fixes (Unicode super, [FRAC:], decimal point, context multi-part); orphan cleanup (legacy bindings removed); alt expansion; smart augmenter (Pak F-DEEP, 18 topic templates); ex polje za MC 2pt. Avg steps 6,0 (ref 6,0), why 6,8 (ref 4,7). Tool false positives (PED-WHY-LOW, PED-STEPS-LOW na Q-ovima s [FRAC:] tagovima u entries) prihvaćeni — accepted limitation (Bug #5/#7, isti root cause kao u prethodnim auditima)."
-  }
+  ,"Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]}
 ];
 
 export const qImages = {

@@ -4,8 +4,8 @@ const e = React.createElement;
 
 function Svg9_2010LA(){
   const W=320,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",mu="#94a3b8",bg="var(--bg)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",mu="var(--muted)",bg="var(--bg)";
   const bl=_BLUE,grn=_GREEN,gld=_GOLD;
   
   // Postavka iz PDF-a: AB je hipotenuza (i promjer kružnice k), pravi kut u C, C na kružnici k
@@ -76,9 +76,9 @@ function Svg9_2010LA(){
 
 function Svg7_2010LA(){
   const W=320,H=110,sq=72,gap=18;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const off=(W-3*sq-2*gap)/2;
-  const t="var(--text)",mu="#94a3b8",bg="var(--bg)";
+  const t="var(--text)",mu="var(--muted)",bg="var(--bg)";
   const bl=_BLUE,grn=_GREEN,gld=_GOLD;
   
   const polovisteEl=(cx,cy,k)=>e("circle",{key:k,cx:cx,cy:cy,r:2.4,fill:bg,stroke:t,strokeWidth:1.2});
@@ -124,8 +124,8 @@ function Svg7_2010LA(){
 
 function Svg30_2010Alj(){
   const W=320,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",mu="#94a3b8",bg="var(--bg)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",mu="var(--muted)",bg="var(--bg)";
   const grayFill="var(--s3)",bl=_BLUE,grn=_GREEN,red=_RED;
   
   const plLeft=40,plRight=270,plTop=70,plBot=120;
@@ -181,8 +181,8 @@ function Svg30_2010Alj(){
 
 function Svg12_2010Alj(){
   const W=320,H=120;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
-  const t="var(--text)",mu="#94a3b8",bg="var(--bg)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const t="var(--text)",mu="var(--muted)",bg="var(--bg)";
   const bl=_BLUE;
   // Plitki trokut (γ ≈ 130°)
   const Ax=20,Ay=95;
@@ -232,13 +232,13 @@ function Svg12_2010Alj(){
 
 function Svg17_2010LA(){
   const W=260,H=200,pad={l:30,r:14,t:14,b:30};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-4,xMax=4,yMin=-3,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",mu="var(--muted)",bdr="#94a3b8",bl=_BLUE;
+  const t="var(--text)",mu="var(--muted)",bdr="var(--muted)",bl=_BLUE;
   
   const pts=[[-3,-2],[0,1],[1,0],[3,2]];
   const ptsStr = pts.map(([x,y])=>`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`).join(" ");
@@ -2299,20 +2299,6 @@ export const qs = [
         txt: "p = 40 · sin(60° − 35,26°) / cos(35,26°) ≈ 40 · 0,419 / 0,816 ≈ 20,5 mm",
         final: true
       },{txt:"Intuicija: sin β = sin α / n = sin 60° / 1,5 = (√3/2)/1,5 = √3/3 ≈ 0,5774 → β ≈ 33,56°.",note:"intuicija",final:true},{txt:"Paralelni pomak p = d·sin(α − β)/cos β. Računamo: p ≈ 40·sin(26,44°)/cos(33,56°) ≈ 20,5 mm.",note:"verifikacija",final:true},{txt:"Sažetak postupka: Snellov zakon: n = sin α / sin β. Zadano n = 3/2, α = 60°.",note:"postupak",final:true},{txt:"Točan odgovor: 20,5 mm ✓",note:"odgovor",final:true},{txt:"Provjera: skiciraj figuru s mjernim brojevima i vizualno potvrdi rezultat.",note:"verifikacija",final:true},{txt:"Alt provjera: razdvoji figuru na poznate (trokut, kvadrat) i zbroji površine/opsege.",note:"verifikacija",final:true},{txt:"Sažetak metode: 1) skiciraj figuru; 2) označi poznate veličine; 3) primijeni formulu (opseg, površina, Pitagora).",note:"postupak",final:true},{txt:"Mentalni model: nakon rješavanja, vizualiziraj problem (skicom ili u glavi) da provjeriš ima li smisla.",note:"intuicija",final:true}]
-  },
-  {_META:true,
-  auditedAt: "2026-04-24",
-  auditSource: "MAT A D-S002 (viša razina, svibanj 2010)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  issueCount: {
-    critical: 11,
-    medium: 12,
-    low: 6,
-    resolved: 29
-  },
-  partialComplete: true,
-  partialNote: "Q1-Q17 + Q26/Q27/Q30 imported; Q18-Q25, Q28-Q29 pending NCVVO PDF za rewrite"
   }
 ];
 

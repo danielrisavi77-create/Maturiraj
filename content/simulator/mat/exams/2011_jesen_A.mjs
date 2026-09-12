@@ -5,7 +5,7 @@ const e = React.createElement;
 function SvgZad30_2011JA(){
   const W=320,H=320,cx=160,cy=160;
   const R1=68,R2=110;  // skalirano za viewport
-  const T="var(--text)",MU="var(--muted)",FILL="rgba(74,144,217,0.22)",FILLST="#4a90d9",HILITE="rgba(233,180,70,0.50)",HILITEST="#c89030",DASH="var(--muted)";
+  const T="var(--text)",MU="var(--muted)",FILL="rgba(74,144,217,0.22)",FILLST="var(--blue)",HILITE="rgba(233,180,70,0.50)",HILITEST="#c89030",DASH="var(--muted)";
   const PI=Math.PI;
   const N=8;                          // broj etiketa
   const alpha=43.13*PI/180;           // kut etikete (rad)
@@ -75,11 +75,11 @@ function SvgZad27_2011JA(){
   }
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     // Kvadrat ABCD
-    e("polygon",{points:`${aX},${aY} ${bX},${bY} ${cX},${cY} ${dX},${dY}`,fill:"rgba(74,144,217,0.15)",stroke:"#4a90d9",strokeWidth:2}),
+    e("polygon",{points:`${aX},${aY} ${bX},${bY} ${cX},${cY} ${dX},${dY}`,fill:"rgba(74,144,217,0.15)",stroke:"var(--blue)",strokeWidth:2}),
     // Kvadrat BEFG
-    e("polygon",{points:`${bX},${bY} ${eX},${eY} ${fX},${fY} ${gX},${gY}`,fill:"rgba(80,200,120,0.18)",stroke:"#50c878",strokeWidth:2}),
+    e("polygon",{points:`${bX},${bY} ${eX},${eY} ${fX},${fY} ${gX},${gY}`,fill:"rgba(80,200,120,0.18)",stroke:"var(--green)",strokeWidth:2}),
     // Dijagonala DE
-    e("line",{x1:dX,y1:dY,x2:eX,y2:eY,stroke:"#e05252",strokeWidth:2.2}),
+    e("line",{x1:dX,y1:dY,x2:eX,y2:eY,stroke:"var(--red)",strokeWidth:2.2}),
     // Točke + labeli
     ...pt(A,"A",[-12,5]),
     ...pt(B,"B",[-4,14]),
@@ -88,7 +88,7 @@ function SvgZad27_2011JA(){
     ...pt(E,"E",[5,14]),
     ...pt(F,"F",[5,3]),
     ...pt(G,"G",[-12,3]),
-    e("circle",{cx:hX,cy:hY,r:4,fill:"#fff",stroke:"#e9b446",strokeWidth:2.2}),
+    e("circle",{cx:hX,cy:hY,r:4,fill:"#fff",stroke:"var(--gold)",strokeWidth:2.2}),
     e("text",{x:hX+6,y:hY+4,fontSize:14,fill:"#c89030",fontWeight:"bold",fontStyle:"italic"},"H")
   );
 }
@@ -101,7 +101,7 @@ function SvgZad26_2011JA(){
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const T="var(--text)",MU="var(--muted)",CURVE="#4a90d9";
+  const T="var(--text)",MU="var(--muted)",CURVE="var(--blue)";
   const pts=[];
   for(let x=xMin;x<=xMax;x+=0.04){
     const y=2*Math.sin(x-PI/6);
@@ -142,7 +142,7 @@ function SvgZad26_2011JA(){
 function SvgZad8_2011JA(){
   const W=300,H=300,cx=150,cy=150,R=110;
   const PI=Math.PI;
-  const T="var(--text)",MU="var(--muted)",CIRC="#4a90d9",PT_HI="#e9b446",PT_LBL="#e05252";
+  const T="var(--text)",MU="var(--muted)",CIRC="var(--blue)",PT_HI="var(--gold)",PT_LBL="var(--red)";
   // Generate 12 markers (svaki π/6)
   const markers=[];
   for(let k=0;k<12;k++){
@@ -210,7 +210,7 @@ function SvgZad19bsol_2011JA(){
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const T="var(--text)",MU="var(--muted)",CURVE="#4a90d9",PT="#e05252",VTX="#e9b446",BPT="#50c878";
+  const T="var(--text)",MU="var(--muted)",CURVE="var(--blue)",PT="var(--red)",VTX="var(--gold)",BPT="var(--green)";
   const f=x=>-x*x*x/4+3*x/4+9/2;
   const pts=[];
   for(let x=-2;x<=4;x+=0.04){
@@ -257,7 +257,7 @@ function SvgZad19asol_2011JA(){
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const T="var(--text)",MU="var(--muted)",CURVE="#4a90d9",PT="#e05252",VTX="#e9b446";
+  const T="var(--text)",MU="var(--muted)",CURVE="var(--blue)",PT="var(--red)",VTX="var(--gold)";
   // f(x) = x² + 2x − 3
   const f=x=>x*x+2*x-3;
   const pts=[];
@@ -338,7 +338,7 @@ export const qs = [
     "Greška: Zaboraviti uvjet a² ≠ b² i automatski reći 'kružnica' kad su oba koeficijenta pozitivna."
   ]
 },
-  {id:3,type:"mc",warn:"Pazi: provjeri svaku tvrdnju zasebno.",topic:"geo",points:1,
+  {id:3,type:"mc",warn:"Pazi: provjeri svaku tvrdnju zasebno.",topic:"geom",points:1,
   q:"Koja je od navedenih tvrdnja istinita?",
   opts:["Bilo koja dva tupokutna trokuta su slična.","Bilo koja dva pravokutna trokuta su slična.","Bilo koja dva jednakostranična trokuta su slična.","Bilo koja dva jednakokračna trokuta su slična."],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -358,7 +358,7 @@ export const qs = [
     "Provjera: svi jednakostranični trokuti su zapravo skalirane verzije jedan drugoga ⇒ omjer stranica 1:1:1 = konstanta."
   ]
 },
-  {id:4,type:"mc",topic:"trg",points:1,
+  {id:4,type:"mc",topic:"trig",points:1,
   q:"U trokutu ABC stranica a je dvostruko dulja od stranice b. Mjera kuta α nasuprot stranici a je 74°. Kolika je mjera kuta β nasuprot stranici b?",
   warn:"Pazi: a = 2b znači stranica a je VEĆA, pa sin β = sin α / 2 (manji kut nasuprot manjoj stranici).",
   opts:["16°","28°43′36″","37°","46°09′53″"],
@@ -452,7 +452,7 @@ export const qs = [
     "Greška: dopustiti 0 među prirodnima ⇒ minimum 0+1+2+3+4 = 10 ⇒ kriv MAX = 26."
   ]
 },
-  {id:8,img:true,type:"mc",topic:"trg",points:1,
+  {id:8,img:true,type:"mc",topic:"trig",points:1,
   q:"Kojoj je od istaknutih točaka brojevne kružnice pridružen broj −65π/6?",
   intermediates:[210, 65, 72, 30],
   warn:"Pazi: smjer −65π/6 je negativan, ali nakon redukcije + 12π = 72π/6, dobiješ 7π/6 (pozitivan u III. kvadrantu).",
@@ -528,7 +528,7 @@ export const qs = [
     "Greška: pomiješati 2³·3 (= 24) s 2·3³ (= 54) ⇒ pogrešan koeficijent na pogrešnoj varijabli."
   ]
 },
-  {id:11,type:"mc",topic:"geo",points:2,
+  {id:11,type:"mc",topic:"geom",points:2,
   q:"Valjak je upisan u uspravnu pravilnu peterostranu prizmu kojoj su osnovni bridovi duljine 6 cm, a visina 8 cm. Koliki je obujam (volumen) valjka?",
   warn:"Pazi: za UPISANI valjak r = apotema (= udaljenost središta od stranice), ne polumjer opisane kružnice baze.",
   opts:["78,15 cm³","148,04 cm³","428,51 cm³","904,77 cm³"],
@@ -692,7 +692,7 @@ export const qs = [
     "Greška: zbrajati eksponente ⇒ 2^(3+5a+2) = 2^(5a+5), krivo."
   ]
 },
-  {id:17,type:"sa",topic:"geo",points:1,
+  {id:17,type:"sa",topic:"geom",points:1,
   q:"Kružnica u prvome kvadrantu ima polumjer 4 i dira os ordinata u točki A(0, 5). Napišite jednadžbu te kružnice.",
   warn:"Pazi: 'dira os ordinata u (0, 5)' znači dodirna točka leži NA y-osi, a središte je 4 dalje vodoravno (po x-osi).",
   sol:{ans:"(x-4)² + (y-5)² = 16",alt:["(x-4)^2+(y-5)^2=16","(x-4)²+(y-5)²=16"]},
@@ -744,7 +744,7 @@ export const qs = [
     "Greška: zaboraviti uvjet ⇒ ako bi rješenje slučajno bilo x = −1, jednadžba nije definirana."
   ]
 },
-  {id:18.2,type:"sa",topic:"trg",points:1,
+  {id:18.2,type:"sa",topic:"trig",points:1,
   context:"Zadatak 18 (2. dio od 2): Riješite sljedeće zadatke s jednadžbama.",
   q:"Odredite x ∈ [0, 2π⟩ za koji je cos(π/3 + x) = 1.",
   warn:"Pazi: cos = 1 SAMO u 2kπ (ne samo 0); plus filtriraj rješenja koja ne padaju u zadani interval [0, 2π⟩.",
@@ -1101,7 +1101,7 @@ export const qs = [
     "Greška: uvrstiti a₅ kao 2(5p) − 4 (zaboraviti 5 + p) ⇒ kriv pravi račun za a₅."
   ]
 },
-  {id:25.1,type:"sa",topic:"trg",points:1,
+  {id:25.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 25 (1. dio od 3): Na slici je prikazan trokut ABC s vrhovima A(3, −3), B(2, 1), C(−3, 2).",
   q:"Izračunajte mjeru kuta u vrhu C.",
   intermediates:[61, 26, 1586, 39.825, 0.8788, 35, 36, 25],
@@ -1134,7 +1134,7 @@ export const qs = [
     "Greška: koristiti vektore AC i BC umjesto CA i CB ⇒ predznak skalarnog produkta se mijenja, ali kut između je isti (parovi suprotnih vektora daju isti cos)."
   ]
 },
-  {id:25.2,type:"sa",topic:"trg",points:1,
+  {id:25.2,type:"sa",topic:"trig",points:1,
   context:"Zadatak 25 (2. dio od 3): Na slici je prikazan trokut ABC s vrhovima A(3, −3), B(2, 1), C(−3, 2).",
   q:"Izračunajte duljinu visine trokuta iz vrha B.",
   warn:"Pazi: visina iz vrha B SPADA na NASUPROTNU stranicu (AC, ne AB ili BC). Formula h = 2P/osnovica.",
@@ -1166,7 +1166,7 @@ export const qs = [
     "Greška: uzeti pogrešnu stranicu kao osnovicu (npr. AB ili BC) ⇒ kriva visina."
   ]
 },
-  {id:25.3,type:"sa",topic:"geo",points:2,
+  {id:25.3,type:"sa",topic:"geom",points:2,
   context:"Zadatak 25 (3. dio od 3): Na slici je prikazan trokut ABC s vrhovima A(3, −3), B(2, 1), C(−3, 2).",
   q:"Vektor AB⃗ prikažite kao linearnu kombinaciju jediničnih okomitih vektora i⃗ i j⃗.",
   warn:"Pazi na smjer: AB⃗ ide OD A PREMA B, pa AB⃗ = B − A (krajnja minus početna), ne A − B.",
@@ -1193,7 +1193,7 @@ export const qs = [
     "Greška: računati BA⃗ = A − B = (1, −4) i pisati i⃗ − 4j⃗ (krivi smjer)."
   ]
 },
-  {id:26,img:true,type:"sa",topic:"trg",points:2,
+  {id:26,img:true,type:"sa",topic:"trig",points:2,
   q:"Grafom je zadana funkcija f(x) = A·sin(x + C). Odredite A i C.",
   warn:"Pazi: identificiraj MIN i MAX preko slike (ne nule), pa C iz uvjeta sin(x+C)=±1. Plus pamti: rješenje (A, C) je do na periodičnost (više ekvivalentnih parova).",
   sol:{ans:"A = 2, C = −[FRAC:π|6]",alt:["A = 2, C = −π/6","A=2, C=-π/6","A=2, C=−π/6","A = −2, C = 5π/6","A=-2, C=5π/6","C = −π/6 + 2kπ","C = 5π/6 + 2kπ"],solFormula:{pre:"A = 2,  C = −",frac:[["π","6"]]}},
@@ -1211,7 +1211,7 @@ export const qs = [
   ],
   why:["Amplituda A = (max − min)/2 = (2 − (−2))/2 = 2.","Fazni pomak C najjednostavnije se odredi iz lokacije MAX-a: u MAX vrijedi sin(x + C) = 1 ⇔ x + C = π/2 + 2kπ.","Period 2π znači koeficijent uz x je 1 (oblik sin(x + C), ne sin(ωx + C)).","Ekvivalentni zapisi: (A, C) = (2, −π/6) ili (−2, 5π/6) — predznak A obrće funkciju, što kompenzira pomak za π u C.","Provjera kalkulatorom: paziti na DEG/RAD mode.","Tipičan propust: DEG vs RAD mod na kalkulatoru; znak sin/cos po kvadrantu."]
 },
-  {id:27,img:true,type:"sa",topic:"geo",points:2,
+  {id:27,img:true,type:"sa",topic:"geom",points:2,
   q:"Kvadrat ABCD na skici ima stranice duljine 7 cm, a kvadrat BEFG stranice duljine 5 cm. Kolika je duljina dužine DE? Odredite omjer duljina dužina BH i HG.",
   warn:"Pazi: kvadrat BEFG dijeli s ABCD točku B (donji desni kut prvog = donji lijevi drugog). Plus omjer BH:HG dolazi iz sličnosti trokuta — može se dobiti i bez koordinata (BH/HG = 7/5).",
   sol:{ans:"DE = √193 ≈ 13,89 cm; BH : HG = 7 : 5",alt:["DE=√193≈13,89 cm, BH:HG=7:5","DE ≈ 13,89 cm; BH:HG = 7:5","13,89; 7:5"]},
@@ -1244,7 +1244,7 @@ export const qs = [
     "Greška: pomiješati koje je BG, koje BH (BG je cijela vertikalna stranica kvadrata BEFG, BH je dio od B do H)."
   ]
 },
-  {id:28.1,type:"sa",topic:"geo",points:1,
+  {id:28.1,type:"sa",topic:"geom",points:1,
   context:"Zadatak 28 (1. dio od 3): Riješite sljedeće zadatke.",
   q:"Napišite jednadžbu pravca koja prolazi točkom T(6, 3) i sjecištem pravaca 3x + 4y − 24 = 0 i x/2 − y/3 = 1.",
   warn:"Pazi: druga jednadžba x/2 − y/3 = 1 ima razlomke — prvo je pomnoži s 6 da dobiješ 3x − 2y = 6.",
@@ -1486,7 +1486,7 @@ export const qs = [
     "Greška: pomiješati f ∘ g s g ∘ f ⇒ rješavati log₅(2x) = 7 ⇒ 2x = 5⁷ = 78125 ⇒ x = 39062,5 (krivo)."
   ]
 },
-  {id:30,img:true,type:"sa",topic:"geo",points:4,
+  {id:30,img:true,type:"sa",topic:"geom",points:4,
   q:"Etikete za omatanje mliječnih proizvoda izrezane su iz recikliranoga kartona oblika kružnoga vijenca. Dimenzije jedne etikete su l₁ = 14,6 cm, l₂ = 21,6 cm, d = 9,3 cm. Koliko kvadratnih centimetara kartona je ostalo nakon što je iz kružnoga vijenca izrezan maksimalni broj etiketa?",
   intermediates:[19.397, 28.697, 0.7527, 135.78, 823.52, 447.28, 376.24, 1346.3, 1346, 58.52, 218.16, 218.2],
   warn:"Pazi: rezultat je MAALENA površina (~58 cm²), ne velika — jer 8 etiketa pokriva skoro CIJELI vijenac (8·43° = 344°, ostatak 16°).",
@@ -1522,8 +1522,7 @@ export const qs = [
     "NCVVO toleranca: rezultat unutar [56, 60] cm² priznaje se zbog zaokruživanja u r₁, r₂, α.",
     "Greška: pomiješati formulu površine isječka kruga (1/2·r²·α) s isječkom vijenca (1/2·(R²−r²)·α) — koristi pogrešan radius."
   ]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2011_jesen",razina:"A",serial:"D-S006",totalPoints:64,mcCount:15,verified:"vision+pdf+pedagogy-premium+verbatim",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+}
 ];
 
 export const qImages = {

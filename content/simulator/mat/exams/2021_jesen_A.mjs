@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg27cGrid_2021Ajesen(){
   const W=270,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const OX=105,OY=105,SZ=26;
   const elems=[];
 
@@ -27,7 +27,7 @@ function Svg27cGrid_2021Ajesen(){
 
 function Svg25a_2021Ajesen(){
   const W=270,H=225;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Iz slike: y-os blizu lijeve strane, ishodište u donjem dijelu vidljivog područja
   // x=1 je vidljiv odmah desno, mreža je fine (svaka jed. = jedan kvadrat)
   const OX=48,OY=125,SX=36,SY=26;
@@ -77,7 +77,7 @@ function Svg25a_2021Ajesen(){
 
 function Svg20a_2021Ajesen(){
   const W=230,H=190;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const OX=72,OY=100,SZ=26;
   const elems=[];
 
@@ -137,7 +137,7 @@ function Svg14_2021Ajesen(){
   // A  dolje-lijevo
   // B  desno-sredina
   const C={x:148,y:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const D={x:218,y:112};
   const A={x:52, y:192};
   const B={x:286,y:144};
@@ -197,7 +197,7 @@ function Svg14_2021Ajesen(){
 
 function Svg10_2021Ajesen(){
   const W=420,H=700;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const PW=380,PH=160,PX=20;
   const PY=[5,178,351,524];
 
@@ -419,10 +419,10 @@ function Svg27c_2021Ajesen(){
   const rx2=OX+4*SZ, ry2=OY-3*SZ;
 
   elems.push(e("line",{key:"left",x1:lx1,y1:ly1,x2:tx_tj,y2:ty_tj,
-    stroke:"#4a90d9",strokeWidth:2.2}));
+    stroke:"var(--blue)",strokeWidth:2.2}));
   elems.push(e("line",{key:"right",x1:tx_tj,y1:ty_tj,x2:rx2,y2:ry2,
-    stroke:"#4a90d9",strokeWidth:2.2}));
-  elems.push(e("circle",{key:"tj",cx:tx_tj,cy:ty_tj,r:3,fill:"#4a90d9"}));
+    stroke:"var(--blue)",strokeWidth:2.2}));
+  elems.push(e("circle",{key:"tj",cx:tx_tj,cy:ty_tj,r:3,fill:"var(--blue)"}));
   elems.push(e("text",{key:"ltj",x:tx_tj+5,y:ty_tj-5,fontSize:9,fill:"var(--muted)"},"(\u22121,\u22122)"));
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
@@ -559,7 +559,7 @@ export const qs = [
      "Alt metoda (provjera): max = 23·280 = 6440; manjak = 400; 400/40 = 10 jutra → 2400 ✓"
    ,"Provjera supstitucijom: uvrsti x = A u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
   },
-  {id:8,type:"mc",warn:"Pazi: binomni teorem — opći član C(10,k)(a³)^(10−k)·4ᵏ; nađi k za koji je eksponent uz a jednak 27.",topic:"seq",points:1,
+  {id:8,type:"mc",warn:"Pazi: binomni teorem — opći član C(10,k)(a³)^(10−k)·4ᵏ; nađi k za koji je eksponent uz a jednak 27.",topic:"niz",points:1,
    q:"Koliki je koeficijent uz potenciju a²⁷ u raspisu izraza (a³ + 4)¹⁰?",
    opts:["1","4","40","160"],
    sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -712,7 +712,7 @@ export const qs = [
      "Alt metoda (provjera): za a = 2 izračunaj sve: A = 25, B = 9, C = 4, D ≈ 2,78 → D najmanji ✓"
    ,"Provjera Vièteovim formulama: x₁+x₂ = −b/a i x₁·x₂ = c/a.","Tipičan propust: zaboraviti drugo rješenje (kvadratna ima do 2 korijena); ili kriviti predznak diskriminante."]
   },
-  {id:16.1,type:"sa",topic:"seq",points:1,
+  {id:16.1,type:"sa",topic:"niz",points:1,
    context:"Zadatak 16 (1. dio od 2):",
    q:"Izrazite n iz formule b = a + (n − 1)d.",
    sol:{ans:"n = [FRAC:b − a|d] + 1",alt:["(b-a)/d+1","(b-a+d)/d"]},
@@ -964,7 +964,7 @@ export const qs = [
      "Alt metoda (provjera): direktno provjeri za t = 1/5 da f(t) = 0, kao u verifikaciji gore."
    ,"Provjera: za jednadžbu pravca y = kx + l, dvije točke na pravcu daju isti k.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."]
   },
-  {id:23.1,type:"sa",topic:"seq",points:1,
+  {id:23.1,type:"sa",topic:"niz",points:1,
    context:"Zadatak 23 (1. dio od 2):",
    q:"Tri pozitivna broja čine geometrijski niz. Umnožak prvoga i trećega člana jest 1,44. Koji je drugi član toga niza?",
    sol:{ans:"1,2",alt:["1,2","6/5"]},
@@ -982,7 +982,7 @@ export const qs = [
      "Alt metoda (provjera): a₁ = a/q, a₂ = a, a₃ = a·q → a₁·a₃ = a² = a₂² (vrijedi za bilo koji q)."
    ,"Provjera: izračunaj prvih nekoliko članova niza po formuli — mora se slagati.","Tipičan propust: aritmetički niz koristi razliku d, geometrijski koristi omjer q — ne miješati."]
   },
-  {id:23.2,type:"sa",topic:"seq",points:1,
+  {id:23.2,type:"sa",topic:"niz",points:1,
    context:"Zadatak 23 (2. dio od 2):",
    q:"Prvi je član aritmetičkoga niza 13, a deveti 37. Odredite deseti član toga niza.",
    sol:{ans:"40",alt:["40","≈ 40"]},
@@ -1071,7 +1071,7 @@ export const qs = [
      "Alt metoda (provjera): graf g(x) je strogo padajuća funkcija (jer −√ je padajući) → max na lijevom rubu domene = x = 2."
    ,"Provjera: za jednadžbu pravca y = kx + l, dvije točke na pravcu daju isti k.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag."]
   },
-  {id:25.3,type:"sa",topic:"der",points:1,
+  {id:25.3,type:"sa",topic:"anal",points:1,
    context:"Zadatak 25 (3. dio od 3):",
    q:"Odredite derivaciju funkcije h(x) = 19 + sin²x.",
    sol:{ans:"h′(x) = 2 sin x cos x",alt:["sin 2x","2sinxcosx"]},
@@ -1216,7 +1216,7 @@ export const qs = [
      "Alt metoda (provjera): f(0) = 0, f(1) = 4, f(2) = 16 − 56 + 40 = 0, f(3) = 81 − 189 + 90 = −18, f(4) = −32, f(5) = 625 − 875 + 250 = 0 → minimum oko x = 4 ✓"
    ,"Provjera diskriminantom: D = b²−4ac (D>0 → dva rješenja; D=0 → jedno; D<0 → nema realnih).","Tipičan propust: zaboraviti drugo rješenje (kvadratna ima do 2 korijena); ili kriviti predznak diskriminante."]
   },
-  {id:29.1,type:"sa",topic:"kp",points:2,
+  {id:29.1,type:"sa",topic:"kompl",points:2,
    context:"Zadatak 29 (1. dio od 5):",
    q:"Odredite realne brojeve a i b za koje vrijedi (a + bi − 2i)/i + b − ai = 4 − 2i.",
    sol:{ans:"a = 1, b = 3",alt:["a=1 b=3","a=1, b=3"], ex:"Jednadžba s kompleksnim brojevima: izjednači realne i imaginarne dijelove odvojeno → dva uvjeta, dvije nepoznate. Ključno: 1/i = −i."},
@@ -1313,7 +1313,7 @@ export const qs = [
      "Granični slučaj: ako bi cos x = 0 (x = π/2 + kπ), dijeljenje s cos x ne bi bilo moguće. Provjeri: tg(π/2) je nedefiniran → rješenje nije u ovim točkama; svako rješenje ima cos x ≠ 0 ✓"
    ,"Provjera: izračunaj trigonometrijsku vrijednost na kalkulatoru i usporedi (paziti na DEG/RAD mod)."]
   },
-  {id:30,type:"sa",topic:"seq",points:4,
+  {id:30,type:"sa",topic:"niz",points:4,
    q:"Procjenjuje se da automobil, nakon što je kupljen, prvih 5 godina svaki dan gubi 0,04 % svoje vrijednosti, a nakon toga 2 % vrijednosti mjesečno. Nakon 2 mjeseca vrijednost automobila bila je 105 000 kn. Koliko će mjeseci, nakon što je kupljen, prema toj procjeni, vrijednost automobila prvi put biti manja od 10 000 kn? Napomena: Računajte da mjesec ima 30 dana, a godina 360 dana.",
    sol:{ans:"142",alt:["142 mjeseca","142 mj"]},
   steps:[
@@ -1331,8 +1331,7 @@ export const qs = [
      "Česta greška: zaboraviti +60 mjeseci (samo dati n iz faze 2); ili pogriješiti broj dana u 5 godina (1800 ≠ 1825 jer zadatak kaže 1 godina = 360 dana).",
      "Alt metoda (provjera): provjeri C₁₄₂ < 10 000 i C₁₄₁ > 10 000 — moramo imati 'prvi put manje od 10 000'. Iz gornje provjere oba uvjeta zadovoljena ✓"
    ,"Provjera: za aritmetički niz, razlika d je konstantna; za geometrijski, omjer q je konstantan.","Tipičan propust: aritmetički niz koristi razliku d, geometrijski koristi omjer q — ne miješati."]
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2021_jesen",razina:"A",serial:"D-S052",totalPoints:60,mcCount:15,saCount:34,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  }
 ];
 
 export const qImages = {

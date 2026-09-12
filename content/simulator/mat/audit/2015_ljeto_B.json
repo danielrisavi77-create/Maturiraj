@@ -1,0 +1,20 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2015_ljeto",
+  "razina": "B",
+  "serial": "D-S027",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 20,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditedAt": "2026-05-15",
+  "auditBy": "Claude+Daniel",
+  "auditNotes": "Pak G: verbatim PDF match svih 30 Q-ova (Q10 KRITIKA 100^(-2), Q17 KRITIKA 85,3·2^(2,75), Q19 KRITIKA iracionalni skup). Pak H: ASCII−→Unicode, decimalni zarez, [FRAC:] decimalne baze. Pak I: 6 Q_IMAGES bindova (Q12/13/16/26,1/26,2/27,3), rename legacy 26a/26b/27c → numerirano. Pak A-E: sol.cl/ans match s ključem. Pak F: pedagoška ekspanzija Q1/Q10/Q17/Q19 (pravilo+intuicija+greška+alt+provjera). Pak J: [SYS:] tag Q14, [FRAC:] u q-text. Pak G+I2: multi-part context format Zadatak X (Y. dio od N) za Q22-Q28.",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

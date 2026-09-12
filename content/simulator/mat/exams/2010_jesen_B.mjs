@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg9j(){
   const W=340,H=180,dx=18,dy=10;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const s=60,kx=30,ky=85;
   const kFront=[[kx,ky],[kx+s,ky],[kx+s,ky-s],[kx,ky-s]];
   const kTop=[[kx,ky-s],[kx+s,ky-s],[kx+s+dx,ky-s-dy],[kx+dx,ky-s-dy]];
@@ -14,7 +14,7 @@ function Svg9j(){
   const qTop=[[qx,qy-qd],[qx+qw,qy-qd],[qx+qw+dx,qy-qd-dy],[qx+dx,qy-qd-dy]];
   const qRight=[[qx+qw,qy],[qx+qw+dx,qy-dy],[qx+qw+dx,qy-qd-dy],[qx+qw,qy-qd]];
   const pts=arr=>arr.map(p=>p.join(",")).join(" ");
-  const st="var(--text)",sw=1.5,fi="var(--s1)",ft="var(--s2)",fr="#94a3b8";
+  const st="var(--text)",sw=1.5,fi="var(--s1)",ft="var(--s2)",fr="var(--muted)";
   const dash={strokeDasharray:"3 2"};
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block"}},
     e("polygon",{points:pts(kFront),fill:fi,stroke:st,strokeWidth:sw}),
@@ -39,8 +39,8 @@ function Svg9j(){
 }
 
 function SvgZad7_2010JB(){
-  const W=320,H=290,t="var(--text)",mu="#94a3b8";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const W=320,H=290,t="var(--text)",mu="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const COLORS=["var(--blue)","var(--gold)","var(--green)","var(--red)"];
   const tables=[
     {lbl:"A.",rows:[[-1,-5],[2,1],[3,3]],  col:COLORS[0]},
@@ -80,7 +80,7 @@ function SvgZad7_2010JB(){
 
 function Svg28j(){
   const c={padding:"7px 10px",border:"1px solid var(--bdr2)",fontSize:12,textAlign:"center"};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Color-coded per ocjena (PDF-faithful: each grade column distinguished)
   const colors={
     dov:{bg:"rgba(233,180,70,.18)",fg:"var(--gold)"},     // dovoljan = amber
@@ -113,7 +113,7 @@ function Svg28j(){
 
 function Svg27j(){
   const W=260,H=260,pad=28;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const iW=W-2*pad,iH=H-2*pad;
   const xMin=-5,xMax=7,yMin=-5,yMax=7;
   const toX=v=>pad+((v-xMin)/(xMax-xMin))*iW;
@@ -147,7 +147,7 @@ function Svg27j(){
 
 function Svg23j(){
   const c={padding:"7px 10px",border:"1px solid var(--bdr2)",fontSize:12,lineHeight:1.4};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const h={...c,fontWeight:700,background:"var(--s2)",textAlign:"center"};
   const v={...c,textAlign:"center",background:"var(--s1)"};
   const em={...c,textAlign:"center",background:"rgba(233,180,70,.06)",border:"1px dashed var(--gold)",color:"var(--gold)",fontSize:11};
@@ -166,13 +166,13 @@ function Svg23j(){
 function SvgZad21_2010JB(){
   // Prazan grid za f(x) = x² + 1  — proof
   const W=240,H=220,pad={l:26,r:12,t:14,b:22};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=3,yMin=-1,yMax=6;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=function(v){return pad.l+((v-xMin)/(xMax-xMin))*iW;};
   const toY=function(v){return pad.t+((yMax-v)/(yMax-yMin))*iH;};
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",m="#94a3b8",mu="var(--muted)";
+  const t="var(--text)",m="var(--muted)",mu="var(--muted)";
   const grid=[];
   for(let i=xMin;i<=xMax;i++) grid.push(e("line",{key:"gx"+i,x1:toX(i),y1:pad.t,x2:toX(i),y2:pad.t+iH,stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
   for(let i=yMin;i<=yMax;i++) grid.push(e("line",{key:"gy"+i,x1:pad.l,y1:toY(i),x2:pad.l+iW,y2:toY(i),stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
@@ -195,13 +195,13 @@ function SvgZad21_2010JB(){
 function SvgZad11_2010JB(){
   // Luk: y = -0.3x² + 1.8x   nule x=0, x=6   tjeme (3, 2.7)
   const W=220,H=155,pad={l:24,r:12,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-0.3,xMax=7.2,yMin=-0.3,yMax=3.4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=function(v){return pad.l+((v-xMin)/(xMax-xMin))*iW;};
   const toY=function(v){return pad.t+((yMax-v)/(yMax-yMin))*iH;};
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",b=_BLUE,m="#94a3b8",mu="var(--muted)";
+  const t="var(--text)",b=_BLUE,m="var(--muted)",mu="var(--muted)";
   const grid=[];
   for(let i=0;i<=7;i++) grid.push(e("line",{key:"gx"+i,x1:toX(i),y1:pad.t,x2:toX(i),y2:pad.t+iH,stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
   for(let i=0;i<=3;i++) grid.push(e("line",{key:"gy"+i,x1:pad.l,y1:toY(i),x2:pad.l+iW,y2:toY(i),stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
@@ -565,7 +565,7 @@ export const qs = [
       "Greška: računati 11% od 35,2 = 3,872 — to je 11% od pogrešnog broja (zamijenili osnovu i dio).",
       "Alt provjera: 35,2 / 0,11 = 320 (dijeljenje postotkom u decimalu daje osnovu).","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."]
 },
-  {id:18,type:"num",topic:"mat",points:1,
+  {id:18,type:"num",topic:"al",points:1,
   q:"U sustavu jednadžbi [SYS:x = [FRAC:3|5] + 2y|x = −[FRAC:2|5] + 7y] izračunajte nepoznanicu y.",
   warn:"Pazi: prepoznaj da su lijeve strane iste i pokušati eliminirati drugu varijablu.",
   formulaLabel:"Sustav jednadžbi",
@@ -715,7 +715,7 @@ export const qs = [
       "Greška: množiti 1000 · 7,4456 = 7445 (to je 1000 € u HRK — obrnuto!).",
       "Tablica uvijek daje oba smjera: EUR↔HRK; pazi koji tražiš.","Pravilo: postotak p% od vrijednosti V iznosi (p/100) · V.","Intuicija: postotak povećava ili smanjuje proporcionalno bazi.","Alt metoda: koristi pravilo trojno ili postotni račun.","Provjera: financijska provjera: omjer ili postotak konzistentan ✓","Postupak: postavi proporciju ili postotak, riješi jednadžbu."]
 },
-  {id:24.1,type:"proof",topic:"fn",points:1,
+  {id:24.1,type:"proof",topic:"fun",points:1,
   graphType:"line",
   graphRef:{pts:[[0,-2],[1,1]]},
   graphRange:{xMin:-3,xMax:3,yMin:-10,yMax:6},
@@ -737,7 +737,7 @@ export const qs = [
       "3 kolinearne točke potvrđuju da je pravac točno nacrtan (nije kriva linija).",
       "Provjera: sve 3 točke na pravcu y=3x−2 ✓; pravac se proteže u oba smjera.","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Česta greška: krivo primjeniti pravilo, zaboraviti znak, ili preskočiti korak.","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:24.2,type:"sa",topic:"fn",points:1,
+  {id:24.2,type:"sa",topic:"fun",points:1,
   context:"Zadatak 24 (2. dio od 2):",
   q:"Napišite jednadžbu pravca koji je s tim pravcem usporedan i koji prolazi točkom T(0, −7).",
   warn:"Pazi: paralelni pravci imaju isti koeficijent smjera k, ali različitu ordinatu ishodišta n.",
@@ -756,7 +756,7 @@ export const qs = [
       "Greška: promijeniti k (nagib) umjesto n → dobiju presječni, ne paralelni pravac.",
       "Udaljenost između y=3x−2 i y=3x−7 je konstantna (=|−2−(−7)|/√(1+9)=5/√10) — tipično za paralelne.","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:25.1,type:"num",context:"Zadatak 25 (1. dio od 2):",topic:"je",points:1,
+  {id:25.1,type:"num",context:"Zadatak 25 (1. dio od 2):",topic:"al",points:1,
   q:"Riješite jednadžbu x = [FRAC:4|3](x − 3).",
   warn:"Pazi: pomnožiti obje strane s 3 da bi se riješio razlomak.",
   sol:{ans:"12",alt:["12","12,0"]},
@@ -775,7 +775,7 @@ export const qs = [
       "Provjera: 12−3=9; (4/3)·9 = 36/3 = 12 ✓ — LHS = RHS.",
       "Greška: 3x = 4x−3 (zaboraviti pomnožiti −3 s 4) → x=3 (pogrešno).","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:25.2,type:"sa",topic:"ne",points:1,
+  {id:25.2,type:"sa",topic:"al",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Riješite nejednadžbu [FRAC:x − 4|3] − [FRAC:2x|5] > 0.",
   warn:"Pazi: pri množenju nejednadžbe s negativnim brojem mijenja se smjer znaka nejednakosti.",
@@ -795,7 +795,7 @@ export const qs = [
       "Provjera graničnog slučaja: x=−20 → (−20−4)/3 − 2·(−20)/5 = −8+8 = 0 — nije > 0, rub nije uključen ✓.",
       "Greška: zaboraviti okrenuti nejednakost → dobiju x > −20 (suprotno rješenje!).","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:26.1,type:"num",topic:"fn",points:1,
+  {id:26.1,type:"num",topic:"fun",points:1,
   q:"Veza između kilometara i milja dana je formulom y = 1,609x, gdje y označuje kilometre, a x milje. Koliko je kilometara 12,3 milje?",
   warn:"Pazi: u formuli y = 1,609x varijabla x je broj milja, y je broj kilometara.",
   context:"Zadatak 26 (1. dio od 2):",
@@ -813,7 +813,7 @@ export const qs = [
       "Greška: dijeliti s 1,609 → 12,3/1,609 ≈ 7,6 (to je km→milje, obrnuto!).",
       "Provjera: 19,79/1,609 ≈ 12,3 ✓ — inverzna operacija potvrđuje rezultat.","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:26.2,type:"num",topic:"fn",points:1,
+  {id:26.2,type:"num",topic:"fun",points:1,
   q:"Veza između kilometara i milja dana je formulom y = 1,609x, gdje y označuje kilometre, a x milje. Koliko je milja 100 km?",
   warn:"Pazi: sada tražiš x (milje) kad je poznato y (km) → treba dijeliti s tečajem.",
   context:"Zadatak 26 (2. dio od 2):",
@@ -831,7 +831,7 @@ export const qs = [
       "Intuicija: 1 km ≈ 0,62 milje → 100 km ≈ 62 milje — odgovor 62,15 je razuman ✓",
       "Greška: množiti 100 · 1,609 = 160,9 (to je 100 milja u km, a ne km u milje!).","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:27.1,img:true,type:"proof",img:true,topic:"koo",points:1,
+  {id:27.1,img:true,type:"proof",img:true,topic:"geom",points:1,
   graphType:"point",
   graphRef:{point:[150,-75],knownPts:[{lbl:"A",coord:[-75,100]},{lbl:"B",coord:[-75,-75]}]},
   graphRange:{xMin:-200,xMax:250,yMin:-150,yMax:150,scale:25},
@@ -851,7 +851,7 @@ export const qs = [
       "Razmjer 25m/jed.: pretvori koordinate: 150/25=6 jed. desno, 75/25=3 jed. dolje.",
       "Provjera: T je u IV. kvadrantu (x pozitivno, y negativno) ✓ — konzistentno s koordinatama.","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Česta greška: krivo primjeniti pravilo, zaboraviti znak, ili preskočiti korak.","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:27.2,img:true,type:"num",topic:"koo",points:1,
+  {id:27.2,img:true,type:"num",topic:"geom",points:1,
   q:"Odredite udaljenost točaka A(−75, 100) i T(150, −75) i zaokružite je na cijeli broj. (Koordinate su u metrima.)",
   intermediates:[50625, 30625, 81250, 225, 175, 285.04, 81225, 81796],
   warn:"Pazi: formula za udaljenost: d = √((x₂−x₁)² + (y₂−y₁)²). Zaokruži na CIJELI broj.",
@@ -872,7 +872,7 @@ export const qs = [
       "Usporedba: 285² = 81225, 286² = 81796 → √81250 bliže 285 (razlika 25 vs 546) ✓",
       "Greška: Δx = 150−75 = 75 (zaboraviti minus A-koordinate) → d = √(75²+175²) ≈ 189 (pogrešno).","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Provjera: brojčana provjera ✓","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
 },
-  {id:27.3,img:true,type:"num",topic:"koo",points:1,
+  {id:27.3,img:true,type:"num",topic:"geom",points:1,
   q:"Iz svojega položaja T(150, −75) grupa može doći do položaja A(−75, 100) izravno ili preko točke B(−75, −75). Za koliko je dulji put preko točke B? (Koordinate su u metrima.)",
   warn:"Pazi: izračunaj put T→B→A (dva segmenta) i oduzmi izravni T→A.",
   context:"Zadatak 27 (3. dio od 3):",
@@ -926,8 +926,7 @@ export const qs = [
     "Provjera: 53/60 ≈ 88,3% → vrlodobar (80–89%) ✓; još 1 bod → 90% → odličan ✓",
     "Greška: uzeti 90 bodova kao prag (zaboraviti da max nije 100 nego 60!).",
     "Greška: prag odličan = 90% od 60 = 54, ne 90 bodova.","Pravilo: broj se promatra kao racionalan/iracionalan; provjeri vrstu i operaciju.","Intuicija: rezultat između minimalne i maksimalne moguće vrijednosti ✓","Alt metoda: provjeri brojčano supstitucijom ili drugačijim postupkom.","Postupak: razdvoji brojnik i nazivnik, pretvori u istu jedinicu, izračunaj."]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2010_jesen",razina:"B",serial:"D-S001",totalPoints:40,mcCount:16,saCount:19,verified:"sympy+pdf+verbatim+visual+rendering",auditNotes:"G: Q6 verbatim, Q16 dan igranja. H: Unicode − + [FRAC:] Q1/3/11/12/14/18/20/22/24/25/27/28. F: 16 MC distractor, Q5/Q23/Q28 steps+why. J: q/opts FRAC.",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+}
 ];
 
 export const qImages = {

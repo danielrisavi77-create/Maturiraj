@@ -1,0 +1,24 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2019_jesen",
+  "razina": "A",
+  "serial": "D-S043",
+  "totalPoints": 60,
+  "mcCount": 15,
+  "saCount": 34,
+  "verified": "sympy+pdf",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ],
+  "maintenanceAt_v311": "2026-05-26",
+  "maintenanceNotes_v311": [
+    "Pak I visual: svih 9 vizuala (Q8/12/14/20.1/23.2/25.1/25.2/27.3/30) verified protiv PDF D-S043.",
+    "P0 fix Svg12_2019Ajj: parabola min izmjenjen iz x=2 u x=4 — NCVVO Q12=D zahtjeva samo f(4)<f(5) — prethodno SVG min na x=2 davalo bi vise tocnih nejednakosti.",
+    "P0 fix Svg30_2019Ajj: lokalni max premjesten iz (-1, 8) u (1.5, 10), N(4,5) zadrzan. Racunano iz f(x)=(11-4x)/(x^2-4x+5)+6.",
+    "P1 SKIPPED Svg27c_2019Ajj: g curve monotonic vs PDF U-shape — ali g je definirana na asimetricnoj domeni [1,5] pa je automatski ni parna ni neparna bez obzira na oblik."
+  ]
+}

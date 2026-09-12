@@ -3,8 +3,8 @@ import React from 'react';
 const e = React.createElement;
 
 function SvgZad7_2010LB(){
-  const W=320,H=290,t="var(--text)",mu="#94a3b8";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const W=320,H=290,t="var(--text)",mu="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const COLORS=["var(--blue)","var(--gold)","var(--green)","var(--red)"];
   const tables=[
     {lbl:"A.",rows:[[-1,5],[2,-4],[3,3]],  col:COLORS[0]},
@@ -44,12 +44,12 @@ function SvgZad7_2010LB(){
 
 function SvgZad27_2010LB(){
   const W=320,H=200,pad={l:52,r:20,t:14,b:32};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMax=1100,yMax=450;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=function(v){return pad.l+(v/xMax)*iW;};
   const toY=function(v){return H-pad.b-(v/yMax)*iH;};
-  const t="var(--text)",b=_BLUE,g=_GOLD,m="#94a3b8",mu="var(--muted)";
+  const t="var(--text)",b=_BLUE,g=_GOLD,m="var(--muted)",mu="var(--muted)";
 
   // Grid
   const grid=[];
@@ -103,7 +103,7 @@ function SvgZad27_2010LB(){
 
 function SvgZad24_2010LB(){
   const W=330,H=195,t="var(--text)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const A={x:18,y:175},B={x:208,y:175},C={x:253,y:40},D={x:63,y:40};
   const E={x:253,y:175},F={x:308,y:175};
   const sq=7;
@@ -124,8 +124,8 @@ function SvgZad24_2010LB(){
 }
 
 function SvgZad23_2010LB(){
-  const W=340,H=76,m="#94a3b8",mu="var(--muted)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const W=340,H=76,m="var(--muted)",mu="var(--muted)";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const rows=[
     {label:"Stopa (foot)",vals:["1","5.8",""],    col:"var(--blue)"},
     {label:"Metar (m)",   vals:["0.3048","","1.40208"],col:"var(--gold)"},
@@ -156,13 +156,13 @@ function SvgZad23_2010LB(){
 
 function SvgZad11_2010LB(){
   const W=220,H=160,pad={l:22,r:10,t:14,b:22};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-1,xMax=3,yMin=-2.5,yMax=1;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=function(v){return pad.l+((v-xMin)/(xMax-xMin))*iW;};
   const toY=function(v){return pad.t+((yMax-v)/(yMax-yMin))*iH;};
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",b=_BLUE,m="#94a3b8",mu="var(--muted)";
+  const t="var(--text)",b=_BLUE,m="var(--muted)",mu="var(--muted)";
   const grid=[];
   for(let i=-1;i<=3;i++) grid.push(e("line",{key:"gx"+i,x1:toX(i),y1:pad.t,x2:toX(i),y2:pad.t+iH,stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
   for(let i=-2;i<=1;i++) grid.push(e("line",{key:"gy"+i,x1:pad.l,y1:toY(i),x2:pad.l+iW,y2:toY(i),stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
@@ -190,13 +190,13 @@ function SvgZad11_2010LB(){
 
 function SvgZad21_2010LB(){
   const W=240,H=220,pad={l:26,r:12,t:14,b:22};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=5,yMin=-3,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=function(v){return pad.l+((v-xMin)/(xMax-xMin))*iW;};
   const toY=function(v){return pad.t+((yMax-v)/(yMax-yMin))*iH;};
   const ox=toX(0),oy=toY(0);
-  const t="var(--text)",b=_BLUE,m="#94a3b8",mu="var(--muted)";
+  const t="var(--text)",b=_BLUE,m="var(--muted)",mu="var(--muted)";
   const grid=[];
   for(let i=xMin;i<=xMax;i++) grid.push(e("line",{key:"gx"+i,x1:toX(i),y1:pad.t,x2:toX(i),y2:pad.t+iH,stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
   for(let i=yMin;i<=yMax;i++) grid.push(e("line",{key:"gy"+i,x1:pad.l,y1:toY(i),x2:pad.l+iW,y2:toY(i),stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
@@ -531,7 +531,7 @@ export const qs = [
       "Provjera: 80 · 0,08 = 6,4 ✓",
       "Greška: računati 8% od 6,4 = 0,512 (zamijeniti osnovu s dijelom).","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."]
 },
-  {id:18,type:"num",topic:"mat",points:1,
+  {id:18,type:"num",topic:"al",points:1,
   q:"U sustavu jednadžbi [SYS:x = 2y + 4|y = 2x + 7] izračunajte nepoznanicu x.",
   warn:"Pazi: ne zbuniti koja jednadžba se uvršta u koju.",
   formulaLabel:"Sustav jednadžbi",
@@ -833,7 +833,7 @@ export const qs = [
     {txt:"Provjera: 20 × 1,05 = 21 cm³ = volumen leda ✓",final:true,note:"verifikacija"}
   ,{txt:"Postupak: identificiraj geometrijska svojstva, primijeni teorem (Pitagora, sličnost).",final:true,note:"postupak"},{txt:"Intuicija: dimenzionalna provjera — rezultat u istim jedinicama ✓",final:true,note:"intuicija"},{txt:"Točan odgovor: 20 ✓",note:"odgovor",final:true},{txt:"Provjera: skiciraj figuru s mjernim brojevima i vizualno potvrdi rezultat.",note:"verifikacija",final:true}]
 },
-  {id:28.2,type:"num",topic:"geo",points:1,
+  {id:28.2,type:"num",topic:"geom",points:1,
   context:"Zadatak 28 (2. dio od 2):",
   q:"Koliko se takvih oblika leda može napraviti od 1 litre vode? (1 litra = 1 dm³)",
   sol:{ans:"50",alt:["50,0","odgovor","rezultat"]},
@@ -847,8 +847,7 @@ export const qs = [
       "Svaki oblik leda zahtijeva 20 cm³ vode → broj = 1000/20 = 50.",
       "Provjera: 50 × 20 cm³ = 1000 cm³ = 1 l ✓",
       "Greška: koristiti V_leda (21 cm³) umjesto V_vode (20 cm³) → 1000/21 ≈ 47 (pogrešno).","Pravilo: primijeni odgovarajuću matematičku tehniku.","Intuicija: rezultat je očekivane veličine i znaka.","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni formulu, izračunaj."]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2010_ljeto",razina:"B",serial:"D-S002",totalPoints:40,mcCount:16,saCount:19,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+}
 ];
 
 export const qImages = {

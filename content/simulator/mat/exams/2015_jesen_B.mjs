@@ -10,12 +10,12 @@ function SvgZad28_2015JB(){
   const rowH=36;
   const xs=[0,148,258,368];
   const hdrs=["","TAKSI A","TAKSI B","TAKSI C"];
-  const hdrColors=["","#4a90d9","#e8c547","#3dd68c"];
+  const hdrColors=["","var(--blue)","#e8c547","#3dd68c"];
   const rows=[
     ["Startnina","10,00 kn","5,00 kn","20,00 kn"],
     ["Cijena 1 km vožnje","3,00 kn","4,00 kn","1,50 kn"]
   ];
-  const valColors=["","#4a90d9","#e8c547","#3dd68c"];
+  const valColors=["","var(--blue)","#e8c547","#3dd68c"];
 
   const els=[];
   // Header
@@ -65,7 +65,7 @@ function SvgZad24_2015JB(){
   const W=320,H=210;
   const months=["SIJ","VELJ","OŽU","TRV"];
   const vals=[5370,4982,5010,5428];
-  const colors=["#4a90d9","#4a90d9","#4a90d9","#3dd68c"];
+  const colors=["var(--blue)","var(--blue)","var(--blue)","#3dd68c"];
   const barW=45,gap=18,leftPad=50,topPad=20,botPad=40;
   const chartH=H-topPad-botPad;
   const minV=4800,maxV=5500,range=maxV-minV;
@@ -114,13 +114,13 @@ function SvgZad23b_2015JB(){
     ...[-3,-2,-1,1,2,3].map(i=>e("text",{key:_uid15j(),x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:9},i)),
     // Pravac: kroz (0,2) i (6,0)
     e("line",{key:_uid15j(),x1:cx-1*sc,y1:cy-(-1/3*(-1)+2)*sc,x2:cx+7*sc,y2:cy-(-1/3*7+2)*sc,
-      stroke:"#4a90d9",strokeWidth:2.5}),
+      stroke:"var(--blue)",strokeWidth:2.5}),
     // Ključne točke
     e("circle",{key:_uid15j(),cx:cx,cy:cy-2*sc,r:5,fill:"#e8c547"}),
     e("text",{key:_uid15j(),x:cx+5,y:cy-2*sc-5,fill:"#e8c547",fontSize:10},"(0,2)"),
     e("circle",{key:_uid15j(),cx:cx+6*sc,cy:cy,r:5,fill:"#e8c547"}),
     e("text",{key:_uid15j(),x:cx+6*sc+5,y:cy-5,fill:"#e8c547",fontSize:10},"(6,0)"),
-    e("text",{key:_uid15j(),x:cx+2*sc,y:cy-1.5*sc,fill:"#4a90d9",fontSize:10,fontStyle:"italic"},"f(x)=−x/3+2")
+    e("text",{key:_uid15j(),x:cx+2*sc,y:cy-1.5*sc,fill:"var(--blue)",fontSize:10,fontStyle:"italic"},"f(x)=−x/3+2")
   );
 }
 
@@ -182,7 +182,7 @@ function SvgZad11_2015JB(){
   // cy=110 → x-os pri dnu, tjeme(-0.5,-4.5) vidljivo ispod
   // W=290,H=240
   const fA=x=>2*(x-1)*(x+2);
-  const svgA=makeSVG(fA,140,110,290,230,[-4,1],[-4,3],[-2,1],"#4a90d9");
+  const svgA=makeSVG(fA,140,110,290,230,[-4,1],[-4,3],[-2,1],"var(--blue)");
 
   // B: 2x(x-1), gore, tjeme(0.5,-0,5) — plitko, nultočke 0 i 1
   // cx=80, cy=105 — x-os pri sredini, puno prostora gore
@@ -205,7 +205,7 @@ function SvgZad11_2015JB(){
   return e("div",{style:{width:"100%"}},
     e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}},
       e("div",null,
-        e("div",{style:{fontSize:11,fontWeight:700,color:"#4a90d9",marginBottom:3}},"A."),svgA),
+        e("div",{style:{fontSize:11,fontWeight:700,color:"var(--blue)",marginBottom:3}},"A."),svgA),
       e("div",null,
         e("div",{style:{fontSize:11,fontWeight:700,color:"#f87171",marginBottom:3}},"B."),svgB),
       e("div",null,
@@ -696,8 +696,7 @@ export const qs = [
     {txt:"Formula: y = 5 + 4·x = 4x + 5"},
     {txt:"Provjera: x = 0 (samo startnina) → y = 5 ✓; x = 1 km → y = 9 kn; razlika 9−5 = 4 kn (cijena 1 km) ✓; iz Q28,2 znamo y(6) = 29 → 5+24 = 29 ✓",final:true,note:"verifikacija"},{txt:"Intuicija: Dodatak (intuicija).",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: linearna funkcija y = kx + b — koeficijent k je nagib (stopa promjene, ovdje cijena po km), konstanta b je y-sjecište (vrijednost kad x = 0, ovdje startnina). Standardni zapis: y = kx + b ili y = b + kx...",note:"postupak",final:true},{txt:"Točan odgovor: y = 5 + 4x ✓",note:"odgovor",final:true},{txt:"Provjera: za jednadžbu pravca y = kx + l, dvije točke na pravcu daju isti k.",note:"verifikacija",final:true}
   ],
-  why:["Pravilo: linearna funkcija y = kx + b — koeficijent k je nagib (stopa promjene, ovdje cijena po km), konstanta b je y-sjecište (vrijednost kad x = 0, ovdje startnina). Standardni zapis: y = kx + b ili y = b + kx (semantički isto). Intuicija: zamisli pravac u koordinatnom sustavu (x = km, y = kn) — počinje u (0, b) i raste s nagibom k. Česta greška: zamijeniti k i b mjestima (npr. y = 5x + 4 — krivo, 5 je startnina, ne cijena/km); ili zaboraviti b (samo y = 4x — daje y(0) = 0, krivo). Alt metoda: dvije točke na pravcu — x=0, y=5 (samo startnina); x=10, y=45 (5 + 4·10); nagib = (45−5)/(10−0) = 4 ✓, y-sjecište = 5 ✓ → y = 4x + 5. Provjera: za 5 km → y = 20+5 = 25 kn (realan iznos); za 100 km → y = 405 kn (realno za duge udaljenosti).","Provjera: uvrsti rješenje u sve jednadžbe sustava — svaka mora biti zadovoljena.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag.","Veza s gradivom: linearne funkcije i sustavi su osnovni model za sve više matematičke modele.","Provjera grafom: nacrtaj pravce i vizualno potvrdi rješenje sustava.","Tipičan propust: zaboraviti da paralelni pravci nemaju rješenje (sustav je nekonzistentan)."]},
-  {_META:true,auditStatus:"verified-full",rok:"2015_jesen",razina:"B",serial:"D-S030",totalPoints:40,mcCount:16,saCount:20,verified:"vision+pdf+pedagogy-premium+verbatim",auditedAt:"2026-05-15",auditBy:"Claude+Daniel",auditNotes:"Pak G: verbatim PDF (Q10 KRITIKA opts duplikat A=D, Q11 KRITIKA kubna→kvadratna, Q22,2 RENDERER ^{} → ^()). Pak H: ASCII−→Unicode, interval ) → ⟩, [B:nije]/[B:najmanji] emphasis. Pak I: 7 Q_IMAGES bindova (Q11/Q23,2/Q24,1/Q24,2/Q28,1/Q28,2/Q28,3), rename legacy 23b/24a/24b/28a/28b/28c → numerirano. Pak A-E: sol.cl/ans match s ključem. Pak F: pedagoška ekspanzija Q1/Q5/Q9/Q10/Q11. Pak J: [SYS:] tag Q22,1. Pak I2: 15 multi-part context dodatka u Q22-Q28."}
+  why:["Pravilo: linearna funkcija y = kx + b — koeficijent k je nagib (stopa promjene, ovdje cijena po km), konstanta b je y-sjecište (vrijednost kad x = 0, ovdje startnina). Standardni zapis: y = kx + b ili y = b + kx (semantički isto). Intuicija: zamisli pravac u koordinatnom sustavu (x = km, y = kn) — počinje u (0, b) i raste s nagibom k. Česta greška: zamijeniti k i b mjestima (npr. y = 5x + 4 — krivo, 5 je startnina, ne cijena/km); ili zaboraviti b (samo y = 4x — daje y(0) = 0, krivo). Alt metoda: dvije točke na pravcu — x=0, y=5 (samo startnina); x=10, y=45 (5 + 4·10); nagib = (45−5)/(10−0) = 4 ✓, y-sjecište = 5 ✓ → y = 4x + 5. Provjera: za 5 km → y = 20+5 = 25 kn (realan iznos); za 100 km → y = 405 kn (realno za duge udaljenosti).","Provjera: uvrsti rješenje u sve jednadžbe sustava — svaka mora biti zadovoljena.","Tipičan propust: kod sustava — pomiješati znak kad se jednadžbe oduzimaju; zaboraviti uvrstiti rješenje natrag.","Veza s gradivom: linearne funkcije i sustavi su osnovni model za sve više matematičke modele.","Provjera grafom: nacrtaj pravce i vizualno potvrdi rješenje sustava.","Tipičan propust: zaboraviti da paralelni pravci nemaju rješenje (sustav je nekonzistentan)."]}
 ];
 
 export const qImages = {

@@ -22,14 +22,14 @@ function Svg8_2017Alj(){
     e("text",{x:ox-9,y:oy+12,fontSize:7,fill:"var(--muted)"},"0"),
     ...[1,2].map(x=>e("text",{key:"lx"+x,x:toX(x),y:oy+12,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},x)),
     ...[1,2].map(y=>e("text",{key:"ly"+y,x:ox-7,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)),
-    ...zs.map((z,i)=>e("circle",{key:"z"+i,cx:toX(z.x),cy:toY(z.y),r:4,fill:["#4a90d9","#50c878","#e9b446","#e05252"][i],stroke:"var(--bg)",strokeWidth:1.2})),
-    ...zs.map((z,i)=>e("text",{key:"zl"+i,x:toX(z.x)+(i<2?5:-18),y:toY(z.y)+(i<2?-6:5),fontSize:9,fontWeight:600,fill:["#4a90d9","#50c878","#e9b446","#e05252"][i]},z.n))
+    ...zs.map((z,i)=>e("circle",{key:"z"+i,cx:toX(z.x),cy:toY(z.y),r:4,fill:["var(--blue)","var(--green)","var(--gold)","var(--red)"][i],stroke:"var(--bg)",strokeWidth:1.2})),
+    ...zs.map((z,i)=>e("text",{key:"zl"+i,x:toX(z.x)+(i<2?5:-18),y:toY(z.y)+(i<2?-6:5),fontSize:9,fontWeight:600,fill:["var(--blue)","var(--green)","var(--gold)","var(--red)"][i]},z.n))
   );
 }
 
 function Svg27_2017Alj(){
   const W=220,H=200,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=8,yMin=-7,yMax=3;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -66,7 +66,7 @@ function Svg27_2017Alj(){
 
 function Svg26_2017Alj(){
   const W=200,H=170,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-5,xMax=4,yMin=-3,yMax=3;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -95,7 +95,7 @@ function Svg26_2017Alj(){
 
 function Svg21_2017Alj(){
   const W=220,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-1,xMax=7,yMin=-4,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -133,7 +133,7 @@ function Svg21_2017Alj(){
 
 function Svg19_2017Alj(){
   const W=200,H=160,pad={l:32,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=0,xMax=5,yMin=0,yMax=32;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -263,27 +263,27 @@ function Svg15_2017Alj(){
 
     // A
     ...miniCS(aox,aoy,gW,gH,"A"),
-    curve(aox,aoy,gW,gH,aFn,"#4a90d9","A"),
-    e("text",{x:aox+gW*0.8,y:aoy+18,fontSize:10,fontStyle:"italic",fill:"#4a90d9"},"f"),
-    e("text",{x:aox,y:aoy+gH+12,fontSize:10,fontWeight:700,fill:"#4a90d9"},"A."),
+    curve(aox,aoy,gW,gH,aFn,"var(--blue)","A"),
+    e("text",{x:aox+gW*0.8,y:aoy+18,fontSize:10,fontStyle:"italic",fill:"var(--blue)"},"f"),
+    e("text",{x:aox,y:aoy+gH+12,fontSize:10,fontWeight:700,fill:"var(--blue)"},"A."),
 
     // B
     ...miniCS(box,boy,gW,gH,"B"),
-    curve(box,boy,gW,gH,bFn,"#50c878","B"),
-    e("text",{x:box+gW*0.8,y:boy+gH*0.35,fontSize:10,fontStyle:"italic",fill:"#50c878"},"f"),
-    e("text",{x:box,y:boy+gH+12,fontSize:10,fontWeight:700,fill:"#50c878"},"B."),
+    curve(box,boy,gW,gH,bFn,"var(--green)","B"),
+    e("text",{x:box+gW*0.8,y:boy+gH*0.35,fontSize:10,fontStyle:"italic",fill:"var(--green)"},"f"),
+    e("text",{x:box,y:boy+gH+12,fontSize:10,fontWeight:700,fill:"var(--green)"},"B."),
 
     // C
     ...miniCS(cox,coy,gW,gH,"C"),
-    curve(cox,coy,gW,gH,cFn,"#e9b446","C"),
-    e("text",{x:cox+gW*0.3,y:coy+18,fontSize:10,fontStyle:"italic",fill:"#e9b446"},"f"),
-    e("text",{x:cox,y:coy+gH+12,fontSize:10,fontWeight:700,fill:"#e9b446"},"C."),
+    curve(cox,coy,gW,gH,cFn,"var(--gold)","C"),
+    e("text",{x:cox+gW*0.3,y:coy+18,fontSize:10,fontStyle:"italic",fill:"var(--gold)"},"f"),
+    e("text",{x:cox,y:coy+gH+12,fontSize:10,fontWeight:700,fill:"var(--gold)"},"C."),
 
     // D
     ...miniCS(dox,doy,gW,gH,"D"),
-    curve(dox,doy,gW,gH,dFn,"#e05252","D"),
-    e("text",{x:dox+gW*0.15,y:doy+18,fontSize:10,fontStyle:"italic",fill:"#e05252"},"f"),
-    e("text",{x:dox,y:doy+gH+12,fontSize:10,fontWeight:700,fill:"#e05252"},"D.")
+    curve(dox,doy,gW,gH,dFn,"var(--red)","D"),
+    e("text",{x:dox+gW*0.15,y:doy+18,fontSize:10,fontStyle:"italic",fill:"var(--red)"},"f"),
+    e("text",{x:dox,y:doy+gH+12,fontSize:10,fontWeight:700,fill:"var(--red)"},"D.")
   );
 }
 
@@ -504,7 +504,7 @@ export const qs = [
     {txt:"Distraktori: A) 7, B) 250, D) 875 000 = krivi izračuni.",final:true,note:"diagnostika"},{txt:"Intuicija: Volumen otopine = volumen insekticida + volumen vode (uz pretpostavku zanemarivih efekata mješanja).",note:"intuicija",final:true}
   ],
   why:["Pravilo: stechiometrija mješavine — koliko 'doza' insekticida ima u pakiranju.","Volumen otopine = volumen insekticida + volumen vode (uz pretpostavku zanemarivih efekata mješanja).","Postupak: 1) doze = pakiranje/jedinica_insekticida_po_dozi. 2) ukupan volumen otopine = doze · (insekticid + voda). 3) površina = otopina / utrošak po m².","Intuicija: 750 mL insekticida × (otopina/insekticid omjer) = puno otopine → puno m².","Česta greška 1: zaboraviti dodati volumen vode (računati samo s insekticidom). Greška 2: krivi izračun doza.","Alt metoda: 750/1,5 = 500 doza. Svaka doza pokrije: 2001,5/250 = 8,006 m². Ukupno: 500 · 8,006 ≈ 4003 m² ✓.","Provjera: 4003 ≈ 4000 m² (zaokruženo) je reazonabilan rezultat."]},
-  {id:15,img:true,type:"mc",warn:"Pazi: gdje je derivacija pozitivna funkcija raste, gdje negativna pada; nultočke derivacije = ekstremi.",topic:"dif",points:2,img:true,
+  {id:15,img:true,type:"mc",warn:"Pazi: gdje je derivacija pozitivna funkcija raste, gdje negativna pada; nultočke derivacije = ekstremi.",topic:"anal",points:2,img:true,
   q:"U koordinatnome sustavu prikazan je graf funkcije g. Koji je od prikazanih grafova graf funkcije čija je derivacija prikazana na slici 1.?",
   opts:["graf A","graf B","graf C","graf D"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},exp:"",ex:"Matematički 2-bodovni: zahtjeva integriran pristup više pojmova.",
@@ -889,7 +889,7 @@ export const qs = [
     {txt:"Postupak: 1) uvjet za √ (≥ 0). 2) uvjet za log (> 0). 3) presjek skupova.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) odredi domenu svakog dijela. 2) presjek (mora vrijediti za SVE).",note:"intuicija",final:true},{txt:"Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.",note:"verifikacija",final:true}
   ],
   why:["Pravilo domene: √ → ≥ 0; log → > 0.","Postupak: 1) odredi domenu svakog dijela. 2) presjek (mora vrijediti za SVE).","Intuicija: oba uvjeta su strogi (jedan ≥ 0 može biti = 0, drugi > 0 strogo).","Česta greška 1: pomiješati 'strict' uvjete log s 'inclusive' uvjete √. Greška 2: zaboraviti presjek.","Alt metoda: za svaki x ∈ [0, 5], probaj kako su oba uvjeta. Rub: x = 5/2 → log(0) nedefinirano ✗; x = 4 → √0 = 0 ✓, log 3 ≈ 0,48 ✓ — TUS uključen.","Provjera: x = 4 je U domeni (zatvoreni rub); x = 5/2 NIJE (otvoreni rub) ✓"]},
-  {id:29.2,type:"pa",topic:"dif",points:2,
+  {id:29.2,type:"pa",topic:"anal",points:2,
   context:"Zadatak 29 (2. dio od 4):",
   q:"Napišite jednadžbu tangente na graf funkcije f(x) = (3x − 1)/(x + 2) u točki s apscisom 5.",
   sol:{ans:"y = 1/7·x + [FRAC:9|7]",alt:["y=x/7+9/7","x-7y+9=0"],solFormula:"y = (1/7)x + (9/7)"},exp:"",
@@ -955,8 +955,7 @@ export const qs = [
   why:["Pravilo stošca: r² + h² = l² (Pitagora u osnovnom presjeku).","Geometrija dodira kugle i stošca: krug dodira je u ravnini OKOMITOJ na os stošca, na nekoj visini.","Postupak: 1) izračunaj r baze stošca. 2) iskoristi sličnost trokuta (osno presjek) da odrediš visinu dodira. 3) iz visine — radius dodira → opseg.","Intuicija: kugla 'sjedi' u stošcu, dira plašt po nekom krugu; krug je manji od baze stošca.","Česta greška 1: misliti da je kugla u dnu (greška, kugla je 'gore' u stošcu jer veliki r). Greška 2: krivo izračunati polumjer baze.","Alt metoda: 3D geometrija — udaljenost centra kugle od osi = r kugle pod određenim kutom.","Provjera: 12π ≈ 37,7 cm ≈ opseg kruga radiusa 6 ✓"]},
   {_META:{rok:"LJETO 2017",examCode:"D-S038",razina:"A",
   totalQ:30,totalPts:40,
-  auditStatus:"verified-full",auditDate:"2026-04-26"}},
-  {_META:true,auditStatus:"verified-full",rok:"2017_ljeto",razina:"A",serial:"D-S038",totalPoints:60,mcCount:15,saCount:26,verified:"sympy+pdf",auditNotes:"F: 15/15 MC Pak F done; H: math_lint 0 findings",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  auditStatus:"verified-full",auditDate:"2026-04-26"}}
 ];
 
 export const qImages = {

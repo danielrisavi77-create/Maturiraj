@@ -17,24 +17,24 @@ function Svg29c_2016LA(){
   const R=dist+r;  // velika kružnica
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:240,display:"block",margin:"8px auto"}},
     // Velika kružnica (outer)
-    e("circle",{key:u(),cx:cx,cy:cy,r:R,fill:"none",stroke:"#4a90d9",strokeWidth:1.8}),
+    e("circle",{key:u(),cx:cx,cy:cy,r:R,fill:"none",stroke:"var(--blue)",strokeWidth:1.8}),
     // Male tri kružnice
-    e("circle",{key:u(),cx:c1[0],cy:c1[1],r:r,fill:"rgba(233,180,70,0.12)",stroke:"#e9b446",strokeWidth:1.5}),
-    e("circle",{key:u(),cx:c2[0],cy:c2[1],r:r,fill:"rgba(233,180,70,0.12)",stroke:"#e9b446",strokeWidth:1.5}),
-    e("circle",{key:u(),cx:c3[0],cy:c3[1],r:r,fill:"rgba(233,180,70,0.12)",stroke:"#e9b446",strokeWidth:1.5}),
+    e("circle",{key:u(),cx:c1[0],cy:c1[1],r:r,fill:"rgba(233,180,70,0.12)",stroke:"var(--gold)",strokeWidth:1.5}),
+    e("circle",{key:u(),cx:c2[0],cy:c2[1],r:r,fill:"rgba(233,180,70,0.12)",stroke:"var(--gold)",strokeWidth:1.5}),
+    e("circle",{key:u(),cx:c3[0],cy:c3[1],r:r,fill:"rgba(233,180,70,0.12)",stroke:"var(--gold)",strokeWidth:1.5}),
     // Centri malih (dots)
-    e("circle",{key:u(),cx:c1[0],cy:c1[1],r:2,fill:"#e9b446"}),
-    e("circle",{key:u(),cx:c2[0],cy:c2[1],r:2,fill:"#e9b446"}),
-    e("circle",{key:u(),cx:c3[0],cy:c3[1],r:2,fill:"#e9b446"}),
+    e("circle",{key:u(),cx:c1[0],cy:c1[1],r:2,fill:"var(--gold)"}),
+    e("circle",{key:u(),cx:c2[0],cy:c2[1],r:2,fill:"var(--gold)"}),
+    e("circle",{key:u(),cx:c3[0],cy:c3[1],r:2,fill:"var(--gold)"}),
     // Središte S
-    e("circle",{key:u(),cx:cx,cy:cy,r:2.5,fill:"#e05252"}),
-    e("text",{key:u(),x:cx+5,y:cy+13,fill:"#e05252",fontSize:12,fontWeight:700,fontStyle:"italic"},"S")
+    e("circle",{key:u(),cx:cx,cy:cy,r:2.5,fill:"var(--red)"}),
+    e("text",{key:u(),x:cx+5,y:cy+13,fill:"var(--red)",fontSize:12,fontWeight:700,fontStyle:"italic"},"S")
   );
 }
 
 function Svg24_2016Alj(){
   const W=260,H=160,pad={l:32,r:14,t:18,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const xMin=-Math.PI,xMax=2*Math.PI;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -96,12 +96,12 @@ function Svg24a_2016LA(){
       e("text",{x:toX(0)-6,y:toY(y)+3,textAnchor:"end",fontSize:8,fill:"var(--muted)"},y)
     )),
     // Parabola
-    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round"}),
+    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"}),
     // Points A(0,-3) and B(2,1)
-    e("circle",{key:u(),cx:toX(0),cy:toY(-3),r:4,fill:"#e05252"}),
-    e("text",{key:u(),x:toX(0)+6,y:toY(-3)+4,fill:"#e05252",fontSize:11,fontWeight:600},"A(0,−3)"),
-    e("circle",{key:u(),cx:toX(2),cy:toY(1),r:4,fill:"#50c878"}),
-    e("text",{key:u(),x:toX(2)+6,y:toY(1)-3,fill:"#50c878",fontSize:11,fontWeight:600},"B(2, 1)")
+    e("circle",{key:u(),cx:toX(0),cy:toY(-3),r:4,fill:"var(--red)"}),
+    e("text",{key:u(),x:toX(0)+6,y:toY(-3)+4,fill:"var(--red)",fontSize:11,fontWeight:600},"A(0,−3)"),
+    e("circle",{key:u(),cx:toX(2),cy:toY(1),r:4,fill:"var(--green)"}),
+    e("text",{key:u(),x:toX(2)+6,y:toY(1)-3,fill:"var(--green)",fontSize:11,fontWeight:600},"B(2, 1)")
   );
 }
 
@@ -134,10 +134,10 @@ function SvgZad5_2016LA(){
     e("line",{key:u(),x1:toX(0)-3,y1:toY(1),x2:toX(0)+3,y2:toY(1),stroke:"var(--muted)",strokeWidth:0.8}),
     e("text",{key:u(),x:toX(0)-14,y:toY(1)+4,fill:"var(--muted)",fontSize:9},"1"),
     // Ellipse curve
-    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
+    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
     // Point (2,2)
-    e("circle",{key:u(),cx:toX(2),cy:toY(2),r:4,fill:"none",stroke:"#e05252",strokeWidth:2}),
-    e("text",{key:u(),x:toX(2)+6,y:toY(2)-5,fill:"#e05252",fontSize:11,fontWeight:600},"(2, 2)")
+    e("circle",{key:u(),cx:toX(2),cy:toY(2),r:4,fill:"none",stroke:"var(--red)",strokeWidth:2}),
+    e("text",{key:u(),x:toX(2)+6,y:toY(2)-5,fill:"var(--red)",fontSize:11,fontWeight:600},"(2, 2)")
   );
 }
 
@@ -152,21 +152,21 @@ function SvgZad4_2016LA(){
     // Triangle fill
     e("polygon",{key:u(),points:`${bx1},${by1} ${bx2},${by2} ${tx},${ty}`,fill:"rgba(74,144,217,0.06)",stroke:"var(--text)",strokeWidth:1.8,strokeLinejoin:"round"}),
     // Height line
-    e("line",{key:u(),x1:tx,y1:ty,x2:hx,y2:hy,stroke:"#e9b446",strokeWidth:1.2,strokeDasharray:"5,3"}),
+    e("line",{key:u(),x1:tx,y1:ty,x2:hx,y2:hy,stroke:"var(--gold)",strokeWidth:1.2,strokeDasharray:"5,3"}),
     // Right angle mark at D
-    e("rect",{key:u(),x:hx,y:hy-10,width:10,height:10,fill:"none",stroke:"#e9b446",strokeWidth:1}),
+    e("rect",{key:u(),x:hx,y:hy-10,width:10,height:10,fill:"none",stroke:"var(--gold)",strokeWidth:1}),
     // Angle α at top-right of vertex (between height and right side)
-    e("path",{key:u(),d:`M ${tx+12},${ty+18} A 18 18 0 0 1 ${tx+6},${ty+22}`,fill:"none",stroke:"#e05252",strokeWidth:1.5}),
-    e("text",{key:u(),x:tx+15,y:ty+28,fill:"#e05252",fontSize:13,fontStyle:"italic",fontWeight:600},"α"),
+    e("path",{key:u(),d:`M ${tx+12},${ty+18} A 18 18 0 0 1 ${tx+6},${ty+22}`,fill:"none",stroke:"var(--red)",strokeWidth:1.5}),
+    e("text",{key:u(),x:tx+15,y:ty+28,fill:"var(--red)",fontSize:13,fontStyle:"italic",fontWeight:600},"α"),
     // Angle α/2 at top-left of vertex (between height and left side)
-    e("path",{key:u(),d:`M ${tx-6},${ty+22} A 18 18 0 0 0 ${tx-14},${ty+18}`,fill:"none",stroke:"#4a90d9",strokeWidth:1.5}),
-    e("text",{key:u(),x:tx-35,y:ty+25,fill:"#4a90d9",fontSize:12,fontStyle:"italic",fontWeight:600},"α/2"),
+    e("path",{key:u(),d:`M ${tx-6},${ty+22} A 18 18 0 0 0 ${tx-14},${ty+18}`,fill:"none",stroke:"var(--blue)",strokeWidth:1.5}),
+    e("text",{key:u(),x:tx-35,y:ty+25,fill:"var(--blue)",fontSize:12,fontStyle:"italic",fontWeight:600},"α/2"),
     // Angle β at bottom-left
-    e("path",{key:u(),d:`M ${bx1+30},${by1} A 30 30 0 0 0 ${bx1+18},${by1-22}`,fill:"none",stroke:"#50c878",strokeWidth:1.5}),
-    e("text",{key:u(),x:bx1+10,y:by1-12,fill:"#50c878",fontSize:14,fontStyle:"italic",fontWeight:700},"β"),
+    e("path",{key:u(),d:`M ${bx1+30},${by1} A 30 30 0 0 0 ${bx1+18},${by1-22}`,fill:"none",stroke:"var(--green)",strokeWidth:1.5}),
+    e("text",{key:u(),x:bx1+10,y:by1-12,fill:"var(--green)",fontSize:14,fontStyle:"italic",fontWeight:700},"β"),
     // Angle 108° at bottom-right
-    e("path",{key:u(),d:`M ${bx2-35},${by2} A 35 35 0 0 1 ${bx2-20},${by2-28}`,fill:"none",stroke:"#e9b446",strokeWidth:1.5}),
-    e("text",{key:u(),x:bx2-55,y:by2-16,fill:"#e9b446",fontSize:12,fontWeight:600},"108°")
+    e("path",{key:u(),d:`M ${bx2-35},${by2} A 35 35 0 0 1 ${bx2-20},${by2-28}`,fill:"none",stroke:"var(--gold)",strokeWidth:1.5}),
+    e("text",{key:u(),x:bx2-55,y:by2-16,fill:"var(--gold)",fontSize:12,fontWeight:600},"108°")
   );
 }
 
@@ -207,7 +207,7 @@ export const qs = [
     {txt:"Slika pokazuje elipsu. Točka (2,2) leži na njoj (ili blizu nje)."},
     {txt:"Provjera C: [FRAC:4|20] + [FRAC:4|5] = 0,2 + 0,8 = 1 ✓"},{txt:"Analiza distractora: A/B/D: kriva formula za geometrijsku sumu ili greške u izračunu.",final:true,note:"diagnostika"},{txt:"Provjera: S=a₁(1-qⁿ)/(1-q); za a₁,q,n=... daje 1 ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri preko vektora ili udaljenosti točaka.",final:true,note:"alt"},{txt:"Postupak: parametriziraj geometrijski objekt, postavi uvjet, riješi sustav.",final:true,note:"postupak"},{txt:"Intuicija: na slici je zatvorena ovalna krivulja → elipsa. Kružnica B nema dva različita polumjera; parabola A i hiperbola D nisu zatvorene.",note:"intuicija",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true}],
   why:["Pravilo: kanonska elipsa x²/a² + y²/b² = 1, gdje a, b su poluosi.","Intuicija: na slici je zatvorena ovalna krivulja → elipsa. Kružnica B nema dva različita polumjera; parabola A i hiperbola D nisu zatvorene.","Česta greška: zamijeniti 20 i 5 → x²/5 + y²/20 = 1 (uska elipsa po x, ne odgovara slici).","Provjera s točkom (2,2): 4/20 + 4/5 = 0,2 + 0,8 = 1 ✓","Diagnostic: A) y²=2x; B) (x-1)²+(y-2)²=1; C) x²/20+y²/5=1 ✓; D) x²/3−y²/12=1.","Alt metoda: provjeri preko vektora ili udaljenosti točaka."]},
-  {id:6,type:"mc",warn:"Pazi: 5i leži na pozitivnoj imaginarnoj osi → argument je 90° (π/2).",topic:"kompleks",points:1,
+  {id:6,type:"mc",warn:"Pazi: 5i leži na pozitivnoj imaginarnoj osi → argument je 90° (π/2).",topic:"kompl",points:1,
   q:"Koliki je argument φ u trigonometrijskome prikazu kompleksnoga broja z = 5i?",
   opts:["π/3","π/2","2π/3","3π/2"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},exp:"",
@@ -248,7 +248,7 @@ export const qs = [
     {txt:"x∈[1,3]: 2x+3>0 i 1-5x≤0"},
     {txt:"= (2x+3) + (5x-1) = 7x+2"},{txt:"Analiza distractora: A/B/C: greške u zbrajanju polinoma ili krivom kombiniranju pribrojnika.",final:true,note:"diagnostika"},{txt:"Provjera: za x=1: (2+3)+(5-1)=5+4=9=7·1+2 ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: x ∈ ⟨1, 3⟩ → 2x+3 ∈ ⟨5, 9⟩ > 0 (znak ne mijenja); 1−5x ∈ ⟨−14, −4⟩ < 0 (mijenja znak). Dakle |2x+3| = 2x+3 i |1−5x| = −(1−5x) = 5x−1.",note:"intuicija",final:true},{txt:"Točan odgovor: D ✓",note:"odgovor",final:true}],
   why:["Pravilo: |a| = a ako a≥0, |a| = −a ako a<0. Provjeri znak svakog izraza za zadani interval.","Intuicija: x ∈ ⟨1, 3⟩ → 2x+3 ∈ ⟨5, 9⟩ > 0 (znak ne mijenja); 1−5x ∈ ⟨−14, −4⟩ < 0 (mijenja znak). Dakle |2x+3| = 2x+3 i |1−5x| = −(1−5x) = 5x−1.","Česta greška: ne testirati interval prije skidanja modulusa, što daje krivu kombinaciju znakova (A, B, C su sve tipične greške).","Alt metoda: testirati x = 2 (sredina intervala): |2·2+3| + |1−5·2| = 7 + 9 = 16; opcija D 7·2+2 = 16 ✓.","Provjera: (2x+3) + (5x−1) = 7x+2 → opcija D ✓","Diagnostic: A) -7x-2; B) -3x+4; C) 3x-4; D) 7x+2 ✓."]},
-  {id:12,type:"mc",warn:"Pazi: prvo y = f(2) = 3; f′ = 3x²/(2√(x³ + 1)); uvrsti x = 2 za nagib pa jednadžba pravca.",topic:"dif",points:2,
+  {id:12,type:"mc",warn:"Pazi: prvo y = f(2) = 3; f′ = 3x²/(2√(x³ + 1)); uvrsti x = 2 za nagib pa jednadžba pravca.",topic:"anal",points:2,
   q:"Zadana je funkcija f(x) = √(x³ + 1). Koja je od navedenih jednadžba tangenta na graf funkcije f u točki (2, y)?",
   opts:["y=2x-1","y=2x+5","y=3x-1","y=3x+5"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},ex:"Tangentna jednadžba u točki (x₀, f(x₀)) zahtijeva izračun f′(x₀) — koeficijent smjera. Kod složenih funkcija pažljivo primijeniti lančano pravilo. Ovdje je f(x) = (x³+1)^(¹⁄²), pa f′ = (3x²)/(2√(x³+1)).",exp:"",
@@ -267,7 +267,7 @@ export const qs = [
     {txt:"|3·4 − 4·(-2) + 4n| / 5 = 4 → |20+4n|=20"},
     {txt:"n=0 ili n=-10. Tangenta s n=-10 → y=3/4·x-10"},{txt:"Analiza distractora: A/B/C: jedno rješenje ili kriva jednadžba tangente.",final:true,note:"diagnostika"},{txt:"Provjera: supstitucija n=-10 u jednadžbu tangente; provjeri prolazi li grafom ✓",final:true,note:"verifikacija"},{txt:"Intuicija: 4x+3y+5=0 ima nagib −4/3, pa pravac p ima nagib 3/4. Centar kružnice C(4,−2), r=4. Pravac p: y = 3x/4 + b. Udaljenost od C(4,−2) do p: |3·4/4 + b − (−2)| / √(9/16+1) = |3+b+2|/√(25/16) = |b+5|·4/5 = 4 → |b+5| = 5 → b = 0 ili b = −10.",note:"intuicija",final:true},{txt:"Točan odgovor: D ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Pravilo: ako je p ⊥ q s nagibom k_q, onda k_p = −1/k_q. Tangencijalna udaljenost od centra do pravca = r.",note:"postupak",final:true}],
   why:["Pravilo: ako je p ⊥ q s nagibom k_q, onda k_p = −1/k_q. Tangencijalna udaljenost od centra do pravca = r.","Intuicija: 4x+3y+5=0 ima nagib −4/3, pa pravac p ima nagib 3/4. Centar kružnice C(4,−2), r=4. Pravac p: y = 3x/4 + b. Udaljenost od C(4,−2) do p: |3·4/4 + b − (−2)| / √(9/16+1) = |3+b+2|/√(25/16) = |b+5|·4/5 = 4 → |b+5| = 5 → b = 0 ili b = −10.","Česta greška: koristiti k_p = 4/3 (paralelno) umjesto 3/4 (okomito); A/B opcije imaju krivi nagib.","Alt metoda: zamijeniti b = −10 → jedna od 2 tangente s ispravnim nagibom = opcija D.","Provjera: udaljenost od (4,−2) do y=3x/4−10: |3·4/4 − (−2) − 10|/√(25/16) = |3+2−10|·4/5 = 5·4/5 = 4 = r ✓","Diagnostic: A) y=-4/3·x+5; B) y=-4/3·x+10; C) y=3/4·x-5; D) y=3/4·x-10 ✓."]},
-  {id:14,type:"mc",warn:"Pazi: +5 % svaki tjedan → geometrijski rast s faktorom 1,05ⁿ (nije aritmetički).",topic:"seq",points:2,
+  {id:14,type:"mc",warn:"Pazi: +5 % svaki tjedan → geometrijski rast s faktorom 1,05ⁿ (nije aritmetički).",topic:"niz",points:2,
   q:"Mahovinom je prekriveno 1,3 m² kore drveta. Na kraju svakoga tjedna površina mahovine povećana je za 5 % u odnosu na površinu mahovine na kraju prethodnoga tjedna. Koliku će površinu kore drveta prekriti mahovina nakon 8 tjedana rasta?",
   opts:["1,7 m²","1,92 m²","2,4 m²","2,65 m²"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},ex:"Eksponencijalni rast zahtijeva množenje istim faktorom za svaki period (1+p/100), za razliku od linearnog. Ključno je razlikovati postotak rasta na originalnu (linearno) vs. tekuću (eksponencijalno) vrijednost.",exp:"",
@@ -367,7 +367,7 @@ export const qs = [
     {txt:"[FRAC:1|2·log₅a] = ([FRAC:1|2])·([FRAC:1|log₅a]) = ([FRAC:1|2])·log_a5",final:true},{txt:"Provjera (a=5): log₅(5²)=2, dakle 1/2; formula daje (1/2)·log₅5 = 1/2 ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: 1/log₅(a²) = 1/(2·log₅a) = (1/2)·(1/log₅a) = (1/2)·log_a5.",note:"intuicija",final:true},{txt:"Točan odgovor: ([FRAC:1|2])·log_a5 ✓",note:"odgovor",final:true}],
   why:["Pravilo: log_b(a^n) = n·log_b(a); promjena baze log_b(a) = 1/log_a(b).","Intuicija: 1/log₅(a²) = 1/(2·log₅a) = (1/2)·(1/log₅a) = (1/2)·log_a5.","Česta greška: izvaditi eksponent ali zaboraviti reciprok; ili krivo primijeniti promjenu baze.","Provjera: a = 5 → log₅(25) = 2, 1/2 = 0,5; alt formula: (1/2)·log₅5 = 1/2·1 = 0,5 ✓","Postupak: koraci su deterministički — sredi izraz, izoliraj nepoznatu, izračunaj, provjeri.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
   {id:22.1,type:"sa",
-  context:"Zadatak 22 (1. dio od 2):",topic:"seq",points:1,
+  context:"Zadatak 22 (1. dio od 2):",topic:"niz",points:1,
   q:"Razlika aritmetičkoga niza jest d = 12. Ako je a₅₇ = 206, koliko je a₅₄?",
   sol:{ans:"a₅₄ = 170",alt:["170","a54=170","a₅₄=170"]},exp:"",
   steps:[
@@ -375,7 +375,7 @@ export const qs = [
     {txt:"a₅₄ = 206 − 36 = 170",final:true},{txt:"Provjera: a₅₄ + 3d = 170 + 36 = 206 = a₅₇ ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: a₅₄ = a₅₇ + (54−57)·d = 206 + (−3)·12 = 206 − 36 = 170.",note:"intuicija",final:true},{txt:"Točan odgovor: a₅₄ = 170 ✓",note:"odgovor",final:true}],
   why:["Pravilo: a_n = a_m + (n−m)·d za aritmetički niz s diferencijom d.","Intuicija: a₅₄ = a₅₇ + (54−57)·d = 206 + (−3)·12 = 206 − 36 = 170.","Česta greška: oduzeti 3·d s pogrešnim predznakom (206+36 = 242).","Provjera: a₅₇ = a₅₄ + 3·d = 170 + 36 = 206 ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
   {id:22.2,type:"sa",
-  context:"Zadatak 22 (2. dio od 2):",topic:"seq",points:1,
+  context:"Zadatak 22 (2. dio od 2):",topic:"niz",points:1,
   q:"Izračunajte koliko je C(100,0)·2¹⁰⁰ − C(100,1)·2⁹⁹ + C(100,2)·2⁹⁸ − … + C(100,98)·2² − C(100,99)·2 + C(100,100).",
   sol:{ans:"1",alt:["1","1,0","jedan"]},exp:"",
   steps:[
@@ -473,7 +473,7 @@ export const qs = [
     {txt:"[FRAC:3+Cy|2] = 4 → Cy=5 → C(6,5)",final:true},{txt:"Provjera: polovište AC = ((−1+6)/2, (3+5)/2) = (5/2, 4) = S ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri preko vektora ili udaljenosti točaka.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: parametriziraj geometrijski objekt, postavi uvjet, riješi sustav.",final:true,note:"postupak"},{txt:"Intuicija: ABCD — S je polovište AC i BD. S(5/2, 4), A(−1, 3) → C(5−(−1), 8−3) = (6, 5). Provjera B-D: S = (B+D)/2 → D = (1, 8). Tri uzastopna vrha A, B, C su zadana, D dolazi iz para.",note:"intuicija",final:true},{txt:"Točan odgovor: C(6, 5) ✓",note:"odgovor",final:true}],
   why:["Pravilo: dijagonale paralelograma se polove → sjecište je polovište svake dijagonale.","Intuicija: ABCD — S je polovište AC i BD. S(5/2, 4), A(−1, 3) → C(5−(−1), 8−3) = (6, 5). Provjera B-D: S = (B+D)/2 → D = (1, 8). Tri uzastopna vrha A, B, C su zadana, D dolazi iz para.","Česta greška: tretirati S kao polovište jedne dijagonale (npr. AB), a ne para AC i BD.","Provjera: polovište AC: ((−1+6)/2, (3+5)/2) = (5/2, 4) = S ✓","Alt metoda: provjeri preko vektora ili udaljenosti točaka.","Postupak: parametriziraj geometrijski objekt, postavi uvjet, riješi sustav."]},
   {id:28.1,type:"sa",
-  context:"Zadatak 28 (1. dio od 3):",topic:"funkc",points:1,
+  context:"Zadatak 28 (1. dio od 3):",topic:"fun",points:1,
   q:"Odredite domenu funkcije f(x) = √(x+3) / (x − 2).",
   sol:{ans:"[−3, +∞⟩\\{2}",alt:["[-3, +∞⟩\\{2}","[-3, 2⟩U(2,∞⟩"]},exp:"",
   steps:[
@@ -490,7 +490,7 @@ export const qs = [
     {txt:"8x = 15 → x = [FRAC:15|8]. Provjera: [FRAC:15|8] < 4 ✓",final:true},{txt:"Provjera (x = 15/8): √((15/8)² + 1) = √(289/64) = 17/8 = 32/8 − 15/8 = 4 − 15/8 ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: kvadrirati: x² + 1 = (4−x)² = 16 − 8x + x² → 8x = 15 → x = 15/8. Uvjet: 4−x ≥ 0 → x ≤ 4. 15/8 = 1,875 ≤ 4 ✓.",note:"intuicija",final:true},{txt:"Točan odgovor: x = [FRAC:15|8] ✓",note:"odgovor",final:true}],
   why:["Pravilo: kvadriranje obje strane uklanja korijen ali može uvesti lažna rješenja → uvijek provjeriti.","Intuicija: kvadrirati: x² + 1 = (4−x)² = 16 − 8x + x² → 8x = 15 → x = 15/8. Uvjet: 4−x ≥ 0 → x ≤ 4. 15/8 = 1,875 ≤ 4 ✓.","Česta greška: zaboraviti provjeriti uvjet 4−x ≥ 0 (lijeva strana je korijen, mora biti ≥ 0 = desna strana).","Provjera: x = 15/8 → √((15/8)² + 1) = √(225/64 + 64/64) = √(289/64) = 17/8; desno 4 − 15/8 = 32/8 − 15/8 = 17/8 ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
   {id:28.3,type:"sa",
-  context:"Zadatak 28 (3. dio od 3):",topic:"dif",points:1,
+  context:"Zadatak 28 (3. dio od 3):",topic:"anal",points:1,
   q:"Zadana je funkcija f(x) = 3x² + 10. Koliko je f(2) − f′(3) gdje je f′ derivacija funkcije f?",
   sol:{ans:"4",alt:["4","4,0","f(2)-f'(3)=4"]},exp:"",
   steps:[
@@ -552,8 +552,7 @@ export const qs = [
   why:["Pravilo: kosinusov poučak — c² = a² + b² − 2ab·cos(γ). Minimum kvadratne funkcije d²(x) postiže se u tjemenu x = −b/(2a).","Intuicija: vlak prelazi x km od A → udaljen je (53−x) km od B; auto 2x km od B. Trokut s stranicama (53−x), 2x i kutem 60° između njih. Minimizirat ćemo d², ne d (lakše, ista x koordinata minimuma).","Česta greška: izvediti d² i derivirati pogrešno (zaboraviti kosinusni dvostruki član) ili tražiti minimum d umjesto d² (isto x ali aritmetički slabije).","Alt metoda: parametarski — auto i vlak imaju brzine v i 2v; u trenutku t prešli su vt i 2vt; supstituiraj x = vt i dobi istu kvadratnu funkciju u x.","Provjera: x = 106/7 ≈ 15,143. (d²)′ = 14x − 212 = 14·106/7 − 212 = 212 − 212 = 0 ✓; d² minimum = 7·(106/7)² − 212·(106/7) + 2809 = pozitivno → minimum postoji ✓.","Postupak: pretvori u sin/cos baznih kutova, koristi identitete, izračunaj."]},
   {_META:{rok:"LJETO 2016",examCode:"D-S032",razina:"A",
   totalQ:30,totalPts:40,
-  auditStatus:"verified-full",auditDate:"2026-04-26"}},
-  {_META:true,auditStatus:"verified-full",rok:"2016_ljeto",razina:"A",serial:"D-S032",totalPoints:60,mcCount:15,saCount:26,verified:"sympy+pdf+verbatim+visual+pedagogy",auditedAt:"2026-05-16",auditNotes:"Full pipeline G→H→I→A-E→F→J→_META complete. 15/15 MC + 26/26 SA + 5/5 PA verified against PDF key.",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak G: verbatim PDF compare (D-S032, 24p) — match svih Q-ova","Pak H: 3 solFormula additions (Q25,2, Q27,1, Q29,1)","Pak I: 🔴 P0 Q5 SVG fix (parabola→elipsa); 🔴 P0 Q29,3 SVG dodan (3 sukladne kružnice); orphan Q_IMAGES __20, __28 uklonjen; __24 split na __24,1+__24,2","Pak F: 220→0 nalaza (proširen why s 1→3-5 entries za svih 30 Q-ova; +verifikacijski steps; +distractor analiza; +ex polje za Q11-Q15; topic fixes Q6/Q16/Q17/Q28,1)","Pak J: math_lint 0, content_lint 0 (osim _META)","Tool issues flag: orphan_binding_audit i exam_structure_validator daju false positives (P2 fix u repo)"]}
+  auditStatus:"verified-full",auditDate:"2026-04-26"}}
 ];
 
 export const qImages = {

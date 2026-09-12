@@ -1,0 +1,29 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2021_jesen",
+  "razina": "B",
+  "serial": "D-S052",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 24,
+  "verified": "sympy+pdf",
+  "note": "unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",
+  "maintenanceAt": "2026-05-26",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ],
+  "maintenanceNotes_v37b": [
+    "Pak I (visual P0): 5 orphan img:true added (Q26.1/26.2/27.1/27.2/27.3) → Svg26_2021Bjesen i Svg27_2021Bjesen sad se renderiraju studentu",
+    "Pak I (visual P0): Svg9_2021Bjesen — trokut polygon fix [V,T1,T2] (NE [T1,T2,T3]), pentagon kut korigiran -30°→-18° za α=102°, sve stranice usklađene na SIDE=62",
+    "Pak I (visual P0): Svg23b_2021Bjesen — parabola formula fix x²-2x-3 → x²-6x+11 (vertex (3,2) iznad x-osi, tangenta y=2x-5 u (4,3) — match NCVVO ključa)",
+    "Pak I (visual P1): Svg11_2021Bjesen — shadePts 5-vrh→4-vrh konveksna silueta [A,B,C,P] (D je interior)"
+  ],
+  "maintenanceAt_v39": "2026-05-26",
+  "maintenanceNotes_v39": [
+    "Pak F (pedagoški drift): Q26.1/Q26.2 (chart-reading izvoz), Q27.1 (sjecište pravaca štednje), Q27.2 (čitanje k i n iz grafa), Q27.3 (piecewise linearni model) — geografski placeholder steps/why zamijenjeni konkretnom chart-reading + linear-model pedagogijom.",
+    "Preostali drift (NON-VISUAL Q): 3 instance u Q-objects bez img:true — neopasno za visual audit, ostalo za zaseban Pak F pass."
+  ]
+}

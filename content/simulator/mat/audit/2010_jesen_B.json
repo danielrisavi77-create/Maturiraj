@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2010_jesen",
+  "razina": "B",
+  "serial": "D-S001",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 19,
+  "verified": "sympy+pdf+verbatim+visual+rendering",
+  "auditNotes": "G: Q6 verbatim, Q16 dan igranja. H: Unicode − + [FRAC:] Q1/3/11/12/14/18/20/22/24/25/27/28. F: 16 MC distractor, Q5/Q23/Q28 steps+why. J: q/opts FRAC.",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

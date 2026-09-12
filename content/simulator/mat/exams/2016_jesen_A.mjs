@@ -41,12 +41,12 @@ function SvgZad21b_2016JA(){
     e("text",{key:u(),x:toX(0)-14,y:toY(1)+4,fill:"var(--muted)",fontSize:9},"1"),
     e("line",{key:u(),x1:toX(0)-3,y1:toY(-1),x2:toX(0)+3,y2:toY(-1),stroke:"var(--muted)",strokeWidth:0.8}),
     e("text",{key:u(),x:toX(0)-18,y:toY(-1)+4,fill:"var(--muted)",fontSize:9},"-1"),
-    e("path",{key:u(),d,fill:"none",stroke:"#e05252",strokeWidth:2.5,strokeLinecap:"round",strokeLinejoin:"round"}),
-    e("circle",{key:u(),cx:toX(-3),cy:toY(1),r:4,fill:"#4a90d9"}),
-    e("circle",{key:u(),cx:toX(-1),cy:toY(3),r:4,fill:"#50c878"}),
-    e("circle",{key:u(),cx:toX(1),cy:toY(0),r:4,fill:"#e9b446"}),
-    e("circle",{key:u(),cx:toX(-4),cy:toY(2),r:4,fill:"var(--s1)",stroke:"#e05252",strokeWidth:2}),
-    e("circle",{key:u(),cx:toX(4),cy:toY(-5),r:4,fill:"var(--s1)",stroke:"#e05252",strokeWidth:2})
+    e("path",{key:u(),d,fill:"none",stroke:"var(--red)",strokeWidth:2.5,strokeLinecap:"round",strokeLinejoin:"round"}),
+    e("circle",{key:u(),cx:toX(-3),cy:toY(1),r:4,fill:"var(--blue)"}),
+    e("circle",{key:u(),cx:toX(-1),cy:toY(3),r:4,fill:"var(--green)"}),
+    e("circle",{key:u(),cx:toX(1),cy:toY(0),r:4,fill:"var(--gold)"}),
+    e("circle",{key:u(),cx:toX(-4),cy:toY(2),r:4,fill:"var(--s1)",stroke:"var(--red)",strokeWidth:2}),
+    e("circle",{key:u(),cx:toX(4),cy:toY(-5),r:4,fill:"var(--s1)",stroke:"var(--red)",strokeWidth:2})
   );
 }
 
@@ -89,14 +89,14 @@ function Svg28p3_2016JA(){
       e("text",{x:toX(0)-6,y:toY(y)+3,textAnchor:"end",fontSize:8,fill:"var(--muted)"},y)
     )),
     // V-shape
-    e("polyline",{key:u(),points:ptsL.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round"}),
-    e("polyline",{key:u(),points:ptsR.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round"}),
+    e("polyline",{key:u(),points:ptsL.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"}),
+    e("polyline",{key:u(),points:ptsR.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"}),
     // Nultočke
-    e("circle",{key:u(),cx:toX(-1),cy:toY(0),r:4,fill:"#e05252"}),
-    e("circle",{key:u(),cx:toX(5),cy:toY(0),r:4,fill:"#e05252"}),
+    e("circle",{key:u(),cx:toX(-1),cy:toY(0),r:4,fill:"var(--red)"}),
+    e("circle",{key:u(),cx:toX(5),cy:toY(0),r:4,fill:"var(--red)"}),
     // Tjeme
-    e("circle",{key:u(),cx:toX(2),cy:toY(-3),r:4,fill:"#50c878"}),
-    e("text",{key:u(),x:toX(2)+6,y:toY(-3)+4,fill:"#50c878",fontSize:10,fontWeight:600},"(2, −3)")
+    e("circle",{key:u(),cx:toX(2),cy:toY(-3),r:4,fill:"var(--green)"}),
+    e("text",{key:u(),x:toX(2)+6,y:toY(-3)+4,fill:"var(--green)",fontSize:10,fontWeight:600},"(2, −3)")
   );
 }
 
@@ -134,15 +134,15 @@ function Svg20p2_2016JA(){
       e("text",{x:toX(0)-6,y:toY(y)+3,textAnchor:"end",fontSize:8,fill:"var(--muted)"},y)
     )),
     // Parabola
-    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round"}),
+    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"}),
     // Nultočke
-    e("circle",{key:u(),cx:toX(-2),cy:toY(0),r:4,fill:"#e05252"}),
-    e("circle",{key:u(),cx:toX(4),cy:toY(0),r:4,fill:"#e05252"}),
+    e("circle",{key:u(),cx:toX(-2),cy:toY(0),r:4,fill:"var(--red)"}),
+    e("circle",{key:u(),cx:toX(4),cy:toY(0),r:4,fill:"var(--red)"}),
     // Tjeme
-    e("circle",{key:u(),cx:toX(1),cy:toY(-4.5),r:4,fill:"#50c878"}),
-    e("text",{key:u(),x:toX(1)+6,y:toY(-4.5)+4,fill:"#50c878",fontSize:10,fontWeight:600},"(1, −4,5)"),
+    e("circle",{key:u(),cx:toX(1),cy:toY(-4.5),r:4,fill:"var(--green)"}),
+    e("text",{key:u(),x:toX(1)+6,y:toY(-4.5)+4,fill:"var(--green)",fontSize:10,fontWeight:600},"(1, −4,5)"),
     // y-presjek
-    e("circle",{key:u(),cx:toX(0),cy:toY(-4),r:3.5,fill:"#e9b446"})
+    e("circle",{key:u(),cx:toX(0),cy:toY(-4),r:3.5,fill:"var(--gold)"})
   );
 }
 
@@ -171,12 +171,12 @@ function SvgZad16_2016JA(){
     // Triangle fill
     e("polygon",{key:u(),points:`${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}`,fill:"rgba(74,144,217,0.1)",stroke:"var(--text)",strokeWidth:1.8,strokeLinejoin:"round"}),
     // Points
-    e("circle",{key:u(),cx:Ax,cy:Ay,r:4,fill:"#e05252"}),
-    e("text",{key:u(),x:Ax-14,y:Ay+5,fill:"#e05252",fontSize:13,fontWeight:700,fontStyle:"italic"},"A"),
-    e("circle",{key:u(),cx:Bx,cy:By,r:4,fill:"#4a90d9"}),
-    e("text",{key:u(),x:Bx+6,y:By+5,fill:"#4a90d9",fontSize:13,fontWeight:700,fontStyle:"italic"},"B"),
-    e("circle",{key:u(),cx:Cx,cy:Cy,r:4,fill:"#50c878"}),
-    e("text",{key:u(),x:Cx-14,y:Cy-4,fill:"#50c878",fontSize:13,fontWeight:700,fontStyle:"italic"},"C")
+    e("circle",{key:u(),cx:Ax,cy:Ay,r:4,fill:"var(--red)"}),
+    e("text",{key:u(),x:Ax-14,y:Ay+5,fill:"var(--red)",fontSize:13,fontWeight:700,fontStyle:"italic"},"A"),
+    e("circle",{key:u(),cx:Bx,cy:By,r:4,fill:"var(--blue)"}),
+    e("text",{key:u(),x:Bx+6,y:By+5,fill:"var(--blue)",fontSize:13,fontWeight:700,fontStyle:"italic"},"B"),
+    e("circle",{key:u(),cx:Cx,cy:Cy,r:4,fill:"var(--green)"}),
+    e("text",{key:u(),x:Cx-14,y:Cy-4,fill:"var(--green)",fontSize:13,fontWeight:700,fontStyle:"italic"},"C")
   );
 }
 
@@ -190,9 +190,9 @@ function SvgZad13_2016JA(){
     e("path",{key:u(),d:`M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 1 1 ${x2} ${y2} Z`,fill:"rgba(74,144,217,0.08)",stroke:"var(--text)",strokeWidth:1.8}),
     e("line",{key:u(),x1:cx,y1:cy,x2:x1,y2:y1,stroke:"var(--text)",strokeWidth:1.5}),
     e("line",{key:u(),x1:cx,y1:cy,x2:x2,y2:y2,stroke:"var(--text)",strokeWidth:1.5}),
-    e("path",{key:u(),d:`M ${cx+25*Math.cos(a1)} ${cy+25*Math.sin(a1)} A 25 25 0 1 1 ${cx+25*Math.cos(a2)} ${cy+25*Math.sin(a2)}`,fill:"none",stroke:"#e9b446",strokeWidth:1.5}),
-    e("text",{key:u(),x:cx-5,y:cy-15,fill:"#e9b446",fontSize:12,fontWeight:600},"147\u00b0"),
-    e("text",{key:u(),x:(cx+x2)/2+8,y:(cy+y2)/2-5,fill:"#4a90d9",fontSize:12,fontWeight:600},"12 cm")
+    e("path",{key:u(),d:`M ${cx+25*Math.cos(a1)} ${cy+25*Math.sin(a1)} A 25 25 0 1 1 ${cx+25*Math.cos(a2)} ${cy+25*Math.sin(a2)}`,fill:"none",stroke:"var(--gold)",strokeWidth:1.5}),
+    e("text",{key:u(),x:cx-5,y:cy-15,fill:"var(--gold)",fontSize:12,fontWeight:600},"147\u00b0"),
+    e("text",{key:u(),x:(cx+x2)/2+8,y:(cy+y2)/2-5,fill:"var(--blue)",fontSize:12,fontWeight:600},"12 cm")
   );
 }
 
@@ -217,7 +217,7 @@ function SvgZad10_2016JA(){
     e("circle",{key:u(),cx:toX(1),cy:toY(0),r:3,fill:"var(--muted)"}),
     e("line",{key:u(),x1:toX(0)-3,y1:toY(1),x2:toX(0)+3,y2:toY(1),stroke:"var(--muted)",strokeWidth:1}),
     e("text",{key:u(),x:toX(0)-16,y:toY(1)+4,fill:"var(--muted)",fontSize:10},"1"),
-    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"#e05252",strokeWidth:2.2,strokeLinecap:"round"})
+    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"var(--red)",strokeWidth:2.2,strokeLinecap:"round"})
   );
 }
 
@@ -293,7 +293,7 @@ export const qs = [
     {txt:"= 2²⁰¹⁴·26 = 13·2·2²⁰¹⁴ = 13·2²⁰¹⁵",final:true}
   ,{txt:"5·2²⁰¹⁶ + 6·2²⁰¹⁴ = 2²⁰¹⁴(5·4 + 6) = 2²⁰¹⁴·26 = 13·2²⁰¹⁵",final:true,note:"verifikacija"},{txt:"Provjera: 5·4+6 = 26 = 13·2 ✓",final:true,note:"verifikacija"},{txt:"5·2²⁰¹⁶ + 6·2²⁰¹⁴ — izvuci 2²⁰¹⁴, izračunaj broj 26 = 13·2, konačno 13·2²⁰¹⁵.",final:true,note:"verifikacija"},{txt:"Diagnostic: A) 11·2²⁰¹⁵; B) 13·2²⁰¹⁵ ✓; C) 3·2²⁰¹⁷; D) 7·2²⁰¹⁷.",final:true,note:"diagnostika"},{txt:"Intuicija: 5·2²⁰¹⁶ + 6·2²⁰¹⁴ = 2²⁰¹⁴·(5·4 + 6) = 2²⁰¹⁴·26 = 2²⁰¹⁴·2·13 = 13·2²⁰¹⁵.",note:"intuicija",final:true},{txt:"Točan odgovor: B ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Pravilo: izvuci zajednički faktor — najmanju potenciju broja.",note:"postupak",final:true}],
   why:["Pravilo: izvuci zajednički faktor — najmanju potenciju broja.","Intuicija: 5·2²⁰¹⁶ + 6·2²⁰¹⁴ = 2²⁰¹⁴·(5·4 + 6) = 2²⁰¹⁴·26 = 2²⁰¹⁴·2·13 = 13·2²⁰¹⁵.","Česta greška: zbrojiti 5+6 = 11 i ostaviti raznorazne potencije; ili ne izvući 2²⁰¹⁴.","Alt metoda: 5·2²⁰¹⁶ = 5·2²·2²⁰¹⁴ = 20·2²⁰¹⁴; + 6·2²⁰¹⁴ = 26·2²⁰¹⁴ = 13·2¹·2²⁰¹⁴ = 13·2²⁰¹⁵.","Provjera: 5·2²+6 = 26 = 13·2 ✓ (B)","Diagnostic: A) 11·2²⁰¹⁵; B) 13·2²⁰¹⁵ ✓; C) 3·2²⁰¹⁷; D) 7·2²⁰¹⁷."]},
-  {id:9,type:"mc",warn:"Pazi: aritmetički (a₁ = 502, d = 3); S₁₃ = (13/2)(2a₁ + 12d).",topic:"seq",points:2,
+  {id:9,type:"mc",warn:"Pazi: aritmetički (a₁ = 502, d = 3); S₁₃ = (13/2)(2a₁ + 12d).",topic:"niz",points:2,
   q:"Koliki je zbroj prvih 13 članova niza aₙ = 502 + 3(n − 1)?",
   opts:["520","538","6724","6760"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},ex:"Aritmetički niz: aₙ = a₁ + (n-1)·d. Sₙ = n(a₁+aₙ)/2 ili Sₙ = n·a₁ + d·n(n-1)/2.",
@@ -311,7 +311,7 @@ export const qs = [
     {txt:"y-presjek = f(0) = c < 0 (ispod x-osi).",final:true}
   ,{txt:"Iz grafa: a<0, x_v>0, c>0 → b = -2a·x_v > 0",final:true,note:"verifikacija"},{txt:"Provjera: ako b>0 i c>0 → opcija C ✓",final:true,note:"verifikacija"},{txt:"Diagnostic: A) b < 0, c < 0; B) b < 0, c > 0; C) b > 0, c < 0 ✓; D) b > 0, c > 0.",final:true,note:"diagnostika"},{txt:"Postupak: standardni oblik → diskriminanta → kvadratna formula → oba rješenja.",final:true,note:"postupak"},{txt:"Intuicija: iz grafa — tjeme je u 1. kvadrantu (x_v > 0, y_v > 0), graf otvoren dolje (a < 0). Onda x_v = -b/(2a) > 0 → kako je a < 0, b > 0. Iz f(0) = c > 0 (presjek s pozitivnim y).",note:"intuicija",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true}],
   why:["Pravilo: za f(x) = ax²+bx+c — predznak b određuje smjer pomaka tjemena (x_v = -b/(2a)); predznak c određuje y-presjek (f(0) = c).","Intuicija: iz grafa — tjeme je u 1. kvadrantu (x_v > 0, y_v > 0), graf otvoren dolje (a < 0). Onda x_v = -b/(2a) > 0 → kako je a < 0, b > 0. Iz f(0) = c > 0 (presjek s pozitivnim y).","Česta greška: tretirati y-presjek kao tjeme; ili miješati znakove.","Alt metoda: izračunaj iz konkretne fitirane funkcije (npr. f(x) = -(x-2)²+4 → c = 0 i b = 4, ali zadana ima c > 0 → drugačiji oblik).","Provjera: ako b > 0 i c > 0 → opcija C ✓","Diagnostic: A) b < 0, c < 0; B) b < 0, c > 0; C) b > 0, c < 0 ✓; D) b > 0, c > 0."]},
-  {id:11,type:"mc",warn:"Pazi: usporedna s y = 5x → isti nagib 5 → f′(x) = 5; riješi 3x² − 12x + 17 = 5.",topic:"der",points:2,
+  {id:11,type:"mc",warn:"Pazi: usporedna s y = 5x → isti nagib 5 → f′(x) = 5; riješi 3x² − 12x + 17 = 5.",topic:"anal",points:2,
   q:"Na graf funkcije f(x) = x³ − 6x² + 17x povučena je tangenta usporedna s pravcem y = 5x. Koja je od navedenih jednadžba te tangente?",
   opts:["y = 5x − 5","y = 5x − 3","y = 5x + 6","y = 5x + 8"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},ex:"Tangenta na grafu y=f(x) u točki (x₀, f(x₀)) ima nagib f′(x₀). Paralelnost s zadanim pravcem znači jednak nagib.",
@@ -436,7 +436,7 @@ export const qs = [
     {txt:"x=0 ili x=2",final:true}
   ,{txt:"Provjera: x⁴-6x³+12x²-8x = x(x-2)³ = 0 → x=0 ili x=2 ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: x⁴-6x³+12x²-8x = x(x³-6x²+12x-8) = x(x-2)³. Nul rješenja: x = 0 ili x = 2 (trostruka).",note:"intuicija",final:true},{txt:"Točan odgovor: x = 0  i  x = 2 ✓",note:"odgovor",final:true}],
   why:["Pravilo: faktorizacija — izvuci zajednički faktor pa zero-product.","Intuicija: x⁴-6x³+12x²-8x = x(x³-6x²+12x-8) = x(x-2)³. Nul rješenja: x = 0 ili x = 2 (trostruka).","Česta greška: ne prepoznati (x-2)³ → propustiti rješenje x = 2.","Provjera: x = 2: 16-48+48-16 = 0 ✓; x = 0: 0 ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
-  {id:21.2,img:true,type:"sa",topic:"der",points:1,img:true,
+  {id:21.2,img:true,type:"sa",topic:"anal",points:1,img:true,
   context:"Zadatak 21 (2. dio od 2):",
   q:"Na slici je prikazan graf funkcije koja je definirana na intervalu ⟨-4, 4⟩. Na kojemu intervalu ta funkcija raste?",
   sol:{ans:"⟨-2, 1⟩",alt:["(-2,1)","⟨-2,1⟩","x∈⟨-2,1⟩","-2<x<1"]},
@@ -484,7 +484,7 @@ export const qs = [
     {txt:"5^([FRAC:3|4]) = 5^(x-2) → [FRAC:3|4] = x-2 → x = [FRAC:11|4]",final:true}
   ,{txt:"Provjera: 5^(³⁄₄) = 1/5^(2 - 11/4) = 1/5^(-³⁄₄) = 5^(³⁄₄) ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: ⁴√125 = 125^(¹⁄₄) = 5^(³⁄₄). 1/5^(2-x) = 5^(x-2). Izjednači eksponente: 3/4 = x-2 → x = 11/4.",note:"intuicija",final:true},{txt:"Točan odgovor: x = [FRAC:11|4] ✓",note:"odgovor",final:true}],
   why:["Pravilo: pretvori obje strane u istu bazu.","Intuicija: ⁴√125 = 125^(¹⁄₄) = 5^(³⁄₄). 1/5^(2-x) = 5^(x-2). Izjednači eksponente: 3/4 = x-2 → x = 11/4.","Česta greška: ne pretvoriti ⁴√125 u potenciju (numerički ≈ 3,344, ne radi za algoritam).","Provjera: ⁴√125 = 5^(0,75) ≈ 3,344; 1/5^(2-11/4) = 1/5^(-³⁄₄) = 5^(0,75) ≈ 3,344 ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
-  {id:24.1,type:"sa",topic:"seq",points:1,
+  {id:24.1,type:"sa",topic:"niz",points:1,
   context:"Zadatak 24 (1. dio od 2):",
   q:"Odredite 10. član niza kojemu je prvi član 5, a za ostale članove vrijedi aₙ₊₁ = 1,2·aₙ, n ∈ ℕ.",
   sol:{ans:"25,7989",alt:["25,7989","1,2^9·5"]},
@@ -502,7 +502,7 @@ export const qs = [
     {txt:"a = 3 (0·x=2, nemoguće)",final:true}
   ,{txt:"Provjera: a=3 → 3x - 2 = 3x → -2 = 0 (kontradikcija) ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: ax - 2 = 3x → (a-3)x = 2. Da nema rješenja: a - 3 = 0 → a = 3 (i 2 ≠ 0 ✓).",note:"intuicija",final:true},{txt:"Točan odgovor: a = 3 ✓",note:"odgovor",final:true}],
   why:["Pravilo: linearna jednadžba ax + b = 0 nema rješenja kad je a = 0 i b ≠ 0.","Intuicija: ax - 2 = 3x → (a-3)x = 2. Da nema rješenja: a - 3 = 0 → a = 3 (i 2 ≠ 0 ✓).","Česta greška: tražiti a takav da postoji jedinstveno rješenje (a ≠ 3) — to je suprotno traženom.","Provjera: a = 3 → 3x - 2 = 3x → -2 = 0 → kontradikcija ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
-  {id:25.1,type:"sa",topic:"komp",points:1,
+  {id:25.1,type:"sa",topic:"kompl",points:1,
   context:"Zadatak 25 (1. dio od 2):",
   q:"Odredite realan broj b ako je (4 − 2i)(-1 + bi) = 10i.",
   sol:{ans:"b = 2",alt:["2","b=2","b = 2"]},
@@ -511,7 +511,7 @@ export const qs = [
     {txt:"Realni dio: -4+2b=0 → b=2. Imaginarni: 4·2+2=10 ✓",final:true}
   ,{txt:"Provjera: (4-2i)(-1+2i) = -4+8i+2i+4 = 10i ✓ → b = 2",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: (4-2i)(-1+bi) = (-4 - 2b) + (4b + 2)i. Zadana vrijednost 10i → realni dio = 0, imaginarni = 10. -4-2b = 0 → b = -2... ali zadano je b = 2.",note:"intuicija",final:true},{txt:"Točan odgovor: b = 2 ✓",note:"odgovor",final:true}],
   why:["Pravilo: kompleksno množenje (a+bi)(c+di) = (ac-bd) + (ad+bc)i.","Intuicija: (4-2i)(-1+bi) = (-4 - 2b) + (4b + 2)i. Zadana vrijednost 10i → realni dio = 0, imaginarni = 10. -4-2b = 0 → b = -2... ali zadano je b = 2.","Česta greška: pomiješati realni i imaginarni dio; ili greška u znaku kod (a+bi)(c+di).","Provjera: (4-2i)(-1+2i) = -4+8i+2i-4i² = -4+10i+4 = 10i ✓","Alt metoda: provjeri rezultat drugačijim pristupom.","Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj."]},
-  {id:25.2,type:"sa",topic:"komp",points:1,
+  {id:25.2,type:"sa",topic:"kompl",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Koliki je argument φ u trigonometrijskome zapisu kompleksnoga broja z = i·(cos(π/3) + i·sin(π/3))?",
   sol:{ans:"φ = [FRAC:5π|6]",alt:["5pi/6","φ=5π/6","5π/6","150°"]},
@@ -634,7 +634,7 @@ export const qs = [
     {txt:"A'=2F−A: (12/5-4, -6/5+2) = (-8/5, [FRAC:4|5])",final:true}
   ,{txt:"Provjera: polovište A i P' leži na zadanom pravcu ✓; AP' okomit na pravac ✓",final:true,note:"verifikacija"},{txt:"Provjera: udaljenost A od pravca = udaljenost A' od pravca; AA' ⊥ pravac ✓",final:true,note:"verifikacija"},{txt:"Postupak: parametriziraj geometrijski objekt, postavi uvjet, riješi sustav.",final:true,note:"postupak"},{txt:"Intuicija: A(4, -2) → spusti okomicu na zadani pravac, nađi presjek N (nogu okomice). P' = 2N - A.",note:"intuicija",final:true},{txt:"Točan odgovor: (-8/5, [FRAC:4|5]) ✓",note:"odgovor",final:true}],
   why:["Pravilo: simetrična točka P' obzirom na pravac p ima istu udaljenost od p kao P, ali na suprotnoj strani; PP' okomit na p.","Intuicija: A(4, -2) → spusti okomicu na zadani pravac, nađi presjek N (nogu okomice). P' = 2N - A.","Česta greška: zrcaliti obzirom na os umjesto na zadani pravac; ili ne dvostruko preljeti N (samo do njega).","Alt metoda: postavi parametarsku jednadžbu okomice kroz A, presjek s pravcem N, P' = A + 2·(N - A).","Provjera: P' = (-8/5, 4/5); polovište AP' = ((4-8/5)/2, (-2+4/5)/2) = (12/10, -6/10) = (6/5, -3/5) — leži na pravcu? ✓","Postupak: parametriziraj geometrijski objekt, postavi uvjet, riješi sustav."]},
-  {id:30,type:"sa",topic:"der",points:4,
+  {id:30,type:"sa",topic:"anal",points:4,
   q:"Zatvorena limenka u obliku valjka izrađena je od materijala čija je cijena 70 kn/m². Kolika je cijena materijala potrebnoga za izradu jedne limenke čiji je obujam 0,35 L ako je za njezinu izradu potrošeno najmanje materijala? (1 L = 1 dm³, debljinu i otpad zanemariti.)",
   sol:{ans:"1,92 kn",alt:["1,92","1,92","1,92 kn","≈1,92"]},
   steps:[
@@ -642,18 +642,7 @@ export const qs = [
     {txt:"O′ = 4πR − 0,7/R² = 0 → R = ∛(0,7/(4π)) ≈ 0,3819 dm"},
     {txt:"O ≈ 2,749 dm² = 0,02749 m². Cijena = 70·0,02749 ≈ 1,92 kn",final:true}
   ,{txt:"Provjera: za r_opt, ∂C/∂r = 0; minimum potvrđen drugom derivacijom ✓",final:true,note:"verifikacija"},{txt:"Alt metoda: numerička diferencijacija ((f(x+h)-f(x))/h) za malu h.",final:true,note:"alt"},{txt:"Postupak: primijeni pravila deriviranja (kombinacije, lančano), pa uvrsti.",final:true,note:"postupak"},{txt:"Intuicija: zatvorena limenka ima oplošje S = 2πr² + 2πrh; volumen V = πr²h = zadan. Izrazi h iz V, uvrsti u S, deriviraj po r.",note:"intuicija",final:true},{txt:"Točan odgovor: 1,92 kn ✓",note:"odgovor",final:true}],
-  why:["Pravilo: minimum cijene materijala — postaviti funkciju cijene C(r) (gdje r = polumjer baze valjka), derivirati, postaviti C'(r) = 0.","Intuicija: zatvorena limenka ima oplošje S = 2πr² + 2πrh; volumen V = πr²h = zadan. Izrazi h iz V, uvrsti u S, deriviraj po r.","Česta greška: koristiti otvoren valjak (S = πr² + 2πrh) umjesto zatvoren; ili koristiti V umjesto S.","Alt metoda: lagrange multiplikator ili AM-GM za optimum.","Provjera: r_opt = ∛(V/(2π)), h_opt = 2r_opt; minimum cijene ≈ 1,92 kn ✓","Postupak: primijeni pravila deriviranja (kombinacije, lančano), pa uvrsti."]},
-  {_META:true,
-  auditedAt: "2026-05-16",
-  auditSource: "MAT A (viša razina, jesenski rok 2016., D-S026)",
-  auditStatus: "verified-full",
-  auditBy: "claude+daniel (full pipeline + Pak F-deep augmentation)",
-  verified: "sympy+pdf+verbatim+visual+pedagogy-deep",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 92},
-  metricsSteps: 6.0,
-  metricsWhy: 6.0,
-  notes: "Full audit + Pak F-DEEP smart augmentation. Avg steps 6,0 (ref 6,0), avg why 6,0 (ref 4,7). Each Q ima: original pedagogy + Diagnostic (MC analiza ili Alt SA pristup) + Alt metoda + Provjera + Postupak + Intuicija (po topic-u). Smart augmenter preserved postojeću kvalitetu i dodao samo missing kategorije."
-  }
+  why:["Pravilo: minimum cijene materijala — postaviti funkciju cijene C(r) (gdje r = polumjer baze valjka), derivirati, postaviti C'(r) = 0.","Intuicija: zatvorena limenka ima oplošje S = 2πr² + 2πrh; volumen V = πr²h = zadan. Izrazi h iz V, uvrsti u S, deriviraj po r.","Česta greška: koristiti otvoren valjak (S = πr² + 2πrh) umjesto zatvoren; ili koristiti V umjesto S.","Alt metoda: lagrange multiplikator ili AM-GM za optimum.","Provjera: r_opt = ∛(V/(2π)), h_opt = 2r_opt; minimum cijene ≈ 1,92 kn ✓","Postupak: primijeni pravila deriviranja (kombinacije, lančano), pa uvrsti."]}
 ];
 
 export const qImages = {

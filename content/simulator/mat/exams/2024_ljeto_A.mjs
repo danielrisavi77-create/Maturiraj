@@ -39,7 +39,7 @@ function Svg8_2024Alj(){
 
 function Svg35_2024Alj(){
   const W=420, H=240;
-  const blue="#4a90d9"; const blueFill="rgba(74,144,217,0.12)"; const red="#e05252"; const gold="#e9b446"; const txt="var(--text)";
+  const blue="var(--blue)"; const blueFill="rgba(74,144,217,0.12)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
   // Trapezoid: A bot-left, B bot-right, C top-right, D top-left
   // From original render: relatively flat trapezoid
   const A=[60,180], B=[360,180], C=[280,80], D=[140,80];
@@ -58,7 +58,7 @@ function Svg35_2024Alj(){
     // Vertices
     ...[[A,"A",-14,18],[B,"B",6,18],[C,"C",6,-4],[D,"D",-16,-4],[E_,"E",-10,18],[F,"F",4,18]].map(([p,l,dx,dy],i)=>
       e("g",{key:"v"+i},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
         e("text",{x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},l)
       )
     )
@@ -111,7 +111,7 @@ function Svg33a_2024Alj(){
       e("line",{key:"gy"+i,x1:ox-r-10,y1:oy+i*(r/3),x2:ox+r+10,y2:oy+i*(r/3),stroke:st,strokeWidth:0.5,strokeOpacity:0.2,strokeDasharray:"1 4"}),
     ]),
     // kružnica
-    e("circle",{key:"circ",cx:ox,cy:oy,r:r,fill:"none",stroke:"#4a90d9",strokeWidth:1.8}),
+    e("circle",{key:"circ",cx:ox,cy:oy,r:r,fill:"none",stroke:"var(--blue)",strokeWidth:1.8}),
     // osi
     e("line",{key:"xa",x1:ox-r-12,y1:oy,x2:ox+r+12,y2:oy,stroke:st,strokeWidth:1.3}),
     e("line",{key:"ya",x1:ox,y1:oy-r-12,x2:ox,y2:oy+r+12,stroke:st,strokeWidth:1.3}),
@@ -175,7 +175,7 @@ function Svg22_2024Alj(){
   const L=[50, 200];    // kraj stranice t
   const R=[215, 190];   // kraj stranice z
   return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"260px",width:"100%",display:"block",margin:"12px auto"}},
-    e("polygon",{key:"tri",points:`${P[0]},${P[1]} ${L[0]},${L[1]} ${R[0]},${R[1]}`,fill:"none",stroke:"#4a90d9",strokeWidth:2}),
+    e("polygon",{key:"tri",points:`${P[0]},${P[1]} ${L[0]},${L[1]} ${R[0]},${R[1]}`,fill:"none",stroke:"var(--blue)",strokeWidth:2}),
     // Luk kuta 60° — UNUTAR trokuta (od lijeve strane prema desnoj, svi dolje)
     (()=>{
       const ra=26;
@@ -188,7 +188,7 @@ function Svg22_2024Alj(){
       // Arc FROM P1 TO P2, mali luk, sweep=1 — ide kroz sredinu trokuta (DOLJE, u SVG koord. y raste dolje)
       return e("path",{key:"arc60",
         d:`M ${P1[0].toFixed(2)} ${P1[1].toFixed(2)} A ${ra} ${ra} 0 0 1 ${P2[0].toFixed(2)} ${P2[1].toFixed(2)}`,
-        fill:"none",stroke:"#e9b446",strokeWidth:1.6});
+        fill:"none",stroke:"var(--gold)",strokeWidth:1.6});
     })(),
     // oznaka 60° unutar trokuta, ispod vrha
     e("text",{key:"ang",x:P[0]-11,y:P[1]+46,fontSize:13,fontFamily:"serif",fill:st},"60°"),
@@ -200,7 +200,7 @@ function Svg22_2024Alj(){
 }
 
 function Svg18_2024Alj(){
-  const blue="#4a90d9"; const blueD="#3a6aa0"; const red="#e05252"; const gold="#e9b446";
+  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
   const W=380, H=340;
   const A=[80,280],B=[240,280],C=[320,220],D=[160,220];
   const vE=[80,120],vF=[240,120],vG=[320,60],vH=[160,60];
@@ -219,15 +219,15 @@ function Svg18_2024Alj(){
       stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
     ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blue,strokeWidth:2})),
-    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5})),
+    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
     ...verts.map(([n,p,dx,dy])=>e("text",{key:"t"+n,x:p[0]+dx,y:p[1]+dy,
       fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n))
   );
 }
 
 function Svg17_2024Alj(){
-  const st="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446"; const green="#50c878";
+  const st="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)"; const green="var(--green)";
   const W=620, H=480;
   const VEC_COLORS = {a: blue, b: green, c: red};
   const panel = (ox, oy, va, vb, vc, letter) => {
@@ -286,14 +286,14 @@ function Svg15_2024Alj(){
   const D=[(B[0]+C[0])/2, (B[1]+C[1])/2];
   return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"340px",width:"100%",display:"block",margin:"12px auto"}},
     // Trokut
-    e("polygon",{key:"tri",points:`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]}`,fill:"none",stroke:"#4a90d9",strokeWidth:2}),
+    e("polygon",{key:"tri",points:`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]}`,fill:"none",stroke:"var(--blue)",strokeWidth:2}),
     // Dužina AD (težišnica)
-    e("line",{key:"AD",x1:A[0],y1:A[1],x2:D[0],y2:D[1],stroke:"#e9b446",strokeWidth:1.8,strokeDasharray:"5 3"}),
+    e("line",{key:"AD",x1:A[0],y1:A[1],x2:D[0],y2:D[1],stroke:"var(--gold)",strokeWidth:1.8,strokeDasharray:"5 3"}),
     // Oznake vrhova
-    e("text",{key:"lA",x:A[0]-14,y:A[1]+6,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:"#e9b446"},"A"),
-    e("text",{key:"lB",x:B[0]+8,y:B[1]+6,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:"#e9b446"},"B"),
-    e("text",{key:"lC",x:C[0]-6,y:C[1]-6,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:"#e9b446"},"C"),
-    e("text",{key:"lD",x:D[0]+6,y:D[1]-4,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:"#e9b446"},"D")
+    e("text",{key:"lA",x:A[0]-14,y:A[1]+6,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:"var(--gold)"},"A"),
+    e("text",{key:"lB",x:B[0]+8,y:B[1]+6,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:"var(--gold)"},"B"),
+    e("text",{key:"lC",x:C[0]-6,y:C[1]-6,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:"var(--gold)"},"C"),
+    e("text",{key:"lD",x:D[0]+6,y:D[1]-4,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:"var(--gold)"},"D")
   );
 }
 
@@ -389,7 +389,7 @@ export const qs = [
   steps:[{txt:"Identifikacija: tražimo uvjet na koeficijente kad su rješenja x₁ i x₂ realna i SUPROTNOGA predznaka (jedno > 0, drugo < 0)."},{txt:"Vièteove formule: x₁ + x₂ = −b/a; x₁ · x₂ = c/a."},{txt:"Rješenja suprotnih predznaka ⇔ x₁ · x₂ < 0 (umnožak je negativan ako brojevi imaju različite predznake)."},{txt:"Uvjet: c/a < 0 ⇔ c i a moraju biti SUPROTNIH predznaka (a > 0 i c < 0, ili a < 0 i c > 0)."},{txt:"Predznak b nije ograničen — ovisi o tome je li pozitivno rješenje veće (b < 0) ili negativno veće (b > 0).",note:"verifikacija"},{txt:"Distractor analiza:\n  A) a i b istoga predznaka — nepotrebno; b je slobodan.\n  B) a i c istoga predznaka — DAJE c/a > 0 → umnožak rješenja pozitivan → rješenja ISTOG predznaka, što nije ovo.\n  C) a i b suprotnoga predznaka — nepotrebno; b je slobodan.\n  D) a i c suprotnoga predznaka — DAJE c/a < 0 → umnožak rješenja negativan → suprotni predznaci ✓.",note:"diagnostika"},{txt:"Provjera s konkretnim primjerom: x² − x − 6 = 0; rješenja x = 3, x = −2 (suprotni predznaci). Koeficijenti a = 1, b = −1, c = −6. a > 0, c < 0 → suprotni predznaci ✓.",note:"verifikacija"},{txt:"Odgovor: D — Koeficijenti a i c suprotnoga su predznaka.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: predznak umnoška rješenja izravno čita se iz omjera c/a (Vièteov produkt).",note:"intuicija",final:true},{txt:"Definicija: dva broja su suprotnih predznaka ⇔ njihov umnožak je negativan.",note:"postupak",final:true}],
   why:["Pravilo: za ax² + bx + c = 0 — Vièteove formule: x₁ + x₂ = −b/a, x₁ · x₂ = c/a.","Definicija: dva broja su suprotnih predznaka ⇔ njihov umnožak je negativan.","Intuicija: predznak umnoška rješenja izravno čita se iz omjera c/a (Vièteov produkt).","Alt metoda: probati konkretan slučaj — uzeti dva broja različitih predznaka, izračunati koeficijente i provjeriti njihove znakove.","Česta greška: brkati zbroj i umnožak rješenja (Vièteove formule); umnožak je c/a, zbroj −b/a.","Tipičan propust: ne razlikovati 'isti predznak' (c/a > 0) i 'suprotni predznak' (c/a < 0).","Veza s gradivom: Vièteove formule, kvadratne jednadžbe, predznaci.","Provjera: za bilo koji a, c različitih predznaka, jednadžba ax² + bx + c = 0 ima dva rješenja različitih predznaka (uz uvjet D = b² − 4ac > 0) ✓."]
 },
-  {id:8,img:true,type:"mc",warn:"Pazi: očitaj nultočke i tjeme/sjecišta iz grafa prije izbora formule.",topic:"grf",points:1,
+  {id:8,img:true,type:"mc",warn:"Pazi: očitaj nultočke i tjeme/sjecišta iz grafa prije izbora formule.",topic:"fun",points:1,
   q:"Na slici je prikazan graf funkcije f. Kojim je pravilom pridruživanja zadana ta funkcija?",
   opts:["f(x) = |x − 2| − 2","f(x) = |x − 2| + 2","f(x) = |x + 2| − 2","f(x) = |x + 2| + 2"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -410,14 +410,14 @@ export const qs = [
   steps:[{txt:"Identifikacija kvadranta: α ∈ ⟨π/2, π⟩ znači α je u 2. KVADRANTU (između 90° i 180°)."},{txt:"Predznaci trigonometrijskih funkcija u 2. kvadrantu: sin α > 0, cos α < 0, tan α < 0."},{txt:"Pitagorin trigonometrijski identitet: sin²α + cos²α = 1."},{txt:"Supstitucija: (3/4)² + cos²α = 1 ⇒ 9/16 + cos²α = 1 ⇒ cos²α = 1 − 9/16 = 7/16."},{txt:"Korijenovanje: cos α = ±√(7/16) = ±√7/4."},{txt:"Predznak (iz kvadranta): cos α u 2. kvadrantu je NEGATIVAN ⇒ cos α = −√7/4."},{txt:"Provjera: sin²α + cos²α = 9/16 + 7/16 = 16/16 = 1 ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) √7/4 — krivi predznak (pozitivan).\n  B) −√7/4 — točan.\n  C) ±√7/4 — neodređen, ali znamo predznak iz kvadranta.\n  D) krivi računski put.",note:"diagnostika"},{txt:"Odgovor: B — cos α = −√7/4.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: u 2. kvadrantu, x-koordinata (cos) je negativna, y-koordinata (sin) je pozitivna.",note:"intuicija",final:true},{txt:"Definicija: jedinična kružnica — točka (cos α, sin α) na kružnici polumjera 1; α se mjeri od pozitivnog smjera x-osi.",note:"postupak",final:true}],
   why:["Pravilo: sin²α + cos²α = 1 (Pitagorin identitet); predznaci sin/cos/tan ovise o kvadrantu.","Definicija: jedinična kružnica — točka (cos α, sin α) na kružnici polumjera 1; α se mjeri od pozitivnog smjera x-osi.","Intuicija: u 2. kvadrantu, x-koordinata (cos) je negativna, y-koordinata (sin) je pozitivna.","Alt metoda: koristiti pravokutni trokut s katetama 3 i √7 i hipotenuzom 4 (Pitagora); sin = 3/4, cos = √7/4 (bez predznaka), pa primijeniti predznak iz kvadranta.","Česta greška: zaboraviti predznak (uzeti +√7/4 jer \"kvadrirani korijen je pozitivan\") — uvijek pažljivo pratiti kvadrant.","Tipičan propust: ne uračunati α ∈ ⟨π/2, π⟩ kao 2. kvadrant; uvijek pretvoriti raspon u radijanima u kvadrant.","Veza s gradivom: jedinična kružnica, trigonometrijski identitet, predznaci po kvadrantima — temelj trigonometrije.","Provjera: cos²α + sin²α = 7/16 + 9/16 = 1 ✓; cos α < 0 u 2. kvadrantu ✓."]
 },
-  {id:11,type:"mc",warn:"Pazi: provjeri nazivnik (≠ 0) i potkorijenu/argument za svaku ponuđenu funkciju.",topic:"fn",points:1,
+  {id:11,type:"mc",warn:"Pazi: provjeri nazivnik (≠ 0) i potkorijenu/argument za svaku ponuđenu funkciju.",topic:"fun",points:1,
   q:"Koja je od navedenih funkcija definirana za svaki realni broj x?",
   opts:["f(x) = 2^(x+5)","f(x) = √(x − 7)","f(x) = (x + 4)/(x − 3)","f(x) = log(x²)"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
   steps:[{txt:"Domena = skup x za koje su SVI računski koraci definirani. Ograničenja: nazivnik ≠ 0; pod √ ≥ 0; argument log > 0."},{txt:"A) f(x) = 2^(x+5) — eksponencijalna funkcija; baza 2 > 0, eksponent x+5 definiran svuda → definirana za sve x ∈ ℝ."},{txt:"B) f(x) = √(x − 7) — definirana samo za x − 7 ≥ 0 ⇔ x ≥ 7. NIJE za sve x."},{txt:"C) f(x) = (x + 4)/(x − 3) — nije definirana kad x = 3 (nazivnik = 0). NIJE za sve x."},{txt:"D) f(x) = log(x²) — argument x² > 0 znači x ≠ 0; nije definirana u x = 0. NIJE za sve x.",note:"diagnostika"},{txt:"Eliminacija: B (x ≥ 7), C (x ≠ 3), D (x ≠ 0) — sve imaju ograničenja. Samo A nema.",note:"verifikacija"},{txt:"Odgovor: A — f(x) = 2^(x+5) definirana za svaki realni x.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: traži se funkcija BEZ 'rupa' u domeni — bez nazivnika koji može biti 0, bez korijena s negativnim argumentom, bez log s nepozitivnim.",note:"intuicija",final:true},{txt:"Definicija: domena = najveći podskup ℝ za koji f(x) postoji.",note:"postupak",final:true}],
   why:["Pravilo: funkcije definirane na cijelom ℝ: polinomi, eksponencijalne (a^x, a > 0), |x|, sin x, cos x.","Definicija: domena = najveći podskup ℝ za koji f(x) postoji.","Intuicija: traži se funkcija BEZ 'rupa' u domeni — bez nazivnika koji može biti 0, bez korijena s negativnim argumentom, bez log s nepozitivnim.","Alt metoda: provjeri vrijednost funkcije za x = 0, x = -10, x = velik broj — sve mora biti definirano.","Česta greška: brkati domena (ulaz) i sliku (izlaz) — slika 2^(x+5) je ⟨0, ∞⟩, ali domena je cijelo ℝ.","Tipičan propust: zaboraviti da log nije definiran za argument ≤ 0; čak i log(x²) je nedefiniran kad x = 0.","Veza s gradivom: eksponencijalne i logaritamske funkcije, domena, neprekidnost.","Provjera: za bilo koji x ∈ ℝ, 2^(x+5) daje pozitivan broj ✓."]
 },
-  {id:12,type:"mc",warn:"Pazi: S₁₀ = (10/2)(2a₁ + 9d); uvrsti a₁ = 2p i d = 1/5 pažljivo.",topic:"seq",points:1,
+  {id:12,type:"mc",warn:"Pazi: S₁₀ = (10/2)(2a₁ + 9d); uvrsti a₁ = 2p i d = 1/5 pažljivo.",topic:"niz",points:1,
   q:"Koliko iznosi zbroj prvih 10 članova aritmetičkoga niza kojemu je prvi član jednak 2p, p ∈ ℝ, a razlika niza je 1/5?",
   opts:["10p + 9","10p + 10","20p + 9","20p + 10"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -431,14 +431,14 @@ export const qs = [
   steps:[{txt:"Identifikacija: limes oblika 0/0 (neprodređena forma) za x → 1."},{txt:"Brojnik faktorizacija: x² + 2x − 3. Tražimo faktore (x − 1)(x + 3) (provjeri: x · x + 3x − x − 3 = x² + 2x − 3 ✓)."},{txt:"Razlomak: [FRAC:(x − 1)(x + 3)|x − 1] = x + 3 za x ≠ 1."},{txt:"Limes: lim_{x → 1} (x + 3) = 1 + 3 = 4."},{txt:"Provjera s L'Hôpitalovim pravilom: lim_{x→1} (2x + 2)/1 = 2·1 + 2 = 4 ✓.",note:"verifikacija"},{txt:"Distractor analiza: A) 0 — krivo, limes je smislen, ne nula.\n  B) 4 — točan.\n  C) ∞ — krivo, neodređena forma se rješava.\n  D) 2 — krivi račun.",note:"diagnostika"},{txt:"Odgovor: B — limes je 4.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: x = 1 čini brojnik i nazivnik = 0, pa direktna supstitucija ne radi — treba faktorizacija.",note:"intuicija",final:true},{txt:"Definicija: limes lim_{x→a} f(x) = L znači da f(x) prilazi L kako x prilazi a (ne nužno u a).",note:"postupak",final:true}],
   why:["Pravilo: za limes oblika 0/0, faktorizacija ili L'Hôpitalovo pravilo. Ako brojnik i nazivnik imaju zajednički faktor, skrati ga.","Definicija: limes lim_{x→a} f(x) = L znači da f(x) prilazi L kako x prilazi a (ne nužno u a).","Intuicija: x = 1 čini brojnik i nazivnik = 0, pa direktna supstitucija ne radi — treba faktorizacija.","Alt metoda: L'Hôpitalovo pravilo — derivira brojnik i nazivnik posebno, pa traži limes.","Česta greška: dati 0/0 kao odgovor — to je NEODREĐENA forma, ne stvarna vrijednost.","Tipičan propust: zaboraviti faktorizirati brojnik; provjeriti je li x = 1 nultočka brojnika.","Veza s gradivom: limesi, neprekidnost, derivacije.","Provjera: oba metoda daju isto (4); zamijeniti x s malim vrijednostima bliskim 1 (npr. 0,99, 1,01) i provjeriti ✓."]
 },
-  {id:14,type:"mc",warn:"Pazi: f′ mijenja predznak u lokalnim ekstremima (−5 i 2); odredi gdje funkcija raste/pada.",topic:"de",points:1,
+  {id:14,img:true,type:"mc",warn:"Pazi: f′ mijenja predznak u lokalnim ekstremima (−5 i 2); odredi gdje funkcija raste/pada.",topic:"anal",points:1,
   q:"Na skici je prikazan graf polinoma trećeg stupnja f koji u točkama s apscisama -5 i 2 postiže lokalne ekstreme. Na kojemu je od navedenih intervala f′(x) < 0?",
   opts:["⟨−∞, -5⟩","⟨-5, 2⟩","⟨2, 5⟩","⟨5, ∞⟩"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
   steps:[{txt:"Identifikacija: graf polinoma 3. stupnja s lokalnim max u x = -5 i lokalnim min u x = 2 (čita se sa slike: gore-dolje promjena)."},{txt:"Veza derivacije i monotonosti: f′(x) > 0 ⇔ f raste; f′(x) < 0 ⇔ f pada; f′(x) = 0 u ekstremima."},{txt:"Iz slike: f raste na ⟨−∞, -5⟩, pada na ⟨-5, 2⟩, raste na ⟨2, ∞⟩."},{txt:"f′(x) < 0 → f pada → interval ⟨-5, 2⟩."},{txt:"Provjera u ekstremima: f′(-5) = 0 (max), f′(2) = 0 (min); između je f′ negativna.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) ⟨−∞, -5⟩ — f raste, f′ > 0.\n  B) ⟨-5, 2⟩ — f pada, f′ < 0 ✓.\n  C) ⟨2, 5⟩ — f raste (od minimuma do 5), f′ > 0.\n  D) ⟨5, ∞⟩ — f raste, f′ > 0.",note:"diagnostika"},{txt:"Odgovor: B — ⟨-5, 2⟩.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: čitati monotonost s grafa (gore = raste, dolje = pada), pa konzistirati s predznakom derivacije.",note:"intuicija",final:true},{txt:"Definicija: lokalni max — najveća vrijednost u okolini; lokalni min — najmanja u okolini.",note:"postupak",final:true}],
   why:["Pravilo: derivacija f′(x) je nagib tangente; f′ > 0 ⇒ funkcija raste; f′ < 0 ⇒ pada; f′ = 0 u ekstremu (lokalni max/min) ili točki infleksije.","Definicija: lokalni max — najveća vrijednost u okolini; lokalni min — najmanja u okolini.","Intuicija: čitati monotonost s grafa (gore = raste, dolje = pada), pa konzistirati s predznakom derivacije.","Alt metoda: f′(x) = 0 u ekstremima ⇒ x = -5, x = 2; tabela predznaka f′ pomaže odrediti monotonost.","Česta greška: pomiješati f i f′ (graf same funkcije s grafom derivacije).","Tipičan propust: ne identificirati IZMEĐU ekstrema kao područje suprotne monotonosti.","Veza s gradivom: derivacija, lokalni ekstremi, monotonost.","Provjera: u sredini intervala ⟨-5, 2⟩ (npr. x = 0) graf jasno pada ✓."]
 },
-  {id:15,type:"mc",warn:"Pazi: trokuti s istom visinom imaju omjer površina jednak omjeru osnovica.",topic:"ge",points:1,
+  {id:15,img:true,type:"mc",warn:"Pazi: trokuti s istom visinom imaju omjer površina jednak omjeru osnovica.",topic:"geom",points:1,
   q:"Na skici je prikazan raznostraničan trokut ABC čija je površina dvostruko veća od površine trokuta ABD. Koja od navedenih tvrdnja vrijedi za svaki trokut ABC?",
   opts:["Dužina AD leži na simetrali kuta u vrhu A.","Dužina AD je težišnica trokuta ABC.","Dužina AD leži na simetrali stranice BC.","Dužina AD je visina trokuta ABC."],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -501,7 +501,7 @@ export const qs = [
   steps:[{txt:"Označavanje: bridovi a = 3k, b = 4k, c = 5k za neki k > 0."},{txt:"Prostorna dijagonala kvadra (Pitagora u 3D): D² = a² + b² + c²."},{txt:"D² = (3k)² + (4k)² + (5k)² = 9k² + 16k² + 25k² = 50k²."},{txt:"D = k·√50 = k·5√2 = 5k·√2."},{txt:"Veza s c: c = 5k, pa D = c·√2."},{txt:"Provjera s k = 1: a = 3, b = 4, c = 5; D = √(9+16+25) = √50 ≈ 7,07; c·√2 = 5·1,414 = 7,07 ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) D = c·√2 — TOČAN (zbog Pitagorinog trojstva 3-4-5 i √50 = 5√2).\n  B) D = c·√3 — to bi bilo za KOCKU s bridom c.\n  C) D = 2c — krivo (D = 7,07 ≠ 10).\n  D) D = 2,4·c — krivo (D/c = √2 ≈ 1,414, ne 2,4).",note:"diagnostika"},{txt:"Odgovor: A — D = c·√2.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: specijalan slučaj — kvadar 3:4:5 ima posebno svojstvo jer 3²+4² = 5² (Pitagorina trojka), pa D postaje izraziv kroz c.",note:"intuicija",final:true},{txt:"Definicija: prostorna dijagonala povezuje suprotne vrhove kvadra; presjekom kroz unutrašnjost.",note:"postupak",final:true}],
   why:["Pravilo: prostorna dijagonala kvadra D = √(a² + b² + c²) (dvostruka primjena Pitagore u 3D).","Definicija: prostorna dijagonala povezuje suprotne vrhove kvadra; presjekom kroz unutrašnjost.","Intuicija: specijalan slučaj — kvadar 3:4:5 ima posebno svojstvo jer 3²+4² = 5² (Pitagorina trojka), pa D postaje izraziv kroz c.","Alt metoda: prvo dijagonala baze d_b = √(a²+b²) = √(9+16) = 5 = c (slučajno!), pa D = √(c² + c²) = c√2.","Česta greška: koristiti formulu za KOCKU (D = a√3) umjesto za KVADAR.","Tipičan propust: brkati prostornu dijagonalu i dijagonalu baze.","Veza s gradivom: Pitagorin poučak u 3D, Pitagorine trojke, kvadar.","Provjera: c·√2 = 5·√2 ≈ 7,07 = √50 ✓."]
 },
-  {id:24,type:"mc",warn:"Pazi: dodavanje konstante pomiče podatke ali NE mijenja raspršenost → devijacija ostaje ista.",topic:"st",points:1,
+  {id:24,type:"mc",warn:"Pazi: dodavanje konstante pomiče podatke ali NE mijenja raspršenost → devijacija ostaje ista.",topic:"stat",points:1,
   q:"Što od navedenoga vrijedi za standardnu devijaciju skupa podataka ako svakomu podatku toga skupa dodamo broj 2?",
   opts:["Smanji se za 2.","Poveća se za 2.","Ostane ista.","Pomnoži se s 2."],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -514,7 +514,7 @@ export const qs = [
   steps:[{txt:"Identifikacija: x³ + 27 je ZBROJ KUBOVA (a³ + b³), s a = x i b = 3 (jer 27 = 3³)."},{txt:"Pravilo zbroja kubova: a³ + b³ = (a + b)(a² − ab + b²)."},{txt:"Supstitucija: a = x, b = 3 → (x + 3)(x² − 3x + 9)."},{txt:"Pojednostavljenje: binom (x + 3), trinom (x² − 3x + 9)."},{txt:"Provjera: razviti (x + 3)(x² − 3x + 9) = x³ − 3x² + 9x + 3x² − 9x + 27 = x³ + 27 ✓.",note:"verifikacija"},{txt:"Provjera diskriminante trinoma: D = 9 − 36 = −27 < 0 → trinom je nesvodiv (nema realnih nultočaka), pa je faktorizacija konačna nad ℝ.",note:"diagnostika"},{txt:"Odgovor: (x + 3)(x² − 3x + 9).",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: prepoznati strukturu — 27 je kub od 3, pa je zbroj kubova.",note:"intuicija",final:true},{txt:"Definicija: trinom (a² − ab + b²) ima diskriminantu −3b² < 0, pa je uvijek nesvodiv nad ℝ.",note:"postupak",final:true}],
   why:["Pravilo: zbroj kubova a³ + b³ = (a + b)(a² − ab + b²); razlika kubova a³ − b³ = (a − b)(a² + ab + b²).","Definicija: trinom (a² − ab + b²) ima diskriminantu −3b² < 0, pa je uvijek nesvodiv nad ℝ.","Intuicija: prepoznati strukturu — 27 je kub od 3, pa je zbroj kubova.","Alt metoda: dugačko dijeljenje polinoma x³ + 27 s (x + 3) — daje trinom x² − 3x + 9.","Česta greška: brkati formulu za zbroj i razliku kubova (znakovi srednjeg člana).","Tipičan propust: pomisliti da je trinom x² − 3x + 9 dalje faktorizirajan; nije.","Veza s gradivom: faktorizacija polinoma, formule za potencije, identiteti.","Provjera: x = 0: lijevo = 27; desno = (3)(9) = 27 ✓."]
 },
-  {id:26,type:"sa",topic:"kompleks",points:1,
+  {id:26,type:"sa",topic:"kompl",points:1,
   q:"Zapišite u trigonometrijskome obliku kompleksni broj kojemu je u kompleksnoj ravnini pridružena točka (5, 5).",
   sol:{ans:"z = 5√2·(cos([FRAC:π|4]) + i·sin([FRAC:π|4]))",alt:["z=5√2(cos π/4 + i sin π/4)","5√2(cos(45°)+i sin(45°))"]},
   steps:[{txt:"Identifikacija: točka (5, 5) u kompleksnoj ravnini odgovara kompleksnom broju z = 5 + 5i."},{txt:"Modul: r = |z| = √(5² + 5²) = √50 = 5√2."},{txt:"Argument: tan φ = y/x = 5/5 = 1; pa φ = π/4 (1. kvadrant, jer x > 0 i y > 0)."},{txt:"Trigonometrijski oblik: z = r·(cos φ + i sin φ) = 5√2·(cos(π/4) + i sin(π/4))."},{txt:"Provjera: 5√2·cos(π/4) = 5√2·(√2/2) = 5; 5√2·sin(π/4) = 5; pa z = 5 + 5i ✓.",note:"verifikacija"},{txt:"Odgovor: z = 5√2·(cos(π/4) + i sin(π/4)).",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: točka (5, 5) leži na simetrali 1. kvadranta, pa je argument 45° = π/4.",note:"intuicija",final:true},{txt:"Definicija: argument φ se mjeri od pozitivnog smjera realne osi protiv kazaljke; u 1. kvadrantu φ ∈ ⟨0, π/2⟩.",note:"postupak",final:true}],
@@ -546,7 +546,7 @@ export const qs = [
   sol:{ans:"3⁶¹",alt:["3⁶¹","≈ 3⁶¹"]},
   why:["Pravilo: (aᵐ)ⁿ = aᵐⁿ; aᵐ + aᵐ = 2aᵐ; izlučivanjem zajedničkog faktora.","Definicija: potencija potencije = umnožak eksponenata.","Intuicija: sve treba sveti na istu bazu (3); pa izlučiti zajednički faktor.","Alt metoda: pisati eksplicitno i provjeriti — 9³⁰ je veliki broj, ali simbolički je 3⁶⁰.","Česta greška: zbrojiti eksponente direktno (9³⁰ + 27²⁰ ≠ 3⁵⁰).","Tipičan propust: zaboraviti da je 2·3⁶⁰ ≠ 6⁶⁰; eksponent ostaje 60.","Veza s gradivom: pravila potencija, izlučivanje zajedničkog faktora.","Provjera: 3·3⁶⁰ = 3⁶¹ ✓."]
 },
-  {id:30.1,type:"sa",topic:"ne",points:1,
+  {id:30.1,type:"sa",topic:"al",points:1,
   context:"Zadatak 30 (1. dio od 2): Riješite zadatke o cijenama paketa sličica i nejednadžbi.",
   q:"Mateo je za šest paketa sličica i album koji košta tri eura platio MANJE od devet eura. Drugoga dana želio kupiti još četiri paketa sličica, ali mu dva eura NISU bila dovoljna. Koja je najmanja, a koja najveća moguća cijena paketa sličica? (Cijene se izražavaju kao brojevi s dvama decimalnim mjestima.)",
   sol:{ans:"0,51 € i 0,99 €",alt:["najmanja 0,51, najveća 0,99","0,51, 0,99","0,51 i 0,99"]},
@@ -574,14 +574,14 @@ export const qs = [
   sol:{ans:"Parabola otvorena prema dolje s vrhom (1, 4), nultočke x = -1 i x = 3.",alt:["tjeme (1,4), pada","V(1,4)"]},
   why:["Pravilo: za graf parabole — tjeme, nultočke, y-odsječak su ključne točke.","Definicija: parabola y = a(x − h)² + k otvara se \"gore\" ako a > 0, \"dolje\" ako a < 0.","Intuicija: tjeme (1, 4) je najviša točka; siječe x-os u dva mjesta jer max = 4 > 0.","Alt metoda: razviti kvadratnu i koristiti opću formulu; daje iste nultočke.","Česta greška: zaboraviti predznak ili pomak.","Tipičan propust: nedovoljno čvrstih točaka za crtanje — uvijek tjeme + nultočke + y-odsječak.","Veza s gradivom: skiciranje grafova kvadratnih funkcija, transformacije.","Provjera: simetrija oko x = 1 ✓."]
 },
-  {id:32.1,type:"sa",topic:"ek",points:1,
+  {id:32.1,type:"sa",topic:"exp",points:1,
   context:"Zadatak 32 (1. dio od 2): Cijena C(x) zrakoplovne karte ovisi o broju upita x.",
   q:"C(x) = 2000·(1 − 4/(4 + (2,7)^(0,005·x))). Nakon koliko će upita x cijena karte biti 502 €?",
   sol:{ans:"x = 59",alt:["59","x≈59","oko 59","59 upita"]},
   steps:[{txt:"Postavi jednadžbu: 2000·(1 − 4/(4 + (2,7)^(0,005x))) = 502."},{txt:"Dijelimo s 2000: 1 − 4/(4 + (2,7)^(0,005x)) = 0,251."},{txt:"Prebacimo: 4/(4 + (2,7)^(0,005x)) = 1 − 0,251 = 0,749."},{txt:"Iz toga: 4 + (2,7)^(0,005x) = 4/0,749 ≈ 5,340."},{txt:"(2,7)^(0,005x) ≈ 1,340."},{txt:"Logaritmiranje: 0,005x · ln(2,7) = ln(1,340) ⇒ 0,005x · 0,9933 = 0,2927 ⇒ 0,005x = 0,2947 ⇒ x ≈ 58,94."},{txt:"Zaokruženo: x = 59 upita.",note:"verifikacija"},{txt:"Provjera: za x = 59: (2,7)^(0,005·59) = (2,7)^(0,295) ≈ 1,338; 4/(4 + 1,338) ≈ 0,7494; 1 − 0,7494 = 0,2506; 2000·0,2506 = 501,2 ≈ 502 ✓.",note:"verifikacija"},{txt:"Odgovor: x = 59 upita.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: cilj — izolirati eksponencijalni član, pa logaritmirati.",note:"intuicija",final:true},{txt:"Definicija: prirodni logaritam ln je inverz e^x; dekadski log je inverz 10^x.",note:"postupak",final:true}],
   why:["Pravilo: eksponencijalne jednadžbe a^x = b rješavaju se logaritmiranjem: x = log_a(b) = ln(b)/ln(a).","Definicija: prirodni logaritam ln je inverz e^x; dekadski log je inverz 10^x.","Intuicija: cilj — izolirati eksponencijalni član, pa logaritmirati.","Alt metoda: računati numeričko s grafičkim metodama ili tabelarno.","Česta greška: pomiješati logaritamska pravila (ln(a^x) = x·ln(a)); zaokruživati prerano.","Tipičan propust: ne provjeriti da rješenje ima smisla u kontekstu (broj upita mora biti cijeli broj, ovdje zaokružujemo).","Veza s gradivom: eksponencijalne funkcije, logaritmi, primjene (ekonomija, demografija).","Provjera: izračun C(59) ≈ 502 ✓."]
 },
-  {id:32.2,type:"sa",topic:"log",points:1,
+  {id:32.2,type:"sa",topic:"exp",points:1,
   context:"Zadatak 32 (2. dio od 2):",
   q:"Izrazite b iz jednakosti log₇ b = log₄₉ a⁴ + log₇ a i rješenje zapišite bez logaritma.",
   steps:[{txt:"Jednadžba: log₇ b = log₄₉ a⁴ + log₇ a."},{txt:"Pretvorba log₄₉ → log₇: log₄₉ a⁴ = log₇ a⁴ / log₇ 49 = (4·log₇ a) / 2 = 2·log₇ a."},{txt:"Izraz postaje: log₇ b = 2·log₇ a + log₇ a = 3·log₇ a."},{txt:"3·log₇ a = log₇ a³."},{txt:"Pa log₇ b = log₇ a³ → b = a³."},{txt:"Provjera: ako a = 2, log₇ 8 = log₇ 2³ = 3·log₇ 2 ✓.",note:"verifikacija"},{txt:"Odgovor: b = a³.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: 49 = 7², pa log₄₉ je polovica log₇ (kad se baza kvadrira, eksponent se polovi).",note:"intuicija",final:true},{txt:"Definicija: log_a(b) je eksponent na koji se a mora dignuti da daje b.",note:"postupak",final:true}],
@@ -603,28 +603,28 @@ export const qs = [
   solFormula:{frac:[["3","2"]]},
   why:["Pravilo: funkcija a sin(Bx) ima amplitudu |a| i period T = 2π/B.","Definicija: period = najmanja pozitivna vrijednost T za koju f(x + T) = f(x).","Intuicija: veće B = brža oscilacija (kraći period).","Alt metoda: identificirati nultočke (gdje siječe x-os) i koristiti razliku.","Česta greška: pomiješati B i period.","Tipičan propust: ne provjeravati amplitudu.","Veza s gradivom: trigonometrijske funkcije, periodičnost, fizikalne primjene (valovi).","Provjera: f(0) = 0 (za sin) ✓."]
 },
-  {id:34.1,type:"sa",topic:"ge",points:1,
+  {id:34.1,type:"sa",topic:"geom",points:1,
   context:"Zadatak 34 (1. dio od 2): Tvrtka nagrađuje izvrsnost zaposlenika mjesečnim povećanjem plaće od 3,2 % u odnosu na prethodni mjesec.",
   q:"Ako je zaposlenik u siječnju dobio plaću 900 eura i nagrađen je svaki sljedeći mjesec, koliku je plaću primio u rujnu te godine?",
   sol:{ans:"1157,92 €",alt:["1157,92","1157,92","≈1157,92","oko 1157,92"]},
   steps:[{txt:"Geometrijski rast: plaća se mjesečno množi s faktorom 1 + 3,2/100 = 1,032."},{txt:"Siječanj = 1. mjesec; rujan = 9. mjesec. Broj povećanja: 9 − 1 = 8 (povećanje se primjenjuje 8 puta)."},{txt:"Formula: a₉ = a₁ · (1,032)^8."},{txt:"Izračun: (1,032)^8 ≈ 1,28640. Pa a₉ = 900 · 1,28640 ≈ 1157,76 € (≈ 1157,92 € s preciznijim računanjem)."},{txt:"Provjera korak po korak: a₂ = 900·1,032 = 928,80; a₃ = 928,80·1,032 ≈ 958,52; ... a₉ ≈ 1157,92.",note:"verifikacija"},{txt:"Odgovor: 1157,92 € (s decimalom za eure i cente).",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: 9 mjeseci od siječnja → 8 povećanja jer prvo povećanje je u veljači.",note:"intuicija",final:true},{txt:"Definicija: postotno povećanje za p % znači množenje s (1 + p/100).",note:"postupak",final:true}],
   why:["Pravilo: geometrijski niz aₙ = a₁ · q^(n−1); ovdje q = 1,032 (faktor mjesečnog rasta).","Definicija: postotno povećanje za p % znači množenje s (1 + p/100).","Intuicija: 9 mjeseci od siječnja → 8 povećanja jer prvo povećanje je u veljači.","Alt metoda: izračun mjesec-po-mjesec — sigurniji, dulji.","Česta greška: zbroj 8 puta 3,2 % = 25,6 % nije pravilan (postoci se MULTIPLIKATIVNO komponiraju).","Tipičan propust: brojiti 9 povećanja umjesto 8 (broj povećanja = broj mjeseci - 1).","Veza s gradivom: geometrijska progresija, složeni kamatni račun, eksponencijalne funkcije.","Provjera: (1,032)^8 ≈ 1,2864 ⇒ 900·1,2864 ≈ 1157,8 €, što odgovara 1157,92 € (zaokruženo) ✓."]
 },
-  {id:34.2,type:"sa",topic:"ge",points:1,
+  {id:34.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 34 (2. dio od 2): Plaća se mjesečno povećava za 3,2 %.",
   q:"Koliko je mjeseci uzastopno zaposlenik nagrađivan ako se njegova plaća povećala s 900 eura na 1689,80 eura?",
   sol:{ans:"20",alt:["20 mjeseci","n=20","20"]},
   steps:[{txt:"Geometrijski rast: 1689,80 = 900 · (1,032)^n, gdje n je broj povećanja."},{txt:"Dijelimo s 900: (1,032)^n = 1689,80/900 ≈ 1,87756."},{txt:"Logaritmiranje: n · log(1,032) = log(1,87756) ⇒ n = log(1,87756)/log(1,032)."},{txt:"Izračun: log(1,87756) ≈ 0,2737; log(1,032) ≈ 0,01368."},{txt:"n ≈ 0,2737/0,01368 ≈ 20,01 ≈ 20."},{txt:"Provjera: 900 · (1,032)^20 ≈ 900 · 1,878 = 1690,2 ≈ 1689,80 ✓.",note:"verifikacija"},{txt:"Odgovor: 20 mjeseci.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: tražimo eksponent koji povezuje početnu i krajnju plaću.",note:"intuicija",final:true},{txt:"Definicija: logaritam je inverz potencije; bilo koja baza > 0, ≠ 1 može se koristiti.",note:"postupak",final:true}],
   why:["Pravilo: eksponencijalna jednadžba a^n = b ⇒ n = log_a(b) = log(b)/log(a).","Definicija: logaritam je inverz potencije; bilo koja baza > 0, ≠ 1 može se koristiti.","Intuicija: tražimo eksponent koji povezuje početnu i krajnju plaću.","Alt metoda: tabelarno — računati (1,032)^n za n = 1, 2, ... dok ne dosegnemo blizu 1,878.","Česta greška: dijeliti umjesto logaritmiranjem; brkati log baze.","Tipičan propust: zaokruživati prerano u koraku log → veliki kumulativni propust.","Veza s gradivom: eksponencijalne i logaritamske jednadžbe, geometrijska progresija.","Provjera: n = 20 daje plaću ≈ 1689,80 ✓."]
 },
-  {id:35.1,type:"sa",topic:"trig",points:1,
+  {id:35.1,img:true,type:"sa",topic:"trig",points:1,
   context:"Zadatak 35 (1. dio od 2): U trapezu ABCD prikazanom na skici zadane su duljine |AB| = 13 cm, |BC| = 5 cm, |AD| = 9 cm te mjera kuta β = 72°.",
   q:"Koliko iznosi duljina dijagonale AC?",
   sol:{ans:"≈ 12,4 cm",alt:["12,4","≈12,4","12,42","12,4 cm"]},
   steps:[{txt:"Trokut ABC: stranice AB = 13, BC = 5, kut u B = β = 72°."},{txt:"Poučak kosinusa za stranicu AC nasuprot kutu β: AC² = AB² + BC² − 2·AB·BC·cos(β)."},{txt:"AC² = 13² + 5² − 2·13·5·cos(72°) = 169 + 25 − 130·0,3090 = 194 − 40,17 = 153,83."},{txt:"AC = √153,83 ≈ 12,40 cm.",note:"verifikacija"},{txt:"Provjera trokutarne nejednakosti: AC < AB + BC = 18 ✓; AC > |AB − BC| = 8 ✓.",note:"verifikacija"},{txt:"Odgovor: AC ≈ 12,4 cm.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: trokut ABC unutar trapeza je rješiv s 2 stranice i 1 kutom.",note:"intuicija",final:true},{txt:"Definicija: dijagonala trapeza povezuje dva nasuprotna vrha (ne susjedna).",note:"postupak",final:true}],
   why:["Pravilo: poučak kosinusa — c² = a² + b² − 2ab·cos(C), za stranicu nasuprot kutu C.","Definicija: dijagonala trapeza povezuje dva nasuprotna vrha (ne susjedna).","Intuicija: trokut ABC unutar trapeza je rješiv s 2 stranice i 1 kutom.","Alt metoda: koordinate vrhova trapeza i formula za udaljenost.","Česta greška: koristiti Pitagorin poučak (samo za pravokutne); ne ovdje (kut ≠ 90°).","Tipičan propust: brkati nasuprotnu i susjednu stranicu kutu β.","Veza s gradivom: poučak kosinusa, geometrija trapeza.","Provjera: cos(72°) ≈ 0,309 → AC ≈ 12,4 ✓."]
 },
-  {id:35.2,type:"sa",topic:"trig",points:1,
+  {id:35.2,img:true,type:"sa",topic:"trig",points:1,
   context:"Zadatak 35 (2. dio od 2): Trapez ABCD; iz Q35,1: AC ≈ 12,4 cm, AB = 13, BC = 5, AD = 9, β = 72°.",
   q:"Koliko iznosi mjera kuta α (kut u vrhu A trapeza)?",
   sol:{ans:"≈ 31°53′42″",alt:["31°53'42''","≈31°53'42\"","31,9°","31°54'"]},
@@ -638,28 +638,28 @@ export const qs = [
   steps:[{txt:"Troznamenkasti broj: znamenke stotice, desetice, jedinice. Stotice ≠ 0 (inače je dvoznamenkasti)."},{txt:"Stotice: 9 mogućnosti (1, 2, ..., 9)."},{txt:"Desetice: 9 mogućnosti (0-9 minus odabrana stotica — 10 − 1 = 9)."},{txt:"Jedinice: 8 mogućnosti (0-9 minus 2 prethodne)."},{txt:"Ukupno: 9 · 9 · 8 = 648."},{txt:"Provjera kombinatoričkom formulom: ukupno = 9 · P(9, 2) = 9 · (9!/7!) = 9 · 72 = 648 ✓.",note:"verifikacija"},{txt:"Odgovor: 648 troznamenkastih brojeva.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: prvo izabrati stoticu (s ograničenjem), pa desetice (jedna manje), pa jedinice.",note:"intuicija",final:true},{txt:"Definicija: troznamenkasti broj ∈ {100, ..., 999}.",note:"postupak",final:true}],
   why:["Pravilo: za varijacije bez ponavljanja, pravilo umnoška s opadanjem broja izbora.","Definicija: troznamenkasti broj ∈ {100, ..., 999}.","Intuicija: prvo izabrati stoticu (s ograničenjem), pa desetice (jedna manje), pa jedinice.","Alt metoda: ukupno svih troznamenkastih − oni s ponavljanjem.","Česta greška: dopustiti stoticu = 0; zaboraviti smanjenje izbora za uzastopne pozicije.","Tipičan propust: brkati permutacije (sve elemente) i varijacije (k iz n).","Veza s gradivom: kombinatorika, varijacije, pravilo umnoška.","Provjera: 9·9·8 = 648 ✓."]
 },
-  {id:36.2,type:"sa",topic:"ver",points:1,
+  {id:36.2,type:"sa",topic:"komb",points:1,
   context:"Zadatak 36 (2. dio od 2): Svaka strana kocke je obojana različitom bojom (6 različitih boja).",
   q:"Kolika je vjerojatnost da kocka pri dvama uzastopnim bacanjima ne padne na istu boju?",
   sol:{ans:"[FRAC:5|6]",alt:["5/6","5÷6","0,833","0,833"]},
   steps:[{txt:"Prvo bacanje: bilo koja od 6 strana može pasti (svejedno koja)."},{txt:"Drugo bacanje: tražimo da NE padne na istu boju kao prvo. Od 6 strana, 5 NIJE iste boje."},{txt:"Vjerojatnost da drugo bacanje da drugu boju: 5/6."},{txt:"Vjerojatnost da prvo i drugo NE budu iste boje: 1 (svejedno) · 5/6 = 5/6."},{txt:"Alternativni put: komplementarni događaj — P(iste boje) = 1/6 (drugo bacanje pada na istu); P(ne iste) = 1 − 1/6 = 5/6 ✓.",note:"verifikacija"},{txt:"Odgovor: [FRAC:5|6].",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: prvo bacanje je 'referentno'; drugo se uspoređuje s prvim.",note:"intuicija",final:true},{txt:"Definicija: ovdje su bacanja neovisna jer kocka nema memoriju.",note:"postupak",final:true}],
   why:["Pravilo: za neovisne događaje, P(A i B) = P(A)·P(B); za uvjetnu vjerojatnost, P(B|A) je dovoljno.","Definicija: ovdje su bacanja neovisna jer kocka nema memoriju.","Intuicija: prvo bacanje je 'referentno'; drugo se uspoređuje s prvim.","Alt metoda: nabroj sve ishode (36) i one koji NISU iste boje (30); 30/36 = 5/6 ✓.","Česta greška: pretpostaviti da je P = (5/6)·(5/6) = 25/36 (krivo, jer prvo je svejedno).","Tipičan propust: ne razumjeti da se 'iste boje' procjenjuje DRUGOM bacanju u odnosu na prvo.","Veza s gradivom: vjerojatnost, neovisni događaji, komplement.","Provjera: 1/6 + 5/6 = 1 ✓."]
 },
-  {id:37.1,type:"sa",topic:"3d",points:1,
+  {id:37.1,type:"sa",topic:"geom",points:1,
   context:"Zadatak 37 (1. dio od 2): Osnovni je brid pravilne uspravne četverostrane piramide duljine 7 cm, a visina piramide je 18 cm.",
   q:"Koliko iznosi volumen te piramide?",
   sol:{ans:"294",alt:["294 cm³","294"]},
   steps:[{txt:"Pravilna uspravna četverostrana piramida: baza je KVADRAT brida a = 7 cm; vrh iznad središta baze; visina h = 18 cm."},{txt:"Volumen piramide: V = (1/3) · P_baza · h."},{txt:"Površina baze (kvadrat): P_baza = a² = 7² = 49 cm²."},{txt:"V = (1/3) · 49 · 18 = (1/3) · 882 = 294 cm³.",note:"verifikacija"},{txt:"Provjera: usporedba s kvadrom — kvadar istog osnova i visine ima 3× volumen (882 vs 294); piramida zapravo trećina kvadra ✓.",note:"verifikacija"},{txt:"Odgovor: 294 cm³.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: piramida je 'trećina' odgovarajuće prizme/kvadra istog osnova i visine.",note:"intuicija",final:true},{txt:"Definicija: pravilna piramida ima pravilnu mnogokutnu bazu; uspravna znači vrh iznad središta.",note:"postupak",final:true}],
   why:["Pravilo: volumen piramide V = (1/3)·P_baza·h.","Definicija: pravilna piramida ima pravilnu mnogokutnu bazu; uspravna znači vrh iznad središta.","Intuicija: piramida je 'trećina' odgovarajuće prizme/kvadra istog osnova i visine.","Alt metoda: integrirati površine paralelnih presjeka po visini.","Česta greška: koristiti formulu za prizmu V = P·h (4× veće za našu piramidu).","Tipičan propust: zaboraviti faktor 1/3.","Veza s gradivom: 3D geometrija, volumeni tijela.","Provjera: 49·18 = 882 (kvadar); 882/3 = 294 ✓."]
 },
-  {id:37.2,type:"sa",topic:"3d",points:1,
+  {id:37.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 37 (2. dio od 2): Pravilna uspravna četverostrana piramida; brid baze 7 cm, visina 18 cm.",
   q:"Koliko iznosi mjera kuta između visine i bočnoga brida te piramide?",
   sol:{ans:"≈ 15°22′32″",alt:["15°22'32''","15°22′32″","15,38°","15°22'"]},
   steps:[{txt:"Identifikacija: kut između visine piramide i bočnog brida (od vrha piramide do vrha baze)."},{txt:"Pola dijagonale baze (od središta baze do vrha): d/2 = (a·√2)/2 = (7·√2)/2 = 3,5·√2 ≈ 4,95 cm."},{txt:"Pravokutni trokut: visina h = 18 (jedna kateta), pola dijagonale d/2 ≈ 4,95 (druga kateta), bočni brid = hipotenuza."},{txt:"Kut između visine i bočnog brida: tan(γ) = (d/2)/h = 4,95/18 ≈ 0,2749."},{txt:"γ = arctan(0,2749) ≈ 15,38° = 15°22′48″ ≈ 15°22′32″ (s preciznijim računanjem).",note:"verifikacija"},{txt:"Provjera: bočni brid l = √(h² + (d/2)²) = √(324 + 24,5) = √348,5 ≈ 18,67; cos(γ) = h/l = 18/18,67 ≈ 0,9641; γ = arccos ≈ 15,38° ✓.",note:"verifikacija"},{txt:"Odgovor: γ ≈ 15°22′32″.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: pravokutni trokut čine: visina (okomito), pola dijagonale baze (vodoravno do nasuprotnog vrha), bočni brid (hipotenuza).",note:"intuicija",final:true},{txt:"Definicija: bočni brid pravilne piramide spaja vrh s vrhom baze; ima jedinstvenu duljinu zbog simetrije.",note:"postupak",final:true}],
   why:["Pravilo: u pravokutnom trokutu, tan(kut) = nasuprotna/uz.","Definicija: bočni brid pravilne piramide spaja vrh s vrhom baze; ima jedinstvenu duljinu zbog simetrije.","Intuicija: pravokutni trokut čine: visina (okomito), pola dijagonale baze (vodoravno do nasuprotnog vrha), bočni brid (hipotenuza).","Alt metoda: koristi cos ili sin umjesto tan; isti rezultat.","Česta greška: koristiti pola STRANICE baze (a/2 = 3,5) umjesto pola DIJAGONALE baze ((a√2)/2 ≈ 4,95).","Tipičan propust: ne pretvoriti decimalni stupanj u stupanj-minute-sekunde.","Veza s gradivom: trigonometrija u 3D, kutovi između elemenata piramide.","Provjera: γ ≈ 15,38°, oko 15°22′ ✓."]
 },
-  {id:38.1,type:"sa",topic:"seq",points:2,
+  {id:38.1,type:"sa",topic:"niz",points:2,
   context:"Zadatak 38 (1. dio od 2):",
   q:"Zbroj pet različitih prirodnih brojeva iznosi 6555. Ako te brojeve poredamo po veličini, razlika je između svakih dvaju susjednih brojeva konstantna. Zapišite nekih pet brojeva za koje vrijedi navedeno.",
   steps:[{txt:"5 različitih prirodnih brojeva, zbroj = 6555."},{txt:"Tražimo dodatni uvjet (npr. najveći, najmanji, aritmetička sredina)."},{txt:"Aritmetička sredina: x̄ = 6555/5 = 1311."},{txt:"Za simetričnu raspodjelu, brojevi simetrični oko 1311."},{txt:"Iz dodatnog uvjeta odredi konkretne brojeve."},{txt:"Provjera s konkretnim zbrojem.",note:"verifikacija"},{txt:"Odgovor: po službenom ključu.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: sredina je \"centar težišta\" brojeva; raspodjela je oko nje.",note:"intuicija",final:true},{txt:"Definicija: prirodni brojevi ∈ {1, 2, 3, …}; ne uključuju 0 (ovisno o definiciji).",note:"postupak",final:true}],
@@ -692,14 +692,7 @@ export const qs = [
   sol:{ans:"a = 3, b = 0,6",alt:["a=3, b=0,6","a=3 i b=0,6"]},
   steps:[{txt:"Racionalna funkcija f(x) = ax/(bx + 8). Tražimo specifične vrijednosti ili karakteristike."},{txt:"Vertikalna asimptota: x = −8/b. Horizontalna asimptota: y = a/b."},{txt:"Iz zadanih uvjeta postavi sustav jednadžbi za a i b."},{txt:"Riješi sustav."},{txt:"Provjeri grafički ili supstitucijom.",note:"verifikacija"},{txt:"Po službenom ključu.",note:"diagnostika"},{txt:"Odgovor: po izračunu (najčešće specifične a, b vrijednosti).",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: omjer linearnih funkcija ima JEDNU vertikalnu i JEDNU horizontalnu asimptotu.",note:"intuicija",final:true},{txt:"Definicija: vertikalna asimptota = vrijednost x gdje q(x) = 0 i p(x) ≠ 0.",note:"postupak",final:true}],
   why:["Pravilo: racionalna funkcija f(x) = p(x)/q(x); asimptote ovise o stupnjevima brojnika i nazivnika.","Definicija: vertikalna asimptota = vrijednost x gdje q(x) = 0 i p(x) ≠ 0.","Intuicija: omjer linearnih funkcija ima JEDNU vertikalnu i JEDNU horizontalnu asimptotu.","Alt metoda: limesi x → ±∞ daju horizontalnu; nultočke nazivnika daju vertikalnu.","Česta greška: zaboraviti uvjet b ≠ 0 (inače je funkcija konstantna).","Tipičan propust: ne provjeravati domenu.","Veza s gradivom: racionalne funkcije, asimptote, granične vrijednosti.","Provjera: provjera s nekoliko vrijednosti x ✓."], ex:"Racionalna funkcija f(x) = p(x)/q(x): za lineare brojnik/nazivnik, asimptote: vertikalna x = −d/c (gdje q(x) = cx + d = 0); horizontalna y = a/c (omjer dominantnih koeficijenata). Derivacija f'(x) = (a·d − b·c)/q(x)² (formula za derivat količnika linearnih). Tangenta s nagibom k u točki x₀: y − f(x₀) = f'(x₀)(x − x₀)."
-},
-  {_META:true,
-   auditedAt: "2026-05-22",
-   auditSource: "MAT A (viša razina, ljetni rok 2024., D-S066)",
-   auditStatus: "verified-full-max-pakG-qtext-resolved",
-   auditBy: "Daniel+Claude (Pak G+H+I+F-MAX + PakG cross-check + q-tekst audit)",
-   verified: "pdf+kljuc+pedagogy-maximum-A+verbatim-key+qtext-verified",
-   notes: "Pak F-MAX + Pak G verbatim PDF check + Q-tekst audit. 51 Q-objekata. MC 24/24 + SA 27/27 sol ✓. P0 pedagogy rewrites za 19 Q-objekata: Q5 (omjer 5:7), Q7 (Vièteove formule), Q11 (opcija A fixed na 2^(x+5), pedagogy rewritten), Q14 (interval f'<0), Q15 (težišnica), Q16 (konkretizirano), Q18 (udaljenost ravnine BDF = 4√2, ne 8√3), Q22 (Poučak kosinusa), Q23 (prostorna dijagonala D = c√2), Q24 (σ invar), Q26 (točka 5,5), Q27 (skup c), Q30,1 (cijene 0,51-0,99), Q31,1 (p<0), Q32,1 (full rewrite 502 € → 59 upita), Q34,1 (plaća 9 mj), Q34,2 (20 mj), Q35,1+Q35,2 (trapez), Q36,1+Q36,2+Q37,1+Q37,2 (3D). math_lint 0, pedagogy 0 P0/P1/P2."}
+}
 ];
 
 export const qImages = {

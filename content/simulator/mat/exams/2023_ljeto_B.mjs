@@ -6,7 +6,7 @@ const e = React.createElement;
 function Svg25_2023Blj(){
   // Urod lješnjaka po godinama (u tonama): 2013=600, 2014=450, 2015=600, 2016=550, 2017=300
   const st="var(--text)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const W=500, H=340;
   const pad={l:60, r:20, t:30, b:55};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
@@ -412,7 +412,7 @@ export const qs = [
      "Alt metoda (provjera): za f(x) = x² + 6, najmanja vrijednost je f(0) = 6; za bilo koji veći y, postoji x t.d. f(x) = y ✓"
    ,"Provjera D: f(0) = 6 (minimum); za |x| > 0, f(x) > 6 → svi vrijednosti ≥ 6 ✓","Tipičan propust: zaboraviti drugo rješenje (kvadratna ima do 2 korijena); ili kriviti predznak diskriminante."]
 },
-  {id:20,type:"mc",warn:"Pazi: S₅ = (5/2)(a₁ + a₅) = (5/2)(−2 + 26).",topic:"seq",points:1,
+  {id:20,type:"mc",warn:"Pazi: S₅ = (5/2)(a₁ + a₅) = (5/2)(−2 + 26).",topic:"niz",points:1,
   q:"Ako je u aritmetičkome nizu prvi član −2, a peti član 26, koliko iznosi zbroj prvih pet članova toga niza?",
   opts:["60","70","120","140"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -779,16 +779,7 @@ export const qs = [
      "Česta greška: zaboraviti broj baza (2) ili broj pobočnih stranica (3).",
      "Alt metoda (provjera): pobočnih ploha 3, svaka 6×9 = 54 cm²; ukupno 3·54 = 162 cm²; + 2·9√3 = 18√3 ≈ 31,18; suma ≈ 193,18 ✓"
    ,"Provjera: 18√3 ≈ 31,18; 31,18 + 162 = 193,18 ✓","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
-},
-  {_META:true,
-  auditedAt: "2026-05-20",
-  auditSource: "MAT B (osnovna razina, ljetni rok 2023.)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  verified: "vision+pdf+pedagogy+verbatim",
-  notes: "FULL REWRITE — Pak G+H+I+F kombinirani. Sve 30 Q-objekata (20 MC + 20 SA dvodijelni) production-ready pedagogy upgrade (5-7 steps s verifikacija/diagnostika + 4-5 specifičnih why entries). 5 Q s img:true (Q9, Q12, Q14, Q25,1, Q25,2). Sve sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation potpuno Unicode/[FRAC:].",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 207}
-  }
+}
 ];
 
 export const qImages = {

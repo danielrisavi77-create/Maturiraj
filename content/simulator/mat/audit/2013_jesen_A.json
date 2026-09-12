@@ -1,0 +1,15 @@
+{
+  "auditedAt": "2026-05-04",
+  "auditSource": "MAT A D-S014 (viša razina, jesenski rok 2013)",
+  "auditStatus": "verified-full",
+  "auditBy": "Claude+Daniel",
+  "issueCount": {
+    "critical": 0,
+    "medium": 0,
+    "low": 0,
+    "resolved": 0
+  },
+  "notes": "Audit sesija 2026-05-04: Pak G verbatim (ASCII minus Q11,Q30 fix); Pak H čisto; Pak I Q_IMAGES 7 bindinga OK; Pak A-E 15/15 MC + SA točni; Pak F 31→0 (pravilo/check/ex/topic sve riješeno); Pak J [FRAC:] u q/opts za Q1,Q5,Q6,Q8,Q11,Q17,Q20,2,Q25,3,Q29,2-4; META: verified-full.",
+  "verified": "sympy+pdf+verbatim+visual",
+  "auditNotes": "Pak G: ASCII minus u Q11,Q30 (fix); Pak I: 7 SVG bindings konfirmirani (originalne _2013Aj fn); Pak H: čisto; Pak A-E: 15/15 MC + SA točni; Pak F: 31→0 nalaza (pravilo/check/ex/topic); Pak J: [FRAC:] u Q1,Q5,Q6,Q8,Q11,Q17,Q20,2,Q25,3,Q29,2,Q29,3,Q29,4; auditDate:2026-05-04"
+}

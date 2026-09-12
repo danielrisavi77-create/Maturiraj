@@ -1,0 +1,22 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2021_ljeto",
+  "razina": "B",
+  "serial": "D-S051",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 24,
+  "verified": "sympy+pdf",
+  "note": "unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",
+  "maintenanceAt": "2026-05-26",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ],
+  "maintenanceNotes_v37b": [
+    "Pak I (visual P0): Svg23b_2021Bljeto — trapez vrijednosti A(-4,0) B(5,0) C(5,4) D(-3,4) (bilo A(-4,1) B(4,1) C(4,3) D(-2,3)); površina = 34 sad match s NCVVO ključem",
+    "Pak I (visual P0): Svg24b_2021Bljeto — uklonjena pre-drawn linija f(x)=-x+3; sad samo prazna mreža (student crta sam)"
+  ]
+}

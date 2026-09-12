@@ -1,0 +1,14 @@
+{
+  "auditedAt": "2026-05-20",
+  "auditSource": "MAT A (viša razina, ljetni rok 2023.)",
+  "auditStatus": "verified-full",
+  "auditBy": "Claude+Daniel",
+  "verified": "vision+pdf+pedagogy+verbatim",
+  "notes": "FULL REWRITE — Pak G+H+I+F kombinirani. Sve 51 Q-objekata production-ready pedagogy upgrade (5-7 steps s verifikacija/diagnostika + 4-5 specifičnih why entries). 6 Q s img:true (Q7, Q10, Q12, Q14, Q17, Q19, Q31,1, Q31,2, Q36,1, Q37,1, Q37,2). Sve sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation potpuno Unicode/[FRAC:]. ex polja za 2pt+ SA i 3pt+ kompleksne.",
+  "issueCount": {
+    "critical": 0,
+    "medium": 0,
+    "low": 0,
+    "resolved": 219
+  }
+}

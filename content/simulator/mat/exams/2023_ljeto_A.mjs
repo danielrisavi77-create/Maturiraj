@@ -7,7 +7,7 @@ function Svg40_2023Alj(){
   // Q40: nepravilni otok u vrhovima kvadrata KLMN sa 4 iscrtane kružnice (dometi odašiljača).
   // Kvadrat stranice 50 km, dometi 30 km → omjer r/a = 0.6.
   const st="var(--text)", W=380, H=380;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=W/2, cy=H/2, a=180;
   const K=[cx-a/2, cy-a/2];
   const N=[cx+a/2, cy-a/2];
@@ -46,7 +46,7 @@ function Svg40_2023Alj(){
 
 function Svg37_2023Alj(){
   const st="var(--text)", W=500, H=280;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-5, xMax=18, yMin=-4.5, yMax=3;
   const pad={l:40, r:20, t:20, b:30};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
@@ -86,7 +86,7 @@ function Svg37_2023Alj(){
 
 function Svg36a_2023Alj(){
   const st="var(--text)", W=300, H=300;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ox=150, oy=150, u=20;
   const px=(x)=>ox+x*u, py=(y)=>oy-y*u;
   const gridLines=[];
@@ -112,7 +112,7 @@ function Svg36a_2023Alj(){
 function Svg31_2023Alj(){
   // Q31: tablica visina djece.
   const st="var(--text)", bg="var(--bg)";
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const rows=[
     ["3","110"],["4","112"],["2","116"],
     ["1","120"],["3","121"],["1","124"]
@@ -177,7 +177,7 @@ function Svg19_2023Alj(){
 
 function Svg17_2023Alj(){
   const st="var(--text)", W=300, H=260;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const Vtop=[170, 30];
   const Vbl =[40, 100];
   const Vbr =[200, 240];
@@ -203,7 +203,7 @@ function Svg17_2023Alj(){
 
 function Svg12_2023Alj(){
   const st="var(--text)", W=320, H=320;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const ox=160, oy=160, u=26;
   const px=(x)=>ox+x*u, py=(y)=>oy-y*u;
   const gridLines=[];
@@ -606,7 +606,7 @@ export const qs = [
      "Alt metoda (provjera): rotacija oko duže (8) bi dala V = π·49·8 = 392π — opcija C (krivo)."
    ,"Provjera: π·64·7 = 448π ≈ 1407,4 cm³ ✓","Tipičan propust: pomiješati polumjer i promjer (r = d/2); ili koristiti opseg umjesto površine."]
   },
-  {id:21,type:"mc",warn:"Pazi: iz a₄ = a₁·q³ nađi q (pazi na negativan predznak), pa a₅ = a₄·q.",topic:"seq",points:1,
+  {id:21,type:"mc",warn:"Pazi: iz a₄ = a₁·q³ nađi q (pazi na negativan predznak), pa a₅ = a₄·q.",topic:"niz",points:1,
    q:"Koliko iznosi peti član geometrijskoga niza kojemu je prvi član 2, a četvrti −54?",
    opts:["−486","−162","162","486"],
    sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -1116,7 +1116,7 @@ export const qs = [
      "Provjera s neposrednim brojem: f(−1/2) = −4, f(0) = −3, f(2) = 1 → −4 je doista lokalni minimum između f(−1) ≈ −7/2 i f(0) = −3."
    ,"Provjera: f'(x) ima dva korijena (x = 2 i x = −1/2); u −1/2 mijenja predznak iz − u + (jer parabola −2(...) ima a < 0) → minimum ✓"]
   },
-  {id:39.2,type:"sa",topic:"seq",points:3,
+  {id:39.2,type:"sa",topic:"niz",points:3,
    context:"Zadatak 39 (2. dio od 2):",
    q:"Banka je izradila set novih kovanica različite veličine tako da svaka sljedeća kovanica ima za 1,5 mm veći promjer od prethodne. Koliko je kovanica u setu ako je promjer najveće kovanice za 60 % veći od promjera najmanje kovanice, a prosječan je promjer svih kovanica 26 mm?",
    sol:{ans:"9",alt:["9","9 kovanica"], ex:"Aritmetički niz s d = 1,5 mm; aₙ = 1,6·a₁ (60 % veći); prosjek = (a₁ + aₙ)/2 = 26."},
@@ -1160,15 +1160,6 @@ export const qs = [
      "Alt metoda (provjera): integralni račun — integriraj 'unutar kvadrata, izvan svih 4 krugova' (rezultat isti).",
      "Provjera centralne točke: udaljenost od centra (25, 25) do svakog vrha je √1250 ≈ 35,4 > 30 (polumjer) → centar nije pokriven ✓"
    ,"Provjera: nepokriveno područje je 'centralni' dio kvadrata koji odašiljači ne dosežu (jer su udaljeni od centra √(25²+25²) = √1250 ≈ 35,4 > 30) ✓"]
-  },
-  {_META:true,
-  auditedAt: "2026-05-20",
-  auditSource: "MAT A (viša razina, ljetni rok 2023.)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  verified: "vision+pdf+pedagogy+verbatim",
-  notes: "FULL REWRITE — Pak G+H+I+F kombinirani. Sve 51 Q-objekata production-ready pedagogy upgrade (5-7 steps s verifikacija/diagnostika + 4-5 specifičnih why entries). 6 Q s img:true (Q7, Q10, Q12, Q14, Q17, Q19, Q31,1, Q31,2, Q36,1, Q37,1, Q37,2). Sve sol.cl/sol.ans verificirana protiv NCVVO ključa. Math notation potpuno Unicode/[FRAC:]. ex polja za 2pt+ SA i 3pt+ kompleksne.",
-  issueCount: {critical: 0, medium: 0, low: 0, resolved: 219}
   }
 ];
 

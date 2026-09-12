@@ -7,7 +7,7 @@ function Svg39b_2024Ajes(){
   // crtamo ~8 redova malih jednakostraničnih trokutića koji čine parcijalni mozaik.
   // Plave pločice (vrh prema dolje) naizmjenično s bijelim prazninama (vrh prema gore).
   const st="var(--text)";
-  const blue="#4a90d9";
+  const blue="var(--blue)";
   const W=340, H=300;
   // Veliki trokut
   const cx = W/2;
@@ -43,7 +43,7 @@ function Svg39b_2024Ajes(){
       const ux = startX + c*smallSide + r*smallSide*0.5;
       tris.push(e("polygon",{key:`u${r}_${c}`,
         points:`${ux},${y0} ${ux+smallSide},${y0} ${ux+smallSide/2},${y1}`,
-        fill:blue,stroke:"#060910",strokeWidth:0.5}));
+        fill:blue,stroke:"var(--bg,#060910)",strokeWidth:0.5}));
       // Down-pointing trokutići (bijeli/prazni) — između dva up
       if(c < baseWidth-1){
         const dx0 = startX + c*smallSide + smallSide/2 + r*smallSide*0.5;
@@ -146,8 +146,8 @@ function Svg33a_2024Ajes(){
 }
 
 function Svg28_2024Ajes(){
-  const txt="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const txt="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=340, H=260;
   const ox=170, oy=140; const u=28;
   const px=(x)=>ox+x*u; const py=(y)=>oy-y*u;
@@ -172,18 +172,18 @@ function Svg28_2024Ajes(){
     e("text",{key:"l1y",x:ox-12,y:py(1)+4,fontSize:11,fontFamily:"Georgia,serif",fill:muted},"1"),
     // Point z (red)
     e("line",{key:"vz",x1:ox,y1:oy,x2:px(2),y2:py(2),stroke:blue,strokeWidth:1.4,strokeDasharray:"4 3",strokeOpacity:0.6}),
-    e("circle",{key:"z",cx:px(2),cy:py(2),r:5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+    e("circle",{key:"z",cx:px(2),cy:py(2),r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
     e("text",{key:"lz",x:px(2)+8,y:py(2)-4,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"z"),
     // Point z+w (red)
     e("line",{key:"vzw",x1:ox,y1:oy,x2:px(-2),y2:py(3),stroke:blue,strokeWidth:1.4,strokeDasharray:"4 3",strokeOpacity:0.6}),
-    e("circle",{key:"zw",cx:px(-2),cy:py(3),r:5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+    e("circle",{key:"zw",cx:px(-2),cy:py(3),r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
     e("text",{key:"lzw",x:px(-2)+8,y:py(3)-4,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"z + w")
   );
 }
 
 function Svg23_2024Ajes(){
-  const txt="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const txt="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=360, H=340;
   const ox=180, oy=170; const u=28;
   const px=(x)=>ox+x*u; const py=(y)=>oy-y*u;
@@ -239,8 +239,8 @@ function Svg23_2024Ajes(){
 }
 
 function Svg19_2024Ajes(){
-  const txt="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const txt="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=360, H=260;
   const ox=50, oy=210; const ux=55, uy=22;
   const px=(x)=>ox+x*ux; const py=(y)=>oy-y*uy;
@@ -308,7 +308,7 @@ function Svg16_2024Ajes(){
 }
 
 function Svg15_2024Ajes(){
-  const blue="#4a90d9"; const blueD="#3a6aa0"; const red="#e05252"; const gold="#e9b446";
+  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
   const W=380, H=340;
   const A=[80,280],B=[240,280],C=[320,220],D=[160,220];
   const vE=[80,120],vF=[240,120],vG=[320,60],vH=[160,60];
@@ -327,7 +327,7 @@ function Svg15_2024Ajes(){
       stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
     ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blue,strokeWidth:2})),
-    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5})),
+    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
     ...verts.map(([n,p,dx,dy])=>e("text",{key:"t"+n,x:p[0]+dx,y:p[1]+dy,
       fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n))
   );
@@ -335,7 +335,7 @@ function Svg15_2024Ajes(){
 
 function Svg10_2024Ajes(){
   const W=400, H=300;
-  const blue="#4a90d9"; const blueLight="rgba(74,144,217,0.08)"; const red="#e05252"; const gold="#e9b446"; const txt="var(--text)";
+  const blue="var(--blue)"; const blueLight="rgba(74,144,217,0.08)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
   const cx=200, cy=160, r=110;
   const deg=(d)=>d*Math.PI/180;
   // PDF: B bot-left, C bot-right, A top-left, D top-right (from earlier render)
@@ -358,7 +358,7 @@ function Svg10_2024Ajes(){
     // Vertex labels
     ...[[A,"A",-18,-6],[B,"B",-16,18],[C,"C",8,18],[D,"D",10,-6]].map(([p,l,dx,dy],i)=>
       e("g",{key:"v"+i},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"#0a0f1a",strokeWidth:1.5}),
+        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
         e("text",{x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},l)
       )
     )
@@ -366,7 +366,7 @@ function Svg10_2024Ajes(){
 }
 
 export const qs = [
-  {id:1,type:"mc",warn:"Pazi: izraz se faktorizira na linearne faktore samo ako ima realne nultočke (D ≥ 0).",topic:"alg",points:1,
+  {id:1,type:"mc",warn:"Pazi: izraz se faktorizira na linearne faktore samo ako ima realne nultočke (D ≥ 0).",topic:"al",points:1,
   q:"Koji se od navedenih algebarskih izraza ne može zapisati u obliku umnoška dvaju linearnih faktora s realnim koeficijentima?",
   opts:["x²+4","2xy−x²","x²-1","3xy+x"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -394,21 +394,21 @@ export const qs = [
   steps:[{txt:"Tri poduzetnika, ukupno 44 820 €. Prvi 1/6 = 7 470 €. Ostatak 37 350 € u omjeru 7:8."},{txt:"Jedan dio = 37 350 / 15 = 2 490 €."},{txt:"Drugi: 7 · 2 490 = 17 430 €; treći: 8 · 2 490 = 19 920 €."},{txt:"Najveći ulog = treći s 19 920 €."},{txt:"Provjera: 7 470 + 17 430 + 19 920 = 44 820 ✓.",note:"verifikacija"},{txt:"Distractor analiza: 17 430 (drugi), 7 470 (prvi), krivi računski put.",note:"diagnostika"},{txt:"Odgovor: 19 920 €.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: prvo izračunaj iznos za omjer, pa jedinicu, pa pomnoži.",note:"intuicija",final:true},{txt:"Definicija: omjer 7:8 → drugi je 8/7 puta veći od prvoga.",note:"postupak",final:true}],
   why:["Pravilo: raspodjela iznosa u omjeru a:b — jedan dio = iznos/(a+b).","Definicija: omjer 7:8 → drugi je 8/7 puta veći od prvoga.","Intuicija: prvo izračunaj iznos za omjer, pa jedinicu, pa pomnoži.","Alt metoda: razlomačno — drugi = 7/15·37 350, treći = 8/15·37 350.","Česta greška: zaboraviti prvog poduzetnika ili krivi omjer.","Tipičan propust: brkati 7:8 i 8:7.","Veza s gradivom: omjeri, proporcije, raspodjela.","Provjera: zbroj svih dijelova = ukupni iznos ✓."]
 },
-  {id:5,type:"mc",warn:"Pazi: padajuća → nagib (a − 1) < 0; odsječak na y je (2a + 4) > 0 — oba uvjeta.",topic:"fn",points:1,
+  {id:5,type:"mc",warn:"Pazi: padajuća → nagib (a − 1) < 0; odsječak na y je (2a + 4) > 0 — oba uvjeta.",topic:"fun",points:1,
   q:"Za koje je sve realne brojeve a funkcija f(x) = (a-1)x + 2a + 4 padajuća, a odsječak grafa funkcije f na osi y pozitivan broj?",
   opts:["⟨−∞, -2⟩","⟨-2, 1⟩","⟨1, 2⟩","⟨2, ∞⟩"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
   steps:[{txt:"Linearna funkcija f(x) = (a − 1)x + (2a + 4); koeficijent smjera = a − 1; odsječak na y-osi = 2a + 4."},{txt:"Uvjet 1 (padajuća): koeficijent smjera < 0 ⇔ a − 1 < 0 ⇔ a < 1."},{txt:"Uvjet 2 (odsječak na y-osi pozitivan): 2a + 4 > 0 ⇔ 2a > −4 ⇔ a > −2."},{txt:"Presjek oba uvjeta: −2 < a < 1, tj. a ∈ ⟨−2, 1⟩."},{txt:"Provjera s a = 0: f(x) = −x + 4 — padajuća (smjer −1) ✓; odsječak = 4 > 0 ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) ⟨−∞, -2⟩ — uvjet odsječka NIJE zadovoljen.\n  B) ⟨-2, 1⟩ — TOČAN.\n  C) ⟨1, 2⟩ — funkcija RASTE (a > 1), nije padajuća.\n  D) ⟨2, ∞⟩ — rastuća.",note:"diagnostika"},{txt:"Odgovor: B — a ∈ ⟨-2, 1⟩.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: dva neovisna uvjeta na parametar a; presjek je rješenje.",note:"intuicija",final:true},{txt:"Definicija: padajuća — vrijednost f opada kad x raste; odsječak na y-osi — točka gdje graf siječe os y.",note:"postupak",final:true}],
   why:["Pravilo: linearna funkcija f(x) = kx + n padajuća ⇔ k < 0; odsječak na y-osi = n = f(0).","Definicija: padajuća — vrijednost f opada kad x raste; odsječak na y-osi — točka gdje graf siječe os y.","Intuicija: dva neovisna uvjeta na parametar a; presjek je rješenje.","Alt metoda: graf — vrijednosti a kojima graf je padajući S pozitivnim presjekom y.","Česta greška: zaboraviti odsječak na y, fokusirati se samo na smjer ILI obratno.","Tipičan propust: brkati 'padajuća' (smjer < 0) i 'odsječak < 0'.","Veza s gradivom: linearne funkcije, parametri, presjek skupova rješenja.","Provjera: a ∈ ⟨-2, 1⟩ daje k < 0 i n > 0 ✓."]
 },
-  {id:6,type:"mc",warn:"Pazi: linearna funkcija kroz dvije zadane točke (visina, temperatura) — nađi nagib pa jednadžbu.",topic:"fn",points:1,
+  {id:6,type:"mc",warn:"Pazi: linearna funkcija kroz dvije zadane točke (visina, temperatura) — nađi nagib pa jednadžbu.",topic:"fun",points:1,
   q:"Temperatura zraka na 300 metara nadmorske visine iznosila je 19,6 °C, a na 500 metara nadmorske visine 18 °C. Kojom je od navedenih funkcija opisana ovisnost temperature zraka T izražene u °C i nadmorske visine v izražene u STOTINAMA METARA ako se temperatura mijenjala linearno?",
   opts:["T(v) = 6v + 1,6","T(v) = 0,8v + 3,5","T(v) = -0,8v + 22","T(v) = -6v + 48"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
   steps:[{txt:"Pretvorba: 300 m = 3 stotine m → v = 3; 500 m = 5 stotina m → v = 5. Dvije točke: (3; 19,6) i (5; 18)."},{txt:"Linearna funkcija T(v) = kv + n; koeficijent smjera k = (T₂ − T₁)/(v₂ − v₁) = (18 − 19,6)/(5 − 3) = −1,6/2 = −0,8."},{txt:"Iz T(3) = 19,6: 19,6 = −0,8·3 + n = −2,4 + n ⇒ n = 22."},{txt:"Funkcija: T(v) = −0,8v + 22."},{txt:"Provjera: T(3) = −2,4 + 22 = 19,6 ✓; T(5) = −4 + 22 = 18 ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) T(v) = 6v + 1,6 — rastuća, nije fizički smisleno (temperatura ne raste s visinom u troposferi).\n  B) T(v) = 0,8v + 3,5 — rastuća, krivo.\n  C) T(v) = -0,8v + 22 — TOČAN.\n  D) T(v) = -6v + 48 — krivi smjer.",note:"diagnostika"},{txt:"Odgovor: C — T(v) = −0,8v + 22.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: temperatura zraka u troposferi PADA s visinom (lapse rate ≈ 0,65 °C/100 m); ovdje 0,8 °C/100 m.",note:"intuicija",final:true},{txt:"Definicija: stotine metara znači visina u jedinicama 100 m (npr. 300 m = 3 stotine).",note:"postupak",final:true}],
   why:["Pravilo: linearna funkcija kroz dvije točke — k = Δy/Δx; n se nalazi supstitucijom jedne točke.","Definicija: stotine metara znači visina u jedinicama 100 m (npr. 300 m = 3 stotine).","Intuicija: temperatura zraka u troposferi PADA s visinom (lapse rate ≈ 0,65 °C/100 m); ovdje 0,8 °C/100 m.","Alt metoda: koristiti point-slope formulu y − y₁ = k(x − x₁).","Česta greška: zaboraviti pretvoriti v u stotine metara (koristiti m direktno).","Tipičan propust: računati k pogrešno (zamjena T i v).","Veza s gradivom: linearne funkcije, atmosferska fizika.","Provjera: oba zadana podatka odgovaraju funkciji C ✓."]
 },
-  {id:7,type:"mc",warn:"Pazi: 'udaljenost broja x od 8 je 5' zapisuje se kao |x − 8| = 5.",topic:"alg",points:1,
+  {id:7,type:"mc",warn:"Pazi: 'udaljenost broja x od 8 je 5' zapisuje se kao |x − 8| = 5.",topic:"al",points:1,
   q:"Koja je jednakost opisana tvrdnjom: Udaljenost svih točaka brojevnoga pravca kojima su pridruženi brojevi x od točke kojoj je pridružen broj 8 je 5?",
   opts:["|x − 8| = 5","|x − 5| = 8","|x + 5| = 8","|x + 8| = 5"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -436,21 +436,21 @@ export const qs = [
   steps:[{txt:"∠BSC = 70°, ∠CSD = 94°. Središnji kut ∠BSD = 70° + 94° = 164°."},{txt:"Obodni kut ∠BAD nad istim lukom BD = ½ · središnji = 82°."},{txt:"Provjera teorema: obodni = ½ središnji ⇒ 82° · 2 = 164° ✓.",note:"verifikacija"},{txt:"Distractor analiza: krivi predznak ili faktor (uzeti dvostruko).",note:"diagnostika"},{txt:"Odgovor: 82°.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: dva kuta \"vide\" isti luk; središnji je dvostruko veći.",note:"intuicija",final:true},{txt:"Definicija: obodni kut — vrh na kružnici; središnji — vrh u središtu.",note:"postupak",final:true},{txt:"Provjera: skiciraj figuru s mjernim brojevima i vizualno potvrdi rezultat.",note:"verifikacija",final:true}],
   why:["Pravilo: obodni kut = ½ · središnji nad istim lukom (Talesov općeniti teorem).","Definicija: obodni kut — vrh na kružnici; središnji — vrh u središtu.","Intuicija: dva kuta \"vide\" isti luk; središnji je dvostruko veći.","Alt metoda: koristiti svojstvo upisanih četverokuta.","Česta greška: pomiješati obodni i središnji kut.","Tipičan propust: zaboraviti zbrojiti ∠BSC + ∠CSD.","Veza s gradivom: teorem o obodnom kutu.","Provjera: 82° · 2 = 164° ✓."]
 },
-  {id:11,type:"mc",warn:"Pazi: središte opisane kružnice pravokutnog trokuta je polovište hipotenuze; težište dijeli težišnicu 2:1.",topic:"ge",points:1,
+  {id:11,type:"mc",warn:"Pazi: središte opisane kružnice pravokutnog trokuta je polovište hipotenuze; težište dijeli težišnicu 2:1.",topic:"geom",points:1,
   q:"Duljina je hipotenuze pravokutnoga trokuta 24 cm. Koliko iznosi udaljenost od središta tomu trokutu opisane kružnice do njegova težišta?",
   opts:["2 cm","4 cm","8 cm","16 cm"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
   steps:[{txt:"Identifikacija: pravokutni trokut s hipotenuzom 24 cm. Tražimo udaljenost između DVIJE točke: središta opisane kružnice (O) i težišta (T)."},{txt:"Talesov teorem: u pravokutnom trokutu, središte opisane kružnice = POLOVIŠTE HIPOTENUZE (jer hipotenuza je promjer)."},{txt:"Težište T dijeli svaku težišnicu u omjeru 2:1 od vrha. Pa od vrha pravog kuta C do polovišta hipotenuze M je težišnica CM = 12 cm (= polovica hipotenuze)."},{txt:"Težište T leži na CM na 2/3 puta od C; tj. od T do M (= polovišta hipotenuze = O) je 1/3 od težišnice CM = 1/3 · 12 = 4 cm."},{txt:"Pa OT = MT = 4 cm.",note:"verifikacija"},{txt:"Provjera koordinatno: neka su katete a, b s a² + b² = 24² = 576. Vrhovi A(0,0), B(a,0), C(0,b). Središte opisane M = polovište AB = (a/2, b/2). Težište T = ((0+a+0)/3, (0+0+b)/3) = (a/3, b/3). |MT| = √((a/2 − a/3)² + (b/2 − b/3)²) = √((a/6)² + (b/6)²) = (1/6)√(a²+b²) = (1/6)·24 = 4 ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) 2 cm — možda krivi proračun (1/12 hipotenuze).\n  B) 4 cm — TOČAN.\n  C) 8 cm — krivo (1/3 hipotenuze).\n  D) 16 cm — krivo.",note:"diagnostika"},{txt:"Odgovor: B — 4 cm.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: od težišta do polovišta hipotenuze je 1/3 težišnice iz vrha pravog kuta = 1/3 · 12 = 4 cm.",note:"intuicija",final:true},{txt:"Definicija: težište = sjecište triju težišnica trokuta (od vrha do polovišta nasuprotne stranice).",note:"postupak",final:true}],
   why:["Pravilo: u pravokutnom trokutu, središte opisane kružnice = polovište hipotenuze; težište T dijeli svaku težišnicu u omjeru 2:1 od vrha.","Definicija: težište = sjecište triju težišnica trokuta (od vrha do polovišta nasuprotne stranice).","Intuicija: od težišta do polovišta hipotenuze je 1/3 težišnice iz vrha pravog kuta = 1/3 · 12 = 4 cm.","Alt metoda: koordinate i formula za udaljenost.","Česta greška: izračunati polumjer opisane (12 cm) umjesto udaljenosti središta od težišta.","Tipičan propust: zaboraviti da središte opisane = sredina hipotenuze (Talesov teorem).","Veza s gradivom: Talesov teorem, težište, težišnica, pravokutni trokut.","Provjera: OT = (1/6)·hipotenuza = 4 cm (vrijedi za bilo koji pravokutni trokut s istom hipotenuzom) ✓."]
 },
-  {id:12,type:"mc",warn:"Pazi: omjer površina = (omjer opsega)² = (24/36)²; primijeni na zadanu površinu.",topic:"ge",points:1,
+  {id:12,type:"mc",warn:"Pazi: omjer površina = (omjer opsega)² = (24/36)²; primijeni na zadanu površinu.",topic:"geom",points:1,
   q:"Opsezi dvaju sličnih trokuta su 24 cm i 36 cm. Ako je površina manjega od tih dvaju trokuta 28 cm², koliko iznosi površina većega trokuta?",
   opts:["36,4 cm²","42 cm²","46,6 cm²","63 cm²"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
   steps:[{txt:"Slični trokuti: opsezi se odnose kao koeficijent sličnosti, površine kao kvadrat koeficijenta."},{txt:"Koeficijent sličnosti k = veći opseg/manji opseg = 36/24 = 3/2."},{txt:"Omjer površina: P_veći/P_manji = k² = (3/2)² = 9/4."},{txt:"P_veći = P_manji · 9/4 = 28 · 9/4 = 252/4 = 63 cm²."},{txt:"Provjera: 63/28 = 9/4 = 2,25 = (3/2)² ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) 36,4 = 28·1,3 — krivi koeficijent.\n  B) 42 = 28·(3/2) — koristi k umjesto k² za omjer površina.\n  C) 46,6 — krivo.\n  D) 63 — TOČAN.",note:"diagnostika"},{txt:"Odgovor: D — 63 cm².",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: površina je 2D, pa skalira kvadratno; opseg je 1D, skalira linearno.",note:"intuicija",final:true},{txt:"Definicija: koeficijent sličnosti k = omjer odgovarajućih duljina.",note:"postupak",final:true}],
   why:["Pravilo: za slične likove omjer LINEARNIH veličina (opsezi, stranice) je k; omjer POVRŠINA je k²; omjer VOLUMENA je k³.","Definicija: koeficijent sličnosti k = omjer odgovarajućih duljina.","Intuicija: površina je 2D, pa skalira kvadratno; opseg je 1D, skalira linearno.","Alt metoda: koristiti omjer opseg² → kvadrirati za omjer površina; 36²/24² = 1296/576 = 9/4 ✓.","Česta greška: koristiti k umjesto k² za omjer površina.","Tipičan propust: ne pomnožiti s OMJEROM (samo 'pomnožiti s 1,5' umjesto s 2,25).","Veza s gradivom: sličnost, omjer, površine.","Provjera: 28 · 9/4 = 63 ✓; veća ima 2,25× površinu manje."]
 },
-  {id:13,type:"mc",warn:"Pazi: spusti visinu na osnovicu → pravokutni trokut; krak = (osnovica/2)/cos 30°.",topic:"ge",points:1,
+  {id:13,type:"mc",warn:"Pazi: spusti visinu na osnovicu → pravokutni trokut; krak = (osnovica/2)/cos 30°.",topic:"geom",points:1,
   q:"Mjera kuta uz osnovicu jednakokračnoga trokuta iznosi 30°. Kolika je duljina kraka toga trokuta ako je osnovica duljine 6 cm?",
   opts:["√3 cm","2√3 cm","3√3 cm","4√3 cm"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -464,21 +464,21 @@ export const qs = [
   steps:[{txt:"Poučak sinusa: b/sin(β) = c/sin(γ)."},{txt:"Iz c = 2b: b/sin(β) = 2b/sin(γ) ⇒ sin(β) = sin(γ)/2."},{txt:"sin(γ) = sin(24°) ≈ 0,4067."},{txt:"sin(β) = 0,4067/2 = 0,2034."},{txt:"β = arcsin(0,2034) ≈ 11,74° ≈ 11°44′."},{txt:"Provjera s poučkom sinusa: za β = 11°44′, b/sin(11°44′) = b/0,2034 ≈ 4,92b; 2b/sin(24°) = 2b/0,4067 ≈ 4,92b ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) 11°44′ — TOČAN.\n  B) 12° — zaokruženje; ali odgovor traži preciznije.\n  C) 23°28′ — to bi bilo 2·11°44′ (krivi proračun).\n  D) 48° — ne odgovara podacima.",note:"diagnostika"},{txt:"Odgovor: A — 11°44′.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: ako je c dvostruko od b, kut γ je 'dvostruko' od β u sinusnom smislu — sin γ = 2 sin β.",note:"intuicija",final:true},{txt:"Definicija: stranica nasuprot kutu — najjednostavnija veza u trokutu.",note:"postupak",final:true}],
   why:["Pravilo: poučak sinusa — a/sin(α) = b/sin(β) = c/sin(γ) (svako odnos = 2R, gdje R = polumjer opisane kružnice).","Definicija: stranica nasuprot kutu — najjednostavnija veza u trokutu.","Intuicija: ako je c dvostruko od b, kut γ je 'dvostruko' od β u sinusnom smislu — sin γ = 2 sin β.","Alt metoda: koristiti poučak kosinusa, ali komplicirano s 3 nepoznanice.","Česta greška: brkati formule (poučak sinusa vs kosinusa).","Tipičan propust: zaokruživati prerano; pretvarati u stupanj-minute.","Veza s gradivom: poučak sinusa, trigonometrija trokuta.","Provjera: β + γ = 11°44′ + 24° = 35°44′ < 180° (treba treći kut) ✓."]
 },
-  {id:15,type:"mc",warn:"Pazi: postavi koordinate vrhova pa računaj udaljenost u prostoru (√ zbroja kvadrata razlika).",topic:"3d",points:1,
+  {id:15,img:true,type:"mc",warn:"Pazi: postavi koordinate vrhova pa računaj udaljenost u prostoru (√ zbroja kvadrata razlika).",topic:"geom",points:1,
   q:"Na skici je prikazan kvadar ABCDEFGH visine 5 cm. Kvadrat ABCD sa stranicom duljine 3 cm baza je toga kvadra. Točka T polovište je brida DH. Kolika je udaljenost točke T od brida AB?",
   opts:["√61/2 cm","√22 cm","√97/2 cm","√34 cm"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
   steps:[{txt:"Koordinatni sustav: A(0,0,0), B(3,0,0), C(3,3,0), D(0,3,0), E(0,0,5), F(3,0,5), G(3,3,5), H(0,3,5)."},{txt:"Brid DH ide od D(0,3,0) do H(0,3,5). Polovište T = (0, 3, 2,5)."},{txt:"Brid AB je dužina od A(0,0,0) do B(3,0,0) na osi x; pravac AB ima parametrizaciju (t, 0, 0)."},{txt:"Udaljenost točke T od pravca AB: T projecira na pravac AB u T' = (0, 0, 0) (jer projekcija T na os x je x-koord = 0)."},{txt:"|TT'| = √((0−0)² + (3−0)² + (2,5−0)²) = √(0 + 9 + 6,25) = √15,25 = √(61/4) = √61/2."},{txt:"Provjera: T = (0,3,2,5), brid AB = os x na y=0, z=0; udaljenost od (0,3,2,5) do osi x je √(3² + 2,5²) = √15,25 ≈ 3,91 cm; √61/2 ≈ 7,81/2 ≈ 3,91 ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) √61/2 ≈ 3,91 — TOČAN.\n  B) √22 ≈ 4,69 — krivo.\n  C) √97/2 ≈ 4,92 — krivo.\n  D) √34 ≈ 5,83 — krivo (uzima udaljenost od cijelog vrha A).",note:"diagnostika"},{txt:"Odgovor: A — √61/2 cm.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: projekcija T na pravac AB pada na x-os u (0, 0, 0); preostala odstojanja su komponentne y i z koordinatama T.",note:"intuicija",final:true},{txt:"Definicija: udaljenost (0, y, z) od osi x je √(y² + z²).",note:"postupak",final:true}],
   why:["Pravilo: udaljenost točke od pravca u 3D = duljina okomite od točke na pravac.","Definicija: udaljenost (0, y, z) od osi x je √(y² + z²).","Intuicija: projekcija T na pravac AB pada na x-os u (0, 0, 0); preostala odstojanja su komponentne y i z koordinatama T.","Alt metoda: koristiti vektorski produkt — d = |AT⃗ × AB⃗|/|AB⃗|.","Česta greška: brkati udaljenost točka-pravac s udaljenosti točka-točka.","Tipičan propust: T = polovište DH, pa T_z = 2,5 (ne 5).","Veza s gradivom: 3D geometrija, udaljenost, koordinatni sustav.","Provjera: √61/2 ≈ 3,91 cm; smisleno za kvadar 3×3×5 ✓."]
 },
-  {id:16,type:"mc",warn:"Pazi: paralelni pravci imaju ISTI nagib; uzmi nagib od p i provedi kroz A.",topic:"ge",points:1,
+  {id:16,img:true,type:"mc",warn:"Pazi: paralelni pravci imaju ISTI nagib; uzmi nagib od p i provedi kroz A.",topic:"geom",points:1,
   q:"Na slici su prikazani pravac p i točka A. Koja je jednadžba pravca koji sadrži točku A i paralelan je s pravcem p?",
   opts:["y = −(3/4)x − 5/4","y = −(3/4)x − 2/3","y = −(4/3)x − 5/4","y = −(4/3)x − 2/3"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
   steps:[{txt:"Iz skice pravca p očitati nagib k_p. (Negativan, opadajući pravac s nagibom k ≈ −4/3.)"},{txt:"Paralelni pravci imaju ISTI nagib: k = k_p = −4/3."},{txt:"Točka A je s koordinatama iz skice (pretpostavka: na osnovu opcija, A je takva da y_A = −(4/3)·x_A − 2/3)."},{txt:"Jednadžba pravca: y − y_A = k(x − x_A); iz toga y = −(4/3)x − 2/3 = opcija D."},{txt:"Provjera: usporedi 4 opcije — opcije A i B imaju k = −3/4 (drugi pravac); C i D imaju k = −4/3. Među njima točka A više odgovara presjeku y na −2/3 (po skici).",note:"verifikacija"},{txt:"Distractor analiza:\n  A) k = −3/4 — krivi nagib.\n  B) k = −3/4 — krivi nagib.\n  C) k = −4/3 ali krivi presjek −5/4.\n  D) k = −4/3 i presjek −2/3 — TOČAN.",note:"diagnostika"},{txt:"Odgovor: D — y = −(4/3)x − 2/3.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: paralelni pravci 'jezgreno' isto izgledaju, samo su pomaknuti u y-smjeru (drugi odsječak).",note:"intuicija",final:true},{txt:"Definicija: koeficijent smjera = tan(α), gdje je α kut s pozitivnim smjerom osi x.",note:"postupak",final:true}],
   why:["Pravilo: dva pravca su paralelna ⇔ imaju isti koeficijent smjera (nagib).","Definicija: koeficijent smjera = tan(α), gdje je α kut s pozitivnim smjerom osi x.","Intuicija: paralelni pravci 'jezgreno' isto izgledaju, samo su pomaknuti u y-smjeru (drugi odsječak).","Alt metoda: koristiti vektorski oblik — vektor smjera identičan za paralelne pravce.","Česta greška: brkati paralelne (isti nagib) i okomite (k₁·k₂ = −1).","Tipičan propust: ne provjeriti predznak nagiba ili krivo očitati iz skice.","Veza s gradivom: pravci u koordinatnom sustavu, paralelnost, jednadžbe pravca.","Provjera: D je opcija s pravim nagibom i prolazom kroz točku A ✓."]
 },
-  {id:17,type:"mc",warn:"Pazi: (x − p)² + (y − q)² = r²; pazi na predznake (x + 1) i da je r² = 49.",topic:"ge",points:1,
+  {id:17,type:"mc",warn:"Pazi: (x − p)² + (y − q)² = r²; pazi na predznake (x + 1) i da je r² = 49.",topic:"geom",points:1,
   q:"Koja od navedenih kružnica ima središte u točki S(-1, 3) i polumjer 7?",
   opts:["(x−1)² + (y+3)² = 7","(x−1)² + (y+3)² = 49","(x+1)² + (y−3)² = 7","(x+1)² + (y−3)² = 49"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -492,7 +492,7 @@ export const qs = [
   steps:[{txt:"Točke A(−1, 7) i B(2, 3). Vektor AB⃗ = B − A = (3, −4)."},{txt:"Duljina vektora: |AB⃗| = √(3² + (−4)²) = √(9 + 16) = √25 = 5."},{txt:"Pitagorina trojka (3, 4, 5) ✓.",note:"verifikacija"},{txt:"Distractor analiza: krivi predznak, zaboraviti korijen, krivi izračun.",note:"diagnostika"},{txt:"Odgovor: 5.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: pravokutni trokut s katetama Δx i Δy, hipotenuza = duljina.",note:"intuicija",final:true},{txt:"Definicija: norma vektora = duljina; vektor između dviju točaka = razlika koordinata.",note:"postupak",final:true},{txt:"Provjera grafom: nacrtaj krivulje i vizualno potvrdi sjecište / dodir / paralelnost.",note:"verifikacija",final:true}],
   why:["Pravilo: |v⃗| = √(x² + y²) za vektor (x, y) (Pitagorin poučak).","Definicija: norma vektora = duljina; vektor između dviju točaka = razlika koordinata.","Intuicija: pravokutni trokut s katetama Δx i Δy, hipotenuza = duljina.","Alt metoda: udaljenost dviju točaka d(A, B) = √((x₂−x₁)² + (y₂−y₁)²).","Česta greška: zaboraviti kvadratni korijen.","Tipičan propust: brkati predznak komponenti.","Veza s gradivom: vektori, udaljenost, Pitagorin poučak.","Provjera: (3, 4, 5) je standardna Pitagorina trojka ✓."]
 },
-  {id:19,type:"mc",warn:"Pazi: svaki član je pola prethodnog → geometrijski niz, aₙ = a₁·qⁿ⁻¹.",topic:"niz",points:1,
+  {id:19,img:true,type:"mc",warn:"Pazi: svaki član je pola prethodnog → geometrijski niz, aₙ = a₁·qⁿ⁻¹.",topic:"niz",points:1,
   q:"Prva četiri člana niza prikazana su na slici (a₁ = 8, a₂ = 4, a₃ = 2, a₄ = 1). Koji je od navedenih izraza opći član toga niza?",
   opts:["aₙ = 2^(7−4n)","aₙ = 2^(4n−1)","aₙ = 2^(4−n)","aₙ = 2^(n−2)"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -506,28 +506,28 @@ export const qs = [
   steps:[{txt:"cos t = 3/5, t ∈ ⟨0, π/2⟩ (1. kvadrant). Tražimo sin t."},{txt:"Pitagorin identitet: sin²t + cos²t = 1 ⇒ sin²t = 1 − 9/25 = 16/25."},{txt:"sin t = ±4/5. U 1. kvadrantu sin > 0, pa sin t = 4/5."},{txt:"Provjera: 9/25 + 16/25 = 25/25 = 1 ✓.",note:"verifikacija"},{txt:"Distractor analiza: ±4/5 (neodređeno), 4/3 (tan), krivi izračun.",note:"diagnostika"},{txt:"Odgovor: 4/5.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: Pitagorina trojka (3, 4, 5) — katete 3 i 4, hipotenuza 5.",note:"intuicija",final:true},{txt:"Definicija: 1. kvadrant: sin i cos pozitivni; 2.: sin > 0, cos < 0; 3.: oba neg; 4.: sin < 0, cos > 0.",note:"postupak",final:true}],
   why:["Pravilo: sin²t + cos²t = 1; predznak iz kvadranta.","Definicija: 1. kvadrant: sin i cos pozitivni; 2.: sin > 0, cos < 0; 3.: oba neg; 4.: sin < 0, cos > 0.","Intuicija: Pitagorina trojka (3, 4, 5) — katete 3 i 4, hipotenuza 5.","Alt metoda: pravokutni trokut s katetama 3 i 4.","Česta greška: zaboraviti predznak (uzeti ±).","Tipičan propust: brkati sin i cos.","Veza s gradivom: jedinična kružnica, predznaci po kvadrantima.","Provjera: cos² + sin² = 9/25 + 16/25 = 1 ✓."]
 },
-  {id:21,type:"mc",warn:"Pazi: pri množenju/dijeljenju kompleksnih brojeva argumenti se zbrajaju/oduzimaju.",topic:"kompleks",points:1,
+  {id:21,type:"mc",warn:"Pazi: pri množenju/dijeljenju kompleksnih brojeva argumenti se zbrajaju/oduzimaju.",topic:"kompl",points:1,
   q:"Što od navedenoga vrijedi za argumente φ₁ i φ₂ za svaka dva kompleksna broja z₁ = r(cos φ₁ + i sin φ₁) i z₂ = r(cos φ₂ + i sin φ₂) za koje vrijedi z₂ = −z₁?",
   opts:["|φ₁ − φ₂| = π/2","|φ₁ + φ₂| = π/2","|φ₁ − φ₂| = π","|φ₁ + φ₂| = π"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
   steps:[{txt:"Iz uvjeta z₂ = −z₁: oba broja imaju isti modul (|z₁| = |z₂| = r), ali suprotne smjerove (vektorski)."},{txt:"Negacija kompleksnog broja: −z = z · (−1) = z · (cos π + i sin π). Argumenti se zbrajaju (mod 2π)."},{txt:"Pa arg(−z₁) = φ₁ + π (mod 2π). Drugim riječima, φ₂ = φ₁ + π (do periodičnosti)."},{txt:"Razlika: φ₂ − φ₁ = π → |φ₁ − φ₂| = π."},{txt:"Provjera s konkretnim primjerom: z₁ = 1 (φ₁ = 0); z₂ = −1 (φ₂ = π). |0 − π| = π ✓.",note:"verifikacija"},{txt:"Distractor analiza:\n  A) |φ₁ − φ₂| = π/2 — odnos pri okomitosti (z₂ = iz₁).\n  B) |φ₁ + φ₂| = π/2 — bez prepoznatog značenja.\n  C) |φ₁ − φ₂| = π — TOČAN (negacija = rotacija za π).\n  D) |φ₁ + φ₂| = π — krivo.",note:"diagnostika"},{txt:"Odgovor: C — |φ₁ − φ₂| = π.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: u kompleksnoj ravnini, negacija = točkasta simetrija u odnosu na ishodište = rotacija za 180° = π.",note:"intuicija",final:true},{txt:"Definicija: argument −1 (kompleksnog broja) je π (ili −π, ili π + 2kπ).",note:"postupak",final:true}],
   why:["Pravilo: za z₂ = z₁ · w gdje |w| = 1, arg(z₂) = arg(z₁) + arg(w) (mod 2π).","Definicija: argument −1 (kompleksnog broja) je π (ili −π, ili π + 2kπ).","Intuicija: u kompleksnoj ravnini, negacija = točkasta simetrija u odnosu na ishodište = rotacija za 180° = π.","Alt metoda: vektorska interpretacija — z₂ = −z₁ znači obrnuti smjer; kut između vektora = π.","Česta greška: brkati negaciju (z → −z) i konjugaciju (z → z*); konjugacija obrće samo imaginarni dio, argument se mijenja po φ → −φ.","Tipičan propust: pretpostaviti da modul mora biti različit; nije, |−z| = |z|.","Veza s gradivom: kompleksni brojevi, argument, geometrijska interpretacija.","Provjera: razlika argumenata = π, što odgovara opciji C ✓."]
 },
-  {id:22,type:"mc",warn:"Pazi: neparna funkcija znači f(−x) = −f(x) (simetrija oko ishodišta).",topic:"fn",points:1,
+  {id:22,type:"mc",warn:"Pazi: neparna funkcija znači f(−x) = −f(x) (simetrija oko ishodišta).",topic:"fun",points:1,
   q:"Koja je od navedenih funkcija neparna?",
   opts:["f(x) = x·sin x","f(x) = x² − sin x","f(x) = x² + sin² x","f(x) = sin x − x"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
   steps:[{txt:"Definicija: f neparna ⇔ f(−x) = −f(x) za sve x ∈ D(f)."},{txt:"Pravilo: umnožak dvaju neparnih je PARNO; zbroj dvaju neparnih je NEPARNO; zbroj parnog i neparnog nije ni jedno (osim ako jedna od njih ne nestaje)."},{txt:"A) f(x) = x·sin x: f(−x) = (−x)·sin(−x) = (−x)·(−sin x) = x·sin x = f(x). PARNA, ne neparna."},{txt:"B) f(x) = x² − sin x: f(−x) = x² − sin(−x) = x² + sin x. Niti −f(x) niti f(x). Niti parna ni neparna."},{txt:"C) f(x) = x² + sin² x: f(−x) = x² + (−sin x)² = x² + sin² x = f(x). PARNA."},{txt:"D) f(x) = sin x − x: f(−x) = sin(−x) − (−x) = −sin x + x = −(sin x − x) = −f(x). NEPARNA ✓."},{txt:"Provjera s x = π/2: f(π/2) = 1 − π/2; f(−π/2) = −1 + π/2 = −(1 − π/2) ✓.",note:"verifikacija"},{txt:"Distractor analiza: razlikovati paritet — A parna, B ni jedno, C parna, D neparna.",note:"diagnostika"},{txt:"Odgovor: D — f(x) = sin x − x.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: neparne funkcije su 'kao kosi pravci kroz ishodište' — sin x, x, x³, tan x.",note:"intuicija",final:true},{txt:"Definicija: f(−x) = −f(x) (neparna); f(−x) = f(x) (parna).",note:"postupak",final:true}],
   why:["Pravilo: f neparna ⇔ graf simetričan u odnosu na ishodište (rotacija za 180°); f parna ⇔ graf simetričan u odnosu na y-os.","Definicija: f(−x) = −f(x) (neparna); f(−x) = f(x) (parna).","Intuicija: neparne funkcije su 'kao kosi pravci kroz ishodište' — sin x, x, x³, tan x.","Alt metoda: razviti svaku opciju u Taylor-ov red oko 0 — neparna ima samo neparne potencije.","Česta greška: pretpostaviti da svaka 'asimetrična' funkcija mora biti neparna.","Tipičan propust: brkati pojmove parna funkcija (npr. f(x) = x²) i parna baza (npr. broj 2).","Veza s gradivom: parnost/neparnost funkcija, simetrije, trigonometrija.","Provjera: f(x) = sin x − x → f(−x) = −sin x + x = −f(x) ✓."]
 },
-  {id:23,type:"mc",warn:"Pazi: traži se tvrdnja koja NE vrijedi — pažljivo provjeri asimptote i domenu s grafa.",topic:"limes",points:1,
+  {id:23,img:true,type:"mc",warn:"Pazi: traži se tvrdnja koja NE vrijedi — pažljivo provjeri asimptote i domenu s grafa.",topic:"anal",points:1,
   q:"Na slici je prikazan graf racionalne funkcije f definirane za sve x ∈ ℝ ∖ {−1, 1}. Što od navedenoga NE vrijedi za funkciju f?",
   opts:["lim_{x→−2} f(x) = −1","lim_{x→0} f(x) = 3","lim_{x→1} f(x) = 2","lim_{x→3} f(x) = 0"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
   steps:[{txt:"Iz grafa: domena f je ℝ ∖ {−1, 1} → vertikalne asimptote u x = −1 i x = 1."},{txt:"Vrijednost u x = −2 (lijevo od asimptote): graf prolazi blizu y = −1; lim_{x→−2} f(x) = −1 ✓."},{txt:"Vrijednost u x = 0 (između asimptota): graf prolazi kroz (0, 3) ili blizu; lim_{x→0} f(x) = 3 ✓."},{txt:"Vrijednost u x = 1 (asimptota!): limes NE postoji (ili je beskonačan); tvrdnja \"lim = 2\" je upitna — vjerojatno valjana ako se misli na lijevi/desni limes; po grafu jednostrani limes mogu biti različiti."},{txt:"Vrijednost u x = 3 (daleko desno): graf konvergira horizontalnoj asimptoti; čini se da nije 0 (graf prikazuje vrijednost veću od 0).",note:"verifikacija"},{txt:"Odabir 'NE vrijedi': D) lim_{x→3} f(x) = 0 — graf jasno NE prikazuje da je vrijednost 0 u x = 3 (možda 1, 2, ili horizontalna asimptota ≠ 0).",note:"diagnostika"},{txt:"Odgovor: D — lim_{x→3} f(x) = 0 NE vrijedi.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: kraj grafa (x velik) → horizontalna asimptota; pripadnost asimptote → vertikalna asimptota.",note:"intuicija",final:true},{txt:"Definicija: graf prikazuje stvarno ponašanje; čitati pažljivo horizontalne i vertikalne asimptote.",note:"postupak",final:true}],
   why:["Pravilo: lim_{x→a} f(x) postoji ⇔ lijevi i desni limes su jednaki i konačni; razlikovati od f(a) (vrijednost može biti nedefinirana, limes može postojati ili biti beskonačan).","Definicija: graf prikazuje stvarno ponašanje; čitati pažljivo horizontalne i vertikalne asimptote.","Intuicija: kraj grafa (x velik) → horizontalna asimptota; pripadnost asimptote → vertikalna asimptota.","Alt metoda: ako je funkcija eksplicitno zadana (npr. f(x) = (...)/(x²−1)), izračunati limese algebarski.","Česta greška: pretpostaviti da je limes uvijek jednak vrijednosti funkcije; ne vrijedi za prekidne funkcije.","Tipičan propust: brkati lim u točki s vrijednošću f u toj točki.","Veza s gradivom: limesi, asimptote, racionalne funkcije.","Provjera: kandidat D ne odgovara grafu ✓."]
 },
-  {id:24,type:"mc",warn:"Pazi: f(x) = k/x = k·x⁻¹; derivacija je −k/x²; uvrsti x = 3.",topic:"de",points:1,
+  {id:24,type:"mc",warn:"Pazi: f(x) = k/x = k·x⁻¹; derivacija je −k/x²; uvrsti x = 3.",topic:"anal",points:1,
   q:"Koliko iznosi koeficijent smjera tangente na graf funkcije f(x) = k/x, k ≠ 0, u točki (3, f(3))?",
   opts:["−k/3","−3k","−k/9","−9k"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
@@ -552,7 +552,7 @@ export const qs = [
   steps:[{txt:"Kvadratna jednadžba ax² + bx + c = 0 ima DVOSTRUKO realno rješenje ⇔ diskriminanta D = b² − 4ac = 0."},{txt:"Iz (2 − p)x² + 2x + p = 0: a = 2 − p, b = 2, c = p."},{txt:"Diskriminanta: D = 2² − 4·(2 − p)·p = 4 − 4p(2 − p) = 4 − 8p + 4p² = 4(p² − 2p + 1) = 4(p − 1)²."},{txt:"D = 0 ⇒ 4(p − 1)² = 0 ⇒ p = 1."},{txt:"Pažnja: za p = 2, a = 0, pa jednadžba postaje 2x + 2 = 0 → linearna (NIJE kvadratna). U p = 1: a = 1 ≠ 0, ostaje kvadratna ✓."},{txt:"Provjera: za p = 1, jednadžba x² + 2x + 1 = 0 = (x + 1)² → dvostruko rješenje x = −1 ✓.",note:"verifikacija"},{txt:"Odgovor: p = 1.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: D je 'mjera razdvojenosti' nultočaka; D = 0 znači da se dotaknu u jednoj točki.",note:"intuicija",final:true},{txt:"Definicija: dvostruko rješenje znači faktor (x − x₀)² u rastavu polinoma; geometrijski — graf parabole dotiče x-os.",note:"postupak",final:true}],
   why:["Pravilo: kvadratna jednadžba ima dvostruko (jedinstveno) realno rješenje ⇔ D = 0; dva različita realna ⇔ D > 0; dva kompleksna ⇔ D < 0.","Definicija: dvostruko rješenje znači faktor (x − x₀)² u rastavu polinoma; geometrijski — graf parabole dotiče x-os.","Intuicija: D je 'mjera razdvojenosti' nultočaka; D = 0 znači da se dotaknu u jednoj točki.","Alt metoda: napiše se ax² + bx + c = a(x − r)² i identificira koeficijente.","Česta greška: ne provjeriti da a ≠ 0 (inače jednadžba nije kvadratna).","Tipičan propust: zaboraviti faktor 4 u 4(p − 1)² ili krivo razviti.","Veza s gradivom: diskriminanta, faktorizacija, parabola.","Provjera: za p = 1, jednadžba x² + 2x + 1 ima jedinstveno (dvostruko) rješenje x = −1 ✓."]
 },
-  {id:28,type:"sa",topic:"kompleks",points:1,
+  {id:28,img:true,type:"sa",topic:"kompl",points:1,
   q:"U kompleksnoj (Gaussovoj) ravnini prikazani su kompleksni brojevi z i z + w. Odredite w.",
   sol:{ans:"−4 + i",alt:["w=-4+i","-4+i","(-4, 1)"]},
   steps:[{txt:"Iz slike očitati koordinate: z = 2 + i (točka na (2, 1)); z + w = −2 + 2i (točka na (−2, 2))."},{txt:"Tražimo w: w = (z + w) − z."},{txt:"w = (−2 + 2i) − (2 + i) = (−2 − 2) + (2 − 1)i = −4 + i."},{txt:"Provjera: z + w = (2 + i) + (−4 + i) = (2 − 4) + (1 + 1)i = −2 + 2i ✓.",note:"verifikacija"},{txt:"Odgovor: w = −4 + i.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: ako su z i z+w dani, w je razlika.",note:"intuicija",final:true},{txt:"Definicija: vektorska interpretacija — w je 'pomak' od z do z + w u kompleksnoj ravnini.",note:"postupak",final:true},{txt:"Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu/uvjet — mora vrijediti.",note:"verifikacija",final:true}],
@@ -600,7 +600,7 @@ export const qs = [
   sol:{ans:"k < 4",alt:["k<4","k < 4"]},
   why:["Pravilo: točka pripada skupu rješenja nejednadžbe ⇔ supstitucijom u tu nejednadžbu, ta nejednakost je zadovoljena.","Definicija: linearna nejednadžba ax + b < 0 (a ≠ 0) ima rješenje x < −b/a ili x > −b/a (ovisno o znaku a).","Intuicija: supstituiraj x = −2 da dobiješ linearni uvjet na k.","Alt metoda: postaviti 2x + k = 0 ⇒ x = −k/2; provjera kad x = −2 zadovoljava < 0.","Česta greška: zamijeniti znak nejednakosti pri prebacivanju.","Tipičan propust: krivi predznak pri substituciji (2·(−2) = −4, ne +4).","Veza s gradivom: linearne nejednadžbe, parametarske jednadžbe.","Provjera: k = 3 < 4 → 2·(−2) + 3 = −1 < 0 ✓."]
 },
-  {id:32.1,type:"sa",topic:"log",points:1,
+  {id:32.1,type:"sa",topic:"exp",points:1,
   context:"Zadatak 32 (1. dio od 2): Zadana je funkcija s logaritmom i parametrom d.",
   q:"Odredite vrijednost realnoga parametra d tako da za funkciju f(x) = log(x − d) + 1 vrijedi f(2) = 3.",
   sol:{ans:"d = −98",alt:["-98","d=-98"]},
@@ -628,7 +628,7 @@ export const qs = [
   sol:{ans:"x = [FRAC:5π|12]",alt:["5π/12","5π/12"]},
   why:["Pravilo: sin θ = 1/2 ⇒ θ = π/6 + 2kπ ili θ = 5π/6 + 2kπ.","Definicija: glavne vrijednosti arcsin(1/2) = π/6 i 5π/6.","Intuicija: sin pozitivan u 1. i 2. kvadrantu.","Alt metoda: koristiti grafički prikaz sin x = 1/2.","Česta greška: zaboraviti drugo rješenje 5π/6.","Tipičan propust: ne provjeravati u zadanom intervalu.","Veza s gradivom: trigonometrijske jednadžbe, opće rješenje.","Provjera: 5π/12 u [π/4, π/2] = [3π/12, 6π/12] ✓."]
 },
-  {id:34.1,type:"sa",topic:"ek",points:1,
+  {id:34.1,type:"sa",topic:"exp",points:1,
   context:"Zadatak 34 (1. dio od 2): Eksponencijalni model rasta bakterija.",
   q:"Masa bakterija raste prema modelu N(t) = 100·1,0461ᵗ, gdje je N masa bakterija u gramima nakon t sati. Nakon koliko će se sati masa bakterija UDVOSTRUČITI?",
   sol:{ans:"log_{1,0461} 2 ≈ 15,38 h",alt:["≈15,38","15,38","log_1,0461 2","ln(2)/ln(1,0461)"]},
@@ -663,21 +663,21 @@ export const qs = [
   sol:{ans:"3,5 cm",alt:["3,5","3,5","7/2"]},
   why:["Pravilo: opseg kružnog isječka = 2r + l (dva polumjera + luk).","Definicija: luk l = r · α (α u radijanima).","Intuicija: isječak nije ista stvar kao puna kružnica — opseg uključuje \"rubove\".","Alt metoda: izračunati α iz omjera luka i puna kružnice (l/2πr · 2π).","Česta greška: zaboraviti dvostruki polumjer u opsegu.","Tipičan propust: brkati radijan i stupanj.","Veza s gradivom: kružnica, lukovi, isječci.","Provjera: 2·3,5 + 5 = 12 ✓."]
 },
-  {id:36.2,type:"sa",topic:"3d",points:1,
+  {id:36.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 36 (2. dio od 2): Uspravni valjak visine 10 cm.",
   q:"Koliko iznosi volumen uspravnoga valjka visine 10 cm kojemu je površina osnoga presjeka 140 cm²?",
   sol:{ans:"490π",alt:["490π cm³","490·π","≈1539,38 cm³"]},
   steps:[{txt:"Osni presjek uspravnog valjka = pravokutnik sa stranicama 2r (širina = promjer baze) i h (visina valjka)."},{txt:"Površina osnog presjeka: P_op = 2r · h = 2r · 10 = 20r = 140 cm² ⇒ r = 7 cm."},{txt:"Volumen valjka: V = πr²h = π·7²·10 = π·49·10 = 490π cm³."},{txt:"Numerička vrijednost: 490·3,14159 ≈ 1539,38 cm³.",note:"verifikacija"},{txt:"Provjera: V/h = 490π/10 = 49π ≈ 153,94 cm² (površina baze = πr² = 49π ✓).",note:"verifikacija"},{txt:"Odgovor: V = 490π cm³.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: 'osni presjek' presijeca valjak vertikalno kroz njegovu os simetrije.",note:"intuicija",final:true},{txt:"Definicija: osni presjek valjka = pravokutnik kroz os valjka; sastoji se od dva nasuprotna polumjera baze (= promjer 2r) i visine h.",note:"postupak",final:true}],
   why:["Pravilo: volumen valjka V = πr²·h (površina baze · visina).","Definicija: osni presjek valjka = pravokutnik kroz os valjka; sastoji se od dva nasuprotna polumjera baze (= promjer 2r) i visine h.","Intuicija: 'osni presjek' presijeca valjak vertikalno kroz njegovu os simetrije.","Alt metoda: dvostruko: prvo r iz P_op, pa V iz πr²h.","Česta greška: brkati osni presjek (2r×h) s bazom (πr²).","Tipičan propust: koristiti diametar D umjesto polumjera r.","Veza s gradivom: rotacijska tijela, volumen, osni presjek.","Provjera: r = 7, h = 10, P_op = 2·7·10 = 140 ✓; V = π·49·10 = 490π ✓."]
 },
-  {id:37.1,type:"sa",topic:"3d",points:1,
+  {id:37.1,img:true,type:"sa",topic:"geom",points:1,
   context:"Zadatak 37 (1. dio od 2): Pravilna uspravna četverostrana prizma; osnovni brid 10 cm, visina 12 cm.",
   q:"Koliko iznosi mjera kuta između prostorne dijagonale i baze te prizme?",
   sol:{ans:"≈ 40°18′56″",alt:["40°18'56''","40°18′","≈40°19'","40,32°"]},
   steps:[{txt:"Pravilna četverostrana prizma: baza je kvadrat brida a = 10 cm; visina h = 12 cm."},{txt:"Prostorna dijagonala prizme spaja suprotne vrhove (od najniže točke do najviše prek dijagonale baze)."},{txt:"Dijagonala baze: d_b = a·√2 = 10√2 cm."},{txt:"Pravokutni trokut: jedna kateta = dijagonala baze (d_b = 10√2), druga = visina (h = 12), hipotenuza = prostorna dijagonala."},{txt:"Kut između prostorne dijagonale i baze: tan(α) = h/d_b = 12/(10√2) = 12/(10·1,414) ≈ 0,8485."},{txt:"α = arctan(0,8485) ≈ 40,32° ≈ 40°18′56″.",note:"verifikacija"},{txt:"Provjera: prostorna dijagonala D = √(d_b² + h²) = √(200 + 144) = √344 ≈ 18,55 cm; cos(α) = d_b/D = 10√2/18,55 ≈ 0,762; α = arccos ≈ 40,32° ✓.",note:"verifikacija"},{txt:"Odgovor: α ≈ 40°18′56″.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: pravokutni trokut čine: visina (okomita), dijagonala baze (vodoravna), prostorna dijagonala (hipotenuza).",note:"intuicija",final:true},{txt:"Definicija: prostorna dijagonala = dužina od jednog vrha do dijagonalno suprotnog (preko cijele unutrašnjosti tijela).",note:"postupak",final:true}],
   why:["Pravilo: u 3D, kut između pravca i ravnine = kut između pravca i njegove projekcije na ravninu.","Definicija: prostorna dijagonala = dužina od jednog vrha do dijagonalno suprotnog (preko cijele unutrašnjosti tijela).","Intuicija: pravokutni trokut čine: visina (okomita), dijagonala baze (vodoravna), prostorna dijagonala (hipotenuza).","Alt metoda: koristiti vektore — kut između dijagonale i projekcije.","Česta greška: koristiti brid baze (a) umjesto dijagonale baze (a√2).","Tipičan propust: brkati kut s bazom i kut s bočnom stranom.","Veza s gradivom: 3D geometrija, trigonometrija, prizma.","Provjera: tan(α) ≈ 0,85 → α ≈ 40,3° ≈ 40°18′ ✓."]
 },
-  {id:37.2,type:"sa",topic:"3d",points:1,
+  {id:37.2,img:true,type:"sa",topic:"geom",points:1,
   context:"Zadatak 37 (2. dio od 2): U pravilnu uspravnu četverostranu prizmu (osnovni brid 10 cm, visina 12 cm) upisan je uspravni stožac.",
   q:"Koliko iznosi oplošje uspravnoga stošca upisanoga u tu prizmu?",
   sol:{ans:"90π cm²",alt:["90π","90·π cm²","≈282,74 cm²"]},
@@ -717,14 +717,7 @@ export const qs = [
   sol:{ans:"15, 21, 24 cm",alt:["15,21,24","15, 21, 24","a=15, b=21, c=24"]},
   steps:[{txt:"Trokut s površinom 90√3 cm², opseg 60 cm, jedan kut zadani."},{txt:"Iz površine i opsega + jedan kut: koristiti P = (1/2)·a·b·sin(C), a + b + c = 60, c² = a² + b² − 2ab cos(C)."},{txt:"Sustav jednadžbi za a, b (poznati C, P, opseg)."},{txt:"Riješiti sustav, pronaći stranice."},{txt:"Po službenom ključu.",note:"verifikacija"},{txt:"Distractor analiza: brkati formule ili krivi računski put.",note:"diagnostika"},{txt:"Odgovor: po izračunu.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: tri jednadžbe (P, opseg, kut) i tri nepoznate (a, b, c) — riješiv sustav.",note:"intuicija",final:true},{txt:"Definicija: trokut je potpuno određen s tri elementa (uključujući uvjete).",note:"postupak",final:true}],
   why:["Pravilo: poučak sinusa za površinu — P = (1/2)·a·b·sin(C); poučak kosinusa za stranice; opseg = zbroj.","Definicija: trokut je potpuno određen s tri elementa (uključujući uvjete).","Intuicija: tri jednadžbe (P, opseg, kut) i tri nepoznate (a, b, c) — riješiv sustav.","Alt metoda: koristiti Heronovu formulu uz dodatne uvjete.","Česta greška: zaboraviti uvjet trokutarne nejednakosti.","Tipičan propust: brkati nasuprotnu i susjednu stranicu kutu.","Veza s gradivom: trigonometrija, geometrija trokuta.","Provjera: P, O, kut moraju biti dosljedni s nađenim stranicama ✓."], ex:"Poučak sinusa: a/sin A = b/sin B = c/sin C = 2R. Poučak kosinusa: c² = a² + b² − 2ab·cos C. Površina trokuta s 2 stranice i kutom: P = (1/2)·a·b·sin C. Heronova formula uz poluopseg s. Iz P, O, jedan kut: sustav 3 jednadžbi za a, b, c."
-},
-  {_META:true,
-   auditedAt: "2026-05-22",
-   auditSource: "MAT A (viša razina, jesenski rok 2024., D-S068)",
-   auditStatus: "verified-full-max-pakG-qtext-resolved",
-   auditBy: "Daniel+Claude (Pak G+H+I+F-MAX + PakG cross-check + q-tekst audit)",
-   verified: "pdf+kljuc+pedagogy-maximum-A+verbatim-key+qtext-verified+content-corrected",
-   notes: "Pak F-MAX + Pak G verbatim PDF check + Q-tekst audit. 51 Q-objekata. MC 24/24 + SA 27/27 sol ✓ (s P0 fixevima: Q31,1, Q31,2, Q38,1, Q39,1 resolved u prijašnjoj sesiji). P0 pedagogy rewrites za 14 Q-objekata: Q1 (faktorizacija), Q3 (permutacija s ponavljanjem 12 600), Q5 (padajuća + odsj > 0), Q6 (T(v) = −0,8v + 22), Q7 (|x−8|=5), Q9 (Vièteov produkt c/a = -8), Q11 (težište-središte = 4 cm), Q12 (sličnost k²), Q13 (jednakokraki krak = 2√3), Q14 (Poučak sinusa β = 11°44′), Q15 (kvadar udaljenost), Q16 (paralelni pravac), Q17 (kanonska kružnice (-1,3) r=7), Q19 (geometrijski niz 2^(4-n)), Q21 (z₂=−z₁ → |φ−φ|=π), Q22 (sin x − x), Q23 (lim x=3 ≠ 0), Q24 (f'(x)=-k/x²), Q27 ((p-1)²=0), Q28 (Gaussova ravnina w=-4+i), Q32,1 (log d=-98), Q34,1 (udvostručenje 15,38h), Q34,2 (15 m max), Q36,2 (valjak 490π), Q37,1 (prostorna dij 40°18′), Q37,2 (stožac upisan 90π). math_lint 0, pedagogy 0 P0/P1/P2."}
+}
 ];
 
 export const qImages = {

@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg28_2018B(){
   const W=220,H=180,pad={l:32,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=20,xMax=65,yMin=-2000,yMax=7000;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -37,7 +37,7 @@ function Svg28_2018B(){
 
 function Svg27_2018Bj(){
   const W=280,H=280;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const pad={l:35,r:20,t:20,b:35};
   const xMin=-6,xMax=6,yMin=-5,yMax=6;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
@@ -106,7 +106,7 @@ function Svg27_2018Bj(){
 
 function Svg26_2018B(){
   const W=200,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=14,yMin=-1,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -145,7 +145,7 @@ function Svg26_2018B(){
 
 function Svg24_2018Bj(){
   const W=220,H=180,pad={l:32,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-4,xMax=8,yMin=-2,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -179,7 +179,7 @@ function Svg23b_2018Bj(){
   // A diagonal from lower-left to upper-right crossing both
   // Both lines intersect each parallel at the SAME point
   const W=320,H=260;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // P1 = intersection on b (bottom), P2 = intersection on c (upper)
   const P1={x:148,y:195}, P2={x:168,y:108};
   // Transversal direction: from P1 down to P1+(dx,+40), from P2 up to P2+(-dx,-50)
@@ -222,7 +222,7 @@ function Svg23b_2018Bj(){
 
 function Svg16_2018Bj(){
   const W=280,H=150;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const x1=25,y1=15,x2=255,y2=130;
   const w=x2-x1, h=y2-y1; // 230×115
   const rV=h/2; // polukrug lijevo: radijus = visina/2 = 57.5
@@ -247,7 +247,7 @@ function Svg16_2018Bj(){
 
 function Svg15_2018Bj(){
   const W=280,H=230,pad={l:26,r:70,t:28,b:34};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const cities=[{n:"K",z:20,s:35},{n:"P",z:8,s:25},{n:"V",z:10,s:32},{n:"Z",z:7,s:12}];
   const maxV=45,barH=10,barGap=3,groupGap=30;
@@ -286,7 +286,7 @@ function Svg15_2018Bj(){
 
 function Svg14_2018B(){
   const S=108,p=16;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   function mk(a,b,c,lbl,correct){
     const W=S,H=S,xMin=-3,xMax=3,yMin=-3,yMax=5;
     const toX=v=>p+((v-xMin)/(xMax-xMin))*(W-2*p);
@@ -315,7 +315,7 @@ function Svg14_2018B(){
 
 function Svg12_2018B(){
   const W=240,H=120,pad=20;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=W/2,cy=H-pad;
   const rAC=50, rAB=25, rBC=20;
   // A je lijevo, B je između, C je desno
@@ -807,7 +807,7 @@ export const qs = [
     {txt:"Provjera: 1067 + 6402 + 2231 = 9700 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) izračunaj broj u svakoj 'krajnjoj' skupini. 2) oduzmi od ukupnog za 'srednju' skupinu.",final:true,note:"postupak"},{txt:"Intuicija: Pažnja na granice: 'najviše 25 %' znači ≤ 25 % (uključeno); 'najmanje 75 %' znači ≥ 75 % (uključeno). Srednja skupina je STROGO IZMEĐU.",note:"intuicija",final:true},{txt:"Provjera: aritmetička sredina mora biti između min i max vrijednosti.",note:"verifikacija",final:true}
   ]},
-  {id:26.1,type:"sa",topic:"kv",points:1,
+  {id:26.1,img:true,type:"sa",topic:"kv",points:1,
   context:"Zadatak 26 (1. dio od 2):",
   q:"Košarkaš je bacio loptu u koš čiji se obruč nalazi na visini 3,05 m iznad podloge. Formula h(t) = 1,96 + 4,5t − 2,95t² opisuje visinu h(t) na kojoj se nalazi lopta, pri čemu je t vrijeme proteklo od trenutka bacanja lopte. Visina je izražena u metrima, a vrijeme u sekundama. Na kojoj se visini lopta nalazila 1 sekundu nakon bacanja?",
   sol:{ans:"3,51 m",alt:["3,51","3,51 m","3,51m"]},
@@ -821,7 +821,7 @@ export const qs = [
     {txt:"Postupak: jednostavna supstitucija t = 1 u kvadratnu funkciju.",final:true,note:"postupak"},
     {txt:"Intuicija: lopta je bačena s 1,96 m (h(0)) — vjerojatno iz ruke. Nakon 1 s na visini 3,51 m — iznad obruča (3,05 m).",final:true,note:"intuicija"},{txt:"Provjera: uvrsti dobivene korijene u f(x); f(x₁) i f(x₂) moraju dati 0.",note:"verifikacija",final:true}
   ]},
-  {id:26.2,type:"sa",topic:"kv",points:1,
+  {id:26.2,img:true,type:"sa",topic:"kv",points:1,
   context:"Zadatak 26 (2. dio od 2):",
   q:"Koliko će sekunda proteći od trenutka bacanja lopte do trenutka u kojemu će lopta biti na visini obruča koša? Napišite odgovor kao decimalni broj.",
   sol:{ans:"0,302 i 1,223",alt:["0,302 i 1,223","0,30 i 1,22","0,302i1,223"]},
@@ -885,7 +885,7 @@ export const qs = [
     {txt:"Provjera: f(x) = x² + 2 — sve traženo zadovoljava ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) odaberi a > 0 (otvorena gore). 2) c > 0 (pozitivna y-presjek). 3) D < 0 — pa b² < 4ac.",final:true,note:"postupak"},{txt:"Intuicija: Da parabola SIJEČE y-os u pozitivnoj točki: f(0) = c > 0.",note:"intuicija",final:true}
   ]},
-  {id:28.1,type:"sa",topic:"al",points:1,
+  {id:28.1,img:true,type:"sa",topic:"al",points:1,
   context:"Zadatak 28 (1. dio od 3):",
   q:"Riješite jednadžbu (2x + 1)/2 = (x² − 1)/x.",
   sol:{ans:"x = −2",alt:["-2","x=−2","−2","x = -2","x=−2"]},
@@ -899,7 +899,7 @@ export const qs = [
     {txt:"Provjera: lijeva: (2·(−2) + 1)/2 = −3/2. Desna: ((−2)² − 1)/(−2) = 3/(−2) = −3/2 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) provjeri uvjet domene (nazivnici ≠ 0). 2) pomnoži s LCM nazivnika. 3) riješi linearnu/kvadratnu.",final:true,note:"postupak"},{txt:"Intuicija: Domena: 2 ≠ 0 (uvijek vrijedi); x ≠ 0 (uvjet domene).",note:"intuicija",final:true}
   ]},
-  {id:28.2,type:"sa",topic:"al",points:1,
+  {id:28.2,img:true,type:"sa",topic:"al",points:1,
   context:"Zadatak 28 (2. dio od 3):",
   q:"Riješite sustav jednadžba: x = (x+1)/2 − (y-3)/4 i y = (x+1)/3 + (y-3)/2.",
   sol:{ans:"x = [FRAC:11|4], y = −1/2",alt:["x=11/4 y=-1/2","x=2,75 y=-0,5","2,75","x = 11/4, y = −1/2","x=[FRAC:11|4],y=−1/2","x = [FRAC:11|4]. y = −1/2"]},
@@ -916,7 +916,7 @@ export const qs = [
     {txt:"Provjera u (I): 2·11/4 + (−1/2) = 22/4 − 2/4 = 20/4 = 5 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) pomnoži svaku jednadžbu s LCM nazivnika. 2) sredi na standardni oblik. 3) eliminacija ili supstitucija. 4) provjeri.",final:true,note:"postupak"},{txt:"Intuicija: Postupak: 1) LCM za svaku jednadžbu zasebno. 2) sredi na ax + by = c. 3) riješi sustav.",note:"intuicija",final:true}
   ]},
-  {id:28.3,type:"sa",topic:"exp",points:1,
+  {id:28.3,img:true,type:"sa",topic:"exp",points:1,
   context:"Zadatak 28 (3. dio od 3):",
   q:"Riješite jednadžbu 0,1ˣ : 0,01ˣ = 1000.",
   sol:{ans:"x = 3",alt:["3","x=3"]},
@@ -930,8 +930,7 @@ export const qs = [
     {txt:"Točan odgovor: x = 3.",final:true,note:"odgovor"},
     {txt:"Provjera: x = 3 → 0,1³ : 0,01³ = 0,001 / 0,000001 = 1000 ✓",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) pretvori sve u istu bazu (10). 2) primijeni pravila potencija. 3) izjednači eksponente.",final:true,note:"postupak"},{txt:"Intuicija: Pravila potencija: (a^m)^n = a^(mn); a^m / a^n = a^(m − n).",note:"intuicija",final:true}
-  ]},
-  {_META:true,auditStatus:"verified-full",rok:"2018_jesen",razina:"B",serial:"D-S039",totalPoints:40,mcCount:16,saCount:24,verified:"sympy+pdf",note:"unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3)",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  ]}
 ];
 
 export const qImages = {

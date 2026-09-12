@@ -1,0 +1,22 @@
+{
+  "auditStatus": "verified-full+pedagogy-full",
+  "auditedAt": "2026-05-16",
+  "auditBy": "Claude+Daniel",
+  "rok": "2016_jesen",
+  "razina": "B",
+  "serial": "D-S033",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 20,
+  "verified": "sympy+pdf+verbatim+pedagogy-full",
+  "notes": [
+    "Pak G (verbatim PDF, 2026-05-16): Q1-Q28 svi tekstovi/opcije/odgovori usklađeni s originalnim PDF-om D-S033. Klju NCVVO verificiran.",
+    "Pak G1 (ghost cleanup): uklonjeni duplikati Q24a i Q26a (string ID artefakti).",
+    "Pak G2 (sadržajni fixevi): Q23,1 −d²−2c (sympy verified), Q23,2 poredak (PDF traži 1/x, √x, x ne x², 1/x, x), Q25,2 točan eksponent (x/3), Q26,2 točan izraz |2m−3|−|1−m|+m. Sve verificirano s SymPy ili kalkulacijom.",
+    "Pak F MC (Q1-Q16): pedagoški upgrade — mc/1pt ≥3 steps (verifikacija+diagnostika) + ≥4 why (Pravilo/Intuicija/Greška/Provjera); mc/2pt ≥4 steps + ≥4 why + ex polje.",
+    "Pak F SA (Q17-Q28,3): pedagoški upgrade za 20 sub-Q-ova; sa/1pt ≥3 steps + ≥3-4 why.",
+    "PED-FINAL swap: 16 swapova (verifikacija na zadnju poziciju).",
+    "Pak I (visual): Q_IMAGES rename \"24\" → \"24,2\" i \"28\" → \"28,1\"; aliasi 28,2, 28,3 dodani (isti SVG); Q24,1 img:true uklonjen (zadatak je CRTANJE, ne čitanje).",
+    "Preostali nalazi: 10 false positive — 1 PED-FIELD (scanner ne parsa ⟨ ⟩ u opcijama Q2), 9 PED-TOPIC (keyword)."
+  ]
+}

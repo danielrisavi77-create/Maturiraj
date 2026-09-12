@@ -5,7 +5,7 @@ const e = React.createElement;
 function Svg9_2018Blj(){
   // Simple trace: square at bottom, 4 triangles all sharing the top edge
   const W=300,H=250;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Square
   const TL={x:100,y:115},TR={x:200,y:115},BR={x:200,y:220},BL={x:100,y:220};
   // 4 triangle apexes (base = TL–TR for all)
@@ -28,7 +28,7 @@ function Svg9_2018Blj(){
 
 function Svg7_2018Blj(){
   const W=240,H=120,x0=20,y0=10,rowH=24;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const colW=[100,110];
   const totalW=colW[0]+colW[1];
   const xs=[x0,x0+colW[0]];
@@ -63,7 +63,7 @@ function Svg27_2018Blj(){
   // Key constraints: avg 14.sij = 37.42, 9 measurements >37.2 (→45mL)
   // Reading from image carefully (magenta line):
   const W=360,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const pad={l:42,r:12,t:18,b:40};
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const tMin=35.5,tMax=39;
@@ -150,7 +150,7 @@ function Svg27_2018Blj(){
 
 function Svg26b_2018Blj(){
   const W=220,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const pad={l:35,r:15,t:15,b:35};
   const xMin=-4,xMax=5,yMin=-4,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
@@ -186,7 +186,7 @@ function Svg26b_2018Blj(){
 
 function Svg26a_2018Blj(){
   const W=220,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const pad={l:35,r:15,t:15,b:35};
   const xMin=-4,xMax=5,yMin=-3,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
@@ -215,7 +215,7 @@ function Svg26a_2018Blj(){
 function Svg25b_2018Blj(){
   // Exponential-like curve crossing x-axis at x=2, rising steeply right
   const W=240,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const pad={l:40,r:15,t:15,b:35};
   const xMin=-5,xMax=5,yMin=-3,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
@@ -256,7 +256,7 @@ function Svg25a_2018Blj(){
   // Grid with A and B marked. From image: large grid, A and B on same row
   // in center-right area, about 3 units apart. 1cm indicator at lower-left.
   const W=280,H=220;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const gs=22; // grid spacing
   const ox=10,oy=10;
   const cols=11,rows=8;
@@ -284,7 +284,7 @@ function Svg24b_2018Blj(){
   // Top: α angle. Bottom-left: 42°. Bottom-right: 150° (exterior).
   // Lines extend beyond each vertex.
   const W=280,H=190;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // Three vertices of the triangle
   const top={x:145,y:42}, bl={x:65,y:118}, br={x:220,y:118};
   // Extended lines beyond each vertex
@@ -336,7 +336,7 @@ function Svg24a_2018Blj(){
   // CB labeled 12 cm. DA labeled 13 cm. 60° at B and at D. Right angle mark at D.
   // Diagonal BD drawn.
   const W=220,H=280;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const C={x:95,y:18}, B={x:175,y:105};
   const D={x:45,y:152}, A={x:110,y:268};
 
@@ -381,7 +381,7 @@ function Svg24a_2018Blj(){
 function Svg14_2018Blj(){
   // 4 subplots 2x2. Each is a simple parabola with axes.
   const W=300,H=310;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   function sub(ox,oy,label,xAxisAtBottom){
     // Returns array of elements for one subplot
     const gw=130,gh=135;
@@ -456,7 +456,7 @@ function Svg14_2018Blj(){
 
 function Svg12_2018Blj(){
   const W=280,H=160;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // A, B, C on a horizontal line. AB=12cm, BC=8cm, AC=20cm
   // Large circle: diameter AC=20, center at midpoint of AC, r=10
   // Left circle: diameter AB=12, center at midpoint of AB, r=6
@@ -1085,8 +1085,7 @@ export const qs = [
     {txt:"Točan odgovor: maksimalna zarada = 6 320 kn pri 40 proizvoda.",final:true,note:"odgovor"},
     {txt:"Provjera: Z(40) = 6320 ✓; Z(39) i Z(41) su MANJI (jer su izvan tjemena).",final:true,note:"verifikacija"},
     {txt:"Postupak: 1) parabola otvorena dolje (a < 0) ima MAKSIMUM u tjemenu. 2) x_max = −b/(2a). 3) izračunaj Z(x_max).",final:true,note:"postupak"},{txt:"Intuicija: Tjeme y-koordinata = c − b²/(4a). Alternativno: izračunaj f u x_tjeme.",note:"intuicija",final:true},{txt:"Provjera Vièteovim formulama: x₁+x₂ = −b/a i x₁·x₂ = c/a.",note:"verifikacija",final:true}
-  ]},
-  {_META:true,auditStatus:"verified-full",rok:"2018_ljeto",razina:"B",serial:"D-S041",totalPoints:40,mcCount:16,saCount:24,verified:"sympy+pdf",note:"unusual structure: 16 MC + 24 SA (with 3-part splits 27,1/2/3, 28,1/2/3); fixed Q26,2 ans f(x)=x/2-1 → f(x)=2x-1",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  ]}
 ];
 
 export const qImages = {

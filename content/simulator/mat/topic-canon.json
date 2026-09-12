@@ -1,0 +1,20 @@
+{
+  "_comment": "Kanonska tablica tema (zadatak 3.1, docs/MAT_SIMULATOR_PLAN.md). Generira/provjerava scripts/mat-normalize-topics.mjs. Ovo je popis za sinkronizaciju TOPIC_LABELS u components/simulator/MatEngineCore.tsx (dira grupa engine) — ovaj repo (grupa data) ne smije mijenjati engine niti docs/ osim mat-figure-audit.json, pa kanon živi ovdje.",
+  "al": "Algebra",
+  "br": "Brojevi",
+  "geom": "Geometrija",
+  "kon": "Konusni presjeci",
+  "kv": "Kvadratna funkcija",
+  "lin": "Linearna funkcija",
+  "trig": "Trigonometrija",
+  "fun": "Funkcije",
+  "anal": "Analiza (derivacije, limesi)",
+  "stat": "Statistika",
+  "exp": "Eksponencijalne i logaritamske funkcije",
+  "niz": "Nizovi",
+  "fin": "Financijska matematika",
+  "kompl": "Kompleksni brojevi",
+  "vek": "Vektori",
+  "komb": "Kombinatorika i vjerojatnost",
+  "ostalo": "Ostalo"
+}

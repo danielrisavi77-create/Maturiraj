@@ -1,0 +1,18 @@
+{
+  "auditStatus": "verified-full",
+  "rok": "2011_ljeto",
+  "razina": "B",
+  "serial": "D-S004",
+  "totalPoints": 40,
+  "mcCount": 16,
+  "saCount": 20,
+  "verified": "vision+pdf+pedagogy-premium+verbatim",
+  "auditNotes": "Q11/Q14/Q16/Q27 SVG redone iz pixel-verified PDF reference (Bug 22 protocol). Sadržajna paleta (#4a90d9 plava primary, #e05252 crvena, #50c878 zelena, #e9b446 gold) — Bug 37 compliant. Q11 parabola: vertex (3,2), zeros 0,6 (polyfit). Q27 vertices: N(−20,30), M(20,30), K(20,−10), J(−10,−20). Q17 i Q27,2: NCVVO ključ je TOČAN (−3/7 i √2600); prethodne tvrdnje o NCVVO greški su povučene. Multi-part Q-ovi imaju \"Zadatak X (Y. dio od Z): \" prefiks (Bug 36/38). Steps ≥4, why = 5 stavki (CONTENT QUALITY STANDARDS).",
+  "maintenanceAt": "2026-05-16",
+  "maintenanceNotes": [
+    "Pak H batch (context dodavanje)",
+    "D1 sweep (decimalna toka u zarez)",
+    "C1 sweep (interval syntax)",
+    "B2 sweep (exp zagrada)"
+  ]
+}

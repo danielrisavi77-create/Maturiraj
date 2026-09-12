@@ -20,11 +20,11 @@ function Svg28_2016Blj(){
     // Horizontalne gridlines (temperature)
     ...[-5,0,5,10,15,20,25].map(v=>e("line",{key:"hg"+v,x1:pad.l,y1:toTY(v),x2:pad.l+iW,y2:toTY(v),stroke:"var(--bdr)",strokeWidth:.3,strokeDasharray:"2,3"})),
     // Stupci padalina (sivo-plavi, kao u PDF-u)
-    ...rains.map((r,i)=>e("rect",{key:"r"+i,x:pad.l+i*barW+2,y:toRY(r),width:barW-4,height:pad.t+iH-toRY(r),fill:"rgba(74,144,217,0.22)",stroke:"#4a90d9",strokeWidth:.6})),
+    ...rains.map((r,i)=>e("rect",{key:"r"+i,x:pad.l+i*barW+2,y:toRY(r),width:barW-4,height:pad.t+iH-toRY(r),fill:"rgba(74,144,217,0.22)",stroke:"var(--blue)",strokeWidth:.6})),
     // Lijeva os (temperatura)
     e("line",{x1:pad.l,y1:pad.t,x2:pad.l,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.3}),
     // Desna os (padaline)
-    e("line",{x1:pad.l+iW,y1:pad.t,x2:pad.l+iW,y2:pad.t+iH,stroke:"#4a90d9",strokeWidth:1.3}),
+    e("line",{x1:pad.l+iW,y1:pad.t,x2:pad.l+iW,y2:pad.t+iH,stroke:"var(--blue)",strokeWidth:1.3}),
     // X os (na y=0 temperature, tj. nešto iznad dna)
     e("line",{x1:pad.l,y1:pad.t+iH,x2:pad.l+iW,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.3}),
     // Temp ticki + labele (lijevo)
@@ -34,22 +34,22 @@ function Svg28_2016Blj(){
     )),
     // Padaline ticki + labele (desno)
     ...[0,50,100,150,200,250,300].map(v=>e("g",{key:"p"+v},
-      e("line",{x1:pad.l+iW,y1:toRY(v),x2:pad.l+iW+3,y2:toRY(v),stroke:"#4a90d9",strokeWidth:1}),
-      e("text",{x:pad.l+iW+5,y:toRY(v)+3,fontSize:7,fill:"#4a90d9"},v)
+      e("line",{x1:pad.l+iW,y1:toRY(v),x2:pad.l+iW+3,y2:toRY(v),stroke:"var(--blue)",strokeWidth:1}),
+      e("text",{x:pad.l+iW+5,y:toRY(v)+3,fontSize:7,fill:"var(--blue)"},v)
     )),
     // Linija temperatura (crna, deblja — kao u PDF-u)
     e("polyline",{points:temps.map((t,i)=>`${toX(i)},${toTY(t)}`).join(" "),fill:"none",stroke:"var(--text)",strokeWidth:2.2,strokeLinejoin:"round"}),
     // Temp točke
     ...temps.map((t,i)=>e("circle",{key:"tc"+i,cx:toX(i),cy:toTY(t),r:3,fill:"var(--text)",stroke:"var(--bg)",strokeWidth:1})),
     // Referentna linija T=15°C (isprekidana, za čitljivost)
-    e("line",{x1:pad.l,y1:toTY(15),x2:pad.l+iW,y2:toTY(15),stroke:"#e05252",strokeWidth:.7,strokeDasharray:"4,3",opacity:.5}),
+    e("line",{x1:pad.l,y1:toTY(15),x2:pad.l+iW,y2:toTY(15),stroke:"var(--red)",strokeWidth:.7,strokeDasharray:"4,3",opacity:.5}),
     // Labele mjeseci (dno)
     ...months.map((m,i)=>e("text",{key:"m"+i,x:toX(i),y:pad.t+iH+14,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},m)),
     // Os labele
     e("text",{x:4,y:pad.t+4,fontSize:8,fontWeight:600,fill:"var(--text)"},"\u00b0C"),
-    e("text",{x:pad.l+iW+8,y:pad.t+4,fontSize:8,fontWeight:600,fill:"#4a90d9"},"mm"),
+    e("text",{x:pad.l+iW+8,y:pad.t+4,fontSize:8,fontWeight:600,fill:"var(--blue)"},"mm"),
     // Legenda dolje
-    e("rect",{x:pad.l+10,y:pad.t+iH+24,width:14,height:8,fill:"rgba(74,144,217,0.22)",stroke:"#4a90d9",strokeWidth:.5}),
+    e("rect",{x:pad.l+10,y:pad.t+iH+24,width:14,height:8,fill:"rgba(74,144,217,0.22)",stroke:"var(--blue)",strokeWidth:.5}),
     e("text",{x:pad.l+28,y:pad.t+iH+31,fontSize:7,fill:"var(--muted)"},"koli\u010dina padalina (mm)"),
     e("line",{x1:pad.l+iW-80,y1:pad.t+iH+28,x2:pad.l+iW-60,y2:pad.t+iH+28,stroke:"var(--text)",strokeWidth:2}),
     e("text",{x:pad.l+iW-56,y:pad.t+iH+31,fontSize:7,fill:"var(--muted)"},"srednja temperatura (\u00b0C)")
@@ -66,23 +66,23 @@ function Svg27_2016Blj(){
   const Dx=100,Dy=128; // D na AB
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"8px auto"}},
     // Ispuna trokuta ABC lagano siva
-    e("polygon",{points:Ax+","+Ay+" "+Bx+","+By+" "+Cx+","+Cy,fill:"rgba(74,144,217,0.06)",stroke:"#4a90d9",strokeWidth:1.6}),
+    e("polygon",{points:Ax+","+Ay+" "+Bx+","+By+" "+Cx+","+Cy,fill:"rgba(74,144,217,0.06)",stroke:"var(--blue)",strokeWidth:1.6}),
     // Linija CD (unutarnja)
-    e("line",{x1:Cx,y1:Cy,x2:Dx,y2:Dy,stroke:"#e9b446",strokeWidth:1.4,strokeDasharray:"5,3"}),
+    e("line",{x1:Cx,y1:Cy,x2:Dx,y2:Dy,stroke:"var(--gold)",strokeWidth:1.4,strokeDasharray:"5,3"}),
     // Kut α u A — luk
-    e("path",{d:"M "+(Ax+30)+","+Ay+" A 30 30 0 0 0 "+(Ax+18)+","+(Ay-24),fill:"none",stroke:"#4a90d9",strokeWidth:1.5}),
-    e("text",{x:Ax+32,y:Ay-8,fontSize:11,fill:"#4a90d9",fontStyle:"italic",fontWeight:600},"\u03b1"),
+    e("path",{d:"M "+(Ax+30)+","+Ay+" A 30 30 0 0 0 "+(Ax+18)+","+(Ay-24),fill:"none",stroke:"var(--blue)",strokeWidth:1.5}),
+    e("text",{x:Ax+32,y:Ay-8,fontSize:11,fill:"var(--blue)",fontStyle:"italic",fontWeight:600},"\u03b1"),
     // Kut 40° uz C (lijeva strana — ACD)
-    e("path",{d:"M "+(Cx-18)+","+(Cy+24)+" A 24 24 0 0 0 "+(Cx-6)+","+(Cy+24),fill:"none",stroke:"#e05252",strokeWidth:1.4}),
-    e("text",{x:Cx-28,y:Cy+40,fontSize:9,fill:"#e05252",fontWeight:600},"40\u00b0"),
+    e("path",{d:"M "+(Cx-18)+","+(Cy+24)+" A 24 24 0 0 0 "+(Cx-6)+","+(Cy+24),fill:"none",stroke:"var(--red)",strokeWidth:1.4}),
+    e("text",{x:Cx-28,y:Cy+40,fontSize:9,fill:"var(--red)",fontWeight:600},"40\u00b0"),
     // Kut 48° uz C (desna strana — DCB)
-    e("path",{d:"M "+(Cx-4)+","+(Cy+24)+" A 24 24 0 0 0 "+(Cx+16)+","+(Cy+24),fill:"none",stroke:"#e05252",strokeWidth:1.4}),
-    e("text",{x:Cx+8,y:Cy+40,fontSize:9,fill:"#e05252",fontWeight:600},"48\u00b0"),
+    e("path",{d:"M "+(Cx-4)+","+(Cy+24)+" A 24 24 0 0 0 "+(Cx+16)+","+(Cy+24),fill:"none",stroke:"var(--red)",strokeWidth:1.4}),
+    e("text",{x:Cx+8,y:Cy+40,fontSize:9,fill:"var(--red)",fontWeight:600},"48\u00b0"),
     // Točke (mali krugovi)
-    e("circle",{cx:Ax,cy:Ay,r:2.5,fill:"#4a90d9"}),
-    e("circle",{cx:Bx,cy:By,r:2.5,fill:"#4a90d9"}),
-    e("circle",{cx:Cx,cy:Cy,r:2.5,fill:"#e05252"}),
-    e("circle",{cx:Dx,cy:Dy,r:2.5,fill:"#e9b446"}),
+    e("circle",{cx:Ax,cy:Ay,r:2.5,fill:"var(--blue)"}),
+    e("circle",{cx:Bx,cy:By,r:2.5,fill:"var(--blue)"}),
+    e("circle",{cx:Cx,cy:Cy,r:2.5,fill:"var(--red)"}),
+    e("circle",{cx:Dx,cy:Dy,r:2.5,fill:"var(--gold)"}),
     // Labels
     e("text",{x:Ax-4,y:Ay+14,fontSize:12,fontWeight:700,fill:"var(--text)",fontStyle:"italic"},"A"),
     e("text",{x:Bx-2,y:By+14,fontSize:12,fontWeight:700,fill:"var(--text)",fontStyle:"italic"},"B"),
@@ -93,7 +93,7 @@ function Svg27_2016Blj(){
 
 function Svg23_2016Blj(){
   const W=200,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=8,yMin=-1,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -132,7 +132,7 @@ function Svg23_2016Blj(){
 
 function Svg16_2016Blj(){
   const W=200,H=170,pad={l:28,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=5,yMin=-4,yMax=5;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -162,7 +162,7 @@ function Svg16_2016Blj(){
 
 function Svg15_2016Blj(){
   const W=220,H=140;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const Ax=20,Ay=120,Bx=180,By=120,Dx=60,Dy=30,Cx=200,Cy=30,Tx=140,Ty=30;
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"8px auto"}},
     e("polygon",{points:Ax+","+Ay+" "+Bx+","+By+" "+Cx+","+Cy+" "+Dx+","+Dy,fill:"none",stroke:_BLUE,strokeWidth:1.5}),
@@ -180,7 +180,7 @@ function Svg15_2016Blj(){
 
 function Svg12_2016Blj(){
   const W=200,H=180,pad={l:28,r:14,t:14,b:24};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-1,xMax=5,yMin=-3,yMax=4;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -210,17 +210,17 @@ function Svg11_2016Blj(){
   const W=260,H=110;
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"8px auto"}},
     // A — Kvadrat (plavo)
-    e("rect",{x:12,y:12,width:48,height:55,fill:"rgba(74,144,217,0.18)",stroke:"#4a90d9",strokeWidth:1.8,rx:1}),
-    e("text",{x:12,y:82,fontSize:11,fontWeight:700,fill:"#4a90d9"},"A."),
+    e("rect",{x:12,y:12,width:48,height:55,fill:"rgba(74,144,217,0.18)",stroke:"var(--blue)",strokeWidth:1.8,rx:1}),
+    e("text",{x:12,y:82,fontSize:11,fontWeight:700,fill:"var(--blue)"},"A."),
     // B — Pravokutnik uži i viši (zeleno)
-    e("rect",{x:86,y:5,width:28,height:62,fill:"rgba(80,200,120,0.18)",stroke:"#50c878",strokeWidth:1.8,rx:1}),
-    e("text",{x:82,y:82,fontSize:11,fontWeight:700,fill:"#50c878"},"B."),
+    e("rect",{x:86,y:5,width:28,height:62,fill:"rgba(80,200,120,0.18)",stroke:"var(--green)",strokeWidth:1.8,rx:1}),
+    e("text",{x:82,y:82,fontSize:11,fontWeight:700,fill:"var(--green)"},"B."),
     // C — Jednakokračani trokut širi (narančasto) — točan odgovor
-    e("polygon",{points:"145,67 168,12 191,67",fill:"rgba(233,180,70,0.18)",stroke:"#e9b446",strokeWidth:1.8,strokeLinejoin:"round"}),
-    e("text",{x:145,y:82,fontSize:11,fontWeight:700,fill:"#e9b446"},"C."),
+    e("polygon",{points:"145,67 168,12 191,67",fill:"rgba(233,180,70,0.18)",stroke:"var(--gold)",strokeWidth:1.8,strokeLinejoin:"round"}),
+    e("text",{x:145,y:82,fontSize:11,fontWeight:700,fill:"var(--gold)"},"C."),
     // D — Trokut uži, nagnut desno (crveno)
-    e("polygon",{points:"218,67 232,8 248,67",fill:"rgba(224,82,82,0.18)",stroke:"#e05252",strokeWidth:1.8,strokeLinejoin:"round"}),
-    e("text",{x:218,y:82,fontSize:11,fontWeight:700,fill:"#e05252"},"D.")
+    e("polygon",{points:"218,67 232,8 248,67",fill:"rgba(224,82,82,0.18)",stroke:"var(--red)",strokeWidth:1.8,strokeLinejoin:"round"}),
+    e("text",{x:218,y:82,fontSize:11,fontWeight:700,fill:"var(--red)"},"D.")
   );
 }
 
@@ -842,8 +842,7 @@ export const qs = [
     "Intuicija: 140 mm padalina je 'okomito gledano' visina sloja vode. Pomnoženo s velikom površinom (27,6 m²) daje volumen — količinu vode.",
     "Česta greška: zaboraviti pretvoriti mm u m (uzeti 140 m visine umjesto 0,14 m) — rezultat 1000× prevelik; ili pomiješati m³ s L (pretvorba × 1000).",
     "Provjera ✓: 3 864 L = 3,864 m³ = 3 864 000 mL. Razuman volumen za jaku ljetnu kišu na manjoj površini (oko 28 m²) ✓"
-  ,"Alt metoda: provjeri preko Pitagorinog poučka ili sličnih trokuta.","Postupak: identificiraj geometrijska svojstva, primijeni teorem (Pitagora, sličnost)."]},
-  {_META:true,auditStatus:"verified-full+pedagogy-full",auditedAt:"2026-05-15",auditBy:"Claude+Daniel",rok:"2016_ljeto",razina:"B",serial:"D-S032",totalPoints:40,mcCount:16,saCount:20,verified:"sympy+pdf+pedagogy-full",notes:["Pak H (2026-05-15): dodano context polje za 15 multi-part Q-ova (Q22,1-Q28,3).","Pak F MC (Q1-Q16): pedagoški upgrade — verifikacija step + diagnostika + why split (Pravilo/Intuicija/Greška/Provjera). mc/2pt: ex polje dodano za Q13-Q16.","Pak F SA (Q17-Q28,3): pedagoški upgrade za 20 sub-Q-ova; sa/1pt: ≥3 steps + ≥3 why.","PED-FINAL swap: 16 swapova (verifikacija step na poziciju ZADNJEG).","Preostali nalazi: 4 PED-TOPIC (kozmetički keyword), 1 PED-FIELD (false positive — scanner ne zna parsati ⟨ ⟩ uglate zagrade u Q3 opcijama)."]}
+  ,"Alt metoda: provjeri preko Pitagorinog poučka ili sličnih trokuta.","Postupak: identificiraj geometrijska svojstva, primijeni teorem (Pitagora, sličnost)."]}
 ];
 
 export const qImages = {

@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function SvgGraf29d_2012Aj(){
   const W=250,H=260,cx=70,cy=130,sc=28;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
       e("pattern",{id:"g29d",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
@@ -31,7 +31,7 @@ function SvgGraf29d_2012Aj(){
 
 function SvgKruznica29c_2012Aj(){
   const W=300,H=280,cx=80,cy=170,sc=28;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const Sx=cx+4*sc, Sy=cy-(-1)*sc; // S(4,-1)
   const Ax=cx+1*sc, Ay=cy-3*sc;    // A(1,3)
   // Kružnica r=5 u pikselima = 5*sc
@@ -69,7 +69,7 @@ function SvgKruznica29c_2012Aj(){
 
 function SvgGraf26_2012Aj(){
   const W=250,H=260,cx=80,cy=150,sc=36;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
       e("marker",{id:"arx26aj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
@@ -92,7 +92,7 @@ function SvgGraf26_2012Aj(){
 
 function SvgGraf22b_2012Aj(){
   const W=280,H=220,lx=35,rx=W-18,by=H-35,ty=15;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const pi2x=rx-10;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
@@ -127,7 +127,7 @@ function SvgTetive11_2012Aj(){
   const t=((C.x-A.x)*dyCD-(C.y-A.y)*dxCD)/denom;
   const E={x:A.x+t*dxAB, y:A.y+t*dyAB};
   // Colors: chord AB=blue, chord CD=red
-  const blue="#4a90d9", red="#e05252";
+  const blue="var(--blue)", red="var(--red)";
   // Helper: perpendicular offset for label (offset perpendicular to segment direction)
   const perpOff=(p1,p2,dist)=>{
     const dx=p2.x-p1.x, dy=p2.y-p1.y, len=Math.sqrt(dx*dx+dy*dy);
@@ -171,7 +171,7 @@ function SvgTetive11_2012Aj(){
 
 function SvgGraf10_2012Aj(){
   const W=260,H=260,cx=70,cy=170,sc=36;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   // f(x) = x²-1, tjeme (0,-1), sječe os x=±1
   const f=x=>x*x-1;
   const pts=[];
@@ -211,17 +211,17 @@ function SvgSol29d_2012JesenA(){
   for(let i=0;i<=200;i++){const x=i/20;const y=Math.sqrt(16*x);pts_u.push(`${cx+x*sc},${cy-y*sc}`);pts_d.push(`${cx+x*sc},${cy+y*sc}`);}
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx_sl29Ja",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"#e2e8f0"})),
-      e("marker",{id:"ary_sl29Ja",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"#e2e8f0"}))
+      e("marker",{id:"arx_sl29Ja",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
+      e("marker",{id:"ary_sl29Ja",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#arx_sl29Ja)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#ary_sl29Ja)"}),
-    e("text",{x:cx-12,y:cy+13,fontSize:8,fill:"#94a3b8"},"0"),
-    [2,4,6].map(t=>e("text",{key:t,x:cx+t*sc-3,y:cy+12,fontSize:8,fill:"#94a3b8"},t)),
-    e("circle",{cx:cx+4*sc,cy:cy,r:3,fill:"#e9b446"}),
-    e("text",{x:cx+4*sc+4,y:cy-5,fontSize:8,fill:"#e9b446"},"F(4,0)"),
-    e("polyline",{points:pts_u.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinejoin:"round"}),
-    e("polyline",{points:pts_d.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinejoin:"round"})
+    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx_sl29Ja)"}),
+    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary_sl29Ja)"}),
+    e("text",{x:cx-12,y:cy+13,fontSize:8,fill:"var(--muted)"},"0"),
+    [2,4,6].map(t=>e("text",{key:t,x:cx+t*sc-3,y:cy+12,fontSize:8,fill:"var(--muted)"},t)),
+    e("circle",{cx:cx+4*sc,cy:cy,r:3,fill:"var(--gold)"}),
+    e("text",{x:cx+4*sc+4,y:cy-5,fontSize:8,fill:"var(--gold)"},"F(4,0)"),
+    e("polyline",{points:pts_u.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinejoin:"round"}),
+    e("polyline",{points:pts_d.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinejoin:"round"})
   );
 }
 
@@ -231,23 +231,23 @@ function SvgSol26_2012JesenA(){
   const pts=[]; for(let i=-40;i<=200;i++){const x=i/40;pts.push(`${cx+x*sc},${cy-f(x)*sc}`);}
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx_sl26Ja",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"#e2e8f0"})),
-      e("marker",{id:"ary_sl26Ja",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"#e2e8f0"}))
+      e("marker",{id:"arx_sl26Ja",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
+      e("marker",{id:"ary_sl26Ja",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#arx_sl26Ja)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#ary_sl26Ja)"}),
-    e("text",{x:cx-12,y:cy+13,fontSize:8,fill:"#94a3b8"},"0"),
+    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx_sl26Ja)"}),
+    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary_sl26Ja)"}),
+    e("text",{x:cx-12,y:cy+13,fontSize:8,fill:"var(--muted)"},"0"),
     [1,2,3,4].map(t=>e("g",{key:t},
-      e("line",{x1:cx+t*sc,y1:cy-3,x2:cx+t*sc,y2:cy+3,stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:cx+t*sc-3,y:cy+12,fontSize:8,fill:"#94a3b8"},t)
+      e("line",{x1:cx+t*sc,y1:cy-3,x2:cx+t*sc,y2:cy+3,stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:cx+t*sc-3,y:cy+12,fontSize:8,fill:"var(--muted)"},t)
     )),
     [1,2].map(t=>e("g",{key:t},
-      e("line",{x1:cx-3,y1:cy-t*sc,x2:cx+3,y2:cy-t*sc,stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:cx-12,y:cy-t*sc+4,fontSize:8,fill:"#94a3b8"},t)
+      e("line",{x1:cx-3,y1:cy-t*sc,x2:cx+3,y2:cy-t*sc,stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:cx-12,y:cy-t*sc+4,fontSize:8,fill:"var(--muted)"},t)
     )),
-    e("circle",{cx:cx+2*sc,cy:cy-2*sc,r:3,fill:"#50c878"}),
-    e("text",{x:cx+2*sc+4,y:cy-2*sc-4,fontSize:8,fill:"#50c878"},"T(2,2)"),
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinejoin:"round"})
+    e("circle",{cx:cx+2*sc,cy:cy-2*sc,r:3,fill:"var(--green)"}),
+    e("text",{x:cx+2*sc+4,y:cy-2*sc-4,fontSize:8,fill:"var(--green)"},"T(2,2)"),
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinejoin:"round"})
   );
 }
 
@@ -257,22 +257,22 @@ function SvgSol22b_2012JesenA(){
   const pts=[]; for(let i=0;i<=120;i++){const x=i/120*2*pi;pts.push(`${tx(x)},${ty2(2*Math.sin(x-pi/2))}`);}
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx_sl22Ja",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"#e2e8f0"})),
-      e("marker",{id:"ary_sl22Ja",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"#e2e8f0"}))
+      e("marker",{id:"arx_sl22Ja",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
+      e("marker",{id:"ary_sl22Ja",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    e("line",{x1:lx,y1:by,x2:rx,y2:by,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#arx_sl22Ja)"}),
-    e("line",{x1:lx,y1:by,x2:lx,y2:ty,stroke:"#e2e8f0",strokeWidth:1.5,markerEnd:"url(#ary_sl22Ja)"}),
-    e("text",{x:rx-6,y:by+13,fontSize:9,fill:"#e2e8f0"},"x"),
-    e("text",{x:lx+3,y:ty+8,fontSize:9,fill:"#e2e8f0"},"y"),
+    e("line",{x1:lx,y1:by,x2:rx,y2:by,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx_sl22Ja)"}),
+    e("line",{x1:lx,y1:by,x2:lx,y2:ty,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary_sl22Ja)"}),
+    e("text",{x:rx-6,y:by+13,fontSize:9,fill:"var(--text)"},"x"),
+    e("text",{x:lx+3,y:ty+8,fontSize:9,fill:"var(--text)"},"y"),
     [["π/2",0.5],["π",1],["3π/2",1.5],["2π",2]].map(([l,k])=>e("g",{key:l},
-      e("line",{x1:tx(k*pi),y1:by-3,x2:tx(k*pi),y2:by+3,stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:tx(k*pi)-8,y:by+12,fontSize:8,fill:"#94a3b8"},l)
+      e("line",{x1:tx(k*pi),y1:by-3,x2:tx(k*pi),y2:by+3,stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:tx(k*pi)-8,y:by+12,fontSize:8,fill:"var(--muted)"},l)
     )),
     [[-2,"−2"],[2,"2"]].map(([v,l])=>e("g",{key:l},
-      e("line",{x1:lx-3,y1:ty2(v),x2:lx+3,y2:ty2(v),stroke:"#94a3b8",strokeWidth:1}),
-      e("text",{x:lx-18,y:ty2(v)+4,fontSize:8,fill:"#94a3b8"},l)
+      e("line",{x1:lx-3,y1:ty2(v),x2:lx+3,y2:ty2(v),stroke:"var(--muted)",strokeWidth:1}),
+      e("text",{x:lx-18,y:ty2(v)+4,fontSize:8,fill:"var(--muted)"},l)
     )),
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"#4a90d9",strokeWidth:2.2,strokeLinejoin:"round"})
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinejoin:"round"})
   );
 }
 
@@ -423,7 +423,7 @@ export const qs = [
   ],
   why:["Kompozicija: (f ∘ f)(x) = f(f(x)). Redoslijed: PRVO unutarnji f, pa VANJSKI f primjenjuje se na rezultat.","S grafa očitavamo vrijednosti: prazni krug na (1, 0) → f(1) = 0; prazni krug na (0, −1) → f(0) = −1.","Česta greška: brkanje (f ∘ f)(1) s f(1) (samo jedna primjena) ili s f(1)·f(1).","Pažnja na otvorene/zatvorene kružiće na grafu — otvoren = vrijednost u toj točki, ne rub.","Provjera domene: dobivene x-vrijednosti moraju biti unutar dozvoljenog područja funkcije.","Tipičan propust: pomiješati domenu (ulaz) i sliku (izlaz) funkcije; ili zanemariti restrikcije domene (dijeljenje s 0, korijen iz negativnog)."]
 },
-  {id:11,img:true,type:"mc",warn:"Pazi: potencija točke — AE·BE = CE·DE → x·6 = 3·7.",topic:"geo",points:2,
+  {id:11,img:true,type:"mc",warn:"Pazi: potencija točke — AE·BE = CE·DE → x·6 = 3·7.",topic:"geom",points:2,
   img:true,
   q:"Na skici su kružnica i njezine tetive [B:AB] i [B:CD] koje se sijeku u točki E. Duljine su: |DE| = 7 cm, |BE| = 6 cm, |CE| = 3 cm, |AE| = x cm. Koliko je x?",
   opts:["2","2,7","3,5","4"],
@@ -437,7 +437,7 @@ export const qs = [
   ],
   why:["Teorem o tetivama (potencija točke): kad se dvije tetive sijeku u točki E unutar kružnice, umnošci odsječaka obiju tetiva su jednaki: |AE| · |EB| = |CE| · |ED|.","Geometrijska intuicija: točka E je 'jednako daleko' od kružnice u oba smjera u smislu produkta odsječaka.","Česta greška: krivo upariti odsječke (npr. AE s CE umjesto AE s EB) — uvijek odsječci ISTE tetive su lijevo i desno od E.","Alt metoda: trokuti △AEC i △DEB su slični (kut nad istim lukom), pa AE/CE = DE/BE — vodi do iste jednadžbe.","Provjera identitetom: zbroj kutova trokuta = 180°; četverokuta = 360°.","Tipičan propust: zamijeniti opseg i površinu; pomiješati polumjer i promjer."]
 },
-  {id:12,type:"mc",warn:"Pazi: V tetraedra = a³/(6√2) (= a³√2/12); uvrsti a = 5.",topic:"geo",points:2,
+  {id:12,type:"mc",warn:"Pazi: V tetraedra = a³/(6√2) (= a³√2/12); uvrsti a = 5.",topic:"geom",points:2,
   q:"Koliki je obujam pravilne uspravne trostrane piramide (tetraedra) kojoj su svi bridovi duljine 5 cm?",
   opts:["14,73 cm³","15,62 cm³","18,04 cm³","20,83 cm³"],
   sol:{cl:"A",alt:["A","a","A)","a)","A.","a.","(A)","(a)"]},
@@ -572,7 +572,7 @@ export const qs = [
   ],
   why:["Uvrstimo poznate parametre (D, K) i zadane vrijednosti (n, m) u formulu C = n·D + m·K.","D = 49 kn/dan (iz Q19,1); K = 4,8 kn/km — naslijeđeni iz prethodnog dijela.","Uvrstimo n = 4, m = 240: C = 4·49 + 240·4,8 = 196 + 1152 = 1348 kn.","Strategija: provjera dimenzija (kn/dan · dani = kn) brzo otkriva pogrešno množenje/dijeljenje.","Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
 },
-  {id:20.1,type:"sa",topic:"trg",points:1,
+  {id:20.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 20 (1. dio od 2):",
   q:"Kolika je mjera [B:najmanjeg] kuta u pravokutnom trokutu čije su duljine kateta 12 cm i 6 cm?",
   sol:{ans:"α ≈ 26°33′54″",alt:["26°33'54\"","26°34'","≈26,57°","26,57"]},
@@ -584,7 +584,7 @@ export const qs = [
   ],
   why:["U pravokutnom trokutu: tg(kut) = suprotna kateta / priležeća kateta.","Nasuprot manjoj kateti je manji šiljasti kut (kateta 6 < 12, pa je kut nasuprot 6 manji).","Pretvorba decimalnih stupnjeva u stupnjeve/minute/sekunde: 0,5651° · 60 ≈ 33,906′; 0,906′ · 60 ≈ 54″.","Česta greška: izračun arctg(12/6) = arctg(2) — krivi omjer daje veći kut.","Provjera identitetom: sin²α + cos²α = 1 — uvijek vrijedi.","Tipičan propust: DEG vs RAD mod na kalkulatoru; znak sin/cos po kvadrantu."]
 },
-  {id:20.2,type:"sa",topic:"trg",points:1,
+  {id:20.2,type:"sa",topic:"trig",points:1,
   context:"Zadatak 20 (2. dio od 2):",
   q:"Mjere kutova trokuta su u omjeru 3 : 5 : 4. Najdulja stranica tog trokuta je duljine 15 cm. Kolika je duljina najkraće stranice?",
   sol:{ans:"≈ 10,98 cm",alt:["10,98","10,98","≈10,98 cm"]},
@@ -625,7 +625,7 @@ export const qs = [
   ],
   why:["Formula množenja u trig. obliku: z₁z₂ = r₁r₂(cos(θ₁ + θ₂) + i·sin(θ₁ + θ₂)).","|z₁| = 2/3, arg(z₁) = 2π/3; |z₂| = 3, arg(z₂) = π/6.","Množenje: |z₁·z₂| = 2, arg = 2π/3 + π/6 = 5π/6.","z₁·z₂ = 2(cos 5π/6 + i·sin 5π/6).","Provjera: izračunaj kalkulatorom da potvrdiš decimalnu aproksimaciju (ili obratno).","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
 },
-  {id:22.1,type:"sa",topic:"trg",points:1,
+  {id:22.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 22 (1. dio od 2):",
   q:"Odredite opće rješenje jednadžbe cos²x − cos x − 2 = 0.",
   sol:{ans:"x = π + 2kπ, k ∈ ℤ",alt:["x = π + 2kπ","π + 2kπ","x=pi+2kpi"]},
@@ -638,7 +638,7 @@ export const qs = [
   ],
   why:["cos x dostiže vrijednost −1 samo u točkama x = π + 2kπ (jednom po periodu 2π).","Supstitucija t = cos x svodi trigonometrijsku jednadžbu na algebarsku — standardni trik.","Pažnja: t² − t − 2 = 0 daje t = 2 ili t = −1, ali |cos x| ≤ 1 isključuje t = 2.","Česta greška: zaboraviti odbaciti t = 2 (van slike kosinusa) — daje lažna rješenja.","Provjera kalkulatorom: paziti na DEG/RAD mode.","Tipičan propust: DEG vs RAD mod na kalkulatoru; znak sin/cos po kvadrantu."]
 },
-  {id:22.2,type:"proof",topic:"trg",points:1,
+  {id:22.2,type:"proof",topic:"trig",points:1,
   graphType:"trig",
   graphRef:{pts:[[0,-2],[1.571,0],[3.14,2],[4.712,0],[6.283,-2]]},
   img:true,
@@ -808,7 +808,7 @@ export const qs = [
   ],
   why:["Beskonačni geometrijski red konvergira ako |q| < 1; suma S = a₁/(1 − q).","Iterativna konstrukcija kvadrat → upisana kružnica → upisan kvadrat daje stalni omjer površina 1/2.","Beskonačno upisivanje: svaki kvadrat ima stranicu 1/√2 puta manju od prethodnog (jer dijagonala = stranica vanjskog).","Površina niza kvadrata: 64 + 32 + 16 + ... = geometrijski red s q = 1/2 (svaki sljedeći je upola manji).","Zbroj: S = 64/(1 − 1/2) = 128 cm².","Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake."]
 },
-  {id:29.1,type:"proof",topic:"geo",points:3,
+  {id:29.1,type:"proof",topic:"geom",points:3,
   context:"Zadatak 29 (1. dio od 5):",
   q:"Zadane su točke A(9, 2), B(5, 6) i C(−3, −2). Odredite udaljenost točke C od simetrale dužine AB.",
   sol:{ans:"d(C, s) = 2√2 ≈ 2,83",alt:["2√2","2√(2)","2,83","≈2,83"],
@@ -824,7 +824,7 @@ export const qs = [
   ],
   why:["Simetrala dužine: pravac okomit na dužinu kroz njeno polovište.","Udaljenost točke (x₀, y₀) od pravca Ax + By + C = 0: d = |Ax₀ + By₀ + C|/√(A² + B²).","Simetrala dužine AB prolazi polovištem M(7, 4) i okomita je na AB.","Nagib AB: k_AB = (6−2)/(5−9) = −1; nagib simetrale: k⊥ = 1.","Jednadžba simetrale: y − 4 = 1·(x − 7) → y = x − 3; udaljenost C(−3,−2): d = |−2−(−3)−3|/√2 = 2√2.","Provjera dimenzija: jedinice (m, m², m³) moraju biti konzistentne."]
 },
-  {id:29.2,type:"sa",topic:"geo",points:1,
+  {id:29.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 29 (2. dio od 5):",
   q:"Zadane su točke M(−2, −3), N(1, 1) i P(−1, 2). Vektor MN⃗ + NP⃗ prikažite kao linearnu kombinaciju jediničnih vektora i⃗ i j⃗.",
   sol:{ans:"MN⃗ + NP⃗ = i⃗ + 5j⃗",alt:["i + 5j","(1, 5)","i⃗ + 5j⃗"],
@@ -911,8 +911,7 @@ export const qs = [
     {txt:"Provjera ruba: za a = 1/5 (rub, ne ulazi): k = 1 − 5 = −4; g(x) = −4 vrijedi za sve x < −1 (beskonačno mnogo rješenja, ne jedno) ✗ — potvrđuje da rub se isključuje.",final:true,note:"diagnostika"},{txt:"Sažetak postupka: Funkcija s ugniježđenim apsolutnim vrijednostima analizira se po intervalima gdje svaki izraz unutar |·| ima stalan predznak.",note:"postupak",final:true},{txt:"Intuicija: Kod |A| = k: za k > 0 dva rješenja, k = 0 jedno, k < 0 nijedno — uvijek provjeriti domenu i broj rješenja.",note:"intuicija",final:true},{txt:"Točan odgovor: a ∈ ⟨−∞, −[FRAC:1|3]⟩ ∪ ⟨[FRAC:1|5], +∞⟩ ✓",note:"odgovor",final:true}
   ],
   why:["Funkcija s ugniježđenim apsolutnim vrijednostima analizira se po intervalima gdje svaki izraz unutar |·| ima stalan predznak.","Kod |A| = k: za k > 0 dva rješenja, k = 0 jedno, k < 0 nijedno — uvijek provjeriti domenu i broj rješenja.","Strategija: definirati novu varijablu k = 1 − 1/a, raspisati funkciju g(x) po intervalima, pa odrediti za koje k jednadžba g(x) = k ima točno jedno rješenje.","Geometrijski: g(x) je linearna na ⟨−1, 3⟩ (raste od −4 do 4) i konstantna izvan; jedinstveno rješenje postoji ako i samo ako k ∈ ⟨−4, 4⟩ (u srednjem segmentu).","Česta greška: zaboraviti rubove (k = ±4 daje beskonačno mnogo rješenja, NE jedno) — kritično isključiti.","Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake."]
-},
-  {_META:true,auditStatus:"verified-full",rok:"2012_jesen",razina:"A",serial:"D-S011",totalPoints:60,mcCount:15,saCount:30,verified:"vision+pdf+pedagogy-premium+verbatim",auditNotes:"G: Q5/Q6 ^x→^(x) potencija, Q10 SVG formula x²-1, Q11 SVG boje+labele van crta; F: 15/15 MC done; H: Q1 why ³√a; I: Q10+Q11 binding dodani",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+}
 ];
 
 export const qImages = {

@@ -5,7 +5,7 @@ const e = React.createElement;
 
 function SvgEmptyGrid29_2013Aj(){
   const W=280,H=260,cx=100,cy=150,sc=28;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
     e("defs",null,
@@ -31,7 +31,7 @@ function SvgEmptyGrid29_2013Aj(){
 
 function SvgGraf29_2013Aj(){
   const W=340,H=260,cx=95,cy=175,sc=27;
-  const blue="#4a90d9", red="#e05252", gold="#e9b446", text="var(--text)", muted="var(--muted)";
+  const blue="var(--blue)", red="var(--red)", gold="var(--gold)", text="var(--text)", muted="var(--muted)";
   // Asimptota x=4
   const asymX=cx+4*sc;
   // Grid
@@ -131,8 +131,8 @@ function SvgHiperbola28_2013Aj(){
     e("text",{x:cx+sc-3,y:cy+12,fontSize:9,fill:"var(--text)"},"1"),
     e("text",{x:cx-10,y:cy-sc+5,fontSize:9,fill:"var(--text)"},"1"),
     // Hiperbola
-    e("path",{d:dR,fill:"none",stroke:"#4a90d9",strokeWidth:2.5,strokeLinecap:"round",strokeLinejoin:"round"}),
-    e("path",{d:dL,fill:"none",stroke:"#4a90d9",strokeWidth:2.5,strokeLinecap:"round",strokeLinejoin:"round"}),
+    e("path",{d:dR,fill:"none",stroke:"var(--blue)",strokeWidth:2.5,strokeLinecap:"round",strokeLinejoin:"round"}),
+    e("path",{d:dL,fill:"none",stroke:"var(--blue)",strokeWidth:2.5,strokeLinecap:"round",strokeLinejoin:"round"}),
     // Označene točke tjemena
     e("circle",{cx:cx+a*sc,cy,r:4,fill:"var(--text)"}),
     e("circle",{cx:cx-a*sc,cy,r:4,fill:"var(--text)"})
@@ -141,7 +141,7 @@ function SvgHiperbola28_2013Aj(){
 
 function SvgGridEmpty_2013JesenA(){
   const W=280,H=260,cx=100,cy=170,sc=32;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
     e("defs",null,
@@ -168,7 +168,7 @@ function SvgParalelogram23_2013Aj(){
   const S={x:(A.x+Cv.x)/2,y:(A.y+Cv.y)/2};
   const T={x:(B.x+S.x)/2,y:(B.y+S.y)/2};
   const pt=p=>`${p.x},${p.y}`;
-  const blue="#4a90d9", green="#50c878", gold="#e9b446", txt="var(--text)", muted="var(--muted)";
+  const blue="var(--blue)", green="var(--green)", gold="var(--gold)", txt="var(--text)", muted="var(--muted)";
   const hBaseY=A.y;
   const labels=[["A",A.x-14,A.y+5],["B",B.x+5,B.y+5],["C",Cv.x+5,Cv.y],["D",D.x-14,D.y]];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
@@ -193,7 +193,7 @@ function SvgParalelogram23_2013Aj(){
 
 function SvgKompleks22_2013Aj(){
   const W=260,H=250,cx=120,cy=130,sc=40;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const r=4*sc;  // modul = 4
   const ang=120*Math.PI/180;
   // z je u 2. kvadrantu pod kutom 120° od pozitivne x-osi
@@ -258,7 +258,7 @@ function SvgTrokut14_2013Aj(){
   const C={x:B.x-30*sc*Math.cos(ang), y:B.y-30*sc*Math.sin(ang)};
   const pt=(p)=>`${p.x.toFixed(1)},${p.y.toFixed(1)}`;
   // Colors
-  const blue="#4a90d9", gold="#e9b446", red="#e05252", text="var(--text)", muted="var(--muted)";
+  const blue="var(--blue)", gold="var(--gold)", red="var(--red)", text="var(--text)", muted="var(--muted)";
   // Kut arc u B
   const r=22, ang0=Math.PI, ang1=Math.PI-ang;
   const ax0=B.x+r*Math.cos(ang0), ay0=B.y+r*Math.sin(ang0);
@@ -318,10 +318,10 @@ function SvgGrid28_2013Aj(){
     e("text",{x:cx-11,y:cy+13,fontSize:10,fill:"var(--text)"},"0"),
     // Pravac x/5+y/2=1 produžen malo iza sjecišta
     e("line",{x1:x1px+20,y1:cy+8,x2:x2px-8,y2:y2px-13,
-      stroke:"#4a90d9",strokeWidth:2.2,strokeLinecap:"round"}),
+      stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"}),
     // Sjecišta naglašena
-    e("circle",{cx:x1px,cy:y1px,r:4.5,fill:"var(--bg)",stroke:"#4a90d9",strokeWidth:2}),
-    e("circle",{cx:x2px,cy:y2px,r:4.5,fill:"var(--bg)",stroke:"#4a90d9",strokeWidth:2}),
+    e("circle",{cx:x1px,cy:y1px,r:4.5,fill:"var(--bg)",stroke:"var(--blue)",strokeWidth:2}),
+    e("circle",{cx:x2px,cy:y2px,r:4.5,fill:"var(--bg)",stroke:"var(--blue)",strokeWidth:2}),
     // Oznake sjecišta
     e("text",{x:x1px-3,y:cy+14,fontSize:10,textAnchor:"middle",fill:"var(--text)"},"5"),
     e("text",{x:cx-14,y:y2px+5,fontSize:10,fill:"var(--text)"},"2")
@@ -356,7 +356,7 @@ export const qs = [
   ],
   why:["Pravilo: redoslijed računskih operacija — najprije zbrajanje (A+B), pa dijeljenje s C, pa množenje s D.","Opcija C je ekvivalentna, ali prema standardu zapisa s razlomkom je B (bez znaka dijeljenja).","Česta greška (najčešće): A(AB/CD) — dijele s umnoškom CD, ali treba dijeliti samo s C pa množiti s D.","Provjera: A=2,B=3,C=4,D=5 → (2+3)/4·5 = 5/4·5 = 6,25; B: (2+3)·5/4 = 6,25 ✓","Provjera redom veličine: rezultat je u očekivanom intervalu (npr. postotak između 0 i 100).","Tipičan propust: pomiješati skupove brojeva — npr. √2 ∉ ℚ; π ∉ ℕ; 0 ∈ ℕ (po definiciji NCVVO)."]
 },
-  {id:3,type:"mc",warn:"Pazi: 1 g/cm³ = 1000 kg/m³ → množi s 1000.",topic:"mj",points:1,
+  {id:3,type:"mc",warn:"Pazi: 1 g/cm³ = 1000 kg/m³ → množi s 1000.",topic:"br",points:1,
   q:"Kolika je gustoća od 1,8 g/cm³ izražena u kg/m³?",
   opts:["1,8 kg/m³","18 kg/m³","180 kg/m³","1 800 kg/m³"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -425,7 +425,7 @@ export const qs = [
   ],
   why:["Formula: logₐ b + logₐ x = logₐ(bx); logₐ y = c ⟺ y = aᶜ.","logₐ y = c ⇔ y = aᶜ.","Česta greška (najčešće): B(b²/a) — miješaju x = logₐ(2/b) ili slično; D(2b/a) — krivi eksponent.","Provjera: logₐ b + logₐ(a²/b) = logₐ b + 2 − logₐ b = 2 ✓ → A","Provjera supstitucijom: uvrsti x = A u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje)."]
 },
-  {id:8,type:"mc",warn:"Pazi: tg i ctg imaju period π → tg(x − 15π) = tg x, ctg(x − 18π) = ctg x; pa sredi.",topic:"trg",points:1,
+  {id:8,type:"mc",warn:"Pazi: tg i ctg imaju period π → tg(x − 15π) = tg x, ctg(x − 18π) = ctg x; pa sredi.",topic:"trig",points:1,
   q:"Čemu je, nakon pojednostavljivanja, jednak izraz [FRAC:tg(x − 15π) + 5 tg x|ctg x + 2 ctg(x − 18π)]?",
   opts:["−4/3ctg²x","−4/3tg²x","2 ctg²x","2 tg²x"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
@@ -516,7 +516,7 @@ export const qs = [
   ex:"Vektori c⃗ i d⃗ su zbroj/razlika zadanih; kut se izračunava skalarnim umnoškom i modulima.",
   why:["Formula: a⃗ · b⃗ = a₁b₁ + a₂b₂ = |a⃗|·|b⃗|·cos φ; φ tup ⟺ a⃗·b⃗ < 0.","Negativna vrijednost skalarnog umnoška ⇒ tupi kut (između 90° i 180°).","c⃗ = a⃗+b⃗ = (1,-10), d⃗ = a⃗-b⃗ = (3,4); c⃗·d⃗ = 3-40 = -37 < 0 → kut tupi.","Česta greška (najčešće): A(41°49') — uzimaju akutni kut arccos(37/50,25) umjesto tupog suplementa.","Provjera: c⃗·d⃗=3−40=−37<0 → tupi kut; cos φ≈−0,737 → φ≈137°25' → C ✓","Provjera modulom: |a→| = √(aₓ² + a_y²) — mora biti pozitivan."]
 },
-  {id:14,img:true,type:"mc",warn:"Pazi: visina iz B na AC; iz površine ½·AB·BC·sin B = ½·AC·h nađi h (prvo AC poučkom o kosinusu).",topic:"trg",points:2,img:true,
+  {id:14,img:true,type:"mc",warn:"Pazi: visina iz B na AC; iz površine ½·AB·BC·sin B = ½·AC·h nađi h (prvo AC poučkom o kosinusu).",topic:"trig",points:2,img:true,
   q:"U tupokutnome trokutu ABC mjera kuta u vrhu B je 23°, a duljine stranica su |AB| = 20 cm i |BC| = 30 cm. Kolika je duljina visine iz vrha B?",
   intermediates:[1300, 1104.49],
   opts:["14,77 cm","15,77 cm","16,77 cm","17,77 cm"],
@@ -692,7 +692,7 @@ export const qs = [
   ],
   why:["Pravilo: ciklus i¹=i, i²=−1, i³=−i, i⁴=1; za iⁿ izračunaj n mod 4.","Intuicija: potencije od i se ponavljaju svakih 4 koraka — to je jedino što trebamo znati za ovaj tip zadatka. Nikad ne tražimo iⁿ direktnim računanjem.","Česta greška: pogrješno računanje ostatka: 33÷4=8 ostatak 1 (ne 0!); 23÷4=5 ostatak 3; 10÷4=2 ostatak 2.","Alt metoda: pisati potencije: i³³=(i⁴)⁸·i=1·i=i; i²³=(i⁴)⁵·i³=1·(−i)=−i; i¹⁰=(i⁴)²·i²=1·(−1)=−1.","Provjera: z=3i−2(−i)+4(−1)=3i+2i−4=−4+5i ✓; standardni oblik z=x+yi gdje x=−4, y=5 ✓","Provjera: dobiveni broj pripada traženom skupu (npr. ℕ, ℤ, ℚ, ℝ) — provjeri svojstva."]
 },
-  {id:23.1,type:"sa",topic:"trg",points:1,
+  {id:23.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 23 (1. dio od 2):",
   q:"U trokutu KLM pravi kut je u vrhu L. Duljina stranice KM je 5 cm, a mjera kuta u vrhu M je 27°. Kolika je duljina najkraće stranice toga trokuta?",
   sol:{ans:"|KL| ≈ 2,27 cm",alt:["2,27","2,27","≈2,27 cm"]},
@@ -704,7 +704,7 @@ export const qs = [
   ],
   why:["Pravilo: u pravokutnom trokutu kateta=hipotenuza·sin(nasuprotnog kuta).","Intuicija: ∠L=90° (pravi kut), KM je hipotenuza (nasuprot pravog kuta). Najmanji kut je ∠M=27°, njemu nasuprot leži najkraća kateta KL.","Česta greška: koristiti KL=KM·cos27° (to bi bila kateta nasuprot 63°, tj. LM, a ne KL).","Alt metoda: KL=LM·tan27° (koristiti kut M i drugu katetu LM=KM·cos27°≈4,46 cm, pa KL=4,46·tan27°≈2,27 cm) — isti rezultat.","Provjera: sin27°≈0,454; KL≈5·0,454≈2,27 cm ✓; KL²+LM²=KM²: 2,27²+4,46²≈5,15+19,9≈25,0=5² ✓","Provjera identitetom: sin²α + cos²α = 1 — uvijek vrijedi."]
 },
-  {id:23.2,type:"sa",topic:"geo",points:1,img:true,
+  {id:23.2,type:"sa",topic:"geom",points:1,img:true,
   context:"Zadatak 23 (2. dio od 2):",
   q:"Na skici je prikazan paralelogram ABCD kojemu je stranica AB duljine 5 cm, a visina na tu stranicu 8 cm. Točka S je sjecište njegovih dijagonala, a točka T polovište dužine BS. Izračunajte površinu trokuta ABT.",
   sol:{ans:"P(ABT) = 5 cm²",alt:["5","5 cm²"]},
@@ -719,7 +719,7 @@ export const qs = [
   ],
   why:["Pravilo: trokut s istom osnovicom i visinom ima iste površine — T je polovište BS, pa visina trokuta ABT = 1/2 visine trokuta ABS.","Intuicija: S dijeli paralelogram na 4 sukladna trokuta svaki s površinom 1/4·P(ABCD). T halvira BS → trokut ABT je 1/2 od trokuta ABS = 1/8·P(ABCD) = 1/8·40 = 5 cm².","Česta greška: uzeti visinu trokuta ABT kao punu visinu paralelograma (8 cm) umjesto 1/4 visine = 2 cm.","Alt metoda: koordinatna metoda — A=(0,0), B=(5,0), S=(2,5;4), T=(3,75;2); P=|½(xA(yB−yT)+xB(yT−yA)+xT(yA−yB))|=5 cm².","Provjera: P(ABCD)=5·8=40; P(ABT)=1/8·40=5 cm² ✓; ili P(ABT)=(1/2)·|AB|·h_T=(1/2)·5·2=5 ✓","Provjera identitetom: zbroj kutova trokuta = 180°; četverokuta = 360°."]
 },
-  {id:24.1,type:"sa",topic:"geo",points:1,
+  {id:24.1,type:"sa",topic:"geom",points:1,
   context:"Zadatak 24 (1. dio od 2):",
   q:"Koliki je obujam (volumen) kuglice polumjera 2 cm?",
   sol:{ans:"V = [FRAC:32π|3] cm³ ≈ 33,51 cm³",alt:["32π/3","32π/3 cm³","≈33,51"]},
@@ -730,7 +730,7 @@ export const qs = [
   ],
   why:["Formula: V=(4/3)πr³; za r=2: V=(4/3)π·8=32π/3.","Intuicija: formula za volumen kugle je analogna formuli za opseg kruga (πr²) — sjetite se: sfera≈'krug u 3D'; V=4/3·π·r³ s faktorom 4/3 koji dolazi iz integracije.","Česta greška: koristiti V=4πr² (to je površina kugle, ne volumen!) ili zaboraviti faktor 4/3.","Provjera: V=32π/3≈33,51 cm³; dimenzija: cm³ ✓; za r=1 bi bilo V=4π/3≈4,19 cm³ (poznata referentna vrijednost) ✓","Provjera: skiciraj figuru i izmjeri svojstvo geometrijski.","Tipičan propust: zamijeniti opseg i površinu; pomiješati polumjer i promjer."]
 },
-  {id:24.2,type:"sa",topic:"geo",points:1,
+  {id:24.2,type:"sa",topic:"geom",points:1,
   context:"Zadatak 24 (2. dio od 2):",
   q:"Koliki će biti polumjer kugle ako se 12 željeznih kuglica polumjera 2 cm taljenjem preoblikuje u tu kuglu?",
   sol:{ans:"R = ∛96 ≈ 4,58 cm",alt:["∛96","4,58","∛(96) cm"]},
@@ -792,7 +792,7 @@ export const qs = [
   ex:"Postavi sustav: c+t=600 i 0,7c+0,5t=364; riješite za c i t.",
   why:["Pravilo: sniženje p% → nova cijena = (1−p/100)·stara; cipele: 0,7c; torba: 0,5t.","Intuicija: dvije nepoznanice (c, t) → trebamo dva uvjeta: ukupna stara cijena + ukupna nova cijena. Supstitucijom eliminiramo jednu nepoznanicu.","Česta greška: snižavati ukupnih 600 kn (ne svaku cijenu posebno): 0,7·600=420≠364; ili uzeti 30%+50% od ukupne cijene.","Alt metoda: eliminacija — iz c+t=600 i 0,7c+0,5t=364; oduzmi 0,5·(c+t)=300 od druge: 0,2c=64 → c=320.","Provjera: c=320, t=280; 320+280=600 ✓; 0,7·320+0,5·280=224+140=364 ✓","Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan."]
 },
-  {id:27.1,type:"sa",topic:"trg",points:1,
+  {id:27.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 27 (1. dio od 2): Zadana je funkcija f(x) = 2 + sin(3x).",
   q:"Odredite sve realne brojeve x za koje je f(x) = 3.",
   sol:{ans:"x = [FRAC:π|6] + [FRAC:2kπ|3], k ∈ ℤ",alt:["π/6 + 2kπ/3","x = π/6 + 2kπ/3"]},
@@ -936,19 +936,7 @@ export const qs = [
   ],
   ex:"Tangente na kružnicu, polumjer i četverokut — kombiniraj analitičku geometriju i mjerenje udaljenosti.",
   why:["Teorem: tangenta ⊥ polumjer u točki dodira; udaljenost točke (x₀,y₀) od pravca ax+by+c=0 je |ax₀+by₀+c|/√(a²+b²).","Paralelne tangente: udaljenost između njih = promjer kružnice.","Trapez: P = (a + c)/2 · h.","Okomiti promjer ima nagib 1/2 (uvjet m₁·m₂=-1 s nagibom tangenti -2).","Provjera: P=(2√5+4√5)/2·√5=3√5·√5=15 ✓; Česta greška: krivo identificiraju vrhove trapeza.","Provjera: r=√5/2; t₁∩osi y: (0,2); t₂∩osi y: (0,7); promjer∩osi y: (0,-3); P=trapez = (5+5)/2·3=... = 15 ✓"]
-},
-  {_META:true,
-  auditedAt: "2026-05-04",
-  auditSource: "MAT A D-S014 (viša razina, jesenski rok 2013)",
-  auditStatus: "verified-full",
-  auditBy: "Claude+Daniel",
-  issueCount: {critical:0,medium:0,low:0,resolved:0},
-  notes: "Audit sesija 2026-05-04: Pak G verbatim (ASCII minus Q11,Q30 fix); Pak H čisto; Pak I Q_IMAGES 7 bindinga OK; Pak A-E 15/15 MC + SA točni; Pak F 31→0 (pravilo/check/ex/topic sve riješeno); Pak J [FRAC:] u q/opts za Q1,Q5,Q6,Q8,Q11,Q17,Q20,2,Q25,3,Q29,2-4; META: verified-full."
-,
-  verified:"sympy+pdf+verbatim+visual"
-,
-  auditNotes:"Pak G: ASCII minus u Q11,Q30 (fix); Pak I: 7 SVG bindings konfirmirani (originalne _2013Aj fn); Pak H: čisto; Pak A-E: 15/15 MC + SA točni; Pak F: 31→0 nalaza (pravilo/check/ex/topic); Pak J: [FRAC:] u Q1,Q5,Q6,Q8,Q11,Q17,Q20,2,Q25,3,Q29,2,Q29,3,Q29,4; auditDate:2026-05-04"
-  }
+}
 ];
 
 export const qImages = {

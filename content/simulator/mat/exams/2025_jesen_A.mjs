@@ -4,7 +4,7 @@ const e = React.createElement;
 
 function Svg8_2025Ajes(){
   const W=320,H=280,ox=90,oy=220,sc=38;
-  const st="#94a3b8",ax="#e2e8f0",cu="#4a90d9",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",cu="var(--blue)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-1;i<=5;i++){
@@ -38,7 +38,7 @@ function Svg8_2025Ajes(){
 }
 
 function Svg5_2025Ajes(){
-  const txt="var(--text)"; const blue="#4a90d9"; const gold="#e9b446";
+  const txt="var(--text)"; const blue="var(--blue)"; const gold="var(--gold)";
   const rows = [
     ["9","8"],
     ["10","3 3 5 8 8 9"],
@@ -50,7 +50,7 @@ function Svg5_2025Ajes(){
   let html = `<text x="${W-12}" y="22" fill="${gold}" font-size="13" font-family="sans-serif" text-anchor="end" font-weight="bold">Legenda: 11 | 3 = 113 bodova</text>`;
   rows.forEach((r,i)=>{
     const y = 50 + i*rowH;
-    if(i%2===0) html += `<rect x="0" y="${y-22}" width="${W}" height="${rowH}" fill="#0a1525" opacity="0.5"/>`;
+    if(i%2===0) html += `<rect x="0" y="${y-22}" width="${W}" height="${rowH}" fill="var(--s2,#0a1525)" opacity="0.5"/>`;
     html += `<text x="${stemW}" y="${y}" fill="${blue}" font-size="16" font-family="monospace" text-anchor="end" font-weight="bold">${r[0]}</text>`;
     html += `<line x1="${stemW+8}" y1="${y-20}" x2="${stemW+8}" y2="${y+6}" stroke="${gold}" stroke-width="1.6"/>`;
     html += `<text x="${stemW+16}" y="${y}" fill="${txt}" font-size="15" font-family="monospace" letter-spacing="2">${r[1]}</text>`;
@@ -62,7 +62,7 @@ function Svg5_2025Ajes(){
 
 function Svg6_2025Ajes(){
   const W=360,H=340,ox=180,oy=170,sc=34;
-  const st="#94a3b8",ax="#e2e8f0",rd="#e05252",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",rd="var(--red)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   // Točke: z3≈(−1,3), z4≈(−4,0), z1≈(0,−2), z2≈(2,−1)
   const pts=[
@@ -102,8 +102,8 @@ function Svg6_2025Ajes(){
 
 function Svg38_2025Ajes(){
   const W=440,H=300;
-  const txt="var(--text)"; const muted="#94a3b8";
-  const blue="#4a90d9"; const blueFill="rgba(74,144,217,0.22)"; const red="#e05252"; const gold="#e9b446";
+  const txt="var(--text)"; const muted="var(--muted)";
+  const blue="var(--blue)"; const blueFill="rgba(74,144,217,0.22)"; const red="var(--red)"; const gold="var(--gold)";
   const ox=60, oy=240, u=20;
   const A=[ox,oy], B=[ox+12*u,oy];
   const E_=[ox+2.5*u,oy], F=[ox+9.5*u,oy];
@@ -121,7 +121,7 @@ function Svg38_2025Ajes(){
   html += `<polyline points="${F[0]-8},${F[1]} ${F[0]-8},${F[1]-8} ${F[0]},${F[1]-8}" fill="none" stroke="${gold}" stroke-width="1.3"/>`;
   // Vertex dots
   [[A,"A",-14,18],[B,"B",6,18],[C,"C",6,-4],[D,"D",-16,-4],[E_,"E",-12,18],[F,"F",4,18]].forEach(([p,l,dx,dy])=>{
-    html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${red}" stroke="#0a0f1a" stroke-width="1.5"/>`;
+    html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.5"/>`;
     html += `<text x="${p[0]+dx}" y="${p[1]+dy}" fill="${gold}" font-size="16" font-style="italic" font-family="Georgia,serif" font-weight="bold">${l}</text>`;
   });
   // Dimension labels
@@ -136,7 +136,7 @@ function Svg38_2025Ajes(){
 
 function Svg37_2025Ajes(){
   const W=340,H=320,ox=170,oy=210,sc=30;
-  const st="#94a3b8",ax="#e2e8f0",cu="#4a90d9",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",cu="var(--blue)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   const Sx=0, Sy=2, r=Math.sqrt(13);
   
@@ -176,8 +176,8 @@ function Svg37_2025Ajes(){
 
 function Svg33_2025Ajes(){
   const W=340,H=340;
-  const muted="#94a3b8"; const txt="var(--text)";
-  const blue="#4a90d9"; const red="#e05252"; const gold="#e9b446";
+  const muted="var(--muted)"; const txt="var(--text)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const goldFill="rgba(233,180,70,0.18)";
   const Sx=200, Sy=225, r=80;
   const A=[130,250]; const B=[265,200]; const D=[145,180];
@@ -200,9 +200,9 @@ function Svg33_2025Ajes(){
       `<circle cx="${B[0]}" cy="${B[1]}" r="3.5" fill="var(--bg,#060910)" stroke="${gold}" stroke-width="1.8"/>`+
       `<circle cx="${D[0]}" cy="${D[1]}" r="3.5" fill="var(--bg,#060910)" stroke="${gold}" stroke-width="1.8"/>`+
       // Presjeci F, C, E — RED filled
-      `<circle cx="${F[0]}" cy="${F[1]}" r="4" fill="${red}" stroke="#0a0f1a" stroke-width="1.5"/>`+
-      `<circle cx="${C[0]}" cy="${C[1]}" r="4" fill="${red}" stroke="#0a0f1a" stroke-width="1.5"/>`+
-      `<circle cx="${E[0]}" cy="${E[1]}" r="4" fill="${red}" stroke="#0a0f1a" stroke-width="1.5"/>`+
+      `<circle cx="${F[0]}" cy="${F[1]}" r="4" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.5"/>`+
+      `<circle cx="${C[0]}" cy="${C[1]}" r="4" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.5"/>`+
+      `<circle cx="${E[0]}" cy="${E[1]}" r="4" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.5"/>`+
       // Središte S — subtle dot
       `<circle cx="${Sx}" cy="${Sy}" r="3" fill="${txt}"/>`+
       // Labels
@@ -218,7 +218,7 @@ function Svg33_2025Ajes(){
 }
 
 function Svg32_2025Ajes(){
-  const W=360,H=200,ax="#e2e8f0",rd="#e05252";
+  const W=360,H=200,ax="var(--text)",rd="var(--red)";
   // Tupokutni trokut: A vrlo ostar lijevi vrh, C gore-sredina, B daleko desno
   const A=[50,95], C=[170,30], B=[320,150];
   // D: unutar, incenter - približno
@@ -245,7 +245,7 @@ function Svg32_2025Ajes(){
 
 function Svg30_2025Ajes(){
   const W=300,H=300,cx=150,cy=150,r=105;
-  const st="#94a3b8",ax="#e2e8f0",cu="#e2e8f0",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",cu="var(--text)",bg="var(--bg,#060910)";
   const sc=105;
   const tx=(x)=>cx+x*sc, ty=(y)=>cy-y*sc;
   const ex=4/5, ey=3/5;
@@ -286,7 +286,7 @@ function Svg30_2025Ajes(){
 
 function Svg28_2025Ajes(){
   const W=340,H=310,ox=135,oy=175,sc=42;
-  const st="#94a3b8",ax="#e2e8f0",cu="#4a90d9",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",cu="var(--blue)",bg="var(--bg,#060910)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-3;i<=5;i++){
@@ -333,7 +333,7 @@ function Svg28_2025Ajes(){
 }
 
 function Svg21_2025Ajes(){
-  const txt="var(--text)"; const blue="#4a90d9"; const gold="#e9b446";
+  const txt="var(--text)"; const blue="var(--blue)"; const gold="var(--gold)";
   const rows=[
     ["Postotak riješenosti","Ocjena"],
     ["0 % \u2013 49 %","nedovoljan (1)"],
@@ -347,7 +347,7 @@ function Svg21_2025Ajes(){
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"380px",width:"100%",display:"block",margin:"12px auto"}},
     rows.map((r,i)=>e("g",{key:"r"+i},
-      e("rect",{x:1,y:3+i*rH,width:W-2,height:rH-1,fill:i===0?"rgba(74,144,217,0.18)":(i%2===1?"#0a1525":"transparent"),stroke:blue,strokeWidth:1.2}),
+      e("rect",{x:1,y:3+i*rH,width:W-2,height:rH-1,fill:i===0?"rgba(74,144,217,0.18)":(i%2===1?"var(--s2,#0a1525)":"transparent"),stroke:blue,strokeWidth:1.2}),
       e("line",{x1:col1W,y1:3+i*rH,x2:col1W,y2:3+(i+1)*rH-1,stroke:blue,strokeWidth:1.2}),
       e("text",{x:12,y:3+i*rH+20,fontSize:13,fontFamily:"Georgia,serif",fontWeight:i===0?"bold":"normal",fill:i===0?gold:txt},r[0]),
       e("text",{x:col1W+12,y:3+i*rH+20,fontSize:13,fontFamily:"Georgia,serif",fontWeight:i===0?"bold":"normal",fill:i===0?gold:txt},r[1])
@@ -356,7 +356,7 @@ function Svg21_2025Ajes(){
 }
 
 function Svg16_2025Ajes(){
-  const blue="#4a90d9"; const blueD="#3a6aa0"; const red="#e05252"; const gold="#e9b446";
+  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
   const W=380, H=340;
   const A=[80,280],B=[240,280],C=[320,220],D=[160,220];
   const vE=[80,120],vF=[240,120],vG=[320,60],vH=[160,60];
@@ -375,14 +375,14 @@ function Svg16_2025Ajes(){
       stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
     ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blue,strokeWidth:2})),
-    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"#0a0f1a",strokeWidth:1.5})),
+    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
     ...verts.map(([n,p,dx,dy])=>e("text",{key:"t"+n,x:p[0]+dx,y:p[1]+dy,
       fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n))
   );
 }
 
 function Svg10_2025Ajes(){
-  const st="#94a3b8",ax="#e2e8f0",cu="#4a90d9",bg="var(--bg,#060910)";
+  const st="var(--muted)",ax="var(--text)",cu="var(--blue)",bg="var(--bg,#060910)";
   function mini(ox,oy,sc,curve){
     const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
     let g="";
@@ -414,55 +414,55 @@ function Svg10_2025Ajes(){
   // Matematički: y = sqrt(-(x-1.5)) * 1.3 ≈
   function cf(ox,oy,s){
     const tx=(x)=>ox+x*s,ty=(y)=>oy-y*s;
-    return `<path d="M ${tx(-1.7)} ${ty(2.3)} C ${tx(-0,5)} ${ty(1.9)} ${tx(0)} ${ty(1.5)} ${tx(0,5)} ${ty(1.1)} C ${tx(1)} ${ty(0.7)} ${tx(1.3)} ${ty(0.2)} ${tx(1.5)} ${ty(0)}" stroke="#4a90d9" stroke-width="2" fill="none"/>`+
+    return `<path d="M ${tx(-1.7)} ${ty(2.3)} C ${tx(-0,5)} ${ty(1.9)} ${tx(0)} ${ty(1.5)} ${tx(0,5)} ${ty(1.1)} C ${tx(1)} ${ty(0.7)} ${tx(1.3)} ${ty(0.2)} ${tx(1.5)} ${ty(0)}" stroke="var(--blue)" stroke-width="2" fill="none"/>`+
       `<text x="${tx(0.8)}" y="${ty(1.3)-2}" fill="${ax}" font-size="10" font-style="italic" font-family="serif">y = f(x)</text>`;
   }
   // A: zrcaljenje f po y=x → pada kroz (1.5,0) i (0,1.5), nastavlja padati u 4. kvadrant
   // Strmo pada: y = 1.5 - sqrt(x), prolazi (0, 1.5) prema (1.5, 0) prema... nastavlja padati
   function cA(ox,oy,s){
     const tx=(x)=>ox+x*s,ty=(y)=>oy-y*s;
-    return `<path d="M ${tx(0)} ${ty(1.5)} C ${tx(0.3)} ${ty(1.2)} ${tx(0.8)} ${ty(0,5)} ${tx(1.3)} ${ty(0)} C ${tx(1.8)} ${ty(-0.8)} ${tx(2.3)} ${ty(-1.7)} ${tx(2.8)} ${ty(-2.6)}" stroke="#4a90d9" stroke-width="2" fill="none"/>`+
+    return `<path d="M ${tx(0)} ${ty(1.5)} C ${tx(0.3)} ${ty(1.2)} ${tx(0.8)} ${ty(0,5)} ${tx(1.3)} ${ty(0)} C ${tx(1.8)} ${ty(-0.8)} ${tx(2.3)} ${ty(-1.7)} ${tx(2.8)} ${ty(-2.6)}" stroke="var(--blue)" stroke-width="2" fill="none"/>`+
       `<text x="${tx(1.5)}" y="${ty(0,5)}" fill="${ax}" font-size="10" font-style="italic" font-family="serif">y = f\u207B\u00B9(x)</text>`;
   }
   // B: rastuca S-krivulja, dolazi odozdo lijevo, postaje ravna gore
   function cB(ox,oy,s){
     const tx=(x)=>ox+x*s,ty=(y)=>oy-y*s;
-    return `<path d="M ${tx(-1.8)} ${ty(-0,5)} C ${tx(-1.3)} ${ty(-0.3)} ${tx(-0.8)} ${ty(0.2)} ${tx(-0.3)} ${ty(1)} C ${tx(0)} ${ty(1.4)} ${tx(0.3)} ${ty(1.6)} ${tx(0.8)} ${ty(1.7)}" stroke="#4a90d9" stroke-width="2" fill="none"/>`+
+    return `<path d="M ${tx(-1.8)} ${ty(-0,5)} C ${tx(-1.3)} ${ty(-0.3)} ${tx(-0.8)} ${ty(0.2)} ${tx(-0.3)} ${ty(1)} C ${tx(0)} ${ty(1.4)} ${tx(0.3)} ${ty(1.6)} ${tx(0.8)} ${ty(1.7)}" stroke="var(--blue)" stroke-width="2" fill="none"/>`+
       `<text x="${tx(-1.7)}" y="${ty(1.4)}" fill="${ax}" font-size="10" font-style="italic" font-family="serif">y = f\u207B\u00B9(x)</text>`;
   }
   // C: rastuca sqrt-like, pocinje lijevo na x-osi, ide gore-desno
   function cC(ox,oy,s){
     const tx=(x)=>ox+x*s,ty=(y)=>oy-y*s;
-    return `<path d="M ${tx(-0,5)} ${ty(0)} C ${tx(-0.2)} ${ty(0,5)} ${tx(0.3)} ${ty(1)} ${tx(1)} ${ty(1.4)} C ${tx(1.8)} ${ty(1.7)} ${tx(2.5)} ${ty(1.9)} ${tx(3)} ${ty(2)}" stroke="#4a90d9" stroke-width="2" fill="none"/>`+
+    return `<path d="M ${tx(-0,5)} ${ty(0)} C ${tx(-0.2)} ${ty(0,5)} ${tx(0.3)} ${ty(1)} ${tx(1)} ${ty(1.4)} C ${tx(1.8)} ${ty(1.7)} ${tx(2.5)} ${ty(1.9)} ${tx(3)} ${ty(2)}" stroke="var(--blue)" stroke-width="2" fill="none"/>`+
       `<text x="${tx(0,5)}" y="${ty(1.7)}" fill="${ax}" font-size="10" font-style="italic" font-family="serif">y = f\u207B\u00B9(x)</text>`;
   }
   // D: padajuca u 4.kv, pocinje lijevo na x-osi, ide dolje-desno
   function cD(ox,oy,s){
     const tx=(x)=>ox+x*s,ty=(y)=>oy-y*s;
-    return `<path d="M ${tx(-0.3)} ${ty(0)} C ${tx(0.2)} ${ty(-0.3)} ${tx(0.8)} ${ty(-0.7)} ${tx(1.5)} ${ty(-1.2)} C ${tx(2.2)} ${ty(-1.5)} ${tx(3)} ${ty(-1.7)} ${tx(3.5)} ${ty(-1.8)}" stroke="#4a90d9" stroke-width="2" fill="none"/>`+
+    return `<path d="M ${tx(-0.3)} ${ty(0)} C ${tx(0.2)} ${ty(-0.3)} ${tx(0.8)} ${ty(-0.7)} ${tx(1.5)} ${ty(-1.2)} C ${tx(2.2)} ${ty(-1.5)} ${tx(3)} ${ty(-1.7)} ${tx(3.5)} ${ty(-1.8)}" stroke="var(--blue)" stroke-width="2" fill="none"/>`+
       `<text x="${tx(1.6)}" y="${ty(-1.9)}" fill="${ax}" font-size="10" font-style="italic" font-family="serif">y = f\u207B\u00B9(x)</text>`;
   }
   
   const TW=620, TH=640;
   return React.createElement('svg',{viewBox:`0 0 ${TW} ${TH}`,width:"100%",style:{display:'block',margin:'8px auto',maxWidth:520}},
     // Naslov "Graf funkcije f"
-    React.createElement('text',{key:'tt0',x:310,y:22,fill:"#94a3b8",fontSize:12,fontFamily:"serif",textAnchor:"middle"},"Graf funkcije f"),
+    React.createElement('text',{key:'tt0',x:310,y:22,fill:"var(--muted)",fontSize:12,fontFamily:"serif",textAnchor:"middle"},"Graf funkcije f"),
     // Top central panel (f)
     React.createElement('g',{key:'f',dangerouslySetInnerHTML:{__html:mini(240,130,sc,cf(240,130,sc))}}),
     // Text "Graf inverzne"
-    React.createElement('text',{key:'tt1',x:310,y:310,fill:"#94a3b8",fontSize:12,fontFamily:"serif",textAnchor:"middle"},"Graf inverzne funkcije:"),
+    React.createElement('text',{key:'tt1',x:310,y:310,fill:"var(--muted)",fontSize:12,fontFamily:"serif",textAnchor:"middle"},"Graf inverzne funkcije:"),
     // A
     React.createElement('g',{key:'A',dangerouslySetInnerHTML:{__html:mini(90,400,sc,cA(90,400,sc))}}),
-    React.createElement('text',{key:'Al',x:30,y:510,fill:"#e2e8f0",fontSize:14,fontWeight:"bold",fontFamily:"sans-serif"},"A."),
+    React.createElement('text',{key:'Al',x:30,y:510,fill:"var(--text)",fontSize:14,fontWeight:"bold",fontFamily:"sans-serif"},"A."),
     // B
     React.createElement('g',{key:'B',dangerouslySetInnerHTML:{__html:mini(400,400,sc,cB(400,400,sc))}}),
-    React.createElement('text',{key:'Bl',x:340,y:510,fill:"#e2e8f0",fontSize:14,fontWeight:"bold",fontFamily:"sans-serif"},"B."),
+    React.createElement('text',{key:'Bl',x:340,y:510,fill:"var(--text)",fontSize:14,fontWeight:"bold",fontFamily:"sans-serif"},"B."),
     // C
     React.createElement('g',{key:'C',dangerouslySetInnerHTML:{__html:mini(90,570,sc,cC(90,570,sc))}}),
-    React.createElement('text',{key:'Cl',x:30,y:630,fill:"#e2e8f0",fontSize:14,fontWeight:"bold",fontFamily:"sans-serif"},"C."),
+    React.createElement('text',{key:'Cl',x:30,y:630,fill:"var(--text)",fontSize:14,fontWeight:"bold",fontFamily:"sans-serif"},"C."),
     // D
     React.createElement('g',{key:'D',dangerouslySetInnerHTML:{__html:mini(400,570,sc,cD(400,570,sc))}}),
-    React.createElement('text',{key:'Dl',x:340,y:630,fill:"#e2e8f0",fontSize:14,fontWeight:"bold",fontFamily:"sans-serif"},"D.")
+    React.createElement('text',{key:'Dl',x:340,y:630,fill:"var(--text)",fontSize:14,fontWeight:"bold",fontFamily:"sans-serif"},"D.")
   );
 }
 
@@ -596,7 +596,7 @@ export const qs = [
   {
     id:12,
     type:"mc",warn:"Pazi: iz S₁₆ = (16/2)(a₁ + a₁₆) možeš izraziti a₁₆ izravno, bez traženja razlike d.",
-    topic:"seq",
+    topic:"niz",
     points:1,
     q:"Koliko iznosi 16. član aritmetičkoga niza kojemu je prvi član −10, a zbroj prvih 16 članova 96?",
     opts:["11","16","22","27"],
@@ -883,7 +883,7 @@ export const qs = [
     why:["Pravila: log_b(y) = c ⟺ y = b^c.","Postupak: 1) eksponencijalna forma. 2) alg. jednadžba. 3) provjera domene.","Intuicija: log \"razbija\" potenciju, vraćajući ju u alg. jednadžbu.","Česta greška 1: napisati 4·1/2 = 2 umjesto 4^(¹⁄²) = 2 (slučajno isto, ali pogrešna logika).","Česta greška 2: ne provjeriti da rješenje pada u domenu.","Alt metoda — promjena baze: log₄ y = (ln y)/(ln 4) = 1/2 → ln y = (ln 4)/2 = ln 2 → y = 2 ✓.","Provjera: 2 ∈ ⟨0, 6⟩ ✓; log₄(2) = log₄(4^(¹⁄²)) = 1/2 ✓."]
   },
   {
-    id:"37,1",
+    id:"37.1",
     img:true,
     type:"sa",
     topic:"anal",
@@ -895,7 +895,7 @@ export const qs = [
     why:["Pravila: kružnica (x−x₀)²+(y−y₀)² = r²; r = udaljenost središta do točke na kružnici.","Postupak: 1) S iz slike. 2) izaberi točku P. 3) r = |SP|.","Intuicija: sve točke na kružnici jednako udaljene od središta.","Česta greška 1: pomiješati središte i točku na kružnici.","Česta greška 2: zaboraviti korijen.","Alt metoda — kroz jednadžbu kružnice ako je dana.","Provjera dimenzionalno: 3 < √13 < 4 (jer 9 < 13 < 16) ✓."]
   },
   {
-    id:"37,2",
+    id:"37.2",
     img:true,
     type:"sa",
     topic:"anal",
@@ -918,7 +918,7 @@ export const qs = [
     why:["Pravila: jednakokračan trapez ima simetriju; tan(α) = nasuprotna/priležeća kateta.","Postupak: 1) razlika osnovica/2 = horizontalna projekcija. 2) tan = v/x. 3) arctan.","Intuicija: krak trapeza je hipotenuza pravokutnog trokuta s visinom i projekcijom.","Česta greška 1: koristiti cijelu razliku osnovica (5 cm) umjesto polovice.","Česta greška 2: dati tupi kut (116°) umjesto šiljastog.","Alt metoda — sin/cos: sin α = 5/√(25 + 6,25) = 5/√31,25; α ≈ 63,4°.","Provjera s decimalama: 63,4349° = 63°26'6\" (60·0,4349 = 26,1' = 26'6\") ✓."]
   },
   {
-    id:"38,2",
+    id:"38.2",
     img:true,
     type:"sa",
     topic:"al",
@@ -932,7 +932,7 @@ export const qs = [
   {
     id:"39,1",
     type:"sa",
-    topic:"seq",
+    topic:"niz",
     points:1,
     context:"Zadatak 39 (1. dio od 2): Niz (aₙ) zadan je općim članom aₙ = [FRAC:2ⁿ|32].",
     q:"Izračunajte zbroj prvih deset članova zadanoga niza.",
@@ -1010,8 +1010,7 @@ export const qs = [
     sol:{ans:"≈ 1,062 cm³ (egzaktno 27·(√6−2)³·√3 / 4)",alt:["27(√6-2)³·√3/4","≈ 1,062 cm³","~ 1,062"]},
     steps:[{txt:"Pravilni tetraedar s bridom a = 3; visina H = a·√(2/3) = 3·√(2/3) = √6."},{txt:"Pravilna uspravna trostrana prizma sa svim bridovima jednake duljine: a_prizma = visina_prizma = b."},{txt:"Donja baza u ravnini baze tetraedra; gornja baza na bočnim bridovima tetraedra (sličnost)."},{txt:"Sličnost: gornja baza prizme je manji jednakostraničan trokut sličan donjoj (baza tetraedra)."},{txt:"Visina tetraedra iznad gornje baze prizme = H − b = √6 − b."},{txt:"Omjer sličnosti: gornja baza prizme : baza tetraedra = (H − b)/H = (√6 − b)/√6."},{txt:"Brid gornje baze = a·(√6 − b)/√6 = 3·(√6 − b)/√6; mora biti b (svi bridovi prizme jednaki): 3(√6 − b)/√6 = b."},{txt:"3(√6 − b) = b√6 → 3√6 − 3b = b√6 → 3√6 = b(√6 + 3) → b = [FRAC:3√6|√6 + 3] = [FRAC:3√6·(√6 − 3)|6 − 9] = ... preuredi: b = [FRAC:3√6|√6 + 3] = 3·√6/(√6 + 3)."},{txt:"Racionalizacija: b = 3√6·(√6 − 3)/((√6)² − 9) = 3·(6 − 3√6)/(6 − 9) = 3·(6 − 3√6)/(−3) = −(6 − 3√6) = 3√6 − 6 = 3(√6 − 2)."},{txt:"Dakle b = 3(√6 − 2) ≈ 3·(2,449 − 2) ≈ 3·0,449 ≈ 1,348 cm."},{txt:"Volumen prizme: V = P_baze·v = ([FRAC:√3|4]·b²)·b = [FRAC:b³√3|4] = [FRAC:(3(√6−2))³·√3|4] = [FRAC:27(√6−2)³·√3|4]."},{txt:"Numerički: V ≈ [FRAC:27·0,0905·1,732|4] ≈ [FRAC:4,23|4] ≈ 1,062 cm³."},{txt:"Točan odgovor: V = [FRAC:27(√6 − 2)³·√3|4] ≈ 1,062 cm³.",note:"odgovor",final:true},{txt:"Provjera dimenzionalno: cm³ ✓; b ≈ 1,35 < 3 (vrlo razumno za upisanu prizmu).",note:"verifikacija",final:true},{txt:"Postupak: 1) visina tetraedra. 2) sličnost za gornju bazu. 3) jednadžba \"svi bridovi jednaki\". 4) volumen.",note:"postupak",final:true},{txt:"Intuicija: prizma s svim bridovima jednakim ima visinu = stranica baze; ograničenje sličnosti daje jednadžbu.",note:"intuicija",final:true}],
     why:["Pravila: tetraedar visina H = a√(2/3); sličnost u tetraedru: poprečni presjek na visini h ima stranicu skaliranu faktorom (H−h)/H; V prizme = P_baze · visina.","Postupak: 1) H tetraedra. 2) sličnost gornje baze. 3) uvjet b = stranica gornje baze. 4) V prizme.","Intuicija: poprečni presjeci pravilnog tetraedra su slični međusobno, skalirani s visinom.","Česta greška 1: koristiti H = a√3 (krivo, to je visina jednakostraničnog trokuta, ne tetraedra).","Česta greška 2: pomiješati prizmu s piramidom (V piramide ima faktor 1/3).","Alt metoda — kroz parametre: b = 3·(√6 − 2) je vrijednost koja zadovoljava SVI bridovi jednaki.","Provjera numerički: b ≈ 1,35; b³ ≈ 2,44; V = 2,44·√3/4 ≈ 2,44·0,433 ≈ 1,057 ≈ 1,062 ✓."]
-  },
-  {_META:true,auditStatus:"verified-full",rok:"2025_jesen",razina:"A",serial:"D-S069",totalPoints:60,mcCount:20,saCount:25,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"]}
+  }
 ];
 
 export const qImages = {

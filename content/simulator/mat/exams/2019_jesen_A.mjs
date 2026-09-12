@@ -7,7 +7,7 @@ function Svg8_2019Ajj(){
      Kut 70° je u G, između stranica GF i GH.
      FG=54 dm, GH=42 dm. Vjerno po PDF slici. */
   const W=260,H=200;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const F={x:15,y:80}, G={x:140,y:180}, Hv={x:165,y:18};
   /* kutovi od G prema F i H */
   const aGF=Math.atan2(F.y-G.y,F.x-G.x);
@@ -43,7 +43,7 @@ function Svg25b_2019Ajj(){
      RS = 14cm (R lijevo, S desno od Q). QS = 7cm.
      Pravi kut kod P (ili kod Q). */
   const W=210,H=240;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   /* Pozicije prema slici */
   const T={x:105,y:12};
   const P={x:88,y:88};  /* točka na sredini, pravi kut */
@@ -86,7 +86,7 @@ function Svg25a_2019Ajj(){
      Iz slike: D gore, B dolje-lijevo, C desno (na kružnici), A središte (lijevo).
      Tangente u B i D prolaze kroz vanjsku točku S desno. */
   const W=220,H=200;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cx=80,cy=100,R=56;
   /* D gore-desno, B dolje, C na desnoj strani */
   const angD=60, angB=240, angC=350;
@@ -138,7 +138,7 @@ function Svg25a_2019Ajj(){
 
 function Svg23_2_2019Ajj(){
   const W=300,H=220,pad={l:30,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-Math.PI,xMax=2*Math.PI;
   const yMin=-2.5,yMax=2.5;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
@@ -171,7 +171,7 @@ function Svg23_2_2019Ajj(){
 
 function SvgT20a_2019Ajj(){
   const W=260,H=100;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const cols=[0,65,130,195,260]; /* 4 stupca + header */
   const rows=[0,45,100]; /* 2 retka + header */
   const cw=65,rh=45; /* širina stupca, visina retka */
@@ -202,7 +202,7 @@ function Svg14_2019Ajj(){
      M polovište AB (hipotenuze). Presavijanje: isprekidane linije tvore pravokutnik.
      Pravi kut u C. Iz slike: trokut visok, pravokutnik unutra isprekidan. */
   const W=190,H=210;
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const A={x:20,y:190}, B={x:170,y:190}, C={x:95,y:15};
   const M={x:(A.x+B.x)/2,y:A.y};
   /* Polovišta AC i BC */
@@ -258,7 +258,7 @@ function Svg27c_2019Ajj(){
      g: ružičasta, rastuća na [1,5], ide od ~(1,-0,5) do (5,3).
      g label je gore-desno na slici. */
   const W=230,H=210,pad={l:32,r:14,t:14,b:32};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=6,yMin=-4,yMax=4;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -317,7 +317,7 @@ function Svg27c_2019Ajj(){
 
 function Svg30_2019Ajj(){
   const W=220,H=200,pad={l:30,r:14,t:14,b:28};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-3,xMax=8,yMin=-2,yMax=10;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -365,7 +365,7 @@ function Svg12_2019Ajj(){
      prolazi gore lijevo (oko (0,1)), minimum (2,-3), gore desno (4,3).
      Mrežne linije, oznake 0, 1 na osima. */
   const W=220,H=240,pad={l:30,r:14,t:14,b:30};
-  const _BLUE="#4a90d9",_RED="#e05252",_GOLD="#e9b446",_GREEN="#50c878",_MUTED="#94a3b8";
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-0.8,xMax=5.5,yMin=-4.5,yMax=5;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
@@ -445,7 +445,7 @@ export const qs = [
     {txt:"Rješenje (gdje > 0): x ∈ ⟨−∞, −4⟩ ∪ ⟨5, +∞⟩."},
     {txt:"Distraktori: A (samo desni dio); B (krivi početak); D (krivih nula 0 i 1 — vjerojatno zamijenjena s različitom kvadratnom).",note:"diagnostika"},
     {txt:"Odgovor: C.",note:"verifikacija",final:true},{txt:"Sažetak postupka: Pravilo: Kvadratna nejednadžba ax² + bx + c > 0 (a > 0) — prevedi u faktorizirani oblik, nule daju točke razdvajanja, analiziraj predznak po intervalima.",note:"postupak",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true},{txt:"Intuicija: Parabola otvorena prema gore ima '+' lijevo od manje nule i desno od veće nule, '−' među njima.",note:"intuicija",final:true}]},
-  {id:4,type:"mc",warn:"Pazi: aritmetički niz → stalna razlika; provjeri da su svi razmaci jednaki.",topic:"seq",points:1,
+  {id:4,type:"mc",warn:"Pazi: aritmetički niz → stalna razlika; provjeri da su svi razmaci jednaki.",topic:"niz",points:1,
   q:"Koji je od navedenih četveročlanih nizova aritmetički niz?",
   opts:["2, 5, 8, 13","−4, −3, −2, −1","0,5; 1; 2; 4","−0,7; −0,8; −1; −1,2"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
@@ -619,7 +619,7 @@ export const qs = [
     {txt:"Pa: |a| = 9 → a ∈ {−9, 9}; |a| = 10 → a ∈ {−10, 10}; |a| = 11 → a ∈ {−11, 11}."},
     {txt:"Ukupno: {−11, −10, −9, 9, 10, 11} — 6 cijelih brojeva."},
     {txt:"Provjera: |−11| = 11 ∈ [9, 11] ✓; |−8| = 8 < 9 ✗ (izvan); |9| = 9 ∈ [9, 11] ✓. Rješenje: 6.",note:"verifikacija",final:true},{txt:"Točan odgovor: 6 ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Pravilo: |a| ≤ k ⇔ −k ≤ a ≤ k; |a| ≥ k ⇔ a ≤ −k ∨ a ≥ k.",note:"postupak",final:true},{txt:"Intuicija: Skup je unija dva simetrična intervala: a ∈ [−11, −9] ∪ [9, 11].",note:"intuicija",final:true}]},
-  {id:18.2,type:"sa",topic:"seq",points:1,
+  {id:18.2,type:"sa",topic:"niz",points:1,
   context:"Zadatak 18 (2. dio od 2):",
   q:"Prvi je član geometrijskoga niza 5, a četvrti 135. Odredite drugi član toga niza.",
   sol:{ans:"15",alt:["15","≈ 15"]},
@@ -960,8 +960,7 @@ export const qs = [
     {txt:"Uvrsti B = 11 u f(4) = 5: (11 − 16)/5 + C = 5 → −1 + C = 5 → C = 6. (Prilagodi prema ključu — C = 5 ako se f(4) = 4.)"},
     {txt:"Druga nultočka derivacije daje lok. maksimum. Brojnik (−4)(x²−4x+5) − (11−4x)(2x−4) = 0 → kvadratna 4x² − 22x + 24 = 0 → 2x² − 11x + 12 = 0."},
     {txt:"Diskriminanta: 121 − 96 = 25 → x = (11 ± 5)/4 → x = 4 (lok. min) ili x = [FRAC:6|4] = [FRAC:3|2] (lok. max)."},
-    {txt:"Uvrsti x = 3/2: f(3/2) = (11 − 6)/(9/4 − 6 + 5) + C = 5/(5/4) + C = 4 + 6 = 10. Lokalni maksimum u ([FRAC:3|2], 10).",note:"verifikacija",final:true},{txt:"Točan odgovor: ([FRAC:3|2], 10) ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Pravilo: Lokalni ekstrem racionalne funkcije — deriviraj, izjednači f′(x) = 0; iz uvjeta lokalnog minimuma N(4, 5) odredi parametre B i C.",note:"postupak",final:true},{txt:"Intuicija: Iz točke N na grafu znamo dva uvjeta: f(4) = 5 i f′(4) = 0. Dva uvjeta — dvije nepoznanice (B i C).",note:"intuicija",final:true}]},
-  {_META:true,auditStatus:"verified-full",rok:"2019_jesen",razina:"A",serial:"D-S043",totalPoints:60,mcCount:15,saCount:34,verified:"sympy+pdf",maintenanceAt:"2026-05-16",maintenanceNotes:["Pak H batch (context dodavanje)","D1 sweep (decimalna toka u zarez)","C1 sweep (interval syntax)","B2 sweep (exp zagrada)"],maintenanceAt_v311:"2026-05-26",maintenanceNotes_v311:["Pak I visual: svih 9 vizuala (Q8/12/14/20.1/23.2/25.1/25.2/27.3/30) verified protiv PDF D-S043.","P0 fix Svg12_2019Ajj: parabola min izmjenjen iz x=2 u x=4 — NCVVO Q12=D zahtjeva samo f(4)<f(5) — prethodno SVG min na x=2 davalo bi vise tocnih nejednakosti.","P0 fix Svg30_2019Ajj: lokalni max premjesten iz (-1, 8) u (1.5, 10), N(4,5) zadrzan. Racunano iz f(x)=(11-4x)/(x^2-4x+5)+6.","P1 SKIPPED Svg27c_2019Ajj: g curve monotonic vs PDF U-shape — ali g je definirana na asimetricnoj domeni [1,5] pa je automatski ni parna ni neparna bez obzira na oblik."]}
+    {txt:"Uvrsti x = 3/2: f(3/2) = (11 − 6)/(9/4 − 6 + 5) + C = 5/(5/4) + C = 4 + 6 = 10. Lokalni maksimum u ([FRAC:3|2], 10).",note:"verifikacija",final:true},{txt:"Točan odgovor: ([FRAC:3|2], 10) ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Pravilo: Lokalni ekstrem racionalne funkcije — deriviraj, izjednači f′(x) = 0; iz uvjeta lokalnog minimuma N(4, 5) odredi parametre B i C.",note:"postupak",final:true},{txt:"Intuicija: Iz točke N na grafu znamo dva uvjeta: f(4) = 5 i f′(4) = 0. Dva uvjeta — dvije nepoznanice (B i C).",note:"intuicija",final:true}]}
 ];
 
 export const qImages = {
