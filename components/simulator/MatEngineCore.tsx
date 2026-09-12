@@ -34,14 +34,28 @@ export function __addExams(map){
   __notifyExams();
 }
 export function isExamLoaded(k){ const x=EXAMS[k]; return !!(x && (x._loaded || (x.qs && x.qs.length))); }
-export function allExamsLoaded(){ return Object.keys(EXAMS).every(isExamLoaded); }
+// Zakljucani ispiti se nikad ne dohvacaju (free tier ne smije dobiti placenu banku zadataka),
+// pa "sve ucitano" znaci: svi ispiti koje ovaj korisnik uopce smije dobiti.
+export function isExamLocked(k){ const x=EXAMS[k]; return !!(x && x.locked); }
+function __loadableKeys(){ return Object.keys(EXAMS).filter(function(k){ return !isExamLocked(k); }); }
+export function allExamsLoaded(){ return __loadableKeys().every(isExamLoaded); }
+// Broj zadataka za prikaz: iz ucitanog ispita ako ga ima, inace questionCount iz index.json.
+export function examQCount(ex){
+  if(!ex) return 0;
+  if(ex.qs && ex.qs.length) return ex.qs.length;
+  return ex.questionCount || 0;
+}
 export function loadExam(key, quiet){
   const ex = EXAMS[key];
-  if(!ex) return Promise.resolve(null);
-  if(isExamLoaded(key) || !__examLoader) return Promise.resolve(ex);
+  if(!ex) return Promise.reject(new Error("Nepoznat ispit: "+key));
+  if(isExamLoaded(key)) return Promise.resolve(ex);
+  if(ex.locked) return Promise.reject(new Error("Ispit je zakljucan: "+key));
+  if(!__examLoader) return Promise.reject(new Error("Loader ispita nije postavljen."));
   if(__examPending[key]) return __examPending[key];
   __examPending[key] = Promise.resolve().then(function(){ return __examLoader(key); }).then(function(m){
-    const qs = (m && m.qs) ? m.qs.filter(function(q){ return q && !q._META; }) : (EXAMS[key].qs||[]);
+    const qs = (m && m.qs) ? m.qs.filter(function(q){ return q && !q._META; }) : [];
+    // Prazan rezultat je greska, a ne "ucitan prazan ispit" — inace UI tiho udje u sesiju s 0 pitanja.
+    if(!qs.length) throw new Error("Ispit "+key+" je stigao bez pitanja.");
     EXAMS[key] = Object.assign({}, EXAMS[key], { qs:qs, _loaded:true });
     if(m && m.qImages) Object.assign(__MAT.Q_IMAGES, m.qImages);
     delete __examPending[key];
@@ -50,22 +64,23 @@ export function loadExam(key, quiet){
   }).catch(function(err){
     delete __examPending[key];
     try{ console.warn("[mat] loadExam", key, err); }catch(e){}
-    return EXAMS[key];
+    throw err; // pozivatelj mora znati da ispit NIJE ucitan (prikaz greske + ponovni pokusaj)
   });
   return __examPending[key];
 }
 // Postupno ucitavanje svih ispita uz progress (0..1) za cross-exam modove.
+// Pojedinacni pad ne rusi cijelu seriju — zabiljezi se i nastavlja se dalje.
 export function loadAllExams(onProgress){
-  const keys = Object.keys(EXAMS).filter(function(k){ return !isExamLoaded(k); });
+  const keys = __loadableKeys().filter(function(k){ return !isExamLoaded(k); });
   const total = keys.length;
-  if(!total || !__examLoader){ if(onProgress) onProgress(1); return Promise.resolve(); }
-  let done = 0;
+  if(!total || !__examLoader){ if(onProgress) onProgress(1); return Promise.resolve({total:0,failed:0}); }
+  let done = 0, failed = 0;
   if(onProgress) onProgress(0);
   const B = 6;
   function step(i){
-    if(i >= total){ __notifyExams(); return Promise.resolve(); }
+    if(i >= total){ __notifyExams(); return Promise.resolve({total:total,failed:failed}); }
     return Promise.all(keys.slice(i, i+B).map(function(k){
-      return loadExam(k, true).then(function(){ done++; if(onProgress) onProgress(done/total); });
+      return loadExam(k, true).catch(function(){ failed++; }).then(function(){ done++; if(onProgress) onProgress(done/total); });
     })).then(function(){ __notifyExams(); return step(i+B); });
   }
   return step(0);
@@ -2381,7 +2396,7 @@ function CountUp({to,duration,suffix}){
   return e(React.Fragment,null,String(v)+(suffix||""));
 }
 function examTitle(exam){return (exam.season==="session"||exam.season==="random")?exam.label:exam.year+".  -  "+exam.label;}
-function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,onEditRazina}){
+function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,onEditRazina,onPrepareExams}){
   const history=userData.history||[];
   const et=userData.errorTracker||{};
   const labelOf=t=>TOPIC_LABELS[t]||t;
@@ -2404,15 +2419,19 @@ function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,o
   let srsDue=0; try{ srsDue=getSrsDueCards(srsLoad()).length; }catch(e){}
 
   // Adaptivni skup (mc+sa) iz ciljnih tema, balansiran
-  const pool=[];
-  Object.values(EXAMS).forEach(ex=>{
-    if(razina && ex.razina!==razina) return;
-    ex.qs.forEach(q=>{
-      if(q.type!=="mc"&&q.type!=="sa") return;
-      const l=labelOf(q.topic);
-      if(!hasTargets || targetLabels.indexOf(l)>=0) pool.push({...q,_examKey:ex.key,_label:l});
+  function buildPool(){
+    const out=[];
+    Object.values(EXAMS).forEach(ex=>{
+      if(razina && ex.razina!==razina) return;
+      (ex.qs||[]).forEach(q=>{
+        if(q.type!=="mc"&&q.type!=="sa") return;
+        const l=labelOf(q.topic);
+        if(!hasTargets || targetLabels.indexOf(l)>=0) out.push({...q,_examKey:ex.key,_label:l});
+      });
     });
-  });
+    return out;
+  }
+  const pool=buildPool();
   function pickBalanced(arr,labels,n){
     if(!labels.length) return [...arr].sort(()=>Math.random()-.5).slice(0,n);
     const byL={}; labels.forEach(l=>byL[l]=[]);
@@ -2428,11 +2447,22 @@ function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,o
   }
   const trainCount=hasTargets?12:10;
   const session=pickBalanced(pool,targetLabels,trainCount);
+  // 2.1: pool dolazi iz EXAMS, koji je do zavrsetka ucitavanja prazan. Dok nije spremno,
+  // gumb ne laze s "0 pitanja" nego sam pokrene ucitavanje (s progress overlayem) i onda krene.
+  const examsReady=allExamsLoaded();
 
-  function startTraining(){
-    if(!session.length||!onStartErrorSession) return;
+  function _launchTraining(qs){
+    if(!qs||!qs.length||!onStartErrorSession) return;
     onStartErrorSession({key:"errors_session",year:"Trening",season:"session",razina:razina||"B",
-      label:"Trening dana", qs:[...session], duration:session.length*120});
+      label:"Trening dana", qs:[...qs], duration:qs.length*120});
+  }
+  function startTraining(){
+    // Provjera na klik (ne iz rendera) — nakon ucitavanja pool se racuna iznova.
+    if(!allExamsLoaded()){
+      if(onPrepareExams) onPrepareExams(function(){ _launchTraining(pickBalanced(buildPool(),targetLabels,trainCount)); });
+      return;
+    }
+    _launchTraining(session);
   }
 
   const mat=nextMatura(); const days=mat.days;
@@ -2443,7 +2473,7 @@ function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,o
   });
   function sevOf(acc){return acc==null?"sev-red":acc<40?"sev-red":acc<70?"sev-gold":"sev-green";}
 
-  return e("div",{style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:18,padding:"18px 20px",marginBottom:34,boxShadow:"var(--shadow-sm)",position:"relative",overflow:"hidden"}},e("div",{style:{position:"absolute",left:0,top:0,bottom:0,width:3,background:"linear-gradient(180deg,var(--blue),var(--blue-2))"}}),e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,marginBottom:4}},e("div",null,e("div",{style:{fontSize:10,fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:"var(--muted)",marginBottom:5}},"🎯 Trening dana"),e("div",{style:{fontFamily:"var(--fh)",fontSize:21,color:"var(--text)",lineHeight:1.15}}, hasTargets?"Fokus na slabe točke":"Zagrij se za maturu")),e("div",{style:{textAlign:"right",flexShrink:0,paddingLeft:8}},e("div",{style:{fontSize:19,fontWeight:800,fontFamily:"var(--fh)",color:days<=14?"var(--red)":"var(--blue)",lineHeight:1}}, mat.today?"DANAS":days),e("div",{style:{fontSize:10,color:"var(--muted)",marginTop:3,maxWidth:92}}, mat.today?"matura — sretno!":(days===1?"dan do mature":"dana do mature")))),e("p",{style:{fontSize:13,color:"var(--muted)",lineHeight:1.5,margin:"8px 0 15px"}}, hasTargets?"Sustav je posložio pitanja iz tvojih slabijih tema — vježbaj baš gdje gubiš bodove.":"Kreni s miješanim pitanjima kroz gradivo — sustav slaže plan čim vidi gdje griješiš."),(function(){var TH={5:85,4:70,3:55,2:40};var avg=history.length?Math.round(history.reduce(function(a,h){return a+h.pct;},0)/history.length):null;if(!tgGoal||goalEdit){return e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:16,flexWrap:"wrap"}},e("span",{style:{fontSize:12,color:"var(--muted)",fontWeight:600}},"Ciljam ocjenu:"),[3,4,5].map(function(g){return e("button",{key:g,onClick:function(){setHomeGoal(g);},style:{minWidth:40,padding:"6px 12px",borderRadius:9,border:"1px solid var(--bdr)",background:"var(--s2)",color:"var(--text)",fontSize:14,fontWeight:700,cursor:"pointer"}},g);}));}var th=TH[tgGoal],cur=avg||0,reached=cur>=th,p=Math.min(100,Math.round(cur/Math.max(1,th)*100));return e("div",{style:{marginBottom:16}},e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}},e("span",{style:{fontSize:12,fontWeight:700,color:"var(--text)"}},"Cilj: ocjena "+tgGoal+" (≥"+th+"%)"),e("button",{onClick:function(){setGoalEdit(true);},style:{background:"none",border:"none",color:"var(--blue)",fontSize:11,fontWeight:600,cursor:"pointer",padding:0}},"promijeni")),e("div",{style:{height:6,borderRadius:99,background:"var(--s3)",overflow:"hidden"}}, e("div",{style:{height:"100%",width:p+"%",borderRadius:99,background:reached?"var(--green)":"linear-gradient(90deg,var(--blue),#7b9fff)",transition:"width .6s ease"}})),avg!=null&&e("div",{style:{fontSize:11,color:reached?"var(--green)":"var(--muted)",marginTop:6}}, reached?"Prosjek ti je iznad cilja 🎉":("Prosjek "+cur+"% · još "+(th-cur)+"% do cilja")));})(),e("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,flexWrap:"wrap"}},e("button",{onClick:startTraining,className:"shimmer-btn",style:{display:"inline-flex",alignItems:"center",gap:7,background:"var(--blue)",color:"#fff",border:"none",borderRadius:11,padding:"11px 18px",fontSize:14,fontWeight:700,cursor:"pointer",boxShadow:"0 4px 14px -4px rgba(74,144,217,.55)"}},"🎯 Započni trening",e("span",{style:{opacity:.85,fontWeight:600,fontSize:13}}," · "+session.length+" pitanja"),e("span",{style:{marginLeft:1,fontSize:15}},"→")),onEditRazina&&e("button",{onClick:onEditRazina,style:{background:"none",border:"none",color:"var(--muted)",fontSize:12,fontWeight:600,cursor:"pointer"}}, "Razina "+(razina||"?")+" · promijeni")));
+  return e("div",{style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:18,padding:"18px 20px",marginBottom:34,boxShadow:"var(--shadow-sm)",position:"relative",overflow:"hidden"}},e("div",{style:{position:"absolute",left:0,top:0,bottom:0,width:3,background:"linear-gradient(180deg,var(--blue),var(--blue-2))"}}),e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,marginBottom:4}},e("div",null,e("div",{style:{fontSize:10,fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:"var(--muted)",marginBottom:5}},"🎯 Trening dana"),e("div",{style:{fontFamily:"var(--fh)",fontSize:21,color:"var(--text)",lineHeight:1.15}}, hasTargets?"Fokus na slabe točke":"Zagrij se za maturu")),e("div",{style:{textAlign:"right",flexShrink:0,paddingLeft:8}},e("div",{style:{fontSize:19,fontWeight:800,fontFamily:"var(--fh)",color:days<=14?"var(--red)":"var(--blue)",lineHeight:1}}, mat.today?"DANAS":days),e("div",{style:{fontSize:10,color:"var(--muted)",marginTop:3,maxWidth:92}}, mat.today?"matura — sretno!":(days===1?"dan do mature":"dana do mature")))),e("p",{style:{fontSize:13,color:"var(--muted)",lineHeight:1.5,margin:"8px 0 15px"}}, hasTargets?"Sustav je posložio pitanja iz tvojih slabijih tema — vježbaj baš gdje gubiš bodove.":"Kreni s miješanim pitanjima kroz gradivo — sustav slaže plan čim vidi gdje griješiš."),(function(){var TH={5:85,4:70,3:55,2:40};var avg=history.length?Math.round(history.reduce(function(a,h){return a+h.pct;},0)/history.length):null;if(!tgGoal||goalEdit){return e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:16,flexWrap:"wrap"}},e("span",{style:{fontSize:12,color:"var(--muted)",fontWeight:600}},"Ciljam ocjenu:"),[3,4,5].map(function(g){return e("button",{key:g,onClick:function(){setHomeGoal(g);},style:{minWidth:40,padding:"6px 12px",borderRadius:9,border:"1px solid var(--bdr)",background:"var(--s2)",color:"var(--text)",fontSize:14,fontWeight:700,cursor:"pointer"}},g);}));}var th=TH[tgGoal],cur=avg||0,reached=cur>=th,p=Math.min(100,Math.round(cur/Math.max(1,th)*100));return e("div",{style:{marginBottom:16}},e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}},e("span",{style:{fontSize:12,fontWeight:700,color:"var(--text)"}},"Cilj: ocjena "+tgGoal+" (≥"+th+"%)"),e("button",{onClick:function(){setGoalEdit(true);},style:{background:"none",border:"none",color:"var(--blue)",fontSize:11,fontWeight:600,cursor:"pointer",padding:0}},"promijeni")),e("div",{style:{height:6,borderRadius:99,background:"var(--s3)",overflow:"hidden"}}, e("div",{style:{height:"100%",width:p+"%",borderRadius:99,background:reached?"var(--green)":"linear-gradient(90deg,var(--blue),#7b9fff)",transition:"width .6s ease"}})),avg!=null&&e("div",{style:{fontSize:11,color:reached?"var(--green)":"var(--muted)",marginTop:6}}, reached?"Prosjek ti je iznad cilja 🎉":("Prosjek "+cur+"% · još "+(th-cur)+"% do cilja")));})(),e("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,flexWrap:"wrap"}},e("button",{onClick:startTraining,className:"shimmer-btn",style:{display:"inline-flex",alignItems:"center",gap:7,background:"var(--blue)",color:"#fff",border:"none",borderRadius:11,padding:"11px 18px",fontSize:14,fontWeight:700,cursor:"pointer",boxShadow:"0 4px 14px -4px rgba(74,144,217,.55)"}},"🎯 Započni trening",e("span",{style:{opacity:.85,fontWeight:600,fontSize:13}},examsReady?(" · "+session.length+" pitanja"):" · pripremam zadatke…"),e("span",{style:{marginLeft:1,fontSize:15}},"→")),onEditRazina&&e("button",{onClick:onEditRazina,style:{background:"none",border:"none",color:"var(--muted)",fontSize:12,fontWeight:600,cursor:"pointer"}}, "Razina "+(razina||"?")+" · promijeni")));
 }
 var __CASND=(typeof window!=="undefined"&&window.nerdamer)?window.nerdamer:null;
 function __casNorm(s){return String(s==null?"":s)
@@ -2700,7 +2730,7 @@ function DDayModal(props){
     )
   );
 }
-function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,onFlashcards,onDailyChallenge,onBookmarks,onFilter,onMixed,onSRS,onAIPractice,onDDay,onGuide,onStartErrorSession,razina,onEditRazina,resume,onResume,onDiscardResume,onSetGoal,userData,toggles}){
+function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,onFlashcards,onDailyChallenge,onBookmarks,onFilter,onMixed,onSRS,onAIPractice,onDDay,onGuide,onStartErrorSession,razina,onEditRazina,onPrepareExams,resume,onResume,onDiscardResume,onSetGoal,userData,toggles}){
   const[ioMsg,setIoMsg]=React.useState(null);
   React.useEffect(()=>{if(!ioMsg)return;const t=setTimeout(()=>setIoMsg(null),3200);return()=>clearTimeout(t);},[ioMsg]);
   const[navScrolled,setNavScrolled]=React.useState(false);
@@ -2740,8 +2770,14 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
   const _accAll=(()=>{let c=0,n=0;Object.values(_topicCov).forEach(x=>{c+=x.c;n+=x.n;});return n>0?Math.round(c/n*100):(avgPct||0);})();
   const _lastDays=(()=>{const pp=v=>{if(!v)return null;const a=String(v).replace(/\./g,"").trim().split(/\s+/);if(a.length<3)return null;return new Date(+a[2],+a[1]-1,+a[0]);};let l=null;history.forEach(h=>{const d=pp(h.date);if(d&&(!l||d>l))l=d;});if(!l)return 999;return Math.max(0,Math.round((Date.now()-l.getTime())/86400000));})();
   const _recMult=_lastDays<=3?1:_lastDays<=7?0.97:_lastDays<=14?0.92:0.85;
-  const _readiness=history.length===0?0:Math.min(100,Math.round((0.55*_accAll+0.45*_coveragePct)*_recMult));
-  const _rdHint=(()=>{var parts=[];if(_coveragePct<100){var miss=_totalTopics-_coveredN;parts.push("pokrij jo\u0161 "+miss+" "+(miss===1?"temu":"tema"));}var weak=_allTL.filter(l=>_topicCov[l].n>=5).map(l=>({l:l,p:Math.round(_topicCov[l].c/_topicCov[l].n*100)})).sort((a,b)=>a.p-b.p)[0];if(weak&&weak.p<60)parts.push("digni "+weak.l+" ("+weak.p+"%)");if(!parts.length)return _readiness>=85?"Skoro pa spreman/na \u2014 samo nastavi!":"Solidno \u2014 nastavi vje\u017ebati.";return "Do 100%: "+parts.slice(0,2).join(" \u00b7 ");})();
+  // 2.1: pokrivenost gradiva ima smisla tek kad su svi (otkljucani) ispiti ucitani — do tada je
+  // _allTL prazan pa bi spremnost ispala lazno niska i poslije bez objasnjenja skocila.
+  const _topicsReady=allExamsLoaded()&&_allTL.length>0;
+  const _readiness=history.length===0?0:(_topicsReady?Math.min(100,Math.round((0.55*_accAll+0.45*_coveragePct)*_recMult)):null);
+  const _rdReady=_readiness!=null;
+  const _rdPct=_rdReady?_readiness:0;
+  const _rdTxt=_rdReady?(_readiness+"%"):"…";
+  const _rdHint=!_rdReady?"Računam spremnost — još učitavam gradivo…":(()=>{var parts=[];if(_coveragePct<100){var miss=_totalTopics-_coveredN;parts.push("pokrij jo\u0161 "+miss+" "+(miss===1?"temu":"tema"));}var weak=_allTL.filter(l=>_topicCov[l].n>=5).map(l=>({l:l,p:Math.round(_topicCov[l].c/_topicCov[l].n*100)})).sort((a,b)=>a.p-b.p)[0];if(weak&&weak.p<60)parts.push("digni "+weak.l+" ("+weak.p+"%)");if(!parts.length)return _readiness>=85?"Skoro pa spreman/na \u2014 samo nastavi!":"Solidno \u2014 nastavi vje\u017ebati.";return "Do 100%: "+parts.slice(0,2).join(" \u00b7 ");})();
   return e("div",{className:"home"},
     showAbout&&e(AboutModal,{onClose:()=>setShowAbout(false)}),
     showReadiness&&e("div",{onClick:()=>setShowReadiness(false),style:{position:"fixed",inset:0,background:"rgba(6,12,24,.6)",backdropFilter:"blur(3px)",zIndex:300,display:"flex",alignItems:"flex-end",justifyContent:"center",padding:0}},
@@ -2750,15 +2786,16 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
           e("div",{style:{fontFamily:"var(--fh)",fontSize:20}},"\uD83C\uDFAF Spremnost za maturu"),
           e("button",{onClick:()=>setShowReadiness(false),style:{background:"var(--s2)",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",color:"var(--muted)",fontFamily:"var(--fb)"}},"\u2715")),
         e("div",{style:{display:"flex",alignItems:"center",gap:16,marginBottom:18}},
-          e("div",{style:{fontFamily:"var(--fh)",fontSize:42,lineHeight:1,color:_readiness>=75?"var(--green)":_readiness>=50?"var(--gold)":"var(--blue)"}},_readiness+"%"),
+          e("div",{style:{fontFamily:"var(--fh)",fontSize:42,lineHeight:1,color:_rdPct>=75?"var(--green)":_rdPct>=50?"var(--gold)":"var(--blue)"}},_rdTxt),
           e("div",{style:{flex:1,fontSize:12,color:"var(--muted)",lineHeight:1.5}},_rdHint)),
         e("div",{style:{display:"flex",gap:8,marginBottom:18}},
-          [["To\u010dnost",_accAll+"%"],["Pokrivenost",_coveredN+"/"+_totalTopics],["Aktivnost",_lastDays>=999?"\u2014":(_lastDays===0?"danas":_lastDays+"d")]].map((m,i)=>
+          [["To\u010dnost",_accAll+"%"],["Pokrivenost",_topicsReady?(_coveredN+"/"+_totalTopics):"\u2026"],["Aktivnost",_lastDays>=999?"\u2014":(_lastDays===0?"danas":_lastDays+"d")]].map((m,i)=>
             e("div",{key:i,style:{flex:1,background:"var(--s2)",borderRadius:10,padding:"10px 8px",textAlign:"center"}},
               e("div",{style:{fontSize:16,fontWeight:800}},m[1]),
               e("div",{style:{fontSize:10,color:"var(--muted)",marginTop:2}},m[0])))),
         e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:"var(--muted)",marginBottom:10}},"Pokrivenost gradiva"),
         e("div",{style:{display:"flex",flexDirection:"column",gap:7}},
+          !_topicsReady&&e("div",{style:{fontSize:12,color:"var(--muted)",padding:"6px 0"}},"Učitavam popis tema…"),
           _allTL.slice().sort((a,b)=>{var pa=_topicCov[a].n>0?_topicCov[a].c/_topicCov[a].n:-1;var pb=_topicCov[b].n>0?_topicCov[b].c/_topicCov[b].n:-1;return pa-pb;}).map(function(l){
             var x=_topicCov[l];var done=x.n>0;var acc=done?Math.round(x.c/x.n*100):null;
             return e("div",{key:l,style:{display:"flex",alignItems:"center",gap:10}},
@@ -2810,7 +2847,7 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
     
     
     resume&&(()=>{const ex=EXAMS[resume.key];if(!ex)return null;
-      const n=ex.qs.length, ansN=Object.keys(resume.answers||{}).length;
+      const n=examQCount(ex), ansN=Object.keys(resume.answers||{}).length;
       return e("div",{style:{display:"flex",alignItems:"center",gap:12,padding:"13px 16px",marginBottom:18,
         background:"linear-gradient(135deg,var(--gold-d),var(--s1))",border:"1px solid var(--gold-b)",borderRadius:"var(--rr)"}},
         e("div",{style:{fontSize:22}},"⏸"),
@@ -2830,15 +2867,15 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
       e("div",{style:{position:"relative",width:62,height:62,flexShrink:0}},
         e("svg",{width:62,height:62,viewBox:"0 0 36 36"},
           e("circle",{cx:18,cy:18,r:15.5,fill:"none",stroke:"var(--bdr2)",strokeWidth:3.4}),
-          e("circle",{cx:18,cy:18,r:15.5,fill:"none",stroke:_readiness>=75?"var(--green)":_readiness>=50?"var(--gold)":"var(--blue)",strokeWidth:3.4,strokeDasharray:(_readiness/100*97.4).toFixed(1)+" 97.4",strokeLinecap:"round",transform:"rotate(-90 18 18)"})),
-        e("div",{style:{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--fh)",fontSize:16.5}},_readiness+"%")),
+          e("circle",{cx:18,cy:18,r:15.5,fill:"none",stroke:_rdPct>=75?"var(--green)":_rdPct>=50?"var(--gold)":"var(--blue)",strokeWidth:3.4,strokeDasharray:(_rdPct/100*97.4).toFixed(1)+" 97.4",strokeLinecap:"round",transform:"rotate(-90 18 18)"})),
+        e("div",{style:{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--fh)",fontSize:16.5}},_rdTxt)),
       e("div",{style:{flex:1,minWidth:0}},
         e("div",{style:{fontSize:13.5,fontWeight:800,marginBottom:3}},"Spremnost za maturu"),
         e("div",{style:{fontSize:11.5,color:"var(--muted)",lineHeight:1.45}},_rdHint)),
       e("span",{style:{color:"var(--muted)",fontSize:20,flexShrink:0}},"\u203a")),
       e("div",{style:{maxWidth:480,margin:"0 auto 34px",padding:"0 4px"}},e("input",{type:"text",readOnly:true,placeholder:"🔍  Pretraži zadatke i rješenja…",onClick:onBrowse,onFocus:onBrowse,style:{width:"100%",background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:14,padding:"12px 16px",color:"var(--muted)",fontSize:14,cursor:"pointer",boxShadow:"var(--shadow-sm)",transition:"border-color .15s,box-shadow .15s",outline:"none"},onMouseEnter:ev=>{ev.target.style.borderColor="var(--blue)";ev.target.style.boxShadow="0 0 0 3px rgba(74,144,217,.12)";},onMouseLeave:ev=>{ev.target.style.borderColor="var(--bdr)";ev.target.style.boxShadow="var(--shadow-sm)";}})),
 
-      e(TodayHero,{userData,onStartErrorSession,onSRS,onDailyChallenge,razina,onEditRazina}),
+      e(TodayHero,{userData,onStartErrorSession,onSRS,onDailyChallenge,razina,onEditRazina,onPrepareExams}),
       e("div",{className:"modes-section"},
       e("div",{className:"section-label"},"Vježba i testiranje"),
 
@@ -3011,7 +3048,7 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
                         ex.season==="ljeto"?"☀️":ex.season==="jesen"?"🍂":"❄️"),
                       e("div",{className:"exam-btn-info"},
                         e("strong",null,ex.season==="ljeto"?"Ljetni rok":ex.season==="jesen"?"Jesenski rok":"Zimski rok"),
-                        e("span",null,locked?planCta():ex.qs.length+" zad. · "+Math.floor(ex.duration/60)+" min")
+                        e("span",null,locked?planCta():examQCount(ex)+" zad. · "+Math.floor(ex.duration/60)+" min")
                       ),
                       locked
                         ?e("span",{style:{fontSize:10,fontWeight:800,color:"var(--gold)",background:"var(--gold-d)",padding:"2px 8px",borderRadius:99,border:"1px solid var(--gold-b)"}},"🔒 Otključaj")
@@ -3057,7 +3094,7 @@ function ModeSelect({examKey,onExamMode,onPractice,onPracticeTimer,onVirtual,onB
           exam.season==="session"?exam.label:[seasonIcon," ",exam.year,".  -  ",exam.label]
         ),
         e("div",{className:"ms-meta"},
-          exam.qs.length+" zadataka · "+Math.floor(exam.duration/60)+" minuta"
+          examQCount(exam)+" zadataka · "+Math.floor(exam.duration/60)+" minuta"
         )
       ),
       (function(){
@@ -7187,7 +7224,7 @@ function BookmarksScreen({onBack, onStartSession}){
     const examKey=parts[0], qidStr=parts[1];
     const exam=EXAMS[examKey];
     if(!exam) return null;
-    const q=exam.qs.find(q=>String(q.id)===qidStr);
+    const q=(exam.qs||[]).find(q=>String(q.id)===qidStr);
     if(!q) return null;
     return {key,examKey,q,saved};
   }).filter(Boolean);
@@ -9911,18 +9948,35 @@ function App(){
   // 2.1: EXAMS se puni lazy — ponovo iscrtaj kad ispit stigne.
   const[,_bumpExams]=useState(0);
   const[examLoad,setExamLoad]=useState(null); // null | {pct}
+  const[examErr,setExamErr]=useState(null);   // null | {msg,retry}
   useEffect(()=>__onExamsChanged(()=>_bumpExams(x=>x+1)),[]);
-  // Home je iscrtan iz kataloga; ostatak se dovlaci u pozadini za cross-exam modove.
-  useEffect(()=>{const t=setTimeout(()=>{loadAllExams();},1500);return()=>clearTimeout(t);},[]);
+  // Home je iscrtan iz kataloga; ostatak (bez zakljucanih) se dovlaci u pozadini za cross-exam modove.
+  useEffect(()=>{const t=setTimeout(()=>{loadAllExams().catch(()=>{});},1500);return()=>clearTimeout(t);},[]);
+  // Ucitavanje moze pasti (offline, CDN 404, deploy u tijeku) — tada NE ulazimo u ekran s 0 pitanja,
+  // nego korisnik dobije poruku i "Pokusaj ponovno".
   function withExam(k,fn){
     if(!k||isExamLoaded(k)) return fn();
-    setExamLoad({pct:0});
-    loadExam(k).then(()=>{setExamLoad(null);fn();});
+    setExamLoad({pct:0});setExamErr(null);
+    loadExam(k).then(()=>{
+      setExamLoad(null);
+      if(!isExamLoaded(k)) throw new Error("Ispit nije ucitan.");
+      fn();
+    }).catch(()=>{
+      setExamLoad(null);
+      setExamErr({msg:"Ne mogu učitati zadatke ovog ispita. Provjeri internetsku vezu.",retry:()=>withExam(k,fn)});
+    });
   }
   function withAllExams(fn){
     if(allExamsLoaded()) return fn();
-    setExamLoad({pct:0});
-    loadAllExams(p=>setExamLoad({pct:p})).then(()=>{setExamLoad(null);fn();});
+    setExamLoad({pct:0});setExamErr(null);
+    loadAllExams(p=>setExamLoad({pct:p})).then((r)=>{
+      setExamLoad(null);
+      if(r&&r.total&&r.failed>=r.total) throw new Error("Nijedan ispit nije ucitan.");
+      fn();
+    }).catch(()=>{
+      setExamLoad(null);
+      setExamErr({msg:"Ne mogu učitati zadatke. Provjeri internetsku vezu.",retry:()=>withAllExams(fn)});
+    });
   }
   function goAll(sc){ withAllExams(()=>{setScreen(sc);window.scrollTo(0,0);}); }
   const[dDayOpen,setDDayOpen]=useState(false);
@@ -10013,7 +10067,8 @@ function App(){
 
   function goHome(){pendingResumeRef.current=null;navStackRef.current=[];_setScreen("home");window.scrollTo(0,0);}
   function goExam(k){withExam(k,()=>{setExamKey(k);setScreen("exam");window.scrollTo(0,0);});}
-  function goModeSelect(k){setPendingExamKey(k);setScreen("modeselect");window.scrollTo(0,0);}
+  // ModeSelect cita exam.qs (broj zadataka, "Sto te ceka") — zato i ovaj ulaz mora biti gated.
+  function goModeSelect(k){withExam(k,()=>{setPendingExamKey(k);setScreen("modeselect");window.scrollTo(0,0);});}
   function goPractice(k){const kk=k||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("practice");window.scrollTo(0,0);});}
   function goPracticeTimer(k){const kk=k||pendingExamKey||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("practice_timed");window.scrollTo(0,0);});}
   function goExamMode(k){const kk=k||pendingExamKey||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("exammode");window.scrollTo(0,0);});}
@@ -10065,7 +10120,8 @@ function App(){
   }
   function goErrors(){goAll("errors");}
   function goBrowse(){goAll("browse");}
-  function goBookmarks(){setScreen("bookmarks");window.scrollTo(0,0);}
+  // BookmarksScreen je cross-exam (rjesava EXAMS[examKey].qs.find) — treba sve ispite kao i browse/srs.
+  function goBookmarks(){goAll("bookmarks");}
   function goBookmarkSession(virtualExam){
     if(!virtualExam.razina) virtualExam.razina=userRazina||"B";
     setExamKey(virtualExam.key);
@@ -10228,6 +10284,15 @@ function App(){
         e("div",{style:{height:6,borderRadius:99,background:"var(--s3)",overflow:"hidden"}},
           e("div",{style:{height:"100%",width:Math.max(6,Math.round((examLoad.pct||0)*100))+"%",background:"linear-gradient(90deg,var(--blue),#7b9fff)",borderRadius:99,transition:"width .25s ease"}})),
         e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:8}},Math.round((examLoad.pct||0)*100)+"%"))),
+    // 2.1: ucitavanje palo — vidljiva poruka + ponovni pokusaj umjesto tihog ulaska u prazan ekran.
+    examErr&&e("div",{style:{position:"fixed",inset:0,zIndex:321,background:"rgba(6,9,16,.72)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center",padding:20}},
+      e("div",{style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)",padding:"22px 24px",maxWidth:340,width:"100%",textAlign:"center",boxShadow:"var(--shadow-lg)"}},
+        e("div",{style:{fontSize:34,marginBottom:10}},"📡"),
+        e("div",{style:{fontFamily:"var(--fh)",fontSize:18,color:"var(--text)",marginBottom:8}},"Učitavanje nije uspjelo"),
+        e("div",{style:{fontSize:13,color:"var(--muted)",lineHeight:1.6,marginBottom:16}},examErr.msg),
+        e("div",{style:{display:"flex",gap:8}},
+          e("button",{onClick:function(){var r=examErr.retry;setExamErr(null);if(r)r();},style:{flex:1,background:"var(--blue)",color:"#fff",border:"none",fontFamily:"var(--fb)",fontSize:14,fontWeight:700,padding:"11px 14px",borderRadius:10,cursor:"pointer"}},"↻ Pokušaj ponovno"),
+          e("button",{onClick:function(){setExamErr(null);},style:{background:"var(--s2)",color:"var(--text)",border:"1px solid var(--bdr)",fontFamily:"var(--fb)",fontSize:14,fontWeight:700,padding:"11px 14px",borderRadius:10,cursor:"pointer"}},"Odustani")))),
     dDayOpen&&e(DDayModal,{razina:userRazina,history:(userData&&userData.history)||[],onStart:function(k){setDDayOpen(false);goExamMode(k);},onClose:function(){setDDayOpen(false);}}),
     e(XpFloater,{gains:xpGains}),
     badgeToast&&e("div",{style:{position:"fixed",bottom:20,left:20,zIndex:160,display:"flex",gap:10,alignItems:"center",
@@ -10238,7 +10303,7 @@ function App(){
       e("div",null,
         e("div",{style:{fontSize:10,fontWeight:800,letterSpacing:".1em",textTransform:"uppercase",color:"#8fb4f5"}},(badgeToast._lv&&badgeToast._lv>1)?("Nova razina \u00b7 "+(TIER_NAME[badgeToast._lv]||"")):"Novo postignu\u0107e"),
         e("div",{style:{fontSize:13.5,fontWeight:800}},badgeToast.name+(badgeToast._lv?" "+TIER_MEDAL[badgeToast._lv]:"")))),
-    screen==="home"&&e(Home,{onExam:goModeSelect,onPractice:goPractice,onStats:goStats,onAdaptive:goAdaptive,onFormule:goFormule,onErrors:goErrors,onBrowse:goBrowse,onFlashcards:goFlashcards,onDailyChallenge:goDailyChallenge,onBookmarks:goBookmarks,onFilter:goFilter,onMixed:goMixedTopics,onSRS:goSRS,onAIPractice:goAIPractice,onDDay:goDDay,onGuide:goGuide,onStartErrorSession:goErrorSession,razina:userRazina,onEditRazina:()=>setShowOnboarding(true),resume:resumeInfo,onResume:goResume,onDiscardResume:discardResume,onSetGoal:(m)=>updateUserData(p=>({...p,dailyGoalMin:m})),userData,toggles}),
+    screen==="home"&&e(Home,{onExam:goModeSelect,onPrepareExams:(fn)=>withAllExams(fn||(()=>{})),onPractice:goPractice,onStats:goStats,onAdaptive:goAdaptive,onFormule:goFormule,onErrors:goErrors,onBrowse:goBrowse,onFlashcards:goFlashcards,onDailyChallenge:goDailyChallenge,onBookmarks:goBookmarks,onFilter:goFilter,onMixed:goMixedTopics,onSRS:goSRS,onAIPractice:goAIPractice,onDDay:goDDay,onGuide:goGuide,onStartErrorSession:goErrorSession,razina:userRazina,onEditRazina:()=>setShowOnboarding(true),resume:resumeInfo,onResume:goResume,onDiscardResume:discardResume,onSetGoal:(m)=>updateUserData(p=>({...p,dailyGoalMin:m})),userData,toggles}),
     screen==="modeselect"&&e(ModeSelect,{examKey:pendingExamKey,onExamMode:goExamMode,onPractice:goPractice,onPracticeTimer:goPracticeTimer,onVirtual:goVirtualExam,onBack:goBack}),
     screen==="adaptive"&&e(AdaptiveTrening,{userData,onExit:goBack,onHome:goHome,onStartErrorSession:goErrorSession}),
     screen==="formule"&&e(FormulaSheet,{onExit:goBack,onHome:goHome}),

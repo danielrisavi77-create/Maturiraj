@@ -14,6 +14,34 @@ const OUT_CORE = OUT.replace(/MatEngine\.tsx$/, 'MatEngineCore.tsx');
 
 const src = readFileSync(IN, 'utf8');
 
+// ── Zastita od tihog gazenja rucnih zakrpa u MatEngineCore.tsx ──────────────────────────────
+// Generirani core se poslije generiranja rucno dorađuje (vidi POST_GEN_PATCHES). Ako te zakrpe
+// pregazimo, MatFullSimulator.jsx (koji zove __setExamCatalog/__setExamLoader) prestaje raditi
+// — "core.__setExamCatalog is not a function" — i 70 QS_*_META konstanti se vraca u bundle.
+// Zato: ako postojeci MatEngineCore.tsx nema nas stamp, build staje i trazi --force.
+const GEN_STAMP = 'BUILD-ENGINE-GENERATED (bez post-gen zakrpa)';
+const POST_GEN_PATCHES = [
+  '2.1 lazy ispiti: __setExamCatalog/__setExamLoader/__addExams, loadExam/loadAllExams, gating u App-u',
+  '2.2 lazy nerdamer: __ensureNerdamer() umjesto eager window.nerdamer',
+  '3.2 grading: import { isAnswerCorrect, normalizeAnswer, numEquals } from "@/lib/mat-grading"',
+  '5.2 izbacenih 70 QS_*_META konstanti iz klijentskog bundlea',
+];
+{
+  const force = process.argv.includes('--force');
+  let existing = '';
+  try { existing = readFileSync(OUT_CORE, 'utf8'); } catch { /* prvi build */ }
+  if (existing && !existing.includes(GEN_STAMP) && !force) {
+    console.error('\n✖ ' + OUT_CORE);
+    console.error('  Postojeci core je rucno dorađen nakon generiranja i ovaj build bi ga pregazio.');
+    console.error('  Zakrpe koje bi nestale:');
+    POST_GEN_PATCHES.forEach((p) => console.error('   · ' + p));
+    console.error('  Prenesi ih u ovaj generator (ili u monolit), pa pokreni ponovno.');
+    console.error('  Svjesno gazenje: node build-engine.mjs <in> <out> --force\n');
+    process.exit(1);
+  }
+}
+
+
 // ── nerdamer (symbolic-math lib bundled as its own <script>) → public/sim/nerdamer.js ──
 // The engine references window.nerdamer for CAS features (solver, exact calc, answer verify).
 // We only extract the app IIFE below, so nerdamer must be emitted separately and loaded as a
@@ -93,7 +121,9 @@ const coreHeader =
 `// @ts-nocheck
 'use client';
 /* AUTO-GENERATED engine core from mat-simulator monolith (AST-extracted).
-   SVG (628) + exam data (70) + Q_IMAGES externalized. Exposes Sim + ErrorBoundary + __setQImages. */
+   SVG (628) + exam data (70) + Q_IMAGES externalized. Exposes Sim + ErrorBoundary + __setQImages.
+   ${GEN_STAMP} — prije upotrebe treba ponovo primijeniti:
+${POST_GEN_PATCHES.map((p) => `     - ${p}`).join('\n')} */
 import React from 'react';
 let EXAMS = {};
 const __MAT = { Q_IMAGES: {} };
