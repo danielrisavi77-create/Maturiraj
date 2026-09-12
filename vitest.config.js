@@ -9,6 +9,10 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'node',
+    include: [
+      '__tests__/**/*.{test,spec}.{js,jsx,ts,tsx}',
+      '__tests__/mat-simulator/**/*.{test,spec}.{js,jsx,ts,tsx}',
+    ],
     globals: true,
     coverage: {
       provider: 'v8',
