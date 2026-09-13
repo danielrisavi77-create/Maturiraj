@@ -60,8 +60,10 @@ function SvgZad27_2010ZB(){
   // Tick labele y: 0.2, 0.4, 0.6, 0.8, 1
   const yLabels=[[0.2,"0.2"],[0.4,"0.4"],[0.6,"0.6"],[0.8,"0.8"],[1,"1"]];
   // Grafičke točke: (t, v)
-  const pts=[[0,0],[0.4,0.6],[1.0,0.6],[1.35,1.0],[1.65,0.85]]
-    .map(([x,y])=>`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`).join(" ");
+  const vtx=[[0,0],[0.4,0.6],[1.0,0.6],[1.4,1.0],[1.6,0.9],[1.8,0.8]];
+  const pts=vtx.map(([x,y])=>`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`).join(" ");
+  // Cvorovi kao u originalu: sitni prazni kruzici na prijelomima grafa
+  const nodes=[[0.4,0.6],[1.0,0.6],[1.4,1.0],[1.8,0.8]];
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     ...grid,
     // Os t (x)
@@ -87,6 +89,8 @@ function SvgZad27_2010ZB(){
     // Graf — plav
     e("polyline",{points:pts,fill:"none",stroke:b,strokeWidth:2.2,
       strokeLinecap:"round",strokeLinejoin:"round"}),
+    ...nodes.map(([x,y])=>e("circle",{key:"nd"+x+"_"+y,cx:toX(x),cy:toY(y),r:1.8,
+      fill:"var(--bg)",stroke:b,strokeWidth:0.9})),
   );
 }
 
@@ -776,17 +780,17 @@ id:15,type:"mc",warn:"Pazi: na dan 600/40 = 15 ulaznica; pretprodaja 15 + 5 = 20
   context:"Zadatak 27 (1. dio od 3): Graf brzine (km/h) u ovisnosti o vremenu (h) prikazuje gibanje tijela.",
   q:"Koliko je iznosila trenutna brzina tijela u 1,2 sata nakon početka gibanja?",
   sol:{ans:"0,8",alt:["0.8","0,8 km/h"]},
-  why:["Na v-t grafu brzina u trenutku t čita se s ordinatne osi (y-osi).","t=1,2 h je između točaka (1,0; 0,6) i (1,35; 1,0) — to je rastući dio grafa.","Linearnom interpolacijom: v = 0,6 + (1,0-0,6)·(1,2-1,0)/(1,35-1,0) = 0,6 + 0,4·(0,2/0,35).","v = 0,6 + 0,4·0,571 = 0,6 + 0,229 ≈ 0,83 ≈ 0,8 km/h.","Greška: čitati brzinu s krivog dijela grafa ili ne interpolirati nego uzeti vrijednost rubne točke.","Provjera: 1,2 h je 2/7 puta od 1,0 do 1,35, pa je v = 0,6 + 2/7·0,4 ≈ 0,71 (bliže 0,8) ✓","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.","Alt metoda: izračunaj korak po korak iz definicije.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."],
+  why:["Na v-t grafu brzina u trenutku t čita se s ordinatne osi (y-osi).","t=1,2 h je između točaka (1,0; 0,6) i (1,4; 1,0) — to je rastući dio grafa.","Linearnom interpolacijom: v = 0,6 + (1,0-0,6)·(1,2-1,0)/(1,4-1,0) = 0,6 + 0,4·(0,2/0,4).","v = 0,6 + 0,4·0,5 = 0,6 + 0,2 = 0,8 km/h.","Greška: čitati brzinu s krivog dijela grafa ili ne interpolirati nego uzeti vrijednost rubne točke.","Provjera: 1,2 h je na pola puta od 1,0 do 1,4, pa je v = 0,6 + 0,4/2 = 0,8 ✓","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.","Alt metoda: izračunaj korak po korak iz definicije.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."],
   steps:[
-    {txt:"Na v-t grafu: t=1,2 h je na rastu (segment od t=1 do t=1,5 h, brzina raste od 0,6 ka 1,0)",note:"očitavanje"},
+    {txt:"Na v-t grafu: t=1,2 h je na rastu (segment od t=1 do t=1,4 h, brzina raste od 0,6 do 1,0)",note:"očitavanje"},
     {txt:"Očitavamo s grafa: pri t=1,2 h, v=0,8 km/h", note:""},
     {txt:"→ 0,8 km/h",final:true}
   ,{txt:"Brojčana provjera ✓",final:true,note:"verifikacija"},{txt:"Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod).",final:true,note:"postupak"},{txt:"Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.",final:true,note:"intuicija"}]},
 {id:27.2,img:true,type:"sa",topic:"stat",points:1,
   context:"Zadatak 27 (2. dio od 3): Graf brzine (km/h) u ovisnosti o vremenu (h) prikazuje gibanje tijela.",
   q:"Koliko se ukupno minuta gibalo tijelo prema grafu?",
-  sol:{ans:"102",alt:["108 minuta","odgovor: 108"]},
-  why:["Ukupno trajanje gibanja čitamo s grafa  -  od t=0 do t gdje linija završava.","Graf završava negdje oko t≈1,65 h (zadnja točka je ≈(1,65; 0,85)).","1,65 h × 60 min/h = 99 min ≈ 108 min (provjeri točku završetka na svom grafu).","Važno: gibanje traje dok postoji brzina v>0. Gledaj gdje linija dostiže os t.","Greška: uzeti t=2 h (kraj osi) umjesto stvarnog kraja grafa — os se pruža dalje od grafa.","Provjera na grafu: pronađi zadnju točku i izmjeri njenu t-koordinatu, × 60.","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.","Alt metoda: izračunaj korak po korak iz definicije.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."],
+  sol:{ans:"108",alt:["108 minuta","odgovor: 108","1,8 h"]},
+  why:["Ukupno trajanje gibanja čitamo s grafa  -  od t=0 do t gdje linija završava.","Graf završava u t=1,8 h (zadnja točka grafa je (1,8; 0,8)).","1,8 h × 60 min/h = 108 min.","Važno: gibanje traje dok postoji brzina v>0. Gledaj gdje linija dostiže os t.","Greška: uzeti t=2 h (kraj osi) umjesto stvarnog kraja grafa — os se pruža dalje od grafa.","Provjera na grafu: pronađi zadnju točku i izmjeri njenu t-koordinatu, × 60.","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.","Alt metoda: izračunaj korak po korak iz definicije.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."],
   steps:[
     {txt:"Iz grafa: tijelo se gibalo od t=0 do t=1,8 h", note:""},
     {txt:"1,8 h × 60 = 108 minuta", note:""},
@@ -799,7 +803,7 @@ id:15,type:"mc",warn:"Pazi: na dan 600/40 = 15 ulaznica; pretprodaja 15 + 5 = 20
   why:["Konstantna brzina znači da je v-t graf horizontalan (vodoravna linija).","Na grafu jasno vidimo horizontalni segment od t≈0,4 h do t≈1,0 h na razini v=0,6.","Trajanje: 1,0 − 0,4 = 0,6 h.","Svaki drugi dio grafa (kosi segmenti) prikazuje ubrzanje ili usporavanje  -  to nije konstantno.","Greška: gledati vertikalnu (v-os) umjesto horizontalnog segmenta, ili pogriješiti čitanje osi t.","Provjera: samo jedan horizontalni dio grafa, između t=0,4 i t=1,0 ✓","Pravilo: aritmetička sredina = suma podataka / broj podataka.","Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.","Alt metoda: izračunaj korak po korak iz definicije.","Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod)."],
   steps:[
     {txt:"Konstantna brzina = horizontalni dio grafa", note:""},
-    {txt:"Iz grafa: od t=0,6 do t=1,2 h → trajanje = 0,6 sati", note:""},
+    {txt:"Iz grafa: od t=0,4 do t=1,0 h → trajanje = 0,6 sati", note:""},
     {txt:"→ 0,6 sati",final:true}
   ,{txt:"Brojčana provjera ✓",final:true,note:"verifikacija"},{txt:"Postupak: organiziraj podatke, primijeni formulu (sredina, medijan, mod).",final:true,note:"postupak"},{txt:"Intuicija: srednja vrijednost je \"tipična\" — provjeri redom veličine.",final:true,note:"intuicija"}]},
 {id:28.1,type:"sa",topic:"stat",points:1,
