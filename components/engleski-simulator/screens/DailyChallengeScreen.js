@@ -3,6 +3,8 @@ import { useState, useMemo } from 'react'
 import { chk, grade } from '@/lib/engleski-simulator/scoring'
 import { TOPIC_LABELS, LL, GRADE_NOTE, DAILY_TARGETS } from '@/lib/engleski-simulator/constants'
 import { MCQ, MatQ, FbQ, FeedbackBox } from '@/components/engleski-simulator/components/SimSharedUI'
+import { SimulatorPreviewGate } from '@/components/discere/paywall'
+import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers'
 
 function getDailyChallengeQuestions(examsMap) {
   const seed = Math.floor(Date.now() / 86400000)
@@ -34,7 +36,7 @@ function getDailyChallengeQuestions(examsMap) {
     .map((q, i) => ({ ...q, dailyId: 'daily_' + seed + '_' + i }))
 }
 
-export default function DailyChallengeScreen({ userData, onDone, onBack, examsMap }) {
+export default function DailyChallengeScreen({ userData, onDone, onBack, examsMap, userAccess }) {
   const qs = useMemo(() => getDailyChallengeQuestions(examsMap), [examsMap])
   const [idx, setIdx] = useState(0)
   const [answers, setAnswers] = useState({})
@@ -177,29 +179,55 @@ export default function DailyChallengeScreen({ userData, onDone, onBack, examsMa
         </div>
         <div className="sim-progress-label">{idx + 1} / {qs.length}</div>
 
-        <div className="q-title">{q.q}</div>
-        {q.context && <div className="q-context">{q.context}</div>}
+        <SimulatorPreviewGate
+          userAccess={userAccess}
+          currentQuestionIndex={idx}
+          totalQuestions={qs.length}
+          from="eng-daily"
+          previewScore={(() => {
+            const pqs = qs.slice(0, FREE_LIMIT)
+            return { correct: pqs.filter(x => chk(x, answers[x.id !== undefined ? x.id : x.dailyId]) === true).length, total: pqs.length }
+          })()}
+        >
+          {({ isLocked, openPaywall }) => (
+            <>
+              {isLocked ? (
+                /* Zaključano: bez stvarnog sadržaja pitanja, samo skeleton teaser */
+                <div aria-hidden="true" style={{ padding: '4px 0 8px' }}>
+                  {[92, 76, 84, 58].map((w, i) => (
+                    <div key={i} style={{ height: 14, width: `${w}%`, borderRadius: 6, background: 'var(--s2)', margin: '12px 0' }} />
+                  ))}
+                </div>
+              ) : (
+                <>
+                  <div className="q-title">{q.q}</div>
+                  {q.context && <div className="q-context">{q.context}</div>}
 
-        {q.type === 'mc' && <MCQ q={q} a={ans} setA={handleSelect} rev={false} />}
-        {q.type === 'mat' && (
-          <MatQ
-            q={q}
-            a={ans || {}}
-            setA={val => { setAnswers(prev => ({ ...prev, [qId]: val })); setShowFb(false) }}
-            rev={false}
-          />
-        )}
-        {q.type === 'fb' && <FbQ q={q} a={ans} setA={handleSelect} rev={false} />}
+                  {q.type === 'mc' && <MCQ q={q} a={ans} setA={handleSelect} rev={false} />}
+                  {q.type === 'mat' && (
+                    <MatQ
+                      q={q}
+                      a={ans || {}}
+                      setA={val => { setAnswers(prev => ({ ...prev, [qId]: val })); setShowFb(false) }}
+                      rev={false}
+                    />
+                  )}
+                  {q.type === 'fb' && <FbQ q={q} a={ans} setA={handleSelect} rev={false} />}
 
-        {showFb && answered && <FeedbackBox q={q} a={ans} rev={true} />}
+                  {showFb && answered && <FeedbackBox q={q} a={ans} rev={true} />}
+                </>
+              )}
 
-        <div className="exam-nav">
-          <button className="btn btn-ghost" disabled={idx === 0} onClick={goPrev}>← Prethodno</button>
-          {!showFb && answered && <button className="btn" onClick={() => setShowFb(true)}>Provjeri</button>}
-          <button className="btn btn-primary" disabled={!answered} onClick={goNext}>
-            {idx === qs.length - 1 ? 'Završi' : 'Dalje →'}
-          </button>
-        </div>
+              <div className="exam-nav">
+                <button className="btn btn-ghost" disabled={idx === 0} onClick={goPrev}>← Prethodno</button>
+                {!showFb && answered && !isLocked && <button className="btn" onClick={() => setShowFb(true)}>Provjeri</button>}
+                <button className="btn btn-primary" disabled={!isLocked && !answered} onClick={isLocked ? openPaywall : goNext}>
+                  {isLocked ? 'Provjeri' : idx === qs.length - 1 ? 'Završi' : 'Dalje →'}
+                </button>
+              </div>
+            </>
+          )}
+        </SimulatorPreviewGate>
       </div>
     </div>
   )

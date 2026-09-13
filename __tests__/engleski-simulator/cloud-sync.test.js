@@ -2,11 +2,13 @@ import { describe, it, expect } from 'vitest'
 import {
   ENG_USER_KEY,
   ENG_BOOKMARKS_KEY,
+  ENG_BOOKMARKS_DELETED_KEY,
   buildCloudBlob,
   parseCloudBlob,
   shouldHydrateFromCloud,
   shouldCloudSave,
   mergeUserData,
+  mergeBookmarks,
   toSimProgressPayload,
   resolveLocalOwnership,
   isRealExamKey,
@@ -28,11 +30,13 @@ const bm = { '2024_ljeto_mc1': { qid: 'mc1', examKey: '2024_ljeto', examLabel: '
 // ─── buildCloudBlob / parseCloudBlob ──────────────────────────────────────────
 describe('buildCloudBlob', () => {
   it('serijalizira userData i bookmarke pod očekivane ključeve', () => {
-    const blob = buildCloudBlob({ userData: baseUser, bookmarks: bm, savedAt: 1000 })
+    const blob = buildCloudBlob({ userData: baseUser, bookmarks: bm, bookmarksDeleted: { k1: 999 }, savedAt: 1000 })
     expect(typeof blob[ENG_USER_KEY]).toBe('string')
     expect(typeof blob[ENG_BOOKMARKS_KEY]).toBe('string')
+    expect(typeof blob[ENG_BOOKMARKS_DELETED_KEY]).toBe('string')
     expect(blob._savedAt).toBe(1000)
     expect(JSON.parse(blob[ENG_USER_KEY]).xp).toBe(120)
+    expect(JSON.parse(blob[ENG_BOOKMARKS_DELETED_KEY])).toEqual({ k1: 999 })
   })
 
   it('bez savedAt koristi trenutno vrijeme', () => {
@@ -59,7 +63,7 @@ describe('parseCloudBlob', () => {
   })
 
   it('vraća null userData za prazan blob', () => {
-    expect(parseCloudBlob({})).toEqual({ userData: null, bookmarks: {}, savedAt: 0 })
+    expect(parseCloudBlob({})).toEqual({ userData: null, bookmarks: {}, bookmarksDeleted: {}, savedAt: 0 })
   })
 
   it('vraća null userData za null/nevalidan blob', () => {
@@ -321,6 +325,76 @@ describe('resolveLocalOwnership', () => {
 
   it('ključ za uid je stabilan', () => {
     expect(ENG_CLOUD_UID_KEY).toBe('eng_cloud_uid')
+  })
+})
+
+// ─── mergeBookmarks (tombstone brisanja) ──────────────────────────────────────
+// Tombstone-i (i addedAt) su stvarni epoch-ms timestampovi — mergeBookmarks čisti
+// tombstone-e starije od 90 dana, pa testovi koriste vrijeme relativno na 'now'
+// (male fiksne vrijednosti poput 1000ms izgledale bi kao 1970. — davno obrisane).
+describe('mergeBookmarks', () => {
+  const DAY = 24 * 60 * 60 * 1000
+  const now = () => Date.now()
+
+  it('dodano lokalno (bez odgovarajućeg u cloudu) preživi merge', () => {
+    const local = { k1: { qid: 'q1', examKey: 'e', addedAt: now() - 1000 } }
+    const out = mergeBookmarks(local, {}, {}, {})
+    expect(out.bookmarks).toEqual(local)
+    expect(out.deleted).toEqual({})
+  })
+
+  it('obrisano u cloudu (tombstone noviji od addedAt) briše i lokalnu kopiju', () => {
+    const local = { k1: { qid: 'q1', examKey: 'e', addedAt: now() - 2000 } }
+    const cloudDel = { k1: now() - 1000 }
+    const out = mergeBookmarks(local, {}, {}, cloudDel)
+    expect(out.bookmarks).toEqual({})
+    expect(out.deleted.k1).toBe(cloudDel.k1)
+  })
+
+  it('obrisano pa ponovno dodano NOVIJE (addedAt > tombstone) preživi', () => {
+    const cloudDel = { k1: now() - 2000 }
+    const local = { k1: { qid: 'q1', examKey: 'e', addedAt: now() - 1000 } }
+    const out = mergeBookmarks(local, {}, {}, cloudDel)
+    expect(out.bookmarks.k1).toBeTruthy()
+    // Tombstone se i dalje pamti (merge s max vremenom), ali ne briše noviji bookmark
+    expect(out.deleted.k1).toBe(cloudDel.k1)
+  })
+
+  it('bookmark bez addedAt gubi od bilo kojeg tombstone-a (tretira se kao star)', () => {
+    const local = { k1: { qid: 'q1', examKey: 'e' } } // bez addedAt
+    const cloudDel = { k1: now() - 500 }
+    const out = mergeBookmarks(local, {}, {}, cloudDel)
+    expect(out.bookmarks).toEqual({})
+  })
+
+  it('tombstone-i se spajaju s max vremenom kad postoje na oba uređaja', () => {
+    const localDel = { k1: now() - 5000 }
+    const cloudDel = { k1: now() - 1000 }
+    const out = mergeBookmarks({}, localDel, {}, cloudDel)
+    expect(out.deleted.k1).toBe(cloudDel.k1)
+  })
+
+  it('tombstone stariji od 90 dana se čisti (ne prenosi se dalje)', () => {
+    const oldAt = now() - 91 * DAY
+    const out = mergeBookmarks({}, { k1: oldAt }, {}, {})
+    expect(out.deleted).toEqual({})
+  })
+
+  it('tombstone star točno 89 dana se i dalje čuva', () => {
+    const recentAt = now() - 89 * DAY
+    const out = mergeBookmarks({}, { k1: recentAt }, {}, {})
+    expect(out.deleted.k1).toBe(recentAt)
+  })
+
+  it('isti ključ u oba izvora: pobjeđuje noviji addedAt', () => {
+    const local = { k1: { qid: 'q1', examKey: 'e', addedAt: now() - 5000, q: 'stari' } }
+    const cloud = { k1: { qid: 'q1', examKey: 'e', addedAt: now() - 1000, q: 'noviji' } }
+    const out = mergeBookmarks(local, {}, cloud, {})
+    expect(out.bookmarks.k1.q).toBe('noviji')
+  })
+
+  it('podnosi prazne/nedostajuće argumente', () => {
+    expect(mergeBookmarks(undefined, undefined, undefined, undefined)).toEqual({ bookmarks: {}, deleted: {} })
   })
 })
 

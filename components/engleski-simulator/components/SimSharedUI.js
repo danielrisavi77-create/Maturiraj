@@ -4,23 +4,10 @@ import { nrm, chk } from '@/lib/engleski-simulator/scoring'
 import { trackAiHelpRequested } from '@/lib/engleski-simulator/analytics'
 import { LL } from '@/lib/engleski-simulator/constants'
 import { getExamBlocks, totalMinutes } from '@/lib/engleski-simulator/examStructure'
+import AUDIO_MAP from '@/lib/data/engleski-simulator/audio-map.json'
 
 const _AI_COOLDOWN_MS = 8000
 const _AI_SS_KEY = 'eng_ai_last'
-
-const AUDIO_MAP = {
-  vis_2015_ljeto: {
-    1: '1tvTSXoMOWeEyezLU5l8yNd15XMmkTdBn',
-    2: '1KDdDbHDq-sjAIlxRnLnaaYsS0iUZUZC4',
-    3: '1cp0j-JbsjW-Jyvi4Ozpft6QlWs7nBJ7P',
-    4: '1HYutrILE_RuGmma5NbDbgo-zYY2jCx1Q',
-    5: '1BK9WejtBj58dYbYvDE2GmnUKM5-BzC1L',
-    6: '1UrERTOIxE2mjd2i0qPbYMY7L8lPooVAY',
-    7: '1dZ7bDMjJ3uYwV-GRa2Ws_SAGInPDErnt',
-    8: '1zgDSH5aE7YgburdU1gbYCW7oPjsxIAIY',
-    9: '11fORSrmJ40YXzj9D3ZJJ9gJla82dycYd',
-  },
-}
 
 const TOPIC_TO_TASK_VISA = {
   listening_match: 1,
@@ -34,18 +21,20 @@ const TOPIC_TO_TASK_OSN = {
   listening_d: 4,
 }
 
-function getAudioTrack(examKey, topic, razina) {
-  if (!AUDIO_MAP[examKey]) return null
+// Čita konvencionalne putanje audio datoteka (public/audio/eng/…) iz audio-map.json.
+// Ako datoteka za ispit/task ne postoji u mapi, vraća null (poziv AudioPlayer neće
+// ništa renderirati).
+export function getAudioTrack(examKey, topic, razina) {
+  const examMap = AUDIO_MAP[examKey]
+  if (!examMap) return null
   const taskNum = razina === 'visa' ? TOPIC_TO_TASK_VISA[topic] : TOPIC_TO_TASK_OSN[topic]
   if (!taskNum) return null
-  const trackFirst = taskNum * 2
-  const trackRepeat = taskNum * 2 + 1
-  const idFirst = AUDIO_MAP[examKey][trackFirst]
-  const idRepeat = AUDIO_MAP[examKey][trackRepeat]
-  if (!idFirst) return null
+  const track = examMap[String(taskNum)]
+  if (!track || !track.first) return null
   return {
-    first: 'https://docs.google.com/uc?id=' + idFirst,
-    repeat: idRepeat ? 'https://docs.google.com/uc?id=' + idRepeat : null,
+    first: track.first,
+    repeat: track.repeat || null,
+    legacyDriveId: track.legacyDriveId || null,
     taskNum,
   }
 }
@@ -479,31 +468,15 @@ export function ModeSelect({ examKey, examObj, examsMap, onExamMode, onPractice,
 
 export function AudioPlayer({ examKey, topic, razina }) {
   // Napomena: pozivatelj mora renderirati ovu komponentu s key={examKey + '_' + topic}
-  // da bi se phase/iframeFallback ispravno resetirali pri promjeni pitanja (remount
-  // umjesto reset-efekta koji bi mijenjao state unutar efekta).
+  // da bi se phase/audioError ispravno resetirali pri promjeni pitanja (remount).
   const audio = getAudioTrack(examKey, topic, razina)
   const [phase, setPhase] = useState('first')
-  const [iframeLoaded, setIframeLoaded] = useState(false)
-  const [fallbackDue, setFallbackDue] = useState(false)
-  // Prikazan fallback samo ako je timeout istekao, a iframe se u međuvremenu nije učitao
-  // (izvedena vrijednost — ne dodatni state, izbjegava setState unutar tijela efekta)
-  const iframeFallback = fallbackDue && !iframeLoaded
-
-  // Kad se iframe učita (iframeLoaded postane true), cleanup funkcija čisti eventualni
-  // pending timeout umjesto da se ref čita unutar onLoad handlera (izbjegava se čitanje
-  // refa unutar funkcije proslijeđene kroz createElement)
-  useEffect(() => {
-    if (iframeLoaded) return
-    const t = setTimeout(() => setFallbackDue(true), 5000)
-    return () => clearTimeout(t)
-  }, [iframeLoaded])
+  const [audioError, setAudioError] = useState(false)
 
   if (!audio) return null
 
-  const fileId = phase === 'repeat' && audio.repeat
-    ? audio.repeat.replace('https://docs.google.com/uc?id=', '')
-    : audio.first.replace('https://docs.google.com/uc?id=', '')
-  const iframeSrc = 'https://drive.google.com/file/d/' + fileId + '/preview'
+  const src = phase === 'repeat' && audio.repeat ? audio.repeat : audio.first
+  const legacyId = phase === 'repeat' && audio.legacyDriveId ? audio.legacyDriveId.repeat : audio.legacyDriveId?.first
 
   return e('div', { className: 'audio-player' },
     e('div', { className: 'audio-player-inner' },
@@ -517,21 +490,23 @@ export function AudioPlayer({ examKey, topic, razina }) {
           },
         }, phase === 'done' ? '✓ Završeno' : phase === 'repeat' ? 'Ponavljanje' : '1. slušanje'),
         phase !== 'done' && e('div', { style: { marginLeft: 'auto', display: 'flex', gap: 6 } },
-          phase === 'first' && audio.repeat && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => setPhase('repeat') }, '▶ Ponavljanje'),
+          phase === 'first' && audio.repeat && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => { setPhase('repeat'); setAudioError(false) } }, '▶ Ponavljanje'),
           e('button', { className: 'btn', style: { fontSize: 11, padding: '3px 10px', background: 'var(--green-d)', color: 'var(--green)', border: '1px solid rgba(30,122,62,.3)' }, onClick: () => setPhase('done') }, '✓ Završio/la'))),
-      e('div', { className: 'audio-iframe-wrap' },
-        e('iframe', {
-          key: fileId,
-          src: iframeSrc,
-          allow: 'autoplay',
-          title: 'Audio player — ' + topic,
-          onLoad: () => setIframeLoaded(true),
-          style: { width: '100%', height: 54, border: 'none', borderRadius: 8, background: 'var(--s2)', display: iframeFallback ? 'none' : 'block' },
-        }),
-        iframeFallback && e('div', { className: 'audio-fallback' },
-          e('span', { className: 'audio-fallback-icon' }, '⚠️'),
-          ' Audio se nije uspio učitati (možda blokiran). ',
-          e('a', { href: 'https://drive.google.com/file/d/' + fileId + '/view', target: '_blank', rel: 'noopener noreferrer', style: { color: 'var(--blue)', textDecoration: 'underline' } }, 'Otvori u Google Driveu →'))),
+      e('div', { className: 'audio-native-wrap' },
+        audioError
+          ? e('div', { className: 'audio-fallback' },
+            e('span', { className: 'audio-fallback-icon' }, '⚠️'),
+            ' Audio nije dostupan — u stvarnom ispitu slušaš snimku; odgovori su iz ključa NCVVO-a.',
+            legacyId && e('span', null, ' ', e('a', { href: 'https://drive.google.com/file/d/' + legacyId + '/view', target: '_blank', rel: 'noopener noreferrer', style: { color: 'var(--blue)', textDecoration: 'underline' } }, 'Otvori u Google Driveu →')))
+          : e('audio', {
+            key: src,
+            controls: true,
+            preload: 'none',
+            src,
+            'aria-label': 'Audio player — ' + topic,
+            onError: () => setAudioError(true),
+            style: { width: '100%', height: 40 },
+          })),
       phase === 'done'
         ? e('div', { style: { fontSize: 11, color: 'var(--green)', fontWeight: 600 } }, '✓ Oba slušanja završena — odgovori na pitanja.')
         : e('div', { className: 'audio-hint' }, phase === 'repeat' ? 'Slušaš ponavljanje. Klikni \'✓ Završio/la\' kad završiš.' : 'Slušaj pažljivo. Klikni \'▶ Ponavljanje\' za drugi put ili \'✓ Završio/la\'.')))

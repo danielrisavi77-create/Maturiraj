@@ -15,7 +15,7 @@ import { LL, TLBL, TBDG, TOPIC_LABELS, LEVEL_NAMES, getLevel, xpProgress, xpToNe
 // od dijeljene konstante i ne smiju se tiho promijeniti izvan zadatka 2.3
 const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' }
 import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
-import { ENG_USER_KEY, toSimProgressPayload, saveEngSimResult } from '@/lib/engleski-simulator/cloudSync'
+import { ENG_USER_KEY, ENG_BOOKMARKS_DELETED_KEY, toSimProgressPayload, saveEngSimResult } from '@/lib/engleski-simulator/cloudSync'
 import { useEngCloudSync } from '@/lib/engleski-simulator/useEngCloudSync'
 
 // Lagani indeks ispita (bez pitanja) — jedini podaci o ispitima u početnom bundleu.
@@ -362,13 +362,28 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       const next = { ...prev }
       if (next[bkKey]) {
         delete next[bkKey]
+        // Tombstone brisanja — bez njega bi se merge s cloudom ponašao kao
+        // unija i bookmark bi se vratio s drugog uređaja.
+        try {
+          const del = JSON.parse(localStorage.getItem(ENG_BOOKMARKS_DELETED_KEY) || '{}')
+          del[bkKey] = Date.now()
+          localStorage.setItem(ENG_BOOKMARKS_DELETED_KEY, JSON.stringify(del))
+        } catch {}
       } else {
         next[bkKey] = {
           qid: q.id,
           examKey: exam.key,
           examLabel: `${exam.year}. — ${exam.label}`,
           q: q.q.slice(0, 200),
+          addedAt: Date.now(),
         }
+        // Ponovno dodavanje briše stari tombstone (novi addedAt ionako pobjeđuje
+        // u mergeu, ali čišćenje drži lokalno stanje malim).
+        try {
+          const del = JSON.parse(localStorage.getItem(ENG_BOOKMARKS_DELETED_KEY) || '{}')
+          delete del[bkKey]
+          localStorage.setItem(ENG_BOOKMARKS_DELETED_KEY, JSON.stringify(del))
+        } catch {}
       }
       try { localStorage.setItem('disc_eng_bookmarks', JSON.stringify(next)) } catch {}
       return next
@@ -991,6 +1006,7 @@ export default function EngleskiSimulator() {
             <DailyChallengeScreen
               userData={userData}
               examsMap={examLookup}
+              userAccess={userAccess}
               onBack={goBack}
               onDone={result => onExamDone(result, { navigateTo: 'home' })}
             />

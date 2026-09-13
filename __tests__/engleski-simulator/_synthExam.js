@@ -55,3 +55,6 @@ export function makeVisaExam() {
 
 /** userAccess koji prolazi checkSimulatorAccess za sva pitanja (pro + prijavljen). */
 export const PRO_ACCESS = { subscriptionTier: 'pro', isLoggedIn: true }
+
+/** userAccess koji je zaključan iza FREE_LIMIT pitanja (besplatan, ali prijavljen). */
+export const FREE_ACCESS = { subscriptionTier: 'free', isLoggedIn: true }

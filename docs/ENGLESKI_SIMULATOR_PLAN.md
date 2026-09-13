@@ -176,7 +176,7 @@ Procjena broja agenata: faza 1 ≈ 6–9, faza 2 ≈ 6–9, faza 3 ≈ 8–12, f
 
 - Rute: `/engleski-simulator` postaje redirect na `/discere/engleski/simulator`.
 - Timer (3.3): vrijednosti po dijelu ispita i razini pronaći na ncvvo.hr (ispitni katalog), ne pogađati.
-- Audio (3.4): preskočeno u ovom krugu.
+- Audio (3.4): kod spreman, čekaju se datoteke po konvenciji iz `public/audio/eng/README.md`.
 - Perzistencija (3.1): migracija localStorage → Supabase pri prvoj prijavi; localStorage ostaje cache za neprijavljene.
 - Git: grana `fix/engleski-simulator`, jedan commit po fazi, bez worktreea.
 - Opseg prvog kruga: faze 0–2, zatim pauza za pregled prije faze 3.
@@ -211,3 +211,11 @@ Testovi komponente (dopuna): `ExamPlayScreen` je dobio named export i renderira 
 - **Brisanje bookmarka se ne propagira na druge uređaje**: cloud merge bookmarka je unija (`{ ...localBm, ...cloudBm }` i `dedupeByJson` za `userData.bookmarks`), pa obrisani bookmark koji još postoji u cloudu ili na drugom uređaju vraća se pri sljedećoj hidraciji. Za pravo brisanje trebaju tombstonei (`deletedAt` po ključu) — nije u dosegu ove faze.
 - Konflikt između dva uređaja i dalje je last-write-wins po `_savedAt`, uz merge povijesti (sada s `at` identitetom).
 - `missingSchema` (tablica `discere_sim_state` bez migracije) znači tihu degradaciju na localStorage — korisnik ne dobiva poruku, što je namjerno.
+
+## Status faze 5
+
+- **P1 Audio**: `AudioPlayer` (`components/SimSharedUI.js`) više ne gradi Google Drive iframe. Putanje dolaze iz `lib/data/engleski-simulator/audio-map.json` (`{examKey: {taskNum: {first, repeat, legacyDriveId}}}`), popunjen za `vis_2015_ljeto`; render je pravi `<audio controls preload="none">` s `onError` fallbackom na tekstualnu poruku (+ link na Drive ako `legacyDriveId` postoji). Konvencija imenovanja u `public/audio/eng/README.md`.
+- **P2 Paywall na dnevnom izazovu**: `DailyChallengeScreen` sad omata pitanje u `SimulatorPreviewGate` (isti ugovor kao `ExamPlayScreen`, `from="eng-daily"`); `userAccess` se prosljeđuje iz `EngleskiSimulator.js` (`case 'daily'`). Ovime je F14 iz faze 4 („dnevni izazov svjesno bez paywalla“) svjesno napušten — dnevni izazov sad prati isto pravilo pristupa kao ostatak simulatora.
+- **P3 Tombstonei za brisanje bookmarka**: novi ključ `disc_eng_bookmarks_deleted` + čista funkcija `mergeBookmarks(localBm, localDel, cloudBm, cloudDel)` u `cloudSync.js` (bookmark preživi samo ako nema tombstone noviji od njegova `addedAt`; tombstonei se spajaju s max vremenom i čiste nakon 90 dana). `toggleBookmark` (EngleskiSimulator.js) i `removeBookmark` (ErrorAndBookmarkScreens.js) pišu tombstone pri brisanju i `addedAt` pri dodavanju; `useEngCloudSync` hidracija i spremanje koriste `mergeBookmarks` umjesto unije. Time je limitacija „brisanje bookmarka se ne propagira“ iz statusa faze 4 riješena.
+- **P4 Integracijski smoke test**: `__tests__/engleski-simulator/simulator-smoke.test.js` renderira pravi `EngleskiSimulator` (mockani `useAuth`, `next/navigation`, `examsLoader`, `fetch`) i prati puni tok Home → ModeSelect → Vježbanje → Provjeri → Rezultati → `localStorage` → unmount/remount → `✓ NN%` badge na Homeu.
+- **P5**: uklonjen neiskorišten `eslint-disable-next-line no-console` u `analytics.js` (pravilo `no-console` nije uključeno u projektu).
