@@ -1,7 +1,97 @@
 // AUTO-GENERATED from mat-simulator monolith (v2: SVG co-located + qImages). Do not edit by hand.
 import React from 'react';
-import { Svg7_2023Alj, Svg14_2023Alj, Svg10_2023Alj } from '../mat-shared-svg.mjs';
+import { Svg14_2023Alj } from '../mat-shared-svg.mjs';
 const e = React.createElement;
+
+// Q7: f(x)=-0.5x+1. Sva 4 grafa nagib ±0.5, y-odsječak ±1.
+// A: -0.5x+1 (TOČNO), B: -0.5x-1, C: +0.5x+1, D: +0.5x-1
+// Lokalna inačica (umjesto dijeljene iz mat-shared-svg.mjs): dodana je
+// isprekidana kvadratna mreža iz originala umjesto pukog isprekidanog obruba.
+function Svg7_2023Alj(){
+  const st="var(--text)", W=460, H=340;
+  const _BLUE="var(--blue)";
+  const panel = (ox, oy, k, n, letter) => {
+    const pw=180, ph=120, cx=ox+pw/2, cy=oy+ph/2, u=18;
+    const xLim=(pw/2)/u, yLim=(ph/2)/u;
+    const clip = (dir) => {
+      const tx=(dir>0?xLim:-xLim)/dir;
+      let ty = k===0 ? Infinity : ((dir*k>0?yLim:-yLim)-n)/(k*dir||1e-9);
+      const t=Math.min(Math.abs(tx),Math.abs(ty));
+      const x=dir*t, y=k*x+n;
+      return [cx+x*u, cy-y*u];
+    };
+    const p1=clip(-1), p2=clip(+1);
+    const grid=[];
+    for(let i=-4;i<=4;i++){ if(i===0) continue; grid.push(e("line",{key:letter+"gx"+i,x1:cx+i*u,y1:oy+2,x2:cx+i*u,y2:oy+ph-2,stroke:st,strokeOpacity:0.3,strokeDasharray:"5 5",strokeWidth:0.7})); }
+    for(let j=-3;j<=3;j++){ if(j===0) continue; grid.push(e("line",{key:letter+"gy"+j,x1:ox+2,y1:cy+j*u,x2:ox+pw-2,y2:cy+j*u,stroke:st,strokeOpacity:0.3,strokeDasharray:"5 5",strokeWidth:0.7})); }
+    return [
+      ...grid,
+      e("line",{key:letter+"x",x1:ox+6,y1:cy,x2:ox+pw-6,y2:cy,stroke:_BLUE,strokeWidth:1.3}),
+      e("line",{key:letter+"y",x1:cx,y1:oy+6,x2:cx,y2:oy+ph-6,stroke:_BLUE,strokeWidth:1.3}),
+      e("text",{key:letter+"lx",x:ox+pw-4,y:cy-4,fontSize:10,fontStyle:"italic",fontFamily:"serif",fill:st,textAnchor:"end"},"x"),
+      e("text",{key:letter+"ly",x:cx+4,y:oy+10,fontSize:10,fontStyle:"italic",fontFamily:"serif",fill:st},"y"),
+      e("circle",{key:letter+"t0",cx:cx,cy:cy,r:2.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:0.8}),
+      e("text",{key:letter+"l0",x:cx-6,y:cy+12,fontSize:9,fill:st,fontFamily:"serif"},"0"),
+      e("circle",{key:letter+"tx1",cx:cx+u,cy:cy,r:2.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:0.8}),
+      e("text",{key:letter+"lx1",x:cx+u,y:cy+12,fontSize:9,fill:st,textAnchor:"middle",fontFamily:"serif"},"1"),
+      e("circle",{key:letter+"ty1",cx:cx,cy:cy-u,r:2.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:0.8}),
+      e("text",{key:letter+"ly1",x:cx-5,y:cy-u+4,fontSize:9,fill:st,textAnchor:"end",fontFamily:"serif"},"1"),
+      e("line",{key:letter+"ln",x1:p1[0],y1:p1[1],x2:p2[0],y2:p2[1],stroke:_BLUE,strokeWidth:1.8}),
+      e("text",{key:letter+"lbl",x:ox+4,y:oy+ph+14,fontSize:13,fontWeight:"bold",fill:st,fontFamily:"sans-serif"},letter+".")
+    ];
+  };
+  const cells=[
+    ...panel( 20,  20, -0.5, +1, "A"),
+    ...panel(240,  20, -0.5, -1, "B"),
+    ...panel( 20, 180, +0.5, +1, "C"),
+    ...panel(240, 180, +0.5, -1, "D"),
+  ];
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"460px",width:"100%",display:"block",margin:"12px auto"}},...cells);
+}
+
+// Q10: Vektor a→ od (-2,4) do (1,0).
+// Lokalna inačica (umjesto dijeljene iz mat-shared-svg.mjs): oznaka vektora
+// crta se kao slovo "a" + nacrtana strelica iznad njega (kombinirajući znak
+// U+20D7 font ne renderira → tofu), a mreža je isprekidana kao u originalu.
+function Svg10_2023Alj(){
+  const st="var(--text)", W=340, H=300;
+  const _BLUE="var(--blue)";
+  const ox=150, oy=180, u=26;
+  const px=(x)=>ox+x*u, py=(y)=>oy-y*u;
+  const T=[-2,4], HD=[1,0];
+  const gridLines=[];
+  for(let x=-5;x<=6;x++){ gridLines.push(e("line",{key:"gx"+x,x1:px(x),y1:py(-4)+8,x2:px(x),y2:py(5)-8,stroke:st,strokeOpacity:0.3,strokeDasharray:"5 5",strokeWidth:0.7})); }
+  for(let y=-4;y<=5;y++){ gridLines.push(e("line",{key:"gy"+y,x1:px(-5)-8,y1:py(y),x2:px(6)+8,y2:py(y),stroke:st,strokeOpacity:0.3,strokeDasharray:"5 5",strokeWidth:0.7})); }
+  // oznaka a s nacrtanom strelicom iznad (bez oslanjanja na font za U+20D7)
+  const lx=px(-2.55), ly=py(2.55);
+  const label=[
+    e("text",{key:"la",x:lx,y:ly,fontSize:17,fontStyle:"italic",fontFamily:"serif",fill:st},"a"),
+    e("line",{key:"lav",x1:lx-1,y1:ly-15,x2:lx+11,y2:ly-15,stroke:st,strokeWidth:1.2}),
+    e("polygon",{key:"lah",points:`${lx+13},${ly-15} ${lx+8},${ly-17.6} ${lx+8},${ly-12.4}`,fill:st})
+  ];
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"340px",width:"100%",display:"block",margin:"12px auto"}},
+    ...gridLines,
+    e("line",{key:"xax",x1:px(-5)-6,y1:oy,x2:px(6)+6,y2:oy,stroke:st,strokeWidth:1.5}),
+    e("line",{key:"yax",x1:ox,y1:py(5)-6,x2:ox,y2:py(-4)+6,stroke:st,strokeWidth:1.5}),
+    e("polygon",{key:"xar",points:`${px(6)+6},${oy} ${px(6)+1},${oy-4} ${px(6)+1},${oy+4}`,fill:st}),
+    e("polygon",{key:"yar",points:`${ox},${py(5)-6} ${ox-4},${py(5)-1} ${ox+4},${py(5)-1}`,fill:st}),
+    e("text",{key:"xl",x:px(6)+10,y:oy+4,fontSize:13,fontStyle:"italic",fontFamily:"serif",fill:st},"x"),
+    e("text",{key:"yl",x:ox+5,y:py(5)-10,fontSize:13,fontStyle:"italic",fontFamily:"serif",fill:st},"y"),
+    e("circle",{key:"o0",cx:ox,cy:oy,r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1}),
+    e("circle",{key:"o1x",cx:px(1),cy:oy,r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1}),
+    e("circle",{key:"o1y",cx:ox,cy:py(1),r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1}),
+    e("text",{key:"t0",x:ox-10,y:oy+14,fontSize:11,fontFamily:"serif",fill:st},"0"),
+    e("text",{key:"t1x",x:px(1),y:oy+14,textAnchor:"middle",fontSize:11,fontFamily:"serif",fill:st},"1"),
+    e("text",{key:"t1y",x:ox-10,y:py(1)+4,textAnchor:"end",fontSize:11,fontFamily:"serif",fill:st},"1"),
+    e("defs",{key:"d"},
+      e("marker",{id:"v10arr",viewBox:"0 0 10 10",refX:8,refY:5,markerWidth:8,markerHeight:8,orient:"auto-start-reverse"},
+        e("path",{d:"M 0 0 L 10 5 L 0 10 z",fill:st})
+      )
+    ),
+    e("line",{key:"v",x1:px(T[0]),y1:py(T[1]),x2:px(HD[0]),y2:py(HD[1]),stroke:st,strokeWidth:2,markerEnd:"url(#v10arr)"}),
+    ...label
+  );
+}
 
 function Svg40_2023Alj(){
   // Q40: nepravilni otok u vrhovima kvadrata KLMN sa 4 iscrtane kružnice (dometi odašiljača).
@@ -47,7 +137,8 @@ function Svg40_2023Alj(){
 function Svg37_2023Alj(){
   const st="var(--text)", W=500, H=280;
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-5, xMax=18, yMin=-4.5, yMax=3;
+  // y-raspon mora obuhvatiti y=4 — u originalu postoji oznaka/kružić na y-osi iznad 2.
+  const xMin=-6.2, xMax=18, yMin=-5.6, yMax=5.2;
   const pad={l:40, r:20, t:20, b:30};
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const px=(x)=>pad.l+((x-xMin)/(xMax-xMin))*iW;
@@ -57,8 +148,8 @@ function Svg37_2023Alj(){
   const pts=[];
   for(let x=xMin; x<=xMax; x+=0.15){ pts.push(`${px(x).toFixed(1)},${py(f(x)).toFixed(1)}`); }
   const gridLines=[];
-  for(let x=Math.ceil(xMin); x<=Math.floor(xMax); x++){ if(x===0) continue; gridLines.push(e("line",{key:"gx"+x,x1:px(x),y1:pad.t,x2:px(x),y2:pad.t+iH,stroke:st,strokeOpacity:0.18,strokeDasharray:"1 4",strokeWidth:0.7})); }
-  for(let y=Math.ceil(yMin); y<=Math.floor(yMax); y++){ if(y===0) continue; gridLines.push(e("line",{key:"gy"+y,x1:pad.l,y1:py(y),x2:pad.l+iW,y2:py(y),stroke:st,strokeOpacity:0.18,strokeDasharray:"1 4",strokeWidth:0.7})); }
+  for(let x=Math.ceil(xMin); x<=Math.floor(xMax); x++){ if(x===0) continue; gridLines.push(e("line",{key:"gx"+x,x1:px(x),y1:pad.t,x2:px(x),y2:pad.t+iH,stroke:st,strokeOpacity:0.3,strokeDasharray:"6 6",strokeWidth:0.7})); }
+  for(let y=Math.ceil(yMin); y<=Math.floor(yMax); y++){ if(y===0) continue; gridLines.push(e("line",{key:"gy"+y,x1:pad.l,y1:py(y),x2:pad.l+iW,y2:py(y),stroke:st,strokeOpacity:0.3,strokeDasharray:"6 6",strokeWidth:0.7})); }
   const xTicks=[-5, 5, 10, 15];
   const yTicks=[-4, -2, 2, 4];
   return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"500px",width:"100%",display:"block",margin:"12px auto"}},
