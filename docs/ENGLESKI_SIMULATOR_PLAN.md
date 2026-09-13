@@ -214,8 +214,29 @@ Testovi komponente (dopuna): `ExamPlayScreen` je dobio named export i renderira 
 
 ## Status faze 5
 
-- **P1 Audio**: `AudioPlayer` (`components/SimSharedUI.js`) više ne gradi Google Drive iframe. Putanje dolaze iz `lib/data/engleski-simulator/audio-map.json` (`{examKey: {taskNum: {first, repeat, legacyDriveId}}}`), popunjen za `vis_2015_ljeto`; render je pravi `<audio controls preload="none">` s `onError` fallbackom na tekstualnu poruku (+ link na Drive ako `legacyDriveId` postoji). Konvencija imenovanja u `public/audio/eng/README.md`.
+- **P1 Audio**: `AudioPlayer` (`components/SimSharedUI.js`) više ne gradi Google Drive iframe. Putanje dolaze iz `lib/data/engleski-simulator/audio-map.json`, popunjen za `vis_2015_ljeto`; render je pravi `<audio controls preload="none">` s `onError` fallbackom na tekstualnu poruku. Konvencija imenovanja u `public/audio/eng/README.md`. *(Ažurirano — vidi „Status 3.4 (audio)” niže: audio-map.json je od tad potpuno redizajniran i popunjen za svih 68 ispita, datoteke se hostaju na GitHub Release-u.)*
 - **P2 Paywall na dnevnom izazovu**: `DailyChallengeScreen` sad omata pitanje u `SimulatorPreviewGate` (isti ugovor kao `ExamPlayScreen`, `from="eng-daily"`); `userAccess` se prosljeđuje iz `EngleskiSimulator.js` (`case 'daily'`). Ovime je F14 iz faze 4 („dnevni izazov svjesno bez paywalla“) svjesno napušten — dnevni izazov sad prati isto pravilo pristupa kao ostatak simulatora.
 - **P3 Tombstonei za brisanje bookmarka**: novi ključ `disc_eng_bookmarks_deleted` + čista funkcija `mergeBookmarks(localBm, localDel, cloudBm, cloudDel)` u `cloudSync.js` (bookmark preživi samo ako nema tombstone noviji od njegova `addedAt`; tombstonei se spajaju s max vremenom i čiste nakon 90 dana). `toggleBookmark` (EngleskiSimulator.js) i `removeBookmark` (ErrorAndBookmarkScreens.js) pišu tombstone pri brisanju i `addedAt` pri dodavanju; `useEngCloudSync` hidracija i spremanje koriste `mergeBookmarks` umjesto unije. Time je limitacija „brisanje bookmarka se ne propagira“ iz statusa faze 4 riješena.
 - **P4 Integracijski smoke test**: `__tests__/engleski-simulator/simulator-smoke.test.js` renderira pravi `EngleskiSimulator` (mockani `useAuth`, `next/navigation`, `examsLoader`, `fetch`) i prati puni tok Home → ModeSelect → Vježbanje → Provjeri → Rezultati → `localStorage` → unmount/remount → `✓ NN%` badge na Homeu.
 - **P5**: uklonjen neiskorišten `eslint-disable-next-line no-console` u `analytics.js` (pravilo `no-console` nije uključeno u projektu).
+
+## Status 3.4 (audio)
+
+Puni audio za slušanje je pribavljen s NCVVO-a, re-enkodiran i uklopljen u simulator (grana `fix/engleski-simulator`).
+
+**Pokrivenost**: 68/68 ispita sa slušanjem (34 osnovna razina B + 34 viša razina A, 2010.–2025.) ima zapis u `lib/data/engleski-simulator/audio-map.json`; `_missing` je prazan. 430 enkodiranih MP3 datoteka (mono, 32 kHz, 48 kbps), ukupno ~665 MB — hostane na GitHub Release-u [`eng-audio-v1`](https://github.com/danielrisavi77-create/Maturiraj/releases/tag/eng-audio-v1), ne u repou (vidi `public/audio/eng/README.md`).
+
+**Format `audio-map.json`** (promjena u odnosu na stariji oblik iz statusa faze 5): `{ "<examKey>": { "intro": "<file>|null", "tasks": { "<taskNum>": { "topic", "first", "repeat", "confidence", "note" } } }, "_missing": [] }`. `lib/engleski-simulator/audioBase.js` spaja imena datoteka s `ENG_AUDIO_BASE` (env `NEXT_PUBLIC_ENG_AUDIO_BASE` override); `legacyDriveId`/Google Drive fallback je uklonjen.
+
+**Pouzdanost mapiranja** (255 task-zapisa ukupno): 160 `confidence: "high"` (ZIP je imao točno uvod + 1. slušanje + ponavljanje po tasku — jednoznačno mapiranje, sve novije godine ~2014–2025), 95 `confidence: "low"`, 0 `medium`. Kod `low` zapisa `first`/`repeat` mogu biti `null` (audio nedostupan za taj task — `AudioPlayer` tad ništa ne renderira, ispitanik dobiva samo tekst pitanja) uz objašnjenje u `note`.
+
+**28 nestandardnih ispita** (fallback pozicijsko mapiranje, razlog u zagradi):
+
+- Jedna kombinirana CD-snimka za cijeli listening dio (samo `intro` popunjen, svi task `first`/`repeat` su `null`) — 20 ispita: `2010_ljeto`, `2011_zima`, `2011_ljeto`, `2011_jesen`, `2012_zima`, `2012_ljeto`, `2012_jesen`, `2013_ljeto`, `2013_jesen`, `vis_2010_zima`, `vis_2010_ljeto`, `vis_2010_jesen`, `vis_2011_zima`, `vis_2011_ljeto`, `vis_2011_jesen`, `vis_2012_zima`, `vis_2012_ljeto`, `vis_2012_jesen`, `vis_2013_ljeto`, `vis_2013_jesen`.
+- 9 (ili 10) audio-traka u ZIP-u naspram manjeg broja `topic`-grupa u `exams-{osnovna,visa}.json` (podatkovni artefakt oznaka tema iz tih godina, ne problem audia — pozicijsko popunjavanje i dalje daje stvarne snimke po tasku) — 8 ispita: `2014_jesen`, `2015_jesen`, `2016_ljeto`, `2016_jesen`, `2017_ljeto`, `2017_jesen`, `2024_jesen` (10 traka), `vis_2024_drugi` (10 traka).
+
+Potpun popis je u samom `audio-map.json` (`note` polje svakog ne-`high` task-zapisa) i u logovima build skripti.
+
+**Testovi**: `__tests__/engleski-simulator/audio-map.test.js` — pokrivenost po ispitu, pokrivenost taskova po `topic`-u iz podataka ispita (`first`/`repeat` smiju biti `null` samo uz `confidence: "low"`), jedinstvenost i format naziva datoteka (`/^[a-z0-9_]+__(task\d+-[12]|intro)\.mp3$/`), te provjera da je `_missing` prazan (ili svjesno potvrđen popis).
+
+**Skripte za regeneraciju**: `scripts/eng-audio/build-audio-A.py` (preuzimanje ZIP-ova s NCVVO-a/Waybacka), `build-audio-B.py` (raspakiravanje, mapiranje na taskove, enkodiranje), `upload-audio.sh` (objava na GitHub Release — ručno pokretanje).

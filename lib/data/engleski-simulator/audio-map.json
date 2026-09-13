@@ -1,27 +1,2128 @@
 {
-  "vis_2015_ljeto": {
-    "0": {
-      "legacyDriveId": { "first": "1tvTSXoMOWeEyezLU5l8yNd15XMmkTdBn" }
-    },
-    "1": {
-      "first": "/audio/eng/vis_2015_ljeto/task1-1.mp3",
-      "repeat": "/audio/eng/vis_2015_ljeto/task1-2.mp3",
-      "legacyDriveId": { "first": "1KDdDbHDq-sjAIlxRnLnaaYsS0iUZUZC4", "repeat": "1cp0j-JbsjW-Jyvi4Ozpft6QlWs7nBJ7P" }
-    },
-    "2": {
-      "first": "/audio/eng/vis_2015_ljeto/task2-1.mp3",
-      "repeat": "/audio/eng/vis_2015_ljeto/task2-2.mp3",
-      "legacyDriveId": { "first": "1HYutrILE_RuGmma5NbDbgo-zYY2jCx1Q", "repeat": "1BK9WejtBj58dYbYvDE2GmnUKM5-BzC1L" }
-    },
-    "3": {
-      "first": "/audio/eng/vis_2015_ljeto/task3-1.mp3",
-      "repeat": "/audio/eng/vis_2015_ljeto/task3-2.mp3",
-      "legacyDriveId": { "first": "1UrERTOIxE2mjd2i0qPbYMY7L8lPooVAY", "repeat": "1dZ7bDMjJ3uYwV-GRa2Ws_SAGInPDErnt" }
-    },
-    "4": {
-      "first": "/audio/eng/vis_2015_ljeto/task4-1.mp3",
-      "repeat": "/audio/eng/vis_2015_ljeto/task4-2.mp3",
-      "legacyDriveId": { "first": "1zgDSH5aE7YgburdU1gbYCW7oPjsxIAIY", "repeat": "11fORSrmJ40YXzj9D3ZJJ9gJla82dycYd" }
-    }
+ "2010_ljeto": {
+  "intro": "2010_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2010_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2010_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2010_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
   }
+ },
+ "2011_jesen": {
+  "intro": "2011_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2011_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2011_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2011_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "2011_ljeto": {
+  "intro": "2011_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2011_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2011_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2011_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "2011_zima": {
+  "intro": "2011_zima__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2011_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2011_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2011_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "2012_jesen": {
+  "intro": "2012_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2012_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2012_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2012_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "2012_ljeto": {
+  "intro": "2012_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2012_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2012_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2012_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2012_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "2012_zima": {
+  "intro": "2012_zima__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2012_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2012_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2012_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2012_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "2013_jesen": {
+  "intro": "2013_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2013_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2013_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2013_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "2013_ljeto": {
+  "intro": "2013_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2013_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2013_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2013_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2013_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "2014_jesen": {
+  "intro": "2014_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2014_jesen__task1-1.mp3",
+    "repeat": "2014_jesen__task1-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 3 task group(s) from exam data (expected 7 with intro, 6 without intro, or 3 one-per-task); mapped positionally against the standard intro+2xtask template (size 7), extra/missing slots left unfilled."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2014_jesen__task2-1.mp3",
+    "repeat": "2014_jesen__task2-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 3 task group(s) from exam data (expected 7 with intro, 6 without intro, or 3 one-per-task); mapped positionally against the standard intro+2xtask template (size 7), extra/missing slots left unfilled."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2014_jesen__task3-1.mp3",
+    "repeat": "2014_jesen__task3-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 3 task group(s) from exam data (expected 7 with intro, 6 without intro, or 3 one-per-task); mapped positionally against the standard intro+2xtask template (size 7), extra/missing slots left unfilled."
+   }
+  }
+ },
+ "2014_ljeto": {
+  "intro": "2014_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2014_ljeto__task1-1.mp3",
+    "repeat": "2014_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2014_ljeto__task2-1.mp3",
+    "repeat": "2014_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2014_ljeto__task3-1.mp3",
+    "repeat": "2014_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2014_ljeto__task4-1.mp3",
+    "repeat": "2014_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2015_jesen": {
+  "intro": "2015_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2015_jesen__task1-1.mp3",
+    "repeat": "2015_jesen__task1-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2015_jesen__task2-1.mp3",
+    "repeat": "2015_jesen__task2-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   }
+  }
+ },
+ "2015_ljeto": {
+  "intro": "2015_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2015_ljeto__task1-1.mp3",
+    "repeat": "2015_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2015_ljeto__task2-1.mp3",
+    "repeat": "2015_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2015_ljeto__task3-1.mp3",
+    "repeat": "2015_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2015_ljeto__task4-1.mp3",
+    "repeat": "2015_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2016_jesen": {
+  "intro": "2016_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2016_jesen__task1-1.mp3",
+    "repeat": "2016_jesen__task1-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2016_jesen__task2-1.mp3",
+    "repeat": "2016_jesen__task2-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   }
+  }
+ },
+ "2016_ljeto": {
+  "intro": "2016_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2016_ljeto__task1-1.mp3",
+    "repeat": "2016_ljeto__task1-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2016_ljeto__task2-1.mp3",
+    "repeat": "2016_ljeto__task2-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   }
+  }
+ },
+ "2017_jesen": {
+  "intro": "2017_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2017_jesen__task1-1.mp3",
+    "repeat": "2017_jesen__task1-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2017_jesen__task2-1.mp3",
+    "repeat": "2017_jesen__task2-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   }
+  }
+ },
+ "2017_ljeto": {
+  "intro": "2017_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2017_ljeto__task1-1.mp3",
+    "repeat": "2017_ljeto__task1-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2017_ljeto__task2-1.mp3",
+    "repeat": "2017_ljeto__task2-2.mp3",
+    "confidence": "low",
+    "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
+   }
+  }
+ },
+ "2018_jesen": {
+  "intro": "2018_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2018_jesen__task1-1.mp3",
+    "repeat": "2018_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2018_jesen__task2-1.mp3",
+    "repeat": "2018_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2018_jesen__task3-1.mp3",
+    "repeat": "2018_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2018_jesen__task4-1.mp3",
+    "repeat": "2018_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2018_ljeto": {
+  "intro": "2018_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2018_ljeto__task1-1.mp3",
+    "repeat": "2018_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2018_ljeto__task2-1.mp3",
+    "repeat": "2018_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2018_ljeto__task3-1.mp3",
+    "repeat": "2018_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2018_ljeto__task4-1.mp3",
+    "repeat": "2018_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2019_jesen": {
+  "intro": "2019_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2019_jesen__task1-1.mp3",
+    "repeat": "2019_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2019_jesen__task2-1.mp3",
+    "repeat": "2019_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2019_jesen__task3-1.mp3",
+    "repeat": "2019_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2019_jesen__task4-1.mp3",
+    "repeat": "2019_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2019_ljeto": {
+  "intro": "2019_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2019_ljeto__task1-1.mp3",
+    "repeat": "2019_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2019_ljeto__task2-1.mp3",
+    "repeat": "2019_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2019_ljeto__task3-1.mp3",
+    "repeat": "2019_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2019_ljeto__task4-1.mp3",
+    "repeat": "2019_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2020_jesen": {
+  "intro": "2020_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2020_jesen__task1-1.mp3",
+    "repeat": "2020_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2020_jesen__task2-1.mp3",
+    "repeat": "2020_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2020_jesen__task3-1.mp3",
+    "repeat": "2020_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2020_jesen__task4-1.mp3",
+    "repeat": "2020_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2020_ljeto": {
+  "intro": "2020_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2020_ljeto__task1-1.mp3",
+    "repeat": "2020_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2020_ljeto__task2-1.mp3",
+    "repeat": "2020_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2020_ljeto__task3-1.mp3",
+    "repeat": "2020_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2020_ljeto__task4-1.mp3",
+    "repeat": "2020_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2021_jesen": {
+  "intro": "2021_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2021_jesen__task1-1.mp3",
+    "repeat": "2021_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2021_jesen__task2-1.mp3",
+    "repeat": "2021_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2021_jesen__task3-1.mp3",
+    "repeat": "2021_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2021_jesen__task4-1.mp3",
+    "repeat": "2021_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2021_ljeto": {
+  "intro": "2021_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2021_ljeto__task1-1.mp3",
+    "repeat": "2021_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2021_ljeto__task2-1.mp3",
+    "repeat": "2021_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2021_ljeto__task3-1.mp3",
+    "repeat": "2021_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2021_ljeto__task4-1.mp3",
+    "repeat": "2021_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2022_jesen": {
+  "intro": "2022_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2022_jesen__task1-1.mp3",
+    "repeat": "2022_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2022_jesen__task2-1.mp3",
+    "repeat": "2022_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2022_jesen__task3-1.mp3",
+    "repeat": "2022_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2022_jesen__task4-1.mp3",
+    "repeat": "2022_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2022_ljeto": {
+  "intro": "2022_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2022_ljeto__task1-1.mp3",
+    "repeat": "2022_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2022_ljeto__task2-1.mp3",
+    "repeat": "2022_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2022_ljeto__task3-1.mp3",
+    "repeat": "2022_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2022_ljeto__task4-1.mp3",
+    "repeat": "2022_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2023_jesen": {
+  "intro": "2023_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2023_jesen__task1-1.mp3",
+    "repeat": "2023_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2023_jesen__task2-1.mp3",
+    "repeat": "2023_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2023_jesen__task3-1.mp3",
+    "repeat": "2023_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2023_jesen__task4-1.mp3",
+    "repeat": "2023_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2023_ljeto": {
+  "intro": "2023_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2023_ljeto__task1-1.mp3",
+    "repeat": "2023_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2023_ljeto__task2-1.mp3",
+    "repeat": "2023_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2023_ljeto__task3-1.mp3",
+    "repeat": "2023_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2023_ljeto__task4-1.mp3",
+    "repeat": "2023_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2024_jesen": {
+  "intro": "2024_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2024_jesen__task1-1.mp3",
+    "repeat": "2024_jesen__task1-2.mp3",
+    "confidence": "low",
+    "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2024_jesen__task2-1.mp3",
+    "repeat": "2024_jesen__task2-2.mp3",
+    "confidence": "low",
+    "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2024_jesen__task3-1.mp3",
+    "repeat": "2024_jesen__task3-2.mp3",
+    "confidence": "low",
+    "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2024_jesen__task4-1.mp3",
+    "repeat": "2024_jesen__task4-2.mp3",
+    "confidence": "low",
+    "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
+   }
+  }
+ },
+ "2024_ljeto": {
+  "intro": "2024_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2024_ljeto__task1-1.mp3",
+    "repeat": "2024_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2024_ljeto__task2-1.mp3",
+    "repeat": "2024_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2024_ljeto__task3-1.mp3",
+    "repeat": "2024_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2024_ljeto__task4-1.mp3",
+    "repeat": "2024_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2025_jesen": {
+  "intro": "2025_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2025_jesen__task1-1.mp3",
+    "repeat": "2025_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2025_jesen__task2-1.mp3",
+    "repeat": "2025_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2025_jesen__task3-1.mp3",
+    "repeat": "2025_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2025_jesen__task4-1.mp3",
+    "repeat": "2025_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "2025_ljeto": {
+  "intro": "2025_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_a",
+    "first": "2025_ljeto__task1-1.mp3",
+    "repeat": "2025_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_b",
+    "first": "2025_ljeto__task2-1.mp3",
+    "repeat": "2025_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_c",
+    "first": "2025_ljeto__task3-1.mp3",
+    "repeat": "2025_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_d",
+    "first": "2025_ljeto__task4-1.mp3",
+    "repeat": "2025_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2010_jesen": {
+  "intro": "vis_2010_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2010_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2010_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2010_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2010_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2010_ljeto": {
+  "intro": "vis_2010_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2010_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2010_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_books",
+    "first": "vis_2010_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2010_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2010_zima": {
+  "intro": "vis_2010_zima__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2010_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2010_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2010_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2010_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2011_jesen": {
+  "intro": "vis_2011_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2011_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2011_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2011_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2011_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2011_ljeto": {
+  "intro": "vis_2011_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2011_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2011_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2011_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2011_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2011_zima": {
+  "intro": "vis_2011_zima__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2011_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2011_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2011_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2011_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2012_jesen": {
+  "intro": "vis_2012_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2012_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2012_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2012_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2012_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2012_ljeto": {
+  "intro": "vis_2012_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2012_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2012_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2012_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2012_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2012_zima": {
+  "intro": "vis_2012_zima__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2012_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2012_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2012_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2012_zima__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2013_jesen": {
+  "intro": "vis_2013_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2013_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2013_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2013_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2013_jesen__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2013_ljeto": {
+  "intro": "vis_2013_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2013_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2013_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2013_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2013_ljeto__intro.mp3",
+    "repeat": null,
+    "confidence": "low",
+    "note": "Stari format NCVVO snimke: jedna zajednička snimka za sve zadatke slušanja (upute + svi zadaci). Ista datoteka za sve zadatke."
+   }
+  }
+ },
+ "vis_2014_jesen": {
+  "intro": "vis_2014_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2014_jesen__task1-1.mp3",
+    "repeat": "vis_2014_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2014_jesen__task2-1.mp3",
+    "repeat": "vis_2014_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2014_jesen__task3-1.mp3",
+    "repeat": "vis_2014_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2014_jesen__task4-1.mp3",
+    "repeat": "vis_2014_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2014_ljeto": {
+  "intro": "vis_2014_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2014_ljeto__task1-1.mp3",
+    "repeat": "vis_2014_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2014_ljeto__task2-1.mp3",
+    "repeat": "vis_2014_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2014_ljeto__task3-1.mp3",
+    "repeat": "vis_2014_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2014_ljeto__task4-1.mp3",
+    "repeat": "vis_2014_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2015_jesen": {
+  "intro": "vis_2015_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2015_jesen__task1-1.mp3",
+    "repeat": "vis_2015_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2015_jesen__task2-1.mp3",
+    "repeat": "vis_2015_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2015_jesen__task3-1.mp3",
+    "repeat": "vis_2015_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2015_jesen__task4-1.mp3",
+    "repeat": "vis_2015_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2015_ljeto": {
+  "intro": "vis_2015_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2015_ljeto__task1-1.mp3",
+    "repeat": "vis_2015_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2015_ljeto__task2-1.mp3",
+    "repeat": "vis_2015_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2015_ljeto__task3-1.mp3",
+    "repeat": "vis_2015_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2015_ljeto__task4-1.mp3",
+    "repeat": "vis_2015_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2016_jesen": {
+  "intro": "vis_2016_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2016_jesen__task1-1.mp3",
+    "repeat": "vis_2016_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2016_jesen__task2-1.mp3",
+    "repeat": "vis_2016_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2016_jesen__task3-1.mp3",
+    "repeat": "vis_2016_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2016_jesen__task4-1.mp3",
+    "repeat": "vis_2016_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2016_ljeto": {
+  "intro": "vis_2016_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2016_ljeto__task1-1.mp3",
+    "repeat": "vis_2016_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2016_ljeto__task2-1.mp3",
+    "repeat": "vis_2016_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2016_ljeto__task3-1.mp3",
+    "repeat": "vis_2016_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2016_ljeto__task4-1.mp3",
+    "repeat": "vis_2016_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2017_jesen": {
+  "intro": "vis_2017_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2017_jesen__task1-1.mp3",
+    "repeat": "vis_2017_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2017_jesen__task2-1.mp3",
+    "repeat": "vis_2017_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2017_jesen__task3-1.mp3",
+    "repeat": "vis_2017_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2017_jesen__task4-1.mp3",
+    "repeat": "vis_2017_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2017_ljeto": {
+  "intro": "vis_2017_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2017_ljeto__task1-1.mp3",
+    "repeat": "vis_2017_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2017_ljeto__task2-1.mp3",
+    "repeat": "vis_2017_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2017_ljeto__task3-1.mp3",
+    "repeat": "vis_2017_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2017_ljeto__task4-1.mp3",
+    "repeat": "vis_2017_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2018_jesen": {
+  "intro": "vis_2018_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2018_jesen__task1-1.mp3",
+    "repeat": "vis_2018_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2018_jesen__task2-1.mp3",
+    "repeat": "vis_2018_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2018_jesen__task3-1.mp3",
+    "repeat": "vis_2018_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2018_jesen__task4-1.mp3",
+    "repeat": "vis_2018_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2018_ljeto": {
+  "intro": "vis_2018_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2018_ljeto__task1-1.mp3",
+    "repeat": "vis_2018_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2018_ljeto__task2-1.mp3",
+    "repeat": "vis_2018_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2018_ljeto__task3-1.mp3",
+    "repeat": "vis_2018_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2018_ljeto__task4-1.mp3",
+    "repeat": "vis_2018_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2019_jesen": {
+  "intro": "vis_2019_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2019_jesen__task1-1.mp3",
+    "repeat": "vis_2019_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2019_jesen__task2-1.mp3",
+    "repeat": "vis_2019_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2019_jesen__task3-1.mp3",
+    "repeat": "vis_2019_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2019_jesen__task4-1.mp3",
+    "repeat": "vis_2019_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2019_ljeto": {
+  "intro": "vis_2019_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2019_ljeto__task1-1.mp3",
+    "repeat": "vis_2019_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2019_ljeto__task2-1.mp3",
+    "repeat": "vis_2019_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2019_ljeto__task3-1.mp3",
+    "repeat": "vis_2019_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2019_ljeto__task4-1.mp3",
+    "repeat": "vis_2019_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2020_jesen": {
+  "intro": "vis_2020_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2020_jesen__task1-1.mp3",
+    "repeat": "vis_2020_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2020_jesen__task2-1.mp3",
+    "repeat": "vis_2020_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2020_jesen__task3-1.mp3",
+    "repeat": "vis_2020_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2020_jesen__task4-1.mp3",
+    "repeat": "vis_2020_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2020_ljeto": {
+  "intro": "vis_2020_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2020_ljeto__task1-1.mp3",
+    "repeat": "vis_2020_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2020_ljeto__task2-1.mp3",
+    "repeat": "vis_2020_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2020_ljeto__task3-1.mp3",
+    "repeat": "vis_2020_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2020_ljeto__task4-1.mp3",
+    "repeat": "vis_2020_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2021_jesen": {
+  "intro": "vis_2021_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2021_jesen__task1-1.mp3",
+    "repeat": "vis_2021_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2021_jesen__task2-1.mp3",
+    "repeat": "vis_2021_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2021_jesen__task3-1.mp3",
+    "repeat": "vis_2021_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2021_jesen__task4-1.mp3",
+    "repeat": "vis_2021_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2021_ljeto": {
+  "intro": "vis_2021_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2021_ljeto__task1-1.mp3",
+    "repeat": "vis_2021_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2021_ljeto__task2-1.mp3",
+    "repeat": "vis_2021_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2021_ljeto__task3-1.mp3",
+    "repeat": "vis_2021_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2021_ljeto__task4-1.mp3",
+    "repeat": "vis_2021_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2022_jesen": {
+  "intro": "vis_2022_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2022_jesen__task1-1.mp3",
+    "repeat": "vis_2022_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2022_jesen__task2-1.mp3",
+    "repeat": "vis_2022_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2022_jesen__task3-1.mp3",
+    "repeat": "vis_2022_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2022_jesen__task4-1.mp3",
+    "repeat": "vis_2022_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2022_ljeto": {
+  "intro": "vis_2022_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2022_ljeto__task1-1.mp3",
+    "repeat": "vis_2022_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2022_ljeto__task2-1.mp3",
+    "repeat": "vis_2022_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2022_ljeto__task3-1.mp3",
+    "repeat": "vis_2022_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2022_ljeto__task4-1.mp3",
+    "repeat": "vis_2022_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2023_jesen": {
+  "intro": "vis_2023_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2023_jesen__task1-1.mp3",
+    "repeat": "vis_2023_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2023_jesen__task2-1.mp3",
+    "repeat": "vis_2023_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2023_jesen__task3-1.mp3",
+    "repeat": "vis_2023_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2023_jesen__task4-1.mp3",
+    "repeat": "vis_2023_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2023_ljeto": {
+  "intro": "vis_2023_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2023_ljeto__task1-1.mp3",
+    "repeat": "vis_2023_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2023_ljeto__task2-1.mp3",
+    "repeat": "vis_2023_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2023_ljeto__task3-1.mp3",
+    "repeat": "vis_2023_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2023_ljeto__task4-1.mp3",
+    "repeat": "vis_2023_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2024_drugi": {
+  "intro": "vis_2024_drugi__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2024_drugi__task1-1.mp3",
+    "repeat": "vis_2024_drugi__task1-2.mp3",
+    "confidence": "low",
+    "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2024_drugi__task2-1.mp3",
+    "repeat": "vis_2024_drugi__task2-2.mp3",
+    "confidence": "low",
+    "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2024_drugi__task3-1.mp3",
+    "repeat": "vis_2024_drugi__task3-2.mp3",
+    "confidence": "low",
+    "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2024_drugi__task4-1.mp3",
+    "repeat": "vis_2024_drugi__task4-2.mp3",
+    "confidence": "low",
+    "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
+   }
+  }
+ },
+ "vis_2024_prvi": {
+  "intro": "vis_2024_prvi__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2024_prvi__task1-1.mp3",
+    "repeat": "vis_2024_prvi__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2024_prvi__task2-1.mp3",
+    "repeat": "vis_2024_prvi__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2024_prvi__task3-1.mp3",
+    "repeat": "vis_2024_prvi__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2024_prvi__task4-1.mp3",
+    "repeat": "vis_2024_prvi__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2025_jesen": {
+  "intro": "vis_2025_jesen__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2025_jesen__task1-1.mp3",
+    "repeat": "vis_2025_jesen__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2025_jesen__task2-1.mp3",
+    "repeat": "vis_2025_jesen__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2025_jesen__task3-1.mp3",
+    "repeat": "vis_2025_jesen__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2025_jesen__task4-1.mp3",
+    "repeat": "vis_2025_jesen__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "vis_2025_ljeto": {
+  "intro": "vis_2025_ljeto__intro.mp3",
+  "tasks": {
+   "1": {
+    "topic": "listening_match",
+    "first": "vis_2025_ljeto__task1-1.mp3",
+    "repeat": "vis_2025_ljeto__task1-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "2": {
+    "topic": "listening_mc3",
+    "first": "vis_2025_ljeto__task2-1.mp3",
+    "repeat": "vis_2025_ljeto__task2-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "3": {
+    "topic": "listening_match",
+    "first": "vis_2025_ljeto__task3-1.mp3",
+    "repeat": "vis_2025_ljeto__task3-2.mp3",
+    "confidence": "high",
+    "note": ""
+   },
+   "4": {
+    "topic": "listening_mc3",
+    "first": "vis_2025_ljeto__task4-1.mp3",
+    "repeat": "vis_2025_ljeto__task4-2.mp3",
+    "confidence": "high",
+    "note": ""
+   }
+  }
+ },
+ "_missing": []
 }

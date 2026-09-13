@@ -4,6 +4,7 @@ import { nrm, chk } from '@/lib/engleski-simulator/scoring'
 import { trackAiHelpRequested } from '@/lib/engleski-simulator/analytics'
 import { LL } from '@/lib/engleski-simulator/constants'
 import { getExamBlocks, totalMinutes } from '@/lib/engleski-simulator/examStructure'
+import { audioUrl } from '@/lib/engleski-simulator/audioBase'
 import AUDIO_MAP from '@/lib/data/engleski-simulator/audio-map.json'
 
 const _AI_COOLDOWN_MS = 8000
@@ -21,21 +22,28 @@ const TOPIC_TO_TASK_OSN = {
   listening_d: 4,
 }
 
-// Čita konvencionalne putanje audio datoteka (public/audio/eng/…) iz audio-map.json.
-// Ako datoteka za ispit/task ne postoji u mapi, vraća null (poziv AudioPlayer neće
-// ništa renderirati).
+// Čita audio-map.json (oblik: { <examKey>: { intro, tasks: { <taskNum>: { topic,
+// first, repeat, confidence, note } } } }) i vraća URL-ove (preko audioUrl(), koja
+// datoteku spaja s ENG_AUDIO_BASE — GitHub Release, vidi lib/engleski-simulator/audioBase.js).
+// Prvo traži task čiji je topic jednak zadanom; ako takvog nema u mapi tog ispita,
+// pada natrag na TOPIC_TO_TASK_* mapu po rednom broju. Ako datoteka za task ne
+// postoji (first je null — npr. stariji ispiti s jednom kombiniranom snimkom),
+// vraća null i AudioPlayer neće ništa renderirati.
 export function getAudioTrack(examKey, topic, razina) {
-  const examMap = AUDIO_MAP[examKey]
-  if (!examMap) return null
-  const taskNum = razina === 'visa' ? TOPIC_TO_TASK_VISA[topic] : TOPIC_TO_TASK_OSN[topic]
+  const exam = AUDIO_MAP[examKey]
+  if (!exam || !exam.tasks) return null
+  const taskNums = Object.keys(exam.tasks).map(Number).sort((a, b) => a - b)
+  let taskNum = taskNums.find(n => exam.tasks[String(n)]?.topic === topic)
+  if (!taskNum) taskNum = razina === 'visa' ? TOPIC_TO_TASK_VISA[topic] : TOPIC_TO_TASK_OSN[topic]
   if (!taskNum) return null
-  const track = examMap[String(taskNum)]
+  const track = exam.tasks[String(taskNum)]
   if (!track || !track.first) return null
   return {
-    first: track.first,
-    repeat: track.repeat || null,
-    legacyDriveId: track.legacyDriveId || null,
+    first: audioUrl(track.first),
+    repeat: track.repeat ? audioUrl(track.repeat) : null,
+    intro: exam.intro ? audioUrl(exam.intro) : null,
     taskNum,
+    confidence: track.confidence || null,
   }
 }
 
@@ -468,15 +476,15 @@ export function ModeSelect({ examKey, examObj, examsMap, onExamMode, onPractice,
 
 export function AudioPlayer({ examKey, topic, razina }) {
   // Napomena: pozivatelj mora renderirati ovu komponentu s key={examKey + '_' + topic}
-  // da bi se phase/audioError ispravno resetirali pri promjeni pitanja (remount).
+  // da bi se phase/audioError/showIntro ispravno resetirali pri promjeni pitanja (remount).
   const audio = getAudioTrack(examKey, topic, razina)
   const [phase, setPhase] = useState('first')
   const [audioError, setAudioError] = useState(false)
+  const [showIntro, setShowIntro] = useState(false)
 
   if (!audio) return null
 
   const src = phase === 'repeat' && audio.repeat ? audio.repeat : audio.first
-  const legacyId = phase === 'repeat' && audio.legacyDriveId ? audio.legacyDriveId.repeat : audio.legacyDriveId?.first
 
   return e('div', { className: 'audio-player' },
     e('div', { className: 'audio-player-inner' },
@@ -490,14 +498,17 @@ export function AudioPlayer({ examKey, topic, razina }) {
           },
         }, phase === 'done' ? '✓ Završeno' : phase === 'repeat' ? 'Ponavljanje' : '1. slušanje'),
         phase !== 'done' && e('div', { style: { marginLeft: 'auto', display: 'flex', gap: 6 } },
+          audio.intro && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => setShowIntro(s => !s) }, '📋 Upute'),
           phase === 'first' && audio.repeat && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => { setPhase('repeat'); setAudioError(false) } }, '▶ Ponavljanje'),
           e('button', { className: 'btn', style: { fontSize: 11, padding: '3px 10px', background: 'var(--green-d)', color: 'var(--green)', border: '1px solid rgba(30,122,62,.3)' }, onClick: () => setPhase('done') }, '✓ Završio/la'))),
+      showIntro && audio.intro && e('div', { className: 'audio-intro-wrap', style: { marginBottom: 8 } },
+        e('div', { style: { fontSize: 11, color: 'var(--muted)', marginBottom: 4 } }, '📋 Upute (uvodna snimka):'),
+        e('audio', { controls: true, preload: 'none', src: audio.intro, 'aria-label': 'Upute — ' + topic, style: { width: '100%', height: 36 } })),
       e('div', { className: 'audio-native-wrap' },
         audioError
           ? e('div', { className: 'audio-fallback' },
             e('span', { className: 'audio-fallback-icon' }, '⚠️'),
-            ' Audio nije dostupan — u stvarnom ispitu slušaš snimku; odgovori su iz ključa NCVVO-a.',
-            legacyId && e('span', null, ' ', e('a', { href: 'https://drive.google.com/file/d/' + legacyId + '/view', target: '_blank', rel: 'noopener noreferrer', style: { color: 'var(--blue)', textDecoration: 'underline' } }, 'Otvori u Google Driveu →')))
+            ' Audio nije dostupan — u stvarnom ispitu slušaš snimku; odgovori su iz ključa NCVVO-a.')
           : e('audio', {
             key: src,
             controls: true,

@@ -1,7 +1,89 @@
-# Audio konvencija — Engleski simulator
+# Audio — Engleski simulator (slušanje)
 
-Datoteke idu u `public/audio/eng/<examKey>/taskN-1.mp3` (1. slušanje) i `public/audio/eng/<examKey>/taskN-2.mp3` (ponavljanje), gdje je `<examKey>` ključ ispita (npr. `vis_2015_ljeto`), a `N` redni broj task-a unutar slušanja za tu razinu.
+## Hosting
 
-Putanje se registriraju u `lib/data/engleski-simulator/audio-map.json` pod `"<examKey>": { "<N>": { "first", "repeat" } }`.
+Audio datoteke se **ne nalaze u repou** (rade se o ~665 MB / 430 MP3 datoteka —
+prevelike i nepotrebne za git povijest). Hostane su kao asseti GitHub Release-a
+[`eng-audio-v1`](https://github.com/danielrisavi77-create/Maturiraj/releases/tag/eng-audio-v1)
+na ovom repou.
 
-Dok datoteka fizički ne postoji na tom putu, `<audio>` element baca `onError` i prikazuje tekstualni fallback (uz link na `legacyDriveId` ako postoji u JSON-u).
+Bazni URL je definiran u `lib/engleski-simulator/audioBase.js`:
+
+```js
+export const ENG_AUDIO_BASE = process.env.NEXT_PUBLIC_ENG_AUDIO_BASE
+  || 'https://github.com/danielrisavi77-create/Maturiraj/releases/download/eng-audio-v1/'
+```
+
+Postavi `NEXT_PUBLIC_ENG_AUDIO_BASE` (mora završavati s `/`) ako se audio poslužuje
+s drugog mjesta (CDN, lokalni dev server, drugi release) — npr. u `.env.local`:
+
+```
+NEXT_PUBLIC_ENG_AUDIO_BASE=http://localhost:3000/audio/eng/
+```
+
+## Konvencija imenovanja
+
+Datoteke u `audio-map.json` referenciraju se samo imenom (ne punim putem);
+`audioUrl(file)` iz `audioBase.js` spaja ime s `ENG_AUDIO_BASE` i URL-enkodira ga.
+Obrazac imena: `<examKey>__task<N>-1.mp3` (1. slušanje), `<examKey>__task<N>-2.mp3`
+(ponavljanje), `<examKey>__intro.mp3` (uvodna snimka/upute, kad postoji), gdje je
+`<examKey>` ključ ispita (npr. `vis_2015_ljeto`) a `N` redni broj task-a slušanja za
+taj ispit i razinu.
+
+Registar je `lib/data/engleski-simulator/audio-map.json`:
+
+```json
+{
+  "<examKey>": {
+    "intro": "<examKey>__intro.mp3" | null,
+    "tasks": {
+      "<N>": { "topic": "listening_a", "first": "<file>", "repeat": "<file>|null", "confidence": "high|medium|low", "note": "" }
+    }
+  },
+  "_missing": []
+}
+```
+
+`confidence` govori koliko je mapiranje snimka→task pouzdano:
+- **high** — ZIP je imao točno `2×broj_taskova + 1` audio snimki (uvod + 1. slušanje
+  + ponavljanje po tasku); mapiranje je jednoznačno.
+- **medium** — nije se pojavilo u trenutnom skupu podataka (rezervirano za `n = 2×tasks`
+  bez uvoda, ili `n = tasks` s jednom snimkom po tasku, gdje `first === repeat`).
+- **low** — broj snimki u ZIP-u ne odgovara ni jednom očekivanom obrascu (najčešće
+  stariji ispiti gdje je cijeli listening dio jedna kombinirana CD-snimka, ili
+  godine gdje `topic` oznake u `exams-*.json` ne razlikuju sve taskove). Mapiranje je
+  pozicijsko nagađanje uz `note` s objašnjenjem; `first`/`repeat` mogu biti `null`
+  kad snimka fizički ne postoji zasebno.
+
+Kad datoteka fizički ne postoji (404) ili joj `first` nedostaje u mapi, `<audio>`
+element u `AudioPlayer` (`components/engleski-simulator/components/SimSharedUI.js`)
+baca `onError` i prikazuje tekstualni fallback umjesto playera.
+
+## Trenutno stanje (Korak B, 2026-09-13)
+
+- **68/68** ispita sa slušanjem (34 osnovna + 34 viša razina) imaju zapis u
+  `audio-map.json`; `_missing` je prazan.
+- **430** enkodiranih MP3 datoteka, ukupno **~665 MB** (mono, 32 kHz, 48 kbps —
+  `libmp3lame`, znatno manje od originala).
+- Od 255 task-zapisa: **160 confidence `high`**, **95 confidence `low`**, 0 `medium`.
+- 28 ispita ima napomenu u `audio-map.json` (nestandardan obrazac) — vidi
+  `docs/ENGLESKI_SIMULATOR_PLAN.md` odjeljak „Status 3.4 (audio)” za popis.
+
+## Kako regenerirati
+
+Skripte su u `scripts/eng-audio/` (izlaze iz repoa u vlastiti scratchpad, ne pišu
+audio u repo):
+
+1. `python scripts/eng-audio/build-audio-A.py --base <scratchpad> --exams-index lib/data/engleski-simulator/exams-index.json`
+   — pronađe i preuzme NCVVO ZIP-ove sa slušanjem (NCVVO stranice su iza WAF-a s
+   ove IP adrese pa se dio otkrivanja radi preko Wayback Machine; 1 zahtjev/s
+   prema ncvvo.hr).
+2. `python scripts/eng-audio/build-audio-B.py --base <scratchpad> --repo-data lib/data/engleski-simulator --ffmpeg <put> --ffprobe <put>`
+   — raspakira ZIP-ove, mapira snimke na taskove i enkodira u mono MP3;
+   ispisuje `<scratchpad>/audio-map.json`.
+3. Kopiraj `<scratchpad>/audio-map.json` preko `lib/data/engleski-simulator/audio-map.json`.
+4. `scripts/eng-audio/upload-audio.sh <scratchpad>/out` — objavi `*.mp3` na GitHub
+   Release `eng-audio-v1` (ručno se pokreće; zahtijeva `gh auth login`).
+
+Oba Python skripta su idempotentna (preskaču već preuzete/enkodirane datoteke), pa
+je siguno ponovno pokretanje nakon prekida.
