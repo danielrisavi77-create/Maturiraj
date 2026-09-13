@@ -17,20 +17,20 @@ function SvgZad7_2010LB(){
     const {lbl,rows,col}=tbl;
     const TW=CW*2;
     const elems=[
-      e("text",{x:ox+3,y:oy+14,fontSize:11,fontWeight:"bold",fill:col},lbl),
-      e("rect",{x:ox,y:oy+LBL_H,width:TW,height:RH,fill:col,fillOpacity:0.12}),
-      e("text",{x:ox+CW/2,y:oy+LBL_H+RH/2+4,textAnchor:"middle",fontSize:11,fontWeight:"bold",fill:col,fontStyle:"italic"},"x"),
-      e("text",{x:ox+CW+CW/2,y:oy+LBL_H+RH/2+4,textAnchor:"middle",fontSize:11,fontWeight:"bold",fill:col,fontStyle:"italic"},"f(x)"),
-      e("line",{x1:ox+CW,y1:oy+LBL_H,x2:ox+CW,y2:oy+LBL_H+RH*(rows.length+1),stroke:"var(--bdr)",strokeWidth:0.8}),
+      e("text",{key:"lbl",x:ox+3,y:oy+14,fontSize:11,fontWeight:"bold",fill:col},lbl),
+      e("rect",{key:"hdr",x:ox,y:oy+LBL_H,width:TW,height:RH,fill:col,fillOpacity:0.12}),
+      e("text",{key:"hx",x:ox+CW/2,y:oy+LBL_H+RH/2+4,textAnchor:"middle",fontSize:11,fontWeight:"bold",fill:col,fontStyle:"italic"},"x"),
+      e("text",{key:"hfx",x:ox+CW+CW/2,y:oy+LBL_H+RH/2+4,textAnchor:"middle",fontSize:11,fontWeight:"bold",fill:col,fontStyle:"italic"},"f(x)"),
+      e("line",{key:"vsep",x1:ox+CW,y1:oy+LBL_H,x2:ox+CW,y2:oy+LBL_H+RH*(rows.length+1),stroke:"var(--bdr)",strokeWidth:0.8}),
     ];
     rows.forEach(function([x,fx],i){
       const ry=oy+LBL_H+RH*(i+1);
       elems.push(e("rect",{key:"rb"+i,x:ox,y:ry,width:TW,height:RH,fill:i%2===0?"var(--s2)":"var(--s1)"}));
       elems.push(e("line",{key:"hl"+i,x1:ox,y1:ry,x2:ox+TW,y2:ry,stroke:"var(--bdr)",strokeWidth:0.5}));
-      elems.push(e("text",{key:"tx"+i,x:ox+CW/2,y:ry+RH/2+4,textAnchor:"middle",fontSize:12,fill:col},String(x)));
-      elems.push(e("text",{key:"tf"+i,x:ox+CW+CW/2,y:ry+RH/2+4,textAnchor:"middle",fontSize:12,fill:col},String(fx)));
+      elems.push(e("text",{key:"tx"+i,x:ox+CW/2,y:ry+RH/2+4,textAnchor:"middle",fontSize:12,fill:col},String(x).replace("-","−")));
+      elems.push(e("text",{key:"tf"+i,x:ox+CW+CW/2,y:ry+RH/2+4,textAnchor:"middle",fontSize:12,fill:col},String(fx).replace("-","−")));
     });
-    elems.push(e("rect",{x:ox,y:oy+LBL_H,width:TW,height:RH*(rows.length+1),fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:1}));
+    elems.push(e("rect",{key:"frame",x:ox,y:oy+LBL_H,width:TW,height:RH*(rows.length+1),fill:"none",stroke:"var(--bdr)",strokeWidth:1}));
     return e("g",{key:lbl},...elems);
   }
   const gap=16,tw=CW*2,rowH=LBL_H+RH*4+20;
@@ -43,29 +43,36 @@ function SvgZad7_2010LB(){
 }
 
 function SvgZad27_2010LB(){
-  const W=320,H=200,pad={l:52,r:20,t:14,b:32};
+  const W=340,H=214,pad={l:46,r:44,t:16,b:42};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMax=1100,yMax=450;
+  const t="var(--text)",b=_BLUE,g=_GOLD,m="var(--muted)",mu="var(--muted)";
+  const xMax=1100,yMax=500;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=function(v){return pad.l+(v/xMax)*iW;};
   const toY=function(v){return H-pad.b-(v/yMax)*iH;};
-  const t="var(--text)",b=_BLUE,g=_GOLD,m="var(--muted)",mu="var(--muted)";
+  const ox=toX(0),oy=toY(0);
 
-  // Grid
+  // Mreža: 100 m po x, 50 m po y
   const grid=[];
-  for(let x=0;x<=1100;x+=100)
-    grid.push(e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:H-pad.b,
+  for(let x=0;x<=xMax;x+=100)
+    grid.push(e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:oy,
       stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
-  for(let y=0;y<=450;y+=50)
-    grid.push(e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),
+  for(let y=0;y<=yMax;y+=50)
+    grid.push(e("line",{key:"gy"+y,x1:ox,y1:toY(y),x2:pad.l+iW,y2:toY(y),
       stroke:m,strokeWidth:0.4,strokeDasharray:"2,3"}));
 
-  // Karlo: stepeničasti put (PDF-vjerno: kreće horizontalno iz KUĆE,
-  // nakon K ide vertikalno → ŠKOLA na vrhu)
+  // Brojčane oznake na osima (metri)
+  const ticks=[];
+  for(let x=200;x<=1000;x+=200)
+    ticks.push(e("text",{key:"tx"+x,x:toX(x),y:oy+13,textAnchor:"middle",fontSize:8,fill:mu},String(x)));
+  for(let y=100;y<=400;y+=100)
+    ticks.push(e("text",{key:"ty"+y,x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:8,fill:mu},String(y)));
+
+  // Karlo: stepeničasti put KUĆA(0,0) → K(600,250) → ŠKOLA(1000,400); ukupno 1400 m
   const karlo=[
     [0,0],[100,0],[100,50],[300,50],[300,100],
-    [500,100],[500,150],[600,150],[600,250], // =K
-    [600,400],[1000,400]                      // =ŠKOLA
+    [500,100],[500,250],[600,250],   // = K (vrh stepenice)
+    [600,400],[1000,400]             // = ŠKOLA
   ];
   const kpts=karlo.map(function(p){
     return toX(p[0]).toFixed(1)+","+toY(p[1]).toFixed(1);
@@ -75,29 +82,35 @@ function SvgZad27_2010LB(){
   const kx=toX(600),ky=toY(250);
   const sx=toX(1000),sy=toY(400);
 
-  return e("svg",{viewBox:"0 0 320 200",style:{width:"100%",maxWidth:320,display:"block"}},
+  return e("svg",{viewBox:"0 0 340 214",style:{width:"100%",maxWidth:340,display:"block"}},
     ...grid,
+    // Koordinatne osi
+    e("line",{x1:ox,y1:oy,x2:pad.l+iW,y2:oy,stroke:t,strokeWidth:1.2}),
+    e("polygon",{points:(pad.l+iW+6)+","+oy+" "+(pad.l+iW)+","+(oy-2.8)+" "+(pad.l+iW)+","+(oy+2.8),fill:t}),
+    e("line",{x1:ox,y1:oy,x2:ox,y2:pad.t,stroke:t,strokeWidth:1.2}),
+    e("polygon",{points:ox+","+(pad.t-6)+" "+(ox-2.8)+","+pad.t+" "+(ox+2.8)+","+pad.t,fill:t}),
+    e("text",{x:pad.l+iW+4,y:oy+14,fontSize:9,fill:t,fontStyle:"italic"},"x"),
+    e("text",{x:ox-12,y:pad.t+2,fontSize:9,fill:t,fontStyle:"italic"},"y"),
+    e("text",{x:ox-6,y:oy+13,textAnchor:"end",fontSize:8,fill:mu},"0"),
+    ...ticks,
     // Karlo (puna crta, plava)
     e("polyline",{points:kpts,fill:"none",stroke:b,strokeWidth:2.2,
       strokeLinecap:"round",strokeLinejoin:"round"}),
-    // Karmela (iscrtkana, zlatna)
+    // Karmela (iscrtkana, zlatna) — prečica od K do škole
     e("line",{x1:kx,y1:ky,x2:sx,y2:sy,stroke:g,strokeWidth:2,strokeDasharray:"7,4"}),
     // Točke
-    e("circle",{cx:toX(0),cy:toY(0),r:3.5,fill:_RED}),
+    e("circle",{cx:ox,cy:oy,r:3.5,fill:_RED}),
     e("circle",{cx:kx,cy:ky,r:3.5,fill:_GREEN}),
     e("circle",{cx:sx,cy:sy,r:3.5,fill:_RED}),
     // Tekst labele
-    e("text",{x:pad.l-4,y:toY(0)+4,textAnchor:"end",fontSize:9,fill:_GOLD},"KUĆA"),
-    e("text",{x:kx+4,y:ky-6,fontSize:9,fill:_GREEN,fontWeight:"600"},"K"),
-    e("text",{x:sx+4,y:sy-4,fontSize:9,fill:t},"ŠKOLA"),
-    // Osi labele: "50" na y-osi, "100" na x-osi
-    e("text",{x:pad.l-4,y:toY(50)+3,textAnchor:"end",fontSize:8,fill:mu},"50"),
-    e("text",{x:toX(100),y:H-pad.b+12,textAnchor:"middle",fontSize:8,fill:mu},"100"),
+    e("text",{x:ox-6,y:oy-6,textAnchor:"end",fontSize:9,fill:_RED,fontWeight:"600"},"KUĆA"),
+    e("text",{x:kx+6,y:ky+11,fontSize:9,fill:_GREEN,fontWeight:"600"},"K"),
+    e("text",{x:sx+6,y:sy+3.5,fontSize:9,fill:_RED,fontWeight:"600"},"ŠKOLA"),
     // Legenda
     e("line",{x1:pad.l,y1:H-6,x2:pad.l+16,y2:H-6,stroke:b,strokeWidth:2}),
-    e("text",{x:pad.l+20,y:H-2,fontSize:7.5,fill:mu},"Karlo"),
-    e("line",{x1:pad.l+54,y1:H-6,x2:pad.l+70,y2:H-6,stroke:g,strokeWidth:2,strokeDasharray:"5,3"}),
-    e("text",{x:pad.l+74,y:H-2,fontSize:7.5,fill:mu},"Karmela"),
+    e("text",{x:pad.l+20,y:H-3,fontSize:7.5,fill:mu},"Karlo"),
+    e("line",{x1:pad.l+58,y1:H-6,x2:pad.l+74,y2:H-6,stroke:g,strokeWidth:2,strokeDasharray:"5,3"}),
+    e("text",{x:pad.l+78,y:H-3,fontSize:7.5,fill:mu},"Karmela"),
   );
 }
 
@@ -119,16 +132,17 @@ function SvgZad24_2010LB(){
     e("text",{x:D.x-16,y:D.y-5,fontSize:12,fill:_GOLD,fontStyle:"italic"},"D"),
     e("text",{x:E.x-14,y:E.y+14,fontSize:12,fill:_GOLD,fontStyle:"italic"},"E"),
     e("text",{x:F.x+3,y:F.y+14,fontSize:12,fill:_GOLD,fontStyle:"italic"},"F"),
-    e("text",{x:(C.x+F.x)/2+5,y:(C.y+E.y)/2,fontSize:11,fill:"var(--bg)",fontWeight:"700"},"5 cm"),
+    e("text",{x:E.x-5,y:E.y-11,textAnchor:"end",fontSize:10,fill:t,fontWeight:"600"},"5 cm"),
+    ...[A,B,C,D,E,F].map(function(P,i){return e("circle",{key:"vx"+i,cx:P.x,cy:P.y,r:2,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1});}),
   );
 }
 
 function SvgZad23_2010LB(){
-  const W=340,H=76,m="var(--muted)",mu="var(--muted)";
+  const W=340,H=68,m="var(--muted)",mu="var(--muted)";
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const rows=[
-    {label:"Stopa (foot)",vals:["1","5.8",""],    col:"var(--blue)"},
-    {label:"Metar (m)",   vals:["0.3048","","1.40208"],col:"var(--gold)"},
+    {label:"Stopa (foot)",vals:["1","5,8",""],    col:"var(--blue)"},
+    {label:"Metar (m)",   vals:["0,3048","","1,40208"],col:"var(--gold)"},
   ];
   const cw=[110,76,76,78];
   const rh=34;
@@ -147,7 +161,7 @@ function SvgZad23_2010LB(){
   });
   let cx3=cw[0];
   const vlines=cw.slice(0,-1).map(function(_,i){const x=cx3;cx3+=cw[i+1];return e("line",{key:"vl"+i,x1:x,y1:0,x2:x,y2:H,stroke:m,strokeWidth:0.8});});
-  return e("svg",{viewBox:"0 0 340 76",style:{width:"100%",maxWidth:340,display:"block"}},
+  return e("svg",{viewBox:"0 0 340 68",style:{width:"100%",maxWidth:340,display:"block"}},
     ...elems,...vlines,
     e("line",{x1:0,y1:rh,x2:W,y2:rh,stroke:m,strokeWidth:0.8}),
     e("rect",{x:0,y:0,width:W,height:H,fill:"none",stroke:m,strokeWidth:1.2}),
@@ -157,7 +171,7 @@ function SvgZad23_2010LB(){
 function SvgZad11_2010LB(){
   const W=220,H=160,pad={l:22,r:10,t:14,b:22};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-1,xMax=3,yMin=-2.5,yMax=1;
+  const xMin=-1,xMax=3,yMin=-2.8,yMax=1.7;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=function(v){return pad.l+((v-xMin)/(xMax-xMin))*iW;};
   const toY=function(v){return pad.t+((yMax-v)/(yMax-yMin))*iH;};
@@ -173,17 +187,18 @@ function SvgZad11_2010LB(){
   }
   return e("svg",{viewBox:"0 0 220 160",style:{width:"100%",maxWidth:220,display:"block"}},
     ...grid,
-    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:_BLUE,strokeWidth:1.4}),
+    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:t,strokeWidth:1.4}),
     e("polygon",{points:(pad.l+iW)+","+oy+" "+(pad.l+iW-5)+","+(oy-2.5)+" "+(pad.l+iW-5)+","+(oy+2.5),fill:t}),
-    e("line",{x1:ox,y1:pad.t+iH,x2:ox,y2:pad.t,stroke:_BLUE,strokeWidth:1.4}),
+    e("line",{x1:ox,y1:pad.t+iH,x2:ox,y2:pad.t,stroke:t,strokeWidth:1.4}),
     e("polygon",{points:ox+","+pad.t+" "+(ox-2.5)+","+(pad.t+5)+" "+(ox+2.5)+","+(pad.t+5),fill:t}),
     e("text",{x:pad.l+iW+3,y:oy+4,fontSize:9,fill:t,fontStyle:"italic"},"x"),
-    e("text",{x:ox+3,y:pad.t+2,fontSize:9,fill:t,fontStyle:"italic"},"y"),
-    e("text",{x:ox-9,y:oy+11,fontSize:8,fill:mu},"0"),
-    e("line",{x1:toX(1),y1:oy-2.5,x2:toX(1),y2:oy+2.5,stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:toX(1)-2,y:oy+11,fontSize:8,fill:mu},"1"),
-    e("line",{x1:ox-2.5,y1:toY(1),x2:ox+2.5,y2:toY(1),stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:ox+3,y:toY(1)+3,fontSize:8,fill:mu},"1"),
+    e("text",{x:ox-11,y:pad.t+9,fontSize:9,fill:t,fontStyle:"italic"},"y"),
+    e("text",{x:ox-10,y:oy+12,fontSize:9,fill:t,fontWeight:"700"},"0"),
+    e("circle",{cx:ox,cy:oy,r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:oy,r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:toX(1),y:oy-6,textAnchor:"middle",fontSize:9,fill:t,fontWeight:"700"},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:ox-10,y:toY(1)+3.5,fontSize:9,fill:t,fontWeight:"700"},"1"),
     pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:b,strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
   );
 }
@@ -205,22 +220,53 @@ function SvgZad21_2010LB(){
   const lx2=5, ly2=(6-2*5)/3;    // produženje desno
   return e("svg",{viewBox:"0 0 240 220",style:{width:"100%",maxWidth:240,display:"block"}},
     ...grid,
-    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:_BLUE,strokeWidth:1.4}),
+    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:t,strokeWidth:1.4}),
     e("polygon",{points:(pad.l+iW)+","+oy+" "+(pad.l+iW-5)+","+(oy-2.5)+" "+(pad.l+iW-5)+","+(oy+2.5),fill:t}),
-    e("line",{x1:ox,y1:pad.t+iH,x2:ox,y2:pad.t,stroke:_BLUE,strokeWidth:1.4}),
+    e("line",{x1:ox,y1:pad.t+iH,x2:ox,y2:pad.t,stroke:t,strokeWidth:1.4}),
     e("polygon",{points:ox+","+pad.t+" "+(ox-2.5)+","+(pad.t+5)+" "+(ox+2.5)+","+(pad.t+5),fill:t}),
     e("text",{x:pad.l+iW+3,y:oy+4,fontSize:9,fill:t,fontStyle:"italic"},"x"),
-    e("text",{x:ox+3,y:pad.t+2,fontSize:9,fill:t,fontStyle:"italic"},"y"),
-    e("text",{x:ox-9,y:oy+11,fontSize:8,fill:mu},"0"),
-    e("line",{x1:toX(1),y1:oy-2.5,x2:toX(1),y2:oy+2.5,stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:toX(1)-2,y:oy+11,fontSize:8,fill:mu},"1"),
-    e("line",{x1:ox-2.5,y1:toY(1),x2:ox+2.5,y2:toY(1),stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:ox+3,y:toY(1)+3,fontSize:8,fill:mu},"1"),
+    e("text",{x:ox-11,y:pad.t+9,fontSize:9,fill:t,fontStyle:"italic"},"y"),
+    e("text",{x:ox-10,y:oy+12,fontSize:9,fill:t,fontWeight:"700"},"0"),
+    e("circle",{cx:ox,cy:oy,r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:oy,r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:toX(1)-2.5,y:oy+13,fontSize:9,fill:t,fontWeight:"700"},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:ox-10,y:toY(1)+3.5,fontSize:9,fill:t,fontWeight:"700"},"1"),
     e("line",{x1:toX(lx1),y1:toY(ly1),x2:toX(lx2),y2:toY(ly2),stroke:b,strokeWidth:2.2,strokeLinecap:"round"}),
     e("circle",{cx:toX(3),cy:toY(0),r:3.5,fill:b}),
     e("circle",{cx:toX(0),cy:toY(2),r:3.5,fill:b}),
     e("text",{x:toX(3)+4,y:toY(0)+12,fontSize:9,fill:b},"(3,0)"),
     e("text",{x:toX(0)+4,y:toY(2)-5,fontSize:9,fill:b},"(0,2)"),
+  );
+}
+
+// Prazan koordinatni sustav za zadatak 21 (učenik sam crta pravac) — kao u izvornom PDF-u.
+function SvgZad21Prazan_2010LB(){
+  const W=240,H=220,pad={l:26,r:12,t:14,b:22};
+  const _BLUE="var(--blue)";
+  const xMin=-3,xMax=5,yMin=-3,yMax=4;
+  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
+  const toX=function(v){return pad.l+((v-xMin)/(xMax-xMin))*iW;};
+  const toY=function(v){return pad.t+((yMax-v)/(yMax-yMin))*iH;};
+  const ox=toX(0),oy=toY(0);
+  const t="var(--text)",m="var(--muted)",bg="var(--bg)";
+  const grid=[];
+  for(let i=xMin;i<=xMax;i++) grid.push(e("line",{key:"gx"+i,x1:toX(i),y1:pad.t,x2:toX(i),y2:pad.t+iH,stroke:m,strokeWidth:0.5,strokeDasharray:"2,3"}));
+  for(let i=yMin;i<=yMax;i++) grid.push(e("line",{key:"gy"+i,x1:pad.l,y1:toY(i),x2:pad.l+iW,y2:toY(i),stroke:m,strokeWidth:0.5,strokeDasharray:"2,3"}));
+  return e("svg",{viewBox:"0 0 240 220",style:{width:"100%",maxWidth:240,display:"block"}},
+    ...grid,
+    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:t,strokeWidth:1.4}),
+    e("polygon",{points:(pad.l+iW)+","+oy+" "+(pad.l+iW-5)+","+(oy-2.5)+" "+(pad.l+iW-5)+","+(oy+2.5),fill:t}),
+    e("line",{x1:ox,y1:pad.t+iH,x2:ox,y2:pad.t,stroke:t,strokeWidth:1.4}),
+    e("polygon",{points:ox+","+pad.t+" "+(ox-2.5)+","+(pad.t+5)+" "+(ox+2.5)+","+(pad.t+5),fill:t}),
+    e("text",{x:pad.l+iW+3,y:oy+4,fontSize:9,fill:t,fontStyle:"italic"},"x"),
+    e("text",{x:ox-11,y:pad.t+9,fontSize:9,fill:t,fontStyle:"italic"},"y"),
+    e("text",{x:ox-10,y:oy+12,fontSize:9,fill:t,fontWeight:"700"},"0"),
+    e("circle",{cx:ox,cy:oy,r:2.2,fill:bg,stroke:t,strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:oy,r:2.2,fill:bg,stroke:t,strokeWidth:1}),
+    e("text",{x:toX(1)-2.5,y:oy+13,fontSize:9,fill:t,fontWeight:"700"},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:2.2,fill:bg,stroke:t,strokeWidth:1}),
+    e("text",{x:ox-10,y:toY(1)+3.5,fontSize:9,fill:t,fontWeight:"700"},"1"),
   );
 }
 
@@ -852,7 +898,7 @@ export const qs = [
 
 export const qImages = {
   "2010_ljeto_B__11": () => e(SvgZad11_2010LB, null),
-  "2010_ljeto_B__21": () => e(SvgZad21_2010LB, null),
+  "2010_ljeto_B__21": () => e(SvgZad21Prazan_2010LB, null),
   "2010_ljeto_B__23.1": () => e(SvgZad23_2010LB, null),
   "2010_ljeto_B__23.2": () => e(SvgZad23_2010LB, null),
   "2010_ljeto_B__24.1": () => e(SvgZad24_2010LB, null),
