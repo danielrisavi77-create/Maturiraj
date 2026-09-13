@@ -13,8 +13,8 @@ function SvgTabl24_2011LB(){
   for(let i=0;i<colW.length;i++) xs.push(xs[i]+colW[i]);
   // Cell content (null = unknown / blank)
   const cells=[
-    ["US DOLAR ($)", "1",      "352,74", null   ],
-    ["KUNA (HRK)",   "5,7256", null,     "1 000"]
+    ["US DOLAR ($)", "1",      "352.74", null   ],
+    ["KUNA (HRK)",   "5.7256", null,     "1 000"]
   ];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     // Outer border
@@ -109,22 +109,24 @@ function SvgZad27_2011LB(){
 }
 
 function SvgZad16_2011LB(){
-  // Kvadrat ABCD (a bottom-left, B bottom-right, C upper-right, D upper-left)
-  // + jednakostraničan trokut DCE iznad DC (E = apex)
-  // α = kut AEB pri vrhu E (NCVVO: 45°). Verifikacija: ED=DA=a, ∠EDA=150°,
-  //     ∠DEA=15°, ∠DEC=60°, α=∠AEC=∠DEC-∠DEA=60°-15°=45°.
+  // Kvadrat ABCD (A dolje-lijevo, B dolje-desno, C gore-desno, D gore-lijevo)
+  // + jednakostranicni trokut DCE iznad DC (E = vrh).
+  // alpha = kut DEB pri vrhu E (NCVVO: 45 stupnjeva).
+  // Verifikacija: ∠DEC=60°, u trokutu ECB je EC=CB=a i ∠ECB=150° pa je ∠CEB=15°,
+  //               dakle alpha = ∠DEB = 60° - 15° = 45°.
   const W=180,H=240;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const t="var(--text)",b=_BLUE,g=_GOLD,mu="var(--muted)";
-  const side=110;
-  // Square ABCD: A i B dolje, C i D gore
-  const A=[35,            205];
-  const B=[A[0]+side,     A[1]];
-  const C=[B[0],          A[1]-side];
-  const D=[A[0],          A[1]-side];
-  // E = apex jednakostraničnog trokuta nad DC (visina = side·√3/2)
-  const E=[(D[0]+C[0])/2, D[1]-side*Math.sqrt(3)/2];
-  function dot(p){return e("circle",{cx:p[0],cy:p[1],r:2.6,fill:"none",stroke:_BLUE,strokeWidth:1.2});}
+  const _BLUE="var(--blue)",_GOLD="var(--gold)";
+  const t="var(--text)";
+  const side=100;
+  const triH=side*Math.sqrt(3)/2;
+  // Kvadrat ABCD: A i B dolje, C i D gore
+  const D=[40,            24+triH];
+  const C=[D[0]+side,     D[1]];
+  const A=[D[0],          D[1]+side];
+  const B=[C[0],          C[1]+side];
+  // E = vrh jednakostranicnog trokuta nad DC
+  const E=[(D[0]+C[0])/2, D[1]-triH];
+  function dot(p){return e("circle",{cx:p[0].toFixed(1),cy:p[1].toFixed(1),r:2.6,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.2});}
   // Arc helper (matches Svg25_2010Aj pattern)
   function arcAtVertex(V,ref1,ref2,r,col){
     const a1=Math.atan2(ref1[1]-V[1],ref1[0]-V[0]);
@@ -139,30 +141,27 @@ function SvgZad16_2011LB(){
       fill:"none",stroke:col,strokeWidth:1.4});
   }
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    // Kvadrat ABCD
-    e("polygon",{points:`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}`,
+    // Kvadrat ABCD (bez ispune)
+    e("polygon",{points:`${A[0].toFixed(1)},${A[1].toFixed(1)} ${B[0].toFixed(1)},${B[1].toFixed(1)} ${C[0].toFixed(1)},${C[1].toFixed(1)} ${D[0].toFixed(1)},${D[1].toFixed(1)}`,
       fill:"none",stroke:_BLUE,strokeWidth:1.8,strokeLinejoin:"round"}),
-    // Jednakostraničan trokut DCE (subtle blue fill)
-    e("polygon",{points:`${D[0]},${D[1]} ${C[0]},${C[1]} ${E[0].toFixed(1)},${E[1].toFixed(1)}`,
-      fill:_BLUE,fillOpacity:0.10,stroke:t,strokeWidth:1.8,strokeLinejoin:"round"}),
-    // Linija EA (definira kut α s EB)
-    e("line",{x1:E[0].toFixed(1),y1:E[1].toFixed(1),x2:A[0],y2:A[1],
-      stroke:_BLUE,strokeWidth:1.4}),
-    // Linija EB (druga strana kuta α)
-    e("line",{x1:E[0].toFixed(1),y1:E[1].toFixed(1),x2:B[0],y2:B[1],
-      stroke:_BLUE,strokeWidth:1.4}),
-    // Arc za kut α u vrhu E (gold)
-    arcAtVertex([E[0],E[1]],A,B,18,g),
-    // α label
-    e("text",{x:E[0]+2,y:E[1]+30, fontSize:13,fill:g,fontStyle:"italic",fontWeight:600},"α"),
-    // Vertex dots
-    dot(A),dot(B),dot(C),dot(D),dot([E[0],E[1]]),
-    // Vertex labels
-    e("text",{x:A[0]-13,y:A[1]+4, fontSize:11,fill:_GOLD,fontStyle:"italic"},"A"),
-    e("text",{x:B[0]+4, y:B[1]+4, fontSize:11,fill:_GOLD,fontStyle:"italic"},"B"),
-    e("text",{x:C[0]+4, y:C[1]+4, fontSize:11,fill:_GOLD,fontStyle:"italic"},"C"),
-    e("text",{x:D[0]-13,y:D[1]+4, fontSize:11,fill:_GOLD,fontStyle:"italic"},"D"),
-    e("text",{x:E[0]-3, y:E[1]-6, fontSize:11,fill:_GOLD,fontStyle:"italic"},"E")
+    // Jednakostranicni trokut DCE (bez ispune, kao u originalu)
+    e("polygon",{points:`${D[0].toFixed(1)},${D[1].toFixed(1)} ${C[0].toFixed(1)},${C[1].toFixed(1)} ${E[0].toFixed(1)},${E[1].toFixed(1)}`,
+      fill:"none",stroke:t,strokeWidth:1.8,strokeLinejoin:"round"}),
+    // Jedina dijagonala u originalu: E -> B
+    e("line",{x1:E[0].toFixed(1),y1:E[1].toFixed(1),x2:B[0].toFixed(1),y2:B[1].toFixed(1),
+      stroke:_BLUE,strokeWidth:1.2}),
+    // Luk kuta alpha u vrhu E (izmedu ED i EB)
+    arcAtVertex([E[0],E[1]],D,B,20,_GOLD),
+    // alpha label
+    e("text",{x:E[0]-9,y:E[1]+30, fontSize:13,fill:_GOLD,fontStyle:"italic",fontWeight:600},"α"),
+    // Vrhovi
+    dot(A),dot(B),dot(C),dot(D),dot(E),
+    // Oznake vrhova
+    e("text",{x:A[0]-14,y:A[1]+14, fontSize:12,fill:_GOLD,fontStyle:"italic"},"A"),
+    e("text",{x:B[0]+6, y:B[1]+14, fontSize:12,fill:_GOLD,fontStyle:"italic"},"B"),
+    e("text",{x:C[0]+6, y:C[1]+4,  fontSize:12,fill:_GOLD,fontStyle:"italic"},"C"),
+    e("text",{x:D[0]-14,y:D[1]+4,  fontSize:12,fill:_GOLD,fontStyle:"italic"},"D"),
+    e("text",{x:E[0]-4, y:E[1]-8,  fontSize:12,fill:_GOLD,fontStyle:"italic"},"E")
   );
 }
 
