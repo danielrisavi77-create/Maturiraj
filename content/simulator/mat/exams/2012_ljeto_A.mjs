@@ -3,29 +3,28 @@ import React from 'react';
 const e = React.createElement;
 
 function SvgGraf29c_2012Alj(){
-  const W=280,H=280,cx=80,cy=180,sc=28;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  // Prazan koordinatni sustav (kao u ispitu): gusta iscrtkana mreza bez brojcanih
+  // oznaka, samo 0 i 1 uz ishodiste, te prazni kruzici u (-1,0), (0,0), (1,0), (0,1).
+  const W=280,H=280,cx=140,cy=140,sc=17.5;
+  const AX="var(--text)",GR="var(--muted)",BG="var(--bg)";
+  const marks=[[-1,0],[0,0],[1,0],[0,1]];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("pattern",{id:"g29clj",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:0.5,strokeDasharray:"3,3"})
+      e("pattern",{id:"g29clj",x:cx,y:cy,width:sc,height:sc,patternUnits:"userSpaceOnUse"},
+        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:GR,strokeOpacity:0.75,strokeWidth:0.7,strokeDasharray:"2.5,2.5"})
       ),
-      e("marker",{id:"arx29clj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ary29clj",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"arx29clj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:AX})),
+      e("marker",{id:"ary29clj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:AX}))
     ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#g29clj)"}),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#arx29clj)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ary29clj)"}),
-    e("text",{x:W-14,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:11,fill:"var(--text)"},"y"),
-    e("circle",{cx:cx,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("circle",{cx:cx+sc,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("circle",{cx:cx,cy:cy-sc,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{x:cx-12,y:cy+13,fontSize:9,fill:"var(--muted)"},"0"),
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:9,fill:"var(--muted)"},"1"),
-    e("text",{x:cx-13,y:cy-sc+4,fontSize:9,fill:"var(--muted)"},"1"),
-    ...[1,2,3,4,5].map(t=>e("text",{key:"tx"+t,x:cx+t*sc-3,y:cy+12,fontSize:8,fill:"var(--muted)"},t)),
-    ...[1,2,3,4,5].map(t=>e("text",{key:"ty"+t,x:cx-13,y:cy-t*sc+4,fontSize:8,fill:"var(--muted)"},t))
+    e("rect",{x:4,y:4,width:W-8,height:H-8,fill:"url(#g29clj)"}),
+    e("line",{x1:6,y1:cy,x2:W-10,y2:cy,stroke:AX,strokeWidth:1.8,markerEnd:"url(#arx29clj)"}),
+    e("line",{x1:cx,y1:H-6,x2:cx,y2:10,stroke:AX,strokeWidth:1.8,markerEnd:"url(#ary29clj)"}),
+    e("text",{x:W-14,y:cy+16,fontSize:11,fontStyle:"italic",fill:AX},"x"),
+    e("text",{x:cx-13,y:16,fontSize:11,fontStyle:"italic",fill:AX},"y"),
+    ...marks.map(([a,b],i)=>e("circle",{key:"m"+i,cx:cx+a*sc,cy:cy-b*sc,r:3,fill:BG,stroke:AX,strokeWidth:1.4})),
+    e("text",{x:cx-10,y:cy+14,fontSize:10,fill:AX},"0"),
+    e("text",{x:cx+sc+3,y:cy+14,fontSize:10,fill:AX},"1"),
+    e("text",{x:cx-12,y:cy-sc+4,fontSize:10,fill:AX},"1")
   );
 }
 
@@ -132,54 +131,72 @@ function SvgGraf24b_2012Alj(){
 }
 
 function SvgGraphs13_2012LjetoA(){
-  const W=320,H=300;
-  const panels=[
-    {lbl:"A",ox:10,oy:8,fn:(x)=>1/(x+2),va:-2,col:"var(--blue)"},
-    {lbl:"B",ox:170,oy:8,fn:(x)=>-1/x,va:0,col:"var(--gold)"},
-    {lbl:"C",ox:10,oy:158,fn:(x)=>1/x,va:0,col:"var(--green)"},
-    {lbl:"D",ox:170,oy:158,fn:(x)=>1/(x-2),va:2,col:"var(--red)"},
-  ];
-  const PW=140,PH=130,cx=70,cy=65,sc=22;
-  const elems=[];
-  for(const p of panels){
-    const aKey=p.lbl;
-    // Axes with arrows
-    elems.push(e("defs",{key:"d"+aKey},
-      e("marker",{id:"mx"+aKey,markerWidth:5,markerHeight:5,refX:4,refY:2.5,orient:"auto"},
-        e("path",{d:"M0,0 L0,5 L5,2.5 z",fill:"var(--text)",opacity:0.7})),
-      e("marker",{id:"my"+aKey,markerWidth:5,markerHeight:5,refX:2.5,refY:0,orient:"auto"},
-        e("path",{d:"M0,5 L5,5 L2.5,0 z",fill:"var(--text)",opacity:0.7}))
-    ));
-    elems.push(e("line",{key:"ax"+aKey,x1:p.ox+2,y1:p.oy+cy,x2:p.ox+PW-4,y2:p.oy+cy,stroke:"var(--text)",strokeWidth:1.3,strokeOpacity:0.7,markerEnd:"url(#mx"+aKey+")"}));
-    elems.push(e("line",{key:"ay"+aKey,x1:p.ox+cx,y1:p.oy+PH-2,x2:p.ox+cx,y2:p.oy+4,stroke:"var(--text)",strokeWidth:1.3,strokeOpacity:0.7,markerEnd:"url(#my"+aKey+")"}));
-    elems.push(e("text",{key:"tx"+aKey,x:p.ox+PW-5,y:p.oy+cy-5,fontSize:10,fill:"var(--text)",opacity:0.6},"x"));
-    elems.push(e("text",{key:"ty"+aKey,x:p.ox+cx+4,y:p.oy+7,fontSize:10,fill:"var(--text)",opacity:0.6},"y"));
-    elems.push(e("text",{key:"to"+aKey,x:p.ox+cx-10,y:p.oy+cy+12,fontSize:9,fill:"var(--text)",opacity:0.6},"0"));
-    // Asymptote (dashed)
-    const axPx=p.ox+cx+p.va*sc;
-    if(axPx>p.ox+3&&axPx<p.ox+PW-5){
-      elems.push(e("line",{key:"as"+aKey,x1:axPx,y1:p.oy+3,x2:axPx,y2:p.oy+PH-3,stroke:p.col,strokeOpacity:0.3,strokeDasharray:"4,3",strokeWidth:1.3}));
-    }
-    // Draw branches
-    const xMin=-3.2,xMax=4.2,eps=0.18;
-    for(let branch=0;branch<2;branch++){
-      const xS=branch===0?xMin:p.va+eps;
-      const xE=branch===0?p.va-eps:xMax;
-      const pts=[];
-      for(let x=xS;x<=xE;x+=0.07){
-        const fv=p.fn(x);
-        if(!isFinite(fv)||Math.abs(fv)>7) continue;
-        const px=p.ox+cx+x*sc;
-        const py=p.oy+cy-fv*sc;
-        if(px>p.ox+1&&px<p.ox+PW-1&&py>p.oy+2&&py<p.oy+PH-2)
-          pts.push(`${px.toFixed(1)},${py.toFixed(1)}`);
-      }
-      if(pts.length>2) elems.push(e("polyline",{key:"pl"+aKey+"b"+branch,points:pts.join(" "),fill:"none",stroke:p.col,strokeWidth:2.2}));
-    }
-    // Label
-    elems.push(e("text",{key:"lb"+aKey,x:p.ox+4,y:p.oy+PH+15,fontSize:14,fontWeight:"700",fill:p.col},p.lbl+"."));
+  // Gornji graf: linearna funkcija y=f(x)=x/2+1 (nultocka x=-2, f(0)=1).
+  // Ponudeni odgovori kao u ispitu:
+  //   A, B - neprekinute S-krivulje (bez asimptote),
+  //   C - hiperbola s vertikalnom asimptotom x=-2 (tocan odgovor, y=1/f(x)),
+  //   D - hiperbola s vertikalnom asimptotom x=1.
+  const W=340,H=568;
+  const AX="var(--text)",GR="var(--muted)",BG="var(--bg)";
+  const defs=[],els=[];
+
+  function frame(id,ox,oy,pw,ph,cx,cy,sc){
+    defs.push(e("pattern",{key:"p"+id,id:"g13"+id,x:ox+cx,y:oy+cy,width:sc,height:sc,patternUnits:"userSpaceOnUse"},
+      e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:GR,strokeOpacity:0.75,strokeWidth:0.7,strokeDasharray:"2.5,2.5"})));
+    defs.push(e("marker",{key:"mx"+id,id:"mx13"+id,markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},
+      e("path",{d:"M0,0 L0,6 L6,3 z",fill:AX})));
+    defs.push(e("marker",{key:"my"+id,id:"my13"+id,markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},
+      e("path",{d:"M0,0 L0,6 L6,3 z",fill:AX})));
+    els.push(e("rect",{key:"r"+id,x:ox,y:oy,width:pw,height:ph,fill:`url(#g13${id})`}));
+    els.push(e("line",{key:"ax"+id,x1:ox+2,y1:oy+cy,x2:ox+pw-3,y2:oy+cy,stroke:AX,strokeWidth:1.6,markerEnd:`url(#mx13${id})`}));
+    els.push(e("line",{key:"ay"+id,x1:ox+cx,y1:oy+ph-2,x2:ox+cx,y2:oy+3,stroke:AX,strokeWidth:1.6,markerEnd:`url(#my13${id})`}));
+    els.push(e("text",{key:"lx"+id,x:ox+pw-10,y:oy+cy+16,fontSize:10,fontStyle:"italic",fill:AX},"x"));
+    els.push(e("text",{key:"ly"+id,x:ox+cx-12,y:oy+13,fontSize:10,fontStyle:"italic",fill:AX},"y"));
+    // prazni kruzici: (0,0), (1,0), (0,1) + brojcane oznake 0 i 1
+    [[0,0],[1,0],[0,1]].forEach(([a,b],i)=>els.push(e("circle",{key:"c"+id+i,cx:ox+cx+a*sc,cy:oy+cy-b*sc,r:2.6,fill:BG,stroke:AX,strokeWidth:1.2})));
+    els.push(e("text",{key:"n0"+id,x:ox+cx-9,y:oy+cy+13,fontSize:9,fill:AX},"0"));
+    els.push(e("text",{key:"n1"+id,x:ox+cx+sc+3,y:oy+cy+13,fontSize:9,fill:AX},"1"));
+    els.push(e("text",{key:"n2"+id,x:ox+cx-11,y:oy+cy-sc+4,fontSize:9,fill:AX},"1"));
   }
-  return e("svg",{width:W,height:H,viewBox:"0 0 "+W+" "+H,style:{display:"block",margin:"0 auto"}},...elems);
+
+  function curve(id,ox,oy,pw,ph,cx,cy,sc,fn,col,va){
+    const xmin=(2-cx)/sc, xmax=(pw-cx-3)/sc;
+    const segs=[]; let cur=[];
+    const flush=()=>{ if(cur.length>1) segs.push(cur); cur=[]; };
+    for(let x=xmin;x<=xmax;x+=0.02){
+      if(va!==null&&Math.abs(x-va)<0.05){ flush(); continue; }
+      const y=fn(x);
+      const px=ox+cx+x*sc, py=oy+cy-y*sc;
+      if(!isFinite(py)||py<oy+2||py>oy+ph-2){ flush(); continue; }
+      cur.push(`${px.toFixed(1)},${py.toFixed(1)}`);
+    }
+    flush();
+    segs.forEach((s,i)=>els.push(e("polyline",{key:"q"+id+i,points:s.join(" "),fill:"none",stroke:col,
+      strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"})));
+  }
+
+  // --- gornji graf: y = f(x) ---
+  const TOX=68,TOY=4,TPW=204,TPH=196,TCX=102,TCY=98,TSC=19;
+  frame("T",TOX,TOY,TPW,TPH,TCX,TCY,TSC);
+  curve("T",TOX,TOY,TPW,TPH,TCX,TCY,TSC,(x)=>x/2+1,AX,null);
+  els.push(e("text",{key:"flab",x:TOX+TPW-14,y:TOY+62,fontSize:11,fontStyle:"italic",fill:AX},"y = f(x)"));
+
+  // --- ponudeni odgovori A-D ---
+  const PW=156,PH=150,CX=78,CY=74,SC=19;
+  const opts=[
+    {lbl:"A",ox:6,oy:212,col:"var(--blue)", va:null, fn:(x)=>0.06+1.22*Math.tanh(0.75*(x+1.55))},
+    {lbl:"B",ox:178,oy:212,col:"var(--gold)",va:null, fn:(x)=>0.06-1.22*Math.tanh(0.75*(x+1.55))},
+    {lbl:"C",ox:6,oy:388,col:"var(--green)",va:-2,   fn:(x)=>2/(x+2)},
+    {lbl:"D",ox:178,oy:388,col:"var(--red)", va:1,    fn:(x)=>0.5/(x-1)},
+  ];
+  for(const p of opts){
+    frame(p.lbl,p.ox,p.oy,PW,PH,CX,CY,SC);
+    curve(p.lbl,p.ox,p.oy,PW,PH,CX,CY,SC,p.fn,p.col,p.va);
+    els.push(e("text",{key:"lb"+p.lbl,x:p.ox+4,y:p.oy+PH+16,fontSize:13,fontWeight:"700",fill:p.col},p.lbl+"."));
+  }
+
+  return e("svg",{width:W,height:H,viewBox:"0 0 "+W+" "+H,style:{display:"block",margin:"0 auto"}},
+    e("defs",null,...defs),...els);
 }
 
 function SvgSol29c_2012LjetoA(){
