@@ -203,51 +203,55 @@ function Svg28_2024Bjes(){
 
 function Svg26_2024Bjes(){
   const st="var(--text)";
-  const muted="var(--muted,#94a3b8)";
-  const blue="var(--blue,#4a90d9)";
-  const red="var(--red,#e05252)";
-  const W=380, H=340;
-  const ox=220, oy=160;
-  const u=32;
+  const muted="var(--muted)";
+  const bg="var(--bg)";
+  const W=400, H=360;
+  const ox=200, oy=185;
+  const u=44;
   const pxF=(x)=>ox+x*u;
   const pyF=(y)=>oy-y*u;
-  // f(x) = -x² - 2x + 1, tjeme (-1, 2)
+  // f(x) = -x2 - 2x + 1, tjeme T(-1, 2)
   const f=(x)=> -x*x - 2*x + 1;
+  // Original: samo rastuca grana, od dna lijevo do tjemena T
   const pts=[];
-  for(let x=-3; x<=1.2; x+=0.05){
-    const y=f(x);
-    if(y>-6) pts.push(`${pxF(x).toFixed(1)},${pyF(y).toFixed(1)}`);
-  }
+  for(let x=-3.42; x<=-1.0001; x+=0.04) pts.push(`${pxF(x).toFixed(1)},${pyF(f(x)).toFixed(1)}`);
+  pts.push(`${pxF(-1).toFixed(1)},${pyF(2).toFixed(1)}`);
   const grid=[];
-  for(let i=-5;i<=3;i++){
+  for(let i=-3;i<=3;i++){
     if(i===0) continue;
-    grid.push(e("line",{key:"gx"+i, x1:ox-200, y1:pyF(i), x2:ox+120, y2:pyF(i),
-      stroke:st, strokeWidth:0.5, strokeOpacity:0.18, strokeDasharray:"3 5"}));
+    grid.push(e("line",{key:"gx"+i, x1:pxF(-4), y1:pyF(i), x2:pxF(3.5), y2:pyF(i),
+      stroke:st, strokeWidth:0.8, strokeOpacity:0.22}));
   }
-  for(let j=-5;j<=3;j++){
+  for(let j=-4;j<=3;j++){
     if(j===0) continue;
-    grid.push(e("line",{key:"gy"+j, x1:pxF(j), y1:oy-140, x2:pxF(j), y2:oy+160,
-      stroke:st, strokeWidth:0.5, strokeOpacity:0.18, strokeDasharray:"3 5"}));
+    grid.push(e("line",{key:"gy"+j, x1:pxF(j), y1:pyF(3.3), x2:pxF(j), y2:pyF(-3.85),
+      stroke:st, strokeWidth:0.8, strokeOpacity:0.22}));
   }
+  // pune tocke na krivulji (kao u originalu)
+  const marks=[[-3,-2],[-2,1]];
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
-    style:{maxWidth:"380px",width:"100%",display:"block",margin:"16px auto"}},
+    style:{maxWidth:"400px",width:"100%",display:"block",margin:"16px auto"}},
     ...grid,
-    e("line",{key:"xa", x1:ox-200, y1:oy, x2:ox+120, y2:oy, stroke:st, strokeWidth:1.4}),
-    e("line",{key:"ya", x1:ox, y1:oy-150, x2:ox, y2:oy+170, stroke:st, strokeWidth:1.4}),
-    e("polygon",{key:"xar", points:`${ox+120},${oy} ${ox+112},${oy-5} ${ox+112},${oy+5}`, fill:st}),
-    e("polygon",{key:"yar", points:`${ox},${oy-150} ${ox-5},${oy-142} ${ox+5},${oy-142}`, fill:st}),
-    e("text",{key:"xl", x:ox+128, y:oy+5, fontSize:14, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st}, "x"),
-    e("text",{key:"yl", x:ox+8, y:oy-152, fontSize:14, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st}, "y"),
-    e("text",{key:"O", x:ox-12, y:oy+16, fontSize:12, fontFamily:"Georgia,serif", fill:muted}, "0"),
-    e("line",{key:"t1x", x1:pxF(1), y1:oy-4, x2:pxF(1), y2:oy+4, stroke:st, strokeWidth:1.2}),
-    e("text",{key:"l1x", x:pxF(1), y:oy+16, textAnchor:"middle", fontSize:12, fontFamily:"Georgia,serif", fill:muted}, "1"),
-    e("line",{key:"t1y", x1:ox-4, y1:pyF(1), x2:ox+4, y2:pyF(1), stroke:st, strokeWidth:1.2}),
-    e("text",{key:"l1y", x:ox-10, y:pyF(1)+4, textAnchor:"end", fontSize:12, fontFamily:"Georgia,serif", fill:muted}, "1"),
-    // Parabola
-    e("polyline",{key:"par", points:pts.join(" "), fill:"none", stroke:blue, strokeWidth:2.4, strokeLinecap:"round"}),
+    e("line",{key:"xa", x1:pxF(-4.1), y1:oy, x2:pxF(3.85), y2:oy, stroke:st, strokeWidth:1.6}),
+    e("line",{key:"ya", x1:ox, y1:pyF(-3.85), x2:ox, y2:pyF(3.4), stroke:st, strokeWidth:1.6}),
+    e("polygon",{key:"xar", points:`${pxF(3.95)},${oy} ${pxF(3.75)},${oy-4.5} ${pxF(3.75)},${oy+4.5}`, fill:st}),
+    e("polygon",{key:"yar", points:`${ox},${pyF(3.5)} ${ox-4.5},${pyF(3.3)} ${ox+4.5},${pyF(3.3)}`, fill:st}),
+    e("text",{key:"xl", x:pxF(3.3), y:oy+18, fontSize:15, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st}, "x"),
+    e("text",{key:"yl", x:ox-18, y:pyF(3.15), fontSize:15, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st}, "y"),
+    // Krivulja
+    e("polyline",{key:"par", points:pts.join(" "), fill:"none", stroke:st, strokeWidth:2, strokeLinecap:"round", strokeLinejoin:"round"}),
+    // Oznake na osima: sitni prazni kruzici
+    e("circle",{key:"o0", cx:ox, cy:oy, r:3, fill:bg, stroke:st, strokeWidth:1.2}),
+    e("circle",{key:"o1x", cx:pxF(1), cy:oy, r:3, fill:bg, stroke:st, strokeWidth:1.2}),
+    e("circle",{key:"o1y", cx:ox, cy:pyF(1), r:3, fill:bg, stroke:st, strokeWidth:1.2}),
+    e("text",{key:"l0", x:ox-8, y:oy+20, textAnchor:"end", fontSize:14, fontFamily:"Georgia,serif", fill:st}, "0"),
+    e("text",{key:"l1x", x:pxF(1)-1, y:oy+20, fontSize:14, fontFamily:"Georgia,serif", fill:st}, "1"),
+    e("text",{key:"l1y", x:ox-10, y:pyF(1)+5, textAnchor:"end", fontSize:14, fontFamily:"Georgia,serif", fill:st}, "1"),
+    // Pune tocke na krivulji
+    ...marks.map(([x,y],i)=> e("circle",{key:"m"+i, cx:pxF(x), cy:pyF(y), r:4, fill:st})),
     // Tjeme T
-    e("circle",{key:"T", cx:pxF(-1), cy:pyF(2), r:4.5, fill:red}),
-    e("text",{key:"Tl", x:pxF(-1)+8, y:pyF(2)-6, fontSize:16, fontStyle:"italic", fontFamily:"Georgia,serif", fill:red, fontWeight:600}, "T")
+    e("circle",{key:"T", cx:pxF(-1), cy:pyF(2), r:4, fill:st}),
+    e("text",{key:"Tl", x:pxF(-1)+7, y:pyF(2)-2, fontSize:16, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st}, "T")
   );
 }
 
@@ -337,31 +341,25 @@ function Svg20_2024Bjes(){
 
 function Svg15_2024Bjes(){
   const W=400, H=300;
-  const blue="var(--blue)"; const blueLight="rgba(74,144,217,0.08)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
-  const cx=200, cy=160, r=110;
+  const txt="var(--text)"; const bg="var(--bg)";
+  const cx=200, cy=150, r=110;
   const deg=(d)=>d*Math.PI/180;
-  // PDF: B bot-left, C bot-right, A top-left, D top-right (from earlier render)
-  const A=[cx + r*Math.cos(deg(150)), cy - r*Math.sin(deg(150))];
-  const D=[cx + r*Math.cos(deg(40)),  cy - r*Math.sin(deg(40))];
-  const B=[cx + r*Math.cos(deg(210)), cy - r*Math.sin(deg(210))];
-  const C=[cx + r*Math.cos(deg(330)), cy - r*Math.sin(deg(330))];
+  // PDF: A gore-lijevo, D gore-desno, B dolje-lijevo, C dolje-desno
+  const P=(d)=>[cx + r*Math.cos(deg(d)), cy - r*Math.sin(deg(d))];
+  const A=P(127), D=P(50), B=P(233), C=P(310);
   const S=[cx,cy];
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"400px",width:"100%",display:"block",margin:"12px auto"}},
-    e("circle",{key:"c",cx:cx,cy:cy,r:r,fill:blueLight,stroke:blue,strokeWidth:2}),
-    // Lines connecting points (chords for angle)
-    e("line",{key:"AB",x1:A[0],y1:A[1],x2:B[0],y2:B[1],stroke:gold,strokeWidth:1.6}),
-    e("line",{key:"AD",x1:A[0],y1:A[1],x2:D[0],y2:D[1],stroke:gold,strokeWidth:1.6}),
-    e("line",{key:"SB",x1:S[0],y1:S[1],x2:B[0],y2:B[1],stroke:red,strokeWidth:1.4,strokeDasharray:"5 3"}),
-    e("line",{key:"SC",x1:S[0],y1:S[1],x2:C[0],y2:C[1],stroke:red,strokeWidth:1.4,strokeDasharray:"5 3"}),
-    // Center dot
-    e("circle",{key:"S",cx:S[0],cy:S[1],r:3,fill:txt}),
-    e("text",{key:"lS",x:S[0]-6,y:S[1]+18,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"S"),
-    // Vertex labels
-    ...[[A,"A",-18,-6],[B,"B",-16,18],[C,"C",8,18],[D,"D",10,-6]].map(([p,l,dx,dy],i)=>
+    // Kruznica (bez ispune, bez tetiva/polumjera - kao u originalu)
+    e("circle",{key:"c",cx:cx,cy:cy,r:r,fill:"none",stroke:txt,strokeWidth:1.6}),
+    // Srediste S
+    e("circle",{key:"S",cx:S[0],cy:S[1],r:2.6,fill:bg,stroke:txt,strokeWidth:1.2}),
+    e("text",{key:"lS",x:S[0],y:S[1]+19,textAnchor:"middle",fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"S"),
+    // Tocke na kruznici: sitni prazni kruzici
+    ...[[A,"A",-17,-3],[D,"D",11,-3],[B,"B",-19,17],[C,"C",11,17]].map(([p,l,dx,dy],i)=>
       e("g",{key:"v"+i},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
-        e("text",{x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},l)
+        e("circle",{cx:p[0],cy:p[1],r:3.2,fill:bg,stroke:txt,strokeWidth:1.2}),
+        e("text",{x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},l)
       )
     )
   );
