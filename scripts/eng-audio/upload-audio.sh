@@ -19,7 +19,7 @@
 
 set -euo pipefail
 
-REPO="danielrisavi77-create/Maturiraj"
+REPO="danielrisavi77-create/maturiraj-eng-audio"
 RELEASE_TAG="eng-audio-v1"
 RELEASE_TITLE="Engleski audio v1"
 RELEASE_NOTES="NCVVO snimke slušanja, re-enkodirano mono 48 kbps"

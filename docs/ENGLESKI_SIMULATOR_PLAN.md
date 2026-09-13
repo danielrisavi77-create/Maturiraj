@@ -224,7 +224,7 @@ Testovi komponente (dopuna): `ExamPlayScreen` je dobio named export i renderira 
 
 Puni audio za slušanje je pribavljen s NCVVO-a, re-enkodiran i uklopljen u simulator (grana `fix/engleski-simulator`).
 
-**Pokrivenost**: 68/68 ispita sa slušanjem (34 osnovna razina B + 34 viša razina A, 2010.–2025.) ima zapis u `lib/data/engleski-simulator/audio-map.json`; `_missing` je prazan. 430 enkodiranih MP3 datoteka (mono, 32 kHz, 48 kbps), ukupno ~665 MB — hostane na GitHub Release-u [`eng-audio-v1`](https://github.com/danielrisavi77-create/Maturiraj/releases/tag/eng-audio-v1), ne u repou (vidi `public/audio/eng/README.md`).
+**Pokrivenost**: 68/68 ispita sa slušanjem (34 osnovna razina B + 34 viša razina A, 2010.–2025.) ima zapis u `lib/data/engleski-simulator/audio-map.json`; `_missing` je prazan. 430 enkodiranih MP3 datoteka (mono, 32 kHz, 48 kbps), ukupno ~665 MB — hostane na GitHub Release-u [`eng-audio-v1`](https://github.com/danielrisavi77-create/maturiraj-eng-audio/releases/tag/eng-audio-v1) zasebnog javnog repoa (glavni repo je privatan pa njegovi release asseti nisu javno dostupni), ne u repou (vidi `public/audio/eng/README.md`).
 
 **Format `audio-map.json`** (promjena u odnosu na stariji oblik iz statusa faze 5): `{ "<examKey>": { "intro": "<file>|null", "tasks": { "<taskNum>": { "topic", "first", "repeat", "confidence", "note" } } }, "_missing": [] }`. `lib/engleski-simulator/audioBase.js` spaja imena datoteka s `ENG_AUDIO_BASE` (env `NEXT_PUBLIC_ENG_AUDIO_BASE` override); `legacyDriveId`/Google Drive fallback je uklonjen.
 
