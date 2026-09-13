@@ -127,7 +127,7 @@ function SvgGraf27_2012JesenB(){
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
       e("marker",{id:"gj27x",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"gj27y",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"gj27y",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"}))
     ),
     // isprekidana mreža (vodilice) – kao u izvorniku
     ...ticksX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:oy,x2:toX(x),y2:oy+ph,...DASH})),
