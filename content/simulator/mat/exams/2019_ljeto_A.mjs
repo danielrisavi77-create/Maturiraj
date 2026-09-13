@@ -174,7 +174,7 @@ function Svg13_2019Alj(){
 
   /* PDF: f (pink) parabola UP, nultočke 1 i 5, vrh (3,-4). g (crna) parabola DOWN, vrh (1,2), nultočke ~-1 i ~3.5.
      NCVVO Q13=C: f(3)·g(3) negativan → f(3)=-4 (neg) i g(3) marginalno pozitivan.
-     g(x) = -0.4(x-1)² + 2: vrh (1,2), nultočke 1±√5 ≈ -1.24 i 3.24, g(3) = -0.4·4 + 2 = 0.4 > 0 ✓ */
+     g(x) = -0.435(x+1)(x-3.5): nultočke -1 i 3.5 (kao u PDF-u), vrh (1.25; ~2.2), g(3) = 0.87 > 0 ✓ */
   const fPts=[];
   for(let x=xMin;x<=xMax;x+=0.05){
     const y=(x-1)*(x-5); /* f(x) = (x-1)(x-5), nultočke 1,5; vrh (3,-4) */
@@ -182,9 +182,11 @@ function Svg13_2019Alj(){
   }
   const gPts=[];
   for(let x=xMin;x<=xMax;x+=0.05){
-    const y=-0.4*(x-1)*(x-1)+2; /* g(x) = -0.4(x-1)² + 2, vrh (1,2) */
+    const y=-0.435*(x+1)*(x-3.5); /* g(x) = -0.435(x+1)(x-3.5), nultočke -1 i 3.5, vrh (1.25; ~2.2) */
     if(y>=yMin-0.5&&y<=yMax+0.5) gPts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
   }
+  /* nultočke obiju funkcija — u PDF-u su označene praznim kružićima na x-osi */
+  const roots=[-1,1,3.5,5];
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     /* grid */
@@ -204,9 +206,11 @@ function Svg13_2019Alj(){
     /* f: pink (kao u PDF) - parabola s vrhom (3,-4), nultočke 1,5 */
     fPts.length>1&&e("polyline",{points:fPts.join(" "),fill:"none",stroke:_RED,strokeWidth:1.8}),
     e("text",{x:toX(4.5),y:toY(5.5),fontSize:13,fontStyle:"italic",fill:_RED},"f"),
-    /* g: crna (kao u PDF) - parabola s vrhom (1,2), nultočke ≈-1.24, 3.24 */
+    /* g: crna (kao u PDF) - parabola s vrhom (1.25; ~2.2), nultočke -1 i 3.5 */
     gPts.length>1&&e("polyline",{points:gPts.join(" "),fill:"none",stroke:"var(--text)",strokeWidth:1.8}),
-    e("text",{x:toX(4.5),y:toY(-3),fontSize:13,fontStyle:"italic",fill:"var(--text)"},"g")
+    e("text",{x:toX(4.5),y:toY(-3),fontSize:13,fontStyle:"italic",fill:"var(--text)"},"g"),
+    /* prazni kružići na nultočkama (x = -1, 1, 3.5, 5) */
+    ...roots.map(x=>e("circle",{key:"rt"+x,cx:toX(x),cy:oy,r:2.6,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.1}))
   );
 }
 
