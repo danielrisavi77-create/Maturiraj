@@ -29,80 +29,77 @@ function SvgGraf29c_2012Alj(){
 }
 
 function SvgHiperbola29_2012LjetoA(){
-  // Hiperbola x²/4 − 2y² = 1: vrhovi (±2,0), asimptote y=±x/(2√2)≈±0.354x
-  // A(6,2): 36/4−2·4=9−8=1 ✓
-  // Bez tangente — tangenta se traži u zadatku
+  // Hiperbola x²/4 − 2y² = 1: vrhovi (±2,0). A(6,2): 36/4−2·4=9−8=1 ✓
+  // Kao u ispitu: samo krivulja, referentni kružici (0,0), (1,0), (0,1) i točka A.
+  // Bez asimptota (ne crtaju se u izvorniku) i bez tangente (traži se u zadatku).
   const W=300,H=240,cx=110,cy=120,sc=22;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  // Asimptotni nagib
-  const k=1/(2*Math.sqrt(2));
+  const _BLUE="var(--blue)";
+  const AX="var(--text)",GR="var(--muted)",BG="var(--bg)";
   // Grane hiperbole (parameterski po y)
   const pts_r=[],pts_l=[];
   for(let y=-4.5;y<=4.5;y+=0.025){
-    const x2=4*(1+2*y*y);
-    const x=Math.sqrt(x2);
+    const x=Math.sqrt(4*(1+2*y*y));
     const pxr=cx+x*sc, pxl=cx-x*sc, py=cy-y*sc;
     if(pxr<W-4&&py>4&&py<H-4) pts_r.push(`${pxr.toFixed(1)},${py.toFixed(1)}`);
     if(pxl>4&&py>4&&py<H-4) pts_l.push(`${pxl.toFixed(1)},${py.toFixed(1)}`);
   }
-  const ticks=[-4,-3,-2,-1,1,2,3,4,5,6];
+  const ticks=[-4,-3,-2,-1,1,2,3,4,5,6,7];
   const yticks=[-4,-3,-2,-1,1,2,3,4];
-  // Asimptote: y=±kx
-  const axRange=7;
-  const apts1=`${cx-axRange*sc},${cy+axRange*k*sc} ${cx+axRange*sc},${cy-axRange*k*sc}`;
-  const apts2=`${cx-axRange*sc},${cy-axRange*k*sc} ${cx+axRange*sc},${cy+axRange*k*sc}`;
   return e("svg",{width:W,height:H,viewBox:"0 0 "+W+" "+H,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"axhx",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"axhy",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"axhx",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:AX})),
+      e("marker",{id:"axhy",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:AX}))
     ),
-    // Grid (dashed)
-    ...ticks.map(t=>e("line",{key:"gx"+t,x1:cx+t*sc,y1:4,x2:cx+t*sc,y2:H-4,stroke:"var(--text)",strokeOpacity:0.12,strokeWidth:0.7,strokeDasharray:"3,3"})),
-    ...yticks.map(t=>e("line",{key:"gy"+t,x1:4,y1:cy-t*sc,x2:W-4,y2:cy-t*sc,stroke:"var(--text)",strokeOpacity:0.12,strokeWidth:0.7,strokeDasharray:"3,3"})),
-    // Asimptote (tanke, var(--text))
-    e("polyline",{points:apts1,fill:"none",stroke:_BLUE,strokeWidth:0.9,strokeOpacity:0.5}),
-    e("polyline",{points:apts2,fill:"none",stroke:_BLUE,strokeWidth:0.9,strokeOpacity:0.5}),
+    // iscrtkana mreza
+    ...ticks.map(t=>e("line",{key:"gx"+t,x1:cx+t*sc,y1:6,x2:cx+t*sc,y2:H-6,stroke:GR,strokeOpacity:0.7,strokeWidth:0.7,strokeDasharray:"2.5,2.5"})),
+    ...yticks.map(t=>e("line",{key:"gy"+t,x1:6,y1:cy-t*sc,x2:W-6,y2:cy-t*sc,stroke:GR,strokeOpacity:0.7,strokeWidth:0.7,strokeDasharray:"2.5,2.5"})),
     // Osi
-    e("line",{x1:4,y1:cy,x2:W-4,y2:cy,stroke:"var(--text)",strokeWidth:1.6,markerEnd:"url(#axhx)"}),
-    e("line",{x1:cx,y1:H-4,x2:cx,y2:4,stroke:"var(--text)",strokeWidth:1.6,markerEnd:"url(#axhy)"}),
-    e("text",{x:W-8,y:cy-6,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:11,fontSize:11,fill:"var(--text)"},"y"),
-    // Oznake osi
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:10,fill:"var(--text)"},"1"),
-    e("text",{x:cx+3,y:cy-sc+4,fontSize:10,fill:"var(--text)"},"1"),
-    e("text",{x:cx-11,y:cy+13,fontSize:10,fill:"var(--text)"},"0"),
-    // Hiperbola grane (crno, debelo — kao u PDF-u)
+    e("line",{x1:6,y1:cy,x2:W-6,y2:cy,stroke:AX,strokeWidth:1.6,markerEnd:"url(#axhx)"}),
+    e("line",{x1:cx,y1:H-6,x2:cx,y2:8,stroke:AX,strokeWidth:1.6,markerEnd:"url(#axhy)"}),
+    e("text",{x:W-14,y:cy+16,fontSize:11,fontStyle:"italic",fill:AX},"x"),
+    e("text",{x:cx-13,y:18,fontSize:11,fontStyle:"italic",fill:AX},"y"),
+    // Hiperbola grane
     e("polyline",{points:pts_r.join(" "),fill:"none",stroke:_BLUE,strokeWidth:2.4}),
     e("polyline",{points:pts_l.join(" "),fill:"none",stroke:_BLUE,strokeWidth:2.4}),
-    // Vrhovi — open circles na (±2,0)
-    e("circle",{cx:cx+2*sc,cy:cy,r:4.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("circle",{cx:cx-2*sc,cy:cy,r:4.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    // Točka A(6,2) — open circle s labelom
-    e("circle",{cx:cx+6*sc,cy:cy-2*sc,r:4.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.8}),
-    e("text",{x:cx+6*sc+7,y:cy-2*sc-5,fontSize:12,fontWeight:"600",fill:"var(--text)"},"A(6, 2)")
+    // Referentni kruzici na osima: ishodiste, (1,0) i (0,1)
+    e("circle",{cx:cx,cy:cy,r:3,fill:BG,stroke:AX,strokeWidth:1.4}),
+    e("circle",{cx:cx+sc,cy:cy,r:3,fill:BG,stroke:AX,strokeWidth:1.4}),
+    e("circle",{cx:cx,cy:cy-sc,r:3,fill:BG,stroke:AX,strokeWidth:1.4}),
+    e("text",{x:cx-11,y:cy+14,fontSize:10,fill:AX},"0"),
+    e("text",{x:cx+sc+3,y:cy+14,fontSize:10,fill:AX},"1"),
+    e("text",{x:cx-12,y:cy-sc+4,fontSize:10,fill:AX},"1"),
+    // Točka A(6,2) — prazni kruzic s labelom iznad-lijevo
+    e("circle",{cx:cx+6*sc,cy:cy-2*sc,r:3.5,fill:BG,stroke:AX,strokeWidth:1.6}),
+    e("text",{x:cx+6*sc-46,y:cy-2*sc-7,fontSize:12,fontStyle:"italic",fill:AX},"A(6, 2)")
   );
 }
 
 function SvgGraf26_2012Alj(){
-  const W=250,H=260,cx=90,cy=130,sc=36;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  // Prazan koordinatni sustav kao u ispitu: iscrtkana kvadraticna mreza (-5..5),
+  // osi sa strelicama te prazni kruzici u (0,0), (1,0) i (0,1) s oznakama 0, 1, 1.
+  const W=270,H=280,cx=125,cy=140,sc=22,n=5;
+  const AX="var(--text)",GR="var(--muted)",BG="var(--bg)";
+  const gx0=cx-n*sc,gx1=cx+n*sc,gy0=cy-n*sc,gy1=cy+n*sc;
+  const idx=[-5,-4,-3,-2,-1,0,1,2,3,4,5];
+  const marks=[[0,0],[1,0],[0,1]];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx26lj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ary26lj",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"arx26lj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:AX})),
+      e("marker",{id:"ary26lj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:AX}))
     ),
-    ...[-2,-1,1,2,3].map(i=>e("line",{key:"gx"+i,x1:cx+i*sc,y1:15,x2:cx+i*sc,y2:H-15,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"4,3"})),
-    ...[-3,-2,-1,1,2,3].map(i=>e("line",{key:"gy"+i,x1:15,y1:cy-i*sc,x2:W-15,y2:cy-i*sc,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"4,3"})),
-    e("line",{x1:15,y1:cy,x2:W-10,y2:cy,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#arx26lj)"}),
-    e("line",{x1:cx,y1:H-15,x2:cx,y2:10,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#ary26lj)"}),
-    e("text",{x:W-14,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:16,fontSize:11,fill:"var(--text)"},"y"),
-    e("circle",{cx:cx+sc,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("circle",{cx:cx-sc,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("circle",{cx:cx,cy:cy+sc,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{x:cx-14,y:cy+13,fontSize:10,fill:"var(--muted)"},"0"),
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:10,fill:"var(--muted)"},"1"),
-    e("text",{x:cx-14,y:cy-sc+4,fontSize:10,fill:"var(--muted)"},"1")
+    // iscrtkana mreza (bez brojcanih oznaka), kao u ispitu
+    ...idx.map(i=>e("line",{key:"gx"+i,x1:cx+i*sc,y1:gy0,x2:cx+i*sc,y2:gy1,stroke:GR,strokeOpacity:0.75,strokeWidth:0.7,strokeDasharray:"2.5,2.5"})),
+    ...idx.map(i=>e("line",{key:"gy"+i,x1:gx0,y1:cy-i*sc,x2:gx1,y2:cy-i*sc,stroke:GR,strokeOpacity:0.75,strokeWidth:0.7,strokeDasharray:"2.5,2.5"})),
+    // osi
+    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:AX,strokeWidth:1.8,markerEnd:"url(#arx26lj)"}),
+    e("line",{x1:cx,y1:H-8,x2:cx,y2:12,stroke:AX,strokeWidth:1.8,markerEnd:"url(#ary26lj)"}),
+    e("text",{x:W-16,y:cy+16,fontSize:11,fontStyle:"italic",fill:AX},"x"),
+    e("text",{x:cx-14,y:22,fontSize:11,fontStyle:"italic",fill:AX},"y"),
+    // referentni kruzici: ishodiste, (1,0) i (0,1)
+    ...marks.map(([a,b],i)=>e("circle",{key:"m"+i,cx:cx+a*sc,cy:cy-b*sc,r:3,fill:BG,stroke:AX,strokeWidth:1.4})),
+    e("text",{x:cx-11,y:cy+14,fontSize:10,fill:AX},"0"),
+    e("text",{x:cx+sc+3,y:cy+14,fontSize:10,fill:AX},"1"),
+    e("text",{x:cx-12,y:cy-sc+4,fontSize:10,fill:AX},"1")
   );
 }
 
