@@ -4,14 +4,14 @@
 
 Audio datoteke se **ne nalaze u repou** (rade se o ~665 MB / 430 MP3 datoteka —
 prevelike i nepotrebne za git povijest). Hostane su kao asseti GitHub Release-a
-[`eng-audio-v1`](https://github.com/danielrisavi77-create/Maturiraj/releases/tag/eng-audio-v1)
+[`eng-audio-v1`](https://github.com/danielrisavi77-create/maturiraj-eng-audio/releases/tag/eng-audio-v1)
 na ovom repou.
 
 Bazni URL je definiran u `lib/engleski-simulator/audioBase.js`:
 
 ```js
 export const ENG_AUDIO_BASE = process.env.NEXT_PUBLIC_ENG_AUDIO_BASE
-  || 'https://github.com/danielrisavi77-create/Maturiraj/releases/download/eng-audio-v1/'
+  || 'https://github.com/danielrisavi77-create/maturiraj-eng-audio/releases/download/eng-audio-v1/'
 ```
 
 Postavi `NEXT_PUBLIC_ENG_AUDIO_BASE` (mora završavati s `/`) ako se audio poslužuje
