@@ -46,8 +46,8 @@ function Svg28_2016Blj(){
     // Labele mjeseci (dno)
     ...months.map((m,i)=>e("text",{key:"m"+i,x:toX(i),y:pad.t+iH+14,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},m)),
     // Os labele
-    e("text",{x:4,y:pad.t+4,fontSize:8,fontWeight:600,fill:"var(--text)"},"\u00b0C"),
-    e("text",{x:pad.l+iW+8,y:pad.t+4,fontSize:8,fontWeight:600,fill:"var(--blue)"},"mm"),
+    e("text",{x:pad.l-5,y:pad.t-6,textAnchor:"end",fontSize:8,fontWeight:600,fill:"var(--text)"},"\u00b0C"),
+    e("text",{x:pad.l+iW+5,y:pad.t-6,fontSize:8,fontWeight:600,fill:"var(--blue)"},"mm"),
     // Legenda dolje
     e("rect",{x:pad.l+10,y:pad.t+iH+24,width:14,height:8,fill:"rgba(74,144,217,0.22)",stroke:"var(--blue)",strokeWidth:.5}),
     e("text",{x:pad.l+28,y:pad.t+iH+31,fontSize:7,fill:"var(--muted)"},"koli\u010dina padalina (mm)"),
