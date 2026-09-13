@@ -63,15 +63,16 @@ function Svg7_2010Aj(){
   const W=220,H=160,rL=32,rT=28,rW=148,rH=94;
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const t="var(--text)",b=_BLUE,g=_GREEN,gold=_GOLD,mu="var(--muted)";
-  const A=[rL,rT+rH], B=[rL+rW,rT+rH], C=[rL,rT];
+  const A=[rL,rT+rH], B=[rL+rW,rT+rH], C=[rL+Math.round(rW*0.2),rT];
   function dot(p,col){return e("circle",{cx:p[0],cy:p[1],r:4,fill:col,stroke:"var(--bg)",strokeWidth:1.5});}
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     e("rect",{x:rL,y:rT,width:rW,height:rH,fill:"none",stroke:mu,strokeWidth:1.2,strokeDasharray:"6,3"}),
     e("polygon",{points:`${C[0]},${C[1]} ${A[0]},${A[1]} ${B[0]},${B[1]}`,
       fill:b,fillOpacity:0.18,stroke:b,strokeWidth:2,strokeLinejoin:"round"}),
     dot(C,gold), dot(A,g), dot(B,g),
+    e("circle",{cx:rL,cy:rT,r:3.5,fill:mu,stroke:"var(--bg)",strokeWidth:1.5}),
     e("circle",{cx:rL+rW,cy:rT,r:3.5,fill:mu,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:C[0]+6,y:C[1]-5,fontSize:12,fill:gold,fontStyle:"italic",fontWeight:"bold"},"C"),
+    e("text",{x:C[0]-4,y:C[1]-7,fontSize:12,fill:gold,fontStyle:"italic",fontWeight:"bold",textAnchor:"end"},"C"),
     e("text",{x:A[0]-16,y:A[1]+4,fontSize:12,fill:g,fontStyle:"italic",fontWeight:"bold"},"A"),
     e("text",{x:B[0]+5,y:B[1]+4,fontSize:12,fill:g,fontStyle:"italic",fontWeight:"bold"},"B"),
     e("text",{x:rL-18,y:rT+rH/2+4,fontSize:11,fill:b,fontStyle:"italic",fontWeight:"bold"},"a"),
