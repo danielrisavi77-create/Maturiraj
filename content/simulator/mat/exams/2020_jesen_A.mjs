@@ -4,42 +4,27 @@ import { Svg9_2020Ajj } from '../mat-shared-svg.mjs';
 const e = React.createElement;
 
 function Svg29d_2020Ajj(){
-  const W=280, H=300;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const W=300, H=310;
+  const _TEXT="var(--text)";
   const elems = [];
-  // 3D projekcija kvadra
-  const vA = [50, 240], vB = [170, 240], vC = [210, 190], vD = [90, 190];
-  const vE = [50, 120], vF = [170, 120], vG = [210, 70], vH = [90, 70];
-  // Piramida ABCG — istaknuta
-  elems.push(e("polygon",{key:"base", points:`${vA[0]},${vA[1]} ${vB[0]},${vB[1]} ${vC[0]},${vC[1]}`, fill:"var(--red)", fillOpacity:0.18, stroke:"none"}));
-  elems.push(e("polygon",{key:"fABG", points:`${vA[0]},${vA[1]} ${vB[0]},${vB[1]} ${vG[0]},${vG[1]}`, fill:"var(--blue)", fillOpacity:0.10, stroke:"none"}));
-  elems.push(e("polygon",{key:"fBCG", points:`${vB[0]},${vB[1]} ${vC[0]},${vC[1]} ${vG[0]},${vG[1]}`, fill:"var(--blue)", fillOpacity:0.15, stroke:"none"}));
-  elems.push(e("polygon",{key:"fACG", points:`${vA[0]},${vA[1]} ${vC[0]},${vC[1]} ${vG[0]},${vG[1]}`, fill:"var(--blue)", fillOpacity:0.20, stroke:"none"}));
-  // Kvadar - vidljivi bridovi
-  elems.push(e("line",{key:"AB", x1:vA[0], y1:vA[1], x2:vB[0], y2:vB[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"BC", x1:vB[0], y1:vB[1], x2:vC[0], y2:vC[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"AD", x1:vA[0], y1:vA[1], x2:vD[0], y2:vD[1], stroke:_GOLD, strokeWidth:1, strokeDasharray:"4,3"}));
-  elems.push(e("line",{key:"DC", x1:vD[0], y1:vD[1], x2:vC[0], y2:vC[1], stroke:_GOLD, strokeWidth:1, strokeDasharray:"4,3"}));
-  elems.push(e("line",{key:"EF", x1:vE[0], y1:vE[1], x2:vF[0], y2:vF[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"FG", x1:vF[0], y1:vF[1], x2:vG[0], y2:vG[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"GH", x1:vG[0], y1:vG[1], x2:vH[0], y2:vH[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"HE", x1:vH[0], y1:vH[1], x2:vE[0], y2:vE[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"AE", x1:vA[0], y1:vA[1], x2:vE[0], y2:vE[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"BF", x1:vB[0], y1:vB[1], x2:vF[0], y2:vF[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"CG", x1:vC[0], y1:vC[1], x2:vG[0], y2:vG[1], stroke:_BLUE, strokeWidth:1.6}));
-  elems.push(e("line",{key:"DH", x1:vD[0], y1:vD[1], x2:vH[0], y2:vH[1], stroke:_GOLD, strokeWidth:1, strokeDasharray:"4,3"}));
-  // Bridovi piramide ABCG
-  elems.push(e("line",{key:"pAG", x1:vA[0], y1:vA[1], x2:vG[0], y2:vG[1], stroke:"var(--red)", strokeWidth:1.8}));
-  elems.push(e("line",{key:"pBG", x1:vB[0], y1:vB[1], x2:vG[0], y2:vG[1], stroke:"var(--red)", strokeWidth:1.8}));
-  elems.push(e("line",{key:"pAC", x1:vA[0], y1:vA[1], x2:vC[0], y2:vC[1], stroke:"var(--red)", strokeWidth:1, strokeDasharray:"4,3"}));
+  // 3D projekcija kvadra (proporcije prema originalnoj skici: visina > dubina > ... )
+  const vA = [45, 287], vB = [175, 287], vC = [272, 220], vD = [142, 220];
+  const vE = [45, 93],  vF = [175, 93],  vG = [272, 26],  vH = [142, 26];
+  const solid = (k,p,q) => elems.push(e("line",{key:k, x1:p[0], y1:p[1], x2:q[0], y2:q[1], stroke:_TEXT, strokeWidth:1.8, strokeLinecap:"round"}));
+  const dash  = (k,p,q) => elems.push(e("line",{key:k, x1:p[0], y1:p[1], x2:q[0], y2:q[1], stroke:_TEXT, strokeWidth:1.4, strokeDasharray:"7,6", strokeLinecap:"round"}));
+  // Vidljivi bridovi kvadra
+  solid("AB", vA, vB); solid("BC", vB, vC);
+  solid("EF", vE, vF); solid("FG", vF, vG); solid("GH", vG, vH); solid("HE", vH, vE);
+  solid("AE", vA, vE); solid("BF", vB, vF); solid("CG", vC, vG);
+  // Nevidljivi bridovi (vrh D) - isprekidano
+  dash("AD", vA, vD); dash("DC", vD, vC); dash("DH", vD, vH);
+  // Dijagonala osnovke AC - isprekidano
+  dash("AC", vA, vC);
   // Oznake vrhova
-  const labels = [[vA,"A",-12,10],[vB,"B",4,12],[vC,"C",6,4],[vD,"D",-10,-2],[vE,"E",-12,4],[vF,"F",4,-2],[vG,"G",6,-2],[vH,"H",-10,-4]];
+  const labels = [[vA,"A",-16,10],[vB,"B",2,14],[vC,"C",8,4],[vD,"D",-14,0],[vE,"E",-16,4],[vF,"F",-18,-6],[vG,"G",8,-4],[vH,"H",-14,-4]];
   labels.forEach(([pt, lab, dx, dy]) => {
-    elems.push(e("text",{key:"L"+lab, x:pt[0]+dx, y:pt[1]+dy, fontSize:12, fontStyle:"italic", fontWeight:700, fill:"var(--text)"}, lab));
+    elems.push(e("text",{key:"L"+lab, x:pt[0]+dx, y:pt[1]+dy, fontSize:14, fontStyle:"italic", fontFamily:"serif", fill:_TEXT}, lab));
   });
-  elems.push(e("text",{key:"l27", x:(vA[0]+vB[0])/2-16, y:vA[1]+14, fontSize:10, fill:"var(--text)"},"2,7 cm"));
-  elems.push(e("text",{key:"l10", x:60, y:165, fontSize:10, fontStyle:"italic", fill:"var(--red)"},"10 cm"));
-  elems.push(e("text",{key:"l63", x:vA[0]+18, y:vA[1]-6, fontSize:10, fill:"var(--red)"},"63°"));
   return e("svg",{viewBox:`0 0 ${W} ${H}`, style:{width:"100%", maxWidth:W, display:"block"}}, elems);
 }
 
