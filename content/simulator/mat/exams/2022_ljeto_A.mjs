@@ -16,12 +16,13 @@ function Svg39b_2022Aljeto(){
   elems.push(e("polygon",{key:"axh",points:`${W-8},${OY} ${W-16},${OY-3} ${W-16},${OY+3}`,fill:"var(--text)"}));
   elems.push(e("polygon",{key:"ayh",points:`${OX},${8} ${OX-3},${16} ${OX+3},${16}`,fill:"var(--text)"}));
   elems.push(e("text",{key:"lx",x:W-6,y:OY-4,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"x"));
-  elems.push(e("text",{key:"ly",x:OX+3,y:12,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"y"));
+  elems.push(e("text",{key:"ly",x:OX-13,y:15,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"y"));
   elems.push(e("text",{key:"l0",x:OX+3,y:OY+12,fontSize:9,fill:"var(--muted)"},"0"));
   elems.push(e("text",{key:"l1",x:OX+SX+1,y:OY+12,fontSize:9,fill:"var(--muted)"},"1"));
-  elems.push(e("circle",{key:"o1x",cx:OX+SX,cy:OY,r:2.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1}));
-  elems.push(e("circle",{key:"o1y",cx:OX,cy:OY-SY,r:2.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1}));
-  elems.push(e("circle",{key:"o0",cx:OX,cy:OY,r:2.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1}));
+  elems.push(e("text",{key:"l1y",x:OX-15,y:OY-SY+4,fontSize:9,fill:"var(--muted)"},"1"));
+  elems.push(e("circle",{key:"o1x",cx:OX+SX,cy:OY,r:2.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}));
+  elems.push(e("circle",{key:"o1y",cx:OX,cy:OY-SY,r:2.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}));
+  elems.push(e("circle",{key:"o0",cx:OX,cy:OY,r:2.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}));
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }
 
@@ -106,64 +107,49 @@ function Svg36b_2022Aljeto(){
 }
 
 function Svg35b_2022Aljeto(){
-  const W=280,H=195;
-  // Promatrač lijevo, zgrada desno
-  // Promatrač: oči na visini 1,6m od tla
-  // Zgrada: visina h, antena gore 3m
-  // Kut elevacije vrha zgrade: 38°, vrha antene: 43°
-  const SCALE=12; // px po metru (aproks.)
-  const Tlo_L={x:42,y:170};  // tlo lijevo (promatrač)
-  const Tlo_R={x:200,y:170}; // tlo desno (zgrada)
-  const Oci={x:42,y:170-1.6*SCALE}; // oči promatrača
-  const VrhZgrade={x:200,y:170-15*SCALE}; // vrh zgrade (aproks h=15m)
-  const VrhAntene={x:200,y:170-(15+3)*SCALE}; // vrh antene
-  const ln=(p,q,k,col,w,dash)=>e("line",{key:k,x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:col||"var(--text)",strokeWidth:w||1.5,strokeDasharray:dash||""});
-  const tx=(x,y,t,k,sz)=>e("text",{key:k,x,y,fontSize:sz||10,fill:"var(--text)"},t);
+  // PDF: samo generička/ilustrativna skica — promatrač, horizontalni smjer,
+  // jedan krak pogleda i oznaka "kut elevacije". BEZ zgrade, antene,
+  // vrijednosti 38°/43° i visine 1,6 m (to su podatci iz teksta zadatka).
+  const W=290,H=210;
+  const E={x:62,y:112};            // oči promatrača = vrh kuta
+  const ANG=30*Math.PI/180;        // ilustrativni nagib kraka
+  const RAY=180;
+  const Gore={x:E.x+RAY*Math.cos(ANG), y:E.y-RAY*Math.sin(ANG)};
+  const Hor={x:E.x+152, y:E.y};
+  const ARC_R=48;
+  const arc=[];
+  for(let a=0;a<=30;a+=1.5){
+    const r=a*Math.PI/180;
+    arc.push(`${(E.x+ARC_R*Math.cos(r)).toFixed(1)},${(E.y-ARC_R*Math.sin(r)).toFixed(1)}`);
+  }
+  const L=(x1,y1,x2,y2,k,w,col)=>e("line",{key:k,x1,y1,x2,y2,
+    stroke:col||"var(--text)",strokeWidth:w||1.5,strokeLinecap:"round"});
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    // Tlo
-    ln({x:20,y:170},{x:W-10,y:170},"tlo","var(--muted)",1,"4,3"),
-    // Zgrada
-    ln(Tlo_R,VrhZgrade,"zgrada"),
-    // Antena
-    ln(VrhZgrade,VrhAntene,"antena"),
-    // Horizontalna linija od oka
-    ln(Oci,{x:Tlo_R.x,y:Oci.y},"hor","var(--muted)",1,"3,3"),
-    // Linija pogleda na vrh zgrade
-    ln(Oci,VrhZgrade,"pog38","var(--blue)",1.3),
-    // Linija pogleda na vrh antene
-    ln(Oci,VrhAntene,"pog43","var(--blue)",1.3),
-    // Kut elevacije oznake
-    e("path",{key:"arc38",
-      d:`M ${Oci.x+32},${Oci.y} A 32,32 0 0,0 ${Oci.x+28},${Oci.y-16}`,
-      fill:"none",stroke:"var(--text)",strokeWidth:1.2}),
-    tx(Oci.x+28,Oci.y-6,"38°","k38",9),
-    e("path",{key:"arc43",
-      d:`M ${Oci.x+42},${Oci.y} A 42,42 0 0,0 ${Oci.x+36},${Oci.y-27}`,
-      fill:"none",stroke:"var(--text)",strokeWidth:1.2}),
-    tx(Oci.x+40,Oci.y-16,"43°","k43",9),
-    // Mjere
-    tx(Tlo_R.x+5,170-7.5*SCALE,"h","lh"),
-    tx(Tlo_R.x+5,170-16.5*SCALE,"3 m","l3"),
-    // Promatrač (stiliziran)
-    e("circle",{key:"gl",cx:Oci.x,cy:Oci.y-8,r:6,fill:"none",stroke:"var(--text)",strokeWidth:1.3}),
-    ln({x:Oci.x,y:Oci.y-2},{x:Oci.x,y:Oci.y+15},"tijelo","var(--text)",1.3),
-    ln({x:Oci.x,y:Oci.y+5},{x:Oci.x-8,y:Oci.y+12},"rukaL","var(--text)",1.3),
-    ln({x:Oci.x,y:Oci.y+5},{x:Oci.x+8,y:Oci.y+12},"rukaD","var(--text)",1.3),
-    ln({x:Oci.x,y:Oci.y+15},{x:Oci.x-6,y:Tlo_L.y},"nogaL","var(--text)",1.3),
-    ln({x:Oci.x,y:Oci.y+15},{x:Oci.x+6,y:Tlo_L.y},"nogaD","var(--text)",1.3),
-    // 1,6m oznaka
-    e("line",{key:"brace",x1:Oci.x-15,y1:Tlo_L.y,x2:Oci.x-15,y2:Oci.y,stroke:"var(--muted)",strokeWidth:1}),
-    tx(Oci.x-35,Oci.y+10,"1,6 m","l16",8),
-    // "kut elevacije" label
-    tx(Oci.x+20,Oci.y-28,"kut elevacije","lke",8),
+    // Krak pogleda (gore-desno) i horizontala
+    L(E.x,E.y,Gore.x,Gore.y,"krak",1.6),
+    L(E.x,E.y,Hor.x,Hor.y,"hor",1.6),
+    // Luk kuta elevacije
+    e("polyline",{key:"arc",points:arc.join(" "),fill:"none",
+      stroke:"var(--text)",strokeWidth:1.4,strokeLinejoin:"round"}),
+    e("text",{key:"lke",x:E.x+58,y:E.y-8,fontSize:12,fill:"var(--text)"},"kut elevacije"),
+    // Promatrač (stilizirana figura; glava u vrhu kuta)
+    e("circle",{key:"gl",cx:E.x-4,cy:E.y+13,r:8.5,fill:"none",
+      stroke:"var(--text)",strokeWidth:1.5}),
+    L(E.x-4,E.y+21.5,E.x-4,E.y+58,"tijelo",1.5),
+    L(E.x-4,E.y+30,E.x-16,E.y+44,"rukaL",1.5),
+    L(E.x-4,E.y+30,E.x+8,E.y+44,"rukaD",1.5),
+    L(E.x-4,E.y+58,E.x-14,E.y+80,"nogaL",1.5),
+    L(E.x-4,E.y+58,E.x+6,E.y+80,"nogaD",1.5),
+    // Tlo ispod stopala
+    L(E.x-22,E.y+86,E.x+16,E.y+86,"tlo",1.8,"var(--blue)"),
   );
 }
 
 function Svg35a_2022Aljeto(){
-  const W=300,H=210;
+  const W=340,H=215;
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const Plaz={x:25,y:155};
-  const Riva={x:175,y:155};
+  const Plaz={x:80,y:158};
+  const Riva={x:230,y:158};
   const Svjet={x:255,y:30};
   const ln=(p,q,k,col,w)=>e("line",{key:k,x1:p.x,y1:p.y,x2:q.x,y2:q.y,
     stroke:col||_BLUE,strokeWidth:w||1.8});
@@ -189,29 +175,48 @@ function Svg35a_2022Aljeto(){
   const angMol=80*Math.PI/180;
   const Mol={x:Riva.x+MOL_LEN*Math.cos(angMol), y:Riva.y-MOL_LEN*Math.sin(angMol)};
 
+  // Luk kuta 100° oko vrha Riva: od smjera rive (180°) do smjera mola (80°).
+  // Uzorkovan kao polyline — SVG A-luk je ovdje ranije izlazio kao tanka krivulja.
+  const ARC_R=40;
+  const arcPts=[];
+  for(let a=180;a>=80;a-=2){
+    const r=a*Math.PI/180;
+    arcPts.push(`${(Riva.x+ARC_R*Math.cos(r)).toFixed(1)},${(Riva.y-ARC_R*Math.sin(r)).toFixed(1)}`);
+  }
+  const labA=132*Math.PI/180, labR=24;
+  const labX=Riva.x+labR*Math.cos(labA), labY=Riva.y-labR*Math.sin(labA);
+
+  // Male kružice na vrhovima (kao u PDF-u)
+  const dot=(p,k)=>e("circle",{key:k,cx:p.x,cy:p.y,r:2.4,
+    fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.1});
+
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     // Maja pliva ravno
     ln(Plaz,Mol,"maja","var(--text)",1.8),
     // Iva: Riva (Plaz→Riva) + Mol (Riva→Mol)
     ln(Plaz,Riva,"riva","var(--text)",1.8),
     ln(Riva,Mol,"mol","var(--text)",1.8),
-    // Kut 100° — ZATVORENI luk
-    e("path",{key:"kut",
-      d:`M ${Riva.x-26},${Riva.y} A 26,26 0 0,0 ${(Riva.x+26*Math.cos(angMol)).toFixed(1)},${(Riva.y-26*Math.sin(angMol)).toFixed(1)}`,
-      fill:"none",stroke:_BLUE,strokeWidth:1.4}),
-    tx(Riva.x-15,Riva.y-13,"100°","k100",10),
+    // Kut 100° — veliki, jasno vidljiv luk
+    e("polyline",{key:"kut",points:arcPts.join(" "),
+      fill:"none",stroke:"var(--text)",strokeWidth:1.4,strokeLinejoin:"round"}),
+    e("text",{key:"k100",x:labX,y:labY+4,fontSize:11,fill:"var(--text)",
+      textAnchor:"middle"},"100°"),
+    // Vrhovi
+    dot(Plaz,"dP"), dot(Riva,"dR"), dot(Mol,"dM"),
     // Oznake
-    tx(mid(Plaz,Riva).x-20,Riva.y+15,"riva 97,5 m","lr",10),
-    // "mol 85 m" — preko mol crte (rotiran)
-    e("text",{key:"lm",
-      x:mid(Riva,Mol).x+10, y:mid(Riva,Mol).y,
-      fontSize:10,fill:_GOLD},"mol"),
-    e("text",{key:"lm2",
-      x:mid(Riva,Mol).x+10, y:mid(Riva,Mol).y+12,
-      fontSize:10,fill:_GOLD},"85 m"),
-    tx(Mol.x-10,Mol.y-8,"svjetionik","ls",9),
-    tx(Plaz.x-15,Plaz.y+16,"mjesto","lp1",9),
-    tx(Plaz.x-15,Plaz.y+27,"na plaži","lp2",9),
+    e("text",{key:"lr",x:mid(Plaz,Riva).x,y:Riva.y+16,fontSize:10,
+      fill:"var(--text)",textAnchor:"middle"},"riva"),
+    e("text",{key:"lr2",x:mid(Plaz,Riva).x,y:Riva.y+28,fontSize:10,
+      fill:"var(--text)",textAnchor:"middle"},"97,5 m"),
+    e("text",{key:"lm",x:mid(Riva,Mol).x+12,y:mid(Riva,Mol).y,
+      fontSize:10,fill:"var(--text)"},"mol"),
+    e("text",{key:"lm2",x:mid(Riva,Mol).x+12,y:mid(Riva,Mol).y+12,
+      fontSize:10,fill:"var(--text)"},"85 m"),
+    e("text",{key:"ls",x:Mol.x+6,y:Mol.y-7,fontSize:10,fill:"var(--text)"},"svjetionik"),
+    e("text",{key:"lp1",x:Plaz.x-6,y:Plaz.y+1,fontSize:10,fill:"var(--text)",
+      textAnchor:"end"},"mjesto"),
+    e("text",{key:"lp2",x:Plaz.x-6,y:Plaz.y+13,fontSize:10,fill:"var(--text)",
+      textAnchor:"end"},"na plaži"),
   );
 }
 
@@ -250,13 +255,16 @@ function Svg32a_2022Aljeto(){
   elems.push(e("polygon",{key:"axh",points:`${W-8},${OY} ${W-16},${OY-3} ${W-16},${OY+3}`,fill:"var(--text)"}));
   elems.push(e("polygon",{key:"ayh",points:`${OX},${8} ${OX-3},${16} ${OX+3},${16}`,fill:"var(--text)"}));
   elems.push(e("text",{key:"lx",x:W-6,y:OY-4,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"x"));
-  elems.push(e("text",{key:"ly",x:OX+3,y:12,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"y"));
+  elems.push(e("text",{key:"ly",x:OX-13,y:15,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"y"));
   elems.push(e("text",{key:"l0",x:OX+3,y:OY+12,fontSize:9,fill:"var(--muted)"},"0"));
   elems.push(e("text",{key:"l1",x:OX+SZ+1,y:OY+12,fontSize:9,fill:"var(--muted)"},"1"));
   elems.push(e("text",{key:"l1y",x:OX-16,y:OY-SZ+4,fontSize:9,fill:"var(--muted)"},"1"));
-  const x1=OX-5*SZ, y1=OY-(-0,5)*SZ;
-  const x2=OX+5*SZ, y2=OY-(4.5)*SZ;
-  elems.push(e("line",{key:"line",x1,y1,x2,y2,stroke:"var(--blue)",strokeWidth:2}));
+  // PDF: prazna koordinatna mreža — učenik sam crta pravac x−2y+4=0.
+  // NE crtamo pravac. (Ranije je ovdje bio krivi pravac: `(-0,5)` je comma-operator
+  // koji daje 5, pa je crta bježala na vrh slike s pogrešnim nagibom.)
+  elems.push(e("circle",{key:"o0",cx:OX,cy:OY,r:2.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}));
+  elems.push(e("circle",{key:"o1x",cx:OX+SZ,cy:OY,r:2.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}));
+  elems.push(e("circle",{key:"o1y",cx:OX,cy:OY-SZ,r:2.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}));
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }
 
