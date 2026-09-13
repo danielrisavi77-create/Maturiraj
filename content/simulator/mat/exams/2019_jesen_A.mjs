@@ -81,58 +81,58 @@ function Svg25b_2019Ajj(){
 }
 
 function Svg25a_2019Ajj(){
-  /* Kružnica sa središtem A, prolazi B,C,D.
-     Tangente u B i D sijeku se pod kutom 58° izvan kružnice (desno).
-     Iz slike: D gore, B dolje-lijevo, C desno (na kružnici), A središte (lijevo).
-     Tangente u B i D prolaze kroz vanjsku točku S desno. */
+  /* Vjerno po PDF slici (str. 15): kružnica sa središtem A; B, C i D su na kružnici
+     i ABCD je četverokut (deltoid) — nacrtane su sve četiri stranice AB, BC, CD, DA.
+     Tangente u B i D sijeku se u točki S desno, pod kutom 58°.
+     Kod vrha C je lučna oznaka traženoga kuta ∠BCD.
+     Mjere: ∠BAD = 180° − 58° = 122°, pa je ∠BCD = 180° − 122°/2 = 119°. */
   const W=220,H=200;
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const cx=80,cy=100,R=56;
-  /* D gore-desno, B dolje, C na desnoj strani */
-  const angD=60, angB=240, angC=350;
+  const cx=76,cy=100,R=56;
   const toRad=a=>a*Math.PI/180;
-  const D={x:cx+R*Math.cos(toRad(angD)),y:cy-R*Math.sin(toRad(angD))};
-  const B={x:cx+R*Math.cos(toRad(angB)),y:cy-R*Math.sin(toRad(angB))};
-  const Cv={x:cx+R*Math.cos(toRad(angC)),y:cy-R*Math.sin(toRad(angC))};
-  /* Sjecište tangenti S — desno od kružnice */
-  const S={x:195,y:110};
-  /* Luk za 58° kut kod S */
-  const aSB=Math.atan2(B.y-S.y,B.x-S.x);
-  const aSD=Math.atan2(D.y-S.y,D.x-S.x);
-  const Ra=18;
+  /* D gore-desno, B dolje-lijevo (∠BAD = 122°), C na kružnici desno, između B i D */
+  const angD=54, angB=-68, angC=12;
+  const P=a=>({x:cx+R*Math.cos(toRad(a)),y:cy-R*Math.sin(toRad(a))});
+  const D=P(angD), B=P(angB), Cv=P(angC);
+  /* Sjecište tangenti: na simetrali kuta BAD, na udaljenosti R/cos(61°) od A */
+  const angS=(angD+angB)/2;
+  const dS=R/Math.cos(toRad((angD-angB)/2));
+  const S={x:cx+dS*Math.cos(toRad(angS)),y:cy-dS*Math.sin(toRad(angS))};
+  /* produžeci tangenti izvan dodirnih točaka i izvan S */
+  const ext=(from,to,len)=>{const dx=to.x-from.x,dy=to.y-from.y,d=Math.hypot(dx,dy);
+    return {x:to.x+dx/d*len,y:to.y+dy/d*len};};
+  const Dout=ext(S,D,30), Bout=ext(S,B,46), SoutD=ext(D,S,22), SoutB=ext(B,S,22);
+  /* lučna oznaka kuta: od smjera V→P1 do smjera V→P2, kraćim putem (kut < 180°) */
+  const norm=a=>{while(a<=-Math.PI)a+=2*Math.PI;while(a>Math.PI)a-=2*Math.PI;return a;};
+  const arc=(V,P1,P2,r)=>{
+    const a1=Math.atan2(P1.y-V.y,P1.x-V.x);
+    const d=norm(Math.atan2(P2.y-V.y,P2.x-V.x)-a1);
+    const out=[];
+    for(let t=0;t<=1.0001;t+=1/48){const a=a1+d*t;out.push(`${(V.x+r*Math.cos(a)).toFixed(2)},${(V.y+r*Math.sin(a)).toFixed(2)}`);}
+    return out.join(" ");
+  };
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    /* kružnica */
+    /* kružnica sa središtem A */
     e("circle",{cx:cx,cy:cy,r:R,fill:"none",stroke:_BLUE,strokeWidth:1.3}),
-    /* tetive AB, AD (polumjeri) */
-    e("line",{x1:cx,y1:cy,x2:B.x,y2:B.y,stroke:_BLUE,strokeWidth:0.7}),
-    e("line",{x1:cx,y1:cy,x2:D.x,y2:D.y,stroke:_BLUE,strokeWidth:0.7}),
-    /* tangente od B do S i od D do S */
-    e("line",{x1:B.x,y1:B.y,x2:S.x,y2:S.y,stroke:_BLUE,strokeWidth:1.2}),
-    e("line",{x1:D.x,y1:D.y,x2:S.x,y2:S.y,stroke:_BLUE,strokeWidth:1.2}),
-    /* tangentne linije produžene izvan S */
-    e("line",{x1:S.x,y1:S.y,x2:S.x+(S.x-B.x)*0.3,y2:S.y+(S.y-B.y)*0.3,stroke:_BLUE,strokeWidth:0.8}),
-    e("line",{x1:S.x,y1:S.y,x2:S.x+(S.x-D.x)*0.3,y2:S.y+(S.y-D.y)*0.3,stroke:_BLUE,strokeWidth:0.8}),
-    /* 58° luk kod S */
-    e("path",{d:`M ${S.x+Ra*Math.cos(aSD)} ${S.y+Ra*Math.sin(aSD)} A ${Ra} ${Ra} 0 0 1 ${S.x+Ra*Math.cos(aSB)} ${S.y+Ra*Math.sin(aSB)}`,
-      fill:"none",stroke:_BLUE,strokeWidth:0.8}),
-    e("text",{x:S.x-30,y:S.y+6,fontSize:10,fill:"var(--text)"},"58\u00b0"),
-    /* pravi kut oznake u B i D (tangenta ⊥ polumjer) */
-    ...["B","D"].map((lbl,i)=>{
-      const P=i===0?B:D;
-      const dx1=cx-P.x,dy1=cy-P.y,d1=Math.sqrt(dx1*dx1+dy1*dy1);
-      const dx2=S.x-P.x,dy2=S.y-P.y,d2=Math.sqrt(dx2*dx2+dy2*dy2);
-      const sz=6;
-      const u1x=dx1/d1*sz,u1y=dy1/d1*sz,u2x=dx2/d2*sz,u2y=dy2/d2*sz;
-      return e("path",{key:"rt"+lbl,d:`M${P.x+u1x},${P.y+u1y} L${P.x+u1x+u2x},${P.y+u1y+u2y} L${P.x+u2x},${P.y+u2y}`,
-        fill:"none",stroke:_BLUE,strokeWidth:0.6});
-    }),
+    /* tangente u B i D (kroz S, produžene na obje strane) */
+    e("line",{x1:Dout.x,y1:Dout.y,x2:SoutD.x,y2:SoutD.y,stroke:_BLUE,strokeWidth:1}),
+    e("line",{x1:Bout.x,y1:Bout.y,x2:SoutB.x,y2:SoutB.y,stroke:_BLUE,strokeWidth:1}),
+    /* četverokut ABCD: AB, BC, CD, DA */
+    e("polygon",{points:`${cx},${cy} ${B.x},${B.y} ${Cv.x},${Cv.y} ${D.x},${D.y}`,
+      fill:"none",stroke:_GREEN,strokeWidth:1.4,strokeLinejoin:"round"}),
+    /* 58° kod S */
+    e("polyline",{points:arc(S,D,B,20),fill:"none",stroke:_BLUE,strokeWidth:0.9}),
+    e("text",{x:S.x-35,y:S.y+4,fontSize:10,fill:"var(--text)"},"58°"),
+    /* traženi kut ∠BCD kod C */
+    e("polyline",{points:arc(Cv,D,B,19),fill:"none",stroke:_RED,strokeWidth:1.2}),
+    /* točke */
+    ...[[cx,cy],[B.x,B.y],[Cv.x,Cv.y],[D.x,D.y],[S.x,S.y]].map((p,i)=>
+      e("circle",{key:"pt"+i,cx:p[0],cy:p[1],r:1.8,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:.8})),
     /* oznake */
-    e("text",{x:cx-16,y:cy+4,fontSize:13,fontStyle:"italic",fill:_GOLD},"A"),
-    e("text",{x:B.x-12,y:B.y+12,fontSize:13,fontStyle:"italic",fill:_GOLD},"B"),
-    e("text",{x:Cv.x+4,y:Cv.y+2,fontSize:13,fontStyle:"italic",fill:_GOLD},"C"),
-    e("text",{x:D.x-2,y:D.y-8,fontSize:13,fontStyle:"italic",fill:_GOLD},"D"),
-    /* točka C na kružnici */
-    e("circle",{cx:Cv.x,cy:Cv.y,r:2.5,fill:_RED})
+    e("text",{x:cx-13,y:cy+4,fontSize:12,fontStyle:"italic",fill:_GOLD},"A"),
+    e("text",{x:B.x-4,y:B.y+13,fontSize:12,fontStyle:"italic",fill:_GOLD},"B"),
+    e("text",{x:Cv.x+5,y:Cv.y+5,fontSize:12,fontStyle:"italic",fill:_GOLD},"C"),
+    e("text",{x:D.x+4,y:D.y-4,fontSize:12,fontStyle:"italic",fill:_GOLD},"D")
   );
 }
 
@@ -239,79 +239,67 @@ function Svg14_2019Ajj(){
 }
 
 function Svg27c_2019Ajj(){
-  /* Graf f (crna, neparna, [-2,2]) i g (ružičasta, [1,5]).
-     Iz slike: f je kubična S-krivulja: f(-2)≈-3 (dno), f(-1)≈1, f(0)=0, f(1)≈-1, f(2)≈3.
-     Ali čekaj — iz slike f ide: (-2,-3), gore do (-1,1), natrag dolje, (0,0), (1,-1), gore do (2,3)?
-     Zapravo, na slici: f počinje dolje-lijevo (-2, ~-3), ide gore do (-1, ~1), 
-     prelazi (0,0), ide dolje do (1, ~-1)... Ne, pogledaj sliku ponovo:
-     f: S-oblik: f(-2)~3 (gore), f(-1)~1, f(0)~0, f(1)~-1, f(2)~-3 (dolje)? Ili obrnuto.
-     Iz slike: na lijevoj strani f label je dolje, f(-2) je nisko (~-3), a raste do f(0)=0, pa f(2)~3? Ne.
-     PDF slika (p17): f label je dolje-lijevo. Crna krivulja ide: gore-lijevo → dip → gore-desno.
-     Zapravo: f(-2)~-3, f(-1)~1 (lokalni max), f(0)~0, f(1)~-1 (lokalni min)?, f(2)~... Ne, to nije neparna.
-     Neparna: f(-x)=-f(x). Dakle f(0)=0. f(-1)=1 → f(1)=-1. f(-2)≈3 → f(2)≈-3. Ili obrnuto.
-     Ali f label je dolje-lijevo na slici... hmm. Zaključak: 
-     f(-2)=-3, f(-1)=1, f(0)=0, f(1)=-1, f(2)=3 — NE, to je neparna samo ako f(-2)=-f(2).
-     f(-2)=-3, f(2)=3 → OK neparna! f(-1)=1, f(1)=-1 → OK.
-     Ali gledajući sliku, f label je dolje-lijevo, krivulja ide DOLJE na [-2,-1] pa se vraća...
-     Zapravo: f je kubična: f(x) ≈ -x³/2.67 + ... za neparan oblik.
-     
-     g: ružičasta, rastuća na [1,5], ide od ~(1,-0,5) do (5,3).
-     g label je gore-desno na slici. */
-  const W=230,H=210,pad={l:32,r:14,t:14,b:32};
+  /* Vjerno po PDF slici (str. 17).
+     f (tamna krivulja, domena [−2,2]): neparna kubična f(x) = 1.1x³ − 2.5x —
+       nultočke −1.51, 0, 1.51; lokalni max (−0.87, 1.45), lokalni min (0.87, −1.45),
+       f(±2) = ±3.8 (krivulja izlazi iz vidljivog dijela grafa).
+     g (kontrastna krivulja, domena [1,5]): simetrična s obzirom na pravac x = 3,
+       s blagim valom (mali lokalni maksimum oko x ≈ 3.1) unutar udubljenja,
+       nultočke ≈ 1.6 i ≈ 4.4, strm rast na rubovima domene.
+     Domena od g nije simetrična s obzirom na 0 → g nije ni parna ni neparna. */
+  const W=240,H=215,pad={l:26,r:16,t:12,b:28};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-3,xMax=6,yMin=-4,yMax=4;
+  const _F="var(--text)",_G="var(--red)";
+  const xMin=-2.6,xMax=6.4,yMin=-4.4,yMax=4.4;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  /* f: neparna kubična krivulja na [-2,2], prolazi (0,0), (-1,1), (1,-1), (-2,-3), (2,3)
-     Pokušajmo: f(x) = x(x²-3)/(-1)? f(x) = -x³+3x? f(1)=2, ne.
-     f(x) = 1.5sin(πx/2)? f(1)=1.5, ne 1.
-     Koristimo: f(-2)=-3, f(-1)=1, f(0)=0, f(1)=-1, f(2)=3
-     To je: f(x) = 0.75x³ - 1.75x? f(1)=0.75-1.75=-1 ✓, f(2)=6-3.5=2.5 ≠ 3.
-     f(x) = x³ - 2x? f(1)=-1 ✓, f(2)=4 ≠ 3, f(-1)=1 ✓, f(-2)=-4 ≠ -3.
-     Nema savršenog polinoma — koristimo podatke i spline. */
-  const fData=[[-2,-3],[-1.5,0.5],[-1,1],[-0.5,0.7],[0,0],[0.5,-0.7],[1,-1],[1.5,-0.5],[2,3]];
+  /* f: analitički, gusto uzorkovano */
   const fPts=[];
-  for(let i=0;i<fData.length-1;i++){
-    const [x0,y0]=fData[i],[x1,y1]=fData[i+1];
-    for(let t=0;t<=1;t+=0.04){
-      const x=x0+t*(x1-x0),y=y0+t*(y1-y0);
-      fPts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
-    }
+  for(let x=-2;x<=2.0001;x+=0.02){
+    const y=1.1*x*x*x-2.5*x;
+    if(y>yMax||y<yMin) continue;
+    fPts.push(`${toX(x).toFixed(2)},${toY(y).toFixed(2)}`);
   }
-  /* g: rastuća krivulja na [1,5] */
-  const gData=[[1,-0.3],[2,0.5],[3,1.5],[4,2.5],[5,3.3]];
+  /* g: Catmull-Rom glatka interpolacija kroz očitane točke sa slike */
+  const gData=[[1,3.95],[1.12,2.9],[1.25,2.0],[1.4,1.1],[1.6,0],[1.8,-0.52],[2,-0.8],
+    [2.3,-0.9],[2.6,-0.88],[2.9,-0.79],[3.1,-0.76],[3.35,-0.8],[3.6,-0.88],[3.85,-0.89],
+    [4.05,-0.8],[4.2,-0.6],[4.4,0],[4.6,0.9],[4.75,1.8],[4.88,2.9],[5,3.95]];
   const gPts=[];
   for(let i=0;i<gData.length-1;i++){
-    const [x0,y0]=gData[i],[x1,y1]=gData[i+1];
-    for(let t=0;t<=1;t+=0.04){
-      const x=x0+t*(x1-x0),y=y0+t*(y1-y0);
-      gPts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
+    const p0=gData[Math.max(0,i-1)],p1=gData[i],p2=gData[i+1],p3=gData[Math.min(gData.length-1,i+2)];
+    for(let t=0;t<1;t+=0.08){
+      const t2=t*t,t3=t2*t;
+      const x=0.5*((2*p1[0])+(-p0[0]+p2[0])*t+(2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*t2+(-p0[0]+3*p1[0]-3*p2[0]+p3[0])*t3);
+      const y=0.5*((2*p1[1])+(-p0[1]+p2[1])*t+(2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*t2+(-p0[1]+3*p1[1]-3*p2[1]+p3[1])*t3);
+      if(y>yMax||y<yMin) continue;
+      gPts.push(`${toX(x).toFixed(2)},${toY(y).toFixed(2)}`);
     }
   }
-  const gridX=[-2,-1,0,1,2,3,4,5], gridY=[-3,-2,-1,0,1,2,3];
+  gPts.push(`${toX(5).toFixed(2)},${toY(3.95).toFixed(2)}`);
+  const gridX=[-2,-1,1,2,3,4,5,6], gridY=[-4,-3,-2,-1,1,2,3,4];
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    ...gridX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.3})),
-    ...gridY.map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.3})),
+    ...gridX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--muted)",strokeOpacity:.4,strokeWidth:.45})),
+    ...gridY.map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--muted)",strokeOpacity:.4,strokeWidth:.45})),
     /* osi */
     e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:"var(--text)",strokeWidth:1.2}),
     e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.2}),
     e("polygon",{points:`${pad.l+iW},${oy} ${pad.l+iW-4},${oy-2.5} ${pad.l+iW-4},${oy+2.5}`,fill:"var(--text)"}),
     e("polygon",{points:`${ox},${pad.t} ${ox-2.5},${pad.t+4} ${ox+2.5},${pad.t+4}`,fill:"var(--text)"}),
-    e("text",{x:pad.l+iW+4,y:oy+3,fontSize:9,fontStyle:"italic",fill:"var(--text)"},"x"),
-    e("text",{x:ox+4,y:pad.t+3,fontSize:9,fontStyle:"italic",fill:"var(--text)"},"y"),
-    e("text",{x:ox-8,y:oy+12,fontSize:8,fill:"var(--muted)"},"0"),
-    e("circle",{cx:toX(1),cy:oy,r:2,fill:"none",stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:toX(1),y:oy+12,textAnchor:"middle",fontSize:8,fill:"var(--muted)"},"1"),
-    e("circle",{cx:ox,cy:toY(1),r:2,fill:"none",stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:ox-8,y:toY(1)+3,fontSize:8,fill:"var(--muted)"},"1"),
-    /* f: crna S-krivulja */
-    fPts.length>1&&e("polyline",{points:fPts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:1.8,strokeLinejoin:"round"}),
-    e("text",{x:toX(-1.8),y:toY(-2.5),fontSize:12,fontStyle:"italic",fill:_GOLD},"f"),
-    /* g: ružičasta rastuća */
-    gPts.length>1&&e("polyline",{points:gPts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:1.8,strokeLinejoin:"round"}),
-    e("text",{x:toX(4.8),y:toY(3.5),fontSize:12,fontStyle:"italic",fill:_BLUE},"g")
+    e("text",{x:pad.l+iW+4,y:oy+10,fontSize:9,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{x:ox-11,y:pad.t+7,fontSize:9,fontStyle:"italic",fill:"var(--text)"},"y"),
+    e("text",{x:ox-9,y:oy+12,fontSize:8,fill:"var(--muted)"},"0"),
+    e("circle",{cx:toX(1),cy:oy,r:1.8,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:.7}),
+    e("text",{x:toX(1)-2,y:oy+12,fontSize:8,fill:"var(--muted)"},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:1.8,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:.7}),
+    e("text",{x:ox-9,y:toY(1)-1,fontSize:8,fill:"var(--muted)"},"1"),
+    /* g: kontrastna boja */
+    gPts.length>1&&e("polyline",{points:gPts.join(" "),fill:"none",stroke:_G,strokeWidth:1.8,strokeLinejoin:"round",strokeLinecap:"round"}),
+    e("text",{x:toX(5.2),y:toY(3.4),fontSize:12,fontStyle:"italic",fill:_G},"g"),
+    /* f */
+    fPts.length>1&&e("polyline",{points:fPts.join(" "),fill:"none",stroke:_F,strokeWidth:1.8,strokeLinejoin:"round",strokeLinecap:"round"}),
+    e("text",{x:toX(-1.58),y:toY(-3.15),fontSize:12,fontStyle:"italic",fill:_F},"f")
   );
 }
 
@@ -361,34 +349,31 @@ function Svg30_2019Ajj(){
 }
 
 function Svg12_2019Ajj(){
-  /* Graf iz slike: parabolična krivulja s minimumom oko x≈2 y≈-3,
-     prolazi gore lijevo (oko (0,1)), minimum (2,-3), gore desno (4,3).
-     Mrežne linije, oznake 0, 1 na osima. */
-  const W=220,H=240,pad={l:30,r:14,t:14,b:30};
+  /* Vjerno po PDF slici (str. 7): glatka, simetrična parabola s tjemenom (4, −4),
+     nultočkama u x=2 i x=6, koja s obje strane strmo izlazi iz vidljivog dijela grafa.
+     f(x) = (x−4)² − 4 = x² − 8x + 12.
+     Provjera odgovora (tjeme v=4): f(1)<f(2) ⇔ v<1.5 ✗, f(2)<f(3) ⇔ v<2.5 ✗,
+     f(3)<f(4) ⇔ v<3.5 ✗, f(4)<f(5) ⇔ v<4.5 ✓ → jedini točan je D. */
+  const W=230,H=250,pad={l:30,r:16,t:14,b:30};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-0.8,xMax=5.5,yMin=-4.5,yMax=5;
+  const xMin=-0.9,xMax=8.2,yMin=-4.7,yMax=6.0;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  /* Parabola s minimumom oko x=4 (NCVVO Q12=D: f(4)<f(5) jedini točan).
-     f(x) = (x-4)²/2 - 3 → vrh (4, -3); f(3) = -2.5 > f(4) = -3, ne C; f(4) < f(5) jedino D vrijedi */
-  const data=[[-0.5,7.1],[0,5],[1,1.5],[2,-1],[3,-2.5],[4,-3],[5,-2.5],[5.5,-1.875]];
+  const f=x=>(x-4)*(x-4)-4;
+  /* gusto uzorkovanje prave parabole; crtamo samo dio unutar vidljivog y-raspona */
   const pts=[];
-  /* Lagrangeova interpolacija je pregruba; koristimo gustih linearne segmente sa zaobljenjem */
-  for(let i=0;i<data.length-1;i++){
-    const [x0,y0]=data[i],[x1,y1]=data[i+1];
-    for(let t=0;t<=1;t+=0.05){
-      const x=x0+t*(x1-x0), y=y0+t*(y1-y0);
-      pts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
-    }
+  for(let x=xMin;x<=xMax+1e-9;x+=0.02){
+    const y=f(x);
+    if(y>yMax||y<yMin) continue;
+    pts.push(`${toX(x).toFixed(2)},${toY(y).toFixed(2)}`);
   }
-  /* glatka krivulja kao path s catmull-rom → fallback na polyline */
-  const gridX=[-0,1,2,3,4,5], gridY=[-4,-3,-2,-1,0,1,2,3,4];
+  const gridX=[1,2,3,4,5,6,7,8], gridY=[-4,-3,-2,-1,1,2,3,4,5,6];
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     /* mrežne linije */
-    ...gridX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.4})),
-    ...gridY.map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.4})),
+    ...gridX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--muted)",strokeOpacity:.4,strokeWidth:.5})),
+    ...gridY.map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--muted)",strokeOpacity:.4,strokeWidth:.5})),
     /* osi */
     e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:"var(--text)",strokeWidth:1.3}),
     e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.3}),
@@ -401,13 +386,13 @@ function Svg12_2019Ajj(){
     /* 0 */
     e("text",{x:ox-10,y:oy+13,fontSize:9,fill:"var(--muted)"},"0"),
     /* 1 na x */
-    e("circle",{cx:toX(1),cy:oy,r:2,fill:_RED}),
-    e("text",{x:toX(1)-2,y:oy+13,fontSize:9,fill:"var(--muted)"},"1"),
+    e("circle",{cx:toX(1),cy:oy,r:2,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:.8}),
+    e("text",{x:toX(1)+2,y:oy+13,fontSize:9,fill:"var(--muted)"},"1"),
     /* 1 na y */
-    e("circle",{cx:ox,cy:toY(1),r:2,fill:_RED}),
-    e("text",{x:ox-12,y:toY(1)+4,fontSize:9,fill:"var(--muted)"},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:2,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:.8}),
+    e("text",{x:ox-11,y:toY(1)+4,fontSize:9,fill:"var(--muted)"},"1"),
     /* krivulja */
-    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:1.8,strokeLinejoin:"round",strokeLinecap:"round"})
+    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:1.9,strokeLinejoin:"round",strokeLinecap:"round"})
   );
 }
 
