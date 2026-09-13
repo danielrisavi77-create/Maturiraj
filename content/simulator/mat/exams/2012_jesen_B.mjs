@@ -81,89 +81,83 @@ function SvgQ13_2012JesenB(){
 }
 
 function SvgTable28_2012JesenB(){
-  const W=280,H=160;
-  const rows=[
-    ["Masa","Cijena"],
-    ["101 g \u2013 1 kg","30 kn"],
-    ["vi\u0161e od 1 kg do 40 kg","35 kn"],
-    ["vi\u0161e od 40 kg","60 kn"],
-    ["Kabasta roba, bijela tehnika...","90 kn"],
-    ["Povrat: +50% | PDV: +23%",""],
+  const ox=5,oy=5,cG=70,cM=210,cP=80,rh=22,hh=25;
+  const W=ox*2+cG+cM+cP,H=oy*2+hh+rh*6;
+  const BD={stroke:"var(--text)",strokeWidth:0.9,strokeOpacity:0.45};
+  const cell=(k,x,y,w,h,fill,op)=>e("rect",{key:k,x,y,width:w,height:h,fill:fill||"var(--bg)",fillOpacity:op==null?1:op,...BD});
+  const lbl=(k,x,y,w,h,s,opts)=>e("text",{key:k,x:x+w/2,y:y+h/2+3.5,textAnchor:"middle",fontSize:(opts&&opts.fs)||9.5,fontWeight:(opts&&opts.b)?"bold":"normal",fill:"var(--text)"},s);
+  const g=[];
+  const xG=ox,xM=ox+cG,xP=ox+cG+cM;
+  // header
+  const yH=oy;
+  g.push(cell("h0",xG,yH,cG+cM,hh,"var(--blue)",0.18),lbl("ht0",xG,yH,cG+cM,hh,"Masa",{b:1,fs:10.5}));
+  g.push(cell("h1",xP,yH,cP,hh,"var(--blue)",0.18),lbl("ht1",xP,yH,cP,hh,"Cijena prijevoza",{b:1,fs:9.5}));
+  // Paket group (3 sub-rows)
+  const yP=yH+hh;
+  g.push(cell("pg",xG,yP,cG,rh*3),lbl("pgt",xG,yP,cG,rh*3,"Paket"));
+  const paket=[["101 g – 1 kg","30 kn"],["više od 1 kg do 40 kg","35 kn"],["više od 40 kg","60 kn"]];
+  paket.forEach((r,i)=>{
+    const y=yP+i*rh;
+    g.push(cell("pm"+i,xM,y,cM,rh),lbl("pmt"+i,xM,y,cM,rh,r[0]));
+    g.push(cell("pp"+i,xP,y,cP,rh),lbl("ppt"+i,xP,y,cP,rh,r[1]));
+  });
+  // Kabasta roba
+  const yK=yP+rh*3;
+  g.push(cell("kb",xG,yK,cG+cM,rh),lbl("kbt",xG,yK,cG+cM,rh,"Kabasta roba, bijela tehnika, bicikli, TV i sl."));
+  g.push(cell("kp",xP,yK,cP,rh),lbl("kpt",xP,yK,cP,rh,"90 kn"));
+  // napomene (dva odvojena retka, preko cijele širine)
+  const notes=[
+    "U slučaju vraćanja pošiljke, pošiljatelj plaća još 50% cijene prijevoza.",
+    "Na cijenu prijevoza dodaje se PDV od 23%.",
   ];
-  const rw=[190,80],rh=23,ox=5,oy=5;
-  const cells=[];
-  for(let r=0;r<rows.length;r++){
-    for(let c=0;c<(r===0?2:rows[r][1]?2:1);c++){
-      const x=ox+(c===0?0:rw[0]),y=oy+r*rh,w=c===0?rw[0]:(r>0&&!rows[r][1]?rw[0]+rw[1]:rw[1]),h=rh;
-      const isHdr=r===0||c===0&&r===0;
-      const bg=r===0?"var(--blue)":r===rows.length-1?"var(--blue)":"var(--bg)";
-      const bgOp=r===0?0.25:r===rows.length-1?0.1:1;
-      cells.push(e("rect",{key:`r${r}c${c}`,x,y,width:w,height:h,fill:bg,fillOpacity:bgOp,stroke:"var(--text)",strokeWidth:0.8,strokeOpacity:0.4}));
-      const txt=c<rows[r].length?rows[r][c]:rows[r][0];
-      cells.push(e("text",{key:`t${r}c${c}`,x:x+5,y:y+h/2+4,fontSize:10,fontWeight:r===0?"bold":"normal",fill:"var(--text)"},txt));
-    }
-  }
-  return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},...cells);
+  notes.forEach((n,i)=>{
+    const y=yK+rh+i*rh;
+    g.push(cell("n"+i,xG,y,cG+cM+cP,rh),lbl("nt"+i,xG,y,cG+cM+cP,rh,n,{fs:9}));
+  });
+  return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},...g);
 }
 
 function SvgGraf27_2012JesenB(){
-  const W=220,H=170,ox=44,oy=14,pw=160,ph=120;
-  // scale: x=0..80kn, y=0..12mjerica
+  const W=250,H=190,ox=64,oy=16,pw=150,ph=130;
+  // scale: x=0..80 kn, y=0..12 mjerica
   const scX=pw/80, scY=ph/12;
   const toX=(kn)=>ox+kn*scX, toY=(mj)=>oy+ph-mj*scY;
   const ticksX=[20,40,60,80], ticksY=[3,6,9,12];
+  const DASH={stroke:"var(--text)",strokeOpacity:0.55,strokeWidth:0.9,strokeDasharray:"4 3"};
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
       e("marker",{id:"gj27x",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
       e("marker",{id:"gj27y",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
     ),
-    // Grid
-    ...ticksX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:oy,x2:toX(x),y2:oy+ph,stroke:"var(--text)",strokeOpacity:0.12,strokeWidth:0.8})),
-    ...ticksY.map(y=>e("line",{key:"gy"+y,x1:ox,y1:toY(y),x2:ox+pw,y2:toY(y),stroke:"var(--text)",strokeOpacity:0.12,strokeWidth:0.8})),
-    // Axes
-    e("line",{x1:ox,y1:oy+ph,x2:ox+pw+10,y2:oy+ph,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#gj27x)"}),
-    e("line",{x1:ox,y1:oy+ph,x2:ox,y2:oy-10,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#gj27y)"}),
-    // Axis labels
-    e("text",{x:ox+pw+15,y:oy+ph+5,fontSize:9,fill:"var(--text)"},"cijena"),
-    e("text",{x:ox+pw+15,y:oy+ph+15,fontSize:9,fill:"var(--text)"},"(kn)"),
-    e("text",{x:2,y:oy+ph/2,fontSize:9,fill:"var(--text)"},"koli\u010dina"),
-    e("text",{x:2,y:oy+ph/2+10,fontSize:9,fill:"var(--text)"},"(mjeric.)"),
-    // X ticks
-    ...ticksX.map(x=>e("g",{key:"tx"+x},
-      e("line",{x1:toX(x),y1:oy+ph-3,x2:toX(x),y2:oy+ph+3,stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:toX(x),y:oy+ph+13,textAnchor:"middle",fontSize:10,fill:"var(--text)"},String(x))
-    )),
-    // Y ticks
-    ...ticksY.map(y=>e("g",{key:"ty"+y},
-      e("line",{x1:ox-3,y1:toY(y),x2:ox+3,y2:toY(y),stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:ox-6,y:toY(y)+4,textAnchor:"end",fontSize:10,fill:"var(--text)"},String(y))
-    )),
-    e("text",{x:ox-6,y:toY(0)+4,textAnchor:"end",fontSize:10,fill:"var(--text)"},"0"),
-    // The line: y=(3/20)x → goes from (0,0) to (80,12)
-    e("line",{x1:toX(0),y1:toY(0),x2:toX(80),y2:toY(12),stroke:"var(--blue)",strokeWidth:2.2}),
-    // Reference points
-    e("circle",{cx:toX(20),cy:toY(3),r:4,fill:"white",stroke:"var(--blue)",strokeWidth:1.5}),
-    e("circle",{cx:toX(0),cy:toY(0),r:4,fill:"white",stroke:"var(--blue)",strokeWidth:1.5})
+    // isprekidana mreža (vodilice) – kao u izvorniku
+    ...ticksX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:oy,x2:toX(x),y2:oy+ph,...DASH})),
+    ...ticksY.map(y=>e("line",{key:"gy"+y,x1:ox,y1:toY(y),x2:ox+pw+6,y2:toY(y),...DASH})),
+    // osi
+    e("line",{x1:ox,y1:oy+ph,x2:ox+pw+16,y2:oy+ph,stroke:"var(--text)",strokeWidth:1.6,markerEnd:"url(#gj27x)"}),
+    e("line",{x1:ox,y1:oy+ph,x2:ox,y2:oy-8,stroke:"var(--text)",strokeWidth:1.6,markerEnd:"url(#gj27y)"}),
+    // oznake osi
+    e("text",{x:ox-8,y:oy+6,textAnchor:"end",fontSize:9.5,fill:"var(--text)"},"količina u"),
+    e("text",{x:ox-8,y:oy+17,textAnchor:"end",fontSize:9.5,fill:"var(--text)"},"mjericama"),
+    e("text",{x:ox+pw-6,y:oy+ph+27,textAnchor:"middle",fontSize:9.5,fill:"var(--text)"},"cijena (kn)"),
+    // pravac y=(3/20)x : od (0,0) do (80,12)
+    e("line",{x1:toX(0),y1:toY(0),x2:toX(80),y2:toY(12),stroke:"var(--blue)",strokeWidth:2.4}),
+    // prazni kružići na osima uz vrijednosti 3 (y-os) i 20 (x-os)
+    e("circle",{cx:ox,cy:toY(3),r:3.6,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.2}),
+    e("text",{x:ox-9,y:toY(3)+4,textAnchor:"end",fontSize:12,fill:"var(--text)"},"3"),
+    e("circle",{cx:toX(20),cy:oy+ph,r:3.6,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.2}),
+    e("text",{x:toX(20),y:oy+ph+16,textAnchor:"middle",fontSize:12,fill:"var(--text)"},"20"),
+    e("text",{x:ox-4,y:oy+ph+14,textAnchor:"end",fontSize:12,fill:"var(--text)"},"0")
   );
 }
 
 function SvgParabola16_2012JesenB(){
   const W=200,H=180,cx=80,cy=120,sc=28;
-  // f(x)=(x-1)(x+3)=x²+2x-3 → c=-3<0... need c>0, a>0, D>0
-  // f(x)=(x-0,5)(x-3)+0... let's use a parabola crossing x-axis twice with y-int>0
-  // Actually from PDF: parabola goes up, cuts x-axis at 2 points, y-intercept > 0
-  // f(x) = (x+1)(x-2)+4 = x²-x-2+4 = x²-x+2... D=1-8<0, no zeros
-  // From image: looks like zeros at x≈-1 and x≈3, c>0
-  // f(x)=x²-2x-3=(x-3)(x+1), c=-3<0. Need c>0.
-  // Actually jesen Q16 answer is B=(D=0,a>0,c>0): parabola TANGENT to x-axis (D=0)
-  // So only ONE zero (touches x-axis), a>0, c>0
-  // f(x)=(x-k)² with vertex at (k,0) shifted up... wait that would make c>0 if k²>0
-  // f(x)=(x-2)²=x²-4x+4, c=4>0, D=0, a=1>0. Zeros: x=2 only.
-  // From PDF image: parabola opens up, touches x-axis at ONE point (right of y-axis), y-intercept positive
+  // Iz PDF-a: parabola otvorena prema gore, dodiruje x-os u jednoj točki (D=0),
+  // a>0 i c>0 (odsječak na y-osi pozitivan) → f(x)=(x−2)².
   const pts=[];
   for(let px=0;px<=W;px+=2){
     const x=(px-cx)/sc;
-    const y=(x-2)*(x-2);  // (x-2)²: vertex at (2,0), y-int=4
+    const y=(x-2)*(x-2);  // (x-2)²: tjeme u (2,0), f(0)=4
     const py=cy-y*sc;
     if(py>-10&&py<H+10) pts.push(`${px},${py}`);
   }
@@ -174,12 +168,12 @@ function SvgParabola16_2012JesenB(){
     ),
     e("line",{x1:5,y1:cy,x2:W-5,y2:cy,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#axj16x)"}),
     e("line",{x1:cx,y1:H-5,x2:cx,y2:5,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#axj16y)"}),
-    e("text",{x:W-8,y:cy-6,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+5,y:12,fontSize:11,fill:"var(--text)"},"y"),
-    e("text",{x:cx-12,y:cy+12,fontSize:11,fill:"var(--text)"},"0"),
-    // y-intercept dot at (0,4) → pixel (cx, cy-4*sc)
-    e("circle",{cx:cx,cy:cy-4*sc,r:3,fill:"var(--blue)"}),
-    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2})
+    e("text",{x:W-8,y:cy-6,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{x:cx+5,y:14,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"y"),
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2}),
+    // prazan kružić u ishodištu uz oznaku 0 (kao u izvorniku)
+    e("circle",{cx:cx,cy:cy,r:3.4,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.2}),
+    e("text",{x:cx-7,y:cy+14,textAnchor:"end",fontSize:11,fill:"var(--text)"},"0")
   );
 }
 
