@@ -3,38 +3,50 @@ import React from 'react';
 const e = React.createElement;
 
 function SvgCjenik28_2013Bj(){
-  const W=360,H=320,x0=8,y0=6;
+  // Tri odvojena cjenika (pizze / dodatci / bezalkoholna pića) kao u ispitu.
+  // Stupci su fiksne širine pa se tablica s 2 stupca ne rasteže preko cijele slike.
+  const W=360,H=350,x0=8;
+  const col0=112,colW=76,rH=22,titleH=16;
   function section(title,headers,rows,y){
     const nCols=headers.length;
-    const col0=82,colW=(W-x0*2-col0)/(nCols-1);
-    const rH=22,titleH=14;
     const tw=col0+colW*(nCols-1);
     const items=[];
     const uid=title.slice(0,3).replace(/\s/g,"")+y;
-    // Title — smaller font, fits on one line
-    items.push(e("text",{key:"t"+uid,x:x0,y:y+titleH-2,
+    const cellX=(ci)=>x0+(ci===0?col0/2:col0+(ci-0.5)*colW);
+    const tblTop=y+titleH, tblBot=y+titleH+rH*(rows.length+1);
+    // Naslov cjenika
+    items.push(e("text",{key:"t"+uid,x:x0,y:y+titleH-5,
       fontSize:9,fontWeight:"700",letterSpacing:"0.04em",fill:"var(--text)"},title));
-    // Header row
-    items.push(e("rect",{key:"hbg"+uid,x:x0,y:y+titleH,width:tw,height:rH,
-      fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:1}));
+    // Zaglavlje (blaga podloga da se stupci raspoznaju u obje teme)
+    items.push(e("rect",{key:"hbg"+uid,x:x0,y:tblTop,width:tw,height:rH,
+      fill:"var(--s2)",stroke:"var(--bdr2)",strokeWidth:1}));
     items.push(...headers.map((h,i)=>e("text",{key:"hh"+uid+i,
-      x:x0+(i===0?col0/2:col0+(i-0.5)*colW),y:y+titleH+rH*0.68,
+      x:cellX(i),y:tblTop+rH*0.68,
       fontSize:9,fontWeight:"700",textAnchor:"middle",fill:"var(--text)"},h)));
-    // Data rows
+    // Retci
     rows.forEach((row,ri)=>{
-      const ry=y+titleH+rH*(ri+1);
+      const ry=tblTop+rH*(ri+1);
       items.push(e("rect",{key:"rr"+uid+ri,x:x0,y:ry,width:tw,height:rH,
-        fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:0.8}));
+        fill:"none",stroke:"var(--bdr2)",strokeWidth:0.8}));
       row.forEach((cell,ci)=>items.push(e("text",{key:"rc"+uid+ri+ci,
-        x:x0+(ci===0?col0/2:col0+(ci-0.5)*colW),y:ry+rH*0.68,
+        x:cellX(ci),y:ry+rH*0.68,
         fontSize:9,textAnchor:"middle",
         fill:ci===0?"var(--text)":"var(--blue)"},cell)));
     });
+    // Okomite crte između stupaca
+    for(let ci=1;ci<nCols;ci++){
+      const vx=x0+col0+(ci-1)*colW;
+      items.push(e("line",{key:"vl"+uid+ci,x1:vx,y1:tblTop,x2:vx,y2:tblBot,
+        stroke:"var(--bdr2)",strokeWidth:0.8}));
+    }
+    // Vanjski okvir tablice
+    items.push(e("rect",{key:"fr"+uid,x:x0,y:tblTop,width:tw,height:tblBot-tblTop,
+      fill:"none",stroke:"var(--text)",strokeWidth:1.2}));
     return items;
   }
-  // Sekcija visine = titleH(14) + rH(22) * (nRows+1). Pizza: 14+22*4=102. Dodatci: 102. Pića: 102.
-  // Razmaci: 8px između sekcija
-  const y1=6, y2=y1+14+22*4+10, y3=y2+14+22*4+10;
+  // Visina sekcije = titleH(16) + rH(22)·(3 retka + zaglavlje) = 104; razmak 12
+  const secH=titleH+rH*4;
+  const y1=8, y2=y1+secH+12, y3=y2+secH+12;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
     ...section("CIJENE PIZZA",["Vrsta pizze","Mala","Velika","Jumbo"],[
@@ -60,7 +72,8 @@ function SvgGraf25_2013Bj(){
   const lx=72,rx=W-18,ty=14,by=H-26;
   const years=[1900,1920,1940,1960,1980,2000,2020];
   const yw=y=>lx+(y-1900)/(2020-1900)*(rx-lx);
-  const colors=["#e05a6a","#e07a30","#c4a82e","#4ab56e","var(--blue)","#9b6fd4"];
+  // Boje isključivo iz palete teme — čitljive i u svijetloj i u tamnoj temi.
+  const colors=["var(--red)","var(--gold)","var(--blue)","var(--green)","var(--teal)","var(--text)"];
   const persons=[
     {name:"Filip",   segs:[[1984,1997]]},
     {name:"Ena",     segs:[[1978,2008]]},
@@ -122,7 +135,8 @@ function SvgGraf25_2013Bj(){
 }
 
 function SvgTablica23_2013Bj(){
-  const W=360,H=80,x0=8,y0=8;
+  // W mora obuhvatiti x0 + col0 + 7\u00b7colW = 8 + 62 + 294 = 364 (prije je desni rub tablice bio odrezan)
+  const W=372,H=80,x0=8,y0=8;
   const headers=["Pon","Uto","Sri","\u010cet","Pet","Sub","Ned"];
   const values=["12 000","7 000","0","30 000","15 000","23 000","10 000"];
   const col0=62, colW=42;
@@ -168,11 +182,11 @@ function SvgTablica22_2013Bj(){
     e("text",{x:xs[2]+colW[2]/2-4,y:y0+rowH*0.42,fontSize:10,textAnchor:"middle",fill:"var(--blue)"},"1"),
     e("line",{x1:xs[2]+colW[2]/2-10,y1:y0+rowH*0.52,x2:xs[2]+colW[2]/2+10,y2:y0+rowH*0.52,stroke:"var(--blue)",strokeWidth:1}),
     e("text",{x:xs[2]+colW[2]/2,y:y0+rowH*0.72,fontSize:10,textAnchor:"middle",fill:"var(--blue)"},"8"),
-    e("text",{x:xs[3]+colW[3]/2,y:y0+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"#e8c547"},"?"),
+    e("text",{x:xs[3]+colW[3]/2,y:y0+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"var(--gold)"},"?"),
     // Row f(x)
     e("text",{x:x0+colW[0]/2,y:y0+rowH+rowH*0.65,fontSize:11,fontStyle:"italic",textAnchor:"middle",fill:"var(--text)"},"f(x)"),
-    e("text",{x:xs[1]+colW[1]/2,y:y0+rowH+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"#e8c547"},"?"),
-    e("text",{x:xs[2]+colW[2]/2,y:y0+rowH+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"#e8c547"},"?"),
+    e("text",{x:xs[1]+colW[1]/2,y:y0+rowH+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"var(--gold)"},"?"),
+    e("text",{x:xs[2]+colW[2]/2,y:y0+rowH+rowH*0.65,fontSize:14,fontWeight:"700",textAnchor:"middle",fill:"var(--gold)"},"?"),
     e("text",{x:xs[3]+colW[3]/2,y:y0+rowH+rowH*0.65,fontSize:12,textAnchor:"middle",fill:"var(--blue)"},"10")
   );
 }
@@ -283,187 +297,172 @@ function SvgGrafovi12_2013Bj(){
 }
 
 function SvgSkica15_2013Bj(){
-  // Tlocrt prema slici:
-  // - Vanjski pravokutnik a × b
-  // - Lijevi gornji istak: x (širina, desno od vanjskog lijevog ruba), 2x (dubina, gore)
-  //   → usjek u gornjem-lijevom kutu: stepenica koja ide unutra
-  // - Desni gornji istak: x×x kvadrat usječen u gornjem-desnom kutu
-  //   + još x × x odmah lijevo od njega (vidi kotice na slici)
-  const W=310,H=190,s=16;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const ox=18,oy=170;      // ishodište (dolje-lijevo)
-  const a=16*s;            // 16 jedinica = 256px (proporcija iz slike)
-  const bh=9*s;            // 9 jedinica visina
-  const x=1.5*s;           // x = 1.5 jedinice = 24px (prikazano u smjeru kazaljki)
+  // Tlocrt prostorije sa samim pravim kutovima (a = 12 m, b = 7 m, x = 1,5 m).
+  // Vanjski pravokutnik a × b iz kojega su izrezana DVA UGAONA STEPENA:
+  //   • gornji lijevi kut: širina x, dubina 2x
+  //   • gornji desni kut:  širina x, dubina x
+  // Ugaoni stepen ne mijenja opseg (2(a+b)) — upravo je to poanta zadatka.
+  const s=17;
+  const a=12*s, bh=7*s, x=1.5*s;
+  const ox=42, oy=26;                    // gornji lijevi kut vanjskog pravokutnika
+  const W=ox+a+58, H=oy+bh+40;
+  const bx=ox+a, by=oy+bh;               // donji desni kut
+  const pts=[
+    [ox,        oy+2*x],                 // lijevi rub ispod gornjeg lijevog stepena
+    [ox+x,      oy+2*x],
+    [ox+x,      oy],                     // gore
+    [bx-x,      oy],                     // gornji rub do desnog stepena
+    [bx-x,      oy+x],
+    [bx,        oy+x],                   // desni rub ispod desnog stepena
+    [bx,        by],                     // dolje desno
+    [ox,        by]                      // dolje lijevo
+  ].map(([px,py])=>`${px},${py}`).join(" ");
 
-  // Obilazak ruba (suprotno kazaljkama, počev od dolje-lijevo):
-  // Dolje: ox,oy → ox+a,oy
-  // Gore-desno do usjeka: ox+a,oy → ox+a,oy-bh
-  // Desni gornji usjek (x×x): ox+a → ox+a-x,oy-bh → ox+a-x,oy-bh+x → ox+a-2*x,oy-bh+x → ox+a-2*x,oy-bh
-  // Gore do lijevog usjeka: ... → ox+x,oy-bh
-  // Lijevi gornji usjek (x wide, 2x deep): 
-  //   ox+x,oy-bh → ox+x,oy-bh+2*x → ox,oy-bh+2*x → ox,oy-bh
-  //   → ox,oy (zatvori)
-  // WAIT - iz slike lijevi usjek je dolje-lijevo, ne gore-lijevo!
-  // Lijevi usjek: na gornjem-lijevom je "izbočina" koja ide UNUTRA (usjek u sobi)
-  // Idemo polako: iz slike, prostorija ima:
-  //   Donji rub: ravna linija (a)
-  //   Desni rub: ravna linija (b) s kotom
-  //   Gornji rub: ravna linija ali s urezeom desno-gore (x horizontalno, x vertikalno)
-  //   Lijevi rub: ima korak: od dolje-lijevo ide ravno gore, zatim "urez" koji
-  //               ide desno za x (širina), zatim dolje za 2x, zatim natrag na lijevi rub
-  // Dakle L-oblik je na LIJEVOJ strani, ne uglu!
-
-  const pts = [
-    // Donji lijevi
-    [ox, oy],
-    // Donji desni
-    [ox+a, oy],
-    // Desni rub gore do usjeka (desni gornji kut)
-    [ox+a, oy-bh],
-    // Desni gornji usjek: ide lijevo za 2x, gore za x, lijevo za 0, dolje...
-    // Iz slike: desni gornji usjek: 
-    //   vanjski kut (ox+a, oy-bh) → ide lijevo x → gornji dio usjeka x dubok
-    //   tj. (ox+a-x, oy-bh) → dolje x → (ox+a-x, oy-bh+x) → lijevo x → (ox+a-2*x, oy-bh+x) → gore x → (ox+a-2*x, oy-bh)
-    [ox+a-x,   oy-bh],
-    [ox+a-x,   oy-bh+x],
-    [ox+a-2*x, oy-bh+x],
-    [ox+a-2*x, oy-bh],
-    // Gornji rub do lijevog usjeka
-    [ox+x, oy-bh],
-    // Lijevi gornji istak: ide dolje 2x, desno x, gore 2x → to je vanjski istak prema vani
-    // Iz slike: lijevo gore imamo "zub" koji strši van (ili usjek unutar sobe?)
-    // Gledajući sliku pažljivo: lijevi rub ide od dna prema gore, 
-    // na visini bh-2x od dna dolazi do usjeka:
-    // vanjski lijevi rub → ide desno za x (usjek koji ide unutra) → gore 2x → natrag na lijevi rub gore
-    [ox+x, oy-bh+2*x],
-    [ox,   oy-bh+2*x],
-    // Lijevi rub do dna
-    [ox, oy]
-  ].map(([px,py]) => `${px},${py}`).join(' ');
+  // Kota (mjerna crta) s graničnicima
+  const dimH=(x1,x2,y,label,lx,ly)=>[
+    e("line",{key:"dl"+y+x1,x1,y1:y,x2,y2:y,stroke:"var(--muted)",strokeWidth:0.9}),
+    e("line",{key:"da"+y+x1,x1,y1:y-4,x2:x1,y2:y+4,stroke:"var(--muted)",strokeWidth:0.9}),
+    e("line",{key:"db"+y+x1,x1:x2,y1:y-4,x2:x2,y2:y+4,stroke:"var(--muted)",strokeWidth:0.9}),
+    e("text",{key:"dt"+y+x1,x:lx,y:ly,fontSize:11,textAnchor:"middle",fontStyle:"italic",
+      fill:"var(--gold)"},label)
+  ];
+  const dimV=(y1,y2,xx,label,lx,ly)=>[
+    e("line",{key:"vl"+xx+y1,x1:xx,y1,x2:xx,y2,stroke:"var(--muted)",strokeWidth:0.9}),
+    e("line",{key:"va"+xx+y1,x1:xx-4,y1,x2:xx+4,y2:y1,stroke:"var(--muted)",strokeWidth:0.9}),
+    e("line",{key:"vb"+xx+y1,x1:xx-4,y1:y2,x2:xx+4,y2,stroke:"var(--muted)",strokeWidth:0.9}),
+    e("text",{key:"vt"+xx+y1,x:lx,y:ly,fontSize:11,textAnchor:"middle",fontStyle:"italic",
+      fill:"var(--gold)"},label)
+  ];
 
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
     // Tlocrt
-    e("polygon",{points:pts,fill:"none",stroke:_BLUE,strokeWidth:2}),
-
-    // Kota a (dno)
-    e("line",{x1:ox,y1:oy+7,x2:ox+a,y2:oy+7,stroke:"var(--muted)",strokeWidth:0.8}),
-    e("text",{x:ox+a/2,y:oy+18,fontSize:12,textAnchor:"middle",fontStyle:"italic",fill:_GOLD},"a"),
-
-    // Kota b (desno)
-    e("line",{x1:ox+a+7,y1:oy,x2:ox+a+7,y2:oy-bh,stroke:"var(--muted)",strokeWidth:0.8}),
-    e("line",{x1:ox+a+3,y1:oy,  x2:ox+a+11,y2:oy,  stroke:"var(--muted)",strokeWidth:0.8}),
-    e("line",{x1:ox+a+3,y1:oy-bh,x2:ox+a+11,y2:oy-bh,stroke:"var(--muted)",strokeWidth:0.8}),
-    e("text",{x:ox+a+20,y:oy-bh/2+4,fontSize:12,fontStyle:"italic",fill:_GOLD},"b"),
-
-    // Oznaka x gornji lijevi istak (širina = x)
-    e("text",{x:ox+x/2,y:oy-bh-7,fontSize:11,textAnchor:"middle",fontStyle:"italic",fill:"var(--text)"},"x"),
-    // Oznaka 2x lijevi istak (visina = 2x)
-    e("text",{x:ox-18,y:oy-bh+x,fontSize:11,fontStyle:"italic",fill:_GOLD},"2x"),
-
-    // Oznaka x desni istak (vertikalno = x)
-    e("text",{x:ox+a+2,y:oy-bh+x/2,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"x"),
-    // Oznaka x desni istak (horizontalno = x)
-    e("text",{x:ox+a-1.5*x,y:oy-bh-7,fontSize:11,textAnchor:"middle",fontStyle:"italic",fill:"var(--text)"},"x")
+    e("polygon",{points:pts,fill:"var(--blue-d)",stroke:"var(--blue)",strokeWidth:2,
+      strokeLinejoin:"miter"}),
+    // Kota a (donji rub)
+    ...dimH(ox,bx,by+16,"a",ox+a/2,by+31),
+    // Kota b (desni rub)
+    ...dimV(oy,by,bx+18,"b",bx+34,oy+bh/2+4),
+    // Gornji lijevi stepen: širina x, dubina 2x
+    ...dimH(ox,ox+x,oy-12,"x",ox+x/2,oy-17),
+    ...dimV(oy,oy+2*x,ox-14,"2x",ox-28,oy+x+4),
+    // Gornji desni stepen: širina x, dubina x
+    ...dimH(bx-x,bx,oy-12,"x",bx-x/2,oy-17),
+    ...dimV(oy,oy+x,bx+6,"x",bx+13,oy+x/2+4)
   );
 }
 
+// Zajednička geometrija mreže za zad. 19 (prazan sustav) i njegovo rješenje.
+// Mreža mora obuhvatiti (0,2) i (4,0) jer učenik u nju crta y = −1/2·x + 2.
+const G19 = { sc:26, NXL:3, NXR:6, NYT:4, NYB:2, mL:14, mT:14 };
+G19.cx = G19.mL + G19.NXL*G19.sc;                 // 92
+G19.cy = G19.mT + G19.NYT*G19.sc;                 // 118
+G19.W  = G19.cx + G19.NXR*G19.sc + 18;            // 266
+G19.H  = G19.cy + G19.NYB*G19.sc + 18;            // 188
+
+// Mreža crtana eksplicitnim linijama (ne <pattern>) da se linije poklope s ishodištem.
+function grid19Lines(tag){
+  const {sc,NXL,NXR,NYT,NYB,cx,cy}=G19;
+  const x0=cx-NXL*sc, x1=cx+NXR*sc, y0=cy-NYT*sc, y1=cy+NYB*sc;
+  const out=[];
+  for(let k=-NXL;k<=NXR;k++) out.push(e("line",{key:"gv"+tag+k,
+    x1:cx+k*sc,y1:y0,x2:cx+k*sc,y2:y1,
+    stroke:"var(--muted)",strokeWidth:0.7,strokeOpacity:0.5,strokeDasharray:"3,3"}));
+  for(let k=-NYB;k<=NYT;k++) out.push(e("line",{key:"gh"+tag+k,
+    x1:x0,y1:cy-k*sc,x2:x1,y2:cy-k*sc,
+    stroke:"var(--muted)",strokeWidth:0.7,strokeOpacity:0.5,strokeDasharray:"3,3"}));
+  return out;
+}
+
+// Osi + jedinične oznake, zajedničke za zadatak i rješenje.
+function axes19(tag,markerId){
+  const {sc,NXL,NXR,NYT,NYB,cx,cy,W,H}=G19;
+  return [
+    e("line",{key:"ax"+tag,x1:cx-NXL*sc-10,y1:cy,x2:W-6,y2:cy,
+      stroke:"var(--text)",strokeWidth:1.6,markerEnd:`url(#${markerId})`}),
+    e("line",{key:"ay"+tag,x1:cx,y1:cy+NYB*sc+10,x2:cx,y2:6,
+      stroke:"var(--text)",strokeWidth:1.6,markerEnd:`url(#${markerId})`}),
+    e("text",{key:"lx"+tag,x:W-14,y:cy+15,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{key:"ly"+tag,x:cx-14,y:15,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"y"),
+    e("circle",{key:"c0"+tag,cx,cy,r:3,fill:"var(--bg)",stroke:"var(--blue)",strokeWidth:1.4}),
+    e("circle",{key:"cx1"+tag,cx:cx+sc,cy,r:3,fill:"var(--bg)",stroke:"var(--blue)",strokeWidth:1.4}),
+    e("circle",{key:"cy1"+tag,cx,cy:cy-sc,r:3,fill:"var(--bg)",stroke:"var(--blue)",strokeWidth:1.4}),
+    e("text",{key:"t0"+tag,x:cx-11,y:cy+13,fontSize:10,fill:"var(--text)"},"0"),
+    e("text",{key:"tx1"+tag,x:cx+sc-3,y:cy+13,fontSize:10,fill:"var(--text)"},"1"),
+    e("text",{key:"ty1"+tag,x:cx-11,y:cy-sc+4,fontSize:10,fill:"var(--text)"},"1")
+  ];
+}
+
+function arrowMarker19(id){
+  return e("marker",{id,markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:"auto",
+    markerUnits:"userSpaceOnUse"},e("path",{d:"M0,0.6 L0,6.4 L7,3.5 z",fill:"var(--text)"}));
+}
+
 function SvgGrid19_2013Bj(){
-  const W=240,H=210,cx=100,cy=120,sc=32;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const {W,H}=G19;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
-    e("defs",null,
-      e("pattern",{id:"g19bj",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:0.6,strokeDasharray:"3,3"})
-      ),
-      e("marker",{id:"ax19bj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ay19bj",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
-    ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#g19bj)"}),
-    e("line",{x1:5,y1:cy,x2:W-5,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ax19bj)"}),
-    e("line",{x1:cx,y1:H-5,x2:cx,y2:5,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ay19bj)"}),
-    e("text",{x:W-13,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:13,fontSize:11,fill:"var(--text)"},"y"),
-    e("circle",{cx,cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("circle",{cx:cx+sc,cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("circle",{cx,cy:cy-sc,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{x:cx-11,y:cy+12,fontSize:10,fill:"var(--text)"},"0"),
-    e("text",{x:cx+sc-3,y:cy+12,fontSize:10,fill:"var(--text)"},"1"),
-    e("text",{x:cx-11,y:cy-sc+5,fontSize:10,fill:"var(--text)"},"1")
+    e("defs",null,arrowMarker19("ax19bj")),
+    ...grid19Lines("q"),
+    ...axes19("q","ax19bj")
   );
 }
 
 function SvgParalelni11_2013Bj(){
-  const W=320,H=160;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  // A=(40,130), B=(150,130) na p; C=(60,40), D=(240,40) na q
-  const A={x:40,y:130}, B={x:160,y:130};
-  const C={x:60,y:40}, D={x:250,y:40};
+  // Usporedni pravci p i q; A, B ∈ p te C, D ∈ q.
+  // Trokuti ABC i ABD dijele osnovicu AB i imaju jednake visine ⇒ jednake površine.
+  const W=320,H=170;
+  const yp=132, yq=42;
+  const A={x:46,y:yp}, B={x:166,y:yp};
+  const C={x:66,y:yq}, D={x:252,y:yq};
   const pt=(p)=>`${p.x},${p.y}`;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
-    // Pravci p i q (isprekidani)
-    e("line",{x1:10,y1:130,x2:W-10,y2:130,stroke:_GOLD,strokeWidth:1.5,strokeDasharray:"8,4"}),
-    e("line",{x1:10,y1:40,x2:W-10,y2:40,stroke:_GOLD,strokeWidth:1.5,strokeDasharray:"8,4"}),
-    e("text",{x:W-18,y:35,fontSize:12,fontStyle:"italic",fill:_GOLD},"q"),
-    e("text",{x:W-18,y:125,fontSize:12,fontStyle:"italic",fill:_GOLD},"p"),
-    // Trokut ABC (deblje — prikazan)
-    e("polygon",{points:`${pt(A)} ${pt(B)} ${pt(C)}`,
-      fill:"none",stroke:_BLUE,strokeWidth:2.5}),
-    // Trokut ABD (tanje)
-    e("polygon",{points:`${pt(A)} ${pt(B)} ${pt(D)}`,
-      fill:"none",stroke:_BLUE,strokeWidth:1.5}),
-    // Točke
-    ...[{p:A,n:"A"},{p:B,n:"B"},{p:C,n:"C"},{p:D,n:"D"}].map(({p,n})=>
+    // Pravci p i q — pune tanke linije, kao na originalnoj skici
+    e("line",{x1:10,y1:yq,x2:W-24,y2:yq,stroke:"var(--muted)",strokeWidth:1.2}),
+    e("line",{x1:10,y1:yp,x2:W-24,y2:yp,stroke:"var(--muted)",strokeWidth:1.2}),
+    e("text",{x:W-18,y:yq-5,fontSize:12,fontStyle:"italic",fill:"var(--text)"},"q"),
+    e("text",{x:W-18,y:yp-5,fontSize:12,fontStyle:"italic",fill:"var(--text)"},"p"),
+    // Trokut ABC
+    e("polygon",{points:`${pt(A)} ${pt(B)} ${pt(C)}`,fill:"none",
+      stroke:"var(--blue)",strokeWidth:2}),
+    // Trokut ABD
+    e("polygon",{points:`${pt(A)} ${pt(B)} ${pt(D)}`,fill:"none",
+      stroke:"var(--green)",strokeWidth:2}),
+    // Zajednička osnovica AB (deblje, preko oba trokuta)
+    e("line",{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:"var(--text)",strokeWidth:2.4}),
+    // Vrhovi
+    ...[{p:A,n:"A",dx:-13,dy:15},{p:B,n:"B",dx:6,dy:15},
+        {p:C,n:"C",dx:-14,dy:-8},{p:D,n:"D",dx:7,dy:-8}].map(({p,n,dx,dy})=>
       e(React.Fragment,{key:n},
-        e("circle",{cx:p.x,cy:p.y,r:4,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-        e("text",{x:p.x+(n==="A"?-14:n==="B"?6:n==="C"?-14:6),
-          y:p.y+(n==="A"||n==="B"?14:-8),fontSize:12,fontStyle:"italic",
-          fill:"var(--text)"},n)
+        e("circle",{cx:p.x,cy:p.y,r:3.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.5}),
+        e("text",{x:p.x+dx,y:p.y+dy,fontSize:12,fontStyle:"italic",fill:"var(--text)"},n)
       )
     )
   );
 }
 
 function SvgSol19_2013Bj(){
-  // y = -1/2·x + 2 — prolazi kroz (0,2) i (4,0)
-  const W=240,H=210,cx=100,cy=120,sc=32;
-  const slope=-0.5;
-  const b=2;
-  // Produženje: x od -2.5 do 5.5
-  const xa=-2.5, xb=5.5;
+  // Rješenje: y = −1/2·x + 2 — prolazi kroz (0, 2) i (4, 0). Ista mreža kao u zadatku.
+  const {sc,NXL,NXR,cx,cy,W,H}=G19;
+  const slope=-0.5, b=2;
+  const xa=-NXL, xb=NXR;                       // klip pravca na mrežu
   const pxa=cx+xa*sc, pya=cy-(slope*xa+b)*sc;
   const pxb=cx+xb*sc, pyb=cy-(slope*xb+b)*sc;
-  // Ključne točke: (0,2) i (4,0)
-  const px0=cx, py2=cy-b*sc;
-  const px4=cx+4*sc, py0=cy;
+  const px0=cx, py2=cy-b*sc;                   // (0, 2)
+  const px4=cx+4*sc, py0=cy;                   // (4, 0)
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
-    e("defs",null,
-      e("pattern",{id:"g19bjsol",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:0.6,strokeDasharray:"3,3"})
-      ),
-      e("marker",{id:"ax19bjsol",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ay19bjsol",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
-    ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#g19bjsol)"}),
-    e("line",{x1:5,y1:cy,x2:W-5,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ax19bjsol)"}),
-    e("line",{x1:cx,y1:H-5,x2:cx,y2:5,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ay19bjsol)"}),
-    e("text",{x:W-13,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:13,fontSize:11,fill:"var(--text)"},"y"),
-    e("circle",{cx,cy,r:3.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.5}),
-    e("circle",{cx:cx+sc,cy,r:3.5,fill:"var(--bg)",stroke:"var(--muted)",strokeWidth:1}),
-    e("text",{x:cx+sc-4,y:cy+13,fontSize:9,fill:"var(--muted)"},"1"),
-    e("circle",{cx,cy:cy-sc,r:3.5,fill:"var(--bg)",stroke:"var(--muted)",strokeWidth:1}),
-    e("text",{x:cx+3,y:cy-sc+4,fontSize:9,fill:"var(--muted)"},"1"),
-    e("line",{x1:pxa,y1:pya,x2:pxb,y2:pyb,stroke:"var(--blue)",strokeWidth:2.2}),
-    e("circle",{cx:px0,cy:py2,r:5,fill:"var(--blue)"}),
-    e("text",{x:px0+5,y:py2-6,fontSize:9,fill:"var(--blue)",fontWeight:"bold"},"(0,2)"),
-    e("circle",{cx:px4,cy:py0,r:5,fill:"var(--blue)"}),
-    e("text",{x:px4+5,y:py0-6,fontSize:9,fill:"var(--blue)",fontWeight:"bold"},"(4,0)"),
-    e("text",{x:cx+4*sc+4,y:cy-0.5*4*sc-sc+18,fontSize:9,fill:"var(--blue)",fontStyle:"italic"},"y=\u22121/2x+2")
+    e("defs",null,arrowMarker19("ax19bjsol")),
+    ...grid19Lines("s"),
+    ...axes19("s","ax19bjsol"),
+    e("line",{x1:pxa,y1:pya,x2:pxb,y2:pyb,stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"}),
+    e("circle",{cx:px0,cy:py2,r:4,fill:"var(--blue)"}),
+    e("text",{x:px0+9,y:py2-12,fontSize:9,fontWeight:"700",fill:"var(--blue)"},"(0, 2)"),
+    e("circle",{cx:px4,cy:py0,r:4,fill:"var(--blue)"}),
+    e("text",{x:px4+5,y:py0-7,fontSize:9,fontWeight:"700",fill:"var(--blue)"},"(4, 0)"),
+    e("text",{x:cx+2.3*sc,y:cy-3.3*sc,fontSize:9,fontStyle:"italic",fill:"var(--blue)"},
+      "y = −1/2·x + 2")
   );
 }
 
