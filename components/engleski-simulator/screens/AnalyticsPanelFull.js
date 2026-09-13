@@ -2,7 +2,7 @@
 import { useState, useMemo } from 'react'
 import { TOPIC_LABELS, GC, LEVEL_NAMES, getLevel, xpProgress, xpToNext, grade, LL } from '@/lib/engleski-simulator/constants'
 import { chk } from '@/lib/engleski-simulator/scoring'
-import { EXAMS } from '@/lib/engleski-simulator/exams'
+import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
 
 // ── TrendGraph ────────────────────────────────────────────────────
 function TrendGraph({ history }) {
@@ -92,6 +92,7 @@ function GradePrediction({ history }) {
   )
 
   const GNAMES = { 1: 'Nedovoljan', 2: 'Dovoljan', 3: 'Dobar', 4: 'Vrlo dobar', 5: 'Odličan' }
+  // ilustrativna distribucija ocjena — nema navedenog službenog izvora, ne koristi kao stvarne NCVVO podatke
   const NCE_DIST = { 1: 22, 2: 18, 3: 24, 4: 20, 5: 16 }
   const recent = history.slice(-5)
   const weights = recent.map((_, i) => i + 1)
@@ -148,7 +149,7 @@ function GradePrediction({ history }) {
       </div>
 
       <div className="pred-nce">
-        <div className="pred-nce-title">Distribucija ocjena na maturi (NCE)</div>
+        <div className="pred-nce-title">Distribucija ocjena na maturi (NCVVO)</div>
         <div className="pred-nce-chart">
           {[1, 2, 3, 4, 5].map(gg => {
             const pct = NCE_DIST[gg]
@@ -189,6 +190,8 @@ function DailySummary({ userData }) {
   const todayExams = history.filter(h => h.date === today)
   const hour = new Date().getHours()
   const greeting = hour < 12 ? 'Dobro jutro' : hour < 18 ? 'Dobar dan' : 'Dobra večer'
+  // "Sada" se hvata jednom (lazy initializer), ne poziva izravno u tijelu komponente
+  const [nowMs] = useState(() => Date.now())
 
   function estimateTime(h) {
     if (h.qTimes) {
@@ -200,10 +203,10 @@ function DailySummary({ userData }) {
 
   const todayMinutes = todayExams.reduce((s, h) => s + estimateTime(h), 0)
   const last7 = Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(Date.now() - (6 - i) * 86400000).toLocaleDateString('hr')
+    const d = new Date(nowMs - (6 - i) * 86400000).toLocaleDateString('hr')
     const dayExams = history.filter(h => h.date === d)
     const mins = dayExams.reduce((s, h) => s + estimateTime(h), 0)
-    const label = ['Ned', 'Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub'][new Date(Date.now() - (6 - i) * 86400000).getDay()]
+    const label = ['Ned', 'Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub'][new Date(nowMs - (6 - i) * 86400000).getDay()]
     return { d, hasExam: dayExams.length > 0, isToday: d === today, mins, label, exams: dayExams.length }
   })
   const weekMinutes = last7.reduce((s, d) => s + d.mins, 0)
@@ -315,11 +318,15 @@ function DailySummary({ userData }) {
 }
 
 // ── AnalyticsPanelFull ────────────────────────────────────────────
-export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
+export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap }) {
+  // Ispiti dolaze propom kad ih roditelj ima; inače iz keša loadera (roditelj
+  // zajamči loadAllRazine() prije ulaska u ekran koji renderira ovaj panel).
+  const EXAMS = examsMap || getLoadedSync()
   const [tab, setTab] = useState(defaultTab || 'danas')
   const [drillTopic, setDrillTopic] = useState(null)
   const [tooltip, setTooltip] = useState(null)
-  const history = userData?.history || []
+  // Memoizirano da referenca ostane stabilna (koristi je useMemo hook niže)
+  const history = useMemo(() => userData?.history || [], [userData])
 
   const topicStats = {}
   history.forEach(h => {
@@ -370,7 +377,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
     return Object.values(map)
       .map(x => ({ ...x, avgTime: Math.round(x.totalTime / x.count) }))
       .sort((a, b) => b.avgTime - a.avgTime).slice(0, 10)
-  }, [history])
+  }, [history, EXAMS])
 
   function getRecommendations() {
     const recs = []
@@ -479,7 +486,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
                   )
                 })}
               </div>
-              {errors.length > 15 && <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--muted)', paddingTop: 10 }}>Prikazano 15 od {errors.length} — za detalje idi na 'Ponovi greške'</div>}
+              {errors.length > 15 && <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--muted)', paddingTop: 10 }}>Prikazano 15 od {errors.length} — za detalje idi na &apos;Ponovi greške&apos;</div>}
             </div>
           )
         )}
@@ -489,26 +496,27 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
           <div className="nap-wrap">
             {/* NCE usporedba */}
             {history.length > 0 && (() => {
+              // ilustrativni podaci — nema navedenog službenog izvora, ne koristi kao stvarne NCVVO podatke
               const NCE_DATA = { 2025: { avg: 61, pass: 78, label: '2024./2025.' }, 2024: { avg: 59, pass: 76, label: '2023./2024.' }, 2023: { avg: 57, pass: 74, label: '2022./2023.' }, 2022: { avg: 56, pass: 73, label: '2021./2022.' } }
               const userAvg = Math.round(history.reduce((s, h) => s + h.pct, 0) / history.length)
               const latestYear = Math.max(...history.map(h => parseInt(h.examKey) || 0))
               const nce = NCE_DATA[latestYear] || NCE_DATA[2024]
               const diff = userAvg - nce.avg
               const diffColor = diff >= 10 ? 'var(--green)' : diff >= 0 ? 'var(--teal)' : diff >= -10 ? 'var(--gold)' : 'var(--red)'
-              const msg = diff >= 10 ? '🏆 Significantno iznad NCE prosjeka!'
-                : diff >= 0 ? `✅ Iznad NCE prosjeka za ${diff}%.`
-                : diff >= -10 ? `⚠️ Ispod NCE prosjeka za ${Math.abs(diff)}%.`
-                : '📚 Daleko ispod NCE prosjeka.'
+              const msg = diff >= 10 ? '🏆 Značajno iznad NCVVO prosjeka!'
+                : diff >= 0 ? `✅ Iznad NCVVO prosjeka za ${diff}%.`
+                : diff >= -10 ? `⚠️ Ispod NCVVO prosjeka za ${Math.abs(diff)}%.`
+                : '📚 Daleko ispod NCVVO prosjeka.'
               return (
                 <div className="nap-card">
                   <div className="nap-card-hdr">
-                    <div className="nap-card-title">Usporedba s NCE prosjekom</div>
+                    <div className="nap-card-title">Usporedba s NCVVO prosjekom</div>
                     <span className="nap-card-src">Izvor: NCVVO {nce.label}</span>
                   </div>
                   <div className="nap-nce-stats">
                     {[
                       { val: userAvg + '%', lbl: 'Tvoj prosjek', col: 'var(--blue)' },
-                      { val: nce.avg + '%', lbl: 'NCE prosjek', col: 'var(--muted)' },
+                      { val: nce.avg + '%', lbl: 'NCVVO prosjek', col: 'var(--muted)' },
                     ].map(s => <div key={s.lbl} className="nap-stat-box"><div className="nap-stat-num" style={{ color: s.col }}>{s.val}</div><div className="nap-stat-lbl">{s.lbl}</div></div>)}
                     <div className="nap-stat-box nap-stat-diff" style={{ background: diff >= 0 ? 'var(--green-d)' : 'var(--red-d)', borderColor: diff >= 0 ? 'rgba(30,122,62,.2)' : 'rgba(196,48,48,.2)' }}>
                       <div className="nap-stat-num" style={{ color: diffColor }}>{(diff >= 0 ? '+' : '') + diff}%</div>
@@ -516,7 +524,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter }) {
                     </div>
                   </div>
                   <div className="nap-bars">
-                    {[{ label: 'Ti', pct: userAvg, color: 'var(--blue)' }, { label: 'NCE prosjek', pct: nce.avg, color: 'var(--muted)' }, { label: 'Prolaznost', pct: nce.pass, color: 'var(--gold)' }]
+                    {[{ label: 'Ti', pct: userAvg, color: 'var(--blue)' }, { label: 'NCVVO prosjek', pct: nce.avg, color: 'var(--muted)' }, { label: 'Prolaznost', pct: nce.pass, color: 'var(--gold)' }]
                       .map(({ label, pct, color }) => (
                         <div key={label} className="nap-bar-row">
                           <div className="nap-bar-label">{label}</div>

@@ -1,12 +1,13 @@
 'use client'
 import { useState } from 'react'
-import { EXAMS } from '@/lib/engleski-simulator/exams'
+import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
 import { TOPIC_LABELS } from '@/lib/engleski-simulator/constants'
 
 const SEASONS = { ljeto: 'Ljetni', zima: 'Zimski', jesen: 'Jesenski', proljeće: 'Proljetni' }
 const LEVELS = { osnovna: 'Osnovna razina (B)', visa: 'Viša razina (A)' }
 
-export default function TopicFilterScreen({ userData, onStartExam, onBack, mode = 'filter' }) {
+export default function TopicFilterScreen({ userData, onStartExam, onBack, mode = 'filter', examsMap }) {
+  const EXAMS = examsMap || getLoadedSync()
   const allKeys = Object.keys(EXAMS || {})
   // Collect all years
   const years = [...new Set(allKeys.map(k => EXAMS[k].year).filter(Boolean))].sort((a, b) => b - a)

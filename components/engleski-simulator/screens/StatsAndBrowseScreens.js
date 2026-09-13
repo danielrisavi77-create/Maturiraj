@@ -66,7 +66,7 @@ export function BrowseScreen({ onBack, EXAMS, TLBL, TBDG, TOPIC_LABELS }) {
     return qs
   }, [EXAMS])
 
-  const sourceQs = globalSearch ? allQuestions : (exam ? exam.qs : [])
+  const sourceQs = React.useMemo(() => (globalSearch ? allQuestions : (exam ? exam.qs : [])), [globalSearch, allQuestions, exam])
 
   const allFiltered = React.useMemo(() => sourceQs.filter(q => {
     if (filterSection !== 'sve') {

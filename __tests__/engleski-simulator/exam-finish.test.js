@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 /**
  * exam-finish.test.js
  *
@@ -8,15 +9,41 @@
  *   - finish() chains through grade() correctly
  *   - timer expiry calls finish() — tested via timerTick's didExpire flag (the signal
  *     that ExamPlayScreen's useTimer.onExpire callback relies on)
- *   - goTo() accumulates qTimes correctly per question ID
+ *   - qTimes accumulate correctly per question ID
+ *   - finish() attaches sectionScores + weighted for a real exam (rendered component)
  *
- * ExamPlayScreen's finish() and goTo() are defined inside the component closure and
- * are not exported. We test the underlying computation using the exported scoring
- * primitives (chk, grade, timerTick) plus the same inline formulas, so any
- * regression in the shared primitives is caught here as well as in scoring.test.js.
+ * ExamPlayScreen's finish() is defined inside the component closure, so the pct/grade
+ * formulas below are tested against the exported scoring primitives (chk, grade,
+ * timerTick) plus the same inline formulas — any regression in the shared primitives
+ * is caught here as well as in scoring.test.js.
+ *
+ * ZAGLAVLJE AŽURIRANO: vrijeme po pitanju se više NE mjeri u goTo() — Date.now()
+ * se ne smije zvati tijekom rendera (React Compiler), pa ExamPlayScreen mjeri u
+ * useEffectu s ključem curQid, a sekunde pribilježi CLEANUP tog efekta (kad se
+ * pitanje ili blok promijeni, odnosno pri unmountu). Formula akumulacije je ista,
+ * pa accumulateQTime niže i dalje zrcali produkcijski kod.
+ *
+ * Zadnji describe renderira pravi ExamPlayScreen (named export) i provjerava da
+ * rezultat predaje nosi sectionScores i weighted — isti '?lang.jsx' trik kao u
+ * exam-play-blocks.test.js (Vite 8/oxc ne parsira JSX u .js datotekama).
  */
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { createElement as e } from 'react';
 import { chk, grade, timerTick } from '../../lib/engleski-simulator/scoring.js';
+import { makeVisaExam, PRO_ACCESS } from './_synthExam.js';
+
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() }),
+  usePathname: () => '/engleski-simulator',
+  useSearchParams: () => new URLSearchParams(),
+}));
+
+vi.mock('@/lib/hooks/useAuth', () => ({
+  useAuth: () => ({ user: null, isPro: false, isPaid: false, loading: false }),
+}));
+
+const { ExamPlayScreen } = await import('../../components/engleski-simulator/EngleskiSimulator.js?lang.jsx');
 
 // ─── Helpers mirroring production code ───────────────────────────────────────
 
@@ -35,7 +62,7 @@ function simulateFinish(qs, answers) {
 }
 
 /**
- * Mirrors goTo()'s qTimes update step:
+ * Mirrors the qTimes update step in the curQid effect's cleanup:
  *   const elapsed = Math.max(0, Math.round((Date.now() - startedAt) / 1000))
  *   setQTimes(prev => ({ ...prev, [qId]: (prev[qId] || 0) + elapsed }))
  */
@@ -150,9 +177,9 @@ describe('finish() — fb and mat auto-graded types are included', () => {
   });
 });
 
-// ─── goTo() — qTimes accumulation ────────────────────────────────────────────
+// ─── qTimes accumulation (curQid effect cleanup) ──────────────────────────────
 
-describe('goTo() — qTimes accumulation logic', () => {
+describe('qTimes accumulation logic (effect cleanup, formerly goTo)', () => {
   it('first visit initialises the time for a question from 0', () => {
     const next = accumulateQTime({}, 'q1', 5000);
     expect(next.q1).toBe(5);
@@ -231,5 +258,56 @@ describe('timer expiry → finish() call signal (via timerTick.didExpire)', () =
     expect(penultimate.didExpire).toBe(false);
     const last = timerTick(1, false, new Set(), []);
     expect(last.didExpire).toBe(true);
+  });
+});
+
+// ─── finish() u pravom renderu: sectionScores + weighted ─────────────────────
+
+describe('finish() — rezultat pravog ispita nosi sectionScores i weighted', () => {
+  beforeEach(() => {
+    window.confirm = vi.fn(() => true);
+    try { localStorage.clear(); } catch { /* happy-dom bez localStoragea */ }
+  });
+  afterEach(() => cleanup());
+
+  it('predaja simulacije vraća ponderirane cjeline prema NCVVO strukturi', () => {
+    const onDone = vi.fn();
+    render(e(ExamPlayScreen, {
+      exam: makeVisaExam(),
+      examMode: true,
+      timedMode: false,
+      examContext: {},
+      onExit: vi.fn(),
+      onDone,
+      userAccess: PRO_ACCESS,
+      isPro: true,
+      examLookup: {},
+      soundOn: false,
+    }));
+
+    // Točan odgovor na prvo pitanje Čitanja (rješenje je opcija A)
+    fireEvent.click(screen.getByText('R1-optA'));
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' })); // → Pisanje
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' })); // → Slušanje
+    fireEvent.click(screen.getByRole('button', { name: 'Predaj ispit' }));
+
+    expect(onDone).toHaveBeenCalledTimes(1);
+    const result = onDone.mock.calls[0][0];
+
+    // 4 auto-ocjenjiva pitanja (2 čitanje + 2 slušanje), 1 točno → 25 %
+    expect(result.pct).toBe(25);
+    expect(result.total).toBe(4);
+    expect(result.examMode).toBe(true);
+
+    const byId = Object.fromEntries(result.sectionScores.map(s => [s.id, s]));
+    expect(Object.keys(byId).sort()).toEqual(['listening', 'reading', 'writing']);
+    expect(byId.reading).toMatchObject({ autoGraded: true, correct: 1, total: 2, pct: 50 });
+    expect(byId.listening).toMatchObject({ autoGraded: true, correct: 0, total: 2, pct: 0 });
+    // Pisanje ocjenjuje ocjenjivač — nikad automatski postotak
+    expect(byId.writing).toMatchObject({ autoGraded: false, pct: null });
+
+    // Ponderi se renormaliziraju na pokrivene cjeline: (1/3·50 + 1/3·0) / (2/3) = 25
+    expect(result.weighted.pct).toBe(25);
+    expect(result.weighted.coveredWeight).toBeCloseTo(2 / 3, 10);
   });
 });

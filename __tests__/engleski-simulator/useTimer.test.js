@@ -133,4 +133,36 @@ describe('useTimer', () => {
     // s should remain at whatever it was when run became false (≤7)
     expect(result.current.s).toBeLessThanOrEqual(7);
   });
+
+  // ── Svježina callbackova ────────────────────────────────────────────────────
+  // Interval se postavlja samo na promjenu 'run', pa bi bez refa osvježenog u
+  // efektu zvao callback iz PRVOG rendera. ExamPlayScreen na tome počiva:
+  // finish() i goToBlock() zatvaraju nad tekućim 'answers'/'blockIdx'.
+
+  it('istek zove najnoviji onExpire, ne onaj iz prvog rendera', () => {
+    const first = vi.fn();
+    const second = vi.fn();
+    let onExpire = first;
+    const { rerender } = renderHook(() => useTimer(3, true, onExpire));
+    act(() => { vi.advanceTimersByTime(1000); }); // 3 → 2
+    onExpire = second;
+    rerender();
+    act(() => { vi.advanceTimersByTime(2000); }); // 2 → 0
+    expect(first).not.toHaveBeenCalled();
+    expect(second).toHaveBeenCalledTimes(1);
+  });
+
+  it('upozorenje zove najnoviji onWarn, ne onaj iz prvog rendera', () => {
+    const first = vi.fn();
+    const second = vi.fn();
+    let onWarn = first;
+    const { rerender } = renderHook(() => useTimer(602, true, null, [600, 300], onWarn));
+    act(() => { vi.advanceTimersByTime(1000); }); // 602 → 601
+    onWarn = second;
+    rerender();
+    act(() => { vi.advanceTimersByTime(1000); }); // 601 → 600 → upozorenje
+    expect(first).not.toHaveBeenCalled();
+    expect(second).toHaveBeenCalledTimes(1);
+    expect(second).toHaveBeenCalledWith(600);
+  });
 });

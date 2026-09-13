@@ -1,15 +1,25 @@
 ﻿'use client'
 
-import React, { useEffect, useRef, useState, useMemo, lazy, Suspense } from 'react'
+import React, { useEffect, useState, useMemo, lazy, Suspense } from 'react'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { SimulatorPreviewGate, LockedAnalysisSection, buildUserAccess } from '@/components/discere/paywall'
 import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers'
-import { EXAMS } from '@/lib/engleski-simulator/exams'
+import { getExamsIndex, getLoadedSync, isRazinaLoaded, loadRazina, razinaForKey, RAZINE } from '@/lib/engleski-simulator/examsLoader'
 import { chk, grade, calcXpGain, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
-import { useTimer } from '@/lib/engleski-simulator/useTimer'
-import { LL } from '@/lib/engleski-simulator/constants'
+import { useTimer, warnMessage } from '@/lib/engleski-simulator/useTimer'
+import { getExamBlocks, totalMinutes, sectionScores, weightedEstimate } from '@/lib/engleski-simulator/examStructure'
+import { LL, TLBL, TBDG, TOPIC_LABELS, LEVEL_NAMES, getLevel, xpProgress, xpToNext } from '@/lib/engleski-simulator/constants'
+
+// GC ostaje lokalno definiran (ne iz constants.js) jer se boje ocjena 2-4 razlikuju
+// od dijeljene konstante i ne smiju se tiho promijeniti izvan zadatka 2.3
+const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' }
 import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
+import { ENG_USER_KEY, ENG_BOOKMARKS_DELETED_KEY, toSimProgressPayload, saveEngSimResult } from '@/lib/engleski-simulator/cloudSync'
+import { useEngCloudSync } from '@/lib/engleski-simulator/useEngCloudSync'
+
+// Lagani indeks ispita (bez pitanja) — jedini podaci o ispitima u početnom bundleu.
+const EXAMS_INDEX = getExamsIndex()
 
 // Lazy load screens to reduce initial bundle and memory
 const Home = lazy(() => import('./screens/HomeScreen').then(m => ({ default: m.Home })))
@@ -31,6 +41,10 @@ function ScreenLoader() {
   return <div style={{ padding: '20px', textAlign: 'center', color: 'var(--muted)' }}>Učitavamo...</div>
 }
 
+// Ekrani koji analiziraju cijelu povijest ili sva pitanja trebaju OBJE razine —
+// bez njih bi analitika, filter i PDF tiho radili samo s učitanom razinom.
+const FULL_EXAMS_SCREENS = ['stats', 'browse', 'errors', 'bookmarks', 'daily', 'filter', 'vocab', 'compare', 'pdf_report', 'analytics']
+
 // Wrapper so AnalyticsPanelFull can be passed as a prop to e()-based screens
 function AnalyticsPanelWrapper(props) {
   return (
@@ -40,20 +54,6 @@ function AnalyticsPanelWrapper(props) {
   )
 }
 
-const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' }
-const TLBL = { mc: 'Višestruki izbor', ins: 'Umetanje', mat: 'Povezivanje', fb: 'Dopunjavanje', sa: 'Kratki odgovor', es: 'Esej' }
-const TBDG = { mc: 'b-mc', ins: 'b-ins', mat: 'b-mat', fb: 'b-fb', sa: 'b-sa', es: 'b-sa' }
-
-const TOPIC_LABELS = {
-  reading_a: 'Reading A', reading_b: 'Reading B', reading_c: 'Reading C', reading_d: 'Reading D', reading_e: 'Reading E', reading_f: 'Reading F',
-  reading_match: 'Reading matching', reading_ins: 'Reading insertion', reading_mc4: 'Reading MC', reading_cloze4: 'Reading cloze', reading_opencloze: 'Reading open cloze',
-  listening_a: 'Listening A', listening_b: 'Listening B', listening_c: 'Listening C', listening_d: 'Listening D', listening_match: 'Listening matching', listening_mc3: 'Listening MC', listening_books: 'Listening books',
-  writing_essay: 'Writing essay', writing_a: 'Writing A', writing_b: 'Writing B', writing_email: 'Writing email',
-  use_cloze: 'Use of English cloze', use_mc: 'Use of English MC', use_wf: 'Word formation', use_of_english: 'Use of English',
-}
-
-const LEVEL_NAMES = ['Početnik', 'Vježbač', 'Napredni', 'Matura Pro', 'Matura Master']
-
 function fisherYates(arr) {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
@@ -61,28 +61,6 @@ function fisherYates(arr) {
     ;[a[i], a[j]] = [a[j], a[i]]
   }
   return a
-}
-
-function getLevel(xp = 0) {
-  if (xp >= 2500) return 4
-  if (xp >= 1400) return 3
-  if (xp >= 700) return 2
-  if (xp >= 250) return 1
-  return 0
-}
-
-function xpProgress(xp = 0) {
-  const steps = [0, 250, 700, 1400, 2500, 4000]
-  const lv = getLevel(xp)
-  const lo = steps[lv]
-  const hi = steps[lv + 1] ?? (steps[lv] + 1000)
-  return Math.max(0, Math.min(100, Math.round(((xp - lo) / (hi - lo)) * 100)))
-}
-
-function xpToNext(xp = 0) {
-  const steps = [250, 700, 1400, 2500, 4000]
-  const next = steps.find(x => xp < x)
-  return next ? next - xp : 0
 }
 
 // ── XpFloater animation component ──
@@ -130,6 +108,18 @@ function playSound(type) {
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5)
       osc.start(ctx.currentTime)
       osc.stop(ctx.currentTime + 0.5)
+    } else if (type === 'warn') {
+      // Neutralni kratki dvostruki ton (660 Hz) za upozorenja timera — 'wrong'
+      // zvuk je signal greške i na toastu zvuči kao kazna.
+      [0, 0.18].forEach(off => {
+        const osc = ctx.createOscillator()
+        osc.connect(gain)
+        osc.frequency.setValueAtTime(660, ctx.currentTime + off)
+        gain.gain.setValueAtTime(0.12, ctx.currentTime + off)
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + off + 0.12)
+        osc.start(ctx.currentTime + off)
+        osc.stop(ctx.currentTime + off + 0.12)
+      })
     } else if (type === 'done') {
       [523, 659, 784].forEach((freq, i) => {
         const osc = ctx.createOscillator()
@@ -145,7 +135,7 @@ function playSound(type) {
 }
 
 // ── generateVirtualExam ──
-function generateVirtualExam() {
+function generateVirtualExam(EXAMS) {
   const targets = { mc: 16, mat: 6, fb: 10, sa: 1 }
   const allKeys = Object.keys(EXAMS)
   const usedIds = new Set()
@@ -254,8 +244,24 @@ function AnalyticsPanel({ userData, defaultTab, onFilter, onFilterSession }) {
   )
 }
 
-function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup }) {
-  const qs = exam?.qs || []
+// Timer jedne ispitne cjeline. Roditelj ga MORA renderirati s key={blockIdx} —
+// useTimer čita 'totalSeconds' samo pri mountu, pa je remount preko keya način
+// resetiranja odbrojavanja bez setState-a u efektu (React Compiler pravila).
+function BlockTimer({ totalSeconds, run, onExpire, onWarn, label }) {
+  const { d, cls } = useTimer(totalSeconds, run, onExpire, [600, 300], onWarn)
+  return (
+    <span
+      className={`timer${cls ? ' ' + cls : ''}`}
+      role="timer"
+      aria-label={'Preostalo vrijeme' + (label ? ' — ' + label : '')}
+    >{d}</span>
+  )
+}
+
+// Named export radi testova blokovske navigacije (exam-play-blocks.test.js) —
+// ponašanje je nepromijenjeno, default export i dalje je EngleskiSimulator.
+export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup, soundOn, onBookmarkChange }) {
+  const qs = useMemo(() => exam?.qs || [], [exam])
   const [cur, setCur] = useState(0)
   const [answers, setAnswers] = useState({})
   const [rev, setRev] = useState({})
@@ -263,20 +269,34 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
   const [bookmarks, setBookmarks] = useState(() => {
     try { return validateBookmarks(JSON.parse(localStorage.getItem('disc_eng_bookmarks') || '{}')) } catch { return {} }
   })
-  const startedAtRef = useRef(Date.now())
+  const [toast, setToast] = useState(null)
+  const [blockIdx, setBlockIdx] = useState(0)
 
-  const { d: timerDisplay, cls: timerClass } = useTimer(
-    90 * 60,
-    !!(examMode || timedMode),
-    // finish() closes over the current render's `answers` state — safe because React
-    // re-registers the interval callback every render, so this always invokes the latest finish().
-    () => { if (examMode) finish() },
-    [600, 300],
-  )
+  // Simulacija ide blok po blok prema NCVVO strukturi razine (viša 70/75/35,
+  // osnovna 75/30); vježbanje i vježbanje s timerom ostaju slobodna navigacija.
+  const blocks = useMemo(() => (examMode ? getExamBlocks(exam) : []), [examMode, exam])
+  const block = blocks[blockIdx] || null
+  const isLastBlock = !block || blockIdx >= blocks.length - 1
+  // Globalni indeksi pitanja koja su trenutno dostupna (u simulaciji samo tekući blok)
+  const visIdx = useMemo(() => (block ? block.qIdx : qs.map((_, i) => i)), [block, qs])
+  // Ako 'cur' ne pripada tekućem bloku (npr. početna nula u ispitu bez čitanja),
+  // vrijedi prvo pitanje bloka — izvedena vrijednost, bez setState-a u efektu
+  const curIdx = block && !block.qIdx.includes(cur) ? block.qIdx[0] : cur
+  // Trajanje timera: po cjelini u simulaciji, ukupno propisano trajanje u timed vježbanju
+  const timerSeconds = (block ? block.minutes : totalMinutes(exam) || 90) * 60
+  const curQid = qs[curIdx]?.id
 
+  // Vrijeme po pitanju mjerimo u efektu — Date.now() se ne smije zvati tijekom
+  // rendera (React Compiler, pravilo čistoće). Cleanup se izvrši kad se pitanje
+  // (ili blok) promijeni pa tada pribilježi protekle sekunde.
   useEffect(() => {
-    startedAtRef.current = Date.now()
-  }, [cur])
+    if (!curQid) return
+    const startedAt = Date.now()
+    return () => {
+      const elapsed = Math.max(0, Math.round((Date.now() - startedAt) / 1000))
+      if (elapsed > 0) setQTimes(prev => ({ ...prev, [curQid]: (prev[curQid] || 0) + elapsed }))
+    }
+  }, [curQid])
 
   if (!exam || !qs.length) {
     return (
@@ -287,7 +307,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
     )
   }
 
-  const q = qs[cur]
+  const q = qs[curIdx]
   const bkKey = `${exam.key}_${q.id}`
   const isBookmarked = !!bookmarks[bkKey]
 
@@ -295,10 +315,42 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
     setAnswers(prev => ({ ...prev, [q.id]: next }))
   }
 
-  function goTo(i) {
-    const elapsed = Math.max(0, Math.round((Date.now() - startedAtRef.current) / 1000))
-    setQTimes(prev => ({ ...prev, [q.id]: (prev[q.id] || 0) + elapsed }))
-    setCur(Math.max(0, Math.min(qs.length - 1, i)))
+  const pos = visIdx.indexOf(curIdx)
+
+  // 'p' je pozicija unutar dostupnih pitanja (u simulaciji: unutar tekućeg bloka)
+  function goToPos(p) {
+    if (p < 0 || p >= visIdx.length) return
+    setCur(visIdx[p])
+  }
+
+  function goToBlock(next) {
+    const nb = blocks[next]
+    if (!nb) return
+    setBlockIdx(next)
+    setCur(nb.qIdx[0])
+  }
+
+  function showToast(msg) {
+    setToast(msg)
+    if (soundOn) playSound('warn')
+    setTimeout(() => setToast(t => (t === msg ? null : t)), 4000)
+  }
+
+  function onTimerWarn(seconds) {
+    const msg = warnMessage(seconds)
+    // Bez naziva cjeline korisnik u simulaciji ne zna na što se upozorenje odnosi
+    if (msg) showToast(msg + (block ? ' za ' + block.label : ''))
+  }
+
+  // Istek timera: u simulaciji automatski prelaz na sljedeću cjelinu, na zadnjoj predaja.
+  // finish() zatvara nad trenutnim renderom `answers` — sigurno jer useTimer u efektu
+  // osvježava ref na callback pri svakom renderu, pa interval zove najnoviju verziju.
+  function onTimerExpire() {
+    if (!examMode) return
+    if (!block) { finish(); return }
+    showToast('Vrijeme za ' + block.label + ' je isteklo')
+    if (isLastBlock) finish()
+    else goToBlock(blockIdx + 1)
   }
 
   function checkAnswer() {
@@ -310,17 +362,34 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
       const next = { ...prev }
       if (next[bkKey]) {
         delete next[bkKey]
+        // Tombstone brisanja — bez njega bi se merge s cloudom ponašao kao
+        // unija i bookmark bi se vratio s drugog uređaja.
+        try {
+          const del = JSON.parse(localStorage.getItem(ENG_BOOKMARKS_DELETED_KEY) || '{}')
+          del[bkKey] = Date.now()
+          localStorage.setItem(ENG_BOOKMARKS_DELETED_KEY, JSON.stringify(del))
+        } catch {}
       } else {
         next[bkKey] = {
           qid: q.id,
           examKey: exam.key,
           examLabel: `${exam.year}. — ${exam.label}`,
           q: q.q.slice(0, 200),
+          addedAt: Date.now(),
         }
+        // Ponovno dodavanje briše stari tombstone (novi addedAt ionako pobjeđuje
+        // u mergeu, ali čišćenje drži lokalno stanje malim).
+        try {
+          const del = JSON.parse(localStorage.getItem(ENG_BOOKMARKS_DELETED_KEY) || '{}')
+          delete del[bkKey]
+          localStorage.setItem(ENG_BOOKMARKS_DELETED_KEY, JSON.stringify(del))
+        } catch {}
       }
       try { localStorage.setItem('disc_eng_bookmarks', JSON.stringify(next)) } catch {}
       return next
     })
+    // Signal roditelju da pokrene cloud debounce (bookmarki nisu dio userData).
+    if (onBookmarkChange) onBookmarkChange()
   }
 
   function finish() {
@@ -328,6 +397,9 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
     const cor = autoQ.filter(x => chk(x, answers[x.id]) === true).length
     const pct = autoQ.length ? Math.round((cor / autoQ.length) * 100) : 0
     const g = grade(pct)
+    // Rezultat po ispitnim cjelinama s NCVVO ponderima; 'pct' ostaje udio točnih
+    // auto-ocjenjivih pitanja radi kompatibilnosti s povijesti i statistikama.
+    const scores = sectionScores(exam, answers, chk)
     onDone({
       examKey: exam.key,
       examLabel: `${exam.year}. — ${exam.label}`,
@@ -338,22 +410,41 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
       answers,
       qTimes,
       examMode,
+      sectionScores: scores,
+      weighted: weightedEstimate(scores),
     })
   }
 
   return (
     <div style={{ maxWidth: 860, margin: '0 auto', padding: '16px 20px 70px' }}>
+      {toast && (
+        <div role="status" aria-live="polite" style={{
+          position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 9999,
+          background: 'var(--gold-d)', border: '1px solid var(--gold-b)', color: 'var(--gold)',
+          borderRadius: 'var(--r)', padding: '8px 16px', fontSize: 13, fontWeight: 600,
+          boxShadow: '0 4px 16px rgba(0,0,0,.2)',
+        }}>⏱ {toast}</div>
+      )}
       <div className="nav">
         <button className="btn btn-g" style={{ fontSize: 13, padding: '6px 12px' }} onClick={() => {
           if (examMode && !window.confirm('Izaći bez predaje? Napredak neće biti spremljen.')) return
           onExit()
         }}>← Natrag</button>
-        <span className="ntitle">{examMode ? 'Simulacija' : timedMode ? 'Vježbanje ⏱' : 'Vježbanje'}</span>
+        <span className="ntitle">{examMode
+          ? 'Simulacija' + (block ? ` · ${block.label} (${blockIdx + 1}/${blocks.length})` : '')
+          : timedMode ? 'Vježbanje ⏱' : 'Vježbanje'}</span>
         {(examMode || timedMode) && (
-          <span className={`timer${timerClass ? ' ' + timerClass : ''}`}>{timerDisplay}</span>
+          <BlockTimer
+            key={examMode ? 'block_' + blockIdx : 'all'}
+            totalSeconds={timerSeconds}
+            run={true}
+            onExpire={onTimerExpire}
+            onWarn={onTimerWarn}
+            label={block ? block.label : ''}
+          />
         )}
         <span className="nsp" />
-        <span className="nbadge">{cur + 1}/{qs.length}</span>
+        <span className="nbadge">{(pos < 0 ? 0 : pos) + 1}/{visIdx.length}</span>
         <button
           className="btn btn-g"
           style={{ fontSize: 15, padding: '4px 9px', color: isBookmarked ? 'var(--gold)' : undefined, borderColor: isBookmarked ? 'var(--gold-b)' : undefined }}
@@ -361,9 +452,26 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
           title={isBookmarked ? 'Ukloni bookmark' : 'Dodaj bookmark'}
         >🔖</button>
       </div>
+      {examMode && blocks.length > 1 && (
+        <div role="list" style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 12 }}>
+          {blocks.map((b, i) => {
+            const state = i < blockIdx ? 'done' : i === blockIdx ? 'active' : 'todo'
+            const col = state === 'done' ? 'var(--green)' : state === 'active' ? 'var(--blue)' : 'var(--muted)'
+            return (
+              <span key={b.id} role="listitem" aria-current={state === 'active' ? 'step' : undefined} style={{
+                fontSize: 11, fontWeight: 700, padding: '3px 9px', borderRadius: 99,
+                border: '1px solid', borderColor: state === 'todo' ? 'var(--bdr2)' : col,
+                background: state === 'todo' ? 'var(--s2)' : col + '1a', color: col,
+              }}>
+                {state === 'done' ? '✓ ' : state === 'active' ? '▶ ' : ''}{b.label} · {b.minutes} min
+              </span>
+            )
+          })}
+        </div>
+      )}
       <SimulatorPreviewGate
         userAccess={userAccess}
-        currentQuestionIndex={cur}
+        currentQuestionIndex={curIdx}
         totalQuestions={qs.length}
         from="eng-simulator"
         previewScore={(() => {
@@ -388,7 +496,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
               </div>
             ) : (
               <>
-                <AudioPlayer examKey={exam.key} topic={q.topic} razina={exam.razina === 'mixed' ? examLookup?.[q._examKey]?.razina : exam.razina} />
+                <AudioPlayer key={exam.key + '_' + q.topic} examKey={exam.key} topic={q.topic} razina={exam.razina === 'mixed' ? examLookup?.[q._examKey]?.razina : exam.razina} />
                 <ContextPanel examKey={exam.key} qid={q.id} examContext={examContext} />
                 <div style={{ fontSize: 15, lineHeight: 1.65, marginBottom: 16, whiteSpace: 'pre-wrap' }}>{q.q}</div>
 
@@ -399,19 +507,24 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
                 {(q.type === 'sa' || q.type === 'es') && <SaQ q={q} a={answers[q.id]} setA={setAnswer} rev={!!rev[q.id]} />}
 
                 {!!rev[q.id] && <FeedbackBox q={q} a={answers[q.id]} rev={true} />}
-                {!examMode && <AnswerHelper q={q} show={!!rev[q.id]} autoExpand={false} onToggle={checkAnswer} />}
+                {!examMode && <AnswerHelper key={q.id} q={q} show={!!rev[q.id]} autoExpand={false} onToggle={checkAnswer} />}
               </>
             )}
 
             <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap', alignItems: 'center' }}>
               {!examMode && !rev[q.id] && <button className="btn btn-g" onClick={isLocked ? openPaywall : checkAnswer}>Provjeri</button>}
-              <button className="btn btn-g" disabled={cur === 0} onClick={() => goTo(cur - 1)}>← Prethodno</button>
-              <button className="btn btn-g" disabled={cur === qs.length - 1} onClick={() => goTo(cur + 1)}>Sljedeće →</button>
+              <button className="btn btn-g" disabled={pos <= 0} onClick={() => goToPos(pos - 1)}>← Prethodno</button>
+              <button className="btn btn-g" disabled={pos < 0 || pos >= visIdx.length - 1} onClick={() => goToPos(pos + 1)}>Sljedeće →</button>
               <button className="btn btn-gold" style={{ marginLeft: 'auto' }} onClick={() => {
                 if (isLocked) { openPaywall(); return }
+                if (examMode && !isLastBlock) {
+                  if (!window.confirm('Nakon prelaska ne možeš se vratiti na ovaj dio.')) return
+                  goToBlock(blockIdx + 1)
+                  return
+                }
                 if (examMode && !window.confirm('Jesi li siguran/na da želiš predati ispit?')) return
                 finish()
-              }}>{examMode ? 'Predaj ispit' : 'Vidi rezultate'}</button>
+              }}>{examMode ? (isLastBlock ? 'Predaj ispit' : 'Završi dio →') : 'Vidi rezultate'}</button>
             </div>
           </div>
         )}
@@ -419,13 +532,14 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
 
       {/* Question navigation grid */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, padding: '14px 2px 0' }}>
-        {qs.map((item, i) => {
+        {visIdx.map((gi, i) => {
+          const item = qs[gi]
           const a = answers[item.id]
           const hasA = item.type === 'mat'
             ? (a && typeof a === 'object' && Object.values(a).some(v => v))
             : (a !== undefined && a !== null && a !== '')
           const reviewed = !!rev[item.id]
-          const isCur = i === cur
+          const isCur = gi === curIdx
           const isCorrect = reviewed ? chk(item, a) === true : null
           const isWrong = reviewed ? chk(item, a) === false : null
           const btnColor = isCur
@@ -436,7 +550,7 @@ function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone
           return (
             <button
               key={item.id}
-              onClick={() => goTo(i)}
+              onClick={() => goToPos(i)}
               style={{
                 minWidth: 44, minHeight: 44, borderRadius: 6,
                 fontSize: 11, fontWeight: isCur ? 800 : 600,
@@ -464,7 +578,16 @@ export default function EngleskiSimulator() {
   const [examMode, setExamMode] = useState(false)
   const [timedMode, setTimedMode] = useState(false)
   const [examAnswers, setExamAnswers] = useState({})
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState(() => {
+    try {
+      const stored = localStorage.getItem('engleski_simulator_user')
+      const parsed = stored ? JSON.parse(stored) : null
+      return validateUserData(parsed)
+    } catch (err) {
+      console.error('Error loading user data:', err)
+      return { xp: 0, streak: 0, lastDate: null, history: [], totalExams: 0, errorTracker: {}, bookmarks: [] }
+    }
+  })
   const [qTimes, setQTimes] = useState({})
   const [examContext, setExamContext] = useState(null)
   const [xpFloaters, setXpFloaters] = useState([])
@@ -473,9 +596,23 @@ export default function EngleskiSimulator() {
   const [soundOn, setSoundOn] = useState(() => { try { return localStorage.getItem('eng_sound') !== '0' } catch { return true } })
   const [filteredExam, setFilteredExam] = useState(null)
   const [extraExams, setExtraExams] = useState({})
+  // Učitane razine ispita (spojena mapa iz examsLoader keša) + indikator učitavanja.
+  const [examsMap, setExamsMap] = useState(getLoadedSync)
+  const [examsLoading, setExamsLoading] = useState(false)
+  // Neuspjelo učitavanje razine ispita — { message, retry } za povratnu informaciju
+  const [examsError, setExamsError] = useState(null)
   const [showGuide, setShowGuide] = useState(false)
 
-  const examLookup = useMemo(() => ({ ...EXAMS, ...extraExams }), [extraExams])
+  const examLookup = useMemo(() => ({ ...examsMap, ...extraExams }), [examsMap, extraExams])
+
+  // Results i Stats ekrani ne prosljeđuju examsMap analitici, pa ga injektiramo
+  // ovdje — inače AnalyticsPanelFull pada na fallback s nepotpunom mapom.
+  const AnalyticsPanelBound = useMemo(
+    () => function AnalyticsPanelInjected(props) {
+      return <AnalyticsPanelWrapper examsMap={examLookup} {...props} />
+    },
+    [examLookup],
+  )
   const selectedExam = selectedExamKey ? examLookup[selectedExamKey] : null
 
   // Dark mode effect
@@ -498,20 +635,15 @@ export default function EngleskiSimulator() {
   }, [])
 
   useEffect(() => {
+    // Kvota localStoragea (ili privatni mod) ne smije srušiti simulator
     try {
-      const stored = localStorage.getItem('engleski_simulator_user')
-      const parsed = stored ? JSON.parse(stored) : null
-      const valid = validateUserData(parsed)
-      setUserData(valid)
-    } catch (err) {
-      console.error('Error loading user data:', err)
-      setUserData({ xp: 0, streak: 0, lastDate: null, history: [], totalExams: 0, errorTracker: {}, bookmarks: [] })
-    }
-  }, [])
-
-  useEffect(() => {
-    if (userData) localStorage.setItem('engleski_simulator_user', JSON.stringify(userData))
+      if (userData) localStorage.setItem(ENG_USER_KEY, JSON.stringify(userData))
+    } catch (err) { console.warn('Spremanje napretka u localStorage nije uspjelo:', err) }
   }, [userData])
+
+  // Hidracija i debounce-spremanje u cloud žive u useEngCloudSync (isto
+  // ponašanje, samo izvučeno iz komponente radi testabilnosti).
+  const { bumpBookmarkRev } = useEngCloudSync({ user, userData, setUserData })
 
   const navigate = (newScreen) => {
     setScreen(newScreen)
@@ -534,15 +666,63 @@ export default function EngleskiSimulator() {
   const toggles = (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginLeft: 'auto' }}>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setShowGuide(true)} title="Vodič za korištenje" aria-label="Vodič za korištenje">ℹ️</button>
-      <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => navigate('stats')} title="Statistike" aria-label="Statistike">📊</button>
+      <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => ensureAllExams(() => navigate('stats'))} title="Statistike" aria-label="Statistike">📊</button>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setSoundOn(s => !s)} title={soundOn ? 'Isključi zvuk' : 'Uključi zvuk'} aria-label={soundOn ? 'Isključi zvuk' : 'Uključi zvuk'} aria-pressed={!soundOn}>{soundOn ? '🔊' : '🔇'}</button>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setDarkMode(d => !d)} title={darkMode ? 'Svjetli mod' : 'Tamni mod'} aria-label={darkMode ? 'Prebaci na svjetli mod' : 'Prebaci na tamni mod'} aria-pressed={darkMode}>{darkMode ? '☀️' : '🌙'}</button>
     </div>
   )
 
+  // Učitaj tražene razine (keširano i deduplicirano u examsLoaderu) pa izvrši
+  // nastavak — navigaciju. Dok traje učitavanje prikazuje se ScreenLoader.
+  function ensureExams(razine, then) {
+    if (razine.every(r => isRazinaLoaded(r))) {
+      then(getLoadedSync())
+      return
+    }
+    setExamsLoading(true)
+    setExamsError(null)
+    Promise.all(razine.map(r => loadRazina(r)))
+      .then(() => {
+        const map = getLoadedSync()
+        setExamsMap(map)
+        setExamsLoading(false)
+        then(map)
+      })
+      .catch(err => {
+        console.error('Učitavanje ispita nije uspjelo:', err)
+        setExamsLoading(false)
+        setExamsError({ message: 'Učitavanje ispita nije uspjelo.', retry: () => ensureExams(razine, then) })
+      })
+  }
+
+  // Ekrani koji analiziraju cijelu povijest trebaju obje razine.
+  function ensureAllExams(then) {
+    ensureExams(RAZINE, then)
+  }
+
+  // Sigurnosna mreža: ako se na ekran koji treba obje razine dođe putem koji je
+  // preskočio ensureAllExams (npr. povratak u povijest ili novi prop), razine se
+  // dovlače ovdje. Za 'results' je dovlačenje u pozadini (bez loadera) jer
+  // analitika na tom ekranu gleda cijelu povijest.
+  useEffect(() => {
+    if (!FULL_EXAMS_SCREENS.includes(screen) && screen !== 'results') return
+    if (RAZINE.every(r => isRazinaLoaded(r))) return
+    let cancelled = false
+    const load = () => Promise.all(RAZINE.map(r => loadRazina(r)))
+      .then(() => { if (!cancelled) setExamsMap(getLoadedSync()) })
+      .catch(err => {
+        console.error('Učitavanje ispita nije uspjelo:', err)
+        if (!cancelled) setExamsError({ message: 'Učitavanje ispita nije uspjelo.', retry: load })
+      })
+    void load()
+    return () => { cancelled = true }
+  }, [screen])
+
   function onModeSelect(examKey) {
-    setSelectedExamKey(examKey)
-    navigate('modeselect')
+    ensureExams([razinaForKey(examKey)], () => {
+      setSelectedExamKey(examKey)
+      navigate('modeselect')
+    })
   }
 
   function onStartExam(mode) {
@@ -562,7 +742,10 @@ export default function EngleskiSimulator() {
     setTimeout(() => setXpFloaters(prev => prev.filter(f => f.id !== id)), 1800)
   }
 
-  function onExamDone(result) {
+  // navigateTo: kamo nakon spremanja rezultata. Dnevni izazov ima vlastiti
+  // prikaz rezultata pa ide na 'home' — ekran 'results' bez odabranog ispita bi
+  // prikazao tuđi/nepostojeći ispit.
+  function onExamDone(result, { navigateTo = 'results' } = {}) {
     setExamAnswers(result.answers || {})
     setQTimes(result.qTimes || {})
     // Build topic_breakdown
@@ -592,6 +775,8 @@ export default function EngleskiSimulator() {
             examKey: result.examKey,
             examLabel: result.examLabel,
             date: new Date().toLocaleDateString('hr'),
+            // 'at' daje zapisu jednoznačan identitet pri mergeu dva uređaja
+            at: Date.now(),
             pct: result.pct,
             grade: result.grade,
             cor: result.cor,
@@ -625,10 +810,33 @@ export default function EngleskiSimulator() {
       return next
     })
 
-    navigate('results')
+    // Pravi ispit (ne virtualna sesija) → jedan red u sim_progress, subject 'eng'.
+    if (user) {
+      try {
+        const payload = toSimProgressPayload(result, topic_breakdown, examLookup[result.examKey]?.razina)
+        if (payload) saveEngSimResult(payload)
+      } catch {}
+    }
+
+    navigate(navigateTo)
   }
 
   const renderScreen = () => {
+    if (examsLoading) return <ScreenLoader />
+    if (examsError) return (
+      <div className="eng-sim"><div className="sim-card" style={{ textAlign: 'center', padding: '32px 24px' }}>
+        <div style={{ fontSize: 38, marginBottom: 12 }}>⚠️</div>
+        <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>{examsError.message}</div>
+        <div style={{ color: 'var(--muted)', fontSize: 13, marginBottom: 20 }}>Provjeri internetsku vezu pa pokušaj ponovno.</div>
+        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button className="btn btn-gold" onClick={() => { const retry = examsError.retry; setExamsError(null); if (retry) retry() }}>Pokušaj ponovno</button>
+          <button className="btn btn-g" onClick={() => { setExamsError(null); goBack() }}>← Natrag</button>
+        </div>
+      </div></div>
+    )
+    // Ekran koji treba obje razine ne renderiramo s nepotpunom mapom — effect
+    // iznad ih dovlači, a dotad stoji loader.
+    if (FULL_EXAMS_SCREENS.includes(screen) && !RAZINE.every(r => isRazinaLoaded(r))) return <ScreenLoader />
     const screenContent = (() => {
       switch (screen) {
         case 'home':
@@ -637,17 +845,17 @@ export default function EngleskiSimulator() {
               onModeSelect={onModeSelect}
               userData={userData}
               toggles={toggles}
-              goErrors={() => navigate('errors')}
-              goBookmarks={() => navigate('bookmarks')}
-              goStats={() => navigate('stats')}
-              goBrowse={() => navigate('browse')}
-              goDailyChallenge={() => navigate('daily')}
-              goVirtualExam={() => { const v = generateVirtualExam(); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') }}
-              goFilter={() => navigate('filter')}
-              goVocab={() => navigate('vocab')}
-              goCompare={() => navigate('compare')}
+              goErrors={() => ensureAllExams(() => navigate('errors'))}
+              goBookmarks={() => ensureAllExams(() => navigate('bookmarks'))}
+              goStats={() => ensureAllExams(() => navigate('stats'))}
+              goBrowse={() => ensureAllExams(() => navigate('browse'))}
+              goDailyChallenge={() => ensureAllExams(() => navigate('daily'))}
+              goVirtualExam={() => ensureAllExams(map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
+              goFilter={() => ensureAllExams(() => navigate('filter'))}
+              goVocab={() => ensureAllExams(() => navigate('vocab'))}
+              goCompare={() => ensureAllExams(() => navigate('compare'))}
               visaLoaded={true}
-              examsMap={EXAMS}
+              examsIndex={EXAMS_INDEX}
               levelNames={LEVEL_NAMES}
               getLevel={getLevel}
               xpProgress={xpProgress}
@@ -659,7 +867,7 @@ export default function EngleskiSimulator() {
           return (
             <EngModeSelect
               examKey={selectedExamKey}
-              examsMap={EXAMS}
+              examsMap={examLookup}
               onBack={goBack}
               onPractice={() => onStartExam('practice')}
               onPracticeTimer={() => onStartExam('timed')}
@@ -680,11 +888,21 @@ export default function EngleskiSimulator() {
               userAccess={userAccess}
               isPro={isPro}
               examLookup={examLookup}
+              soundOn={soundOn}
+              onBookmarkChange={bumpBookmarkRev}
             />
           )
 
         case 'results':
-          if (!selectedExam) navigate('home')
+          // Bez odabranog ispita (npr. povratak u povijesti) nema što prikazati —
+          // fallback s povratkom, nikako navigacija tijekom rendera.
+          if (!selectedExam || !Array.isArray(selectedExam.qs)) return (
+            <div className="eng-sim"><div className="sim-card" style={{ textAlign: 'center', padding: '32px 24px' }}>
+              <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>Rezultati nisu dostupni</div>
+              <div style={{ color: 'var(--muted)', fontSize: 13, marginBottom: 20 }}>Riješi ispit pa će se rezultati prikazati ovdje.</div>
+              <button className="btn btn-g" onClick={goBack}>← Natrag</button>
+            </div></div>
+          )
           return (
             <>
             <Results
@@ -701,8 +919,8 @@ export default function EngleskiSimulator() {
                 setExamMode(false)
                 navigate('exam')
               }}
-              onGoFilter={() => navigate('filter')}
-              onGoStats={() => navigate('stats')}
+              onGoFilter={() => ensureAllExams(() => navigate('filter'))}
+              onGoStats={() => ensureAllExams(() => navigate('stats'))}
               chk={chk}
               grade={grade}
               GC={GC}
@@ -710,7 +928,7 @@ export default function EngleskiSimulator() {
               TOPIC_LABELS={TOPIC_LABELS}
               LL={LL}
               AnswerHelper={AnswerHelper}
-              AnalyticsPanel={AnalyticsPanelWrapper}
+              AnalyticsPanel={AnalyticsPanelBound}
               LEVEL_NAMES={LEVEL_NAMES}
               getLevel={getLevel}
             />
@@ -726,14 +944,14 @@ export default function EngleskiSimulator() {
             <StatsScreen 
               userData={userData}
               onBack={goBack}
-              onFilter={() => navigate('filter')}
-              onFilterSession={() => navigate('errors')}
-              onPDFReport={() => navigate('pdf_report')}
+              onFilter={() => ensureAllExams(() => navigate('filter'))}
+              onFilterSession={() => ensureAllExams(() => navigate('errors'))}
+              onPDFReport={() => ensureAllExams(() => navigate('pdf_report'))}
               LEVEL_NAMES={LEVEL_NAMES}
               getLevel={getLevel}
               xpProgress={xpProgress}
               xpToNext={xpToNext}
-              AnalyticsPanel={AnalyticsPanelWrapper}
+              AnalyticsPanel={AnalyticsPanelBound}
             />
           )
         
@@ -741,7 +959,7 @@ export default function EngleskiSimulator() {
           return (
             <BrowseScreen 
               onBack={goBack}
-              EXAMS={EXAMS}
+              EXAMS={examsMap}
               TLBL={TLBL}
               TBDG={TBDG}
               TOPIC_LABELS={TOPIC_LABELS}
@@ -759,7 +977,7 @@ export default function EngleskiSimulator() {
                 navigate('exam')
               }}
               onBack={goBack}
-              examsMap={EXAMS}
+              examsMap={examsMap}
               topicLabels={TOPIC_LABELS}
               fisherYates={fisherYates}
             />
@@ -775,10 +993,11 @@ export default function EngleskiSimulator() {
                 setExamMode(false)
                 navigate('exam')
               }}
-              examsMap={EXAMS}
+              examsMap={examsMap}
               topicLabels={TOPIC_LABELS}
               fisherYates={fisherYates}
               validateBookmarks={validateBookmarks}
+              onBookmarkChange={bumpBookmarkRev}
             />
           )
         
@@ -787,8 +1006,9 @@ export default function EngleskiSimulator() {
             <DailyChallengeScreen
               userData={userData}
               examsMap={examLookup}
+              userAccess={userAccess}
               onBack={goBack}
-              onDone={onExamDone}
+              onDone={result => onExamDone(result, { navigateTo: 'home' })}
             />
           )
 
@@ -803,19 +1023,23 @@ export default function EngleskiSimulator() {
               examContext={examContext}
               onExit={goBack}
               onDone={onExamDone}
+              userAccess={userAccess}
+              isPro={isPro}
               examLookup={examLookup}
+              soundOn={soundOn}
+              onBookmarkChange={bumpBookmarkRev}
             />
           )
         }
 
         case 'vocab':
-          return <VocabScreen userData={userData} onBack={goBack} />
+          return <VocabScreen userData={userData} onBack={goBack} examsMap={examLookup} />
 
         case 'compare':
-          return <CompareScreen userData={userData} onBack={goBack} />
+          return <CompareScreen userData={userData} onBack={goBack} examsMap={examLookup} />
 
         case 'pdf_report':
-          return <PDFReportScreen userData={userData} onBack={goBack} />
+          return <PDFReportScreen userData={userData} onBack={goBack} examsMap={examLookup} />
 
         case 'guide':
           return <GuideScreen onBack={goBack} />
@@ -825,9 +1049,10 @@ export default function EngleskiSimulator() {
             <TopicFilterScreen
               userData={userData}
               onBack={goBack}
+              examsMap={examsMap}
               onStartExam={({ qs, label, isFiltered }) => {
                 const key = 'filter_session_' + Date.now()
-                const fExam = { key, year: new Date().getFullYear(), season: 'filter', label, razina: deriveRazina(qs, EXAMS), qs }
+                const fExam = { key, year: new Date().getFullYear(), season: 'filter', label, razina: deriveRazina(qs, examsMap), qs }
                 setExtraExams(prev => ({ ...prev, [key]: fExam }))
                 setSelectedExamKey(key)
                 setExamMode(false)
@@ -840,7 +1065,7 @@ export default function EngleskiSimulator() {
           return (
             <div className="eng-sim"><div className="sim-card">
               <button className="btn btn-ghost" style={{ marginBottom: 16 }} onClick={goBack}>← Natrag</button>
-              <AnalyticsPanelFull userData={userData} onFilter={() => navigate('filter')} />
+              <AnalyticsPanelFull userData={userData} examsMap={examsMap} onFilter={() => navigate('filter')} />
             </div></div>
           )
 
@@ -850,17 +1075,17 @@ export default function EngleskiSimulator() {
               onModeSelect={onModeSelect}
               userData={userData}
               toggles={toggles}
-              goErrors={() => navigate('errors')}
-              goBookmarks={() => navigate('bookmarks')}
-              goStats={() => navigate('stats')}
-              goBrowse={() => navigate('browse')}
-              goDailyChallenge={() => navigate('daily')}
-              goVirtualExam={() => { const v = generateVirtualExam(); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') }}
-              goFilter={() => navigate('filter')}
-              goVocab={() => navigate('vocab')}
-              goCompare={() => navigate('compare')}
+              goErrors={() => ensureAllExams(() => navigate('errors'))}
+              goBookmarks={() => ensureAllExams(() => navigate('bookmarks'))}
+              goStats={() => ensureAllExams(() => navigate('stats'))}
+              goBrowse={() => ensureAllExams(() => navigate('browse'))}
+              goDailyChallenge={() => ensureAllExams(() => navigate('daily'))}
+              goVirtualExam={() => ensureAllExams(map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
+              goFilter={() => ensureAllExams(() => navigate('filter'))}
+              goVocab={() => ensureAllExams(() => navigate('vocab'))}
+              goCompare={() => ensureAllExams(() => navigate('compare'))}
               visaLoaded={true}
-              examsMap={EXAMS}
+              examsIndex={EXAMS_INDEX}
               levelNames={LEVEL_NAMES}
               getLevel={getLevel}
               xpProgress={xpProgress}

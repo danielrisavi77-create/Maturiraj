@@ -117,7 +117,7 @@ function createAudioSystem(ctxFactory) {
           osc.stop(ctx.currentTime + i * 0.12 + 0.5);
         });
       }
-    } catch {} // eslint-disable-line no-empty
+    } catch {}
   }
 
   return { playSound, getSharedCtx: () => _sharedAudioCtx };
