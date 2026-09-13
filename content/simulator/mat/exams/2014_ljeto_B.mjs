@@ -1098,7 +1098,7 @@ export const qs = [
     "Česta greška: greška predznaka pri oduzimanju −(−50x²)=+50x² (ne −50x²).",
     "Provjera za x=1: 6(1−3+5)−(2+8)(3−7)=6·3−10·(−4)=18+40=58. 20+32+6=58 ✓"
   ,"Provjera supstitucijom: uvrsti x = 32 u L = D; rezultati se moraju podudarati."]},
-  {id:28.1,type:"sa",img:true,topic:"lin",points:1,
+  {id:28.1,type:"sa",topic:"lin",points:1,
   q:"Odredi vrijednost indeksa u trenutku dostignutog maksimuma.",
   sol:{ans:"142",alt:["142","≈ 142"]},
   context:"Zadatak 28 (1. dio od 2):",
@@ -1117,7 +1117,7 @@ export const qs = [
   ,
     "Provjera: 25+9·13=25+117=142 čestica/milijun ✓"
   ,"Provjera: za jednadžbu pravca y = kx + l, dvije točke na pravcu daju isti k."]},
-  {id:28.2,type:"sa",img:true,topic:"lin",points:1,
+  {id:28.2,type:"sa",topic:"lin",points:1,
   q:"U koliko sati indeks zagađenja padne na 103 čestice nakon dostignutog maksimuma?",
   sol:{ans:"21:00 h",alt:["21","21h"]},
   context:"Zadatak 28 (2. dio od 2):",
