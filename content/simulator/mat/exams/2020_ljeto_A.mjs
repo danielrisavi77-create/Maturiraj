@@ -16,9 +16,12 @@ function Svg28_2020Alj(){
     pts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
   }
   const elems = [];
-  [-Math.PI, 0, Math.PI, 2*Math.PI, 3*Math.PI].forEach((x,i) => {
-    elems.push(e("line",{key:"gx"+i, x1:toX(x), y1:pad.t, x2:toX(x), y2:pad.t+iH, stroke:"var(--bdr)", strokeWidth:0.5}));
-  });
+  // Mreža: okomite crte na svakih π/2 (kao u originalu)
+  for(let k=-2; k<=7; k++){
+    const gx = k*Math.PI/2;
+    if(gx < xMin || gx > xMax) continue;
+    elems.push(e("line",{key:"gx"+k, x1:toX(gx), y1:pad.t, x2:toX(gx), y2:pad.t+iH, stroke:"var(--bdr)", strokeWidth:0.5}));
+  }
   [-2,-1,0,1,2,3].forEach((y,i) => {
     elems.push(e("line",{key:"gy"+i, x1:pad.l, y1:toY(y), x2:pad.l+iW, y2:toY(y), stroke:"var(--bdr)", strokeWidth:0.5}));
   });
@@ -35,10 +38,13 @@ function Svg28_2020Alj(){
   elems.push(e("text",{key:"l2pi", x:toX(2*Math.PI), y:oy+12, textAnchor:"middle", fontSize:9, fill:"var(--muted)"},"2π"));
   elems.push(e("text",{key:"l3pi", x:toX(3*Math.PI), y:oy+12, textAnchor:"middle", fontSize:9, fill:"var(--muted)"},"3π"));
   elems.push(e("text",{key:"l1y", x:ox-4, y:toY(1)+3, textAnchor:"end", fontSize:9, fill:"var(--muted)"},"1"));
-  // Pomoćna os simetrije y=1 (zelena iscrtkana)
-  elems.push(e("line",{key:"axSym", x1:pad.l, y1:toY(1), x2:pad.l+iW, y2:toY(1), stroke:"var(--green)", strokeWidth:1, strokeDasharray:"4,3", opacity:0.6}));
   // Krivulja - plava
   elems.push(e("polyline",{key:"curve", points:pts.join(" "), fill:"none", stroke:"var(--blue)", strokeWidth:2.3, strokeLinejoin:"round"}));
+  // Male kružiće na podjeli osi (kao u originalu)
+  [-Math.PI, 0, Math.PI, 2*Math.PI, 3*Math.PI].forEach((x,i) => {
+    elems.push(e("circle",{key:"tx"+i, cx:toX(x), cy:oy, r:2, fill:"var(--bg)", stroke:"var(--text)", strokeWidth:1}));
+  });
+  elems.push(e("circle",{key:"ty1", cx:ox, cy:toY(1), r:2, fill:"var(--bg)", stroke:"var(--text)", strokeWidth:1}));
   // Točke u ekstremima - crvena
   elems.push(e("circle",{key:"e1", cx:toX(-Math.PI), cy:toY(3), r:3.5, fill:"var(--bg)", stroke:"var(--red)", strokeWidth:2}));
   elems.push(e("circle",{key:"e2", cx:toX(Math.PI), cy:toY(-1), r:3.5, fill:"var(--bg)", stroke:"var(--red)", strokeWidth:2}));
@@ -50,18 +56,18 @@ function Svg28_2020Alj(){
 function Svg27c_2020Alj(){
   const W=320, H=220, pad={l:30, r:14, t:14, b:28};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-6, xMax=11, yMin=-3, yMax=6;
+  const xMin=-5.6, xMax=10.8, yMin=-3.4, yMax=6.6;
   const iW = W-pad.l-pad.r, iH = H-pad.t-pad.b;
   const toX = v => pad.l + ((v-xMin)/(xMax-xMin)) * iW;
   const toY = v => pad.t + ((yMax-v)/(yMax-yMin)) * iH;
   const ox = toX(0), oy = toY(0);
-  const data = [[-5,-2],[-3,0],[-2,3],[-1,3],[1,5],[5,3],[6,2],[8,2],[10,-3]];
+  const data = [[-5,-2.5],[-2,3],[-1,3],[2,6],[6,2],[8,2],[10,-3]];
   const ptStr = data.map(([x,y]) => `${toX(x).toFixed(1)},${toY(y).toFixed(1)}`).join(" ");
   const elems = [];
   for(let x=-5; x<=10; x++){
     elems.push(e("line",{key:"gx"+x, x1:toX(x), y1:pad.t, x2:toX(x), y2:pad.t+iH, stroke:"var(--bdr)", strokeWidth:0.5}));
   }
-  for(let y=-3; y<=5; y++){
+  for(let y=-3; y<=6; y++){
     elems.push(e("line",{key:"gy"+y, x1:pad.l, y1:toY(y), x2:pad.l+iW, y2:toY(y), stroke:"var(--bdr)", strokeWidth:0.5}));
   }
   // Osi
@@ -74,18 +80,14 @@ function Svg27c_2020Alj(){
   elems.push(e("text",{key:"l0", x:ox-9, y:oy+11, fontSize:9, fill:"var(--muted)"},"0"));
   elems.push(e("text",{key:"l1x", x:toX(1), y:oy+12, textAnchor:"middle", fontSize:9, fill:"var(--muted)"},"1"));
   elems.push(e("text",{key:"l1y", x:ox-4, y:toY(1)+3, textAnchor:"end", fontSize:9, fill:"var(--muted)"},"1"));
-  // Horizontalna crvena linija y=3 (pomoćna)
-  elems.push(e("line",{key:"y3", x1:pad.l, y1:toY(3), x2:pad.l+iW, y2:toY(3), stroke:"var(--red)", strokeWidth:1, strokeDasharray:"4,3", opacity:0.6}));
-  elems.push(e("text",{key:"l3y", x:ox-4, y:toY(3)+3, textAnchor:"end", fontSize:9, fontWeight:700, fill:"var(--red)"},"3"));
   // Graf
   elems.push(e("polyline",{key:"graf", points:ptStr, fill:"none", stroke:"var(--blue)", strokeWidth:2.3, strokeLinejoin:"round", strokeLinecap:"round"}));
-  // Zelene točke: rješenje za f(x)=3 → interval [-2,-1] + točka x=5
-  elems.push(e("line",{key:"sol1", x1:toX(-2), y1:toY(3), x2:toX(-1), y2:toY(3), stroke:"var(--green)", strokeWidth:4, strokeLinecap:"round"}));
-  elems.push(e("circle",{key:"solA", cx:toX(-2), cy:toY(3), r:3.5, fill:"var(--green)"}));
-  elems.push(e("circle",{key:"solB", cx:toX(-1), cy:toY(3), r:3.5, fill:"var(--green)"}));
-  elems.push(e("circle",{key:"solC", cx:toX(5), cy:toY(3), r:3.5, fill:"var(--green)"}));
+  // Male kružiće na podjeli osi (kao u originalu)
+  elems.push(e("circle",{key:"t00", cx:ox, cy:oy, r:2, fill:"var(--bg)", stroke:"var(--text)", strokeWidth:1}));
+  elems.push(e("circle",{key:"t1x", cx:toX(1), cy:oy, r:2, fill:"var(--bg)", stroke:"var(--text)", strokeWidth:1}));
+  elems.push(e("circle",{key:"t1y", cx:ox, cy:toY(1), r:2, fill:"var(--bg)", stroke:"var(--text)", strokeWidth:1}));
   // Oznaka y=f(x)
-  elems.push(e("text",{key:"yfx", x:toX(3.5), y:toY(4.5), fontSize:11, fontWeight:700, fontStyle:"italic", fill:"var(--blue)"},"y = f(x)"));
+  elems.push(e("text",{key:"yfx", x:toX(4.3), y:toY(3.8), fontSize:11, fontWeight:700, fontStyle:"italic", fill:"var(--blue)"},"y = f(x)"));
   return e("svg",{viewBox:`0 0 ${W} ${H}`, style:{width:"100%", maxWidth:W, display:"block"}}, elems);
 }
 
