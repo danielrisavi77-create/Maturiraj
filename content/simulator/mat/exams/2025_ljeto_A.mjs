@@ -147,45 +147,48 @@ function Svg38a_2025Alj(){
 
 function Svg36_2025Alj(){
   const txt="var(--text)"; const muted="var(--muted)";
-  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
-  const W=380, H=300; const ox=180, oy=200; const u=30;
+  const red="var(--red)"; const bg="var(--bg)";
+  const W=380, H=250; const ox=190, oy=145; const u=34;
   const pxF=(x)=>ox+x*u; const pyF=(y)=>oy-y*u;
-  // A=(-4,0), B=(1,0), C=(2,3)
+  // Original (DZS): A(-4, 0), B(0, 0) = ishodiste, C(2, 3); samo vrhovi, bez nacrtanog trokuta.
+  const gxMin=-5, gxMax=4, gyMin=-2, gyMax=3;
+  const gTop=pyF(gyMax+0.75), gBot=pyF(gyMin-0.5);
+  const gLeft=pxF(gxMin), gRight=pxF(gxMax+0.3);
   const grid=[];
-  for(let i=-5;i<=5;i++){
+  for(let i=gxMin;i<=gxMax;i++){
     if(i===0) continue;
-    grid.push(e("line",{key:"gx"+i,x1:pxF(i),y1:pyF(-2),x2:pxF(i),y2:pyF(3.5),stroke:muted,strokeWidth:0.4,strokeOpacity:0.18,strokeDasharray:"2 5"}));
+    grid.push(e("line",{key:"gx"+i,x1:pxF(i),y1:gTop,x2:pxF(i),y2:gBot,stroke:muted,strokeWidth:1,strokeOpacity:0.4}));
   }
-  for(let j=-2;j<=3;j++){
+  for(let j=gyMin;j<=gyMax;j++){
     if(j===0) continue;
-    grid.push(e("line",{key:"gy"+j,x1:pxF(-5),y1:pyF(j),x2:pxF(5),y2:pyF(j),stroke:muted,strokeWidth:0.4,strokeOpacity:0.18,strokeDasharray:"2 5"}));
+    grid.push(e("line",{key:"gy"+j,x1:gLeft,y1:pyF(j),x2:gRight,y2:pyF(j),stroke:muted,strokeWidth:1,strokeOpacity:0.4}));
   }
-  const A=[pxF(-4),pyF(0)], B=[pxF(1),pyF(0)], C=[pxF(2),pyF(3)];
+  const xTipX=pxF(gxMax+0.9), yTipY=pyF(gyMax+1.05);
+  const A=[pxF(-4),pyF(0)], B=[pxF(0),pyF(0)], C=[pxF(2),pyF(3)];
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"380px",width:"100%",display:"block",margin:"12px auto"}},
     ...grid,
-    // Triangle ABC
-    e("polygon",{key:"tr",points:`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]}`,fill:"rgba(74,144,217,0.12)",stroke:blue,strokeWidth:2}),
-    // Axes
-    e("line",{key:"xa",x1:pxF(-5),y1:oy,x2:pxF(5)+10,y2:oy,stroke:txt,strokeWidth:1.4}),
-    e("line",{key:"ya",x1:ox,y1:pyF(3.5),x2:ox,y2:pyF(-2)+10,stroke:txt,strokeWidth:1.4}),
-    e("polygon",{key:"xar",points:`${pxF(5)+10},${oy} ${pxF(5)+3},${oy-4} ${pxF(5)+3},${oy+4}`,fill:txt}),
-    e("polygon",{key:"yar",points:`${ox},${pyF(3.5)} ${ox-4},${pyF(3.5)+7} ${ox+4},${pyF(3.5)+7}`,fill:txt}),
-    e("text",{key:"xl",x:pxF(5)+14,y:oy+5,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"x"),
-    e("text",{key:"yl",x:ox+6,y:pyF(3.5)-2,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"y"),
-    e("text",{key:"O",x:ox-10,y:oy+14,fontSize:11,fontFamily:"Georgia,serif",fill:muted},"0"),
-    e("text",{key:"1x",x:pxF(1)-3,y:oy+14,fontSize:11,fontFamily:"Georgia,serif",fill:muted},"1"),
-    e("text",{key:"1y",x:ox-12,y:pyF(1)+4,fontSize:11,fontFamily:"Georgia,serif",fill:muted},"1"),
-    e("circle",{key:"u1x",cx:pxF(1),cy:oy,r:2,fill:muted}),
-    e("circle",{key:"u1y",cx:ox,cy:pyF(1),r:2,fill:muted}),
-    // Vertex dots
-    e("circle",{key:"dA",cx:A[0],cy:A[1],r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
-    e("circle",{key:"dB",cx:B[0],cy:B[1],r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
-    e("circle",{key:"dC",cx:C[0],cy:C[1],r:5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
-    // Vertex labels
-    e("text",{key:"lA",x:A[0]-12,y:A[1]+22,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"A"),
-    e("text",{key:"lB",x:B[0]+10,y:B[1]+22,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"B"),
-    e("text",{key:"lC",x:C[0]+8,y:C[1]-4,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"C")
+    // Osi sa strelicama
+    e("line",{key:"xa",x1:gLeft,y1:oy,x2:xTipX,y2:oy,stroke:txt,strokeWidth:2}),
+    e("line",{key:"ya",x1:ox,y1:gBot,x2:ox,y2:yTipY,stroke:txt,strokeWidth:2}),
+    e("polygon",{key:"xar",points:`${xTipX+7},${oy} ${xTipX-3},${oy-5} ${xTipX-3},${oy+5}`,fill:txt}),
+    e("polygon",{key:"yar",points:`${ox},${yTipY-7} ${ox-5},${yTipY+3} ${ox+5},${yTipY+3}`,fill:txt}),
+    e("text",{key:"xl",x:xTipX-10,y:oy+20,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt,textAnchor:"middle"},"x"),
+    e("text",{key:"yl",x:ox-16,y:yTipY+22,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt,textAnchor:"middle"},"y"),
+    // Jedinicne oznake
+    e("text",{key:"O",x:ox-11,y:oy+18,fontSize:14,fontFamily:"Georgia,serif",fill:txt,textAnchor:"middle"},"0"),
+    e("text",{key:"1x",x:pxF(1)-5,y:oy+18,fontSize:14,fontFamily:"Georgia,serif",fill:txt,textAnchor:"middle"},"1"),
+    e("text",{key:"1y",x:ox-14,y:pyF(1)+5,fontSize:14,fontFamily:"Georgia,serif",fill:txt,textAnchor:"middle"},"1"),
+    e("circle",{key:"u1x",cx:pxF(1),cy:oy,r:3,fill:bg,stroke:txt,strokeWidth:1.2}),
+    e("circle",{key:"u1y",cx:ox,cy:pyF(1),r:3,fill:bg,stroke:txt,strokeWidth:1.2}),
+    // Vrhovi
+    e("circle",{key:"dA",cx:A[0],cy:A[1],r:4,fill:red}),
+    e("circle",{key:"dB",cx:B[0],cy:B[1],r:4,fill:red}),
+    e("circle",{key:"dC",cx:C[0],cy:C[1],r:4,fill:red}),
+    // Oznake vrhova
+    e("text",{key:"lA",x:A[0]-12,y:A[1]+20,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:red,textAnchor:"middle"},"A"),
+    e("text",{key:"lB",x:B[0]+15,y:B[1]+20,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:red,textAnchor:"middle"},"B"),
+    e("text",{key:"lC",x:C[0]+14,y:C[1]-9,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:red,textAnchor:"middle"},"C")
   );
 }
 
@@ -804,11 +807,11 @@ export const qs = [
     type:"sa",
     topic:"anal",
     points:1,
-    context:"Zadatak 36 (1. dio od 2): Trokut ABC s vrhovima A(−2, 0), B(0, 0), C(2, 3).",
+    context:"Zadatak 36 (1. dio od 2): Trokut ABC s vrhovima A(−4, 0), B(0, 0), C(2, 3).",
     q:"Odredite duljinu visine iz vrha C.",
     sol:{ans:"3",alt:["3 cm","3,0"]},
-    steps:[{txt:"A(−2, 0), B(0, 0) → AB leži na osi x."},{txt:"Visina iz C okomita na AB → vertikalna."},{txt:"Duljina = |y_C| = 3."},{txt:"Točan odgovor: 3.",note:"odgovor",final:true},{txt:"Provjera kroz površinu: P = [FRAC:1|2]·|AB|·v = [FRAC:1|2]·2·3 = 3 ✓.",note:"verifikacija",final:true},{txt:"Postupak: 1) na kojoj osi je stranica. 2) udaljenost vrha od osi.",note:"postupak",final:true},{txt:"Intuicija: stranica na osi x → visina = |y-koordinata vrha|.",note:"intuicija",final:true},{txt:"Provjera: uvrsti dobivenu točku u jednadžbu krivulje — mora zadovoljiti.",note:"verifikacija",final:true}],
-    why:["Pravila: visina = okomica iz vrha na nasuprotnu stranicu.","Postupak: 1) pravac stranice. 2) udaljenost vrha.","Intuicija: udaljenost točke od osi x = apsolutna y-koordinata.","Česta greška 1: udaljenost od kraja stranice umjesto od pravca.","Česta greška 2: |x| umjesto |y|.","Alt metoda: pravac AB: y = 0; udaljenost (2,3) od y=0 je |3| = 3 ✓.","Provjera s formulom površine: P = 3, |AB| = 2 → v = 3 ✓."]
+    steps:[{txt:"A(−4, 0), B(0, 0) → AB leži na osi x."},{txt:"Visina iz C okomita na AB → vertikalna."},{txt:"Duljina = |y_C| = 3."},{txt:"Točan odgovor: 3.",note:"odgovor",final:true},{txt:"Provjera kroz površinu: P = [FRAC:1|2]·|AB|·v = [FRAC:1|2]·4·3 = 6 ✓.",note:"verifikacija",final:true},{txt:"Postupak: 1) na kojoj osi je stranica. 2) udaljenost vrha od osi.",note:"postupak",final:true},{txt:"Intuicija: stranica na osi x → visina = |y-koordinata vrha|.",note:"intuicija",final:true},{txt:"Provjera: uvrsti dobivenu točku u jednadžbu krivulje — mora zadovoljiti.",note:"verifikacija",final:true}],
+    why:["Pravila: visina = okomica iz vrha na nasuprotnu stranicu.","Postupak: 1) pravac stranice. 2) udaljenost vrha.","Intuicija: udaljenost točke od osi x = apsolutna y-koordinata.","Česta greška 1: udaljenost od kraja stranice umjesto od pravca.","Česta greška 2: |x| umjesto |y|.","Alt metoda: pravac AB: y = 0; udaljenost (2,3) od y=0 je |3| = 3 ✓.","Provjera s formulom površine: P = 6, |AB| = 4 → v = 3 ✓."]
   },
   {
     id:"36.2",
@@ -816,7 +819,7 @@ export const qs = [
     type:"sa",
     topic:"anal",
     points:1,
-    context:"Zadatak 36 (2. dio od 2): Vrhovi A(−2, 0), B(0, 0), C(2, 3).",
+    context:"Zadatak 36 (2. dio od 2): Vrhovi A(−4, 0), B(0, 0), C(2, 3).",
     q:"Odredite duljinu polumjera kružnice sa središtem u točki B koja prolazi točkom C.",
     sol:{ans:"√13",alt:["√13 cm","sqrt(13)","≈ 3,61"]},
     steps:[{txt:"Polumjer = udaljenost središte ↔ točka na kružnici."},{txt:"r = |BC| = √((2−0)² + (3−0)²) = √(4 + 9) = √13."},{txt:"Točan odgovor: √13.",note:"odgovor",final:true},{txt:"Provjera: jednadžba kružnice x² + y² = 13; C(2,3): 4 + 9 = 13 ✓.",note:"verifikacija",final:true},{txt:"Alt metoda — kroz jednadžbu kružnice: x²+(y−0)²=13 prolazi kroz B(0,0) jer 0+0=0 < 13; ne, treba (x−0)²+(y−0)² = r²; uvrsti B: 0² + 0² = 0 ≠ 13 — kontradikcija, B JE središte. Polumjer je |BC| = √13.",note:"verifikacija",final:true},{txt:"Postupak: formula udaljenosti dvije točke.",note:"postupak",final:true},{txt:"Intuicija: Pitagora u koordinatama; Δx i Δy su katete.",note:"intuicija",final:true},{txt:"Provjera koordinatama: ako je točka na pravcu y = kx + l, uvrštavanjem x dobijemo y.",note:"verifikacija",final:true}],
