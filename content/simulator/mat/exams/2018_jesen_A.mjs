@@ -3,30 +3,31 @@ import React from 'react';
 const e = React.createElement;
 
 function Svg29c_2018Aj(){
-  const W=280,H=160;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  /* Pravokutnik stakla */
-  const rx=20,ry=10,rw=230,rh=120;
-  /* Isječak: središte u donjem desnom dijelu pravokutnika, r=55 vizualno */
-  const pivot_x=rx+rw*0.42, pivot_y=ry+rh-5;
-  const vr=rh*0.88; /* vizualni radius */
-  /* 160° sektor od pivot točke, otvara se prema gore-lijevo */
-  const startAng=190*Math.PI/180, endAng=350*Math.PI/180;
-  /* arc path */
-  const sx=pivot_x+vr*Math.cos(startAng), sy=pivot_y-vr*Math.sin(startAng);
-  const ex=pivot_x+vr*Math.cos(endAng), ey=pivot_y-vr*Math.sin(endAng);
+  const W=312,H=182;
+  /* Staklo 120 cm x 60 cm (u skici nije mjerilo 2:1, kao ni u originalu) */
+  const rx=30,ry=28,rw=240,rh=137;
+  /* Vrh brisaca lezi na donjem rubu stakla, blizu sredine */
+  const px=rx+rw*0.4875, py=ry+rh;
+  const vr=105;                       /* vizualna duljina brisaca (55 cm) */
+  const a1=10*Math.PI/180, a2=170*Math.PI/180;   /* 160 deg, simetricno oko okomice */
+  const P=(a,r)=>[px+r*Math.cos(a),py-r*Math.sin(a)];
+  const [x1,y1]=P(a1,vr), [x2,y2]=P(a2,vr);
+  const ar=28;                        /* radijus male lucne oznake kuta */
+  const [ax1,ay1]=P(a1,ar), [ax2,ay2]=P(a2,ar);
+  const _TXT="var(--text)";
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    /* pravokutnik stakla */
-    e("rect",{x:rx,y:ry,width:rw,height:rh,fill:"none",stroke:_BLUE,strokeWidth:1.5}),
-    /* isječak (osjenčano) */
-    e("path",{d:`M ${pivot_x} ${pivot_y} L ${sx} ${sy} A ${vr} ${vr} 0 0 0 ${ex} ${ey} Z`,
-      fill:"var(--muted)",fillOpacity:0.15,stroke:_BLUE,strokeWidth:1.2}),
-    /* oznake */
-    e("text",{x:rx+rw/2,y:ry-2,textAnchor:"middle",fontSize:10,fill:"var(--text)"},"120 cm"),
-    e("text",{x:rx+rw+6,y:ry+rh/2+3,fontSize:10,fill:"var(--text)"},"60 cm"),
-    e("text",{x:pivot_x-30,y:pivot_y-6,fontSize:10,fill:"var(--text)"},"55 cm"),
-    /* kut oznaka */
-    e("text",{x:pivot_x+8,y:pivot_y-12,fontSize:10,fill:"var(--text)"},"160\u00b0")
+    /* staklo */
+    e("rect",{x:rx,y:ry,width:rw,height:rh,fill:"none",stroke:_TXT,strokeWidth:1.2}),
+    /* obrisani kruzni isjecak */
+    e("path",{d:`M ${px} ${py} L ${x1} ${y1} A ${vr} ${vr} 0 0 0 ${x2} ${y2} Z`,
+      fill:"var(--muted)",fillOpacity:0.26,stroke:_TXT,strokeWidth:2,strokeLinejoin:"round"}),
+    /* oznaka kuta */
+    e("path",{d:`M ${ax1} ${ay1} A ${ar} ${ar} 0 0 0 ${ax2} ${ay2}`,fill:"none",stroke:_TXT,strokeWidth:1}),
+    e("text",{x:px+2,y:py-6,textAnchor:"middle",fontSize:10,fill:_TXT},"160\u00b0"),
+    /* dimenzije */
+    e("text",{x:rx+rw/2,y:ry-6,textAnchor:"middle",fontSize:10,fill:_TXT},"120 cm"),
+    e("text",{x:rx+rw+6,y:ry+rh/2+3,fontSize:10,fill:_TXT},"60 cm"),
+    e("text",{x:px-92,y:py-4,textAnchor:"middle",fontSize:10,fill:_TXT},"55 cm")
   );
 }
 
