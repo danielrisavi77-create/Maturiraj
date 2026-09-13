@@ -3,39 +3,47 @@ import React from 'react';
 const e = React.createElement;
 
 function Svg28_2019Bj(){
-  const W=280,H=200,pad={l:40,r:60,t:14,b:50};
+  /* Dvostruka os kao u originalu: lijevo minute 0-100, desno postotak 0-70 %
+     (100 min <-> 70 %). Sivi stupci = minute, crveni = postotak. */
+  const W=300,H=210,pad={l:32,r:44,t:14,b:46};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const groups=["15\u201317","18\u201323","24\u201326","27\u201330"];
-  const mins=[100,80,65,45];
-  const pcts=[70,56,35,30];
-  const maxM=110,maxP=80;
-  const bw=iW/groups.length,sw=bw*0.3;
+  const mins=[100,70,65,55];
+  const pcts=[60,56,35,25];
+  const maxM=100,maxP=70;
+  const bw=iW/groups.length,sw=bw*0.26;
+  const yM=v=>pad.t+iH-(v/maxM)*iH;
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
+    /* vodoravna mreza svakih 10 minuta */
+    ...[10,20,30,40,50,60,70,80,90,100].map(v=>e("line",{key:"g"+v,x1:pad.l,y1:yM(v),x2:pad.l+iW,y2:yM(v),stroke:"var(--muted)",strokeOpacity:0.35,strokeWidth:.5})),
     /* osi */
-    e("line",{x1:pad.l,y1:pad.t+iH,x2:pad.l+iW,y2:pad.t+iH,stroke:_BLUE,strokeWidth:1}),
-    e("line",{x1:pad.l,y1:pad.t,x2:pad.l,y2:pad.t+iH,stroke:_BLUE,strokeWidth:1}),
+    e("line",{x1:pad.l,y1:pad.t+iH,x2:pad.l+iW,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1}),
+    e("line",{x1:pad.l,y1:pad.t,x2:pad.l,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1}),
+    e("line",{x1:pad.l+iW,y1:pad.t,x2:pad.l+iW,y2:pad.t+iH,stroke:_RED,strokeWidth:1}),
     /* lijeva os: minute */
-    ...[0,20,40,60,80,100].map(v=>{const y=pad.t+iH-(v/maxM)*iH;return e("text",{key:"yl"+v,x:pad.l-6,y:y+4,textAnchor:"end",fontSize:8,fill:"var(--muted)"},String(v))}),
+    ...[0,10,20,30,40,50,60,70,80,90,100].map(v=>e("g",{key:"yl"+v},
+      e("line",{x1:pad.l-3,y1:yM(v),x2:pad.l,y2:yM(v),stroke:"var(--text)",strokeWidth:.8}),
+      v%20===0&&e("text",{x:pad.l-5,y:yM(v)+3,textAnchor:"end",fontSize:7.5,fill:"var(--text)"},String(v))
+    )),
+    /* desna os: postotak (0-70 %), poravnat s lijevom skalom */
+    ...[0,10,20,30,40,50,60,70].map(v=>e("g",{key:"yr"+v},
+      e("line",{x1:pad.l+iW,y1:yM(v/maxP*maxM),x2:pad.l+iW+3,y2:yM(v/maxP*maxM),stroke:_RED,strokeWidth:.8}),
+      e("text",{x:pad.l+iW+5,y:yM(v/maxP*maxM)+3,fontSize:7.5,fill:_RED},v+" %")
+    )),
     /* stupci */
     ...groups.map((g,i)=>{
       const x=pad.l+i*bw+bw/2;
       const hM=mins[i]/maxM*iH,hP=pcts[i]/maxP*iH;
       return e("g",{key:"gr"+i},
-        /* sivi stupac (minute) */
-        e("rect",{x:x-sw-2,y:pad.t+iH-hM,width:sw,height:hM,fill:"var(--muted)",fillOpacity:0.5}),
-        /* crveni/roza stupac (postotak) */
-        e("rect",{x:x+2,y:pad.t+iH-hP,width:sw,height:hP,fill:_BLUE,fillOpacity:0.7}),
-        /* labela */
-        e("text",{x:x,y:pad.t+iH+14,textAnchor:"middle",fontSize:9,fill:"var(--text)"},g)
+        e("rect",{x:x-sw-1.5,y:pad.t+iH-hM,width:sw,height:hM,fill:"var(--muted)",fillOpacity:0.75}),
+        e("rect",{x:x+1.5,y:pad.t+iH-hP,width:sw,height:hP,fill:_RED,fillOpacity:0.85}),
+        e("text",{x:x,y:pad.t+iH+13,textAnchor:"middle",fontSize:8.5,fill:"var(--text)"},g)
       );}),
-    /* desna os: postotak */
-    e("line",{x1:pad.l+iW,y1:pad.t,x2:pad.l+iW,y2:pad.t+iH,stroke:_BLUE,strokeWidth:1}),
-    ...[0,10,20,30,40,50,60,70].map(v=>{const y=pad.t+iH-(v/maxP)*iH;return e("text",{key:"yr"+v,x:pad.l+iW+4,y:y+4,fontSize:8,fill:_BLUE},v+"%")}),
-    /* legenda tekst */
-    e("text",{x:pad.l-4,y:pad.t-2,fontSize:7,fill:"var(--muted)"},"min"),
-    e("text",{x:pad.l+iW+4,y:pad.t-2,fontSize:7,fill:_BLUE},"%"),
-    e("text",{x:pad.l+iW/2,y:H-4,textAnchor:"middle",fontSize:8,fill:"var(--text)"},"dobna skupina (u godinama)")
+    /* legende osi */
+    e("text",{x:pad.l-4,y:pad.t-4,fontSize:7,textAnchor:"end",fill:"var(--text)"},"min"),
+    e("text",{x:pad.l+iW+5,y:pad.t-4,fontSize:7,fill:_RED},"%"),
+    e("text",{x:pad.l+iW/2,y:H-6,textAnchor:"middle",fontSize:8.5,fill:"var(--text)"},"dobna skupina (u godinama)")
   );
 }
 
@@ -195,37 +203,42 @@ function SvgT24a_2019Bj(){
 }
 
 function Svg13_2019Bj(){
-  /* Parabola otvorena gore, min na x=4: f(x) = (5/9)(x-4)^2 - 4
-     Prolazi (0,5.0), (1,1), (2,-1.78), (3,-3.44), (4,-4), (5,-3.44), (6,-1.78) */
-  const W=220,H=250,pad={l:30,r:14,t:14,b:30};
+  /* Parabola otvorena gore, nultocke ~2,2 i ~5,9, tjeme ~(4,05; -3,77):
+     f(x) = 1,1*(x - 2,2)*(x - 5,9)
+     Ista mreza kao original: x od 0 do 7, y od -3 do 6, jedinicni kvadrati. */
+  const W=200,H=250,pad={l:28,r:13,t:14,b:14};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-0.5,xMax=5.8,yMin=-5,yMax=7;
+  const xMin=-0.4,xMax=7.4,yMin=-4.3,yMax=6.6;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const f=x=>(5/9)*(x-4)*(x-4)-4;
+  const f=x=>1.1*(x-2.2)*(x-5.9);
   const pts=[];
-  for(let x=-0.2;x<=5.5;x+=0.03){
+  for(let x=0.8;x<=7.3;x+=0.02){
     const y=f(x);
-    if(y>=yMin&&y<=yMax) pts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
+    if(y>=yMin+0.15&&y<=yMax-0.15) pts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
   }
-  const gridX=[0,1,2,3,4,5],gridY=[-4,-3,-2,-1,0,1,2,3,4,5,6];
+  const gridX=[0,1,2,3,4,5,6,7],gridY=[-3,-2,-1,0,1,2,3,4,5,6];
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    ...gridX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.4})),
-    ...gridY.map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.4})),
-    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:"var(--text)",strokeWidth:1.3}),
-    e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.3}),
-    e("polygon",{points:`${pad.l+iW},${oy} ${pad.l+iW-5},${oy-3} ${pad.l+iW-5},${oy+3}`,fill:"var(--text)"}),
-    e("polygon",{points:`${ox},${pad.t} ${ox-3},${pad.t+5} ${ox+3},${pad.t+5}`,fill:"var(--text)"}),
-    e("text",{x:pad.l+iW+4,y:oy+4,fontSize:10,fontStyle:"italic",fill:"var(--text)"},"x"),
-    e("text",{x:ox+5,y:pad.t+4,fontSize:10,fontStyle:"italic",fill:"var(--text)"},"y"),
-    e("text",{x:ox-10,y:oy+13,fontSize:9,fill:"var(--muted)"},"0"),
-    e("circle",{cx:toX(1),cy:oy,r:2,fill:_RED}),
-    e("text",{x:toX(1)-2,y:oy+13,fontSize:9,fill:"var(--muted)"},"1"),
-    e("circle",{cx:ox,cy:toY(1),r:2,fill:_RED}),
-    e("text",{x:ox-12,y:toY(1)+4,fontSize:9,fill:"var(--muted)"},"1"),
-    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2,strokeLinejoin:"round",strokeLinecap:"round"})
+    /* mreza */
+    ...gridX.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--muted)",strokeOpacity:0.35,strokeWidth:.5})),
+    ...gridY.map(y=>e("line",{key:"gy"+y,x1:toX(0),y1:toY(y),x2:toX(7),y2:toY(y),stroke:"var(--muted)",strokeOpacity:0.35,strokeWidth:.5})),
+    /* osi */
+    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW-6,y2:oy,stroke:"var(--text)",strokeWidth:1.4}),
+    e("line",{x1:ox,y1:pad.t+6,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.4}),
+    e("polygon",{points:`${pad.l+iW},${oy} ${pad.l+iW-7},${oy-3.2} ${pad.l+iW-7},${oy+3.2}`,fill:"var(--text)"}),
+    e("polygon",{points:`${ox},${pad.t} ${ox-3.2},${pad.t+7} ${ox+3.2},${pad.t+7}`,fill:"var(--text)"}),
+    e("text",{x:pad.l+iW-2,y:oy+13,fontSize:10,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{x:ox+5,y:pad.t+9,fontSize:10,fontStyle:"italic",fill:"var(--text)"},"y"),
+    /* graf */
+    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.2,strokeLinejoin:"round",strokeLinecap:"round"}),
+    /* jedinicne oznake: prazne kruznice kao u originalu */
+    e("circle",{cx:toX(1),cy:oy,r:2.4,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}),
+    e("circle",{cx:ox,cy:toY(1),r:2.4,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}),
+    e("text",{x:ox-10,y:oy+14,fontSize:10,fill:"var(--text)"},"0"),
+    e("text",{x:toX(1)+3,y:oy+14,fontSize:10,fill:"var(--text)"},"1"),
+    e("text",{x:ox-12,y:toY(1)-4,fontSize:10,fill:"var(--text)"},"1")
   );
 }
 
@@ -431,7 +444,7 @@ export const qs = [
   q:"Koja je od navedenih nejednakosti točna za funkciju f čiji je graf prikazan na slici?",
   opts:["f(1) < f(2)","f(2) < f(3)","f(3) < f(4)","f(4) < f(5)"],
   sol:{cl:"D",alt:["D","d","D)","d)","D.","d.","(D)","(d)"]},
-  why:["Pravilo monotonosti: f raste ⟺ za x₁ < x₂ vrijedi f(x₁) < f(x₂); f opada ⟺ f(x₁) > f(x₂).","Postupak za očitavanje s grafa: 1) identificiraj tjeme parabole. 2) lijevo od tjemena parabola opada, desno raste (za parabolu otvorenu gore). 3) provjeri svaku nejednakost.","Intuicija: tjeme ovog grafa je oko x = 4 (najniža točka). f opada za x < 4 i raste za x > 4. Samo na intervalu desno od tjemena (4, 5) vrijedi f(x₁) < f(x₂).","Česta greška 1: zamijeniti smjer nejednakosti — npr. misliti da f(1) < f(2) vrijedi za opadajuću funkciju (krivo — to vrijedi za rastuću). Greška 2: ne primijetiti gdje se mijenja smjer rasta/pada.","Alt metoda: očitati direktno vrijednosti s grafa. f(1) ≈ 1, f(2) ≈ −1,8, f(3) ≈ −3,4, f(4) = -4 (min), f(5) ≈ −3,4. Provjera: jedino f(4) < f(5) (-4 < −3,4) je istina.","Provjera: u rastućoj zoni desno od tjemena (x = 4), za x₁ < x₂ vrijedi f(x₁) < f(x₂). Stoga f(4) < f(5) ✓; sve ostale opcije (1<2, 2<3, 3<4) su u opadajuoj zoni i ne vrijede."],
+  why:["Pravilo monotonosti: f raste ⟺ za x₁ < x₂ vrijedi f(x₁) < f(x₂); f opada ⟺ f(x₁) > f(x₂).","Postupak za očitavanje s grafa: 1) identificiraj tjeme parabole. 2) lijevo od tjemena parabola opada, desno raste (za parabolu otvorenu gore). 3) provjeri svaku nejednakost.","Intuicija: tjeme ovog grafa je oko x = 4 (najniža točka). f opada za x < 4 i raste za x > 4. Samo na intervalu desno od tjemena (4, 5) vrijedi f(x₁) < f(x₂).","Česta greška 1: zamijeniti smjer nejednakosti — npr. misliti da f(1) < f(2) vrijedi za opadajuću funkciju (krivo — to vrijedi za rastuću). Greška 2: ne primijetiti gdje se mijenja smjer rasta/pada.","Alt metoda: očitati direktno vrijednosti s grafa. f(1) ≈ 6,5, f(2) ≈ 0,9, f(3) ≈ −2,6, f(4) ≈ −3,8 (min), f(5) ≈ −2,7. Provjera: jedino f(4) < f(5) (−3,8 < −2,7) je istina.","Provjera: u rastućoj zoni desno od tjemena (x = 4), za x₁ < x₂ vrijedi f(x₁) < f(x₂). Stoga f(4) < f(5) ✓; sve ostale opcije (1<2, 2<3, 3<4) su u opadajuoj zoni i ne vrijede."],
   steps:[
     {txt:"Iz grafa: parabola otvorena GORE s tjemenom (minimumom) oko x = 4."},
     {txt:"Funkcija opada na intervalu ⟨−∞, 4⟩ i raste na ⟨4, +∞⟩."},
