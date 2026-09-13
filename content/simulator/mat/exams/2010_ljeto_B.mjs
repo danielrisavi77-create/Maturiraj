@@ -119,7 +119,8 @@ function SvgZad24_2010LB(){
     e("text",{x:D.x-16,y:D.y-5,fontSize:12,fill:_GOLD,fontStyle:"italic"},"D"),
     e("text",{x:E.x-14,y:E.y+14,fontSize:12,fill:_GOLD,fontStyle:"italic"},"E"),
     e("text",{x:F.x+3,y:F.y+14,fontSize:12,fill:_GOLD,fontStyle:"italic"},"F"),
-    e("text",{x:(C.x+F.x)/2+5,y:(C.y+E.y)/2,fontSize:11,fill:"var(--bg)",fontWeight:"700"},"5 cm"),
+    e("text",{x:E.x-6,y:142,textAnchor:"end",fontSize:10,fill:t,fontWeight:"600"},"5 cm"),
+    ...[A,B,C,D,E,F].map(function(P,i){return e("circle",{key:"vx"+i,cx:P.x,cy:P.y,r:2,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1});}),
   );
 }
 
@@ -157,7 +158,7 @@ function SvgZad23_2010LB(){
 function SvgZad11_2010LB(){
   const W=220,H=160,pad={l:22,r:10,t:14,b:22};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-1,xMax=3,yMin=-2.5,yMax=1;
+  const xMin=-1,xMax=3,yMin=-2.8,yMax=1.7;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=function(v){return pad.l+((v-xMin)/(xMax-xMin))*iW;};
   const toY=function(v){return pad.t+((yMax-v)/(yMax-yMin))*iH;};
@@ -178,12 +179,13 @@ function SvgZad11_2010LB(){
     e("line",{x1:ox,y1:pad.t+iH,x2:ox,y2:pad.t,stroke:_BLUE,strokeWidth:1.4}),
     e("polygon",{points:ox+","+pad.t+" "+(ox-2.5)+","+(pad.t+5)+" "+(ox+2.5)+","+(pad.t+5),fill:t}),
     e("text",{x:pad.l+iW+3,y:oy+4,fontSize:9,fill:t,fontStyle:"italic"},"x"),
-    e("text",{x:ox+3,y:pad.t+2,fontSize:9,fill:t,fontStyle:"italic"},"y"),
-    e("text",{x:ox-9,y:oy+11,fontSize:8,fill:mu},"0"),
-    e("line",{x1:toX(1),y1:oy-2.5,x2:toX(1),y2:oy+2.5,stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:toX(1)-2,y:oy+11,fontSize:8,fill:mu},"1"),
-    e("line",{x1:ox-2.5,y1:toY(1),x2:ox+2.5,y2:toY(1),stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:ox+3,y:toY(1)+3,fontSize:8,fill:mu},"1"),
+    e("text",{x:ox-11,y:pad.t+9,fontSize:9,fill:t,fontStyle:"italic"},"y"),
+    e("text",{x:ox-10,y:oy+12,fontSize:9,fill:t,fontWeight:"700"},"0"),
+    e("circle",{cx:ox,cy:oy,r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:oy,r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:toX(1)+4,y:oy+12,fontSize:9,fill:t,fontWeight:"700"},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:ox-10,y:toY(1)+3.5,fontSize:9,fill:t,fontWeight:"700"},"1"),
     pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:b,strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
   );
 }
@@ -210,17 +212,48 @@ function SvgZad21_2010LB(){
     e("line",{x1:ox,y1:pad.t+iH,x2:ox,y2:pad.t,stroke:_BLUE,strokeWidth:1.4}),
     e("polygon",{points:ox+","+pad.t+" "+(ox-2.5)+","+(pad.t+5)+" "+(ox+2.5)+","+(pad.t+5),fill:t}),
     e("text",{x:pad.l+iW+3,y:oy+4,fontSize:9,fill:t,fontStyle:"italic"},"x"),
-    e("text",{x:ox+3,y:pad.t+2,fontSize:9,fill:t,fontStyle:"italic"},"y"),
-    e("text",{x:ox-9,y:oy+11,fontSize:8,fill:mu},"0"),
-    e("line",{x1:toX(1),y1:oy-2.5,x2:toX(1),y2:oy+2.5,stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:toX(1)-2,y:oy+11,fontSize:8,fill:mu},"1"),
-    e("line",{x1:ox-2.5,y1:toY(1),x2:ox+2.5,y2:toY(1),stroke:_BLUE,strokeWidth:1}),
-    e("text",{x:ox+3,y:toY(1)+3,fontSize:8,fill:mu},"1"),
+    e("text",{x:ox-11,y:pad.t+9,fontSize:9,fill:t,fontStyle:"italic"},"y"),
+    e("text",{x:ox-10,y:oy+12,fontSize:9,fill:t,fontWeight:"700"},"0"),
+    e("circle",{cx:ox,cy:oy,r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:oy,r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:toX(1)-2.5,y:oy+13,fontSize:9,fill:t,fontWeight:"700"},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:2.2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:ox-10,y:toY(1)+3.5,fontSize:9,fill:t,fontWeight:"700"},"1"),
     e("line",{x1:toX(lx1),y1:toY(ly1),x2:toX(lx2),y2:toY(ly2),stroke:b,strokeWidth:2.2,strokeLinecap:"round"}),
     e("circle",{cx:toX(3),cy:toY(0),r:3.5,fill:b}),
     e("circle",{cx:toX(0),cy:toY(2),r:3.5,fill:b}),
     e("text",{x:toX(3)+4,y:toY(0)+12,fontSize:9,fill:b},"(3,0)"),
     e("text",{x:toX(0)+4,y:toY(2)-5,fontSize:9,fill:b},"(0,2)"),
+  );
+}
+
+// Prazan koordinatni sustav za zadatak 21 (učenik sam crta pravac) — kao u izvornom PDF-u.
+function SvgZad21Prazan_2010LB(){
+  const W=240,H=220,pad={l:26,r:12,t:14,b:22};
+  const _BLUE="var(--blue)";
+  const xMin=-3,xMax=5,yMin=-3,yMax=4;
+  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
+  const toX=function(v){return pad.l+((v-xMin)/(xMax-xMin))*iW;};
+  const toY=function(v){return pad.t+((yMax-v)/(yMax-yMin))*iH;};
+  const ox=toX(0),oy=toY(0);
+  const t="var(--text)",m="var(--muted)",bg="var(--bg)";
+  const grid=[];
+  for(let i=xMin;i<=xMax;i++) grid.push(e("line",{key:"gx"+i,x1:toX(i),y1:pad.t,x2:toX(i),y2:pad.t+iH,stroke:m,strokeWidth:0.5,strokeDasharray:"2,3"}));
+  for(let i=yMin;i<=yMax;i++) grid.push(e("line",{key:"gy"+i,x1:pad.l,y1:toY(i),x2:pad.l+iW,y2:toY(i),stroke:m,strokeWidth:0.5,strokeDasharray:"2,3"}));
+  return e("svg",{viewBox:"0 0 240 220",style:{width:"100%",maxWidth:240,display:"block"}},
+    ...grid,
+    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:_BLUE,strokeWidth:1.4}),
+    e("polygon",{points:(pad.l+iW)+","+oy+" "+(pad.l+iW-5)+","+(oy-2.5)+" "+(pad.l+iW-5)+","+(oy+2.5),fill:t}),
+    e("line",{x1:ox,y1:pad.t+iH,x2:ox,y2:pad.t,stroke:_BLUE,strokeWidth:1.4}),
+    e("polygon",{points:ox+","+pad.t+" "+(ox-2.5)+","+(pad.t+5)+" "+(ox+2.5)+","+(pad.t+5),fill:t}),
+    e("text",{x:pad.l+iW+3,y:oy+4,fontSize:9,fill:t,fontStyle:"italic"},"x"),
+    e("text",{x:ox-11,y:pad.t+9,fontSize:9,fill:t,fontStyle:"italic"},"y"),
+    e("text",{x:ox-10,y:oy+12,fontSize:9,fill:t,fontWeight:"700"},"0"),
+    e("circle",{cx:ox,cy:oy,r:2.2,fill:bg,stroke:t,strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:oy,r:2.2,fill:bg,stroke:t,strokeWidth:1}),
+    e("text",{x:toX(1)-2.5,y:oy+13,fontSize:9,fill:t,fontWeight:"700"},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:2.2,fill:bg,stroke:t,strokeWidth:1}),
+    e("text",{x:ox-10,y:toY(1)+3.5,fontSize:9,fill:t,fontWeight:"700"},"1"),
   );
 }
 
@@ -852,7 +885,7 @@ export const qs = [
 
 export const qImages = {
   "2010_ljeto_B__11": () => e(SvgZad11_2010LB, null),
-  "2010_ljeto_B__21": () => e(SvgZad21_2010LB, null),
+  "2010_ljeto_B__21": () => e(SvgZad21Prazan_2010LB, null),
   "2010_ljeto_B__23.1": () => e(SvgZad23_2010LB, null),
   "2010_ljeto_B__23.2": () => e(SvgZad23_2010LB, null),
   "2010_ljeto_B__24.1": () => e(SvgZad24_2010LB, null),
