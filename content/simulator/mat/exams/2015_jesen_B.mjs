@@ -96,32 +96,42 @@ function SvgZad24_2015JB(){
 }
 
 function SvgZad23b_2015JB(){
-  // f(x)=-1/3x+2, prolazi (0,2) i (6,0)
-  const W=320,H=260,cx=90,cy=130,sc=30;
-  const grid=[];
-  for(let i=-2;i<=7;i++) grid.push(e("line",{key:_uid15j(),x1:cx+i*sc,y1:10,x2:cx+i*sc,y2:H-10,stroke:"#2a2d3e",strokeWidth:1}));
-  for(let i=-3;i<=3;i++) grid.push(e("line",{key:_uid15j(),x1:10,y1:cy-i*sc,x2:W-10,y2:cy-i*sc,stroke:"#2a2d3e",strokeWidth:1}));
-  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",background:"var(--s2)",borderRadius:8}},
-    ...grid,
-    e("line",{key:_uid15j(),x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("line",{key:_uid15j(),x1:cx,y1:H-10,x2:cx,y2:10,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("polygon",{key:_uid15j(),points:`${W-10},${cy} ${W-20},${cy-4} ${W-20},${cy+4}`,fill:"var(--muted)"}),
-    e("polygon",{key:_uid15j(),points:`${cx},10 ${cx-4},20 ${cx+4},20`,fill:"var(--muted)"}),
-    e("text",{key:_uid15j(),x:W-8,y:cy+4,fill:"var(--muted)",fontSize:12,fontStyle:"italic"},"x"),
-    e("text",{key:_uid15j(),x:cx+4,y:10,fill:"var(--muted)",fontSize:12,fontStyle:"italic"},"y"),
-    e("text",{key:_uid15j(),x:cx+4,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
-    ...[1,2,3,4,5,6].map(i=>e("text",{key:_uid15j(),x:cx+i*sc-4,y:cy+13,fill:"var(--muted)",fontSize:9},i)),
-    ...[-3,-2,-1,1,2,3].map(i=>e("text",{key:_uid15j(),x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:9},i)),
-    // Pravac: kroz (0,2) i (6,0)
-    e("line",{key:_uid15j(),x1:cx-1*sc,y1:cy-(-1/3*(-1)+2)*sc,x2:cx+7*sc,y2:cy-(-1/3*7+2)*sc,
-      stroke:"var(--blue)",strokeWidth:2.5}),
-    // Ključne točke
-    e("circle",{key:_uid15j(),cx:cx,cy:cy-2*sc,r:5,fill:"#e8c547"}),
-    e("text",{key:_uid15j(),x:cx+5,y:cy-2*sc-5,fill:"#e8c547",fontSize:10},"(0,2)"),
-    e("circle",{key:_uid15j(),cx:cx+6*sc,cy:cy,r:5,fill:"#e8c547"}),
-    e("text",{key:_uid15j(),x:cx+6*sc+5,y:cy-5,fill:"#e8c547",fontSize:10},"(6,0)"),
-    e("text",{key:_uid15j(),x:cx+2*sc,y:cy-1.5*sc,fill:"var(--blue)",fontSize:10,fontStyle:"italic"},"f(x)=−x/3+2")
-  );
+  // PDF: prazan koordinatni sustav (učenik sam crta graf f(x)=-x/3+2)
+  // Mreža -8..8 u oba smjera, iscrtkane linije, oznake samo "0" i "1"
+  const sc=20, N=8, ext=N*sc+18;           // osi/mreža sežu ~0,9 jedinice preko zadnje linije
+  const cx=ext+8, cy=ext+8;
+  const W=cx+ext+26, H=cy+ext+10;
+  const gx=i=>cx+i*sc, gy=i=>cy-i*sc;
+  const kids=[];
+  // iscrtkana mreža
+  for(let i=-N;i<=N;i++){
+    if(i!==0) kids.push(e("line",{key:_uid15j(),x1:gx(i),y1:cy-ext,x2:gx(i),y2:cy+ext,
+      stroke:"var(--muted)",strokeOpacity:0.65,strokeWidth:1,strokeDasharray:"5 5"}));
+    if(i!==0) kids.push(e("line",{key:_uid15j(),x1:cx-ext,y1:gy(i),x2:cx+ext,y2:gy(i),
+      stroke:"var(--muted)",strokeOpacity:0.65,strokeWidth:1,strokeDasharray:"5 5"}));
+  }
+  // osi
+  kids.push(e("line",{key:_uid15j(),x1:cx-ext,y1:cy,x2:cx+ext,y2:cy,stroke:"var(--text)",strokeWidth:1.8}));
+  kids.push(e("line",{key:_uid15j(),x1:cx,y1:cy+ext,x2:cx,y2:cy-ext,stroke:"var(--text)",strokeWidth:1.8}));
+  kids.push(e("polygon",{key:_uid15j(),points:`${cx+ext+9},${cy} ${cx+ext-1},${cy-5} ${cx+ext-1},${cy+5}`,fill:"var(--text)"}));
+  kids.push(e("polygon",{key:_uid15j(),points:`${cx},${cy-ext-9} ${cx-5},${cy-ext+1} ${cx+5},${cy-ext+1}`,fill:"var(--text)"}));
+  // sitne crtice na osima
+  for(let i=-N;i<=N;i++){
+    if(i===0) continue;
+    kids.push(e("line",{key:_uid15j(),x1:gx(i),y1:cy-2.5,x2:gx(i),y2:cy+2.5,stroke:"var(--text)",strokeWidth:1}));
+    kids.push(e("line",{key:_uid15j(),x1:cx-2.5,y1:gy(i),x2:cx+2.5,y2:gy(i),stroke:"var(--text)",strokeWidth:1}));
+  }
+  // jedinične oznake: bijeli kružići u (0,0), (1,0), (0,1)
+  [[0,0],[1,0],[0,1]].forEach(([a,b])=>kids.push(e("circle",{key:_uid15j(),
+    cx:gx(a),cy:gy(b),r:3.4,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.4})));
+  // oznake 0 i 1
+  kids.push(e("text",{key:_uid15j(),x:cx-11,y:cy+16,fill:"var(--text)",fontSize:12,fontWeight:"bold",textAnchor:"middle"},"0"));
+  kids.push(e("text",{key:_uid15j(),x:gx(1),y:cy+16,fill:"var(--text)",fontSize:12,fontWeight:"bold",textAnchor:"middle"},"1"));
+  kids.push(e("text",{key:_uid15j(),x:cx-11,y:gy(1)+4,fill:"var(--text)",fontSize:12,fontWeight:"bold",textAnchor:"middle"},"1"));
+  // nazivi osi
+  kids.push(e("text",{key:_uid15j(),x:cx+ext+13,y:cy+16,fill:"var(--text)",fontSize:13,fontStyle:"italic"},"x"));
+  kids.push(e("text",{key:_uid15j(),x:cx-17,y:cy-ext-2,fill:"var(--text)",fontSize:13,fontStyle:"italic"},"y"));
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",background:"var(--s2)",borderRadius:8}},...kids);
 }
 
 function SvgZad11_2015JB(){
