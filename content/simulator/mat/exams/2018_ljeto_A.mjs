@@ -238,7 +238,7 @@ function Svg22_2018Alj(){
   const ox=toX(0),oy=toY(0);
   const k=-1/4, b=3;
   const linPts=[];
-  for(let x=xMin;x<=14;x+=0,5){
+  for(let x=xMin;x<=14;x+=0.5){
     const y=k*x+b;
     if(y<yMin||y>yMax) continue;
     linPts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);

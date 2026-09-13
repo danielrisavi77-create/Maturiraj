@@ -214,7 +214,7 @@ function SvgZad26_2015JA(){
   const grid=[];
   // vertical grid lines
   const xmarks=[[0,"0"],[Math.PI/6,"π/6"],[Math.PI/2,"π/2"],[2*Math.PI/3,"2π/3"],[Math.PI,"π"],[4*Math.PI/3,"4π/3"]];
-  for(let xi=-0.2;xi<=4.5;xi+=0,5) grid.push(e("line",{key:u(),x1:cx+xi*sc,y1:10,x2:cx+xi*sc,y2:H-10,stroke:"rgba(130,120,200,0.12)",strokeWidth:1}));
+  for(let xi=-0.2;xi<=4.5;xi+=0.5) grid.push(e("line",{key:u(),x1:cx+xi*sc,y1:10,x2:cx+xi*sc,y2:H-10,stroke:"rgba(130,120,200,0.12)",strokeWidth:1}));
   for(let yi=-2;yi<=2;yi++) grid.push(e("line",{key:u(),x1:10,y1:cy-yi*sc/2,x2:W-10,y2:cy-yi*sc/2,stroke:"rgba(130,120,200,0.12)",strokeWidth:1}));
   // sinusni graf f(x)=2sin(2x+π/6)
   let path="",pen=false;
