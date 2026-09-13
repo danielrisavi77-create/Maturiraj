@@ -81,32 +81,29 @@ function SvgZad7_2010JB(){
 function Svg28j(){
   // PDF-vjerno: tablica 2 retka x 5 stupaca (Ocjena / dovoljan(2) / dobar(3) / vrlo dobar(4) / odlican(5))
   const W=560,H=112;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const T="var(--text)";
-  const X=[6,166,264,362,460,554];          // granice stupaca
+  const X=[6,151,277,360,468,554];          // granice stupaca (omjeri kao u originalu)
   const Y=[6,44,106];                       // granice redaka (zaglavlje, podaci)
   const cols=[
-    {head:["dovoljan (2)"],val:"51 \u2013 64",  col:_GOLD},
-    {head:["dobar (3)"],   val:"65 \u2013 79",  col:_BLUE},
-    {head:["vrlo dobar (4)"],val:"80 \u2013 89",col:_GREEN},
-    {head:["odli\u010Dan (5)"],val:"90 \u2013 100",col:_RED}
+    {head:"dovoljan (2)",   val:"51 \u2013 64"},
+    {head:"dobar (3)",      val:"65 \u2013 79"},
+    {head:"vrlo dobar (4)", val:"80 \u2013 89"},
+    {head:"odli\u010Dan (5)",val:"90 \u2013 100"}
   ];
   const kids=[];
-  // tinta po stupcu (radi u obje teme: token + fillOpacity)
-  cols.forEach(function(c,i){
-    kids.push(e("rect",{key:"bg"+i,x:X[i+1],y:Y[0],width:X[i+2]-X[i+1],height:Y[2]-Y[0],fill:c.col,fillOpacity:0.12}));
-  });
-  // tekst zaglavlja + vrijednosti
+  // podloga tablice (u obje teme: --bg, nikad hardkodirano bijelo)
+  kids.push(e("rect",{key:"bgr",x:X[0],y:Y[0],width:X[5]-X[0],height:Y[2]-Y[0],fill:"var(--bg)"}));
+  // tekst zaglavlja + vrijednosti (original: sve crno/--text, bez tinte po stupcu)
   cols.forEach(function(c,i){
     const cx=(X[i+1]+X[i+2])/2;
-    kids.push(e("text",{key:"h"+i,x:cx,y:29,textAnchor:"middle",fontSize:14,fontWeight:700,fill:c.col},c.head[0]));
-    kids.push(e("text",{key:"v"+i,x:cx,y:81,textAnchor:"middle",fontSize:14,fontWeight:700,fill:c.col},c.val));
+    kids.push(e("text",{key:"h"+i,x:cx,y:30,textAnchor:"middle",fontSize:14,fontWeight:700,fill:T},c.head));
+    kids.push(e("text",{key:"v"+i,x:cx,y:81,textAnchor:"middle",fontSize:14,fontWeight:700,fill:T},c.val));
   });
   // lijevi stupac (nazivi redaka)
-  kids.push(e("text",{key:"lh",x:(X[0]+X[1])/2,y:29,textAnchor:"middle",fontSize:14,fontWeight:700,fill:T},"Ocjena"));
+  kids.push(e("text",{key:"lh",x:(X[0]+X[1])/2,y:30,textAnchor:"middle",fontSize:14,fontWeight:700,fill:T},"Ocjena"));
   const lbl=["Ostvareni","postotak (%)","bodova"];
   lbl.forEach(function(t,i){
-    kids.push(e("text",{key:"ll"+i,x:X[0]+10,y:62+i*17,fontSize:13,fontWeight:700,fill:T},t));
+    kids.push(e("text",{key:"ll"+i,x:X[0]+10,y:63+i*17,fontSize:13,fontWeight:700,fill:T},t));
   });
   // mreza
   Y.forEach(function(y,i){ kids.push(e("line",{key:"hl"+i,x1:X[0],y1:y,x2:X[5],y2:y,stroke:T,strokeWidth:1.4})); });
