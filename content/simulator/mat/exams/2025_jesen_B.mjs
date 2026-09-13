@@ -3,141 +3,125 @@ import React from 'react';
 const e = React.createElement;
 
 function Svg35_2025Bjes(){
-  const ax="var(--text)";
-  const data2011 = [
-    {name:"Istarska", pct:33.69, color:"#e8a2d8"},
-    {name:"Primorsko-goranska", pct:19.00, color:"#f0a878"},
-    {name:"Splitsko-dalmatinska", pct:17.21, color:"#f0d840"},
-    {name:"Zadarska", pct:10.24, color:"var(--blue)"},
-    {name:"Dubrovačko-neretvanska", pct:8.15, color:"#7c5cbf"},
-    {name:"Šibensko-kninska", pct:6.35, color:"var(--green)"},
-    {name:"Ostale", pct:5.36, color:"var(--red)"}
+  // Vjerno prema originalu (MAT B D-S069, str. 18): dva kružna dijagrama,
+  // svaki u svom okviru, s naslovom gore desno i vanjskim oznakama
+  // (naziv županije + postotak) povezanima tankim crtama s isječcima.
+  const ax="var(--text)", mut="var(--muted)", bg="var(--bg)";
+  const C_IST="#d9a2d2", C_PRI="#f0a878", C_SPL="#f2d024", C_ZAD="var(--blue)",
+        C_DUB="#b8439f", C_SIB="var(--green)", C_OST="var(--red)";
+  // redoslijed isječaka u originalu: od 12 sati u smjeru kazaljke
+  const mk=(p2011,p2021)=>[
+    {name:"Istarska županija",            pct:[p2011[0],p2021[0]], color:C_IST, ly:[95,95]},
+    {name:"Primorsko-goranska županija",  pct:[p2011[1],p2021[1]], color:C_PRI, ly:[268,268]},
+    {name:"Splitsko-dalmatinska županija",pct:[p2011[2],p2021[2]], color:C_SPL, ly:[272,272]},
+    {name:"Zadarska županija",            pct:[p2011[3],p2021[3]], color:C_ZAD, ly:[196,196]},
+    {name:"Dubrovačko-neretvanska županija",pct:[p2011[4],p2021[4]], color:C_DUB, ly:[118,118]},
+    {name:"Šibensko-kninska županija",    pct:[p2011[5],p2021[5]], color:C_SIB, ly:[78,78]},
+    {name:"Ostale županije",              pct:[p2011[6],p2021[6]], color:C_OST, ly:[42,42]}
   ];
-  const data2021 = [
-    {name:"Istarska", pct:32.94, color:"#e8a2d8"},
-    {name:"Primorsko-goranska", pct:17.58, color:"#f0a878"},
-    {name:"Splitsko-dalmatinska", pct:19.52, color:"#f0d840"},
-    {name:"Zadarska", pct:11.18, color:"var(--blue)"},
-    {name:"Dubrovačko-neretvanska", pct:6.74, color:"#7c5cbf"},
-    {name:"Šibensko-kninska", pct:5.92, color:"var(--green)"},
-    {name:"Ostale", pct:6.12, color:"var(--red)"}
-  ];
-  
-  function pie(data, cx, cy, r, title) {
-    let html = `<text x="${cx}" y="${cy-r-20}" fill="${ax}" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">${title}</text>`;
-    let start = -Math.PI/2;
-    data.forEach(d => {
-      const angle = (d.pct/100) * 2*Math.PI;
-      const end = start + angle;
-      const large = angle > Math.PI ? 1 : 0;
-      const x1 = cx + r*Math.cos(start), y1 = cy + r*Math.sin(start);
-      const x2 = cx + r*Math.cos(end), y2 = cy + r*Math.sin(end);
-      html += `<path d="M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z" fill="${d.color}" stroke="${ax}" stroke-width="0.8"/>`;
-      
-      // Postotak u sredini isječka (samo ako je isječak dovoljno velik)
-      if(d.pct > 4) {
-        const mid = start + angle/2;
-        const lx = cx + (r*0.65) * Math.cos(mid);
-        const ly = cy + (r*0.65) * Math.sin(mid);
-        html += `<text x="${lx}" y="${ly+3}" fill="#1a1a1a" font-size="9" font-weight="bold" font-family="sans-serif" text-anchor="middle">${d.pct}%</text>`;
-      }
-      start = end;
+  const SER=mk([33.69,19.00,17.21,10.24,8.15,6.35,5.36],
+               [32.94,17.58,19.52,11.18,6.74,5.92,6.12]);
+
+  const BW=620, BH=330, GAP=18, W=BW, H=BH*2+GAP;
+  const cx=332, r=116;
+  const XL=206, XR=458;          // sidrišta lijevih / desnih oznaka
+  const fmt=(v)=>v.toFixed(2)+" %";
+
+  function chart(k, oy, title){
+    const cy=oy+168;
+    let s=`<rect x="1" y="${oy+1}" width="${BW-2}" height="${BH-2}" fill="none" stroke="${mut}" stroke-width="1"/>`;
+    s+=`<text x="${cx+96}" y="${oy+34}" fill="${ax}" font-size="13" font-weight="bold" font-family="Georgia,serif" text-anchor="middle">${title}</text>`;
+    let start=-Math.PI/2;
+    const leaders=[], texts=[];
+    SER.forEach((d)=>{
+      const pct=d.pct[k];
+      const ang=(pct/100)*2*Math.PI, end=start+ang, mid=start+ang/2;
+      const large=ang>Math.PI?1:0;
+      const x1=cx+r*Math.cos(start), y1=cy+r*Math.sin(start);
+      const x2=cx+r*Math.cos(end),   y2=cy+r*Math.sin(end);
+      s+=`<path d="M ${cx.toFixed(1)} ${cy.toFixed(1)} L ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 ${large} 1 ${x2.toFixed(1)} ${y2.toFixed(1)} Z" fill="${d.color}" stroke="${bg}" stroke-width="1.2"/>`;
+      // vanjska oznaka + crta vodilja
+      const right=Math.cos(mid)>0;
+      const px=cx+(r-8)*Math.cos(mid), py=cy+(r-8)*Math.sin(mid);
+      const tx=right?XR:XL, ty=oy+d.ly[k];
+      const bx=right?tx-8:tx+8;
+      leaders.push(`<path d="M ${px.toFixed(1)} ${py.toFixed(1)} L ${bx} ${ty-4}" stroke="${mut}" stroke-width="0.8" fill="none"/>`);
+      texts.push(`<text x="${tx}" y="${ty-4}" fill="${ax}" font-size="11" font-family="Helvetica,Arial,sans-serif" text-anchor="${right?'start':'end'}">${d.name}</text>`+
+                 `<text x="${tx}" y="${ty+10}" fill="${ax}" font-size="11" font-family="'Times New Roman',Times,serif" text-anchor="${right?'start':'end'}">${fmt(pct)}</text>`);
+      start=end;
     });
-    return html;
+    return s+leaders.join("")+texts.join("");
   }
-  
-  const W=440, H=580;
-  const cxL=110, cyL=110, rL=90;
-  const cxR=110, cyR=340, rR=90;
-  
-  // Legenda desno od svakog dijagrama
-  function legend(data, x, y) {
-    let html = "";
-    data.forEach((d,i) => {
-      const ly = y + i*18;
-      html += `<rect x="${x}" y="${ly}" width="12" height="12" fill="${d.color}" stroke="${ax}" stroke-width="0.5"/>`;
-      html += `<text x="${x+18}" y="${ly+10}" fill="${ax}" font-size="10" font-family="sans-serif">${d.name} (${d.pct}%)</text>`;
-    });
-    return html;
-  }
-  
-  return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{display:'block',margin:'8px auto',maxWidth:420}},
-    React.createElement('g',{dangerouslySetInnerHTML:{__html:
-      pie(data2011, cxL, cyL, rL, "2011. godina") +
-      legend(data2011, 220, 50) +
-      pie(data2021, cxR, cyR, rR, "2021. godina") +
-      legend(data2021, 220, 280)
-    }})
-  );
+
+  return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:"100%",
+    style:{display:'block',margin:'10px auto',maxWidth:560},
+    dangerouslySetInnerHTML:{__html: chart(0,0,"2011. godina") + chart(1,BH+GAP,"2021. godina")}
+  });
 }
 
 function Svg32_2025Bjes(){
-  const W=340,H=420,ax="var(--text)",blue="var(--blue)",red="var(--red)",gold="var(--gold)";
-  // Postavke:
-  // A u donjem lijevom, B u donjem desnom, C sjecište u gornjoj trećini
-  const A=[70, 370], B=[310, 370], C=[170, 180];
-  // Gornji trokut CDE — mali, iznad C, s kutom 60° kod D
-  // E lijevo-gore, D desno-gore
-  const E=[135, 85], D=[220, 85];
-  
-  const pt = (p) => `<circle cx="${p[0]}" cy="${p[1]}" r="2.5" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.5"/>`;
-  
-  return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:{display:'block',margin:'8px auto'}},
-    React.createElement('g',{dangerouslySetInnerHTML:{__html:
-      // Trokut ABC (veliki donji): A-B-C
-      `<line x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}" stroke="${blue}" stroke-width="2"/>`+
-      // Dužine AD i BE (produžene preko C)
-      `<line x1="${A[0]}" y1="${A[1]}" x2="${D[0]}" y2="${D[1]}" stroke="${blue}" stroke-width="2"/>`+
-      `<line x1="${B[0]}" y1="${B[1]}" x2="${E[0]}" y2="${E[1]}" stroke="${blue}" stroke-width="2"/>`+
-      // Gornji trokut CDE: E-D (horizontalni gornji brid)
-      `<line x1="${E[0]}" y1="${E[1]}" x2="${D[0]}" y2="${D[1]}" stroke="${blue}" stroke-width="2"/>`+
-      // Točke
-      pt(A)+pt(B)+pt(C)+pt(D)+pt(E)+
-      // Oznake kutova — 60° kod A (donji lijevi)
-      `<path d="M ${A[0]+26} ${A[1]} A 26 26 0 0 0 ${A[0]+26*Math.cos(Math.PI/3)} ${A[1]-26*Math.sin(Math.PI/3)}" stroke="${gold}" stroke-width="1.5" fill="none"/>`+
-      `<text x="${A[0]+16}" y="${A[1]-6}" fill="${ax}" font-size="12" font-family="serif">60°</text>`+
-      // 60° kod D (gornji desni)
-      `<path d="M ${D[0]-22} ${D[1]} A 22 22 0 0 0 ${D[0]-22*Math.cos(Math.PI/3)} ${D[1]+22*Math.sin(Math.PI/3)}" stroke="${gold}" stroke-width="1.5" fill="none"/>`+
-      `<text x="${D[0]-32}" y="${D[1]+20}" fill="${ax}" font-size="12" font-family="serif">60°</text>`+
-      // Labels
-      `<text x="${A[0]-16}" y="${A[1]+6}" fill="${ax}" font-size="14" font-style="italic" font-family="serif">A</text>`+
-      `<text x="${B[0]+6}" y="${B[1]+6}" fill="${ax}" font-size="14" font-style="italic" font-family="serif">B</text>`+
-      `<text x="${C[0]-16}" y="${C[1]+4}" fill="${ax}" font-size="14" font-style="italic" font-family="serif">C</text>`+
-      `<text x="${D[0]+6}" y="${D[1]-6}" fill="${ax}" font-size="14" font-style="italic" font-family="serif">D</text>`+
-      `<text x="${E[0]-18}" y="${E[1]-6}" fill="${ax}" font-size="14" font-style="italic" font-family="serif">E</text>`
-    }})
-  );
+  // Vjerno prema originalu (MAT B D-S069, str. 16): trokut ABC (veliki, dolje)
+  // i trokut CDE (mali, gore); C je sjecište dužina AD i BE.
+  // Koordinate su preslikane iz PDF-a (x-70, y-150).
+  const W=290,H=340,ax="var(--text)",gold="var(--gold)";
+  const A=[18.9,299.8], B=[258.0,314.2], C=[123.4,86.1], D=[149.6,32.4], E=[89.6,28.8];
+  const ang=(p,q)=>Math.atan2(q[1]-p[1],q[0]-p[0]);
+  const seg=(p,q)=>`<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${ax}" stroke-width="1.5" stroke-linecap="round"/>`;
+  // kutni luk od zrake p->q1 do zrake p->q2 (u smjeru pada kuta, sweep=0)
+  function arc(p,q1,q2,r,lab){
+    const a1=ang(p,q1);
+    let dlt=ang(p,q2)-a1;
+    while(dlt<=-Math.PI) dlt+=2*Math.PI;
+    while(dlt>Math.PI) dlt-=2*Math.PI;
+    const a2=a1+dlt, sw=dlt>0?1:0;
+    const x1=p[0]+r*Math.cos(a1), y1=p[1]+r*Math.sin(a1);
+    const x2=p[0]+r*Math.cos(a2), y2=p[1]+r*Math.sin(a2);
+    const am=(a1+a2)/2;
+    const lx=p[0]+r*0.66*Math.cos(am), ly=p[1]+r*0.66*Math.sin(am);
+    return `<path d="M ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 0 ${sw} ${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="${gold}" stroke-width="1.4" fill="none"/>`+
+           `<text x="${lx.toFixed(1)}" y="${(ly+4).toFixed(1)}" fill="${ax}" font-size="12" font-family="'Times New Roman',Times,serif" text-anchor="middle">${lab}</text>`;
+  }
+  const labels=[["A",A,-7,6,"end"],["B",B,7,16,"start"],["C",C,-8,3,"end"],
+                ["D",D,8,-4,"start"],["E",E,-8,-4,"end"]];
+  return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:"100%",
+    style:{display:'block',margin:'10px auto',maxWidth:300},
+    dangerouslySetInnerHTML:{__html:
+      seg(A,B)+seg(A,D)+seg(B,E)+seg(E,D)+
+      arc(A,B,D,38,"60°")+
+      arc(D,E,A,30,"60°")+
+      labels.map(([n,p,dx,dy,an])=>`<text x="${p[0]+dx}" y="${p[1]+dy}" text-anchor="${an}" fill="${ax}" font-size="15" font-style="italic" font-family="Georgia,serif">${n}</text>`).join("")
+    }
+  });
 }
 
 function Svg25_2025Bjes(){
-  const W=380,H=320,ox=150,oy=180,sc=28;
-  const st="var(--muted)",ax="var(--text)",bg="var(--bg,#060910)";
-  const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
+  // Vjerno prema originalu (MAT B D-S069, str. 13): prazna kvadratna mreža
+  // 15 x 13 jediničnih polja s koordinatnim osima i jediničnim oznakama.
+  const ax="var(--text)", st="var(--muted)", bg="var(--bg)";
+  const sc=24, ox=200, oy=180, W=400, H=360;
+  const tx=(x)=>+(ox+x*sc).toFixed(1), ty=(y)=>+(oy-y*sc).toFixed(1);
   let grid="";
-  for(let i=-4;i<=8;i++){
-    grid+=`<line x1="${tx(i)}" y1="${ty(-3)}" x2="${tx(i)}" y2="${ty(5)}" stroke="${st}" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.18"/>`;
-  }
-  for(let j=-3;j<=5;j++){
-    grid+=`<line x1="${tx(-4)}" y1="${ty(j)}" x2="${tx(8)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.18"/>`;
-  }
+  for(let j=-6;j<=6;j++)
+    grid+=`<line x1="${tx(-7.94)}" y1="${ty(j)}" x2="${tx(7.92)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.7" opacity="0.45"/>`;
+  for(let i=-7;i<=7;i++)
+    grid+=`<line x1="${tx(i)}" y1="${ty(-6.90)}" x2="${tx(i)}" y2="${ty(6.94)}" stroke="${st}" stroke-width="0.7" opacity="0.45"/>`;
+  const axes=
+    `<line x1="${tx(-7.94)}" y1="${ty(0)}" x2="${tx(7.75)}" y2="${ty(0)}" stroke="${ax}" stroke-width="1.2"/>`+
+    `<line x1="${tx(0)}" y1="${ty(-6.90)}" x2="${tx(0)}" y2="${ty(6.78)}" stroke="${ax}" stroke-width="1.2"/>`+
+    `<polygon points="${tx(7.87)},${ty(0)} ${tx(7.87)-7},${ty(0)-3.6} ${tx(7.87)-7},${ty(0)+3.6}" fill="${ax}"/>`+
+    `<polygon points="${tx(0)},${ty(6.89)} ${tx(0)-3.6},${ty(6.89)+7} ${tx(0)+3.6},${ty(6.89)+7}" fill="${ax}"/>`;
   const tk=
-    `<circle cx="${tx(1)}" cy="${ty(0)}" r="3" fill="${bg}" stroke="${ax}" stroke-width="1.2"/>`+
-    `<circle cx="${tx(0)}" cy="${ty(1)}" r="3" fill="${bg}" stroke="${ax}" stroke-width="1.2"/>`+
-    `<text x="${tx(1)-2}" y="${ty(0)+16}" fill="${ax}" font-size="12" font-family="serif">1</text>`+
-    `<text x="${tx(0)-14}" y="${ty(1)+4}" fill="${ax}" font-size="12" font-family="serif">1</text>`+
-    `<text x="${tx(0)-14}" y="${ty(0)+16}" fill="${ax}" font-size="12" font-family="serif">0</text>`+
-    `<text x="${tx(7.5)}" y="${ty(0)+14}" fill="${ax}" font-size="13" font-style="italic" font-family="serif">x</text>`+
-    `<text x="${tx(0)+6}" y="${ty(4.8)}" fill="${ax}" font-size="13" font-style="italic" font-family="serif">y</text>`;
-  const arrows=
-    `<polygon points="${tx(8)},${ty(0)} ${tx(8)-7},${ty(0)-4} ${tx(8)-7},${ty(0)+4}" fill="${ax}"/>`+
-    `<polygon points="${tx(0)},${ty(5)} ${tx(0)-4},${ty(5)+7} ${tx(0)+4},${ty(5)+7}" fill="${ax}"/>`;
-  return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{display:'block',margin:'8px auto',maxWidth:380},
-    dangerouslySetInnerHTML:{__html:
-      grid+
-      `<line x1="${tx(-4)}" y1="${ty(0)}" x2="${tx(8)}" y2="${ty(0)}" stroke="${ax}" stroke-width="1.2"/>`+
-      `<line x1="${tx(0)}" y1="${ty(-3)}" x2="${tx(0)}" y2="${ty(5)}" stroke="${ax}" stroke-width="1.2"/>`+
-      arrows+tk
-    }
+    `<circle cx="${tx(0)}" cy="${ty(0)}" r="2.3" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
+    `<circle cx="${tx(0)}" cy="${ty(1)}" r="2.3" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
+    `<circle cx="${tx(1)}" cy="${ty(0)}" r="2.3" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
+    `<text x="${tx(0)-7}" y="${ty(0)+15}" text-anchor="end" fill="${ax}" font-size="13" font-family="'Times New Roman',Times,serif">0</text>`+
+    `<text x="${tx(1)-6}" y="${ty(0)+15}" text-anchor="start" fill="${ax}" font-size="13" font-family="'Times New Roman',Times,serif">1</text>`+
+    `<text x="${tx(0)-8}" y="${ty(1)+5}" text-anchor="end" fill="${ax}" font-size="13" font-family="'Times New Roman',Times,serif">1</text>`+
+    `<text x="${tx(7.4)}" y="${ty(0)+14}" text-anchor="middle" fill="${ax}" font-size="14" font-style="italic" font-family="Georgia,serif">x</text>`+
+    `<text x="${tx(-0.55)}" y="${ty(6.35)}" text-anchor="end" fill="${ax}" font-size="14" font-style="italic" font-family="Georgia,serif">y</text>`;
+  return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:"100%",
+    style:{display:'block',margin:'10px auto',maxWidth:400},
+    dangerouslySetInnerHTML:{__html: grid+axes+tk}
   });
 }
 
@@ -189,78 +173,74 @@ function Svg19_2025Bjes(){
 }
 
 function Svg18_2025Bjes(){
-  const W=420,H=400,ox=200,oy=290,sc=28;
-  const st="var(--muted)",ax="var(--text)",bg="var(--bg,#060910)";
-  const blue="var(--blue)", red="var(--red)", gold="var(--gold)", green="var(--green)";
-  const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
+  // Vjerno prema originalu (MAT B D-S069, str. 10): četiri vektora u mreži.
+  // m: (-4,7) -> (-2,0); n: (-1,1) -> (-3,8); p: (1,1) -> (3,8); r: (4,7) -> (2,0)
+  const ax="var(--text)", st="var(--muted)", bg="var(--bg)";
+  const sc=26, ox=155, oy=245, W=312, H=300;
+  const tx=(x)=>+(ox+x*sc).toFixed(1), ty=(y)=>+(oy-y*sc).toFixed(1);
   let grid="";
-  for(let i=-5;i<=5;i++){
-    grid+=`<line x1="${tx(i)}" y1="${ty(-1)}" x2="${tx(i)}" y2="${ty(9)}" stroke="${st}" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.18"/>`;
-  }
-  for(let j=-1;j<=9;j++){
-    grid+=`<line x1="${tx(-5)}" y1="${ty(j)}" x2="${tx(5)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.18"/>`;
-  }
-  
-  const vectors = [
-    {name:"m", color: blue,  rep:[-3, 4],   vrh:[-1.5, -0.5], labelPos:[-3.5, 2.5]},
-    {name:"n", color: green, rep:[-1.5, -0.5], vrh:[-3, 7],    labelPos:[-2.5, 4]},
-    {name:"p", color: gold,  rep:[1, -0.5], vrh:[2.5, 7],     labelPos:[1.3, 4]},
-    {name:"r", color: red,   rep:[3, 4],    vrh:[1.5, -0.5],  labelPos:[3.2, 2.5]}
+  for(let j=-1;j<=8;j++)
+    grid+=`<line x1="${tx(-5.76)}" y1="${ty(j)}" x2="${tx(5.72)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.7" opacity="0.45"/>`;
+  for(let i=-5;i<=5;i++)
+    grid+=`<line x1="${tx(i)}" y1="${ty(-1.63)}" x2="${tx(i)}" y2="${ty(8.99)}" stroke="${st}" stroke-width="0.7" opacity="0.45"/>`;
+  const defs=`<defs><marker id="arr25bj18" markerWidth="9" markerHeight="9" refX="7.4" refY="3" orient="auto"><path d="M0,0 L7.6,3 L0,6 z" fill="${ax}"/></marker></defs>`;
+  const axes=
+    `<line x1="${tx(-5.76)}" y1="${ty(0)}" x2="${tx(5.52)}" y2="${ty(0)}" stroke="${ax}" stroke-width="1.2"/>`+
+    `<line x1="${tx(0)}" y1="${ty(-1.63)}" x2="${tx(0)}" y2="${ty(8.78)}" stroke="${ax}" stroke-width="1.2"/>`+
+    `<polygon points="${tx(5.66)},${ty(0)} ${tx(5.66)-7},${ty(0)-3.6} ${tx(5.66)-7},${ty(0)+3.6}" fill="${ax}"/>`+
+    `<polygon points="${tx(0)},${ty(8.93)} ${tx(0)-3.6},${ty(8.93)+7} ${tx(0)+3.6},${ty(8.93)+7}" fill="${ax}"/>`;
+  const vectors=[
+    {name:"m", from:[-4,7],    to:[-2,0], lab:[-3.70,3.38]},
+    {name:"n", from:[-1,1],    to:[-3,8], lab:[-1.58,4.70]},
+    {name:"p", from:[1,1],     to:[3,8],  lab:[1.43,4.70]},
+    {name:"r", from:[4,7],     to:[2,0],  lab:[3.48,3.38]}
   ];
-  
-  let defs = `<defs>`;
-  vectors.forEach(v => {
-    defs += `<marker id="arrbj_${v.name}" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="${v.color}"/></marker>`;
+  let vecs="";
+  vectors.forEach(v=>{
+    vecs+=`<line x1="${tx(v.from[0])}" y1="${ty(v.from[1])}" x2="${tx(v.to[0])}" y2="${ty(v.to[1])}" stroke="${ax}" stroke-width="1.9" marker-end="url(#arr25bj18)"/>`;
+    const lx=tx(v.lab[0]), ly=ty(v.lab[1]);
+    vecs+=`<text x="${lx}" y="${ly}" fill="${ax}" font-size="14" font-style="italic" font-family="Georgia,serif" text-anchor="middle">${v.name}</text>`;
+    // strelica iznad slova (oznaka vektora)
+    vecs+=`<line x1="${lx-6}" y1="${ly-13}" x2="${lx+5}" y2="${ly-13}" stroke="${ax}" stroke-width="0.9"/>`+
+          `<polygon points="${lx+7},${ly-13} ${lx+3.6},${ly-15.2} ${lx+3.6},${ly-10.8}" fill="${ax}"/>`;
   });
-  defs += `</defs>`;
-  
-  let vecs = "";
-  vectors.forEach(v => {
-    vecs += `<line x1="${tx(v.rep[0])}" y1="${ty(v.rep[1])}" x2="${tx(v.vrh[0])}" y2="${ty(v.vrh[1])}" stroke="${v.color}" stroke-width="2.4" marker-end="url(#arrbj_${v.name})"/>`;
-    vecs += `<text x="${tx(v.labelPos[0])}" y="${ty(v.labelPos[1])}" fill="${v.color}" font-size="14" font-style="italic" font-family="Georgia,serif" font-weight="bold">${v.name}</text>`;
-  });
-  
-  // Axes
-  const axes = 
-    `<line x1="${tx(-5)-5}" y1="${ty(0)}" x2="${tx(5)+10}" y2="${ty(0)}" stroke="${ax}" stroke-width="1.4"/>`+
-    `<line x1="${tx(0)}" y1="${ty(9)+5}" x2="${tx(0)}" y2="${ty(-1)-5}" stroke="${ax}" stroke-width="1.4"/>`+
-    `<polygon points="${tx(5)+10},${ty(0)} ${tx(5)+4},${ty(0)-4} ${tx(5)+4},${ty(0)+4}" fill="${ax}"/>`+
-    `<polygon points="${tx(0)},${ty(9)+5} ${tx(0)-4},${ty(9)+12} ${tx(0)+4},${ty(9)+12}" fill="${ax}"/>`+
-    `<text x="${tx(5)+15}" y="${ty(0)+5}" fill="${ax}" font-size="14" font-style="italic" font-family="Georgia,serif">x</text>`+
-    `<text x="${tx(0)+8}" y="${ty(9)+5}" fill="${ax}" font-size="14" font-style="italic" font-family="Georgia,serif">y</text>`+
-    `<text x="${tx(0)-12}" y="${ty(0)+16}" fill="${st}" font-size="12" font-family="Georgia,serif">0</text>`+
-    `<text x="${tx(1)-3}" y="${ty(0)+16}" fill="${st}" font-size="11" font-family="Georgia,serif">1</text>`+
-    `<text x="${tx(0)-14}" y="${ty(1)+4}" fill="${st}" font-size="11" font-family="Georgia,serif">1</text>`;
-  
+  const tk=
+    `<circle cx="${tx(0)}" cy="${ty(0)}" r="2.3" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
+    `<circle cx="${tx(0)}" cy="${ty(1)}" r="2.3" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
+    `<circle cx="${tx(1)}" cy="${ty(0)}" r="2.3" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
+    `<text x="${tx(0)-7}" y="${ty(0)+15}" text-anchor="end" fill="${ax}" font-size="13" font-family="'Times New Roman',Times,serif">0</text>`+
+    `<text x="${tx(1)-6}" y="${ty(0)+15}" text-anchor="start" fill="${ax}" font-size="13" font-family="'Times New Roman',Times,serif">1</text>`+
+    `<text x="${tx(0)-8}" y="${ty(1)+5}" text-anchor="end" fill="${ax}" font-size="13" font-family="'Times New Roman',Times,serif">1</text>`+
+    `<text x="${tx(5.4)}" y="${ty(0)+14}" text-anchor="middle" fill="${ax}" font-size="14" font-style="italic" font-family="Georgia,serif">x</text>`+
+    `<text x="${tx(-0.72)}" y="${ty(8.35)}" text-anchor="end" fill="${ax}" font-size="14" font-style="italic" font-family="Georgia,serif">y</text>`;
   return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:"100%",
-    style:{display:'block',margin:'12px auto',maxWidth:420},
-    dangerouslySetInnerHTML:{__html: defs + grid + axes + vecs}
+    style:{display:'block',margin:'10px auto',maxWidth:340},
+    dangerouslySetInnerHTML:{__html: defs+grid+axes+vecs+tk}
   });
 }
 
 function Svg17_2025Bjes(){
-  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
-  const W=380, H=340;
-  const A=[80,280],B=[240,280],C=[320,220],D=[160,220];
-  const vE=[80,120],vF=[240,120],vG=[320,60],vH=[160,60];
-  const visible=[
-   ["AB",A,B],["BC",B,C],["AE",A,vE],["BF",B,vF],["CG",C,vG],
-   ["EF",vE,vF],["FG",vF,vG],["GH",vG,vH],["EH",vE,vH]
-  ];
-  const hidden=[["AD",A,D],["CD",C,D],["DH",D,vH]];
-  const verts=[
-   ["A",A,-14,18],["B",B,8,18],["C",C,8,8],["D",D,-14,8],
-   ["E",vE,-14,-6],["F",vF,8,-6],["G",vG,8,-6],["H",vH,-14,-6]
-  ];
+  // Vjerno prema originalu (MAT B D-S069, str. 9): kocka ABCDEFGH u kosoj
+  // projekciji — prednja stranica ABFE, stražnja DCGH pomaknuta za (+S/2, -S/4).
+  // Skriveni bridovi (AD, DC, DH) crtkani.
+  const ax="var(--text)", hid="var(--muted)";
+  const W=360, H=296, S=170, dx=85, dy=-42.5;
+  const A=[70,255], B=[A[0]+S,A[1]], E=[A[0],A[1]-S], F=[B[0],B[1]-S];
+  const D=[A[0]+dx,A[1]+dy], C=[B[0]+dx,B[1]+dy],
+        Hv=[E[0]+dx,E[1]+dy],  G=[F[0]+dx,F[1]+dy];
+  const visible=[[A,B],[B,C],[A,E],[B,F],[C,G],[E,F],[F,G],[G,Hv],[E,Hv]];
+  const hidden=[[A,D],[D,C],[D,Hv]];
+  const labels=[["A",A,-6,17,"end"],["B",B,7,18,"start"],["C",C,9,13,"start"],
+                ["D",D,-6,-4,"end"],["E",E,-8,-3,"end"],["F",F,-3,-8,"end"],
+                ["G",G,9,-4,"start"],["H",Hv,-1,-8,"end"]];
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
-    style:{maxWidth:"380px",width:"100%",display:"block",margin:"12px auto"}},
-    ...hidden.map(([n,p,q])=>e("line",{key:"h"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
-      stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
-    ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
-      stroke:blue,strokeWidth:2})),
-    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
-    ...verts.map(([n,p,dx,dy])=>e("text",{key:"t"+n,x:p[0]+dx,y:p[1]+dy,
-      fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n))
+    style:{maxWidth:"360px",width:"100%",display:"block",margin:"12px auto"}},
+    ...hidden.map(([p,q],i)=>e("line",{key:"h"+i,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
+      stroke:hid,strokeWidth:1.3,strokeDasharray:"6 4"})),
+    ...visible.map(([p,q],i)=>e("line",{key:"v"+i,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
+      stroke:ax,strokeWidth:1.5,strokeLinecap:"round"})),
+    ...labels.map(([n,p,ddx,ddy,an])=>e("text",{key:"t"+n,x:p[0]+ddx,y:p[1]+ddy,
+      textAnchor:an,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:ax},n))
   );
 }
 
