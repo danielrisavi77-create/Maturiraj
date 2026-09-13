@@ -1,6 +1,5 @@
 // AUTO-GENERATED from mat-simulator monolith (v2: SVG co-located + qImages). Do not edit by hand.
 import React from 'react';
-import { Svg29_2013Aj } from '../mat-shared-svg.mjs';
 const e = React.createElement;
 
 function SvgGridEmpty_2013LjetoA(){
@@ -826,7 +825,7 @@ export const qs = [
   ],
   why:["Tangenta na graf u točki (x₀, f(x₀)): y − f(x₀) = f ′(x₀)(x − x₀).","Koeficijent smjera tangente jednak je derivaciji u toj točki.","Provjera ekstrema: f'(x₀) = 0 i predznak f'' (ili f') oko x₀ daje min/max.","Tipičan propust: pomiješati domenu (ulaz) i sliku (izlaz) funkcije; ili zanemariti restrikcije domene (dijeljenje s 0, korijen iz negativnog).","Veza s gradivom: funkcije su jezik matematike — od osnovnih (linearnih) do složenih (eksponencijalnih, trigonometrijskih).","Provjera tablicom vrijednosti: izračunaj f(x) za nekoliko x i provjeri pripadnost grafu."]
 },
-  {id:29.1,img:true,type:"sa",topic:"al",points:1,
+  {id:29.1,type:"sa",topic:"al",points:1,
   context:"Zadatak 29 (1. dio od 5):",
   q:"Operacija ⊗ s realnim brojevima definirana je pravilom a ⊗ b = a − 2b + 2. Izračunajte koliko je 2 ⊗ 5.",
   sol:{ans:"-6",alt:["-6","2-2·5+2=-6","a⊠b=a-2b+2"]},
@@ -835,7 +834,7 @@ export const qs = [
   ],
   why:["Direktno uvrštavanje u definiciju operacije.","Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost.","Tipičan propust: zanemariti predznake pri premještanju članova kroz jednakost."]
 },
-  {id:29.2,img:true,type:"sa",topic:"al",points:3,
+  {id:29.2,type:"sa",topic:"al",points:3,
   context:"Zadatak 29 (2. dio od 5):",
   q:"U nekome aritmetičkom nizu 200. član je broj 99, a 268. član je broj 167. Odredite 234. član toga niza. Odredite zbroj svih članova od 235. do 312. zadanoga niza, tj. a₂₃₅ + a₂₃₆ + … + a₃₁₂.",
   sol:{ans:"a₂₃₄ = 133; S = 13 455",alt:["a₂₃₄=133, S=13455","133 i 13455"]},
@@ -848,7 +847,7 @@ export const qs = [
   ],
   why:["Aritmetički niz: aₙ = a₁ + (n − 1)d; razlika d je ista između uzastopnih članova.","Zbroj uzastopnih članova od k-tog do l-tog: ((l − k + 1)/2)(aₖ + aₗ).","Provjera supstitucijom: uvrsti x = a₂₃₄ = 133; S = 13 455 u L = D; rezultati se moraju podudarati.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:29.3,img:true,type:"sa",topic:"al",points:2,
+  {id:29.3,type:"sa",topic:"al",points:2,
   context:"Zadatak 29 (3. dio od 5):",
   q:"Izrazite a iz formule p = ab + 2(a + b)v.",
   sol:{ans:"a = [FRAC:p − 2bv|b + 2v]",alt:["(p - 2bv)/(b + 2v)","a = (p-2bv)/(b+2v)"]},
@@ -859,7 +858,7 @@ export const qs = [
   ],
   why:["Izražavanje varijable iz formule: izoliramo traženu varijablu pomoću ekvivalentnih algebarskih transformacija.","Faktorizacija pomaže izvući zajedničku varijablu.","Provjera: ako transformacije čuvaju ekvivalentnost (množenje s ne-nulom, isti broj na obje strane), korijen je valjan.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:29.4,img:true,type:"sa",topic:"al",points:2,
+  {id:29.4,type:"sa",topic:"al",points:2,
   context:"Zadatak 29 (4. dio od 5):",
   q:"Skratite razlomak [FRAC:2a² − ab + 2a − b|4a² − b²].",
   sol:{ans:"[FRAC:a + 1|2a + b]",alt:["(a+1)/(2a+b)","[FRAC:a+1|2a+b]"]},
@@ -871,7 +870,7 @@ export const qs = [
   ],
   why:["Razlika kvadrata: x² − y² = (x − y)(x + y).","Grupiranje: traži zajednički faktor u parovima članova.","Provjera: uvrsti dobiveno rješenje u izvornu jednadžbu — obje strane moraju biti jednake.","Tipičan propust: zamijeniti predznak pri premještanju člana kroz jednakost; ili podijeliti s izrazom koji može biti 0 (gubi se rješenje).","Veza s gradivom: algebarski izrazi su osnova za sve više teme — kvadratne, eksponencijalne, derivacije.","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
 },
-  {id:29.5,img:true,type:"sa",topic:"al",points:2,
+  {id:29.5,type:"sa",topic:"al",points:2,
   context:"Zadatak 29 (5. dio od 5):",
   q:"Za koje vrijednosti realnoga parametra a je rješenje x jednadžbe 2x(a + 3) + a(x − 5) = 3ax − 6 veće od 2?",
   sol:{ans:"a > [FRAC:18|5]",alt:["a > 18/5","a > 3,6","a>18/5"]},
@@ -911,9 +910,4 @@ export const qImages = {
   "2013_ljeto_A__23.1": () => e(SvgCircleEmpty_2013LjetoA, null),
   "2013_ljeto_A__28.1": () => e(SvgGridEmpty_2013LjetoA, null),
   "2013_ljeto_A__28.2": () => e(SvgGridEmpty_2013LjetoA, null),
-  "2013_ljeto_A__29.1": () => e(Svg29_2013Aj, null),
-  "2013_ljeto_A__29.2": () => e(Svg29_2013Aj, null),
-  "2013_ljeto_A__29.3": () => e(Svg29_2013Aj, null),
-  "2013_ljeto_A__29.4": () => e(Svg29_2013Aj, null),
-  "2013_ljeto_A__29.5": () => e(Svg29_2013Aj, null),
 };
