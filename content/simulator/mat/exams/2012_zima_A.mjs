@@ -75,14 +75,14 @@ function SvgGraf29a_2012Az(){
   // Prazan koordinatni sustav (kao u originalu) - ucenik sam ucrtava skup tocaka.
   const W=280,H=240;
   const cx=132,cy=124,sc=26;
-  const cols=[-4,-3,-2,-1,1,2,3,4,5];
+  const cols=[-5,-4,-3,-2,-1,1,2,3,4,5];
   const rows=[-4,-3,-2,-1,1,2,3,4];
   const gx0=cx+(-5)*sc, gx1=cx+5*sc;
   const gy0=cy-4*sc,  gy1=cy+4*sc;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
       e("marker",{id:"arx29z",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ary29z",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"ary29z",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"}))
     ),
     // Iscrtkana mreza
     ...cols.map(i=>e("line",{key:"gx"+i,
@@ -92,7 +92,7 @@ function SvgGraf29a_2012Az(){
       x1:gx0,y1:cy-i*sc,x2:gx1,y2:cy-i*sc,
       stroke:"var(--muted)",strokeWidth:0.7,strokeDasharray:"3,3"})),
     // Osi
-    e("line",{x1:gx0-6,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#arx29z)"}),
+    e("line",{x1:gx0,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#arx29z)"}),
     e("line",{x1:cx,y1:gy1+8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#ary29z)"}),
     // Oznake osi
     e("text",{x:W-14,y:cy+16,fontSize:12,fontStyle:"italic",fill:"var(--text)"},"x"),
