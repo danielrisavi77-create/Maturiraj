@@ -67,48 +67,6 @@ function Svg29a_2024Blj(){
   );
 }
 
-function Svg28_2024Blj(){
-  const st="var(--text)";
-  const blue="var(--blue,#4a90d9)";
-  const muted="var(--muted,#94a3b8)";
-  const W=400, H=360;
-  const A=[110, 270];
-  const B=[A[0]+150, A[1]];
-  const C=[A[0]+70, A[1]-80];
-  const cx=(A[0]+B[0]+C[0])/3;
-  const cy=(A[1]+B[1]+C[1])/3;
-  const V=[cx, cy-180];
-  return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
-    style:{maxWidth:"400px",width:"100%",display:"block",margin:"16px auto"}},
-    // Base triangle (with subtle fill)
-    e("polygon",{key:"base", points:`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]}`,
-      fill:blue, fillOpacity:0.06, stroke:"none"}),
-    // Visible base edges
-    e("line",{key:"AB", x1:A[0], y1:A[1], x2:B[0], y2:B[1], stroke:st, strokeWidth:1.8}),
-    e("line",{key:"BC", x1:B[0], y1:B[1], x2:C[0], y2:C[1], stroke:st, strokeWidth:1.8}),
-    e("line",{key:"AC", x1:A[0], y1:A[1], x2:C[0], y2:C[1], stroke:st, strokeWidth:1.4, strokeDasharray:"6 4"}),
-    // Lateral edges
-    e("line",{key:"AV", x1:A[0], y1:A[1], x2:V[0], y2:V[1], stroke:st, strokeWidth:1.8}),
-    e("line",{key:"BV", x1:B[0], y1:B[1], x2:V[0], y2:V[1], stroke:st, strokeWidth:1.8}),
-    e("line",{key:"CV", x1:C[0], y1:C[1], x2:V[0], y2:V[1], stroke:st, strokeWidth:1.8, strokeDasharray:"6 4"}),
-    // Right angle indicator at A
-    e("polyline",{key:"rt", points:`${A[0]+16},${A[1]} ${A[0]+16},${A[1]-12} ${A[0]+4},${A[1]-12}`,
-      fill:"none", stroke:muted, strokeWidth:1.3}),
-    // Height line V to centroid
-    e("line",{key:"h", x1:V[0], y1:V[1], x2:cx, y2:cy, stroke:blue, strokeWidth:1.4, strokeDasharray:"4 3", strokeOpacity:0.9}),
-    e("circle",{key:"hbase", cx:cx, cy:cy, r:2.5, fill:blue}),
-    // Vertex labels
-    e("text",{key:"lA", x:A[0]-16, y:A[1]+22, fontSize:18, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st, fontWeight:500}, "A"),
-    e("text",{key:"lB", x:B[0]+10, y:B[1]+22, fontSize:18, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st, fontWeight:500}, "B"),
-    e("text",{key:"lC", x:C[0]-12, y:C[1]-8, textAnchor:"end", fontSize:18, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st, fontWeight:500}, "C"),
-    e("text",{key:"lV", x:V[0], y:V[1]-12, textAnchor:"middle", fontSize:18, fontStyle:"italic", fontFamily:"Georgia,serif", fill:st, fontWeight:500}, "V"),
-    // Edge length labels — positioned clearly outside
-    e("text",{key:"l10", x:(A[0]+B[0])/2, y:A[1]+26, textAnchor:"middle", fontSize:13, fontFamily:"sans-serif", fill:muted, fontWeight:500}, "10 cm"),
-    e("text",{key:"l24", x:A[0]-20, y:A[1]-30, fontSize:13, fontFamily:"sans-serif", fill:muted, fontWeight:500}, "24 cm"),
-    e("text",{key:"lh", x:V[0]+12, y:(V[1]+cy)/2+5, fontSize:13, fontFamily:"sans-serif", fill:blue, fontWeight:600}, "h = 11 cm")
-  );
-}
-
 function Svg27_2024Blj(){
   const st="var(--text)";
   const blue="var(--blue,#4a90d9)";
@@ -607,22 +565,20 @@ export const qs = [
    why:["Pravilo: poučak o sinusu omogućuje izračun nepoznate stranice ako su poznata dva kuta i jedna stranica.","Definicija: u trokutu, stranice su proporcionalne sinusima nasuprotnih kutova.","Intuicija: veći kut → veća nasuprotna stranica; sin(kut) je proporcionalan stranici.","Alt metoda: koristiti omjer s poznatim stranicama i drugim kutovima; isti rezultat preko više putova.","Česta greška: zamijeniti brojnik i nazivnik u poučku o sinusu (stranica/sin = sin/stranica → krivi rezultat).","Tipičan propust: koristiti pogrešan kut (kut DEG vs kut EGD) — pažljivo identificirati nasuprotnu stranicu.","Veza s gradivom: trigonometrija proširenih trokuta — osnova za rješavanje praktičnih problema (geodetija, navigacija).","Provjera: 10,65 cm je smislena vrijednost za stranicu trokuta s tom geometrijom ✓."],
    img:"2024_ljeto_B__27,2"
   },
-  {id:28.1,img:true,type:"sa",topic:"geom",points:1,
+  {id:28.1,type:"sa",topic:"geom",points:1,
    context:"Zadatak 28 (1. dio od 2):",
    q:"Baza uspravne trostrane piramide pravokutan je trokut kojemu su duljine kateta 10 cm i 24 cm. Duljina visine te piramide iznosi 11 cm. Odredite volumen te piramide.",
   steps:[{txt:"Identifikacija piramide: bazu čini pravokutni trokut s katetama 10 cm i 24 cm; visina piramide h = 11 cm."},{txt:"Površina baze: P_baza = ½ · katet1 · katet2 = ½ · 10 · 24 = 120 cm²."},{txt:"Formula za volumen piramide: V = ⅓ · P_baza · h."},{txt:"Supstitucija: V = ⅓ · 120 · 11 = ⅓ · 1320 = 440 cm³."},{txt:"Provjera dimenzija: cm² · cm = cm³ ✓ (volumen).",note:"verifikacija"},{txt:"Geometrijska interpretacija: piramida zauzima 1/3 volumena prizme s istom bazom i visinom.",note:"diagnostika"},{txt:"Odgovor: V = 440 cm³.",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: tri piramide s istom bazom i visinom popunjavaju jednu prizmu; pa svaki piramidalan volumen je 1/3 prizme.",note:"intuicija",final:true},{txt:"Definicija: piramida = mnogokut na bazi + jedan vrh izvan ravnine baze; sve stranice su trokuti.",note:"postupak",final:true}],
    sol:{ans:"440 cm³",alt:["440","440 cm³","440 cm3"]},
    why:["Pravilo: volumen piramide = ⅓ · P_baza · h, gdje je h OKOMITA visina od vrha do baze.","Definicija: piramida = mnogokut na bazi + jedan vrh izvan ravnine baze; sve stranice su trokuti.","Intuicija: tri piramide s istom bazom i visinom popunjavaju jednu prizmu; pa svaki piramidalan volumen je 1/3 prizme.","Alt metoda: koristiti integralni račun (Cavalierijev princip) — slojeviti volumen daje istu formulu.","Česta greška: zaboraviti faktor ⅓ — uzeti P_baza · h kao volumen (to je VOLUMEN PRIZME, ne piramide).","Tipičan propust: koristiti kosu visinu (apotemu) umjesto okomite visine — daje krivi rezultat.","Veza s gradivom: formula vrijedi za svaku piramidu (s bilo kojim mnogokutom u bazi); povezana s formulom za stošac (V = ⅓ · πr² · h).","Provjera: 120 · 11 = 1320; 1320/3 = 440 ✓."],
-   img:"2024_ljeto_B__28,1"
   },
-  {id:28.2,img:true,type:"sa",topic:"geom",points:1,
+  {id:28.2,type:"sa",topic:"geom",points:1,
    context:"Zadatak 28 (2. dio od 2):",
    q:"Koliko iznosi mjera najmanjega kuta trokuta koji je baza te piramide (pravokutan trokut s katetama 10 cm i 24 cm)?",
   intermediates:[576, 676, 26, 100, 24],
   steps:[{txt:"U pravokutnom trokutu (baza piramide), najmanji kut je NASUPROT najkraćoj strani."},{txt:"Identifikacija: katete = 10 i 24, hipotenuza = √(10² + 24²) = √(100 + 576) = √676 = 26 cm."},{txt:"Najkraća stranica = 10 cm (kateta), nasuprot najmanjeg KUTA α."},{txt:"Sinus u pravokutnom trokutu: sin(α) = (nasuprotna kateta)/hipotenuza = 10/26 = 5/13."},{txt:"Izračun α: α = arcsin(5/13) = arcsin(0,3846) ≈ 22,62°."},{txt:"Pretvorba u stupnjeve-minute-sekunde: 22° + 0,62° = 22° + 37′12″ → ≈ 22°37′12″."},{txt:"Provjera s alternativnom metodom: tan(α) = nasuprotno/uz = 10/24 = 5/12; α = arctan(5/12) ≈ 22,62° ✓.",note:"verifikacija"},{txt:"Odgovor: najmanji kut baze ≈ 22°37′12″ (ili sin α = 5/13).",final:true,note:"odgovor",note:"odgovor"},{txt:"Intuicija: najkraća stranica je nasuprot najmanjeg kuta; najduža (hipotenuza) je nasuprot pravom kutu (90°).",note:"intuicija",final:true},{txt:"Definicija: arcsin(x) je inverzna funkcija sinusa; daje kut čiji je sinus jednak x.",note:"postupak",final:true}],
    sol:{ans:"22°37'12''",alt:["22°37'","22°37'12''","22°37'12\"","22,62°","≈22°37'"]},
    why:["Pravilo: u pravokutnom trokutu, sin(α) = nasuprotna/hipotenuza, cos(α) = uz/hipotenuza, tan(α) = nasuprotna/uz.","Definicija: arcsin(x) je inverzna funkcija sinusa; daje kut čiji je sinus jednak x.","Intuicija: najkraća stranica je nasuprot najmanjeg kuta; najduža (hipotenuza) je nasuprot pravom kutu (90°).","Alt metoda: koristiti tan umjesto sin — daje isti rezultat, samo kroz drugačiji omjer kateta.","Česta greška: koristiti najkraću stranicu kao hipotenuzu — pažljivo identificirati elemente trokuta.","Tipičan propust: zaboraviti da je 10² + 24² = 676 = 26² (Pitagorina trojka 5, 12, 13 skalirana s 2).","Veza s gradivom: trigonometrija pravokutnog trokuta = osnova analitičke geometrije i trigonometrije općenito.","Provjera: sin(22°37′12″) ≈ 0,3846 ≈ 5/13 ✓."],
-   img:"2024_ljeto_B__28,2"
   },
   {id:29.1,img:true,type:"sa",topic:"fun",points:1,
    context:"Zadatak 29 (1. dio od 2):",
@@ -664,8 +620,6 @@ export const qImages = {
   "2024_ljeto_B__22.2": () => e(Svg22_2024Blj, null),
   "2024_ljeto_B__27.1": () => e(Svg27_2024Blj, null),
   "2024_ljeto_B__27.2": () => e(Svg27_2024Blj, null),
-  "2024_ljeto_B__28.1": () => e(Svg28_2024Blj, null),
-  "2024_ljeto_B__28.2": () => e(Svg28_2024Blj, null),
   "2024_ljeto_B__29.1": () => e(Svg29a_2024Blj, null),
   "2024_ljeto_B__30.1": () => e(Svg30a_2024Blj, null),
 };
