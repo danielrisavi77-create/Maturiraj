@@ -321,7 +321,13 @@ function Svg14_2023Alj(){
     e("text",{key:"lD",x:D[0]-14,y:D[1]-6,fontSize:15,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"D"),
     e("text",{key:"lC",x:C[0]+6,y:C[1]-6,fontSize:15,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"C"),
     e("text",{key:"lA",x:A[0]-6,y:A[1]+18,fontSize:15,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"A"),
-    e("text",{key:"lB",x:B[0]+2,y:B[1]+18,fontSize:15,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"B")
+    e("text",{key:"lB",x:B[0]+2,y:B[1]+18,fontSize:15,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"B"),
+    // Kruzici (tocke) na sjecistima, kao u originalu
+    e("circle",{key:"pE",cx:E[0],cy:E[1],r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.2}),
+    e("circle",{key:"pD",cx:D[0],cy:D[1],r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.2}),
+    e("circle",{key:"pC",cx:C[0],cy:C[1],r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.2}),
+    e("circle",{key:"pA",cx:A[0],cy:A[1],r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.2}),
+    e("circle",{key:"pB",cx:B[0],cy:B[1],r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.2})
   );
 }
 
@@ -355,8 +361,12 @@ function Svg10_2023Alj(){
       )
     ),
     e("line",{key:"v",x1:px(T[0]),y1:py(T[1]),x2:px(HD[0]),y2:py(HD[1]),stroke:st,strokeWidth:2,markerEnd:"url(#v10arr)"}),
-    // Label a⃗ u praznom prostoru lijevo-gore od tail-a
-    e("text",{key:"la",x:px(-4.2),y:py(3),fontSize:18,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"a⃗")
+    // Label vektora: slovo "a" sa strelicom iznad (crtano, ne combining glyph)
+    e("g",{key:"la"},
+      e("text",{key:"la-a",x:px(-4.2),y:py(3),fontSize:18,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"a"),
+      e("line",{key:"la-sh",x1:px(-4.2)+1,y1:py(3)-15,x2:px(-4.2)+12,y2:py(3)-15,stroke:_GOLD,strokeWidth:1.2}),
+      e("polygon",{key:"la-hd",points:`${px(-4.2)+14},${py(3)-15} ${px(-4.2)+10},${py(3)-17.4} ${px(-4.2)+10},${py(3)-12.6}`,fill:_GOLD})
+    )
   );
 }
 
