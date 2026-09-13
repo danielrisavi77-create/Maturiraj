@@ -3,76 +3,117 @@ import React from 'react';
 import { Svg29_2013Aj } from '../mat-shared-svg.mjs';
 const e = React.createElement;
 
+// Prazna koordinatna mreza za 29.2 — isti prozor (x od -3 do 4, y od -1 do 9) kao
+// rjesenje Svg29_2013Aj, da se ucenikov crtez poklapa s grafom u rjesenju.
 function SvgEmptyGrid29_2013Aj(){
-  const W=280,H=260,cx=100,cy=150,sc=28;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const W=280,H=290,cx=115,cy=245,sc=24;
+  const xMin=-3,xMax=4,yMin=-1,yMax=9;
+  const TEXT="var(--text)",MUTED="var(--muted)";
+  const px=(x)=>cx+x*sc, py=(y)=>cy-y*sc;
+  const grid=[];
+  for(let i=xMin;i<=xMax;i++) grid.push(e("line",{key:"gv"+i,x1:px(i),y1:py(yMax),x2:px(i),y2:py(yMin),
+    stroke:MUTED,strokeWidth:0.7,opacity:0.3}));
+  for(let j=yMin;j<=yMax;j++) grid.push(e("line",{key:"gh"+j,x1:px(xMin),y1:py(j),x2:px(xMax),y2:py(j),
+    stroke:MUTED,strokeWidth:0.7,opacity:0.3}));
+  const ticks=[];
+  for(let i=xMin;i<=xMax;i++){
+    if(i===0) continue;
+    ticks.push(e("line",{key:"tx"+i,x1:px(i),y1:cy-3.5,x2:px(i),y2:cy+3.5,stroke:TEXT,strokeWidth:1.1}));
+    ticks.push(e("text",{key:"lx"+i,x:px(i),y:cy+16,fontSize:9,fill:MUTED,textAnchor:"middle"},String(i)));
+  }
+  for(let j=yMin;j<=yMax;j++){
+    if(j===0) continue;
+    ticks.push(e("line",{key:"ty"+j,x1:cx-3.5,y1:py(j),x2:cx+3.5,y2:py(j),stroke:TEXT,strokeWidth:1.1}));
+    ticks.push(e("text",{key:"ly"+j,x:cx-7,y:py(j)+3.5,fontSize:9,fill:MUTED,textAnchor:"end"},String(j)));
+  }
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("pattern",{id:"ge29aj",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:0.6,strokeDasharray:"3,3"})
-      ),
-      e("marker",{id:"axe29",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"aye29",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"axe29",markerWidth:8,markerHeight:8,refX:7,refY:4,orient:"auto"},
+        e("path",{d:"M0,0 L0,8 L8,4 z",fill:TEXT})),
+      e("marker",{id:"aye29",markerWidth:8,markerHeight:8,refX:7,refY:4,orient:"auto"},
+        e("path",{d:"M0,0 L0,8 L8,4 z",fill:TEXT}))
     ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#ge29aj)"}),
-    e("line",{x1:5,y1:cy,x2:W-5,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#axe29)"}),
-    e("line",{x1:cx,y1:H-5,x2:cx,y2:5,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#aye29)"}),
-    e("text",{x:W-13,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:11,fill:"var(--text)"},"y"),
-    e("circle",{cx,cy,r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.3}),
-    e("circle",{cx:cx+sc,cy,r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.3}),
-    e("circle",{cx,cy:cy-sc,r:3,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.3}),
-    e("text",{x:cx-11,y:cy+13,fontSize:10,fill:"var(--text)"},"0"),
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:10,fill:"var(--text)"},"1"),
-    e("text",{x:cx-13,y:cy-sc+5,fontSize:10,fill:"var(--text)"},"1")
+    e("g",null,grid),
+    e("line",{x1:px(xMin)-12,y1:cy,x2:W-8,y2:cy,stroke:TEXT,strokeWidth:1.6,markerEnd:"url(#axe29)"}),
+    e("line",{x1:cx,y1:py(yMin)-8,x2:cx,y2:10,stroke:TEXT,strokeWidth:1.6,markerEnd:"url(#aye29)"}),
+    e("g",null,ticks),
+    e("text",{x:W-16,y:cy-9,fontSize:12,fontStyle:"italic",fill:TEXT},"x"),
+    e("text",{x:cx+8,y:18,fontSize:12,fontStyle:"italic",fill:TEXT},"y"),
+    e("text",{x:cx-7,y:cy+16,fontSize:9,fill:MUTED,textAnchor:"end"},"0")
   );
 }
 
+// Graf racionalne funkcije f(x) = (x+5)(x-3) / (4(x-4)).
+// Ta formula tocno reproducira sve podatke iz zadatka: nultocke -5 i 3,
+// vertikalna asimptota x=4, lokalni maksimum A(1,1), lokalni minimum B(7,4),
+// slika funkcije <-inf, 1] U [4, +inf>.
 function SvgGraf29_2013Aj(){
-  const W=340,H=260,cx=95,cy=175,sc=27;
-  const blue="var(--blue)", red="var(--red)", gold="var(--gold)", text="var(--text)", muted="var(--muted)";
-  // Asimptota x=4
-  const asymX=cx+4*sc;
-  // Grid
-  const gLines=[];
-  for(let xi=-2;xi<=9;xi++) gLines.push(
-    e("line",{key:"gx"+xi,x1:cx+xi*sc,y1:10,x2:cx+xi*sc,y2:H-20,
-      stroke:"rgba(148,163,184,0.15)",strokeWidth:0.5})
-  );
-  for(let yi=-3;yi<=5;yi++) gLines.push(
-    e("line",{key:"gy"+yi,x1:10,y1:cy-yi*sc,x2:W-10,y2:cy-yi*sc,
-      stroke:"rgba(148,163,184,0.15)",strokeWidth:0.5})
-  );
-  // Lijeva grana: kroz (-5,0), max A(1,1), kroz (3,0), →-∞ pri x→4⁻
-  const leftPath=`M ${cx-5*sc},${cy} C ${cx-4*sc},${cy+sc} ${cx-3*sc},${cy-0.5*sc} ${cx+1*sc},${cy-1*sc} C ${cx+2*sc},${cy-sc*0.5} ${cx+3*sc},${cy} ${cx+3*sc},${cy} C ${cx+3.3*sc},${cy+sc} ${cx+3.7*sc},${cy+3*sc} ${cx+3.95*sc},${cy+4.5*sc}`;
-  // Desna grana: +∞→min B(7,4)→+∞
-  const rightPath=`M ${cx+4.05*sc},${cy-5*sc} C ${cx+4.3*sc},${cy-4.5*sc} ${cx+5*sc},${cy-4.5*sc} ${cx+7*sc},${cy-4*sc} C ${cx+8.5*sc},${cy-3.8*sc} ${cx+9*sc},${cy-4.5*sc} ${cx+9.5*sc},${cy-5*sc}`;
+  const W=360,H=300,cx=150,cy=175,sc=16;
+  const xMin=-8.4,xMax=12.2,yMin=-6.9,yMax=10;
+  const TEXT="var(--text)",MUTED="var(--muted)",BLUE="var(--blue)",RED="var(--red)",GOLD="var(--gold)",BG="var(--bg)";
+  const px=(x)=>cx+x*sc, py=(y)=>cy-y*sc;
+  const f=(x)=>((x+5)*(x-3))/(4*(x-4));
+  const grid=[];
+  for(let i=Math.ceil(xMin);i<=Math.floor(xMax);i++) grid.push(e("line",{key:"gv"+i,
+    x1:px(i),y1:py(yMax),x2:px(i),y2:py(yMin),stroke:MUTED,strokeWidth:0.6,opacity:0.25}));
+  for(let j=Math.ceil(yMin);j<=Math.floor(yMax);j++) grid.push(e("line",{key:"gh"+j,
+    x1:px(xMin),y1:py(j),x2:px(xMax),y2:py(j),stroke:MUTED,strokeWidth:0.6,opacity:0.25}));
+  // uzorkovanje grane, s odrezivanjem izvan vidljivog prozora
+  const seg=(a,b)=>{
+    const p=[];
+    for(let x=a;x<=b+1e-9;x+=0.04){
+      const y=f(x);
+      if(y<yMin+0.4||y>yMax-0.4) continue;
+      p.push(px(x).toFixed(1)+","+py(y).toFixed(1));
+    }
+    return p.join(" ");
+  };
+  const ticks=[];
+  for(let i=Math.ceil(xMin);i<=Math.floor(xMax);i++){
+    if(i===0) continue;
+    ticks.push(e("line",{key:"tx"+i,x1:px(i),y1:cy-3,x2:px(i),y2:cy+3,stroke:TEXT,strokeWidth:1}));
+  }
+  for(let j=Math.ceil(yMin);j<=Math.floor(yMax);j++){
+    if(j===0) continue;
+    ticks.push(e("line",{key:"ty"+j,x1:cx-3,y1:py(j),x2:cx+3,y2:py(j),stroke:TEXT,strokeWidth:1}));
+  }
+  const xLab=[-5,1,3,7,9];
+  const yLab=[-4,1,4,8];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
-    ...gLines,
+    e("defs",null,
+      e("marker",{id:"axg29",markerWidth:8,markerHeight:8,refX:7,refY:4,orient:"auto"},
+        e("path",{d:"M0,0 L0,8 L8,4 z",fill:TEXT})),
+      e("marker",{id:"ayg29",markerWidth:8,markerHeight:8,refX:7,refY:4,orient:"auto"},
+        e("path",{d:"M0,0 L0,8 L8,4 z",fill:TEXT}))
+    ),
+    e("g",null,grid),
+    // Vertikalna asimptota x = 4
+    e("line",{x1:px(4),y1:12,x2:px(4),y2:H-10,stroke:RED,strokeWidth:1.4,strokeDasharray:"6,4"}),
+    e("text",{x:px(4)+6,y:24,fontSize:10,fill:RED,fontWeight:"bold"},"x = 4"),
     // Osi
-    e("line",{x1:10,y1:cy,x2:W-10,y2:cy,stroke:text,strokeWidth:1.5}),
-    e("line",{x1:cx,y1:10,x2:cx,y2:H-10,stroke:text,strokeWidth:1.5}),
-    e("text",{x:W-8,y:cy+4,fontSize:10,fill:text},"x"),
-    e("text",{x:cx+4,y:8,fontSize:10,fill:text},"y"),
-    e("text",{x:cx+sc-4,y:cy+14,fontSize:9,fill:muted},"1"),
-    e("text",{x:cx-8,y:cy-sc+4,fontSize:9,fill:muted},"1"),
-    e("text",{x:cx-14,y:cy+14,fontSize:9,fill:muted},"0"),
-    // Asimptota x=4 (crvena dashed)
-    e("line",{x1:asymX,y1:10,x2:asymX,y2:H-10,stroke:red,strokeWidth:1.5,strokeDasharray:"6,4"}),
-    e("text",{x:asymX+3,y:20,fontSize:9,fill:red},"x=4"),
-    // Krivulja (plava)
-    e("path",{d:leftPath,fill:"none",stroke:blue,strokeWidth:2.2}),
-    e("path",{d:rightPath,fill:"none",stroke:blue,strokeWidth:2.2}),
-    // Nultočke — otvoreni kružići
-    e("circle",{cx:cx-5*sc,cy:cy,r:4.5,fill:"white",stroke:blue,strokeWidth:1.8}),
-    e("circle",{cx:cx+3*sc,cy:cy,r:4.5,fill:"white",stroke:blue,strokeWidth:1.8}),
-    // A(1,1) lokalni max — gold
-    e("circle",{cx:cx+sc,cy:cy-sc,r:5,fill:"white",stroke:gold,strokeWidth:2.2}),
-    e("text",{x:cx+sc+6,y:cy-sc-6,fontSize:10,fill:gold,fontWeight:"bold"},"A(1, 1)"),
-    // B(7,4) lokalni min — gold
-    e("circle",{cx:cx+7*sc,cy:cy-4*sc,r:5,fill:"white",stroke:gold,strokeWidth:2.2}),
-    e("text",{x:cx+7*sc+5,y:cy-4*sc+14,fontSize:10,fill:gold,fontWeight:"bold"},"B(7, 4)")
+    e("line",{x1:px(xMin),y1:cy,x2:W-8,y2:cy,stroke:TEXT,strokeWidth:1.6,markerEnd:"url(#axg29)"}),
+    e("line",{x1:cx,y1:py(yMin),x2:cx,y2:10,stroke:TEXT,strokeWidth:1.6,markerEnd:"url(#ayg29)"}),
+    e("g",null,ticks),
+    e("text",{x:W-16,y:cy-9,fontSize:12,fontStyle:"italic",fill:TEXT},"x"),
+    e("text",{x:cx+8,y:20,fontSize:12,fontStyle:"italic",fill:TEXT},"y"),
+    e("text",{x:cx-6,y:cy+16,fontSize:10,fill:MUTED,textAnchor:"end"},"0"),
+    ...xLab.map((i)=>e("text",{key:"lx"+i,x:px(i),y:cy+16,fontSize:10,fill:MUTED,textAnchor:"middle"},String(i))),
+    ...yLab.map((j)=>e("text",{key:"ly"+j,x:cx-7,y:py(j)+3.5,fontSize:10,fill:MUTED,textAnchor:"end"},String(j))),
+    // Graf funkcije — lijeva i desna grana
+    e("polyline",{points:seg(xMin,3.985),fill:"none",stroke:BLUE,strokeWidth:2.4,
+      strokeLinecap:"round",strokeLinejoin:"round"}),
+    e("polyline",{points:seg(4.015,xMax),fill:"none",stroke:BLUE,strokeWidth:2.4,
+      strokeLinecap:"round",strokeLinejoin:"round"}),
+    // Nultocke (pune tocke na x-osi)
+    e("circle",{cx:px(-5),cy:py(0),r:4,fill:BLUE,stroke:BG,strokeWidth:1.2}),
+    e("circle",{cx:px(3),cy:py(0),r:4,fill:BLUE,stroke:BG,strokeWidth:1.2}),
+    // A(1,1) lokalni maksimum
+    e("circle",{cx:px(1),cy:py(1),r:4.5,fill:GOLD,stroke:BG,strokeWidth:1.4}),
+    e("text",{x:px(1)-8,y:py(1)-9,fontSize:11,fill:GOLD,fontWeight:"bold",textAnchor:"middle"},"A(1, 1)"),
+    // B(7,4) lokalni minimum
+    e("circle",{cx:px(7),cy:py(4),r:4.5,fill:GOLD,stroke:BG,strokeWidth:1.4}),
+    e("text",{x:px(7)+8,y:py(4)+16,fontSize:11,fill:GOLD,fontWeight:"bold"},"B(7, 4)")
   );
 }
 
@@ -138,55 +179,95 @@ function SvgHiperbola28_2013Aj(){
   );
 }
 
+// Zajednicki okvir koordinatne mreze za zadatak 28.1 — isto mjerilo u praznoj
+// (ucenikovoj) i u rijesenoj verziji, da se crtezi poklapaju.
+const G28_2013Aj={W:300,H:250,cx:90,cy:175,sc:32,xMin:-2,xMax:6,yMin:-2,yMax:5};
+
+function Grid28Frame_2013Aj(sfx){
+  const {W,cx,cy,sc,xMin,xMax,yMin,yMax}=G28_2013Aj;
+  const TEXT="var(--text)",MUTED="var(--muted)";
+  const px=(x)=>cx+x*sc, py=(y)=>cy-y*sc;
+  const grid=[];
+  for(let i=xMin;i<=xMax;i++) grid.push(e("line",{key:"gv"+i,x1:px(i),y1:py(yMax),x2:px(i),y2:py(yMin),
+    stroke:MUTED,strokeWidth:0.7,opacity:0.3}));
+  for(let j=yMin;j<=yMax;j++) grid.push(e("line",{key:"gh"+j,x1:px(xMin),y1:py(j),x2:px(xMax),y2:py(j),
+    stroke:MUTED,strokeWidth:0.7,opacity:0.3}));
+  const ticks=[];
+  for(let i=xMin;i<=xMax;i++){
+    if(i===0) continue;
+    ticks.push(e("line",{key:"tx"+i,x1:px(i),y1:cy-3.5,x2:px(i),y2:cy+3.5,stroke:TEXT,strokeWidth:1.1}));
+    ticks.push(e("text",{key:"lx"+i,x:px(i),y:cy+16,fontSize:10,fill:MUTED,textAnchor:"middle"},String(i)));
+  }
+  for(let j=yMin;j<=yMax;j++){
+    if(j===0) continue;
+    ticks.push(e("line",{key:"ty"+j,x1:cx-3.5,y1:py(j),x2:cx+3.5,y2:py(j),stroke:TEXT,strokeWidth:1.1}));
+    ticks.push(e("text",{key:"ly"+j,x:cx-7,y:py(j)+3.5,fontSize:10,fill:MUTED,textAnchor:"end"},String(j)));
+  }
+  return [
+    e("defs",{key:"defs"},
+      e("marker",{id:"ax"+sfx,markerWidth:8,markerHeight:8,refX:7,refY:4,orient:"auto"},
+        e("path",{d:"M0,0 L0,8 L8,4 z",fill:TEXT})),
+      e("marker",{id:"ay"+sfx,markerWidth:8,markerHeight:8,refX:7,refY:4,orient:"auto"},
+        e("path",{d:"M0,0 L0,8 L8,4 z",fill:TEXT}))
+    ),
+    e("g",{key:"grid"},grid),
+    e("line",{key:"xaxis",x1:px(xMin)-10,y1:cy,x2:W-8,y2:cy,stroke:TEXT,strokeWidth:1.6,markerEnd:`url(#ax${sfx})`}),
+    e("line",{key:"yaxis",x1:cx,y1:py(yMin)-10,x2:cx,y2:10,stroke:TEXT,strokeWidth:1.6,markerEnd:`url(#ay${sfx})`}),
+    e("g",{key:"ticks"},ticks),
+    e("text",{key:"xl",x:W-14,y:cy-9,fontSize:12,fontStyle:"italic",fill:TEXT},"x"),
+    e("text",{key:"yl",x:cx+8,y:18,fontSize:12,fontStyle:"italic",fill:TEXT},"y"),
+    e("text",{key:"o",x:cx-7,y:cy+16,fontSize:10,fill:MUTED,textAnchor:"end"},"0")
+  ];
+}
+
 function SvgGridEmpty_2013JesenA(){
-  const W=280,H=260,cx=100,cy=170,sc=32;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  const {W,H}=G28_2013Aj;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
-    e("defs",null,
-      e("pattern",{id:"g28jaj",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",
-          stroke:"rgba(148,163,184,0.2)",strokeWidth:0.5})
-      )
-    ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#g28jaj)"}),
-    e("line",{x1:20,y1:cy,x2:W-10,y2:cy,stroke:_BLUE,strokeWidth:1.5}),
-    e("line",{x1:cx,y1:10,x2:cx,y2:H-10,stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{x:W-8,y:cy+4,fontSize:10,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:8,fontSize:10,fill:"var(--text)"},"y"),
-    e("text",{x:cx+sc-4,y:cy+14,fontSize:9,fill:"var(--muted)"},"1"),
-    e("text",{x:cx-8,y:cy-sc+4,fontSize:9,fill:"var(--muted)"},"1"),
-    e("text",{x:cx-14,y:cy+14,fontSize:9,fill:"var(--muted)"},"0")
+    ...Grid28Frame_2013Aj("28e")
   );
 }
 
+// Paralelogram ABCD: |AB| = 5 cm, visina na AB = 8 cm (mjerilo 18 px/cm, pa je
+// omjer stranice i visine na slici tocan). S = sjeciste dijagonala, T = poloviste BS.
 function SvgParalelogram23_2013Aj(){
-  const W=300,H=210;
-  const A={x:30,y:180}, B={x:190,y:180};
-  const D={x:80,y:55}, Cv={x:240,y:55};
+  const W=300,H=250,s=18;
+  const TEXT="var(--text)",MUTED="var(--muted)",BLUE="var(--blue)",GREEN="var(--green)",GOLD="var(--gold)",BG="var(--bg)";
+  const skew=60;
+  const A={x:55,y:212}, B={x:55+5*s,y:212};                 // 90 px = 5 cm
+  const D={x:55+skew,y:212-8*s}, Cv={x:55+5*s+skew,y:212-8*s}; // 144 px = 8 cm
   const S={x:(A.x+Cv.x)/2,y:(A.y+Cv.y)/2};
   const T={x:(B.x+S.x)/2,y:(B.y+S.y)/2};
+  const F={x:D.x,y:A.y};                                     // noziste visine iz D
   const pt=p=>`${p.x},${p.y}`;
-  const blue="var(--blue)", green="var(--green)", gold="var(--gold)", txt="var(--text)", muted="var(--muted)";
-  const hBaseY=A.y;
-  const labels=[["A",A.x-14,A.y+5],["B",B.x+5,B.y+5],["C",Cv.x+5,Cv.y],["D",D.x-14,D.y]];
+  const labels=[["A",A.x-13,A.y+6],["B",B.x+7,B.y+6],["C",Cv.x+7,Cv.y+4],["D",D.x-15,D.y-3]];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
+    // Paralelogram
     e("polygon",{points:`${pt(A)} ${pt(B)} ${pt(Cv)} ${pt(D)}`,
-      fill:"rgba(74,144,217,0.06)",stroke:blue,strokeWidth:1.8}),
-    e("line",{x1:A.x,y1:A.y,x2:Cv.x,y2:Cv.y,stroke:muted,strokeWidth:1,strokeDasharray:"5,3"}),
-    e("line",{x1:B.x,y1:B.y,x2:D.x,y2:D.y,stroke:muted,strokeWidth:1,strokeDasharray:"5,3"}),
+      fill:BLUE,fillOpacity:0.08,stroke:BLUE,strokeWidth:1.8,strokeLinejoin:"round"}),
+    // Dijagonale
+    e("line",{x1:A.x,y1:A.y,x2:Cv.x,y2:Cv.y,stroke:MUTED,strokeWidth:1,strokeDasharray:"5,3"}),
+    e("line",{x1:B.x,y1:B.y,x2:D.x,y2:D.y,stroke:MUTED,strokeWidth:1,strokeDasharray:"5,3"}),
+    // Trokut ABT
     e("polygon",{points:`${pt(A)} ${pt(B)} ${pt(T)}`,
-      fill:"rgba(80,200,120,0.25)",stroke:green,strokeWidth:2}),
-    e("line",{x1:D.x,y1:D.y,x2:D.x,y2:hBaseY,
-      stroke:gold,strokeWidth:1.5,strokeDasharray:"4,3"}),
-    e("rect",{x:D.x,y:hBaseY-9,width:9,height:9,fill:"none",stroke:gold,strokeWidth:1.2}),
-    e("text",{x:D.x+6,y:(D.y+hBaseY)/2+4,fontSize:10,fill:gold},"8 cm"),
-    e("text",{x:(A.x+B.x)/2,y:A.y+16,fontSize:11,fill:txt,textAnchor:"middle"},"5 cm"),
-    ...labels.map(([l,x,y])=>e("text",{key:l,x,y,fontSize:12,fill:txt,fontWeight:"bold"},l)),
-    e("circle",{cx:S.x,cy:S.y,r:4,fill:"white",stroke:txt,strokeWidth:1.5}),
-    e("text",{x:S.x+5,y:S.y-5,fontSize:10,fill:txt,fontWeight:"bold"},"S"),
-    e("circle",{cx:T.x,cy:T.y,r:4,fill:green}),
-    e("text",{x:T.x+5,y:T.y+4,fontSize:10,fill:green,fontWeight:"bold"},"T")
+      fill:GREEN,fillOpacity:0.22,stroke:GREEN,strokeWidth:2,strokeLinejoin:"round"}),
+    // Visina na stranicu AB
+    e("line",{x1:D.x,y1:D.y,x2:F.x,y2:F.y,stroke:GOLD,strokeWidth:1.5,strokeDasharray:"4,3"}),
+    e("polyline",{points:`${F.x+10},${F.y} ${F.x+10},${F.y-10} ${F.x},${F.y-10}`,
+      fill:"none",stroke:GOLD,strokeWidth:1.2}),
+    e("text",{x:D.x+7,y:98,fontSize:11,fill:GOLD,fontWeight:"bold"},"8 cm"),
+    e("text",{x:(A.x+B.x)/2,y:A.y+20,fontSize:11,fill:TEXT,textAnchor:"middle"},"5 cm"),
+    // Vrhovi
+    e("circle",{cx:A.x,cy:A.y,r:3,fill:TEXT}),
+    e("circle",{cx:B.x,cy:B.y,r:3,fill:TEXT}),
+    e("circle",{cx:Cv.x,cy:Cv.y,r:3,fill:TEXT}),
+    e("circle",{cx:D.x,cy:D.y,r:3,fill:TEXT}),
+    ...labels.map(([l,x,y])=>e("text",{key:l,x,y,fontSize:12,fill:TEXT,fontWeight:"bold"},l)),
+    // S = sjeciste dijagonala, T = poloviste BS
+    e("circle",{cx:S.x,cy:S.y,r:4,fill:BG,stroke:TEXT,strokeWidth:1.5}),
+    e("text",{x:S.x+7,y:S.y-6,fontSize:11,fill:TEXT,fontWeight:"bold"},"S"),
+    e("circle",{cx:T.x,cy:T.y,r:4,fill:GREEN}),
+    e("text",{x:T.x+7,y:T.y-5,fontSize:11,fill:GREEN,fontWeight:"bold"},"T")
   );
 }
 
@@ -249,81 +330,69 @@ function SvgKompleks22_2013Aj(){
   );
 }
 
+// Tupokutni trokut ABC: |AB| = 20 cm, |BC| = 30 cm, kut u B = 23 stupnja.
+// Iz kosinusova poucka |AC| = 13,98 cm, pa je kut u A ~ 123 stupnja (tupi kut).
+// Crtamo tako da stranica AC lezi vodoravno: tada je visina iz B okomita, a njezino
+// noziste pada IZVAN duzine AC, na produzetak preko vrha A (bas zato je trokut tup).
+// Mjerilo 8,5 px/cm, pa su sve duljine i kutovi na slici mjerno tocni.
 function SvgTrokut14_2013Aj(){
-  const W=300,H=200;
-  const A={x:55,y:175}, B={x:245,y:175};
-  const ang=23*Math.PI/180;
-  const sc=5;
-  const C={x:B.x-30*sc*Math.cos(ang), y:B.y-30*sc*Math.sin(ang)};
+  const W=320,H=215,s=8.5;
+  const TEXT="var(--text)",MUTED="var(--muted)",BLUE="var(--blue)",GOLD="var(--gold)",RED="var(--red)";
+  const A={x:135,y:180};
+  const C={x:A.x+13.98*s,y:A.y};                    // |AC| = 13,98 cm
+  const B={x:A.x-10.89*s,y:A.y-16.77*s};            // visina iz B = 16,77 cm
+  const F={x:B.x,y:A.y};                            // noziste visine iz B
   const pt=(p)=>`${p.x.toFixed(1)},${p.y.toFixed(1)}`;
-  // Colors
-  const blue="var(--blue)", gold="var(--gold)", red="var(--red)", text="var(--text)", muted="var(--muted)";
-  // Kut arc u B
-  const r=22, ang0=Math.PI, ang1=Math.PI-ang;
-  const ax0=B.x+r*Math.cos(ang0), ay0=B.y+r*Math.sin(ang0);
-  const ax1=B.x+r*Math.cos(ang1), ay1=B.y+r*Math.sin(ang1);
+  // Luk kuta u vrhu B (izmedu polupravaca BA i BC)
+  const r=27;
+  const aBA=Math.atan2(A.y-B.y,A.x-B.x), aBC=Math.atan2(C.y-B.y,C.x-B.x);
+  const P1={x:B.x+r*Math.cos(aBA),y:B.y+r*Math.sin(aBA)};
+  const P2={x:B.x+r*Math.cos(aBC),y:B.y+r*Math.sin(aBC)};
+  const aM=(aBA+aBC)/2;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
-    // Trokut (plav fill)
+    // Produzetak stranice CA do nozista visine
+    e("line",{x1:A.x,y1:A.y,x2:F.x,y2:F.y,stroke:MUTED,strokeWidth:1,strokeDasharray:"5,4"}),
+    // Trokut
     e("polygon",{points:`${pt(A)} ${pt(B)} ${pt(C)}`,
-      fill:"rgba(74,144,217,0.1)",stroke:blue,strokeWidth:2}),
-    // Visina iz B (dashed, crvena)
-    e("line",{x1:B.x,y1:B.y,x2:B.x,y2:C.y+10,
-      stroke:red,strokeWidth:1.4,strokeDasharray:"5,3"}),
-    // Stranice labeli
-    e("text",{x:(A.x+B.x)/2,y:A.y+14,fontSize:12,fill:text,textAnchor:"middle"},"20 cm"),
-    e("text",{x:(B.x+C.x)/2+14,y:(B.y+C.y)/2,fontSize:12,fill:blue,textAnchor:"middle",
-      transform:`rotate(-68,${(B.x+C.x)/2+14},${(B.y+C.y)/2})`},"30 cm"),
-    // Kut B arc (gold)
-    e("path",{d:`M ${ax0} ${ay0} A ${r} ${r} 0 0 0 ${ax1} ${ay1}`,
-      fill:"rgba(233,180,70,0.2)",stroke:gold,strokeWidth:1.5}),
-    e("text",{x:B.x-38,y:B.y-8,fontSize:11,fill:gold},"23°"),
-    // Vrh labels
-    e("text",{x:A.x-12,y:A.y+5,fontSize:13,fill:text,fontWeight:"bold"},"A"),
-    e("text",{x:B.x+5,y:B.y+5,fontSize:13,fill:text,fontWeight:"bold"},"B"),
-    e("text",{x:C.x-14,y:C.y-5,fontSize:13,fill:text,fontWeight:"bold"},"C"),
-    // Točke
-    e("circle",{cx:A.x,cy:A.y,r:3,fill:text}),
-    e("circle",{cx:B.x,cy:B.y,r:3,fill:text}),
-    e("circle",{cx:C.x,cy:C.y,r:3,fill:text})
+      fill:BLUE,fillOpacity:0.10,stroke:BLUE,strokeWidth:2,strokeLinejoin:"round"}),
+    // Visina iz vrha B na pravac AC
+    e("line",{x1:B.x,y1:B.y,x2:F.x,y2:F.y,stroke:RED,strokeWidth:1.6,strokeDasharray:"5,4"}),
+    e("polyline",{points:`${(F.x+10).toFixed(1)},${F.y} ${(F.x+10).toFixed(1)},${F.y-10} ${F.x.toFixed(1)},${F.y-10}`,
+      fill:"none",stroke:RED,strokeWidth:1.2}),
+    e("text",{x:F.x+7,y:(B.y+F.y)/2,fontSize:12,fill:RED,fontStyle:"italic",fontWeight:"bold"},"v"),
+    // Luk kuta 23 stupnja u vrhu B
+    e("path",{d:`M ${P1.x.toFixed(1)} ${P1.y.toFixed(1)} A ${r} ${r} 0 0 0 ${P2.x.toFixed(1)} ${P2.y.toFixed(1)}`,
+      fill:GOLD,fillOpacity:0.18,stroke:GOLD,strokeWidth:1.5}),
+    e("text",{x:B.x+(r+15)*Math.cos(aM),y:B.y+(r+15)*Math.sin(aM)+4,fontSize:11,
+      fill:GOLD,fontWeight:"bold",textAnchor:"middle"},"23°"),
+    // Duljine stranica
+    e("text",{x:(A.x+B.x)/2+17,y:(A.y+B.y)/2+3,fontSize:12,fill:TEXT},"20 cm"),
+    e("text",{x:(B.x+C.x)/2+4,y:(B.y+C.y)/2-9,fontSize:12,fill:TEXT},"30 cm"),
+    // Vrhovi
+    e("circle",{cx:A.x,cy:A.y,r:3.2,fill:TEXT}),
+    e("circle",{cx:B.x,cy:B.y,r:3.2,fill:TEXT}),
+    e("circle",{cx:C.x,cy:C.y,r:3.2,fill:TEXT}),
+    e("text",{x:A.x+2,y:A.y+17,fontSize:13,fill:TEXT,fontWeight:"bold",textAnchor:"middle"},"A"),
+    e("text",{x:B.x-2,y:B.y-9,fontSize:13,fill:TEXT,fontWeight:"bold",textAnchor:"middle"},"B"),
+    e("text",{x:C.x+9,y:C.y+5,fontSize:13,fill:TEXT,fontWeight:"bold"},"C")
   );
 }
 
 function SvgGrid28_2013Aj(){
-  const W=280,H=260,cx=100,cy=170,sc=32;
-  // Pravac x/5+y/2=1: sjecišta (5,0) i (0,2)
-  const x1px=cx+5*sc, y1px=cy;        // (5,0)
-  const x2px=cx, y2px=cy-2*sc;         // (0,2)
+  const {W,H,cx,cy,sc}=G28_2013Aj;
+  const BLUE="var(--blue)",BG="var(--bg)";
+  const px=(x)=>cx+x*sc, py=(y)=>cy-y*sc;
+  // Pravac x/5 + y/2 = 1  <=>  y = 2 - 0,4x ; sjecista (5, 0) i (0, 2)
+  const xa=-1.5, xb=6.2, ln=(x)=>2-0.4*x;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
     style:{display:"block",margin:"0 auto"}},
-    e("defs",null,
-      e("pattern",{id:"g28aj2",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:0.6,strokeDasharray:"3,3"})
-      ),
-      e("marker",{id:"ax28aj2",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ay28aj2",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
-    ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#g28aj2)"}),
-    // Osi
-    e("line",{x1:5,y1:cy,x2:W-5,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ax28aj2)"}),
-    e("line",{x1:cx,y1:H-5,x2:cx,y2:5,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ay28aj2)"}),
-    e("text",{x:W-13,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:11,fill:"var(--text)"},"y"),
-    // Skala
-    e("circle",{cx:cx+sc,cy,r:3,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.3}),
-    e("circle",{cx,cy:cy-sc,r:3,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.3}),
-    e("circle",{cx,cy,r:3,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.3}),
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:10,fill:"var(--text)"},"1"),
-    e("text",{x:cx-14,y:cy-sc+5,fontSize:10,fill:"var(--text)"},"1"),
-    e("text",{x:cx-11,y:cy+13,fontSize:10,fill:"var(--text)"},"0"),
-    // Pravac x/5+y/2=1 produžen malo iza sjecišta
-    e("line",{x1:x1px+20,y1:cy+8,x2:x2px-8,y2:y2px-13,
-      stroke:"var(--blue)",strokeWidth:2.2,strokeLinecap:"round"}),
-    // Sjecišta naglašena
-    e("circle",{cx:x1px,cy:y1px,r:4.5,fill:"var(--bg)",stroke:"var(--blue)",strokeWidth:2}),
-    e("circle",{cx:x2px,cy:y2px,r:4.5,fill:"var(--bg)",stroke:"var(--blue)",strokeWidth:2}),
-    // Oznake sjecišta
-    e("text",{x:x1px-3,y:cy+14,fontSize:10,textAnchor:"middle",fill:"var(--text)"},"5"),
-    e("text",{x:cx-14,y:y2px+5,fontSize:10,fill:"var(--text)"},"2")
+    ...Grid28Frame_2013Aj("28s"),
+    e("line",{x1:px(xa),y1:py(ln(xa)),x2:px(xb),y2:py(ln(xb)),
+      stroke:BLUE,strokeWidth:2.4,strokeLinecap:"round"}),
+    e("circle",{cx:px(5),cy:py(0),r:4.5,fill:BG,stroke:BLUE,strokeWidth:2}),
+    e("circle",{cx:px(0),cy:py(2),r:4.5,fill:BG,stroke:BLUE,strokeWidth:2}),
+    e("text",{x:px(5)-8,y:py(0)-11,fontSize:10,fill:BLUE,fontWeight:"bold",textAnchor:"end"},"(5, 0)"),
+    e("text",{x:px(0)+9,y:py(2)-7,fontSize:10,fill:BLUE,fontWeight:"bold"},"(0, 2)")
   );
 }
 
