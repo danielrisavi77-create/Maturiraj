@@ -28,18 +28,24 @@ function Svg8_2017Alj(){
 }
 
 function Svg27_2017Alj(){
-  const W=220,H=200,pad={l:28,r:14,t:14,b:28};
+  // H chosen so the inner plot is square (iW === iH) -> the circle renders round
+  const W=220,H=220,pad={l:28,r:14,t:14,b:28};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
   const xMin=-2,xMax=8,yMin=-7,yMax=3;
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const ox=toX(0),oy=toY(0);
-  const sx=toX(3),sy=toY(-2),sc=iW/(xMax-xMin);
+  const sx=toX(3),sy=toY(-2);
+  const scx=iW/(xMax-xMin),scy=iH/(yMax-yMin);
+  const R=Math.sqrt(13);
   const pts=[];
-  for(let a=0;a<=2*Math.PI;a+=0.05){
-    pts.push(`${(sx+Math.sqrt(13)*sc*Math.cos(a)).toFixed(1)},${(sy-Math.sqrt(13)*sc*Math.sin(a)).toFixed(1)}`);
+  const N=180;
+  for(let i=0;i<N;i++){
+    const a=2*Math.PI*i/N;
+    pts.push(`${(sx+R*scx*Math.cos(a)).toFixed(1)},${(sy-R*scy*Math.sin(a)).toFixed(1)}`);
   }
+  const HALO={stroke:"var(--bg)",strokeWidth:2.6,paintOrder:"stroke",strokeLinejoin:"round"};
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     ...[-2,-1,0,1,2,3,4,5,6,7,8].map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.5})),
     ...[-7,-6,-5,-4,-3,-2,-1,0,1,2,3].map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.5})),
@@ -49,18 +55,18 @@ function Svg27_2017Alj(){
     e("polygon",{points:`${ox},${pad.t} ${ox-3},${pad.t+5} ${ox+3},${pad.t+5}`,fill:"var(--text)"}),
     e("text",{x:pad.l+iW+4,y:oy+4,fontSize:9,fill:"var(--text)"},"x"),
     e("text",{x:ox+4,y:pad.t+2,fontSize:9,fill:"var(--text)"},"y"),
-    e("text",{x:ox-10,y:oy+13,fontSize:8,fill:"var(--muted)"},"0"),
+    e("text",{x:ox-5,y:oy+10,textAnchor:"end",fontSize:8,fill:"var(--muted)",...HALO},"0"),
     ...[-1,1,2,3,4,5,6,7].map(x=>e("g",{key:"tx"+x},
       e("line",{x1:toX(x),y1:oy-3,x2:toX(x),y2:oy+3,stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},x)
+      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)",...HALO},x<0?"−"+Math.abs(x):String(x))
     )),
     ...[-6,-4,-2,2].map(y=>e("g",{key:"ty"+y},
       e("line",{x1:ox-3,y1:toY(y),x2:ox+3,y2:toY(y),stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)
+      e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)",...HALO},y<0?"−"+Math.abs(y):String(y))
     )),
-    e("polyline",{points:pts.join(" "),fill:"rgba(74,144,217,.1)",stroke:_BLUE,strokeWidth:2}),
+    e("polygon",{points:pts.join(" "),fill:_BLUE,fillOpacity:.12,stroke:_BLUE,strokeWidth:2,strokeLinejoin:"round"}),
     e("circle",{cx:sx,cy:sy,r:4,fill:_BLUE,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:sx+5,y:sy-6,fontSize:9,fontWeight:700,fill:_BLUE},"S(3,\u22122)")
+    e("text",{x:sx+7,y:sy-7,fontSize:9,fontWeight:700,fill:_BLUE,...HALO},"S(3,\u22122)")
   );
 }
 
@@ -75,21 +81,25 @@ function Svg26_2017Alj(){
   // f: (-4,-3)->(-3,0)->(-1,2)->(0,0)->(1,1)->(2,0)->(3,-1) approx from PDF
   const fPts=[[-4,-3],[-3,0],[-1,2],[0,0],[1,1],[2,0],[3,-1]];
   const fLine=fPts.map(p=>toX(p[0]).toFixed(1)+","+toY(p[1]).toFixed(1)).join(" ");
+  const HALO={stroke:"var(--bg)",strokeWidth:2.6,paintOrder:"stroke",strokeLinejoin:"round"};
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"8px auto"}},
     ...[-5,-4,-3,-2,-1,0,1,2,3,4].map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.4,strokeDasharray:"2,2"})),
     ...[-3,-2,-1,0,1,2,3].map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.4,strokeDasharray:"2,2"})),
-    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:_BLUE,strokeWidth:1.3}),
-    e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:_BLUE,strokeWidth:1.3}),
+    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:"var(--text)",strokeWidth:1.1}),
+    e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.1}),
     e("polygon",{points:[pad.l+iW,oy,pad.l+iW-5,oy-3,pad.l+iW-5,oy+3].join(","),fill:"var(--text)"}),
     e("polygon",{points:[ox,pad.t,ox-3,pad.t+5,ox+3,pad.t+5].join(","),fill:"var(--text)"}),
     e("text",{x:pad.l+iW+3,y:oy+4,fontSize:9,fill:"var(--text)"},"x"),
     e("text",{x:ox+5,y:pad.t+4,fontSize:9,fill:"var(--text)"},"y"),
-    e("text",{x:ox-9,y:oy+12,fontSize:7,fill:"var(--muted)"},"0"),
-    e("text",{x:toX(1),y:oy+12,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},"1"),
-    e("text",{x:ox-7,y:toY(1)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},"1"),
     e("polyline",{points:fLine,fill:"none",stroke:_BLUE,strokeWidth:2,strokeLinejoin:"round"}),
-    ...fPts.map((p,i)=>e("circle",{key:"fp"+i,cx:toX(p[0]),cy:toY(p[1]),r:3,fill:i===0||i===fPts.length-1?"var(--blue)":"var(--bg)",stroke:_BLUE,strokeWidth:1.2})),
-    e("text",{x:toX(-2),y:toY(2)+4,fontSize:10,fontStyle:"italic",fill:_BLUE},"f")
+    // f is continuous on the CLOSED interval [-4,3]: only the two endpoints get a
+    // marker, and both are filled (closed). Interior vertices are plain corners —
+    // drawing them as open circles read as removable points / holes.
+    ...[fPts[0],fPts[fPts.length-1]].map((p,i)=>e("circle",{key:"fp"+i,cx:toX(p[0]),cy:toY(p[1]),r:3,fill:_BLUE,stroke:"var(--bg)",strokeWidth:1.2})),
+    e("text",{x:ox-5,y:oy+11,textAnchor:"end",fontSize:7,fill:"var(--muted)",...HALO},"0"),
+    e("text",{x:toX(1),y:oy+12,textAnchor:"middle",fontSize:7,fill:"var(--muted)",...HALO},"1"),
+    e("text",{x:ox+5,y:toY(1)+3,fontSize:7,fill:"var(--muted)",...HALO},"1"),
+    e("text",{x:toX(-2),y:toY(2)+4,fontSize:10,fontStyle:"italic",fill:_BLUE,...HALO},"f")
   );
 }
 
@@ -107,6 +117,7 @@ function Svg21_2017Alj(){
     if(y>yMax||y<yMin) continue;
     pts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
   }
+  const HALO={stroke:"var(--bg)",strokeWidth:2.6,paintOrder:"stroke",strokeLinejoin:"round"};
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     ...[-1,0,1,2,3,4,5,6,7].map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.5})),
     ...[-4,-3,-2,-1,0,1,2,3,4].map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.5})),
@@ -116,18 +127,23 @@ function Svg21_2017Alj(){
     e("polygon",{points:`${ox},${pad.t} ${ox-3},${pad.t+5} ${ox+3},${pad.t+5}`,fill:"var(--text)"}),
     e("text",{x:pad.l+iW+4,y:oy+4,fontSize:9,fill:"var(--text)"},"x"),
     e("text",{x:ox+4,y:pad.t+2,fontSize:9,fill:"var(--text)"},"y"),
-    e("text",{x:ox-10,y:oy+13,fontSize:8,fill:"var(--muted)"},"0"),
+    e("text",{x:ox-5,y:oy+9,textAnchor:"end",fontSize:8,fill:"var(--muted)",...HALO},"0"),
     ...[1,2,3,4,5,6].map(x=>e("g",{key:"tx"+x},
       e("line",{x1:toX(x),y1:oy-3,x2:toX(x),y2:oy+3,stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},x)
+      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)",...HALO},String(x))
     )),
     ...[-3,-2,-1,1,2,3].map(y=>e("g",{key:"ty"+y},
       e("line",{x1:ox-3,y1:toY(y),x2:ox+3,y2:toY(y),stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)
+      // positive labels right of the axis, negative ones left: the parabola's left
+      // branch runs through the strip just left of the y-axis above y=0, so this
+      // keeps every tick label clear of the curve
+      y>0
+        ? e("text",{x:ox+5,y:toY(y)+3,fontSize:7,fill:"var(--muted)",...HALO},String(y))
+        : e("text",{x:ox-5,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)",...HALO},"\u2212"+Math.abs(y))
     )),
     pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:2.2,strokeLinejoin:"round"}),
     e("circle",{cx:toX(2.5),cy:toY(-3),r:4,fill:_BLUE,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:toX(2.5)+5,y:toY(-3),fontSize:9,fontWeight:700,fill:_BLUE},"T(2,5;\u22123)")
+    e("text",{x:toX(2.5),y:toY(-3)+13,textAnchor:"middle",fontSize:9,fontWeight:700,fill:_BLUE,...HALO},"T(2,5;\u22123)")
   );
 }
 
@@ -141,6 +157,7 @@ function Svg19_2017Alj(){
   const pts=[];
   for(let r=0;r<=xMax;r+=0.2){ pts.push(`${toX(r).toFixed(1)},${toY(2*Math.PI*r).toFixed(1)}`); }
   const oy=toY(0),ox=toX(0);
+  const HALO={stroke:"var(--bg)",strokeWidth:2.6,paintOrder:"stroke",strokeLinejoin:"round"};
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     ...[0,1,2,3,4,5].map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.5})),
     ...[0,6,12,18,24,30].map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.5})),
@@ -148,30 +165,31 @@ function Svg19_2017Alj(){
     e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.5}),
     e("polygon",{points:`${pad.l+iW},${oy} ${pad.l+iW-5},${oy-3} ${pad.l+iW-5},${oy+3}`,fill:"var(--text)"}),
     e("polygon",{points:`${ox},${pad.t} ${ox-3},${pad.t+5} ${ox+3},${pad.t+5}`,fill:"var(--text)"}),
-    e("text",{x:pad.l+iW+4,y:oy+4,fontSize:9,fill:_GOLD},"r"),
-    e("text",{x:ox+4,y:pad.t+2,fontSize:9,fill:_GOLD},"o"),
-    e("text",{x:ox-10,y:oy+13,fontSize:8,fill:"var(--muted)"},"0"),
+    e("text",{x:pad.l+iW+5,y:oy-3,fontSize:9,fontStyle:"italic",fill:"var(--text)"},"r"),
+    e("text",{x:ox+7,y:pad.t+7,fontSize:9,fontStyle:"italic",fill:"var(--text)"},"o"),
+    e("text",{x:ox-5,y:oy+12,textAnchor:"end",fontSize:8,fill:"var(--muted)",...HALO},"0"),
     ...[1,2,3,4,5].map(x=>e("g",{key:"tx"+x},
       e("line",{x1:toX(x),y1:oy-3,x2:toX(x),y2:oy+3,stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},x)
+      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)",...HALO},String(x))
     )),
     ...[6,12,18,24,30].map(y=>e("g",{key:"ty"+y},
       e("line",{x1:ox-3,y1:toY(y),x2:ox+3,y2:toY(y),stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)
+      e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)",...HALO},String(y))
     )),
     pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:2.2}),
-    e("text",{x:toX(3),y:toY(22),fontSize:9,fill:_BLUE},"o=2\u03c0r")
+    e("text",{x:toX(1.15),y:toY(24),fontSize:9,fontWeight:600,fill:_BLUE,...HALO},"o=2\u03c0r")
   );
 }
 
 function Svg15_2017Alj(){
-  const W=280,H=400,pad={l:24,r:10,t:10,b:20};
+  const W=280,H=412,pad={l:24,r:10,t:10,b:20};
   const gW=120,gH=110,gap=14;
+  const HALO={stroke:"var(--bg)",strokeWidth:2.4,paintOrder:"stroke",strokeLinejoin:"round"};
   // Helper: mini coord system
   function miniCS(ox,oy,w,h,label){
     const els=[];
     // Grid
-    for(let i=-2;i<=3;i++){
+    for(let i=-3;i<=3;i++){
       els.push(e("line",{key:label+"gx"+i,x1:ox+w/2+i*w/6,y1:oy,x2:ox+w/2+i*w/6,y2:oy+h,stroke:"var(--bdr)",strokeWidth:.3,strokeDasharray:"2,2"}));
     }
     for(let i=-3;i<=3;i++){
@@ -181,20 +199,22 @@ function Svg15_2017Alj(){
     els.push(e("line",{key:label+"ax",x1:ox,y1:oy+h/2,x2:ox+w,y2:oy+h/2,stroke:"var(--text)",strokeWidth:1}));
     els.push(e("line",{key:label+"ay",x1:ox+w/2,y1:oy,x2:ox+w/2,y2:oy+h,stroke:"var(--text)",strokeWidth:1}));
     // Labels
-    els.push(e("text",{key:label+"lx",x:ox+w-2,y:oy+h/2-3,fontSize:7,fill:"var(--text)"},"x"));
-    els.push(e("text",{key:label+"ly",x:ox+w/2+3,y:oy+6,fontSize:7,fill:"var(--text)"},"y"));
-    els.push(e("text",{key:label+"o",x:ox+w/2+3,y:oy+h/2+9,fontSize:6,fill:"var(--muted)"},"0"));
-    els.push(e("text",{key:label+"t1",x:ox+w/2+w/6,y:oy+h/2+9,textAnchor:"middle",fontSize:6,fill:"var(--muted)"},"1"));
-    els.push(e("text",{key:label+"t1y",x:ox+w/2-5,y:oy+h/2-h/6+3,textAnchor:"end",fontSize:6,fill:"var(--muted)"},"1"));
+    els.push(e("text",{key:label+"lx",x:ox+w-2,y:oy+h/2-4,fontSize:7,fill:"var(--text)",...HALO},"x"));
+    els.push(e("text",{key:label+"ly",x:ox+w/2+3,y:oy+6,fontSize:7,fill:"var(--text)",...HALO},"y"));
+    els.push(e("text",{key:label+"o",x:ox+w/2-3,y:oy+h/2+9,textAnchor:"end",fontSize:6,fill:"var(--muted)",...HALO},"0"));
+    els.push(e("text",{key:label+"t1",x:ox+w/2+w/6,y:oy+h/2+9,textAnchor:"middle",fontSize:6,fill:"var(--muted)",...HALO},"1"));
+    els.push(e("text",{key:label+"t1y",x:ox+w/2-5,y:oy+h/2-h/6+3,textAnchor:"end",fontSize:6,fill:"var(--muted)",...HALO},"1"));
     return els;
   }
   function curve(ox,oy,w,h,fn,color,label){
-    const sc=w/6; // 1 unit = w/6 px
+    // separate x/y unit scales so the curve follows the same grid the ticks do,
+    // and clip to +/-3 units so nothing spills outside the mini coordinate box
+    const scx=w/6,scy=h/6;
     const pts=[];
-    for(let t=-3;t<=3;t+=0.08){
+    for(let t=-3;t<=3.0001;t+=0.04){
       const v=fn(t);
-      if(v<-3.5||v>3.5) continue;
-      pts.push((ox+w/2+t*sc).toFixed(1)+","+(oy+h/2-v*sc).toFixed(1));
+      if(v<-3||v>3) continue;
+      pts.push((ox+w/2+t*scx).toFixed(1)+","+(oy+h/2-v*scy).toFixed(1));
     }
     return pts.length>1?e("polyline",{key:label+"c",points:pts.join(" "),fill:"none",stroke:color,strokeWidth:1.8,strokeLinejoin:"round"}):null;
   }
@@ -256,7 +276,7 @@ function Svg15_2017Alj(){
     // g graph
     ...miniCS(g1ox,g1oy,gW,gH,"g1"),
     curve(g1ox,g1oy,gW,gH,g1Fn,"var(--text)","g1"),
-    e("text",{x:g1ox+gW*0.75,y:g1oy+12,fontSize:10,fontStyle:"italic",fill:"var(--text)"},"g"),
+    e("text",{x:g1ox+gW*0.75,y:g1oy+12,fontSize:10,fontStyle:"italic",fill:"var(--text)",...HALO},"g"),
 
     // Question text
     e("text",{x:W/2,y:rowY-8,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},"Koji graf je derivacija prikazana na slici 1.?"),
@@ -264,25 +284,25 @@ function Svg15_2017Alj(){
     // A
     ...miniCS(aox,aoy,gW,gH,"A"),
     curve(aox,aoy,gW,gH,aFn,"var(--blue)","A"),
-    e("text",{x:aox+gW*0.8,y:aoy+18,fontSize:10,fontStyle:"italic",fill:"var(--blue)"},"f"),
+    e("text",{x:aox+gW*0.8,y:aoy+18,fontSize:10,fontStyle:"italic",fill:"var(--blue)",...HALO},"f"),
     e("text",{x:aox,y:aoy+gH+12,fontSize:10,fontWeight:700,fill:"var(--blue)"},"A."),
 
     // B
     ...miniCS(box,boy,gW,gH,"B"),
     curve(box,boy,gW,gH,bFn,"var(--green)","B"),
-    e("text",{x:box+gW*0.8,y:boy+gH*0.35,fontSize:10,fontStyle:"italic",fill:"var(--green)"},"f"),
+    e("text",{x:box+gW*0.8,y:boy+gH*0.35,fontSize:10,fontStyle:"italic",fill:"var(--green)",...HALO},"f"),
     e("text",{x:box,y:boy+gH+12,fontSize:10,fontWeight:700,fill:"var(--green)"},"B."),
 
     // C
     ...miniCS(cox,coy,gW,gH,"C"),
     curve(cox,coy,gW,gH,cFn,"var(--gold)","C"),
-    e("text",{x:cox+gW*0.3,y:coy+18,fontSize:10,fontStyle:"italic",fill:"var(--gold)"},"f"),
+    e("text",{x:cox+gW*0.3,y:coy+18,fontSize:10,fontStyle:"italic",fill:"var(--gold)",...HALO},"f"),
     e("text",{x:cox,y:coy+gH+12,fontSize:10,fontWeight:700,fill:"var(--gold)"},"C."),
 
     // D
     ...miniCS(dox,doy,gW,gH,"D"),
     curve(dox,doy,gW,gH,dFn,"var(--red)","D"),
-    e("text",{x:dox+gW*0.15,y:doy+18,fontSize:10,fontStyle:"italic",fill:"var(--red)"},"f"),
+    e("text",{x:dox+gW*0.15,y:doy+18,fontSize:10,fontStyle:"italic",fill:"var(--red)",...HALO},"f"),
     e("text",{x:dox,y:doy+gH+12,fontSize:10,fontWeight:700,fill:"var(--red)"},"D.")
   );
 }
