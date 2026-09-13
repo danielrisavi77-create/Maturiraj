@@ -82,6 +82,92 @@ function SvgTablica22_2013Blj(){
   );
 }
 
+function SvgOpcije10_2013Blj(){
+  // Q10: "Koja slika prikazuje graf funkcije f(x) = -x + 1?"
+  // Cetiri ponudjena grafa (A-D), kao u originalnom ispitu:
+  //   A: y =  x + 1   B: y = -x - 1   C: y =  x - 1   D: y = -x + 1  (tocno)
+  const PW=210,PH=200,GAP=16,LAB=26;
+  const PX=[GAP,GAP+PW+GAP], PY=[6,6+PH+LAB+10];
+  const W=PW*2+GAP*3, H=PY[1]+PH+LAB;
+  const sc=26, ox=100, oy=92;              // ishodiste unutar panela
+  const _BLUE="var(--blue)", _TXT="var(--text)", _MUT="var(--muted)";
+
+  const panels=[
+    {label:"A", m: 1, b: 1},
+    {label:"B", m:-1, b:-1},
+    {label:"C", m: 1, b:-1},
+    {label:"D", m:-1, b: 1},
+  ];
+
+  const makePanel=(p,i)=>{
+    const left=PX[i%2], top=PY[i>>1];
+    const OX=left+ox, OY=top+oy;
+    const toX=v=>OX+v*sc, toY=v=>OY-v*sc;
+    const els=[];
+
+    // podloga panela
+    els.push(e("rect",{key:"bg",x:left,y:top,width:PW,height:PH,rx:4,
+      fill:"var(--s2)",stroke:_MUT,strokeOpacity:0.25,strokeWidth:1}));
+
+    // kvadraticna mreza
+    for(let k=-4;k<=4;k++){
+      const gx=toX(k);
+      if(gx>left+2&&gx<left+PW-2)
+        els.push(e("line",{key:"gv"+k,x1:gx,y1:top+4,x2:gx,y2:top+PH-4,
+          stroke:_MUT,strokeOpacity:0.3,strokeWidth:0.7}));
+      const gy=toY(k);
+      if(gy>top+2&&gy<top+PH-2)
+        els.push(e("line",{key:"gh"+k,x1:left+4,y1:gy,x2:left+PW-4,y2:gy,
+          stroke:_MUT,strokeOpacity:0.3,strokeWidth:0.7}));
+    }
+
+    // osi sa strelicama
+    els.push(e("line",{key:"ax",x1:left+4,y1:OY,x2:left+PW-16,y2:OY,
+      stroke:_TXT,strokeWidth:1.4}));
+    els.push(e("polygon",{key:"axh",
+      points:`${left+PW-8},${OY} ${left+PW-17},${OY-3.6} ${left+PW-17},${OY+3.6}`,fill:_TXT}));
+    els.push(e("text",{key:"xl",x:left+PW-13,y:OY+14,fontSize:11,
+      fill:_TXT,fontStyle:"italic"},"x"));
+
+    els.push(e("line",{key:"ay",x1:OX,y1:top+PH-4,x2:OX,y2:top+14,
+      stroke:_TXT,strokeWidth:1.4}));
+    els.push(e("polygon",{key:"ayh",
+      points:`${OX},${top+6} ${OX-3.6},${top+15} ${OX+3.6},${top+15}`,fill:_TXT}));
+    els.push(e("text",{key:"yl",x:OX-12,y:top+15,fontSize:11,
+      fill:_TXT,fontStyle:"italic"},"y"));
+
+    // pravac y = m*x + b, odrezan na panel
+    const xa=(left+5-OX)/sc, xb=(left+PW-6-OX)/sc;
+    const seg=[];
+    for(let s=0;s<=200;s++){
+      const x=xa+(xb-xa)*s/200, py=toY(p.m*x+p.b);
+      if(py>=top+5&&py<=top+PH-5) seg.push(`${toX(x).toFixed(1)},${py.toFixed(1)}`);
+    }
+    els.push(e("polyline",{key:"ln",points:seg.join(" "),
+      fill:"none",stroke:_BLUE,strokeWidth:2.2,strokeLinecap:"round"}));
+
+    // jedinicne oznake (prazni kruzici) + brojevi, kao u originalu
+    els.push(e("circle",{key:"o0",cx:OX,cy:OY,r:2.8,fill:"var(--bg)",stroke:_TXT,strokeWidth:1.1}));
+    els.push(e("circle",{key:"ox1",cx:toX(1),cy:OY,r:2.8,fill:"var(--bg)",stroke:_TXT,strokeWidth:1.1}));
+    els.push(e("circle",{key:"oy1",cx:OX,cy:toY(1),r:2.8,fill:"var(--bg)",stroke:_TXT,strokeWidth:1.1}));
+    els.push(e("text",{key:"t0",x:OX-11,y:OY+13,fontSize:11,fill:_TXT},"0"));
+    els.push(e("text",{key:"tx1",x:toX(1)-3,y:OY+13,fontSize:11,fill:_TXT},"1"));
+    els.push(e("text",{key:"ty1",x:OX-12,y:toY(1)+4,fontSize:11,fill:_TXT},"1"));
+
+    // oznaka ponude ispod panela
+    els.push(e("text",{key:"lab",x:left+PW/2,y:top+PH+19,fontSize:14,
+      textAnchor:"middle",fontWeight:"bold",fill:_TXT},p.label+"."));
+
+    return els;
+  };
+
+  return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
+    style:{display:"block",margin:"0 auto",width:"100%",maxWidth:W}},
+    ...panels.flatMap((p,i)=>makePanel(p,i).map(el=>
+      React.cloneElement(el,{key:`p${i}_${el.key}`})))
+  );
+}
+
 function SvgGrid20_2013Blj(){
   const W=220,H=230,cx=110,cy=130,sc=36;
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
@@ -675,7 +761,7 @@ export const qs = [
 ];
 
 export const qImages = {
-  "2013_ljeto_B__10": () => e(SvgGrid20_2013Blj, null),
+  "2013_ljeto_B__10": () => e(SvgOpcije10_2013Blj, null),
   "2013_ljeto_B__20": () => e(SvgGrid20_2013Blj, null),
   "2013_ljeto_B__22.1": () => e(SvgTablica22_2013Blj, null),
   "2013_ljeto_B__22.2": () => e(SvgTablica22_2013Blj, null),
