@@ -31,10 +31,10 @@ function Svg9_2010LA(){
   const sP=(a+b+c)/2;
   const r1=area/sP;
   
-  // S — dodirna točka k1 sa stranicom BC (projekcija M na liniju BC)
-  const ux=(Bx-Cx)/a, uy=(By-Cy)/a;
-  const tProj=(Mx-Cx)*ux+(My-Cy)*uy;
-  const Sx=Cx+tProj*ux, Sy=Cy+tProj*uy;
+  // S — dodirna točka k1 s hipotenuzom AB (projekcija M na pravac AB), kao u originalu
+  const ux=(Bx-Ax)/c, uy=(By-Ay)/c;
+  const tProj=(Mx-Ax)*ux+(My-Ay)*uy;
+  const Sx=Ax+tProj*ux, Sy=Ay+tProj*uy;
   
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     // CIJELA kružnica k — plava, tanji stroke (subtle, jer luk dominira u PDF-u)
@@ -51,6 +51,9 @@ function Svg9_2010LA(){
       const p2=`${Cx+v2x*sz},${Cy+v2y*sz}`;
       return e("polyline",{points:`${p0} ${p1} ${p2}`,fill:"none",stroke:_BLUE,strokeWidth:1});
     })(),
+    // Spojnice MA i MB (kut AMB) — kao u originalu
+    e("line",{x1:Mx,y1:My,x2:Ax,y2:Ay,stroke:_BLUE,strokeWidth:1.2}),
+    e("line",{x1:Mx,y1:My,x2:Bx,y2:By,stroke:_BLUE,strokeWidth:1.2}),
     // Upisana kružnica k1 — zelena
     e("circle",{cx:Mx,cy:My,r:r1,fill:"none",stroke:grn,strokeWidth:1.5}),
     // Centar M — zelena puna točka
@@ -66,11 +69,11 @@ function Svg9_2010LA(){
     e("text",{x:Bx+6,y:By+5,fontSize:13,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"B"),
     e("text",{x:Cx-12,y:Cy-2,fontSize:13,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"C"),
     e("text",{x:Mx-14,y:My+4,fontSize:12,fontStyle:"italic",fontFamily:"serif",fill:grn},"M"),
-    e("text",{x:Sx+5,y:Sy+12,fontSize:11,fontStyle:"italic",fontFamily:"serif",fill:gld},"S"),
+    e("text",{x:Sx+4,y:Sy+13,fontSize:11,fontStyle:"italic",fontFamily:"serif",fill:gld},"S"),
     // Oznaka k iznad kružnice (gore na vrhu kružnice)
     e("text",{x:Okx-3,y:Oky-Rk-6,textAnchor:"middle",fontSize:13,fontStyle:"italic",fontFamily:"serif",fill:bl},"k"),
     // Oznaka k1 desno od kružnice k1
-    e("text",{x:Mx+r1+4,y:My+3,fontSize:11,fontStyle:"italic",fontFamily:"serif",fill:grn},"k₁")
+    e("text",{x:Mx+r1+4,y:My-r1*0.45,fontSize:11,fontStyle:"italic",fontFamily:"serif",fill:grn},"k₁")
   );
 }
 
