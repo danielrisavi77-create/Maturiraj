@@ -38,29 +38,30 @@ function Svg8_2024Alj(){
 }
 
 function Svg35_2024Alj(){
+  // Vjerna rekonstrukcija originalne skice: trapez ABCD samo kao obris (bez ispune),
+  // s lukovima kutova alfa (pri A) i beta (pri B). Bez pomocnih tocaka E, F i visina.
   const W=420, H=240;
-  const blue="var(--blue)"; const blueFill="rgba(74,144,217,0.12)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
-  // Trapezoid: A bot-left, B bot-right, C top-right, D top-left
-  // From original render: relatively flat trapezoid
-  const A=[60,180], B=[360,180], C=[280,80], D=[140,80];
-  // Foots of perpendiculars from D, C onto AB
-  const E_=[140,180], F=[280,180];
+  const txt="var(--text)";
+  // A dolje-lijevo, B dolje-desno, C gore-desno, D gore-lijevo (omjeri ocitani iz originala)
+  const A=[60,190], B=[360,190], C=[316,89], D=[202,89];
+  const arcPath=(c,r,a0,a1)=>{
+    const p=(a)=>[c[0]+r*Math.cos(a*Math.PI/180), c[1]-r*Math.sin(a*Math.PI/180)];
+    const s=p(a0), t=p(a1);
+    const sweep = a1>a0 ? 0 : 1;
+    return `M ${s[0].toFixed(1)},${s[1].toFixed(1)} A ${r},${r} 0 0 ${sweep} ${t[0].toFixed(1)},${t[1].toFixed(1)}`;
+  };
+  const angA = Math.atan2(A[1]-D[1], D[0]-A[0])*180/Math.PI;   // kut kod A prema AD
+  const angB = 180 - Math.atan2(B[1]-C[1], B[0]-C[0])*180/Math.PI; // kut kod B prema BC
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"420px",width:"100%",display:"block",margin:"12px auto"}},
     e("polygon",{key:"tr",points:`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}`,
-      fill:blueFill,stroke:blue,strokeWidth:2}),
-    // Heights from D and C
-    e("line",{key:"DE",x1:D[0],y1:D[1],x2:E_[0],y2:E_[1],stroke:gold,strokeWidth:1.4,strokeDasharray:"6 4"}),
-    e("line",{key:"CF",x1:C[0],y1:C[1],x2:F[0],y2:F[1],stroke:gold,strokeWidth:1.4,strokeDasharray:"6 4"}),
-    // Right angles
-    e("polyline",{key:"rE",points:`${E_[0]+8},${E_[1]} ${E_[0]+8},${E_[1]-8} ${E_[0]},${E_[1]-8}`,fill:"none",stroke:gold,strokeWidth:1.3}),
-    e("polyline",{key:"rF",points:`${F[0]-8},${F[1]} ${F[0]-8},${F[1]-8} ${F[0]},${F[1]-8}`,fill:"none",stroke:gold,strokeWidth:1.3}),
-    // Vertices
-    ...[[A,"A",-14,18],[B,"B",6,18],[C,"C",6,-4],[D,"D",-16,-4],[E_,"E",-10,18],[F,"F",4,18]].map(([p,l,dx,dy],i)=>
-      e("g",{key:"v"+i},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
-        e("text",{x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},l)
-      )
+      fill:"none",stroke:txt,strokeWidth:1.8,strokeLinejoin:"round"}),
+    e("path",{key:"aA",d:arcPath(A,43,0,angA),fill:"none",stroke:txt,strokeWidth:1.2}),
+    e("path",{key:"aB",d:arcPath(B,36,180,angB),fill:"none",stroke:txt,strokeWidth:1.2}),
+    e("text",{key:"la",x:A[0]+30,y:A[1]-7,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"α"),
+    e("text",{key:"lb",x:B[0]-33,y:B[1]-9,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"β"),
+    ...[[A,"A",-16,16],[B,"B",8,16],[C,"C",-3,-9],[D,"D",-11,-9]].map(([p,l,dx,dy],i)=>
+      e("text",{key:"v"+i,x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},l)
     )
   );
 }
@@ -76,22 +77,23 @@ function Svg33b_2024Alj(){
   const py=(y)=>oy-y*uy;
   const B = 3/2;
   const pts=[];
-  for(let x=0;x<=2*Math.PI;x+=0.05){
+  for(let x=-0.45;x<=2*Math.PI+1.6;x+=0.05){
     pts.push(`${px(x).toFixed(1)},${py(2*Math.sin(B*x)).toFixed(1)}`);
   }
   return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"440px",width:"100%",display:"block",margin:"12px auto"}},
-    e("line",{key:"xa",x1:ox-6,y1:oy,x2:px(2*Math.PI)+10,y2:oy,stroke:st,strokeWidth:1.4}),
+    e("line",{key:"xa",x1:ox-6,y1:oy,x2:px(2*Math.PI)+42,y2:oy,stroke:st,strokeWidth:1.4}),
     e("line",{key:"ya",x1:ox,y1:py(3),x2:ox,y2:py(-3),stroke:st,strokeWidth:1.4}),
-    e("polygon",{key:"xar",points:`${px(2*Math.PI)+10},${oy} ${px(2*Math.PI)+5},${oy-4} ${px(2*Math.PI)+5},${oy+4}`,fill:st}),
+    e("polygon",{key:"xar",points:`${px(2*Math.PI)+42},${oy} ${px(2*Math.PI)+37},${oy-4} ${px(2*Math.PI)+37},${oy+4}`,fill:st}),
     e("polygon",{key:"yar",points:`${ox},${py(3)} ${ox-4},${py(3)+5} ${ox+4},${py(3)+5}`,fill:st}),
-    e("text",{key:"xl",x:px(2*Math.PI)+16,y:oy+4,fontSize:12,fontStyle:"italic",fontFamily:"serif",fill:st},"x"),
+    e("text",{key:"xl",x:px(2*Math.PI)+48,y:oy+4,fontSize:12,fontStyle:"italic",fontFamily:"serif",fill:st},"x"),
     e("text",{key:"yl",x:ox+5,y:py(3)-4,fontSize:12,fontStyle:"italic",fontFamily:"serif",fill:st},"y"),
     // O, 1, 2π
     e("circle",{key:"o0",cx:ox,cy:oy,r:3,fill:"var(--bg)",stroke:st,strokeWidth:1}),
     e("text",{key:"t0",x:ox-10,y:oy+14,fontSize:11,fontFamily:"serif",fill:st},"0"),
     e("circle",{key:"oy1",cx:ox,cy:py(1),r:3,fill:"var(--bg)",stroke:st,strokeWidth:1}),
     e("text",{key:"ty1",x:ox-10,y:py(1)+4,fontSize:11,fontFamily:"serif",fill:st,textAnchor:"end"},"1"),
-    e("text",{key:"t2pi",x:px(2*Math.PI)-5,y:oy+16,textAnchor:"end",fontSize:11,fontFamily:"serif",fill:st},"2π"),
+    e("circle",{key:"o2pi",cx:px(2*Math.PI),cy:oy,r:3,fill:"var(--bg)",stroke:st,strokeWidth:1}),
+    e("text",{key:"t2pi",x:px(2*Math.PI)+2,y:oy+17,fontSize:11,fontFamily:"serif",fill:st},"2π"),
     // Sinusoida
     e("polyline",{key:"fn",points:pts.join(" "),fill:"none",stroke:red,strokeWidth:2.2})
   );
@@ -226,53 +228,69 @@ function Svg18_2024Alj(){
 }
 
 function Svg17_2024Alj(){
+  // Vjerna rekonstrukcija originala: cetiri panela s kvadratnom mrezom (grid),
+  // svi vektori crni (var(--text)) kao u ispitu; mreza u var(--muted).
+  // Mjere ocitane iz originalnog izreza, u jedinicama mreze (y raste prema gore):
+  //   a = (3.5, 1.2), b = (-2.4, 2.4)  — isti u svim panelima
+  //   A: c = (5.9, -1.2) iz zajednicke tocke
+  //   B: isti c, ali strelica pokazuje U zajednicku tocku
+  //   C: c = a + b = (1.1, 3.6), strelica U zajednicku tocku  -> TOCAN panel
+  //   D: isti c, ali strelica IZ zajednicke tocke (dakle c = -(a+b))
   const st="var(--text)"; const muted="var(--muted)";
-  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)"; const green="var(--green)";
-  const W=620, H=480;
-  const VEC_COLORS = {a: blue, b: green, c: red};
-  const panel = (ox, oy, va, vb, vc, letter) => {
-    const pw=280, ph=210;
-    const cx=ox+pw/2, cy=oy+ph/2;
-    const draw = (v, label, perpSide) => {
-      const len = Math.hypot(v[0], v[1]) || 1;
-      const mx = cx + v[0]*0.55, my = cy - v[1]*0.55;
-      const px_ = -v[1]/len * perpSide, py_ = -v[0]/len * perpSide;
-      const offset = 14;
-      const color = VEC_COLORS[label];
+  const cell=26, cols=10;
+  const pw=cols*cell;
+  const W=620, H=392;
+
+  const A_VEC=[3.5,1.2], B_VEC=[-2.4,2.4];
+  const A_LB=[2.13,0.10], B_LB=[-1.62,0.62];
+
+  const panel = (ox, oy, rows, jc, jr, cSeg, cLb, letter) => {
+    // zajednicka tocka vektora (jc, jr) u celijama od gornjeg-lijevog kuta mreze
+    const ph=rows*cell;
+    const jx=ox+jc*cell, jy=oy+jr*cell;
+    const X=(u)=>jx+u*cell, Y=(v)=>jy-v*cell;
+
+    const grid=[];
+    for(let i=0;i<=cols;i++) grid.push(e("line",{key:letter+"gv"+i,x1:ox+i*cell,y1:oy,x2:ox+i*cell,y2:oy+ph,stroke:muted,strokeOpacity:0.45,strokeWidth:1}));
+    for(let j=0;j<=rows;j++) grid.push(e("line",{key:letter+"gh"+j,x1:ox,y1:oy+j*cell,x2:ox+pw,y2:oy+j*cell,stroke:muted,strokeOpacity:0.45,strokeWidth:1}));
+
+    // seg = [tail, head] u jedinicama mreze, relativno na zajednicku tocku
+    const arrow = (seg, lb, label) => {
+      const [t,h]=seg;
       return [
-        e("line",{key:letter+label+"ln",x1:cx,y1:cy,x2:cx+v[0],y2:cy-v[1],
-                  stroke:color,strokeWidth:2.4,markerEnd:`url(#arr${letter}${label})`}),
-        e("text",{key:letter+label+"lb",x:mx+px_*offset,y:my+py_*offset+5,
-                  textAnchor:"middle",fontSize:17,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:color},label+"\u20d7"),
+        e("line",{key:letter+label+"ln",x1:X(t[0]),y1:Y(t[1]),x2:X(h[0]),y2:Y(h[1]),
+                  stroke:st,strokeWidth:2.4,strokeLinecap:"round",markerEnd:`url(#arr17${letter}${label})`}),
+        e("text",{key:letter+label+"lb",x:X(lb[0]),y:Y(lb[1]),
+                  textAnchor:"middle",fontSize:17,fontStyle:"italic",fontFamily:"Georgia,serif",fill:st},label+"⃗"),
       ];
     };
     return [
-      e("defs",{key:"d"+letter},
-        ...Object.entries(VEC_COLORS).map(([lbl,col])=>
-          e("marker",{key:"m"+letter+lbl,id:`arr${letter}${lbl}`,viewBox:"0 0 10 10",refX:8,refY:5,markerWidth:9,markerHeight:9,orient:"auto-start-reverse"},
-            e("path",{d:"M 0 0 L 10 5 L 0 10 z",fill:col})
+      e("defs",{key:"d17"+letter},
+        ...["a","b","c"].map((lbl)=>
+          e("marker",{key:"m17"+letter+lbl,id:`arr17${letter}${lbl}`,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:5.5,markerHeight:5.5,orient:"auto"},
+            e("path",{d:"M 0 0 L 10 5 L 0 10 z",fill:st})
           )
         )
       ),
-      e("rect",{key:letter+"bx",x:ox,y:oy,width:pw,height:ph,fill:"none",stroke:muted,strokeOpacity:0.25,strokeWidth:1}),
-      ...draw(va, "a", -1),
-      ...draw(vb, "b", +1),
-      ...draw(vc, "c", -1),
-      e("circle",{key:letter+"o",cx:cx,cy:cy,r:3,fill:st}),
-      e("text",{key:letter+"L",x:ox+10,y:oy+ph-10,fontSize:18,fontWeight:"bold",fontFamily:"sans-serif",fill:gold},letter+".")
+      ...grid,
+      ...arrow([[0,0],A_VEC], A_LB, "a"),
+      ...arrow([[0,0],B_VEC], B_LB, "b"),
+      ...arrow(cSeg, cLb, "c"),
+      e("text",{key:letter+"L",x:ox-8,y:oy+ph-2,textAnchor:"end",fontSize:18,fontWeight:"bold",fontFamily:"sans-serif",fill:st},letter+".")
     ];
   };
-  // Vectors per panel — preserve original geometry
-  // A (TOČAN: a+b=c): a=(50,30), b=(60,-20), c=(110,10) = a+b
-  // B: a=(50,30), b=(60,-20), c=(70,30) wrong
-  // C: a=(50,30), b=(60,-20), c=(10,50) wrong
-  // D: a=(50,30), b=(60,-20), c=(-50,40) wrong
+
+  const oxL=52, oxR=344, oyT=16, oyB=186;
   return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"620px",width:"100%",display:"block",margin:"16px auto"}},
-    ...panel(20,20,   [-70,-15], [50,40],  [-20,25],  "A"),
-    ...panel(320,20,  [-60,-25], [70,-20], [10,-45],  "B"),
-    ...panel(20,250,  [-25,-60], [40,40],  [15,-20],  "C"),
-    ...panel(320,250, [40,-50],  [-60,30], [-20,-20], "D")
+    // A: c ide iz zajednicke tocke prema dolje-desno (nije a+b)
+    ...panel(oxL, oyT, 5, 3, 3, [[0,0],[5.9,-1.2]], [2.65,-1.15], "A"),
+    // B: isti c, obrnuta orijentacija (strelica u zajednicku tocku)
+    ...panel(oxR, oyT, 5, 3, 3, [[5.9,-1.2],[0,0]], [2.65,-1.15], "B"),
+    // C: c = a + b, strelica u zajednicku tocku  -> TOCAN
+    ...panel(oxL, oyB, 7, 4, 3, [[-1.1,-3.6],[0,0]], [-0.98,-2.05], "C"),
+    // D: c = -(a + b), strelica iz zajednicke tocke
+    ...panel(oxR, oyB, 7, 4, 3, [[0,0],[-1.1,-3.6]], [-0.98,-2.05], "D")
   );
 }
 
@@ -330,11 +348,15 @@ function Svg14_2024Alj(){
       e("text",{key:"lb"+x,x:px(x),y:oy+16,textAnchor:"middle",fontSize:11,fontFamily:"serif",fill:st},String(x)),
     ]).flat(),
     e("text",{key:"lb0",x:ox+5,y:oy+14,fontSize:11,fontFamily:"serif",fill:st},"0"),
+    // supalj kruzic u ishodistu (kao u originalu)
+    e("circle",{key:"o0",cx:ox,cy:oy,r:3.2,fill:"var(--bg)",stroke:st,strokeWidth:1.2}),
     // polinom
     e("polyline",{key:"fn",points:pts.join(" "),fill:"none",stroke:"var(--blue,#4a90d9)",strokeWidth:2}),
     // vrhovi (ekstrenni)
     e("line",{key:"vMax",x1:px(-5),y1:py(f(-5)),x2:px(-5),y2:oy,stroke:st,strokeDasharray:"3 3",strokeWidth:1}),
     e("line",{key:"vMin",x1:px(2),y1:py(f(2)),x2:px(2),y2:oy,stroke:st,strokeDasharray:"3 3",strokeWidth:1}),
+    e("circle",{key:"dMax",cx:px(-5),cy:py(f(-5)),r:3.5,fill:st}),
+    e("circle",{key:"dMin",cx:px(2),cy:py(f(2)),r:3.5,fill:st}),
     e("text",{key:"yf",x:px(3.5),y:oy-90,fontSize:13,fontStyle:"italic",fontFamily:"serif",fill:st},"y = f(x)")
   );
 }
