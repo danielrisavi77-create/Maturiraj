@@ -80,7 +80,7 @@ function Svg24_2016Bj(){
     linPts.length>1&&e("polyline",{points:linPts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:2}),
     e("circle",{cx:toX(4),cy:oy,r:3.5,fill:_GREEN,stroke:"var(--bg)",strokeWidth:1.5}),
     e("circle",{cx:ox,cy:toY(-2),r:3.5,fill:_GREEN,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:toX(5.5),y:toY(0.75)-7,fontSize:9,fill:_BLUE},"f(x)=0.5x\u22122")
+    e("text",{x:W-3,y:toY(1.9),textAnchor:"end",fontSize:8,fill:_BLUE},"f(x)=0.5x\u22122")
   );
 }
 
