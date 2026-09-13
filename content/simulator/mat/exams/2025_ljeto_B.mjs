@@ -47,10 +47,10 @@ function Svg33_2025Blj(){
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-4;i<=5;i++){
-    grid+=`<line x1="${tx(i)}" y1="${ty(-3)}" x2="${tx(i)}" y2="${ty(4)}" stroke="${st}" stroke-width="0.4" stroke-dasharray="2 5" opacity="0.18"/>`;
+    grid+=`<line x1="${tx(i)}" y1="${ty(-3)}" x2="${tx(i)}" y2="${ty(4)}" stroke="${st}" stroke-width="0.7" opacity="0.55"/>`;
   }
   for(let j=-3;j<=4;j++){
-    grid+=`<line x1="${tx(-4)}" y1="${ty(j)}" x2="${tx(5)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.4" stroke-dasharray="2 5" opacity="0.18"/>`;
+    grid+=`<line x1="${tx(-4)}" y1="${ty(j)}" x2="${tx(5)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.7" opacity="0.55"/>`;
   }
   const tk=
     `<circle cx="${tx(1)}" cy="${ty(0)}" r="2.5" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
@@ -74,8 +74,8 @@ function Svg33_2025Blj(){
 }
 
 function Svg30_2025Blj(){
-  const ax="var(--text)",st="#475569";
-  const hd="rgba(148,163,184,0.18)", s1="rgba(148,163,184,0.06)";
+  const ax="var(--text)",st="var(--muted)";
+  const hd="var(--s2)", s1="var(--s1,transparent)";
   
   // === TABLICA (gore) ===
   const cellW=85, cellH=28, hdrW=100;
@@ -128,12 +128,15 @@ function Svg30_2025Blj(){
     
     pieHtml += `<path d="M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z" fill="${d.color}" stroke="${ax}" stroke-width="1"/>`;
     
+    // Prazna crta uz isječak — učenik sam upisuje ocjenu (kao u originalu).
     const midAngle = startAngle + angle/2;
-    const lx = cx + (r+22) * Math.cos(midAngle);
-    const ly = cy + (r+22) * Math.sin(midAngle);
-    const anchor = lx > cx+5 ? "start" : (lx < cx-5 ? "end" : "middle");
-    pieHtml += `<text x="${lx}" y="${ly+4}" fill="${ax}" font-size="10" font-family="sans-serif" text-anchor="${anchor}">${d.label}</text>`;
-    
+    const lx = cx + (r+16) * Math.cos(midAngle);
+    const ly = cy + (r+16) * Math.sin(midAngle);
+    const len = 86;
+    const x1L = lx >= cx ? lx : lx - len;
+    const x2L = lx >= cx ? lx + len : lx;
+    pieHtml += `<line x1="${x1L}" y1="${ly}" x2="${x2L}" y2="${ly}" stroke="${ax}" stroke-width="1.2" stroke-linecap="round"/>`;
+
     startAngle = endAngle;
   });
   
@@ -153,11 +156,17 @@ function Svg18_2025Blj(){
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
   let grid="";
   for(let i=-4;i<=6;i++){
-    grid+=`<line x1="${tx(i)}" y1="${ty(-5)}" x2="${tx(i)}" y2="${ty(3)}" stroke="${st}" stroke-width="0.4" stroke-dasharray="2 5" opacity="0.18"/>`;
+    grid+=`<line x1="${tx(i)}" y1="${ty(-5)}" x2="${tx(i)}" y2="${ty(3)}" stroke="${st}" stroke-width="0.7" opacity="0.55"/>`;
   }
   for(let j=-5;j<=3;j++){
-    grid+=`<line x1="${tx(-4)}" y1="${ty(j)}" x2="${tx(6)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.4" stroke-dasharray="2 5" opacity="0.18"/>`;
+    grid+=`<line x1="${tx(-4)}" y1="${ty(j)}" x2="${tx(6)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.7" opacity="0.55"/>`;
   }
+  // Vektorska oznaka: slovo + nacrtana strelica iznad (kombinirajući U+20D7 se ne
+  // renderira u svim fontovima pa ispada kao prazan pravokutnik).
+  const vecLabel=(x,y,ch)=>
+    `<text x="${x}" y="${y}" fill="${ax}" font-size="15" font-style="italic" font-family="Georgia,serif">${ch}</text>`+
+    `<line x1="${x-1}" y1="${y-14}" x2="${x+11}" y2="${y-14}" stroke="${ax}" stroke-width="1.2"/>`+
+    `<polygon points="${x+13},${y-14} ${x+8},${y-16.6} ${x+8},${y-11.4}" fill="${ax}"/>`;
   // Vektor a: rep u (-3, 2), vrh u (2, 2) → a = (5, 0)
   const aRep=[-3,2], aVrh=[2,2];
   // Vektor b: rep u (-1, 1), vrh u (0, -3) → b = (1, -4)
@@ -179,11 +188,11 @@ function Svg18_2025Blj(){
     // Vektor a
     `<line x1="${tx(aRep[0])}" y1="${ty(aRep[1])}" x2="${tx(aVrh[0])}" y2="${ty(aVrh[1])}" stroke="${ax}" stroke-width="1.8" marker-end="url(#arr)"/>`+
     `<circle cx="${tx(aRep[0])}" cy="${ty(aRep[1])}" r="2.5" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
-    `<text x="${tx((aRep[0]+aVrh[0])/2)-6}" y="${ty(aVrh[1])-10}" fill="${ax}" font-size="13" font-style="italic" font-family="serif">a\u20D7</text>`+
+    vecLabel(tx((aRep[0]+aVrh[0])/2)-6, ty(aVrh[1])-12, "a")+
     // Vektor b
     `<line x1="${tx(bRep[0])}" y1="${ty(bRep[1])}" x2="${tx(bVrh[0])}" y2="${ty(bVrh[1])}" stroke="${ax}" stroke-width="1.8" marker-end="url(#arr)"/>`+
     `<circle cx="${tx(bRep[0])}" cy="${ty(bRep[1])}" r="2.5" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
-    `<text x="${tx(bRep[0])-16}" y="${ty((bRep[1]+bVrh[1])/2)+4}" fill="${ax}" font-size="13" font-style="italic" font-family="serif">b\u20D7</text>`;
+    vecLabel(tx(bRep[0])-30, ty((bRep[1]+bVrh[1])/2)+4, "b");
   
   return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:{display:'block',margin:'8px auto'}},
     React.createElement('g',{dangerouslySetInnerHTML:{__html:
@@ -198,10 +207,11 @@ function Svg18_2025Blj(){
 }
 
 function Svg16_2025Blj(){
-  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
-  const W=420, H=380;
-  const A=[80,300],B=[260,300],C=[340,240],D=[160,240];
-  const vE=[80,140],vF=[260,140],vG=[340,80],vH=[160,80];
+  const blue="var(--blue)"; const blueD="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
+  // Izduženi (visoki) kvadar kao u originalu: visina ≈ 2× širina osnovke.
+  const W=420, H=520;
+  const A=[95,430],B=[275,430],C=[355,372],D=[175,372];
+  const vE=[95,110],vF=[275,110],vG=[355,52],vH=[175,52];
   const visible=[
    ["AB",A,B],["BC",B,C],["AE",A,vE],["BF",B,vF],["CG",C,vG],
    ["EF",vE,vF],["FG",vF,vG],["GH",vG,vH],["EH",vE,vH]
@@ -214,7 +224,7 @@ function Svg16_2025Blj(){
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"420px",width:"100%",display:"block",margin:"12px auto"}},
     ...hidden.map(([n,p,q])=>e("line",{key:"h"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
-      stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
+      stroke:blueD,strokeWidth:1.6,strokeDasharray:"7 5",strokeOpacity:0.6})),
     ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blue,strokeWidth:2})),
     ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
@@ -232,12 +242,22 @@ function Svg15_2025Blj(){
   const B=[cx + r, cy];
   const C=[cx + r*Math.cos(deg(60)), cy - r*Math.sin(deg(60))];
   const O=[cx, cy];
+  // Luk kuta x kod vrha A: između polupravca AB (0°) i polupravca AC (30°)
+  const aR=44;
+  const aAng=Math.atan2(C[1]-A[1], C[0]-A[0]); // negativan (prema gore)
+  const arcS=[A[0]+aR, A[1]];
+  const arcE=[A[0]+aR*Math.cos(aAng), A[1]+aR*Math.sin(aAng)];
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"400px",width:"100%",display:"block",margin:"12px auto"}},
     e("circle",{key:"c",cx:cx,cy:cy,r:r,fill:blueLight,stroke:blue,strokeWidth:2}),
     // Triangle ABC
     e("polygon",{key:"tr",points:`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]}`,fill:"none",stroke:gold,strokeWidth:1.8}),
     e("line",{key:"AB",x1:A[0],y1:A[1],x2:B[0],y2:B[1],stroke:gold,strokeWidth:2}),
+    // Dužina OC — stranica jednakostraničnog trokuta OBC
+    e("line",{key:"OC",x1:O[0],y1:O[1],x2:C[0],y2:C[1],stroke:gold,strokeWidth:2}),
+    // Luk kuta x kod vrha A + oznaka
+    e("path",{key:"arc",d:`M ${arcS[0]} ${arcS[1]} A ${aR} ${aR} 0 0 0 ${arcE[0]} ${arcE[1]}`,fill:"none",stroke:txt,strokeWidth:1.4}),
+    e("text",{key:"lx",x:A[0]+20,y:A[1]-14,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"x"),
     // Center
     e("circle",{key:"O",cx:O[0],cy:O[1],r:3,fill:txt}),
     e("text",{key:"lO",x:O[0]-6,y:O[1]+18,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"O"),
@@ -341,10 +361,10 @@ function Svg11_2025Blj(){
     const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
     let g="";
     for(let i=-3;i<=4;i++){
-      g+=`<line x1="${tx(i)}" y1="${ty(-4)}" x2="${tx(i)}" y2="${ty(3)}" stroke="${st}" stroke-width="0.4" stroke-dasharray="2 5" opacity="0.18"/>`;
+      g+=`<line x1="${tx(i)}" y1="${ty(-4)}" x2="${tx(i)}" y2="${ty(3)}" stroke="${st}" stroke-width="0.7" opacity="0.5"/>`;
     }
     for(let j=-4;j<=3;j++){
-      g+=`<line x1="${tx(-3)}" y1="${ty(j)}" x2="${tx(4)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.4" stroke-dasharray="2 5" opacity="0.18"/>`;
+      g+=`<line x1="${tx(-3)}" y1="${ty(j)}" x2="${tx(4)}" y2="${ty(j)}" stroke="${st}" stroke-width="0.7" opacity="0.5"/>`;
     }
     const tk=
       `<circle cx="${tx(1)}" cy="${ty(0)}" r="2.5" fill="${bg}" stroke="${ax}" stroke-width="1"/>`+
@@ -352,7 +372,7 @@ function Svg11_2025Blj(){
       `<text x="${tx(1)-2}" y="${ty(0)+13}" fill="${ax}" font-size="10" font-family="serif">1</text>`+
       `<text x="${tx(0)-10}" y="${ty(1)+3}" fill="${ax}" font-size="10" font-family="serif">1</text>`+
       `<text x="${tx(0)-10}" y="${ty(0)+13}" fill="${ax}" font-size="10" font-family="serif">0</text>`+
-      `<text x="${tx(3.9)-6}" y="${ty(0)+13}" fill="${ax}" font-size="11" font-style="italic" font-family="serif">x</text>`+
+      `<text x="${tx(3.55)}" y="${ty(0)+16}" fill="${ax}" font-size="11" font-style="italic" font-family="serif">x</text>`+
       `<text x="${tx(0)+5}" y="${ty(3)-2}" fill="${ax}" font-size="11" font-style="italic" font-family="serif">y</text>`;
     // Vertex marker RED
     const vmark = `<circle cx="${tx(vertex[0])}" cy="${ty(vertex[1])}" r="3.5" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.2"/>`;
