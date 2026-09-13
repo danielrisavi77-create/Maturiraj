@@ -169,151 +169,142 @@ function SvgZad12_2014JA(){
 }
 
 function SvgZad10_2014JA(){
-  // Graf f(x)=2^x-4 — eksponencijalna raste, y(0)=-3
-  const W=320,H=250,cx=100,cy=175,sc=35;
-  const gridLines=[];
-  for(let i=-2;i<=4;i++) gridLines.push(e("line",{key:"gv"+i,x1:cx+i*sc,y1:15,x2:cx+i*sc,y2:H-10,stroke:"#2a2d3e",strokeWidth:1}));
-  for(let i=-4;i<=3;i++) gridLines.push(e("line",{key:"gh"+i,x1:15,y1:cy-i*sc,x2:W-10,y2:cy-i*sc,stroke:"#2a2d3e",strokeWidth:1}));
-  // Točke krivulje
+  // Graf f(x)=2^x-4 — kao u ispitu: mreza, osi s oznakama 0 i 1, BEZ natpisa funkcije
+  // (natpis bi odao tocan odgovor A). Asimptota y=-4, nultocka x=2, f(0)=-3.
+  const sc=22;                 // px po jedinici
+  const xMin=-6,xMax=5,yMin=-5,yMax=5;
+  const cx=32+(-xMin)*sc, cy=20+yMax*sc;   // ishodiste
+  const W=cx+xMax*sc+25, H=cy+(-yMin)*sc+18;
+  const X=x=>cx+x*sc, Y=y=>cy-y*sc;
+  const grid='var(--muted)', ax='var(--text)';
+  const els=[];
+  for(let i=xMin;i<=xMax;i++) els.push(e("line",{key:"gv"+i,x1:X(i),y1:Y(yMax),x2:X(i),y2:Y(yMin),stroke:grid,strokeOpacity:0.35,strokeWidth:1}));
+  for(let i=yMin;i<=yMax;i++) els.push(e("line",{key:"gh"+i,x1:X(xMin),y1:Y(i),x2:X(xMax),y2:Y(i),stroke:grid,strokeOpacity:0.35,strokeWidth:1}));
+  // Osi sa strelicama
+  els.push(e("line",{key:"ax",x1:X(xMin)-8,y1:cy,x2:X(xMax)+14,y2:cy,stroke:ax,strokeWidth:1.6}));
+  els.push(e("line",{key:"ay",x1:cx,y1:Y(yMin)+8,x2:cx,y2:Y(yMax)-14,stroke:ax,strokeWidth:1.6}));
+  els.push(e("polygon",{key:"arx",points:`${X(xMax)+20},${cy} ${X(xMax)+12},${cy-4} ${X(xMax)+12},${cy+4}`,fill:ax}));
+  els.push(e("polygon",{key:"ary",points:`${cx},${Y(yMax)-20} ${cx-4},${Y(yMax)-12} ${cx+4},${Y(yMax)-12}`,fill:ax}));
+  els.push(e("text",{key:"lx",x:X(xMax)+16,y:cy+16,fill:ax,fontSize:13,fontStyle:"italic"},"x"));
+  els.push(e("text",{key:"ly",x:cx+6,y:Y(yMax)-16,fill:ax,fontSize:13,fontStyle:"italic"},"y"));
+  // Oznake 0 i 1 (kao u ispitu — samo te dvije)
+  els.push(e("text",{key:"t0",x:cx-11,y:cy+15,fill:ax,fontSize:12,fontWeight:"bold"},"0"));
+  els.push(e("text",{key:"t1x",x:X(1)+3,y:cy+15,fill:ax,fontSize:12,fontWeight:"bold"},"1"));
+  els.push(e("text",{key:"t1y",x:cx-13,y:Y(1)+5,fill:ax,fontSize:12,fontWeight:"bold"},"1"));
+  // Krivulja y=2^x-4 (klipana na okvir mreze)
   const pts=[];
-  for(let xi=-2;xi<=3.5;xi+=0.08){
-    pts.push([cx+xi*sc, cy-(Math.pow(2,xi)-4)*sc]);
+  for(let xi=xMin;xi<=xMax+0.001;xi+=0.05){
+    const yi=Math.pow(2,xi)-4;
+    if(yi<yMin||yi>yMax) continue;
+    pts.push(`${X(xi).toFixed(1)},${Y(yi).toFixed(1)}`);
   }
-  let path=`M ${pts[0][0]} ${pts[0][1]}`;
-  for(let i=1;i<pts.length;i++) path+=` L ${pts[i][0]} ${pts[i][1]}`;
-  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",background:"var(--s2)",borderRadius:8}},
-    ...gridLines,
-    e("line",{x1:15,y1:cy,x2:W-10,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("line",{x1:cx,y1:H-10,x2:cx,y2:10,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("polygon",{points:`${W-10},${cy} ${W-20},${cy-4} ${W-20},${cy+4}`,fill:"var(--muted)"}),
-    e("polygon",{points:`${cx},10 ${cx-4},20 ${cx+4},20`,fill:"var(--muted)"}),
-    e("text",{x:W-8,y:cy+4,fill:"var(--muted)",fontSize:12,fontStyle:"italic"},"x"),
-    e("text",{x:cx+4,y:10,fill:"var(--muted)",fontSize:12,fontStyle:"italic"},"y"),
-    e("text",{x:cx+3,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
-    ...[1,2,3].map(i=>e("text",{key:"lx"+i,x:cx+i*sc-5,y:cy+13,fill:"var(--muted)",fontSize:10},i)),
-    ...[-3,-2,-1,1,2].map(i=>e("text",{key:"ly"+i,x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
-    e("path",{d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
-    e("circle",{cx:cx,cy:cy+3*sc,r:4,fill:"#e8c547"}),
-    e("text",{x:cx+5,y:cy+3*sc+4,fill:"#e8c547",fontSize:10},"(0,−3)"),
-    e("text",{x:cx+2*sc,y:cy-0.8*sc,fill:"var(--blue)",fontSize:11,fontStyle:"italic"},"y=2ˣ−4")
-  );
+  els.push(e("polyline",{key:"crv",points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.6,strokeLinecap:"round",strokeLinejoin:"round"}));
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",background:"var(--s2)",borderRadius:8}},...els);
 }
 
 function SvgQ29_3_2014JA() {
-  const W=278, H=175;
+  const W=290, H=160;
   const t='var(--text)';
-  // Koordinate iz PDF slike (approximirane):
-  // A=gore-lijevo (108°), B=gore-desno (šiljast vrh), 
-  // C=dolje-sredina (122°), D=dolje-lijevo
-  const A=[44,33];
-  const B=[237,50];
-  const C=[172,146];
-  const D=[44,110];
+  // Koordinate preslikane iz originalne skice (str. 20, zadatak 29.3):
+  // A = vrh s kutom 108° (gore-lijevo), B = siljasti vrh desno,
+  // C = vrh s kutom 122° (dolje), D = lijevi vrh. Skica NIJE u mjerilu.
+  const A=[47.6,40];
+  const B=[265.4,56.6];
+  const C=[104.9,127.8];
+  const D=[30,81.8];
 
   const els=[];
-  // Četverokut
+  // Cetverokut (bez ispune — kao u originalu)
   els.push(e('polygon',{key:'q',
     points:[A,B,C,D].map(p=>`${p[0]},${p[1]}`).join(' '),
-    fill:'rgba(74,144,217,0.07)',stroke:t,strokeWidth:2}));
+    fill:'none',stroke:t,strokeWidth:2,strokeLinejoin:'round'}));
 
-  // Kut 108° kod A — luk između AB i AD
-  const angAB=Math.atan2(B[1]-A[1],B[0]-A[0]); // ≈ +0.085 (desno-dolje)
-  const angAD=Math.atan2(D[1]-A[1],D[0]-A[0]); // ≈ +1.39 (pravo dolje)
-  const rA=28;
-  // Luk od angAB do angAD (velika strelica — 108° unutarnji kut)
-  // Sweep flag=1 (clockwise) za unutarnji luk od AB do AD
+  // Kut 108° kod A — luk od AB do AD
+  const angAB=Math.atan2(B[1]-A[1],B[0]-A[0]);
+  const angAD=Math.atan2(D[1]-A[1],D[0]-A[0]);
+  const rA=34;
   els.push(e('path',{key:'arcA',
     d:`M ${(A[0]+rA*Math.cos(angAB)).toFixed(1)},${(A[1]+rA*Math.sin(angAB)).toFixed(1)} A ${rA} ${rA} 0 0 1 ${(A[0]+rA*Math.cos(angAD)).toFixed(1)},${(A[1]+rA*Math.sin(angAD)).toFixed(1)}`,
     fill:'none',stroke:t,strokeWidth:1.4}));
-  els.push(e('text',{key:'tA',x:A[0]+36,y:A[1]+18,fill:t,fontSize:11},'108°'));
+  els.push(e('text',{key:'tA',x:59.9,y:54,fill:t,fontSize:11,fontWeight:'bold',textAnchor:'middle'},'108°'));
 
-  // Kut 122° kod C — luk između CB i CD
-  const angCB=Math.atan2(B[1]-C[1],B[0]-C[0]); // gore-desno
-  const angCD=Math.atan2(D[1]-C[1],D[0]-C[0]); // gore-lijevo
-  const rC=26;
-  // Unutarnji luk (122°) — sweep flag=0 (counterclockwise od CB do CD)
+  // Kut 122° kod C — luk od CB do CD
+  const angCB=Math.atan2(B[1]-C[1],B[0]-C[0]);
+  const angCD=Math.atan2(D[1]-C[1],D[0]-C[0]);
+  const rC=28;
   els.push(e('path',{key:'arcC',
     d:`M ${(C[0]+rC*Math.cos(angCB)).toFixed(1)},${(C[1]+rC*Math.sin(angCB)).toFixed(1)} A ${rC} ${rC} 0 0 0 ${(C[0]+rC*Math.cos(angCD)).toFixed(1)},${(C[1]+rC*Math.sin(angCD)).toFixed(1)}`,
     fill:'none',stroke:t,strokeWidth:1.4}));
-  els.push(e('text',{key:'tC',x:C[0]+2,y:C[1]-2,fill:t,fontSize:11},'122°'));
+  els.push(e('text',{key:'tC',x:104.9,y:118.5,fill:t,fontSize:11,fontWeight:'bold',textAnchor:'middle'},'122°'));
 
-  // Mjere stranica (labele uz polovicu stranice, ofset od linije)
-  // AB=146m (gore)
-  els.push(e('text',{key:'mAB',x:(A[0]+B[0])/2,y:(A[1]+B[1])/2-10,
-    fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'146 m'));
-  // AD=57m (lijevo) — ofset ulijevo
-  els.push(e('text',{key:'mAD',x:(A[0]+D[0])/2-24,y:(A[1]+D[1])/2+3,
-    fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'57 m'));
-  // BC=123m (desno) — ofset udesno
-  els.push(e('text',{key:'mBC',x:(B[0]+C[0])/2+24,y:(B[1]+C[1])/2+3,
-    fill:'var(--gold)',fontSize:11,textAnchor:'middle'},'123 m'));
+  // Mjere stranica — na istim mjestima kao u originalu
+  els.push(e('text',{key:'mAB',x:133,y:38.6,fill:t,fontSize:11,fontWeight:'bold',textAnchor:'middle'},'146 m'));
+  els.push(e('text',{key:'mAD',x:48.4,y:110.6,fill:t,fontSize:11,fontWeight:'bold',textAnchor:'middle'},'57 m'));
+  els.push(e('text',{key:'mBC',x:194.9,y:109.5,fill:t,fontSize:11,fontWeight:'bold',textAnchor:'middle'},'123 m'));
 
-  // Labele vrhova
-  els.push(e('text',{key:'lA',x:A[0]-15,y:A[1]+4,fill:t,fontSize:12,fontWeight:'bold'},'A'));
-  els.push(e('text',{key:'lB',x:B[0]+4, y:B[1]+4,fill:t,fontSize:12,fontWeight:'bold'},'B'));
-  els.push(e('text',{key:'lC',x:C[0]+4, y:C[1]+14,fill:t,fontSize:12,fontWeight:'bold'},'C'));
-  els.push(e('text',{key:'lD',x:D[0]-16,y:D[1]+4,fill:t,fontSize:12,fontWeight:'bold'},'D'));
+  // Oznake vrhova (nema ih u originalu, ali se koriste u postupku rjesavanja)
+  const m='var(--muted)';
+  els.push(e('text',{key:'lA',x:A[0]-13,y:A[1]-1,fill:m,fontSize:11,fontWeight:'bold'},'A'));
+  els.push(e('text',{key:'lB',x:B[0]+5, y:B[1]+3,fill:m,fontSize:11,fontWeight:'bold'},'B'));
+  els.push(e('text',{key:'lC',x:C[0]-4, y:C[1]+16,fill:m,fontSize:11,fontWeight:'bold'},'C'));
+  els.push(e('text',{key:'lD',x:D[0]-14,y:D[1]+4,fill:m,fontSize:11,fontWeight:'bold'},'D'));
 
   return e('svg',{viewBox:`0 0 ${W} ${H}`,style:{width:'100%',maxWidth:W}}, ...els);
 }
 
 function SvgQ29_1_2014JA() {
-  const W=270, H=230;
+  const W=228, H=178;
   const t='var(--text)';
-  const a=50; // strana kvadrata u px
+  const a=62;                      // stranica kvadrata u px
 
-  // Visina trokuta: PDF pokazuje trokute koji su otprilike 1.3× visina od baze
-  // Za isosceles s krakovima ~a i bazom a: h ≈ a*1.3 da izgleda kao na PDF-u
-  const ht=Math.round(a*1.25); // 62px
+  // Mreza je "lepeza": kvadrat, a sva cetiri sukladna jednakokracna trokuta
+  // dijele zajednicki vrh P desno od kvadrata (kao u originalnoj skici).
+  // Baza trokuta = a, visina trokuta = a (iscrtkana duzina), krak = a*sqrt(5)/2.
+  const qx=32, qy=55;              // gornji lijevi vrh kvadrata
+  const Px=qx+2*a, Py=qy+a/2;      // zajednicki vrh lepeze
+  const L=a*Math.sqrt(5)/2;        // krak trokuta
+  const apex=2*Math.atan(0.5);     // vrsni kut ≈ 53,13°
+  const base=Math.atan2(a/2,-a);   // smjer P → donji desni vrh kvadrata
+  const V=k=>[Px+L*Math.cos(base+k*apex), Py+L*Math.sin(base+k*apex)];
+  // k=0 → donji desni vrh kvadrata, k=1 → gornji desni vrh kvadrata
+  const rays=[-1,0,1,2,3].map(V);
 
-  // Kvadrat centriran u (90, 88)
-  const qx=90, qy=85;
-
-  // 4 trokuta, svaki pričvršćen na jednu stranicu kvadrata
-  const pts = {
-    top:   [[qx,qy],[qx+a,qy],[qx+a/2, qy-ht]],          // vrh gore
-    right: [[qx+a,qy],[qx+a,qy+a],[qx+a+ht, qy+a/2]],    // vrh desno
-    bot:   [[qx,qy+a],[qx+a,qy+a],[qx+a/2, qy+a+ht]],    // vrh dolje
-    left:  [[qx,qy],[qx,qy+a],[qx-ht, qy+a/2]],           // vrh lijevo
-  };
-
-  const fillTri='rgba(80,200,120,0.1)', fillSq='rgba(74,144,217,0.1)';
+  const fillTri='rgba(80,200,120,0.10)', fillSq='rgba(74,144,217,0.10)';
   const els=[];
 
-  // Trokuti (crtaj PRIJE kvadrata)
-  Object.entries(pts).forEach(([k,p])=>
-    els.push(e('polygon',{key:'t'+k,
-      points:p.map(v=>v[0]+','+v[1]).join(' '),
-      fill:fillTri,stroke:t,strokeWidth:1.8})));
+  // Cetiri trokuta lepeze (crtaj prije kvadrata)
+  for(let i=0;i<4;i++){
+    const p1=rays[i], p2=rays[i+1];
+    els.push(e('polygon',{key:'tri'+i,
+      points:`${Px.toFixed(1)},${Py.toFixed(1)} ${p1[0].toFixed(1)},${p1[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`,
+      fill:fillTri,stroke:t,strokeWidth:1.8,strokeLinejoin:'round'}));
+  }
 
-  // Kvadrat (crtaj ZADNJI da bude iznad bridova trokuta)
+  // Kvadrat (zadnji, da prekrije bridove trokuta)
   els.push(e('rect',{key:'sq',x:qx,y:qy,width:a,height:a,
     fill:fillSq,stroke:t,strokeWidth:2}));
 
-  // Pravi kutovi na kvadratu (dolje-lijevo i dolje-desno — vidljivi u PDF-u)
-  const s=7;
-  els.push(e('polyline',{key:'sqAL',
-    points:`${qx+s},${qy+a} ${qx+s},${qy+a-s} ${qx},${qy+a-s}`,
-    fill:'none',stroke:t,strokeWidth:1.2}));
-  els.push(e('polyline',{key:'sqAR',
-    points:`${qx+a-s},${qy+a} ${qx+a-s},${qy+a-s} ${qx+a},${qy+a-s}`,
-    fill:'none',stroke:t,strokeWidth:1.2}));
-
-  // Dashed apotem gornjeg trokuta (središte baze → vrh)
+  // Iscrtkana visina trokuta (poloviste desne stranice kvadrata → vrh P)
   els.push(e('line',{key:'apt',
-    x1:qx+a/2,y1:qy, x2:qx+a/2,y2:qy-ht,
-    stroke:t,strokeWidth:1,strokeDasharray:'3,2'}));
+    x1:qx+a,y1:qy+a/2, x2:Px,y2:Py,
+    stroke:t,strokeWidth:1,strokeDasharray:'3,3'}));
+
+  // Pravi kutovi: dolje-lijevo i dolje-desno na kvadratu te uz iscrtkanu duzinu
+  const s=8;
+  const rAng=(key,x,y,dx,dy)=>els.push(e('polyline',{key,
+    points:`${x+dx*s},${y} ${x+dx*s},${y+dy*s} ${x},${y+dy*s}`,
+    fill:'none',stroke:t,strokeWidth:1.2}));
+  rAng('rgBL',qx,qy+a,1,-1);
+  rAng('rgBR',qx+a,qy+a,-1,-1);
+  rAng('rgMid',qx+a,qy+a/2,1,-1);
 
   // Labele "a"
-  // Gornja stranica kvadrata
   els.push(e('text',{key:'a1',x:qx+a/2,y:qy-7,
-    fill:'var(--gold)',fontSize:12,textAnchor:'middle'},'a'));
-  // Lijeva stranica kvadrata
-  els.push(e('text',{key:'a2',x:qx-15,y:qy+a/2+4,
-    fill:'var(--gold)',fontSize:12,textAnchor:'middle'},'a'));
-  // Apotem label (unutar gornjeg trokuta, desno od dashed linije)
-  els.push(e('text',{key:'a3',x:qx+a/2+7,y:qy-ht/2+5,
-    fill:'var(--gold)',fontSize:11},'a'));
+    fill:'var(--gold)',fontSize:12,fontStyle:'italic',fontWeight:'bold',textAnchor:'middle'},'a'));
+  els.push(e('text',{key:'a2',x:qx-14,y:qy+a/2+4,
+    fill:'var(--gold)',fontSize:12,fontStyle:'italic',fontWeight:'bold',textAnchor:'middle'},'a'));
+  els.push(e('text',{key:'a3',x:(qx+a+Px)/2,y:Py-7,
+    fill:'var(--gold)',fontSize:12,fontStyle:'italic',fontWeight:'bold',textAnchor:'middle'},'a'));
 
   return e('svg',{viewBox:`0 0 ${W} ${H}`,style:{width:'100%',maxWidth:W}}, ...els);
 }
