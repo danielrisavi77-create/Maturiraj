@@ -79,36 +79,39 @@ function SvgZad7_2010JB(){
 }
 
 function Svg28j(){
-  const c={padding:"7px 10px",border:"1px solid var(--bdr2)",fontSize:12,textAlign:"center"};
+  // PDF-vjerno: tablica 2 retka x 5 stupaca (Ocjena / dovoljan(2) / dobar(3) / vrlo dobar(4) / odlican(5))
+  const W=560,H=112;
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  // Color-coded per ocjena (PDF-faithful: each grade column distinguished)
-  const colors={
-    dov:{bg:"rgba(233,180,70,.18)",fg:"var(--gold)"},     // dovoljan = amber
-    dob:{bg:"rgba(74,144,217,.18)",fg:"var(--blue)"},     // dobar = blue
-    vrd:{bg:"rgba(80,200,120,.18)",fg:"var(--green)"},    // vrlo dobar = green
-    odl:{bg:"rgba(186,134,221,.20)",fg:"#ba86dd"}         // odličan = purple
-  };
-  const h=col=>({...c,fontWeight:700,background:col.bg,color:col.fg,borderColor:col.fg});
-  const v=col=>({...c,background:col.bg,color:col.fg,borderColor:col.fg,fontVariantNumeric:"tabular-nums"});
-  const hRow={...c,fontWeight:700,background:"var(--s2)",textAlign:"left"};
-  return e("div",{style:{overflowX:"auto",margin:"10px 0"}},
-    e("table",{style:{borderCollapse:"collapse",fontSize:12,minWidth:380}},
-      e("thead",null,e("tr",null,
-        e("th",{style:hRow},"Ocjena"),
-        e("th",{style:h(colors.dov)},"dovoljan (2)"),
-        e("th",{style:h(colors.dob)},"dobar (3)"),
-        e("th",{style:h(colors.vrd)},"vrlo dobar (4)"),
-        e("th",{style:h(colors.odl)},"odličan (5)")
-      )),
-      e("tbody",null,e("tr",null,
-        e("td",{style:hRow},"Ostvareni postotak (%) bodova"),
-        e("td",{style:v(colors.dov)},"51 – 64"),
-        e("td",{style:v(colors.dob)},"65 – 79"),
-        e("td",{style:v(colors.vrd)},"80 – 89"),
-        e("td",{style:v(colors.odl)},"90 – 100")
-      ))
-    )
-  );
+  const T="var(--text)";
+  const X=[6,166,264,362,460,554];          // granice stupaca
+  const Y=[6,44,106];                       // granice redaka (zaglavlje, podaci)
+  const cols=[
+    {head:["dovoljan (2)"],val:"51 \u2013 64",  col:_GOLD},
+    {head:["dobar (3)"],   val:"65 \u2013 79",  col:_BLUE},
+    {head:["vrlo dobar (4)"],val:"80 \u2013 89",col:_GREEN},
+    {head:["odli\u010Dan (5)"],val:"90 \u2013 100",col:_RED}
+  ];
+  const kids=[];
+  // tinta po stupcu (radi u obje teme: token + fillOpacity)
+  cols.forEach(function(c,i){
+    kids.push(e("rect",{key:"bg"+i,x:X[i+1],y:Y[0],width:X[i+2]-X[i+1],height:Y[2]-Y[0],fill:c.col,fillOpacity:0.12}));
+  });
+  // tekst zaglavlja + vrijednosti
+  cols.forEach(function(c,i){
+    const cx=(X[i+1]+X[i+2])/2;
+    kids.push(e("text",{key:"h"+i,x:cx,y:29,textAnchor:"middle",fontSize:14,fontWeight:700,fill:c.col},c.head[0]));
+    kids.push(e("text",{key:"v"+i,x:cx,y:81,textAnchor:"middle",fontSize:14,fontWeight:700,fill:c.col},c.val));
+  });
+  // lijevi stupac (nazivi redaka)
+  kids.push(e("text",{key:"lh",x:(X[0]+X[1])/2,y:29,textAnchor:"middle",fontSize:14,fontWeight:700,fill:T},"Ocjena"));
+  const lbl=["Ostvareni","postotak (%)","bodova"];
+  lbl.forEach(function(t,i){
+    kids.push(e("text",{key:"ll"+i,x:X[0]+10,y:62+i*17,fontSize:13,fontWeight:700,fill:T},t));
+  });
+  // mreza
+  Y.forEach(function(y,i){ kids.push(e("line",{key:"hl"+i,x1:X[0],y1:y,x2:X[5],y2:y,stroke:T,strokeWidth:1.4})); });
+  X.forEach(function(x,i){ kids.push(e("line",{key:"vl"+i,x1:x,y1:Y[0],x2:x,y2:Y[2],stroke:T,strokeWidth:1.4})); });
+  return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block"}},...kids);
 }
 
 function Svg27j(){
@@ -146,21 +149,34 @@ function Svg27j(){
 }
 
 function Svg23j(){
-  const c={padding:"7px 10px",border:"1px solid var(--bdr2)",fontSize:12,lineHeight:1.4};
+  // PDF-vjerno: 2 retka (EURO / KUNA) x 3 stupca vrijednosti, bez naziva stupaca.
+  // Nepoznanice: EURO u 3. stupcu (par ? / 1 000) i KUNA u 2. stupcu (par 256,78 / ?).
+  const W=560,H=94;
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const h={...c,fontWeight:700,background:"var(--s2)",textAlign:"center"};
-  const v={...c,textAlign:"center",background:"var(--s1)"};
-  const em={...c,textAlign:"center",background:"rgba(233,180,70,.06)",border:"1px dashed var(--gold)",color:"var(--gold)",fontSize:11};
-  return e("div",{style:{overflowX:"auto",margin:"10px 0"}},
-    e("table",{style:{borderCollapse:"collapse",fontSize:12}},
-      e("thead",null,e("tr",null,e("th",{style:{...h,width:"40%"}},"Valuta"),e("th",{style:{...h,width:"30%"}},"Iznos 1"),e("th",{style:{...h,width:"30%"}},"Iznos 2"))),
-      e("tbody",null,
-        e("tr",null,e("td",{style:h},"EURO (€)"),e("td",{style:v},"1"),e("td",{style:v},"256,78")),
-        e("tr",null,e("td",{style:h},"KUNA (HRK)"),e("td",{style:v},"7,4456"),e("td",{style:em},"?")),
-        e("tr",null,e("td",{style:h},"KUNA (HRK)"),e("td",{style:em},"?"),e("td",{style:v},"1 000"))
-      )
-    )
-  );
+  const T="var(--text)";
+  const X=[6,186,310,434,554];
+  const Y=[6,50,88];
+  const rows=[
+    {lbl:"EURO (\u20AC)",  cells:["1","256,78",null]},
+    {lbl:"KUNA (HRK)",     cells:["7,4456",null,"1 000"]}
+  ];
+  const kids=[];
+  rows.forEach(function(r,ri){
+    const cy=(Y[ri]+Y[ri+1])/2+5;
+    kids.push(e("text",{key:"l"+ri,x:(X[0]+X[1])/2,y:cy,textAnchor:"middle",fontSize:15,fontWeight:700,fill:T},r.lbl));
+    r.cells.forEach(function(val,ci){
+      const cx=(X[ci+1]+X[ci+2])/2;
+      if(val===null){
+        kids.push(e("rect",{key:"e"+ri+"_"+ci,x:X[ci+1]+8,y:Y[ri]+7,width:X[ci+2]-X[ci+1]-16,height:Y[ri+1]-Y[ri]-14,fill:_GOLD,fillOpacity:0.10,stroke:_GOLD,strokeWidth:1.2,strokeDasharray:"5 3"}));
+        kids.push(e("text",{key:"q"+ri+"_"+ci,x:cx,y:cy,textAnchor:"middle",fontSize:15,fontWeight:700,fill:_GOLD},"?"));
+      }else{
+        kids.push(e("text",{key:"c"+ri+"_"+ci,x:cx,y:cy,textAnchor:"middle",fontSize:15,fill:T},val));
+      }
+    });
+  });
+  Y.forEach(function(y,i){ kids.push(e("line",{key:"hl"+i,x1:X[0],y1:y,x2:X[4],y2:y,stroke:T,strokeWidth:1.4})); });
+  X.forEach(function(x,i){ kids.push(e("line",{key:"vl"+i,x1:x,y1:Y[0],x2:x,y2:Y[2],stroke:T,strokeWidth:1.4})); });
+  return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block"}},...kids);
 }
 
 function SvgZad21_2010JB(){
