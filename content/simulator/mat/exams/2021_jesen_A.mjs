@@ -26,19 +26,19 @@ function Svg27cGrid_2021Ajesen(){
 }
 
 function Svg25a_2021Ajesen(){
-  const W=270,H=225;
+  // Viewport kao u originalu: cijela parabola s tjemenom (2,-4) unutar prikaza,
+  // x od -2 do 6, y od -5 do 4 (kvadratna mreza).
+  const W=250,H=266;
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  // Iz slike: y-os blizu lijeve strane, ishodište u donjem dijelu vidljivog područja
-  // x=1 je vidljiv odmah desno, mreža je fine (svaka jed. = jedan kvadrat)
-  const OX=48,OY=125,SX=36,SY=26;
+  const OX=70,OY=120,SZ=25;
 
   const elems=[];
 
-  // Mreža
-  for(let i=-1;i<=6;i++)
-    elems.push(e("line",{key:`gv${i}`,x1:OX+i*SX,y1:8,x2:OX+i*SX,y2:H-8,stroke:"var(--bdr)",strokeWidth:0.7}));
-  for(let j=-4;j<=4;j++)
-    elems.push(e("line",{key:`gh${j}`,x1:8,y1:OY-j*SY,x2:W-8,y2:OY-j*SY,stroke:"var(--bdr)",strokeWidth:0.7}));
+  // Mreza
+  for(let i=-2;i<=6;i++)
+    elems.push(e("line",{key:`gv${i}`,x1:OX+i*SZ,y1:8,x2:OX+i*SZ,y2:H-8,stroke:"var(--bdr)",strokeWidth:0.7}));
+  for(let j=-5;j<=4;j++)
+    elems.push(e("line",{key:`gh${j}`,x1:8,y1:OY-j*SZ,x2:W-8,y2:OY-j*SZ,stroke:"var(--bdr)",strokeWidth:0.7}));
 
   // Osi
   elems.push(e("line",{key:"ax",x1:8,y1:OY,x2:W-8,y2:OY,stroke:"var(--text)",strokeWidth:1.5}));
@@ -49,19 +49,20 @@ function Svg25a_2021Ajesen(){
   elems.push(e("text",{key:"ly",x:OX+3,y:12,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"y"));
   // Oznake na osima
   elems.push(e("text",{key:"l0",x:OX+2,y:OY+12,fontSize:9,fill:"var(--muted)"},"0"));
-  elems.push(e("text",{key:"l1x",x:OX+SX-2,y:OY+12,fontSize:9,fill:"var(--muted)"},"1"));
-  elems.push(e("line",{key:"t1y",x1:OX-4,y1:OY-SY,x2:OX+4,y2:OY-SY,stroke:"var(--text)",strokeWidth:1}));
-  elems.push(e("text",{key:"l1y",x:OX-16,y:OY-SY+4,fontSize:9,fill:"var(--muted)"},"1"));
+  elems.push(e("circle",{key:"t1x",cx:OX+SZ,cy:OY,r:1.8,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}));
+  elems.push(e("text",{key:"l1x",x:OX+SZ+3,y:OY+12,fontSize:9,fill:"var(--muted)"},"1"));
+  elems.push(e("circle",{key:"t1y",cx:OX,cy:OY-SZ,r:1.8,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1}));
+  elems.push(e("text",{key:"l1y",x:OX+5,y:OY-SZ+4,fontSize:9,fill:"var(--muted)"},"1"));
 
   // Clip
   const clipId="cp25aJ";
 
-  // Parabola y = x²−4x, x ∈ [−0.4, 6]
+  // Parabola y = x^2 - 4x, x in [-1, 5]  (tjeme (2,-4) je unutar prikaza)
   let d="";
-  for(let i=0;i<=250;i++){
-    const x=-0.4+6.4*i/250;
+  for(let i=0;i<=240;i++){
+    const x=-1+6*i/240;
     const y=x*x-4*x;
-    const px=OX+x*SX, py=OY-y*SY;
+    const px=OX+x*SZ, py=OY-y*SZ;
     d+=(i===0?"M ":"L ")+px.toFixed(1)+" "+py.toFixed(1)+" ";
   }
 
@@ -70,8 +71,6 @@ function Svg25a_2021Ajesen(){
     ...elems,
     e("path",{key:"curve",d,fill:"none",stroke:_BLUE,
       strokeWidth:2.2,clipPath:`url(#${clipId})`}),
-    // Tjeme mark
-    e("circle",{key:"tj",cx:OX+2*SX,cy:OY+4*SY,r:2.5,fill:_RED}),
   );
 }
 
