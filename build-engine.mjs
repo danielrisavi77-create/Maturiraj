@@ -25,6 +25,7 @@ const POST_GEN_PATCHES = [
   '2.2 lazy nerdamer: __ensureNerdamer() umjesto eager window.nerdamer',
   '3.2 grading: import { isAnswerCorrect, normalizeAnswer, numEquals } from "@/lib/mat-grading"',
   '5.2 izbacenih 70 QS_*_META konstanti iz klijentskog bundlea',
+  '5.3 infra izdvojena u components/simulator/mat/core/{state,exams,runtime,mathText} + importi u coreu',
 ];
 {
   const force = process.argv.includes('--force');
