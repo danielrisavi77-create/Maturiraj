@@ -688,7 +688,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
               fontSize:11,fontWeight:700,color:"#ff6b2b",letterSpacing:".05em"
             }},
               e("span",{style:{width:6,height:6,borderRadius:"50%",background:"#ff6b2b",display:"inline-block",animation:"pulse 1.8s ease-in-out infinite"}}),
-              "Discere uz Standard"
+              FREE_LIMIT+" pitanja gotovo"
             )
           ),
           /* Mini feedback */
@@ -717,7 +717,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           }},"Koliko bi dobio na maturi?"),
           /* Subline */
           e("div",{style:{fontSize:14,color:"var(--muted)",marginBottom:22,lineHeight:1.72,animation:"up .45s .2s cubic-bezier(.16,1,.3,1) both"}},
-            "Discere arhiva je dostupna uz Standard ili Pro plan \u2014 nema besplatnog previewa."),
+            "Odgovorio si na prva "+FREE_LIMIT+" pitanja \u2014 sad ide pravi test."),
           /* Value stack — staggered */
           e("div",{style:{display:"flex",flexDirection:"column",gap:8,marginBottom:28}},
             ...["Saznaj svoj realni rezultat na maturi","Otkrij gdje gubi\u0161 najvi\u0161e bodova","Vidi koja pitanja te ru\u0161e ispod praga"].map((txt,i)=>

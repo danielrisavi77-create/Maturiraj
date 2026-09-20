@@ -9,7 +9,9 @@ export const metadata = {
 
 export default function HrvatskiSimulatorPage() {
   return (
-    <PlanGate>
+    // Hrvatski ide po free-preview modelu: prijava je obavezna, ali free
+    // korisnik smije ući (ispit je besplatan, analiza rezultata zaključana).
+    <PlanGate allowFree>
       <SimulatorClient />
     </PlanGate>
   );
