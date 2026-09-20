@@ -8,7 +8,7 @@ import { createClient } from '@/lib/supabase/client'
 function PrijavaContent() {
   const router      = useRouter()
   const params      = useSearchParams()
-  const redirect    = params.get('redirect') || '/'
+  const redirect    = params.get('redirect') || '/dashboard'
   const supabase    = createClient()
 
   const [mode,     setMode]     = useState('login')   // 'login' | 'register'
@@ -33,7 +33,7 @@ function PrijavaContent() {
           password,
           options: {
             data: { full_name: name, role, ...(role === 'parent' ? { childEmail } : {}) },
-            emailRedirectTo: `${appUrl}/auth/callback?redirect=${role === 'parent' ? '/roditelji' : '/'}`,
+            emailRedirectTo: `${appUrl}/auth/callback?redirect=${role === 'parent' ? '/roditelji' : '/dashboard'}`,
           },
         })
         if (e) throw e
@@ -41,7 +41,6 @@ function PrijavaContent() {
       } else {
         const { data, error: e } = await supabase.auth.signInWithPassword({ email, password })
         if (e) throw e
-        // Provjeri ulogu korisnika nakon login-a
         const userRole = data?.user?.user_metadata?.role
         if (userRole === 'parent') {
           router.push('/roditelji')
@@ -74,7 +73,6 @@ function PrijavaContent() {
       options: { redirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(redirect)}` },
     })
     if (e) { setError('Google prijava nije uspjela.'); setLoading(false) }
-    // Redirect se dešava automatski kroz OAuth flow
   }
 
   const inputStyle = {
@@ -110,7 +108,6 @@ function PrijavaContent() {
         backdropFilter: 'blur(24px)',
         padding: '36px 32px',
       }}>
-        {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <div onClick={() => router.push('/')} style={{
             display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer', marginBottom: 20,
@@ -130,7 +127,6 @@ function PrijavaContent() {
           </div>
         </div>
 
-        {/* Uloga toggle */}
         <div style={{
           display: 'flex', gap: 3, padding: '4px',
           background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)',
@@ -149,7 +145,6 @@ function PrijavaContent() {
           ))}
         </div>
 
-        {/* Mode toggle */}
         <div style={{
           display: 'flex', gap: 3, padding: '4px',
           background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)',
@@ -168,12 +163,12 @@ function PrijavaContent() {
           ))}
         </div>
 
-        {/* Google button */}
         <button
           onClick={handleGoogle}
           disabled={loading}
           style={{
-            width: '100%', padding: '12px', borderRadius: 14,
+            width: '100%', padding: '12px',
+            borderRadius: 14,
             border: '1px solid rgba(255,255,255,.1)',
             background: 'rgba(255,255,255,.05)',
             color: 'var(--text)', fontSize: 14, fontWeight: 700,
@@ -192,14 +187,12 @@ function PrijavaContent() {
           Nastavi s Googleom
         </button>
 
-        {/* Separator */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
           <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,.07)' }} />
           <span style={{ fontSize: 11, color: 'var(--muted)', fontWeight: 700 }}>ILI</span>
           <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,.07)' }} />
         </div>
 
-        {/* Form */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {mode === 'register' && (
             <input
@@ -252,7 +245,6 @@ function PrijavaContent() {
           />
         </div>
 
-        {/* Error / Success */}
         {error && (
           <div style={{
             marginTop: 12, padding: '10px 14px', borderRadius: 12,
@@ -268,7 +260,6 @@ function PrijavaContent() {
           }}>{success}</div>
         )}
 
-        {/* Submit */}
         <button
           onClick={handleEmailAuth}
           disabled={loading}
