@@ -8,12 +8,12 @@ import { NextResponse } from 'next/server'
 export async function GET(request) {
   const { searchParams, origin } = new URL(request.url)
   const code     = searchParams.get('code')
-  const next     = searchParams.get('next') ?? '/'
-  const redirectRaw = searchParams.get('redirect') ?? '/'
+  const next     = searchParams.get('next') ?? '/dashboard'
+  const redirectRaw = searchParams.get('redirect') ?? '/dashboard'
   // Sigurnost: dozvoli samo relativne, same-origin putanje (spriječi open redirect)
   const redirect = (redirectRaw.startsWith('/') && !redirectRaw.startsWith('//') && !redirectRaw.startsWith('/\\'))
     ? redirectRaw
-    : '/'
+    : '/dashboard'
 
   if (code) {
     const cookieStore = await cookies()

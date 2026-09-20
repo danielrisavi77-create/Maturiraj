@@ -11,6 +11,7 @@ import { sm2Update, generateStrategyTips, calcTopicMastery, getDueReviews, calcT
 import { checkNewAchievements } from './utils/achievements';
 import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
 import { saveSimResult } from '@/lib/sim-progress';
+import { isGameModeEnabled } from '@/lib/config/featureFlags';
 
 function AchievementToast({ badge, onDismiss }) {
   useEffect(() => {
@@ -536,7 +537,7 @@ function App(){
     )},
     e("div",{key:screen,className:"screen-slide"},
     screen==="upute"&&e(UputeModal,{onClose:()=>{setScreen(prevScreen);window.scrollTo(0,0);}}),
-    screen==="home"&&e(Home,{key:screen,onExam:goModeSelect,onPractice:goPractice,onFilter:goFilter,onErrors:goErrors,onBookmarks:goBookmarks,onStats:goStats,onBrowse:goBrowse,onEsej:goEsejList,onSazetak:goSazetakList,onShowDisclaimer:()=>setShowDisclaimer(true),onPracticeList:goPracticeList,onLektire:goLektire,onPojmovnik:()=>setShowPojmovnik(true),onImporter:()=>setShowImporter(true),onDDay:()=>setShowDDay(true),onDaily:goDaily,onAdaptive:goAdaptive,onGameMode:()=>window.location.assign('/game'),onWrapped:()=>setShowWrapped(true),onAIPlan:()=>setShowPlan(true),customQs,onClearCustom:clearCustomQs,userData,toggles}),
+    screen==="home"&&e(Home,{key:screen,onExam:goModeSelect,onPractice:goPractice,onFilter:goFilter,onErrors:goErrors,onBookmarks:goBookmarks,onStats:goStats,onBrowse:goBrowse,onEsej:goEsejList,onSazetak:goSazetakList,onShowDisclaimer:()=>setShowDisclaimer(true),onPracticeList:goPracticeList,onLektire:goLektire,onPojmovnik:()=>setShowPojmovnik(true),onImporter:()=>setShowImporter(true),onDDay:()=>setShowDDay(true),onDaily:goDaily,onAdaptive:goAdaptive,onGameMode:isGameModeEnabled()?()=>window.location.assign('/game'):undefined,onWrapped:()=>setShowWrapped(true),onAIPlan:()=>setShowPlan(true),customQs,onClearCustom:clearCustomQs,userData,toggles}),
     screen==="modeselect"&&e(ModeSelect,{key:screen,examKey:pendingExamKey,onExamMode:goExamMode,onPractice:goPractice,onBack:goHome,onEsej:goEsej,onSazetak:goSazetak}),
     screen==="filter"&&e(TopicFilterScreen,{key:screen,onStart:goFilterSession,onBack:goHome,userData}),
     screen==="errors"&&e(ErrorsScreen,{key:screen,userData,onStart:goErrorSession,onBack:goHome}),

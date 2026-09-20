@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import HeroCountdown from "@/components/landing/HeroCountdown";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { createClient } from "@/lib/supabase/client";
+import { isParentPortalEnabled } from "@/lib/config/featureFlags";
 
 export default function Nav({ onHome, onPlan, noCountdown = false }) {
   const [scrolled, setScrolled] = useState(false);
@@ -12,6 +13,7 @@ export default function Nav({ onHome, onPlan, noCountdown = false }) {
   const router = useRouter();
 
   const go = (path) => { router.push(path); };
+  const parentPortalEnabled = isParentPortalEnabled();
   const sc = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); };
   const closeMenu = () => setMenuOpen(false);
 
@@ -42,7 +44,7 @@ export default function Nav({ onHome, onPlan, noCountdown = false }) {
         <button className="nl" style={{ color: "#a78bfa", fontWeight: 600 }} onClick={() => { go("/termini"); closeMenu(); }}>📅 Termini</button>
         <button className="nl" style={{ color: "var(--blue)", fontWeight: 600 }} onClick={() => { go("/formule"); closeMenu(); }}>📐 Formule</button>
         <button className="nl" style={{ color: "var(--green)", fontWeight: 600 }} onClick={() => { go("/checklist"); closeMenu(); }}>✅ Checklist</button>
-        <button className="nl" style={{ color: "#c084fc", fontWeight: 600 }} onClick={() => { go("/roditelji"); closeMenu(); }}>📊 Za roditelje</button>
+        {parentPortalEnabled && <button className="nl" style={{ color: "#c084fc", fontWeight: 600 }} onClick={() => { go("/roditelji"); closeMenu(); }}>📊 Za roditelje</button>}
         <div className="nav-drawer-cta">
           <button className="btn bp btn-md" style={{ width: "100%" }} onClick={() => { sc("cijene"); closeMenu(); }}>💎 Cijene</button>
           {!authLoading && !user && (
@@ -82,7 +84,7 @@ export default function Nav({ onHome, onPlan, noCountdown = false }) {
           <button className="nl" style={{ color: "#a78bfa", fontWeight: 600 }} onClick={() => go("/termini")}>📅 Termini</button>
           <button className="nl" style={{ color: "var(--blue)", fontWeight: 600 }} onClick={() => go("/formule")}>📐 Formule</button>
           <button className="nl" style={{ color: "var(--green)", fontWeight: 600 }} onClick={() => go("/checklist")}>✅ Checklist</button>
-          <button className="nl" style={{ color: "#c084fc", fontWeight: 600 }} onClick={() => go("/roditelji")}>📊 Za roditelje</button>
+          {parentPortalEnabled && <button className="nl" style={{ color: "#c084fc", fontWeight: 600 }} onClick={() => go("/roditelji")}>📊 Za roditelje</button>}
           <button className="nl" style={{ color: "var(--gold)", fontWeight: 600 }} onClick={() => sc("cijene")}>💎 Cijene</button>
         </div>
 
@@ -279,7 +281,7 @@ function UserPill({ user, go }) {
             { label: "📅 Plan učenja", path: "/plan-ucenja" },
             { label: "✅ Checklist", path: "/checklist" },
             { label: "⭐ Discere", path: "/discere" },
-            { label: "📊 Za roditelje", path: "/roditelji" },
+            ...(isParentPortalEnabled() ? [{ label: "📊 Za roditelje", path: "/roditelji" }] : []),
           ].map(({ label, path }) => (
             <button
               key={path}
