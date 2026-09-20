@@ -179,6 +179,117 @@ function SvgZad29sol_2010ZA(){
   );
 }
 
+function SvgZad25a_2010ZA(){
+  // Q25.1: jedinicna trigonometrijska kruznica, kut AOB mjere alfa.
+  // A(1, 0) na pozitivnoj x-osi, B(-0,6; 0,8) na kruznici. Luk oznacava alfa.
+  const W=260,H=215,cx=130,cy=110,R=70;
+  const t="var(--text)",b="var(--blue)",mu="var(--muted)";
+  const toX=v=>cx+v*R, toY=v=>cy-v*R;
+  const Ax=toX(1),Ay=toY(0),Bx=toX(-0.6),By=toY(0.8);
+  const ar=24,aEnd=Math.atan2(0.8,-0.6); // ~126,87 stupnjeva
+  const arcD="M "+(cx+ar)+" "+cy+" A "+ar+" "+ar+" 0 0 0 "
+    +(cx+ar*Math.cos(aEnd)).toFixed(1)+" "+(cy-ar*Math.sin(aEnd)).toFixed(1);
+  return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block"}},
+    // osi
+    e("line",{x1:cx-R-27,y1:cy,x2:cx+R+24,y2:cy,stroke:t,strokeWidth:1.2}),
+    e("polygon",{points:(cx+R+32)+","+cy+" "+(cx+R+23)+","+(cy-3.2)+" "+(cx+R+23)+","+(cy+3.2),fill:t}),
+    e("line",{x1:cx,y1:cy+R+12,x2:cx,y2:cy-R-20,stroke:t,strokeWidth:1.2}),
+    e("polygon",{points:cx+","+(cy-R-28)+" "+(cx-3.2)+","+(cy-R-19)+" "+(cx+3.2)+","+(cy-R-19),fill:t}),
+    e("text",{x:cx+R+34,y:cy+13,fontSize:11,fontStyle:"italic",fontWeight:"bold",fill:t},"x"),
+    e("text",{x:cx-13,y:cy-R-21,fontSize:11,fontStyle:"italic",fontWeight:"bold",fill:t},"y"),
+    // jedinicna kruznica
+    e("circle",{cx:cx,cy:cy,r:R,fill:"none",stroke:t,strokeWidth:1}),
+    // kraci kuta OA i OB
+    e("line",{x1:cx,y1:cy,x2:Ax,y2:Ay,stroke:b,strokeWidth:2.6,strokeLinecap:"round"}),
+    e("line",{x1:cx,y1:cy,x2:Bx,y2:By,stroke:b,strokeWidth:2.6,strokeLinecap:"round"}),
+    // luk kuta alfa (od OA u pozitivnom smjeru do OB)
+    e("path",{d:arcD,fill:"none",stroke:mu,strokeWidth:1}),
+    e("text",{x:cx+9,y:cy-8,fontSize:11,fontStyle:"italic",fill:t},"α"),
+    // tocke A i B
+    e("circle",{cx:Ax,cy:Ay,r:3.2,fill:t}),
+    e("text",{x:Ax+4,y:Ay-5,fontSize:11,fontStyle:"italic",fontWeight:"bold",fill:t},"A"),
+    e("text",{x:Ax-1,y:Ay+14,fontSize:10,fontWeight:"bold",fill:t},"1"),
+    e("circle",{cx:Bx,cy:By,r:3.2,fill:t}),
+    e("text",{x:Bx-6,y:By-4,textAnchor:"end",fontSize:9,fontWeight:"bold",fill:t},"B(−0,6; 0,8)"),
+    // ishodiste i jedinica na y-osi
+    e("text",{x:cx-13,y:cy+14,fontSize:11,fontStyle:"italic",fontWeight:"bold",fill:t},"O"),
+    e("text",{x:cx-6,y:toY(1)+4,textAnchor:"end",fontSize:10,fontWeight:"bold",fill:t},"1")
+  );
+}
+
+function SvgZad25b_2010ZA(){
+  // Q25.2: graf periodicke funkcije y = f(x) na [0, 2pi] — 4 potpuna ciklusa.
+  // Period se ocitava s grafa (T = pi/2); slika ne otkriva odgovor brojcano.
+  const W=285,H=210,ox=40,oy=100,xLen=195,A=3,sy=25;
+  const t="var(--text)",b="var(--blue)",mu="var(--muted)";
+  const TAU=2*Math.PI;
+  const toX=v=>ox+(v/TAU)*xLen;
+  const toY=v=>oy-v*sy;
+  const pts=[];
+  for(let i=0;i<=480;i++){
+    const x=(i/480)*TAU;
+    pts.push(toX(x).toFixed(1)+","+toY(A*Math.sin(4*x)).toFixed(1));
+  }
+  const marks=[{v:0,lbl:"0",dx:4},{v:Math.PI,lbl:"π",dx:3},{v:TAU,lbl:"2π",dx:3}];
+  return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block"}},
+    // osi
+    e("line",{x1:ox-14,y1:oy,x2:ox+xLen+22,y2:oy,stroke:t,strokeWidth:1.2}),
+    e("polygon",{points:(ox+xLen+30)+","+oy+" "+(ox+xLen+21)+","+(oy-3.2)+" "+(ox+xLen+21)+","+(oy+3.2),fill:t}),
+    e("line",{x1:ox,y1:oy+95,x2:ox,y2:22,stroke:t,strokeWidth:1.2}),
+    e("polygon",{points:ox+","+14+" "+(ox-3.2)+",23 "+(ox+3.2)+",23",fill:t}),
+    e("text",{x:ox+xLen+32,y:oy+13,fontSize:10,fontStyle:"italic",fontWeight:"bold",fill:t},"x"),
+    e("text",{x:ox-12,y:22,fontSize:10,fontStyle:"italic",fontWeight:"bold",fill:t},"y"),
+    // krivulja
+    e("polyline",{points:pts.join(" "),fill:"none",stroke:b,strokeWidth:2,strokeLinejoin:"round",strokeLinecap:"round"}),
+    e("text",{x:toX(1.68*Math.PI)+12,y:toY(A)+6,fontSize:9,fontStyle:"italic",fontWeight:"bold",fill:t},"y = f(x)"),
+    // oznake na x-osi
+    ...marks.map(function(m,i){
+      return e("g",{key:"m"+i},
+        e("circle",{cx:toX(m.v),cy:oy,r:2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+        e("text",{x:toX(m.v)+m.dx,y:oy+14,fontSize:10,fontWeight:"bold",fill:t},m.lbl)
+      );
+    }),
+    // jedinica na y-osi
+    e("circle",{cx:ox,cy:toY(1),r:2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:ox-6,y:toY(1)+4,textAnchor:"end",fontSize:10,fontWeight:"bold",fill:t},"1")
+  );
+}
+
+function SvgZad29_5_2010ZA(){
+  // Q29.5: PRAZAN predlozak iz ispita — tockasta mreza s osima i jedinicama,
+  // ucenik sam ucrtava graf. Namjerno bez ijedne krivulje (ne otkriva rjesenje).
+  const W=270,H=280,padL=18,padT=24,u=16;
+  const xMin=-7,xMax=7,yMin=-2,yMax=13;
+  const t="var(--text)",d="var(--muted)";
+  const toX=v=>padL+(v-xMin)*u;
+  const toY=v=>padT+(yMax-v)*u;
+  const ox=toX(0),oy=toY(0);
+  const gL=toX(xMin),gR=toX(xMax),gT=toY(yMax),gB=toY(yMin);
+  const grid=[];
+  for(let i=0;i<=(xMax-xMin)*2;i++){
+    const x=gL+i*(u/2);
+    grid.push(e("line",{key:"gv"+i,x1:x,y1:gT,x2:x,y2:gB,stroke:d,strokeWidth:0.7,strokeDasharray:"1,2.4",opacity:0.8}));
+  }
+  for(let j=0;j<=(yMax-yMin)*2;j++){
+    const y=gT+j*(u/2);
+    grid.push(e("line",{key:"gh"+j,x1:gL,y1:y,x2:gR,y2:y,stroke:d,strokeWidth:0.7,strokeDasharray:"1,2.4",opacity:0.8}));
+  }
+  return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block"}},
+    ...grid,
+    e("line",{x1:gL,y1:oy,x2:gR+13,y2:oy,stroke:t,strokeWidth:1.6}),
+    e("polygon",{points:(gR+21)+","+oy+" "+(gR+12)+","+(oy-3.2)+" "+(gR+12)+","+(oy+3.2),fill:t}),
+    e("line",{x1:ox,y1:gB,x2:ox,y2:gT-13,stroke:t,strokeWidth:1.6}),
+    e("polygon",{points:ox+","+(gT-21)+" "+(ox-3.2)+","+(gT-12)+" "+(ox+3.2)+","+(gT-12),fill:t}),
+    e("text",{x:gR+11,y:oy+14,fontSize:10,fontStyle:"italic",fontWeight:"bold",fill:t},"x"),
+    e("text",{x:ox-13,y:gT-14,fontSize:10,fontStyle:"italic",fontWeight:"bold",fill:t},"y"),
+    e("text",{x:ox-13,y:oy+14,fontSize:11,fontWeight:"bold",fill:t},"0"),
+    e("circle",{cx:toX(1),cy:oy,r:2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:toX(1)+3,y:oy+14,fontSize:11,fontWeight:"bold",fill:t},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
+    e("text",{x:ox-6,y:toY(1)+4,textAnchor:"end",fontSize:11,fontWeight:"bold",fill:t},"1")
+  );
+}
+
 export const qs = [
   {
     id: 1,
@@ -1664,8 +1775,7 @@ export const qs = [
       "Uvijek provjeri obje grane kad faktorizacija daje produkt = 0.",
       "sin 2x = 2 sin x cos x — bazna formula za dvostruki kut."
     ],
-    warn: "Pazi: 0 NIJE uključen (lijeva granica je `⟨`), π/2 JE uključen (desna granica je `]`). Uvijek provjeri obje granice intervala — često rješenje pada baš na granicu.",
-    img: true
+    warn: "Pazi: 0 NIJE uključen (lijeva granica je `⟨`), π/2 JE uključen (desna granica je `]`). Uvijek provjeri obje granice intervala — često rješenje pada baš na granicu."
   },
   {
     id: 26,
@@ -1781,7 +1891,6 @@ export const qs = [
   {
     id: "28a",
     type: "sa",
-    img: true,
     topic: "exp",
     points: 1,
     q: "Koliko je stanovnika u gradu bilo 1958. godine?",
@@ -1822,7 +1931,6 @@ export const qs = [
   {
     id: "28b",
     type: "sa",
-    img: true,
     topic: "exp",
     points: 1,
     q: "Koje je godine u gradu bilo 15 000 stanovnika?",
@@ -1865,7 +1973,6 @@ export const qs = [
   {
     id: "28c",
     type: "sa",
-    img: true,
     topic: "exp",
     points: 1,
     q: "Ako se pretpostavi da će se broj stanovnika i dalje povećavati na isti način, kada će u gradu biti trostruko više stanovnika nego 1950. godine?",
@@ -2211,5 +2318,8 @@ export const qs = [
 
 export const qImages = {
   "2010_zima_A__15": () => e(SvgZad15_2010ZA, null),
+  "2010_zima_A__25a": () => e(SvgZad25a_2010ZA, null),
+  "2010_zima_A__25b": () => e(SvgZad25b_2010ZA, null),
+  "2010_zima_A__29.5": () => e(SvgZad29_5_2010ZA, null),
   "2010_zima_A__8": () => e(SvgZad8_2010ZA, null),
 };
