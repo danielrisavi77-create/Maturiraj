@@ -4,11 +4,12 @@ import { EXAMS, ESEJI, SAZECI, LEVEL_NAMES, TOPIC_LABELS, XP_LEVELS } from '../h
 import { e, getLevel, xpProgress, xpToNext } from '../utils/helpers';
 import { calcTopicMastery, getDueReviews, MASTERY_LEVELS } from '../utils/pedagogy';
 import { AnalyticsPanel } from './analytics/AnalyticsPanel';
+import { isHrvFreePracticeExam } from '@/components/discere/paywall/paywallHelpers';
 
 // Shared accessibility props for interactive divs (keyboard + screen reader)
 const accBtn={role:"button",tabIndex:0,onKeyDown:ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();ev.currentTarget.click();}}};
 
-function YearGroup({year,examList,onExam}){
+function YearGroup({year,examList,onExam,isPaid}){
   const yearExams=examList.filter(ex=>ex.year===year);
   const[open,setOpen]=useState(false);
   const[selRazina,setSelRazina]=useState(null);
@@ -62,6 +63,8 @@ function YearGroup({year,examList,onExam}){
       e("div",{style:{display:"flex",alignItems:"center",width:"100%",gap:8}},
         e("span",{className:seasonClass},seasonLabel),
         e("span",{className:"exrow-sub-info"},exam.qs.length+" pitanja"),
+        isHrvFreePracticeExam(examKey)&&(isPaid===undefined||!isPaid)&&e("span",{style:{fontSize:10,fontWeight:700,padding:"2px 7px",borderRadius:99,
+          background:"rgba(62,207,110,.12)",border:"1px solid rgba(62,207,110,.35)",color:"var(--green)"}},"🆓 Besplatno u cijelosti"),
         e("span",{style:{color:"var(--muted)",fontSize:16,marginLeft:"auto"}},"→")
       ),
       e("div",{style:{display:"flex",flexDirection:"column",gap:4,paddingLeft:2}},
@@ -186,7 +189,7 @@ function YearGroup({year,examList,onExam}){
   );
 }
 
-function Home({onExam,onPractice,onPracticeList,onFilter,onErrors,onBookmarks,onStats,onBrowse,onEsej,onSazetak,onLektire,onPojmovnik,onImporter,onDDay,onDaily,onAdaptive,onGameMode,onWrapped,onAIPlan,customQs,onClearCustom,onShowDisclaimer,userData,toggles}){
+function Home({onExam,onPractice,onPracticeList,onFilter,onErrors,onBookmarks,onStats,onBrowse,onEsej,onSazetak,onLektire,onPojmovnik,onImporter,onDDay,onDaily,onAdaptive,onGameMode,onWrapped,onAIPlan,customQs,onClearCustom,onShowDisclaimer,userData,toggles,isPaid}){
   const examList=Object.values(EXAMS).filter(ex=>Array.isArray(ex.qs));
   const[bookmarkCount]=useState(()=>{try{return Object.keys(JSON.parse(localStorage.getItem("discere_hrv_bookmarks")||"{}")).length;}catch(err){return 0;}});
   const[showTopics,setShowTopics]=useState(false);
@@ -596,7 +599,7 @@ function Home({onExam,onPractice,onPracticeList,onFilter,onErrors,onBookmarks,on
         e("div",{className:"exhdr",style:{padding:"14px 4px",fontSize:11}},"Dostupni ispiti"),
         (()=>{
           const years=[...new Set(examList.map(ex=>ex.year))].sort((a,b)=>b-a);
-          return years.map(year=>e(YearGroup,{key:year,year,examList,onExam}));
+          return years.map(year=>e(YearGroup,{key:year,year,examList,onExam,isPaid}));
         })()
       ),
 

@@ -4,6 +4,10 @@
  *           Exam Strategy Coach, Topic Mastery, Pre-exam Warmup
  */
 
+// Uvoz ide iz qcore.js, a ne iz helpers.js: ovaj modul se preko lib/learning/hrv-engine.ts
+// uvlaci u serverske route handlere, gdje React hookovi iz helpers.js ne postoje.
+import { chk, qIdentity } from './qcore.js';
+
 // ═══════════════════════════════════════════════════════════
 // 1. SM-2 SPACED REPETITION
 // ═══════════════════════════════════════════════════════════
@@ -85,6 +89,41 @@ export function getDueReviews(errorTracker) {
 }
 
 
+/**
+ * Izračunava novi errorTracker nakon završenog ispita/sesije: krivi odgovori
+ * ulaze/se ažuriraju preko SM-2 (quality=1), točni odgovori na postojeći zapis
+ * ažuriraju se preko SM-2 (quality=4) i brišu iz trackera kad postanu mastered.
+ * Čista funkcija — ne mutira errorTracker, ovisnost o sm2Update je injektirana
+ * (izbjegava ciklički import iz @/lib/learning/hrv-engine).
+ * @param {Array} qs - pitanja ispita/sesije (koriste _examKey/_srcId za virtualne sesije)
+ * @param {object} answers - result.answers, ključ je q.id
+ * @param {object} errorTracker - trenutni prev.errorTracker
+ * @param {string} examKey - result.examKey (fallback kad q nema _examKey)
+ * @param {function} sm2UpdateFn - sm2Update
+ * @returns {object} novi errorTracker
+ */
+export function buildTrackerUpdate(qs, answers, errorTracker, examKey, sm2UpdateFn) {
+  const tracker = { ...(errorTracker || {}) };
+  const ident = q => qIdentity(q, { key: examKey });
+  (qs || []).forEach(q => {
+    if (q.type !== "mc") return;
+    const outcome = chk(q, answers?.[q.id]);
+    const id = ident(q);
+    const key = id.examKey + "_" + id.qid;
+    if (outcome === false) {
+      const ex = tracker[key] || { count: 0, q: (q.q || "").slice(0, 80), topic: q.topic || "ostalo", examKey: id.examKey, qid: id.qid, ef: 2.5, reps: 0 };
+      const updated = sm2UpdateFn(ex, false, 1);
+      if (updated) tracker[key] = updated;
+    } else if (outcome === true && tracker[key]) {
+      const updated = sm2UpdateFn(tracker[key], true, 4);
+      if (updated === null) delete tracker[key]; // mastered
+      else tracker[key] = updated;
+    }
+  });
+  return tracker;
+}
+
+
 // ═══════════════════════════════════════════════════════════
 // 2. ADAPTIVE DIFFICULTY
 // ═══════════════════════════════════════════════════════════
@@ -145,15 +184,27 @@ export function selectAdaptiveMix(allQuestions, weights, count = 15) {
   });
 
   const selected = [];
+  const used = new Set();
   const topics = Object.keys(weights).filter(t => byTopic[t]?.length > 0);
   if (topics.length === 0) return mcQs.sort(() => Math.random() - 0.5).slice(0, count);
 
+  // Teme iz povijesti kojih više nema u bazenu (npr. stari zapisi s temom koja je u
+  // međuvremenu preimenovana) ovdje ispadaju, pa se preostale težine renormaliziraju —
+  // inače bi zbroj bio manji od 1 i sesija bi dobila manje pitanja nego što je traženo.
+  const weightSum = topics.reduce((sum, t) => sum + (weights[t] || 0), 0) || 1;
+
   // Allocate slots proportionally
   topics.forEach(t => {
-    const slots = Math.max(1, Math.round(count * (weights[t] || 0)));
+    const slots = Math.max(1, Math.round(count * ((weights[t] || 0) / weightSum)));
     const pool = [...byTopic[t]].sort(() => Math.random() - 0.5);
-    selected.push(...pool.slice(0, slots));
+    pool.slice(0, slots).forEach(q => { selected.push(q); used.add(q); });
   });
+
+  // Zaokruživanje po temama i male teme mogu dati manje od count — dopuni iz ostatka bazena.
+  if (selected.length < count) {
+    const rest = mcQs.filter(q => !used.has(q)).sort(() => Math.random() - 0.5);
+    selected.push(...rest.slice(0, count - selected.length));
+  }
 
   // Shuffle and trim to count
   return selected.sort(() => Math.random() - 0.5).slice(0, count);

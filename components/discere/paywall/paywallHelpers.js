@@ -75,6 +75,33 @@ export function checkResultsAccess(userAccess) {
 }
 
 /**
+ * Hrvatski simulator: rješavanje i ocjena testa su besplatni, ali razrada
+ * rezultata (pregled pitanja, analiza, savjeti, vježbanje grešaka) ide od
+ * Standard plana naviše. Zaseban helper jer checkResultsAccess pokriva
+ * pro-only AI analizu koju dijele i ostali predmeti.
+ *
+ * @param {UserAccess} userAccess
+ * @returns {boolean}
+ */
+export function canSeeHrvAnalysis(userAccess) {
+  return !!userAccess && userAccess.subscriptionTier !== 'free'
+}
+
+/**
+ * Ispiti koji su u cijelosti besplatni u vježbanju (bez FREE_LIMIT gatea).
+ * Ispitni mod je već besplatan za sve ispite — ovo dodatno oslobađa vježbanje.
+ */
+export const HRV_FREE_PRACTICE_EXAMS = ['2016_ljeto_B']
+
+/**
+ * @param {string} examKey
+ * @returns {boolean}
+ */
+export function isHrvFreePracticeExam(examKey) {
+  return HRV_FREE_PRACTICE_EXAMS.includes(examKey)
+}
+
+/**
  * Returns the minimum plan the user needs to upgrade to.
  * Simulator + AI analysis = Pro only.
  *

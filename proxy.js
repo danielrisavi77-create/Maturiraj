@@ -51,6 +51,15 @@ export async function proxy(request) {
     request.nextUrl.pathname.startsWith(route)
   )
 
+  // Hrvatski simulator radi po free-preview modelu: prijavljeni free korisnik smije ući,
+  // a ograničenja su u samoj aplikaciji (FREE_LIMIT u vjezbi, besplatan ispit, zakljucani
+  // rezultati preko canSeeHrvAnalysis). Ovdje mora postojati iznimka jer bi inace proxy
+  // preusmjerio free korisnika na /pro prije nego se stranica uopce renderira.
+  const freePreviewRoutes = ['/discere/hrvatski']
+  const isFreePreview = freePreviewRoutes.some(route =>
+    request.nextUrl.pathname.startsWith(route)
+  )
+
   // Dev bypass — owner email zaobilazi SAMO paid gate (/discere), nikad Pro rute.
   // Pro rute moraju ostati usklađene sa serverskim guardom (requirePro → getUserTier),
   // koji bypass ne poznaje; inače se stranica otvori, a njezini AI pozivi vraćaju 403.
@@ -79,7 +88,7 @@ export async function proxy(request) {
       return NextResponse.redirect(url)
     }
 
-    if (!isDevBypass && !isPaidTier(await readTier())) {
+    if (!isFreePreview && !isDevBypass && !isPaidTier(await readTier())) {
       const url = request.nextUrl.clone()
       url.pathname = '/pro'
       url.searchParams.set('from', 'discere')

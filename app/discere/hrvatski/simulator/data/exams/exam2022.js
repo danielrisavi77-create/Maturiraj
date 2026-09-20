@@ -739,37 +739,320 @@ Pravilno korištenje:
 6. Nakon proteka polovice vremena okrenite jastuk.
 7. Ne zagrijavajte jastučić odmah nakon što je netom zagrijan.
 8. Pričekajte minimalno 2 sata prije ponovnog grijanja.`;
+const TA1_2022_ljeto=`Antun Branko Šimić, Zapuštena
+
+U jednoj sobi ogromnoga grada
+pokraj sirotnoga pokućstva i suđa
+
+živi mlada žena
+
+Svaki dan o podne i naveče
+uđe jedno vučje lice
+
+I dok žena stojeći po strani
+Čeka
+
+vučje lice jelo proguta
+i ode
+
+U noći
+mlada žena ćuti pokraj peći
+– pjev vatre šúmi u tišini sobe –
+nad romanom Marcela Prévosta
+
+Dugo lice blijedo i bez nade
+oteščalo od čitanja padne
+
+nad stranice romana
+i usne
+
+Na prozoru rastvoreni modri cvjetovi
+čeznu sami u noć
+
+u kojoj bliza krčma divlje šumori i pjeva
+
+Antun Branko Šimić`;
+const TA2_2022_ljeto=`Ivan Gundulić, Osman (ulomak — Sunčanica i sjediljke)
+
+Sunčanica mlada i lijepa,
+od ke slovu svud kriposti,
+svijetlo ufanje ćaćka slijepa
+i štapak je u starosti.
+
+Mile unuke on viditi
+želi od drage kćerce ove
+i u njih opet ponoviti
+sebe i mrtve svê sinove.
+
+Ali je zaman da itko sada
+nje lipotu dvori mnogu,
+zašto djevstvo ona mlada
+zavjetova višnjem Bogu.
+
+Mudri ćaćko s biljêg veće
+pozna ovu nje odluku
+i, što obljubit kćerca neće
+vjerovnika, ćuti muku.
+
+No u sebi opet sudi
+da od djetinjstva plaha ishodi
+taj nje misô, s koje žudi
+da dni tako sama vodi.
+
+Tim neka u njoj od ljubavi
+probudi se časna želja,
+on razlike igre stavi
+od radosti i veselja.
+
+Od bugarskih mlados sela
+na igre se kupi ove,
+i ljuvena i vesela
+sjediljkam ih milim zove.
+
+Lijepe djevojke i gizdave,
+i seljani mladi š njima
+na nje idu, i vrh glave
+svak od cvijetja vijenac ima.
+
+U tanac se svi hitaju,
+svi začinju slatke pjesni
+i razlike igre igraju
+u pokoju i u ljuvezni.
+
+Vrh livade mlad uz mlada
+sjedi u cvijetju razlikomu,
+i riječ s riječim hitro sklada
+na uho šaptom ovi onomu.
+
+Natječu se svi pastiri,
+i ukazat svaki uživa
+Da skladnije dipli sviri
+I da u slađi glas popiva.
+
+Zatjecat se još ne taže
+pastirice najmilije,
+ka začinja pjesni draže,
+ka li vjenčac ljepše vije.
+
+Sjediljke ove skupio bȋše
+starac Ljubdrag na svom stanu,
+jeda srce tvrdo odviše
+od svê kćerce one ganu:
+
+ter od mladih, kih ustrili
+slavna lipost nje velika,
+kigodi joj tuj omili
+i obere ga vjerenika.
+
+Tumačenje manje poznatih riječi:
+od ke slovu svud kriposti – glasovita je po svojoj kreposti
+zaman – uzalud
+s biljêg veće – po više znakova
+sjediljka – okupljanje radi druženja
+ovi – ovaj
+ukazat – pokazati
+zatjecat se još ne taže – još se ne prestaju natjecati
+jeda – da
+kigodi – kojigod
+obere – izabere`;
+const TA3_2022_ljeto=`Josip Kozarac, Tena (ulomak)
+
+To divno tijelo bit će sada Jozino i Đorđevo: Jozino, koga nije mogla pred dvije godine ni gledati, koji joj je bio nemio kao zelena voćka! Je li joj žao? Čemu da joj bude žao kada poslije vodnika ionako nije nikoga više ljubila, ali u dubini duše mora si ona priznati da joj se vatreni Đorđe većma dopada negoli gospodski Leon. Razlika stališa, naobrazbe, način života među njom i Leonom, sve to više ju je odbijalo negoli privlačilo k Leonu.
+
+Da je sad Leon vidi u Jozinu i Đorđevu zagrljaju, što bi on rekao, bi li mu možda bilo žao? Ne bi, njega bi to samo neugodno dirnulo, baš kao kada bi vidio Canovin kip u zadimljenoj seljačkoj kuhinji. On ne bi žalio za njom, nego za onim što je na njoj lijepo – a za čim da ona žali, ona koja bolje razumije Đorđevu neobuzdanu vatru, Jozine prostačke riječi negoli Leonovo obožavanje „lijepoga” na njenom tijelu? To čuvstvo „lijepoga” naleti katkad i njojzi u dušu, ali njezina duša već je bila podivljali busen cvijeta iz kojega je više trnova negoli cvjetića isklijalo.`;
+const TA4_2022_ljeto=`Ranko Marinković, Kiklop (ulomak — urođenički liječnici)
+
+Kad su stigli veterinarski stručnjaci iz urođeničkoga sela, agent je mirno pasao kao i sva ostala grla. Ipak mu silom uguraše u ždrijelo slinave gvalje od nekakvih trava koje su najprije sažvakali u svojim ustima i zatim mijesili među prstima pljujući u njih obilno. Agent se doduše davio od toga, ali je ipak nastojao svim silama da posluša svoje dobronamjerne mučitelje: gutao je zelene kuglice mučno kao kokoš. Oni su ga liječili. A on se odmah i ponadao: eto, liječe, znači... i smiješio im se s prijaznom zahvalnošću.
+
+– Što su to trpali u njega? – upita kapetan liječnika tonom šefa obitelji.
+– Mislim, biljne purgative. Gospodina će to temeljito pročistiti. Ali čini se da to nije cijeli postupak. Oni će mu još i zle duhove istjerati iz trbuha.
+
+I doista, povalili su pacijenta na leđa i dok su ga četvorica držala za ruke i noge Veliki Vrač mu je utaknuo bambusovu cjevčicu u duboko usaljeni pupak, zatim uzeo ugarak iz ruku svog asistenta i živom žeravom stao šarati krugove oko bambusa po nabreklom agentovom trbuhu izgovarajući obredne riječi na koje su njegovi pomoćnici odgovarali skandirajući neke druge riječi, vjerojatno u ime demona koji, očito, nisu bez otpora napuštali utrobu našeg prijatelja. Agent je, razumije se, urlao od boli, a to je Veliki Vrač primao sa zadovoljstvom, kao znak uspješnog rađanja na pupak.
+
+Upravitelj stroja, koji je, čini se, bio najhumaniji i svakako najjači među bijelcima, učini pokret kojim bi vjerojatno bio zadavio Velikoga Vrača da ga liječnik nije u pravi čas zaustavio.
+
+– Zar ste poludjeli, gospodine!
+– Pa dokle oni kane tako mučiti ovog čovjeka?
+– Dok mu ne istjeraju i posljednjeg demona iz trbuha kroz onaj dimnjak na pupku.
+
+Demoni bi navodno trebali pobjeći pred vatrom...
+
+– Pa kada će to biti? – upita kapetan naivno, s laičkom radoznalošću.
+– To pitajte njih – odgovori liječnik neprijazno.`;
+const TA5_2022_ljeto=`Jorge Luis Borges, Zaprepaštenje
+
+Jedan susjed iz Moróna izvijestio me o slučaju:
+
+„Nitko baš pravo ne zna zašto su se Moritán i Pardo Rivarola zavadili, i to tako žestoko. Obojica su bili iz konzervativne stranke, a vjerujem da su se i upoznali u podružnici. Ne sjećam se Moritána jer bijah još vrlo mlad kad je on umro. Kažu da mu je obitelj bila iz Entre Riosa. Pardo je poživio još mnogo godina. Nije bio nikakav vođa niti nešto slično, ali je tako izgledao. Bio je prilično nizak i težak i vrlo razmetljiv u oblačenju. Nijedan od dvojice ne bje mlitav, ali je Rivarola više razmišljao, kako se kasnije i vidjelo. Odavno se bio zakleo da naudi Moritánu, ali je htio djelovati oprezno. Opravdavam ga; ako nekoga ubiješ i zatim moraš ispaštati u zatvoru, postupio si budalasto. Pardo je svoj plan dobro pripremio.
+
+Bilo je oko sedam sati uvečer, jedne nedjelje. Trg je bio pun svijeta. Kao i uvijek, tu je bio Rivarola, koji je polagano šetao, s karanfilom u zapučku i u crnom odijelu. Hodao je sa svojom nećakinjom. U jednom je trenutku iznenada udalji od sebe, čučnu na pod i počne mahati rukama i kukurikati kao da je pijetao. Ljudi se u strahu razmaknuše. Tako poštovani građanin kao Pardo, pa da to čini pred očima i usprkos čitavom Morónu, i to još nedjeljom! Nakon stotinjak metara okrenu se natrag i svejednako mašući i kukurikajući uđe u Moritánovu kuću. Gurnu vrata i jednim skokom nađe se u dvorištu. Mnoštvo se okupilo na ulici. Moritán, začuvši buku, pojavi se na dnu dvorišta. Vidjevši groznog neprijatelja kako nasrće, pokuša se uvući u kakvu sobu, ali jedan ga metak zahvati, a zatim i drugi. Rivarolu su odvela dva stražara. Čovjek se odupirao, kukurikajući.
+
+Nakon mjesec dana bio je na slobodi. Službeni liječnik proglasi da je bio žrtvom iznenadnog napada ludila. Zar ga čitavo mjesto nije vidjelo kako se ponaša kao pijetao?”`;
+const TA6_2022_ljeto=`Sofoklo, Antigona (ulomak — Tiresija i Kreont)
+
+KREONT:
+A što je? Kako riječ me tvoja prepala!
+
+TIRESIJA:
+Pa znat ćeš kad umijeća moga čuješ znak.
+Na mjestu kad sam starom, ptica motrištu,
+Gdje svaka dolijeće mi ptica, sjedio,
+Glas ptičji nepoznat mi čujem, ljutome
+U bijesu, divljoj graji one kreštahu.
+Razabrah: jedna drugu čupa pandžama
+I kolje; klepet krila jasno čuo se.
+U strahu odmah htjedoh žrtvu prinijeti
+Na zapaljenu žrtveniku, ali plamen se
+Te žrtve paljenice nije primao:
+Po pepelu se mast od bedra cijedila,
+Razlijevala i dimila; tad prsne žuč
+I uvis šikne, a salo se topilo
+Što bedrenu je svuda kost omatalo.
+Od ovog sam dječaka tako doznao
+Za gatanje da žrtva znaka nè daje;
+Jer meni on je vodič a ja drugima.
+A to zbog tvoje volje boluje nam grad.
+Ta svi su žrtvenici i sva ognjišta
+Sad ptičje a i pseće hrane prepuni
+Od Edipova sina, palog jadnika.
+Pa onda bozi žrtvene već molitve
+Ne primaju nit’ plamena od žrtava.
+Nit’ krešti ptica dobrokobno òkusiv
+Te masne krvi poginula čovjeka.
+To, dakle, sinko, drži sad na pameti!
+Ta griješiti je prirođeno ljudima;
+Al’ sagriješi li tko, on više čovjek lud
+Ni nesretan bit neće ako liječi se
+I nije uporan kad ù zlo zàbrazdi.
+Tvrdoglavost je isto što i bezumlje.
+Ti pusti mrtvog, ne muči poginula!
+Zar podvig je još jednom ubit mrtvoga?
+U dobroj zborim namjeri: poslušati
+Riječ dobrohotnu dobitak je najveći.`;
+const TA7_2022_ljeto=`Pedro Calderón de la Barca, Život je san (ulomak — Sigismundov monolog)
+
+(Otvaraju se vrata i ukazuje se Sigismund, okovan u lance i obučen u kožuh. U kuli je svjetlo.)
+
+SIGISMUND (iznutra)
+
+Jao meni, nesretniku!
+Kad me bijes vaš tako slama,
+o nebesa, znati hoću,
+rodivši se kakvu zloću
+ja pokazah prema vama?
+No već time što sam rođen,
+znam kakvim sam zlom pogođen.
+Zato dobar razlog vodi
+vašu strogost – moram reći –
+jer čovjekov grijeh najveći
+u tome je što se rodi.
+
+Jedina su moja htijenja,
+o nebesa: zbog svog mira
+želim znati (bez obzira
+na taj zločin mog rođenja)
+da l’ još čime vas uvrijedih,
+te me takva kazna slijedi?
+Jer i drugi rođeni su
+kao i ja – to svi znate –
+pa ih mnoga dobra prate,
+koja meni dana nisu.
+Ptić u gnijezdu se izvali
+i čim bude pun biserja,
+šaren kao cvijet od perja
+i krilati buket mali,
+odmah leti leta laka
+kroz odaje bistra zraka
+i ostavlja blagostanje
+svoga gnijezda u stablima,
+a ja više duše imam,
+no slobode mnogo manje.
+
+Zvijer se rodi: kožu čistu
+čim joj ospu pjege divne
+što se kao zvijezde čine
+(zahvaljujuć umnom kistu),
+po nagonu svom je ona
+već opasna i smiona
+i, okrutna prema svima,
+po svom labirintu hara,
+a ja, s mnogo više dara,
+ja slobode manje imam.
+(...)
+Kad me prožme jad taj hudi,
+kao vulkan gorim cio
+i srce bih svoje htio
+iščupati van iz grudi.
+Tko i zašto tako sudi
+i otima ovdje nama
+naša ljudska prava sama,
+povlastice i nagrade
+što ih nebo vodi dade,
+ptici, zvijeri i ribama?
+
+ROSAURA
+
+Njegove riječi u meni su
+strah i samilost izazvale.
+
+SIGISMUND
+
+Tko je slušao moje riječi?
+Je li Klotaldo?`;
+const TA8_2022_ljeto=`Viktor Žmegač, Nadrealisti i kravate
+
+NADREALISTI I KRAVATE. Sa starih crno-bijelih ili smećkastih fotografija gleda nas povijest. Kad nas motre umjetnici, stvara se dodatna kulturnopovijesna vrijednost. Preda mnom je jedna od skupnih fotografija istaknutih dadaista i nadrealista iz sredine dvadesetih godina. U prvom redu sjede ličnosti koje ne treba predstaviti: Tristan Tzara, André Breton, Salvador Dalí, Max Ernst, Man Ray. Svojim su djelima među najradikalnijim modernistima dvadesetoga stoljeća. No fotografija to nimalo ne pokazuje. Danas smo navikli na to da se avangardni signali moraju očitovati i u odjeći. Ako je umjetniku stalo do sebe, mora biti čupav, razdrljen, u što starijim trapericama i puloveru koji je njegovano prljav, po mogućnosti na dva-tri mjesta propaljen cigaretom. U naše vrijeme to je standard, a svakako više nije provokacija. Prije osamdesetak godina likovni i tekstualni izazovi bili su nezapamćeno žestoki, ali djela bila su jedno, a odijevanje drugo. Antigrađanski nasrtaji bili su u slikama i riječima koje su dolazile iz ruku autora pomno građanski obučenih. Čak ni dadaistička ulična događanja u prvim godinama poslije rata nisu bila bez izglačanih odijela, kravate ili leptirmašne. Takva je i fotografija. Svi imaju uredne košulje i decentne kravate, svi su uz suzdržan smiješak uprli oči u kameru, kao da će izletjeti ptičica. I Man Ray ne drži se drukčije, jedan od najvećih umjetničkih fotografa stoljeća. Tada svakako još nije postojala uniformnost vanjskih i unutarnjih crta ličnosti. Zanimljivo je protuslovlje u današnjoj epohi, koja od umjetnika očekuje klaunsku odjeću, naušnice i nanosnice, ali ne uočava da je umjetnost postala repetitivna. Gospoda s kravatama i sakoima (a ne s ribarskim jaknama) rušili su estetske konvencije stare i po petsto godina, i to sa štropotom. Danas su se posljednji trzaji provokacije preselili u ekstravagancije vanjske pojave.`;
+const TA9_2022_ljeto=`Darko Grundler, Utjecaj monitora s katodnom cijevi na uređaje i ljude
+
+Utjecaj elektromagnetskog polja monitora na uređaje svodi se na izazivanje smetnji i neispravnog rada. Takva vrsta ometanja zove se elektromagnetska interferencija (engl. electromagnetic interference, EMI). Primjeri ometanja su: smetnje na TV prijamnicima, radioprijamnicima i telekomunikacijskoj opremi. (...) Problem zajedničkog rada više uređaja bez osjetnog međusobno neželjenog utjecaja jest problem elektromagnetske sukladnosti (engl. electromagnetic compatibility, EMC). Za neka dva uređaja kaže se da su elektromagnetski sukladna ako mogu zajedno raditi bez međusobnih smetnji. Smatra se da monitor može štetno utjecati na zdravlje ljudi koji se nalaze u njihovoj blizini. Štetnost monitora nije u potpunosti razjašnjena niti su sa sigurnošću ustanovljene zdravstvene posljedice. Jedno od područja istraživanja jest utjecaj elektromagnetskih polja koja stvara monitor. Monitor se sastoji od mnogo sastavnih dijelova kroz koje protječe električna struja, pa se sukladno tome oko monitora rasprostiru električna i magnetska polja. Rasprostiranje električnih i magnetskih polja naziva se emisija (engl. emission). Prema istraživanjima, monitori proizvode dvije vrste emisija koje mogu utjecati na zdravlje. ELF (engl. extremely low frequency) emisija je izuzetno niske frekvencije (5 Hz do 2 kHz), a glavni joj je izvor uspravni otklonski sustav i napojna jedinica monitora. VLF (engl. very low frequency) emisija je vrlo niske frekvencije (2 kHz do 400 kHz), a izvor VLF-a vodoravni je otklonski sustav monitora. Viši pogonski naponi, kod višebojnih monitora, uzrokuju u načelu i veće razine emisije.
+
+Korisnici se od emisije mogu zaštititi na dva načina: filtriranjem signala i oklapanjem monitora. Oklapanje se svodi na zatvaranje monitora u metalni oklop tako da se pojedini dijelovi monitora presvlače tankim metalnim presvlakama. Primjerice staklo katodne cijevi monitora sadrži olovo kako bi smanjilo zračenje. Mišljenja stručnjaka o općoj štetnosti monitora na zdravlje vrlo su podijeljena i često suprotna te ne postoji znanstveno čvrsta podloga kojom bi se mogla potkrijepiti štetnost utjecaja monitora na zdravlje.`;
+const TA10_2022_ljeto=`Savršena tjestenina (savjeti s interneta)
+
+Kad se vratite gladni s posla, a niste neki vješti kuhari, posegnut ćete za namirnicama pogodnima za brzu pripremu. Jedna je od njih i tjestenina. Iako njeno kuhanje nije komplicirano, postoje pravila koja je potrebno slijediti kako bi se iz ove namirnice izvuklo ono najbolje.
+
+Odaberite visokokvalitetnu tjesteninu od fino mljevene durum-pšenice. Ona u usporedbi s običnom pšenicom sadrži više minerala i vitamina te također ima visoki udio proteina koji pridonose elastičnosti tjestenine pa se neće tako lako raskuhati.
+
+Kuhajte ju u dovoljnoj količini vode kako se ne bi slijepila i otpustila škrob. Neki od kulinarskih stručnjaka preporučuju čak 5 L vode na 1 kg tjestenine. Naravno, vaša količina tjestenine možda neće biti ovako velika, ali ako je riječ i o samo 500 g, iskoristite veći lonac u koji može stati barem 3 – 4 L vode jer je to jedini način da se tjestenina ravnomjerno skuha i bude ukusna.
+
+Budite oprezni s dodavanjem ulja i soli. Dodavanjem ulja nećete spriječiti sljepljivanje, već ćete tjesteninu učiniti masnijom. Stoga ju promiješate 3 – 4 puta u 10 minuta kako ne bi došlo do neželjenoga sljepljivanja. Sol dodajte nakon što je voda zakipjela. Tako ćete ubrzati proces zagrijavanja vode. Na svaku litru vode dodajte otprilike 1 ½ žličicu soli.
+
+Kako biste izbjegli raskuhavanje tjestenine, kušajte ju 2 – 3 minute prije predviđenoga završetka kuhanja otisnutoga na pakiranju jer ćete tako najbolje osjetiti al dente čvrstoću koja predstavlja savršeno skuhanu tjesteninu.
+
+Tjesteninu nakon kuhanja nemojte ispirati jer se tako gubi škrob i sva slasnost dobivena kuhanjem u slanoj vodi. Samo je procijedite i još vruću pomiješajte s umakom kako ne bi došlo do sljepljivanja. Umak po potrebi dodatno zagrijte s tjesteninom, ali ne duže od 2 minute. Jela od tjestenine servirajte topla, osim ako nije riječ o nekom obliku hladne salate.
+
+https://www.coolinarika.com/clanak/5-zlatnih-savjeta-kako-pripremiti-savrsenu-tjesteninu/ (prerađeno i prilagođeno)`;
 const QS_2022_ljeto_A=[
-  {id:1,type:"mc",topic:"knj_analiza",ctx:T1_2022_ljeto,ctxNaslov:"T1 — Zapuštena (Antun Branko Šimić)",q:"Koja od sljedećih tvrdnja o pjesmi nije točna?",opts:["A. Lirski subjekt u pjesmi mlada je žena.","B. Interpunkcija je u pjesmi reducirana.","C. Pjesma je pisana slobodnim stihom.","D. Pjesma je grafički organizirana."],sol:{cl:"A"},exp:"Lirski subjekt = glas koji promatra = nije sama mlada žena, već promatrač njezina života = A nije točna."},
-  {id:2,type:"mc",topic:"knj_analiza",ctx:T1_2022_ljeto,ctxNaslov:"T1 — Zapuštena (Antun Branko Šimić)",q:"Što je tema pjesme?",opts:["A. umjetnost kao sredstvo ostvarivanja boljega života","B. nemogućnost ostvarivanja ispunjenoga života","C. uzaludno iščekivanje voljene osobe","D. strah od velikoga grada"],sol:{cl:"B"},exp:"Žena zapuštena, bez nade, cvijeće čezne samo = ispunjeni život nije moguć = B."},
-  {id:3,type:"mc",topic:"knj_analiza",ctx:T1_2022_ljeto,ctxNaslov:"T1 — Zapuštena (Antun Branko Šimić)",q:"U čemu žena iz pjesme nalazi utjehu?",opts:["A. u čitanju","B. u kuhanju","C. u pjevanju","D. u snovima"],sol:{cl:"A"},exp:"'mlada žena ćuti pokraj peći... nad romanom Marcela Prévosta' = čitanje = A."},
-  {id:4,type:"mc",topic:"knj_analiza",ctx:T2_2022_ljeto,ctxNaslov:"T2 — Osman (Ivan Gundulić) — Sunčanica i sjediljka",q:"Zašto je Ljubdrag organizirao okupljanje mladih?",opts:["A. Nadao se da će se neki mladić svidjeti njegovoj kćeri.","B. Želio je zahvaliti kćeri zato što mu je oslonac u starosti.","C. Htio je da se pastiri natječu u sviranju.","D. Zaželio se veseloga društva u kući."],sol:{cl:"A"},exp:"'jeda srce tvrdo odviše od svê kćerce one ganu: ter... kigodi joj tuj omili i obere ga vjerenika' = želi da si kćer nađe mladića = A."},
-  {id:5,type:"mc",topic:"knj_analiza",ctx:T2_2022_ljeto,ctxNaslov:"T2 — Osman (Ivan Gundulić) — Sunčanica i sjediljka",q:"Što je o Ljubdragu iskazano u sljedećim stihovima?\n'Mile unuke on viditi / želi od drage kćerce ove / i u njih opet ponoviti / sebe i mrtve svê sinove.'",opts:["A. Važno mu je da se njegova loza nastavi.","B. Želi osvetiti svoje mrtve sinove.","C. Htio bi da ga unuci posjete.","D. Sluti da će uskoro umrijeti."],sol:{cl:"A"},exp:"'ponoviti sebe i mrtve sinove' = kroz unuke = nastavak loze/roda = A."},
-  {id:6,type:"mc",topic:"knj_analiza",ctx:T2_2022_ljeto,ctxNaslov:"T2 — Osman (Ivan Gundulić) — Sunčanica i sjediljka",q:"U čemu se od sljedećega natječu djevojke?",opts:["A. u pletenju vjenčića","B. u pričanju priča","C. u plesanju","D. u ljepoti"],sol:{cl:"A"},exp:"'Zatjecat se još ne taže pastirice... ka začinja pjesni draže, ka li vjenčac ljepše vije' = vjenčaci = A."},
-  {id:7,type:"mc",topic:"jez_stil",ctx:T3_2022_ljeto,ctxNaslov:"T3 — Tena (Josip Kozarac) — Tena i muškarci",q:"Koji izraz metaforično prikazuje Tenu?",opts:["A. zelena voćka","B. neobuzdana vatra","C. čuvstvo 'lijepoga'","D. busen cvijeta"],sol:{cl:"D"},exp:"'njezina duša već je bila podivljali busen cvijeta' = metafora za Teninu dušu/osobnost = D."},
-  {id:8,type:"mc",topic:"knj_analiza",ctx:T3_2022_ljeto,ctxNaslov:"T3 — Tena (Josip Kozarac) — Tena i muškarci",q:"Koga je Tena jedino voljela?",opts:["A. Đorđa","B. Jozu","C. Leona","D. vodnika"],sol:{cl:"D"},exp:"'poslije vodnika ionako nije nikoga više ljubila' = vodnik = D."},
-  {id:9,type:"mc",topic:"knj_analiza",ctx:T3_2022_ljeto,ctxNaslov:"T3 — Tena (Josip Kozarac) — Tena i muškarci",q:"Na što se odnosi sljedeća usporedba?\n'kao kada bi vidio Canovin kip u zadimljenoj seljačkoj kuhinji'",opts:["A. na Tenin smisao za kiparsku umjetnost","B. na nesklad između ljepote i okoline","C. na prijetvorno ponašanje","D. na Leonovo bogatstvo"],sol:{cl:"B"},exp:"Canova kip (fin) u zadimljenu kuhinji (neprimjeren okoliš) = Tenina ljepota u neodgovarajućoj sredini = nesklad = B."},
-  {id:10,type:"mc",topic:"knj_analiza",ctx:T4_2022_ljeto,ctxNaslov:"T4 — Kiklop (Ranko Marinković) — urođenički liječnici",q:"Što je prikazano u polaznome tekstu?",opts:["A. čišćenje dimnjaka","B. istjerivanje zlih sila","C. liječenje životinja","D. ubojstvo zarobljenika"],sol:{cl:"B"},exp:"'Oni će mu još i zle duhove istjerati iz trbuha... demoni... pobjeći pred vatrom' = istjerivanje zlih sila = B."},
-  {id:11,type:"mc",topic:"jez_stil",ctx:T4_2022_ljeto,ctxNaslov:"T4 — Kiklop (Ranko Marinković) — urođenički liječnici",q:"Zašto su urođenici nazvani veterinarskim stručnjacima, a agent grlom?",opts:["A. da bi se naglasilo da su urođenici obrazovani","B. da bi se istaknula dehumanizacija","C. da bi se postigla ritmičnost teksta","D. da bi se ostvario stil basne"],sol:{cl:"B"},exp:"'veterinarski stručnjaci' + 'grlo' = životinjska terminologija = agent prikazan kao životinja = dehumanizacija = B."},
-  {id:12,type:"mc",topic:"knj_analiza",ctx:T4_2022_ljeto,ctxNaslov:"T4 — Kiklop (Ranko Marinković) — urođenički liječnici",q:"Koji je od sljedećih likova htio prekinuti događaj kojemu svjedoči?",opts:["A. kapetan","B. liječnik","C. upravitelj stroja","D. Veliki Vrač"],sol:{cl:"C"},exp:"'Upravitelj stroja... učini pokret kojim bi vjerojatno bio zadavio Velikoga Vrača' = htio prekinuti = C."},
-  {id:13,type:"mc",topic:"knj_analiza",ctx:T5_2022_ljeto,ctxNaslov:"T5 — Zaprepaštenje (Jorge Luis Borges)",q:"Čije je zaprepaštenje prikazano?",opts:["A. ljudi na trgu","B. Moritánovo","C. Rivarolino","D. susjedovo"],sol:{cl:"A"},exp:"'Ljudi se u strahu razmaknuše... Tako poštovani građanin kao Pardo, pa da to čini pred očima i usprkos čitavom Morónu' = zaprepaštenje publike/mještana = A."},
-  {id:14,type:"mc",topic:"knj_analiza",ctx:T5_2022_ljeto,ctxNaslov:"T5 — Zaprepaštenje (Jorge Luis Borges)",q:"Što susjed iz Moróna opravdava?",opts:["A. ubojičino razmetljivo odijevanje","B. glumljeno Rivarolino ludilo","C. počinjeno ubojstvo","D. zatvorsku kaznu"],sol:{cl:"B"},exp:"'Opravdavam ga; ako nekoga ubiješ i zatim moraš ispaštati u zatvoru, postupio si budalasto. Pardo je svoj plan dobro pripremio.' = opravdava oprezno planiranje/glumu = B."},
-  {id:15,type:"mc",topic:"knj_analiza",ctx:T5_2022_ljeto,ctxNaslov:"T5 — Zaprepaštenje (Jorge Luis Borges)",q:"Kojim se postupkom postiže vjerodostojnost prikaza događaja?",opts:["A. detaljnim opisom lika","B. kronološkim pripovijedanjem","C. uvođenjem lika susjeda","D. završnim retoričkim pitanjem"],sol:{cl:"C"},exp:"'Jedan susjed iz Moróna izvijestio me o slučaju' = svjedok koji prenosi = vjerodostojnost = C."},
-  {id:16,type:"mc",topic:"knj_analiza",ctx:T6_2022_ljeto,ctxNaslov:"T6 — Antigona (Sofoklo) — Tiresija i Kreont",q:"Koja je uloga Tiresijina obraćanja Kreontu?",opts:["A. uvjeriti Kreonta u to da je njegova odluka neispravna","B. objasniti Kreontu zašto bogovi nisu primili žrtvu","C. navesti Kreontove nepromišljene postupke","D. opravdati Kreontovo ponašanje"],sol:{cl:"A"},exp:"'Ti pusti mrtvog, ne muči poginula! Ta griješiti je prirođeno... Al' sagriješi li tko, on više čovjek lud ni nesretan bit neće ako liječi se' = uvjerava ga da je pogriješio = A."},
-  {id:17,type:"mc",topic:"knj_analiza",ctx:T6_2022_ljeto,ctxNaslov:"T6 — Antigona (Sofoklo) — Tiresija i Kreont",q:"O kojemu svojem umijeću govori Tiresija u sljedećoj rečenici?\n'Pa znat ćeš kad umijeća moga čuješ znak.'",opts:["A. o proricanju budućih događaja","B. o komunikaciji s mrtvima","C. o žrtvovanju životinja","D. o uzgoju ptica"],sol:{cl:"A"},exp:"Tiresija = slijepi prorok = umijeće = proricanje = A."},
-  {id:18,type:"mc",topic:"knj_analiza",ctx:T6_2022_ljeto,ctxNaslov:"T6 — Antigona (Sofoklo) — Tiresija i Kreont",q:"Koga Tiresija naziva palim jadnikom?",opts:["A. Eteokla","B. Hemona","C. Kreonta","D. Polinika"],sol:{cl:"D"},exp:"'Od Edipova sina, palog jadnika' = Edipov sin = Polinik (koji nije pokopan) = D."},
-  {id:19,type:"mc",topic:"knj_analiza",ctx:T7_2022_ljeto,ctxNaslov:"T7 — Život je san (Calderón de la Barca) — Sigismundov monolog",q:"Koja je od sljedećih tvrdnja o Sigismundu točna?",opts:["A. Želi se osvetiti za nanesenu nepravdu.","B. Nastoji izazvati samilost sugovornika.","C. Očajan je zbog svojega položaja.","D. Planira pobjeći iz kule."],sol:{cl:"C"},exp:"'Jao meni, nesretniku!... a ja više duše imam, no slobode mnogo manje' = očajanje = C."},
-  {id:20,type:"mc",topic:"knj_analiza",ctx:T7_2022_ljeto,ctxNaslov:"T7 — Život je san (Calderón de la Barca) — Sigismundov monolog",q:"Na kojoj je antitezi utemeljen Sigismundov monolog?",opts:["A. dobro – zlo","B. privid – stvarnost","C. rođenje – smrt","D. ropstvo – sloboda"],sol:{cl:"D"},exp:"'a ja više duše imam, no slobode mnogo manje' = životinje imaju slobodu, Sigismund nema = ropstvo↔sloboda = D."},
-  {id:21,type:"mc",topic:"knj_analiza",ctx:T7_2022_ljeto,ctxNaslov:"T7 — Život je san (Calderón de la Barca) — Sigismundov monolog",q:"Tko je kriv za Sigismundovo trenutačno stanje?",opts:["A. Astolfo","B. Bazilije","C. Klotaldo","D. Rosaura"],sol:{cl:"B"},exp:"Bazilije = otac koji je zatvorio Sigismunda u kulu zbog proročanstva = B."},
-  {id:22,type:"mc",topic:"knj_analiza",ctx:T8_2022_ljeto,ctxNaslov:"T8 — Nadrealisti i kravate (Viktor Žmegač)",q:"Koja je od sljedećih tvrdnja o avangardistima s fotografije točna?",opts:["A. Avangardnom su odjećom ukazivali na modernost svojih djela.","B. Njihova je provokativnost proizlazila iz djela koja su stvarali.","C. Svojim su izgledom željeli zainteresirati gledatelje.","D. Njihova je umjetnost bila uniformirana."],sol:{cl:"B"},exp:"'Antigrađanski nasrtaji bili su u slikama i riječima... autora pomno građanski obučenih' = provokativnost u djelima, ne u odjeći = B."},
-  {id:23,type:"mc",topic:"knj_analiza",ctx:T8_2022_ljeto,ctxNaslov:"T8 — Nadrealisti i kravate (Viktor Žmegač)",q:"Zašto avangardiste s fotografije ne treba predstaviti?",opts:["A. jer njihova umjetnost pripada prošlosti","B. jer ih fotografija dovoljno prikazuje","C. jer su nevažni za temu eseja","D. jer su vrlo poznati"],sol:{cl:"D"},exp:"'ličnosti koje ne treba predstaviti: Tristan Tzara, André Breton, Salvador Dalí...' = poznati = D."},
-  {id:24,type:"mc",topic:"knj_analiza",ctx:T8_2022_ljeto,ctxNaslov:"T8 — Nadrealisti i kravate (Viktor Žmegač)",q:"Što od sljedećega autor iskazuje o umjetnosti svojega vremena?",opts:["A. Nekonvencionalna je.","B. Puna je proturječja.","C. Provokativna je.","D. Neoriginalna je."],sol:{cl:"D"},exp:"'ali ne uočava da je umjetnost postala repetitivna' = ponavljanje = neoriginalna = D."},
-  {id:25,type:"mc",topic:"knj_analiza",ctx:T9_2022_ljeto,ctxNaslov:"T9 — Utjecaj monitora (Darko Grundler)",q:"Koja je namjena teksta?",opts:["A. upozoriti na opasnost pri upotrebi monitora računala","B. potaknuti istraživanje o utjecaju monitora na ljude","C. promovirati nove tehnologije u izradi monitora","D. objasniti utjecaj monitora na okolinu"],sol:{cl:"D"},exp:"Tekst objašnjava EMI, EMC i emisije = utjecaj monitora na okolinu i ljude = D."},
-  {id:26,type:"mc",topic:"knj_analiza",ctx:T9_2022_ljeto,ctxNaslov:"T9 — Utjecaj monitora (Darko Grundler)",q:"Zbog čega su monitori potencijalno štetni za ljude?",opts:["A. zbog elektromagnetske interferencije","B. zbog elektromagnetske sukladnosti","C. zbog toga što sadrže olovo","D. zbog ELF i VLF emisije"],sol:{cl:"D"},exp:"'monitori proizvode dvije vrste emisija koje mogu utjecati na zdravlje. ELF... VLF' = D."},
-  {id:27,type:"mc",topic:"knj_analiza",ctx:T9_2022_ljeto,ctxNaslov:"T9 — Utjecaj monitora (Darko Grundler)",q:"Što se povećava s višim pogonskim naponima kod višebojnih monitora?",opts:["A. elektromagnetska sukladnost uređaja","B. količina olova u katodnoj cijevi","C. filtriranje signala monitora","D. zračenje monitora"],sol:{cl:"D"},exp:"'Viši pogonski naponi, kod višebojnih monitora, uzrokuju u načelu i veće razine emisije' = više emisije = više zračenja = D."},
-  {id:28,type:"mc",topic:"knj_analiza",ctx:T10_2022_ljeto,ctxNaslov:"T10 — Savršena tjestenina (recept/savjeti)",q:"Koja je namjena teksta?",opts:["A. analizirati zašto se tjestenina kuhanjem sljepljuje","B. potaknuti ljude na kuhanje jela s tjesteninom","C. objasniti kako se pravilno kuha tjestenina","D. opisati nastanak raskuhane tjestenine"],sol:{cl:"C"},exp:"Tekst daje savjete za pravilno kuhanje tjestenine = C."},
-  {id:29,type:"mc",topic:"knj_analiza",ctx:T10_2022_ljeto,ctxNaslov:"T10 — Savršena tjestenina (recept/savjeti)",q:"Na koji se od sljedećih načina može izbjeći sljepljivanje tjestenine?",opts:["A. odabirom tjestenine s manjim udjelom proteina","B. miješanjem tjestenine prilikom kuhanja","C. soljenjem vode tek nakon što zavre","D. dodavanjem ulja tijekom kuhanja"],sol:{cl:"B"},exp:"'promiješate 3 – 4 puta u 10 minuta kako ne bi došlo do neželjenoga sljepljivanja' = miješanje = B."},
-  {id:30,type:"mc",topic:"knj_analiza",ctx:T10_2022_ljeto,ctxNaslov:"T10 — Savršena tjestenina (recept/savjeti)",q:"Što od sljedećega negativno utječe na kvalitetu skuhane tjestenine?",opts:["A. ispiranje tjestenine nakon kuhanja","B. često kušanje tijekom kuhanja","C. al dente čvrstoća tjestenine","D. visoka elastičnost tjestenine"],sol:{cl:"A"},exp:"'Tjesteninu nakon kuhanja nemojte ispirati jer se tako gubi škrob i sva slasnost' = ispiranje = negativno = A."},
+  {id:1,type:"mc",topic:"knj_analiza",ctx:TA1_2022_ljeto,ctxNaslov:"T1 — Zapuštena (Antun Branko Šimić)",q:"Koja od sljedećih tvrdnja o pjesmi nije točna?",opts:["A. Lirski subjekt u pjesmi mlada je žena.","B. Interpunkcija je u pjesmi reducirana.","C. Pjesma je pisana slobodnim stihom.","D. Pjesma je grafički organizirana."],sol:{cl:"A"},exp:"Lirski subjekt = glas koji promatra = nije sama mlada žena, već promatrač njezina života = A nije točna."},
+  {id:2,type:"mc",topic:"knj_analiza",ctx:TA1_2022_ljeto,ctxNaslov:"T1 — Zapuštena (Antun Branko Šimić)",q:"Što je tema pjesme?",opts:["A. umjetnost kao sredstvo ostvarivanja boljega života","B. nemogućnost ostvarivanja ispunjenoga života","C. uzaludno iščekivanje voljene osobe","D. strah od velikoga grada"],sol:{cl:"B"},exp:"Žena zapuštena, bez nade, cvijeće čezne samo = ispunjeni život nije moguć = B."},
+  {id:3,type:"mc",topic:"knj_analiza",ctx:TA1_2022_ljeto,ctxNaslov:"T1 — Zapuštena (Antun Branko Šimić)",q:"U čemu žena iz pjesme nalazi utjehu?",opts:["A. u čitanju","B. u kuhanju","C. u pjevanju","D. u snovima"],sol:{cl:"A"},exp:"'mlada žena ćuti pokraj peći... nad romanom Marcela Prévosta' = čitanje = A."},
+  {id:4,type:"mc",topic:"knj_analiza",ctx:TA2_2022_ljeto,ctxNaslov:"T2 — Osman (Ivan Gundulić) — Sunčanica i sjediljka",q:"Zašto je Ljubdrag organizirao okupljanje mladih?",opts:["A. Nadao se da će se neki mladić svidjeti njegovoj kćeri.","B. Želio je zahvaliti kćeri zato što mu je oslonac u starosti.","C. Htio je da se pastiri natječu u sviranju.","D. Zaželio se veseloga društva u kući."],sol:{cl:"A"},exp:"'jeda srce tvrdo odviše od svê kćerce one ganu: ter... kigodi joj tuj omili i obere ga vjerenika' = želi da si kćer nađe mladića = A."},
+  {id:5,type:"mc",topic:"knj_analiza",ctx:TA2_2022_ljeto,ctxNaslov:"T2 — Osman (Ivan Gundulić) — Sunčanica i sjediljka",q:"Što je o Ljubdragu iskazano u sljedećim stihovima?\n'Mile unuke on viditi / želi od drage kćerce ove / i u njih opet ponoviti / sebe i mrtve svê sinove.'",opts:["A. Važno mu je da se njegova loza nastavi.","B. Želi osvetiti svoje mrtve sinove.","C. Htio bi da ga unuci posjete.","D. Sluti da će uskoro umrijeti."],sol:{cl:"A"},exp:"'i u njih opet ponoviti sebe i mrtve svê sinove' = kroz unuke = nastavak loze/roda = A."},
+  {id:6,type:"mc",topic:"knj_analiza",ctx:TA2_2022_ljeto,ctxNaslov:"T2 — Osman (Ivan Gundulić) — Sunčanica i sjediljka",q:"U čemu se od sljedećega natječu djevojke?",opts:["A. u pletenju vjenčića","B. u pričanju priča","C. u plesanju","D. u ljepoti"],sol:{cl:"A"},exp:"'Zatjecat se još ne taže pastirice... ka začinja pjesni draže, ka li vjenčac ljepše vije' = vjenčaci = A."},
+  {id:7,type:"mc",topic:"jez_stil",ctx:TA3_2022_ljeto,ctxNaslov:"T3 — Tena (Josip Kozarac) — Tena i muškarci",q:"Koji izraz metaforično prikazuje Tenu?",opts:["A. zelena voćka","B. neobuzdana vatra","C. čuvstvo 'lijepoga'","D. busen cvijeta"],sol:{cl:"D"},exp:"'njezina duša već je bila podivljali busen cvijeta' = metafora za Teninu dušu/osobnost = D."},
+  {id:8,type:"mc",topic:"knj_analiza",ctx:TA3_2022_ljeto,ctxNaslov:"T3 — Tena (Josip Kozarac) — Tena i muškarci",q:"Koga je Tena jedino voljela?",opts:["A. Đorđa","B. Jozu","C. Leona","D. vodnika"],sol:{cl:"D"},exp:"'poslije vodnika ionako nije nikoga više ljubila' = vodnik = D."},
+  {id:9,type:"mc",topic:"knj_analiza",ctx:TA3_2022_ljeto,ctxNaslov:"T3 — Tena (Josip Kozarac) — Tena i muškarci",q:"Na što se odnosi sljedeća usporedba?\n'kao kada bi vidio Canovin kip u zadimljenoj seljačkoj kuhinji'",opts:["A. na Tenin smisao za kiparsku umjetnost","B. na nesklad između ljepote i okoline","C. na prijetvorno ponašanje","D. na Leonovo bogatstvo"],sol:{cl:"B"},exp:"Canova kip (fin) u zadimljenu kuhinji (neprimjeren okoliš) = Tenina ljepota u neodgovarajućoj sredini = nesklad = B."},
+  {id:10,type:"mc",topic:"knj_analiza",ctx:TA4_2022_ljeto,ctxNaslov:"T4 — Kiklop (Ranko Marinković) — urođenički liječnici",q:"Što je prikazano u polaznome tekstu?",opts:["A. čišćenje dimnjaka","B. istjerivanje zlih sila","C. liječenje životinja","D. ubojstvo zarobljenika"],sol:{cl:"B"},exp:"'Oni će mu još i zle duhove istjerati iz trbuha... demoni... pobjeći pred vatrom' = istjerivanje zlih sila = B."},
+  {id:11,type:"mc",topic:"jez_stil",ctx:TA4_2022_ljeto,ctxNaslov:"T4 — Kiklop (Ranko Marinković) — urođenički liječnici",q:"Zašto su urođenici nazvani veterinarskim stručnjacima, a agent grlom?",opts:["A. da bi se naglasilo da su urođenici obrazovani","B. da bi se istaknula dehumanizacija","C. da bi se postigla ritmičnost teksta","D. da bi se ostvario stil basne"],sol:{cl:"B"},exp:"'veterinarski stručnjaci' + 'grlo' = životinjska terminologija = agent prikazan kao životinja = dehumanizacija = B."},
+  {id:12,type:"mc",topic:"knj_analiza",ctx:TA4_2022_ljeto,ctxNaslov:"T4 — Kiklop (Ranko Marinković) — urođenički liječnici",q:"Koji je od sljedećih likova htio prekinuti događaj kojemu svjedoči?",opts:["A. kapetan","B. liječnik","C. upravitelj stroja","D. Veliki Vrač"],sol:{cl:"C"},exp:"'Upravitelj stroja... učini pokret kojim bi vjerojatno bio zadavio Velikoga Vrača' = htio prekinuti = C."},
+  {id:13,type:"mc",topic:"knj_analiza",ctx:TA5_2022_ljeto,ctxNaslov:"T5 — Zaprepaštenje (Jorge Luis Borges)",q:"Čije je zaprepaštenje prikazano?",opts:["A. ljudi na trgu","B. Moritánovo","C. Rivarolino","D. susjedovo"],sol:{cl:"A"},exp:"'Ljudi se u strahu razmaknuše... Tako poštovani građanin kao Pardo, pa da to čini pred očima i usprkos čitavom Morónu' = zaprepaštenje publike/mještana = A."},
+  {id:14,type:"mc",topic:"knj_analiza",ctx:TA5_2022_ljeto,ctxNaslov:"T5 — Zaprepaštenje (Jorge Luis Borges)",q:"Što susjed iz Moróna opravdava?",opts:["A. ubojičino razmetljivo odijevanje","B. glumljeno Rivarolino ludilo","C. počinjeno ubojstvo","D. zatvorsku kaznu"],sol:{cl:"B"},exp:"'Opravdavam ga; ako nekoga ubiješ i zatim moraš ispaštati u zatvoru, postupio si budalasto. Pardo je svoj plan dobro pripremio.' = opravdava oprezno planiranje/glumu = B."},
+  {id:15,type:"mc",topic:"knj_analiza",ctx:TA5_2022_ljeto,ctxNaslov:"T5 — Zaprepaštenje (Jorge Luis Borges)",q:"Kojim se postupkom postiže vjerodostojnost prikaza događaja?",opts:["A. detaljnim opisom lika","B. kronološkim pripovijedanjem","C. uvođenjem lika susjeda","D. završnim retoričkim pitanjem"],sol:{cl:"C"},exp:"'Jedan susjed iz Moróna izvijestio me o slučaju' = svjedok koji prenosi = vjerodostojnost = C."},
+  {id:16,type:"mc",topic:"knj_analiza",ctx:TA6_2022_ljeto,ctxNaslov:"T6 — Antigona (Sofoklo) — Tiresija i Kreont",q:"Koja je uloga Tiresijina obraćanja Kreontu?",opts:["A. uvjeriti Kreonta u to da je njegova odluka neispravna","B. objasniti Kreontu zašto bogovi nisu primili žrtvu","C. navesti Kreontove nepromišljene postupke","D. opravdati Kreontovo ponašanje"],sol:{cl:"A"},exp:"'Ta griješiti je prirođeno ljudima... Al' sagriješi li tko, on više čovjek lud ni nesretan bit neće ako liječi se... Ti pusti mrtvog, ne muči poginula!' = uvjerava ga da je pogriješio = A."},
+  {id:17,type:"mc",topic:"knj_analiza",ctx:TA6_2022_ljeto,ctxNaslov:"T6 — Antigona (Sofoklo) — Tiresija i Kreont",q:"O kojemu svojem umijeću govori Tiresija u sljedećoj rečenici?\n'Pa znat ćeš kad umijeća moga čuješ znak.'",opts:["A. o proricanju budućih događaja","B. o komunikaciji s mrtvima","C. o žrtvovanju životinja","D. o uzgoju ptica"],sol:{cl:"A"},exp:"Tiresija = slijepi prorok = umijeće = proricanje = A."},
+  {id:18,type:"mc",topic:"knj_analiza",ctx:TA6_2022_ljeto,ctxNaslov:"T6 — Antigona (Sofoklo) — Tiresija i Kreont",q:"Koga Tiresija naziva palim jadnikom?",opts:["A. Eteokla","B. Hemona","C. Kreonta","D. Polinika"],sol:{cl:"D"},exp:"'Od Edipova sina, palog jadnika' = Edipov sin = Polinik (koji nije pokopan) = D."},
+  {id:19,type:"mc",topic:"knj_analiza",ctx:TA7_2022_ljeto,ctxNaslov:"T7 — Život je san (Calderón de la Barca) — Sigismundov monolog",q:"Koja je od sljedećih tvrdnja o Sigismundu točna?",opts:["A. Želi se osvetiti za nanesenu nepravdu.","B. Nastoji izazvati samilost sugovornika.","C. Očajan je zbog svojega položaja.","D. Planira pobjeći iz kule."],sol:{cl:"C"},exp:"'Jao meni, nesretniku!... a ja više duše imam, no slobode mnogo manje' = očajanje = C."},
+  {id:20,type:"mc",topic:"knj_analiza",ctx:TA7_2022_ljeto,ctxNaslov:"T7 — Život je san (Calderón de la Barca) — Sigismundov monolog",q:"Na kojoj je antitezi utemeljen Sigismundov monolog?",opts:["A. dobro – zlo","B. privid – stvarnost","C. rođenje – smrt","D. ropstvo – sloboda"],sol:{cl:"D"},exp:"'a ja više duše imam, no slobode mnogo manje' = životinje imaju slobodu, Sigismund nema = ropstvo↔sloboda = D."},
+  {id:21,type:"mc",topic:"knj_analiza",ctx:TA7_2022_ljeto,ctxNaslov:"T7 — Život je san (Calderón de la Barca) — Sigismundov monolog",q:"Tko je kriv za Sigismundovo trenutačno stanje?",opts:["A. Astolfo","B. Bazilije","C. Klotaldo","D. Rosaura"],sol:{cl:"B"},exp:"Bazilije = otac koji je zatvorio Sigismunda u kulu zbog proročanstva = B."},
+  {id:22,type:"mc",topic:"knj_analiza",ctx:TA8_2022_ljeto,ctxNaslov:"T8 — Nadrealisti i kravate (Viktor Žmegač)",q:"Koja je od sljedećih tvrdnja o avangardistima s fotografije točna?",opts:["A. Avangardnom su odjećom ukazivali na modernost svojih djela.","B. Njihova je provokativnost proizlazila iz djela koja su stvarali.","C. Svojim su izgledom željeli zainteresirati gledatelje.","D. Njihova je umjetnost bila uniformirana."],sol:{cl:"B"},exp:"'Antigrađanski nasrtaji bili su u slikama i riječima... autora pomno građanski obučenih' = provokativnost u djelima, ne u odjeći = B."},
+  {id:23,type:"mc",topic:"knj_analiza",ctx:TA8_2022_ljeto,ctxNaslov:"T8 — Nadrealisti i kravate (Viktor Žmegač)",q:"Zašto avangardiste s fotografije ne treba predstaviti?",opts:["A. jer njihova umjetnost pripada prošlosti","B. jer ih fotografija dovoljno prikazuje","C. jer su nevažni za temu eseja","D. jer su vrlo poznati"],sol:{cl:"D"},exp:"'ličnosti koje ne treba predstaviti: Tristan Tzara, André Breton, Salvador Dalí...' = poznati = D."},
+  {id:24,type:"mc",topic:"knj_analiza",ctx:TA8_2022_ljeto,ctxNaslov:"T8 — Nadrealisti i kravate (Viktor Žmegač)",q:"Što od sljedećega autor iskazuje o umjetnosti svojega vremena?",opts:["A. Nekonvencionalna je.","B. Puna je proturječja.","C. Provokativna je.","D. Neoriginalna je."],sol:{cl:"D"},exp:"'ali ne uočava da je umjetnost postala repetitivna' = ponavljanje = neoriginalna = D."},
+  {id:25,type:"mc",topic:"knj_analiza",ctx:TA9_2022_ljeto,ctxNaslov:"T9 — Utjecaj monitora (Darko Grundler)",q:"Koja je namjena teksta?",opts:["A. upozoriti na opasnost pri upotrebi monitora računala","B. potaknuti istraživanje o utjecaju monitora na ljude","C. promovirati nove tehnologije u izradi monitora","D. objasniti utjecaj monitora na okolinu"],sol:{cl:"D"},exp:"Tekst objašnjava EMI, EMC i emisije = utjecaj monitora na okolinu i ljude = D."},
+  {id:26,type:"mc",topic:"knj_analiza",ctx:TA9_2022_ljeto,ctxNaslov:"T9 — Utjecaj monitora (Darko Grundler)",q:"Zbog čega su monitori potencijalno štetni za ljude?",opts:["A. zbog elektromagnetske interferencije","B. zbog elektromagnetske sukladnosti","C. zbog toga što sadrže olovo","D. zbog ELF i VLF emisije"],sol:{cl:"D"},exp:"'monitori proizvode dvije vrste emisija koje mogu utjecati na zdravlje. ELF... VLF' = D."},
+  {id:27,type:"mc",topic:"knj_analiza",ctx:TA9_2022_ljeto,ctxNaslov:"T9 — Utjecaj monitora (Darko Grundler)",q:"Što se povećava s višim pogonskim naponima kod višebojnih monitora?",opts:["A. elektromagnetska sukladnost uređaja","B. količina olova u katodnoj cijevi","C. filtriranje signala monitora","D. zračenje monitora"],sol:{cl:"D"},exp:"'Viši pogonski naponi, kod višebojnih monitora, uzrokuju u načelu i veće razine emisije' = više emisije = više zračenja = D."},
+  {id:28,type:"mc",topic:"knj_analiza",ctx:TA10_2022_ljeto,ctxNaslov:"T10 — Savršena tjestenina (recept/savjeti)",q:"Koja je namjena teksta?",opts:["A. analizirati zašto se tjestenina kuhanjem sljepljuje","B. potaknuti ljude na kuhanje jela s tjesteninom","C. objasniti kako se pravilno kuha tjestenina","D. opisati nastanak raskuhane tjestenine"],sol:{cl:"C"},exp:"Tekst daje savjete za pravilno kuhanje tjestenine = C."},
+  {id:29,type:"mc",topic:"knj_analiza",ctx:TA10_2022_ljeto,ctxNaslov:"T10 — Savršena tjestenina (recept/savjeti)",q:"Na koji se od sljedećih načina može izbjeći sljepljivanje tjestenine?",opts:["A. odabirom tjestenine s manjim udjelom proteina","B. miješanjem tjestenine prilikom kuhanja","C. soljenjem vode tek nakon što zavre","D. dodavanjem ulja tijekom kuhanja"],sol:{cl:"B"},exp:"'promiješate 3 – 4 puta u 10 minuta kako ne bi došlo do neželjenoga sljepljivanja' = miješanje = B."},
+  {id:30,type:"mc",topic:"knj_analiza",ctx:TA10_2022_ljeto,ctxNaslov:"T10 — Savršena tjestenina (recept/savjeti)",q:"Što od sljedećega negativno utječe na kvalitetu skuhane tjestenine?",opts:["A. ispiranje tjestenine nakon kuhanja","B. često kušanje tijekom kuhanja","C. al dente čvrstoća tjestenine","D. visoka elastičnost tjestenine"],sol:{cl:"A"},exp:"'Tjesteninu nakon kuhanja nemojte ispirati jer se tako gubi škrob i sva slasnost' = ispiranje = negativno = A."},
   /* Bez teksta 31–55 */
   {id:31,type:"mc",topic:"jez_stil",q:"Koja je stilska figura upotrijebljena u sljedećemu primjeru?\n'– Majko, zašto je hladno u našoj sobi? – Jer nema ugljena... – A zašto nema ugljena? – Jer tata nema posla. – A zašto tata nema posla? – Jer ima previše ugljena.'",opts:["A. anadiploza","B. paradoks","C. polisindeton","D. retoričko pitanje"],sol:{cl:"B"},exp:"'Ima previše ugljena' a nema posla koji bi ga nabavio = logički apsurd/kontradikcija = paradoks = B."},
   {id:32,type:"mc",topic:"jez_stil",q:"Koji je od sljedećih naslova utemeljen na antitezi?",opts:["A. Kraljević i prosjak","B. Prokleta avlija","C. Zločin i kazna","D. Crni mačak"],sol:{cl:"A"},exp:"Kraljević i prosjak = suprotni položaji = antiteza = A."},
@@ -801,20 +1084,20 @@ const QS_2022_ljeto_A=[
   {id:57,type:"mc",topic:"jez_pravopis",q:"Koji je od sljedećih izraza pravopisno točan?",opts:["A. svečenički poziv","B. svečenićki poziv","C. svećenički poziv","D. svećenićki poziv"],sol:{cl:"C"},exp:"'Svećenički' = svećenik + -ki = pravilno = C."},
   {id:58,type:"mc",topic:"jez_pravopis",q:"Koja je od sljedećih rečenica napisana u skladu s pravilima o pisanju velikoga i maloga početnog slova?",opts:["A. Apollo 11 bila je svemirska misija koja je 20. srpnja 1969. dovela prve ljude na zemljin satelit Mjesec.","B. Taj se let smatra velikim postignućem u povijesti istraživanja svemira i pobjeda je SAD-a u hladnoratovskoj utrci sa Sovjetskim savezom.","C. Armstrong i Aldrin sletjeli su na prostor nazvan More tišine i postali prvi ljudi na površini Mjeseca.","D. Tri astronauta vratila su se na Zemlju s 21,55 kg mjesečeva kamenja, sletjevši 24. srpnja u Tihi Ocean."],sol:{cl:"C"},exp:"'More tišine' = naziv lokaliteta na Mjesecu = vlastita imenica = C."},
   {id:59,type:"mc",topic:"jez_pravopis",q:"U kojoj je od sljedećih rečenica podcrtani primjer pravopisno točan?",opts:["A. Na satu kemije određivali smo ph – vrijednosti tekućina.","B. Napeto smo iščekivali utakmicu Hajduk – Dinamo.","C. Suncokreti su Van Goghovo remek – djelo.","D. Kupili smo ogrlicu od 18 – karatnoga zlata."],sol:{cl:"B"},exp:"'Hajduk – Dinamo' = crtica (spojnica) između naziva protivnika = pravilno = B."},
-  {id:60,type:"mc",topic:"jez_gram",q:"U kojoj je od sljedećih riječi provedena jotacija?",opts:["A. prepečem","B. preskačem","C. presvučem","D. pretučem"],sol:{cl:"C"},exec:"todo",exp:"'Presvučem' = presvuć+em: č+j → č = jotacija... zapravo 'presvučem' = pre+svuć+em: k+j → č = jotacija = C."},
+  {id:60,type:"mc",topic:"jez_gram",q:"U kojoj je od sljedećih riječi provedena jotacija?",opts:["A. prepečem","B. preskačem","C. presvučem","D. pretučem"],sol:{cl:"B"},exp:"'Preskačem' = preskak- + -je- : k + j → č = jotacija = B. Prepečem, presvučem i pretučem imaju č od k ispred nastavka -em (prva palatalizacija), a ne od j."},
   {id:61,type:"mc",topic:"jez_gram",q:"U kojoj je od sljedećih riječi provedeno i jednačenje po zvučnosti i jednačenje po mjestu tvorbe?",opts:["A. besraman","B. bešuman","C. bezbožan","D. bežičan"],sol:{cl:"B"},exp:"'Bešuman' = bez+šuman: z ispred š = s (zvučnost) + z→š (mjesto tvorbe) = oba jednačenja = B."},
   {id:62,type:"mc",topic:"jez_gram",q:"U kojemu je primjeru riječ 'pripovijedati' točno naglašena?",opts:["A. pripovijêdati","B. pripovijèdati","C. pripovijédati","D. pripovijȅdati"],sol:{cl:"C"},exp:"'Pripovijédati' = dugouzlazni = pravilno = C."},
   {id:63,type:"mc",topic:"jez_gram",q:"Koja je riječ u sljedećoj rečenici zanaglasnica?\n'Razmišljam o tome primjećuješ li i ti to.'",opts:["A. o","B. li","C. i","D. to"],sol:{cl:"B"},exp:"'Li' = upitna čestica = nenaglasnica/zanaglasnica = B."},
   {id:64,type:"mc",topic:"jez_gram",q:"Koji je morfem korijenski u riječi 'poučavatelj'?",opts:["A. po-","B. -uč-","C. -telj-","D. -Ø"],sol:{cl:"B"},exp:"'Poučavatelj' = po- (prefiks) + -uč- (korijen) + -av- + -a- + -telj- + (-Ø nastavak) = B."},
   {id:65,type:"mc",topic:"jez_gram",q:"Što je oblikotvorna/gramatička osnova u riječi 'predradnik'?",opts:["A. rad","B. predrad","C. predradni","D. predradnik"],sol:{cl:"D"},exp:"'Predradnik' = predradnik+Ø = oblikotvorna osnova = predradnik (bez nultog nastavka) = D."},
-  {id:66,type:"mc",topic:"jez_gram",q:"U kojoj je od sljedećih rečenica podcrtana imenica srednjega roda?",opts:["A. Na leđima je imala madež u obliku zvijezde.","B. I ove ćemo godine staviti jaslice pod bor.","C. Svaki rat za sobom ostavlja siročad.","D. Čula je to na svoje uši."],sol:{cl:"C"},exp:"'Siročad' = zbirna imenica sr.roda = C."},
+  {id:66,type:"mc",topic:"jez_gram",q:"U kojoj je od sljedećih rečenica podcrtana imenica srednjega roda?",opts:["A. Na leđima je imala madež u obliku zvijezde.","B. I ove ćemo godine staviti jaslice pod bor.","C. Svaki rat za sobom ostavlja siročad.","D. Čula je to na svoje uši."],sol:{cl:"A"},exp:"Podcrtano je 'leđima' — leđa je imenica srednjega roda (pluralia tantum); 'siročad' je zbirna imenica ženskoga roda = A."},
   {id:67,type:"mc",topic:"jez_gram",q:"Koja je od podcrtanih riječi u sljedećoj rečenici u dativu?\n'U tome turističkom mjestu divimo se mnogobrojnim šetalištima s kojih pogled dopire do prekrasnih austrougarskih vila.'",opts:["A. turističkom","B. mnogobrojnim","C. kojih","D. austrougarskih"],sol:{cl:"B"},exp:"'Divimo se... šetalištima' = šetalištima = dativ = 'mnogobrojnim' = atribut u dativu = B."},
   {id:68,type:"mc",topic:"jez_gram",q:"U kojoj je od sljedećih rečenica upotrijebljen točan oblik pridjeva?",opts:["A. Gregor je želio da otac bude dobri prema njemu.","B. Gledao sam emisiju o ljudima najhrabrija srca.","C. Kopernik je pojasnio heliocentrični sustav.","D. Nigdje nije bilo onoga poznata glumca."],sol:{cl:"C"},exp:"'Heliocentrični sustav' = pravilno. 'Dobri'→'dobar', 'najhrabrija srca'→'najhrabrijih', 'poznata glumca'→'poznatog glumca'."},
   {id:69,type:"mc",topic:"jez_gram",q:"Koji je glagol u sljedećoj rečenici u prezentu?\n'Umjesto da smjesta pobjegne, okrenu se, potiho zaplaka i još dugo u noć jecaše.'",opts:["A. pobjegne","B. okrenu se","C. zaplaka","D. jecaše"],sol:{cl:"A"},exp:"'Pobjegne' = prezent u zavisnoj rečenici (da+prezent) = A."},
   {id:70,type:"mc",topic:"jez_gram",q:"Koji je glagolski oblik podcrtan u sljedećoj rečenici?\n'Kad budemo dolazili, osvijetli nam put.'",opts:["A. futur prvi","B. futur drugi","C. kondicional prvi","D. kondicional drugi"],sol:{cl:"B"},exp:"'Budemo dolazili' = budem + infinitiv = futur drugi = B."},
   {id:71,type:"mc",topic:"jez_gram",q:"Koja je riječ u sljedećoj rečenici prilog?\n'Hodao je uporno preko oštroga stijenja unatoč svim nevoljama koje su ga toga jutra pratile.'",opts:["A. uporno","B. preko","C. unatoč","D. jutra"],sol:{cl:"A"},exp:"'Uporno' = prilog načina uz glagol hodao = A."},
-  {id:72,type:"mc",topic:"jez_gram",q:"Kojim je tvorbenim načinom nastala riječ 'blatobran'?",opts:["A. prefiksalno-sufiksalnom tvorbom","B. složeno-sufiksalnom tvorbom","C. sufiksalnom tvorbom","D. čistim slaganjem"],sol:{cl:"D"},exp:"'Blatobran' = blato + bran(iti) = čisto slaganje (dvije osnove bez sufiksa) = D."},
-  {id:73,type:"mc",topic:"jez_gram",q:"Koja je od sljedećih riječi tvorena sufiksom -nik?",opts:["A. bolesnik","B. nasilnik","C. patnik","D. sretnik"],sol:{cl:"A"},exp:"'Bolesnik' = bolest + -nik (pridjev ne, imenica da) = sufiksom -nik = A."},
+  {id:72,type:"mc",topic:"jez_gram",q:"Kojim je tvorbenim načinom nastala riječ 'blatobran'?",opts:["A. prefiksalno-sufiksalnom tvorbom","B. složeno-sufiksalnom tvorbom","C. sufiksalnom tvorbom","D. čistim slaganjem"],sol:{cl:"B"},exp:"'Blatobran' = blat-o- + bran- (od braniti) + sufiks -0 = složeno-sufiksalna tvorba; čisto slaganje spaja dvije cjelovite riječi (npr. 'kutnjozubni') = B."},
+  {id:73,type:"mc",topic:"jez_gram",q:"Koja je od sljedećih riječi tvorena sufiksom -nik?",opts:["A. bolesnik","B. nasilnik","C. patnik","D. sretnik"],sol:{cl:"C"},exp:"'Patnik' = pat(iti) + -nik; bolesnik, nasilnik i sretnik tvoreni su od pridjeva (bolestan, nasilan, sretan) sufiksom -ik = C."},
   {id:74,type:"mc",topic:"jez_gram",q:"Koja je od sljedećih riječi nastala prefiksalnom tvorbom?",opts:["A. zaboraviti","B. zanovijetati","C. zapisati","D. zatvoriti"],sol:{cl:"C"},exp:"'Zapisati' = za- (prefiks) + pisati = prefiksalna tvorba = C."},
   {id:75,type:"mc",topic:"jez_leks",q:"U kojoj je od sljedećih rečenica podcrtani primjer eponim?",opts:["A. Tajnu originalne pripreme kremšnita znaju samo samoborske slastičarnice.","B. Čvarci, kulen i kulenova seka dobro su poznati i izvan granica Lijepe Naše.","C. Đurđevački pijesci jedinstven su prirodni fenomen u Hrvatskoj.","D. Cipele manolice nazvane su prema poznatome dizajneru."],sol:{cl:"D"},exp:"'Manolice' = cipele nazvane prema Manolu Blaniku = eponim = D."},
   {id:76,type:"mc",topic:"jez_leks",q:"Koji od sljedećih frazema znači 'pogoršavati situaciju'?",opts:["A. dolijevati ulje na vatru","B. otvoriti na koga vatru","C. pregrmjeti prvu vatru","D. igrati se vatrom"],sol:{cl:"A"},exp:"'Dolijevati ulje na vatru' = pogoršavati sukob = A."},
@@ -918,4 +1201,4 @@ const QS_2022_jesen_A=[
   {id:80,type:"mc",topic:"jez_gram",q:"Na koga se odnosi sljedeća rečenica?\nTemeljno obilježje njihova stvaranja i javnoga djelovanja jest upotreba književnoga jezika zasnovanoga na elementima svih triju hrvatskih narječja.",opts:["A. na predstavnike ozaljskoga jezično-književnog kruga","B. na potpisnike Bečkoga književnog dogovora","C. na predstavnike zadarske filološke škole","D. na pripadnike škole hrvatskih vukovaca"],sol:{cl:"A"},exp:"Ozaljski krug = Zrinski, Frankopan = koristili su kajkavske, štokavske i čakavske elemente = sva tri narječja = A."},
 ];
 
-export { T1_2022_jesen_B, T2_2022_jesen_B, T3_2022_jesen_B, T4_2022_jesen_B, T5_2022_jesen_B, T6_2022_jesen_B, T7_2022_jesen_B, T8_2022_jesen_B, T9_2022_jesen_B, T10_2022_jesen_B, ESEJ_2022_jesen_B, QS_2022_jesen_B, T1_2022_ljeto, T2_2022_ljeto, T3_2022_ljeto, T4_2022_ljeto, T5_2022_ljeto, T6_2022_ljeto, T7_2022_ljeto, T8_2022_ljeto, T9_2022_ljeto, T10_2022_ljeto, ESEJ_T1_2022_ljeto, QS_2022_ljeto_B, T1_2022_jesen_A, T2_2022_jesen_A, T3_2022_jesen_A, T4_2022_jesen_A, T5_2022_jesen_A, T6_2022_jesen_A, T7_2022_jesen_A, T8_2022_jesen_A, T9_2022_jesen_A, T10_2022_jesen_A, QS_2022_ljeto_A, QS_2022_jesen_A };
+export { T1_2022_jesen_B, T2_2022_jesen_B, T3_2022_jesen_B, T4_2022_jesen_B, T5_2022_jesen_B, T6_2022_jesen_B, T7_2022_jesen_B, T8_2022_jesen_B, T9_2022_jesen_B, T10_2022_jesen_B, ESEJ_2022_jesen_B, QS_2022_jesen_B, T1_2022_ljeto, T2_2022_ljeto, T3_2022_ljeto, T4_2022_ljeto, T5_2022_ljeto, T6_2022_ljeto, T7_2022_ljeto, T8_2022_ljeto, T9_2022_ljeto, T10_2022_ljeto, ESEJ_T1_2022_ljeto, QS_2022_ljeto_B, T1_2022_jesen_A, T2_2022_jesen_A, T3_2022_jesen_A, T4_2022_jesen_A, T5_2022_jesen_A, T6_2022_jesen_A, T7_2022_jesen_A, T8_2022_jesen_A, T9_2022_jesen_A, T10_2022_jesen_A, TA1_2022_ljeto, TA2_2022_ljeto, TA3_2022_ljeto, TA4_2022_ljeto, TA5_2022_ljeto, TA6_2022_ljeto, TA7_2022_ljeto, TA8_2022_ljeto, TA9_2022_ljeto, TA10_2022_ljeto, QS_2022_ljeto_A, QS_2022_jesen_A };
