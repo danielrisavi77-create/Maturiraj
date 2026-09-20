@@ -12,6 +12,12 @@ import { __ensureNerdamer, __imgKey, __aiErrMsg, __aiPost, __AI_LAST_ERR } from 
 import { parseMath, renderOptText, renderQText, FractionSVG, FormulaBlock, renderOptContent } from './mat/core/mathText';
 export { __setSubject } from './mat/core/state';
 export { __onExamsChanged, __setExamLoader, __setExamCatalog, __addExams, isExamLoaded, isExamLocked, allExamsLoaded, examQCount, loadExam, loadAllExams, __setExams } from './mat/core/exams';
+// 5.3: vizualni dio (grafovi, interaktivni prikazi, zoom slike) zivi u ./mat/viz/*.
+import { GLBL, GC, SHORT_LABELS, useEscape } from './mat/core/ui';
+import { KnowledgeMap, CountUp, AnimatedRing, TrendChart } from './mat/viz/charts';
+import { GraphInput } from './mat/viz/graph';
+import { FigZoom, ZoomableFig } from './mat/viz/figzoom';
+import { VizModal } from './mat/viz/interactive';
 "use strict";
 const{createElement:e,useState,useEffect,useMemo,useRef,Fragment}=React;
 function vc(n){return"var("+n+")";}
@@ -20,11 +26,9 @@ const TYPE_ICON={mc:"\u25c9",num:"\u2211",calc:"\u2211",sa:"\u270e",pa:"\u270e",
 const _TOPIC_COLORS=["#4a90d9","#50c878","#e9b446","#e05252","#2dcfbe","#a78bfa","#f59e0b","#ec4899"];
 function topicColor(t){if(!t)return _TOPIC_COLORS[0];let h=0;for(let i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))>>>0;return _TOPIC_COLORS[h%_TOPIC_COLORS.length];}
 const TBDG={mc:"b-mc",num:"b-num",calc:"b-calc",sa:"b-sa",pa:"b-proof",proof:"b-proof"};
-const GLBL={1:"Nedovoljan",2:"Dovoljan",3:"Dobar",4:"Vrlo dobar",5:"Odličan"};
 const XP_LEVELS=[0,100,250,450,700,1000,1400,1900,2500,3200,4000];
 const LEVEL_NAMES={0:"Početnik",1:"Vježbač",2:"Student",3:"Napredni",4:"Stručnjak",5:"Majstor",6:"Ekspert",7:"Prvak",8:"Legenda",9:"Matematičar",10:"Genijalac"};
 function getLevel(xp){let l=0;for(let i=0;i<XP_LEVELS.length;i++){if(xp>=XP_LEVELS[i])l=i;}return l;}
-const GC={1:"var(--red)",2:"#f97316",3:"var(--gold)",4:"#60a5fa",5:"var(--green)"};
 const LL=["A","B","C","D","E"];
 function _G12j(id,W,H,cx,cy,sc){
   return (children)=>e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
@@ -357,7 +361,6 @@ var MISCONCEPTIONS={
  "Funkcije":{title:"Domena i nultočke",tip:"Provjeri domenu (nazivnik≠0, korijen≥0, log>0). Nultočke su sjecišta s x-osi; razlikuj rastuću/padajuću."},
  "Derivacije i integrali":{title:"Pravila deriviranja",tip:"(xⁿ)′=n·xⁿ⁻¹. Pazi na pravilo produkta/kvocijenta i lančano pravilo. Ekstrem: f′(x)=0."}
 };
-var SHORT_LABELS={"Skupovi i brojevi":"Skupovi","Algebarski izrazi":"Algebra","Linearne funkcije":"Linearne","Kvadratne funkcije":"Kvadratne","Eksponencijalne i log.":"Eksp/Log","Trigonometrija":"Trig","Geometrija":"Geometrija","Analitička geometrija":"Analit.geo","Nizovi i redovi":"Nizovi","Statistika i vjerojatnost":"Statistika","Financijska matematika":"Financije","Matrice i sustavi":"Sustavi","Kombinatorika":"Kombinat.","Kompleksni brojevi":"Kompleksni","Funkcije":"Funkcije","Derivacije i integrali":"Derivacije"};
 function WeakSpotTips({rows,onDrill}){
   var weak=(rows||[]).filter(function(r){return r.n>=1&&r.pct<60&&MISCONCEPTIONS[r.label];}).sort(function(a,b){return a.pct-b.pct;}).slice(0,3);
   if(!weak.length) return null;
@@ -396,42 +399,6 @@ function MaturaRubric({q}){
         e("span",{style:{fontSize:13.5,fontWeight:800,color:est>=pts?"var(--green)":est>0?"var(--gold)":"var(--muted)"}},"Procjena: "+est+"/"+pts+" "+(pts===1?"bod":(pts<5?"boda":"bodova"))+" ("+Math.round(done/steps.length*100)+"%)"),
         e("span",{style:{fontSize:11,color:"var(--muted)"}},done+"/"+steps.length+" koraka")
       )
-    )
-  );
-}
-function KnowledgeMap({userData,onTopic}){
-  var hist=(userData&&userData.history)||[];
-  var agg={};
-  hist.forEach(function(h){var tb=h.topic_breakdown||{};Object.keys(tb).forEach(function(t){var l=TOPIC_LABELS[t]||t;if(l==="Ostalo")return;if(!agg[l])agg[l]={c:0,n:0};agg[l].c+=tb[t].correct||0;agg[l].n+=tb[t].total||0;});});
-  var labelKey={};Object.keys(TOPIC_LABELS).forEach(function(k){var l=TOPIC_LABELS[k];if(!labelKey[l])labelKey[l]=k;});
-  var nodes=Object.keys(agg).filter(function(l){return agg[l].n>0;}).map(function(l){var a=agg[l];return{label:l,short:SHORT_LABELS[l]||l,pct:Math.round(a.c/a.n*100),n:a.n,key:labelKey[l]||l};}).sort(function(a,b){return a.pct-b.pct;});
-  if(nodes.length<3) return null;
-  var W=360,H=360,cx=W/2,cy=H/2,R=120;
-  var col=function(p){return p>=80?"var(--green)":p>=50?"var(--gold)":"var(--red)";};
-  var maxN=Math.max.apply(null,nodes.map(function(n){return n.n;}));
-  var lines=[],dots=[];
-  nodes.forEach(function(nd,i){
-    var ang=(-90+i*360/nodes.length)*Math.PI/180;
-    var x=cx+R*Math.cos(ang),y=cy+R*Math.sin(ang);
-    var r=12+Math.round(10*nd.n/Math.max(1,maxN));
-    var c=col(nd.pct);
-    var lx=cx+(R+r+7)*Math.cos(ang),ly=cy+(R+r+7)*Math.sin(ang);
-    var anchor=Math.cos(ang)>0.3?"start":(Math.cos(ang)<-0.3?"end":"middle");
-    lines.push(e("line",{key:"l"+i,x1:cx,y1:cy,x2:x,y2:y,stroke:"var(--bdr2)",strokeWidth:1.5}));
-    dots.push(e("g",{key:"n"+i,style:{cursor:onTopic?"pointer":"default"},onClick:onTopic?function(){onTopic(nd.key,nd.label);}:null},
-      e("circle",{cx:x,cy:y,r:r,fill:c,fillOpacity:0.2,stroke:c,strokeWidth:2}),
-      e("text",{x:x,y:y+4,textAnchor:"middle",fontSize:11,fontWeight:800,fill:c},nd.pct),
-      e("text",{x:lx,y:ly+3,textAnchor:anchor,fontSize:9.5,fontWeight:600,fill:"var(--muted)"},nd.short)
-    ));
-  });
-  return e("div",{style:{marginBottom:18,padding:"16px 12px",background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)"}},
-    e("div",{style:{fontSize:13,fontWeight:800,color:"var(--text)",marginBottom:2,textAlign:"center"}},"🗺️ Mapa znanja"),
-    e("div",{style:{fontSize:11,color:"var(--muted)",marginBottom:4,textAlign:"center"}},"Boja = ovladanost · veličina = broj zadataka · dodirni temu za vježbu"),
-    e("svg",{viewBox:"0 0 "+W+" "+H,width:"100%",style:{maxWidth:430,display:"block",margin:"0 auto"},role:"img","aria-label":"Mapa ovladanosti po temama"},
-      lines,dots,
-      e("circle",{cx:cx,cy:cy,r:30,fill:"var(--blue-d)",stroke:"var(--blue)",strokeWidth:2}),
-      e("text",{x:cx,y:cy-1,textAnchor:"middle",fontSize:13,fontWeight:800,fill:"var(--blue)"},"Σ"),
-      e("text",{x:cx,y:cy+12,textAnchor:"middle",fontSize:8,fontWeight:700,fill:"var(--blue)"},"MATURA")
     )
   );
 }
@@ -544,190 +511,6 @@ function AnswerHelper({q,autoExpand,hideToggle}){
     !hideToggle&&e("button",{
       className:"ah-toggle-btn",onClick:()=>setOpen(false)
     },"▲ Sakrij rješenje")
-  );
-}
-function GraphSVG({graphType, points, range, color="var(--blue)", label}){
-  const r=range||{xMin:-4,xMax:4,yMin:-2,yMax:7};
-  return e(KoordOs,{W:240,H:200,xMin:r.xMin,xMax:r.xMax,yMin:r.yMin,yMax:r.yMax,label:label||""},
-    (toX,toY)=>{
-      if(!points||points.length===0) return null;
-      const els=[];
-
-      if(graphType==="parabola"&&points.length>=1){
-        // Nacrtaj parabolu kroz dane točke (vertex + 2 točke)
-        // Izračunaj a iz vertex forme: y = a(x-h)² + k
-        const v=points[0]; // vertex [h,k]
-        const p=points[1]; // još jedna točka
-        if(v&&p){
-          const a=(p[1]-v[1])/Math.pow(p[0]-v[0],2);
-          const pts=[];
-          for(let x=r.xMin;x<=r.xMax;x+=0.1){
-            const y=a*Math.pow(x-v[0],2)+v[1];
-            if(y<r.yMin||y>r.yMax) continue;
-            pts.push(toX(x).toFixed(1)+","+toY(y).toFixed(1));
-          }
-          if(pts.length>1) els.push(e("polyline",{key:"p",points:pts.join(" "),fill:"none",stroke:color,strokeWidth:2,strokeLinejoin:"round"}));
-        }
-      }
-
-      if(graphType==="line"&&points.length>=2){
-        const [p1,p2]=points;
-        // Produži pravac do rubova
-        const k=(p2[1]-p1[1])/(p2[0]-p1[0]);
-        const b=p1[1]-k*p1[0];
-        const x1=r.xMin, y1=k*x1+b;
-        const x2=r.xMax, y2=k*x2+b;
-        els.push(e("line",{key:"l",
-          x1:toX(x1),y1:toY(y1),x2:toX(x2),y2:toY(y2),
-          stroke:color,strokeWidth:2,strokeLinecap:"round"
-        }));
-      }
-
-      // Ucrtaj sve točke s bijelim halogenom
-      points.filter(p=>p!=null).forEach(([px,py],i)=>{
-        if(px===undefined||py===undefined) return;
-        els.push(e("circle",{key:"h"+i,cx:toX(px),cy:toY(py),r:6,fill:"var(--s1)",stroke:"none"}));
-        els.push(e("circle",{key:"c"+i,cx:toX(px),cy:toY(py),r:4,fill:color,stroke:"var(--s1)",strokeWidth:1.5}));
-        els.push(e("text",{key:"t"+i,x:toX(px)+8,y:toY(py)-6,fontSize:9,fill:color,fontWeight:600},
-          "("+px+", "+py+")"));
-      });
-
-      return e("g",null,...els);
-    }
-  );
-}
-function GraphInput({q,answer,onAnswer,isReviewed,isPractice}){
-  const[checked,setChecked]=useState(false);
-  const[showSolution,setShowSolution]=useState(false);
-
-  useEffect(()=>{setChecked(false);setShowSolution(false);},[q.id]);
-
-  // Parsiraj učenikov unos u točke
-  const isParabola=q.graphType==="parabola";
-  const isLine=q.graphType==="line";
-
-  // answer format: "0,2;-1,3;1,3" (točke odvojene ;)
-  const parsePoints=val=>{
-    if(!val) return [];
-    return val.split(";").map(s=>{
-      const [x,y]=s.split(",").map(v=>parseFloat(v.trim()));
-      return isNaN(x)||isNaN(y)?null:[x,y];
-    }).filter(Boolean);
-  };
-
-  const userPoints=parsePoints(answer);
-  const refPoints=isParabola
-    ?[q.graphRef?.vertex,...(q.graphRef?.pts||[])]
-    :(q.graphRef?.pts||[]);
-
-  // Provjeri točnost  -  usporedi korisnikove točke s referentnima
-  const checkCorrect=()=>{
-    if(!answer||userPoints.length<2) return null;
-    const required=isParabola
-      ?[q.graphRef?.vertex,...(q.graphRef?.pts||[])].filter(Boolean)
-      :(q.graphRef?.pts||[]);
-    let correct=0;
-    required.forEach(([rx,ry])=>{
-      if(userPoints.some(([ux,uy])=>Math.abs(ux-rx)<0.1&&Math.abs(uy-ry)<0.1)) correct++;
-    });
-    return correct>=Math.max(2,required.length-1);
-  };
-
-  const isCorrect=checked||isReviewed?checkCorrect():null;
-
-  const placeholderText=isParabola
-    ?"tjeme: 0,2 ;  točka: -1,3 ;  točka: 1,3"
-    :"točka: 0,3 ;  točka: -1.5,0";
-
-  return e("div",{style:{display:"flex",flexDirection:"column",gap:12}},
-
-    // Napomena o maturi
-    e("div",{style:{
-      fontSize:12,color:"var(--muted)",padding:"8px 12px",
-      background:"var(--s2)",borderRadius:"var(--r)",
-      border:"1px solid var(--bdr)",lineHeight:1.6
-    }},
-      "✏️ Na pravoj maturi crtat ćeš olovkom na papiru. Ovdje upiši koordinate ključnih točaka koje bi ucrtao  -  simulator će nacrtati tvoj graf."
-    ),
-
-    // Input za točke
-    e("div",null,
-      e("div",{style:{fontSize:12,fontWeight:600,color:"var(--muted)",marginBottom:6,textTransform:"uppercase",letterSpacing:".06em"}},
-        isParabola?"📍 Tjeme i 2 pomoćne točke":"📍 Dvije točke pravca"
-      ),
-      e("div",{style:{fontSize:11,color:"var(--muted)",marginBottom:8}},
-        "Format: x,y odvojene s  ;   -  npr. ",
-        e("code",{style:{background:"var(--s2)",padding:"1px 5px",borderRadius:4,fontSize:11}},
-          isParabola?"0,1 ; -1,2 ; 1,2":"0,-2 ; 1,1")
-      ),
-      e("input",{
-        type:"text",
-        placeholder:placeholderText,
-        className:"finp"+((checked||isReviewed)?(isCorrect?" ok":" bad"):""),
-        style:{width:"100%",maxWidth:340,textAlign:"left",fontFamily:"monospace"},
-        value:answer||"",
-        disabled:checked||isReviewed,
-        onChange:ev=>onAnswer(ev.target.value)
-      }),
-
-      // Provjeri gumb
-      !checked&&!isReviewed&&userPoints.length>=2&&e("button",{
-        className:"btn btn-chk",
-        style:{marginTop:8,padding:"10px 18px"},
-        onClick:()=>{setChecked(true); window._playSound?.(isCorrect?"correct":"wrong");}
-      },"✓ Provjeri točke"),
-
-      // Feedback
-      (checked||isReviewed)&&isCorrect!==null&&e("div",{
-        style:{
-          marginTop:8,padding:"8px 12px",borderRadius:"var(--r)",
-          background:isCorrect?"var(--green-d)":"var(--red-d)",
-          border:"1px solid "+(isCorrect?"rgba(30,122,62,.3)":"rgba(196,48,48,.3)"),
-          fontSize:13,fontWeight:600,color:isCorrect?"var(--green)":"var(--red)"
-        }
-      }, isCorrect?"✓ Točne ključne točke!":"✗ Provjeri koordinate  -  neke točke nisu točne.")
-    ),
-
-    // Prikaz učenikovog grafa (ako je unio barem 2 točke)
-    userPoints.length>=2&&e("div",null,
-      e("div",{style:{fontSize:12,fontWeight:600,color:"var(--muted)",marginBottom:6,textTransform:"uppercase",letterSpacing:".06em"}},
-        "📊 Tvoj graf"
-      ),
-      e(GraphSVG,{
-        graphType:q.graphType,
-        points:userPoints,
-        range:q.graphRange,
-        color:"var(--blue)"
-      })
-    ),
-
-    // Standardno rješenje s točnim grafom
-    e("div",null,
-      e("button",{
-        className:"ah-toggle-btn",
-        onClick:()=>setShowSolution(s=>!s),
-        style:{marginTop:0}
-      },showSolution?"▲ Sakrij rješenje":"📐 Pogledaj standardno rješenje"),
-      showSolution&&e("div",{className:"ah-steps",style:{marginTop:8}},
-        e("div",{className:"ah-steps-label"},"📐 Točan graf"),
-        refPoints.length>0&&!q.sol?.svgFn&&e(GraphSVG,{
-          graphType:q.graphType,
-          points:refPoints,
-          range:q.graphRange,
-          color:"var(--green)",
-          label:"Referentni graf"
-        }),
-        q.sol?.svgFn&&e("div",{style:{margin:"8px 0",display:"flex",justifyContent:"center"}},e(ZoomableFig,{fig:e(q.sol.svgFn,null)})),
-        q.steps&&q.steps.map((s,i)=>{const txt=typeof s==="string"?s:(s&&s.txt)||"";const note=typeof s==="object"&&s?s.note:null;const fin=typeof s==="object"&&s?s.final:false;return e("div",{key:i,className:"ah-step"+(fin?" ah-step-final":"")},
-  e("span",{className:"ah-step-n"},fin?"→":(i+1)),
-  e("span",{className:"ah-step-txt"},renderOptText(txt)),
-  note&&typeof note==="string"&&note&&e("span",{className:"ah-step-note"},note));}),
-        q.sol?.ex&&e("div",{className:"ah-step ah-step-final"},
-  e("span",{className:"ah-step-n"},"📖"),
-  e("span",{className:"ah-step-txt"},renderOptText(q.sol.ex))
-)
-      )
-    )
   );
 }
 function WarnBanner({text,qid}){
@@ -1478,28 +1261,6 @@ function WrappedModal({userData,onClose}){
         e("button",{onClick:()=>{const ok=_copyText(parentTxt);setCopied(ok?"p":"err");try{window.location.href="mailto:?subject="+encodeURIComponent("Tjedni napredak \u2014 matura matematika")+"&body="+encodeURIComponent(parentTxt);}catch(e2){}},style:{flex:1,minWidth:140,background:"rgba(255,255,255,.14)",border:"1px solid rgba(255,255,255,.28)",borderRadius:10,padding:"10px 12px",fontFamily:"var(--fb)",fontSize:12.5,fontWeight:800,color:"#fff",cursor:"pointer"}},copied==="p"?"\u2713 Spremno!":"\u2709\uFE0F Tjedni \u2014 roditelju")),
       copied==="err"&&e("div",{style:{fontSize:11,color:"#fca5a5",marginTop:8}},"Kopiranje nije uspjelo \u2014 ozna\u010di tekst ru\u010dno.")
     ));
-}
-function useEscape(active,onClose){
-  React.useEffect(()=>{
-    if(!active)return;
-    const h=ev=>{if(ev.key==="Escape"){ev.stopPropagation();onClose();}};
-    document.addEventListener("keydown",h);
-    return()=>document.removeEventListener("keydown",h);
-  },[active,onClose]);
-}
-function CountUp({to,duration,suffix}){
-  const[v,setV]=React.useState(0);
-  const raf=React.useRef(null);
-  React.useEffect(()=>{
-    const target=+to||0,dur=duration||700,t0=performance.now();
-    if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches){setV(target);return;}
-    cancelAnimationFrame(raf.current);
-    const tick=(t)=>{const p=Math.min(1,(t-t0)/dur);const ease=1-Math.pow(1-p,3);
-      setV(Math.round(target*ease));if(p<1)raf.current=requestAnimationFrame(tick);};
-    raf.current=requestAnimationFrame(tick);
-    return()=>cancelAnimationFrame(raf.current);
-  },[to]);
-  return e(React.Fragment,null,String(v)+(suffix||""));
 }
 function examTitle(exam){return (exam.season==="session"||exam.season==="random")?exam.label:exam.year+".  -  "+exam.label;}
 function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,onEditRazina,onPrepareExams}){
@@ -3283,270 +3044,6 @@ function GlossaryChips({text}){
   );
 }
 const TOPIC_FREQ=(()=>{const cnt={},exCnt={};try{Object.values(EXAMS).forEach(function(ex){const seen={};(ex.qs||[]).forEach(function(q){if(!q||!q.topic)return;cnt[q.topic]=(cnt[q.topic]||0)+1;if(!seen[q.topic]){seen[q.topic]=1;exCnt[q.topic]=(exCnt[q.topic]||0)+1;}});});}catch(_e){}return{cnt:cnt,exCnt:exCnt,totalExams:Object.keys(EXAMS).length};})();
-function sliderRow(label,val,min,max,step,set){
-  return e("div",{style:{display:"flex",alignItems:"center",gap:10,marginBottom:6}},
-    e("span",{style:{fontSize:13,fontWeight:700,width:22,color:"var(--blue)"}},label),
-    e("input",{type:"range",min:min,max:max,step:step,value:val,onChange:ev=>set(+ev.target.value),style:{flex:1,accentColor:"#4a90d9"}}),
-    e("span",{style:{fontSize:12,width:38,textAlign:"right",color:"var(--muted)",fontVariantNumeric:"tabular-nums"}},(+val).toFixed(1)));
-}
-function QuadViz(){
-  const[a,setA]=React.useState(1),[b,setB]=React.useState(0),[c,setC]=React.useState(-2);
-  const W=300,H=240,ox=W/2,oy=H/2,sx=W/14,sy=H/18,X=x=>ox+x*sx,Y=y=>oy-y*sy;
-  let d="";for(let px=-7;px<=7;px+=0.1){const py=a*px*px+b*px+c;if(py>=-9&&py<=9)d+=(d?"L":"M")+X(px).toFixed(1)+" "+Y(py).toFixed(1)+" ";}
-  const disc=b*b-4*a*c,vx=a!==0?-b/(2*a):0,vy=a*vx*vx+b*vx+c;
-  return e("div",null,
-    e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",background:"var(--s2)",borderRadius:10,border:"1px solid var(--bdr)"}},
-      e("line",{x1:0,y1:oy,x2:W,y2:oy,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{x1:ox,y1:0,x2:ox,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("path",{d:d,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
-      a!==0&&vy>=-9&&vy<=9&&e("circle",{cx:X(vx),cy:Y(vy),r:4,fill:"#e05252"})),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"y = "+a.toFixed(1)+"x\u00b2 "+(b>=0?"+ ":"\u2212 ")+Math.abs(b).toFixed(1)+"x "+(c>=0?"+ ":"\u2212 ")+Math.abs(c).toFixed(1)),
-    sliderRow("a",a,-3,3,0.1,setA),sliderRow("b",b,-6,6,0.5,setB),sliderRow("c",c,-6,6,0.5,setC),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.5}},"Diskriminanta D = "+disc.toFixed(1)+" \u2192 "+(disc>0.001?"2 realna rje\u0161enja":disc<-0.001?"nema realnih rje\u0161enja":"1 dvostruko rje\u0161enje")+(a!==0?" \u00b7 tjeme ("+vx.toFixed(1)+", "+vy.toFixed(1)+")":"")));
-}
-function LinViz(){
-  const[k,setK]=React.useState(1),[l,setL]=React.useState(0);
-  const W=300,H=240,ox=W/2,oy=H/2,sx=W/14,sy=H/14,X=x=>ox+x*sx,Y=y=>oy-y*sy;
-  const y1=k*-7+l,y2=k*7+l;
-  return e("div",null,
-    e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",background:"var(--s2)",borderRadius:10,border:"1px solid var(--bdr)"}},
-      e("line",{x1:0,y1:oy,x2:W,y2:oy,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{x1:ox,y1:0,x2:ox,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{x1:X(-7),y1:Y(y1),x2:X(7),y2:Y(y2),stroke:"#4a90d9",strokeWidth:2.5}),
-      Math.abs(l)<=9&&e("circle",{cx:X(0),cy:Y(l),r:4,fill:"#e05252"})),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"y = "+k.toFixed(1)+"x "+(l>=0?"+ ":"\u2212 ")+Math.abs(l).toFixed(1)),
-    sliderRow("k",k,-4,4,0.25,setK),sliderRow("l",l,-6,6,0.5,setL),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.5}},"k = nagib ("+(k>0.01?"raste":k<-0.01?"pada":"konstanta")+") \u00b7 l = sjeci\u0161te s osi y \u00b7 nulto\u010dka x = "+(Math.abs(k)>0.01?(-l/k).toFixed(2):"\u2014")));
-}
-function CircleViz(){
-  const[deg,setDeg]=React.useState(30);
-  const W=300,H=240,cx=W/2,cy=H/2,R=90,rad=deg*Math.PI/180,px=cx+R*Math.cos(rad),py=cy-R*Math.sin(rad);
-  return e("div",null,
-    e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",background:"var(--s2)",borderRadius:10,border:"1px solid var(--bdr)"}},
-      e("line",{x1:0,y1:cy,x2:W,y2:cy,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{x1:cx,y1:0,x2:cx,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("circle",{cx:cx,cy:cy,r:R,fill:"none",stroke:"var(--bdr2)",strokeWidth:1.5}),
-      e("line",{x1:cx,y1:cy,x2:px,y2:cy,stroke:"#50c878",strokeWidth:2}),
-      e("line",{x1:px,y1:cy,x2:px,y2:py,stroke:"#e05252",strokeWidth:2}),
-      e("line",{x1:cx,y1:cy,x2:px,y2:py,stroke:"#4a90d9",strokeWidth:2.5}),
-      e("circle",{cx:px,cy:py,r:4,fill:"#4a90d9"})),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"\u03b8 = "+deg+"\u00b0"),
-    sliderRow("\u03b8",deg,0,360,1,setDeg),
-    e("div",{style:{fontSize:12.5,marginTop:8,lineHeight:1.7,textAlign:"center"}},
-      e("span",{style:{color:"#50c878",fontWeight:700}},"cos \u03b8 = "+Math.cos(rad).toFixed(3))," \u00b7 ",
-      e("span",{style:{color:"#e05252",fontWeight:700}},"sin \u03b8 = "+Math.sin(rad).toFixed(3)),e("br"),
-      e("span",{style:{color:"var(--muted)"}},"tan \u03b8 = "+(Math.abs(Math.cos(rad))<0.001?"nedefiniran":Math.tan(rad).toFixed(3)))));
-}
-function tgBtn(on){return {padding:"6px 13px",borderRadius:99,border:"1px solid "+(on?"var(--teal-b)":"var(--bdr2)"),background:on?"var(--teal-d)":"var(--s2)",color:on?"var(--teal)":"var(--muted)",fontSize:12,fontWeight:700,cursor:"pointer",fontFamily:"var(--fb)"};}
-function vizSvg(children){return e("svg",{viewBox:"0 0 300 240",style:{width:"100%",background:"var(--s2)",borderRadius:10,border:"1px solid var(--bdr)"}},children);}
-function ExpLogViz(){
-  var s=React.useState(2),a=s[0],setA=s[1];
-  var W=300,H=240,ox=W/2,oy=H/2,sx=W/12,sy=H/12,X=function(x){return ox+x*sx},Y=function(y){return oy-y*sy};
-  var sa=Math.abs(a-1)<0.06?1.06:a,i;
-  var de="";for(i=-6;i<=6;i+=0.1){var py=Math.pow(sa,i);if(py>=-6&&py<=6)de+=(de?"L":"M")+X(i).toFixed(1)+" "+Y(py).toFixed(1)+" ";}
-  var dl="";for(i=0.05;i<=6;i+=0.05){var qy=Math.log(i)/Math.log(sa);if(qy>=-6&&qy<=6)dl+=(dl?"L":"M")+X(i).toFixed(1)+" "+Y(qy).toFixed(1)+" ";}
-  return e("div",null,
-    vizSvg([e("line",{key:1,x1:0,y1:oy,x2:W,y2:oy,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{key:2,x1:ox,y1:0,x2:ox,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{key:3,x1:X(-6),y1:Y(-6),x2:X(6),y2:Y(6),stroke:"var(--bdr2)",strokeWidth:1,strokeDasharray:"3 4"}),
-      e("path",{key:4,d:de,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
-      e("path",{key:5,d:dl,fill:"none",stroke:"#50c878",strokeWidth:2.5}),
-      e("circle",{key:6,cx:X(0),cy:Y(1),r:3.5,fill:"#e05252"}),
-      e("circle",{key:7,cx:X(1),cy:Y(0),r:3.5,fill:"#e05252"})]),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0"}},e("span",{style:{color:"#4a90d9"}},"y = "+a.toFixed(2)+"ˣ")," · ",e("span",{style:{color:"#50c878"}},"y = logₐ x")),
-    sliderRow("a",a,0.2,3,0.05,setA),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"Eksponencijalna uvijek prolazi (0, 1), logaritamska (1, 0). Međusobno su inverzne — simetrične oko pravca y = x. "+(a>1.01?"a > 1 → raste.":a<0.99?"0 < a < 1 → eksponencijalna pada.":"a ≈ 1.")));
-}
-function AnalGeoViz(){
-  var sp=React.useState(1),p=sp[0],setP=sp[1],sq=React.useState(-1),q=sq[0],setQ=sq[1],sr=React.useState(3),r=sr[0],setR=sr[1];
-  var W=300,H=240,ox=W/2,oy=H/2,s=15,X=function(x){return ox+x*s},Y=function(y){return oy-y*s},rr=Math.abs(r)<0.3?0.3:r;
-  return e("div",null,
-    vizSvg([e("line",{key:1,x1:0,y1:oy,x2:W,y2:oy,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{key:2,x1:ox,y1:0,x2:ox,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("circle",{key:3,cx:X(p),cy:Y(q),r:rr*s,fill:"rgba(74,144,217,.12)",stroke:"#4a90d9",strokeWidth:2.5}),
-      e("line",{key:4,x1:X(p),y1:Y(q),x2:X(p+rr),y2:Y(q),stroke:"#e9b446",strokeWidth:2}),
-      e("circle",{key:5,cx:X(p),cy:Y(q),r:3.5,fill:"#e05252"})]),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"(x "+(p>=0?"− ":"+ ")+Math.abs(p).toFixed(1)+")² + (y "+(q>=0?"− ":"+ ")+Math.abs(q).toFixed(1)+")² = "+(rr*rr).toFixed(2)),
-    sliderRow("p",p,-6,6,0.5,setP),sliderRow("q",q,-6,6,0.5,setQ),sliderRow("r",r,0.5,6,0.5,setR),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"Središte (p, q) = ("+p.toFixed(1)+", "+q.toFixed(1)+") · polumjer r = "+rr.toFixed(1)+". U općoj jednadžbi x² + y² + Dx + Ey + F = 0 vrijedi p = −D/2, q = −E/2."));
-}
-function SeqViz(){
-  var sg=React.useState(false),geom=sg[0],setGeom=sg[1],s1=React.useState(2),a1=s1[0],setA1=s1[1],sd=React.useState(1),d=sd[0],setD=sd[1];
-  var W=300,H=240,oy=H-30,padL=20,n=8,bw=(W-padL-10)/n,terms=[],i;
-  for(i=0;i<n;i++){terms.push(geom?a1*Math.pow(d,i):a1+i*d);}
-  var mx=Math.max.apply(null,terms.map(Math.abs).concat([1])),sy=(H-60)/(mx*2),Y=function(v){return oy-v*sy;};
-  var sum=terms.reduce(function(x,y){return x+y;},0);
-  var bars=terms.map(function(v,i){var x0=padL+i*bw,y0=Y(v),yb=Y(0);return e("rect",{key:i,x:x0+2,y:Math.min(y0,yb),width:bw-4,height:Math.abs(y0-yb)||1,rx:2,fill:v>=0?"#4a90d9":"#e05252",opacity:.85});});
-  return e("div",null,
-    e("div",{style:{display:"flex",gap:6,marginBottom:8,justifyContent:"center"}},
-      e("button",{onClick:function(){setGeom(false);},style:tgBtn(!geom)},"Aritmetički"),
-      e("button",{onClick:function(){setGeom(true);},style:tgBtn(geom)},"Geometrijski")),
-    vizSvg([e("line",{key:0,x1:0,y1:Y(0),x2:W,y2:Y(0),stroke:"var(--bdr2)",strokeWidth:1})].concat(bars)),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},geom?("aₙ = "+a1.toFixed(1)+" · "+d.toFixed(2)+"ⁿ⁻¹"):("aₙ = "+a1.toFixed(1)+(d>=0?" + ":" − ")+Math.abs(d).toFixed(1)+"(n−1)")),
-    sliderRow("a1",a1,-5,5,0.5,setA1),sliderRow(geom?"q":"d",d,geom?-2:-4,geom?2:4,geom?0.05:0.5,setD),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},(geom?"Geometrijski: svaki član = prethodni · q. ":"Aritmetički: svaki član = prethodni + d. ")+"Zbroj prvih 8 ≈ "+sum.toFixed(2)+(geom&&Math.abs(d)<1?" · |q| < 1 → red konvergira (S = a₁/(1−q)).":"")));
-}
-function VecViz(){
-  var a=React.useState(3),ax=a[0],setAx=a[1],b=React.useState(1),ay=b[0],setAy=b[1],c=React.useState(-1),bx=c[0],setBx=c[1],dd=React.useState(2),by=dd[0],setBy=dd[1];
-  var W=300,H=240,ox=W/2,oy=H/2,s=18,X=function(x){return ox+x*s},Y=function(y){return oy-y*s},sxx=ax+bx,syy=ay+by;
-  function arrow(x1,y1,x2,y2,col,k){var ang=Math.atan2(Y(y2)-Y(y1),X(x2)-X(x1)),hl=8;return [e("line",{key:k+"l",x1:X(x1),y1:Y(y1),x2:X(x2),y2:Y(y2),stroke:col,strokeWidth:2.5}),e("path",{key:k+"h",d:"M "+X(x2)+" "+Y(y2)+" L "+(X(x2)-hl*Math.cos(ang-0.4)).toFixed(1)+" "+(Y(y2)-hl*Math.sin(ang-0.4)).toFixed(1)+" L "+(X(x2)-hl*Math.cos(ang+0.4)).toFixed(1)+" "+(Y(y2)-hl*Math.sin(ang+0.4)).toFixed(1)+" Z",fill:col})];}
-  var mag=Math.sqrt(sxx*sxx+syy*syy);
-  return e("div",null,
-    vizSvg([e("line",{key:1,x1:0,y1:oy,x2:W,y2:oy,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{key:2,x1:ox,y1:0,x2:ox,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{key:3,x1:X(ax),y1:Y(ay),x2:X(sxx),y2:Y(syy),stroke:"#4a90d9",strokeWidth:1,strokeDasharray:"3 3",opacity:.5}),
-      e("line",{key:4,x1:X(bx),y1:Y(by),x2:X(sxx),y2:Y(syy),stroke:"#50c878",strokeWidth:1,strokeDasharray:"3 3",opacity:.5})].concat(arrow(0,0,ax,ay,"#4a90d9","a")).concat(arrow(0,0,bx,by,"#50c878","b")).concat(arrow(0,0,sxx,syy,"#e05252","s"))),
-    e("div",{style:{fontSize:12.5,fontWeight:700,textAlign:"center",margin:"10px 0",lineHeight:1.6}},e("span",{style:{color:"#4a90d9"}},"a("+ax+", "+ay+")")," + ",e("span",{style:{color:"#50c878"}},"b("+bx+", "+by+")")," = ",e("span",{style:{color:"#e05252"}},"("+sxx+", "+syy+")")),
-    sliderRow("ax",ax,-5,5,1,setAx),sliderRow("ay",ay,-5,5,1,setAy),sliderRow("bx",bx,-5,5,1,setBx),sliderRow("by",by,-5,5,1,setBy),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"Zbroj vektora = zbroj komponenti; geometrijski je to nadovezivanje (pravilo paralelograma). |a + b| = "+mag.toFixed(2)+"."));
-}
-function ComplexViz(){
-  var sr=React.useState(3),re=sr[0],setRe=sr[1],si=React.useState(2),im=si[0],setIm=si[1];
-  var W=300,H=240,ox=W/2,oy=H/2,s=18,X=function(x){return ox+x*s},Y=function(y){return oy-y*s},mod=Math.sqrt(re*re+im*im),arg=Math.atan2(im,re)*180/Math.PI;
-  return e("div",null,
-    vizSvg([e("line",{key:1,x1:0,y1:oy,x2:W,y2:oy,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{key:2,x1:ox,y1:0,x2:ox,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{key:3,x1:ox,y1:oy,x2:X(re),y2:Y(im),stroke:"#4a90d9",strokeWidth:2.5}),
-      e("line",{key:4,x1:X(re),y1:oy,x2:X(re),y2:Y(im),stroke:"#e05252",strokeWidth:1.5,strokeDasharray:"3 3"}),
-      e("line",{key:5,x1:ox,y1:oy,x2:X(re),y2:oy,stroke:"#50c878",strokeWidth:1.5,strokeDasharray:"3 3"}),
-      e("circle",{key:6,cx:X(re),cy:Y(im),r:4,fill:"#4a90d9"})]),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"z = "+re+(im>=0?" + ":" − ")+Math.abs(im)+"i"),
-    sliderRow("Re",re,-6,6,1,setRe),sliderRow("Im",im,-6,6,1,setIm),
-    e("div",{style:{fontSize:12,marginTop:8,lineHeight:1.7,textAlign:"center"}},e("span",{style:{color:"#4a90d9",fontWeight:700}},"|z| = "+mod.toFixed(2))," · ",e("span",{style:{color:"var(--muted)"}},"arg z ≈ "+arg.toFixed(0)+"°"),e("br"),e("span",{style:{color:"var(--muted)",fontSize:11.5}},"Modul = udaljenost od ishodišta, argument = kut prema pozitivnoj realnoj osi.")));
-}
-function DerivViz(){
-  var s=React.useState(1.5),x0=s[0],setX0=s[1];
-  var W=300,H=240,ox=W/2,oy=H/2,sx=W/10,sy=H/16,X=function(x){return ox+x*sx},Y=function(y){return oy-y*sy},i;
-  function f(x){return 0.3*x*x*x-x;}function fp(x){return 0.9*x*x-1;}
-  var d="";for(i=-5;i<=5;i+=0.1){var py=f(i);if(py>=-7.5&&py<=7.5)d+=(d?"L":"M")+X(i).toFixed(1)+" "+Y(py).toFixed(1)+" ";}
-  var m=fp(x0),y0=f(x0),tx1=x0-3,tx2=x0+3;
-  return e("div",null,
-    vizSvg([e("line",{key:1,x1:0,y1:oy,x2:W,y2:oy,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("line",{key:2,x1:ox,y1:0,x2:ox,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),
-      e("path",{key:3,d:d,fill:"none",stroke:"#4a90d9",strokeWidth:2.5}),
-      e("line",{key:4,x1:X(tx1),y1:Y(y0+m*(tx1-x0)),x2:X(tx2),y2:Y(y0+m*(tx2-x0)),stroke:"#e9b446",strokeWidth:2}),
-      e("circle",{key:5,cx:X(x0),cy:Y(y0),r:4,fill:"#e05252"})]),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"f(x) = 0,3x³ − x · tangenta u x₀ = "+x0.toFixed(1)),
-    sliderRow("x₀",x0,-4,4,0.1,setX0),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"Nagib tangente = f′(x₀) = "+m.toFixed(2)+". Ondje funkcija "+(m>0.05?"raste":m<-0.05?"pada":"ima stacionarnu točku (f′ = 0)")+". Derivacija = trenutni nagib krivulje."));
-}
-function FnFamViz(){
-  var si=React.useState(0),idx=si[0],setIdx=si[1],sa=React.useState(1),a=sa[0],setA=sa[1],sc=React.useState(0),c=sc[0],setC=sc[1],sd=React.useState(0),d=sd[0],setD=sd[1];
-  var fams=[{n:"x²",f:function(x){return x*x;}},{n:"x³",f:function(x){return x*x*x;}},{n:"|x|",f:function(x){return Math.abs(x);}},{n:"√x",f:function(x){return x>=0?Math.sqrt(x):NaN;}},{n:"1/x",f:function(x){return x!==0?1/x:NaN;}},{n:"sin x",f:function(x){return Math.sin(x);}}];
-  var fam=fams[idx],W=300,H=240,ox=W/2,oy=H/2,sx=W/12,sy=H/12,X=function(x){return ox+x*sx},Y=function(y){return oy-y*sy},i,dd="",prev=false;
-  for(i=-6;i<=6;i+=0.08){var yv=a*fam.f(i-c)+d;if(isFinite(yv)&&yv>=-6&&yv<=6){dd+=(prev?"L":"M")+X(i).toFixed(1)+" "+Y(yv).toFixed(1)+" ";prev=true;}else{prev=false;}}
-  var btns=fams.map(function(fm,k){return e("button",{key:k,onClick:function(){setIdx(k);},style:tgBtn(k===idx)},fm.n);});
-  return e("div",null,
-    e("div",{style:{display:"flex",gap:5,flexWrap:"wrap",marginBottom:8,justifyContent:"center"}},btns),
-    vizSvg([e("line",{key:1,x1:0,y1:oy,x2:W,y2:oy,stroke:"var(--bdr2)",strokeWidth:1}),e("line",{key:2,x1:ox,y1:0,x2:ox,y2:H,stroke:"var(--bdr2)",strokeWidth:1}),e("path",{key:3,d:dd,fill:"none",stroke:"#4a90d9",strokeWidth:2.5})]),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"y = "+a.toFixed(1)+" · f(x "+(c>=0?"− ":"+ ")+Math.abs(c).toFixed(1)+")"+(d>=0?" + ":" − ")+Math.abs(d).toFixed(1)+"   (f = "+fam.n+")"),
-    sliderRow("a",a,-3,3,0.25,setA),sliderRow("c",c,-4,4,0.5,setC),sliderRow("d",d,-4,4,0.5,setD),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"a rasteže/zrcali okomito, c pomiče vodoravno (udesno za c > 0), d pomiče okomito. To su osnovne transformacije grafa funkcije."));
-}
-function StatViz(){
-  var s=React.useState(8),out=s[0],setOut=s[1];
-  var data=[3,4,4,5,6].concat([out]),sorted=data.slice().sort(function(x,y){return x-y;});
-  var mean=data.reduce(function(x,y){return x+y;},0)/data.length,n=sorted.length,med=n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;
-  var W=300,H=240,padL=15,padR=15,axisY=H-50,maxV=20,X=function(v){return padL+(v/maxV)*(W-padL-padR);};
-  var dots=data.map(function(v,i){return e("circle",{key:i,cx:X(v),cy:axisY-2-((i%3)*9),r:5,fill:i===data.length-1?"#e9b446":"#4a90d9",opacity:.9});});
-  return e("div",null,
-    vizSvg([e("line",{key:0,x1:padL,y1:axisY,x2:W-padR,y2:axisY,stroke:"var(--bdr2)",strokeWidth:1.5})].concat(dots).concat([e("line",{key:"mean",x1:X(mean),y1:20,x2:X(mean),y2:axisY,stroke:"#e05252",strokeWidth:2}),e("text",{key:"mt",x:X(mean),y:15,fill:"#e05252",fontSize:11,textAnchor:"middle"},"sredina"),e("line",{key:"med",x1:X(med),y1:axisY,x2:X(med),y2:axisY+22,stroke:"#50c878",strokeWidth:2}),e("text",{key:"mdt",x:X(med),y:axisY+34,fill:"#50c878",fontSize:11,textAnchor:"middle"},"medijan")])),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0"}},e("span",{style:{color:"#e05252"}},"sredina = "+mean.toFixed(2))," · ",e("span",{style:{color:"#50c878"}},"medijan = "+med.toFixed(1))),
-    sliderRow("zadnja",out,2,20,1,setOut),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"Podatci: 3, 4, 4, 5, 6 i zadnja (žuta). Pomakni zadnju u stršeću vrijednost — aritmetička sredina se snažno mijenja, a medijan ostaje gotovo isti. Zato je medijan otporan na netipične podatke."));
-}
-function FinViz(){
-  var sp=React.useState(1000),P=sp[0],setP=sp[1],sr=React.useState(5),rate=sr[0],setR=sr[1],syy=React.useState(10),yrs=syy[0],setY=syy[1];
-  var W=300,H=240,padL=18,padB=28,X=function(t){return padL+(t/yrs)*(W-padL-12);},fin=P*Math.pow(1+rate/100,yrs),simple=P*(1+rate*yrs/100),maxV=Math.max(fin,simple,P*1.05);
-  var Y=function(v){return (H-padB)-(v/maxV)*(H-padB-15);},dc="",t;
-  for(t=0;t<=yrs;t+=Math.max(0.25,yrs/60)){var cv=P*Math.pow(1+rate/100,t);dc+=(dc?"L":"M")+X(t).toFixed(1)+" "+Y(cv).toFixed(1)+" ";}
-  var ds="M "+X(0)+" "+Y(P)+" L "+X(yrs)+" "+Y(simple);
-  return e("div",null,
-    vizSvg([e("line",{key:1,x1:padL,y1:H-padB,x2:W-5,y2:H-padB,stroke:"var(--bdr2)",strokeWidth:1}),e("line",{key:2,x1:padL,y1:10,x2:padL,y2:H-padB,stroke:"var(--bdr2)",strokeWidth:1}),e("path",{key:3,d:ds,fill:"none",stroke:"#50c878",strokeWidth:1.8,strokeDasharray:"4 3"}),e("path",{key:4,d:dc,fill:"none",stroke:"#4a90d9",strokeWidth:2.5})]),
-    e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"C = "+P+" · (1 + "+(rate/100).toFixed(2)+")^"+yrs+" ≈ "+fin.toFixed(0)),
-    sliderRow("glavnica",P,100,10000,100,setP),sliderRow("kamata %",rate,0,15,0.5,setR),sliderRow("godine",yrs,1,30,1,setY),
-    e("div",{style:{fontSize:12,marginTop:8,lineHeight:1.7,textAlign:"center"}},e("span",{style:{color:"#4a90d9",fontWeight:700}},"složeno ≈ "+fin.toFixed(0))," · ",e("span",{style:{color:"#50c878"}},"jednostavno ≈ "+simple.toFixed(0)),e("br"),e("span",{style:{color:"var(--muted)",fontSize:11.5}},"Složeno ukamaćivanje (kamata na kamatu) raste eksponencijalno i nadmašuje jednostavno.")));
-}
-function GeoViz(){
-  var s0=React.useState(0),tool=s0[0],setTool=s0[1];
-  var sA=React.useState(50),A=sA[0],setA=sA[1];
-  var sB=React.useState(60),B=sB[0],setB=sB[1];
-  var sN=React.useState(6),N=sN[0],setN=sN[1];
-  var sC=React.useState(100),arc=sC[0],setArc=sC[1];
-  var sS=React.useState(0),solid=sS[0],setSolid=sS[1];
-  var sR=React.useState(3),R=sR[0],setR=sR[1];
-  var sH=React.useState(5),Hh=sH[0],setH=sH[1];
-  var W=300,H=240;
-  function triBlock(){
-    var C=180-A-B;
-    if(C<=2)return e("div",{style:{padding:24,color:"var(--muted)",fontSize:13,textAlign:"center"}},"Zbroj kutova mora biti manji od 180°. Smanji A ili B.");
-    var a=A*Math.PI/180,b=B*Math.PI/180,ta=Math.tan(a),tb=Math.tan(b),L=1;
-    var cx=L*tb/(ta+tb),cy=ta*cx;
-    var minX=Math.min(0,cx),maxX=Math.max(L,cx),maxY=Math.max(cy,0.001),pad=34;
-    var sc=Math.min((W-2*pad)/((maxX-minX)||1),(H-2*pad)/maxY),offx=(W-(maxX-minX)*sc)/2-minX*sc,offy=H-pad;
-    function PX(x){return offx+x*sc;}function PY(y){return offy-y*sc;}
-    var big=Math.max(A,B,C),typ=big>90.5?"tupokutan":(big<89.5?"šiljastokutan":"pravokutan");
-    return e("div",null,
-      vizSvg([e("polygon",{key:1,points:PX(0).toFixed(1)+","+PY(0).toFixed(1)+" "+PX(L).toFixed(1)+","+PY(0).toFixed(1)+" "+PX(cx).toFixed(1)+","+PY(cy).toFixed(1),fill:"rgba(74,144,217,.12)",stroke:"#4a90d9",strokeWidth:2.5}),
-        e("text",{key:2,x:PX(0)-6,y:PY(0)+15,fill:"var(--text)",fontSize:11.5},"A "+A+"°"),
-        e("text",{key:3,x:PX(L)-6,y:PY(0)+15,fill:"var(--text)",fontSize:11.5},"B "+B+"°"),
-        e("text",{key:4,x:PX(cx)-8,y:PY(cy)-6,fill:"var(--text)",fontSize:11.5},"C "+C+"°")]),
-      e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},A+"° + "+B+"° + "+C+"° = 180° · "+typ),
-      sliderRow("A",A,20,120,1,setA),sliderRow("B",B,20,120,1,setB),
-      e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"U svakom trokutu zbroj kutova je 180°. Najveći kut određuje vrstu: < 90° šiljastokutan, = 90° pravokutan, > 90° tupokutan."));
-  }
-  function circBlock(){
-    var cx=W/2,cy=H/2+8,Rr=80,half=arc/2*Math.PI/180;
-    var p1x=cx+Rr*Math.cos(Math.PI/2+half),p1y=cy-Rr*Math.sin(Math.PI/2+half),p2x=cx+Rr*Math.cos(Math.PI/2-half),p2y=cy-Rr*Math.sin(Math.PI/2-half),qx=cx,qy=cy+Rr;
-    return e("div",null,
-      vizSvg([e("circle",{key:1,cx:cx,cy:cy,r:Rr,fill:"none",stroke:"var(--bdr2)",strokeWidth:1.5}),
-        e("line",{key:2,x1:cx,y1:cy,x2:p1x,y2:p1y,stroke:"#e05252",strokeWidth:2}),
-        e("line",{key:3,x1:cx,y1:cy,x2:p2x,y2:p2y,stroke:"#e05252",strokeWidth:2}),
-        e("line",{key:4,x1:qx,y1:qy,x2:p1x,y2:p1y,stroke:"#4a90d9",strokeWidth:2}),
-        e("line",{key:5,x1:qx,y1:qy,x2:p2x,y2:p2y,stroke:"#4a90d9",strokeWidth:2}),
-        e("circle",{key:6,cx:cx,cy:cy,r:3,fill:"#e05252"}),
-        e("circle",{key:7,cx:qx,cy:qy,r:3.5,fill:"#4a90d9"})]),
-      e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0"}},e("span",{style:{color:"#e05252"}},"središnji = "+arc+"°")," · ",e("span",{style:{color:"#4a90d9"}},"obodni = "+(arc/2).toFixed(0)+"°")),
-      sliderRow("luk",arc,20,180,2,setArc),
-      e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"Obodni kut (plavi) nad istim je lukom uvijek POLOVICA središnjeg kuta (crveni) — ključno svojstvo kružnice."));
-  }
-  function polyBlock(){
-    var cx=W/2,cy=H/2,Rr=80,pts=[],i;
-    for(i=0;i<N;i++){var ang=-Math.PI/2+i*2*Math.PI/N;pts.push((cx+Rr*Math.cos(ang)).toFixed(1)+","+(cy+Rr*Math.sin(ang)).toFixed(1));}
-    var interior=(N-2)*180/N,sum=(N-2)*180,ext=360/N;
-    return e("div",null,
-      vizSvg([e("polygon",{key:1,points:pts.join(" "),fill:"rgba(74,144,217,.12)",stroke:"#4a90d9",strokeWidth:2.5})]),
-      e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},"Pravilni "+N+"-kut · unutarnji kut = "+interior.toFixed(1)+"°"),
-      sliderRow("n",N,3,12,1,setN),
-      e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"Zbroj unutarnjih kutova = (n − 2)·180° = "+sum+"°. Svaki = "+sum+"°/"+N+" = "+interior.toFixed(1)+"°. Vanjski kut = 360°/n = "+ext.toFixed(1)+"°."));
-  }
-  function solidBlock(){
-    var cx=W/2,names=["valjak","stožac","kugla"],rpx=R*9,hpx=Hh*9,shapes;
-    if(solid===0){var topY=H/2-hpx/2,botY=H/2+hpx/2;shapes=[e("ellipse",{key:1,cx:cx,cy:botY,rx:rpx,ry:rpx*0.3,fill:"rgba(74,144,217,.12)",stroke:"#4a90d9",strokeWidth:2}),e("line",{key:2,x1:cx-rpx,y1:topY,x2:cx-rpx,y2:botY,stroke:"#4a90d9",strokeWidth:2}),e("line",{key:3,x1:cx+rpx,y1:topY,x2:cx+rpx,y2:botY,stroke:"#4a90d9",strokeWidth:2}),e("ellipse",{key:4,cx:cx,cy:topY,rx:rpx,ry:rpx*0.3,fill:"rgba(74,144,217,.18)",stroke:"#4a90d9",strokeWidth:2})];}
-    else if(solid===1){var apex=H/2-hpx/2,base=H/2+hpx/2;shapes=[e("ellipse",{key:1,cx:cx,cy:base,rx:rpx,ry:rpx*0.3,fill:"rgba(74,144,217,.12)",stroke:"#4a90d9",strokeWidth:2}),e("line",{key:2,x1:cx-rpx,y1:base,x2:cx,y2:apex,stroke:"#4a90d9",strokeWidth:2}),e("line",{key:3,x1:cx+rpx,y1:base,x2:cx,y2:apex,stroke:"#4a90d9",strokeWidth:2})];}
-    else{shapes=[e("circle",{key:1,cx:cx,cy:H/2,r:rpx,fill:"rgba(74,144,217,.12)",stroke:"#4a90d9",strokeWidth:2}),e("ellipse",{key:2,cx:cx,cy:H/2,rx:rpx,ry:rpx*0.3,fill:"none",stroke:"#4a90d9",strokeWidth:1,strokeDasharray:"3 3"})];}
-    var V=solid===0?(R*R*Math.PI*Hh):(solid===1?(R*R*Math.PI*Hh/3):(4/3*Math.PI*R*R*R));
-    var formula=solid===0?"V = r²·π·h":(solid===1?"V = r²·π·h / 3":"V = (4/3)·π·r³");
-    return e("div",null,
-      e("div",{style:{display:"flex",gap:6,marginBottom:8,justifyContent:"center"}},names.map(function(nm,k){return e("button",{key:k,onClick:function(){setSolid(k);},style:tgBtn(k===solid)},nm);})),
-      vizSvg(shapes),
-      e("div",{style:{fontSize:13,fontWeight:700,textAlign:"center",margin:"10px 0",color:"var(--text)"}},formula+" ≈ "+V.toFixed(1)),
-      sliderRow("r",R,1,8,0.5,setR),solid!==2&&sliderRow("h",Hh,1,10,0.5,setH),
-      e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:8,lineHeight:1.55}},"Volumen valjka r²πh; stošca trećina toga; kugle (4/3)πr³. Oplošje i volumen rastu s polumjerom — kugla s r³."));
-  }
-  return e("div",null,
-    e("div",{style:{display:"flex",gap:5,flexWrap:"wrap",marginBottom:10,justifyContent:"center"}},["Trokut","Kružni kutovi","Mnogokut","Tijela"].map(function(t,k){return e("button",{key:k,onClick:function(){setTool(k);},style:tgBtn(k===tool)},t);})),
-    tool===0?triBlock():(tool===1?circBlock():(tool===2?polyBlock():solidBlock())));
-}
-function VizModal({kind,onClose}){
-  return e("div",{onClick:onClose,style:{position:"fixed",inset:0,zIndex:280,background:"rgba(10,15,28,.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:16}},
-    e("div",{onClick:ev=>ev.stopPropagation(),style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)",padding:"18px 18px 20px",maxWidth:440,width:"100%",maxHeight:"92vh",overflowY:"auto"}},
-      e("div",{style:{display:"flex",alignItems:"center",marginBottom:12}},
-        e("span",{style:{fontFamily:"var(--fh)",fontSize:18,marginRight:"auto"}},({quad:"Kvadratna funkcija",lin:"Linearna funkcija",circle:"Trigonometrijska kružnica",explog:"Eksponencijalna i logaritamska",analgeo:"Kružnica u koordinatnom sustavu",seq:"Aritmetički i geometrijski niz",vec:"Zbrajanje vektora",complex:"Kompleksna ravnina",deriv:"Tangenta i derivacija",fnfam:"Transformacije funkcija",stat:"Aritmetička sredina i medijan",fin:"Složeni kamatni račun",geo:"Geometrijski alat"}[kind]||"Interaktivni prikaz")),
-        e("button",{onClick:onClose,style:{border:"none",background:"var(--s2)",borderRadius:8,width:30,height:30,cursor:"pointer",fontSize:14,color:"var(--muted)"}},"\u2715")),
-      e("div",{style:{fontSize:12,color:"var(--muted)",marginBottom:12,lineHeight:1.5}},"Povla\u010di kliza\u010de i gledaj kako se mijenja graf \u2014 tako stvarno razumije\u0161."),
-      kind==="quad"&&e(QuadViz,null),kind==="lin"&&e(LinViz,null),kind==="circle"&&e(CircleViz,null),kind==="explog"&&e(ExpLogViz,null),kind==="analgeo"&&e(AnalGeoViz,null),kind==="seq"&&e(SeqViz,null),kind==="vec"&&e(VecViz,null),kind==="complex"&&e(ComplexViz,null),kind==="deriv"&&e(DerivViz,null),kind==="fnfam"&&e(FnFamViz,null),kind==="stat"&&e(StatViz,null),kind==="fin"&&e(FinViz,null),kind==="geo"&&e(GeoViz,null)));
-}
 function StuckHelper(){
   const[open,setOpen]=React.useState(false);
   return e("div",{style:{marginTop:14}},
@@ -3566,46 +3063,6 @@ function WarmupItem({q,a}){
   return e("button",{onClick:()=>setShow(true),style:{display:"flex",alignItems:"center",justifyContent:"space-between",gap:10,width:"100%",marginBottom:8,padding:"12px 14px",borderRadius:"var(--r)",border:"1px solid var(--bdr)",background:"var(--s2)",cursor:show?"default":"pointer",fontFamily:"var(--fb)",textAlign:"left"}},
     e("span",{style:{fontSize:14,fontWeight:600,color:"var(--text)"}},q),
     show?e("span",{style:{fontSize:15,fontWeight:800,color:"var(--green)"}},"= "+a):e("span",{style:{fontSize:11.5,color:"var(--muted)",fontWeight:700}},"tap \u2192"));
-}
-function FigZoom({fig,onClose}){
-  const[z,setZ]=React.useState(1);
-  const[pan,setPan]=React.useState({x:0,y:0});
-  const drag=React.useRef(null);
-  const pinch=React.useRef(null);
-  const lastTap=React.useRef(0);
-  const clampPan=(p,zz)=>{const m=Math.max(0,zz-1)*340+40;return{x:Math.max(-m,Math.min(m,p.x)),y:Math.max(-m,Math.min(m,p.y))};};
-  const zoomTo=(nz)=>{nz=+Math.max(0.5,Math.min(4,nz)).toFixed(2);setZ(nz);setPan(p=>nz<=1?{x:0,y:0}:clampPan(p,nz));};
-  const reset=()=>{setZ(1);setPan({x:0,y:0});};
-  const onMouseDown=(ev)=>{if(z<=1)return;drag.current={sx:ev.clientX,sy:ev.clientY,bx:pan.x,by:pan.y};};
-  const onMouseMove=(ev)=>{if(!drag.current)return;setPan(clampPan({x:drag.current.bx+(ev.clientX-drag.current.sx),y:drag.current.by+(ev.clientY-drag.current.sy)},z));};
-  const endDrag=()=>{drag.current=null;};
-  const onWheel=(ev)=>{ev.preventDefault();zoomTo(z+(ev.deltaY<0?0.25:-0.25));};
-  const dist=(t)=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
-  const onTouchStart=(ev)=>{const t=ev.touches;if(t.length===2){pinch.current={d:dist(t),bz:z};}else if(t.length===1){const now=Date.now();if(now-lastTap.current<300){reset();}lastTap.current=now;if(z>1){drag.current={sx:t[0].clientX,sy:t[0].clientY,bx:pan.x,by:pan.y};}}};
-  const onTouchMove=(ev)=>{const t=ev.touches;if(t.length===2&&pinch.current){ev.preventDefault();zoomTo(pinch.current.bz*(dist(t)/pinch.current.d));}else if(t.length===1&&drag.current){ev.preventDefault();setPan(clampPan({x:drag.current.bx+(t[0].clientX-drag.current.sx),y:drag.current.by+(t[0].clientY-drag.current.sy)},z));}};
-  const onTouchEnd=(ev)=>{if(ev.touches.length===0){drag.current=null;pinch.current=null;}};
-  const ctrl={minWidth:38,height:38,padding:"0 10px",borderRadius:9,border:"1px solid rgba(255,255,255,.25)",background:"rgba(255,255,255,.1)",color:"#fff",fontSize:18,fontWeight:700,cursor:"pointer",fontFamily:"var(--fb)",display:"flex",alignItems:"center",justifyContent:"center"};
-  const interacting=!!(drag.current||pinch.current);
-  return e("div",{style:{position:"fixed",inset:0,background:"rgba(6,12,24,.93)",zIndex:300,display:"flex",flexDirection:"column"},onClick:onClose},
-    e("div",{onClick:ev=>ev.stopPropagation(),style:{display:"flex",alignItems:"center",gap:8,padding:"12px 16px",justifyContent:"center",flexWrap:"wrap"}},
-      e("button",{title:"Smanji",onClick:()=>zoomTo(z-0.25),style:ctrl},"\u2212"),
-      e("span",{style:{color:"#fff",fontSize:13,fontWeight:700,minWidth:54,textAlign:"center"}},Math.round(z*100)+"%"),
-      e("button",{title:"Pove\u0107aj",onClick:()=>zoomTo(z+0.25),style:ctrl},"+"),
-      e("button",{title:"Vrati na 100%",onClick:reset,style:Object.assign({},ctrl,{fontSize:16})},"\u27f2"),
-      e("button",{title:"Zatvori (Esc)",onClick:onClose,style:Object.assign({},ctrl,{marginLeft:6,background:"rgba(255,255,255,.22)"})},"\u2715")),
-    e("div",{onClick:ev=>ev.stopPropagation(),onMouseDown:onMouseDown,onMouseMove:onMouseMove,onMouseUp:endDrag,onMouseLeave:endDrag,onWheel:onWheel,onTouchStart:onTouchStart,onTouchMove:onTouchMove,onTouchEnd:onTouchEnd,onDoubleClick:reset,
-      style:{flex:1,overflow:"hidden",display:"flex",alignItems:"center",justifyContent:"center",padding:"0 16px 6px",cursor:z>1?(interacting?"grabbing":"grab"):"default",touchAction:"none",userSelect:"none"}},
-      e("div",{className:"zoom-fig-inner",style:{transform:"translate("+pan.x+"px,"+pan.y+"px) scale("+z+")",transformOrigin:"center center",transition:interacting?"none":"transform .12s ease",background:"#fff",borderRadius:14,padding:20,flexShrink:0}},fig)),
-    e("div",{onClick:ev=>ev.stopPropagation(),style:{textAlign:"center",color:"rgba(255,255,255,.5)",fontSize:11,padding:"2px 16px 14px",lineHeight:1.4}},"Kota\u010di\u0107 / \u00b1 za zoom \u00b7 povuci za pomicanje \u00b7 dvoklik za reset"));
-}
-function ZoomableFig({fig}){
-  const[zf,setZf]=React.useState(false);
-  useEscape(zf,()=>setZf(false));
-  return e(React.Fragment,null,
-    e("div",{className:"fig-zoomable",style:{display:"inline-block"},onClick:()=>setZf(true)},
-      fig,
-      e("span",{className:"fig-zoom-badge"},"🔍 uvećaj")),
-    zf&&e(FigZoom,{fig:fig,onClose:()=>setZf(false)}));
 }
 function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,onPracticeErrors,onPracticeSimilar,onStats,onFilter,onHome,resume,onPatchResult}){
   const QSX=exam.qs;
@@ -7615,27 +7072,6 @@ Plan 3-4 tjedna, fokus na najslabije teme, zadaci konkretni i izvedivi.`;
     )
   );
 }
-function AnimatedRing({pct,gc,g}){
-  const r=54,circ=2*Math.PI*r;
-  const[dash,setDash]=useState(0);
-  useEffect(()=>{
-    const t=setTimeout(()=>setDash(circ*(pct/100)),100);
-    return()=>clearTimeout(t);
-  },[pct]);
-  return e("div",{className:"score-ring score-anim"},
-    e("svg",{width:140,height:140,viewBox:"0 0 140 140"},
-      e("circle",{cx:70,cy:70,r:r,fill:"none",stroke:"var(--s3)",strokeWidth:10}),
-      e("circle",{cx:70,cy:70,r:r,fill:"none",stroke:gc,strokeWidth:10,
-        strokeDasharray:circ,strokeDashoffset:circ-dash,
-        style:{transition:"stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)"},
-        strokeLinecap:"round",transform:"rotate(-90 70 70)"})
-    ),
-    e("div",{className:"score-ring-text"},
-      e("div",{className:"score-ring-num",style:{color:gc}},g),
-      e("div",{className:"score-ring-pct"},pct+"%")
-    )
-  );
-}
 function GradePrediction({history}){
   if(!history||history.length<2) return e("div",{className:"trend-empty"},
     "📊 Trebaš barem 2 riješena ispita za predviđanje.");
@@ -7728,60 +7164,6 @@ function getRecommendations(userData){
     });
   }
   return recs;
-}
-function TrendChart({history}){
-  const[tooltip,setTooltip]=useState(null);
-  const data=history.map(h=>({pct:h.pct,grade:h.grade,examLabel:h.examLabel,date:h.date,cor:h.cor,total:h.total,sim:(h.examMode===true||h.mode==="simulacija")}));
-  const PASS=50;
-  const n=data.length;
-  if(n<3) return e("div",{style:{padding:"30px 16px",textAlign:"center"}},
-    e("div",{style:{fontSize:30,marginBottom:8}},"📈"),
-    e("div",{style:{fontSize:13.5,fontWeight:600,marginBottom:4}},"Trend rezultata"),
-    e("div",{style:{fontSize:12.5,color:"var(--muted)"}},"Riješi još "+(3-n)+" "+(3-n===1?"ispit":"ispita")+" za prikaz trenda"));
-  const W=560,H=180,PAD={l:36,r:16,t:18,b:32};
-  const iW=W-PAD.l-PAD.r,iH=H-PAD.t-PAD.b;
-  const xStep=n>1?iW/(n-1):0;
-  function xPos(i){return PAD.l+(n>1?i*xStep:iW/2);}
-  function yPos(pct){return PAD.t+iH-(pct/100)*iH;}
-  const gridLines=[40,55,70,85];
-  const pts=data.map((h,i)=>xPos(i)+","+yPos(h.pct));
-  const avgPct=Math.round(data.reduce((a,h)=>a+h.pct,0)/n);
-  return e("div",{style:{position:"relative"}},
-    e("svg",{className:"trend-svg",viewBox:`0 0 ${W} ${H}`,preserveAspectRatio:"xMidYMid meet"},
-      gridLines.map(pct=>e("g",{key:pct},
-        e("line",{x1:PAD.l,y1:yPos(pct),x2:W-PAD.r,y2:yPos(pct),stroke:"var(--bdr2)",strokeWidth:1,strokeDasharray:"4 4"}),
-        e("text",{x:PAD.l-4,y:yPos(pct)+4,textAnchor:"end",fontSize:9,fill:"var(--muted)"},pct+"%")
-      )),
-      n>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:"var(--blue)",strokeWidth:2.5,strokeLinecap:"round",strokeLinejoin:"round"}),
-      e("line",{x1:PAD.l,y1:yPos(PASS),x2:W-PAD.r,y2:yPos(PASS),stroke:"var(--red)",strokeWidth:1.5,strokeDasharray:"2 3",opacity:.55}),
-      e("text",{x:W-PAD.r,y:yPos(PASS)-4,textAnchor:"end",fontSize:8.5,fill:"var(--red)",opacity:.8},"prag "+PASS+"%"),
-      n>=3&&e("line",{x1:PAD.l,y1:yPos(avgPct),x2:W-PAD.r,y2:yPos(avgPct),stroke:"var(--bdr2)",strokeWidth:1,strokeDasharray:"6 3"}),
-      data.map((h,i)=>e("text",{key:i,x:xPos(i),y:H-4,textAnchor:"middle",fontSize:9,fill:"var(--muted)"},
-        h.examLabel?.slice(0,7)||"")),
-      data.map((h,i)=>e("circle",{
-        key:i,className:"trend-point",cx:xPos(i),cy:yPos(h.pct),r:h.sim?6:5,
-        fill:GC[h.grade]||"var(--blue)",stroke:h.sim?"var(--gold)":"var(--bg)",strokeWidth:h.sim?2.5:2,
-        onMouseEnter:()=>setTooltip({...h,i}),
-        onMouseLeave:()=>setTooltip(null)
-      }))
-    ),
-    tooltip&&e("div",{className:"trend-tooltip",style:{left:Math.min((tooltip.i/(n-1)*100),75)+"%",top:"10%"}},
-      e("strong",{style:{color:GC[tooltip.grade]}},GLBL[tooltip.grade]+"  -  "+tooltip.pct+"%"),
-      e("span",null,tooltip.examLabel),e("br"),
-      e("span",{style:{color:"var(--muted)"}},tooltip.date+" · "+tooltip.cor+"/"+tooltip.total+" točnih")
-    ),
-    e("div",{className:"trend-legend"},
-      e("div",{className:"trend-legend-item"},
-        e("div",{className:"trend-legend-line",style:{background:"var(--blue)"}}),
-        "Tvoj rezultat"),
-      n>=3&&e("div",{className:"trend-legend-item"},
-        e("div",{className:"trend-legend-line",style:{background:"var(--bdr2)"}}),
-        "Prosjek "+avgPct+"%"),
-      data.some(h=>h.sim)&&e("div",{className:"trend-legend-item"},
-        e("div",{style:{width:9,height:9,borderRadius:"50%",background:"var(--muted)",border:"2px solid var(--gold)"}}),
-        "Simulacija")
-    ),
-  );
 }
 function ErrorsScreen({userData,onStart,onBack}){
   const errors=Object.values(userData.errorTracker||{}).filter(e=>e.count>0).sort((a,b)=>b.count-a.count);
