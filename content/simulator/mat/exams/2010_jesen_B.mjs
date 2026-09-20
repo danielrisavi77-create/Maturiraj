@@ -952,7 +952,6 @@ export const qImages = {
   "2010_jesen_B__27.3": () => e(Svg27j, null),
   "2010_jesen_B__28.1": () => e(Svg28j, null),
   "2010_jesen_B__28.2": () => e(Svg28j, null),
-  "2010_jesen_B__28.3": () => e(Svg28j, null),
   "2010_jesen_B__7": () => e(SvgZad7_2010JB, null),
   "2010_jesen_B__9": () => e(Svg9j, null),
 };
