@@ -277,6 +277,8 @@ describe('getDailyChallengeQuestions — boundary / empty pool cases', () => {
 });
 
 // ─── Paywall na dnevnom izazovu (P2) ──────────────────────────────────────────
+// Dnevni izazov ostaje vježbanje (freePractice): prijavljeni free korisnik dobiva
+// FREE_LIMIT pitanja, a besplatan je samo pravi ispitni mod sa satom.
 // Pool sadrži samo 'mc' pitanja da bi izlaz getDailyChallengeQuestions bio
 // predvidljiv (mat/fb ciljevi vraćaju 0 kad pool nema tih tipova) i dovoljno
 // dug (5 pitanja) da indeks >= FREE_LIMIT (3) bude dohvatljiv u testu.
@@ -301,7 +303,7 @@ describe('DailyChallengeScreen — paywall (SimulatorPreviewGate)', () => {
   });
   afterEach(() => cleanup());
 
-  it('besplatni pristup je zaključan odmah (paid-only Discere — bez free previewa)', async () => {
+  it('besplatni pristup vidi prva FREE_LIMIT pitanja, pa se zaključa', async () => {
     const examsMap = makeMcPool(5);
     render(e(DailyChallengeScreen, {
       userData: { history: [] },
@@ -311,8 +313,18 @@ describe('DailyChallengeScreen — paywall (SimulatorPreviewGate)', () => {
       onDone: vi.fn(),
     }));
 
-    // Paid-only: pitanje 0 već zaključano — stvarni tekst nije u DOM-u
-    expect(screen.queryByText(/Pitanje broj 0$/)).toBeNull();
+    // Dnevni izazov je vježbanje, ne pravi ispit → preview do FREE_LIMIT pitanja.
+    // Redoslijed pitanja diktira seed, pa se prvo pitanje traži po obrascu.
+    expect(await screen.findByText(/^Pitanje broj \d+$/)).toBeTruthy();
+
+    for (let i = 0; i < FREE_LIMIT; i++) {
+      const opts = await screen.findAllByRole('radio');
+      fireEvent.click(opts[0]);
+      fireEvent.click(screen.getByRole('button', { name: 'Dalje →' }));
+    }
+
+    // Na indeksu FREE_LIMIT sadržaj pitanja više nije u DOM-u
+    expect(screen.queryByText(/^Pitanje broj \d+$/)).toBeNull();
     expect(screen.queryByRole('radio')).toBeNull();
   });
 

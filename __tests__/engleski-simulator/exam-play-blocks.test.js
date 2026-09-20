@@ -8,7 +8,9 @@
  *   - 'Sljedeće →' ne izlazi iz bloka,
  *   - 'Završi dio →' (uz potvrdu) prelazi na sljedeći blok bez povratka,
  *   - istek timera bloka prelazi na sljedeći blok, a istek zadnjeg predaje ispit,
- *   - upozorenje na 600 s nosi naziv ispitne cjeline.
+ *   - upozorenje na 600 s nosi naziv ispitne cjeline,
+ *   - paywall: prijavljeni free korisnik rješava cijeli ispit (ispitni mod je
+ *     besplatan), a u vježbanju ostaje zaključan od FREE_LIMIT-og pitanja.
  *
  * MCQ i SimulatorPreviewGate su pravi (ne mockani) — testiramo stvarni DOM.
  * Mockani su samo next/navigation (router ne postoji izvan Nexta) i useAuth
@@ -22,7 +24,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent, act, cleanup } from '@testing-library/react'
 import { createElement as e } from 'react'
-import { makeVisaExam, PRO_ACCESS } from './_synthExam.js'
+import { makeVisaExam, PRO_ACCESS, FREE_ACCESS } from './_synthExam.js'
+import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers'
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() }),
@@ -146,6 +149,26 @@ describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
     // Timer nakon isteka više ne predaje (expired ref)
     act(() => { vi.advanceTimersByTime(60 * 1000) })
     expect(onDone).toHaveBeenCalledTimes(1)
+  })
+
+  it('prijavljeni free korisnik nije zaključan ni na pitanju iznad FREE_LIMIT-a', () => {
+    renderPlay({ userAccess: FREE_ACCESS, isPro: false })
+    expect(screen.getByText('R1-TEXT')).toBeTruthy()
+    // Slušanje je treći blok — globalni indeks 4, dakle iznad FREE_LIMIT-a (3)
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }))
+    expect(navTitle()).toContain('Slušanje (3/3)')
+    expect(FREE_LIMIT).toBeLessThan(4)
+    expect(screen.getByText('L1-TEXT')).toBeTruthy()
+  })
+
+  it('vježbanje (examMode:false) ostaje zaključano od FREE_LIMIT-og pitanja', () => {
+    renderPlay({ examMode: false, userAccess: FREE_ACCESS, isPro: false })
+    expect(screen.getByText('R1-TEXT')).toBeTruthy()
+    fireEvent.click(gridButtons()[FREE_LIMIT])
+    expect(screen.queryByText('W2-TEXT')).toBeNull()
+    // Paywall je doista podignut (a ne samo prazan render) — modal se sam otvara
+    expect(screen.getByRole('dialog')).toBeTruthy()
   })
 
   it('na 600 s prije kraja prikazuje upozorenje s nazivom ispitne cjeline', () => {
