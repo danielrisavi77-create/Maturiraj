@@ -45,15 +45,16 @@ export function buildUserAccess(authState) {
  * @returns {{ canProceed: boolean, reason: 'ok'|'not-logged-in'|'limit-reached' }}
  */
 export function checkSimulatorAccess(userAccess, questionIndex) {
+  // Paid-only Discere (W2): free preview / FREE_LIMIT path is disabled.
+  // Proxy + PlanGate already block free; this keeps client gates honest.
+  void questionIndex
   if (!userAccess?.isLoggedIn) {
     return { canProceed: false, reason: 'not-logged-in' }
   }
   if (userAccess.subscriptionTier !== 'free') {
     return { canProceed: true, reason: 'ok' }
   }
-  return questionIndex < FREE_LIMIT
-    ? { canProceed: true,  reason: 'ok' }
-    : { canProceed: false, reason: 'limit-reached' }
+  return { canProceed: false, reason: 'limit-reached' }
 }
 
 /**

@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/client'
  * Modal koji se prikazuje kad neprijavljeni korisnik klikne "Koristi ovaj plan".
  * Nakon prijave/registracije automatski se poziva onSuccess() koji sprema plan.
  */
-export default function SavePlanModal({ onSuccess, onClose, planType = 'free' }) {
+export default function SavePlanModal({ onSuccess, onClose, planType = 'free', pendingDraft = null }) {
   const supabase = createClient()
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
   const [mode,     setMode]     = useState('choice')   // 'choice' | 'email'
@@ -22,9 +22,13 @@ export default function SavePlanModal({ onSuccess, onClose, planType = 'free' })
 
   const handleGoogle = async () => {
     setLoading(true); setError(null)
-    // Google OAuth — nakon redirecta, onSuccess se poziva iz page.js
-    // jer se stranica reloada. Koristimo localStorage da znamo da treba spremiti.
-    localStorage.setItem('maturiraj_pending_save', '1')
+    // Google OAuth — page.js restores maturiraj_pending_save + draft after redirect.
+    try {
+      localStorage.setItem('maturiraj_pending_save', '1')
+      if (pendingDraft) {
+        localStorage.setItem('maturiraj_pending_plan', JSON.stringify(pendingDraft))
+      }
+    } catch { /* ignore quota */ }
     const { error: e } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: `${appUrl}/auth/callback?redirect=/plan-ucenja` },
@@ -122,7 +126,7 @@ export default function SavePlanModal({ onSuccess, onClose, planType = 'free' })
               Spremi plan učenja
             </div>
             <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.65 }}>
-              Besplatan račun — plan ti ostaje sačuvan i možeš ga pratiti svaki dan.
+              Prijavi se da spremiš plan. Spremanje zahtijeva Standard ili Pro plan.
             </div>
           </div>
 

@@ -301,7 +301,7 @@ describe('DailyChallengeScreen — paywall (SimulatorPreviewGate)', () => {
   });
   afterEach(() => cleanup());
 
-  it('pitanje s indeksom >= FREE_LIMIT je zaključano za besplatan pristup (sadržaj nije u DOM-u)', async () => {
+  it('besplatni pristup je zaključan odmah (paid-only Discere — bez free previewa)', async () => {
     const examsMap = makeMcPool(5);
     render(e(DailyChallengeScreen, {
       userData: { history: [] },
@@ -311,15 +311,9 @@ describe('DailyChallengeScreen — paywall (SimulatorPreviewGate)', () => {
       onDone: vi.fn(),
     }));
 
-    // Odgovori na prva FREE_LIMIT pitanja i predi dalje da bi se stiglo do zaključanog
-    for (let i = 0; i < FREE_LIMIT; i++) {
-      const opts = await screen.findAllByRole('radio');
-      fireEvent.click(opts[0]);
-      fireEvent.click(screen.getByRole('button', { name: 'Dalje →' }));
-    }
-
-    // Na zaključanom pitanju stvarni tekst pitanja ne smije biti u DOM-u
-    expect(screen.queryByText(new RegExp(`Pitanje broj ${FREE_LIMIT}$`))).toBeNull();
+    // Paid-only: pitanje 0 već zaključano — stvarni tekst nije u DOM-u
+    expect(screen.queryByText(/Pitanje broj 0$/)).toBeNull();
+    expect(screen.queryByRole('radio')).toBeNull();
   });
 
   it('s PRO_ACCESS pitanje s indeksom >= FREE_LIMIT NIJE zaključano', async () => {

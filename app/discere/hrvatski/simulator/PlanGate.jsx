@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 /**
- * Client-side plan gate — defense in depth on top of middleware.
- * Redirects free users to /pro if they somehow bypass the middleware.
+ * Client-side plan gate — defense in depth on top of proxy paidRequired.
+ * Paid-only Discere (W2 / ODL-1): free users go to /pro; guests to /prijava.
+ * Free 3Q / demo preview is not offered while proxy blocks /discere for free.
  */
 export default function PlanGate({ children }) {
   const { user, isPaid, loading } = useAuth()
@@ -15,13 +16,17 @@ export default function PlanGate({ children }) {
   // Dev bypass — owner account zaobilazi plan check
   const isDevBypass = user?.email === process.env.NEXT_PUBLIC_DEV_BYPASS_EMAIL
 
-  // Free preview model: logged-in free users may enter — SimulatorPreviewGate handles the Q limit.
-  // Only unauthenticated visitors are redirected to login.
   useEffect(() => {
-    if (!loading && !user && !isDevBypass) {
-      router.replace('/prijava?from=discere')
+    if (loading) return
+    if (isDevBypass) return
+    if (!user) {
+      router.replace('/prijava?redirect=/discere')
+      return
     }
-  }, [user, loading, router, isDevBypass])
+    if (!isPaid) {
+      router.replace('/pro?from=discere')
+    }
+  }, [user, isPaid, loading, router, isDevBypass])
 
   if (loading && !isDevBypass) {
     return (
@@ -37,7 +42,7 @@ export default function PlanGate({ children }) {
     )
   }
 
-  if (!loading && !user && !isDevBypass) return null
+  if (!isDevBypass && (!user || !isPaid)) return null
 
   return children
 }

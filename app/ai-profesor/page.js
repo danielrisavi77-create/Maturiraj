@@ -345,6 +345,7 @@ export default function AIProfessorPage() {
         headers: { 'Content-Type': 'application/json' },
         signal: abortRef.current.signal,
         body: JSON.stringify({
+          mode:     'profesor',
           system:   buildSystemPrompt(),
           messages: apiHistory,
         }),
