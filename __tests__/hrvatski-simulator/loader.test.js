@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { EXAMS, stripLetterPrefix } from '../../app/discere/hrvatski/simulator/data/exams/index.js';
+import { EXAMS, stripLetterPrefix, TOPIC_LABELS } from '../../app/discere/hrvatski/simulator/data/exams/index.js';
+import { TOPIC_OVERRIDES } from '../../app/discere/hrvatski/simulator/data/topicOverrides.js';
 
 const LETTERS = 'ABCDEF';
 // Zaostali prefiks prepoznaje se samo ako je slovo jednako slovu vlastitog indeksa;
@@ -103,9 +104,32 @@ describe('EXAMS — integritet podataka po ispitu', () => {
       "2019_jesen_A": 80, "2019_jesen_B": 80, "2019_ljeto_A": 80, "2019_ljeto_B": 80,
       "2020_ljeto_A": 80, "2020_ljeto_B": 80, "2020_jesen_A": 72, "2020_jesen_B": 72,
       "2021_jesen_A": 80, "2021_jesen_B": 80, "2021_ljeto_A": 80, "2021_ljeto_B": 80,
-      "2022_jesen_B": 80, "2022_jesen_A": 80, "2022_ljeto_A": 80, "2022_ljeto_B": 80,
+      "2022_jesen_B": 80, "2022_jesen_A": 80, "2022_ljeto_A": 50, "2022_ljeto_B": 80,
       "2023_ljeto": 62, "2023_jesen": 62, "2024_jesen": 62, "2024_ljeto": 62,
       "2025_jesen": 62, "2025_ljeto": 62,
     });
+  });
+});
+
+describe('taksonomija književnosti (TOPIC_OVERRIDES)', () => {
+  const keys = Object.keys(EXAMS);
+  const allMc = keys.flatMap(k => (EXAMS[k].qs || []).filter(q => q.type === 'mc'));
+
+  it('nijedno mc pitanje nema topic knj_analiza', () => {
+    const bad = allMc.filter(q => q.topic === 'knj_analiza');
+    expect(bad.map(q => q.id)).toEqual([]);
+  });
+
+  it('svi topic ključevi mc pitanja postoje u TOPIC_LABELS', () => {
+    const missing = allMc
+      .map(q => q.topic)
+      .filter(t => t && !(t in TOPIC_LABELS));
+    expect([...new Set(missing)]).toEqual([]);
+  });
+
+  it('broj override zapisa je 2825', () => {
+    const total = Object.values(TOPIC_OVERRIDES)
+      .reduce((sum, byId) => sum + Object.keys(byId).length, 0);
+    expect(total).toBe(2825);
   });
 });

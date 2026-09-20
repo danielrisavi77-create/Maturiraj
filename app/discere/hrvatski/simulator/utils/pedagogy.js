@@ -182,15 +182,27 @@ export function selectAdaptiveMix(allQuestions, weights, count = 15) {
   });
 
   const selected = [];
+  const used = new Set();
   const topics = Object.keys(weights).filter(t => byTopic[t]?.length > 0);
   if (topics.length === 0) return mcQs.sort(() => Math.random() - 0.5).slice(0, count);
 
+  // Teme iz povijesti kojih više nema u bazenu (npr. stari zapisi s temom koja je u
+  // međuvremenu preimenovana) ovdje ispadaju, pa se preostale težine renormaliziraju —
+  // inače bi zbroj bio manji od 1 i sesija bi dobila manje pitanja nego što je traženo.
+  const weightSum = topics.reduce((sum, t) => sum + (weights[t] || 0), 0) || 1;
+
   // Allocate slots proportionally
   topics.forEach(t => {
-    const slots = Math.max(1, Math.round(count * (weights[t] || 0)));
+    const slots = Math.max(1, Math.round(count * ((weights[t] || 0) / weightSum)));
     const pool = [...byTopic[t]].sort(() => Math.random() - 0.5);
-    selected.push(...pool.slice(0, slots));
+    pool.slice(0, slots).forEach(q => { selected.push(q); used.add(q); });
   });
+
+  // Zaokruživanje po temama i male teme mogu dati manje od count — dopuni iz ostatka bazena.
+  if (selected.length < count) {
+    const rest = mcQs.filter(q => !used.has(q)).sort(() => Math.random() - 0.5);
+    selected.push(...rest.slice(0, count - selected.length));
+  }
 
   // Shuffle and trim to count
   return selected.sort(() => Math.random() - 0.5).slice(0, count);
