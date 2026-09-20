@@ -2,9 +2,21 @@ import { validateAttemptEvent } from './outbox'
 import { validateQuestionSet } from '../discere/exam-schema'
 import { scoreQuestion } from '../discere/scoring'
 import { isAssessmentResponse } from './assessment-response'
-import type { buildLessonQuestionSet } from './lesson-question-set'
 
-type QuestionSet = ReturnType<typeof buildLessonQuestionSet>
+/** Structural question-set shape (builder module was never landed on main). */
+type QuestionSet = {
+  id: string
+  version: string
+  subjectId: string
+  level: string
+  lessonId: string
+  questions: Array<{
+    id: string
+    version: string
+    type: string
+    outcomeIds: string[]
+  }>
+}
 type AttemptEvent = {
   eventId: string
   sessionId: string
