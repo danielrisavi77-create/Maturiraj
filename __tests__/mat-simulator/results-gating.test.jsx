@@ -12,7 +12,14 @@
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+// Monolit je razbijen u components/simulator/mat/*; MatEngineCore je jos uvijek javni API
+// (shim), pa Sim i loader idu preko njega. EXAMS nije dio javnog API-ja — dolazi izravno
+// iz modula, jer anti-leak tvrdnja je bas o tom objektu.
 import * as core from '@/components/simulator/MatEngineCore';
+import { EXAMS } from '@/components/simulator/mat/core/exams';
+// Statistika rekonstruira analizu po temama iz history[].topic_breakdown, pa je gate
+// na rezultatima bez vrijednosti ako je isti podatak jedan klik dalje ("📊 Statistika").
+import { StatsScreen, PDFReportScreen } from '@/components/simulator/mat/screens/stats';
 
 const { Sim } = core;
 
@@ -122,9 +129,89 @@ describe('zaključan ispit u besplatnom ispitnom modu — banka pitanja ne curi'
     expect(core.isExamOnlyLoaded('2010_ljeto_B')).toBe(true);
     // Ovo je cijela poanta: cross-exam modovi čitaju EXAMS[key].qs, koji ostaje prazan.
     expect(core.isExamLoaded('2010_ljeto_B')).toBe(false);
+    expect(EXAMS['2010_ljeto_B'].qs).toHaveLength(0);
+    expect(EXAMS['2010_ljeto_B']._loaded).toBe(false);
 
     await core.loadExam('2016_ljeto_B');
     expect(core.isExamLoaded('2016_ljeto_B')).toBe(true);
     expect(core.examOnlyQs('2016_ljeto_B')).toHaveLength(0);
+  });
+});
+
+describe('besplatan ispitni mod — oznake (Shift+F) ne spremaju tekst zadatka', () => {
+  // U ispitnom modu QSX su pitanja zaključanog ispita (__EXAM_ONLY). Prečac je prije
+  // pisao {examKey, q:'<tekst zadatka>'} u mat_bookmarks → localStorage + DISCERE_SAVE +
+  // korisnikov "⬇ Izvezi" backup, a BookmarksScreen ga ionako ne može razriješiti.
+  it('Shift+F u ispitnom modu ne upiše ništa u mat_bookmarks', () => {
+    pushConfig({ isPaid: false });
+    const exam = mkExam('2010_ljeto_B');
+    render(<Sim exam={exam} examMode practice={false} onExit={() => {}} onDone={() => {}} />);
+
+    fireEvent.keyDown(window, { key: 'F', shiftKey: true });
+
+    expect(localStorage.getItem('mat_bookmarks')).toBeNull();
+  });
+
+  it('izvan ispitnog moda prečac i dalje sprema oznaku', () => {
+    pushConfig({ isPaid: true });
+    const exam = mkExam();
+    render(<Sim exam={exam} examMode={false} practice={false} onExit={() => {}} onDone={() => {}} />);
+
+    fireEvent.keyDown(window, { key: 'F', shiftKey: true });
+
+    const saved = JSON.parse(localStorage.getItem('mat_bookmarks') || '{}');
+    expect(Object.keys(saved)).toHaveLength(1);
+    expect(Object.values(saved)[0].q).toContain('Zadatak broj 1');
+  });
+});
+
+// Ista analiza po temama koju rezultati skrivaju iza LockedResultsBlocka dostupna je
+// sa "📊 Statistika" (rezultati) i s Početne — pa gate mora vrijediti i u StatsScreenu.
+const statsUserData = () => ({
+  xp: 300, streak: 2,
+  history: [1, 2].map((i) => ({
+    examKey: '2010_ljeto_B', examLabel: 'Ispit ' + i, razina: 'B', date: i + '.1.2025.', hour: 12,
+    pct: 40 + i * 5, grade: 2, cor: 8 + i, total: 20, mode: 'simulacija', examMode: true,
+    qTimes: { 1: 30 },
+    topic_breakdown: { kv: { correct: 1, total: 5 }, lin: { correct: 4, total: 5 } },
+  })),
+  errorTracker: {},
+});
+
+describe('statistika — analiza po temama je iza istog gatea kao rezultati', () => {
+  it('free: teme, postoci i tab "Teme" nisu u DOM-u, nego CTA na Standard', () => {
+    pushConfig({ isPaid: false });
+    const { container } = render(
+      <StatsScreen userData={statsUserData()} onBack={() => {}} onPDFReport={() => {}} />
+    );
+
+    expect(container.textContent).not.toContain('Kvadratne funkcije');
+    expect(container.textContent).not.toContain('Linearne funkcije');
+    expect(container.textContent).not.toContain('Najslabija tema');
+    expect(container.textContent).not.toContain('Mapa znanja');
+    expect(screen.queryByText(/Teme$/)).toBeNull();
+    // Ostaje ono što je besplatno: broj ispita, prosjek, rekord, XP.
+    expect(container.textContent).toContain('Prosjek');
+    expect(container.querySelector('a[href^="/pro?from=mat-results"]')).toBeTruthy();
+  });
+
+  it('standard: teme i najslabija/najjača tema su tu, bez CTA-a', () => {
+    pushConfig({ isPaid: true });
+    const { container } = render(
+      <StatsScreen userData={statsUserData()} onBack={() => {}} onPDFReport={() => {}} />
+    );
+
+    expect(container.textContent).toContain('Najslabija tema');
+    expect(container.textContent).toContain('Kvadratne funkcije');
+    expect(container.querySelector('a[href^="/pro?from=mat-results"]')).toBeNull();
+  });
+
+  it('PDF izvještaj: free ne dobiva slabe/jake teme', () => {
+    pushConfig({ isPaid: false });
+    const { container } = render(<PDFReportScreen userData={statsUserData()} onBack={() => {}} />);
+
+    expect(container.textContent).not.toContain('Slabe teme');
+    expect(container.textContent).not.toContain('Kvadratne funkcije');
+    expect(container.querySelector('a[href^="/pro?from=mat-results"]')).toBeTruthy();
   });
 });

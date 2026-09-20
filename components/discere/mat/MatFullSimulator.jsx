@@ -20,6 +20,9 @@ import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
 import { saveSimResult } from '@/lib/sim-progress';
 import { isPaidTier, isProTier } from '@/lib/billing/getEffectiveTier';
 import { PLANS, upgradeOffer } from '@/lib/billing/plans';
+// Oznake tema (slug → ljudski naziv) — isti izvor koji engine koristi u svojim ekranima.
+// Povijest ispita nosi samo slugove ("anal"), pa bi savjet inače ispisao sirovi ključ.
+import { TOPIC_LABELS } from '@/components/simulator/mat/core/state';
 
 const REAL_EXAM = /^\d{4}_[a-zšđčćž]+_[AB]$/; // skip virtual/practice sessions for sim_progress
 
@@ -111,7 +114,9 @@ export default function MatFullSimulator({ tier = 'free' }) {
         const saved = await loadSimState('mat');
         if (cancelled) return;
 
-        setupBridge(saved, router);
+        // isPaidTier odlučuje i o coach savjetima: analiza po temama je Standard,
+        // a overlay je parent-side pa ga engineov canSeeDetails ne pokriva.
+        setupBridge(saved, router, isPaidTier(tier));
         if (typeof window !== 'undefined') window.__DISCERE_HYDRATE__ = saved;
 
         coreRef.current = core;
@@ -257,7 +262,7 @@ function ensureNerdamer() {
 }
 
 // ── in-process bridge: capture engine DS writes → Supabase (full blob + per-exam rows) ──
-function setupBridge(saved, router) {
+function setupBridge(saved, router, paid) {
   if (typeof window === 'undefined') return;
   const buffer = { ...saved };
   let histLen = 0;
@@ -288,7 +293,7 @@ function setupBridge(saved, router) {
         const hist = (JSON.parse(msg.value).history) || [];
         for (let i = histLen; i < hist.length; i++) flushAttempt(hist[i]);
         if (hist.length > histLen) {
-          const tips = generateCoachTips(hist[hist.length - 1]);
+          const tips = generateCoachTips(hist[hist.length - 1], paid);
           if (tips.length) window.dispatchEvent(new CustomEvent('mat-coach', { detail: tips }));
         }
         histLen = hist.length;
@@ -353,7 +358,14 @@ function durationSec(hRec, qTimes) {
 
 // Strategy coach: post-exam tips from the saved history entry (qTimes + topic_breakdown).
 // Per-question correctness isn't in the blob, so rush/slow-error tips are omitted (vs HRV coach).
-function generateCoachTips(h) {
+//
+// GATE (paid): savjeti o tempu, broju riješenih i poticaj ne otkrivaju razradu rezultata pa
+// ostaju besplatni. Savjet "Slaba tema" JEST analiza po temama — to je Standard (isto pravilo
+// kao canSeeDetails u mat/sim/sim.tsx i canSeeTopics u mat/screens/stats.tsx). Overlay se crta
+// iznad zaključanog bloka "Analiza po temama", pa bi bez ovog gatea free korisnik dobio baš
+// ono što blok skriva. `paid` izostavljen → zaključano (siguran default).
+// Izvezeno zbog testova (__tests__/mat-simulator/free-tier-leaks.test.jsx).
+export function generateCoachTips(h, paid) {
   const tips = [];
   if (!h) return tips;
   const qTimes = h.qTimes || {};
@@ -368,10 +380,17 @@ function generateCoachTips(h) {
     const perQ = times.reduce((a, b) => a + b, 0) / times.length;
     if (perQ > 150) tips.push({ icon: '⏱️', title: 'Upravljanje vremenom', detail: `Prosjek ${Math.round(perQ)}s/pitanje — na pravoj maturi pazi na tempo.` });
   }
-  const tb = h.topic_breakdown || {};
-  let weak = null;
-  Object.keys(tb).forEach(t => { const d = tb[t]; if (d && d.total >= 3) { const acc = d.correct / d.total; if (!weak || acc < weak.acc) weak = { t, acc, d }; } });
-  if (weak && weak.acc < 0.6) tips.push({ icon: '📚', title: 'Slaba tema', detail: `${weak.t}: ${weak.d.correct}/${weak.d.total} točnih — vježbaj filtrirano po toj temi.` });
+  if (paid) {
+    const tb = h.topic_breakdown || {};
+    let weak = null;
+    Object.keys(tb).forEach(t => { const d = tb[t]; if (d && d.total >= 3) { const acc = d.correct / d.total; if (!weak || acc < weak.acc) weak = { t, acc, d }; } });
+    if (weak && weak.acc < 0.6) tips.push({ icon: '📚', title: 'Slaba tema', detail: `${topicLabel(weak.t)}: ${weak.d.correct}/${weak.d.total} točnih — vježbaj filtrirano po toj temi.` });
+  }
   if (!tips.length && h.pct >= 85) tips.push({ icon: '🏆', title: 'Odlično!', detail: `${h.pct}% — sjajna izvedba. Nastavi tako!` });
   return tips.slice(0, 3);
+}
+
+// Slug teme → ljudska oznaka ("anal" → "Analitička geometrija"). Nepoznat slug ostaje kakav jest.
+function topicLabel(slug) {
+  return (slug && TOPIC_LABELS[slug]) || slug || '';
 }

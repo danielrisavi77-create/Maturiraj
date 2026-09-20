@@ -3,7 +3,7 @@
 /* 5.3: izdvojeno iz components/simulator/MatEngineCore.tsx bez promjene ponasanja.
    Sim - glavni ekran rjesavanja ispita/vjezbe (pitanje, navigacija, alati, pregled, rezultat). */
 import React from 'react';
-import { __MAT, IS_PRO, planCta, __rk, DS, TOPIC_LABELS } from '../core/state';
+import { __MAT, IS_PRO, IS_PAID, planCta, __rk, DS, TOPIC_LABELS, MAT_RESULTS_UPGRADE_URL } from '../core/state';
 import { EXAMS } from '../core/exams';
 import { __imgKey, __aiErrMsg, __aiPost } from '../core/runtime';
 import { renderOptText, renderQText, FormulaBlock, renderOptContent } from '../core/mathText';
@@ -19,10 +19,18 @@ import { ERROR_TAGS, ErrorTagger, SelfExplain, StuckHelper, WarmupItem, WeakSpot
 import { ShareCard, UpgradeModal } from '../tools/modals';
 import { AnswerHelper, CalcQuestion, FeedbackBox, MaturaRubric, QToolbar } from '../tools/question';
 import { vc, TYPE_ICON, topicColor, fmt2, useTimer, CalcQuestionM, TOPIC_FREQ } from './helpers';
+// Zakljucani placeholder rezultata dijeli se s ostalim predmetima (hrv/eng/soc) umjesto
+// vlastite kopije; engine se bundla kroz Next, pa je obican import u redu.
+import LockedResultsBlock from '@/components/discere/paywall/LockedResultsBlock';
 const{createElement:e,useState,useEffect,useMemo,useRef,Fragment}=React;
 export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,onPracticeErrors,onPracticeSimilar,onStats,onFilter,onHome,resume,onPatchResult}){
   const QSX=exam.qs;
   function toggleBookmark(qid){
+    // Ispitni mod nikad ne sprema oznake: u besplatnom ispitnom modu QSX su pitanja
+    // zakljucanog ispita (__EXAM_ONLY), pa bi tekst zadatka zavrsio u mat_bookmarks,
+    // u cloud syncu (DISCERE_SAVE) i u korisnikovom backupu — a BookmarksScreen ga
+    // ionako ne moze razrijesiti jer EXAMS[key].qs za takav ispit ostaje prazan.
+    if(examMode) return;
     setBookmarks(prev=>{
       const next={...prev};
       const key=exam.key+"__"+String(qid);
@@ -307,7 +315,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
       }
       if(e.key==="ArrowRight"&&cur<QSX.length-1){goTo(cur+1);return;}
       if(e.key==="ArrowLeft"&&cur>0){goTo(cur-1);return;}
-      if(e.key==="f"&&e.shiftKey||e.key==="F"&&e.shiftKey){toggleBookmark(curQ.id);return;}
+      if(e.key==="f"&&e.shiftKey||e.key==="F"&&e.shiftKey){if(!examMode)toggleBookmark(curQ.id);return;}
       if(e.key==="f"||e.key==="F"){setFlag(p=>({...p,[curQ.id]:!p[curQ.id]}));return;}
       if(e.key==="?"){setShowKbd(v=>!v);return;}
       if(e.key==="Escape"){setShowKbd(false);return;}
@@ -367,6 +375,9 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
     const cor=autoQ.filter(q=>chk(q,answers[q.id])===true).length+gradedTrue.length;
     const scoredN=autoQ.length+gradedQ.length;
     const manualQ=QSX.filter(q=>q.type==="proof"||q.type==="sa"||q.type==="pa");
+    // Ocjena, postotak, bodovi i XP su besplatni; razrada (tocni odgovori, obrazlozenja,
+    // analiza po temama, savjeti, vjezbanje gresaka) ide od Standard plana navise.
+    const canSeeDetails=IS_PAID;
 
     // Update user data  -  poziva se iz finishExam()
     const wrongAutoQ=autoQ.filter(q=>chk(q,answers[q.id])===false);
@@ -438,7 +449,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
           _delta>0?e("span",{style:{color:"#7CEBB0"}},"▲ +"+_delta+" napretka!"):_delta<0?e("span",{style:{color:"#ffb4b4"}},"▼ "+Math.abs(_delta)):e("span",{style:{opacity:.7}},"isti rezultat — idemo dalje!")
         );
       })(),
-        selfQ.length>0&&e("div",{style:{
+        canSeeDetails&&selfQ.length>0&&e("div",{style:{
           fontSize:12,color:ungraded>0?"rgba(255,220,100,.95)":"rgba(140,235,180,.95)",marginTop:8,
           background:"rgba(255,255,255,.08)",border:"1px solid rgba(255,255,255,.15)",
           borderRadius:8,padding:"6px 12px",display:"inline-block"}},
@@ -455,6 +466,8 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
             e("div",{className:"bdk-lbl"},b.label)))
       ),
       (function(){
+        if(!canSeeDetails) return e(LockedResultsBlock,{label:"Analiza po temama",rows:3,minHeight:150,upgradeHref:MAT_RESULTS_UPGRADE_URL,
+          note:"Ocjena, postotak, bodovi i XP ostaju besplatni. Točnost po temama, najslabije teme i savjeti dolaze sa Standard planom."});
         var byT={};
         autoQ.forEach(function(qq){var k=TOPIC_LABELS[qq.topic]||qq.topic||"Ostalo";var r=chk(qq,answers[qq.id]);if(r===null)return;if(!byT[k])byT[k]={c:0,t:0};byT[k].t++;if(r===true)byT[k].c++;});
         var rows=Object.keys(byT).map(function(k){return {k:k,c:byT[k].c,t:byT[k].t,p:byT[k].t?byT[k].c/byT[k].t:0};});
@@ -519,12 +532,12 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
             e("div",{style:{marginTop:10}},
               e(ShareCard,{exam,pct,g,gc,cor,total:autoQ.length,userData:userData||{xp:0,streak:0}}))
           ),
-      e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".09em",textTransform:"uppercase",
+      canSeeDetails&&e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".09em",textTransform:"uppercase",
         color:"var(--muted)",marginBottom:14,display:"flex",alignItems:"center",gap:8}},
         e("span",null,"Pregled po temama"),
         e("div",{style:{flex:1,height:1,background:"var(--bdr)"}})
       ),
-      (()=>{
+      canSeeDetails&&(()=>{
         // Izgradi statistiku po temama
         const topicStats={};
         [...autoQ,...gradedQ].forEach(q=>{
@@ -565,14 +578,16 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
           })
         );
       })(),
-      (function(){var ts={};[...autoQ,...gradedQ].forEach(function(qq){var ok=(qq.type==="proof"||qq.type==="sa")?selfGrade[qq.id]===true:chk(qq,answers[qq.id])===true;var lab=TOPIC_LABELS[qq.topic]||qq.topic||"ostalo";if(!ts[lab])ts[lab]={c:0,n:0,k:qq.topic};ts[lab].n++;if(ok)ts[lab].c++;});var rows=Object.keys(ts).map(function(lab){return{k:ts[lab].k,label:lab,pct:Math.round(ts[lab].c/ts[lab].n*100),n:ts[lab].n};});return e(WeakSpotTips,{rows:rows,onDrill:onPracticeSimilar});})(),
-      e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".09em",textTransform:"uppercase",
+      canSeeDetails&&(function(){var ts={};[...autoQ,...gradedQ].forEach(function(qq){var ok=(qq.type==="proof"||qq.type==="sa")?selfGrade[qq.id]===true:chk(qq,answers[qq.id])===true;var lab=TOPIC_LABELS[qq.topic]||qq.topic||"ostalo";if(!ts[lab])ts[lab]={c:0,n:0,k:qq.topic};ts[lab].n++;if(ok)ts[lab].c++;});var rows=Object.keys(ts).map(function(lab){return{k:ts[lab].k,label:lab,pct:Math.round(ts[lab].c/ts[lab].n*100),n:ts[lab].n};});return e(WeakSpotTips,{rows:rows,onDrill:onPracticeSimilar});})(),
+      !canSeeDetails&&e(LockedResultsBlock,{label:"Pregled zadataka i točni odgovori",rows:5,minHeight:200,upgradeHref:MAT_RESULTS_UPGRADE_URL,
+        note:"Točna rješenja, obrazloženja korak po korak i pregled svakog zadatka otključaješ Standard planom."}),
+      canSeeDetails&&e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".09em",textTransform:"uppercase",
         color:"var(--muted)",marginBottom:14,marginTop:8,display:"flex",alignItems:"center",gap:8}},
         e("span",null,"Pregled zadataka"),
         e("div",{style:{flex:1,height:1,background:"var(--bdr)"}}),
         (function(){var ids=QSX.filter(function(qq){return _revShow.has(qq.id);}).map(function(qq){return qq.id;});var anyOpen=ids.some(function(id){return !revCol[id];});return e("button",{onClick:function(){var nm={};if(anyOpen){ids.forEach(function(id){nm[id]=true;});}setRevCol(nm);},style:{fontSize:10.5,fontWeight:700,padding:"4px 11px",borderRadius:99,border:"1px solid var(--bdr2)",background:"var(--s1)",color:"var(--muted)",cursor:"pointer",fontFamily:"var(--fb)",textTransform:"none",whiteSpace:"nowrap"}},anyOpen?"⊟ Sažmi sve":"⊞ Proširi sve");})()
       ),
-      (function(){
+      canSeeDetails&&(function(){
         var buckets={2:{c:0,n:0},1:{c:0,n:0},0:{c:0,n:0}};
         var rated=0;
         autoQ.forEach(function(q){ if(q.type!=="mc") return; var cv=conf[q.id]; if(cv===undefined||cv===null) return; var b=buckets[cv]; if(!b) return; b.n++; if(chk(q,answers[q.id])===true) b.c++; rated++; });
@@ -599,7 +614,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
           e("div",{style:{marginTop:10,paddingTop:10,borderTop:"1px solid var(--bdr)",fontSize:12.5,lineHeight:1.55,color:"var(--text)"}},insight)
         );
       })(),
-      overconfQ.length>0&&(()=>{
+      canSeeDetails&&overconfQ.length>0&&(()=>{
         var tc={};overconfQ.forEach(function(q){if(!q.topic)return;var l=(typeof TOPIC_LABELS!=="undefined"&&TOPIC_LABELS[q.topic])||q.topic;tc[l]=(tc[l]||0)+1;});
         var top=Object.entries(tc).sort((a,b)=>b[1]-a[1])[0];
         var topPart=(top&&top[1]>=2)?(" Najvi\u0161e u temi \u201e"+top[0]+"\u201c ("+top[1]+"\u00d7) \u2014 tu se precjenjuje\u0161."):"";
@@ -607,7 +622,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
         background:"var(--red-d)",border:"1px solid rgba(248,113,113,.3)",borderLeft:"3px solid var(--red)",
         borderRadius:10,color:"var(--text)"}},
         "\u26a0\ufe0f Kod "+overconfQ.length+" zadatka si bio/la siguran/na a pogrije\u0161io/la \u2014 to su prvi kandidati za ponavljanje."+topPart);})(),
-      (()=>{const cnt={};Object.values(errorTags||{}).forEach(arr=>(arr||[]).forEach(t=>cnt[t]=(cnt[t]||0)+1));
+      canSeeDetails&&(()=>{const cnt={};Object.values(errorTags||{}).forEach(arr=>(arr||[]).forEach(t=>cnt[t]=(cnt[t]||0)+1));
         const lbl={};(typeof ERROR_TAGS!=="undefined"?ERROR_TAGS:[]).forEach(t=>lbl[t.id]=t.label);
         const top=Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0];
         if(!top||top[1]<2)return null;
@@ -615,14 +630,14 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
           background:"var(--gold-d)",border:"1px solid var(--gold-b)",borderLeft:"3px solid var(--gold)",
           borderRadius:10,color:"var(--text)"}},
           "\uD83D\uDD01 Uzorak gre\u0161ke: \u201e"+(lbl[top[0]]||top[0])+"\u201c \u00d7"+top[1]+" \u2014 isti tip pogre\u0161ke se ponavlja. Njega prvo razbij.");})(),
-      e("div",{style:{display:"flex",gap:7,flexWrap:"wrap",marginBottom:14}},
+      canSeeDetails&&e("div",{style:{display:"flex",gap:7,flexWrap:"wrap",marginBottom:14}},
         revTab("all","Svi",QSX.length,null),
         (wrongAutoQ.length+gradedFalse.length)>0&&revTab("wrong","✗ Netočni",wrongAutoQ.length+gradedFalse.length,"var(--red)"),
         flaggedQ.length>0&&revTab("flag","⚑ Označeni",flaggedQ.length,"var(--gold)"),
         selfQ.length>0&&revTab("manual","✏️ Opisni",selfQ.length,"var(--gold)"),
         overconfQ.length>0&&revTab("overconf","😎 Siguran a kriv",overconfQ.length,"var(--red)")
       ),
-      e("div",{className:"revlist"},QSX.map((q,i)=>{
+      canSeeDetails&&e("div",{className:"revlist"},QSX.map((q,i)=>{
         if(!_revShow.has(q.id)) return null;
         const isM=q.type==="proof"||q.type==="sa"||q.type==="pa";
         const isColl=!!revCol[q.id];
@@ -673,17 +688,19 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
           )
         );
       })),
+      !canSeeDetails&&e(LockedResultsBlock,{label:"Vježbanje grešaka i savjeti",rows:2,minHeight:130,upgradeHref:MAT_RESULTS_UPGRADE_URL,
+        note:"Ciljano ponavljanje promašenih zadataka i savjeti po temama dolaze sa Standard planom."}),
       e("div",{style:{marginTop:28,display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap",
         padding:"20px 0",borderTop:"1px solid var(--bdr)"}},
         e("button",{className:"btn btn-g",onClick:onExit},"← Natrag"),
         onHome&&e("button",{className:"btn btn-g",onClick:onHome},"🏠 Početna"),
-        wrongAutoQ.length>0&&onPracticeErrors&&e("button",{
+        canSeeDetails&&wrongAutoQ.length>0&&onPracticeErrors&&e("button",{
           className:"btn btn-red",onClick:()=>onPracticeErrors(wrongAutoQ,exam),
           style:{background:"linear-gradient(135deg,var(--red-d),rgba(196,48,48,.15))",
             border:"1px solid rgba(196,48,48,.35)",color:"var(--red)",fontWeight:700}
         },"🔁 Vježbaj greške ("+wrongAutoQ.length+")")
       ),
-      (()=>{
+      canSeeDetails&&(()=>{
         var items=[];
         [...wrongAutoQ,...gradedFalse].forEach(function(q){
           var mw=(q.why||[]).find(function(w){return typeof w==="string"&&/greška|propust/i.test(w);});
@@ -716,7 +733,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
             e("span",{className:"nsc-ico"},"📝"),
             e("div",{className:"nsc-title",style:{color:"var(--gold)"}},"Drugi ispit"),
             e("div",{className:"nsc-desc"},"Odaberi drugi rok ili godinu i nastavi vježbanje.")),
-          e("div",{className:"next-step-card blue",onClick:()=>onFilter?onFilter():onExit()},
+          canSeeDetails&&e("div",{className:"next-step-card blue",onClick:()=>onFilter?onFilter():onExit()},
             e("span",{className:"nsc-ico"},"🎯"),
             e("div",{className:"nsc-title",style:{color:"var(--blue)"}},"Vježbaj po temi"),
             e("div",{className:"nsc-desc"},"Fokusiraj se na teme gdje si bio/la najslabiji/a.")),

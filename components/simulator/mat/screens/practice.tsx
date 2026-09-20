@@ -4,7 +4,7 @@
    Vjezbanje izvan ispita: AI zadaci (CAS provjera), filtar po temama, pogreske i adaptivni trening. */
 import React from 'react';
 import { DS, IS_PRO, TOPIC_LABELS, __MAT } from '../core/state';
-import { EXAMS } from '../core/exams';
+import { EXAMS, isExamLocked } from '../core/exams';
 import { __AI_LAST_ERR, __aiPost, __ensureNerdamer, __imgKey } from '../core/runtime';
 import { renderOptContent, renderQText } from '../core/mathText';
 import { LL, TBDG, TLBL } from '../core/ui';
@@ -245,9 +245,21 @@ function TopicFilterScreen({onStart,onBack}){
     {key:"sa",  label:"Kratki odgovor",   color:"sel-teal"},
     {key:"proof",label:"Dokaz/izvod",     color:"sel-teal"},
   ];
-  const ALL_YEARS=[...new Set(Object.values(EXAMS).map(e=>e.year))].sort((a,b)=>b-a);
-  const ALL_RAZINE=["A","B"];
-  const ALL_SEASONS=["ljeto","jesen","zima"];
+  // Ponudi samo godine/rokove/razine iz ispita koje korisnik stvarno moze dobiti. Zakljucan
+  // ispit nikad ne dobije pitanja (loadExam ih drzi u __EXAM_ONLY), pa bi free korisnik biranjem
+  // npr. 2024. dobio "0 — Nema pitanja za odabrane filtere" i onemogucen gumb: mrtva opcija.
+  const AVAIL_EXAMS=Object.values(EXAMS).filter(ex=>!isExamLocked(ex.key));
+  const ALL_YEARS=[...new Set(AVAIL_EXAMS.map(ex=>ex.year))].sort((a,b)=>b-a);
+  // Isto vrijedi za rok i razinu. Fallback na puni popis dok katalog jos nije stigao —
+  // inace bi filtar u praznom stanju ostao bez ijednog chipa.
+  const _availRazine=new Set(AVAIL_EXAMS.map(ex=>ex.razina));
+  const RAZINA_CHIPS=[
+    {key:"B",label:"B  -  Osnovna",bdr:"rgba(52,209,191,.3)",bg:"rgba(52,209,191,.22)",col:"var(--teal)"},
+    {key:"A",label:"A  -  Viša",   bdr:"var(--blue-b)",      bg:"rgba(74,144,217,.22)",col:"var(--blue)"},
+  ].filter(r=>!AVAIL_EXAMS.length||_availRazine.has(r.key));
+  const ALL_RAZINE=RAZINA_CHIPS.map(r=>r.key);
+  const _availSeasons=new Set(AVAIL_EXAMS.map(ex=>ex.season));
+  const ALL_SEASONS=["ljeto","jesen","zima"].filter(s=>!AVAIL_EXAMS.length||_availSeasons.has(s));
 
   const[selTopics,setSelTopics]=useState(new Set(ALL_TOPICS));
   const[selTypes,setSelTypes]=useState(new Set(["mc","num","sa","proof"]));
@@ -269,6 +281,7 @@ function TopicFilterScreen({onStart,onBack}){
   const matchingQs=React.useMemo(()=>{
     const qs=[];
     Object.values(EXAMS).forEach(exam=>{
+      if(isExamLocked(exam.key)) return; // zakljucan ispit ne ulazi u tematsku sesiju
       if(!selYears.has(exam.year)) return;
       if(!selSeasons.has(exam.season)) return;
       if(!selRazine.has(exam.razina)) return;
@@ -344,14 +357,11 @@ function TopicFilterScreen({onStart,onBack}){
             style:{fontSize:11,fontWeight:600,padding:"4px 12px",borderRadius:99,cursor:"pointer",border:"1px solid "+(selRazine.size===ALL_RAZINE.length?"var(--blue-b)":"var(--bdr)"),background:selRazine.size===ALL_RAZINE.length?"rgba(74,144,217,.22)":"var(--s1)",color:selRazine.size===ALL_RAZINE.length?"var(--blue)":"var(--muted)"},
             onClick:()=>togAll(selRazine,setSelRazine,ALL_RAZINE)
           },"Obje razine"),
-          e("div",{
-            style:{fontSize:11,fontWeight:600,padding:"4px 12px",borderRadius:99,cursor:"pointer",border:"1px solid "+(selRazine.has("B")?"rgba(52,209,191,.3)":"var(--bdr)"),background:selRazine.has("B")?"rgba(52,209,191,.22)":"var(--s1)",color:selRazine.has("B")?"var(--teal)":"var(--muted)"},
-            onClick:()=>tog(selRazine,setSelRazine,"B")
-          },"B  -  Osnovna"),
-          e("div",{
-            style:{fontSize:11,fontWeight:600,padding:"4px 12px",borderRadius:99,cursor:"pointer",border:"1px solid "+(selRazine.has("A")?"var(--blue-b)":"var(--bdr)"),background:selRazine.has("A")?"rgba(74,144,217,.22)":"var(--s1)",color:selRazine.has("A")?"var(--blue)":"var(--muted)"},
-            onClick:()=>tog(selRazine,setSelRazine,"A")
-          },"A  -  Viša")
+          RAZINA_CHIPS.map(r=>e("div",{
+            key:r.key,
+            style:{fontSize:11,fontWeight:600,padding:"4px 12px",borderRadius:99,cursor:"pointer",border:"1px solid "+(selRazine.has(r.key)?r.bdr:"var(--bdr)"),background:selRazine.has(r.key)?r.bg:"var(--s1)",color:selRazine.has(r.key)?r.col:"var(--muted)"},
+            onClick:()=>tog(selRazine,setSelRazine,r.key)
+          },r.label))
         )
       ),
 

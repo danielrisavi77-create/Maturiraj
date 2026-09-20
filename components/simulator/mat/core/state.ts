@@ -11,10 +11,23 @@ export let PLAN_NAME = "Pro";
 // Fallback na trenutnu produkcijsku cijenu dok DISCERE_CONFIG ne stigne (ili je ne salje),
 // da paywall CTA nikad ne ostane bez cijene.
 export let PLAN_PRICE = "19,99 €/mj";
+// Vjezbanje, pregled odgovora i razrada rezultata otkljucavaju se Standardom, a ne Prom
+// (PLAN_NAME/PLAN_PRICE su Pro-only znacajke: AI asistent, AI analiza, AI plan).
+export let STD_PLAN_NAME = "Standard";
+export let STD_PLAN_PRICE = "9,99 €/mj";
+// Besplatan ispitni mod: pravi ispit s timerom je besplatan na SVIM ispitima, a "locked" od
+// sada znaci samo da je vjezbanje nad tim ispitom zakljucano. Zastavica stize iz DISCERE_CONFIG-a
+// (MatFullSimulator salje freeExam:true) i cita se getterom jer se mijenja nakon importa.
+let FREE_EXAM = false;
+export function isFreeExam(){ return FREE_EXAM; }
 // CTA tekst za zaključane značajke: naziv plana + cijena iz configa.
 export function planCta(){ return "🔒 Otključaj uz "+PLAN_NAME+(PLAN_PRICE?" — "+PLAN_PRICE:""); }
-// Poruka parentu da korisnik želi nadogradnju.
-export function askUpgrade(){ try{ const msg={type:"DISCERE_UPGRADE"};
+// Vjezbanje i razrada rezultata su Standard, ne Pro — zato zaseban CTA.
+export function standardCta(){ return "🔒 Otključaj uz "+STD_PLAN_NAME+(STD_PLAN_PRICE?" — "+STD_PLAN_PRICE:""); }
+export const MAT_RESULTS_UPGRADE_URL="/pro?from=mat-results&plan=standard";
+// Poruka parentu da korisnik želi nadogradnju; from/plan odreduju povratnu rutu i
+// preselektirani plan na /pro (bez njih korisnik zavrsi na /pro?from=discere).
+export function askUpgrade(from,plan){ try{ const msg={type:"DISCERE_UPGRADE",from:from||"discere",plan:plan||undefined};
   if(typeof window!=="undefined"&&window.__DISCERE_NATIVE_SAVE__){ window.__DISCERE_NATIVE_SAVE__(msg); return; }
   if(typeof window!=="undefined"&&window.parent&&window.parent!==window) window.parent.postMessage(msg,"*");
 }catch(x){} }
@@ -62,8 +75,12 @@ try {
       IS_PRO = !!d.isPro;
       // isPaid = bilo koji plaćeni plan (Standard ili Pro); fallback na isPro za starije parentove.
       IS_PAID = (d.isPaid===undefined||d.isPaid===null) ? !!d.isPro : !!d.isPaid;
+      // Ispitni mod besplatan na svim ispitima (parent salje freeExam:true).
+      FREE_EXAM = !!d.freeExam;
       if(d.planName) PLAN_NAME = String(d.planName);
       if(d.price!==undefined&&d.price!==null&&d.price!=="") PLAN_PRICE = String(d.price);
+      if(d.standardPlanName) STD_PLAN_NAME = String(d.standardPlanName);
+      if(d.standardPrice!==undefined&&d.standardPrice!==null&&d.standardPrice!=="") STD_PLAN_PRICE = String(d.standardPrice);
       try{window.__DISCERE_TIER__={isPro:IS_PRO,isPaid:IS_PAID,planName:PLAN_NAME,price:PLAN_PRICE};}catch(e){}
       try{window.dispatchEvent(new CustomEvent("discere-pro",{detail:IS_PRO}));}catch(e){}
     }

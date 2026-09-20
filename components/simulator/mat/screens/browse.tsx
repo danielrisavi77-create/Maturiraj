@@ -4,7 +4,7 @@
    Pregled banke zadataka i spremljenih (bookmarkiranih) pitanja. */
 import React from 'react';
 import { DS, TOPIC_LABELS } from '../core/state';
-import { EXAMS } from '../core/exams';
+import { EXAMS, isExamLocked } from '../core/exams';
 import { parseMath, renderOptContent, renderOptText, renderQText } from '../core/mathText';
 import { LL, TBDG, TLBL } from '../core/ui';
 const{createElement:e,useState,Fragment}=React;
@@ -163,6 +163,8 @@ function BookmarksScreen({onBack, onStartSession}){
     )
   );
 }
+// Hrvatska sklonidba uz broj: 1/21/31 ispit, sve ostalo ispita (11 je iznimka).
+function examWord(n){ const d=n%10, dd=n%100; return (d===1&&dd!==11)?"ispit":"ispita"; }
 function BrowseScreen({onBack}){
   const[mode,setMode]=React.useState("pick"); // "pick" | "exam" | "global"
   const[selExam,setSelExam]=React.useState(null);
@@ -207,13 +209,23 @@ function BrowseScreen({onBack}){
     return true;
   });
 
-  // Grupiraj ispite po godini
+  // Grupiraj ispite po godini — bez zakljucanih, jer bi se otvorili s "0 zadataka".
   const examsByYear={};
-  Object.values(EXAMS).sort((a,b)=>b.year-a.year).forEach(ex=>{
+  Object.values(EXAMS).filter(ex=>!isExamLocked(ex.key)).sort((a,b)=>b.year-a.year).forEach(ex=>{
     if(!examsByYear[ex.year]) examsByYear[ex.year]={A:[],B:[]};
     examsByYear[ex.year][ex.razina].push(ex);
   });
   const years=Object.keys(examsByYear).sort((a,b)=>b-a);
+  // "Svi ispiti" pretrazuje samo ucitivu banku — zakljucan ispit nikad ne dobije pitanja
+  // (loadExam ih drzi u __EXAM_ONLY). Copy zato govori o stvarnom bazenu, a ne o cijelom
+  // katalogu: free korisniku bi "svih 70 ispita" bilo obecanje koje pretraga ne moze ispuniti.
+  const openExams=Object.values(EXAMS).filter(ex=>!isExamLocked(ex.key)).length;
+  const allExams=Object.keys(EXAMS).length;
+  const globalDesc=!allExams
+    ? "Pretraži sva pitanja iz svoje banke — filtriraj po temi, tipu i razini."
+    : openExams<allExams
+      ? "Pretraži sva pitanja koja su ti dostupna ("+openExams+" "+examWord(openExams)+") — filtriraj po temi, tipu i razini."
+      : "Pretraži sva pitanja iz cijele banke ("+allExams+" "+examWord(allExams)+") — filtriraj po temi, tipu i razini.";
   const seasonIcon=s=>s==="ljeto"?"☀️":s==="jesen"?"🍂":"❄️";
   const seasonLabel=s=>s==="ljeto"?"Ljetni":s==="jesen"?"Jesenski":"Zimski";
   // Dedupliciraj po prikaznoj oznaci — više slug-ova može mapirati na istu temu
@@ -265,7 +277,7 @@ function BrowseScreen({onBack}){
               justifyContent:"center",fontSize:20,marginBottom:14}},"🌐"),
             e("div",{style:{fontSize:15,fontWeight:700,marginBottom:6}},"Svi ispiti"),
             e("div",{style:{fontSize:12,color:"var(--muted)",lineHeight:1.55}},
-              "Pretraži sva pitanja iz svih 70 ispita — filtriraj po temi, tipu i razini.")
+              globalDesc)
           )
         )
       ),
