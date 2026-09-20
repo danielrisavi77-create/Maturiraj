@@ -178,10 +178,12 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
   },[cur,answers,flag,done]);
 
   function recordTime(fromIdx){
-    const elapsed=Math.round((Date.now()-qStart.current)/1000);
+    const now=Date.now();
+    const elapsed=Math.round((now-qStart.current)/1000);
     const qid=QSX[fromIdx].id;
     setQTimes(t=>({...t,[qid]:(t[qid]||0)+elapsed}));
-    qStart.current=Date.now();
+    qStart.current=now;
+    return {...qTimes,[qid]:(qTimes[qid]||0)+elapsed};
   }
   function goTo(i){recordTime(cur);setCur(i);setVisited(v=>({...v,[i]:true}));if(!practice)setShownAnswers({});qStart.current=Date.now();setQElapsed(0);}
   const qcardRef=React.useRef(null);
@@ -248,7 +250,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
   function finishExam(){
     try{DS.set("mat_resume","");}catch(e2){}
     if(done)return;
-    recordTime(cur);
+    const finalQTimes=recordTime(cur);
     setDone(true);
     window._playSound?.("done");
     // Izračun rezultata i callback
@@ -278,7 +280,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
         razina:exam.razina||"B",
         pct:pct2,grade:g2,cor:cor2,
         total:autoQ2.length,
-        answers,qTimes,
+        answers,qTimes:finalQTimes,
         examMode:!!examMode,
         topic_breakdown,
         errorTags
