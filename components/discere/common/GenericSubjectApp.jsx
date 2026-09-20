@@ -6,6 +6,10 @@ import { loadExam, loadSubjectIndex } from '@/lib/discere/content-loader'
 import { saveCanonicalSimResult } from '@/lib/discere/progress'
 
 export default function GenericSubjectApp({ subject }) {
+  return <SubjectSession key={subject.id} subject={subject} />
+}
+
+function SubjectSession({ subject }) {
   const [index, setIndex] = useState(null)
   const [exam, setExam] = useState(null)
   const [error, setError] = useState('')
@@ -13,7 +17,6 @@ export default function GenericSubjectApp({ subject }) {
 
   useEffect(() => {
     let active = true
-    setLoading(true)
     loadSubjectIndex(subject.id)
       .then((data) => {
         if (active) {
