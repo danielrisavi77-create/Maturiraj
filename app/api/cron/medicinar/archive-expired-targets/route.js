@@ -2,17 +2,15 @@ import { NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 
 // Runs daily — archives user_target_studiji where ispit_iso + 30 days has passed.
-// User's dashboard returns to normal mode automatically (no active targets).
 
 export async function GET(request) {
-  if (request.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+  const cronSecret = process.env.CRON_SECRET
+  if (!cronSecret || request.headers.get('authorization') !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const supabase = createAdminClient()
 
-  // Find all active targets whose exam date was > 30 days ago
-  // JOIN studiji to get ispit_iso
   const { data: expired, error: fetchErr } = await supabase
     .from('user_target_studiji')
     .select('id, user_id, studij_id, studiji!inner(ispit_iso)')

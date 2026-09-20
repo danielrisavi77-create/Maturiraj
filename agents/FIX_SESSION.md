@@ -1,19 +1,20 @@
 # FIX SESSION — Maturiraj
 
 Aktivni program: `PLAN_POPRAVAKA_MATURIRAJ.md`
-Faza: T2 Pristup i API
-Zadatak na redu: **T2.2** server-side requirePro na `/api/ai`
+Faza: T2 zatvoren u gitu; sljedeće je T3
+Zadatak na redu: **T3.1** dashboard kao ulaz (next-step CTA)
 Zastavica naplate: **OFF**
 
-## Gotovo u gitu (branch `fix/t1-billing-rls`)
+## Gotovo na branchu `fix/t1-billing-rls` (PR #4)
 
-- T1.1 view invoker — `20260920000001` + stariji `20260718000002`
-- T1.2/T1.3 RLS + guest API već postoje (`guest-scores`, `guest-push`); dodan `scores_delete_auth`
-- T1.4 unique — `20260718000003` + idempotentni `20260920000002`
-- T1.5 cijene — landing prenosi `?billing=`; 3mj/6mj maknuti s live Cijene (sljedeći commit ako nije u ovom)
-- T2.1 `proxy.js` — `/dashboard` login, `/engleski-simulator` paid, post-login → `/dashboard`, admin → `/prijava`
+- T1.1–T1.4 migracije + guest API
+- T1.5 Cijene: samo mj / god; Standard samo mjesečno; CTA šalje `/pro?billing=`
+- T2.1 proxy gateovi
+- T2.2 AI rute već imaju requirePro / requireStandardOrPro
+- T2.3 exam API već skida `sol` i `exp`
+- T2.4 zadnji fail-open cron: `archive-expired-targets`
 
-**Živa baza:** migracije 20260718* i 20260920* treba pustiti na staging.
+**Živa baza:** pustiti `20260718*` i `20260920*` na staging.
 
 ## Token pravila
 
