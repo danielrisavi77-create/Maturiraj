@@ -6,7 +6,7 @@
 import React from 'react';
 import { EXAMS } from '../core/exams';
 import { CalcQuestion } from '../tools/question';
-const{useState,useEffect,useRef}=React;
+const{useState,useEffect}=React;
 export function vc(n){return"var("+n+")";}
 export const TYPE_ICON={mc:"\u25c9",num:"\u2211",calc:"\u2211",sa:"\u270e",pa:"\u270e",proof:"\u270e"};
 const _TOPIC_COLORS=["#4a90d9","#50c878","#e9b446","#e05252","#2dcfbe","#a78bfa","#f59e0b","#ec4899"];
@@ -14,18 +14,20 @@ export function topicColor(t){if(!t)return _TOPIC_COLORS[0];let h=0;for(let i=0;
 export function fmt2(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
 export function useTimer(tot,run,onExpire,onWarn){
   const[s,setS]=useState(tot);
-  const warned=useRef({ten:false,five:false,zero:false});
+  const warned=React.useRef({ten:false,five:false,zero:false});
+  const previous=React.useRef(tot);
   useEffect(()=>{
-    if(!run||s<=0){if(s<=0&&!warned.current.zero){warned.current.zero=true;if(onExpire)onExpire();}return;}
-    const id=setInterval(()=>setS(x=>{
-      const ns=Math.max(0,x-1);
-      if(ns===600&&!warned.current.ten){warned.current.ten=true;if(onWarn)onWarn(600);}
-      if(ns===300&&!warned.current.five){warned.current.five=true;if(onWarn)onWarn(300);}
-      if(ns===0&&!warned.current.zero){warned.current.zero=true;if(onExpire)onExpire();}
-      return ns;
-    }),1000);
+    if(!run||s<=0)return;
+    const id=setInterval(()=>setS(x=>Math.max(0,x-1)),1000);
     return()=>clearInterval(id);
   },[run,s]);
+  useEffect(()=>{
+    const changed=previous.current!==s;
+    previous.current=s;
+    if(changed&&s===600&&!warned.current.ten){warned.current.ten=true;if(onWarn)onWarn(600);}
+    if(changed&&s===300&&!warned.current.five){warned.current.five=true;if(onWarn)onWarn(300);}
+    if(s<=0&&!warned.current.zero){warned.current.zero=true;if(onExpire)onExpire();}
+  },[s,onExpire,onWarn]);
   return{s,d:fmt2(s)};
 }
 export const CalcQuestionM=React.memo(CalcQuestion);
