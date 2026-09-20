@@ -83,3 +83,22 @@ export function loadAllExams(onProgress){
   return step(0);
 }
 export function __setExams(x) { EXAMS = x || {}; }
+/* 5.3 (tools): rokovi mature i naslov ispita - dijele ih ekrani i mat/tools (DDayModal, ShareCard). */
+export const MATURA_ROKOVI=[
+  {m:5, d:25, label:"mature iz matematike"},
+  {m:7, d:19, label:"jesenskog roka"}
+];
+export function nextMatura(){
+  const now=new Date(); now.setHours(0,0,0,0);
+  const yr=now.getFullYear();
+  const cands=[];
+  for(const r of MATURA_ROKOVI){
+    cands.push({t:new Date(yr,r.m,r.d),label:r.label});
+    cands.push({t:new Date(yr+1,r.m,r.d),label:r.label});
+  }
+  cands.sort((a,b)=>a.t-b.t);
+  const next=cands.find(c=>c.t>=now);
+  const days=Math.round((next.t-now)/86400000);
+  return {days,label:next.label,today:days===0};
+}
+export function examTitle(exam){return (exam.season==="session"||exam.season==="random")?exam.label:exam.year+".  -  "+exam.label;}

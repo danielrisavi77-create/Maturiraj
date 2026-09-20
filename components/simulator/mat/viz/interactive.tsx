@@ -269,3 +269,28 @@ function VizModal({kind,onClose}){
       kind==="quad"&&e(QuadViz,null),kind==="lin"&&e(LinViz,null),kind==="circle"&&e(CircleViz,null),kind==="explog"&&e(ExpLogViz,null),kind==="analgeo"&&e(AnalGeoViz,null),kind==="seq"&&e(SeqViz,null),kind==="vec"&&e(VecViz,null),kind==="complex"&&e(ComplexViz,null),kind==="deriv"&&e(DerivViz,null),kind==="fnfam"&&e(FnFamViz,null),kind==="stat"&&e(StatViz,null),kind==="fin"&&e(FinViz,null),kind==="geo"&&e(GeoViz,null)));
 }
 export { sliderRow, tgBtn, vizSvg, QuadViz, LinViz, CircleViz, ExpLogViz, AnalGeoViz, SeqViz, VecViz, ComplexViz, DerivViz, FnFamViz, StatViz, FinViz, GeoViz, VizModal };
+/* 5.3 (tools): izbor vizualizacije za zadatak - dijele ga Sim i mat/tools (CalcQuestion). */
+export const VIZ_TOPIC={kv:"quad",lin:"lin",trig:"circle",trg:"circle",exp:"explog",log:"explog",anal:"analgeo",kon:"analgeo",seq:"seq",niz:"seq",vek:"vec",komp:"complex",kompl:"complex",der:"deriv",dif:"deriv",fun:"fnfam",func:"fnfam",fn:"fnfam",stat:"stat",fin:"fin",geom:"geo",geo:"geo",ge:"geo",mj:"geo"};
+export var VIZ_KW={
+  quad:/graf|nacrtaj|skiciraj|tjeme|nultočk|sjecišt|parabol|najveć|najmanj|maksimum|minimum|ekstrem|simetri|otvor|presjek|funkcij|kvadratn/,
+  lin:/graf|nacrtaj|skiciraj|pravac|nagib|koeficijent smjera|sjecišt|odsje|raste|pada|nultočk|presjek|paralel|okomit|funkcij|linearn/,
+  circle:/kružnic|jedinič|brojevn|sinusoid|kosinusoid|amplitud|period|faz|radijan|stup|kut|\bsin|\bcos|\btg\b|\bctg\b|tangens|kotangens|trigonometr|graf/,
+  explog:/graf|nacrtaj|skiciraj|eksponencij|logaritam|logaritm|logaritamsk|asimptot|rast|pad|baz|funkcij/,
+  analgeo:/pravac|kružnic|koordinat|jednadžb|sjecišt|presjek|udaljen|elips|hiperbol|parabol|žarišt|simetral|polumje|središt/,
+  seq:/niz|član|aritmetič|geometrij|razlik|kvocijent|parcijaln|sum|rekurz/,
+  vec:/vektor|kolinear|skalarn|intenzitet|komponent/,
+  complex:/kompleksn|gaussov|imaginarn|realn|modul|argument|konjugir/,
+  deriv:/derivacij|tangent|nagib|ekstrem|rast|pad|monoton|konkavn|prevoj|stacionarn|brzin|funkcij/,
+  fnfam:/graf|funkcij|domen|kodomen|parn|neparn|inverz|monoton|asimptot|rast|pad|injektiv|surjekt|bijektiv|nultočk/,
+  stat:/tablic|postotak|frekvencij|srednj|aritmetič|medijan|dijagram|histogram|graf|prikaz|raspodjel|devijacij/,
+  fin:/kamat|glavnic|uloži|štedn|kredit|postotak|godišnj/,
+  geo:/nacrtaj|skiciraj|trokut|kvadrat|pravokutnik|krug|kružnic|kut|površin|opseg|volumen|geometr|sličn|sukladn|tlocrt|presjek|dijagonal|polumje|kvadar|kocka|piramid|valjak|stož|kugl|prizm|šesterokut|peterokut|mnogokut|romb|trapez|tetiv|šiljast|sukut|pravokut/
+};
+export function resolveViz(q){
+  if(!q||q.viz===false) return null;
+  if(typeof q.viz==="string") return q.viz;
+  var k=VIZ_TOPIC[q.topic]; if(!k) return null;
+  if(q.viz===true) return k;
+  var t=((q.q||"")+" "+(q.context||"")+" "+(q.text||"")).toLowerCase();
+  var rx=VIZ_KW[k]; return (rx&&rx.test(t))?k:null;
+}
