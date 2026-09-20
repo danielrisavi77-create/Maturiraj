@@ -494,7 +494,7 @@ function PojmovnikKarticeDeck({deck,rev,onReverse}){
   const[flip,setFlip]=useState(false);
   const[order,setOrder]=useState(null);
   const n=deck.length;
-  if(!deck||n===0) return e("div",{style:{flex:1,display:"flex",alignItems:"center",justifyContent:"center",color:"var(--muted)",fontSize:13,padding:20}},"Nema pojmova za kartice u ovom filtru.");
+  if(!deck||n===0) return React.createElement("div",{style:{flex:1,display:"flex",alignItems:"center",justifyContent:"center",color:"var(--muted)",fontSize:13,padding:20}},"Nema pojmova za kartice u ovom filtru.");
   const seq=order||deck.map((_,i)=>i);
   const cur=deck[seq[idx%n]]||deck[0];
   const front=rev?cur[1]:cur[0];
@@ -503,26 +503,26 @@ function PojmovnikKarticeDeck({deck,rev,onReverse}){
   function prev(){setFlip(false);setIdx(i=>(i-1+n)%n);}
   function shuffle(){const a=deck.map((_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}setOrder(a);setIdx(0);setFlip(false);}
   const btn={border:"1px solid var(--bdr)",background:"transparent",color:"var(--muted)",borderRadius:99,padding:"4px 10px",fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"var(--fb)"};
-  return e("div",{style:{flex:1,display:"flex",flexDirection:"column",minHeight:0,padding:"14px 18px"}},
-    e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:12}},
-      e("span",{style:{fontSize:12,color:"var(--muted)"}},(idx+1)+" / "+n),
-      e("div",{style:{flex:1}}),
-      e("button",{onClick:onReverse,style:btn},rev?"definicija → pojam":"pojam → definicija"),
+  return React.createElement("div",{style:{flex:1,display:"flex",flexDirection:"column",minHeight:0,padding:"14px 18px"}},
+    React.createElement("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:12}},
+      React.createElement("span",{style:{fontSize:12,color:"var(--muted)"}},(idx+1)+" / "+n),
+      React.createElement("div",{style:{flex:1}}),
+      React.createElement("button",{onClick:onReverse,style:btn},rev?"definicija → pojam":"pojam → definicija"),
       React.createElement("button",{onClick:shuffle,style:btn},"🔀 Promiješaj")
     ),
-    e("button",{onClick:()=>setFlip(f=>!f),
+    React.createElement("button",{onClick:()=>setFlip(f=>!f),
       style:{flex:1,minHeight:170,width:"100%",boxSizing:"border-box",
         background:flip?"var(--blue-d)":"var(--s2)",border:"1px solid "+(flip?"var(--blue)":"var(--bdr2)"),
         borderRadius:"var(--rr)",padding:"24px",cursor:"pointer",display:"flex",flexDirection:"column",
         alignItems:"center",justifyContent:"center",gap:10,textAlign:"center",transition:"all .15s"}},
-      e("span",{style:{fontSize:10,color:"var(--muted)",textTransform:"uppercase",letterSpacing:".07em"}},
+      React.createElement("span",{style:{fontSize:10,color:"var(--muted)",textTransform:"uppercase",letterSpacing:".07em"}},
         flip?(rev?"Pojam":"Definicija"):(rev?"Definicija":"Pojam")),
-      e("span",{style:{fontFamily:flip?"var(--fb)":"var(--fh)",fontSize:flip?14:20,lineHeight:1.65,color:"var(--text)"}},flip?back:front),
-      !flip&&e("span",{style:{fontSize:11,color:"var(--muted)",marginTop:4}},"klikni za odgovor")
+      React.createElement("span",{style:{fontFamily:flip?"var(--fb)":"var(--fh)",fontSize:flip?14:20,lineHeight:1.65,color:"var(--text)"}},flip?back:front),
+      !flip&&React.createElement("span",{style:{fontSize:11,color:"var(--muted)",marginTop:4}},"klikni za odgovor")
     ),
-    e("div",{style:{display:"flex",gap:8,marginTop:12}},
-      e("button",{onClick:prev,style:{...btn,flex:"0 0 auto"}},"◀"),
-      e("button",{onClick:next,style:{...btn,flex:1,background:"var(--blue)",color:"#fff",border:"none"}},"Sljedeća ▶")
+    React.createElement("div",{style:{display:"flex",gap:8,marginTop:12}},
+      React.createElement("button",{onClick:prev,style:{...btn,flex:"0 0 auto"}},"◀"),
+      React.createElement("button",{onClick:next,style:{...btn,flex:1,background:"var(--blue)",color:"#fff",border:"none"}},"Sljedeća ▶")
     )
   );
 }
