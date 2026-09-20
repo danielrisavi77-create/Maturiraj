@@ -389,12 +389,15 @@ function Svg29grid_2010LA(){
   const toY=v=>pad.t+(yMax-v)*unit;
   const ox=toX(0),oy=toY(0);
   const t="var(--text)",mu="var(--muted)",bg="var(--bg)";
+  // U originalu je najvisa vodoravna crta mreze na y=9, a okomite crte sezu
+  // tek ~0,7 celije iznad nje (do y=9,7).
+  const yTop=yMax-1;
   const xs=[],ys=[];
   for(let x=xMin;x<=xMax;x+=1) xs.push(x);
-  for(let y=yMin;y<=yMax;y+=1) ys.push(y);
+  for(let y=yMin;y<=yTop;y+=1) ys.push(y);
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    ...xs.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:mu,strokeWidth:.5,strokeDasharray:"2,3"})),
+    ...xs.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:toY(yTop+0.7),x2:toX(x),y2:pad.t+iH,stroke:mu,strokeWidth:.5,strokeDasharray:"2,3"})),
     ...ys.map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:mu,strokeWidth:.5,strokeDasharray:"2,3"})),
     e("line",{x1:pad.l,y1:oy,x2:W-6,y2:oy,stroke:t,strokeWidth:1.6}),
     e("line",{x1:ox,y1:6,x2:ox,y2:pad.t+iH,stroke:t,strokeWidth:1.6}),
@@ -405,7 +408,8 @@ function Svg29grid_2010LA(){
     e("text",{x:ox-4,y:oy+12,textAnchor:"end",fontSize:10,fill:t,fontWeight:600},"0"),
     e("text",{x:toX(1)+2,y:oy+12,fontSize:10,fill:t,fontWeight:600},"1"),
     e("text",{x:ox-4,y:toY(1)+4,textAnchor:"end",fontSize:10,fill:t,fontWeight:600},"1"),
-    e("circle",{cx:ox,cy:toY(1),r:1.8,fill:bg,stroke:t,strokeWidth:1})
+    e("circle",{cx:ox,cy:toY(1),r:1.8,fill:bg,stroke:t,strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:oy,r:1.8,fill:bg,stroke:t,strokeWidth:1})
   );
 }
 
