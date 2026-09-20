@@ -90,7 +90,7 @@ function AnswerHelper({q,autoExpand,hideToggle}){
     const _shown=Math.min(stepsShown,_total);
     let num=0;
     return e("div",{className:"ah-steps"},
-      e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:2}},e("div",{className:"ah-steps-label",style:{marginBottom:0}},"📐 Postupak rješavanja"),_total>1&&e("button",{onClick:function(){playing?_stopPlay():_playSteps(_total);},title:playing?"Zaustavi reprodukciju":"Pusti korak po korak",style:{marginLeft:"auto",display:"inline-flex",alignItems:"center",gap:5,padding:"4px 10px",borderRadius:99,border:"1px solid var(--blue-b)",background:"var(--blue-d)",color:"var(--blue)",fontWeight:700,fontSize:11.5,cursor:"pointer",fontFamily:"var(--fb)"}},playing?"⏸ Stop":"▶ Pusti korake")),
+      e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:2}},e("div",{className:"ah-steps-label",style:{marginBottom:0}},"📐 Postupak rješavanja"),_total>1&&React.createElement("button",{onClick:function(){playing?_stopPlay():_playSteps(_total);},title:playing?"Zaustavi reprodukciju":"Pusti korak po korak",style:{marginLeft:"auto",display:"inline-flex",alignItems:"center",gap:5,padding:"4px 10px",borderRadius:99,border:"1px solid var(--blue-b)",background:"var(--blue-d)",color:"var(--blue)",fontWeight:700,fontSize:11.5,cursor:"pointer",fontFamily:"var(--fb)"}},playing?"⏸ Stop":"▶ Pusti korake")),
       q.steps.slice(0,_shown).map((step,i)=>{
         if(step==="───"||step==="---")
           return e("div",{key:i,className:"ah-step-sep"});
@@ -267,11 +267,11 @@ Ocijeni postupak i vrati ISKLJUČIVO JSON (bez markdown backtickova):
       // Konačni odgovor + Provjeri gumb
       needsFinalAnswer&&e("div",null,
         e("div",{style:{fontSize:12,fontWeight:600,color:"var(--muted)",marginBottom:6,textTransform:"uppercase",letterSpacing:".06em"}},"\uD83C\uDFAF Konačni odgovor"),
-        !checked&&!isReviewed&&e("div",{className:"symbar"},
+        !checked&&!isReviewed&&React.createElement("div",{className:"symbar"},
           ["\u221a","\u03c0","\u00b2","\u00b3","\u00b7","\u00f7","\u00b1","\u2264","\u2265","\u00b0","\u221e","\u2208"].map(sym=>
-            e("button",{key:sym,type:"button",className:"symbar-btn",onMouseDown:ev=>ev.preventDefault(),onClick:()=>insSym(sym)},sym))),
+            React.createElement("button",{key:sym,type:"button",className:"symbar-btn",onMouseDown:ev=>ev.preventDefault(),onClick:()=>insSym(sym)},sym))),
         e("div",{style:{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}},
-          e("input",{
+          React.createElement("input",{
             ref:inpRef,
             type:"text",
             inputMode:(q.type==="sa"||q.type==="pa")?"text":"decimal",

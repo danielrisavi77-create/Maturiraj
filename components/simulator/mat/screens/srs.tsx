@@ -209,7 +209,7 @@ function SpacedRepetitionScreen({onBack,userData,onUpdateUserData}){
         "🆕 Novih danas: ",e("strong",{style:{color:"var(--text)"}},introToday+"/"+SRS_NEW_PER_DAY)," · banka: ",e("strong",{style:{color:"var(--text)"}},newBank)),
       e("div",{style:{display:"flex",gap:10,justifyContent:"center"}},
         dueCards.length>0
-          ?e("button",{className:"btn btn-gold",style:{padding:"10px 20px"},
+          ?React.createElement("button",{className:"btn btn-gold",style:{padding:"10px 20px"},
               onClick:()=>{setSessionCards(dueCards.slice(0,20));setCur(0);setFlipped(false);setDone(false);setStats({easy:0,hard:0,again:0});awardedRef.current=false;setXpGained(0);}},
               "▶ Nastavi (+"+dueCards.length+")")
           :null,

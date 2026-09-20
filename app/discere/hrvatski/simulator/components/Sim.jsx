@@ -873,7 +873,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     e("div",{className:"exam-layout"},
       e("div",null,
         e("div",{className:"prog"},e("div",{className:"progbar",style:{width:((cur+1)/QSX.length*100)+"%"}})),
-        e("div",{className:"qcard",
+        React.createElement("div",{className:"qcard",
           onTouchStart:ev=>{touchStartX.current=ev.touches[0].clientX;},
           onTouchEnd:ev=>{
             const dx=ev.changedTouches[0].clientX-touchStartX.current;
@@ -951,19 +951,19 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             ["","😟 Nisam siguran/na","🤔 Djelomično siguran/na","😎 Potpuno siguran/na"][confidence[q.id]]
           ),
           e("div",{className:"qnav"},
-            e("button",{className:"btn btn-g",disabled:cur===0,onClick:()=>{recordTime(cur);const nc=cur-1;setCur(nc);setVisited(v=>({...v,[nc]:true}));}},"← Prethodno"),
+            React.createElement("button",{className:"btn btn-g",disabled:cur===0,onClick:()=>{recordTime(cur);const nc=cur-1;setCur(nc);setVisited(v=>({...v,[nc]:true}));}},"← Prethodno"),
             practice&&(q.type==="mc"||q.type==="mat")&&!isRev&&hasAns(answers[q.id])&&
               e("button",{className:"btn btn-chk",onClick:()=>setRev(p=>({...p,[q.id]:true}))},"Provjeri"),
             cur<QSX.length-1
-              ?e("button",{className:"btn btn-gold",onClick:()=>{recordTime(cur);const nc=cur+1;setCur(nc);setVisited(v=>({...v,[nc]:true}));}},"Sljedeće →")
-              :e("button",{className:"btn btn-gold",onClick:submitExam},"Završi ispit ✓")
+              ?React.createElement("button",{className:"btn btn-gold",onClick:()=>{recordTime(cur);const nc=cur+1;setCur(nc);setVisited(v=>({...v,[nc]:true}));}},"Sljedeće →")
+              :React.createElement("button",{className:"btn btn-gold",onClick:submitExam},"Završi ispit ✓")
           )
         )
       ),
       e("div",{className:"sidebar"},
         e("div",{className:"sbcard",style:{marginBottom:12}},
           e("div",{className:"sbtitle"},"Pitanja"),
-          e("div",{className:"qgrid"},
+          React.createElement("div",{className:"qgrid"},
             QSX.map((qi,i)=>{
               const a=answers[qi.id];const isC=cur===i;const rv=rev[qi.id]||done;
               const ok=rv&&chk(qi,a)===true;const bad=rv&&chk(qi,a)===false;
@@ -988,7 +988,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     ),
     /* ── Mobile bottom navigation bar ── */
     e("div",{className:"mob-nav"},
-      e("button",{className:"mob-nav-btn",disabled:cur===0,
+      React.createElement("button",{className:"mob-nav-btn",disabled:cur===0,
         onClick:()=>{recordTime(cur);const nc=cur-1;setCur(nc);setVisited(v=>({...v,[nc]:true}));},
         "aria-label":"Prethodno pitanje"},"←"),
       e("button",{...accBtn,className:"mob-nav-center",onClick:()=>setMobGrid(g=>!g),
@@ -997,10 +997,10 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         e("span",{className:"mob-nav-sub"},answeredCount+" odg. ⊞")
       ),
       cur<QSX.length-1
-        ?e("button",{className:"mob-nav-btn",
+        ?React.createElement("button",{className:"mob-nav-btn",
             onClick:()=>{recordTime(cur);const nc=cur+1;setCur(nc);setVisited(v=>({...v,[nc]:true}));},
             "aria-label":"Sljedeće pitanje"},"→")
-        :e("button",{className:"mob-nav-btn mob-nav-end",onClick:submitExam,"aria-label":"Završi ispit"},"✓")
+        :React.createElement("button",{className:"mob-nav-btn mob-nav-end",onClick:submitExam,"aria-label":"Završi ispit"},"✓")
     ),
     /* ── Mobile question grid bottom sheet ── */
     mobGrid&&e("div",{className:"mob-sheet-overlay",onClick:()=>setMobGrid(false),"aria-label":"Zatvori"},
@@ -1011,7 +1011,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           e("span",{style:{marginLeft:"auto",fontSize:12,color:"var(--muted)"}},answeredCount+"/"+QSX.length+" odgovoreno"),
           e("button",{className:"mob-sheet-close",onClick:()=>setMobGrid(false),"aria-label":"Zatvori"},"×")
         ),
-        e("div",{className:"qgrid mob-sheet-grid"},
+        React.createElement("div",{className:"qgrid mob-sheet-grid"},
           QSX.map((qi,i)=>{
             const a=answers[qi.id];const isC=cur===i;const rv=rev[qi.id]||done;
             const ok=rv&&chk(qi,a)===true;const bad=rv&&chk(qi,a)===false;

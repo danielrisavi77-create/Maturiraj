@@ -93,10 +93,10 @@ export default function WrappedCard({ userData, onClose }) {
 
   return e('div', { onClick: onClose, style: { position: 'fixed', inset: 0, zIndex: 220, background: 'rgba(0,0,0,.6)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, overflowY: 'auto' } },
     e('div', { onClick: ev => ev.stopPropagation(), style: { background: 'var(--s1)', border: '1px solid var(--bdr)', borderRadius: 18, padding: 16, maxWidth: 420, width: '100%' } },
-      e('canvas', { ref: canvasRef, style: { width: '100%', borderRadius: 12, display: 'block' } }),
+      React.createElement('canvas', { ref: canvasRef, style: { width: '100%', borderRadius: 12, display: 'block' } }),
       e('div', { style: { display: 'flex', gap: 8, marginTop: 12 } },
-        e('button', { onClick: share, disabled: busy, style: { flex: 1, background: 'var(--blue)', color: '#fff', border: 'none', borderRadius: 10, padding: '12px', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--fb)' } }, busy ? 'Pripremam…' : '📤 Podijeli'),
-        e('button', { onClick: download, style: { flex: 1, background: 'var(--s2)', color: 'var(--text)', border: '1px solid var(--bdr)', borderRadius: 10, padding: '12px', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--fb)' } }, '⬇️ Spremi PNG'),
+        React.createElement('button', { onClick: share, disabled: busy, style: { flex: 1, background: 'var(--blue)', color: '#fff', border: 'none', borderRadius: 10, padding: '12px', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--fb)' } }, busy ? 'Pripremam…' : '📤 Podijeli'),
+        React.createElement('button', { onClick: download, style: { flex: 1, background: 'var(--s2)', color: 'var(--text)', border: '1px solid var(--bdr)', borderRadius: 10, padding: '12px', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--fb)' } }, '⬇️ Spremi PNG'),
         e('button', { onClick: onClose, style: { background: 'var(--s2)', color: 'var(--muted)', border: '1px solid var(--bdr)', borderRadius: 10, padding: '12px 14px', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--fb)' } }, '✕')
       )
     )

@@ -668,7 +668,7 @@ function ScratchPad({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,an
         (qOpts&&qOpts.length>0)&&e("div",{style:{display:"flex",flexDirection:"column",gap:5}}, qOpts.map(function(opt,i){return e("div",{key:i,style:{fontSize:13.5,color:"rgba(255,255,255,.92)",display:"flex",gap:7,lineHeight:1.5}}, e("span",{style:{fontWeight:800,color:"#9ec5f0",flexShrink:0}},"("+(["A","B","C","D","E","F"][i]||"?")+")"), e("span",null,renderOptText(opt)));}))
       )
     ),
-    figure&&e("div",{ref:figHiddenRef,"aria-hidden":true,style:{position:"absolute",width:0,height:0,overflow:"hidden",opacity:0,pointerEvents:"none",left:-99999,top:-99999}}, figure),
+    figure&&React.createElement("div",{ref:figHiddenRef,"aria-hidden":true,style:{position:"absolute",width:0,height:0,overflow:"hidden",opacity:0,pointerEvents:"none",left:-99999,top:-99999}}, figure),
     mode==="skica"&&e(React.Fragment,null,
       e("div",{style:{display:"flex",alignItems:"center",gap:6,marginBottom:8,flexWrap:"wrap"}},
         ...COLORS.map(col=>e("button",{key:col,onClick:()=>{setColor(col);setTool("pen");},title:"Boja",style:{width:24,height:24,borderRadius:99,background:col,border:(color===col&&tool!=="erase"&&tool!=="pan")?"3px solid #fff":"2px solid rgba(255,255,255,.4)",cursor:"pointer",padding:0}})),
@@ -680,10 +680,10 @@ function ScratchPad({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,an
         e("button",{onClick:()=>setGrid(g=>!g),title:"Kvadratići",style:actBtn(grid)},grid?"▦":"▢"),
         e("button",{onClick:()=>setAxes(a=>!a),title:"Koordinatne osi",style:actBtn(axes)},"✛ osi"),
         !examMode&&e("button",{onClick:()=>{ setShowGraph(function(g){ var nv=!g; if(nv){ setAxes(true); setGrid(true); setFuncs(function(fs){return fs.length?fs:[{expr:"",color:FCOLORS[0],on:true}];}); } return nv; }); },title:"Crtaj funkciju f(x)",style:actBtn(showGraph)},"📈 graf"),
-        figure&&e("button",{onClick:()=>figOn?removeFigure():importFigure(),title:figOn?"Ukloni figuru":"Uvuci figuru zadatka",style:actBtn(figOn)},figOn?"📋 ukloni":"📋 figura"),
-        e("button",{onClick:undo,title:"Poništi potez",style:tbtn},"↶"),
-        e("button",{onClick:redo,title:"Ponovi potez",style:tbtn},"↷"),
-        e("button",{onClick:clearAll,title:"Očisti sve",style:tbtn},"očisti")
+        figure&&React.createElement("button",{onClick:()=>figOn?removeFigure():importFigure(),title:figOn?"Ukloni figuru":"Uvuci figuru zadatka",style:actBtn(figOn)},figOn?"📋 ukloni":"📋 figura"),
+        React.createElement("button",{onClick:undo,title:"Poništi potez",style:tbtn},"↶"),
+        React.createElement("button",{onClick:redo,title:"Ponovi potez",style:tbtn},"↷"),
+        React.createElement("button",{onClick:clearAll,title:"Očisti sve",style:tbtn},"očisti")
       ),
       (!examMode&&showGraph)&&e("div",{style:{background:"rgba(255,255,255,.06)",borderRadius:10,padding:"9px 10px",marginBottom:8,display:"flex",flexDirection:"column",gap:7}},
         e("div",{style:{display:"flex",gap:6,flexWrap:"wrap"}},
@@ -698,12 +698,12 @@ function ScratchPad({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,an
         ); }),
         funcs.length<4&&e("button",{onClick:addFn,style:{alignSelf:"flex-start",background:"none",border:"1px dashed rgba(255,255,255,.3)",color:"#fff",borderRadius:8,padding:"6px 12px",fontSize:12.5,fontWeight:700,cursor:"pointer",fontFamily:"var(--fb)"}},"+ funkcija")
       ),
-      e("div",{ref:wrap,style:{flex:1,position:"relative",background:"#fefdf8",borderRadius:12,overflow:"hidden",boxShadow:"0 10px 40px -10px rgba(0,0,0,.5)",touchAction:"none"}},
-        e("canvas",{ref:cv,onMouseDown:start,onMouseMove:move,onMouseUp:end,onMouseLeave:end,onTouchStart:start,onTouchMove:move,onTouchEnd:end,style:{display:"block",cursor:tool==="pan"?"grab":tool==="erase"?"cell":"crosshair"}}),
+      React.createElement("div",{ref:wrap,style:{flex:1,position:"relative",background:"#fefdf8",borderRadius:12,overflow:"hidden",boxShadow:"0 10px 40px -10px rgba(0,0,0,.5)",touchAction:"none"}},
+        React.createElement("canvas",{ref:cv,onMouseDown:start,onMouseMove:move,onMouseUp:end,onMouseLeave:end,onTouchStart:start,onTouchMove:move,onTouchEnd:end,style:{display:"block",cursor:tool==="pan"?"grab":tool==="erase"?"cell":"crosshair"}}),
         e("div",{style:{position:"absolute",right:10,bottom:10,display:"flex",alignItems:"center",gap:2,background:"rgba(9,13,26,.85)",borderRadius:99,padding:"3px 5px",border:"1px solid rgba(255,255,255,.2)"}},
-          e("button",{onClick:()=>zoomBy(1/1.25),title:"Smanji",style:zbtn},"−"),
-          e("button",{onClick:zoomReset,title:"Vrati na 100%",style:{padding:"0 8px",height:30,borderRadius:99,border:"none",background:"transparent",color:"#fff",fontWeight:700,fontSize:12,cursor:"pointer",minWidth:46}},zPct+"%"),
-          e("button",{onClick:()=>zoomBy(1.25),title:"Povećaj",style:zbtn},"+")
+          React.createElement("button",{onClick:()=>zoomBy(1/1.25),title:"Smanji",style:zbtn},"−"),
+          React.createElement("button",{onClick:zoomReset,title:"Vrati na 100%",style:{padding:"0 8px",height:30,borderRadius:99,border:"none",background:"transparent",color:"#fff",fontWeight:700,fontSize:12,cursor:"pointer",minWidth:46}},zPct+"%"),
+          React.createElement("button",{onClick:()=>zoomBy(1.25),title:"Povećaj",style:zbtn},"+")
         )
       )
     ),

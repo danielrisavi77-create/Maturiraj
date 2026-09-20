@@ -31,7 +31,7 @@ function FigZoom({fig,onClose}){
       e("button",{title:"Pove\u0107aj",onClick:()=>zoomTo(z+0.25),style:ctrl},"+"),
       e("button",{title:"Vrati na 100%",onClick:reset,style:Object.assign({},ctrl,{fontSize:16})},"\u27f2"),
       e("button",{title:"Zatvori (Esc)",onClick:onClose,style:Object.assign({},ctrl,{marginLeft:6,background:"rgba(255,255,255,.22)"})},"\u2715")),
-    e("div",{onClick:ev=>ev.stopPropagation(),onMouseDown:onMouseDown,onMouseMove:onMouseMove,onMouseUp:endDrag,onMouseLeave:endDrag,onWheel:onWheel,onTouchStart:onTouchStart,onTouchMove:onTouchMove,onTouchEnd:onTouchEnd,onDoubleClick:reset,
+    React.createElement("div",{onClick:ev=>ev.stopPropagation(),onMouseDown:onMouseDown,onMouseMove:onMouseMove,onMouseUp:endDrag,onMouseLeave:endDrag,onWheel:onWheel,onTouchStart:onTouchStart,onTouchMove:onTouchMove,onTouchEnd:onTouchEnd,onDoubleClick:reset,
       style:{flex:1,overflow:"hidden",display:"flex",alignItems:"center",justifyContent:"center",padding:"0 16px 6px",cursor:z>1?(interacting?"grabbing":"grab"):"default",touchAction:"none",userSelect:"none"}},
       e("div",{className:"zoom-fig-inner",style:{transform:"translate("+pan.x+"px,"+pan.y+"px) scale("+z+")",transformOrigin:"center center",transition:interacting?"none":"transform .12s ease",background:"#fff",borderRadius:14,padding:20,flexShrink:0}},fig)),
     e("div",{onClick:ev=>ev.stopPropagation(),style:{textAlign:"center",color:"rgba(255,255,255,.5)",fontSize:11,padding:"2px 16px 14px",lineHeight:1.4}},"Kota\u010di\u0107 / \u00b1 za zoom \u00b7 povuci za pomicanje \u00b7 dvoklik za reset"));

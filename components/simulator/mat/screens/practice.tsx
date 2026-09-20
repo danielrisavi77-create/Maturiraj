@@ -806,7 +806,7 @@ function AdaptiveTrening({userData,onExit,onHome,onStartErrorSession}){
         e("div",{style:{fontSize:12.5,fontWeight:700,color:"var(--gold)",marginBottom:6}},"🎯 Tu si najviše griješio/la"),
         e("div",{style:{fontSize:13,color:"var(--text)",lineHeight:1.5}},weakArr.join(" · "))),
       e("div",{style:{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center"}},
-        e("button",{className:"btn btn-blue",onClick:begin},"🔁 Još jednom"),
+        React.createElement("button",{className:"btn btn-blue",onClick:begin},"🔁 Još jednom"),
         weakArr.length>0&&onStartErrorSession&&e("button",{className:"btn btn-g",onClick:function(){
           var qs=[]; var labels={}; weakArr.forEach(function(l){labels[l]=1;});
           Object.values(EXAMS).forEach(function(ex){ if(rz&&ex.razina&&ex.razina!==rz)return; (ex.qs||[]).forEach(function(q){ if(q.type==="proof"||q.type==="sa"||q.type==="pa")return; if(labels[TOPIC_LABELS[q.topic]||q.topic]) qs.push(Object.assign({},q,{_examKey:ex.key})); }); });
@@ -834,7 +834,7 @@ function AdaptiveTrening({userData,onExit,onHome,onStartErrorSession}){
       curQ.context&&e("div",{style:{fontSize:13.5,lineHeight:1.55,color:"var(--muted)",marginBottom:12,paddingLeft:12,borderLeft:"3px solid var(--blue)"}},renderQText(curQ.context)),
       figFn&&e("div",{style:{margin:"4px 0 12px",padding:10,background:"var(--s2)",border:"1px solid var(--bdr)",borderRadius:10,display:"inline-block",maxWidth:"100%"}},figFn()),
       e("div",{className:"qtext",style:{marginBottom:14,fontSize:15.5,lineHeight:1.5}},renderQText(curQ.q)),
-      e("div",{className:"opts"}, curQ.opts.map(function(opt,oi){
+      React.createElement("div",{className:"opts"}, curQ.opts.map(function(opt,oi){
         var letter=LL[oi];
         var cls="opt";
         if(sel===letter) cls+=" sel";
@@ -846,7 +846,7 @@ function AdaptiveTrening({userData,onExit,onHome,onStartErrorSession}){
       })),
       answered&&e("div",{style:{marginTop:14}},
         e(AnswerHelper,{q:curQ,autoExpand:true,hideToggle:true}),
-        e("button",{className:"btn btn-blue",style:{marginTop:14,width:"100%"},onClick:nextQ}, log.length>=TOTAL?"Vidi rezultat →":"Sljedeći zadatak →"))
+        React.createElement("button",{className:"btn btn-blue",style:{marginTop:14,width:"100%"},onClick:nextQ}, log.length>=TOTAL?"Vidi rezultat →":"Sljedeći zadatak →"))
     ));
 }
 export { AIPractice, TopicFilterScreen, ErrorsScreen, AdaptiveTrening };

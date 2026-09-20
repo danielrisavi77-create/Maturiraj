@@ -845,7 +845,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
             e("span",{style:{fontSize:12.5,color:"var(--muted)"}},d))),
         e("div",{style:{fontSize:10.5,color:"var(--muted)",marginTop:12,textAlign:"center"}},"Pritisni ? ili klikni izvan za zatvaranje"))),
     // FORMULA MODAL
-    scratchOpen&&e(ScratchPad,{onClose:()=>{setScratchOpen(false);setSpAsk(null);},wsKey:_cq&&_cq.id,store:workspaceRef.current,figure:mcStem,qText:_cq&&_cq.q,qOpts:_cq&&_cq.opts,qSteps:_cq&&_cq.steps,qSol:_cq&&_cq.sol,qType:_cq&&_cq.type,answered:!!(_cq&&(hasAns(answers[_cq.id])||done)),seedAsk:spAsk,onSeedUsed:()=>setSpAsk(null),examMode:examMode}),
+    scratchOpen&&React.createElement(ScratchPad,{onClose:()=>{setScratchOpen(false);setSpAsk(null);},wsKey:_cq&&_cq.id,store:workspaceRef.current,figure:mcStem,qText:_cq&&_cq.q,qOpts:_cq&&_cq.opts,qSteps:_cq&&_cq.steps,qSol:_cq&&_cq.sol,qType:_cq&&_cq.type,answered:!!(_cq&&(hasAns(answers[_cq.id])||done)),seedAsk:spAsk,onSeedUsed:()=>setSpAsk(null),examMode:examMode}),
     showFormulas&&e(FormulaModal,{onClose:()=>setShowFormulas(false),razina:exam&&exam.razina}),
 
     // NAV
@@ -968,7 +968,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
     },timerAlert===0?"⏰ Ispit završen!":`⚠️ Preostalo: ${fmt2(timerAlert)}`),
 
     // MAIN LAYOUT
-    e("div",{className:"exam-layout",style:{background:flashRed?"rgba(196,48,48,.04)":""},onTouchStart:onTouchStart,onTouchEnd:onTouchEnd},
+    React.createElement("div",{className:"exam-layout",style:{background:flashRed?"rgba(196,48,48,.04)":""},onTouchStart:onTouchStart,onTouchEnd:onTouchEnd},
       // LIJEVI STUPAC  -  pitanje
       e("div",null,
         // Progress
@@ -987,7 +987,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
           "⏱ Simulacija ispita · uvjeti kao na maturi · dopušteno: kalkulator + papir · bez povratne informacije do kraja"
         ),
 
-        e("div",{ref:qcardRef,className:"qcard",style:{borderLeft:examMode?"none":"3px solid "+topicColor(q.topic)}},
+        React.createElement("div",{ref:qcardRef,className:"qcard",style:{borderLeft:examMode?"none":"3px solid "+topicColor(q.topic)}},
           !examMode&&e("div",{style:{display:"flex",gap:2,marginBottom:16,height:6,padding:"0 1px"}},QSX.map(function(qq,qi){var ans=hasAns(answers[qq.id]);return e("div",{key:qi,onClick:function(){goTo(qi);},title:examMode?String(qi+1):(qi+1)+". "+(TOPIC_LABELS[qq.topic]||qq.topic),style:{flex:1,minWidth:0,borderRadius:2,cursor:"pointer",background:examMode?"var(--bdr2)":topicColor(qq.topic),opacity:qi===cur?1:(ans?0.85:0.26),boxShadow:qi===cur?"0 0 0 2px var(--text)":"none",transition:"opacity .2s"}});})),
           // Meta
           e("div",{className:"qmeta"},
@@ -1099,7 +1099,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
           
 
           // === OPCIJE ZA MC ===
-          q.type==="mc"&&e("div",null,
+          q.type==="mc"&&React.createElement("div",null,
             e("div",{className:"opts"},
               q.opts.map((opt,oi)=>{
                 const letter=LL[oi];
@@ -1226,7 +1226,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
           e("div",{className:"qnav"},
             e("button",{className:"btn btn-g",disabled:cur===0,onClick:()=>goTo(cur-1)},"← Prethodni"),
             // "Provjeri" gumb SAMO za MC u vježba modu
-            practice&&!isRev&&q.type==="mc"&&hasAns(a)&&e("button",{className:"btn btn-chk",onClick:()=>{
+            practice&&!isRev&&q.type==="mc"&&hasAns(a)&&React.createElement("button",{className:"btn btn-chk",onClick:()=>{
               setRev(p=>({...p,[q.id]:true}));
               const result=chk(q,a);
               registerCheck(q,result);
