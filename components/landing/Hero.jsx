@@ -1,12 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useHydrated } from "@/lib/hooks/useHydrated";
 import { SUBJECTS } from "@/lib/data/subjects";
 import { TESTIMONIALS } from "@/lib/data/testimonials";
 import HeroCountdown from "@/components/landing/HeroCountdown";
 
 export default function Hero({ onSkripte, onPlan, onChat, onPrijemni, onKalkulator, onTermini, trialDismissed, onStartTrial }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useHydrated();
   const showTrial = mounted && !trialDismissed;
 
   return (

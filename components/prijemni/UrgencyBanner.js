@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useMemo } from 'react'
+import { useHydrated } from '@/lib/hooks/useHydrated'
 import { getActiveUrgencies, urgencyColor } from '@/lib/prijemni/urgency'
 
 const DISMISS_KEY = 'mh_urgency_banner_dismissed'
@@ -31,9 +32,7 @@ function markDismissed(studijId) {
 
 export default function UrgencyBanner({ fakulteti, onSelectStudij, track }) {
   const [dismissedIds, setDismissedIds] = useState(new Set())
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => { setMounted(true) }, [])
+  const mounted = useHydrated()
 
   const urgencies = useMemo(() => {
     if (!fakulteti) return []
