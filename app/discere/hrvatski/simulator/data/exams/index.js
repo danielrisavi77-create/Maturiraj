@@ -37,9 +37,11 @@ const TOPIC_LABELS={
   knj_svjetska:"Svjetska književnost",
   knj_analiza:"Analiza teksta",
   knj_versif:"Versifikacija",
+  jez_versif:"Versifikacija",
   sazetak:"Sažetak teksta",
   esej:"Interpretativni esej",
 };
+function stripLetterPrefix(str){return typeof str==="string"?str.replace(/^[A-F][.)]\s+/,""):str;}
 function getLevel(xp){let l=0;XP_LEVELS.forEach((v,i)=>{if(xp>=v)l=i;});return l;}
 function xpProgress(xp){const l=getLevel(xp);const cur=XP_LEVELS[l],next=XP_LEVELS[l+1]||XP_LEVELS[l]+500;return Math.min(100,Math.round((xp-cur)/(next-cur)*100));}
 function xpToNext(xp){const l=getLevel(xp);const next=XP_LEVELS[l+1]||XP_LEVELS[l]+500;return Math.max(0,next-xp);}
@@ -112,6 +114,14 @@ const EXAMS={
   "2022_ljeto_A":{key:"2022_ljeto_A",year:2022,season:"ljeto",razina:"A",label:"Ljetni rok — Viša razina (A)",qs:QS_2022_ljeto_A,pravi:true},  
   "2022_ljeto_B":{key:"2022_ljeto_B",year:2022,season:"ljeto",razina:"B",label:"Ljetni rok — Osnovna razina (B)",qs:QS_2022_ljeto_B,pravi:true},
 };
+
+const BROKEN_QS=[];
+for(const k of Object.keys(EXAMS)){
+  EXAMS[k].qs=EXAMS[k].qs.map(q=>q.opts?{...q,opts:q.opts.map(stripLetterPrefix)}:q);
+  const broken=EXAMS[k].qs.filter(q=>q.broken===true);
+  if(broken.length){BROKEN_QS.push(...broken.map(q=>({...q,examKey:k})));}
+  EXAMS[k].qs=EXAMS[k].qs.filter(q=>q.broken!==true);
+}
 
 const SAZECI={
   "2023_ljeto":{
@@ -1958,4 +1968,4 @@ Miroslav Krleža, Gospoda Glembajevi`},
 
 };
 
-export { TLBL, XP_LEVELS, LEVEL_NAMES, TOPIC_LABELS, EXAMS, SAZECI, ESEJI };
+export { TLBL, XP_LEVELS, LEVEL_NAMES, TOPIC_LABELS, EXAMS, SAZECI, ESEJI, stripLetterPrefix, BROKEN_QS };
