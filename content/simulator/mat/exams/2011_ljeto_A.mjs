@@ -215,9 +215,183 @@ function Svg7_2011LjetoA(){
   );
 }
 
-function Svg29e_2011LjetoA(){ return _svg29e_2011LjetoA(true); }
+// ── 19.1 ───────────────────────────────────────────────────────────────────
+// Izvornik: isprekidana mreža BEZ osi i brojeva, na njoj vektori AB→ i CD→ te
+// točka E. Mrežne koordinate (stupac, redak; redak 0 = dno) očitane iz PDF-a:
+//   A(2,1)  B(5,2)  C(1,2)  D(0,4)  E(3,3)
+//   AB→ = (3,1), CD→ = (−1,2)  ⇒  F = E + (2,3) = (5,6)
+// sol=false → slika uz pitanje (kao u izvorniku, BEZ točke F).
+// sol=true  → slika uz rješenje (dodan poligonalni put E → E+AB → F).
+function _svg19a_2011LjetoA(sol){
+  const W=340,H=300,u=38,padL=30,baseY=270;
+  const t="var(--text)",mu="var(--muted)",BG="var(--bg)";
+  const ACC="var(--red)",GOLD="var(--gold)";
+  const sx=gx=>padL+gx*u, sy=gr=>baseY-gr*u;
+  const P={A:[2,1],B:[5,2],C:[1,2],D:[0,4],E:[3,3],F:[5,6],M:[6,4]};
+  const px=k=>sx(P[k][0]), py=k=>sy(P[k][1]);
+  function arrow(key,x1,y1,x2,y2,col,wd,dash){
+    const a=Math.atan2(y2-y1,x2-x1),L=10,sp=0.36;
+    const p1=(x2-L*Math.cos(a-sp)).toFixed(1)+","+(y2-L*Math.sin(a-sp)).toFixed(1);
+    const p2=(x2-L*Math.cos(a+sp)).toFixed(1)+","+(y2-L*Math.sin(a+sp)).toFixed(1);
+    return e("g",{key:key},
+      e("line",{x1:x1,y1:y1,x2:x2-L*0.75*Math.cos(a),y2:y2-L*0.75*Math.sin(a),
+        stroke:col,strokeWidth:wd,strokeDasharray:dash}),
+      e("polygon",{points:x2+","+y2+" "+p1+" "+p2,fill:col})
+    );
+  }
+  function dot(k,col,r){ return e("circle",{key:"d"+k,cx:px(k),cy:py(k),r:r||2.6,fill:BG,stroke:col||t,strokeWidth:1.1}); }
+  function lab(k,dx,dy,col,txt){ return e("text",{key:"l"+k,x:px(k)+dx,y:py(k)+dy,fontSize:13,
+    fill:col||t,fontStyle:"italic",fontWeight:"700"},txt||k); }
+  const grid=[];
+  for(let i=0;i<=7;i++) grid.push(e("line",{key:"gv"+i,x1:sx(i),y1:22,x2:sx(i),y2:286,
+    stroke:mu,strokeWidth:0.7,strokeDasharray:"3,3",opacity:0.8}));
+  for(let j=0;j<=6;j++) grid.push(e("line",{key:"gh"+j,x1:10,y1:sy(j),x2:318,y2:sy(j),
+    stroke:mu,strokeWidth:0.7,strokeDasharray:"3,3",opacity:0.8}));
+  const solve = sol ? [
+    arrow("sAB",px("E"),py("E"),px("M"),py("M"),GOLD,1.4,"4,3"),
+    arrow("sCD",px("M"),py("M"),px("F"),py("F"),GOLD,1.4,"4,3"),
+    arrow("sEF",px("E"),py("E"),px("F"),py("F"),ACC,2),
+    dot("F",ACC,3),
+    lab("F",6,-4,ACC)
+  ] : [];
+  return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"0 auto"}},
+    ...grid,
+    // vektor AB→
+    arrow("vAB",px("A"),py("A"),px("B"),py("B"),t,1.9),
+    // vektor CD→
+    arrow("vCD",px("C"),py("C"),px("D"),py("D"),t,1.9),
+    ...solve,
+    dot("A"),lab("A",-16,15),
+    dot("C"),lab("C",-15,16),
+    dot("E"),lab("E",-14,-5),
+    lab("B",6,-2),
+    lab("D",-15,-6)
+  );
+}
+
+function SvgQ19a_2011LjetoA(){ return _svg19a_2011LjetoA(false); }
 
 function Svg19a_2011LjetoA(){ return _svg19a_2011LjetoA(true); }
+
+// ── 21.1 ───────────────────────────────────────────────────────────────────
+// Izvornik: koordinatni sustav s isprekidanom mrežom, kružnica sa središtem
+// S(1, −3) i polumjerom 5. Označene su točke na kružnici (1, 2), (6, −3),
+// (−4, −3), (1, −8) te središte S; na osima oznake 0 i 1.
+function Svg21a_2011LjetoA(){
+  const xMin=-5,xMax=7,yMin=-9,yMax=3,u=26,padL=32,padT=32;
+  const W=360,H=376;
+  const t="var(--text)",mu="var(--muted)",BG="var(--bg)";
+  const PRIM="var(--blue)";
+  const sx=x=>padL+(x-xMin)*u, sy=y=>padT+(yMax-y)*u;
+  const ox=sx(0),oy=sy(0);
+  const S={x:sx(1),y:sy(-3)},R=5*u;
+  const grid=[];
+  for(let x=xMin;x<=xMax;x++) grid.push(e("line",{key:"gv"+x,x1:sx(x),y1:padT,x2:sx(x),y2:sy(yMin),
+    stroke:mu,strokeWidth:0.7,strokeDasharray:"3,3",opacity:0.65}));
+  for(let y=yMin;y<=yMax;y++) grid.push(e("line",{key:"gh"+y,x1:sx(xMin),y1:sy(y),x2:sx(xMax),y2:sy(y),
+    stroke:mu,strokeWidth:0.7,strokeDasharray:"3,3",opacity:0.65}));
+  function mark(x,y,key){ return e("circle",{key:key,cx:sx(x),cy:sy(y),r:2.6,fill:BG,stroke:t,strokeWidth:1.1}); }
+  const axEndX=sx(xMax)+16, axEndY=padT-16, axBotY=sy(yMin)+16, axLeftX=sx(xMin)-16;
+  return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"0 auto"}},
+    ...grid,
+    // kružnica
+    e("circle",{cx:S.x,cy:S.y,r:R,fill:"none",stroke:PRIM,strokeWidth:2}),
+    // os x
+    e("line",{x1:axLeftX,y1:oy,x2:axEndX-6,y2:oy,stroke:t,strokeWidth:1.5}),
+    e("polygon",{points:axEndX+","+oy+" "+(axEndX-8)+","+(oy-4)+" "+(axEndX-8)+","+(oy+4),fill:t}),
+    e("text",{x:axEndX-6,y:oy+16,fontSize:12,fill:t,fontStyle:"italic",fontWeight:"700"},"x"),
+    // os y
+    e("line",{x1:ox,y1:axBotY,x2:ox,y2:axEndY+6,stroke:t,strokeWidth:1.5}),
+    e("polygon",{points:ox+","+axEndY+" "+(ox-4)+","+(axEndY+8)+" "+(ox+4)+","+(axEndY+8),fill:t}),
+    e("text",{x:ox-16,y:axEndY+12,fontSize:12,fill:t,fontStyle:"italic",fontWeight:"700"},"y"),
+    // oznake 0 i 1
+    e("text",{x:ox-12,y:oy+14,fontSize:11,fill:t,fontWeight:"700"},"0"),
+    e("text",{x:sx(1)-3,y:oy+14,fontSize:11,fill:t,fontWeight:"700"},"1"),
+    e("text",{x:ox-13,y:sy(1)+4,fontSize:11,fill:t,fontWeight:"700"},"1"),
+    mark(1,0,"t1x"),mark(0,1,"t1y"),
+    // točke na kružnici
+    mark(1,2,"pT"),mark(6,-3,"pR"),mark(-4,-3,"pL"),mark(1,-8,"pB"),
+    // središte S
+    e("circle",{cx:S.x,cy:S.y,r:2.6,fill:BG,stroke:t,strokeWidth:1.1}),
+    e("text",{x:S.x+7,y:S.y-4,fontSize:13,fill:t,fontStyle:"italic",fontWeight:"700"},"S")
+  );
+}
+
+// ── 29.5 ──────────────────────────────────────────────────────────────────
+// Izvornik uz 29.5 nudi PRAZAN predložak: isprekidanu mrežu s korakom 0,5
+// jedinice, osi i oznake 0 i 1, bez ijedne točke i bez krivulje — učenik graf
+// sam ucrtava. Zato pitanje dobiva SvgQ29e (prazna mreža), a panel rješenja
+// Svg29e s krivuljom f(x) = x³ − 3x²: nultočke (0, 0) (dvostruka) i (3, 0),
+// max (0, 0), min (2, −4), referentna točka T(1, −2).
+function _svg29e_2011LjetoA(showSolution){
+  const xMin=-5,xMax=5,yMin=-5,yMax=5,u=26,padL=26,padT=22;
+  const W=padL*2+(xMax-xMin)*u, H=padT*2+(yMax-yMin)*u;
+  const t="var(--text)",mu="var(--muted)",BG="var(--bg)";
+  const PRIM="var(--blue)",ACC="var(--red)";
+  const sx=x=>padL+(x-xMin)*u, sy=y=>padT+(yMax-y)*u;
+  const ox=sx(0),oy=sy(0);
+  // mreža: isprekidane linije na svakih 0,5 jedinice, kao u izvorniku
+  const grid=[];
+  for(let k=xMin*2;k<=xMax*2;k++){
+    const gx=sx(k/2);
+    grid.push(e("line",{key:"gv"+k,x1:gx,y1:sy(yMax),x2:gx,y2:sy(yMin),
+      stroke:mu,strokeWidth:0.6,strokeDasharray:"2,3",opacity:0.6}));
+  }
+  for(let k=yMin*2;k<=yMax*2;k++){
+    const gy=sy(k/2);
+    grid.push(e("line",{key:"gh"+k,x1:sx(xMin),y1:gy,x2:sx(xMax),y2:gy,
+      stroke:mu,strokeWidth:0.6,strokeDasharray:"2,3",opacity:0.6}));
+  }
+  // krivulja f(x) = x³ − 3x², odrezana na rub okvira
+  const segs=[];
+  if(showSolution){
+    let cur=[];
+    for(let i=0;i<=800;i++){
+      const x=xMin+(xMax-xMin)*i/800;
+      const y=x*x*x-3*x*x;
+      if(y<yMin||y>yMax){ if(cur.length>1) segs.push(cur); cur=[]; continue; }
+      cur.push(sx(x).toFixed(1)+","+sy(y).toFixed(1));
+    }
+    if(cur.length>1) segs.push(cur);
+  }
+  function mark(x,y,key,txt,dx,dy){
+    return e("g",{key:key},
+      e("circle",{cx:sx(x),cy:sy(y),r:2.8,fill:BG,stroke:ACC,strokeWidth:1.3}),
+      txt?e("text",{x:sx(x)+dx,y:sy(y)+dy,fontSize:10,fill:t,fontWeight:"600"},txt):null
+    );
+  }
+  const axEndX=sx(xMax)+14, axEndY=padT-14, axBotY=sy(yMin)+14, axLeftX=sx(xMin)-14;
+  // Oznaka ishodišta: u praznom predlošku dolje-lijevo kao u izvorniku, a u
+  // rješenju gore-lijevo (II. kvadrant je prazan) da je krivulja ne prekrije.
+  const zeroY = showSolution ? oy-6 : oy+15;
+  return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"0 auto"}},
+    ...grid,
+    // os x
+    e("line",{x1:axLeftX,y1:oy,x2:axEndX-6,y2:oy,stroke:t,strokeWidth:1.5}),
+    e("polygon",{points:axEndX+","+oy+" "+(axEndX-8)+","+(oy-4)+" "+(axEndX-8)+","+(oy+4),fill:t}),
+    e("text",{x:axEndX-8,y:oy+16,fontSize:12,fill:t,fontStyle:"italic",fontWeight:"700"},"x"),
+    // os y
+    e("line",{x1:ox,y1:axBotY,x2:ox,y2:axEndY+6,stroke:t,strokeWidth:1.5}),
+    e("polygon",{points:ox+","+axEndY+" "+(ox-4)+","+(axEndY+8)+" "+(ox+4)+","+(axEndY+8),fill:t}),
+    e("text",{x:ox+5,y:axEndY+13,fontSize:12,fill:t,fontStyle:"italic",fontWeight:"700"},"y"),
+    // oznake 0 i 1
+    e("text",{x:ox-13,y:zeroY,fontSize:11,fill:t,fontWeight:"700"},"0"),
+    e("text",{x:sx(1)-3,y:oy+15,fontSize:11,fill:t,fontWeight:"700"},"1"),
+    e("text",{x:ox-13,y:sy(1)+4,fontSize:11,fill:t,fontWeight:"700"},"1"),
+    // graf (samo u rješenju)
+    ...segs.map(function(s,i){return e("polyline",{key:"c"+i,points:s.join(" "),fill:"none",
+      stroke:PRIM,strokeWidth:2,strokeLinejoin:"round",strokeLinecap:"round"});}),
+    // karakteristične točke (samo u rješenju)
+    showSolution?mark(0,0,"m0","(0, 0)",8,-11):null,
+    showSolution?mark(1,-2,"m1","T(1, −2)",7,4):null,
+    showSolution?mark(2,-4,"m2","(2, −4)",6,14):null,
+    showSolution?mark(3,0,"m3","(3, 0)",4,-6):null
+  );
+}
+// Pitanje: prazan predložak (bez krivulje i bez točaka) — ne otkriva rješenje.
+function SvgQ29e_2011LjetoA(){ return _svg29e_2011LjetoA(false); }
+// Rješenje: isti koordinatni sustav s ucrtanim grafom.
+function Svg29e_2011LjetoA(){ return _svg29e_2011LjetoA(true); }
 
 export const qs = [
   {
@@ -920,8 +1094,9 @@ export const qs = [
     topic: "kon",
     points: 1,
     warn: "Pazi: u jednadžbi je (y − y_S), pa za S_y = −3 ide (y − (−3)) = (y + 3).",
-    q: "Napišite jednadžbu kružnice sa slike (središte S(1, -3), radijus 5).",
+    q: "Napišite jednadžbu kružnice sa slike.",
     sol: {
+      svgFn: Svg21a_2011LjetoA,
       ans: "(x − 1)² + (y + 3)² = 25",
       alt: ["(x − 1)² + (y + 3)² = 25", "x² + y² − 2x + 6y − 15 = 0", "(x-1)²+(y+3)²=25"]
     },
@@ -1586,6 +1761,9 @@ export const qs = [
 
 export const qImages = {
   "2011_ljeto_A__7": () => e(Svg7_2011LjetoA, null),
+  "2011_ljeto_A__19a": () => e(SvgQ19a_2011LjetoA, null),
+  "2011_ljeto_A__21a": () => e(Svg21a_2011LjetoA, null),
+  "2011_ljeto_A__29e": () => e(SvgQ29e_2011LjetoA, null),
   "2011_ljeto_A__26": () => e(Svg26_2011LjetoA, null),
   "2011_ljeto_A__30": () => e(Svg30_2011LjetoA, null),
 };
