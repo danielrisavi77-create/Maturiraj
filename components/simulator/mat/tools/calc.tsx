@@ -350,12 +350,15 @@ function MathAssistant({qText,qType,seed}){
     e("div",{style:{fontSize:10.5,color:"rgba(255,255,255,.35)",fontStyle:"italic",marginTop:8,lineHeight:1.5}},
       "Riječni zadaci, geometrija i dokazi \u2014 koristi AI profesora; CAS računa simbolički, bez koraka."));
 }
-function ScratchPad({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,answered,seedAsk,onSeedUsed,examMode}){
-  const saved=React.useMemo(()=>(store&&wsKey&&store[wsKey])||null,[]);
+function ScratchPad(props){
+  return React.createElement(ScratchPadSession,{...props,key:props.wsKey});
+}
+function ScratchPadSession({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,answered,seedAsk,onSeedUsed,examMode}){
+  const[saved]=React.useState(()=>(store&&wsKey!=null&&store.get(wsKey))||null);
   const cv=React.useRef(null), wrap=React.useRef(null);
   const draw=React.useRef({on:false});
   const gesture=React.useRef(null);
-  const strokes=React.useRef(saved&&saved.strokes?saved.strokes:[]);
+  const strokes=React.useRef(saved&&saved.strokes?saved.strokes.slice():[]);
   const redoStk=React.useRef([]);
   const cur=React.useRef(null);
   const view=React.useRef({s:(saved&&saved.viewS)||1, ox:(saved&&typeof saved.viewOx==="number")?saved.viewOx:null, oy:(saved&&typeof saved.viewOy==="number")?saved.viewOy:null});
@@ -379,27 +382,27 @@ function ScratchPad({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,an
   const funcsRef=React.useRef([]);
   const[keyPts,setKeyPts]=React.useState(()=>saved?(saved.keyPts!==false):true);
   const keyPtsRef=React.useRef(true), readRef=React.useRef(null), intersRef=React.useRef([]);
-  const[solveInput,setSolveInput]=React.useState(()=>saved&&saved.solveInput?saved.solveInput:"");
+  const[autoEq]=React.useState(()=>extractSolverEq(qText));
+  const[solveInput,setSolveInput]=React.useState(()=>{ var sv=(saved&&saved.solveInput)?saved.solveInput:""; if(autoEq&&!((""+sv).trim())) return autoEq; return sv; });
   const[solveRes,setSolveRes]=React.useState(null);
-  const[figOn,setFigOn]=React.useState(false);
+  const[figOn,setFigOn]=React.useState(()=>!!(saved&&saved.figOn));
   const figRef=React.useRef(null);
   const figHiddenRef=React.useRef(null);
+  const figureRequest=React.useRef(0), restoreFigureTimer=React.useRef(null);
   const[peek,setPeek]=React.useState(false);
   const[taskOpen,setTaskOpen]=React.useState(()=>!!qText);
   const[showOfficial,setShowOfficial]=React.useState(false);
-  const autoEq=React.useMemo(()=>extractSolverEq(qText),[]);
-  React.useEffect(()=>{ if(autoEq && !((saved&&saved.solveInput)||"").trim()){ setSolveInput(autoEq); } },[]);
   const[intro,setIntro]=React.useState(()=>{try{return !localStorage.getItem(__rk("mat_ws_intro_v1"));}catch(e){return false;}});
   function dismissIntro(){ try{localStorage.setItem(__rk("mat_ws_intro_v1"),"1");}catch(e){} setIntro(false); }
   const colorRef=React.useRef(color), widthRef=React.useRef(width), toolRef=React.useRef(tool), axesRef=React.useRef(axes), gridRef=React.useRef(grid);
   React.useEffect(()=>{colorRef.current=color;},[color]);
   React.useEffect(()=>{widthRef.current=width;},[width]);
   React.useEffect(()=>{toolRef.current=tool;},[tool]);
-  function persistAll(){ if(store&&wsKey){ store[wsKey]=store[wsKey]||{}; var o=store[wsKey]; o.calcExpr=calcExpr;o.calcHist=calcHist;o.deg=deg;o.grid=grid;o.axes=axes;o.tool=tool;o.width=width;o.color=color;o.mode=mode;o.strokes=strokes.current;o.funcs=funcs.map(function(f){return{expr:f.expr,color:f.color,on:f.on};});o.showGraph=showGraph;o.keyPts=keyPts;o.solveInput=solveInput;o.vars=vars;o.exact=exact;o.figOn=figOn;o.viewS=view.current.s;o.viewOx=view.current.ox;o.viewOy=view.current.oy; } }
+  const onSave=React.useCallback(function(patch){ store?.patch(wsKey,patch); },[store,wsKey]);
+  function persistAll(){ onSave({calcExpr:calcExpr,calcHist:calcHist,deg:deg,grid:grid,axes:axes,tool:tool,width:width,color:color,mode:mode,strokes:strokes.current,funcs:funcs.map(function(f){return{expr:f.expr,color:f.color,on:f.on};}),showGraph:showGraph,keyPts:keyPts,solveInput:solveInput,vars:vars,exact:exact,figOn:figOn,viewS:view.current.s,viewOx:view.current.ox,viewOy:view.current.oy}); }
   React.useEffect(()=>{ persistAll(); },[calcExpr,calcHist,deg,grid,axes,tool,width,color,mode,funcs,showGraph,keyPts,solveInput,vars,exact,figOn]);
-  React.useEffect(()=>{ if(figure&&saved&&saved.figOn){ var _t=setTimeout(importFigure,80); return function(){clearTimeout(_t);}; } },[]);
-  function persistStrokes(){ if(store&&wsKey){ store[wsKey]=store[wsKey]||{}; store[wsKey].strokes=strokes.current; } }
-  function commitView(){ setZPct(Math.round(view.current.s*100)); if(store&&wsKey){ store[wsKey]=store[wsKey]||{}; var o=store[wsKey]; o.viewS=view.current.s;o.viewOx=view.current.ox;o.viewOy=view.current.oy; } }
+  function persistStrokes(){ onSave({strokes:strokes.current}); }
+  function commitView(){ setZPct(Math.round(view.current.s*100)); onSave({viewS:view.current.s,viewOx:view.current.ox,viewOy:view.current.oy}); }
   function s2w(sx,sy){var v=view.current;return {x:(sx-v.ox)/v.s, y:(sy-v.oy)/v.s};}
   function setXform(ctx,dpr){var v=view.current;ctx.setTransform(dpr*v.s,0,0,dpr*v.s,dpr*v.ox,dpr*v.oy);}
   function drawAxes(ctx,tl,br,sc){
@@ -413,34 +416,6 @@ function ScratchPad({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,an
     for(var y=y0;y<br.y;y+=24){ if(Math.abs(y)>1){ ctx.beginPath(); ctx.moveTo(-3/sc,y); ctx.lineTo(3/sc,y); ctx.stroke(); } }
     ctx.font="italic 600 "+(12/sc)+"px Georgia,serif"; ctx.fillText("O",6/sc,15/sc);
   }
-  function importFigure(){
-    try{
-      var host=figHiddenRef.current; if(!host) return;
-      var svg=host.querySelector("svg"); if(!svg) return;
-      var vb=svg.viewBox&&svg.viewBox.baseVal;
-      var natW=(vb&&vb.width)||svg.clientWidth||240;
-      var natH=(vb&&vb.height)||svg.clientHeight||(natW*0.8);
-      var clone=svg.cloneNode(true);
-      clone.setAttribute("width",natW); clone.setAttribute("height",natH);
-      if(!clone.getAttribute("xmlns")) clone.setAttribute("xmlns","http://www.w3.org/2000/svg");
-      var str=new XMLSerializer().serializeToString(clone);
-      var cs=getComputedStyle(document.documentElement);
-      ["text","bg","muted","s1","s2","s3","bdr","bdr2","blue-d","blue-b","blue","gold-d","gold-b","gold","green-d","green-b","green","red-d","red","teal"].forEach(function(k){
-        var val=cs.getPropertyValue("--"+k).trim(); if(val){ str=str.split("var(--"+k+")").join(val); }
-      });
-      var card=(cs.getPropertyValue("--s2").trim())||"#1a1f29";
-      var img=new Image();
-      img.onload=function(){
-        var fw=288, fh=fw*(natH/natW); if(!isFinite(fh)||fh<=0) fh=fw*0.8;
-        figRef.current={img:img,x:-fw/2,y:-fh/2,w:fw,h:fh,card:card};
-        setFigOn(true); setGrid(false); setAxes(false);
-        setColor(function(c){return c==="#1a1a1a"?"#e05252":c;});
-        redraw();
-      };
-      img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(str);
-    }catch(e){}
-  }
-  function removeFigure(){ figRef.current=null; setFigOn(false); redraw(); }
   function redraw(){
     var c=cv.current; if(!c) return;
     var ctx=c.getContext("2d"); var dpr=window.devicePixelRatio||1;
@@ -518,6 +493,41 @@ function ScratchPad({onClose,wsKey,store,figure,qText,qOpts,qSteps,qSol,qType,an
       ctx.fillStyle="#fff"; ctx.fillText(lbl,lx,ly+1);
     }
   }
+  function importFigure(){
+    clearTimeout(restoreFigureTimer.current);
+    const request=++figureRequest.current;
+    try{
+      var host=figHiddenRef.current; if(!host) return;
+      var svg=host.querySelector("svg"); if(!svg) return;
+      var vb=svg.viewBox&&svg.viewBox.baseVal;
+      var natW=(vb&&vb.width)||svg.clientWidth||240;
+      var natH=(vb&&vb.height)||svg.clientHeight||(natW*0.8);
+      var clone=svg.cloneNode(true);
+      clone.setAttribute("width",natW); clone.setAttribute("height",natH);
+      if(!clone.getAttribute("xmlns")) clone.setAttribute("xmlns","http://www.w3.org/2000/svg");
+      var str=new XMLSerializer().serializeToString(clone);
+      var cs=getComputedStyle(document.documentElement);
+      ["text","bg","muted","s1","s2","s3","bdr","bdr2","blue-d","blue-b","blue","gold-d","gold-b","gold","green-d","green-b","green","red-d","red","teal"].forEach(function(k){
+        var val=cs.getPropertyValue("--"+k).trim(); if(val){ str=str.split("var(--"+k+")").join(val); }
+      });
+      var card=(cs.getPropertyValue("--s2").trim())||"#1a1f29";
+      var img=new Image();
+      img.onload=function(){
+        if(request!==figureRequest.current) return;
+        var fw=288, fh=fw*(natH/natW); if(!isFinite(fh)||fh<=0) fh=fw*0.8;
+        figRef.current={img:img,x:-fw/2,y:-fh/2,w:fw,h:fh,card:card};
+        setFigOn(true); setGrid(false); setAxes(false);
+        setColor(function(c){return c==="#1a1a1a"?"#e05252":c;});
+        redraw();
+      };
+      img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(str);
+    }catch(e){}
+  }
+  React.useEffect(()=>{
+    if(figure&&saved&&saved.figOn) restoreFigureTimer.current=setTimeout(importFigure,80);
+    return()=>{ clearTimeout(restoreFigureTimer.current); figureRequest.current++; };
+  },[]);
+  function removeFigure(){ clearTimeout(restoreFigureTimer.current); figureRequest.current++; figRef.current=null; setFigOn(false); redraw(); }
   function strokeSeg(st,a,b){var ctx=cv.current.getContext("2d");ctx.globalCompositeOperation=st.erase?"destination-out":"source-over";ctx.strokeStyle=st.color;ctx.lineWidth=st.width;ctx.lineCap="round";ctx.lineJoin="round";ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.globalCompositeOperation="source-over";}
   React.useEffect(()=>{gridRef.current=grid;redraw();},[grid]);
   React.useEffect(()=>{axesRef.current=axes;redraw();},[axes]);

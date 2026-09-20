@@ -1,11 +1,12 @@
 // @vitest-environment happy-dom
 import React from 'react'
-import { cleanup, fireEvent, render } from '@testing-library/react'
+import { act, cleanup, fireEvent, render } from '@testing-library/react'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { ScratchPad } from '@/components/simulator/mat/tools/calc'
+import { createWorkspaceStore } from '@/components/simulator/mat/sim/workspace-store'
 
-const makeStore = initial => initial
-const read = (store, key) => store[key]
+const makeStore = initial => createWorkspaceStore(initial)
+const read = (store, key) => store.get(key)
 const props = (store, wsKey) => ({ store, wsKey, qText: `Pitanje ${wsKey}`, onClose: () => {} })
 const calcInput = view => view.getByPlaceholderText('npr. 2·(3+5)^2 − √16')
 
@@ -16,7 +17,7 @@ beforeEach(() => {
   })
   vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(context)
 })
-afterEach(() => { cleanup(); vi.restoreAllMocks() })
+afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.useRealTimers(); vi.unstubAllGlobals() })
 
 it('keeps A and B calculator drafts separate while the workspace remains open', () => {
   const store = makeStore({ A: { mode: 'calc', calcExpr: '1+1' }, B: { mode: 'calc', calcExpr: '2+2' } })
@@ -69,4 +70,38 @@ it('preserves viewport and calculator fields across close and reopen', () => {
   expect(calcInput(reopened).value).toBe('6+6')
   fireEvent.click(reopened.getByRole('button', { name: '✏️ Skica' }))
   expect(reopened.getByTitle('Vrati na 100%').textContent).toBe('250%')
+})
+
+it('restores the saved imported figure and respects its removal before reopening', () => {
+  vi.useFakeTimers()
+  let loads = 0
+  vi.stubGlobal('Image', class { set src(_value) { loads++; this.onload() } })
+  const store = makeStore({ A: { figOn: true } })
+  const figure = <svg viewBox="0 0 100 80"><path d="M0 0L10 10" /></svg>
+  const view = render(<ScratchPad {...props(store, 'A')} figure={figure} />)
+  act(() => vi.advanceTimersByTime(80))
+  expect(loads).toBe(1)
+  expect(read(store, 'A').figOn).toBe(true)
+  fireEvent.click(view.getByTitle('Ukloni figuru'))
+  expect(read(store, 'A').figOn).toBe(false)
+  view.unmount()
+  render(<ScratchPad {...props(store, 'A')} figure={figure} />)
+  act(() => vi.advanceTimersByTime(80))
+  expect(loads).toBe(1)
+})
+
+it.each([0, 80])('does not reinsert a removed figure when restoration is pending at %d ms', elapsed => {
+  vi.useFakeTimers()
+  const pending = []
+  vi.stubGlobal('Image', class { set src(_value) { pending.push(this) } })
+  const store = makeStore({ A: { figOn: true } })
+  const view = render(<ScratchPad {...props(store, 'A')} figure={<svg />} />)
+  act(() => vi.advanceTimersByTime(elapsed))
+  fireEvent.click(view.getByTitle('Ukloni figuru'))
+  act(() => {
+    vi.advanceTimersByTime(80)
+    pending.forEach(image => image.onload())
+  })
+  expect(read(store, 'A').figOn).toBe(false)
+  expect(view.queryByTitle('Ukloni figuru')).toBeNull()
 })

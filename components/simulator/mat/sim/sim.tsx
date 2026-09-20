@@ -19,7 +19,22 @@ import { ERROR_TAGS, ErrorTagger, SelfExplain, StuckHelper, WarmupItem, WeakSpot
 import { ShareCard, UpgradeModal } from '../tools/modals';
 import { AnswerHelper, CalcQuestion, FeedbackBox, MaturaRubric, QToolbar } from '../tools/question';
 import { vc, TYPE_ICON, topicColor, fmt2, useTimer, CalcQuestionM, TOPIC_FREQ } from './helpers';
+import { createWorkspaceStore, hasWorkspaceWork } from './workspace-store';
 const{createElement:e,useState,useEffect,useMemo,useRef,Fragment}=React;
+function WorkspaceLauncher({store,wsKey,onOpen,examMode}){
+  const subscribe=React.useCallback(function(cb){ return store.subscribe(wsKey,cb); },[store,wsKey]);
+  const getSnapshot=React.useCallback(function(){ return hasWorkspaceWork(store.get(wsKey)); },[store,wsKey]);
+  const getServerSnapshot=React.useCallback(function(){ return false; },[]);
+  const _hw=React.useSyncExternalStore(subscribe,getSnapshot,getServerSnapshot);
+  return e("button",{onClick:onOpen,style:{marginTop:12,display:"flex",alignItems:"center",gap:10,width:"100%",textAlign:"left",background:_hw?"var(--blue-d)":"var(--s2)",border:"1px solid "+(_hw?"var(--blue-b)":"var(--bdr)"),borderRadius:"var(--r)",padding:"10px 13px",cursor:"pointer",fontFamily:"var(--fb)",transition:"all .15s"}},
+    e("span",{style:{fontSize:18,flexShrink:0}},"✏️"),
+    e("div",{style:{flex:1,minWidth:0}},
+      e("div",{style:{fontSize:13,fontWeight:700,color:_hw?"var(--blue-b)":"var(--text)"}}, _hw?"Nastavi svoj rad":"Radni prostor"),
+      e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:1}}, _hw?"imaš skicu ili račun za ovo pitanje":(examMode?"skica · kalkulator":"skica · kalkulator · asistent"))),
+    _hw&&e("span",{style:{width:8,height:8,borderRadius:99,background:"var(--green)",flexShrink:0}}),
+    e("span",{style:{color:"var(--muted)",fontSize:16,flexShrink:0}},"›")
+  );
+}
 export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,userData,onPracticeErrors,onPracticeSimilar,onStats,onFilter,onHome,resume,onPatchResult}){
   const QSX=exam.qs;
   function toggleBookmark(qid){
@@ -50,7 +65,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
   const[spSeen,setSpSeen]=useState(()=>{try{return !!localStorage.getItem(__rk("mat_sp_seen"));}catch(e){return true;}});
   React.useEffect(()=>{ if(scratchOpen&&!spSeen){ try{localStorage.setItem(__rk("mat_sp_seen"),"1");}catch(e){} setSpSeen(true); } },[scratchOpen]);
   React.useEffect(()=>{ document.body.classList.toggle("sp-docked", scratchOpen); return ()=>document.body.classList.remove("sp-docked"); },[scratchOpen]);
-  const workspaceRef=React.useRef({});
+  const[workspace]=React.useState(createWorkspaceStore);
   const[toolsOpen,setToolsOpen]=useState(false);
   const[navMore,setNavMore]=useState(false);
   const[vizOpen,setVizOpen]=useState(null);
@@ -845,7 +860,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
             e("span",{style:{fontSize:12.5,color:"var(--muted)"}},d))),
         e("div",{style:{fontSize:10.5,color:"var(--muted)",marginTop:12,textAlign:"center"}},"Pritisni ? ili klikni izvan za zatvaranje"))),
     // FORMULA MODAL
-    scratchOpen&&React.createElement(ScratchPad,{onClose:()=>{setScratchOpen(false);setSpAsk(null);},wsKey:_cq&&_cq.id,store:workspaceRef.current,figure:mcStem,qText:_cq&&_cq.q,qOpts:_cq&&_cq.opts,qSteps:_cq&&_cq.steps,qSol:_cq&&_cq.sol,qType:_cq&&_cq.type,answered:!!(_cq&&(hasAns(answers[_cq.id])||done)),seedAsk:spAsk,onSeedUsed:()=>setSpAsk(null),examMode:examMode}),
+    scratchOpen&&React.createElement(ScratchPad,{onClose:()=>{setScratchOpen(false);setSpAsk(null);},wsKey:_cq&&_cq.id,store:workspace,figure:mcStem,qText:_cq&&_cq.q,qOpts:_cq&&_cq.opts,qSteps:_cq&&_cq.steps,qSol:_cq&&_cq.sol,qType:_cq&&_cq.type,answered:!!(_cq&&(hasAns(answers[_cq.id])||done)),seedAsk:spAsk,onSeedUsed:()=>setSpAsk(null),examMode:examMode}),
     showFormulas&&e(FormulaModal,{onClose:()=>setShowFormulas(false),razina:exam&&exam.razina}),
 
     // NAV
@@ -1128,15 +1143,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
               })
             ),
             // Radni prostor launcher (otvara pun overlay; pamti rad po pitanju)
-            (()=>{ const _ws=workspaceRef.current&&workspaceRef.current[q.id]; const _hw=!!(_ws&&((_ws.strokes&&_ws.strokes.length)||(_ws.calcHist&&_ws.calcHist.length)||(_ws.solveInput&&(""+_ws.solveInput).trim())||(_ws.funcs&&_ws.funcs.length)||_ws.figOn));
-              return e("button",{onClick:()=>setScratchOpen(true),style:{marginTop:12,display:"flex",alignItems:"center",gap:10,width:"100%",textAlign:"left",background:_hw?"var(--blue-d)":"var(--s2)",border:"1px solid "+(_hw?"var(--blue-b)":"var(--bdr)"),borderRadius:"var(--r)",padding:"10px 13px",cursor:"pointer",fontFamily:"var(--fb)",transition:"all .15s"}},
-                e("span",{style:{fontSize:18,flexShrink:0}},"\u270f\ufe0f"),
-                e("div",{style:{flex:1,minWidth:0}},
-                  e("div",{style:{fontSize:13,fontWeight:700,color:_hw?"var(--blue-b)":"var(--text)"}}, _hw?"Nastavi svoj rad":"Radni prostor"),
-                  e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:1}}, _hw?"ima\u0161 skicu ili ra\u010dun za ovo pitanje":(examMode?"skica \u00b7 kalkulator":"skica \u00b7 kalkulator \u00b7 asistent"))),
-                _hw&&e("span",{style:{width:8,height:8,borderRadius:99,background:"var(--green)",flexShrink:0}}),
-                e("span",{style:{color:"var(--muted)",fontSize:16,flexShrink:0}},"\u203a")
-              ); })()
+            React.createElement(WorkspaceLauncher,{store:workspace,wsKey:q.id,onOpen:()=>setScratchOpen(true),examMode:examMode})
           ),
 
           // === ZADATCI S POSTUPKOM (num / calc / sa / proof) ===
