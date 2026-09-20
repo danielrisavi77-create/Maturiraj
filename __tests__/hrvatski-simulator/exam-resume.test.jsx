@@ -57,6 +57,28 @@ afterEach(() => {
 });
 
 describe('nastavak ispita (exam-resume)', () => {
+  it('uklanja slusatelje sesije kad ispit postane nedostupan', () => {
+    const addListener = vi.spyOn(window, 'addEventListener');
+    const removeListener = vi.spyOn(window, 'removeEventListener');
+    const props = {
+      exam: mkExam(), practice: true, examMode: false,
+      isPaid: true, userAccess: STANDARD_ACCESS,
+      onExit: vi.fn(), onDone: vi.fn(),
+    };
+    const { rerender } = render(<Sim {...props} />);
+    const keyboardHandlers = addListener.mock.calls
+      .filter(([type]) => type === 'keydown').map(([, handler]) => handler);
+    expect(keyboardHandlers.length).toBeGreaterThan(0);
+
+    rerender(<Sim {...props} exam={null} />);
+
+    expect(screen.getByText('Ispit nije pronađen.')).toBeTruthy();
+    for (const handler of keyboardHandlers) {
+      expect(removeListener).toHaveBeenCalledWith('keydown', handler);
+    }
+    expect(props.onDone).not.toHaveBeenCalled();
+  });
+
   it('budući rok: preskače 3-2-1, prikazuje banner i vraća unesen odgovor', () => {
     localStorage.setItem(EXAM_LS_KEY, JSON.stringify({
       deadline: Date.now() + 30 * 60 * 1000,
