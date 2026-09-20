@@ -208,6 +208,64 @@ function Svg29_2010Aj(){
   );
 }
 
+function Svg25_2010Aj(){
+  const W=350,H=215;
+  const t="var(--text)",b="var(--blue)",gold="var(--gold)",bg="var(--bg)";
+  // Oblik zemljista ABCD prema izvorniku (kut D=120 stupnjeva, kut B=40 stupnjeva).
+  const A=[40,180],B=[314,184],C=[197,86],D=[73,104];
+  function arc(V,P1,P2,r){
+    const a1=Math.atan2(P1[1]-V[1],P1[0]-V[0]);
+    const a2=Math.atan2(P2[1]-V[1],P2[0]-V[0]);
+    const x1=V[0]+r*Math.cos(a1),y1=V[1]+r*Math.sin(a1);
+    const x2=V[0]+r*Math.cos(a2),y2=V[1]+r*Math.sin(a2);
+    let d=a2-a1; while(d>Math.PI)d-=2*Math.PI; while(d<-Math.PI)d+=2*Math.PI;
+    return e("path",{d:`M${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r} 0 0,${d>0?1:0} ${x2.toFixed(1)},${y2.toFixed(1)}`,
+      fill:"none",stroke:gold,strokeWidth:1.4});
+  }
+  function vtx(p,k){return e("circle",{key:k,cx:p[0],cy:p[1],r:3.2,fill:bg,stroke:t,strokeWidth:1.6});}
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
+    e("polygon",{points:`${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}`,
+      fill:"none",stroke:t,strokeWidth:2.4,strokeLinejoin:"round"}),
+    arc(D,A,C,26), arc(B,C,A,34),
+    vtx(A,"a"),vtx(B,"b"),vtx(C,"c"),vtx(D,"d"),
+    e("text",{x:A[0]-6,y:A[1]+18,fontSize:13,fill:t,fontStyle:"italic",textAnchor:"middle"},"A"),
+    e("text",{x:B[0]+9,y:B[1]+9,fontSize:13,fill:t,fontStyle:"italic"},"B"),
+    e("text",{x:C[0]-2,y:C[1]-9,fontSize:13,fill:t,fontStyle:"italic",textAnchor:"middle"},"C"),
+    e("text",{x:D[0]-11,y:D[1]-8,fontSize:13,fill:t,fontStyle:"italic",textAnchor:"middle"},"D"),
+    e("text",{x:(D[0]+C[0])/2-4,y:(D[1]+C[1])/2-10,fontSize:12,fill:b,textAnchor:"middle",fontWeight:"bold"},"47 m"),
+    e("text",{x:(C[0]+B[0])/2+14,y:(C[1]+B[1])/2-2,fontSize:12,fill:b,fontWeight:"bold"},"55 m"),
+    e("text",{x:(A[0]+D[0])/2-11,y:(A[1]+D[1])/2+2,fontSize:12,fill:b,textAnchor:"end",fontWeight:"bold"},"31 m"),
+    e("text",{x:D[0]+21,y:D[1]+35,fontSize:11,fill:gold,fontWeight:"bold",textAnchor:"middle"},"120°"),
+    e("text",{x:B[0]-43,y:B[1]-12,fontSize:11,fill:gold,fontWeight:"bold",textAnchor:"middle"},"40°"),
+  );
+}
+
+function Svg29grid_2010Aj(){
+  // Prazna koordinatna mreza kao predlozak za crtanje grafa (izvornik nema ucrtanu krivulju).
+  const W=250,H=250,cell=12.5,ox=125,oy=125,n=9;
+  const t="var(--text)",mu="var(--muted)";
+  const toX=v=>ox+v*cell, toY=v=>oy-v*cell;
+  const gl=[];
+  for(let i=-n;i<=n;i++){
+    gl.push(e("line",{key:"gv"+i,x1:toX(i),y1:toY(n),x2:toX(i),y2:toY(-n),
+      stroke:mu,strokeWidth:.5,strokeDasharray:"2,2",opacity:.55}));
+    gl.push(e("line",{key:"gh"+i,x1:toX(-n),y1:toY(i),x2:toX(n),y2:toY(i),
+      stroke:mu,strokeWidth:.5,strokeDasharray:"2,2",opacity:.55}));
+  }
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
+    ...gl,
+    e("line",{x1:toX(-n)-6,y1:oy,x2:toX(n)+8,y2:oy,stroke:t,strokeWidth:1.8}),
+    e("line",{x1:ox,y1:toY(n)-8,x2:ox,y2:toY(-n)+6,stroke:t,strokeWidth:1.8}),
+    e("polygon",{points:`${toX(n)+12},${oy} ${toX(n)+4},${oy-3.5} ${toX(n)+4},${oy+3.5}`,fill:t}),
+    e("polygon",{points:`${ox},${toY(n)-12} ${ox-3.5},${toY(n)-4} ${ox+3.5},${toY(n)-4}`,fill:t}),
+    e("text",{x:toX(n)+6,y:oy+15,fontSize:11,fill:t,fontStyle:"italic"},"x"),
+    e("text",{x:ox-14,y:toY(n)-7,fontSize:11,fill:t,fontStyle:"italic"},"y"),
+    e("text",{x:ox+3,y:oy+11,fontSize:9,fill:t,fontWeight:"bold"},"0"),
+    e("text",{x:toX(1)+2,y:oy+11,fontSize:9,fill:t,fontWeight:"bold"},"1"),
+    e("text",{x:ox-4,y:toY(1)+4,fontSize:9,fill:t,fontWeight:"bold",textAnchor:"end"},"1"),
+  );
+}
+
 function Svg17sol_2010JA(){
   const W=280,H=220,ox=120,oy=140,scX=30,scY=50;
   const toX=v=>ox+v*scX, toY=v=>oy-v*scY;
@@ -1567,6 +1625,7 @@ export const qs = [
   {
     id: "25a",
     type: "sa",
+    img: true,
     topic: "trig",
     points: 1,
     context: "Slika prikazuje oblik zemljišta ABCD i neke njegove mjere: AD = 31 m, DC = 47 m, CB = 55 m, ∠ADC = 120°, ∠ABC = 40°.",
@@ -1605,6 +1664,7 @@ export const qs = [
   {
     id: "25b",
     type: "sa",
+    img: true,
     topic: "trig",
     points: 1,
     context: "Slika prikazuje oblik zemljišta ABCD i neke njegove mjere: AD = 31 m, DC = 47 m, CB = 55 m, ∠ADC = 120°, ∠ABC = 40°.",
@@ -1643,6 +1703,7 @@ export const qs = [
   {
     id: "25c",
     type: "sa",
+    img: true,
     topic: "trig",
     points: 1,
     context: "Slika prikazuje oblik zemljišta ABCD i neke njegove mjere: AD = 31 m, DC = 47 m, CB = 55 m, ∠ADC = 120°, ∠ABC = 40°.",
@@ -2119,4 +2180,8 @@ export const qImages = {
   "2010_jesen_A__7": () => e(Svg7_2010Aj, null),
   "2010_jesen_A__9": () => e(Svg9_2010Aj, null),
   "2010_jesen_A__17": () => e(Svg17_2010Aj, null),
+  "2010_jesen_A__25a": () => e(Svg25_2010Aj, null),
+  "2010_jesen_A__25b": () => e(Svg25_2010Aj, null),
+  "2010_jesen_A__25c": () => e(Svg25_2010Aj, null),
+  "2010_jesen_A__29e": () => e(Svg29grid_2010Aj, null),
 };
