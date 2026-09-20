@@ -3,7 +3,8 @@
  * Koristi naziv + fakultet_hint kao ključ, s fuzzy matching fallbackom.
  */
 
-import { createClient } from '@supabase/supabase-js'
+import type { SupabaseClient } from '@supabase/supabase-js'
+import type { ScraperDatabase } from './db-types'
 
 export interface StudijLookup {
   id: string
@@ -86,10 +87,10 @@ export function matchScrapedRow(
   return null
 }
 
-export async function loadStudijiForMatching(supabase: ReturnType<typeof createClient>): Promise<StudijLookup[]> {
+export async function loadStudijiForMatching(supabase: SupabaseClient<ScraperDatabase>): Promise<StudijLookup[]> {
   const { data, error } = await supabase
     .from('studiji_view')
     .select('id, fakultet_id, fak_short, fak_name, naziv, short')
   if (error) throw error
-  return data as StudijLookup[]
+  return data
 }
