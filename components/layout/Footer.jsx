@@ -68,12 +68,13 @@ export default function Footer({ onSkripte, onPlan, onPrijemni, onKalkulator, on
 
             {/* Planovi */}
             <div>
-              <div style={{fontSize:11,fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:"var(--muted)",marginBottom:14}}>Planovi</div>
+              <div style={{fontSize:11,fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:"var(--muted)",marginBottom:6}}>Planovi</div>
+              <div style={{fontSize:10,color:"var(--orange)",marginBottom:12,lineHeight:1.4}}>Naplata online uskoro · cijene informativne</div>
               {[
-                {l:"Besplatno — Skripte",   sub:"uvijek besplatno",     c:"var(--green)"},
-                {l:"Standard — 9,99 €/mj",  sub:"3 predmeta + Discere", c:"var(--orange)"},
-                {l:"Pro — 19,99 €/mj",     sub:"sve + AI + roditelji",  c:"var(--blue)"},
-                {l:"Godišnji — 120 €/god", sub:"Pro + uštedi 50%",      c:"var(--blue)"},
+                {l:"Besplatno — Skripte",   sub:"uvijek besplatno",           c:"var(--green)"},
+                {l:"Standard — 9,99 €/mj",  sub:"starter · samo mjesečno",   c:"var(--orange)"},
+                {l:"Pro — 19,99 €/mj",     sub:"pro · AI + roditelji",       c:"var(--blue)"},
+                {l:"Pro godišnje — ~120 €", sub:"pro_god · uštedi ~50%",     c:"var(--blue)"},
               ].map(({l,sub,c}) => (
                 <div key={l} onClick={onPlan}
                   style={{marginBottom:10,cursor:"pointer",padding:"7px 10px",borderRadius:10,transition:"background .15s"}}

@@ -46,7 +46,7 @@ const planovi = [
     name: "Starter",
     tag: null,
     mj: "9,99",
-    god: "7,49",
+    god: "9,99", // monthly-only; no starter-god in checkout
     per: "/mj",
     accent: "var(--orange)",
     accentD: "rgba(255,107,43,.08)",
@@ -67,7 +67,7 @@ const planovi = [
     name: "Pro",
     tag: "Najpopularnije",
     mj: "19,99",
-    god: "14,99",
+    god: "9,99", // pro_god ~9,99€/mj effective
     per: "/mj",
     accent: "var(--blue)",
     accentD: "var(--blue-d)",
@@ -108,7 +108,7 @@ export default function Cijene() {
 
           {/* Toggle */}
           <div style={{display:"inline-flex", background:"var(--s2)", border:"1px solid var(--bdr)", borderRadius:12, padding:4}}>
-            {[{id:"mj", l:"Mjesečno"}, {id:"god", l:"Godišnje · -25%"}].map(b => (
+            {[{id:"mj", l:"Mjesečno"}, {id:"god", l:"Godišnje · −50% · samo Pro"}].map(b => (
               <button key={b.id} onClick={() => setBilling(b.id)} style={{
                 padding:"7px 18px", borderRadius:9, fontSize:13, fontWeight:600,
                 cursor:"pointer", fontFamily:"var(--fb)", transition:"all .17s",
@@ -118,6 +118,9 @@ export default function Cijene() {
                 boxShadow: billing === b.id ? "0 2px 8px rgba(0,0,0,.3)" : "none",
               }}>{b.l}</button>
             ))}
+          </div>
+          <div style={{marginTop:16,maxWidth:480,marginLeft:'auto',marginRight:'auto',padding:'10px 14px',borderRadius:12,background:'rgba(255,107,43,.08)',border:'1px solid rgba(255,107,43,.22)',fontSize:12,color:'var(--muted)',lineHeight:1.55}}>
+            ⏳ Online naplata je privremeno ugašena. Cijene su informativne — uskoro dostupno.
           </div>
         </div>
 
@@ -172,8 +175,16 @@ export default function Cijene() {
               {/* Gumb */}
               <button
                 onClick={() => {
-                  if (p.id === 'besplatno') window.location.href = '/skripte'
-                  else handleCheckout(billing === 'god' && p.id === 'pro' ? 'pro_god' : p.id)
+                  if (p.id === 'besplatno') {
+                    window.location.href = '/skripte'
+                    return
+                  }
+                  if (billing === 'god' && p.id === 'starter') {
+                    alert('Standard je samo mjesečno. Godišnji plan dostupan je za Pro (pro_god).')
+                    return
+                  }
+                  // Fail-closed UI: send users to /pro (uskoro) instead of calling checkout.
+                  window.location.href = `/pro?billing=${billing === 'god' ? 'god' : 'mj'}`
                 }}
                 style={{
                   width:"100%", padding:"12px", borderRadius:10, fontSize:14,
