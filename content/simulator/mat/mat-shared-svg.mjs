@@ -1,5 +1,18 @@
-// AUTO-GENERATED — shared SVGs (KoordOs + multi-exam). Do not edit by hand.
+// Izvorno AUTO-GENERATED (colocate-svg.mjs) — shared SVGs (KoordOs + multi-exam).
+// RUČNO DORAĐENO: import parseMath (KoordOs ga zove za label, a generator ga
+// izvorno nije uvezao → ReferenceError pri iscrtavanju).
+// Generator (colocate-svg.mjs u korijenu repoa) nema guard ni --force zastavicu:
+// ako se pokrene s postojećim _prototypes/mat-simulator.html, prepisuje ovu
+// datoteku bez pitanja. Zato sam generator sada emitira isti parseMath import
+// (colocate-svg.mjs, korak 7); regeneriranje ga više ne gubi. Dodatna mreža:
+// __tests__/mat-simulator/shared-svg.test.tsx pada ako import nestane.
+//
+// Putanja je relativna i s ekstenzijom (ne alias "@", ne .tsx): ovu datoteku, preko
+// exam .mjs-ova, uvozi i obični Node (scripts/mat-render-figures.mjs, colocate-svg.mjs),
+// gdje alias nije razrješiv ni .tsx učitljiv. Zato parseMath živi u core/parseMath.mjs
+// (bez React-komponentnih ovisnosti o engineu), a mathText.tsx ga izvozi dalje.
 import React from 'react';
+import { parseMath } from '../../../components/simulator/mat/core/parseMath.mjs';
 const e = React.createElement;
 
 function Svg29_2013Aj(){
@@ -370,7 +383,10 @@ function Svg10_2023Alj(){
   );
 }
 
-function KoordOs({W=260,H=220,xMin=-4,xMax=4,yMin=-4,yMax=4,step=1,children,label=""}){
+/* children ima eksplicitan default (null) jer se KoordOs zove i bez djece — samo s
+   labelom ili posve bez propsa; bez defaulta TS (allowJs) izvodi children kao
+   obavezan prop i `next build` type-check pada na takvim pozivima. */
+function KoordOs({W=260,H=220,xMin=-4,xMax=4,yMin=-4,yMax=4,step=1,children=null,label=""}){
   const pad={l:32,r:16,t:16,b:label?12:32};  // smanji bottom pad ako label ide ispod SVG-a
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
