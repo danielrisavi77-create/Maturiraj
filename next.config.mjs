@@ -29,7 +29,6 @@ const securityHeaders = [
 
 const nextConfig = {
   reactStrictMode: false,
-  eslint: { ignoreDuringBuilds: true },
 
   async redirects() {
     return [
