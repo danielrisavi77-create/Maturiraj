@@ -1,4 +1,6 @@
 'use client';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
+
 
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
@@ -933,30 +935,29 @@ export function AccordionEsejTezeH05() {
 /* ============================================================
    H05ReactLayers — portal mount
 ============================================================ */
+const H05_ANCHOR_IDS = {
+      timeline18St:     'h05-react-timeline-18st',
+      authorGoethe:     'h05-react-author-goethe',
+      timelineGoethe:   'h05-react-timeline-goethe',
+      compareSD:        'h05-react-compare-sd',
+      authorVoltaire:   'h05-react-author-voltaire-rousseau',
+      authorKant:       'h05-react-author-kant-lessing',
+      popKultura:       'h05-react-pop-kultura',
+      heroQuote:        'h05-react-hero-quote',
+      statCards:        'h05-react-stat-cards',
+      timelineRadnja:   'h05-react-timeline-radnja',
+      accordionSukobi:  'h05-react-accordion-sukobi',
+      usporedba:        'h05-react-usporedba',
+      accordionKljucne: 'h05-react-accordion-kljucne',
+      svgArc:           'h05-react-svg-arc',
+      verterizam:       'h05-react-verterizam',
+      esejTeze:         'h05-react-accordion-teze',
+      citatnik:         'h05-react-citatnik',
+      pojmovnik:        'h05-react-pojmovnik',
+    };
+
 function H05ReactLayers() {
-  const [anchors, setAnchors] = useState({});
-  useEffect(() => {
-    setAnchors({
-      timeline18St:     document.getElementById('h05-react-timeline-18st'),
-      authorGoethe:     document.getElementById('h05-react-author-goethe'),
-      timelineGoethe:   document.getElementById('h05-react-timeline-goethe'),
-      compareSD:        document.getElementById('h05-react-compare-sd'),
-      authorVoltaire:   document.getElementById('h05-react-author-voltaire-rousseau'),
-      authorKant:       document.getElementById('h05-react-author-kant-lessing'),
-      popKultura:       document.getElementById('h05-react-pop-kultura'),
-      heroQuote:        document.getElementById('h05-react-hero-quote'),
-      statCards:        document.getElementById('h05-react-stat-cards'),
-      timelineRadnja:   document.getElementById('h05-react-timeline-radnja'),
-      accordionSukobi:  document.getElementById('h05-react-accordion-sukobi'),
-      usporedba:        document.getElementById('h05-react-usporedba'),
-      accordionKljucne: document.getElementById('h05-react-accordion-kljucne'),
-      svgArc:           document.getElementById('h05-react-svg-arc'),
-      verterizam:       document.getElementById('h05-react-verterizam'),
-      esejTeze:         document.getElementById('h05-react-accordion-teze'),
-      citatnik:         document.getElementById('h05-react-citatnik'),
-      pojmovnik:        document.getElementById('h05-react-pojmovnik'),
-    });
-  }, []);
+  const anchors = useDomAnchors(H05_ANCHOR_IDS);
   return (
     <>
       {anchors.timeline18St     && createPortal(<Timeline18Stoljece />,              anchors.timeline18St)}

@@ -1,3 +1,5 @@
+
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 /* ============================================================
    H04 — Barok · Klasicizam · Život je san
    Svaki komponent self-contained — nosi vlastiti <style>.
@@ -968,30 +970,29 @@ export function AccordionEsejTezeH04() {
 /* ============================================================
    H04ReactLayers — portal mount
 ============================================================ */
+const H04_ANCHOR_IDS = {
+      compareBarok:         'h04-react-compare-barok-klasicizam',
+      timeline17St:         'h04-react-timeline-17-stoljece',
+      authorCalderon:       'h04-react-author-calderon',
+      timelineCalderon:     'h04-react-timeline-calderon',
+      authorFrancuski:      'h04-react-author-francuski',
+      authorMilton:         'h04-react-author-milton',
+      popKultura:           'h04-react-pop-kultura-barok',
+      heroQuote:            'h04-react-hero-quote-vita',
+      statCards:            'h04-react-stat-cards-zivot',
+      svgSigismund:         'h04-react-svg-sigismund',
+      timelineRadnja:       'h04-react-timeline-radnja',
+      accordionSukobi:      'h04-react-accordion-sukobi',
+      usporedba:            'h04-react-usporedba-zivot-hamlet',
+      accordionKljucne:     'h04-react-accordion-kljucne-scene',
+      svgVanitas:           'h04-react-svg-vanitas',
+      esejTeze:             'h04-react-accordion-esej-teze',
+      citatnik:             'h04-react-citatnik',
+      pojmovnik:            'h04-react-pojmovnik',
+    };
+
 function H04ReactLayers() {
-  const [anchors, setAnchors] = useState({});
-  useEffect(() => {
-    setAnchors({
-      compareBarok:         document.getElementById('h04-react-compare-barok-klasicizam'),
-      timeline17St:         document.getElementById('h04-react-timeline-17-stoljece'),
-      authorCalderon:       document.getElementById('h04-react-author-calderon'),
-      timelineCalderon:     document.getElementById('h04-react-timeline-calderon'),
-      authorFrancuski:      document.getElementById('h04-react-author-francuski'),
-      authorMilton:         document.getElementById('h04-react-author-milton'),
-      popKultura:           document.getElementById('h04-react-pop-kultura-barok'),
-      heroQuote:            document.getElementById('h04-react-hero-quote-vita'),
-      statCards:            document.getElementById('h04-react-stat-cards-zivot'),
-      svgSigismund:         document.getElementById('h04-react-svg-sigismund'),
-      timelineRadnja:       document.getElementById('h04-react-timeline-radnja'),
-      accordionSukobi:      document.getElementById('h04-react-accordion-sukobi'),
-      usporedba:            document.getElementById('h04-react-usporedba-zivot-hamlet'),
-      accordionKljucne:     document.getElementById('h04-react-accordion-kljucne-scene'),
-      svgVanitas:           document.getElementById('h04-react-svg-vanitas'),
-      esejTeze:             document.getElementById('h04-react-accordion-esej-teze'),
-      citatnik:             document.getElementById('h04-react-citatnik'),
-      pojmovnik:            document.getElementById('h04-react-pojmovnik'),
-    });
-  }, []);
+  const anchors = useDomAnchors(H04_ANCHOR_IDS);
   return (
     <>
       {anchors.compareBarok     && createPortal(<CompareBarokKlasicizam />,     anchors.compareBarok)}

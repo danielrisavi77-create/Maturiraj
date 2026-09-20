@@ -2,9 +2,19 @@
 import React from 'react'
 import { act, cleanup, render, waitFor } from '@testing-library/react'
 import { afterEach, expect, it } from 'vitest'
+import { renderToString } from 'react-dom/server'
 import H04ReactLayers from '@/app/skripte/data/hrv-components/H04_Components'
 
 afterEach(() => { cleanup(); document.querySelectorAll('[data-test-anchor]').forEach(node => node.remove()) })
+
+it('leaves portal rendering to hydration, even when a matching DOM node exists', () => {
+  const anchor = document.createElement('div')
+  anchor.id = 'h04-react-stat-cards-zivot'
+  anchor.dataset.testAnchor = 'true'
+  document.body.appendChild(anchor)
+  expect(renderToString(<H04ReactLayers />)).toBe('')
+  expect(anchor.childElementCount).toBe(0)
+})
 
 it('attaches a chapter portal when its HTML anchor arrives after mounting', async () => {
   render(<H04ReactLayers />)

@@ -1,4 +1,6 @@
 'use client';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
+
 
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
@@ -836,30 +838,29 @@ export function AccordionEsejTezeH06() {
 /* ============================================================
    H06ReactLayers — portal mount
 ============================================================ */
+const H06_ANCHOR_IDS = {
+      compareRomantiProsvjet:  'h06-react-compare-romanti-prosvjet',
+      timelineRomantizam:      'h06-react-timeline-romantizam',
+      authorPuskin:            'h06-react-author-puskin',
+      authorByron:             'h06-react-author-byron',
+      authorEngleskiRom:       'h06-react-author-engleski-rom',
+      authorFaustMini:         'h06-react-author-faust-mini',
+      popKultura:              'h06-react-pop-kultura',
+      heroQuote:               'h06-react-hero-quote-tatjanino',
+      statCards:               'h06-react-stat-cards-onjegin',
+      usporedbaTatjana:        'h06-react-usporedba-tatjana-lotte',
+      svgObrat:                'h06-react-svg-onjegin-obrat',
+      accordionSukobi:         'h06-react-accordion-sukobi',
+      accordionKljucne:        'h06-react-accordion-kljucne',
+      usporedbaOnjegin:        'h06-react-usporedba-onjegin-werther',
+      onjeginOpera:            'h06-react-onjegin-opera',
+      esejTeze:                'h06-react-accordion-esej-teze',
+      citatnik:              'h06-react-citatnik',
+      pojmovnik:             'h06-react-pojmovnik',
+    };
+
 function H06ReactLayers() {
-  const [anchors, setAnchors] = useState({});
-  useEffect(() => {
-    setAnchors({
-      compareRomantiProsvjet:  document.getElementById('h06-react-compare-romanti-prosvjet'),
-      timelineRomantizam:      document.getElementById('h06-react-timeline-romantizam'),
-      authorPuskin:            document.getElementById('h06-react-author-puskin'),
-      authorByron:             document.getElementById('h06-react-author-byron'),
-      authorEngleskiRom:       document.getElementById('h06-react-author-engleski-rom'),
-      authorFaustMini:         document.getElementById('h06-react-author-faust-mini'),
-      popKultura:              document.getElementById('h06-react-pop-kultura'),
-      heroQuote:               document.getElementById('h06-react-hero-quote-tatjanino'),
-      statCards:               document.getElementById('h06-react-stat-cards-onjegin'),
-      usporedbaTatjana:        document.getElementById('h06-react-usporedba-tatjana-lotte'),
-      svgObrat:                document.getElementById('h06-react-svg-onjegin-obrat'),
-      accordionSukobi:         document.getElementById('h06-react-accordion-sukobi'),
-      accordionKljucne:        document.getElementById('h06-react-accordion-kljucne'),
-      usporedbaOnjegin:        document.getElementById('h06-react-usporedba-onjegin-werther'),
-      onjeginOpera:            document.getElementById('h06-react-onjegin-opera'),
-      esejTeze:                document.getElementById('h06-react-accordion-esej-teze'),
-      citatnik:              document.getElementById('h06-react-citatnik'),
-      pojmovnik:             document.getElementById('h06-react-pojmovnik'),
-    });
-  }, []);
+  const anchors = useDomAnchors(H06_ANCHOR_IDS);
   return (
     <>
       <style>{CSS_ONJEGIN6}</style>
