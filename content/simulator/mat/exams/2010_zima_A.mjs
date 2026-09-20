@@ -258,20 +258,21 @@ function SvgZad25b_2010ZA(){
 function SvgZad29_5_2010ZA(){
   // Q29.5: PRAZAN predlozak iz ispita — tockasta mreza s osima i jedinicama,
   // ucenik sam ucrtava graf. Namjerno bez ijedne krivulje (ne otkriva rjesenje).
-  const W=270,H=280,padL=18,padT=24,u=16;
-  const xMin=-7,xMax=7,yMin=-2,yMax=13;
+  // Mreza: jedan kvadratic = 1 jedinica (kao u izvorniku), raspon x od -8 do 8, y od -2 do 14.
+  const W=294,H=280,padL=20,padT=24,u=15;
+  const xMin=-8,xMax=8,yMin=-2,yMax=14;
   const t="var(--text)",d="var(--muted)";
   const toX=v=>padL+(v-xMin)*u;
   const toY=v=>padT+(yMax-v)*u;
   const ox=toX(0),oy=toY(0);
   const gL=toX(xMin),gR=toX(xMax),gT=toY(yMax),gB=toY(yMin);
   const grid=[];
-  for(let i=0;i<=(xMax-xMin)*2;i++){
-    const x=gL+i*(u/2);
+  for(let i=0;i<=(xMax-xMin);i++){
+    const x=gL+i*u;
     grid.push(e("line",{key:"gv"+i,x1:x,y1:gT,x2:x,y2:gB,stroke:d,strokeWidth:0.7,strokeDasharray:"1,2.4",opacity:0.8}));
   }
-  for(let j=0;j<=(yMax-yMin)*2;j++){
-    const y=gT+j*(u/2);
+  for(let j=0;j<=(yMax-yMin);j++){
+    const y=gT+j*u;
     grid.push(e("line",{key:"gh"+j,x1:gL,y1:y,x2:gR,y2:y,stroke:d,strokeWidth:0.7,strokeDasharray:"1,2.4",opacity:0.8}));
   }
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block"}},
@@ -283,6 +284,7 @@ function SvgZad29_5_2010ZA(){
     e("text",{x:gR+11,y:oy+14,fontSize:10,fontStyle:"italic",fontWeight:"bold",fill:t},"x"),
     e("text",{x:ox-13,y:gT-14,fontSize:10,fontStyle:"italic",fontWeight:"bold",fill:t},"y"),
     e("text",{x:ox-13,y:oy+14,fontSize:11,fontWeight:"bold",fill:t},"0"),
+    e("circle",{cx:ox,cy:oy,r:2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
     e("circle",{cx:toX(1),cy:oy,r:2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
     e("text",{x:toX(1)+3,y:oy+14,fontSize:11,fontWeight:"bold",fill:t},"1"),
     e("circle",{cx:ox,cy:toY(1),r:2,fill:"var(--bg)",stroke:t,strokeWidth:1}),
