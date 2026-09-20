@@ -19,7 +19,7 @@ const GLOBALS = new Set([
   'HTMLElement', 'Node', 'DOMParser', 'SVGElement', 'getComputedStyle', 'matchMedia', 'speechSynthesis',
   'SpeechSynthesisUtterance', 'AudioContext', 'webkitAudioContext', 'nerdamer', 'html2canvas',
   'arguments', 'eval', 'Function', 'XMLSerializer', 'encodeURIComponent', 'decodeURIComponent',
-  'innerWidth', 'innerHeight', 'KoordOs',
+  'innerWidth', 'innerHeight',
 ]);
 
 let bad = 0;

@@ -13,6 +13,7 @@ import {
 import { FigZoom, ZoomableFig } from '@/components/simulator/mat/viz/figzoom';
 import { GraphSVG, GraphInput } from '@/components/simulator/mat/viz/graph';
 import { KnowledgeMap, CountUp, AnimatedRing, TrendChart } from '@/components/simulator/mat/viz/charts';
+import { KoordOs } from '@/components/simulator/mat/viz/koordos';
 
 afterEach(() => cleanup());
 
@@ -80,6 +81,33 @@ describe('mat/viz: graf', () => {
 
   it('GraphSVG je izvezen', () => {
     expect(typeof GraphSVG).toBe('function');
+  });
+
+  it('GraphSVG s dvije tocke crta pravac na koordinatnim osima', () => {
+    const { container } = render(React.createElement(GraphSVG, {
+      graphType: 'line', points: [[0, -2], [1, 1]], range: { xMin: -4, xMax: 4, yMin: -2, yMax: 7 },
+    }));
+    const svg = container.querySelector('svg');
+    expect(svg).toBeTruthy();
+    // pravac + dvije tocke (halo + jezgra) + oznake koordinata
+    expect(container.querySelectorAll('line').length).toBeGreaterThan(1);
+    expect(container.querySelectorAll('circle').length).toBe(4);
+    expect(container.textContent).toContain('(0, -2)');
+    expect(container.textContent).toContain('(1, 1)');
+  });
+
+  it('KoordOs crta osi sa strelicama, mrezu i oznake, uz label ispod', () => {
+    const { container } = render(React.createElement(KoordOs, {
+      W: 240, H: 200, xMin: -4, xMax: 4, yMin: -2, yMax: 7, label: 'Koordinatni sustav',
+    }));
+    expect(container.querySelector('svg')).toBeTruthy();
+    expect(container.querySelectorAll('polygon').length).toBe(2); // strelice na obje osi
+    const texts = [...container.querySelectorAll('svg text')].map((t) => t.textContent);
+    expect(texts).toContain('x');
+    expect(texts).toContain('y');
+    expect(texts).toContain('0');
+    expect(texts).toContain('3');
+    expect(container.textContent).toContain('Koordinatni sustav');
   });
 });
 

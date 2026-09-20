@@ -5,6 +5,7 @@
 import React from 'react';
 import { renderOptText } from '../core/mathText';
 import { ZoomableFig } from './figzoom';
+import { KoordOs } from './koordos';
 const{createElement:e,useState,useEffect}=React;
 function GraphSVG({graphType, points, range, color="var(--blue)", label}){
   const r=range||{xMin:-4,xMax:4,yMin:-2,yMax:7};
