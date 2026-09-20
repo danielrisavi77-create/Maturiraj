@@ -107,8 +107,10 @@ export default function Discere() {
             })}
 
             <div style={{marginTop:20, padding:"18px 22px", borderRadius:14, background:"var(--s1)", border:"1px solid var(--bdr)", fontSize:13, color:"var(--muted)", lineHeight:1.65}}>
-              <strong style={{color:"var(--text)", display:"block", marginBottom:6}}>📦 Dodavanje novih predmeta</strong>
-              Trenutno dostupni: Hrvatski, Matematika, Engleski i Sociologija. Novi predmeti prolaze sadržajnu i tehničku provjeru prije objave.
+              <strong style={{color:"var(--text)", display:"block", marginBottom:6}}>📦 Discere arhiva</strong>
+              Trenutno aktivni: <strong style={{color:"var(--text)"}}>Hrvatski, Matematika, Engleski i Sociologija</strong>.
+              Ostali predmeti (uključujući Kemiju) su u pripremi — nisu otključani kao aktivni.
+              Discere zahtijeva <strong style={{color:"var(--text)"}}>Standard ili Pro</strong> plan; nema besplatnog previewa zadataka.
             </div>
           </div>
         </div>

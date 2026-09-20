@@ -13,6 +13,7 @@ import ProUpsellModal from './components/ProUpsellModal'
 import { buildFreePlan, buildProPlan, PREDMETI_PLAN } from './lib/planGenerator'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { useSavePlan } from '@/lib/hooks/useSavePlan'
+import { canAccess, FEATURES } from '@/lib/entitlements'
 import { card, MATURA_DATE } from '@/lib/dashboard/helpers'
 
 /* ─── Card surface — glass (dijeljeno s dashboardom) ─────────────── */
@@ -45,7 +46,7 @@ const getDiff = (t) => DIFFICULTY[t] || { label: 'Srednje', color: '#fbbf24' }
 export default function PlanUcenja() {
   usePageTracking('plan-ucenja')
   const router = useRouter()
-  const { user, isPaid, isPro } = useAuth()
+  const { user, isPaid, isPro, loading: authLoading } = useAuth()
   const { savePlan, saving } = useSavePlan()
 
   const danas          = new Date()
@@ -157,11 +158,32 @@ export default function PlanUcenja() {
   }
   const prevStepFn = () => { if (currentStep > 1) goToStep(currentStep - 1) }
 
+  /* ─── Draft helpers (OAuth pending restore) ─────── */
+  const buildPendingDraft = (type = planMode) => ({
+    selPredmeti,
+    satiTjedno,
+    planMode: type,
+    tjednaDoMature,
+  })
+
+  const persistPendingDraft = (type = planMode) => {
+    try {
+      localStorage.setItem('maturiraj_pending_save', '1')
+      localStorage.setItem('maturiraj_pending_plan', JSON.stringify(buildPendingDraft(type)))
+    } catch { /* ignore */ }
+  }
+
   /* ─── Save plan logic ──────────────────────────── */
+  // FEATURES.STUDY_PLAN_SAVE = starter+ (W2 / ODL-2)
   const handleSavePlan = async (type = 'free') => {
     setSaveError(null)
     if (!user) {
+      persistPendingDraft(type)
       setShowSaveModal(true)
+      return
+    }
+    if (!canAccess(FEATURES.STUDY_PLAN_SAVE, { isPaid, isPro, user })) {
+      setSaveError('Spremanje plana zahtijeva Standard plan (9,99 €/mj). Nadogradi na /pro?plan=starter&from=plan-save')
       return
     }
     const weeks = type === 'pro'
@@ -182,6 +204,10 @@ export default function PlanUcenja() {
       setSavedPlanType(type)
       setSavedTotalWeeks(weeks.length)
       setShowCelebration(true)
+      try {
+        localStorage.removeItem('maturiraj_pending_save')
+        localStorage.removeItem('maturiraj_pending_plan')
+      } catch { /* ignore */ }
     }
   }
 
@@ -189,6 +215,72 @@ export default function PlanUcenja() {
     setShowSaveModal(false)
     await handleSavePlan(planMode)
   }
+
+  /* ─── Restore pending save after OAuth ─────────── */
+  const pendingRestoreRef = useRef(false)
+  useEffect(() => {
+    if (authLoading || !user || pendingRestoreRef.current) return
+    let flag = null
+    let raw = null
+    try {
+      flag = localStorage.getItem('maturiraj_pending_save')
+      raw = localStorage.getItem('maturiraj_pending_plan')
+    } catch { return }
+    if (flag !== '1') return
+    pendingRestoreRef.current = true
+
+    let draft = null
+    try { draft = raw ? JSON.parse(raw) : null } catch { draft = null }
+
+    if (draft?.selPredmeti?.length) {
+      setSelPredmeti(draft.selPredmeti)
+      if (typeof draft.satiTjedno === 'number') setSatiTjedno(draft.satiTjedno)
+      if (draft.planMode === 'pro' || draft.planMode === 'free') setPlanMode(draft.planMode)
+      setCurrentStep(4)
+    }
+
+    // Defer save until state commits; clear flag first to avoid loops
+    try {
+      localStorage.removeItem('maturiraj_pending_save')
+    } catch { /* ignore */ }
+
+    const type = draft?.planMode === 'pro' ? 'pro' : 'free'
+    // Use timeout so selPredmeti state is applied before save uses selectedSubjects
+    const t = setTimeout(async () => {
+      if (!canAccess(FEATURES.STUDY_PLAN_SAVE, { isPaid, isPro, user })) {
+        setSaveError('Prijavljen si — za spremanje plana treba Standard plan. Otvori /pro?plan=starter&from=plan-save')
+        return
+      }
+      // Rebuild subjects from draft ids (selectedSubjects may lag one render)
+      const subjects = (draft?.selPredmeti || selPredmeti)
+        .map((id) => PREDMETI_PLAN.find((p) => p.id === id))
+        .filter(Boolean)
+      const hours = typeof draft?.satiTjedno === 'number' ? draft.satiTjedno : satiTjedno
+      const weeksN = typeof draft?.tjednaDoMature === 'number' ? draft.tjednaDoMature : tjednaDoMature
+      if (!subjects.length) return
+      const { error } = await savePlan({
+        userId: user.id,
+        selectedSubjects: subjects,
+        satiTjedno: hours,
+        tjednaDoMature: weeksN,
+        planType: type,
+      })
+      try { localStorage.removeItem('maturiraj_pending_plan') } catch { /* ignore */ }
+      if (error) {
+        setSaveError(error)
+      } else {
+        const weeks = type === 'pro'
+          ? buildProPlan(subjects, hours, Math.min(weeksN, 20))
+          : buildFreePlan(subjects, hours, Math.min(weeksN, 20))
+        setSaveSuccess(true)
+        setSavedPlanType(type)
+        setSavedTotalWeeks(weeks.length)
+        setShowCelebration(true)
+      }
+    }, 0)
+    return () => clearTimeout(t)
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- one-shot OAuth restore
+  }, [authLoading, user, isPaid, isPro])
 
   /* ─── Ambient color ────────────────────────────── */
   const ambientColor = useMemo(() => {
@@ -771,6 +863,7 @@ export default function PlanUcenja() {
       {showSaveModal && (
         <SavePlanModal
           planType={planMode}
+          pendingDraft={buildPendingDraft(planMode)}
           onSuccess={handleModalSuccess}
           onClose={() => setShowSaveModal(false)}
         />

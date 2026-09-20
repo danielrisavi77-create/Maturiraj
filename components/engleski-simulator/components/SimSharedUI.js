@@ -376,7 +376,7 @@ export function AnswerHelper({ q, show, onToggle, autoExpand }) {
           : q.sol.ans || ''
     const userMsg = 'Pitanje: "' + q.q + '"\nTočan odgovor: ' + correctAns + '\n\nNapiši kratko obrazloženje (2-4 rečenice) na hrvatskom koje objašnjava ZAŠTO je taj odgovor točan — koji gramatički ili leksički pojam objašnjava odluku. Budi konkretan i educativan. Ne ponavljaj pitanje.'
     try {
-      const res = await fetch('/api/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: [{ role: 'user', content: userMsg }] }) })
+      const res = await fetch('/api/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'explain', messages: [{ role: 'user', content: userMsg }] }) })
       if (!res.ok) {
         setAiState('error')
         return
