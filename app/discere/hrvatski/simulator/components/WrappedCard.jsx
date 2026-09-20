@@ -22,6 +22,11 @@ export default function WrappedCard({ userData, onClose }) {
     .filter(([, m]) => m.accuracy >= 60)
     .sort((a, b) => b[1].accuracy - a[1].accuracy).slice(0, 3);
 
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+
   useEffect(() => {
     const c = canvasRef.current; if (!c) return;
     const ctx = c.getContext('2d');
@@ -71,10 +76,6 @@ export default function WrappedCard({ userData, onClose }) {
     ctx.fillText('maturiraj.hr', W / 2, 1030);
   }, [avgPct, streak, totalExams, xp, lvl, topTopics.length]);
 
-  function roundRect(ctx, x, y, w, h, r) {
-    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r);
-    ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
-  }
   function download() {
     const c = canvasRef.current; if (!c) return;
     const a = document.createElement('a'); a.download = 'discere-hrvatski-napredak.png'; a.href = c.toDataURL('image/png'); a.click();

@@ -70,14 +70,6 @@ export default function CelebrationSplash({
   const isPro      = planType === 'pro'
   const ukupnoSati = satiTjedno * tjednaDoMature
 
-  useEffect(() => {
-    // Kratka pauza pa prikaži
-    const t = setTimeout(() => setVisible(true), 80)
-    // Auto-redirect nakon 6s
-    timerRef.current = setTimeout(() => handleContinue(), 6200)
-    return () => { clearTimeout(t); clearTimeout(timerRef.current) }
-  }, [])
-
   const handleContinue = () => {
     if (leaving) return
     clearTimeout(timerRef.current)
@@ -87,6 +79,14 @@ export default function CelebrationSplash({
       else router.push('/plan-ucenja/dashboard')
     }, 400)
   }
+
+  useEffect(() => {
+    // Kratka pauza pa prikaži
+    const t = setTimeout(() => setVisible(true), 80)
+    // Auto-redirect nakon 6s
+    timerRef.current = setTimeout(() => handleContinue(), 6200)
+    return () => { clearTimeout(t); clearTimeout(timerRef.current) }
+  }, [])
 
   return (
     <>
