@@ -314,6 +314,110 @@ function SvgZad19asol_2011JA(){
   );
 }
 
+// --- Slike koje u izvorniku (NCVVO PDF) postoje uz pitanje, a nedostajale su u simulatoru ---
+
+// 19.1 - PRAZAN koordinatni sustav (predlozak na kojem ucenik sam crta graf).
+// Izvornik NE prikazuje graf, pa ga ni ovdje ne smije biti.
+function SvgZad19a_2011JA(){
+  const W=320,H=320,pad=22;
+  const xMin=-5.6,xMax=5.6,yMin=-5.6,yMax=5.6;
+  const iW=W-2*pad,iH=H-2*pad;
+  const toX=v=>pad+((v-xMin)/(xMax-xMin))*iW;
+  const toY=v=>pad+((yMax-v)/(yMax-yMin))*iH;
+  const ox=toX(0),oy=toY(0);
+  const T="var(--text)",MU="var(--muted)",BG="var(--bg)";
+  const grid=[];
+  for(let x=-5;x<=5;x++) if(x!==0) grid.push(e("line",{key:"gx"+x,x1:toX(x),y1:toY(5.35),x2:toX(x),y2:toY(-5.35),stroke:MU,strokeWidth:.7,strokeDasharray:"4,3"}));
+  for(let y=-5;y<=5;y++) if(y!==0) grid.push(e("line",{key:"gy"+y,x1:toX(-5.35),y1:toY(y),x2:toX(5.35),y2:toY(y),stroke:MU,strokeWidth:.7,strokeDasharray:"4,3"}));
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
+    ...grid,
+    e("line",{x1:toX(-5.45),y1:oy,x2:toX(5.2),y2:oy,stroke:T,strokeWidth:1.8}),
+    e("line",{x1:ox,y1:toY(-5.45),x2:ox,y2:toY(5.2),stroke:T,strokeWidth:1.8}),
+    e("polygon",{points:`${toX(5.5)},${oy} ${toX(5.18)},${oy-4.5} ${toX(5.18)},${oy+4.5}`,fill:T}),
+    e("polygon",{points:`${ox},${toY(5.5)} ${ox-4.5},${toY(5.18)} ${ox+4.5},${toY(5.18)}`,fill:T}),
+    e("text",{x:toX(5.45),y:oy+16,fontSize:13,fill:T,fontStyle:"italic",textAnchor:"middle"},"x"),
+    e("text",{x:ox-13,y:toY(5.4),fontSize:13,fill:T,fontStyle:"italic",textAnchor:"middle"},"y"),
+    e("circle",{cx:ox,cy:oy,r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("circle",{cx:toX(1),cy:oy,r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("circle",{cx:ox,cy:toY(1),r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("text",{x:ox-9,y:oy+15,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"0"),
+    e("text",{x:toX(1)+7,y:oy+15,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"1"),
+    e("text",{x:ox-10,y:toY(1)+4,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"1")
+  );
+}
+
+// 19.2 - drugi PRAZAN koordinatni sustav (skiciranje polinoma 3. stupnja).
+// U izvorniku je mreza pomaknuta prema gore: x od -3 do 5, y od -1 do 6.
+function SvgZad19b_2011JA(){
+  const W=320,H=300,pad=22;
+  const xMin=-3.6,xMax=5.6,yMin=-1.7,yMax=6.6;
+  const iW=W-2*pad,iH=H-2*pad;
+  const toX=v=>pad+((v-xMin)/(xMax-xMin))*iW;
+  const toY=v=>pad+((yMax-v)/(yMax-yMin))*iH;
+  const ox=toX(0),oy=toY(0);
+  const T="var(--text)",MU="var(--muted)",BG="var(--bg)";
+  const grid=[];
+  for(let x=-3;x<=5;x++) if(x!==0) grid.push(e("line",{key:"gx"+x,x1:toX(x),y1:toY(6.35),x2:toX(x),y2:toY(-1.45),stroke:MU,strokeWidth:.7,strokeDasharray:"4,3"}));
+  for(let y=-1;y<=6;y++) if(y!==0) grid.push(e("line",{key:"gy"+y,x1:toX(-3.35),y1:toY(y),x2:toX(5.35),y2:toY(y),stroke:MU,strokeWidth:.7,strokeDasharray:"4,3"}));
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
+    ...grid,
+    e("line",{x1:toX(-3.45),y1:oy,x2:toX(5.2),y2:oy,stroke:T,strokeWidth:1.8}),
+    e("line",{x1:ox,y1:toY(-1.55),x2:ox,y2:toY(6.2),stroke:T,strokeWidth:1.8}),
+    e("polygon",{points:`${toX(5.5)},${oy} ${toX(5.18)},${oy-4.5} ${toX(5.18)},${oy+4.5}`,fill:T}),
+    e("polygon",{points:`${ox},${toY(6.5)} ${ox-4.5},${toY(6.18)} ${ox+4.5},${toY(6.18)}`,fill:T}),
+    e("text",{x:toX(5.45),y:oy+16,fontSize:13,fill:T,fontStyle:"italic",textAnchor:"middle"},"x"),
+    e("text",{x:ox-13,y:toY(6.4),fontSize:13,fill:T,fontStyle:"italic",textAnchor:"middle"},"y"),
+    e("circle",{cx:ox,cy:oy,r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("circle",{cx:toX(1),cy:oy,r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("circle",{cx:ox,cy:toY(1),r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("text",{x:ox-9,y:oy+15,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"0"),
+    e("text",{x:toX(1)+7,y:oy+15,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"1"),
+    e("text",{x:ox-10,y:toY(1)+4,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"1")
+  );
+}
+
+// 25 - zajednicka slika za 25.1, 25.2 i 25.3: trokut ABC na koordinatnoj mrezi,
+// A(3, -3), B(2, 1), C(-3, 2), osjencana unutrasnjost. Slika NE otkriva rjesenje
+// (nema oznake kuta, visine ni vektora) - kao u izvorniku.
+function SvgZad25_2011JA(){
+  const W=340,H=300,pad=20;
+  const xMin=-4.7,xMax=5.3,yMin=-4.3,yMax=4.3;
+  const iW=W-2*pad,iH=H-2*pad;
+  const toX=v=>pad+((v-xMin)/(xMax-xMin))*iW;
+  const toY=v=>pad+((yMax-v)/(yMax-yMin))*iH;
+  const ox=toX(0),oy=toY(0);
+  const T="var(--text)",MU="var(--muted)",BG="var(--bg)",FILL="var(--s2)";
+  const A=[3,-3],B=[2,1],C=[-3,2];
+  const grid=[];
+  // okomite isprekidane linije: x = -4..4 (bez osi)
+  for(let x=-4;x<=4;x++) if(x!==0) grid.push(e("line",{key:"gx"+x,x1:toX(x),y1:toY(3.9),x2:toX(x),y2:toY(-3.9),stroke:MU,strokeWidth:.7,strokeDasharray:"4,3"}));
+  // vodoravne isprekidane linije: y = -3..3 (bez osi)
+  for(let y=-3;y<=3;y++) if(y!==0) grid.push(e("line",{key:"gy"+y,x1:toX(-4.25),y1:toY(y),x2:toX(4.95),y2:toY(y),stroke:MU,strokeWidth:.7,strokeDasharray:"4,3"}));
+  const tri=`${toX(A[0])},${toY(A[1])} ${toX(B[0])},${toY(B[1])} ${toX(C[0])},${toY(C[1])}`;
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
+    ...grid,
+    e("polygon",{points:tri,fill:FILL,stroke:T,strokeWidth:2,strokeLinejoin:"round"}),
+    e("line",{x1:toX(-4.45),y1:oy,x2:toX(5.0),y2:oy,stroke:T,strokeWidth:1.8}),
+    e("line",{x1:ox,y1:toY(-4.1),x2:ox,y2:toY(3.95),stroke:T,strokeWidth:1.8}),
+    e("polygon",{points:`${toX(5.25)},${oy} ${toX(4.95)},${oy-4.5} ${toX(4.95)},${oy+4.5}`,fill:T}),
+    e("polygon",{points:`${ox},${toY(4.25)} ${ox-4.5},${toY(3.93)} ${ox+4.5},${toY(3.93)}`,fill:T}),
+    e("text",{x:toX(5.2),y:oy+16,fontSize:13,fill:T,fontStyle:"italic",textAnchor:"middle"},"x"),
+    e("text",{x:ox-13,y:toY(4.15),fontSize:13,fill:T,fontStyle:"italic",textAnchor:"middle"},"y"),
+    e("circle",{cx:ox,cy:oy,r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("circle",{cx:toX(1),cy:oy,r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("circle",{cx:ox,cy:toY(1),r:2.6,fill:BG,stroke:T,strokeWidth:1.2}),
+    e("text",{x:ox+7,y:oy+15,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"0"),
+    e("text",{x:toX(1)+7,y:oy+15,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"1"),
+    e("text",{x:ox+9,y:toY(1)+15,fontSize:12,fill:T,fontWeight:"700",textAnchor:"middle"},"1"),
+    e("circle",{cx:toX(A[0]),cy:toY(A[1]),r:3.2,fill:BG,stroke:T,strokeWidth:1.6}),
+    e("circle",{cx:toX(B[0]),cy:toY(B[1]),r:3.2,fill:BG,stroke:T,strokeWidth:1.6}),
+    e("circle",{cx:toX(C[0]),cy:toY(C[1]),r:3.2,fill:BG,stroke:T,strokeWidth:1.6}),
+    e("text",{x:toX(A[0])+6,y:toY(A[1])+16,fontSize:14,fill:T,fontWeight:"700",fontStyle:"italic"},"A"),
+    e("text",{x:toX(B[0])+8,y:toY(B[1])-5,fontSize:14,fill:T,fontWeight:"700",fontStyle:"italic"},"B"),
+    e("text",{x:toX(C[0])+2,y:toY(C[1])-8,fontSize:14,fill:T,fontWeight:"700",fontStyle:"italic"},"C")
+  );
+}
+
 export const qs = [
   {id:1,type:"mc",topic:"br",points:1,
   q:"Koliko je 9,25·10⁻³ m² izraženo u cm²?",
@@ -1547,4 +1651,9 @@ export const qImages = {
   "2011_jesen_A__26": () => e(SvgZad26_2011JA, null),
   "2011_jesen_A__27": () => e(SvgZad27_2011JA, null),
   "2011_jesen_A__30": () => e(SvgZad30_2011JA, null),
+  "2011_jesen_A__19.1": () => e(SvgZad19a_2011JA, null),
+  "2011_jesen_A__19.2": () => e(SvgZad19b_2011JA, null),
+  "2011_jesen_A__25.1": () => e(SvgZad25_2011JA, null),
+  "2011_jesen_A__25.2": () => e(SvgZad25_2011JA, null),
+  "2011_jesen_A__25.3": () => e(SvgZad25_2011JA, null),
 };
