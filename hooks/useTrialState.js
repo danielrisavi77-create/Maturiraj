@@ -1,31 +1,28 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useHydrated } from "@/lib/hooks/useHydrated";
+import { useLocalStorageText } from "@/lib/hooks/useLocalStorageJson";
 
 const KEY = "maturiraj_trial_dismissed";
 
 export function useTrialState() {
   const [shown, setShown] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [dismissal, setDismissal] = useLocalStorageText(KEY);
+  const dismissed = !!dismissal;
+  const mounted = useHydrated();
 
   useEffect(() => {
-    // Provjeri localStorage nakon mounta
-    const alreadyDismissed = !!localStorage.getItem(KEY);
-    setDismissed(alreadyDismissed);
-    setMounted(true);
-
-    if (alreadyDismissed) return;
+    if (!mounted || dismissed) return;
 
     // Pokaži popup nakon 30s
     const t = setTimeout(() => setShown(true), 30000);
     return () => clearTimeout(t);
-  }, []);
+  }, [mounted, dismissed]);
 
   function dismiss() {
     setShown(false);
-    setDismissed(true);
-    try { localStorage.setItem(KEY, "1"); } catch(e) {}
+    setDismissal("1");
   }
 
-  return { shown, dismissed, dismiss, mounted };
+  return { shown: shown && !dismissed, dismissed, dismiss, mounted };
 }
