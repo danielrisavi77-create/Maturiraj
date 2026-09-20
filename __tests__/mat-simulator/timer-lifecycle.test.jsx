@@ -48,3 +48,12 @@ it('warns once at each threshold, pauses, and expires once under StrictMode', ()
   unmount();
   expect(vi.getTimerCount()).toBe(0);
 });
+
+it('does not lose warning thresholds when React batches several ticks into one commit', () => {
+  vi.useFakeTimers();
+  const warn = vi.fn();
+  const { result } = renderHook(() => useTimer(601, true, vi.fn(), warn));
+  act(() => vi.advanceTimersByTime(302000));
+  expect(result.current.s).toBe(299);
+  expect(warn.mock.calls).toEqual([[600], [300]]);
+});

@@ -22,10 +22,10 @@ export function useTimer(tot,run,onExpire,onWarn){
     return()=>clearInterval(id);
   },[run,s]);
   useEffect(()=>{
-    const changed=previous.current!==s;
+    const before=previous.current;
     previous.current=s;
-    if(changed&&s===600&&!warned.current.ten){warned.current.ten=true;if(onWarn)onWarn(600);}
-    if(changed&&s===300&&!warned.current.five){warned.current.five=true;if(onWarn)onWarn(300);}
+    if(before>600&&s<=600&&!warned.current.ten){warned.current.ten=true;if(onWarn)onWarn(600);}
+    if(before>300&&s<=300&&!warned.current.five){warned.current.five=true;if(onWarn)onWarn(300);}
     if(s<=0&&!warned.current.zero){warned.current.zero=true;if(onExpire)onExpire();}
   },[s,onExpire,onWarn]);
   return{s,d:fmt2(s)};
