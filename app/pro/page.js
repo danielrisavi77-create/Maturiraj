@@ -4,13 +4,14 @@ import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { FROM_MAP, DEFAULT_FROM } from '@/lib/billing/fromMap'
+import { initialBillingFromSearch } from '@/lib/billing/initialBilling'
 
 const PLANS = [
   {
     id:          'starter',
     name:        'Standard',
     emoji:       '⭐',
-    price:       { monthly: '9,99', yearly: '6,99' },
+    price:       { monthly: '9,99', yearly: '9,99' },
     checkoutPlan: {
       monthly: 'starter',
       yearly:  null,
@@ -57,34 +58,40 @@ const PLANS = [
   },
 ]
 
-// FROM_MAP / DEFAULT_FROM sada dolaze iz @/lib/billing/fromMap (dijeljeno s checkoutom
-// i /uspjeh) da se "from" odredište ne gubi kroz Stripe tok.
-
 function ProContent() {
   const router      = useRouter()
   const params      = useSearchParams()
-  const { user, isPro } = useAuth()
+  const { user, isPro, isPaid } = useAuth()
 
-  // Čitaj "from" param — odakle je korisnik došao
   const fromKey     = params.get('from') || ''
   const fromInfo    = FROM_MAP[fromKey] || DEFAULT_FROM
   const canceled    = params.get('canceled') === '1'
 
-  const [billing,  setBilling]  = useState('monthly')
+  const [billing,  setBilling]  = useState(() => initialBillingFromSearch(params))
   const [loading,  setLoading]  = useState(null)
   const [error,    setError]    = useState(null)
   const [notice,   setNotice]   = useState(null)
 
-  // Ako je kupnja cancelirana, vrati ga na izvornu stranicu (ne na /pro)
   useEffect(() => {
-    if (canceled && fromKey) {
-      // Kratka pauza da korisnik vidi poruku, onda redirect
-      // (ili možemo ostaviti da ostane i sam klikne natrag)
-    }
+    if (canceled && fromKey) {}
   }, [canceled, fromKey])
 
   const handleBack = () => {
     router.push(fromInfo.path)
+  }
+
+  const openPortal = async () => {
+    setLoading('portal')
+    try {
+      const res  = await fetch('/api/stripe/portal', { method: 'POST' })
+      const data = await res.json().catch(() => ({}))
+      if (data.url) window.location.href = data.url
+      else setError('Portal trenutačno nije dostupan.')
+    } catch {
+      setError('Greška pri otvaranju portala.')
+    } finally {
+      setLoading(null)
+    }
   }
 
   const handleCheckout = async (plan) => {
@@ -92,14 +99,20 @@ function ProContent() {
     setNotice(null)
 
     if (!user) {
-      // Pamti i "from" kroz login flow
-      router.push(`/prijava?redirect=/pro${fromKey ? `?from=${fromKey}` : ''}`)
+      const q = fromKey ? `?from=${fromKey}` : ''
+      router.push(`/prijava?redirect=${encodeURIComponent(`/pro${q}`)}`)
+      return
+    }
+
+    if (isPaid) {
+      await openPortal()
       return
     }
 
     const checkoutPlan = plan.checkoutPlan[billing]
     if (!checkoutPlan) {
-      setNotice(`Godišnji ${plan.name} plan trenutačno nije dostupan. Odaberi mjesečnu naplatu.`)
+      setBilling('monthly')
+      setNotice('Standard je samo mjesečno. Prebačeno na mjesečnu naplatu.')
       return
     }
 
@@ -110,13 +123,14 @@ function ProContent() {
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({
           plan: checkoutPlan,
-          from: fromKey || 'pro',
+          from: fromKey || 'dashboard',
         }),
       })
       const data = await res.json().catch(() => ({}))
 
       if (res.status === 401 || data.error === 'Nisi prijavljen') {
-        router.push(`/prijava?redirect=/pro${fromKey ? `?from=${fromKey}` : ''}`)
+        const q = fromKey ? `?from=${fromKey}` : ''
+        router.push(`/prijava?redirect=${encodeURIComponent(`/pro${q}`)}`)
         return
       }
 
@@ -125,12 +139,17 @@ function ProContent() {
         return
       }
 
+      if (res.status === 409 || data.code === 'ALREADY_SUBSCRIBED') {
+        setNotice('Već imaš aktivnu pretplatu. Otvaram portal.')
+        await openPortal()
+        return
+      }
+
       if (!res.ok || !data.url) {
         throw new Error(data.error || 'Checkout trenutačno nije dostupan.')
       }
 
       window.location.assign(data.url)
-
     } catch (e) {
       setError(e.message || 'Greška pri otvaranju checkout-a.')
     } finally {
@@ -138,30 +157,17 @@ function ProContent() {
     }
   }
 
-  const handlePortal = async () => {
-    setLoading('portal')
-    try {
-      const res  = await fetch('/api/stripe/portal', { method: 'POST' })
-      const data = await res.json()
-      if (data.url) window.location.href = data.url
-    } catch {
-      setError('Greška pri otvaranju portala.')
-    } finally {
-      setLoading(null)
-    }
-  }
-
-  // Tekst CTA gumba ovisno o kontekstu
   const getCtaLabel = (plan) => {
-    if (loading === plan.id)           return 'Učitavam...'
-    if (isPro && plan.id === 'pro')    return 'Upravljaj planom →'
-    if (!plan.checkoutPlan[billing])   return `Godišnji ${plan.name} uskoro`
+    if (loading === plan.id || loading === 'portal') return 'Učitavam...'
+    if (isPaid) return 'Upravljaj planom →'
+    if (!plan.checkoutPlan[billing] && plan.id === 'starter') return 'Standard samo mjesečno'
+    if (!plan.checkoutPlan[billing]) return `Godišnji ${plan.name} uskoro`
     if (fromKey === 'kalkulator' && plan.id === 'pro') return '🔑 Otključaj kalkulator →'
     return `Uzmi ${plan.name} →`
   }
 
   const isPlanActionAvailable = (plan) =>
-    (isPro && plan.id === 'pro') || Boolean(plan.checkoutPlan[billing])
+    isPaid || Boolean(plan.checkoutPlan[billing]) || plan.id === 'starter'
 
   return (
     <div style={{
@@ -170,8 +176,7 @@ function ProContent() {
     }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '100px 24px 80px' }}>
 
-        {/* Context banner — prikazuje se samo ako dolazi s neke stranice */}
-        {fromKey && !canceled && !isPro && (
+        {fromKey && !canceled && !isPaid && (
           <div style={{
             display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32,
             padding: '14px 20px', borderRadius: 14,
@@ -195,7 +200,6 @@ function ProContent() {
           </div>
         )}
 
-        {/* Canceled banner */}
         {canceled && (
           <div style={{
             display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32,
@@ -210,10 +214,7 @@ function ProContent() {
               <div style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.5 }}>
                 Možeš pokušati opet kad budeš spreman.{' '}
                 {fromKey && (
-                  <span
-                    onClick={handleBack}
-                    style={{ color: 'var(--blue)', cursor: 'pointer', fontWeight: 600 }}
-                  >
+                  <span onClick={handleBack} style={{ color: 'var(--blue)', cursor: 'pointer', fontWeight: 600 }}>
                     Vrati se na {fromInfo.label} →
                   </span>
                 )}
@@ -222,8 +223,7 @@ function ProContent() {
           </div>
         )}
 
-        {/* Pro active banner */}
-        {isPro && (
+        {isPaid && (
           <div style={{
             display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32,
             padding: '14px 20px', borderRadius: 14,
@@ -232,17 +232,14 @@ function ProContent() {
             <span style={{ fontSize: 22 }}>✓</span>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--green)', marginBottom: 2 }}>
-                Imaš aktivan PRO plan
+                Imaš aktivan {isPro ? 'PRO' : 'Standard'} plan
               </div>
               <div style={{ fontSize: 12, color: 'var(--muted)' }}>
-                <span onClick={handlePortal} style={{ cursor: 'pointer', color: 'var(--green)', fontWeight: 600, textDecoration: 'underline' }}>
+                <span onClick={openPortal} style={{ cursor: 'pointer', color: 'var(--green)', fontWeight: 600, textDecoration: 'underline' }}>
                   Upravljaj pretplatom →
                 </span>
                 {fromKey && (
-                  <span
-                    onClick={handleBack}
-                    style={{ marginLeft: 12, color: 'var(--blue)', cursor: 'pointer', fontWeight: 600 }}
-                  >
+                  <span onClick={handleBack} style={{ marginLeft: 12, color: 'var(--blue)', cursor: 'pointer', fontWeight: 600 }}>
                     Vrati se na {fromInfo.label} →
                   </span>
                 )}
@@ -251,7 +248,6 @@ function ProContent() {
           </div>
         )}
 
-        {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 7, marginBottom: 18,
@@ -280,7 +276,6 @@ function ProContent() {
             Skripte su besplatne za sve. Kalkulator, Discere, AI profesor i adaptivni plan uz pretplatu.
           </div>
 
-          {/* Billing toggle */}
           <div className="bill-toggle">
             {[
               { key: 'monthly', label: 'Mjesečno' },
@@ -306,7 +301,6 @@ function ProContent() {
           </div>
         </div>
 
-        {/* Neutral billing containment notice */}
         {notice && (
           <div role="status" style={{
             marginBottom: 24, padding: '12px 16px', borderRadius: 14,
@@ -315,7 +309,6 @@ function ProContent() {
           }}>ℹ️ {notice}</div>
         )}
 
-        {/* Error */}
         {error && (
           <div style={{
             marginBottom: 24, padding: '12px 16px', borderRadius: 14,
@@ -324,15 +317,10 @@ function ProContent() {
           }}>⚠️ {error}</div>
         )}
 
-        {/* Plan cards */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 40 }}>
           {PLANS.map(plan => (
             <div key={plan.id} className={`price-card${plan.highlighted ? ' hi' : ' std'}`}
-              style={{
-                padding: '32px 28px',
-                borderRadius: 28,
-                ...(plan.highlighted ? {} : {}),
-              }}>
+              style={{ padding: '32px 28px', borderRadius: 28 }}>
               <div style={{
                 position: 'absolute', top: -40, right: -40, width: 140, height: 140,
                 borderRadius: '50%',
@@ -368,9 +356,14 @@ function ProContent() {
                   </span>
                   <span style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 600 }}>/mj</span>
                 </div>
-                {billing === 'yearly' && (
+                {billing === 'yearly' && plan.id === 'pro' && (
                   <div style={{ fontSize: 11, color: 'var(--green)', fontWeight: 700, marginTop: 4 }}>
-                    Jednokratna godišnja naplata · uštedi 50%
+                    Godišnja pretplata · uštedi ~50%
+                  </div>
+                )}
+                {billing === 'yearly' && plan.id === 'starter' && (
+                  <div style={{ fontSize: 11, color: 'var(--orange)', fontWeight: 700, marginTop: 4 }}>
+                    Standard je samo mjesečno
                   </div>
                 )}
               </div>
@@ -392,18 +385,18 @@ function ProContent() {
               </div>
 
               <button
-                onClick={() => isPro && plan.id === 'pro' ? handlePortal() : handleCheckout(plan)}
+                onClick={() => isPaid ? openPortal() : handleCheckout(plan)}
                 disabled={!!loading || !isPlanActionAvailable(plan)}
                 style={{
                   width: '100%', padding: '14px', borderRadius: 16,
-                  background: plan.gradient ?? `linear-gradient(135deg, rgba(${plan.colorRgb},1), rgba(${plan.colorRgb},.82))`,
+                  background: plan.gradient,
                   color: plan.btnColor ?? '#fff',
                   fontSize: 14, fontWeight: 900, cursor: loading || !isPlanActionAvailable(plan) ? 'not-allowed' : 'pointer',
                   fontFamily: 'var(--fb)',
                   boxShadow: `0 8px 32px rgba(${plan.colorRgb},.3)`,
                   transition: 'all .2s cubic-bezier(.16,1,.3,1)',
                   border: 'none',
-                  opacity: !isPlanActionAvailable(plan) || (loading && loading !== plan.id) ? 0.6 : 1,
+                  opacity: !isPlanActionAvailable(plan) || (loading && loading !== plan.id && loading !== 'portal') ? 0.6 : 1,
                 }}
                 onMouseEnter={e => { if (!loading && isPlanActionAvailable(plan)) e.currentTarget.style.transform = 'translateY(-2px)' }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
@@ -414,7 +407,6 @@ function ProContent() {
           ))}
         </div>
 
-        {/* Trust badges */}
         <div style={{
           display: 'flex', justifyContent: 'center', gap: 24, flexWrap: 'wrap',
           fontSize: 12, color: 'var(--muted)', fontWeight: 600,
