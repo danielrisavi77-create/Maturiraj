@@ -4,7 +4,7 @@
 // Controls access to simulator questions past the free limit.
 // Uses render-prop API so the parent can disable answer buttons without lifting state.
 //
-// Flow:
+// Flow (freePractice; s freeExam ništa nije zaključano za prijavljene):
 //  1. Questions 0–2 → full access (isLocked = false)
 //  2. On question 3+ (free tier) → PaywallModal auto-opens
 //  3. User dismisses modal → BlurLockOverlay covers question area
@@ -43,9 +43,11 @@ export default function SimulatorPreviewGate({
   children,
   style        = {},
   previewScore = null,
+  freeExam     = false,
+  freePractice = false,
 }) {
   const router   = useRouter()
-  const access   = checkSimulatorAccess(userAccess, currentQuestionIndex)
+  const access   = checkSimulatorAccess(userAccess, currentQuestionIndex, { freeExam, freePractice })
   const isLocked = !access.canProceed
   const isNotLoggedIn = access.reason === 'not-logged-in'
 

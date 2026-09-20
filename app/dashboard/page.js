@@ -219,24 +219,26 @@ export default function DashboardHub() {
 
           {/* Simulator */}
           <HubCard icon="⭐" title="Simulator" accent="var(--gold)" onClick={() => router.push('/discere')}>
-            {isPaid ? (
-              lastSim ? (
-                <>
-                  <div style={{ fontSize: 13, color: 'var(--text)', fontWeight: 600 }}>
-                    {subjLabel(lastSim.subject)} · {simPct}%
-                  </div>
-                  <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>
-                    Zadnji pokušaj — nastavi vježbati.
-                  </div>
-                  <Bar pct={simPct} />
-                </>
-              ) : (
-                <div style={{ fontSize: 13, color: 'var(--muted)' }}>Riješi prvi probni ispit i prati rezultat.</div>
-              )
+            {/* Postotak zadnjeg ispita je besplatan sadržaj (uz ocjenu, bodove i XP),
+                pa ga vidi i free korisnik — uz Standard dolazi razrada, ne rezultat. */}
+            {lastSim ? (
+              <>
+                <div style={{ fontSize: 13, color: 'var(--text)', fontWeight: 600 }}>
+                  {subjLabel(lastSim.subject)} · {simPct}%
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>
+                  {isPaid ? 'Zadnji pokušaj — nastavi vježbati.' : 'Zadnji pokušaj — razrada rezultata uz Standard.'}
+                </div>
+                <Bar pct={simPct} />
+              </>
             ) : (
-              <div style={{ fontSize: 13, color: 'var(--muted)' }}>Probni ispiti uz Standard ili PRO plan.</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)' }}>
+                {isPaid
+                  ? 'Riješi prvi probni ispit i prati rezultat.'
+                  : 'Probni ispiti s timerom su besplatni — razrada rezultata uz Standard.'}
+              </div>
             )}
-            <CardCta label={isPaid ? 'Otvori Discere →' : 'Otključaj simulator →'} />
+            <CardCta label="Otvori Discere →" />
           </HubCard>
 
           {isGameModeEnabled() && (

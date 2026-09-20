@@ -5,20 +5,18 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 /**
- * Client-side plan gate — defense in depth on top of proxy paidRequired.
+ * Client-side plan gate — defense in depth uz proxy (/discere traži prijavu).
  *
- * Dva moda:
- *  1. paid-only (default, allowFree=false) — W2 / ODL-1: gosti idu na /prijava,
- *     prijavljeni free korisnici na /pro. Vrijedi za engleski, matematiku,
- *     sociologiju i generičke /discere/[subject] rute.
- *  2. free-preview (allowFree=true) — ispitni mod je besplatan, ali prijava je
- *     obavezna: gosti idu na /prijava?redirect=<trenutna putanja>, prijavljeni
- *     free korisnici ulaze bez /pro redirecta. Ograničenja su u samoj aplikaciji
- *     (FREE_LIMIT u vježbanju, analiza rezultata preko canSeeHrvAnalysis).
- *     Koristi ga /discere/hrvatski i mora ostati usklađeno s iznimkom
- *     freePreviewRoutes u proxy.js.
+ * Zadano (allowFree=true) je free-exam model cijelog Discerea: prijava je
+ * obavezna, ali prijavljeni free korisnik ulazi — pravi ispiti s timerom su
+ * besplatni, a ograničenja žive u aplikaciji (FREE_LIMIT u vježbanju, razrada
+ * rezultata iza canSeeDiscereAnalysis). Gost uvijek ide na
+ * /prijava?redirect=<trenutna putanja>.
+ *
+ * allowFree={false} zadržava stari paid-only mod (prijavljeni free → /pro) za
+ * rute koje još nemaju in-app gating; te ga rute moraju slati eksplicitno.
  */
-export default function PlanGate({ children, allowFree = false }) {
+export default function PlanGate({ children, allowFree = true }) {
   const { user, isPaid, loading } = useAuth()
   const router = useRouter()
   const pathname = usePathname()
@@ -30,12 +28,7 @@ export default function PlanGate({ children, allowFree = false }) {
     if (loading) return
     if (isDevBypass) return
     if (!user) {
-      // Free-preview rute vraćaju korisnika točno tamo gdje je stao; paid-only
-      // rute zadržavaju postojeći /discere redirect.
-      const target = allowFree && pathname
-        ? '/prijava?redirect=' + encodeURIComponent(pathname)
-        : '/prijava?redirect=/discere'
-      router.replace(target)
+      router.replace('/prijava?redirect=' + encodeURIComponent(pathname || '/discere'))
       return
     }
     if (!allowFree && !isPaid) {
