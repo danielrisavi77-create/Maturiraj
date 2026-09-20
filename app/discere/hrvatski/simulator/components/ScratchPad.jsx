@@ -70,6 +70,7 @@ export default function ScratchPad() {
 
   return e(React.Fragment, null,
     e('button', {
+      className: 'sp-fab',
       onClick: () => setOpen(o => !o), title: 'Skica / papir za račun',
       style: {
         position: 'fixed', right: 16, bottom: 'calc(16px + env(safe-area-inset-bottom))', zIndex: 180,
@@ -79,6 +80,7 @@ export default function ScratchPad() {
       },
     }, '✏️'),
     open && e('div', {
+      className: 'sp-panel',
       style: {
         position: 'fixed', right: 16, bottom: 'calc(74px + env(safe-area-inset-bottom))', zIndex: 180,
         width: 'min(420px, calc(100vw - 32px))', background: 'var(--s1)', border: '1px solid var(--bdr)',

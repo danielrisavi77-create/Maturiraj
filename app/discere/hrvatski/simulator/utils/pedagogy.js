@@ -4,7 +4,9 @@
  *           Exam Strategy Coach, Topic Mastery, Pre-exam Warmup
  */
 
-import { chk, qIdentity } from './helpers.js';
+// Uvoz ide iz qcore.js, a ne iz helpers.js: ovaj modul se preko lib/learning/hrv-engine.ts
+// uvlaci u serverske route handlere, gdje React hookovi iz helpers.js ne postoje.
+import { chk, qIdentity } from './qcore.js';
 
 // ═══════════════════════════════════════════════════════════
 // 1. SM-2 SPACED REPETITION

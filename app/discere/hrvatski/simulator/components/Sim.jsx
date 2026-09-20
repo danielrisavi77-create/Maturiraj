@@ -845,10 +845,13 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             }),
             calmMode
               ?e("text",{x:18,y:22,textAnchor:"middle",fontSize:13,fill:"var(--muted)"},"⏱️")
-              :e("text",{x:18,y:22,textAnchor:"middle",fontSize:9,fontWeight:700,
-                fill:col,fontFamily:"var(--fb)"},
-                Math.floor(secLeft/60)+":"+(secLeft%60<10?"0":"")+secLeft%60
-              )
+              :(()=>{
+                const timeStr=Math.floor(secLeft/60)+":"+(secLeft%60<10?"0":"")+secLeft%60;
+                return e("text",{x:18,y:22,textAnchor:"middle",fontSize:timeStr.length>=6?8:9,fontWeight:700,
+                  fill:col,fontFamily:"var(--fb)"},
+                  timeStr
+                );
+              })()
           )
         );
       })(),

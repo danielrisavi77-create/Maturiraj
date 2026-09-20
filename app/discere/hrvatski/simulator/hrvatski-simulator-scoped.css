@@ -189,19 +189,42 @@
   .hrv-sim .browse-screen{padding:16px 14px 60px}
   .hrv-sim .esej-lista .esej-item{padding:12px 14px}
   .hrv-sim .filter-preview-count{font-size:32px}
-  /* Mobile nav — only show on 768px and below */
-  .hrv-sim .mob-nav{display:flex}
-  .hrv-sim .exam-layout{padding-bottom:96px} /* room for mob-nav */
+  .hrv-sim .exam-layout{padding-bottom:calc(150px + env(safe-area-inset-bottom))} /* room for mob-nav + FAB */
+}
+
+/* ── ScratchPad FAB: on mobile it must sit above .mob-nav, not over it ── */
+@media(max-width:768px){
+  .hrv-sim{ --mob-nav-h: 74px; }
+  .hrv-sim .sp-fab{
+    bottom: calc(var(--mob-nav-h, 64px) + env(safe-area-inset-bottom) + 12px) !important;
+  }
+  .hrv-sim .sp-panel{
+    bottom: calc(var(--mob-nav-h, 64px) + env(safe-area-inset-bottom) + 12px + 58px) !important;
+  }
+  /* FAB je position:fixed i lebdi iznad sadrzaja, pa dok se lista skrola svaka
+     opcija prije ili kasnije prode ispod njega. Zato mu rezerviramo desnu traku:
+     krug je 48px sirok i 16px od ruba, dakle zauzima zadnjih 64px viewporta.
+     Kartica pitanja vec ostavlja ~40px (12px margina + 28px padding), pa listi
+     odgovora dodajemo jos 32px — opcija tada zavrsava lijevo od FAB-a i nijedan
+     dodir na odgovor ne zavrsi na biljeznici. */
+  .hrv-sim .opts{ padding-right: 32px; }
 }
 
 /* ── Mobile bottom navigation bar ── */
+/* display:flex je bazno, a skriva se tek na desktopu (min-width pravilo ispod).
+   Obrnuto ne radi: nemedijsko pravilo iste specificnosti koje dolazi poslije
+   pobijedilo bi @media(max-width:768px) i traka se nikad ne bi prikazala. */
 .hrv-sim .mob-nav{
-  display:none; /* hidden on desktop; shown in @media above */
+  display:flex;
   position:fixed;bottom:0;left:0;right:0;z-index:200;
   background:var(--s1);border-top:1px solid var(--bdr);
   padding:10px 16px 12px;
   gap:10px;align-items:center;justify-content:space-between;
   box-shadow:0 -2px 12px rgba(0,0,0,.08);
+}
+/* Desktop ima bocni sidebar s mrezom pitanja i gumbom za predaju, pa traka nije potrebna. */
+@media(min-width:769px){
+  .hrv-sim .mob-nav{display:none}
 }
 .hrv-sim .mob-nav-btn{
   background:var(--s2);border:1px solid var(--bdr);border-radius:var(--r);
@@ -1908,7 +1931,17 @@
   from { opacity: 0; transform: translateX(10px); }
   to   { opacity: 1; transform: translateX(0); }
 }
-.hrv-sim .screen-slide { animation: screen-slide-in .18s cubic-bezier(.2,0,.2,1) both; }
+/* fill-mode `backwards`, NE `both`: s `both` zadnji keyframe (transform:translateX(0))
+   trajno ostaje primijenjen, pa .screen-slide postaje containing block za SVAKI
+   position:fixed element u sebi — .mob-nav bi se tada sidrila na dno omotaca
+   (npr. y=1130 na 860px visokom zaslonu) umjesto na dno viewporta i nestala bi
+   s ekrana. `backwards` daje isti ulazni efekt, a nakon animacije transform je
+   opet `none`. Zavrsne vrijednosti (opacity:1, transform:none) su ionako
+   zadane, pa se izgled ne mijenja. */
+.hrv-sim .screen-slide { animation: screen-slide-in .18s cubic-bezier(.2,0,.2,1) backwards; }
+/* Ispitni zaslon uopce ne animiramo: tijekom tih 180 ms transform jos postoji,
+   pa bi donja traka i odbrojavanje na trenutak odskocili s mjesta. */
+.hrv-sim .screen-slide:has(.exam-layout) { animation: none; }
 /* Button active scale */
 .hrv-sim .btn:active { transform: scale(.97) !important; transition: transform .08s !important; }
 .hrv-sim .btn-p:active { transform: scale(.96) !important; }

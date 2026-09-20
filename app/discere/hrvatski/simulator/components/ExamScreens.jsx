@@ -248,7 +248,10 @@ function TopicFilterScreen({onStart,onBack,userData}){
             onClick:()=>togAll(selYears,setSelYears,ALL_YEARS)},
             selYears.size===ALL_YEARS.length?"Ništa":"Sve")
         ),
-        e("div",{style:{display:"grid",gridTemplateColumns:"repeat(8,1fr)",gap:6}},
+        // auto-fill, a ne fiksnih 8 stupaca: 1fr je minmax(auto,1fr) pa se stupci ne mogu
+        // stisnuti ispod min-content, a .hrv-sim ima overflow-x:clip — na telefonu bi zadnji
+        // stupac (2017., 2025.) bio odrezan i nedodirljiv.
+        e("div",{style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(62px,1fr))",gap:6}},
           ALL_YEARS.map(y=>
             e("div",{key:y,className:"filter-chip"+(selYears.has(y)?" sel":""),
               style:{textAlign:"center",fontSize:12},
