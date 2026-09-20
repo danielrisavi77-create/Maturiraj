@@ -33,7 +33,10 @@ export async function proxy(request) {
   const { data: { user } } = await supabase.auth.getUser()
 
   // ── Rute koje zahtijevaju samo prijavu (besplatni i placeni) ───
-  const authRequired = ['/plan-ucenja/dashboard', '/game', '/dashboard']
+  // /sim/sociologija.html je staticki asset koji se ucitava u iframe iza PlanGatea, ali je
+  // izravno dohvatljiv URL-om, a u izvoru nosi sva pitanja, kljuceve i obrazlozenja. Kao i
+  // /discere, trazi barem prijavu; tier se provodi u aplikaciji (DISCERE_CONFIG).
+  const authRequired = ['/plan-ucenja/dashboard', '/game', '/dashboard', '/sim/sociologija.html']
   const isAuthRequired = authRequired.some(route =>
     request.nextUrl.pathname.startsWith(route)
   )
@@ -45,22 +48,24 @@ export async function proxy(request) {
     return NextResponse.redirect(url)
   }
 
-  // ── Rute koje zahtijevaju placeni plan (starter ili pro — Discere) ─
+  // ── Discere — samo prijava; tier se provodi u aplikaciji ──────────
   const paidRequired = ['/discere']
   const isPaidRequired = paidRequired.some(route =>
     request.nextUrl.pathname.startsWith(route)
   )
 
-  // Hrvatski simulator radi po free-preview modelu: prijavljeni free korisnik smije ući,
-  // a ograničenja su u samoj aplikaciji (FREE_LIMIT u vjezbi, besplatan ispit, zakljucani
-  // rezultati preko canSeeHrvAnalysis). Ovdje mora postojati iznimka jer bi inace proxy
-  // preusmjerio free korisnika na /pro prije nego se stranica uopce renderira.
-  const freePreviewRoutes = ['/discere/hrvatski']
+  // Cijeli Discere radi po free-exam modelu: pravi ispiti s timerom su besplatni za
+  // prijavljene, a razrada rezultata (pregled odgovora, obrazlozenja, analiza) je
+  // zakljucana u samoj aplikaciji (canSeeDiscereAnalysis, LockedResultsBlock), kao i
+  // vjezbanje (FREE_LIMIT / demo skup). Proxy zato smije traziti samo prijavu — kad bi
+  // ovdje provodio tier, free korisnik ne bi dosao ni do stranice. Uvjet ispod ostaje
+  // jer suzavanje ove liste odmah vraca paid gate na te putanje.
+  const freePreviewRoutes = ['/discere']
   const isFreePreview = freePreviewRoutes.some(route =>
     request.nextUrl.pathname.startsWith(route)
   )
 
-  // Dev bypass — owner email zaobilazi SAMO paid gate (/discere), nikad Pro rute.
+  // Dev bypass — owner email zaobilazi SAMO paid gate, nikad Pro rute.
   // Pro rute moraju ostati usklađene sa serverskim guardom (requirePro → getUserTier),
   // koji bypass ne poznaje; inače se stranica otvori, a njezini AI pozivi vraćaju 403.
   const isDevBypass = !!process.env.DEV_BYPASS_EMAIL && !!user?.email

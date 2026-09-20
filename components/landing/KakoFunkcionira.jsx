@@ -8,8 +8,8 @@ const KORACI = [
   },
   {
     n:"02", col:"var(--orange)", borderCol:"rgba(255,107,43,.35)", bgCol:"rgba(255,107,43,.07)",
-    badge:"b-gold", bl:"Uz pretplatu", ic:"⭐", t:"Pristup Discere",
-    d:"Arhiva svih zadataka s matura od 2010. do danas. Filtriraj po predmetu, razini, godini i temi.",
+    badge:"b-gold", bl:"Ispiti besplatni uz prijavu", ic:"⭐", t:"Pristup Discere",
+    d:"Prijavi se i radi prave ispite s timerom besplatno. Pregled odgovora, obrazloženja i analiza po temama dolaze uz Standard.",
   },
   {
     n:"03", col:"var(--blue)", borderCol:"rgba(75,123,255,.35)", bgCol:"rgba(75,123,255,.08)",

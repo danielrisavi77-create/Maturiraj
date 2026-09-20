@@ -46,8 +46,8 @@ export default function Hero({ onSkripte, onPlan, onChat, onPrijemni, onKalkulat
             </h1>
 
             <p className="up" style={{animationDelay:".13s",fontSize:17,lineHeight:1.82,color:"var(--muted)",marginBottom:32,maxWidth:480}}>
-              Besplatne skripte za sve predmete mature. Uz pretplatu —{" "}
-              <strong style={{color:"var(--gold)"}}>Discere</strong> arhiva maturalnih zadataka, AI profesor i roditeljski uvid.
+              Besplatne skripte za sve predmete mature i{" "}
+              <strong style={{color:"var(--gold)"}}>Discere</strong> ispiti s timerom, besplatni uz prijavu. Razrada rezultata, AI profesor i roditeljski uvid uz pretplatu.
             </p>
 
             <div className="up" style={{animationDelay:".2s",display:"flex",gap:10,flexWrap:"wrap",marginBottom:14}}>

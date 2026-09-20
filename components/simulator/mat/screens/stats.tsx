@@ -3,7 +3,7 @@
 /* 5.3: izdvojeno iz components/simulator/MatEngineCore.tsx bez promjene ponasanja.
    Statistika i analitika: pregled, predikcija ocjene, prognoza bodova i PDF izvjestaj. */
 import React from 'react';
-import { DS, IS_PRO, SUBJECT, TOPIC_LABELS, planCta } from '../core/state';
+import { DS, IS_PRO, IS_PAID, SUBJECT, TOPIC_LABELS, planCta, MAT_RESULTS_UPGRADE_URL } from '../core/state';
 import { EXAMS } from '../core/exams';
 import { __aiErrMsg, __aiPost } from '../core/runtime';
 import { parseMath } from '../core/mathText';
@@ -11,6 +11,9 @@ import { GC, GLBL, LL } from '../core/ui';
 import { grade } from '../core/progress';
 import { KnowledgeMap, TrendChart } from '../viz/charts';
 import { UpgradeModal } from '../tools/modals';
+// Isti zakljucani placeholder kao na rezultatima: analiza po temama je Standard, a
+// statistika ju rekonstruira iz history[].topic_breakdown, pa gate mora vrijediti i ovdje.
+import LockedResultsBlock from '@/components/discere/paywall/LockedResultsBlock';
 const{createElement:e,Fragment}=React;
 function PDFReportScreen({userData,onBack}){
   const history=Array.isArray(userData?.history)?userData.history:[];
@@ -103,8 +106,8 @@ function PDFReportScreen({userData,onBack}){
         )
       ),
 
-      // Teme  -  slabe i jake
-      topicRows.length>0&&e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:24}},
+      // Teme  -  slabe i jake (Standard; free dobiva zakljucan blok)
+      IS_PAID&&topicRows.length>0&&e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:24}},
         weakTopics.length>0&&e("div",null,
           e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:"var(--red)",marginBottom:8}},
             "⚠️ Slabe teme"),
@@ -132,6 +135,10 @@ function PDFReportScreen({userData,onBack}){
           )
         )
       ),
+
+      !IS_PAID&&topicRows.length>0&&e(LockedResultsBlock,{label:"Slabe i jake teme",rows:3,minHeight:140,
+        upgradeHref:MAT_RESULTS_UPGRADE_URL,
+        note:"Broj ispita, prosjek, trend i XP ostaju besplatni. Tocnost po temama dolazi sa Standard planom."}),
 
       // Najčešće greške
       errors.length>0&&e("div",{style:{marginBottom:24}},
@@ -233,7 +240,7 @@ function StatsScreen({userData,onBack,onPDFReport,onStartErrorSession}){
       onPDFReport&&e("button",{className:"btn btn-g",style:{fontSize:12,padding:"5px 12px"},onClick:onPDFReport},"📄 PDF izvještaj")
     ),
     e("div",{className:"stats-screen"},
-      e(KnowledgeMap,{userData,onTopic:function(k,label){if(!onStartErrorSession)return;var _rz=(typeof DS!=="undefined"&&DS.get)?DS.get("mat_razina"):null;var qs=[];Object.values(EXAMS).forEach(function(ex){if(_rz&&ex.razina&&ex.razina!==_rz)return;(ex.qs||[]).forEach(function(q){if((TOPIC_LABELS[q.topic]||q.topic)===label&&q.type!=="proof"&&q.type!=="sa"){qs.push(Object.assign({},q,{_examKey:ex.key}));}});});if(!qs.length)return;qs=qs.sort(function(){return Math.random()-0.5;}).slice(0,15);onStartErrorSession({key:"map_topic_session",year:"Mapa znanja",season:"session",razina:(userData&&userData.razina)||undefined,label:label,qs:qs,duration:qs.length*120});}}),
+      IS_PAID&&e(KnowledgeMap,{userData,onTopic:function(k,label){if(!onStartErrorSession)return;var _rz=(typeof DS!=="undefined"&&DS.get)?DS.get("mat_razina"):null;var qs=[];Object.values(EXAMS).forEach(function(ex){if(_rz&&ex.razina&&ex.razina!==_rz)return;(ex.qs||[]).forEach(function(q){if((TOPIC_LABELS[q.topic]||q.topic)===label&&q.type!=="proof"&&q.type!=="sa"){qs.push(Object.assign({},q,{_examKey:ex.key}));}});});if(!qs.length)return;qs=qs.sort(function(){return Math.random()-0.5;}).slice(0,15);onStartErrorSession({key:"map_topic_session",year:"Mapa znanja",season:"session",razina:(userData&&userData.razina)||undefined,label:label,qs:qs,duration:qs.length*120});}}),
       e(AnalyticsPanel,{userData,defaultTab:"pregled",onBack,onStartErrorSession})
     )
   );
@@ -254,6 +261,11 @@ function AnalyticsPanel({userData,defaultTab,onFilter,onBack,onStartErrorSession
   const[aiPlan,setAiPlan]=React.useState(null);
   const[showUpgrade,setShowUpgrade]=React.useState(false);
   const history=userData.history||[];
+  // Analiza po temama je Standard, ne free. Isti podatak koji je na rezultatima iza
+  // LockedResultsBlocka (tocnost po temama, najslabija/najjaca tema, savjet "Uvjezbaj: X")
+  // ovdje se rekonstruira iz history[].topic_breakdown — a onExamDone ga upisuje za svaki
+  // ispit, ukljucujuci zakljucane odradene u besplatnom ispitnom modu.
+  const canSeeTopics=IS_PAID;
 
   const topicStats={};
   history.forEach(h=>{
@@ -300,9 +312,11 @@ function AnalyticsPanel({userData,defaultTab,onFilter,onBack,onStartErrorSession
     const topErrors=errors.slice(0,3).filter(e=>e.count>=2);
     if(topErrors.length>0) recs.push({icon:"🔁",title:"Ponavljaš iste greške",desc:"Griješiš "+topErrors.length+"× na pitanjima o "+[...new Set(topErrors.map(e=>TOPIC_LABELS[e.topic]||e.topic))].join(", ")+". Pogledaj tab 'Greške'.",badge:"urgent"});
     if(modeDiff!==null&&modeDiff<-8) recs.push({icon:"⚖️",title:"Simulacija ti ide lošije",desc:"U simulaciji si za "+Math.abs(modeDiff)+"% slabiji/a nego u vježbanju. Uvježbaj više simulacija s timerom.",badge:"urgent"});
-    topicList.slice(0,2).forEach(t=>{if(t.pct!==null&&t.pct<50) recs.push({icon:"🎯",title:"Uvježbaj: "+t.label,desc:"Trenutni rezultat "+t.pct+"% - ispod prolazne granice. Koristi 'Vježbaj po temi'.",badge:"urgent"});});
-    const strong=[...topicList].reverse().find(t=>t.pct>=80);
-    if(strong) recs.push({icon:"💪",title:"Snaga: "+strong.label,desc:strong.pct+"% - izvrsno! Nastavi ovim tempom.",badge:"good"});
+    if(canSeeTopics){
+      topicList.slice(0,2).forEach(t=>{if(t.pct!==null&&t.pct<50) recs.push({icon:"🎯",title:"Uvježbaj: "+t.label,desc:"Trenutni rezultat "+t.pct+"% - ispod prolazne granice. Koristi 'Vježbaj po temi'.",badge:"urgent"});});
+      const strong=[...topicList].reverse().find(t=>t.pct>=80);
+      if(strong) recs.push({icon:"💪",title:"Snaga: "+strong.label,desc:strong.pct+"% - izvrsno! Nastavi ovim tempom.",badge:"good"});
+    }
     if(avgTime>60) recs.push({icon:"⏱",title:"Radi na brzini",desc:"Prosječno "+avgTime+"s po pitanju. Na maturi imaš ~4 min po pitanju za MAT B, ~3 min za MAT A.",badge:"tip"});
     if(history.length<3) recs.push({icon:"📄",title:"Riješi više ispita",desc:"Što više ispita riješiš, točnija je analiza slabih točaka. Cilj: barem 5 ispita.",badge:"tip"});
     if(best&&best>=85) recs.push({icon:"🏆",title:"Odličan rezultat!",desc:"Postigao/la si "+best+"% - odgovara ocjeni 5. Probaj i drugu razinu (A/B) za raznovrsnost.",badge:"good"});
@@ -316,7 +330,7 @@ function AnalyticsPanel({userData,defaultTab,onFilter,onBack,onStartErrorSession
     {id:"teska",label:"💀 Najteža"},
     {id:"heatmap",label:"🗓 Kalendar"},
     {id:"savjeti",label:"💡 Savjeti"},
-  ];
+  ].filter(t=>t.id!=="teme"||canSeeTopics);
   const noData=e("div",{style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:14,padding:"40px 24px",textAlign:"center"}},
     e("div",{style:{fontSize:48,opacity:.3,marginBottom:12}},"📊"),
     e("div",{style:{fontSize:15,fontWeight:600,marginBottom:6}},"Nema podataka za prikaz"),
@@ -382,7 +396,7 @@ Plan 3-4 tjedna, fokus na najslabije teme, zadaci konkretni i izvedivi.`;
           : e("div",{style:{position:"relative",zIndex:1}},
               e("div",{style:{fontSize:15,fontWeight:700,marginBottom:6,color:"#fff"}},"\uD83E\uDD16 Personalizirani plan u\u010denja"),
               e("div",{style:{fontSize:13,lineHeight:1.6,color:"rgba(255,255,255,.8)",marginBottom:14,maxWidth:440}},
-                "Claude analizira tvoj prosjek, trend i najslabije teme"+(topicList[0]?" (npr. "+topicList[0].label+")":"")+" pa sla\u017ee tjedni plan do mature."
+                "Claude analizira tvoj prosjek, trend i najslabije teme"+((canSeeTopics&&topicList[0])?" (npr. "+topicList[0].label+")":"")+" pa sla\u017ee tjedni plan do mature."
               ),
               aiPlanState==="error"&&e("div",{style:{fontSize:12,color:"#fca5a5",marginBottom:10}},__aiErrMsg()),
               e("button",{onClick:runAiPlan,style:{background:IS_PRO?"#fff":"rgba(255,255,255,.16)",color:IS_PRO?"#0b1b3a":"#fff",border:IS_PRO?"none":"1px solid rgba(255,255,255,.3)",fontFamily:"var(--fb)",fontSize:13.5,fontWeight:700,padding:"11px 22px",borderRadius:10,cursor:"pointer",boxShadow:IS_PRO?"0 6px 18px -6px rgba(0,0,0,.4)":"none"}},
@@ -491,8 +505,11 @@ Plan 3-4 tjedna, fokus na najslabije teme, zadaci konkretni i izvedivi.`;
       /* ── PREGLED ── */
       tab==="pregled"&&e("div",null,
         goalCard,
-        // Najslabija / Najjača tema
-        topicList.length>=2&&e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:18}},
+        // Najslabija / Najjača tema (Standard; free dobiva zakljucan blok)
+        !canSeeTopics&&topicList.length>0&&e(LockedResultsBlock,{label:"Analiza po temama",rows:3,minHeight:150,
+          upgradeHref:MAT_RESULTS_UPGRADE_URL,
+          note:"Ocjena, postotak, bodovi i XP ostaju besplatni. Tocnost po temama, najslabije teme i savjeti dolaze sa Standard planom."}),
+        canSeeTopics&&topicList.length>=2&&e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:18}},
           e("div",{style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderLeft:"3px solid var(--red)",borderRadius:"0 12px 12px 0",padding:"14px 16px"}},
             e("div",{style:{fontSize:10,fontWeight:700,letterSpacing:".07em",textTransform:"uppercase",color:"var(--red)",marginBottom:4}},"Najslabija tema"),
             e("div",{style:{fontWeight:700,fontSize:13,marginBottom:3}},topicList[0].label),
@@ -694,7 +711,7 @@ Plan 3-4 tjedna, fokus na najslabije teme, zadaci konkretni i izvedivi.`;
       ),
 
       /* ── TEME ── */
-      tab==="teme"&&drillTopic&&(()=>{
+      canSeeTopics&&tab==="teme"&&drillTopic&&(()=>{
         const topicLabel=TOPIC_LABELS[drillTopic]||drillTopic;
         const tStat=topicStats[drillTopic]||{correct:0,total:0};
         const tPct=tStat.total?Math.round(tStat.correct/tStat.total*100):0;
@@ -760,7 +777,7 @@ Plan 3-4 tjedna, fokus na najslabije teme, zadaci konkretni i izvedivi.`;
           )
         );
       })(),
-      tab==="teme"&&!drillTopic&&(topicList.length===0?noData:
+      canSeeTopics&&tab==="teme"&&!drillTopic&&(topicList.length===0?noData:
         e("div",null,
           e("div",{style:{display:"flex",gap:14,marginBottom:14,fontSize:11,color:"var(--muted)",alignItems:"center",flexWrap:"wrap"}},
             e("div",{style:{display:"flex",alignItems:"center",gap:4}},e("div",{style:{width:10,height:10,borderRadius:2,background:"var(--green)"}}),e("span",null,"≥70%")),

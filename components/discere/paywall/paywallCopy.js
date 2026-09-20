@@ -4,14 +4,14 @@
 // A/B test: swap values here without touching any component.
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Legacy free-preview question count — access helpers no longer grant free Qs (paid-only). */
+/** Broj besplatnih pitanja u vježbanju (pravi ispit s timerom nema ograničenje). */
 export const FREE_LIMIT = 3
 
 // ── Simulator paywall ─────────────────────────────────────────────────────────
 
 export const SIMULATOR_COPY = {
   headline:     'Koliko bi dobio na maturi?',
-  subline:      'Discere arhiva je dostupna uz Standard ili Pro plan.',
+  subline:      'Pravi ispiti s timerom su besplatni; neograničeno vježbanje dolazi sa Standard planom.',
   bullets: [
     { icon: '▶', text: 'Saznaj svoj realni rezultat na maturi' },
     { icon: '📊', text: 'Otkrij gdje gubiš najviše bodova' },
@@ -66,7 +66,7 @@ export const RESULTS_COPY = {
 
 export const NOT_LOGGED_IN_COPY = {
   headline:     'Prijavi se da nastaviš trening.',
-  subline:      'Treba ti račun i Standard plan da bi koristio Discere simulator.',
+  subline:      'Treba ti besplatan račun da bi koristio Discere simulator.',
   cta:          'Prijavi se ili registriraj',
   ctaSecondary: 'Pogledaj planove i cijene',
 }

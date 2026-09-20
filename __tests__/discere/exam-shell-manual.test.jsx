@@ -28,4 +28,14 @@ describe('ExamShell manual result presentation', () => {
     expect(screen.getByText(/čeka ručnu procjenu/i)).toBeTruthy()
     expect(screen.queryByText(/automatski provjereno/i)).toBeNull()
   })
+
+  it('keeps the manual-pending result visible but locks the review when canSeeReview is false', async () => {
+    render(<ExamShell exam={exam} onComplete={() => {}} onExit={() => {}} canSeeReview={false} />)
+    await userEvent.type(screen.getByRole('textbox'), 'Moj odgovor')
+    await userEvent.click(screen.getByRole('button', { name:'Predaj ispit' }))
+    await userEvent.click(screen.getByRole('button', { name:'Potvrdi predaju' }))
+
+    expect(screen.getByText(/čeka ručnu procjenu/i)).toBeTruthy()
+    expect(screen.getByText(/otključaj razradu/i)).toBeTruthy()
+  })
 })

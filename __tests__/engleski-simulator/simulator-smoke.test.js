@@ -8,25 +8,13 @@
  * provjera da je napredak spremljen u localStorage → unmount/remount ("refresh")
  * → Home i dalje pokazuje badge s postotkom.
  *
- * ODSTUPANJE OD SPECIFIKACIJE: zadatak traži da se '@/lib/hooks/useAuth' mockira
- * s user:null. Stvarni paywall (checkSimulatorAccess u
- * components/discere/paywall/paywallHelpers.js) vraća canProceed:false već na
- * PRVOM pitanju kad korisnik nije prijavljen (reason 'not-logged-in'), bez
- * obzira na FREE_LIMIT — to je namjerno ponašanje proizvoda, ne ograničenje
- * happy-doma. Uz user:null bi pitanje ostalo zaključano (skeleton, bez MCQ-a) i
- * tok opisan u zadatku (odgovori → Provjeri → Vidi rezultate) ne bi bio
- * izvediv.
- *
- * Od commita 9d997e1 (Discere paid-only) ni prijavljen korisnik na BESPLATNOM
- * planu više ne prolazi: checkSimulatorAccess sada vraća canProceed:false s
- * reason 'limit-reached' već na prvom pitanju (free preview / FREE_LIMIT put je
- * namjerno ugašen), pa preko simulatora stoji PaywallModal "Otključaj
- * simulator". Zato mock predstavlja PRIJAVLJENOG korisnika na PLAĆENOM
- * (Standard) planu — isPaid: true, isPro: false — što je najmanja razina koja
- * prolazi kroz gating, a Pro-only značajke rezultata (analiza, plan, AI) ostaju
- * zaključane, pa test i dalje vozi stvarni, neizmijenjeni tok kroz gating
- * umjesto da ga zaobilazi. Guest (user:null) i free paywall-lock pokriveni su
- * zasebno u exam-play-blocks.test.js / daily-challenge.test.js.
+ * MOCK JE PRIJAVLJENI FREE KORISNIK: prijava je po politici uvijek obavezna
+ * (gost ide na /prijava), pa bi uz user:null pitanje ostalo zaključano i tok
+ * odgovori → Provjeri → Vidi rezultate ne bi bio izvediv. Prijavljeni free plan
+ * (isPro:false, isPaid:false) u vježbanju dobiva FREE_LIMIT pitanja — sintetički
+ * ispit ima jedno, pa prolazi bez paywalla — dok su rezultati zaključani od
+ * Standarda naviše, što test na kraju i provjerava. Guest paywall-lock pokriven
+ * je zasebno u exam-play-blocks.test.js / daily-challenge.test.js.
  *
  * NAPOMENA: 'AnalyticsPanelFull.js' (lazy chunk unutar ResultsScreena, prikazan
  * čim postoji povijest) piše pravi JSX u '.js' datoteci (za razliku od ostalih
@@ -42,7 +30,7 @@ import { render, screen, cleanup, waitFor, fireEvent } from '@testing-library/re
 import { createElement as e } from 'react'
 
 vi.mock('@/lib/hooks/useAuth', () => ({
-  useAuth: () => ({ user: { id: 'smoke-test-user' }, isPro: false, isPaid: true, loading: false }),
+  useAuth: () => ({ user: { id: 'smoke-test-user' }, isPro: false, isPaid: false, loading: false }),
 }))
 
 vi.mock('@/components/engleski-simulator/screens/AnalyticsPanelFull', () => ({
@@ -148,6 +136,13 @@ describe('EngleskiSimulator — integracijski smoke test', () => {
     }, { timeout: 40000 })
     const pctText = document.querySelector('.score-ring-pct').textContent
     expect(pctText).toMatch(/^\d+%$/)
+
+    // Free plan: ocjena i postotak da, razrada ne — tekst pitanja, pregled
+    // odgovora i obrazloženja ne smiju biti u DOM-u, samo CTA prema Standardu.
+    expect(document.querySelector('.revlist')).toBeNull()
+    expect(screen.queryByText('Pregled svih pitanja')).toBeNull()
+    expect(screen.queryByText('Osnovna pitanje 1')).toBeNull()
+    expect(document.querySelector('a[href^="/pro?from=eng-results"]')).toBeTruthy()
 
     // localStorage 'engleski_simulator_user' ima history s 1 zapisom
     const stored = JSON.parse(localStorage.getItem('engleski_simulator_user'))

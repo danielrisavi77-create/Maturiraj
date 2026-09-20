@@ -1,9 +1,12 @@
 'use client'
 import React, { createElement as e, useState, useEffect, Fragment } from 'react'
 import ShareStoryCard from '@/components/shared/ShareStoryCard'
+import { LockedResultsBlock } from '@/components/discere/paywall'
 import { sectionScores, weightedEstimate, scoringUnits } from '@/lib/engleski-simulator/examStructure'
 import { isRealExamKey } from '@/lib/engleski-simulator/cloudSync'
 import { GRADE_NOTE, GRADE_NOTE_WRITING } from '@/lib/engleski-simulator/constants'
+
+const UPGRADE_HREF = '/pro?from=eng-results&plan=standard'
 
 function AnimatedRing({ pct, gc, g }) {
   const r = 54
@@ -76,6 +79,7 @@ function ResultsInner({
   AnalyticsPanel,
   LEVEL_NAMES,
   getLevel,
+  canSeeAnalysis = true,
 }) {
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }) }, [])
   const [showRevlist, setShowRevlist] = useState(true)
@@ -210,7 +214,7 @@ function ResultsInner({
         e('div', { style: { marginTop: 2, fontSize: 11, color: 'var(--muted)', lineHeight: 1.55 } },
           'Ponderirana procjena uzima samo automatski ocijenjene cjeline i ponovno skalira njihove udjele na 100 %.'),
       ),
-      wrongAutoQ.length > 0 && e('div', { style: { marginBottom: 22 } },
+      canSeeAnalysis && wrongAutoQ.length > 0 && e('div', { style: { marginBottom: 22 } },
         e('div', { className: 'results-section-title' }, 'Pogrešni odgovori (' + wrongAutoQ.length + ')'),
         e('div', { style: { display: 'flex', flexDirection: 'column', gap: 6 } },
           (showAll ? wrongAutoQ : wrongAutoQ.slice(0, 5)).map((q, i) => e('div', { key: i, style: { background: 'var(--red-d)', border: '1px solid rgba(196,48,48,.2)', borderRadius: 'var(--r)', padding: '10px 14px' } },
@@ -227,7 +231,7 @@ function ResultsInner({
       ),
       e('div', { className: 'results-section-title' }, 'Rezultati po tipu pitanja'),
       e('div', { className: 'breakdown-grid' }, breakdown.map(b => e(BreakdownCard, { key: b.key, label: b.label, correct: b.correct, total: b.total, color: b.color }))),
-      topicList.length > 1 && e('div', { style: { marginBottom: 22 } },
+      canSeeAnalysis && topicList.length > 1 && e('div', { style: { marginBottom: 22 } },
         e('div', { className: 'results-section-title' }, 'Rezultati po temi'),
         e('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))', gap: 8 } },
           topicList.map((t, i) => {
@@ -241,15 +245,22 @@ function ResultsInner({
           }),
         ),
       ),
-      manQ.length > 0 && e('div', { style: { background: 'var(--gold-d)', border: '1px solid var(--gold-b)', borderRadius: 'var(--r)', padding: '12px 16px', marginBottom: 22, fontSize: 13, color: 'var(--gold)' } }, '✏️ ' + manQ.length + ' pitanja (kratki odgovori i eseji) — provjeri referentne odgovore ispod.'),
-      e('div', { className: 'revlist-toggle-hdr' },
+      canSeeAnalysis && manQ.length > 0 && e('div', { style: { background: 'var(--gold-d)', border: '1px solid var(--gold-b)', borderRadius: 'var(--r)', padding: '12px 16px', marginBottom: 22, fontSize: 13, color: 'var(--gold)' } }, '✏️ ' + manQ.length + ' pitanja (kratki odgovori i eseji) — provjeri referentne odgovore ispod.'),
+      !canSeeAnalysis && e(LockedResultsBlock, {
+        label: 'Pregled pitanja i razrada',
+        rows: 5,
+        minHeight: 200,
+        note: 'Točni odgovori, obrazloženja i analiza po temama dostupni su od Standard plana.',
+        upgradeHref: UPGRADE_HREF,
+      }),
+      canSeeAnalysis && e('div', { className: 'revlist-toggle-hdr' },
         e('div', { className: 'results-section-title', style: { margin: 0, flex: 1 } }, 'Pregled svih pitanja'),
         e('div', { style: { display: 'flex', alignItems: 'center', gap: 10 } },
           e('span', { style: { fontSize: 12, color: 'var(--muted)' } }, QSR.length + ' pitanja'),
           e('button', { className: 'exams-toggle-btn', onClick: () => setShowRevlist(v => !v) }, showRevlist ? 'Sklopi ▲' : 'Raširi ▼'),
         ),
       ),
-      showRevlist && e('div', { className: 'revlist' }, QSR.map((q, i) => {
+      canSeeAnalysis && showRevlist && e('div', { className: 'revlist' }, QSR.map((q, i) => {
         const isM = q.type === 'sa' || q.type === 'es'
         const a = answers[q.id]
         const ok = isM ? null : chk(q, a)
@@ -281,8 +292,17 @@ function ResultsInner({
       })),
       e('div', { style: { marginTop: 28, textAlign: 'center', display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' } },
         e('button', { className: 'btn btn-g', onClick: onBack }, '← Na početak'),
-        wrongAutoQ.length > 0 && onPracticeErrors && e('button', { className: 'btn btn-red', style: { background: 'var(--red-d)', color: 'var(--red)', border: '1px solid rgba(196,48,48,.3)' }, onClick: () => onPracticeErrors(wrongAutoQ, exam) }, '🔁 Vježbaj greške (' + wrongAutoQ.length + ')'),
+        canSeeAnalysis && wrongAutoQ.length > 0 && onPracticeErrors && e('button', { className: 'btn btn-red', style: { background: 'var(--red-d)', color: 'var(--red)', border: '1px solid rgba(196,48,48,.3)' }, onClick: () => onPracticeErrors(wrongAutoQ, exam) }, '🔁 Vježbaj greške (' + wrongAutoQ.length + ')'),
         e('button', { className: 'btn btn-gold', onClick: () => { onBack(); setTimeout(() => document.getElementById('exams')?.scrollIntoView({ behavior: 'smooth' }), 100) } }, 'Pokušaj drugi ispit →'),
+      ),
+      !canSeeAnalysis && wrongAutoQ.length > 0 && e('div', { style: { marginTop: 14 } },
+        e(LockedResultsBlock, {
+          label: 'Vježbanje grešaka',
+          rows: 2,
+          minHeight: 130,
+          note: 'Ciljano ponavljanje pitanja koja si promašio/la dostupno je od Standard plana.',
+          upgradeHref: UPGRADE_HREF,
+        }),
       ),
       e('div', { style: { marginTop: 32, paddingTop: 24, borderTop: '1px solid var(--bdr)' } },
         e('div', { style: { fontSize: 11, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 14 } }, '📸 Podijeli rezultat'),
@@ -325,7 +345,16 @@ function ResultsInner({
           ),
         ),
       ),
-      (userData?.history?.length > 0) && e('div', { style: { marginTop: 8 } }, e(AnalyticsPanel, { userData: userData || {} })),
+      !canSeeAnalysis && e('div', { style: { marginTop: 8 } },
+        e(LockedResultsBlock, {
+          label: 'Analiza napretka',
+          rows: 3,
+          minHeight: 150,
+          note: 'Trendovi kroz ispite, slabe teme i preporuke dolaze sa Standard planom.',
+          upgradeHref: UPGRADE_HREF,
+        }),
+      ),
+      canSeeAnalysis && (userData?.history?.length > 0) && e('div', { style: { marginTop: 8 } }, e(AnalyticsPanel, { userData: userData || {} })),
     ),
   )
 }

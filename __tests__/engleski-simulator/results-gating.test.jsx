@@ -1,0 +1,150 @@
+// @vitest-environment happy-dom
+/**
+ * results-gating.test.jsx
+ *
+ * Renderira Results (components/engleski-simulator/screens/ResultsScreen.js) sa
+ * sintetičkim ispitom više razine i provjerava politiku besplatnog ispita:
+ *   - free korisnik vidi ocjenu/postotak, statove, 'Po ispitnim cjelinama' i
+ *     'Rezultati po tipu pitanja', ali razrada (tekst pitanja, točni odgovori,
+ *     obrazloženja, AnswerHelper, analiza po temama, vježbanje grešaka) NIJE u
+ *     DOM-u — samo LockedResultsBlock s CTA-om prema Standardu,
+ *   - pro korisnik vidi punu razradu bez ijednog zaključanog bloka,
+ *   - checkSimulatorAccess: ispit je besplatan, vježbanje ostaje na FREE_LIMIT.
+ *
+ * AnswerHelper i AnalyticsPanel su stubovi s prepoznatljivim tekstom — tako se
+ * vidi je li komponenta uopće renderirana, bez vučenja pravih ekrana.
+ */
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { render, screen, cleanup } from '@testing-library/react';
+import { Results } from '@/components/engleski-simulator/screens/ResultsScreen';
+import { chk, grade } from '@/lib/engleski-simulator/scoring';
+import { LL, TLBL, TOPIC_LABELS, LEVEL_NAMES, getLevel } from '@/lib/engleski-simulator/constants';
+import { checkSimulatorAccess, FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers';
+import { FREE_ACCESS, PRO_ACCESS } from './_synthExam.js';
+
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() }),
+  usePathname: () => '/engleski-simulator',
+  useSearchParams: () => new URLSearchParams(),
+}));
+
+const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' };
+
+function mc({ id, section }) {
+  return {
+    id,
+    section,
+    type: 'mc',
+    topic: section,
+    q: id + '-TEXT',
+    opts: [id + '-optA', id + '-optB', id + '-optC'],
+    sol: { cl: 'A' },
+    exp: 'Obrazloženje za ' + id,
+  };
+}
+
+const EXAM = {
+  key: 'vis_2024_prvi',
+  year: 2024,
+  season: 'prvi',
+  label: 'Prvi rok',
+  razina: 'visa',
+  qs: [mc({ id: 'R1', section: 'reading' }), mc({ id: 'R2', section: 'reading' }), mc({ id: 'L1', section: 'listening' })],
+};
+// R2 je namjerno netočan — bez pogreške nema ni 'Pogrešni odgovori' ni 'Vježbaj greške'
+const ANSWERS = { R1: 'A', R2: 'B', L1: 'A' };
+
+const AnswerHelper = ({ q }) => <div>{'HELPER:' + q.id}</div>;
+const AnalyticsPanel = () => <div>ANALYTICS-PANEL</div>;
+
+function renderResults(canSeeAnalysis) {
+  return render(
+    <Results
+      exam={EXAM}
+      answers={ANSWERS}
+      qTimes={{}}
+      userData={{ history: [{ examKey: EXAM.key, pct: 67 }] }}
+      onBack={() => {}}
+      onPracticeErrors={() => {}}
+      onGoFilter={() => {}}
+      onGoStats={() => {}}
+      chk={chk}
+      grade={grade}
+      GC={GC}
+      TLBL={TLBL}
+      TOPIC_LABELS={TOPIC_LABELS}
+      LL={LL}
+      AnswerHelper={AnswerHelper}
+      AnalyticsPanel={AnalyticsPanel}
+      LEVEL_NAMES={LEVEL_NAMES}
+      getLevel={getLevel}
+      canSeeAnalysis={canSeeAnalysis}
+    />
+  );
+}
+
+describe('ResultsScreen — gating razrade po planu', () => {
+  beforeEach(() => {
+    window.scrollTo = vi.fn();
+  });
+  afterEach(() => cleanup());
+
+  it('free: ocjena, postotak i bodovni pregled da — razrada ne ulazi u DOM', () => {
+    const { container } = renderResults(false);
+
+    expect(container.querySelector('.score-ring-pct').textContent).toMatch(/^\d+%$/);
+    expect(screen.getByText('Točnih')).toBeTruthy();
+    expect(screen.getByText('Netočnih')).toBeTruthy();
+    expect(screen.getByText('Po ispitnim cjelinama')).toBeTruthy();
+    expect(screen.getByText('Rezultati po tipu pitanja')).toBeTruthy();
+
+    expect(screen.queryByText('R1-TEXT')).toBeNull();
+    expect(screen.queryByText(/Obrazloženje za/)).toBeNull();
+    expect(screen.queryByText(/^HELPER:/)).toBeNull();
+    expect(screen.queryByText(/Točno: A/)).toBeNull();
+    expect(screen.queryByText('Pregled svih pitanja')).toBeNull();
+    expect(screen.queryByText('Rezultati po temi')).toBeNull();
+    expect(screen.queryByText(/Vježbaj greške/)).toBeNull();
+    expect(screen.queryByText('ANALYTICS-PANEL')).toBeNull();
+    expect(container.querySelector('.revlist')).toBeNull();
+
+    const cta = container.querySelector('a[href^="/pro?from=eng-results"]');
+    expect(cta).toBeTruthy();
+    expect(cta.textContent).toBe('Otključaj razradu → Standard');
+  });
+
+  it('pro: puna razrada u DOM-u, bez zaključanog bloka', () => {
+    const { container } = renderResults(true);
+
+    expect(screen.getByText('Pregled svih pitanja')).toBeTruthy();
+    expect(screen.getByText('R1-TEXT')).toBeTruthy();
+    expect(screen.getByText(/Obrazloženje za R2/)).toBeTruthy();
+    expect(screen.getByText('HELPER:R1')).toBeTruthy();
+    expect(screen.getByText(/Vježbaj greške/)).toBeTruthy();
+    expect(screen.getByText('ANALYTICS-PANEL')).toBeTruthy();
+    expect(container.querySelector('.revlist')).toBeTruthy();
+
+    expect(container.querySelector('a[href^="/pro?from=eng-results"]')).toBeNull();
+  });
+});
+
+describe('checkSimulatorAccess — ispit besplatan, vježbanje na FREE_LIMIT', () => {
+  it('prijavljeni free korisnik prolazi cijeli ispit', () => {
+    expect(checkSimulatorAccess(FREE_ACCESS, 0, { freeExam: true }).canProceed).toBe(true);
+    expect(checkSimulatorAccess(FREE_ACCESS, FREE_LIMIT + 10, { freeExam: true }).canProceed).toBe(true);
+  });
+
+  it('u vježbanju free korisnik staje na FREE_LIMIT, pro ne staje', () => {
+    expect(checkSimulatorAccess(FREE_ACCESS, FREE_LIMIT - 1, { freePractice: true }).canProceed).toBe(true);
+    const locked = checkSimulatorAccess(FREE_ACCESS, FREE_LIMIT, { freePractice: true });
+    expect(locked.canProceed).toBe(false);
+    expect(locked.reason).toBe('limit-reached');
+    expect(checkSimulatorAccess(PRO_ACCESS, FREE_LIMIT, { freePractice: true }).canProceed).toBe(true);
+  });
+
+  it('gost ostaje na prijavi i u ispitnom modu', () => {
+    const guest = checkSimulatorAccess({ subscriptionTier: 'free', isLoggedIn: false }, 0, { freeExam: true });
+    expect(guest.canProceed).toBe(false);
+    expect(guest.reason).toBe('not-logged-in');
+  });
+});
