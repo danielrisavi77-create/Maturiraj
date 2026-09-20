@@ -10,8 +10,32 @@ describe('Phase 0 billing success containment', () => {
   it('routes every landing paid-plan action to the plan selection page', () => {
     const source = readSource('app/page.jsx')
 
+    // Landing paid actions must end on the plan selection page (/pro), never on
+    // a checkout call or the post-payment success page. Since fdb744d the seven
+    // onPlan props no longer inline `window.location.href = "/pro"`; they all go
+    // through a single goPro(billing) helper that appends the billing period.
+    // The assertion checks that intent structurally, not the old literal count.
+    const goPro = source.match(
+      /const goPro = \(billing\) => \{([\s\S]*?)\n {2}\};/
+    )
+    expect(goPro, 'app/page.jsx must define a goPro plan-selection helper').toBeTruthy()
+
+    // The helper's only navigation target is the plan selection page.
+    const goProNavigations = goPro[1].match(/window\.location\.href = [^\n]+/g) ?? []
+    expect(goProNavigations).toHaveLength(1)
+    expect(goProNavigations[0]).toContain('`/pro?billing=${q}`')
+
+    // Every paid-plan entry point on the landing page is wired to that helper.
+    const onPlanProps = source.match(/onPlan=\{[^}]*\}/g) ?? []
+    expect(onPlanProps).toHaveLength(7)
+    for (const prop of onPlanProps) {
+      expect(prop, `onPlan prop must route through goPro: ${prop}`).toMatch(/goPro/)
+    }
+
+    // No landing entry point may skip plan selection.
     expect(source).not.toContain('window.location.href = "/uspjeh"')
-    expect(source.match(/window\.location\.href = "\/pro"/g)?.length).toBe(7)
+    expect(source).not.toContain('/api/checkout')
+    expect(source).not.toContain('/api/stripe')
   })
 
   it('routes parent paid-plan actions to plan selection instead of success', () => {

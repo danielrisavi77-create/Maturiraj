@@ -15,10 +15,18 @@
  * obzira na FREE_LIMIT — to je namjerno ponašanje proizvoda, ne ograničenje
  * happy-doma. Uz user:null bi pitanje ostalo zaključano (skeleton, bez MCQ-a) i
  * tok opisan u zadatku (odgovori → Provjeri → Vidi rezultate) ne bi bio
- * izvediv. Zato je mock prilagođen na PRIJAVLJENOG korisnika na besplatnom
- * planu (isPro: false) — čime je "isPro false" dio zahtjeva zadovoljen, a
- * ostatak toka ostaje testabilan. Guest (user:null) paywall-lock na prvom
- * pitanju pokriven je zasebno u exam-play-blocks.test.js / daily-challenge.test.js.
+ * izvediv.
+ *
+ * Od commita 9d997e1 (Discere paid-only) ni prijavljen korisnik na BESPLATNOM
+ * planu više ne prolazi: checkSimulatorAccess sada vraća canProceed:false s
+ * reason 'limit-reached' već na prvom pitanju (free preview / FREE_LIMIT put je
+ * namjerno ugašen), pa preko simulatora stoji PaywallModal "Otključaj
+ * simulator". Zato mock predstavlja PRIJAVLJENOG korisnika na PLAĆENOM
+ * (Standard) planu — isPaid: true, isPro: false — što je najmanja razina koja
+ * prolazi kroz gating, a Pro-only značajke rezultata (analiza, plan, AI) ostaju
+ * zaključane, pa test i dalje vozi stvarni, neizmijenjeni tok kroz gating
+ * umjesto da ga zaobilazi. Guest (user:null) i free paywall-lock pokriveni su
+ * zasebno u exam-play-blocks.test.js / daily-challenge.test.js.
  *
  * NAPOMENA: 'AnalyticsPanelFull.js' (lazy chunk unutar ResultsScreena, prikazan
  * čim postoji povijest) piše pravi JSX u '.js' datoteci (za razliku od ostalih
@@ -34,7 +42,7 @@ import { render, screen, cleanup, waitFor, fireEvent } from '@testing-library/re
 import { createElement as e } from 'react'
 
 vi.mock('@/lib/hooks/useAuth', () => ({
-  useAuth: () => ({ user: { id: 'smoke-test-user' }, isPro: false, isPaid: false, loading: false }),
+  useAuth: () => ({ user: { id: 'smoke-test-user' }, isPro: false, isPaid: true, loading: false }),
 }))
 
 vi.mock('@/components/engleski-simulator/screens/AnalyticsPanelFull', () => ({
