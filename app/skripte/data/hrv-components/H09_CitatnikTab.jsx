@@ -1,5 +1,6 @@
 'use client';
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
+import { useLocalStorageJson } from "@/lib/hooks/useLocalStorageJson";
 
 /* ══════════════════════════════════════════════════════
    CITATNIK H09 — Stranac (Camus) + Egzistencijalizam
@@ -346,19 +347,14 @@ export default function CitatnikH09({onBack, onNext}){
   const [diffFilter, setDiffFilter] = useState("all");
   const [favOnly,    setFavOnly]    = useState(false);
   const [q,          setQ]          = useState("");
-  const [favs,       setFavs]       = useState({});
-  const [copyCount,  setCopyCount]  = useState({});
+  const [favs,       setFavs]       = useLocalStorageJson(LS_FAV, {});
+  const [copyCount,  setCopyCount]  = useLocalStorageJson(LS_COPY, {});
   const [toast,      setToast]      = useState({on:false,msg:""});
   const toastTimer=useRef(null);
 
-  useEffect(()=>{
-    try{const r=localStorage.getItem(LS_FAV);  if(r)setFavs(JSON.parse(r));      }catch(e){}
-    try{const r=localStorage.getItem(LS_COPY); if(r)setCopyCount(JSON.parse(r)); }catch(e){}
-  },[]);
-
   function showToast(msg){clearTimeout(toastTimer.current);setToast({on:true,msg});toastTimer.current=setTimeout(()=>setToast(p=>({...p,on:false})),1800);}
-  function handleFav(id){setFavs(prev=>{const n={...prev};if(n[id])delete n[id];else n[id]=true;try{localStorage.setItem(LS_FAV,JSON.stringify(n));}catch(e){}return n;});}
-  function handleCopy(id){setCopyCount(prev=>{const n={...prev,[id]:(prev[id]||0)+1};try{localStorage.setItem(LS_COPY,JSON.stringify(n));}catch(e){}return n;});showToast("📋 Citat kopiran");}
+  function handleFav(id){setFavs(prev=>{const n={...prev};if(n[id])delete n[id];else n[id]=true;return n;});}
+  function handleCopy(id){setCopyCount(prev=>{const n={...prev,[id]:(prev[id]||0)+1};return n;});showToast("📋 Citat kopiran");}
   function handleTezClick(t){setTezFilter(prev=>String(prev)===String(t)?"all":String(t));}
 
   const filtered=CITATI.filter(c=>{

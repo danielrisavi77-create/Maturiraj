@@ -1,5 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useLocalStorageJson } from "@/lib/hooks/useLocalStorageJson";
 
 const LS_FAV = 'mt.hrv.h11.cit_favs';
 
@@ -305,19 +306,12 @@ function FeaturedQuote({ q, isFav, onFav }) {
 export default function Citatnik({ onTabSwitch }) {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
-  const [favs, setFavs] = useState({});
-
-  useEffect(() => {
-    try {
-      const stored = JSON.parse(localStorage.getItem(LS_FAV) || '{}');
-      setFavs(stored);
-    } catch {}
-  }, []);
+  const [favs, setFavs] = useLocalStorageJson(LS_FAV, {});
 
   const toggleFav = (idx) => {
     setFavs(prev => {
       const next = { ...prev, [idx]: !prev[idx] };
-      try { localStorage.setItem(LS_FAV, JSON.stringify(next)); } catch {}
+
       return next;
     });
   };

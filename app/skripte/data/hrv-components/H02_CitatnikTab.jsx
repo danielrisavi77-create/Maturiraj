@@ -1,5 +1,6 @@
 'use client';
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
+import { useLocalStorageJson } from "@/lib/hooks/useLocalStorageJson";
 
 /* ══ DATA ══ */
 const CITATI = [
@@ -358,16 +359,10 @@ export default function Citatnik({onBack, onNext}){
   const [tezFilter,setTezFilter]=useState("all");
   const [diffFilter,setDiffFilter]=useState("all");
   const [favOnly,setFavOnly]=useState(false);
-  const [favs,setFavs]=useState({});
-  const [copyCount,setCopyCount]=useState({});
+  const [favs,setFavs]=useLocalStorageJson(LS_FAV, {});
+  const [copyCount,setCopyCount]=useLocalStorageJson(LS_COPY, {});
   const [toast,setToast]=useState({on:false,msg:""});
   const toastTimer=useRef(null);
-
-  /* Load from localStorage */
-  useEffect(()=>{
-    try{ const r=localStorage.getItem(LS_FAV); if(r) setFavs(JSON.parse(r)); }catch(e){}
-    try{ const r=localStorage.getItem(LS_COPY); if(r) setCopyCount(JSON.parse(r)); }catch(e){}
-  },[]);
 
   function showToast(msg){
     clearTimeout(toastTimer.current);
@@ -379,7 +374,7 @@ export default function Citatnik({onBack, onNext}){
     setFavs(prev=>{
       const next={...prev};
       if(next[id]) delete next[id]; else next[id]=true;
-      try{ localStorage.setItem(LS_FAV,JSON.stringify(next)); }catch(e){}
+
       return next;
     });
   }
@@ -387,7 +382,7 @@ export default function Citatnik({onBack, onNext}){
   function handleCopy(id){
     setCopyCount(prev=>{
       const next={...prev,[id]:(prev[id]||0)+1};
-      try{ localStorage.setItem(LS_COPY,JSON.stringify(next)); }catch(e){}
+
       return next;
     });
     showToast("📋 Citat kopiran");
