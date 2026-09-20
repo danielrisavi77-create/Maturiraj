@@ -7,7 +7,8 @@
    isExamLocked) da MatEngine.tsx, MatFullSimulator.jsx i build-engine.mjs ne trebaju promjenu. */
 import { __MAT } from './mat/core/state';
 export { __setSubject } from './mat/core/state';
-export { __onExamsChanged, __setExamLoader, __setExamCatalog, __addExams, isExamLoaded, isExamLocked, allExamsLoaded, examQCount, loadExam, loadAllExams, __setExams } from './mat/core/exams';
+export { __onExamsChanged, __setExamLoader, __setExamCatalog, __addExams, isExamLoaded, isExamLocked, allExamsLoaded, examQCount, loadExam, loadAllExams, __setExams,
+  isExamOnlyLoaded, examOnlyQs, examOnlyExam } from './mat/core/exams';
 export { Sim } from './mat/sim/sim';
 export { App } from './mat/app/app';
 export { ErrorBoundary } from './mat/app/error-boundary';

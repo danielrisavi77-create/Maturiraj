@@ -26,7 +26,8 @@ const PLANS = [
       {ok:true,  t:`Skripte za svih ${SUBJECTS.length} predmeta`},
       {ok:true,  t:"Viša i osnovna razina"},
       {ok:true,  t:"Dostupno odmah, bez prijave"},
-      {ok:false, t:"Discere arhiva zadataka"},
+      {ok:true,  t:"Discere ispiti s timerom (uz prijavu)"},
+      {ok:false, t:"Pregled odgovora i obrazloženja"},
       {ok:false, t:"AI Profesor"},
       {ok:false, t:"Roditeljski uvid"},
     ],
@@ -88,7 +89,7 @@ export default function Cijene({ onSkripte, onPlan }) {
             <span className="g-blue">Nadogradi kad si spreman.</span>
           </h2>
           <p style={{color:"var(--muted)",fontSize:15,maxWidth:440,margin:"0 auto 28px",lineHeight:1.78}}>
-            Skripte su <strong style={{color:"var(--green)"}}>uvijek besplatne</strong> za sve. Discere i AI dolaze uz pretplatu — otkaži bilo kada.
+            Skripte su <strong style={{color:"var(--green)"}}>uvijek besplatne</strong> za sve, a Discere ispiti s timerom besplatni su uz prijavu. Razrada odgovora i AI dolaze uz Standard — otkaži bilo kada.
           </p>
 
           {!CHECKOUT_UI_LIVE && (
@@ -231,10 +232,10 @@ export default function Cijene({ onSkripte, onPlan }) {
             <span style={{fontSize:22}}>⭐</span>
             <div style={{flex:1,minWidth:200}}>
               <div style={{fontWeight:700,fontSize:14,color:"var(--orange)",marginBottom:2}}>
-                Discere uključen u svim plaćenim planovima
+                Discere ispiti s timerom besplatni su za sve prijavljene
               </div>
               <div style={{fontSize:12,color:"var(--muted)"}}>
-                Arhiva svih zadataka s državnih matura 2010.–2026. · svi predmeti · sve razine · riješeni odgovori + zasebna aplikacija na discere.app
+                Pregled odgovora, obrazloženja i analiza po temama dolaze uz Standard · arhiva svih zadataka s državnih matura 2010.–2026. · zasebna aplikacija na discere.app
               </div>
             </div>
             <button className="btn bo btn-sm" onClick={() => onPlan?.(billing)} style={{flexShrink:0}}>

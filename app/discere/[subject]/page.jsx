@@ -4,6 +4,8 @@ import { getDiscereSubject } from '@/lib/discere/subject-registry'
 // Reuses the same client-side plan gate as the Hrvatski simulator route —
 // real isPaid tier enforcement (see agents/bugs.md), not the older
 // per-subject logic feat/all-subjects shipped before that fix landed.
+// allowFree ovisi o subject.freeExam: dok nijedan kanonski predmet nije
+// active i freeExam:true, gate ostaje paid-only (fail-closed).
 import PlanGate from '@/app/discere/hrvatski/simulator/PlanGate'
 
 export default async function CanonicalDiscereSubjectPage({ params }) {
@@ -19,7 +21,7 @@ export default async function CanonicalDiscereSubjectPage({ params }) {
   if (!subject || !isCanonicalRoute || !isAvailableForRoute) notFound()
 
   return (
-    <PlanGate>
+    <PlanGate allowFree={subject.freeExam === true}>
       <GenericSubjectApp subject={subject} />
     </PlanGate>
   )

@@ -66,4 +66,16 @@ describe('ExamShell', () => {
     act(() => vi.advanceTimersByTime(3000))
     expect(screen.getByText('00:00')).toBeTruthy()
   })
+
+  it('replaces the review with a locked placeholder when canSeeReview is false', async () => {
+    render(<ExamShell exam={exam()} onComplete={() => {}} onExit={() => {}} canSeeReview={false} />)
+    await userEvent.click(screen.getByLabelText('B'))
+    await userEvent.click(screen.getByRole('button', { name:'Sljedeće' }))
+    await userEvent.click(screen.getByLabelText('B'))
+    await userEvent.click(screen.getByRole('button', { name:'Predaj ispit' }))
+    await userEvent.click(screen.getByRole('button', { name:'Potvrdi predaju' }))
+
+    expect(screen.getByText(/otključaj razradu/i)).toBeTruthy()
+    expect(screen.queryByRole('heading', { name:'Pregled odgovora' })).toBeNull()
+  })
 })

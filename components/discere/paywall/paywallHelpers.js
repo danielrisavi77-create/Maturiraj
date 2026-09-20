@@ -40,18 +40,27 @@ export function buildUserAccess(authState) {
 /**
  * Returns whether the user can proceed at the given question index.
  *
+ * Politika: pravi ispit s timerom (freeExam) je besplatan za svakog prijavljenog
+ * korisnika — zaključana je tek razrada rezultata. Vježbanje ostaje ograničeno:
+ * bez zastavica free tier ne prolazi uopće, a uz freePractice dobiva FREE_LIMIT
+ * pitanja. Pozivi bez trećeg argumenta zadržavaju staro paid-only ponašanje.
+ *
  * @param {UserAccess} userAccess
  * @param {number} questionIndex  0-based index of the question being answered
+ * @param {{ freeExam?: boolean, freePractice?: boolean }} [opts]
  * @returns {{ canProceed: boolean, reason: 'ok'|'not-logged-in'|'limit-reached' }}
  */
-export function checkSimulatorAccess(userAccess, questionIndex) {
-  // Paid-only Discere (W2): free preview / FREE_LIMIT path is disabled.
-  // Proxy + PlanGate already block free; this keeps client gates honest.
-  void questionIndex
+export function checkSimulatorAccess(userAccess, questionIndex, { freeExam = false, freePractice = false } = {}) {
   if (!userAccess?.isLoggedIn) {
     return { canProceed: false, reason: 'not-logged-in' }
   }
   if (userAccess.subscriptionTier !== 'free') {
+    return { canProceed: true, reason: 'ok' }
+  }
+  if (freeExam) {
+    return { canProceed: true, reason: 'ok' }
+  }
+  if (freePractice && questionIndex < FREE_LIMIT) {
     return { canProceed: true, reason: 'ok' }
   }
   return { canProceed: false, reason: 'limit-reached' }
@@ -75,30 +84,43 @@ export function checkResultsAccess(userAccess) {
 }
 
 /**
- * Hrvatski simulator: rješavanje i ocjena testa su besplatni, ali razrada
- * rezultata (pregled pitanja, analiza, savjeti, vježbanje grešaka) ide od
- * Standard plana naviše. Zaseban helper jer checkResultsAccess pokriva
- * pro-only AI analizu koju dijele i ostali predmeti.
+ * Discere (svi predmeti): rješavanje i ocjena ispita su besplatni, ali razrada
+ * rezultata (pregled pitanja, točni odgovori, obrazloženja, analiza po temama,
+ * savjeti, vježbanje grešaka) ide od Standard plana naviše. Zaseban helper jer
+ * checkResultsAccess pokriva pro-only AI analizu.
  *
  * @param {UserAccess} userAccess
  * @returns {boolean}
  */
-export function canSeeHrvAnalysis(userAccess) {
+export function canSeeDiscereAnalysis(userAccess) {
   return !!userAccess && userAccess.subscriptionTier !== 'free'
 }
 
-/**
- * Ispiti koji su u cijelosti besplatni u vježbanju (bez FREE_LIMIT gatea).
- * Ispitni mod je već besplatan za sve ispite — ovo dodatno oslobađa vježbanje.
- */
-export const HRV_FREE_PRACTICE_EXAMS = ['2016_ljeto_B']
+export const canSeeHrvAnalysis = canSeeDiscereAnalysis
 
 /**
+ * Ispiti koji su u cijelosti besplatni u vježbanju (bez FREE_LIMIT gatea), po
+ * predmetu. Ispitni mod je već besplatan za sve ispite — ovo dodatno oslobađa
+ * vježbanje na dogovorenom demo skupu.
+ */
+export const FREE_PRACTICE_EXAMS = {
+  hrv: ['2016_ljeto_B'],
+}
+
+/**
+ * @param {string} subject  — ključ predmeta, npr. 'hrv'
  * @param {string} examKey
  * @returns {boolean}
  */
+export function isFreePracticeExam(subject, examKey) {
+  const keys = FREE_PRACTICE_EXAMS[subject]
+  return Array.isArray(keys) && keys.includes(examKey)
+}
+
+export const HRV_FREE_PRACTICE_EXAMS = FREE_PRACTICE_EXAMS.hrv
+
 export function isHrvFreePracticeExam(examKey) {
-  return HRV_FREE_PRACTICE_EXAMS.includes(examKey)
+  return isFreePracticeExam('hrv', examKey)
 }
 
 /**

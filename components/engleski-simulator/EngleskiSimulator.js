@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState, useMemo, lazy, Suspense } from 'react'
 import { useAuth } from '@/lib/hooks/useAuth'
-import { SimulatorPreviewGate, LockedAnalysisSection, buildUserAccess } from '@/components/discere/paywall'
-import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers'
+import { SimulatorPreviewGate, LockedAnalysisSection, LockedResultsBlock, buildUserAccess } from '@/components/discere/paywall'
+import { FREE_LIMIT, canSeeDiscereAnalysis } from '@/components/discere/paywall/paywallHelpers'
 import { getExamsIndex, getLoadedSync, isRazinaLoaded, loadRazina, razinaForKey, RAZINE } from '@/lib/engleski-simulator/examsLoader'
 import { chk, grade, calcXpGain, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
@@ -44,6 +44,23 @@ function ScreenLoader() {
 // Ekrani koji analiziraju cijelu povijest ili sva pitanja trebaju OBJE razine —
 // bez njih bi analitika, filter i PDF tiho radili samo s učitanom razinom.
 const FULL_EXAMS_SCREENS = ['stats', 'browse', 'errors', 'bookmarks', 'daily', 'filter', 'vocab', 'compare', 'pdf_report', 'analytics']
+
+// Ekrani koji pokazuju točne odgovore, obrazloženja ili analizu cijele banke —
+// po politici su to Standard sadržaj, pa za free tier u njih uopće ne ulazimo:
+// ni ispiti se ne dovlače ni sadržaj ne dolazi u DOM, nego se prikaže placeholder
+// s CTA-om. Ispitni mod i vježbanje (FREE_LIMIT) idu svojim putem i ostaju ovdje.
+// 'stats' NIJE ovdje: vlastiti rezultati, XP i povijest su besplatni — zaključana je
+// samo analitika unutar njega (AnalyticsPanelBound).
+const PAID_SCREENS = ['browse', 'vocab', 'bookmarks', 'errors', 'analytics', 'pdf_report']
+
+const PAID_SCREEN_COPY = {
+  browse:     { label: 'Pregled svih pitanja', note: 'Pregled banke s točnim odgovorima i obrazloženjima dolazi sa Standard planom. Ispiti s timerom ostaju besplatni.' },
+  vocab:      { label: 'Vocabulary vježba', note: 'Vježba s točnim odgovorima i obrazloženjima dolazi sa Standard planom.' },
+  bookmarks:  { label: 'Bookmarci', note: 'Spremljena pitanja s točnim odgovorima dolaze sa Standard planom.' },
+  errors:     { label: 'Greške — ponavljanje', note: 'Vježbanje grešaka s obrazloženjima dolazi sa Standard planom.' },
+  analytics:  { label: 'Analitika', note: 'Analiza po temama i savjeti dolaze sa Standard planom.' },
+  pdf_report: { label: 'PDF izvještaj', note: 'Izvještaj s analizom po temama dolazi sa Standard planom.' },
+}
 
 // Wrapper so AnalyticsPanelFull can be passed as a prop to e()-based screens
 function AnalyticsPanelWrapper(props) {
@@ -474,6 +491,8 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
         currentQuestionIndex={curIdx}
         totalQuestions={qs.length}
         from="eng-simulator"
+        freeExam={examMode}
+        freePractice={!examMode}
         previewScore={(() => {
           const pqs = qs.filter(x => x.type !== 'sa' && x.type !== 'es').slice(0, FREE_LIMIT)
           return { correct: pqs.filter(x => chk(x, answers[x.id]) === true).length, total: pqs.length }
@@ -571,9 +590,11 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
 export default function EngleskiSimulator() {
   const { user, isPro, isPaid } = useAuth()
   const userAccess = useMemo(() => buildUserAccess({ user, isPro, isPaid }), [user, isPro, isPaid])
+  const canSeeAnalysis = canSeeDiscereAnalysis(userAccess)
 
   const [screen, setScreen] = useState('home')
   const [screenHistory, setScreenHistory] = useState(['home'])
+  const [lockedScreen, setLockedScreen] = useState(null)
   const [selectedExamKey, setSelectedExamKey] = useState(null)
   const [examMode, setExamMode] = useState(false)
   const [timedMode, setTimedMode] = useState(false)
@@ -607,11 +628,22 @@ export default function EngleskiSimulator() {
 
   // Results i Stats ekrani ne prosljeđuju examsMap analitici, pa ga injektiramo
   // ovdje — inače AnalyticsPanelFull pada na fallback s nepotpunom mapom.
+  // Analitika pokazuje točne odgovore i obrazloženja pitanja iz cijele povijesti,
+  // pa je za free tier zamijenjena placeholderom; vlastiti bodovi i XP iznad nje
+  // ostaju besplatni.
   const AnalyticsPanelBound = useMemo(
     () => function AnalyticsPanelInjected(props) {
+      if (!canSeeAnalysis) return (
+        <LockedResultsBlock
+          {...PAID_SCREEN_COPY.analytics}
+          rows={5}
+          minHeight={200}
+          upgradeHref="/pro?from=eng-feature&plan=standard"
+        />
+      )
       return <AnalyticsPanelWrapper examsMap={examLookup} {...props} />
     },
-    [examLookup],
+    [examLookup, canSeeAnalysis],
   )
   const selectedExam = selectedExamKey ? examLookup[selectedExamKey] : null
 
@@ -662,6 +694,17 @@ export default function EngleskiSimulator() {
   }
 
   const updateUserData = updateFn => setUserData(prev => updateFn(prev || {}))
+
+  // Ulaz u ekran s plaćenim sadržajem: za free tier ne dovlačimo ispite i ne
+  // renderiramo ekran, nego zaključani placeholder s CTA-om.
+  const goPaidScreen = target => {
+    if (!canSeeAnalysis) {
+      setLockedScreen(target)
+      navigate('locked')
+      return
+    }
+    ensureAllExams(() => navigate(target))
+  }
 
   const toggles = (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginLeft: 'auto' }}>
@@ -837,6 +880,22 @@ export default function EngleskiSimulator() {
     // Ekran koji treba obje razine ne renderiramo s nepotpunom mapom — effect
     // iznad ih dovlači, a dotad stoji loader.
     if (FULL_EXAMS_SCREENS.includes(screen) && !RAZINE.every(r => isRazinaLoaded(r))) return <ScreenLoader />
+    // Sigurnosna mreža: na plaćeni ekran se za free tier ne ulazi ni jednim putem.
+    if (screen === 'locked' || (!canSeeAnalysis && PAID_SCREENS.includes(screen))) {
+      const copy = PAID_SCREEN_COPY[screen === 'locked' ? lockedScreen : screen] || PAID_SCREEN_COPY.browse
+      return (
+        <div className="eng-sim"><div className="sim-card" style={{ maxWidth: 640, margin: '24px auto' }}>
+          <button className="btn btn-g" style={{ marginBottom: 16 }} onClick={goBack}>← Natrag</button>
+          <LockedResultsBlock
+            label={copy.label}
+            note={copy.note}
+            rows={5}
+            minHeight={200}
+            upgradeHref="/pro?from=eng-feature&plan=standard"
+          />
+        </div></div>
+      )
+    }
     const screenContent = (() => {
       switch (screen) {
         case 'home':
@@ -845,14 +904,14 @@ export default function EngleskiSimulator() {
               onModeSelect={onModeSelect}
               userData={userData}
               toggles={toggles}
-              goErrors={() => ensureAllExams(() => navigate('errors'))}
-              goBookmarks={() => ensureAllExams(() => navigate('bookmarks'))}
+              goErrors={() => goPaidScreen('errors')}
+              goBookmarks={() => goPaidScreen('bookmarks')}
               goStats={() => ensureAllExams(() => navigate('stats'))}
-              goBrowse={() => ensureAllExams(() => navigate('browse'))}
+              goBrowse={() => goPaidScreen('browse')}
               goDailyChallenge={() => ensureAllExams(() => navigate('daily'))}
               goVirtualExam={() => ensureAllExams(map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
               goFilter={() => ensureAllExams(() => navigate('filter'))}
-              goVocab={() => ensureAllExams(() => navigate('vocab'))}
+              goVocab={() => goPaidScreen('vocab')}
               goCompare={() => ensureAllExams(() => navigate('compare'))}
               visaLoaded={true}
               examsIndex={EXAMS_INDEX}
@@ -931,6 +990,7 @@ export default function EngleskiSimulator() {
               AnalyticsPanel={AnalyticsPanelBound}
               LEVEL_NAMES={LEVEL_NAMES}
               getLevel={getLevel}
+              canSeeAnalysis={canSeeAnalysis}
             />
             <LockedAnalysisSection
               userAccess={userAccess}
@@ -945,8 +1005,8 @@ export default function EngleskiSimulator() {
               userData={userData}
               onBack={goBack}
               onFilter={() => ensureAllExams(() => navigate('filter'))}
-              onFilterSession={() => ensureAllExams(() => navigate('errors'))}
-              onPDFReport={() => ensureAllExams(() => navigate('pdf_report'))}
+              onFilterSession={() => goPaidScreen('errors')}
+              onPDFReport={() => goPaidScreen('pdf_report')}
               LEVEL_NAMES={LEVEL_NAMES}
               getLevel={getLevel}
               xpProgress={xpProgress}
@@ -1075,14 +1135,14 @@ export default function EngleskiSimulator() {
               onModeSelect={onModeSelect}
               userData={userData}
               toggles={toggles}
-              goErrors={() => ensureAllExams(() => navigate('errors'))}
-              goBookmarks={() => ensureAllExams(() => navigate('bookmarks'))}
+              goErrors={() => goPaidScreen('errors')}
+              goBookmarks={() => goPaidScreen('bookmarks')}
               goStats={() => ensureAllExams(() => navigate('stats'))}
-              goBrowse={() => ensureAllExams(() => navigate('browse'))}
+              goBrowse={() => goPaidScreen('browse')}
               goDailyChallenge={() => ensureAllExams(() => navigate('daily'))}
               goVirtualExam={() => ensureAllExams(map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
               goFilter={() => ensureAllExams(() => navigate('filter'))}
-              goVocab={() => ensureAllExams(() => navigate('vocab'))}
+              goVocab={() => goPaidScreen('vocab')}
               goCompare={() => ensureAllExams(() => navigate('compare'))}
               visaLoaded={true}
               examsIndex={EXAMS_INDEX}

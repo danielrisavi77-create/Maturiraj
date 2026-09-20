@@ -4,21 +4,25 @@
 // brought to MAT/HRV parity via a postMessage bridge (same protocol family as the math engine):
 //
 //   iframe → parent : DISCERE_READY (handshake), DISCERE_SAVE {key,value} (synced DS keys),
-//                     DISCERE_RESULT {result} (completed real exam), DISCERE_UPGRADE (locked exam)
+//                     DISCERE_RESULT {result} (completed real exam),
+//                     DISCERE_UPGRADE {from,plan} (locked practice/feature/results block)
 //   parent → iframe : DISCERE_HYDRATE {state} (restore from cloud, newest-wins), DISCERE_CONFIG
-//                     {tier,isPro,allowed} (tier-gate), DISCERE_BOOT (render after hydrate)
+//                     {tier,isPro,allowed,freeExam,lockResults} (tier-gate), DISCERE_BOOT
 //
 // Persistence (no new migration — same tables as math, new subject):
 //   • discere_sim_state  (subject='soc')  ← debounced blob of the engine's localStorage
 //   • sim_progress       (subject='soc')  ← one row per finished real exam
-// Tier gate: free → demo exams only; standard/pro → all (allowed=null ⇒ unlocked).
+// Tier gate: ispitni mod (pravi ispiti s timerom) besplatan je za sve prijavljene
+// korisnike (freeExam). Free dodatno dobiva: ocjenu, postotak, bodove i XP, ali mu je
+// razrada rezultata zaključana (lockResults), a vježbanje je ograničeno na demo ispite
+// (allowed). Standard/pro → sve otključano (allowed=null, lockResults=false).
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { loadSimState, saveSimState } from "@/lib/discere-sim-state";
 import { saveSimResult } from "@/lib/sim-progress";
 
-// Free demo: newest year, both rokovi. Everything else is PRO/standard.
+// Free demo za VJEŽBANJE: newest year, both rokovi. Ispitni mod je besplatan za sve ispite.
 const SOC_FREE_DEMO = ["2025_ljeto", "2025_jesen"];
 const REAL_EXAM = /^\d{4}_(ljeto|jesen)$/;
 
@@ -31,7 +35,7 @@ export default function SociologijaClient() {
 
   useEffect(() => {
     const tier = isPro ? "pro" : isPaid ? "standard" : "free";
-    const allowed = tier === "free" ? SOC_FREE_DEMO : null; // null ⇒ all unlocked
+    const allowed = tier === "free" ? SOC_FREE_DEMO : null; // null ⇒ all unlocked (vježbanje)
 
     function post(msg) {
       const win = iframeRef.current && iframeRef.current.contentWindow;
@@ -43,7 +47,14 @@ export default function SociologijaClient() {
       try { state = (await loadSimState("soc")) || {}; } catch { state = {}; }
       bufferRef.current = { ...state };
       post({ type: "DISCERE_HYDRATE", state });
-      post({ type: "DISCERE_CONFIG", tier, isPro: tier === "pro", allowed });
+      post({
+        type: "DISCERE_CONFIG",
+        tier,
+        isPro: tier === "pro",
+        allowed,
+        freeExam: true,
+        lockResults: tier === "free",
+      });
       post({ type: "DISCERE_BOOT" });
     }
 
@@ -56,7 +67,9 @@ export default function SociologijaClient() {
       if (d.type === "DISCERE_READY") { handshake(); return; }
 
       if (d.type === "DISCERE_UPGRADE") {
-        try { router.push("/pro?from=discere"); } catch {}
+        const from = d.from || "discere";
+        const plan = d.plan || "standard";
+        try { router.push("/pro?from=" + encodeURIComponent(from) + "&plan=" + encodeURIComponent(plan)); } catch {}
         return;
       }
 

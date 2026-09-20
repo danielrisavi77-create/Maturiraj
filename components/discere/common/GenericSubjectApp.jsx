@@ -4,8 +4,16 @@ import ExamShell from './ExamShell'
 import SubjectExamHub from './SubjectExamHub'
 import { loadExam, loadSubjectIndex } from '@/lib/discere/content-loader'
 import { saveCanonicalSimResult } from '@/lib/discere/progress'
+import { useAuth } from '@/lib/hooks/useAuth'
+import { buildUserAccess, canSeeDiscereAnalysis } from '@/components/discere/paywall/paywallHelpers'
 
 export default function GenericSubjectApp({ subject }) {
+  const auth = useAuth()
+  // Predmeti bez freeExam idu kroz PlanGate paid-only, pa je pregled ondje
+  // već zaključan tierom — canSeeReview je fail-open true. Za freeExam
+  // predmete PlanGate pušta i free korisnika, pa razradu rezultata gatira
+  // canSeeDiscereAnalysis.
+  const canSeeReview = subject.freeExam === true ? canSeeDiscereAnalysis(buildUserAccess(auth)) : true
   const [index, setIndex] = useState(null)
   const [exam, setExam] = useState(null)
   const [error, setError] = useState('')
@@ -48,6 +56,6 @@ export default function GenericSubjectApp({ subject }) {
 
   if (loading) return <div style={{minHeight:'70vh',display:'grid',placeItems:'center',color:'var(--muted)'}}>Učitavam…</div>
   if (error) return <div role="alert" style={{padding:24,color:'var(--text)'}}>{error}</div>
-  if (exam) return <ExamShell exam={exam} onExit={() => setExam(null)} onComplete={saveResult} />
+  if (exam) return <ExamShell exam={exam} onExit={() => setExam(null)} onComplete={saveResult} canSeeReview={canSeeReview} />
   return <SubjectExamHub subject={subject} index={index} onOpen={openExam} />
 }

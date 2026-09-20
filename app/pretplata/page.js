@@ -626,7 +626,8 @@ export default function PretplataPage() {
             <li className="f-yes">Plagijat detektor (sažetak)</li>
             <li className="f-yes">Objektivnost detektor (sažetak)</li>
             <li className="f-star"><strong>1 esej + 1 sažetak Workspace</strong></li>
-            <li className="f-no">Discere simulatori (svih 70)</li>
+            <li className="f-yes">Discere ispiti s timerom (svih 70)</li>
+            <li className="f-no">Discere pregled odgovora i analiza</li>
             <li className="f-no">Sve modelne eseje + sažetke</li>
             <li className="f-no">Parent dashboard</li>
             <li className="f-no">AI features</li>
@@ -721,7 +722,10 @@ export default function PretplataPage() {
               <tr><td className="cell-feature">Export (clipboard / .txt)</td><td className="cell-tier cross">✗</td><td className="cell-tier check">✓</td><td className="cell-tier check">✓</td></tr>
 
               <tr className="row-section"><td colSpan="4">🎯 Discere Simulatori</td></tr>
-              <tr><td className="cell-feature">Maturalni simulatori</td><td className="cell-tier cross">✗</td><td className="cell-tier check">70 ispita</td><td className="cell-tier check">70 ispita</td></tr>
+              <tr><td className="cell-feature">Ispiti s timerom</td><td className="cell-tier check">70 ispita</td><td className="cell-tier check">70 ispita</td><td className="cell-tier check">70 ispita</td></tr>
+              <tr><td className="cell-feature">Ocjena, postotak i bodovi</td><td className="cell-tier check">✓</td><td className="cell-tier check">✓</td><td className="cell-tier check">✓</td></tr>
+              <tr><td className="cell-feature">Pregled odgovora i obrazloženja</td><td className="cell-tier cross">✗</td><td className="cell-tier check">✓</td><td className="cell-tier check">✓</td></tr>
+              <tr><td className="cell-feature">Vježbanje bez ograničenja</td><td className="cell-tier partial">3 pitanja</td><td className="cell-tier check">✓</td><td className="cell-tier check">✓</td></tr>
               <tr><td className="cell-feature">Statistika rezultata</td><td className="cell-tier cross">✗</td><td className="cell-tier check">✓</td><td className="cell-tier check">✓</td></tr>
 
               <tr className="row-section"><td colSpan="4">📊 Plan učenja</td></tr>

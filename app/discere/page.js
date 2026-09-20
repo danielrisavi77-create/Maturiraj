@@ -110,7 +110,7 @@ export default function Discere() {
               <strong style={{color:"var(--text)", display:"block", marginBottom:6}}>📦 Discere arhiva</strong>
               Trenutno aktivni: <strong style={{color:"var(--text)"}}>Hrvatski, Matematika, Engleski i Sociologija</strong>.
               Ostali predmeti (uključujući Kemiju) su u pripremi — nisu otključani kao aktivni.
-              Discere zahtijeva <strong style={{color:"var(--text)"}}>Standard ili Pro</strong> plan; nema besplatnog previewa zadataka.
+              Pravi ispiti s timerom su <strong style={{color:"var(--text)"}}>besplatni</strong> za prijavljene; pregled odgovora, obrazloženja i analiza dolaze sa <strong style={{color:"var(--text)"}}>Standard</strong> planom.
             </div>
           </div>
         </div>

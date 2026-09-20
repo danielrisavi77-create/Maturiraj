@@ -10,7 +10,7 @@ export default function Funkcije() {
           <div className="eye" style={{marginBottom:11}}>Funkcije</div>
           <h2 className="d2">Pet alata. Jedna pretplata.</h2>
           <p style={{color:"var(--muted)",fontSize:15,marginTop:14,maxWidth:480,margin:"14px auto 0",lineHeight:1.75}}>
-            Skripte besplatno za sve. Discere arhiva, AI profesor i prijemni uz pretplatu — od <strong style={{color:"var(--text)"}}>9,99 €/mj</strong>.
+            Skripte i Discere ispiti s timerom besplatni za sve prijavljene. Razrada rezultata, AI profesor i prijemni uz pretplatu — od <strong style={{color:"var(--text)"}}>9,99 €/mj</strong>.
           </p>
         </div>
 
@@ -47,11 +47,11 @@ export default function Funkcije() {
             <div style={{position:"absolute",top:-40,right:-40,width:200,height:200,background:"radial-gradient(circle,rgba(255,107,43,.12),transparent 65%)",pointerEvents:"none"}}/>
             <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
               <div style={{width:40,height:40,borderRadius:11,background:"rgba(255,107,43,.12)",border:"1px solid rgba(255,107,43,.2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20}}>⭐</div>
-              <span className="badge b-gold" style={{fontSize:10}}>Uz pretplatu</span>
+              <span className="badge b-gold" style={{fontSize:10}}>Ispiti besplatni · razrada uz Standard</span>
             </div>
             <div style={{fontWeight:700,fontSize:17,marginBottom:8}}>Discere — arhiva matura</div>
             <p style={{fontSize:13,color:"var(--muted)",lineHeight:1.75,marginBottom:20}}>
-              Svi zadaci s državnih matura od 2010. do danas. Riješeni odgovori, filtri po godini i temi.
+              Svi zadaci s državnih matura od 2010. do danas. Ispiti s timerom besplatni su za prijavljene, a riješeni odgovori i filtri dolaze uz Standard.
             </p>
             <div style={{display:"flex",gap:16}}>
               {[["24","predmeta"],["2010","–2026"],["100%","odgovora"]].map(([n,l]) => (

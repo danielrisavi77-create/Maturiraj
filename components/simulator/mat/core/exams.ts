@@ -2,7 +2,7 @@
 'use client';
 /* 5.3: izdvojeno iz components/simulator/MatEngineCore.tsx bez promjene ponasanja.
    Katalog ispita, lazy loader i upiti nad njim (2.1). */
-import { __MAT } from './state';
+import { __MAT, isFreeExam } from './state';
 
 export let EXAMS = {};
 // ── 2.1: ispiti se ucitavaju na zahtjev ─────────────────────────────────────
@@ -11,6 +11,16 @@ export let EXAMS = {};
 let __examLoader = null;
 const __examSubs = new Set();
 const __examPending = {};
+// ── Besplatan ispitni mod na zakljucanim ispitima ───────────────────────────
+// Ispit s timerom je besplatan na SVIM ispitima; zakljucan ispit znaci samo da je
+// vjezbanje zakljucano. Pitanja takvog ispita zato NIKAD ne idu u EXAMS[key].qs —
+// odatle ih citaju cross-exam modovi (SRS, browse, virtualni ispit, filter, adaptivni,
+// flashcards, mixed, oznake, statistika, errorTracker…) i free korisnik bi dobio
+// cijelu placenu banku. Drze se u __EXAM_ONLY i vidi ih samo ispitni mod.
+const __EXAM_ONLY = {};
+export function isExamOnlyLoaded(k){ return !!__EXAM_ONLY[k]; }
+export function examOnlyQs(k){ const r=__EXAM_ONLY[k]; return r ? r.qs : []; }
+export function examOnlyExam(k){ const r=__EXAM_ONLY[k]; return r ? r.exam : null; }
 function __notifyExams(){ __examSubs.forEach(function(f){ try{ f(); }catch(e){} }); }
 export function __onExamsChanged(fn){ __examSubs.add(fn); return function(){ __examSubs.delete(fn); }; }
 export function __setExamLoader(fn){ __examLoader = (typeof fn === "function") ? fn : null; }
@@ -23,7 +33,10 @@ export function __setExamCatalog(list){
       duration:(m.durationSec||m.duration), questionCount:(m.questionCount||0),
       locked:!!m.locked, qs:[], _loaded:false };
   });
-  EXAMS = next; __notifyExams();
+  EXAMS = next;
+  // Novi katalog = nova tier-odluka; stari side-store zakljucanih ispita vise ne vrijedi.
+  Object.keys(__EXAM_ONLY).forEach(function(k){ delete __EXAM_ONLY[k]; });
+  __notifyExams();
 }
 // Spajanje gotovih ispita (uvezeni/custom) — dolaze s pitanjima, nista se ne dohvaca.
 export function __addExams(map){
@@ -42,28 +55,35 @@ export function examQCount(ex){
   if(ex.qs && ex.qs.length) return ex.qs.length;
   return ex.questionCount || 0;
 }
-export function loadExam(key, quiet){
+// forExamMode: poziv dolazi iz ispitnog moda (ili njegovog izbornika). Samo tada se
+// zakljucan ispit uopce smije dohvatiti — i tada ide u __EXAM_ONLY, nikad u EXAMS[key].qs.
+export function loadExam(key, quiet, forExamMode){
   const ex = EXAMS[key];
   if(!ex) return Promise.reject(new Error("Nepoznat ispit: "+key));
-  if(isExamLoaded(key)) return Promise.resolve(ex);
-  if(ex.locked) return Promise.reject(new Error("Ispit je zakljucan: "+key));
+  const examOnly = !!(ex.locked && isFreeExam() && forExamMode);
+  if(examOnly){ if(isExamOnlyLoaded(key)) return Promise.resolve(__EXAM_ONLY[key].exam); }
+  else if(isExamLoaded(key)) return Promise.resolve(ex);
+  if(ex.locked && !examOnly) return Promise.reject(new Error("Ispit je zakljucan: "+key));
   if(!__examLoader) return Promise.reject(new Error("Loader ispita nije postavljen."));
-  if(__examPending[key]) return __examPending[key];
-  __examPending[key] = Promise.resolve().then(function(){ return __examLoader(key); }).then(function(m){
+  // Zaseban pending kljuc: isti ispit moze istovremeno ici u EXAMS i u __EXAM_ONLY.
+  const pk = examOnly ? ("exam-only:"+key) : key;
+  if(__examPending[pk]) return __examPending[pk];
+  __examPending[pk] = Promise.resolve().then(function(){ return __examLoader(key); }).then(function(m){
     const qs = (m && m.qs) ? m.qs.filter(function(q){ return q && !q._META; }) : [];
     // Prazan rezultat je greska, a ne "ucitan prazan ispit" — inace UI tiho udje u sesiju s 0 pitanja.
     if(!qs.length) throw new Error("Ispit "+key+" je stigao bez pitanja.");
-    EXAMS[key] = Object.assign({}, EXAMS[key], { qs:qs, _loaded:true });
+    if(examOnly) __EXAM_ONLY[key] = { qs:qs, exam:Object.assign({}, EXAMS[key], { qs:qs, _loaded:true }) };
+    else EXAMS[key] = Object.assign({}, EXAMS[key], { qs:qs, _loaded:true });
     if(m && m.qImages) Object.assign(__MAT.Q_IMAGES, m.qImages);
-    delete __examPending[key];
+    delete __examPending[pk];
     if(!quiet) __notifyExams();
-    return EXAMS[key];
+    return examOnly ? __EXAM_ONLY[key].exam : EXAMS[key];
   }).catch(function(err){
-    delete __examPending[key];
+    delete __examPending[pk];
     try{ console.warn("[mat] loadExam", key, err); }catch(e){}
     throw err; // pozivatelj mora znati da ispit NIJE ucitan (prikaz greske + ponovni pokusaj)
   });
-  return __examPending[key];
+  return __examPending[pk];
 }
 // Postupno ucitavanje svih ispita uz progress (0..1) za cross-exam modove.
 // Pojedinacni pad ne rusi cijelu seriju — zabiljezi se i nastavlja se dalje.
