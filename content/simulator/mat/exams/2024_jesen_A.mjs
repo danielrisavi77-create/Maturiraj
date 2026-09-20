@@ -59,9 +59,12 @@ function Svg39b_2024Ajes(){
   );
 }
 
-function Svg37_2024Ajes(){
+// Prizma ABCDEFGH. `cone:true` dodaje upisani uspravni stožac — to je relevantno
+// samo za podpitanje 37.2; u 37.1 se stožac uopće ne spominje pa se ne crta.
+function Svg37_2024Ajes(props){
+  const withCone = !!(props && props.cone);
   const st="var(--text)";
-  const blue="var(--blue,#4a90d9)";
+  const blue="var(--blue)";
   const Wd=340, Hg=310;
   const side = 100;
   const skew = 45;
@@ -78,7 +81,13 @@ function Svg37_2024Ajes(){
   const cx=(Ax+Bx+Cx+Dx)/4, cy=(Ay+By+Cy+Dy)/4;
   const apexX=(Ex+Fx+Gx+Hx)/4, apexY=(Ey+Fy+Gy+Hy)/4;
   const rxE = side/2;
-  const ryE = Math.abs(skewY)/2 + 4;
+  const ryE = Math.abs(skewY)/2;   // upisana kružnica baze — ostaje unutar baze ABCD
+  const cone = withCone ? [
+    e("ellipse",{key:"be",cx:cx,cy:cy,rx:rxE,ry:ryE,fill:"none",stroke:blue,strokeWidth:1.5}),
+    e("line",{key:"gl",x1:cx-rxE,y1:cy,x2:apexX,y2:apexY,stroke:blue,strokeWidth:1.5}),
+    e("line",{key:"gr",x1:cx+rxE,y1:cy,x2:apexX,y2:apexY,stroke:blue,strokeWidth:1.5}),
+    e("circle",{key:"apex",cx:apexX,cy:apexY,r:2.5,fill:blue})
+  ] : [];
   return e("svg",{viewBox:`0 0 ${Wd} ${Hg}`,xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"340px",width:"100%",display:"block",margin:"12px auto"}},
     e("line",{key:"AB",x1:Ax,y1:Ay,x2:Bx,y2:By,stroke:st,strokeWidth:1.6}),
     e("line",{key:"BF",x1:Bx,y1:By,x2:Fx,y2:Fy,stroke:st,strokeWidth:1.6}),
@@ -92,10 +101,7 @@ function Svg37_2024Ajes(){
     e("line",{key:"AD",x1:Ax,y1:Ay,x2:Dx,y2:Dy,stroke:st,strokeWidth:1.3,strokeDasharray:"4 4"}),
     e("line",{key:"DC",x1:Dx,y1:Dy,x2:Cx,y2:Cy,stroke:st,strokeWidth:1.3,strokeDasharray:"4 4"}),
     e("line",{key:"DH",x1:Dx,y1:Dy,x2:Hx,y2:Hy,stroke:st,strokeWidth:1.3,strokeDasharray:"4 4"}),
-    e("ellipse",{key:"be",cx:cx,cy:cy,rx:rxE,ry:ryE,fill:"none",stroke:blue,strokeWidth:1.5}),
-    e("line",{key:"gl",x1:cx-rxE,y1:cy,x2:apexX,y2:apexY,stroke:blue,strokeWidth:1.5}),
-    e("line",{key:"gr",x1:cx+rxE,y1:cy,x2:apexX,y2:apexY,stroke:blue,strokeWidth:1.5}),
-    e("circle",{key:"apex",cx:apexX,cy:apexY,r:2.5,fill:blue}),
+    ...cone,
     e("text",{key:"lA",x:Ax-12,y:Ay+14,fontSize:14,fontStyle:"italic",fontFamily:"serif",fill:st},"A"),
     e("text",{key:"lB",x:Bx+4,y:By+14,fontSize:14,fontStyle:"italic",fontFamily:"serif",fill:st},"B"),
     e("text",{key:"lC",x:Cx+4,y:Cy+4,fontSize:14,fontStyle:"italic",fontFamily:"serif",fill:st},"C"),
@@ -211,10 +217,7 @@ function Svg23_2024Ajes(){
   }
   return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",style:{maxWidth:"360px",width:"100%",display:"block",margin:"12px auto"}},
     ...grid,
-    // Vertical asymptote x = -1 (gold dashed)
-    e("line",{key:"vasym",x1:px(-1),y1:oy-160,x2:px(-1),y2:oy+160,stroke:gold,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.65}),
-    // Horizontal asymptote y = 1 (gold dashed)
-    e("line",{key:"hasym",x1:ox-150,y1:py(1),x2:ox+160,y2:py(1),stroke:gold,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.65}),
+    // Original nema ucrtane asimptote — samo osi, mreža i graf.
     // Axes
     e("line",{key:"xa",x1:ox-150,y1:oy,x2:ox+160,y2:oy,stroke:txt,strokeWidth:1.3}),
     e("line",{key:"ya",x1:ox,y1:oy-160,x2:ox,y2:oy+160,stroke:txt,strokeWidth:1.3}),
@@ -222,11 +225,12 @@ function Svg23_2024Ajes(){
     e("polygon",{key:"yar",points:`${ox},${oy-160} ${ox-4},${oy-154} ${ox+4},${oy-154}`,fill:txt}),
     e("text",{key:"xl",x:ox+164,y:oy+4,fontSize:13,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"x"),
     e("text",{key:"yl",x:ox+8,y:oy-150,fontSize:13,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"y"),
-    e("text",{key:"O",x:ox-10,y:oy+14,fontSize:11,fontFamily:"Georgia,serif",fill:muted},"0"),
-    e("line",{key:"t1x",x1:px(1),y1:oy-3,x2:px(1),y2:oy+3,stroke:txt,strokeWidth:1}),
-    e("text",{key:"l1x",x:px(1)-3,y:oy+14,fontSize:11,fontFamily:"Georgia,serif",fill:muted},"1"),
-    e("line",{key:"t1y",x1:ox-3,y1:py(1),x2:ox+3,y2:py(1),stroke:txt,strokeWidth:1}),
-    e("text",{key:"l1y",x:ox-12,y:py(1)+4,fontSize:11,fontFamily:"Georgia,serif",fill:muted},"1"),
+    e("text",{key:"O",x:ox-12,y:oy+16,fontSize:13,fontFamily:"Georgia,serif",fill:txt},"0"),
+    // Oznake 1 na osima — mali otvoreni kružići kao u originalu
+    e("circle",{key:"o1x",cx:px(1),cy:oy,r:3,fill:"var(--bg)",stroke:txt,strokeWidth:1.1}),
+    e("text",{key:"l1x",x:px(1),y:oy+18,fontSize:13,fontFamily:"Georgia,serif",fill:txt,textAnchor:"middle"},"1"),
+    e("circle",{key:"o1y",cx:ox,cy:py(1),r:3,fill:"var(--bg)",stroke:txt,strokeWidth:1.1}),
+    e("text",{key:"l1y",x:ox-9,y:py(1)+5,fontSize:13,fontFamily:"Georgia,serif",fill:txt,textAnchor:"end"},"1"),
     // f(x) label gold
     e("text",{key:"fl",x:ox-135,y:oy-10,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},"y = f(x)"),
     // Branches BLUE
@@ -234,39 +238,47 @@ function Svg23_2024Ajes(){
     e("polyline",{key:"mb",points:midBranch.join(" "),fill:"none",stroke:blue,strokeWidth:2.2}),
     e("polyline",{key:"rb",points:rightBranch.join(" "),fill:"none",stroke:blue,strokeWidth:2.2}),
     // Hole at (1, 2) — RED open circle (uklonjivi prekid)
-    e("circle",{key:"hole",cx:px(1),cy:py(2),r:5,fill:"var(--bg,#060910)",stroke:red,strokeWidth:2})
+    e("circle",{key:"hole",cx:px(1),cy:py(2),r:5,fill:"var(--bg)",stroke:red,strokeWidth:2})
   );
 }
 
 function Svg19_2024Ajes(){
   const txt="var(--text)"; const muted="var(--muted)";
   const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
-  const W=360, H=260;
-  const ox=50, oy=210; const ux=55, uy=22;
+  const W=360, H=300;
+  const ox=64, oy=242; const ux=55, uy=22;
   const px=(x)=>ox+x*ux; const py=(y)=>oy-y*uy;
   const pts=[[1,8],[2,4],[3,2],[4,1]];
+  const yTop=py(9.7);        // vrh okomite osi (strelica)
+  const xRight=px(4.8);      // vrh vodoravne osi (strelica)
   const grid=[];
+  // vodoravne mrežne linije za sve cijele brojeve 1..8 (kao u originalu)
   for(let i=1;i<=8;i++){
-    grid.push(e("line",{key:"gy"+i,x1:ox-5,y1:py(i),x2:ox+4.5*ux,y2:py(i),stroke:muted,strokeWidth:0.6,strokeOpacity:0.22,strokeDasharray:"2 6"}));
+    grid.push(e("line",{key:"gy"+i,x1:ox,y1:py(i),x2:px(4.6),y2:py(i),stroke:muted,strokeWidth:0.6,strokeOpacity:0.3}));
   }
   for(let i=1;i<=4;i++){
-    grid.push(e("line",{key:"gx"+i,x1:px(i),y1:oy-9*uy,x2:px(i),y2:oy+5,stroke:muted,strokeWidth:0.6,strokeOpacity:0.22,strokeDasharray:"2 6"}));
+    grid.push(e("line",{key:"gx"+i,x1:px(i),y1:yTop+6,x2:px(i),y2:oy,stroke:muted,strokeWidth:0.6,strokeOpacity:0.3}));
   }
   return e("svg",{viewBox:`0 0 ${W} ${H}`,xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"360px",width:"100%",display:"block",margin:"12px auto"}},
     ...grid,
-    e("line",{key:"xa",x1:ox-10,y1:oy,x2:ox+4.8*ux,y2:oy,stroke:txt,strokeWidth:1.3}),
-    e("line",{key:"ya",x1:ox,y1:oy+6,x2:ox,y2:oy-9.5*uy,stroke:txt,strokeWidth:1.3}),
-    e("polygon",{key:"xar",points:`${ox+4.8*ux},${oy} ${ox+4.8*ux-6},${oy-4} ${ox+4.8*ux-6},${oy+4}`,fill:txt}),
-    e("polygon",{key:"yar",points:`${ox},${oy-9.5*uy} ${ox-4},${oy-9.5*uy+6} ${ox+4},${oy-9.5*uy+6}`,fill:txt}),
-    e("text",{key:"xl",x:ox+4.8*ux+8,y:oy+5,fontSize:13,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"x"),
-    e("text",{key:"yl",x:ox+5,y:oy-9.5*uy,fontSize:13,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"y"),
-    // X ticks
-    ...[1,2,3,4].map(i=>e("text",{key:"xt"+i,x:px(i)-3,y:oy+18,fontSize:11,fontFamily:"Georgia,serif",fill:muted},i)),
-    // Y ticks 1,2,4,8
-    ...[1,2,4,8].map(i=>e("text",{key:"yt"+i,x:ox-14,y:py(i)+4,fontSize:11,fontFamily:"Georgia,serif",fill:muted},i)),
-    // Scatter points — RED filled circles with blue stroke
-    ...pts.map(([x,y],i)=>e("circle",{key:"p"+i,cx:px(x),cy:py(y),r:5.5,fill:red,stroke:blue,strokeWidth:1.8}))
+    e("line",{key:"xa",x1:ox-10,y1:oy,x2:xRight,y2:oy,stroke:txt,strokeWidth:1.3}),
+    e("line",{key:"ya",x1:ox,y1:oy+8,x2:ox,y2:yTop,stroke:txt,strokeWidth:1.3}),
+    e("polygon",{key:"xar",points:`${xRight},${oy} ${xRight-7},${oy-4} ${xRight-7},${oy+4}`,fill:txt}),
+    e("polygon",{key:"yar",points:`${ox},${yTop} ${ox-4},${yTop+7} ${ox+4},${yTop+7}`,fill:txt}),
+    // vodoravna os je "n" (niz), ne "x"
+    e("text",{key:"xl",x:xRight-24,y:oy+24,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"n"),
+    // okomita os je "a" s indeksom "n"
+    e("text",{key:"yl",x:ox-36,y:yTop+14,fontSize:15,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},
+      "a",
+      e("tspan",{key:"sub",dy:4,fontSize:10},"n")),
+    // oznake na vodoravnoj osi
+    ...[1,2,3,4].map(i=>e("text",{key:"xt"+i,x:px(i),y:oy+22,fontSize:13,fontFamily:"Georgia,serif",fill:txt,textAnchor:"middle"},String(i))),
+    // oznake na okomitoj osi — svi cijeli brojevi 0..8 (kao u originalu)
+    ...[0,1,2,3,4,5,6,7,8].map(i=>e("text",{key:"yt"+i,x:ox-12,y:py(i)+5,fontSize:13,fontFamily:"Georgia,serif",fill:txt,textAnchor:"end"},String(i))),
+    ...[1,2,3,4,5,6,7,8].map(i=>e("line",{key:"ytk"+i,x1:ox-4,y1:py(i),x2:ox,y2:py(i),stroke:txt,strokeWidth:1})),
+    // članovi niza
+    ...pts.map(([x,y],i)=>e("circle",{key:"p"+i,cx:px(x),cy:py(y),r:5,fill:red,stroke:blue,strokeWidth:1.8}))
   );
 }
 
@@ -308,7 +320,7 @@ function Svg16_2024Ajes(){
 }
 
 function Svg15_2024Ajes(){
-  const blue="var(--blue)"; const blueD="#3a6aa0"; const red="var(--red)"; const gold="var(--gold)";
+  const blue="var(--blue)"; const blueD="var(--blue)"; const red="var(--red)"; const gold="var(--gold)";
   const W=380, H=340;
   const A=[80,280],B=[240,280],C=[320,220],D=[160,220];
   const vE=[80,120],vF=[240,120],vG=[320,60],vH=[160,60];
@@ -321,21 +333,27 @@ function Svg15_2024Ajes(){
    ["A",A,-14,18],["B",B,8,18],["C",C,8,8],["D",D,-14,8],
    ["E",vE,-14,-6],["F",vF,8,-6],["G",vG,8,-6],["H",vH,-14,-6]
   ];
+  // T = polovište brida DH (u originalu crvena točka s crvenom oznakom T)
+  const T=[(D[0]+vH[0])/2,(D[1]+vH[1])/2];
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"380px",width:"100%",display:"block",margin:"12px auto"}},
     ...hidden.map(([n,p,q])=>e("line",{key:"h"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blueD,strokeWidth:1.4,strokeDasharray:"6 4",strokeOpacity:0.85})),
     ...visible.map(([n,p,q])=>e("line",{key:"v"+n,x1:p[0],y1:p[1],x2:q[0],y2:q[1],
       stroke:blue,strokeWidth:2})),
-    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5})),
+    ...verts.map(([n,p])=>e("circle",{key:"d"+n,cx:p[0],cy:p[1],r:3.5,fill:red,stroke:"var(--bg)",strokeWidth:1.5})),
     ...verts.map(([n,p,dx,dy])=>e("text",{key:"t"+n,x:p[0]+dx,y:p[1]+dy,
-      fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n))
+      fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},n)),
+    // Točka T — polovište brida DH
+    e("circle",{key:"dT",cx:T[0],cy:T[1],r:3.5,fill:red,stroke:"var(--bg)",strokeWidth:1.5}),
+    e("text",{key:"tT",x:T[0]-20,y:T[1]+5,
+      fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:red},"T")
   );
 }
 
 function Svg10_2024Ajes(){
   const W=400, H=300;
-  const blue="var(--blue)"; const blueLight="rgba(74,144,217,0.08)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)"; const txt="var(--text)";
   const cx=200, cy=160, r=110;
   const deg=(d)=>d*Math.PI/180;
   // PDF: B bot-left, C bot-right, A top-left, D top-right (from earlier render)
@@ -346,19 +364,15 @@ function Svg10_2024Ajes(){
   const S=[cx,cy];
   return e("svg",{viewBox:`0 0 ${W} ${H}`, xmlns:"http://www.w3.org/2000/svg",
     style:{maxWidth:"400px",width:"100%",display:"block",margin:"12px auto"}},
-    e("circle",{key:"c",cx:cx,cy:cy,r:r,fill:blueLight,stroke:blue,strokeWidth:2}),
-    // Lines connecting points (chords for angle)
-    e("line",{key:"AB",x1:A[0],y1:A[1],x2:B[0],y2:B[1],stroke:gold,strokeWidth:1.6}),
-    e("line",{key:"AD",x1:A[0],y1:A[1],x2:D[0],y2:D[1],stroke:gold,strokeWidth:1.6}),
-    e("line",{key:"SB",x1:S[0],y1:S[1],x2:B[0],y2:B[1],stroke:red,strokeWidth:1.4,strokeDasharray:"5 3"}),
-    e("line",{key:"SC",x1:S[0],y1:S[1],x2:C[0],y2:C[1],stroke:red,strokeWidth:1.4,strokeDasharray:"5 3"}),
+    e("circle",{key:"c",cx:cx,cy:cy,r:r,fill:"none",stroke:blue,strokeWidth:2}),
+    // Original PDF: samo kružnica i izolirane točke A, B, C, D, S — BEZ spojnica.
     // Center dot
     e("circle",{key:"S",cx:S[0],cy:S[1],r:3,fill:txt}),
     e("text",{key:"lS",x:S[0]-6,y:S[1]+18,fontSize:14,fontStyle:"italic",fontFamily:"Georgia,serif",fill:txt},"S"),
     // Vertex labels
     ...[[A,"A",-18,-6],[B,"B",-16,18],[C,"C",8,18],[D,"D",10,-6]].map(([p,l,dx,dy],i)=>
       e("g",{key:"v"+i},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"var(--s1,#0a0f1a)",strokeWidth:1.5}),
+        e("circle",{cx:p[0],cy:p[1],r:4,fill:red,stroke:"var(--bg)",strokeWidth:1.5}),
         e("text",{x:p[0]+dx,y:p[1]+dy,fontSize:16,fontStyle:"italic",fontFamily:"Georgia,serif",fontWeight:"bold",fill:gold},l)
       )
     )
@@ -728,7 +742,7 @@ export const qImages = {
   "2024_jesen_A__23": () => e(Svg23_2024Ajes, null),
   "2024_jesen_A__28": () => e(Svg28_2024Ajes, null),
   "2024_jesen_A__33.1": () => e(Svg33a_2024Ajes, null),
-  "2024_jesen_A__37.1": () => e(Svg37_2024Ajes, null),
-  "2024_jesen_A__37.2": () => e(Svg37_2024Ajes, null),
+  "2024_jesen_A__37.1": () => e(Svg37_2024Ajes, {cone:false}),
+  "2024_jesen_A__37.2": () => e(Svg37_2024Ajes, {cone:true}),
   "2024_jesen_A__39.2": () => e(Svg39b_2024Ajes, null),
 };

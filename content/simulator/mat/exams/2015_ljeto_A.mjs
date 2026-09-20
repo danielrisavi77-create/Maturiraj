@@ -2,56 +2,106 @@
 import React from 'react';
 const e = React.createElement;
 
-function SvgZad6_2015LA(){
-  const u=(()=>{let n=0;return()=>"la6_"+(++n)})();
-  const S=130,r=48,pad=10;
-  const circle=(ox,oy,ex,ey,label)=>[
-    e("line",{key:u(),x1:ox-r-6,y1:oy,x2:ox+r+6,y2:oy,stroke:"var(--muted)",strokeWidth:0.8}),
-    e("line",{key:u(),x1:ox,y1:oy+r+6,x2:ox,y2:oy-r-6,stroke:"var(--muted)",strokeWidth:0.8}),
-    e("polygon",{key:u(),points:`${ox+r+6},${oy} ${ox+r},${oy-2.5} ${ox+r},${oy+2.5}`,fill:"var(--muted)"}),
-    e("polygon",{key:u(),points:`${ox},${oy-r-6} ${ox-2.5},${oy-r} ${ox+2.5},${oy-r}`,fill:"var(--muted)"}),
-    e("text",{key:u(),x:ox+r+8,y:oy+4,fill:"var(--muted)",fontSize:10,fontStyle:"italic"},"x"),
-    e("text",{key:u(),x:ox+3,y:oy-r-7,fill:"var(--muted)",fontSize:10,fontStyle:"italic"},"y"),
-    e("text",{key:u(),x:ox-9,y:oy+11,fill:"var(--muted)",fontSize:9},"0"),
-    e("text",{key:u(),x:ox+r-1,y:oy+11,fill:"var(--muted)",fontSize:9},"1"),
-    e("circle",{key:u(),cx:ox,cy:oy,r,fill:"none",stroke:"var(--text)",strokeWidth:1.5}),
-    e("circle",{key:u(),cx:ex,cy:ey,r:4,fill:"var(--blue)"}),
-    e("line",{key:u(),x1:ox,y1:oy,x2:ex,y2:ey,stroke:"var(--blue)",strokeWidth:1,strokeDasharray:"3,2"}),
-    e("text",{key:u(),x:ex+(ex<ox?-30:6),y:ey+(ey<oy?-6:14),fill:"var(--blue)",fontSize:11,fontStyle:"italic"},"E(t)"),
-    e("text",{key:u(),x:ox-r-4,y:oy+r+16,fill:"var(--text)",fontSize:13,fontWeight:700},label)
-  ];
-  // A: II quadrant (x<0,y>0), B: III quadrant (x<0,y<0)
-  // C: III quadrant lower-left, D: IV quadrant (x>0,y<0)
-  const a=Math.asin(1/3);
-  const W=S*2+20,H=S*2+20;
-  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",margin:"8px auto"}},
-    ...circle(S/2+5, S/2+5, S/2+5+r*Math.cos(Math.PI-a), S/2+5-r*Math.sin(Math.PI-a), "A."),
-    ...circle(S+S/2+15, S/2+5, S+S/2+15+r*Math.cos(Math.PI+a), S/2+5-r*Math.sin(Math.PI+a), "B."),
-    ...circle(S/2+5, S+S/2+15, S/2+5+r*Math.cos(Math.PI+a+0.3), S+S/2+15-r*Math.sin(Math.PI+a+0.3), "C."),
-    ...circle(S+S/2+15, S+S/2+15, S+S/2+15+r*Math.cos(-a), S+S/2+15-r*Math.sin(-a), "D.")
+// --- shared building block -------------------------------------------------
+// Blank coordinate grid exactly as printed in the exam booklet for the
+// "nacrtajte graf" subtasks (20.1, 22.2, 29.1): dashed unit grid, solid axes
+// with an arrow on each positive end, "0" at the origin and a single "1" tick
+// marker on each axis. Nothing is drawn on it — the student draws the graph.
+function GridBlank_2015LA({ nl, nr, nd, nu, cell }) {
+  const pad = 20;
+  const W = pad * 2 + (nl + nr) * cell;
+  const H = pad * 2 + (nd + nu) * cell;
+  const toX = v => pad + (v + nl) * cell;
+  const toY = v => pad + (nu - v) * cell;
+  const ox = toX(0), oy = toY(0);
+  const T = "var(--text)", G = "var(--muted)";
+  const xs = [], ys = [];
+  for (let i = -nl; i <= nr; i++) xs.push(i);
+  for (let i = -nd; i <= nu; i++) ys.push(i);
+  return e("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", maxWidth: W, display: "block", margin: "8px auto" } },
+    ...xs.map(v => e("line", { key: "gx" + v, x1: toX(v), y1: pad, x2: toX(v), y2: H - pad, stroke: G, strokeOpacity: .55, strokeWidth: .7, strokeDasharray: "3,3" })),
+    ...ys.map(v => e("line", { key: "gy" + v, x1: pad, y1: toY(v), x2: W - pad, y2: toY(v), stroke: G, strokeOpacity: .55, strokeWidth: .7, strokeDasharray: "3,3" })),
+    e("line", { key: "ax", x1: pad - 8, y1: oy, x2: W - pad + 8, y2: oy, stroke: T, strokeWidth: 1.6 }),
+    e("line", { key: "ay", x1: ox, y1: H - pad + 8, x2: ox, y2: pad - 8, stroke: T, strokeWidth: 1.6 }),
+    e("polygon", { key: "axh", points: `${W - pad + 14},${oy} ${W - pad + 4},${oy - 3.5} ${W - pad + 4},${oy + 3.5}`, fill: T }),
+    e("polygon", { key: "ayh", points: `${ox},${pad - 14} ${ox - 3.5},${pad - 4} ${ox + 3.5},${pad - 4}`, fill: T }),
+    e("text", { key: "lx", x: W - pad + 1, y: oy + 15, fill: T, fontSize: 11, fontStyle: "italic", fontWeight: 600, textAnchor: "middle" }, "x"),
+    e("text", { key: "ly", x: ox - 11, y: pad - 6, fill: T, fontSize: 11, fontStyle: "italic", fontWeight: 600, textAnchor: "middle" }, "y"),
+    e("text", { key: "l0", x: ox - 4, y: oy + 14, fill: T, fontSize: 11, fontWeight: 700, textAnchor: "end" }, "0"),
+    e("text", { key: "lx1", x: toX(1) + 2, y: oy + 14, fill: T, fontSize: 11, fontWeight: 700 }, "1"),
+    e("text", { key: "ly1", x: ox - 7, y: toY(1) + 4, fill: T, fontSize: 11, fontWeight: 700, textAnchor: "end" }, "1"),
+    e("circle", { key: "mx1", cx: toX(1), cy: oy, r: 3, fill: "var(--bg)", stroke: T, strokeWidth: 1.2 }),
+    e("circle", { key: "my1", cx: ox, cy: toY(1), r: 3, fill: "var(--bg)", stroke: T, strokeWidth: 1.2 }),
+    e("circle", { key: "m0", cx: ox, cy: oy, r: 2.4, fill: T })
   );
 }
 
-function SvgZad5_2015LA(){
-  const u=(()=>{let n=0;
-  return()=>"la5_"+(++n)})();
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  return e("svg",{viewBox:"0 0 360 220",style:{width:"100%",maxWidth:360,display:"block",margin:"8px auto"}},
-    // Triangle
-    e("line",{key:u(),x1:30,y1:180,x2:320,y2:180,stroke:_BLUE,strokeWidth:1.8}),
-    e("line",{key:u(),x1:320,y1:180,x2:200,y2:30,stroke:_BLUE,strokeWidth:1.8}),
-    e("line",{key:u(),x1:200,y1:30,x2:30,y2:180,stroke:_BLUE,strokeWidth:1.8}),
-    // Right angle mark at C
-    e("rect",{key:u(),x:192,y:30,width:12,height:12,fill:"none",stroke:_BLUE,strokeWidth:1,transform:"rotate(57 200 30)"}),
-    // Height from C
-    e("line",{key:u(),x1:200,y1:30,x2:200,y2:180,stroke:_GOLD,strokeWidth:0.8,strokeDasharray:"4,3"}),
-    // Labels
-    e("text",{key:u(),x:15,y:195,fill:_GOLD,fontSize:14,fontStyle:"italic",fontWeight:600},"A"),
-    e("text",{key:u(),x:325,y:195,fill:_GOLD,fontSize:14,fontStyle:"italic",fontWeight:600},"B"),
-    e("text",{key:u(),x:195,y:20,fill:_GOLD,fontSize:14,fontStyle:"italic",fontWeight:600},"C"),
-    // Side labels
-    e("text",{key:u(),x:150,y:200,fill:"var(--muted)",fontSize:12,textAnchor:"middle"},"11 cm"),
-    e("text",{key:u(),x:270,y:95,fill:"var(--muted)",fontSize:12,textAnchor:"middle"},"4.2 cm")
+// Zad. 6 — four number-circle panels A./B./C./D.; E(t) is a small hollow
+// marker on the circle, no radius is drawn (as in the booklet).
+function SvgZad6_2015LA() {
+  const T = "var(--text)", M = "var(--muted)";
+  const r = 62, W = 392, H = 412;
+  // angle of E(t) per panel, measured from the positive x-axis (degrees):
+  // A — high up in quadrant II, B — quadrant III just under the x-axis
+  // (sin t = -1/3), C — quadrant III near the bottom, D — quadrant IV just
+  // under the x-axis.
+  const panels = [
+    { ox: 100, oy: 100, ang: 109, lab: "A.", lx: -42, ly: -2 },
+    { ox: 285, oy: 100, ang: 199, lab: "B.", lx: -44, ly: 17 },
+    { ox: 100, oy: 295, ang: 250, lab: "C.", lx: -46, ly: 17 },
+    { ox: 285, oy: 295, ang: -19, lab: "D.", lx: 8, ly: 16 }
+  ];
+  const parts = [];
+  panels.forEach((p, i) => {
+    const k = "p" + i;
+    const px = p.ox + r * Math.cos(p.ang * Math.PI / 180);
+    const py = p.oy - r * Math.sin(p.ang * Math.PI / 180);
+    parts.push(
+      // axes
+      e("line", { key: k + "ax", x1: p.ox - r - 12, y1: p.oy, x2: p.ox + r + 12, y2: p.oy, stroke: T, strokeWidth: 1 }),
+      e("line", { key: k + "ay", x1: p.ox, y1: p.oy + r + 12, x2: p.ox, y2: p.oy - r - 12, stroke: T, strokeWidth: 1 }),
+      e("polygon", { key: k + "axh", points: `${p.ox + r + 18},${p.oy} ${p.ox + r + 10},${p.oy - 3} ${p.ox + r + 10},${p.oy + 3}`, fill: T }),
+      e("polygon", { key: k + "ayh", points: `${p.ox},${p.oy - r - 18} ${p.ox - 3},${p.oy - r - 10} ${p.ox + 3},${p.oy - r - 10}`, fill: T }),
+      e("text", { key: k + "lx", x: p.ox + r + 12, y: p.oy - 6, fill: T, fontSize: 10, fontStyle: "italic", fontWeight: 700 }, "x"),
+      e("text", { key: k + "ly", x: p.ox - 12, y: p.oy - r - 12, fill: T, fontSize: 10, fontStyle: "italic", fontWeight: 700 }, "y"),
+      e("text", { key: k + "l0", x: p.ox - 4, y: p.oy + 13, fill: M, fontSize: 10, textAnchor: "end" }, "0"),
+      e("text", { key: k + "l1", x: p.ox + r + 1, y: p.oy + 13, fill: M, fontSize: 10 }, "1"),
+      // the unit circle
+      e("circle", { key: k + "c", cx: p.ox, cy: p.oy, r, fill: "none", stroke: T, strokeWidth: 1.5 }),
+      // E(t): hollow marker on the circle + its label
+      e("circle", { key: k + "e", cx: px, cy: py, r: 3.4, fill: "var(--bg)", stroke: T, strokeWidth: 1.2 }),
+      e("text", { key: k + "el", x: px + p.lx, y: py + p.ly, fill: T, fontSize: 11, fontStyle: "italic", fontWeight: 600 }, "E(t)"),
+      // panel letter, bottom-left of the panel
+      e("text", { key: k + "n", x: p.ox - r - 18, y: p.oy + r + 36, fill: T, fontSize: 13, fontWeight: 700 }, p.lab)
+    );
+  });
+  return e("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", maxWidth: W, display: "block", margin: "8px auto" } }, ...parts);
+}
+
+// Zad. 5 — right triangle ABC, right angle at C, AB = 11 cm, CB = 4.2 cm.
+// Schematic (as in the booklet): AB horizontal, C above and left of centre.
+function SvgZad5_2015LA() {
+  const T = "var(--text)", M = "var(--muted)";
+  const A = [45, 185], B = [315, 185];
+  const mx = (A[0] + B[0]) / 2, R = (B[0] - A[0]) / 2;
+  const th = 122.2 * Math.PI / 180;              // C on Thales' circle => exact right angle at C
+  const C = [mx + R * Math.cos(th), A[1] - R * Math.sin(th)];
+  const un = (p, q) => { const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy); return [dx / L, dy / L]; };
+  const u = un(C, A), v = un(C, B), k = 13;
+  const sq = [
+    `${C[0]},${C[1]}`,
+    `${C[0] + k * u[0]},${C[1] + k * u[1]}`,
+    `${C[0] + k * (u[0] + v[0])},${C[1] + k * (u[1] + v[1])}`,
+    `${C[0] + k * v[0]},${C[1] + k * v[1]}`
+  ].join(" ");
+  return e("svg", { viewBox: "0 0 360 220", style: { width: "100%", maxWidth: 360, display: "block", margin: "8px auto" } },
+    e("polygon", { key: "tri", points: `${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]}`, fill: "none", stroke: T, strokeWidth: 1.8, strokeLinejoin: "round" }),
+    e("polygon", { key: "ra", points: sq, fill: "none", stroke: T, strokeWidth: 1.2 }),
+    e("text", { key: "lA", x: A[0] - 16, y: A[1] + 13, fill: T, fontSize: 14, fontWeight: 700, fontStyle: "italic" }, "A"),
+    e("text", { key: "lB", x: B[0] + 8, y: B[1] + 4, fill: T, fontSize: 14, fontWeight: 700, fontStyle: "italic" }, "B"),
+    e("text", { key: "lC", x: C[0] - 4, y: C[1] - 9, fill: T, fontSize: 14, fontWeight: 700, fontStyle: "italic", textAnchor: "middle" }, "C"),
+    e("text", { key: "s1", x: (A[0] + B[0]) / 2, y: A[1] + 20, fill: M, fontSize: 13, textAnchor: "middle" }, "11 cm"),
+    e("text", { key: "s2", x: (C[0] + B[0]) / 2 + 14, y: (C[1] + B[1]) / 2 - 10, fill: M, fontSize: 13, textAnchor: "middle" }, "4.2 cm")
   );
 }
 
@@ -71,235 +121,112 @@ function SvgZad29d_2015LA(){
   );
 }
 
-function Svg29_2015Alj(){
-  const W=220,H=220,pad={l:32,r:14,t:14,b:32};
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-4,xMax=8,yMin=-9,yMax=3;
-  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
-  const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
-  const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
-  const ox=toX(0),oy=toY(0);
-  const sc=iW/(xMax-xMin);
-  const sx=toX(2),sy=toY(-3);
-  const pts=[];
-  for(let a=0;a<=2*Math.PI;a+=0.06){
-    pts.push(`${(sx+5*sc*Math.cos(a)).toFixed(1)},${(sy-5*sc*Math.sin(a)).toFixed(1)}`);
+// Zad. 29.1 — blank grid the student draws the circle (x-2)² + (y+3)² = 25 on.
+function Svg29_2015Alj() {
+  return GridBlank_2015LA({ nl: 11, nr: 11, nd: 11, nu: 12, cell: 16 });
+}
+
+// Zad. 26 — graph of f(x) = A sin(Bx) + D, i.e. 2 sin(3x) - 1.
+function SvgZad26_2015LA() {
+  const T = "var(--text)", M = "var(--muted)";
+  const W = 420, H = 300, pad = { l: 18, r: 22, t: 18, b: 18 };
+  const PI = Math.PI;
+  const xMin = -1.5 * PI, xMax = 2.75 * PI, yMin = -4.3, yMax = 2.6;
+  const iW = W - pad.l - pad.r, iH = H - pad.t - pad.b;
+  const toX = v => pad.l + ((v - xMin) / (xMax - xMin)) * iW;
+  const toY = v => pad.t + ((yMax - v) / (yMax - yMin)) * iH;
+  const ox = toX(0), oy = toY(0);
+  const pts = [];
+  for (let i = 0; i <= 700; i++) {
+    const x = xMin + (xMax - xMin) * i / 700;
+    pts.push(`${toX(x).toFixed(1)},${toY(2 * Math.sin(3 * x) - 1).toFixed(1)}`);
   }
-  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    ...[-4,-3,-2,-1,0,1,2,3,4,5,6,7,8].map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.5})),
-    ...[-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3].map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.5})),
-    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:"var(--text)",strokeWidth:1.5}),
-    e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.5}),
-    e("polygon",{points:`${pad.l+iW},${oy} ${pad.l+iW-5},${oy-3} ${pad.l+iW-5},${oy+3}`,fill:"var(--text)"}),
-    e("polygon",{points:`${ox},${pad.t} ${ox-3},${pad.t+5} ${ox+3},${pad.t+5}`,fill:"var(--text)"}),
-    e("text",{x:pad.l+iW+4,y:oy+4,fontSize:9,fill:"var(--text)"},"x"),
-    e("text",{x:ox+4,y:pad.t+2,fontSize:9,fill:"var(--text)"},"y"),
-    e("text",{x:ox-10,y:oy+13,fontSize:8,fill:"var(--muted)"},"0"),
-    ...[-3,-1,1,2,3,4,5,6,7].map(x=>e("g",{key:"tx"+x},
-      e("line",{x1:toX(x),y1:oy-3,x2:toX(x),y2:oy+3,stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},x)
-    )),
-    ...[-8,-6,-4,-2,2].map(y=>e("g",{key:"ty"+y},
-      e("line",{x1:ox-3,y1:toY(y),x2:ox+3,y2:toY(y),stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)
-    )),
-    e("polyline",{points:pts.join(" "),fill:"rgba(74,144,217,.1)",stroke:_BLUE,strokeWidth:2.2}),
-    e("circle",{cx:sx,cy:sy,r:4,fill:_BLUE,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:sx+5,y:sy-6,fontSize:10,fontWeight:700,fill:_BLUE},"S(2,\u22123)")
+  const vGrid = [], hGrid = [];
+  for (let k = -3; k <= 5; k++) vGrid.push(k * PI / 2);
+  for (let y = -4; y <= 2; y++) if (y !== 0) hGrid.push(y);
+  return e("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", maxWidth: W, display: "block", margin: "8px auto" } },
+    ...vGrid.map((v, i) => e("line", { key: "gx" + i, x1: toX(v), y1: pad.t, x2: toX(v), y2: H - pad.b, stroke: M, strokeOpacity: .55, strokeWidth: .7, strokeDasharray: "3,3" })),
+    ...hGrid.map(v => e("line", { key: "gy" + v, x1: pad.l, y1: toY(v), x2: W - pad.r, y2: toY(v), stroke: M, strokeOpacity: .55, strokeWidth: .7, strokeDasharray: "3,3" })),
+    // axes
+    e("line", { key: "ax", x1: pad.l - 6, y1: oy, x2: W - pad.r + 8, y2: oy, stroke: T, strokeWidth: 1.6 }),
+    e("line", { key: "ay", x1: ox, y1: H - pad.b + 6, x2: ox, y2: pad.t - 8, stroke: T, strokeWidth: 1.6 }),
+    e("polygon", { key: "axh", points: `${W - pad.r + 14},${oy} ${W - pad.r + 4},${oy - 3.5} ${W - pad.r + 4},${oy + 3.5}`, fill: T }),
+    e("polygon", { key: "ayh", points: `${ox},${pad.t - 14} ${ox - 3.5},${pad.t - 4} ${ox + 3.5},${pad.t - 4}`, fill: T }),
+    e("text", { key: "lx", x: W - pad.r + 2, y: oy + 15, fill: T, fontSize: 11, fontStyle: "italic", fontWeight: 700, textAnchor: "middle" }, "x"),
+    e("text", { key: "ly", x: ox - 11, y: pad.t - 6, fill: T, fontSize: 11, fontStyle: "italic", fontWeight: 700, textAnchor: "middle" }, "y"),
+    // the curve
+    e("polyline", { key: "cv", points: pts.join(" "), fill: "none", stroke: T, strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" }),
+    // labelled points, as printed: 1 on the y-axis, π and 2π on the x-axis
+    e("text", { key: "l1", x: ox - 7, y: toY(1) + 4, fill: T, fontSize: 11, fontWeight: 700, textAnchor: "end" }, "1"),
+    e("text", { key: "l0", x: ox - 4, y: oy + 14, fill: T, fontSize: 11, fontWeight: 700, textAnchor: "end" }, "0"),
+    e("text", { key: "lpi", x: toX(PI) + 2, y: oy - 6, fill: T, fontSize: 11, fontWeight: 700 }, "π"),
+    e("text", { key: "l2pi", x: toX(2 * PI) - 12, y: oy - 6, fill: T, fontSize: 11, fontWeight: 700 }, "2π"),
+    e("circle", { key: "m1", cx: ox, cy: toY(1), r: 3, fill: "var(--bg)", stroke: T, strokeWidth: 1.2 }),
+    e("circle", { key: "m0", cx: ox, cy: oy, r: 3, fill: "var(--bg)", stroke: T, strokeWidth: 1.2 }),
+    e("circle", { key: "mpi", cx: toX(PI), cy: oy, r: 3, fill: "var(--bg)", stroke: T, strokeWidth: 1.2 }),
+    e("circle", { key: "m2pi", cx: toX(2 * PI), cy: oy, r: 3, fill: "var(--bg)", stroke: T, strokeWidth: 1.2 })
   );
 }
 
-function SvgZad26_2015LA(){
-  const u=(()=>{let n=0;return()=>"la26_"+(++n)})();
-  const W=380,H=200,pad={l:35,r:15,t:20,b:30};
-  const gw=W-pad.l-pad.r, gh=H-pad.t-pad.b;
-  // x range: -0.5 to 3*pi (~9.42), y range: -3 to 1
-  const xmin=-0.3,xmax=3.2*Math.PI,ymin=-3.5,ymax=1.8;
-  const toX=x=>pad.l+(x-xmin)/(xmax-xmin)*gw;
-  const toY=y=>pad.t+(ymax-y)/(ymax-ymin)*gh;
-  // f(x)=2sin(3x)-1: A=2, B=3, D=-1
-  const pts=[];
-  for(let i=0;i<=200;i++){
-    const x=xmin+(xmax-xmin)*i/200;
-    const y=2*Math.sin(3*x)-1;
-    pts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
-  }
-  const yZero=toY(0), xZero=toX(0);
-  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",margin:"8px auto"}},
-    // Grid lines
-    ...[Math.PI, 2*Math.PI].map((v,i)=>e("line",{key:u(),x1:toX(v),y1:pad.t,x2:toX(v),y2:H-pad.b,stroke:"var(--bdr)",strokeWidth:0.5,strokeDasharray:"3,3"})),
-    ...[-3,-2,-1,0,1].map((v,i)=>e("line",{key:u(),x1:pad.l,y1:toY(v),x2:W-pad.r,y2:toY(v),stroke:"var(--bdr)",strokeWidth:0.5,strokeDasharray:"3,3"})),
-    // Axes
-    e("line",{key:u(),x1:pad.l-5,y1:yZero,x2:W-pad.r+5,y2:yZero,stroke:"var(--text)",strokeWidth:1.2}),
-    e("line",{key:u(),x1:xZero,y1:H-pad.b+5,x2:xZero,y2:pad.t-5,stroke:"var(--text)",strokeWidth:1.2}),
-    // Arrows
-    e("polygon",{key:u(),points:`${W-pad.r+5},${yZero} ${W-pad.r-1},${yZero-3} ${W-pad.r-1},${yZero+3}`,fill:"var(--text)"}),
-    e("polygon",{key:u(),points:`${xZero},${pad.t-5} ${xZero-3},${pad.t+1} ${xZero+3},${pad.t+1}`,fill:"var(--text)"}),
-    // Axis labels
-    e("text",{key:u(),x:W-pad.r+7,y:yZero+4,fill:"var(--text)",fontSize:11,fontStyle:"italic"},"x"),
-    e("text",{key:u(),x:xZero+5,y:pad.t-2,fill:"var(--text)",fontSize:11,fontStyle:"italic"},"y"),
-    e("text",{key:u(),x:xZero-10,y:yZero+13,fill:"var(--muted)",fontSize:10},"0"),
-    // π marks
-    e("text",{key:u(),x:toX(Math.PI)-3,y:yZero+14,fill:"var(--muted)",fontSize:10},"π"),
-    e("text",{key:u(),x:toX(2*Math.PI)-5,y:yZero+14,fill:"var(--muted)",fontSize:10},"2π"),
-    // y tick marks
-    e("text",{key:u(),x:xZero-16,y:toY(1)+4,fill:"var(--muted)",fontSize:10},"1"),
-    e("text",{key:u(),x:xZero-20,y:toY(-1)+4,fill:"var(--muted)",fontSize:10},"-1"),
-    e("text",{key:u(),x:xZero-20,y:toY(-3)+4,fill:"var(--muted)",fontSize:10},"-3"),
-    // The curve — colorful gradient effect with thick stroke
-    e("polyline",{key:u(),points:pts.join(" "),fill:"none",stroke:"var(--red)",strokeWidth:2.2,strokeLinecap:"round",strokeLinejoin:"round"}),
-    // Mark max/min points
-    e("circle",{key:u(),cx:toX(Math.PI/6),cy:toY(1),r:3.5,fill:"var(--green)"}),
-    e("circle",{key:u(),cx:toX(Math.PI/2),cy:toY(-3),r:3.5,fill:"var(--blue)"})
+// Zad. 23.1 — quadrilateral with the height drawn from the top-left vertex to
+// the bottom-right one (right angles at both ends). Drawn to scale:
+// bottom = 3, left = 5.6, right = 6.3, top = a.
+function SvgZad23a_2015LA() {
+  const T = "var(--text)", M = "var(--muted)";
+  const sc = 30;
+  const h = Math.sqrt(5.6 * 5.6 - 3 * 3);        // height  ≈ 4.7286
+  const a = Math.sqrt(6.3 * 6.3 - h * h);        // top side ≈ 4.1629
+  const P0 = [40, 180];                          // bottom-left
+  const P1 = [P0[0] + 3 * sc, P0[1]];            // bottom-right
+  const P2 = [P1[0], P0[1] - h * sc];            // top-left (straight above P1)
+  const P3 = [P2[0] + a * sc, P2[1]];            // top-right
+  const k = 11;
+  return e("svg", { viewBox: "0 0 300 215", style: { width: "100%", maxWidth: 300, display: "block", margin: "8px auto" } },
+    e("polygon", { key: "sh", points: `${P0[0]},${P0[1]} ${P1[0]},${P1[1]} ${P3[0]},${P3[1]} ${P2[0]},${P2[1]}`, fill: "none", stroke: T, strokeWidth: 1.8, strokeLinejoin: "round" }),
+    e("line", { key: "hh", x1: P2[0], y1: P2[1], x2: P1[0], y2: P1[1], stroke: T, strokeWidth: 1.4 }),
+    e("rect", { key: "r1", x: P2[0], y: P2[1], width: k, height: k, fill: "none", stroke: T, strokeWidth: 1.2 }),
+    e("rect", { key: "r2", x: P1[0] - k, y: P1[1] - k, width: k, height: k, fill: "none", stroke: T, strokeWidth: 1.2 }),
+    e("text", { key: "la", x: (P2[0] + P3[0]) / 2, y: P2[1] - 10, fill: T, fontSize: 14, fontStyle: "italic", textAnchor: "middle" }, "a"),
+    e("text", { key: "l56", x: (P0[0] + P2[0]) / 2 - 14, y: (P0[1] + P2[1]) / 2 - 2, fill: M, fontSize: 13, textAnchor: "end" }, "5.6"),
+    e("text", { key: "l63", x: (P1[0] + P3[0]) / 2 + 13, y: (P1[1] + P3[1]) / 2 + 10, fill: M, fontSize: 13 }, "6.3"),
+    e("text", { key: "l3", x: (P0[0] + P1[0]) / 2, y: P0[1] + 20, fill: M, fontSize: 13, textAnchor: "middle" }, "3")
   );
 }
 
-function SvgZad23a_2015LA(){
-  const u=(()=>{let n=0;return()=>"la23_"+(++n)})();
-  // Right-angled quadrilateral: bottom=3, left=5.6 (vertical), right=6.3 (slanted), top=a
-  // Scale: 1 unit = 30px
-  const sc=30, bx=60, by=220;
-  const bl=bx, br=bx+3*sc; // bottom: (bx,by) to (br,by)
-  const tl=bx, tly=by-5.6*sc; // top-left: (bx, by-5.6*30)
-  // Right side from (br,by) to top-right, length 6.3
-  // top-right x: √(6.3²-5.6²)+3 = √8.33+3 ≈ 5.886 → scaled
-  const dx=Math.sqrt(6.3*6.3-5.6*5.6);
-  const trx=bx+(3+dx)*sc, tr_y=tly; // same height as top-left? No — the figure shows different heights
-  // Actually from PDF: right angles at top-left and bottom-left, so left side is vertical
-  // height = 5.6, right side goes from (br, by) to (trx, tly)
-  return e("svg",{viewBox:"0 0 300 260",style:{width:"100%",maxWidth:300,display:"block",margin:"8px auto"}},
-    // Fill shape
-    e("polygon",{key:u(),points:`${bl},${by} ${br},${by} ${trx},${tly} ${tl},${tly}`,fill:"rgba(74,144,217,0.08)",stroke:"var(--text)",strokeWidth:1.8,strokeLinejoin:"round"}),
-    // Right angle marks
-    e("rect",{key:u(),x:tl,y:tly,width:10,height:10,fill:"none",stroke:"var(--gold)",strokeWidth:1.2}),
-    e("rect",{key:u(),x:bl,y:by-10,width:10,height:10,fill:"none",stroke:"var(--gold)",strokeWidth:1.2}),
-    // Labels — colored
-    e("text",{key:u(),x:(bl+br)/2,y:by+18,fill:"var(--blue)",fontSize:13,textAnchor:"middle",fontWeight:600},"3"),
-    e("text",{key:u(),x:bl-18,y:(by+tly)/2+4,fill:"var(--gold)",fontSize:13,textAnchor:"middle",fontWeight:600},"5.6"),
-    e("text",{key:u(),x:(br+trx)/2+14,y:(by+tly)/2+4,fill:"var(--red)",fontSize:13,textAnchor:"middle",fontWeight:600},"6.3"),
-    e("text",{key:u(),x:(tl+trx)/2,y:tly-10,fill:"var(--green)",fontSize:14,textAnchor:"middle",fontWeight:700,fontStyle:"italic"},"a")
-  );
+// Zad. 22.2 — blank grid the student draws f(x) = -x²/2 + 3x - 1 on.
+function Svg22_2015Alj() {
+  return GridBlank_2015LA({ nl: 7, nr: 8, nd: 7, nu: 8, cell: 20 });
 }
 
-function Svg22_2015Alj(){
-  const W=220,H=180,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-1,xMax=7,yMin=-3,yMax=5;
-  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
-  const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
-  const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
-  const ox=toX(0),oy=toY(0);
-  const pts=[];
-  for(let x=xMin;x<=xMax;x+=0.1){
-    const y=-0.5*x*x+3*x-1;
-    if(y>yMax||y<yMin) continue;
-    pts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
-  }
-  const tx=toX(3),ty=toY(3.5);
-  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    ...[-1,0,1,2,3,4,5,6,7].map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.5})),
-    ...[-3,-2,-1,0,1,2,3,4,5].map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.5})),
-    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:"var(--text)",strokeWidth:1.5}),
-    e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.5}),
-    e("polygon",{points:`${pad.l+iW},${oy} ${pad.l+iW-5},${oy-3} ${pad.l+iW-5},${oy+3}`,fill:"var(--text)"}),
-    e("polygon",{points:`${ox},${pad.t} ${ox-3},${pad.t+5} ${ox+3},${pad.t+5}`,fill:"var(--text)"}),
-    e("text",{x:pad.l+iW+4,y:oy+4,fontSize:9,fill:"var(--text)"},"x"),
-    e("text",{x:ox+4,y:pad.t+2,fontSize:9,fill:"var(--text)"},"y"),
-    e("text",{x:ox-10,y:oy+13,fontSize:8,fill:"var(--muted)"},"0"),
-    ...[1,2,3,4,5,6].map(x=>e("g",{key:"tx"+x},
-      e("line",{x1:toX(x),y1:oy-3,x2:toX(x),y2:oy+3,stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},x)
-    )),
-    ...[-2,-1,1,2,3,4].map(y=>e("g",{key:"ty"+y},
-      e("line",{x1:ox-3,y1:toY(y),x2:ox+3,y2:toY(y),stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)
-    )),
-    pts.length>1&&e("polyline",{points:pts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:2.2,strokeLinejoin:"round"}),
-    e("circle",{cx:tx,cy:ty,r:4,fill:_BLUE,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:tx+5,y:ty-5,fontSize:9,fontWeight:700,fill:_BLUE},"T(3, 7/2)")
-  );
+// Zad. 20.1 — blank grid the student draws the linear function on.
+function Svg20_2015Alj() {
+  return GridBlank_2015LA({ nl: 7, nr: 8, nd: 7, nu: 8, cell: 20 });
 }
 
-function Svg20_2015Alj(){
-  const W=200,H=160,pad={l:28,r:14,t:14,b:28};
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-6,xMax=8,yMin=-4,yMax=2;
-  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
-  const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
-  const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
-  const ox=toX(0),oy=toY(0);
-  // k = (0-(-2))/(5-(-4)) = 2/9; b: 0 = 2/9*5+b → b = -10/9
-  const k=2/9,b=-10/9;
-  const linPts=[];
-  for(let x=xMin;x<=xMax;x+=0.2){
-    const y=k*x+b;
-    if(y<yMin||y>yMax) continue;
-    linPts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
-  }
-  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    ...[-6,-4,-2,0,2,4,6,8].map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:pad.t,x2:toX(x),y2:pad.t+iH,stroke:"var(--bdr)",strokeWidth:.5})),
-    ...[-4,-3,-2,-1,0,1,2].map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:"var(--bdr)",strokeWidth:.5})),
-    e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:"var(--text)",strokeWidth:1.5}),
-    e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:"var(--text)",strokeWidth:1.5}),
-    e("polygon",{points:`${pad.l+iW},${oy} ${pad.l+iW-5},${oy-3} ${pad.l+iW-5},${oy+3}`,fill:"var(--text)"}),
-    e("polygon",{points:`${ox},${pad.t} ${ox-3},${pad.t+5} ${ox+3},${pad.t+5}`,fill:"var(--text)"}),
-    e("text",{x:pad.l+iW+4,y:oy+4,fontSize:9,fill:"var(--text)"},"x"),
-    e("text",{x:ox+4,y:pad.t+2,fontSize:9,fill:"var(--text)"},"y"),
-    e("text",{x:ox-10,y:oy+13,fontSize:8,fill:"var(--muted)"},"0"),
-    ...[-4,-2,2,4,6].map(x=>e("g",{key:"tx"+x},
-      e("line",{x1:toX(x),y1:oy-3,x2:toX(x),y2:oy+3,stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:toX(x),y:oy+13,textAnchor:"middle",fontSize:7,fill:"var(--muted)"},x)
-    )),
-    ...[-3,-2,-1,1].map(y=>e("g",{key:"ty"+y},
-      e("line",{x1:ox-3,y1:toY(y),x2:ox+3,y2:toY(y),stroke:"var(--text)",strokeWidth:1}),
-      e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)
-    )),
-    linPts.length>1&&e("polyline",{points:linPts.join(" "),fill:"none",stroke:_BLUE,strokeWidth:2}),
-    e("circle",{cx:toX(5),cy:oy,r:3.5,fill:_BLUE,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("circle",{cx:toX(-4),cy:toY(-2),r:3.5,fill:_BLUE,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:toX(5)+4,y:oy-8,fontSize:8,fill:"var(--muted)"},"(5,0)"),
-    e("text",{x:toX(-4)-14,y:toY(-2),fontSize:8,fill:"var(--muted)"},"(\u22124,\u22122)")
-  );
-}
-
-function SvgZad10_2015LA(){
-  const u=(()=>{let n=0;
-  return()=>"la10_"+(++n)})();
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const cx=180,cy=160,r=120;
-  // B at top (~70°), A at right (~340°), C at bottom (~260°)
-  const angB=70,angA=-20,angC=260;
-  const rad=d=>d*Math.PI/180;
-  const px=(a)=>cx+r*Math.cos(rad(a));
-  const py=(a)=>cy-r*Math.sin(rad(a));
-  const Bx=px(angB),By=py(angB),Ax=px(angA),Ay=py(angA),Cx=px(angC),Cy=py(angC);
-  // Foot of diameter from B through S to bottom
-  const Dx=cx-(Bx-cx),Dy=cy-(By-cy);
-  return e("svg",{viewBox:"0 0 360 340",style:{width:"100%",maxWidth:340,display:"block",margin:"8px auto"}},
-    e("circle",{key:u(),cx,cy,r,fill:"none",stroke:_BLUE,strokeWidth:1.8}),
-    // Diameter B to opposite
-    e("line",{key:u(),x1:Bx,y1:By,x2:Dx,y2:Dy,stroke:"var(--muted)",strokeWidth:0.8}),
-    // Chord BA
-    e("line",{key:u(),x1:Bx,y1:By,x2:Ax,y2:Ay,stroke:_BLUE,strokeWidth:1.5}),
-    // Chord CA
-    e("line",{key:u(),x1:Cx,y1:Cy,x2:Ax,y2:Ay,stroke:_BLUE,strokeWidth:1.5}),
-    // Chord CB
-    e("line",{key:u(),x1:Cx,y1:Cy,x2:Bx,y2:By,stroke:_BLUE,strokeWidth:1.5}),
-    // Line from C through center area
-    e("line",{key:u(),x1:Cx,y1:Cy,x2:Dx,y2:Dy,stroke:_BLUE,strokeWidth:1.2}),
-    // α angle arc at C
-    e("path",{key:u(),d:`M ${Cx+22} ${Cy-8} A 20 20 0 0 0 ${Cx+10} ${Cy-20}`,fill:"none",stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{key:u(),x:Cx+26,y:Cy-8,fill:_BLUE,fontSize:13,fontStyle:"italic"},"\u03b1"),
-    // Center S
-    e("circle",{key:u(),cx,cy,r:3,fill:_RED}),
-    e("text",{key:u(),x:cx-20,y:cy+5,fill:_GOLD,fontSize:13,fontStyle:"italic"},"S"),
-    // Points
-    e("circle",{key:u(),cx:Bx,cy:By,r:3.5,fill:_RED}),
-    e("text",{key:u(),x:Bx+2,y:By-10,fill:_GOLD,fontSize:14,fontWeight:600,fontStyle:"italic"},"B"),
-    e("circle",{key:u(),cx:Ax,cy:Ay,r:3.5,fill:_RED}),
-    e("text",{key:u(),x:Ax+8,y:Ay+2,fill:_GOLD,fontSize:14,fontWeight:600,fontStyle:"italic"},"A"),
-    e("circle",{key:u(),cx:Cx,cy:Cy,r:3.5,fill:_RED}),
-    e("text",{key:u(),x:Cx+5,y:Cy+16,fill:_GOLD,fontSize:14,fontWeight:600,fontStyle:"italic"},"C")
+// Zad. 10 — circle with chords BA, AC, CB; α is the inscribed angle at C over
+// the chord AB. Centre S is only marked with a dot (no radii drawn).
+function SvgZad10_2015LA() {
+  const T = "var(--text)";
+  const cx = 165, cy = 165, r = 118;
+  const P = d => [cx + r * Math.cos(d * Math.PI / 180), cy - r * Math.sin(d * Math.PI / 180)];
+  const B = P(73), A = P(21), C = P(-70);
+  const un = (p, q) => { const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy); return [dx / L, dy / L]; };
+  const ar = 58;
+  const ub = un(C, B), ua = un(C, A);
+  const a1 = [C[0] + ar * ub[0], C[1] + ar * ub[1]];
+  const a2 = [C[0] + ar * ua[0], C[1] + ar * ua[1]];
+  return e("svg", { viewBox: "0 0 340 340", style: { width: "100%", maxWidth: 340, display: "block", margin: "8px auto" } },
+    e("circle", { key: "c", cx, cy, r, fill: "none", stroke: T, strokeWidth: 1.6 }),
+    e("line", { key: "cb", x1: C[0], y1: C[1], x2: B[0], y2: B[1], stroke: T, strokeWidth: 1.6 }),
+    e("line", { key: "ba", x1: B[0], y1: B[1], x2: A[0], y2: A[1], stroke: T, strokeWidth: 1.6 }),
+    e("line", { key: "ac", x1: A[0], y1: A[1], x2: C[0], y2: C[1], stroke: T, strokeWidth: 1.6 }),
+    e("path", { key: "arc", d: `M ${a1[0].toFixed(1)},${a1[1].toFixed(1)} A ${ar} ${ar} 0 0 1 ${a2[0].toFixed(1)},${a2[1].toFixed(1)}`, fill: "none", stroke: T, strokeWidth: 1.2 }),
+    e("text", { key: "la", x: C[0] + 6, y: C[1] - 30, fill: T, fontSize: 13, fontStyle: "italic" }, "α"),
+    e("circle", { key: "sd", cx, cy, r: 2.6, fill: T }),
+    e("text", { key: "ls", x: cx - 8, y: cy + 5, fill: T, fontSize: 14, fontWeight: 700, fontStyle: "italic", textAnchor: "end" }, "S"),
+    e("text", { key: "lB", x: B[0] - 4, y: B[1] - 10, fill: T, fontSize: 14, fontWeight: 700, fontStyle: "italic", textAnchor: "middle" }, "B"),
+    e("text", { key: "lA", x: A[0] + 8, y: A[1] - 2, fill: T, fontSize: 14, fontWeight: 700, fontStyle: "italic" }, "A"),
+    e("text", { key: "lC", x: C[0] - 4, y: C[1] + 18, fill: T, fontSize: 14, fontWeight: 700, fontStyle: "italic", textAnchor: "middle" }, "C")
   );
 }
 

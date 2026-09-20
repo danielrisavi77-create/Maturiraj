@@ -72,41 +72,38 @@ function SvgGraf24b_2012Az(){
 }
 
 function SvgGraf29a_2012Az(){
+  // Prazan koordinatni sustav (kao u originalu) - ucenik sam ucrtava skup tocaka.
   const W=280,H=240;
-  const cx=120,cy=120,sc=28;
+  const cx=132,cy=124,sc=26;
+  const cols=[-5,-4,-3,-2,-1,1,2,3,4,5];
+  const rows=[-4,-3,-2,-1,1,2,3,4];
+  const gx0=cx+(-5)*sc, gx1=cx+5*sc;
+  const gy0=cy-4*sc,  gy1=cy+4*sc;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
       e("marker",{id:"arx29z",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ary29z",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"ary29z",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"}))
     ),
-    // Dashed grid
-    ...[-4,-3,-2,-1,1,2,3,4,5].map(i=>e("line",{key:"gx"+i,
-      x1:cx+i*sc,y1:8,x2:cx+i*sc,y2:H-12,
-      stroke:"var(--muted)",strokeWidth:0.5,strokeDasharray:"3,3"})),
-    ...[-3,-2,-1,1,2,3,4].map(i=>e("line",{key:"gy"+i,
-      x1:8,y1:cy-i*sc,x2:W-12,y2:cy-i*sc,
-      stroke:"var(--muted)",strokeWidth:0.5,strokeDasharray:"3,3"})),
+    // Iscrtkana mreza
+    ...cols.map(i=>e("line",{key:"gx"+i,
+      x1:cx+i*sc,y1:gy0,x2:cx+i*sc,y2:gy1,
+      stroke:"var(--muted)",strokeWidth:0.7,strokeDasharray:"3,3"})),
+    ...rows.map(i=>e("line",{key:"gy"+i,
+      x1:gx0,y1:cy-i*sc,x2:gx1,y2:cy-i*sc,
+      stroke:"var(--muted)",strokeWidth:0.7,strokeDasharray:"3,3"})),
     // Osi
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#arx29z)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ary29z)"}),
-    // Oznake
-    e("text",{x:W-14,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:16,fontSize:11,fill:"var(--text)"},"y"),
-    e("text",{x:cx-12,y:cy+13,fontSize:10,fill:"var(--muted)"},"0"),
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:10,fill:"var(--muted)"},"1"),
-    e("text",{x:cx-4,y:cy-sc+4,fontSize:10,fill:"var(--muted)"},"1"),
-    // Tick oznake x
-    ...[-4,-3,-2,-1,2,3,4].map(t=>
-      e("text",{key:"t"+t,x:cx+t*sc-(t<0?8:3),y:cy+13,fontSize:9,fill:"var(--muted)"},t)
-    ),
-    ...[-3,-2,2,3].map(t=>
-      e("text",{key:"ty"+t,x:cx-16,y:cy-t*sc+4,fontSize:9,fill:"var(--muted)"},t)
-    ),
-    // Točke A(-4,3) i B(2,1) označene bojom
-    e("circle",{cx:cx+(-4)*sc,cy:cy-3*sc,r:5,fill:"#8b7cf8",stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:cx+(-4)*sc-18,y:cy-3*sc+4,fontSize:12,fontWeight:"bold",fill:"#8b7cf8"},"A"),
-    e("circle",{cx:cx+2*sc,cy:cy-1*sc,r:5,fill:"#3dd68c",stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:cx+2*sc+7,y:cy-1*sc+4,fontSize:12,fontWeight:"bold",fill:"#3dd68c"},"B")
+    e("line",{x1:gx0,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#arx29z)"}),
+    e("line",{x1:cx,y1:gy1+8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#ary29z)"}),
+    // Oznake osi
+    e("text",{x:W-14,y:cy+16,fontSize:12,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{x:cx-13,y:18,fontSize:12,fontStyle:"italic",fill:"var(--text)"},"y"),
+    // Jedinicne tocke na osima (prazni kruzici kao u originalu)
+    e("circle",{cx:cx,cy:cy,r:3.2,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.4}),
+    e("circle",{cx:cx+sc,cy:cy,r:3.2,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.4}),
+    e("circle",{cx:cx,cy:cy-sc,r:3.2,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.4}),
+    e("text",{x:cx-11,y:cy+15,fontSize:11,fill:"var(--text)"},"0"),
+    e("text",{x:cx+sc+3,y:cy+15,fontSize:11,fill:"var(--text)"},"1"),
+    e("text",{x:cx-12,y:cy-sc+2,fontSize:11,fill:"var(--text)"},"1")
   );
 }
 

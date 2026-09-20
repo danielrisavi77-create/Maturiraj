@@ -4,22 +4,26 @@ const e = React.createElement;
 
 function Svg15_2021Bljeto(){
   const W=260,H=200;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const tri=(x,y,s,k)=>{
+  const tri=(cx,by,s,k)=>{
     const h=s*Math.sqrt(3)/2;
     return e("polygon",{key:k,
-      points:`${x},${y-h} ${x-s/2},${y} ${x+s/2},${y}`,
-      fill:"none",stroke:_BLUE,strokeWidth:1.8});
+      points:`${cx},${by-h} ${cx-s/2},${by} ${cx+s/2},${by}`,
+      fill:"none",stroke:"var(--text)",strokeWidth:1.6,strokeLinejoin:"miter"});
   };
-  const S=68; // side
+  // Cetiri POTPUNO ODVOJENA jednakostranicna trokuta (nigdje se ne dodiruju),
+  // raspored i razmaci izmjereni s originalnoga predloska: gore, lijevo, desno, dolje.
+  // Omjeri su izrazeni u duljinama stranice S.
+  const S=82;                    // stranica trokuta
+  const CX=130;                  // vodoravno srediste skupine
+  const Y0=78;                   // baza gornjega trokuta
+  const DXL=S*0.731, DYL=S*0.727; // pomak lijevoga trokuta
+  const DXR=S*0.715, DYR=S*0.715; // pomak desnoga trokuta
+  const DB =S*1.415;              // okomiti pomak donjega trokuta
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    // 1 gore (vrh)
-    tri(W/2, 75, S, "t0"),
-    // 2 sredina — lijevo i desno
-    tri(W/2-S*0.5, 140, S, "t1"),
-    tri(W/2+S*0.5, 140, S, "t2"),
-    // 1 dolje
-    tri(W/2, 195, S, "t3"),
+    tri(CX,      Y0,      S, "t0"),  // gore
+    tri(CX-DXL,  Y0+DYL,  S, "t1"),  // lijevo
+    tri(CX+DXR,  Y0+DYR,  S, "t2"),  // desno
+    tri(CX,      Y0+DB,   S, "t3"),  // dolje
   );
 }
 
@@ -109,37 +113,46 @@ function Svg24b_2021Bljeto(){
 }
 
 function Svg23b_2021Bljeto(){
-  const W=280,H=220;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  // PDF-verified vertices: A(-4,0), B(5,0), C(5,4), D(-3,4)
-  // P = (AB+DC)/2 · h = (9+8)/2 · 4 = 34 — match NCVVO ključa
-  // Y-os u lijevoj trećini (od x=-5 do x=+6)
-  const OX=110,OY=150,SZ=22;
+  const W=300,H=215;
+  const _BLUE="var(--blue)",_RED="var(--red)",_TEXT="var(--text)",_MUTED="var(--muted)",_BG="var(--bg)";
+  // PDF-verificirani vrhovi (mreza 1x1, ishodiste na osi):
+  //   A(-6,1), B(4,1), C(4,5), D(-3,5)
+  //   P = (|AB| + |DC|)/2 · h = (10 + 7)/2 · 4 = 34 — NCVVO kljuc
+  const OX=160,OY=160,SZ=20;      // ishodiste + duljina jedinicnoga kvadratica
+  const XMIN=-7,XMAX=6,YMIN=-2,YMAX=7;
   const elems=[];
-  // Grid
-  for(let i=-5;i<=7;i++) elems.push(e("line",{key:`gv${i}`,x1:OX+i*SZ,y1:8,x2:OX+i*SZ,y2:H-8,stroke:"var(--bdr)",strokeWidth:0.7}));
-  for(let j=-2;j<=6;j++) elems.push(e("line",{key:`gh${j}`,x1:8,y1:OY-j*SZ,x2:W-8,y2:OY-j*SZ,stroke:"var(--bdr)",strokeWidth:0.7}));
-  // Osi
-  elems.push(e("line",{key:"ax",x1:8,y1:OY,x2:W-8,y2:OY,stroke:"var(--text)",strokeWidth:1.4}));
-  elems.push(e("line",{key:"ay",x1:OX,y1:8,x2:OX,y2:H-8,stroke:"var(--text)",strokeWidth:1.4}));
-  elems.push(e("polygon",{key:"axh",points:`${W-8},${OY} ${W-16},${OY-3} ${W-16},${OY+3}`,fill:"var(--text)"}));
-  elems.push(e("polygon",{key:"ayh",points:`${OX},${8} ${OX-3},${16} ${OX+3},${16}`,fill:"var(--text)"}));
-  elems.push(e("text",{key:"lx",x:W-6,y:OY-4,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"x"));
-  elems.push(e("text",{key:"ly",x:OX+3,y:12,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"y"));
-  elems.push(e("text",{key:"l0",x:OX-10,y:OY+12,fontSize:9,fill:"var(--muted)"},"0"));
-  elems.push(e("text",{key:"l1",x:OX+SZ-3,y:OY+12,fontSize:9,fill:"var(--muted)"},"1"));
-  elems.push(e("text",{key:"l1y",x:OX-14,y:OY-SZ+4,fontSize:9,fill:"var(--muted)"},"1"));
+  // Mreza kvadraticâ — mora biti jasno vidljiva (broji se po kvadraticima).
+  // var(--bdr) je gotovo proziran u obje teme, pa se koristi var(--muted).
+  const GRID={stroke:_MUTED,strokeOpacity:0.55,strokeWidth:0.8};
+  for(let i=XMIN;i<=XMAX;i++)
+    elems.push(e("line",{key:`gv${i}`,x1:OX+i*SZ,y1:OY-YMAX*SZ,x2:OX+i*SZ,y2:OY-YMIN*SZ,...GRID}));
+  for(let j=YMIN;j<=YMAX;j++)
+    elems.push(e("line",{key:`gh${j}`,x1:OX+XMIN*SZ,y1:OY-j*SZ,x2:OX+XMAX*SZ,y2:OY-j*SZ,...GRID}));
+  // Koordinatne osi
+  const AXIS={stroke:_TEXT,strokeWidth:1.6};
+  elems.push(e("line",{key:"ax",x1:OX+XMIN*SZ-6,y1:OY,x2:W-14,y2:OY,...AXIS}));
+  elems.push(e("line",{key:"ay",x1:OX,y1:OY-YMAX*SZ-6,x2:OX,y2:OY-YMIN*SZ,...AXIS}));
+  elems.push(e("polygon",{key:"axh",points:`${W-6},${OY} ${W-16},${OY-3.6} ${W-16},${OY+3.6}`,fill:_TEXT}));
+  elems.push(e("polygon",{key:"ayh",points:`${OX},${OY-YMAX*SZ-14} ${OX-3.6},${OY-YMAX*SZ-4} ${OX+3.6},${OY-YMAX*SZ-4}`,fill:_TEXT}));
+  elems.push(e("text",{key:"lx",x:W-14,y:OY+16,fontSize:11,fill:_TEXT,fontStyle:"italic"},"x"));
+  elems.push(e("text",{key:"ly",x:OX-16,y:OY-YMAX*SZ-4,fontSize:11,fill:_TEXT,fontStyle:"italic"},"y"));
+  // Jedinicne oznake: prazni kruzici na (0,0), (1,0) i (0,1) — kao na originalu
+  const tick=(x,y,k)=>e("circle",{key:k,cx:OX+x*SZ,cy:OY-y*SZ,r:2.4,fill:_BG,stroke:_TEXT,strokeWidth:1.2});
+  elems.push(tick(0,0,"t00"),tick(1,0,"t10"),tick(0,1,"t01"));
+  elems.push(e("text",{key:"l0",x:OX-13,y:OY+16,fontSize:11,fill:_TEXT},"0"));
+  elems.push(e("text",{key:"l1x",x:OX+SZ-3,y:OY+16,fontSize:11,fill:_TEXT},"1"));
+  elems.push(e("text",{key:"l1y",x:OX-14,y:OY-SZ+4,fontSize:11,fill:_TEXT},"1"));
   // Trapez ABCD
-  const pts=[[-4,0],[5,0],[5,4],[-3,4]];
+  const pts=[[-6,1],[4,1],[4,5],[-3,5]];
   const pxPts=pts.map(([x,y])=>({px:OX+x*SZ,py:OY-y*SZ}));
-  const poly=pxPts.map(p=>`${p.px},${p.py}`).join(" ");
-  elems.push(e("polygon",{key:"abcd",points:poly,fill:_BLUE,fillOpacity:0.3,stroke:_BLUE,strokeWidth:1.8}));
-  // Oznake vrhova A, B, C, D
+  elems.push(e("polygon",{key:"abcd",points:pxPts.map(p=>`${p.px},${p.py}`).join(" "),
+    fill:_BLUE,fillOpacity:0.28,stroke:_BLUE,strokeWidth:1.8,strokeLinejoin:"miter"}));
+  // Vrhovi A, B, C, D
   const labels=["A","B","C","D"];
-  const offsets=[[-14,12],[6,12],[6,-6],[-14,-6]];
+  const offsets=[[-13,15],[7,15],[7,-7],[-14,-7]];
   pxPts.forEach((p,i)=>{
-    elems.push(e("circle",{key:"pt"+i,cx:p.px,cy:p.py,r:3,fill:_RED}));
-    elems.push(e("text",{key:"lbl"+i,x:p.px+offsets[i][0],y:p.py+offsets[i][1],fontSize:11,fill:"var(--text)",fontStyle:"italic"},labels[i]));
+    elems.push(e("circle",{key:"pt"+i,cx:p.px,cy:p.py,r:3.2,fill:_RED}));
+    elems.push(e("text",{key:"lbl"+i,x:p.px+offsets[i][0],y:p.py+offsets[i][1],fontSize:11,fill:_TEXT,fontStyle:"italic"},labels[i]));
   });
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }

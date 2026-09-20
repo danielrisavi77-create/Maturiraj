@@ -1,5 +1,7 @@
 'use client'
 import React, { createElement as e, useState, Fragment } from 'react'
+import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
+import { writeBookmarkTombstone } from '@/lib/engleski-simulator/cloudSync'
 
 export function ErrorsScreen({ userData, onStart, onBack, examsMap, topicLabels, fisherYates }) {
   const [filter, setFilter] = useState('sve')
@@ -40,7 +42,7 @@ export function ErrorsScreen({ userData, onStart, onBack, examsMap, topicLabels,
     }).filter(Boolean)
     if (!qs.length) return
     const shuffled = fisherYates(qs)
-    onStart({ key: 'errors_session', year: 'Greške', season: 'session', label: 'Greške — ponavljanje', qs: shuffled, razina: 'osnovna' })
+    onStart({ key: 'errors_session', year: 'Greške', season: 'session', label: 'Greške — ponavljanje', qs: shuffled, razina: deriveRazina(qs, examsMap) })
   }
 
   return e(Fragment, null,
@@ -103,7 +105,7 @@ export function ErrorsScreen({ userData, onStart, onBack, examsMap, topicLabels,
   )
 }
 
-export function BookmarksScreen({ onBack, onStartSession, examsMap, topicLabels, fisherYates, validateBookmarks }) {
+export function BookmarksScreen({ onBack, onStartSession, examsMap, topicLabels, fisherYates, validateBookmarks, onBookmarkChange }) {
   const [bookmarks, setBookmarks] = useState(() => {
     try { return validateBookmarks(JSON.parse(localStorage.getItem('disc_eng_bookmarks') || '{}')) } catch { return {} }
   })
@@ -131,13 +133,19 @@ export function BookmarksScreen({ onBack, onStartSession, examsMap, topicLabels,
       try { localStorage.setItem('disc_eng_bookmarks', JSON.stringify(next)) } catch {}
       return next
     })
+    // Tombstone brisanja — mergeBookmarks (cloudSync.js) ga koristi da brisanje
+    // s ovog uređaja preživi merge s cloudom umjesto da se bookmark vrati unijom.
+    writeBookmarkTombstone(key)
+    // Signal roditelju da pokrene cloud debounce (bookmarki nisu dio userData).
+    if (onBookmarkChange) onBookmarkChange()
   }
 
   function startSession() {
     if (filtered.length === 0) return
     const qs = filtered.map(b => ({ ...b.q, _examKey: b.examKey }))
     const shuffled = fisherYates(qs)
-    onStartSession({ key: 'bookmarks_session', year: 'Spremljena pitanja', season: 'session', label: 'Spremljena pitanja — vježbanje', qs: shuffled.slice(0, 40) })
+    const sessionQs = shuffled.slice(0, 40)
+    onStartSession({ key: 'bookmarks_session', year: 'Spremljena pitanja', season: 'session', label: 'Spremljena pitanja — vježbanje', qs: sessionQs, razina: deriveRazina(sessionQs, examsMap) })
   }
 
   return e(Fragment, null,

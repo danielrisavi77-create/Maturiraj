@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 /**
  * daily-challenge.test.js
  *
@@ -17,6 +18,18 @@
  * change-detection guard.
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import { createElement as e } from 'react';
+import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers';
+import { PRO_ACCESS, FREE_ACCESS } from './_synthExam.js';
+
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() }),
+  usePathname: () => '/engleski-simulator',
+  useSearchParams: () => new URLSearchParams(),
+}));
+
+const { default: DailyChallengeScreen } = await import('../../components/engleski-simulator/screens/DailyChallengeScreen.js?lang.jsx');
 
 // ─── Seed algorithm (pure math) ───────────────────────────────────────────────
 // Production: seed = Math.floor(Date.now() / 86400000)  — UTC day number
@@ -260,5 +273,72 @@ describe('getDailyChallengeQuestions — boundary / empty pool cases', () => {
     const qs = getDailyChallengeQuestions(shared, SEED_A);
     const ids = qs.map(q => q.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+});
+
+// ─── Paywall na dnevnom izazovu (P2) ──────────────────────────────────────────
+// Pool sadrži samo 'mc' pitanja da bi izlaz getDailyChallengeQuestions bio
+// predvidljiv (mat/fb ciljevi vraćaju 0 kad pool nema tih tipova) i dovoljno
+// dug (5 pitanja) da indeks >= FREE_LIMIT (3) bude dohvatljiv u testu.
+function makeMcPool(n) {
+  return {
+    exam1: {
+      qs: Array.from({ length: n }, (_, i) => ({
+        id: `mc${i}`,
+        type: 'mc',
+        topic: 'reading',
+        q: `Pitanje broj ${i}`,
+        opts: ['optA', 'optB', 'optC'],
+        sol: { cl: 'A' },
+      })),
+    },
+  };
+}
+
+describe('DailyChallengeScreen — paywall (SimulatorPreviewGate)', () => {
+  beforeEach(() => {
+    try { localStorage.clear(); } catch { /* happy-dom bez localStoragea */ }
+  });
+  afterEach(() => cleanup());
+
+  it('pitanje s indeksom >= FREE_LIMIT je zaključano za besplatan pristup (sadržaj nije u DOM-u)', async () => {
+    const examsMap = makeMcPool(5);
+    render(e(DailyChallengeScreen, {
+      userData: { history: [] },
+      examsMap,
+      userAccess: FREE_ACCESS,
+      onBack: vi.fn(),
+      onDone: vi.fn(),
+    }));
+
+    // Odgovori na prva FREE_LIMIT pitanja i predi dalje da bi se stiglo do zaključanog
+    for (let i = 0; i < FREE_LIMIT; i++) {
+      const opts = await screen.findAllByRole('radio');
+      fireEvent.click(opts[0]);
+      fireEvent.click(screen.getByRole('button', { name: 'Dalje →' }));
+    }
+
+    // Na zaključanom pitanju stvarni tekst pitanja ne smije biti u DOM-u
+    expect(screen.queryByText(new RegExp(`Pitanje broj ${FREE_LIMIT}$`))).toBeNull();
+  });
+
+  it('s PRO_ACCESS pitanje s indeksom >= FREE_LIMIT NIJE zaključano', async () => {
+    const examsMap = makeMcPool(5);
+    render(e(DailyChallengeScreen, {
+      userData: { history: [] },
+      examsMap,
+      userAccess: PRO_ACCESS,
+      onBack: vi.fn(),
+      onDone: vi.fn(),
+    }));
+
+    for (let i = 0; i < FREE_LIMIT; i++) {
+      const opts = await screen.findAllByRole('radio');
+      fireEvent.click(opts[0]);
+      fireEvent.click(screen.getByRole('button', { name: 'Dalje →' }));
+    }
+
+    const q = await screen.findByText(new RegExp(`Pitanje broj ${FREE_LIMIT}$`));
+    expect(q).toBeTruthy();
   });
 });

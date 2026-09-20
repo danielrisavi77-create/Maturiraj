@@ -3,67 +3,74 @@ import React from 'react';
 const e = React.createElement;
 
 function SvgGraf29d_2012Aj(){
-  const W=250,H=260,cx=70,cy=130,sc=28;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
+  // Prazan, simetrican koordinatni sustav kao u originalu: crtkana mreza pokriva
+  // i negativni dio osi x (potrebno za ravnalicu x = -4) i negativni dio osi y.
+  const sc=26,NX=5,NY=6,PAD=15;
+  const W=2*NX*sc+2*PAD,H=2*NY*sc+2*PAD,cx=PAD+NX*sc,cy=PAD+NY*sc;
+  const GL=PAD,GR=W-PAD,GT=PAD,GB=H-PAD;
+  const _BLUE="var(--blue)";
+  const gx=[],gy=[];
+  for(let i=-NX;i<=NX;i++) if(i!==0) gx.push(i);
+  for(let j=-NY;j<=NY;j++) if(j!==0) gy.push(j);
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("pattern",{id:"g29d",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:0.5,strokeDasharray:"3,3"})
-      ),
-      e("marker",{id:"arx29d",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ary29d",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"ar29d",markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:"auto"},e("path",{d:"M0,0 L0,7 L7,3.5 z",fill:"var(--text)"}))
     ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#g29d)"}),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#arx29d)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ary29d)"}),
-    e("text",{x:W-14,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:16,fontSize:11,fill:"var(--text)"},"y"),
+    ...gx.map(i=>e("line",{key:"gx"+i,x1:cx+i*sc,y1:GT,x2:cx+i*sc,y2:GB,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"3,3",opacity:0.85})),
+    ...gy.map(j=>e("line",{key:"gy"+j,x1:GL,y1:cy-j*sc,x2:GR,y2:cy-j*sc,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"3,3",opacity:0.85})),
+    e("line",{x1:GL-7,y1:cy,x2:GR+9,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ar29d)"}),
+    e("line",{x1:cx,y1:GB+7,x2:cx,y2:GT-9,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ar29d)"}),
+    e("text",{x:GR+3,y:cy+16,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{x:cx-13,y:GT-1,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"y"),
     e("circle",{cx:cx,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
     e("circle",{cx:cx+sc,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
     e("circle",{cx:cx,cy:cy-sc,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{x:cx-12,y:cy+13,fontSize:9,fill:"var(--muted)"},"0"),
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:9,fill:"var(--muted)"},"1"),
-    e("text",{x:cx-13,y:cy-sc+4,fontSize:9,fill:"var(--muted)"},"1"),
-    ...[1,2,3,4,5].map(t=>e("text",{key:"tx"+t,x:cx+t*sc-3,y:cy+12,fontSize:8,fill:"var(--muted)"},t)),
-    ...[-3,-2,-1,1,2,3].map(t=>e("text",{key:"ty"+t,x:cx-13,y:cy-t*sc+4,fontSize:8,fill:"var(--muted)"},t))
+    e("text",{x:cx-13,y:cy+15,fontSize:10,fill:"var(--muted)"},"0"),
+    e("text",{x:cx+sc-3,y:cy+15,fontSize:10,fill:"var(--muted)"},"1"),
+    e("text",{x:cx-14,y:cy-sc+4,fontSize:10,fill:"var(--muted)"},"1")
   );
 }
 
 function SvgKruznica29c_2012Aj(){
-  const W=300,H=280,cx=80,cy=170,sc=28;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const Sx=cx+4*sc, Sy=cy-(-1)*sc; // S(4,-1)
-  const Ax=cx+1*sc, Ay=cy-3*sc;    // A(1,3)
-  // Kružnica r=5 u pikselima = 5*sc
-  const r=5*sc;
-  const ticks=[-2,-1,1,2,3,4,5,6];
+  // Original: cijela zatvorena kružnica sa središtem S(5, 3), r = 5, i točkom
+  // A(1, 6) na kružnici. Okvir mora obuhvatiti x od -2 do 11 i y od -4 do 10
+  // da kružnica stane cijela (dodiruje os y u (0,3), siječe os x u 1 i 9).
+  const sc=22,X0=-2,X1=11,Y0=-4,Y1=10,PAD=12;
+  const W=(X1-X0)*sc+2*PAD, H=(Y1-Y0)*sc+2*PAD;
+  const cx=PAD-X0*sc, cy=PAD+Y1*sc;
+  const GL=PAD,GR=W-PAD,GT=PAD,GB=H-PAD;
+  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)";
+  const px=u=>cx+u*sc, py=v=>cy-v*sc;
+  const Sx=px(5), Sy=py(3), r=5*sc;   // S(5, 3), r = 5
+  const Ax=px(1), Ay=py(6);           // A(1, 6)
+  const gx=[],gy=[];
+  for(let i=X0;i<=X1;i++) if(i!==0) gx.push(i);
+  for(let j=Y0;j<=Y1;j++) if(j!==0) gy.push(j);
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("pattern",{id:"g29c",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:0.5,strokeDasharray:"3,3"})
-      ),
-      e("marker",{id:"arx29c",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ary29c",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"ar29c",markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:"auto"},e("path",{d:"M0,0 L0,7 L7,3.5 z",fill:"var(--text)"}))
     ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#g29c)"}),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#arx29c)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ary29c)"}),
-    e("text",{x:W-14,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:16,fontSize:11,fill:"var(--text)"},"y"),
-    e("text",{x:cx-12,y:cy+13,fontSize:9,fill:"var(--muted)"},"0"),
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:9,fill:"var(--muted)"},"1"),
-    e("text",{x:cx-13,y:cy-sc+4,fontSize:9,fill:"var(--muted)"},"1"),
-    // Ticks
-    ...[1,2,3,4,5,6].map(t=>e("text",{key:"tx"+t,x:cx+t*sc-3,y:cy+12,fontSize:8,fill:"var(--muted)"},t)),
-    ...[-1,-2].map(t=>e("text",{key:"ty"+t,x:cx-16,y:cy-t*sc+4,fontSize:8,fill:"var(--muted)"},t)),
-    // Kružnica
+    ...gx.map(i=>e("line",{key:"gx"+i,x1:px(i),y1:GT,x2:px(i),y2:GB,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"3,3",opacity:0.85})),
+    ...gy.map(j=>e("line",{key:"gy"+j,x1:GL,y1:py(j),x2:GR,y2:py(j),stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"3,3",opacity:0.85})),
+    e("line",{x1:GL-6,y1:cy,x2:GR+8,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ar29c)"}),
+    e("line",{x1:cx,y1:GB+6,x2:cx,y2:GT-8,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ar29c)"}),
+    e("text",{x:GR+1,y:cy+16,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{x:cx-13,y:GT-1,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"y"),
+    // Kružnica (zatvorena, cijela unutar okvira)
     e("circle",{cx:Sx,cy:Sy,r,fill:"none",stroke:_BLUE,strokeWidth:2}),
+    // Jedinicne oznake
+    e("circle",{cx:cx,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
+    e("circle",{cx:px(1),cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
+    e("circle",{cx:cx,cy:py(1),r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
+    e("text",{x:cx-13,y:cy+15,fontSize:10,fill:"var(--muted)"},"0"),
+    e("text",{x:px(1)-3,y:cy+15,fontSize:10,fill:"var(--muted)"},"1"),
+    e("text",{x:cx-14,y:py(1)+4,fontSize:10,fill:"var(--muted)"},"1"),
     // Središte S
     e("circle",{cx:Sx,cy:Sy,r:4,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{x:Sx+8,y:Sy+4,fontSize:12,fontWeight:"600",fill:_GOLD},"S"),
-    // Točka A
+    e("text",{x:Sx+7,y:Sy+14,fontSize:12,fontWeight:"600",fill:_GOLD},"S"),
+    // Točka A na kružnici
     e("circle",{cx:Ax,cy:Ay,r:4,fill:_RED,stroke:"var(--bg)",strokeWidth:1.5}),
-    e("text",{x:Ax-16,y:Ay-6,fontSize:12,fontWeight:"600",fill:_BLUE},"A")
+    e("text",{x:Ax-17,y:Ay-4,fontSize:12,fontWeight:"600",fill:_BLUE},"A")
   );
 }
 
@@ -91,26 +98,31 @@ function SvgGraf26_2012Aj(){
 }
 
 function SvgGraf22b_2012Aj(){
-  const W=280,H=220,lx=35,rx=W-18,by=H-35,ty=15;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const pi2x=rx-10;
+  // Prazan koordinatni sustav za crtanje f(x) = 2 sin(x - pi/2) na [0, 2pi].
+  // Kao u originalu: os x je u sredini, mreza se proteze 5 jedinica iznad i 5
+  // ispod osi x (funkcija pada do -2), a vodoravno su 4 celije sirine pi/2.
+  const scx=46,scy=28,NC=4,NY=5,PADT=15,PADB=15;
+  const lx=40, GR=lx+NC*scx, GT=PADT, cy=PADT+NY*scy, GB=cy+NY*scy;
+  const W=GR+38, H=GB+PADB;
+  const _BLUE="var(--blue)";
+  const gy=[];
+  for(let j=-NY;j<=NY;j++) if(j!==0) gy.push(j);
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("marker",{id:"arx22aj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ary22aj",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"ar22aj",markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:"auto"},e("path",{d:"M0,0 L0,7 L7,3.5 z",fill:"var(--text)"}))
     ),
-    ...[1,2,3,4,5].map(i=>e("line",{key:"gx"+i,x1:lx+i*(pi2x-lx)/6,y1:ty,x2:lx+i*(pi2x-lx)/6,y2:by,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"4,3"})),
-    ...[1,2,3,4,5,6,7].map(i=>e("line",{key:"gy"+i,x1:lx,y1:ty+i*(by-ty)/8,x2:rx,y2:ty+i*(by-ty)/8,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"4,3"})),
-    e("line",{x1:lx,y1:by,x2:rx,y2:by,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#arx22aj)"}),
-    e("line",{x1:lx,y1:by,x2:lx,y2:ty,stroke:"var(--text)",strokeWidth:2,markerEnd:"url(#ary22aj)"}),
-    e("text",{x:rx+2,y:by+4,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:lx+4,y:ty+2,fontSize:11,fill:"var(--text)"},"y"),
-    e("circle",{cx:lx,cy:by,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("circle",{cx:pi2x,cy:by,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{x:lx-10,y:by+14,fontSize:11,fill:"var(--text)"},"0"),
-    e("text",{x:pi2x-8,y:by+14,fontSize:11,fill:"var(--text)"},"2\u03c0"),
-    e("circle",{cx:lx,cy:by-(by-ty)/2,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
-    e("text",{x:lx-14,y:by-(by-ty)/2+4,fontSize:11,fill:"var(--text)"},"1")
+    ...[1,2,3,4].map(i=>e("line",{key:"gx"+i,x1:lx+i*scx,y1:GT,x2:lx+i*scx,y2:GB,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"3,3",opacity:0.85})),
+    ...gy.map(j=>e("line",{key:"gy"+j,x1:lx,y1:cy-j*scy,x2:GR,y2:cy-j*scy,stroke:"var(--muted)",strokeWidth:0.6,strokeDasharray:"3,3",opacity:0.85})),
+    e("line",{x1:lx-28,y1:cy,x2:W-6,y2:cy,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ar22aj)"}),
+    e("line",{x1:lx,y1:GB+7,x2:lx,y2:GT-9,stroke:"var(--text)",strokeWidth:1.8,markerEnd:"url(#ar22aj)"}),
+    e("text",{x:W-13,y:cy+16,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{x:lx-13,y:GT-1,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"y"),
+    e("circle",{cx:lx,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
+    e("circle",{cx:GR,cy:cy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
+    e("circle",{cx:lx,cy:cy-scy,r:3.5,fill:"var(--bg)",stroke:_BLUE,strokeWidth:1.5}),
+    e("text",{x:lx-13,y:cy+16,fontSize:10,fill:"var(--muted)"},"0"),
+    e("text",{x:GR-12,y:cy+16,fontSize:10,fill:"var(--muted)"},"2\u03c0"),
+    e("text",{x:lx-14,y:cy-scy+4,fontSize:10,fill:"var(--muted)"},"1")
   );
 }
 
@@ -847,13 +859,13 @@ export const qs = [
   ex:"Tangenta na kružnicu u točki A: jednadžba y = (4/3)x + 14/3."},
   solFormula:{pre:"y = ", frac:[["4","3"]], post:"x + ", frac2:[["14","3"]]},
   steps:[
-    {txt:"Iz slike očitavamo: S(2, −1), A(−2, 2)"},
-    {txt:"Provjera radijusa: r² = (−2 − 2)² + (2 − (−1))² = 16 + 9 = 25 ⇒ r = 5"},
+    {txt:"Iz slike očitavamo: S(5, 3), A(1, 6)"},
+    {txt:"Provjera radijusa: r² = (1 − 5)² + (6 − 3)² = 16 + 9 = 25 ⇒ r = 5"},
     {txt:"Tangenta u točki (x₀, y₀) na kružnici sa središtem (p, q): (x − p)(x₀ − p) + (y − q)(y₀ − q) = r²"},
-    {txt:"(x − 2)(−2 − 2) + (y + 1)(2 + 1) = 25"},
-    {txt:"−4(x − 2) + 3(y + 1) = 25 ⇒ −4x + 8 + 3y + 3 = 25"},
+    {txt:"(x − 5)(1 − 5) + (y − 3)(6 − 3) = 25"},
+    {txt:"−4(x − 5) + 3(y − 3) = 25 ⇒ −4x + 20 + 3y − 9 = 25"},
     {txt:"−4x + 3y = 14 ⇒ y = [FRAC:4|3]x + [FRAC:14|3]",final:true},
-    {txt:"Provjera: nagib tangente = 4/3; nagib polumjera SA = (2−(−1))/(−2−2) = 3/(−4) = −3/4; produkt nagiba = (4/3)·(−3/4) = −1 ✓ (tangenta je okomita na polumjer).",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Princip zamjene za tangentu na kružnicu (x − p)² + (y − q)² = r² u točki (x₀, y₀): x² → x·x₀, y² → y·y₀ (uz odgovarajuće translacije).",note:"postupak",final:true},{txt:"Intuicija: Tangenta je okomita na radijus u dodirnoj točki.",note:"intuicija",final:true},{txt:"Točan odgovor: y = [FRAC:4|3]x + [FRAC:14|3] ✓",note:"odgovor",final:true}
+    {txt:"Provjera: nagib tangente = 4/3; nagib polumjera SA = (6−3)/(1−5) = 3/(−4) = −3/4; produkt nagiba = (4/3)·(−3/4) = −1 ✓ (tangenta je okomita na polumjer).",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Princip zamjene za tangentu na kružnicu (x − p)² + (y − q)² = r² u točki (x₀, y₀): x² → x·x₀, y² → y·y₀ (uz odgovarajuće translacije).",note:"postupak",final:true},{txt:"Intuicija: Tangenta je okomita na radijus u dodirnoj točki.",note:"intuicija",final:true},{txt:"Točan odgovor: y = [FRAC:4|3]x + [FRAC:14|3] ✓",note:"odgovor",final:true}
   ],
   why:["Princip zamjene za tangentu na kružnicu (x − p)² + (y − q)² = r² u točki (x₀, y₀): x² → x·x₀, y² → y·y₀ (uz odgovarajuće translacije).","Tangenta je okomita na radijus u dodirnoj točki.","Tangenta na kružnicu u točki A(x₀,y₀) okomita je na polumjer SA.","Nagib polumjera SA = (y₀ − y_S)/(x₀ − x_S); nagib tangente = negativni recipročni.","Jednadžba tangente prolazi točkom A s određenim nagibom.","Provjera kompleksnog broja: realni dio + imaginarni dio (i² = −1)."]
 },

@@ -61,75 +61,76 @@ function Svg5_2025Ajes(){
 }
 
 function Svg6_2025Ajes(){
-  const W=360,H=340,ox=180,oy=170,sc=34;
-  const st="var(--muted)",ax="var(--text)",rd="var(--red)",bg="var(--bg,#060910)";
+  const W=390,H=372,ox=180,oy=180,sc=30;
+  const st="var(--muted)",ax="var(--text)",rd="var(--red)",bg="var(--bg)";
   const tx=(x)=>ox+x*sc, ty=(y)=>oy-y*sc;
-  // Točke: z3≈(−1,3), z4≈(−4,0), z1≈(0,−2), z2≈(2,−1)
+  // Točke (kao u originalu): z1 = −2i, z2 = 3 − i, z3 = −1 + 4i, z4 = −3
   const pts=[
-    {n:"z\u2081",x:0,y:-2,lx:8,ly:-2},
-    {n:"z\u2082",x:2,y:-1,lx:8,ly:-2},
-    {n:"z\u2083",x:-1,y:3,lx:-16,ly:-4},
-    {n:"z\u2084",x:-4,y:0,lx:-8,ly:-10}
+    {n:"z\u2081",x:0,y:-2,lx:-20,ly:18},
+    {n:"z\u2082",x:3,y:-1,lx:7,ly:18},
+    {n:"z\u2083",x:-1,y:4,lx:-20,ly:18},
+    {n:"z\u2084",x:-3,y:0,lx:-20,ly:18}
   ];
   let grid="";
   for(let i=-5;i<=5;i++){
-    grid+=`<line x1="${tx(i)}" y1="${ty(-4)}" x2="${tx(i)}" y2="${ty(4)}" stroke="${st}" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.2"/>`;
-    grid+=`<line x1="${tx(-5)}" y1="${ty(i)}" x2="${tx(5)}" y2="${ty(i)}" stroke="${st}" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.2"/>`;
+    grid+=`<line x1="${tx(i)}" y1="${ty(5)}" x2="${tx(i)}" y2="${ty(-5)}" stroke="${st}" stroke-width="0.9" opacity="0.45"/>`;
+    grid+=`<line x1="${tx(-5)}" y1="${ty(i)}" x2="${tx(5)}" y2="${ty(i)}" stroke="${st}" stroke-width="0.9" opacity="0.45"/>`;
   }
   const t=
-    `<circle cx="${tx(1)}" cy="${ty(0)}" r="3" fill="${bg}" stroke="${ax}" stroke-width="1.2"/>`+
-    `<text x="${tx(1)-3}" y="${ty(0)+18}" fill="${ax}" font-size="12" font-family="serif">1</text>`+
-    `<circle cx="${tx(0)}" cy="${ty(1)}" r="3" fill="${bg}" stroke="${ax}" stroke-width="1.2"/>`+
-    `<text x="${tx(0)+7}" y="${ty(1)+4}" fill="${ax}" font-size="12" font-family="serif">1</text>`+
-    `<text x="${tx(0)+6}" y="${ty(0)+18}" fill="${ax}" font-size="12" font-family="serif">0</text>`+
-    `<text x="${tx(0)+8}" y="${ty(4)+14}" fill="${ax}" font-size="13" font-style="italic" font-family="serif">Im</text>`+
-    `<text x="${tx(5)-4}" y="${ty(0)+18}" fill="${ax}" font-size="13" font-style="italic" font-family="serif">Re</text>`;
+    `<circle cx="${tx(1)}" cy="${ty(0)}" r="3.2" fill="${bg}" stroke="${ax}" stroke-width="1.2"/>`+
+    `<text x="${tx(1)-2}" y="${ty(0)+18}" fill="${ax}" font-size="13" font-family="serif">1</text>`+
+    `<circle cx="${tx(0)}" cy="${ty(1)}" r="3.2" fill="${bg}" stroke="${ax}" stroke-width="1.2"/>`+
+    `<text x="${tx(0)-14}" y="${ty(1)+5}" fill="${ax}" font-size="13" font-family="serif">1</text>`+
+    `<text x="${tx(0)-15}" y="${ty(0)+18}" fill="${ax}" font-size="13" font-family="serif">0</text>`+
+    `<text x="${tx(0)-34}" y="${ty(5)+10}" fill="${ax}" font-size="15" font-style="italic" font-family="serif">Im</text>`+
+    `<text x="${tx(5)+8}" y="${ty(0)+18}" fill="${ax}" font-size="15" font-style="italic" font-family="serif">Re</text>`;
   const dots=pts.map(p=>
     `<circle cx="${tx(p.x)}" cy="${ty(p.y)}" r="4.5" fill="${rd}"/>`+
-    `<text x="${tx(p.x)+p.lx}" y="${ty(p.y)+p.ly}" fill="${rd}" font-size="13" font-style="italic" font-family="serif">${p.n}</text>`
+    `<text x="${tx(p.x)+p.lx}" y="${ty(p.y)+p.ly}" fill="${rd}" font-size="14" font-style="italic" font-family="serif">${p.n}</text>`
   ).join('');
-  return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:{display:'block',margin:'8px auto'}},
+  return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:{display:'block',margin:'8px auto',maxWidth:'100%'}},
     React.createElement('g',{dangerouslySetInnerHTML:{__html:
       grid+
-      `<line x1="${tx(-5)}" y1="${ty(0)}" x2="${tx(5)}" y2="${ty(0)}" stroke="${ax}" stroke-width="1.5"/>`+
-      `<line x1="${tx(0)}" y1="${ty(-4)}" x2="${tx(0)}" y2="${ty(4)}" stroke="${ax}" stroke-width="1.5"/>`+
-      `<polygon points="${tx(5)},${ty(0)} ${tx(5)-8},${ty(0)-4} ${tx(5)-8},${ty(0)+4}" fill="${ax}"/>`+
-      `<polygon points="${tx(0)},${ty(4)} ${tx(0)-4},${ty(4)+8} ${tx(0)+4},${ty(4)+8}" fill="${ax}"/>`+
+      `<line x1="${tx(-5)}" y1="${ty(0)}" x2="${tx(5)+15}" y2="${ty(0)}" stroke="${ax}" stroke-width="1.6"/>`+
+      `<line x1="${tx(0)}" y1="${ty(-5)}" x2="${tx(0)}" y2="${ty(5)-15}" stroke="${ax}" stroke-width="1.6"/>`+
+      `<polygon points="${tx(5)+15},${ty(0)} ${tx(5)+6},${ty(0)-4.5} ${tx(5)+6},${ty(0)+4.5}" fill="${ax}"/>`+
+      `<polygon points="${tx(0)},${ty(5)-15} ${tx(0)-4.5},${ty(5)-6} ${tx(0)+4.5},${ty(5)-6}" fill="${ax}"/>`+
       t+dots
     }})
   );
 }
 
 function Svg38_2025Ajes(){
-  const W=440,H=300;
-  const txt="var(--text)"; const muted="var(--muted)";
-  const blue="var(--blue)"; const blueFill="rgba(74,144,217,0.22)"; const red="var(--red)"; const gold="var(--gold)";
-  const ox=60, oy=240, u=20;
+  const W=360,H=216;
+  const txt="var(--text)";
+  const blue="var(--blue)"; const red="var(--red)"; const gold="var(--gold)"; const bg="var(--bg)";
+  const ox=58, oy=160, u=20;
   const A=[ox,oy], B=[ox+12*u,oy];
   const E_=[ox+2.5*u,oy], F=[ox+9.5*u,oy];
   const D=[ox+2.5*u,oy-5*u], C=[ox+9.5*u,oy-5*u];
   let html = "";
-  // EFCD rectangle (highlighted blue tint)
-  html += `<polygon points="${E_[0]},${E_[1]} ${F[0]},${F[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}" fill="${blueFill}" stroke="${blue}" stroke-width="2"/>`;
-  // Trapezoid outline ABCD (A-B-C-D-A)
+  // EFCD pravokutnik (naglašen plavom bojom)
+  html += `<polygon points="${E_[0]},${E_[1]} ${F[0]},${F[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}" fill="${blue}" fill-opacity="0.18" stroke="${blue}" stroke-width="2"/>`;
+  // Trapez ABCD
   html += `<polygon points="${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}" fill="none" stroke="${blue}" stroke-width="2.2"/>`;
-  // Dashed verticals DE and CF (heights)
+  // Visine DE i CF (iscrtkano)
   html += `<line x1="${D[0]}" y1="${D[1]}" x2="${E_[0]}" y2="${E_[1]}" stroke="${gold}" stroke-width="1.4" stroke-dasharray="6 4"/>`;
   html += `<line x1="${C[0]}" y1="${C[1]}" x2="${F[0]}" y2="${F[1]}" stroke="${gold}" stroke-width="1.4" stroke-dasharray="6 4"/>`;
-  // Right-angle marks at E and F (small squares)
+  // Oznake pravog kuta u E i F
   html += `<polyline points="${E_[0]+8},${E_[1]} ${E_[0]+8},${E_[1]-8} ${E_[0]},${E_[1]-8}" fill="none" stroke="${gold}" stroke-width="1.3"/>`;
   html += `<polyline points="${F[0]-8},${F[1]} ${F[0]-8},${F[1]-8} ${F[0]},${F[1]-8}" fill="none" stroke="${gold}" stroke-width="1.3"/>`;
-  // Vertex dots
-  [[A,"A",-14,18],[B,"B",6,18],[C,"C",6,-4],[D,"D",-16,-4],[E_,"E",-12,18],[F,"F",4,18]].forEach(([p,l,dx,dy])=>{
-    html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${red}" stroke="var(--s1,#0a0f1a)" stroke-width="1.5"/>`;
-    html += `<text x="${p[0]+dx}" y="${p[1]+dy}" fill="${gold}" font-size="16" font-style="italic" font-family="Georgia,serif" font-weight="bold">${l}</text>`;
+  // Vrhovi
+  [[A,"A",-15,17],[B,"B",6,17],[C,"C",7,-6],[D,"D",-17,-6],[E_,"E",-12,17],[F,"F",5,17]].forEach(([p,l,dx,dy])=>{
+    html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${red}" stroke="${bg}" stroke-width="1.5"/>`;
+    html += `<text x="${p[0]+dx}" y="${p[1]+dy}" fill="${gold}" font-size="15" font-style="italic" font-family="Georgia,serif" font-weight="bold">${l}</text>`;
   });
-  // Dimension labels
-  html += `<text x="${(D[0]+C[0])/2-30}" y="${D[1]-12}" fill="${txt}" font-size="13" font-family="Georgia,serif">|CD| = 7</text>`;
-  html += `<text x="${(A[0]+B[0])/2-30}" y="${A[1]+38}" fill="${txt}" font-size="13" font-family="Georgia,serif">|AB| = 12</text>`;
-  html += `<text x="${D[0]-50}" y="${(D[1]+A[1])/2+4}" fill="${txt}" font-size="13" font-family="Georgia,serif">v = 5</text>`;
+  // Oznake duljina
+  html += `<text x="${(D[0]+C[0])/2}" y="${D[1]-12}" fill="${txt}" font-size="13" font-family="Georgia,serif" text-anchor="middle">|CD| = 7</text>`;
+  html += `<text x="${(A[0]+B[0])/2}" y="${A[1]+40}" fill="${txt}" font-size="13" font-family="Georgia,serif" text-anchor="middle">|AB| = 12</text>`;
+  // v = 5 unutar pravokutnika, uz visinu DE (ne presijeca krak AD)
+  html += `<text x="${D[0]+10}" y="${(D[1]+A[1])/2+5}" fill="${txt}" font-size="13" font-family="Georgia,serif">v = 5</text>`;
   return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:"100%",
-    style:{display:'block',margin:'12px auto',maxWidth:440},
+    style:{display:'block',margin:'12px auto',maxWidth:360},
     dangerouslySetInnerHTML:{__html:html}
   });
 }

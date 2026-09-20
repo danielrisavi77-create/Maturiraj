@@ -1,26 +1,14 @@
 'use client'
-import React, { createElement as e, useState, useEffect, useRef, Fragment } from 'react'
+import React, { createElement as e, useState, useEffect, useId, useCallback, Fragment } from 'react'
 import { nrm, chk } from '@/lib/engleski-simulator/scoring'
 import { trackAiHelpRequested } from '@/lib/engleski-simulator/analytics'
-
-const LL = ['A', 'B', 'C', 'D', 'E', 'F']
+import { LL } from '@/lib/engleski-simulator/constants'
+import { getExamBlocks, totalMinutes } from '@/lib/engleski-simulator/examStructure'
+import { audioUrl } from '@/lib/engleski-simulator/audioBase'
+import AUDIO_MAP from '@/lib/data/engleski-simulator/audio-map.json'
 
 const _AI_COOLDOWN_MS = 8000
 const _AI_SS_KEY = 'eng_ai_last'
-
-const AUDIO_MAP = {
-  vis_2015_ljeto: {
-    1: '1tvTSXoMOWeEyezLU5l8yNd15XMmkTdBn',
-    2: '1KDdDbHDq-sjAIlxRnLnaaYsS0iUZUZC4',
-    3: '1cp0j-JbsjW-Jyvi4Ozpft6QlWs7nBJ7P',
-    4: '1HYutrILE_RuGmma5NbDbgo-zYY2jCx1Q',
-    5: '1BK9WejtBj58dYbYvDE2GmnUKM5-BzC1L',
-    6: '1UrERTOIxE2mjd2i0qPbYMY7L8lPooVAY',
-    7: '1dZ7bDMjJ3uYwV-GRa2Ws_SAGInPDErnt',
-    8: '1zgDSH5aE7YgburdU1gbYCW7oPjsxIAIY',
-    9: '11fORSrmJ40YXzj9D3ZJJ9gJla82dycYd',
-  },
-}
 
 const TOPIC_TO_TASK_VISA = {
   listening_match: 1,
@@ -34,27 +22,38 @@ const TOPIC_TO_TASK_OSN = {
   listening_d: 4,
 }
 
-function getAudioTrack(examKey, topic, razina) {
-  if (!AUDIO_MAP[examKey]) return null
-  const taskNum = razina === 'visa' ? TOPIC_TO_TASK_VISA[topic] : TOPIC_TO_TASK_OSN[topic]
+// Čita audio-map.json (oblik: { <examKey>: { intro, tasks: { <taskNum>: { topic,
+// first, repeat, confidence, note } } } }) i vraća URL-ove (preko audioUrl(), koja
+// datoteku spaja s ENG_AUDIO_BASE — GitHub Release, vidi lib/engleski-simulator/audioBase.js).
+// Prvo traži task čiji je topic jednak zadanom; ako takvog nema u mapi tog ispita,
+// pada natrag na TOPIC_TO_TASK_* mapu po rednom broju. Ako datoteka za task ne
+// postoji (first je null — npr. stariji ispiti s jednom kombiniranom snimkom),
+// vraća null i AudioPlayer neće ništa renderirati.
+export function getAudioTrack(examKey, topic, razina) {
+  const exam = AUDIO_MAP[examKey]
+  if (!exam || !exam.tasks) return null
+  const taskNums = Object.keys(exam.tasks).map(Number).sort((a, b) => a - b)
+  let taskNum = taskNums.find(n => exam.tasks[String(n)]?.topic === topic)
+  if (!taskNum) taskNum = razina === 'visa' ? TOPIC_TO_TASK_VISA[topic] : TOPIC_TO_TASK_OSN[topic]
   if (!taskNum) return null
-  const trackFirst = taskNum * 2
-  const trackRepeat = taskNum * 2 + 1
-  const idFirst = AUDIO_MAP[examKey][trackFirst]
-  const idRepeat = AUDIO_MAP[examKey][trackRepeat]
-  if (!idFirst) return null
+  const track = exam.tasks[String(taskNum)]
+  if (!track || !track.first) return null
   return {
-    first: 'https://docs.google.com/uc?id=' + idFirst,
-    repeat: idRepeat ? 'https://docs.google.com/uc?id=' + idRepeat : null,
+    first: audioUrl(track.first),
+    repeat: track.repeat ? audioUrl(track.repeat) : null,
+    intro: exam.intro ? audioUrl(exam.intro) : null,
     taskNum,
+    confidence: track.confidence || null,
   }
 }
 
 export function FocusTrap({ label, onClose, className, children }) {
-  const ref = useRef(null)
+  // Element se pronalazi preko stabilnog id-a (useId) umjesto refa da bi se izbjeglo
+  // proslijeđivanje refa kroz createElement (vidi napomenu o react-hooks/refs niže u datoteci)
+  const domId = 'focus-trap-' + useId()
   useEffect(() => {
     const prev = document.activeElement
-    const getEls = () => Array.from(ref.current?.querySelectorAll('button:not([disabled]),a[href]:not([disabled]),[tabindex="0"]:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[role="radio"]:not([disabled]),[role="checkbox"]:not([disabled]),[role="option"]:not([disabled])') || [])
+    const getEls = () => Array.from(document.getElementById(domId)?.querySelectorAll('button:not([disabled]),a[href]:not([disabled]),[tabindex="0"]:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[role="radio"]:not([disabled]),[role="checkbox"]:not([disabled]),[role="option"]:not([disabled])') || [])
     const els = getEls()
     if (els[0]) els[0].focus()
     function onKey(ev) {
@@ -80,13 +79,12 @@ export function FocusTrap({ label, onClose, className, children }) {
       document.removeEventListener('keydown', onKey)
       prev?.focus()
     }
-  }, [onClose])
-  return e('div', { className, ref, role: 'dialog', 'aria-modal': 'true', 'aria-label': label }, children)
+  }, [onClose, domId])
+  return e('div', { id: domId, className, role: 'dialog', 'aria-modal': 'true', 'aria-label': label }, children)
 }
 
 export function MCQ({ q, a, setA, rev }) {
-  const containerRef = useRef(null)
-  return e('div', { className: 'opts', role: 'radiogroup', ref: containerRef }, q.opts.map((opt, i) => {
+  return e('div', { className: 'opts', role: 'radiogroup' }, q.opts.map((opt, i) => {
     const L = LL[i]
     const sel = a === L
     const ok = rev && L === q.sol.cl
@@ -109,7 +107,8 @@ export function MCQ({ q, a, setA, rev }) {
       }
       if (ni >= 0) {
         setA(LL[ni])
-        containerRef.current?.querySelectorAll('[role="radio"]')[ni]?.focus()
+        // čita se iz eventa (ne iz refa) da izbjegnemo pristup refu tijekom renderiranja
+        ev.currentTarget.parentElement?.querySelectorAll('[role="radio"]')[ni]?.focus()
       }
     }
     return e('div', { key: i, className: 'opt' + (ok ? ' ok' : bad ? ' bad' : sel ? ' sel' : ''), role: 'radio', 'aria-checked': sel, tabIndex: sel ? 0 : -1, onClick: () => !rev && setA(L), onKeyDown: handleKey },
@@ -119,8 +118,7 @@ export function MCQ({ q, a, setA, rev }) {
 
 export function InsQ({ q, a, setA, rev }) {
   const cur = a || ''
-  const containerRef = useRef(null)
-  return e('div', { className: 'opts', role: 'radiogroup', ref: containerRef },
+  return e('div', { className: 'opts', role: 'radiogroup' },
     q.opts.map((opt, i) => {
       const letter = String.fromCharCode(65 + i)
       const sel = cur === letter
@@ -144,7 +142,8 @@ export function InsQ({ q, a, setA, rev }) {
         }
         if (ni >= 0) {
           setA(String.fromCharCode(65 + ni))
-          containerRef.current?.querySelectorAll('[role="radio"]')[ni]?.focus()
+          // čita se iz eventa (ne iz refa) da izbjegnemo pristup refu tijekom renderiranja
+          ev.currentTarget.parentElement?.querySelectorAll('[role="radio"]')[ni]?.focus()
         }
       }
       return e('div', {
@@ -328,13 +327,11 @@ export function FeedbackBox({ q, a, rev }) {
 }
 
 export function AnswerHelper({ q, show, onToggle, autoExpand }) {
+  // Reset AI stanja pri promjeni pitanja postiže se preko `key={q.id}` na pozivatelju
+  // (vidi EngleskiSimulator.js), umjesto efekta koji resetira state — izbjegava se
+  // setState-in-effect obrazac.
   const [aiState, setAiState] = useState('idle')
   const [aiText, setAiText] = useState('')
-
-  useEffect(() => {
-    setAiState('idle')
-    setAiText('')
-  }, [q.id])
 
   function getContent() {
     if (q.type === 'mc') {
@@ -347,7 +344,7 @@ export function AnswerHelper({ q, show, onToggle, autoExpand }) {
     return null
   }
 
-  async function fetchAi() {
+  const fetchAi = useCallback(async () => {
     trackAiHelpRequested({ topic: q.topic || 'ostalo', question_type: q.type, examKey: q.examKey || '' })
     const now = Date.now()
     const lastMs = Number(sessionStorage.getItem(_AI_SS_KEY) || 0)
@@ -397,7 +394,7 @@ export function AnswerHelper({ q, show, onToggle, autoExpand }) {
     } catch {
       setAiState('error')
     }
-  }
+  }, [q])
 
   if (!show && !autoExpand) return e('button', { className: 'ah-toggle-btn', onClick: onToggle }, '💡 Pokaži odgovor')
   return e('div', { className: 'ah-wrap' },
@@ -432,6 +429,10 @@ export function ContextPanel({ examKey, qid, examContext }) {
 
 export function ModeSelect({ examKey, examObj, examsMap, onExamMode, onPractice, onPracticeTimer, onBack, toggles }) {
   const exam = (examsMap && examsMap[examKey]) || examObj || {}
+  // Trajanje po ispitnim cjelinama prema NCVVO katalogu (viša 180, osnovna 105 min)
+  const blocks = getExamBlocks(exam)
+  const totalMin = totalMinutes(exam)
+  const blocksLabel = blocks.map(b => b.label + ' ' + b.minutes).join(', ')
   return e(Fragment, null,
     e('div', { className: 'nav' },
       e('button', { className: 'btn btn-g', style: { fontSize: 13, padding: '6px 12px' }, onClick: onBack }, '← Natrag'),
@@ -466,34 +467,24 @@ export function ModeSelect({ examKey, examObj, examsMap, onExamMode, onPractice,
           e('div', { className: 'mode-card-title' }, 'Simulacija ispita'),            (exam.hasListening === false || exam.hasReading === false) && e('div', { style: { display: 'flex', gap: 5, flexWrap: 'wrap', marginBottom: 6 } },
               exam.hasListening === false && e('span', { style: { fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 99, background: 'rgba(233,180,70,.12)', border: '1px solid rgba(233,180,70,.25)', color: 'var(--gold)' } }, 'bez 🎧'),
               exam.hasReading === false && e('span', { style: { fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 99, background: 'rgba(32,69,184,.1)', border: '1px solid rgba(32,69,184,.25)', color: 'var(--blue)' } }, 'bez 📖'),
-            ),          e('div', { className: 'mode-card-desc' }, exam.hasListening === false ? 'Uvjeti ispita bez Listening dijela (audio nije dostupan).' : 'Pravi uvjeti ispita: 90 minuta, bez odgovora dok ne predaš.'),
+            ),          e('div', { className: 'mode-card-desc' }, exam.hasListening === false ? 'Uvjeti ispita bez Listening dijela (audio nije dostupan).' : 'Pravi uvjeti ispita: ' + totalMin + ' min po ispitnim cjelinama, bez povratka na prethodni dio.'),
           e('div', { className: 'mode-card-features' },
-            e('div', { className: 'mode-feature on' }, '✓ Vremensko ograničenje 90 min'),
+            e('div', { className: 'mode-feature on' }, '✓ Vremensko ograničenje ' + totalMin + ' min (' + blocksLabel + ')'),
             e('div', { className: 'mode-feature off' }, '– Odgovori tek po predaji'),
             e('div', { className: 'mode-feature off' }, '– Nema objašnjenja tijekom ispita'))))))
 }
 
 export function AudioPlayer({ examKey, topic, razina }) {
+  // Napomena: pozivatelj mora renderirati ovu komponentu s key={examKey + '_' + topic}
+  // da bi se phase/audioError/showIntro ispravno resetirali pri promjeni pitanja (remount).
   const audio = getAudioTrack(examKey, topic, razina)
   const [phase, setPhase] = useState('first')
-  const [iframeFallback, setIframeFallback] = useState(false)
-  const iframeRef = useRef(null)
-  const fallbackTimerRef = useRef(null)
-
-  useEffect(() => {
-    setPhase('first')
-    setIframeFallback(false)
-    clearTimeout(fallbackTimerRef.current)
-    fallbackTimerRef.current = setTimeout(() => setIframeFallback(true), 5000)
-    return () => clearTimeout(fallbackTimerRef.current)
-  }, [topic, examKey])
+  const [audioError, setAudioError] = useState(false)
+  const [showIntro, setShowIntro] = useState(false)
 
   if (!audio) return null
 
-  const fileId = phase === 'repeat' && audio.repeat
-    ? audio.repeat.replace('https://docs.google.com/uc?id=', '')
-    : audio.first.replace('https://docs.google.com/uc?id=', '')
-  const iframeSrc = 'https://drive.google.com/file/d/' + fileId + '/preview'
+  const src = phase === 'repeat' && audio.repeat ? audio.repeat : audio.first
 
   return e('div', { className: 'audio-player' },
     e('div', { className: 'audio-player-inner' },
@@ -507,22 +498,26 @@ export function AudioPlayer({ examKey, topic, razina }) {
           },
         }, phase === 'done' ? '✓ Završeno' : phase === 'repeat' ? 'Ponavljanje' : '1. slušanje'),
         phase !== 'done' && e('div', { style: { marginLeft: 'auto', display: 'flex', gap: 6 } },
-          phase === 'first' && audio.repeat && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => setPhase('repeat') }, '▶ Ponavljanje'),
+          audio.intro && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => setShowIntro(s => !s) }, '📋 Upute'),
+          phase === 'first' && audio.repeat && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => { setPhase('repeat'); setAudioError(false) } }, '▶ Ponavljanje'),
           e('button', { className: 'btn', style: { fontSize: 11, padding: '3px 10px', background: 'var(--green-d)', color: 'var(--green)', border: '1px solid rgba(30,122,62,.3)' }, onClick: () => setPhase('done') }, '✓ Završio/la'))),
-      e('div', { className: 'audio-iframe-wrap' },
-        e('iframe', {
-          ref: iframeRef,
-          key: fileId,
-          src: iframeSrc,
-          allow: 'autoplay',
-          title: 'Audio player — ' + topic,
-          onLoad: () => { clearTimeout(fallbackTimerRef.current); setIframeFallback(false) },
-          style: { width: '100%', height: 54, border: 'none', borderRadius: 8, background: 'var(--s2)', display: iframeFallback ? 'none' : 'block' },
-        }),
-        iframeFallback && e('div', { className: 'audio-fallback' },
-          e('span', { className: 'audio-fallback-icon' }, '⚠️'),
-          ' Audio se nije uspio učitati (možda blokiran). ',
-          e('a', { href: 'https://drive.google.com/file/d/' + fileId + '/view', target: '_blank', rel: 'noopener noreferrer', style: { color: 'var(--blue)', textDecoration: 'underline' } }, 'Otvori u Google Driveu →'))),
+      showIntro && audio.intro && e('div', { className: 'audio-intro-wrap', style: { marginBottom: 8 } },
+        e('div', { style: { fontSize: 11, color: 'var(--muted)', marginBottom: 4 } }, '📋 Upute (uvodna snimka):'),
+        e('audio', { controls: true, preload: 'none', src: audio.intro, 'aria-label': 'Upute — ' + topic, style: { width: '100%', height: 36 } })),
+      e('div', { className: 'audio-native-wrap' },
+        audioError
+          ? e('div', { className: 'audio-fallback' },
+            e('span', { className: 'audio-fallback-icon' }, '⚠️'),
+            ' Audio nije dostupan — u stvarnom ispitu slušaš snimku; odgovori su iz ključa NCVVO-a.')
+          : e('audio', {
+            key: src,
+            controls: true,
+            preload: 'none',
+            src,
+            'aria-label': 'Audio player — ' + topic,
+            onError: () => setAudioError(true),
+            style: { width: '100%', height: 40 },
+          })),
       phase === 'done'
         ? e('div', { style: { fontSize: 11, color: 'var(--green)', fontWeight: 600 } }, '✓ Oba slušanja završena — odgovori na pitanja.')
         : e('div', { className: 'audio-hint' }, phase === 'repeat' ? 'Slušaš ponavljanje. Klikni \'✓ Završio/la\' kad završiš.' : 'Slušaj pažljivo. Klikni \'▶ Ponavljanje\' za drugi put ili \'✓ Završio/la\'.')))

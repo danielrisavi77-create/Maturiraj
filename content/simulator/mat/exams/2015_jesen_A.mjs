@@ -86,24 +86,30 @@ function SvgZad8_2015JA(){
 
 function SvgZad6_2015JA(){
   const W=220,H=220,cx=110,cy=110,r=80;
-  const angle=(180+30)*Math.PI/180; // 3. kvadrant ~210°
-  const ex=cx+r*Math.cos(angle), ey=cy+r*Math.sin(angle);
+  // E(t) je u III. kvadrantu (x<0, y<0) — kao na izvornoj slici.
+  // SVG y-os raste prema dolje, pa se sin oduzima.
+  const angle=(180+35)*Math.PI/180; // ~215°
+  const ex=cx+r*Math.cos(angle), ey=cy-r*Math.sin(angle);
   const u=_uid15ja;
   return e("svg",{viewBox:`0 0 ${W} ${H}`,
     style:{width:"100%",maxWidth:W,display:"block",background:"var(--s2)",borderRadius:8}},
-    e("line",{key:u(),x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--muted)",strokeWidth:1.2}),
-    e("line",{key:u(),x1:cx,y1:H-10,x2:cx,y2:10,stroke:"var(--muted)",strokeWidth:1.2}),
-    e("polygon",{key:u(),points:`${W-10},${cy} ${W-18},${cy-3} ${W-18},${cy+3}`,fill:"var(--muted)"}),
-    e("polygon",{key:u(),points:`${cx},10 ${cx-3},18 ${cx+3},18`,fill:"var(--muted)"}),
-    e("text",{key:u(),x:W-7,y:cy+5,fill:"var(--muted)",fontSize:11,fontStyle:"italic"},"x"),
-    e("text",{key:u(),x:cx+4,y:12,fill:"var(--muted)",fontSize:11,fontStyle:"italic"},"y"),
-    e("text",{key:u(),x:cx+r+3,y:cy+12,fill:"var(--muted)",fontSize:10},"1"),
-    e("text",{key:u(),x:cx+4,y:cy+12,fill:"var(--muted)",fontSize:10},"0"),
+    // osi
+    e("line",{key:u(),x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--text)",strokeWidth:1.2}),
+    e("line",{key:u(),x1:cx,y1:H-10,x2:cx,y2:10,stroke:"var(--text)",strokeWidth:1.2}),
+    e("polygon",{key:u(),points:`${W-8},${cy} ${W-17},${cy-3.5} ${W-17},${cy+3.5}`,fill:"var(--text)"}),
+    e("polygon",{key:u(),points:`${cx},8 ${cx-3.5},17 ${cx+3.5},17`,fill:"var(--text)"}),
+    e("text",{key:u(),x:W-6,y:cy+13,fill:"var(--text)",fontSize:11,fontStyle:"italic"},"x"),
+    e("text",{key:u(),x:cx-13,y:14,fill:"var(--text)",fontSize:11,fontStyle:"italic"},"y"),
+    // jedinicna kruznica
     e("circle",{key:u(),cx,cy,r,fill:"none",stroke:"var(--text)",strokeWidth:1.5}),
-    e("circle",{key:u(),cx:ex,cy:ey,r:5,fill:"var(--blue)"}),
-    e("text",{key:u(),x:ex-33,y:ey+5,fill:"var(--blue)",fontSize:12,fontStyle:"italic"},"E(t)"),
-    e("line",{key:u(),x1:ex,y1:ey,x2:ex,y2:cy,stroke:"var(--blue)",strokeWidth:0.8,strokeDasharray:"3,2"}),
-    e("line",{key:u(),x1:ex,y1:ey,x2:cx,y2:ey,stroke:"var(--blue)",strokeWidth:0.8,strokeDasharray:"3,2"})
+    // ishodiste i tocka 1 (male prazne kruzice, kao u originalu)
+    e("circle",{key:u(),cx,cy,r:2.6,fill:"var(--s2)",stroke:"var(--text)",strokeWidth:1.2}),
+    e("circle",{key:u(),cx:cx+r,cy,r:2.6,fill:"var(--s2)",stroke:"var(--text)",strokeWidth:1.2}),
+    e("text",{key:u(),x:cx+4,y:cy+14,fill:"var(--text)",fontSize:11},"0"),
+    e("text",{key:u(),x:cx+r+4,y:cy+14,fill:"var(--text)",fontSize:11},"1"),
+    // E(t) na kruznici u III. kvadrantu
+    e("circle",{key:u(),cx:ex,cy:ey,r:4.5,fill:"var(--text)"}),
+    e("text",{key:u(),x:ex-38,y:ey+24,fill:"var(--text)",fontSize:12,fontStyle:"italic"},"E(t)")
   );
 }
 
@@ -163,9 +169,11 @@ function SvgZad29b_2015JA(){
 function SvgZad28c_2015JA(){
   const W=300,H=240,cx=100,cy=180,sc=35;
   const u=_uid15ja;
+  // mreza: isprekidana i tematski neutralna (kao na izvornoj slici)
+  const gridStroke={stroke:"var(--muted)",strokeWidth:0.9,strokeDasharray:"4,3",opacity:0.45};
   const grid=[];
-  for(let i=-2;i<=4;i++) grid.push(e("line",{key:u(),x1:cx+i*sc,y1:10,x2:cx+i*sc,y2:H-10,stroke:"#1e2130",strokeWidth:1}));
-  for(let i=-1;i<=4;i++) grid.push(e("line",{key:u(),x1:10,y1:cy-i*sc,x2:W-10,y2:cy-i*sc,stroke:"#1e2130",strokeWidth:1}));
+  for(let i=-2;i<=4;i++) grid.push(e("line",{key:u(),x1:cx+i*sc,y1:10,x2:cx+i*sc,y2:H-10,...gridStroke}));
+  for(let i=-1;i<=4;i++) grid.push(e("line",{key:u(),x1:10,y1:cy-i*sc,x2:W-10,y2:cy-i*sc,...gridStroke}));
   let path="",pen=false;
   for(let xi=-0.3;xi<=4.3;xi+=0.04){
     const yi=(xi-2)**2;
@@ -177,20 +185,25 @@ function SvgZad28c_2015JA(){
   return e("svg",{viewBox:`0 0 ${W} ${H}`,
     style:{width:"100%",maxWidth:W,display:"block",background:"var(--s2)",borderRadius:8}},
     ...grid,
-    e("line",{key:u(),x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("line",{key:u(),x1:cx,y1:H-10,x2:cx,y2:10,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("polygon",{key:u(),points:`${W-10},${cy} ${W-18},${cy-4} ${W-18},${cy+4}`,fill:"var(--muted)"}),
-    e("polygon",{key:u(),points:`${cx},10 ${cx-4},18 ${cx+4},18`,fill:"var(--muted)"}),
-    e("text",{key:u(),x:W-8,y:cy+5,fill:"var(--muted)",fontSize:11,fontStyle:"italic"},"x"),
-    e("text",{key:u(),x:cx+4,y:12,fill:"var(--muted)",fontSize:11,fontStyle:"italic"},"y"),
-    e("text",{key:u(),x:cx+4,y:cy+14,fill:"var(--muted)",fontSize:10},"0"),
-    ...[1,2,3,4].map(i=>e("text",{key:u(),x:cx+i*sc-4,y:cy+14,fill:"var(--muted)",fontSize:10},i)),
-    ...[-1,1,2,3,4].map(i=>e("text",{key:u(),x:cx-16,y:cy-i*sc+4,fill:"var(--muted)",fontSize:10},i)),
+    // osi
+    e("line",{key:u(),x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--text)",strokeWidth:1.4}),
+    e("line",{key:u(),x1:cx,y1:H-10,x2:cx,y2:10,stroke:"var(--text)",strokeWidth:1.4}),
+    e("polygon",{key:u(),points:`${W-8},${cy} ${W-17},${cy-4} ${W-17},${cy+4}`,fill:"var(--text)"}),
+    e("polygon",{key:u(),points:`${cx},8 ${cx-4},17 ${cx+4},17`,fill:"var(--text)"}),
+    e("text",{key:u(),x:W-6,y:cy+14,fill:"var(--text)",fontSize:11,fontStyle:"italic"},"x"),
+    e("text",{key:u(),x:cx-14,y:14,fill:"var(--text)",fontSize:11,fontStyle:"italic"},"y"),
+    // oznake osi
+    e("text",{key:u(),x:cx+5,y:cy+14,fill:"var(--text)",fontSize:10},"0"),
+    ...[1,2,3,4].map(i=>e("text",{key:u(),x:cx+i*sc+4,y:cy+14,fill:"var(--text)",fontSize:10},i)),
+    ...[-1,1,2,3,4].map(i=>e("text",{key:u(),x:cx-13,y:cy-i*sc+4,fill:"var(--text)",fontSize:10},i)),
+    // graf y=(x-2)^2
     e("path",{key:u(),d:path,fill:"none",stroke:"var(--blue)",strokeWidth:2.5}),
-    e("circle",{key:u(),cx:cx+2*sc,cy:cy,r:5,fill:"#e8c547"}),
-    e("text",{key:u(),x:cx+2*sc+5,y:cy-6,fill:"#e8c547",fontSize:10},"tjeme(2,0)"),
-    e("circle",{key:u(),cx,cy:cy-4*sc,r:4,fill:"#3dd68c"}),
-    e("text",{key:u(),x:cx+5,y:cy-4*sc+4,fill:"#3dd68c",fontSize:10},"(0,4)")
+    // tjeme (2,0)
+    e("circle",{key:u(),cx:cx+2*sc,cy:cy,r:4.5,fill:"var(--gold)"}),
+    e("text",{key:u(),x:cx+2*sc+9,y:cy-9,fill:"var(--gold)",fontSize:10},"tjeme (2, 0)"),
+    // sjeciste s y-osi (0,4)
+    e("circle",{key:u(),cx,cy:cy-4*sc,r:4,fill:"var(--green)"}),
+    e("text",{key:u(),x:cx+9,y:cy-4*sc-7,fill:"var(--green)",fontSize:10},"(0, 4)")
   );
 }
 
@@ -201,7 +214,7 @@ function SvgZad26_2015JA(){
   const grid=[];
   // vertical grid lines
   const xmarks=[[0,"0"],[Math.PI/6,"π/6"],[Math.PI/2,"π/2"],[2*Math.PI/3,"2π/3"],[Math.PI,"π"],[4*Math.PI/3,"4π/3"]];
-  for(let xi=-0.2;xi<=4.5;xi+=0,5) grid.push(e("line",{key:u(),x1:cx+xi*sc,y1:10,x2:cx+xi*sc,y2:H-10,stroke:"rgba(130,120,200,0.12)",strokeWidth:1}));
+  for(let xi=-0.2;xi<=4.5;xi+=0.5) grid.push(e("line",{key:u(),x1:cx+xi*sc,y1:10,x2:cx+xi*sc,y2:H-10,stroke:"rgba(130,120,200,0.12)",strokeWidth:1}));
   for(let yi=-2;yi<=2;yi++) grid.push(e("line",{key:u(),x1:10,y1:cy-yi*sc/2,x2:W-10,y2:cy-yi*sc/2,stroke:"rgba(130,120,200,0.12)",strokeWidth:1}));
   // sinusni graf f(x)=2sin(2x+π/6)
   let path="",pen=false;

@@ -48,9 +48,9 @@ function SvgKoord4_2012ZimaB(){
 }
 
 function SvgTable28_2012ZimaB(){
-  const W=280,H=180;
+  const ox=6, W=440;
+  // ---- table 1: osnovni cjenik ----
   const rows=[
-    ["Masa","Cijena"],
     ["Do 20 g","3,60 kn"],
     ["Iznad 20 g do 100 g","7,50 kn"],
     ["Iznad 100 g do 250 g","13,50 kn"],
@@ -58,32 +58,78 @@ function SvgTable28_2012ZimaB(){
     ["Iznad 500 g do 1000 g","40,00 kn"],
     ["Iznad 1000 g do 2000 g","60,00 kn"],
   ];
-  const airRows=[
-    ["Kontinent","Europa","S.+Sr. Amerika","J. Amerika"],
-    ["za svakih 20 g","1,00 kn","1,50 kn","1,70 kn"],
+  const cw=[200,110], rh=21;
+  // ---- table 2: dopunska cijena ----
+  const acw=[112,86,132,90], ahh=34;
+  const acols=[
+    ["Europa"],
+    ["Sjeverna i","Srednja Amerika"],
+    ["Južna","Amerika"],
   ];
-  const rw=[165,80],rh=20,ox=5,oy=5;
-  const cells=[];
+  const avals=["1,00 kn","1,50 kn","1,70 kn"];
+
+  const t1Title=14;            // baseline naslova 1. tablice
+  const t1Top=t1Title+8;
+  const t1Bot=t1Top+7*rh;      // zaglavlje + 6 redaka
+  const t2Title=t1Bot+26;
+  const t2Top=t2Title+8;
+  const t2Bot=t2Top+ahh+rh;
+  const H=t2Bot+8;
+
+  const HDR="var(--blue)", HDROP=0.18;
+  const line={stroke:"var(--text)",strokeWidth:0.9,strokeOpacity:0.55};
+  const n=[];
+  const cell=(k,x,y,w,h,hdr)=>e("rect",{key:k,x,y,width:w,height:h,
+    fill:hdr?HDR:"var(--bg)",fillOpacity:hdr?HDROP:1,...line});
+  const txt=(k,x,y,s,o)=>e("text",{key:k,x,y,fontSize:(o&&o.fs)||10.5,
+    fontWeight:(o&&o.b)?"bold":"normal",textAnchor:(o&&o.a)||"start",
+    fill:"var(--text)"},s);
+
+  // ================= tablica 1 =================
+  n.push(txt("ti1",ox,t1Title,"IZVOD IZ CJENIKA",{b:1,fs:11.5}));
+  n.push(cell("h1a",ox,t1Top,cw[0],rh,1));
+  n.push(cell("h1b",ox+cw[0],t1Top,cw[1],rh,1));
+  n.push(txt("h1at",ox+cw[0]/2,t1Top+rh/2+4,"Masa",{b:1,a:"middle"}));
+  n.push(txt("h1bt",ox+cw[0]+cw[1]/2,t1Top+rh/2+4,"Cijena",{b:1,a:"middle"}));
   for(let r=0;r<rows.length;r++){
-    for(let c=0;c<2;c++){
-      const x=ox+(c===0?0:rw[0]),y=oy+r*rh,w=c===0?rw[0]:rw[1],h=rh;
-      cells.push(e("rect",{key:`r${r}c${c}`,x,y,width:w,height:h,fill:r===0?"var(--blue)":"var(--bg)",fillOpacity:r===0?0.25:1,stroke:"var(--text)",strokeWidth:0.8,strokeOpacity:0.4}));
-      cells.push(e("text",{key:`t${r}c${c}`,x:x+4,y:y+h/2+4,fontSize:10,fontWeight:r===0?"bold":"normal",fill:"var(--text)"},rows[r][c]));
-    }
+    const y=t1Top+(r+1)*rh;
+    n.push(cell("r"+r+"a",ox,y,cw[0],rh,0));
+    n.push(cell("r"+r+"b",ox+cw[0],y,cw[1],rh,0));
+    n.push(txt("r"+r+"at",ox+7,y+rh/2+4,rows[r][0]));
+    n.push(txt("r"+r+"bt",ox+cw[0]+cw[1]-8,y+rh/2+4,rows[r][1],{a:"end"}));
   }
-  // Air mail subtitle
-  const airY=oy+rows.length*rh+6;
-  cells.push(e("text",{key:"airhdr",x:ox,y:airY+10,fontSize:9,fontWeight:"bold",fill:"var(--text)"},"Zrakoplovne po\u0161iljke (dopunska cijena):"));
-  const arw=[85,65,75,55];
-  for(let r=0;r<airRows.length;r++){
-    let cx2=ox;
-    for(let c=0;c<airRows[r].length;c++){
-      cells.push(e("rect",{key:`ar${r}c${c}`,x:cx2,y:airY+14+r*rh,width:arw[c],height:rh,fill:r===0?"var(--blue)":"var(--bg)",fillOpacity:r===0?0.25:1,stroke:"var(--text)",strokeWidth:0.8,strokeOpacity:0.4}));
-      cells.push(e("text",{key:`at${r}c${c}`,x:cx2+2,y:airY+14+r*rh+rh/2+4,fontSize:9,fontWeight:r===0?"bold":"normal",fill:"var(--text)"},airRows[r][c]));
-      cx2+=arw[c];
+
+  // ================= tablica 2 =================
+  n.push(txt("ti2",ox,t2Title,"DOPUNSKA CIJENA ZA ZRAKOPLOVNE POŠILJKE",{b:1,fs:11.5}));
+  // kutna ćelija s dijagonalom
+  n.push(cell("ah0",ox,t2Top,acw[0],ahh,1));
+  n.push(e("line",{key:"diag",x1:ox,y1:t2Top,x2:ox+acw[0],y2:t2Top+ahh,...line}));
+  n.push(txt("ahk",ox+acw[0]-6,t2Top+13,"Kontinenti",{b:1,a:"end",fs:10}));
+  n.push(txt("ahm",ox+6,t2Top+ahh-7,"Masa",{b:1,fs:10}));
+  let ax=ox+acw[0];
+  for(let c=0;c<acols.length;c++){
+    const w=acw[c+1];
+    n.push(cell("ah"+(c+1),ax,t2Top,w,ahh,1));
+    const ls=acols[c];
+    for(let i=0;i<ls.length;i++){
+      const y=ls.length===1?t2Top+ahh/2+4:t2Top+ahh/2-3+i*13;
+      n.push(txt("ah"+c+"t"+i,ax+w/2,y,ls[i],{b:1,a:"middle",fs:10}));
     }
+    ax+=w;
   }
-  return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},...cells);
+  // redak s vrijednostima
+  const vy=t2Top+ahh;
+  n.push(cell("av0",ox,vy,acw[0],rh,0));
+  n.push(txt("av0t",ox+acw[0]/2,vy+rh/2+4,"za svakih 20 g",{a:"middle"}));
+  ax=ox+acw[0];
+  for(let c=0;c<avals.length;c++){
+    const w=acw[c+1];
+    n.push(cell("av"+(c+1),ax,vy,w,rh,0));
+    n.push(txt("av"+(c+1)+"t",ax+w/2,vy+rh/2+4,avals[c],{a:"middle"}));
+    ax+=w;
+  }
+
+  return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto",maxWidth:"100%"}},...n);
 }
 
 function SvgParabola16_2012ZimaB(){

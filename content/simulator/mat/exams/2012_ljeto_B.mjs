@@ -3,99 +3,105 @@ import React from 'react';
 const e = React.createElement;
 
 function SvgTocke7_2012Blj(){
-  const W=260,H=250,cx=110,cy=120,sc=26;
+  // Vjerno izvorniku (NCVVO 2012 ljeto B, zad. 7): K(4,3), L(-2,2), M(-4,-4), N(3,-3)
+  // K i M leze na pravcu 7x - 8y - 4 = 0.
+  const W=300,H=270,cx=150,cy=130,sc=26;
+  const gx=[-5,-4,-3,-2,-1,0,1,2,3,4,5];
+  const gy=[-5,-4,-3,-2,-1,0,1,2,3,4];
   const pts=[
-    {name:"K",x:4,y:4,lx:7,ly:-8,   fill:"#8b7cf8"},
-    {name:"L",x:-2,y:2,lx:-16,ly:-8, fill:"#3dd68c"},
-    {name:"M",x:-4,y:-3,lx:-18,ly:4, fill:"#f87171"},
-    {name:"N",x:4,y:-2,lx:7,ly:4,   fill:"#e8c547"},
+    {name:"K",x:4, y:3, lx:-15,ly:-9, fill:"var(--blue)"},
+    {name:"L",x:-2,y:2, lx:-17,ly:-7, fill:"var(--green)"},
+    {name:"M",x:-4,y:-4,lx:7,  ly:11, fill:"var(--red)"},
+    {name:"N",x:3, y:-3,lx:-17,ly:-4, fill:"var(--gold)"},
   ];
-  const ticks=[-4,-3,-2,-1,1,2,3,4];
+  const px=x=>cx+x*sc, py=y=>cy-y*sc;
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
-      e("pattern",{id:"grid7blj",width:sc,height:sc,patternUnits:"userSpaceOnUse"},
-        e("path",{d:`M ${sc} 0 L 0 0 0 ${sc}`,fill:"none",stroke:"rgba(148,163,184,0,25)",strokeWidth:"0.6"})
-      ),
       e("marker",{id:"arx7blj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},
         e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})
       ),
-      e("marker",{id:"ary7blj",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},
-        e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"})
+      e("marker",{id:"ary7blj",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},
+        e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})
       )
     ),
-    e("rect",{x:0,y:0,width:W,height:H,fill:"url(#grid7blj)"}),
-    e("line",{x1:8,y1:cy,x2:W-8,y2:cy,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx7blj)"}),
-    e("line",{x1:cx,y1:H-8,x2:cx,y2:8,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary7blj)"}),
-    e("text",{x:W-14,y:cy+14,fontSize:11,fill:"var(--text)"},"x"),
-    e("text",{x:cx+4,y:16,fontSize:11,fill:"var(--text)"},"y"),
-    e("text",{x:cx-12,y:cy+13,fontSize:9,fill:"var(--muted)"},"0"),
-    e("text",{x:cx+sc-3,y:cy+13,fontSize:9,fill:"var(--muted)"},"1"),
-    ...ticks.map(t=>
-      e("text",{key:"tx"+t,x:cx+t*sc-(t<0?10:3),y:cy+13,fontSize:9,fill:"var(--muted)"},t)
+    // isprekidana mreza (kao u izvorniku)
+    ...gx.map(t=>
+      e("line",{key:"gx"+t,x1:px(t),y1:py(4),x2:px(t),y2:py(-5),stroke:"var(--muted)",strokeOpacity:0.45,strokeWidth:0.8,strokeDasharray:"4,3"})
     ),
-    ...[-1,-2,-3,1,2,3].map(t=>
-      e("text",{key:"ty"+t,x:cx-(t<0?18:4),y:cy-t*sc+4,fontSize:9,fill:"var(--muted)"},t)
+    ...gy.map(t=>
+      e("line",{key:"gy"+t,x1:px(-5),y1:py(t),x2:px(5),y2:py(t),stroke:"var(--muted)",strokeOpacity:0.45,strokeWidth:0.8,strokeDasharray:"4,3"})
     ),
+    // osi
+    e("line",{x1:px(-5)-12,y1:cy,x2:px(5)+14,y2:cy,stroke:"var(--text)",strokeWidth:1.6,markerEnd:"url(#arx7blj)"}),
+    e("line",{x1:cx,y1:py(-5)+8,x2:cx,y2:py(4)-18,stroke:"var(--text)",strokeWidth:1.6,markerEnd:"url(#ary7blj)"}),
+    e("text",{x:px(5)+8,y:cy+15,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"x"),
+    e("text",{x:cx-11,y:py(4)-14,fontSize:11,fontStyle:"italic",fill:"var(--text)"},"y"),
+    // jedinicni prazni kruzici na osima + oznake 0 i 1 (kao u izvorniku)
+    e("circle",{cx:cx,cy:cy,r:3.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.3}),
+    e("circle",{cx:px(1),cy:cy,r:3.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.3}),
+    e("circle",{cx:cx,cy:py(1),r:3.5,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.3}),
+    e("text",{x:cx-13,y:cy+14,fontSize:10,fill:"var(--muted)"},"0"),
+    e("text",{x:px(1)+5,y:cy+14,fontSize:10,fill:"var(--muted)"},"1"),
+    e("text",{x:cx-12,y:py(1)+4,fontSize:10,fill:"var(--muted)"},"1"),
+    // istaknute tocke
     ...pts.map(p=>{
-      const px=cx+p.x*sc, py=cy-p.y*sc;
+      const X=px(p.x), Y=py(p.y);
       return e(React.Fragment,{key:p.name},
-        e("circle",{cx:px,cy:py,r:5,fill:p.fill,stroke:"var(--bg)",strokeWidth:1.5}),
-        e("text",{x:px+p.lx,y:py+p.ly+4,fontSize:12,fontWeight:"bold",fill:p.fill},p.name)
+        e("circle",{cx:X,cy:Y,r:5,fill:p.fill,stroke:"var(--bg)",strokeWidth:1.5}),
+        e("text",{x:X+p.lx,y:Y+p.ly,fontSize:12,fontWeight:"bold",fontStyle:"italic",fill:p.fill},p.name)
       );
     })
   );
 }
 
 function SvgDijagram28_2012Blj(){
-  const W=300,H=260;
-  const lx=60,rx=W-20,by=H-40,ty=20;
-  const sc_y=10; // 10px po 10V
-  const yRange=160; // od -60V do 120V
-  const y0=by-60/10*10; // pozicija 0 na y-osi (60V od dna)
+  // Vjerno izvorniku (NCVVO 2012 ljeto B, zad. 28): svi potencijali su pozitivni.
+  // A=30, B=10, C=110, D=90, E=130, F=80, G=110  =>  U_CF = 110-80 = 30 V; |V_D-V_A| = 60 V
+  const W=300,H=270;
+  const lx=54,rx=W-18,by=H-52,ty=24;
+  const vMax=140;
+  const vToY=v=>by-(by-ty)*v/vMax;
   const pts=[
-    {name:"A",xi:0,v:20,  fill:"#8b7cf8"},
-    {name:"B",xi:1,v:80,  fill:"#3dd68c"},
-    {name:"C",xi:2,v:50,  fill:"#34d1bf"},
-    {name:"D",xi:3,v:-40, fill:"#f87171"},
-    {name:"E",xi:4,v:80,  fill:"#e8c547"},
-    {name:"F",xi:5,v:20,  fill:"#f97316"},
-    {name:"G",xi:6,v:110, fill:"#60a5fa"},
+    {name:"A",v:30, fill:"var(--blue)"},
+    {name:"B",v:10, fill:"var(--green)"},
+    {name:"C",v:110,fill:"var(--gold)"},
+    {name:"D",v:90, fill:"var(--red)"},
+    {name:"E",v:130,fill:"var(--blue)"},
+    {name:"F",v:80, fill:"var(--green)"},
+    {name:"G",v:110,fill:"var(--gold)"},
   ];
-  const xStep=(rx-lx)/7;
-  const vToY=v=>y0-v*sc_y/10;
-  // Gridlines každých 10V od -60 do 120
-  const gridVals=[-60,-50,-40,-30,-20,-10,0,10,20,30,40,50,60,70,80,90,100,110,120];
+  const xStep=(rx-lx)/8;
+  const px=i=>lx+(i+1)*xStep;
+  const gridVals=[10,20,30,40,50,60,70,80,90,100,110,120,130,140];
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("defs",null,
       e("marker",{id:"arx28b",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"})),
-      e("marker",{id:"ary28b",markerWidth:6,markerHeight:6,refX:3,refY:0,orient:"auto"},e("path",{d:"M0,6 L6,6 L3,0 z",fill:"var(--text)"}))
+      e("marker",{id:"ary28b",markerWidth:6,markerHeight:6,refX:5,refY:3,orient:"auto"},e("path",{d:"M0,0 L0,6 L6,3 z",fill:"var(--text)"}))
     ),
-    // Grid horizontalni
+    // vodoravna mreza (svakih 10 V)
     ...gridVals.map(v=>
-      e("line",{key:"g"+v,x1:lx,y1:vToY(v),x2:rx,y2:vToY(v),stroke:"var(--bdr)",strokeWidth:v%50===0?1:0.5,strokeDasharray:"3,3"})
+      e("line",{key:"g"+v,x1:lx,y1:vToY(v),x2:rx-6,y2:vToY(v),stroke:"var(--muted)",strokeOpacity:0.45,strokeWidth:0.8,strokeDasharray:"4,3"})
     ),
-    // Grid vertikalni
-    ...pts.map((p,i)=>
-      e("line",{key:"gv"+i,x1:lx+(i+0.5)*xStep,y1:ty,x2:lx+(i+0.5)*xStep,y2:by+10,stroke:"var(--bdr)",strokeWidth:0.5,strokeDasharray:"3,3"})
+    // okomita mreza (po jedna kroz svaku tocku + rubne)
+    ...[0,1,2,3,4,5,6,7].map(i=>
+      e("line",{key:"gv"+i,x1:px(i),y1:ty-6,x2:px(i),y2:by,stroke:"var(--muted)",strokeOpacity:0.45,strokeWidth:0.8,strokeDasharray:"4,3"})
     ),
-    // Osi
-    e("line",{x1:lx,y1:y0,x2:rx,y2:y0,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#arx28b)"}),
-    e("line",{x1:lx,y1:by+10,x2:lx,y2:ty,stroke:"var(--text)",strokeWidth:1.5,markerEnd:"url(#ary28b)"}),
-    // Oznake y-osi
-    e("text",{x:2,y:vToY(100)+4,fontSize:9,fill:"var(--muted)"},"100"),
-    e("text",{x:6,y:vToY(50)+4,fontSize:9,fill:"var(--muted)"},"50"),
-    e("text",{x:6,y:vToY(0)+4,fontSize:9,fill:"var(--muted)"},"0"),
-    e("text",{x:0,y:vToY(-40)+4,fontSize:9,fill:"var(--muted)"},"-40"),
-    e("text",{x:W-42,y:y0+14,fontSize:9,fill:"var(--muted)"},"točke"),
-    e("text",{x:2,y:ty+8,fontSize:9,fill:"var(--muted)"},"potencijal"),
-    e("text",{x:6,y:ty+18,fontSize:9,fill:"var(--muted)"},"(V)"),
-    // Točke
+    // osi
+    e("line",{x1:lx,y1:by,x2:rx,y2:by,stroke:"var(--text)",strokeWidth:1.6,markerEnd:"url(#arx28b)"}),
+    e("line",{x1:lx,y1:by+6,x2:lx,y2:ty-16,stroke:"var(--text)",strokeWidth:1.6,markerEnd:"url(#ary28b)"}),
+    // oznake y-osi (kao u izvorniku: 0, 10, 100)
+    e("text",{x:lx-10,y:by+4,fontSize:9,fill:"var(--muted)",textAnchor:"end"},"0"),
+    e("text",{x:lx-6,y:vToY(10)+3,fontSize:9,fill:"var(--muted)",textAnchor:"end"},"10"),
+    e("text",{x:lx-6,y:vToY(100)+3,fontSize:9,fill:"var(--muted)",textAnchor:"end"},"100"),
+    e("text",{x:lx-8,y:ty-14,fontSize:9,fill:"var(--muted)",textAnchor:"end"},"potencijal"),
+    e("text",{x:lx-8,y:ty-4,fontSize:9,fill:"var(--muted)",textAnchor:"end"},"(V)"),
+    e("text",{x:rx-4,y:by+34,fontSize:9,fill:"var(--muted)",textAnchor:"end"},"točke strujnog kruga"),
+    // tocke
     ...pts.map((p,i)=>{
-      const px=lx+(i+0.5)*xStep;
-      const py=vToY(p.v);
+      const X=px(i), Y=vToY(p.v);
       return e(React.Fragment,{key:p.name},
-        e("circle",{cx:px,cy:py,r:5,fill:p.fill,stroke:"var(--bg)",strokeWidth:1.5}),
-        e("text",{x:px-4,y:by+22,fontSize:10,fill:p.fill,fontWeight:"600"},p.name)
+        e("circle",{cx:X,cy:Y,r:4.5,fill:p.fill,stroke:"var(--bg)",strokeWidth:1.5}),
+        e("text",{x:X,y:by+16,fontSize:11,fontStyle:"italic",fontWeight:"600",fill:p.fill,textAnchor:"middle"},p.name)
       );
     })
   );
@@ -158,25 +164,26 @@ function SvgParabole16_2012Blj(){
 }
 
 function SvgPravokutnik14_2012Blj(){
-  const W=280,H=180;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const mx=30,my=20,rw=210,rh=110;
+  // Vjerno izvorniku (NCVVO 2012 ljeto B, zad. 14): dijagonala je BD (od D do B),
+  // vrhovi su prazni kruzici.
+  const W=300,H=185;
+  const _BLUE="var(--blue)",_GOLD="var(--gold)",_GREEN="var(--green)";
+  const mx=34,my=26,rw=200,rh=108;
   const A={x:mx,y:my+rh}, B={x:mx+rw,y:my+rh};
   const C={x:mx+rw,y:my}, D={x:mx,y:my};
   return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:"block",margin:"0 auto"}},
     e("rect",{x:mx,y:my,width:rw,height:rh,fill:"none",stroke:_BLUE,strokeWidth:1.8}),
-    e("line",{x1:A.x,y1:A.y,x2:B.x,y2:my,stroke:_GOLD,strokeWidth:1.2,strokeDasharray:"none"}),
-    e("text",{x:A.x-10,y:A.y+14,fontSize:12,fill:_GOLD},"A"),
-    e("text",{x:B.x+4,y:B.y+14,fontSize:12,fill:_GOLD},"B"),
-    e("text",{x:C.x+4,y:C.y+4,fontSize:12,fill:_GOLD},"C"),
-    e("text",{x:D.x-14,y:D.y+4,fontSize:12,fill:_GOLD},"D"),
-    e("circle",{cx:A.x,cy:A.y,r:3,fill:_RED}),
-    e("circle",{cx:B.x,cy:B.y,r:3,fill:_RED}),
-    e("circle",{cx:C.x,cy:C.y,r:3,fill:_RED}),
-    e("circle",{cx:D.x,cy:D.y,r:3,fill:_RED}),
-    e("text",{x:mx+rw/2-18,y:A.y+14,fontSize:12,fontStyle:"italic",fill:_BLUE},"a cm"),
-    e("text",{x:B.x+6,y:my+rh/2+4,fontSize:12,fontStyle:"italic",fill:_BLUE},"5,3 cm"),
-    e("text",{x:mx+rw/2-36,y:my+rh/2+4,fontSize:11,fontStyle:"italic",fill:_GREEN},"(a + 3) cm"),
+    e("line",{x1:D.x,y1:D.y,x2:B.x,y2:B.y,stroke:_GREEN,strokeWidth:1.3}),
+    e("text",{x:A.x-13,y:A.y+14,fontSize:12,fontStyle:"italic",fill:_GOLD},"A"),
+    e("text",{x:B.x+6,y:B.y+14,fontSize:12,fontStyle:"italic",fill:_GOLD},"B"),
+    e("text",{x:C.x+6,y:C.y-5,fontSize:12,fontStyle:"italic",fill:_GOLD},"C"),
+    e("text",{x:D.x-13,y:D.y-5,fontSize:12,fontStyle:"italic",fill:_GOLD},"D"),
+    ...[A,B,C,D].map((P,i)=>
+      e("circle",{key:"v"+i,cx:P.x,cy:P.y,r:3.2,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.3})
+    ),
+    e("text",{x:mx+rw/2,y:A.y+15,fontSize:12,fontStyle:"italic",fill:_BLUE,textAnchor:"middle"},"a cm"),
+    e("text",{x:B.x+8,y:my+rh/2+4,fontSize:12,fontStyle:"italic",fill:_BLUE},"5,3 cm"),
+    e("text",{x:mx+rw/2+10,y:my+rh/2-2,fontSize:11,fontStyle:"italic",fill:_GREEN},"(a + 3) cm"),
   );
 }
 
@@ -278,11 +285,11 @@ export const qs = [
   q:"Koje dvije istaknute točke na slici (K, L, M, N) pripadaju pravcu čija je jednadžba 7x − 8y − 4 = 0?",
   opts:["K i L","L i N","M i K","N i M"],
   sol:{cl:"C",alt:["C","c","C)","c)","C.","c.","(C)","(c)"]},
-  exp:"Pravac: y = (7x-4)/8. Provjera: K(4,4): y=(28-4)/8=3 ≠ 4 ✗. M(-4,-3): y=(-28-4)/8=-4 ≠ -3 ✗. Provjera direktno u jednadžbu: K(4,4): 7·4-8·4-4=28-32-4=-8≠0 ✗. Isprobamo M(-4,-3): 7·(-4)-8·(-3)-4=-28+24-4=-8≠0... Prema grafu i ključu: C (M i K).",
+  exp:"Sa slike: K(4, 3), L(−2, 2), M(−4, −4), N(3, −3). Uvrsti u 7x − 8y − 4 = 0: K: 28 − 24 − 4 = 0 ✓. M: −28 + 32 − 4 = 0 ✓. L: −14 − 16 − 4 = −34 ≠ 0 ✗. N: 21 + 24 − 4 = 41 ≠ 0 ✗. Dakle M i K → C.",
   steps:[
     {txt:"Jednadžba pravca: 7x − 8y − 4 = 0"},
-    {txt:"Uvrsti K(4, 4): 7·4 − 8·4 − 4 = 28 − 32 − 4 = -8 ... provjeri s grafom"},
-    {txt:"Prema slici, točke M i K leže najbliže pravcu"},{txt:"Analiza distractora: A (K i L): L(−3,2): 7(−3)−8(2)−4=−41≠0. B (L i N): N(3,−3): 7·3−8(−3)−4=41≠0. D (N i M): M je na pravcu, ali N nije.",final:true,note:"diagnostika"},{txt:"Provjera: M i K zadovoljavaju jednadžbu 7x−8y−4=0 prema NCVVO klucu ✓",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Algebarska provjera: uvrstimo koordinate svake točke u jednadžbu 7x−8y−4=0.",note:"postupak",final:true},{txt:"Intuicija: Metoda eliminacije: samo točke koje daju 0 leže na pravcu. Ostale točke daju različitu vrijednost od 0.",note:"intuicija",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true}
+    {txt:"Uvrsti K(4, 3): 7·4 − 8·3 − 4 = 28 − 24 − 4 = 0 ✓"},
+    {txt:"Uvrsti M(−4, −4): 7·(−4) − 8·(−4) − 4 = −28 + 32 − 4 = 0 ✓"},{txt:"Analiza distractora: A (K i L): L(−2,2): 7(−2)−8(2)−4=−34≠0. B (L i N): N(3,−3): 7·3−8(−3)−4=41≠0. D (N i M): M je na pravcu, ali N nije.",final:true,note:"diagnostika"},{txt:"Provjera: M i K zadovoljavaju jednadžbu 7x−8y−4=0 prema NCVVO klucu ✓",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Algebarska provjera: uvrstimo koordinate svake točke u jednadžbu 7x−8y−4=0.",note:"postupak",final:true},{txt:"Intuicija: Metoda eliminacije: samo točke koje daju 0 leže na pravcu. Ostale točke daju različitu vrijednost od 0.",note:"intuicija",final:true},{txt:"Točan odgovor: C ✓",note:"odgovor",final:true}
   ],
   why:[
     "Algebarska provjera: uvrstimo koordinate svake točke u jednadžbu 7x−8y−4=0.",
@@ -760,17 +767,17 @@ export const qs = [
   context:"Zadatak 28 (1. dio od 2):",
   q:"Koliko volti iznosi napon između točaka C i F?",
   sol:{ans:"30 V",alt:["30","30V"]},
-  exp:"Napon = V_C − V_F = 50 − 20 = 30 V.",
+  exp:"Napon = V_C − V_F = 110 − 80 = 30 V.",
   steps:[
-    {txt:"V_C = 50 V"},
-    {txt:"V_F = 20 V"},
-    {txt:"Napon = V_C − V_F = 50 − 20 = 30 V",final:true},
-    {txt:"Provjera: uvrsti rezultat 30 V natrag u izvornu postavku zadatka — sve uvjete zadatka mora zadovoljavati.",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Napon U_XY = V_X − V_Y (razlika potencijala; viši minus niži)",note:"postupak",final:true},{txt:"Intuicija: Iz dijagrama: V_C = 50 V, V_F = 20 V (očitaj visinu na osi y)",note:"intuicija",final:true},{txt:"Točan odgovor: 30 V ✓",note:"odgovor",final:true},{txt:"Provjera: uvrsti dobivenu točku u jednadžbu krivulje — mora zadovoljiti.",note:"verifikacija",final:true}
+    {txt:"V_C = 110 V"},
+    {txt:"V_F = 80 V"},
+    {txt:"Napon = V_C − V_F = 110 − 80 = 30 V",final:true},
+    {txt:"Provjera: uvrsti rezultat 30 V natrag u izvornu postavku zadatka — sve uvjete zadatka mora zadovoljavati.",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Napon U_XY = V_X − V_Y (razlika potencijala; viši minus niži)",note:"postupak",final:true},{txt:"Intuicija: Iz dijagrama: V_C = 110 V, V_F = 80 V (očitaj visinu na osi y)",note:"intuicija",final:true},{txt:"Točan odgovor: 30 V ✓",note:"odgovor",final:true},{txt:"Provjera: uvrsti dobivenu točku u jednadžbu krivulje — mora zadovoljiti.",note:"verifikacija",final:true}
   ],
   why:[
     "Napon U_XY = V_X − V_Y (razlika potencijala; viši minus niži)",
-    "Iz dijagrama: V_C = 50 V, V_F = 20 V (očitaj visinu na osi y)",
-    "U_CF = 50−20 = 30 V (pozitivan napon: C je na višem potencijalu od F)",
+    "Iz dijagrama: V_C = 110 V, V_F = 80 V (očitaj visinu na osi y)",
+    "U_CF = 110−80 = 30 V (pozitivan napon: C je na višem potencijalu od F)",
     "Česta greška: zbrojiti umjesto oduzeti (U≠V_C+V_F)",
     "Provjera: V_C > V_F ⇒ napon pozitivan, struja teče C→F✓"
   ,"Provjera koordinatama: ako je točka na pravcu y = kx + l, uvrštavanjem x dobijemo y."]},
@@ -779,19 +786,19 @@ export const qs = [
   context:"Zadatak 28 (2. dio od 2):",
   q:"Između kojih dviju točaka strujnog kruga je napon jednak 60 V?",
   sol:{ans:"A i D",alt:["D i A","A-D","A, D"]},
-  exp:"Tražimo |V_x − V_y| = 60 V. A i D: |20 − (−40)| = |60| = 60 V ✓",
+  exp:"Tražimo |V_x − V_y| = 60 V. A i D: |30 − 90| = 60 V ✓",
   steps:[
     {txt:"Tražimo razliku potencijala = 60 V"},
-    {txt:"A i D: |V_A − V_D| = |20 − (−40)| = 60 V ✓"},
+    {txt:"A i D: |V_A − V_D| = |30 − 90| = 60 V ✓"},
     {txt:"→ Odgovor: A i D",final:true,note:"odgovor"},
-    {txt:"Provjera: uvrsti rezultat A i D natrag u izvornu postavku zadatka — sve uvjete zadatka mora zadovoljavati.",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Napon = |V_x − V_y| = 60 V; sustavno provjeri parove s velikom razlikom potencijala",note:"postupak",final:true},{txt:"Intuicija: D = −40 V (negativan!): |V_A − V_D| = |20−(−40)| = |60| = 60 V ⇒ točan par",note:"intuicija",final:true},{txt:"Provjera koordinatama: ako je točka na pravcu y = kx + l, uvrštavanjem x dobijemo y.",note:"verifikacija",final:true},{txt:"Alt provjera: nacrtaj graf na milimetarskom papiru i izmjeri sjecišta/udaljenosti.",note:"verifikacija",final:true}
+    {txt:"Provjera: uvrsti rezultat A i D natrag u izvornu postavku zadatka — sve uvjete zadatka mora zadovoljavati.",final:true,note:"verifikacija"},{txt:"Sažetak postupka: Napon = |V_x − V_y| = 60 V; sustavno provjeri parove s velikom razlikom potencijala",note:"postupak",final:true},{txt:"Intuicija: V_A = 30 V, V_D = 90 V ⇒ |30 − 90| = 60 V ⇒ točan par",note:"intuicija",final:true},{txt:"Provjera koordinatama: ako je točka na pravcu y = kx + l, uvrštavanjem x dobijemo y.",note:"verifikacija",final:true},{txt:"Alt provjera: nacrtaj graf na milimetarskom papiru i izmjeri sjecišta/udaljenosti.",note:"verifikacija",final:true}
   ],
   why:[
     "Napon = |V_x − V_y| = 60 V; sustavno provjeri parove s velikom razlikom potencijala",
-    "D = −40 V (negativan!): |V_A − V_D| = |20−(−40)| = |60| = 60 V ⇒ točan par",
-    "Negativni potencijal: oduzimanje negativnog broja = zbrajanje (20−(−40)=20+40=60)",
-    "Česta greška: zanemariti negativne potencijale (D=−40V) i tražiti samo među pozitivnima",
-    "Provjera: |20−(−40)| = |60| = 60 V✓; ostali parovi ne daju točno 60 V"
+    "V_A = 30 V, V_D = 90 V ⇒ |30 − 90| = 60 V ⇒ točan par",
+    "Očitaj sve potencijale s dijagrama: A=30, B=10, C=110, D=90, E=130, F=80, G=110 V",
+    "Česta greška: stati na prvom paru sa sličnom razlikom — treba provjeriti sve parove",
+    "Provjera: |30−90| = 60 V✓; ostali parovi ne daju točno 60 V"
   ,"Provjera grafom: nacrtaj krivulje i vizualno potvrdi sjecište / dodir / paralelnost."]
 }
 ];

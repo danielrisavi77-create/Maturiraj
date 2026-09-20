@@ -2,94 +2,77 @@
 import React from 'react';
 const e = React.createElement;
 
-function SvgIndeksZagadjenja_2014LB() {
-  const W=280,H=160,ml=32,mb=22,mr=12,mt=12;
-  const pw=W-ml-mr, ph=H-mb-mt;
-  const scX=pw/24, scY=ph/160;
-  const xAx=h=>ml+h*scX, yAx=v=>mt+ph-v*scY;
-  const e=React.createElement;
-  return e('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',style:{maxWidth:W,display:'block',margin:'0 auto'}},
-    ...Array.from({length:9},(_,i)=>e('line',{key:'gx'+i,x1:xAx(i*3),y1:mt,x2:xAx(i*3),y2:mt+ph,stroke:'rgba(148,163,184,0.2)',strokeWidth:.5})),
-    ...Array.from({length:9},(_,i)=>e('line',{key:'gy'+i,x1:ml,y1:yAx(i*20),x2:ml+pw,y2:yAx(i*20),stroke:'rgba(148,163,184,0.2)',strokeWidth:.5})),
-    e('line',{x1:ml,y1:mt+ph,x2:ml+pw,y2:mt+ph,stroke:'var(--muted)',strokeWidth:1.5}),
-    e('line',{x1:ml,y1:mt,x2:ml,y2:mt+ph,stroke:'var(--muted)',strokeWidth:1.5}),
-    ...[0,3,6,9,12,15,18,21,24].map(h=>e('text',{key:'t'+h,x:xAx(h),y:mt+ph+13,textAnchor:'middle',fontSize:7,fill:'var(--muted)'},`${(7+h)%24}h`)),
-    ...[25,50,75,100,125,142].map(v=>e('text',{key:'y'+v,x:ml-4,y:yAx(v)+3,textAnchor:'end',fontSize:7.5,fill:'var(--muted)'},v)),
-    e('polyline',{points:`${xAx(0)},${yAx(25)} ${xAx(9)},${yAx(142)} ${xAx(24)},${yAx(25)}`,fill:'none',stroke:'var(--blue)',strokeWidth:2.5}),
-    e('circle',{cx:xAx(0),cy:yAx(25),r:3,fill:'var(--red)'}),
-    e('circle',{cx:xAx(9),cy:yAx(142),r:3,fill:'var(--gold)'}),
-    e('text',{x:xAx(9)+4,y:yAx(142)-4,fontSize:8,fill:'var(--gold)'},'142')
-  );
-}
-
 function SvgGrafikonGoriva_2014LB() {
-  // Auto A: počinje 80L, prazno na km=720 (solid, plav)
-  // Auto B: počinje 60L, prazno na km=900 (dashed, žut)
-  // Sjecište: (450km, 30L)
+  // Auto A: pocinje s 80 L, spremnik prazan na 710 km (puna crta)
+  // Auto B: pocinje s 55 L, spremnik prazan na 1000 km (isprekidana crta)
+  // Sjeciste se NE oznacava - to je odgovor na pitanje 26.1.
   const W=300,H=210,ml=40,mb=30,mr=14,mt=14;
   const pw=W-ml-mr, ph=H-mb-mt;
   const scX=pw/1000, scY=ph/80;
   const xA=x=>ml+x*scX, yA=y=>mt+ph-y*scY;
-  const e=React.createElement;
   const gxV=Array.from({length:11},(_,i)=>i*100);
   const gyV=Array.from({length:9},(_,i)=>i*10);
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
-    // Grid
-    ...gxV.map(x=>e("line",{key:"gx"+x,x1:xA(x),y1:mt,x2:xA(x),y2:mt+ph,stroke:"rgba(148,163,184,0.15)",strokeWidth:.5})),
-    ...gyV.map(y=>e("line",{key:"gy"+y,x1:ml,y1:yA(y),x2:ml+pw,y2:yA(y),stroke:"rgba(148,163,184,0.15)",strokeWidth:.5})),
+    // Mreza
+    ...gxV.map(x=>e("line",{key:"gx"+x,x1:xA(x),y1:mt,x2:xA(x),y2:mt+ph,stroke:"var(--muted)",strokeWidth:.5,opacity:.3})),
+    ...gyV.map(y=>e("line",{key:"gy"+y,x1:ml,y1:yA(y),x2:ml+pw,y2:yA(y),stroke:"var(--muted)",strokeWidth:.5,opacity:.3})),
     // Osi
-    e("line",{x1:ml,y1:mt+ph,x2:ml+pw+mr,y2:mt+ph,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("line",{x1:ml,y1:mt,x2:ml,y2:mt+ph,stroke:"var(--muted)",strokeWidth:1.5}),
-    // X labels (km)
+    e("line",{x1:ml,y1:mt+ph,x2:ml+pw+mr,y2:mt+ph,stroke:"var(--text)",strokeWidth:1.4}),
+    e("line",{x1:ml,y1:mt,x2:ml,y2:mt+ph,stroke:"var(--text)",strokeWidth:1.4}),
+    // Oznake na osima
     ...gxV.filter(x=>x>0).map(x=>e("text",{key:"tx"+x,x:xA(x),y:mt+ph+14,textAnchor:"middle",fontSize:8,fill:"var(--muted)"},x)),
-    // Y labels (L)
     ...gyV.filter(y=>y>0).map(y=>e("text",{key:"ty"+y,x:ml-5,y:yA(y)+3,textAnchor:"end",fontSize:8,fill:"var(--muted)"},y)),
-    // Axis labels
-    e("text",{x:ml+pw+mr,y:mt+ph+14,textAnchor:"end",fontSize:9,fill:"var(--muted)",fontStyle:"italic"},"km"),
+    e("text",{x:ml-5,y:mt+ph+14,textAnchor:"end",fontSize:8,fill:"var(--muted)"},"0"),
+    e("text",{x:ml+pw+mr,y:mt+ph+25,textAnchor:"end",fontSize:9,fill:"var(--muted)",fontWeight:"bold",fontStyle:"italic"},"km"),
     e("text",{x:ml-10,y:mt-4,textAnchor:"middle",fontSize:10,fill:"var(--muted)",fontWeight:"bold"},"L"),
-    // Auto A: (0,80) → (720,0) — solid, plava
-    e("line",{x1:xA(0),y1:yA(80),x2:xA(720),y2:yA(0),stroke:"var(--blue)",strokeWidth:2.2}),
-    e("text",{x:xA(50),y:yA(74),fontSize:9,fill:"var(--blue)",fontWeight:"bold",fontStyle:"italic"},"A"),
-    // Auto B: (0,60) → (900,0) — dashed, žuta
-    e("line",{x1:xA(0),y1:yA(60),x2:xA(900),y2:yA(0),stroke:"var(--gold)",strokeWidth:2.2,strokeDasharray:"6,3"}),
-    e("text",{x:xA(50),y:yA(54),fontSize:9,fill:"var(--gold)",fontWeight:"bold",fontStyle:"italic"},"B"),
-    // Sjecište (450, 30)
-    e("circle",{cx:xA(450),cy:yA(30),r:4,fill:"var(--red)"})
+    // Auto A: (0,80) -> (710,0)
+    e("line",{x1:xA(0),y1:yA(80),x2:xA(710),y2:yA(0),stroke:"var(--blue)",strokeWidth:2.2}),
+    e("text",{x:xA(130),y:yA(69),fontSize:9,fill:"var(--blue)",fontWeight:"bold",fontStyle:"italic"},"A"),
+    // Auto B: (0,55) -> (1000,0)
+    e("line",{x1:xA(0),y1:yA(55),x2:xA(1000),y2:yA(0),stroke:"var(--gold)",strokeWidth:2.2,strokeDasharray:"6,3"}),
+    e("text",{x:xA(25),y:yA(59),fontSize:9,fill:"var(--gold)",fontWeight:"bold",fontStyle:"italic"},"B")
   );
 }
 
 function SvgZad25_2014LB(){
-  // Q25: Pravac y=−2x+3, točke A(-2,7), B(-1,5), C(0,3), D na slici
-  // Iz PDF: nagib=-2, y-presjek=3
-  const W=340,H=280,cx=130,cy=130,sc=30;
-  const hL=[],vL=[];
-  for(let i=-4;i<=6;i++)
-    vL.push(e("line",{key:"gv"+i,x1:cx+i*sc,y1:10,x2:cx+i*sc,y2:H-10,stroke:"#2a2d3e",strokeWidth:1}));
-  for(let i=-4;i<=6;i++)
-    hL.push(e("line",{key:"gh"+i,x1:10,y1:cy-i*sc,x2:W-10,y2:cy-i*sc,stroke:"#2a2d3e",strokeWidth:1}));
-  // Pravac y=-2x+3: x0 (y=0): x=1.5). x pri y=7: x=-2. x pri y=-3: x=3.
-  const lx1=cx+(-3)*sc, ly1=cy-(-2*(-3)+3)*sc;  // x=-3: y=-2·(-3)+3=9, ali van ruba
-  const lx2=cx+(3.5)*sc, ly2=cy-(-2*(3.5)+3)*sc; // x=3.5: y=-4
+  // Q25: pravac y=-2x+3 s oznacenim tockama A(-2,7), B(-1,5), C(0,3) i D.
+  // Koordinate tocke D se NE prikazuju - njih ucenik odredjuje u zadatku 25.2.
+  const W=330,H=316,sc=20;
+  const GX0=58, GY0=18;
+  const cx=GX0+5*sc, cy=GY0+8*sc;          // ishodiste
+  const GX1=GX0+11*sc, GY1=GY0+14*sc;      // donji desni kut mreze
+  const px=x=>cx+x*sc, py=y=>cy-y*sc;
+  const grid=[];
+  for(let i=-5;i<=6;i++)
+    grid.push(e("line",{key:"gv"+i,x1:px(i),y1:GY0,x2:px(i),y2:GY1,stroke:"var(--muted)",strokeWidth:.8,opacity:.35}));
+  for(let j=-6;j<=8;j++)
+    grid.push(e("line",{key:"gh"+j,x1:GX0,y1:py(j),x2:GX1,y2:py(j),stroke:"var(--muted)",strokeWidth:.8,opacity:.35}));
+  // Tocke: D bez koordinata (odgovor na 25.2)
+  const pts=[["A",-2,7,"(−2, 7)"],["B",-1,5,"(−1, 5)"],["C",0,3,"(0, 3)"],["D",3,-3,null]];
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
-    ...vL,...hL,
-    e("line",{x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("line",{x1:cx,y1:10,x2:cx,y2:H-10,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("polygon",{points:`${W-10},${cy} ${W-20},${cy-4} ${W-20},${cy+4}`,fill:"var(--muted)"}),
-    e("polygon",{points:`${cx},10 ${cx-4},20 ${cx+4},20`,fill:"var(--muted)"}),
-    e("text",{x:W-8,y:cy-6,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"y"),
-    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"var(--muted)"},"0"),
-    e("text",{x:cx+sc+2,y:cy+14,fontSize:10,fill:"var(--muted)"},"1"),
+    ...grid,
+    e("rect",{x:GX0,y:GY0,width:GX1-GX0,height:GY1-GY0,fill:"none",stroke:"var(--muted)",strokeWidth:.9,opacity:.5}),
+    // Osi
+    e("line",{x1:GX0,y1:cy,x2:W-12,y2:cy,stroke:"var(--text)",strokeWidth:1.4}),
+    e("line",{x1:cx,y1:GY1,x2:cx,y2:6,stroke:"var(--text)",strokeWidth:1.4}),
+    e("polygon",{points:`${W-4},${cy} ${W-14},${cy-4} ${W-14},${cy+4}`,fill:"var(--text)"}),
+    e("polygon",{points:`${cx},2 ${cx-4},12 ${cx+4},12`,fill:"var(--text)"}),
+    e("text",{x:W-16,y:cy+16,fontSize:11,fill:"var(--text)",fontStyle:"italic",fontWeight:"bold"},"x"),
+    e("text",{x:cx-13,y:12,fontSize:11,fill:"var(--text)",fontStyle:"italic",fontWeight:"bold"},"y"),
+    // Jedinicne oznake
+    e("circle",{cx:px(1),cy:cy,r:1.8,fill:"none",stroke:"var(--text)",strokeWidth:1}),
+    e("circle",{cx:cx,cy:py(1),r:1.8,fill:"none",stroke:"var(--text)",strokeWidth:1}),
+    e("text",{x:cx+4,y:cy+14,fontSize:10,fill:"var(--text)",fontWeight:"bold"},"0"),
+    e("text",{x:px(1)+4,y:cy+14,fontSize:10,fill:"var(--text)",fontWeight:"bold"},"1"),
+    e("text",{x:cx-12,y:py(1)+4,fontSize:10,fill:"var(--text)",fontWeight:"bold"},"1"),
     // Pravac y=-2x+3
-    e("line",{x1:cx+(-2)*sc,y1:cy-7*sc,x2:cx+(3.2)*sc,y2:cy-(-2*3.2+3)*sc,stroke:"var(--blue)",strokeWidth:2.2}),
-    // Točke A(-2,7), B(-1,5), C(0,3), D(3,-3)
-    ...([["A",[-2,7]],["B",[-1,5]],["C",[0,3]],["D",[3,-3]]]).map(([lbl,[gx,gy]])=>{
-      const px=cx+gx*sc, py=cy-gy*sc;
-      return e("g",{key:lbl},
-        e("circle",{cx:px,cy:py,r:4,fill:"var(--gold)"}),
-        e("text",{x:px+6,y:py-4,fontSize:11,fill:"var(--gold)",fontStyle:"italic"},`${lbl}(${gx},${gy})`)
-      );
-    })
+    e("line",{x1:px(-2.4),y1:py(7.8),x2:px(3.5),y2:py(-4),stroke:"var(--blue)",strokeWidth:2.2}),
+    // Tocke A, B, C i D (oznake lijevo od tocke, kao u izvorniku)
+    ...pts.map(([lbl,gx,gy,coord])=>e("g",{key:lbl},
+      e("circle",{cx:px(gx),cy:py(gy),r:3.2,fill:"var(--bg)",stroke:"var(--blue)",strokeWidth:1.6}),
+      e("text",{x:px(gx)-7,y:py(gy)-4,textAnchor:"end",fontSize:11,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},
+        coord?`${lbl} ${coord}`:lbl)
+    ))
   );
 }
 
@@ -118,46 +101,47 @@ function SvgZad23a_2014LB(){
 }
 
 function SvgZad9_2014LB(){
-  // y = −x² (parabola dolje) + x+2y=−6 → y=−x/2−3 (pravac)
-  // Sjecišta: x=2 (y=−4) i x=−1,5 (y=−2,25)
-  const W=340,H=280,cx=170,cy=180,sc=30;
-  const gridLines=[];
-  for(let i=-5;i<=5;i++){
-    gridLines.push(e("line",{key:"gv"+i,x1:cx+i*sc,y1:10,x2:cx+i*sc,y2:H-10,stroke:"#2a2d3e",strokeWidth:1}));
-  }
-  for(let i=-6;i<=4;i++){
-    gridLines.push(e("line",{key:"gh"+i,x1:10,y1:cy-i*sc,x2:W-10,y2:cy-i*sc,stroke:"#2a2d3e",strokeWidth:1}));
-  }
-  // Parabola y=−x²: generiraj path
+  // y = -x^2 (parabola prema dolje) i x+2y=-6 -> y=-x/2-3 (pravac)
+  // Sjecista: (-1,5 ; -2,25) i (2 ; -4) -- oba su unutar mreze, kao u izvorniku.
+  const W=340,H=240,sc=22;
+  const GX0=20, GY0=14;                 // gornji lijevi kut mreze
+  const cx=GX0+6.3*sc, cy=GY0+4*sc;     // ishodiste
+  const GX1=GX0+12.6*sc, GY1=GY0+8.8*sc;
+  const px=x=>cx+x*sc, py=y=>cy-y*sc;
+  const grid=[];
+  for(let i=-6;i<=6;i++)
+    grid.push(e("line",{key:"gv"+i,x1:px(i),y1:GY0,x2:px(i),y2:GY1,stroke:"var(--muted)",strokeWidth:.8,opacity:.35}));
+  for(let j=-4;j<=4;j++)
+    grid.push(e("line",{key:"gh"+j,x1:GX0,y1:py(j),x2:GX1,y2:py(j),stroke:"var(--muted)",strokeWidth:.8,opacity:.35}));
+  // Parabola y=-x^2, odrezana na donjem rubu mreze (y=-4,8 -> x=+-2,19)
   let pD="";
-  for(let xi=-40;xi<=40;xi++){
-    const x=xi/10;
-    const y=-(x*x);
-    const px=cx+x*sc, py=cy-y*sc;
-    pD+=(xi===-40?"M ":"L ")+px.toFixed(1)+" "+py.toFixed(1)+" ";
+  for(let i=0;i<=80;i++){
+    const x=-2.19+(4.38*i)/80;
+    pD+=(i===0?"M ":"L ")+px(x).toFixed(1)+" "+py(-(x*x)).toFixed(1)+" ";
   }
-  // Pravac y=−x/2−3: od x=−5 do x=5
-  const lx1=cx-5*sc, ly1=cy-(-(-5)/2-3)*sc;  // x=−5: y=−0,5
-  const lx2=cx+4*sc, ly2=cy-(-(4)/2-3)*sc;    // x=4: y=−5
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",margin:"0 auto"}},
-    ...gridLines,
+    ...grid,
+    e("rect",{x:GX0,y:GY0,width:GX1-GX0,height:GY1-GY0,fill:"none",stroke:"var(--muted)",strokeWidth:.9,opacity:.5}),
     // Osi
-    e("line",{x1:10,y1:cy,x2:W-10,y2:cy,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("line",{x1:cx,y1:H-10,x2:cx,y2:10,stroke:"var(--muted)",strokeWidth:1.5}),
-    e("polygon",{points:`${W-10},${cy} ${W-20},${cy-4} ${W-20},${cy+4}`,fill:"var(--muted)"}),
-    e("polygon",{points:`${cx},10 ${cx-4},20 ${cx+4},20`,fill:"var(--muted)"}),
-    e("text",{x:W-8,y:cy-6,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"x"),
-    e("text",{x:cx+4,y:14,fontSize:11,fill:"var(--muted)",fontStyle:"italic"},"y"),
-    e("text",{x:cx+3,y:cy+14,fontSize:10,fill:"var(--muted)"},"0"),
-    e("text",{x:cx+sc+2,y:cy+14,fontSize:10,fill:"var(--muted)"},"1"),
-    e("text",{x:cx+3,y:cy-sc+5,fontSize:10,fill:"var(--muted)"},"1"),
-    // Parabola y=−x² (žuta)
-    e("path",{d:pD,fill:"none",stroke:"#e8c547",strokeWidth:2.5}),
-    // Pravac x+2y=−6 → y=−x/2−3 (plava)
-    e("line",{x1:lx1,y1:ly1,x2:lx2,y2:ly2,stroke:"var(--blue)",strokeWidth:2.2}),
-    // Sjecišta
-    e("circle",{cx:cx+2*sc,cy:cy+4*sc,r:5,fill:"var(--green)"}),
-    e("circle",{cx:cx-1.5*sc,cy:cy+2.25*sc,r:5,fill:"var(--green)"})
+    e("line",{x1:GX0,y1:cy,x2:W-14,y2:cy,stroke:"var(--text)",strokeWidth:1.4}),
+    e("line",{x1:cx,y1:GY1,x2:cx,y2:6,stroke:"var(--text)",strokeWidth:1.4}),
+    e("polygon",{points:`${W-6},${cy} ${W-16},${cy-4} ${W-16},${cy+4}`,fill:"var(--text)"}),
+    e("polygon",{points:`${cx},2 ${cx-4},12 ${cx+4},12`,fill:"var(--text)"}),
+    e("text",{x:W-14,y:cy+16,fontSize:11,fill:"var(--text)",fontStyle:"italic",fontWeight:"bold"},"x"),
+    e("text",{x:cx-13,y:12,fontSize:11,fill:"var(--text)",fontStyle:"italic",fontWeight:"bold"},"y"),
+    // Jedinicne oznake
+    e("circle",{cx:px(1),cy:cy,r:1.8,fill:"none",stroke:"var(--text)",strokeWidth:1}),
+    e("circle",{cx:cx,cy:py(1),r:1.8,fill:"none",stroke:"var(--text)",strokeWidth:1}),
+    e("text",{x:cx+3,y:cy+13,fontSize:10,fill:"var(--text)",fontWeight:"bold"},"0"),
+    e("text",{x:px(1)+3,y:cy+13,fontSize:10,fill:"var(--text)",fontWeight:"bold"},"1"),
+    e("text",{x:cx-11,y:py(1)+4,fontSize:10,fill:"var(--text)",fontWeight:"bold"},"1"),
+    // Parabola y=-x^2
+    e("path",{d:pD,fill:"none",stroke:"var(--gold)",strokeWidth:2.4}),
+    // Pravac x+2y=-6  ->  y=-x/2-3
+    e("line",{x1:px(-6.3),y1:py(0.15),x2:px(3.6),y2:py(-4.8),stroke:"var(--blue)",strokeWidth:2.2}),
+    // Oba sjecista, oznacena malim kruzicima (kao u izvorniku)
+    e("circle",{cx:px(-1.5),cy:py(-2.25),r:3.6,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.4}),
+    e("circle",{cx:px(2),cy:py(-4),r:3.6,fill:"var(--bg)",stroke:"var(--text)",strokeWidth:1.4})
   );
 }
 
@@ -192,33 +176,52 @@ function SvgAtetraza_2014LB(){
 }
 
 function SvgZad20_2014LB(){
-  // b i c paralelni (horizontalni), a i d presjeknice
-  // a: od (10,252) do (210,72), nagib -0.9 → prelazi b na P1=(85,185), d na P2=(171,108)
-  // d: od (70,30) do (270,185), nagib +0.775 → prelazi c na P3=(141,85), a na P2=(171,108)
+  // Cetiri pravca kao u izvorniku: b || c (oba padaju udesno),
+  // a sijece b pod 54 st., d je poprecnica (101 st. na c, fi na a).
   const W=300,H=240;
-  // Točke sjecišta
-  const P1=[85,185],P2=[171,108],P3=[141,85];
-  // Linije
-  const bL=[[10,185],[280,185]];
-  const cL=[[10,85],[280,85]];
-  const aL=[[10,252],[215,70]];
-  const dL=[[68,28],[272,187]];
+  const a=[[26,186],[255,61]];    // a: donji lijevi -> gornji desni
+  const b=[[26,127],[215,212]];   // b: donji paralelni pravac
+  const c=[[26,31],[254,131]];    // c: gornji paralelni pravac
+  const d=[[160,16],[112,208]];   // d: poprecnica
+  const V101=[143,82];            // c x d
+  const Vfi =[131,130];           // a x d
+  const V54 =[88,153];            // a x b
+  const nrm=(p,q)=>{const dx=q[0]-p[0],dy=q[1]-p[1],L=Math.hypot(dx,dy);return [dx/L,dy/L];};
+  const arc=(V,u1,u2,r,sweep,extra)=>{
+    const P1=[V[0]+u1[0]*r,V[1]+u1[1]*r], P2=[V[0]+u2[0]*r,V[1]+u2[1]*r];
+    return e("path",Object.assign({d:`M ${P1[0].toFixed(1)} ${P1[1].toFixed(1)} A ${r} ${r} 0 0 ${sweep} ${P2[0].toFixed(1)} ${P2[1].toFixed(1)}`,
+      fill:"none",stroke:"var(--muted)",strokeWidth:1.2},extra||{}));
+  };
+  const wedge=(V,u1,u2,r,sweep)=>{
+    const P1=[V[0]+u1[0]*r,V[1]+u1[1]*r], P2=[V[0]+u2[0]*r,V[1]+u2[1]*r];
+    return e("path",{d:`M ${V[0]} ${V[1]} L ${P1[0].toFixed(1)} ${P1[1].toFixed(1)} A ${r} ${r} 0 0 ${sweep} ${P2[0].toFixed(1)} ${P2[1].toFixed(1)} Z`,
+      fill:"var(--red)",fillOpacity:0.18,stroke:"var(--red)",strokeWidth:1.2});
+  };
+  const uDup   = nrm(Vfi,d[0]);          // smjer po d prema gore
+  const uDdown = nrm(Vfi,d[1]);          // smjer po d prema dolje
+  const uCright= nrm(V101,c[1]);         // po c udesno
+  const uAright= nrm(Vfi,a[1]);          // po a udesno-gore
+  const uAr54  = nrm(V54,a[1]);
+  const uBr54  = nrm(V54,b[1]);
+  const uD101u = nrm(V101,d[0]);
+  const L=(seg,extra)=>e("line",Object.assign({x1:seg[0][0],y1:seg[0][1],x2:seg[1][0],y2:seg[1][1],
+    stroke:"var(--blue)",strokeWidth:2,strokeLinecap:"round"},extra||{}));
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
-    // b i c (paralelni) — tanje crte
-    e("line",{x1:bL[0][0],y1:bL[0][1],x2:bL[1][0],y2:bL[1][1],stroke:"var(--blue)",strokeWidth:2}),
-    e("line",{x1:cL[0][0],y1:cL[0][1],x2:cL[1][0],y2:cL[1][1],stroke:"var(--blue)",strokeWidth:2}),
-    // a i d
-    e("line",{x1:aL[0][0],y1:aL[0][1],x2:aL[1][0],y2:aL[1][1],stroke:"var(--blue)",strokeWidth:2}),
-    e("line",{x1:dL[0][0],y1:dL[0][1],x2:dL[1][0],y2:dL[1][1],stroke:"var(--blue)",strokeWidth:2}),
-    // Kutovi
-    e("text",{x:P1[0]+6,y:P1[1]-12,fontSize:11,fill:"var(--gold)",fontWeight:"bold"},"54°"),
-    e("text",{x:P2[0]+6,y:P2[1]+16,fontSize:12,fill:"var(--red)",fontStyle:"italic",fontWeight:"bold"},"φ"),
-    e("text",{x:P3[0]-36,y:P3[1]-4,fontSize:11,fill:"var(--gold)",fontWeight:"bold"},"101°"),
-    // Labele pravaca
-    e("text",{x:aL[0][0]+2,y:aL[0][1]+4,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"a"),
-    e("text",{x:bL[1][0]+3,y:bL[1][1]+4,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"b"),
-    e("text",{x:cL[1][0]+3,y:cL[1][1]+4,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"c"),
-    e("text",{x:dL[0][0]+4,y:dL[0][1]+4,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"d")
+    L(b), L(c), L(a), L(d),
+    // 101 st. izmedju d (gore) i c (desno)
+    arc(V101,uD101u,uCright,28,1),
+    e("text",{x:V101[0]+14,y:V101[1]-4,textAnchor:"middle",fontSize:11,fill:"var(--muted)",fontWeight:"bold"},"101°"),
+    // fi izmedju d (gore) i a (desno)
+    wedge(Vfi,uDup,uAright,17,1),
+    e("text",{x:Vfi[0]+8,y:Vfi[1]-6,fontSize:12,fill:"var(--red)",fontStyle:"italic",fontWeight:"bold"},"φ"),
+    // 54 st. izmedju a (desno) i b (desno)
+    arc(V54,uAr54,uBr54,32,1),
+    e("text",{x:V54[0]+19,y:V54[1]+4,textAnchor:"middle",fontSize:11,fill:"var(--muted)",fontWeight:"bold"},"54°"),
+    // Oznake pravaca a, b, c, d
+    e("text",{x:a[0][0]+4,y:a[0][1]+15,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"a"),
+    e("text",{x:b[1][0]+6,y:b[1][1]-2,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"b"),
+    e("text",{x:c[1][0]+6,y:c[1][1]-6,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"c"),
+    e("text",{x:d[0][0]-13,y:d[0][1]+6,fontSize:13,fill:"var(--blue)",fontStyle:"italic",fontWeight:"bold"},"d")
   );
 }
 
@@ -251,17 +254,17 @@ function SvgZad12_2014LB(){
     e("line",{x1:D[0],y1:D[1],x2:A[0],y2:A[1],stroke:"var(--muted)",strokeWidth:1,strokeDasharray:"4,3"}),
     e("line",{x1:D[0],y1:D[1],x2:Hv[0],y2:Hv[1],stroke:"var(--muted)",strokeWidth:1,strokeDasharray:"4,3"}),
     // Osjenčana piramida ABCDP (površine)
-    e("polygon",{points:pts([A,B,P]),fill:"rgba(74,144,217,0,25)",stroke:"var(--blue)",strokeWidth:1.5}),
-    e("polygon",{points:pts([B,C,P]),fill:"rgba(74,144,217,0.15)",stroke:"var(--blue)",strokeWidth:1.5}),
-    e("polygon",{points:pts([A,D,P]),fill:"rgba(74,144,217,0.2)",stroke:"var(--blue)",strokeWidth:1.5,strokeDasharray:"4,3"}),
+    e("polygon",{points:pts([A,B,P]),fill:"var(--blue)",fillOpacity:0.25,stroke:"var(--blue)",strokeWidth:1.5}),
+    e("polygon",{points:pts([B,C,P]),fill:"var(--blue)",fillOpacity:0.15,stroke:"var(--blue)",strokeWidth:1.5}),
+    e("polygon",{points:pts([A,D,P]),fill:"var(--blue)",fillOpacity:0.2,stroke:"var(--blue)",strokeWidth:1.5,strokeDasharray:"4,3"}),
     // Baza piramide ABCD
-    e("polygon",{points:pts([A,B,C,D]),fill:"rgba(232,197,71,0.1)",stroke:"#e8c547",strokeWidth:1.5,strokeDasharray:"3,3"}),
+    e("polygon",{points:pts([A,B,C,D]),fill:"var(--gold)",fillOpacity:0.12,stroke:"var(--gold)",strokeWidth:1.5,strokeDasharray:"3,3"}),
     // Kvadar (vidljivi bridovi)
-    e("polygon",{points:pts([A,B,F,E]),fill:"rgba(255,255,255,0.03)",stroke:"var(--text)",strokeWidth:1.5}),
-    e("polygon",{points:pts([B,C,G,F]),fill:"rgba(255,255,255,0.03)",stroke:"var(--text)",strokeWidth:1.5}),
-    e("polygon",{points:pts([E,F,G,Hv]),fill:"rgba(255,255,255,0.03)",stroke:"var(--text)",strokeWidth:1.5}),
+    e("polygon",{points:pts([A,B,F,E]),fill:"var(--text)",fillOpacity:0.03,stroke:"var(--text)",strokeWidth:1.5}),
+    e("polygon",{points:pts([B,C,G,F]),fill:"var(--text)",fillOpacity:0.03,stroke:"var(--text)",strokeWidth:1.5}),
+    e("polygon",{points:pts([E,F,G,Hv]),fill:"var(--text)",fillOpacity:0.03,stroke:"var(--text)",strokeWidth:1.5}),
     // Točke
-    ...[["A",A,[-14,4]],["B",B,[5,4]],["C",C,[5,4]],
+    ...[["A",A,[-14,4]],["B",B,[5,4]],["C",C,[5,4]],["D",D,[6,14]],
         ["E",E,[-14,-4]],["F",F,[5,-4]],["G",G,[5,-4]],["H",Hv,[-14,-4]]].map(
       ([n,p,[ox,oy]])=>e("g",{key:n},
         e("circle",{cx:p[0],cy:p[1],r:3,fill:"var(--text)"}),
@@ -269,75 +272,98 @@ function SvgZad12_2014LB(){
       )
     ),
     // Točka P - istakni
-    e("circle",{cx:P[0],cy:P[1],r:5,fill:"#f87171"}),
-    e("text",{x:P[0]-16,y:P[1]+4,fill:"#f87171",fontSize:13,fontStyle:"italic",fontWeight:"bold"},"P"),
+    e("circle",{cx:P[0],cy:P[1],r:5,fill:"var(--red)"}),
+    e("text",{x:P[0]-16,y:P[1]+4,fill:"var(--red)",fontSize:13,fontStyle:"italic",fontWeight:"bold"},"P"),
     // Mjere
     e("text",{x:ox+ax/2,y:oy+16,fill:"var(--muted)",fontSize:10,textAnchor:"middle"},"4,2 cm"),
-    e("text",{x:ox+ax+bx+8,y:oy+ay-by/2,fill:"var(--muted)",fontSize:10},"2 cm"),
+    e("text",{x:ox+ax+bx/2+11,y:oy+ay+by/2+4,fill:"var(--muted)",fontSize:10},"2 cm"),
     e("text",{x:ox+ax+8,y:oy+hy/2,fill:"var(--muted)",fontSize:10},"3,8 cm")
   );
 }
 
 function SvgZad11_2014LB(){
-  // Trapez ABCD: AB||DC, BC||DF, |AB|=4.5cm, |FB|=1.3cm, |FC|=2.6cm, ∠CFB=90°
-  // Scale: 40px=1cm. A=[40,200], B=[220,200], F=[168,200], C=[168,96], D=[116,96]
+  // Cetverokut ABCD: AB||DC, BC||DF, |AB|=4,5cm, |FB|=1,3cm, |FC|=2,6cm, <CFB=90 st.
+  // Mjerilo: 40px = 1cm.  F je na duzini AB, blizu B.
   const A=[40,200],B=[220,200],F=[168,200],C=[168,96],D=[116,96];
-  const W=300,H=240;
+  const W=300,H=262;
+  const yFB=222, yAB=240;   // dvije razine kotiranja: FB gore, cijeli AB dolje
+  const tick=(x,y)=>e("line",{key:"tk"+x+"_"+y,x1:x,y1:y-4,x2:x,y2:y+4,stroke:"var(--muted)",strokeWidth:1});
   return e("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",style:{maxWidth:W,display:"block",margin:"0 auto"}},
-    // Trapez ABCD
-    e("polygon",{points:[A,B,C,D].map(p=>p.join(",")).join(" "),fill:"rgba(74,144,217,0.08)",stroke:"var(--blue)",strokeWidth:2}),
-    // CF — okomita dashed linija od C do F
+    // Cetverokut ABCD
+    e("polygon",{points:[A,B,C,D].map(p=>p.join(",")).join(" "),fill:"var(--blue)",fillOpacity:0.08,stroke:"var(--blue)",strokeWidth:2}),
+    // CF - okomica od C na AB (isprekidano)
     e("line",{x1:C[0],y1:C[1],x2:F[0],y2:F[1],stroke:"var(--blue)",strokeWidth:1.8,strokeDasharray:"5,3"}),
-    // Pravokutni kut na F
-    e("rect",{x:F[0]-14,y:F[1]-14,width:12,height:12,fill:"none",stroke:"var(--green)",strokeWidth:1.5}),
-    // Mjere: FB=1.3 cm
-    e("text",{x:(F[0]+B[0])/2,y:218,textAnchor:"middle",fontSize:11,fill:"var(--muted)"},"1,3 cm"),
-    // Mjere: FC=2.6 cm (desno od CF)
-    e("text",{x:F[0]+6,y:(F[1]+C[1])/2+4,fontSize:11,fill:"var(--muted)"},"2,6 cm"),
-    // Mjere: AB=4.5 cm (ispod AB)
-    e("text",{x:(A[0]+B[0])/2,y:218,textAnchor:"middle",fontSize:11,fill:"var(--muted)"},"4,5 cm"),
+    // Pravi kut u F
+    e("rect",{x:F[0],y:F[1]-13,width:13,height:13,fill:"var(--muted)",fillOpacity:0.45,stroke:"var(--text)",strokeWidth:1.2}),
+    // Kota |FC| = 2,6 cm
+    e("text",{x:F[0]-8,y:(F[1]+C[1])/2+4,textAnchor:"end",fontSize:11,fill:"var(--muted)"},"2,6 cm"),
+    // Kota |FB| = 1,3 cm (samo od F do B)
+    e("line",{x1:F[0],y1:yFB,x2:B[0],y2:yFB,stroke:"var(--muted)",strokeWidth:1}),
+    tick(F[0],yFB), tick(B[0],yFB),
+    e("text",{x:(F[0]+B[0])/2,y:yFB-4,textAnchor:"middle",fontSize:10.5,fill:"var(--muted)"},"1,3 cm"),
+    // Kota |AB| = 4,5 cm (cijela duzina od A do B)
+    e("line",{x1:A[0],y1:yAB,x2:B[0],y2:yAB,stroke:"var(--muted)",strokeWidth:1}),
+    tick(A[0],yAB), tick(B[0],yAB),
+    e("text",{x:(A[0]+B[0])/2,y:yAB+14,textAnchor:"middle",fontSize:11,fill:"var(--muted)"},"4,5 cm"),
     // Oznake vrhova + F
-    ...([["A",A,[-16,4]],["B",B,[6,4]],["C",C,[6,-4]],["D",D,[-16,-4]],["F",F,[-4,16]]]).map(([n,p,[ox,oy]])=>
+    ...([["A",A,[-16,4]],["B",B,[8,4]],["C",C,[6,-6]],["D",D,[-14,-6]],["F",F,[-3,16]]]).map(([n,pt,[dx,dy]])=>
       e("g",{key:n},
-        e("circle",{cx:p[0],cy:p[1],r:4,fill:n==="F"?"var(--gold)":"var(--blue)"}),
-        e("text",{x:p[0]+ox,y:p[1]+oy,fill:n==="F"?"var(--gold)":"var(--blue)",fontSize:13,fontStyle:"italic",fontWeight:"bold"},n)
+        e("circle",{cx:pt[0],cy:pt[1],r:4,fill:n==="F"?"var(--gold)":"var(--blue)"}),
+        e("text",{x:pt[0]+dx,y:pt[1]+dy,fill:n==="F"?"var(--gold)":"var(--blue)",fontSize:13,fontStyle:"italic",fontWeight:"bold"},n)
       )
     )
   );
 }
 
 function SvgZad1_2014LB(){
-  // 4 brojevna pravca - opcija B je ispravna: [2,7)
-  const W=380, H=200, x0=50, sc=28;
+  // Q1: 4 brojevna pravca (A-D) kao u izvorniku.
+  // A: (2,7]   B: [2,7)   C: (-inf,2) U [7,+inf)   D: (-inf,2] U (7,+inf)
+  const W=380, H=205, x0=52, sc=27;
   const nums=[0,1,2,3,4,5,6,7,8,9];
+  const AX0=26, AX1=W-18;        // krajevi brojevnog pravca
+  const HL=18, HR=W-18;           // dokle sece srafura kod neomedjenih poluintervala
+  const X=n=>x0+n*sc;
 
-  const drawAxis=(yPos,optLabel,fillStart,fillEnd,leftOpen,rightOpen,correct)=>{
-    const items=[];
-    // Os
-    items.push(e("line",{key:"ax"+yPos,x1:30,y1:yPos,x2:W-20,y2:yPos,stroke:"var(--muted)",strokeWidth:1.2}));
-    items.push(e("polygon",{key:"ar"+yPos,points:`${W-20},${yPos} ${W-30},${yPos-3} ${W-30},${yPos+3}`,fill:"var(--muted)"}));
-    // Oznake
-    nums.forEach(n=>items.push(e("text",{key:`n${yPos}${n}`,x:x0+n*sc-4,y:yPos+14,fill:"var(--muted)",fontSize:10},n)));
-    // Osjenčano područje
-    items.push(e("rect",{key:"fill"+yPos,x:x0+fillStart*sc,y:yPos-6,width:(fillEnd-fillStart)*sc,height:12,fill:correct?"var(--blue)":"#6b6888",opacity:0.3}));
-    // Točke
-    items.push(e("circle",{key:"l"+yPos,cx:x0+fillStart*sc,cy:yPos,r:4,fill:leftOpen?"var(--s2)":"var(--blue)",stroke:"var(--blue)",strokeWidth:1.5}));
-    items.push(e("circle",{key:"r"+yPos,cx:x0+fillEnd*sc,cy:yPos,r:4,fill:rightOpen?"var(--s2)":"var(--blue)",stroke:"var(--blue)",strokeWidth:1.5}));
-    // Label
-    items.push(e("text",{key:"lbl"+yPos,x:12,y:yPos+4,fill:correct?"#3dd68c":"var(--muted)",fontSize:12,fontWeight:correct?"bold":"normal"},optLabel));
-    return items;
+  // segment: {a,b,aOpen,bOpen}  |  a===null => -inf, b===null => +inf
+  const drawAxis=(yPos,optLabel,segs)=>{
+    const it=[];
+    it.push(e("line",{key:"ax",x1:AX0,y1:yPos,x2:AX1,y2:yPos,stroke:"var(--text)",strokeWidth:1.2}));
+    it.push(e("polygon",{key:"ar",points:`${AX1},${yPos} ${AX1-9},${yPos-3.2} ${AX1-9},${yPos+3.2}`,fill:"var(--text)"}));
+    it.push(e("text",{key:"xl",x:AX1+2,y:yPos+4,fontSize:10,fill:"var(--text)",fontStyle:"italic"},"x"));
+    nums.forEach(n=>{
+      it.push(e("line",{key:"tk"+n,x1:X(n),y1:yPos-4,x2:X(n),y2:yPos+4,stroke:"var(--text)",strokeWidth:1}));
+      it.push(e("text",{key:"nl"+n,x:X(n),y:yPos+16,textAnchor:"middle",fill:"var(--text)",fontSize:9.5},n));
+    });
+    segs.forEach((sg,i)=>{
+      const xa = sg.a===null ? HL : X(sg.a);
+      const xb = sg.b===null ? HR : X(sg.b);
+      const y1=yPos-7, y2=yPos+7;
+      it.push(e("rect",{key:"hb"+i,x:xa,y:y1,width:xb-xa,height:14,fill:"var(--blue)",opacity:0.10}));
+      // Srafura: dijagonalne crte (nagib -1), analiticki odrezane na [xa,xb]
+      for(let x0=xa-14;x0<xb;x0+=6){
+        const t0=Math.max(0,xa-x0), t1=Math.min(14,xb-x0);
+        if(t1-t0<0.5) continue;
+        it.push(e("line",{key:"hl"+i+"_"+x0,x1:x0+t0,y1:y2-t0,x2:x0+t1,y2:y2-t1,
+          stroke:"var(--blue)",strokeWidth:1.1,opacity:0.85}));
+      }
+      if(sg.a!==null)
+        it.push(e("circle",{key:"ca"+i,cx:X(sg.a),cy:yPos,r:4,fill:sg.aOpen?"var(--bg)":"var(--blue)",stroke:"var(--blue)",strokeWidth:1.6}));
+      if(sg.b!==null)
+        it.push(e("circle",{key:"cb"+i,cx:X(sg.b),cy:yPos,r:4,fill:sg.bOpen?"var(--bg)":"var(--blue)",stroke:"var(--blue)",strokeWidth:1.6}));
+    });
+    it.push(e("text",{key:"lbl",x:4,y:yPos+4,fill:"var(--text)",fontSize:12,fontWeight:"bold"},optLabel));
+    return it.map((n,i)=>React.cloneElement(n,{key:optLabel+"-"+i}));
   };
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block",background:"var(--s2)",borderRadius:8}},
-    // A: (2,7) - oba otvorena
-    ...drawAxis(30,"A.",2,7,true,true,false),
-    // B: [2,7) - lijevo zatvoreno, desno otvoreno ✓
-    ...drawAxis(75,"B.",2,7,false,true,true),
-    // C: prikazuje nešto drugačije
-    ...drawAxis(120,"C.",0,2,false,true,false),
-    // D: dva odvojena dijela
-    ...drawAxis(165,"D.",0,2,false,false,false),
-    e("text",{x:W/2,y:H-5,fill:"#3dd68c",fontSize:10,textAnchor:"middle"},"[2, 7) = ≥2 i <7 → B ✓")
+    // A. (2,7]
+    ...drawAxis(30,"A.",[{a:2,b:7,aOpen:true,bOpen:false}]),
+    // B. [2,7)
+    ...drawAxis(75,"B.",[{a:2,b:7,aOpen:false,bOpen:true}]),
+    // C. (-inf,2) U [7,+inf)
+    ...drawAxis(120,"C.",[{a:null,b:2,bOpen:true},{a:7,b:null,aOpen:false}]),
+    // D. (-inf,2] U (7,+inf)
+    ...drawAxis(165,"D.",[{a:null,b:2,bOpen:false},{a:7,b:null,aOpen:true}])
   );
 }
 
@@ -1072,7 +1098,7 @@ export const qs = [
     "Česta greška: greška predznaka pri oduzimanju −(−50x²)=+50x² (ne −50x²).",
     "Provjera za x=1: 6(1−3+5)−(2+8)(3−7)=6·3−10·(−4)=18+40=58. 20+32+6=58 ✓"
   ,"Provjera supstitucijom: uvrsti x = 32 u L = D; rezultati se moraju podudarati."]},
-  {id:28.1,img:true,type:"sa",img:true,topic:"lin",points:1,
+  {id:28.1,type:"sa",topic:"lin",points:1,
   q:"Odredi vrijednost indeksa u trenutku dostignutog maksimuma.",
   sol:{ans:"142",alt:["142","≈ 142"]},
   context:"Zadatak 28 (1. dio od 2):",
@@ -1091,7 +1117,7 @@ export const qs = [
   ,
     "Provjera: 25+9·13=25+117=142 čestica/milijun ✓"
   ,"Provjera: za jednadžbu pravca y = kx + l, dvije točke na pravcu daju isti k."]},
-  {id:28.2,img:true,type:"sa",img:true,topic:"lin",points:1,
+  {id:28.2,type:"sa",topic:"lin",points:1,
   q:"U koliko sati indeks zagađenja padne na 103 čestice nakon dostignutog maksimuma?",
   sol:{ans:"21:00 h",alt:["21","21h"]},
   context:"Zadatak 28 (2. dio od 2):",
@@ -1122,6 +1148,4 @@ export const qImages = {
   "2014_ljeto_B__23.1": () => e(SvgZad23a_2014LB, null),
   "2014_ljeto_B__25.1": () => e(SvgZad25_2014LB, null),
   "2014_ljeto_B__26.1": () => e(SvgGrafikonGoriva_2014LB, null),
-  "2014_ljeto_B__28.1": () => e(SvgIndeksZagadjenja_2014LB, null),
-  "2014_ljeto_B__28.2": () => e(SvgIndeksZagadjenja_2014LB, null),
 };

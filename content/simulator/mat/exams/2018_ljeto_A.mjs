@@ -150,7 +150,7 @@ function Svg26_2018Alj(){
       e("text",{x:ox-6,y:toY(y)+3,textAnchor:"end",fontSize:7,fill:"var(--muted)"},y)
     )),
     e("polyline",{points:pts.join(" "),fill:"rgba(74,144,217,.1)",stroke:"var(--blue)",strokeWidth:2.2}),
-    e("text",{x:toX(0),y:toY(1.5),textAnchor:"middle",fontSize:9,fill:"var(--blue)"},"x\u00b2/36+y\u00b2/16=1")
+    e("text",{x:pad.l+2,y:toY(4.4),textAnchor:"start",fontSize:9,fill:"var(--blue)"},"x²/36+y²/16=1")
   );
 }
 
@@ -238,7 +238,7 @@ function Svg22_2018Alj(){
   const ox=toX(0),oy=toY(0);
   const k=-1/4, b=3;
   const linPts=[];
-  for(let x=xMin;x<=14;x+=0,5){
+  for(let x=xMin;x<=14;x+=0.5){
     const y=k*x+b;
     if(y<yMin||y>yMax) continue;
     linPts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);

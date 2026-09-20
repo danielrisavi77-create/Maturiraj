@@ -4,34 +4,47 @@ import { Svg27a_2020Bjj, Svg23a_2020Bjj } from '../mat-shared-svg.mjs';
 const e = React.createElement;
 
 function Svg7_2020Blj(){
-  const W=520,H=360,elems=[];
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const poly=(pts,k)=>e("polygon",{key:k,points:pts,fill:"rgba(200,200,200,0.18)",stroke:"var(--text)",strokeWidth:1.5});
-  const box=(x,y,w,h,k)=>e("rect",{key:k,x,y,width:w,height:h,fill:"rgba(200,200,200,0.18)",stroke:_BLUE,strokeWidth:1.5});
-  // ── A: kvadrat + 4 trokuta (TOČAN) ──
-  elems.push(e("rect",{key:"bA",x:2,y:2,width:200,height:300,rx:4,fill:"none",stroke:"var(--green)",strokeWidth:1.5,strokeDasharray:"5,3"}));
-  elems.push(box(65,115,65,65,"Aq"));
-  elems.push(poly("65,115 130,115 97,75","At"));
-  elems.push(poly("65,115 65,180 15,147","Al"));
-  elems.push(poly("130,115 130,180 168,88","Ar"));
-  elems.push(poly("65,180 130,180 97,265","Ad"));
-  elems.push(e("text",{key:"tA",x:97,y:295,fontSize:14,fill:"var(--green)",textAnchor:"middle",fontFamily:"sans-serif"},"A ✓"));
-  // ── B: kvadrat dolje + 3 rotirana kvadrata ──
-  elems.push(box(308,222,67,63,"Bq"));
-  elems.push(poly("308,222 340,222 305,168 273,168","Bl"));
-  elems.push(poly("340,222 375,222 392,165 357,165","Bm"));
-  elems.push(poly("375,222 375,285 430,262 430,198","Br"));
-  elems.push(e("text",{key:"tB",x:370,y:310,fontSize:14,fill:"var(--muted)",textAnchor:"middle",fontFamily:"sans-serif"},"B."));
-  // ── C: veliki trokut + unutarnje linije ──
-  elems.push(poly("32,350 152,350 92,248","Ct"));
-  [["Ca",32,350,62,296],["Cb",152,350,122,296],["Cc",62,296,92,350],["Cd",122,296,92,350],["Ce",62,296,122,296]].forEach(([k,x1,y1,x2,y2])=>
-    elems.push(e("line",{key:k,x1,y1,x2,y2,stroke:_BLUE,strokeWidth:1.2})));
-  elems.push(e("text",{key:"tC",x:92,y:358,fontSize:14,fill:"var(--muted)",textAnchor:"middle",fontFamily:"sans-serif"},"C."));
-  // ── D: 3 kvadrata + 2 trokuta ──
-  [[202,258,"Da"],[252,258,"Db"],[302,258,"Dc"]].forEach(([x,y,k])=>elems.push(box(x,y,50,48,k)));
-  elems.push(poly("252,258 302,258 277,218","Dt"));
-  elems.push(poly("252,306 302,306 277,345","Dd"));
-  elems.push(e("text",{key:"tD",x:277,y:358,fontSize:14,fill:"var(--muted)",textAnchor:"middle",fontFamily:"sans-serif"},"D."));
+  // Četiri ponuđene mreže (A–D) u rasteru 2×2, bez preklapanja.
+  // A i B prerisani po izvorniku (ispitni PDF); C i D su distraktori.
+  const W=560,H=450,elems=[];
+  const FILL="var(--s2)";
+  const poly=(pts,k)=>e("polygon",{key:k,points:pts,fill:FILL,stroke:"var(--text)",strokeWidth:1.6,strokeLinejoin:"round"});
+  const seg=(x1,y1,x2,y2,k)=>e("line",{key:k,x1,y1,x2,y2,stroke:"var(--text)",strokeWidth:1.6});
+  const lbl=(x,y,t,k,ok)=>e("text",{key:k,x,y,fontSize:15,fontWeight:"600",
+    fill:ok?"var(--green)":"var(--muted)",textAnchor:"middle",fontFamily:"sans-serif"},t);
+
+  // ── A: mreža četverostrane piramide — kvadrat + 4 trokuta (TOČAN) ──
+  elems.push(e("rect",{key:"bA",x:40,y:20,width:188,height:202,rx:6,
+    fill:"none",stroke:"var(--green)",strokeWidth:1.5,strokeDasharray:"6,4"}));
+  elems.push(poly("110,90 172,90 172,147 110,147","Aq"));   // baza (kvadrat)
+  elems.push(poly("110,90 172,90 142,35","At"));            // pobočka gore
+  elems.push(poly("142,35 209,35 172,90","Atr"));           // pobočka gore-desno
+  elems.push(poly("110,90 110,147 56,119","Al"));           // pobočka lijevo
+  elems.push(poly("110,147 172,147 141,207","Ad"));         // pobočka dolje
+  elems.push(lbl(134,242,"A ✓","tA",true));
+
+  // ── B: mreža trostrane prizme — trokut + 3 kvadrata ──
+  elems.push(poly("410,70 380,123 441,123","Bt"));          // trokut u sredini
+  elems.push(poly("380,123 441,123 441,184 380,184","Bq")); // kvadrat dolje
+  elems.push(poly("410,70 353,39 324,93 380,123","Bl"));    // kvadrat gore-lijevo
+  elems.push(poly("410,70 464,38 497,93 441,123","Br"));    // kvadrat gore-desno
+  elems.push(lbl(410,242,"B.","tB"));
+
+  // ── C: veliki trokut podijeljen na četiri (mreža tetraedra) ──
+  elems.push(poly("140,262 60,400 220,400","Ct"));
+  elems.push(seg(100,331,180,331,"Ca"));
+  elems.push(seg(100,331,140,400,"Cb"));
+  elems.push(seg(180,331,140,400,"Cc"));
+  elems.push(lbl(140,428,"C.","tC"));
+
+  // ── D: 3 kvadrata u nizu + 2 trokuta ──
+  elems.push(poly("310,298 362,298 362,350 310,350","Da"));
+  elems.push(poly("362,298 414,298 414,350 362,350","Db"));
+  elems.push(poly("414,298 466,298 466,350 414,350","Dc"));
+  elems.push(poly("362,298 414,298 388,253","Dt"));
+  elems.push(poly("362,350 414,350 388,395","Dd"));
+  elems.push(lbl(388,428,"D.","tD"));
+
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }
 
@@ -46,7 +59,7 @@ function Svg28c_2020Blj(){
   elems.push(e("polygon",{
     key:"fill",
     points:`${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}`,
-    fill:"var(--teal)", fillOpacity:0.12, stroke:"none"
+    fill:"var(--blue)", fillOpacity:0.12, stroke:"none"
   }));
   // Stranice trokuta
   elems.push(e("line",{key:"AB",x1:Ax,y1:Ay,x2:Bx,y2:By,stroke:"var(--blue)",strokeWidth:2.5}));
@@ -62,11 +75,12 @@ function Svg28c_2020Blj(){
   elems.push(e("text",{key:"lB",x:Bx-20,y:By+5,fontSize:15,fill:"var(--blue)",fontWeight:"bold"},"B"));
   elems.push(e("text",{key:"lC",x:Cx+6,y:Cy+5,fontSize:15,fill:"var(--blue)",fontWeight:"bold"},"C"));
   // Dimenzije na stranicama
-  elems.push(e("text",{key:"dAB",x:Ax-35,y:(Ay+By)/2,fontSize:11,fill:"var(--blue)",textAnchor:"middle"},"a m"));
-  elems.push(e("text",{key:"dBC",x:(Bx+Cx)/2,y:By+18,fontSize:11,fill:"var(--blue)",textAnchor:"middle"},"b m"));
-  elems.push(e("text",{key:"dAC",x:(Ax+Cx)/2+10,y:(Ay+Cy)/2-12,fontSize:11,fill:"var(--red)",textAnchor:"middle"},"≈ 138.92 m"));
-  // Info tekst
-  elems.push(e("text",{key:"i1",x:W/2,y:28,fontSize:10.5,fill:"var(--muted)",textAnchor:"middle"},"a + b = 190 m  |  a·b/2 = 4200 m²"));
+  elems.push(e("text",{key:"dAB",x:Ax-30,y:(Ay+By)/2,fontSize:12,fill:"var(--blue)",textAnchor:"middle"},"a"));
+  elems.push(e("text",{key:"dBC",x:(Bx+Cx)/2,y:By+20,fontSize:12,fill:"var(--blue)",textAnchor:"middle"},"b"));
+  // Tražena duljina (najkraći put A→C) ostaje nepoznanica — bez unaprijed danog rezultata.
+  elems.push(e("text",{key:"dAC",x:(Ax+Cx)/2+14,y:(Ay+Cy)/2-12,fontSize:12,fill:"var(--red)",textAnchor:"middle"},"AC = ?"));
+  // Zadani podatci iz teksta zadatka
+  elems.push(e("text",{key:"i1",x:W/2,y:24,fontSize:11,fill:"var(--muted)",textAnchor:"middle"},"a + b = 190 m   |   P = a·b/2 = 4200 m²"));
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}}, elems);
 }
@@ -142,40 +156,19 @@ function Svg27_2020Blj(){
     ["borovnice","62","14","1"],
     ["breskve","46","11","1"],
   ];
-  const cols=[130,80,100,80]; // širine stupaca
-  const colX=[10]; for(let i=0;i<cols.length-1;i++) colX.push(colX[i]+cols[i]);
-  const rowH=35, headerH=40;
+  const cols=[126,84,96,84]; // širine stupaca
+  const colX=[0]; for(let i=0;i<cols.length-1;i++) colX.push(colX[i]+cols[i]);
   const totalW=cols.reduce((a,b)=>a+b,0);
+  const rHeights=[38,32,32,32,32];
   const x0=(W-totalW)/2, y0=10;
 
-  rows.forEach((row,ri)=>{
-    const y=y0+ri*(ri===0?headerH:rowH)+(ri>0?(headerH-rowH):0);
-    const rh=ri===0?headerH:rowH;
-    // Pozadina reda
-    elems.push(e("rect",{key:`rb${ri}`,x:x0,y:y0+ri*rowH+(ri===0?0:0),width:totalW,height:rh,
-      fill:ri===0?"var(--blue)":ri%2===0?"rgba(95,169,255,0.06)":"transparent",
-      fillOpacity:ri===0?0.25:1,stroke:"var(--bdr)",strokeWidth:0.8}));
-    row.forEach((cell,ci)=>{
-      const cx=x0+colX[ci]+cols[ci]/2;
-      const cy=y0+ri*rowH+(ri===0?rh/2+5:rh/2+5);
-      elems.push(e("text",{key:`c${ri}${ci}`,x:cx,y:cy,
-        fontSize:ri===0?10:11,
-        fill:ri===0?"var(--blue)":"var(--text)",
-        fontWeight:ri===0||ci===0?"600":"400",
-        textAnchor:"middle"},(cell)));
-    });
-  });
-
-  // Popravak visina — iscrtaj tablicu ručno
-  // Reset i crtaj ispočetka s ispravnim koordinatama
-  elems.length=0;
-  const rHeights=[38,32,32,32,32];
   let curY=y0;
   rows.forEach((row,ri)=>{
     const rh=rHeights[ri];
-    // Pozadina
+    // Pozadina reda: zaglavlje plavo, parni redovi blago istaknuti (obje teme)
     elems.push(e("rect",{key:`rb${ri}`,x:x0,y:curY,width:totalW,height:rh,
-      fill:ri===0?"rgba(95,169,255,0.22)":ri%2===1?"rgba(95,169,255,0.05)":"transparent",
+      fill:ri===0?"var(--blue)":ri%2===1?"var(--s2)":"var(--bg)",
+      fillOpacity:ri===0?0.22:1,
       stroke:"var(--bdr)",strokeWidth:0.8}));
     row.forEach((cell,ci)=>{
       const cx=x0+colX[ci]+cols[ci]/2;
@@ -228,7 +221,8 @@ function Svg22b_2020Blj(){
 function Svg22a_2020Blj(){
   const W=300, H=220, elems=[];
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const x0=30, y0=30, W2=220, H2=140;
+  // Omjer stranica približno odgovara zadanim mjerama (23,5 : ~30,1)
+  const x0=40, y0=30, W2=180, H2=140;
 
   // Pravokutnik
   elems.push(e("rect",{key:"rct",x:x0,y:y0,width:W2,height:H2,
@@ -244,19 +238,19 @@ function Svg22a_2020Blj(){
     points:`${x0+sq},${y0+H2} ${x0+sq},${y0+H2-sq} ${x0},${y0+H2-sq}`,
     fill:"none",stroke:_BLUE,strokeWidth:1.2}));
 
-  // Dimenzija: stranica 23.5 cm (desna strana, visina)
+  // Dimenzija: zadana stranica 23,5 cm (desna strana, visina)
   elems.push(e("line",{key:"dl1",x1:x0+W2+8,y1:y0,x2:x0+W2+8,y2:y0+H2,stroke:"var(--muted)",strokeWidth:1}));
-  elems.push(e("text",{key:"dl1t",x:x0+W2+22,y:y0+H2/2+4,fontSize:11,fill:"var(--blue)",textAnchor:"middle",transform:`rotate(-90,${x0+W2+22},${y0+H2/2})`},"23.5 cm"));
+  elems.push(e("text",{key:"dl1t",x:x0+W2+24,y:y0+H2/2+4,fontSize:11.5,fill:"var(--blue)",textAnchor:"middle",transform:`rotate(-90,${x0+W2+24},${y0+H2/2})`},"23,5 cm"));
 
-  // Dimenzija: dijagonala 38.2 cm (po dijagonali)
-  elems.push(e("text",{key:"ddt",x:x0+W2/2-10,y:y0+H2/2-10,fontSize:11,fill:"var(--red)",textAnchor:"middle",
-    transform:`rotate(-32,${x0+W2/2},${y0+H2/2})`},"38.2 cm"));
+  // Dimenzija: zadana dijagonala 38,2 cm (uz dijagonalu)
+  elems.push(e("text",{key:"ddt",x:x0+W2/2-10,y:y0+H2/2-10,fontSize:11.5,fill:"var(--red)",textAnchor:"middle",
+    transform:`rotate(-32,${x0+W2/2},${y0+H2/2})`},"38,2 cm"));
 
-  // Dimenzija: tražena stranica b=? (donja strana)
-  elems.push(e("text",{key:"db",x:x0+W2/2,y:y0+H2+22,fontSize:12,fill:"var(--green)",textAnchor:"middle"},"b = ? ≈ 30.12 cm"));
+  // Tražena stranica ostaje nepoznanica — skica ne otkriva rezultat.
+  elems.push(e("text",{key:"db",x:x0+W2/2,y:y0+H2+24,fontSize:12.5,fill:"var(--green)",textAnchor:"middle"},"b = ?"));
 
-  // Pitagora napomena
-  elems.push(e("text",{key:"pyt",x:W/2,y:H-4,fontSize:10,fill:"var(--muted)",textAnchor:"middle"},"b = √(38.2² − 23.5²) ≈ 30.116 cm"));
+  // Napomena: skica je pomoćna; u izvornom ispitu zadatak 22.1 nema sliku.
+  elems.push(e("text",{key:"pyt",x:W/2,y:H-6,fontSize:10,fill:"var(--muted)",textAnchor:"middle"},"pomoćna skica (u izvorniku zadatak nema sliku)"));
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }
@@ -380,46 +374,49 @@ function Svg3_2020Blj(){
 }
 
 function Svg23a_2020Blj(){
-  const W=300, H=280, pad={l:44,r:20,t:24,b:36};
+  // Koordinatna mreža prerisana po izvorniku: 5 polja lijevo/desno i gore/dolje.
+  const W=320, H=320, pad={l:26,r:26,t:24,b:30};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const xMin=-3, xMax=6, yMin=-5, yMax=6;
+  const xMin=-5, xMax=5, yMin=-5, yMax=5;
   const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
   const toX=v=>pad.l+((v-xMin)/(xMax-xMin))*iW;
   const toY=v=>pad.t+((yMax-v)/(yMax-yMin))*iH;
   const elems=[];
 
-  // Grid
-  for(let x=xMin;x<=xMax;x++) elems.push(e("line",{key:`gx${x}`,x1:toX(x),y1:pad.t,x2:toX(x),y2:H-pad.b,stroke:"var(--bdr)",strokeWidth:0.5}));
-  for(let y=yMin;y<=yMax;y++) elems.push(e("line",{key:`gy${y}`,x1:pad.l,y1:toY(y),x2:W-pad.r,y2:toY(y),stroke:"var(--bdr)",strokeWidth:0.5}));
+  // Mreža (kao u izvorniku — tanke sive crte preko cijelog kvadranta)
+  for(let x=xMin;x<=xMax;x++) elems.push(e("line",{key:`gx${x}`,x1:toX(x),y1:toY(yMax),x2:toX(x),y2:toY(yMin),stroke:"var(--muted)",strokeWidth:0.6,opacity:0.45}));
+  for(let y=yMin;y<=yMax;y++) elems.push(e("line",{key:`gy${y}`,x1:toX(xMin),y1:toY(y),x2:toX(xMax),y2:toY(y),stroke:"var(--muted)",strokeWidth:0.6,opacity:0.45}));
 
-  // Osi
-  elems.push(e("line",{key:"ax",x1:pad.l,y1:toY(0),x2:W-pad.r,y2:toY(0),stroke:"var(--text)",strokeWidth:1.5}));
-  elems.push(e("line",{key:"ay",x1:toX(0),y1:pad.t,x2:toX(0),y2:H-pad.b,stroke:"var(--text)",strokeWidth:1.5}));
-  elems.push(e("polygon",{key:"arx",points:`${W-pad.r},${toY(0)} ${W-pad.r-7},${toY(0)-4} ${W-pad.r-7},${toY(0)+4}`,fill:"var(--text)"}));
-  elems.push(e("polygon",{key:"ary",points:`${toX(0)},${pad.t} ${toX(0)-4},${pad.t+7} ${toX(0)+4},${pad.t+7}`,fill:"var(--text)"}));
+  // Osi kroz cijelu mrežu, sa strelicama koje izlaze izvan nje
+  elems.push(e("line",{key:"ax",x1:toX(xMin),y1:toY(0),x2:W-pad.r+10,y2:toY(0),stroke:"var(--text)",strokeWidth:1.6}));
+  elems.push(e("line",{key:"ay",x1:toX(0),y1:pad.t-10,x2:toX(0),y2:toY(yMin),stroke:"var(--text)",strokeWidth:1.6}));
+  elems.push(e("polygon",{key:"arx",points:`${W-pad.r+10},${toY(0)} ${W-pad.r+2},${toY(0)-4} ${W-pad.r+2},${toY(0)+4}`,fill:"var(--text)"}));
+  elems.push(e("polygon",{key:"ary",points:`${toX(0)},${pad.t-10} ${toX(0)-4},${pad.t-2} ${toX(0)+4},${pad.t-2}`,fill:"var(--text)"}));
 
-  // Os oznake
-  elems.push(e("text",{key:"ox",x:W-pad.r+4,y:toY(0)+4,fontSize:11,fill:"var(--text)"},"x"));
-  elems.push(e("text",{key:"oy",x:toX(0)+4,y:pad.t-4,fontSize:11,fill:"var(--text)"},"y"));
-  elems.push(e("text",{key:"o0",x:toX(0)-12,y:toY(0)+13,fontSize:10,fill:"var(--muted)"},"0"));
-  elems.push(e("text",{key:"o1x",x:toX(1)-4,y:toY(0)+13,fontSize:10,fill:"var(--muted)"},"1"));
-  elems.push(e("text",{key:"o1y",x:toX(0)-14,y:toY(1)+4,fontSize:10,fill:"var(--muted)"},"1"));
+  // Oznake osi i jediničnih točaka
+  elems.push(e("text",{key:"ox",x:W-pad.r+2,y:toY(0)+16,fontSize:12,fill:"var(--text)",fontStyle:"italic",textAnchor:"middle"},"x"));
+  elems.push(e("text",{key:"oy",x:toX(0)-13,y:pad.t-2,fontSize:12,fill:"var(--text)",fontStyle:"italic"},"y"));
+  elems.push(e("text",{key:"o0",x:toX(0)-6,y:toY(0)+14,fontSize:11,fill:"var(--text)",textAnchor:"end"},"0"));
+  elems.push(e("text",{key:"o1x",x:toX(1),y:toY(0)+14,fontSize:11,fill:"var(--text)",textAnchor:"middle"},"1"));
+  elems.push(e("text",{key:"o1y",x:toX(0)-6,y:toY(1)+4,fontSize:11,fill:"var(--text)",textAnchor:"end"},"1"));
+  elems.push(e("circle",{key:"u1x",cx:toX(1),cy:toY(0),r:2.4,fill:"none",stroke:"var(--text)",strokeWidth:1.2}));
+  elems.push(e("circle",{key:"u1y",cx:toX(0),cy:toY(1),r:2.4,fill:"none",stroke:"var(--text)",strokeWidth:1.2}));
 
-  // Graf y = 2x − 2 (rješenje, zelena isprekidana - konvencija "rješenje highlight")
+  // Graf y = 2x − 2 (rješenje) — odsječen na rubu mreže, ne izlazi iz nje
   const f=x=>2*x-2;
-  const lx1=xMin, lx2=xMax;
+  const gx=x=>Math.min(xMax,Math.max(xMin,x));
+  const lx1=gx((yMin+2)/2), lx2=gx((yMax+2)/2); // x za koje je y unutar [yMin, yMax]
   elems.push(e("line",{key:"ln",x1:toX(lx1),y1:toY(f(lx1)),x2:toX(lx2),y2:toY(f(lx2)),
-    stroke:"var(--green)",strokeWidth:2,strokeDasharray:"5,3",opacity:0.8}));
+    stroke:"var(--green)",strokeWidth:2.2}));
 
-  // Ključne točke: f(0)=−2, f(3)=4
-  [[0,-2,"(0, −2)"],[3,4,"(3, 4)"]].forEach(([x,y,l],i)=>{
-    elems.push(e("circle",{key:`p${i}`,cx:toX(x),cy:toY(y),r:5,fill:"var(--green)"}));
-    const ox=i===0?8:-60, oy=i===0?-8:-8;
-    elems.push(e("text",{key:`pl${i}`,x:toX(x)+ox,y:toY(y)+oy,fontSize:10.5,fill:"var(--green)"},l));
+  // Ključne točke: f(0) = −2, f(3) = 4 (oznake lijevo od pravca, izvan njega)
+  [[0,-2,"(0, −2)",-10,16],[3,4,"(3, 4)",-10,-8]].forEach(([x,y,l,ox,oy],i)=>{
+    elems.push(e("circle",{key:`p${i}`,cx:toX(x),cy:toY(y),r:4.5,fill:"var(--green)"}));
+    elems.push(e("text",{key:`pl${i}`,x:toX(x)+ox,y:toY(y)+oy,fontSize:11,fill:"var(--green)",textAnchor:"end"},l));
   });
 
-  // Jednadžba
-  elems.push(e("text",{key:"fn",x:toX(4.2),y:toY(5.5),fontSize:11,fill:"var(--blue)"},"y = 2x − 2"));
+  // Jednadžba (ispod mreže, bez preklapanja s grafom)
+  elems.push(e("text",{key:"fn",x:W/2,y:H-6,fontSize:12,fill:"var(--blue)",textAnchor:"middle"},"y = 2x − 2"));
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }

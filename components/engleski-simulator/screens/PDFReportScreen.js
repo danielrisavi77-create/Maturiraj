@@ -1,10 +1,11 @@
 'use client'
 import { useState } from 'react'
-import { EXAMS } from '@/lib/engleski-simulator/exams'
+import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
 import { TOPIC_LABELS } from '@/lib/engleski-simulator/constants'
 import { grade } from '@/lib/engleski-simulator/scoring'
 
-export default function PDFReportScreen({ userData, history: propHistory, exam, examKey, onBack }) {
+export default function PDFReportScreen({ userData, history: propHistory, exam, examKey, onBack, examsMap }) {
+  const EXAMS = examsMap || getLoadedSync()
   const [printing, setPrinting] = useState(false)
   const history = propHistory || userData?.history || []
   const last10 = [...history].reverse().slice(0, 10)

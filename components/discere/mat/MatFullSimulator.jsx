@@ -10,9 +10,9 @@
 //                   (routed via window.__DISCERE_NATIVE_SAVE__ — see build-engine toParent patch)
 //   here → engine : window.__DISCERE_HYDRATE__ (+ DISCERE_HYDRATE event) and DISCERE_CONFIG {isPro}
 //
-// Data: the engine's EXAMS/Q_IMAGES were externalized at build; cross-exam modes (practice,
-// SRS, browse, adaptive…) need every question, so we eager-load all exam chunks here. This
-// loads only on /discere/matematika (route-level split) — never in the main app bundle.
+// Data (2.1): the engine's EXAMS/Q_IMAGES were externalized at build. Ovdje se engineu šalje
+// samo katalog iz index.json + loader; pitanja se dohvaćaju na zahtjev (loadExam), a cross-exam
+// modovi kroz loadAllExams uz progress bar. Ulaz više ne čeka svih 70 ispita (7 MB).
 import { useEffect, useRef, useState, createElement as h, Fragment } from 'react';
 import { useRouter } from 'next/navigation';
 import { allowedExamKeys } from '@/lib/discere-access';
@@ -43,27 +43,20 @@ export default function MatFullSimulator({ tier = 'free' }) {
     return () => window.removeEventListener('mat-coach', onCoach);
   }, []);
 
-  // ── engine stylesheet + fonts: inject only while mounted (full-screen light/dark takeover) ──
+  // ── engine stylesheet: inject only while mounted (full-screen light/dark takeover) ──
+  // Fontovi (DM Serif Display + Instrument Sans) su self-hosted @font-face u mat-engine.css (2.3),
+  // više se ne dovlače s Google Fonts CDN-a.
   useEffect(() => {
     const ID = 'mat-engine-styles';
-    const FONT_ID = 'mat-engine-fonts';
     if (typeof document !== 'undefined') {
       if (!document.getElementById(ID)) {
         const link = document.createElement('link');
         link.id = ID; link.rel = 'stylesheet'; link.href = '/sim/mat-engine.css';
         document.head.appendChild(link);
       }
-      // Fonts the monolith loads in <head> (DM Serif Display + Instrument Sans → var(--fh)/--fb)
-      if (!document.getElementById(FONT_ID)) {
-        const f = document.createElement('link');
-        f.id = FONT_ID; f.rel = 'stylesheet';
-        f.href = 'https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap';
-        document.head.appendChild(f);
-      }
     }
     return () => {
       document.getElementById(ID)?.remove();
-      document.getElementById(FONT_ID)?.remove();
       // engine toggles these on <body>; clear them so the rest of the app isn't affected
       document.body.classList.remove('dark-mode', 'light-mode', 'cb-mode', 'dys-mode');
     };
@@ -96,30 +89,20 @@ export default function MatFullSimulator({ tier = 'free' }) {
           import('@/components/simulator/MatEngineCore'),
           import('@/content/simulator/mat/exam-loaders'),
           import('@/content/simulator/mat/index.json'),
-          ensureNerdamer(), // symbolic-math lib → window.nerdamer (CAS: solver, exact calc, verify)
         ]);
+        // 2.2: nerdamer (436 KB) se više ne učitava unaprijed — engine ga traži tek kad
+        // korisnik otvori kalkulator/solver ili provjeri odgovor.
+        if (typeof window !== 'undefined') window.__MAT_ENSURE_NERDAMER__ = ensureNerdamer;
         const { examLoaders } = loadersMod;
         const index = indexMod.default || indexMod;
-        const metaByKey = {};
-        index.exams.forEach((e) => { metaByKey[e.key] = e; });
-
-        // eager-load every exam chunk → rebuild EXAMS + merged Q_IMAGES
-        const keys = Object.keys(examLoaders);
-        const mods = await Promise.all(keys.map((k) => examLoaders[k]()));
         if (cancelled) return;
-        const EXAMS = {};
-        const QIMG = {};
+
+        // 2.1: katalog (meta bez pitanja) + loader → engine dohvaća chunk po chunk
         const allowed = allowedExamKeys(tier);
-        keys.forEach((k, i) => {
-          const m = mods[i];
-          const meta = metaByKey[k] || {};
-          EXAMS[k] = {
-            key: k, year: meta.year, season: meta.season, razina: meta.razina,
-            label: meta.label, duration: meta.durationSec, qs: (m.qs || []).filter(q => q && !q._META),
-            locked: !allowed.has(k), // free tier → demo only; gate per discere-access
-          };
-          Object.assign(QIMG, m.qImages || {});
-        });
+        const catalog = (index.exams || []).map((meta) => ({
+          ...meta,
+          locked: !allowed.has(meta.key), // free tier → demo only; gate per discere-access
+        }));
 
         // saved cross-device state (Supabase) → hydrate engine before App mounts
         const saved = await loadSimState('mat');
@@ -128,22 +111,19 @@ export default function MatFullSimulator({ tier = 'free' }) {
         setupBridge(saved, router);
         if (typeof window !== 'undefined') window.__DISCERE_HYDRATE__ = saved;
 
-        // merge user-imported custom exams (persisted) so they show in the engine's exam list
-        try {
-          const custom = JSON.parse(localStorage.getItem('mat_custom_exams') || '{}') || {};
-          Object.keys(custom).forEach((k) => { EXAMS[k] = custom[k]; });
-        } catch {}
         coreRef.current = core;
-        examsRef.current = EXAMS;
+        core.__setExamLoader((key) => (examLoaders[key] ? examLoaders[key]() : Promise.resolve(null)));
+        core.__setExamCatalog(catalog);
 
-        core.__setExams(EXAMS);
-        core.__setQImages(QIMG);
+        // merge user-imported custom exams (persisted) so they show in the engine's exam list
+        let custom = {};
+        try { custom = JSON.parse(localStorage.getItem('mat_custom_exams') || '{}') || {}; } catch {}
+        examsRef.current = custom;
+        if (Object.keys(custom).length) core.__addExams(custom);
         // pro features (AI asistent/analiza/plan) — engine reads IS_PRO via DISCERE_CONFIG.
         // Tier pravilo dolazi iz lib/billing (isto pravilo kao proxy i requirePro).
-        // NAPOMENA: engine iz ove poruke trenutno čita SAMO `isPro`; planName/price
-        // šaljemo unaprijed, ali cijena je u MatEngineCore još hardkodirana u
-        // paywall stringovima, pa promjena PLANS.pro.priceLabel NIJE dovoljna sama
-        // za sebe — treba je i u engineu preuzeti iz DISCERE_CONFIG.
+        // Engine (r2) čita planName/price iz ove poruke (PLAN_NAME/PLAN_PRICE), pa je
+        // promjena PLANS.pro.priceLabel od sada dovoljna — cijena više nije hardkodirana.
         try {
           const offer = upgradeOffer();
           window.postMessage({
@@ -186,7 +166,7 @@ export default function MatFullSimulator({ tier = 'free' }) {
       custom[key] = exam;
       localStorage.setItem('mat_custom_exams', JSON.stringify(custom));
     } catch { return 'Ne mogu spremiti (localStorage pun?).'; }
-    if (examsRef.current && coreRef.current) { examsRef.current[key] = exam; coreRef.current.__setExams(examsRef.current); }
+    if (coreRef.current) { if (examsRef.current) examsRef.current[key] = exam; coreRef.current.__addExams({ [key]: exam }); }
     setImportOpen(false);
     setRemountKey((k) => k + 1); // remount App so it re-reads EXAMS
     return null;

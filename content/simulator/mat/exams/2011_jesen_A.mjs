@@ -5,53 +5,60 @@ const e = React.createElement;
 function SvgZad30_2011JA(){
   const W=320,H=320,cx=160,cy=160;
   const R1=68,R2=110;  // skalirano za viewport
-  const T="var(--text)",MU="var(--muted)",FILL="rgba(74,144,217,0.22)",FILLST="var(--blue)",HILITE="rgba(233,180,70,0.50)",HILITEST="#c89030",DASH="var(--muted)";
+  const T="var(--text)",MU="var(--muted)",FILL="rgba(74,144,217,0.16)",FILLST="var(--blue)",HILITE="rgba(233,180,70,0.55)",HILITEST="var(--gold)",DASH="var(--muted)",GOLD="var(--gold)";
   const PI=Math.PI;
-  const N=8;                          // broj etiketa
-  const alpha=43.13*PI/180;           // kut etikete (rad)
-  const gap=(2*PI-N*alpha)/N;         // kut razmaka
-  // Generate etikete
-  const segments=[];
-  for(let i=0;i<N;i++){
-    const start=i*(alpha+gap)+gap/2-PI/2;  // start angle (na vrhu kruga je -PI/2)
-    const end=start+alpha;
-    const x1Out=cx+R2*Math.cos(start), y1Out=cy+R2*Math.sin(start);
-    const x2Out=cx+R2*Math.cos(end),   y2Out=cy+R2*Math.sin(end);
-    const x1In =cx+R1*Math.cos(end),   y1In =cy+R1*Math.sin(end);
-    const x2In =cx+R1*Math.cos(start), y2In =cy+R1*Math.sin(start);
-    const largeArc=alpha>PI?1:0;
-    const path=`M ${x1Out.toFixed(2)},${y1Out.toFixed(2)} A ${R2},${R2} 0 ${largeArc} 1 ${x2Out.toFixed(2)},${y2Out.toFixed(2)} L ${x1In.toFixed(2)},${y1In.toFixed(2)} A ${R1},${R1} 0 ${largeArc} 0 ${x2In.toFixed(2)},${y2In.toFixed(2)} Z`;
-    const isHighlight=(i===0);
-    segments.push(e("path",{key:"seg"+i,d:path,fill:isHighlight?HILITE:FILL,stroke:isHighlight?HILITEST:FILLST,strokeWidth:isHighlight?2:1.2}));
-  }
-  // Highlighted etiketa labels (i=0, na vrhu)
-  const startA0=0*(alpha+gap)+gap/2-PI/2;
+  const N=8;                          // broj etiketa koje stanu u vijenac
+  const alpha=43.13*PI/180;           // kut jedne etikete (rad)
+  const gap=(2*PI-N*alpha)/N;         // kut razmaka izmedu etiketa
+  // U originalu je vijenac jedinstvena, neisprekidana ploha - izrezana je
+  // samo jedna (istaknuta) etiketa, pa se podjela na svih N segmenata NE crta.
+  const ring=`M ${cx-R2},${cy} A ${R2},${R2} 0 1 0 ${cx+R2},${cy} A ${R2},${R2} 0 1 0 ${cx-R2},${cy} Z `
+            +`M ${cx-R1},${cy} A ${R1},${R1} 0 1 0 ${cx+R1},${cy} A ${R1},${R1} 0 1 0 ${cx-R1},${cy} Z`;
+  // Istaknuta (vec izrezana) etiketa - na vrhu vijenca
+  const startA0=gap/2-PI/2;
   const endA0=startA0+alpha;
+  const p1x=cx+R2*Math.cos(startA0), p1y=cy+R2*Math.sin(startA0);
+  const p2x=cx+R2*Math.cos(endA0),   p2y=cy+R2*Math.sin(endA0);
+  const p3x=cx+R1*Math.cos(endA0),   p3y=cy+R1*Math.sin(endA0);
+  const p4x=cx+R1*Math.cos(startA0), p4y=cy+R1*Math.sin(startA0);
+  const hiPath=`M ${p1x.toFixed(2)},${p1y.toFixed(2)} A ${R2},${R2} 0 0 1 ${p2x.toFixed(2)},${p2y.toFixed(2)} `
+             +`L ${p3x.toFixed(2)},${p3y.toFixed(2)} A ${R1},${R1} 0 0 0 ${p4x.toFixed(2)},${p4y.toFixed(2)} Z`;
   const midA=(startA0+endA0)/2;
-  // l₂ — vanjski luk label (iznad)
+  // l2 - vanjski luk label (iznad)
   const lblOutX=cx+(R2+12)*Math.cos(midA), lblOutY=cy+(R2+12)*Math.sin(midA);
-  // l₁ — unutarnji luk label
+  // l1 - unutarnji luk label
   const lblInX=cx+(R1+8)*Math.cos(midA), lblInY=cy+(R1+8)*Math.sin(midA);
-  // d — širina label (lijeva strana etikete)
+  // d - sirina etikete (lijevi rub izrezane etikete)
   const dMidR=(R1+R2)/2;
   const dLblX=cx+dMidR*Math.cos(startA0)-12, dLblY=cy+dMidR*Math.sin(startA0)-3;
-  // S — central point + dashed lines do startA0 točke na R2
+  // S - srediste + isprekidane linije do rubova izrezane etikete
   const sX=cx, sY=cy;
-  const dashEndX=cx+R2*Math.cos(startA0), dashEndY=cy+R2*Math.sin(startA0);
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
-    ...segments,
-    // Dashed lines from S
-    e("line",{x1:sX,y1:sY,x2:dashEndX,y2:dashEndY,stroke:DASH,strokeWidth:1,strokeDasharray:"4,3"}),
-    e("line",{x1:sX,y1:sY,x2:cx+R2*Math.cos(endA0),y2:cy+R2*Math.sin(endA0),stroke:DASH,strokeWidth:1,strokeDasharray:"4,3"}),
-    // Center point S
+    // Srafura (tekstura kartona) u pozadini prstena
+    e("defs",null,
+      e("pattern",{id:"z30hatch2011jA",patternUnits:"userSpaceOnUse",width:6,height:6,patternTransform:"rotate(45)"},
+        e("line",{x1:0,y1:0,x2:0,y2:6,stroke:MU,strokeWidth:1,opacity:.42})
+      )
+    ),
+    // Vijenac: jedinstvena ploha (even-odd => rupa u sredini)
+    e("path",{d:ring,fillRule:"evenodd",fill:FILL,stroke:"none"}),
+    e("path",{d:ring,fillRule:"evenodd",fill:"url(#z30hatch2011jA)",stroke:"none"}),
+    e("path",{d:ring,fillRule:"evenodd",fill:"none",stroke:FILLST,strokeWidth:1.4}),
+    // Izrezana etiketa (istaknuta) - bez srafure ispod, kao u originalu
+    e("path",{d:hiPath,fill:"var(--bg)",stroke:"none"}),
+    e("path",{d:hiPath,fill:HILITE,stroke:HILITEST,strokeWidth:2}),
+    // Isprekidane linije iz S
+    e("line",{x1:sX,y1:sY,x2:p1x,y2:p1y,stroke:DASH,strokeWidth:1,strokeDasharray:"4,3"}),
+    e("line",{x1:sX,y1:sY,x2:p2x,y2:p2y,stroke:DASH,strokeWidth:1,strokeDasharray:"4,3"}),
+    // Srediste S
     e("circle",{cx:sX,cy:sY,r:2.5,fill:T}),
     e("text",{x:sX+5,y:sY+5,fontSize:13,fill:T,fontWeight:"bold",fontStyle:"italic"},"S"),
-    // l₂ label
-    e("text",{x:lblOutX,y:lblOutY+4,fontSize:14,fill:"#c89030",fontWeight:"700",fontStyle:"italic",textAnchor:"middle"},"l₂"),
-    // l₁ label
-    e("text",{x:lblInX,y:lblInY+4,fontSize:13,fill:"#c89030",fontWeight:"700",fontStyle:"italic",textAnchor:"middle"},"l₁"),
+    // l2 label
+    e("text",{x:lblOutX,y:lblOutY+4,fontSize:14,fill:GOLD,fontWeight:"700",fontStyle:"italic",textAnchor:"middle"},"l\u2082"),
+    // l1 label
+    e("text",{x:lblInX,y:lblInY+4,fontSize:13,fill:GOLD,fontWeight:"700",fontStyle:"italic",textAnchor:"middle"},"l\u2081"),
     // d label
-    e("text",{x:dLblX,y:dLblY,fontSize:13,fill:"#c89030",fontWeight:"700",fontStyle:"italic",textAnchor:"end"},"d")
+    e("text",{x:dLblX,y:dLblY,fontSize:13,fill:GOLD,fontWeight:"700",fontStyle:"italic",textAnchor:"end"},"d")
   );
 }
 
@@ -107,11 +114,21 @@ function SvgZad26_2011JA(){
     const y=2*Math.sin(x-PI/6);
     pts.push(`${toX(x).toFixed(1)},${toY(y).toFixed(1)}`);
   }
-  // Grid (samo y=±1, ±2)
+  // Kvadratna mreza (kao u originalu): vertikale svakih pi/3, horizontale svakih 1
   const grid=[];
-  [-2,-1,1,2].forEach(y=>grid.push(e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:MU,strokeWidth:.4,strokeDasharray:"2,2"})));
+  for(let k=-3;k<=6;k++){
+    const gx=toX(k*PI/3);
+    if(gx<pad.l-0.5||gx>pad.l+iW+0.5) continue;
+    grid.push(e("line",{key:"gx"+k,x1:gx,y1:pad.t,x2:gx,y2:pad.t+iH,stroke:MU,strokeWidth:.5,opacity:.4}));
+  }
+  for(let k=-2;k<=2;k++){
+    grid.push(e("line",{key:"gy"+k,x1:pad.l,y1:toY(k),x2:pad.l+iW,y2:toY(k),stroke:MU,strokeWidth:.5,opacity:.4}));
+  }
+  // Vertikalne isprekidane oznake kroz ekstreme: x=-pi/3 (min) i x=2pi/3 (max)
+  const vmark=[-PI/3,2*PI/3].map((v,i)=>e("line",{key:"vm"+i,x1:toX(v),y1:pad.t,x2:toX(v),y2:pad.t+iH,stroke:MU,strokeWidth:1,strokeDasharray:"5,4"}));
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
     ...grid,
+    ...vmark,
     e("line",{x1:pad.l,y1:oy,x2:pad.l+iW,y2:oy,stroke:T,strokeWidth:1.4}),
     e("line",{x1:ox,y1:pad.t,x2:ox,y2:pad.t+iH,stroke:T,strokeWidth:1.4}),
     e("polygon",{points:`${pad.l+iW},${oy} ${pad.l+iW-6},${oy-3} ${pad.l+iW-6},${oy+3}`,fill:T}),

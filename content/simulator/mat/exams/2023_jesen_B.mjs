@@ -34,7 +34,7 @@ function Svg25_2023Bj(){
   const st="var(--text)";
   const W=540, H=320;
   // Pie chart on left
-  const pcx=130, pcy=140, pr=90;
+  const pcx=112, pcy=140, pr=85;
   const data = [
     {lbl:"dva", val:2, color:"var(--blue)"},      // plavo
     {lbl:"tri", val:11, color:"var(--red)"},     // crveno/narančasto
@@ -78,10 +78,10 @@ function Svg25_2023Bj(){
     ...slices.map((s,i)=>e("path",{key:"ps"+i,d:s.path,fill:s.color,fillOpacity:0.7,stroke:"var(--bg)",strokeWidth:1.8})),
     // labels inside slices
     ...slices.map((s,i)=>e("text",{key:"pl"+i,x:s.lx,y:s.ly+4,textAnchor:"middle",fontSize:13,fontWeight:"bold",fontFamily:"sans-serif",fill:st},String(s.val))),
-    // Legend below pie
+    // Legend right of pie (kao u originalu: puni nazivi, okomito)
     ...data.map((d,i)=>[
-      e("rect",{key:"lgsq"+i,x:30+i*55,y:255,width:11,height:11,fill:d.color,fillOpacity:0.7}),
-      e("text",{key:"lglb"+i,x:46+i*55,y:265,fontSize:10,fontFamily:"sans-serif",fill:st},d.lbl),
+      e("rect",{key:"lgsq"+i,x:206,y:98+i*30,width:10,height:10,fill:d.color,fillOpacity:0.7}),
+      e("text",{key:"lglb"+i,x:221,y:107+i*30,fontSize:11,fontFamily:"sans-serif",fill:st},d.lbl+" obroka"),
     ]).flat(),
     // Bar chart: axes
     e("text",{key:"byt",x:bx+14,y:by-10,fontSize:10,fontFamily:"sans-serif",fill:st},"broj učenika"),
@@ -217,7 +217,11 @@ function Svg14_2023Bj(){
       )
     ),
     e("line",{key:"v",x1:px(T[0]),y1:py(T[1]),x2:px(HD[0]),y2:py(HD[1]),stroke:st,strokeWidth:2,markerEnd:"url(#v14barr)"}),
-    e("text",{key:"la",x:px(2),y:py(1.8),fontSize:16,fontStyle:"italic",fontFamily:"serif",fill:_GOLD},"a⃗")
+    e("g",{key:"la"},
+      e("text",{key:"lat",x:px(1.75),y:py(1.55),textAnchor:"middle",fontSize:16,fontStyle:"italic",fontFamily:"serif",fill:st},"a"),
+      e("line",{key:"lav",x1:px(1.75)-6,y1:py(1.55)-13,x2:px(1.75)+6,y2:py(1.55)-13,stroke:st,strokeWidth:1.1}),
+      e("polygon",{key:"lap",points:`${px(1.75)+8},${py(1.55)-13} ${px(1.75)+3.5},${py(1.55)-15.6} ${px(1.75)+3.5},${py(1.55)-10.4}`,fill:st})
+    )
   );
 }
 

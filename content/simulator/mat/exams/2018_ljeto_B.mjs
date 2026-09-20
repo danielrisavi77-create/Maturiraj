@@ -117,7 +117,7 @@ function Svg27_2018Blj(){
   
   const els=[];
   // Horizontal grid + y-labels
-  for(let t=35.5;t<=39;t+=0,5){
+  for(let t=35.5;t<=39;t+=0.5){
     els.push(e("line",{key:"gt"+t,x1:pad.l,y1:toY(t),x2:pad.l+iW,y2:toY(t),stroke:"var(--bdr)",strokeWidth:t%1===0?0.6:0.3}));
     if(t>=36) els.push(e("text",{key:"lt"+t,x:pad.l-5,y:toY(t)+3,fontSize:8,textAnchor:"end",fill:"var(--muted)"},t%1===0?t.toFixed(0):t.toFixed(1)));
   }

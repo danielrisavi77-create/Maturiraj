@@ -4,44 +4,45 @@ const e = React.createElement;
 
 function Svg4_2021Bjesen(){
   const W=340,H=370;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  // 4 tablice: 2×2 raspored
+  const _TXT="var(--text)",_MUTED="var(--muted)";
+  // 4 tablice: 2×2 raspored — identične originalu
+  // A: (-1,5) (2,-4) (3,3) | B: (-1,5) (2,4) (3,-3)
+  // C: (-1,-5) (2,3) (3,4) | D: (-1,-5) (2,4) (3,3)
   const tables=[
-    {label:"A.",rows:[[-1,5],[2,-4],[3,3]]},
-    {label:"B.",rows:[[-1,5],[2,4],[3,-3]]},
-    {label:"C.",rows:[[-1,-5],[2,3],[3,4]]},
-    {label:"D.",rows:[[-1,-5],[2,4],[3,3]]},
+    {label:"A.",rows:[["−1","5"],["2","−4"],["3","3"]]},
+    {label:"B.",rows:[["−1","5"],["2","4"],["3","−3"]]},
+    {label:"C.",rows:[["−1","−5"],["2","3"],["3","4"]]},
+    {label:"D.",rows:[["−1","−5"],["2","4"],["3","3"]]},
   ];
   const positions=[{x:20,y:10},{x:180,y:10},{x:20,y:190},{x:180,y:190}];
   const CW=50,RH=22,TW=130;
   const elems=[];
   tables.forEach((t,ti)=>{
     const {x,y}=positions[ti];
-    // Label A/B/C/D
+    // Oznaka A/B/C/D
     elems.push(e("text",{key:`lbl${ti}`,x,y:y+14,fontSize:13,
-      fill:"var(--text)",fontWeight:"bold"},t.label));
+      fill:_TXT,fontWeight:"bold"},t.label));
     const tx=x+20;
-    // Zaglavlje
+    // Zaglavlje — u originalu svijetlosiva podloga s crnim tekstom
     elems.push(e("rect",{key:`hbg${ti}`,x:tx,y:y+20,width:TW,height:RH,
-      fill:_BLUE,stroke:"rgba(148,163,184,0.3)",strokeWidth:1}));
+      fill:"var(--s2)",stroke:_MUTED,strokeWidth:1}));
     elems.push(e("text",{key:`hx${ti}`,x:tx+CW/2,y:y+35,fontSize:12,
-      fill:"var(--text)",fontStyle:"italic",textAnchor:"middle"},"x"));
+      fill:_TXT,fontStyle:"italic",textAnchor:"middle"},"x"));
     elems.push(e("text",{key:`hfx${ti}`,x:tx+CW+CW/2,y:y+35,fontSize:12,
-      fill:_GOLD,fontStyle:"italic",textAnchor:"middle"},"f(x)"));
+      fill:_TXT,fontStyle:"italic",textAnchor:"middle"},"f(x)"));
     elems.push(e("line",{key:`hdiv${ti}`,x1:tx+CW,y1:y+20,x2:tx+CW,y2:y+20+RH,
-      stroke:"var(--bdr)",strokeWidth:1}));
-    // Redovi
+      stroke:_MUTED,strokeWidth:1}));
+    // Redovi — jednolična podloga (bez isticanja), čitljivo u obje teme
     t.rows.forEach((row,ri)=>{
       const ry=y+20+(ri+1)*RH;
-      const bg=ri%2===0?"var(--s1)":"var(--s0)";
       elems.push(e("rect",{key:`rbg${ti}${ri}`,x:tx,y:ry,width:TW,height:RH,
-        fill:bg,stroke:"var(--bdr)",strokeWidth:1}));
+        fill:"var(--bg)",stroke:_MUTED,strokeWidth:1}));
       elems.push(e("text",{key:`rx${ti}${ri}`,x:tx+CW/2,y:ry+15,fontSize:12,
-        fill:"var(--text)",textAnchor:"middle"},row[0]));
+        fill:_TXT,textAnchor:"middle"},row[0]));
       elems.push(e("text",{key:`rfx${ti}${ri}`,x:tx+CW+CW/2,y:ry+15,fontSize:12,
-        fill:"var(--text)",textAnchor:"middle"},row[1]));
+        fill:_TXT,textAnchor:"middle"},row[1]));
       elems.push(e("line",{key:`rdiv${ti}${ri}`,x1:tx+CW,y1:ry,x2:tx+CW,y2:ry+RH,
-        stroke:"var(--bdr)",strokeWidth:1}));
+        stroke:_MUTED,strokeWidth:1}));
     });
   });
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
@@ -203,53 +204,58 @@ function Svg9_2021Bjesen(){
 }
 
 function Svg27_2021Bjesen(){
-  const W=280,H=200;
-  const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  const LEFT=52,BOT=170,TOP=15,RIGHT=W-15;
-  const maxT=6,maxKn=260;
+  const W=300,H=222;
+  const _TXT="var(--text)",_RED="var(--red)",_BLUE="var(--blue)",_MUTED="var(--muted)";
+  const LEFT=46,BOT=178,TOP=14,RIGHT=W-22;
+  const maxT=6.35,maxKn=272;
   const toX=t=>LEFT+t*(RIGHT-LEFT)/maxT;
   const toY=kn=>BOT-kn*(BOT-TOP)/maxKn;
-  const ema=t=>40+35*t;
-  const lovro=t=>100+20*t;
+  const ema=t=>40+35*t;     // Ema: 40 kn + 35 kn/tjedan
+  const lovro=t=>100+20*t;  // Lovro: 100 kn + 20 kn/tjedan
   const elems=[];
 
-  // Gridlines Y
-  [0,40,80,120,160,200,240].forEach(v=>{
+  // Mreža — vodoravno svakih 20 kn
+  for(let v=20;v<=260;v+=20){
     const y=toY(v);
-    elems.push(e("line",{key:"gy"+v,x1:LEFT,y1:y,x2:RIGHT,y2:y,stroke:"var(--bdr)",strokeWidth:0.7}));
-    elems.push(e("text",{key:"gyl"+v,x:LEFT-4,y:y+4,fontSize:8,fill:"var(--muted)",textAnchor:"end"},v));
-  });
-  // Gridlines X
+    elems.push(e("line",{key:"gy"+v,x1:LEFT,y1:y,x2:toX(6.2),y2:y,
+      stroke:_MUTED,strokeWidth:0.5,strokeDasharray:"2,2",opacity:0.55}));
+    elems.push(e("text",{key:"gyl"+v,x:LEFT-4,y:y+3,fontSize:7.5,
+      fill:_TXT,textAnchor:"end"},v));
+  }
+  // Mreža — okomito po tjednima
   [0,1,2,3,4,5,6].forEach(t=>{
-    elems.push(e("line",{key:"gx"+t,x1:toX(t),y1:TOP,x2:toX(t),y2:BOT,stroke:"var(--bdr)",strokeWidth:0.7}));
-    elems.push(e("text",{key:"gxl"+t,x:toX(t),y:BOT+12,fontSize:9,fill:"var(--muted)",textAnchor:"middle"},t));
+    elems.push(e("line",{key:"gx"+t,x1:toX(t),y1:TOP,x2:toX(t),y2:BOT,
+      stroke:_MUTED,strokeWidth:0.5,strokeDasharray:"2,2",opacity:0.55}));
+    elems.push(e("text",{key:"gxl"+t,x:toX(t),y:BOT+12,fontSize:8.5,
+      fill:_TXT,textAnchor:"middle",fontWeight:"bold"},t));
   });
 
   // Osi
-  elems.push(e("line",{key:"ax",x1:LEFT,y1:BOT,x2:RIGHT,y2:BOT,stroke:_BLUE,strokeWidth:1.3}));
-  elems.push(e("line",{key:"ay",x1:LEFT,y1:TOP,x2:LEFT,y2:BOT,stroke:_BLUE,strokeWidth:1.3}));
-  elems.push(e("text",{key:"lx",x:RIGHT+2,y:BOT+4,fontSize:9,fill:"var(--text)"},"tjedan"));
-  elems.push(e("text",{key:"ly",x:LEFT-4,y:TOP-3,fontSize:9,fill:"var(--muted)"},"kn"));
+  elems.push(e("line",{key:"ax",x1:LEFT,y1:BOT,x2:toX(6.3),y2:BOT,stroke:_TXT,strokeWidth:1.4}));
+  elems.push(e("line",{key:"ay",x1:LEFT,y1:TOP,x2:LEFT,y2:BOT,stroke:_TXT,strokeWidth:1.4}));
+  elems.push(e("text",{key:"ly",x:LEFT-6,y:TOP+2,fontSize:8.5,fill:_TXT,
+    textAnchor:"end",fontWeight:"bold"},"kn"));
+  elems.push(e("text",{key:"lx",x:toX(6.3),y:BOT+23,fontSize:8.5,fill:_TXT,
+    textAnchor:"end",fontWeight:"bold"},"tjedan"));
 
-  // Ema — puni rozi pravac
-  const ex1=toX(0),ey1=toY(ema(0)),ex2=toX(6.2),ey2=toY(ema(6.2));
-  elems.push(e("line",{key:"ema",x1:ex1,y1:ey1,x2:ex2,y2:ey2,stroke:_BLUE,strokeWidth:2}));
+  // Lovro — crna isprekidana linija s punim kružićima (7 točaka, t=0..6)
+  elems.push(e("line",{key:"lovro",x1:toX(0),y1:toY(lovro(0)),x2:toX(6.3),y2:toY(lovro(6.3)),
+    stroke:_TXT,strokeWidth:1.4,strokeDasharray:"5,3"}));
+  // Ema — roza (crvena) isprekidana linija s rombovima (7 točaka, t=0..6)
+  elems.push(e("line",{key:"ema",x1:toX(0),y1:toY(ema(0)),x2:toX(6.3),y2:toY(ema(6.3)),
+    stroke:_RED,strokeWidth:1.4,strokeDasharray:"5,3"}));
 
-  // Lovro — isprekidani rozi pravac
-  const lx1=toX(0),ly1=toY(lovro(0)),lx2=toX(6.2),ly2=toY(lovro(6.2));
-  elems.push(e("line",{key:"lovro",x1:lx1,y1:ly1,x2:lx2,y2:ly2,
-    stroke:_GOLD,strokeWidth:2,strokeDasharray:"6,4"}));
-
-  // Markeri na oba pravca (po tjednima 1-5)
-  [1,2,3,4,5].forEach(t=>{
-    elems.push(e("circle",{key:"em"+t,cx:toX(t),cy:toY(ema(t)),r:4,fill:_RED}));
-    elems.push(e("circle",{key:"lv"+t,cx:toX(t),cy:toY(lovro(t)),r:4,fill:_RED}));
+  // Markeri: Lovro = kružić (crn), Ema = romb (roza) — t = 0..6
+  [0,1,2,3,4,5,6].forEach(t=>{
+    elems.push(e("circle",{key:"lv"+t,cx:toX(t),cy:toY(lovro(t)),r:3,fill:_TXT}));
+    const cx=toX(t),cy=toY(ema(t)),r=4.2;
+    elems.push(e("path",{key:"em"+t,
+      d:`M ${cx} ${cy-r} L ${cx+r} ${cy} L ${cx} ${cy+r} L ${cx-r} ${cy} Z`,fill:_RED}));
   });
 
-  // Sjecište: ema=lovro → 40+35t=100+20t → 15t=60 → t=4
-  // toY(ema(4))=toY(180)
-  elems.push(e("circle",{key:"cross",cx:toX(4),cy:toY(180),r:5,
-    fill:"none",stroke:_BLUE,strokeWidth:2}));
+  // Sjecište: 40+35t = 100+20t → 15t = 60 → t = 4, iznos = 180 kn
+  elems.push(e("circle",{key:"cross",cx:toX(4),cy:toY(180),r:7,
+    fill:"none",stroke:_BLUE,strokeWidth:1.6}));
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }

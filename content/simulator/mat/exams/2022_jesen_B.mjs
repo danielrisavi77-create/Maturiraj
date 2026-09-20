@@ -59,33 +59,35 @@ function Svg26_2022JesenB() {
 }
 
 function Svg24_2022JesenB() {
-  const W=440, H=260, t='var(--text)', g="var(--muted)";
+  const W=520, H=300, t='var(--text)', g="var(--muted)";
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
-  // 24 sata, vrijednosti od ~23.2 do 24.3 °C
+  // 24 sata, vrijednosti od 23.2 do 24.3 °C
   const data = [23.6,23.6,23.4,23.4,23.2,23.3,23.4,23.3,23.5,23.6,23.6,24.0,24.0,24.2,24.3,24.1,23.9,23.6,23.7,23.8,23.9,23.5,23.7,23.9];
-  const sx=50, baseY=H-40;
-  const xToPx = h => sx + h * 14;
-  const yToPx = v => baseY - (v - 23.0) * 130;  // 1.5°C span ~ 200px
-  
+  const sx=72, baseY=250, step=17.6;
+  const xToPx = i => sx + 10 + i * step;               // i = 0..23  (sat = i+1)
+  const yToPx = v => baseY - (v - 23.0) * 145;         // 23.0 -> 250, 24.4 -> 47
+  const ticks = Array.from({length:15}, (_,k) => 23.0 + k*0.1);
+
   return e('svg', {viewBox:`0 0 ${W} ${H}`, width:'100%',
     style:{maxWidth:W, display:'block', margin:'0 auto'}},
-    // Y grid
-    ...[23.0,23.2,23.4,23.6,23.8,24.0,24.2,24.4].map(v => 
-      e('g',{key:`g${v}`},
-        e('line',{x1:sx, y1:yToPx(v), x2:W-15, y2:yToPx(v), stroke:g, strokeWidth:0.5}),
-        e('text',{x:sx-3, y:yToPx(v)+3, textAnchor:'end', fontSize:9, fill:t}, v.toFixed(1)+'.'.slice(-1)*0+v.toFixed(1))
+    // Vodoravna mreza + oznake y-osi (svakih 0.1 °C)
+    ...ticks.map(v =>
+      e('g',{key:`g${v.toFixed(1)}`},
+        e('line',{x1:sx, y1:yToPx(v), x2:W-12, y2:yToPx(v), stroke:g, strokeWidth:0.5}),
+        e('text',{x:sx-6, y:yToPx(v)+3.2, textAnchor:'end', fontSize:9, fill:t}, v.toFixed(1))
       )
     ),
-    e('text',{x:sx-15, y:30, fontSize:10, fill:_GOLD, fontWeight:'bold'}, '°C'),
-    // X-axis labels
-    ...Array.from({length:12}, (_,i) => i*2+1).map(h => 
-      e('text',{key:`x${h}`, x:xToPx(h-1)+7, y:baseY+12, textAnchor:'middle', fontSize:9, fill:t}, h)
+    // Oznaka mjerne jedinice, lijevo od sredine y-osi (kao u izvorniku)
+    e('text',{x:sx-34, y:yToPx(23.7)+3.2, textAnchor:'middle', fontSize:9, fill:t}, '\u00b0C'),
+    // Oznake x-osi: svaki sat 1..24
+    ...data.map((_,i) =>
+      e('text',{key:`x${i}`, x:xToPx(i), y:baseY+14, textAnchor:'middle', fontSize:8.5, fill:t}, i+1)
     ),
-    e('text',{x:W/2, y:H-5, fontSize:9, fill:t, textAnchor:'middle'}, 'sat u danu'),
-    // Linija
-    e('polyline',{points: data.map((v,i) => `${xToPx(i)+7},${yToPx(v)}`).join(' '),
-      fill:'none', stroke:_BLUE, strokeWidth:1.5}),
-    ...data.map((v,i) => e('circle',{key:`p${i}`, cx:xToPx(i)+7, cy:yToPx(v), r:2.5, fill:_RED}))
+    e('text',{x:(sx+W-12)/2, y:H-8, fontSize:9.5, fill:t, textAnchor:'middle'}, 'sat u danu'),
+    // Linija s tockama
+    e('polyline',{points: data.map((v,i) => `${xToPx(i)},${yToPx(v)}`).join(' '),
+      fill:'none', stroke:t, strokeWidth:1.4, strokeLinejoin:'round'}),
+    ...data.map((v,i) => e('circle',{key:`p${i}`, cx:xToPx(i), cy:yToPx(v), r:2.4, fill:t}))
   );
 }
 
@@ -108,37 +110,115 @@ function Svg13_2022JesenB() {
 }
 
 function Svg12_2022JesenB() {
-  const W=400, H=400, t='var(--text)', g='var(--bdr)';
-  // Mini-grafike u 2x2 mreži; samo skicirani da student prepozna C
+  const W=560, H=1340, t='var(--text)', g='var(--muted)';
+  // Boje skupina (kao u izvorniku: svijetlozelena / svijetlosiva / tamnosiva)
+  const C1='var(--green)', C2='var(--s2)', C3='var(--muted)';
+  const SER=[C3, C1];                       // 2019. (tamno), 2020. (zeleno)
+  const GROUPS=['Skupina 1','Skupina 2','Skupina 3'];
+  const V2019=[34,26,12], V2020=[28,30,15];
+  const D2020=[36,30,15];                   // distraktor D crta malo drukcije vrijednosti
+
+  // --- kruzni isjecak: kut se mjeri od 12 sati, u smjeru kazaljke ---
+  const pt=(cx,cy,r,a)=>[cx+r*Math.sin(a*Math.PI/180), cy-r*Math.cos(a*Math.PI/180)];
+  const slices=(cx,cy,r,vals,pfx)=>{
+    const sum=vals.reduce((a,b)=>a+b,0);
+    let acc=0;
+    return vals.map((v,i)=>{
+      const a0=acc, a1=acc+v/sum*360; acc=a1;
+      const [x0,y0]=pt(cx,cy,r,a0), [x1,y1]=pt(cx,cy,r,a1);
+      const large=(a1-a0)>180?1:0;
+      return e('path',{key:`${pfx}${i}`,
+        d:`M ${cx} ${cy} L ${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${x1.toFixed(2)} ${y1.toFixed(2)} Z`,
+        fill:[C1,C2,C3][i], stroke:t, strokeWidth:0.8});
+    });
+  };
+  // --- legenda skupina ispod kruznog dijagrama ---
+  const pieLegend=(y,pfx)=>GROUPS.map((nm,i)=>e('g',{key:`${pfx}L${i}`},
+    e('rect',{x:110+i*92, y:y-8, width:10, height:10, fill:[C1,C2,C3][i], stroke:t, strokeWidth:0.6}),
+    e('text',{x:110+i*92+15, y:y+1, fontSize:10.5, fill:t}, nm)
+  ));
+  // --- os s vrijednostima 0..40 za stupcasti / linijski dijagram ---
+  const AX0=145, AX1=435;                   // lijevi / desni rub crtaceg podrucja
+  const cen=i => AX0 + 290*(i+0.5)/3;       // sredina kategorije
+  const axis=(base, pfx)=>{
+    const y=v => base - v*3.625;            // 0 -> base, 40 -> base-145
+    return [
+      ...[0,10,20,30,40].map(v=>e('g',{key:`${pfx}y${v}`},
+        e('line',{x1:AX0, y1:y(v), x2:AX1, y2:y(v), stroke:g, strokeWidth:0.6}),
+        e('text',{x:AX0-7, y:y(v)+3.5, textAnchor:'end', fontSize:10, fill:t}, v)
+      )),
+      e('line',{key:`${pfx}ax`, x1:AX0, y1:y(0), x2:AX1, y2:y(0), stroke:t, strokeWidth:1}),
+      ...GROUPS.map((nm,i)=>e('text',{key:`${pfx}c${i}`, x:cen(i), y:base+20,
+        textAnchor:'middle', fontSize:10.5, fill:t}, nm))
+    ];
+  };
+
   return e('svg', {viewBox:`0 0 ${W} ${H}`, width:'100%',
     style:{maxWidth:W, display:'block', margin:'0 auto'}},
-    // A — pita 2019 (lijevo gore)
-    e('text',{x:100, y:25, fontSize:12, fill:t, textAnchor:'middle', fontWeight:'bold'}, 'A — 2019.'),
-    e('circle',{cx:100, cy:90, r:50, fill:'none', stroke:t, strokeWidth:1.5}),
-    e('path',{d:`M 100 90 L 150 90 A 50 50 0 0 0 124 47 Z`, fill:'#a8d870'}),
-    e('path',{d:`M 100 90 L 124 47 A 50 50 0 0 0 60 75 Z`, fill:'#ccc'}),
-    e('path',{d:`M 100 90 L 60 75 A 50 50 0 0 0 150 90 Z`, fill:'#666'}),
-    // B — pita 2020 (desno gore)
-    e('text',{x:300, y:25, fontSize:12, fill:t, textAnchor:'middle', fontWeight:'bold'}, 'B — 2020.'),
-    e('circle',{cx:300, cy:90, r:50, fill:'none', stroke:t, strokeWidth:1.5}),
-    e('path',{d:`M 300 90 L 350 90 A 50 50 0 0 0 290 41 Z`, fill:'#a8d870'}),
-    e('path',{d:`M 300 90 L 290 41 A 50 50 0 0 0 260 85 Z`, fill:'#ccc'}),
-    e('path',{d:`M 300 90 L 260 85 A 50 50 0 0 0 350 90 Z`, fill:'#666'}),
-    // C — stupčasti (lijevo dolje) — TOČAN
-    e('text',{x:100, y:200, fontSize:12, fill:t, textAnchor:'middle', fontWeight:'bold'}, 'C — stupčasti'),
-    e('rect',{x:30, y:220, width:140, height:120, fill:'none', stroke:t, strokeWidth:1}),
-    // 3 parovi stupaca: Skupina 1: 34/28; Skupina 2: 26/30; Skupina 3: 12/15
-    e('rect',{x:40, y:240, width:15, height:80, fill:'#666'}),
-    e('rect',{x:55, y:255, width:15, height:65, fill:'#a8d870'}),
-    e('rect',{x:85, y:260, width:15, height:60, fill:'#666'}),
-    e('rect',{x:100, y:250, width:15, height:70, fill:'#a8d870'}),
-    e('rect',{x:130, y:300, width:15, height:20, fill:'#666'}),
-    e('rect',{x:145, y:295, width:15, height:25, fill:'#a8d870'}),
-    // D — linijski (desno dolje)
-    e('text',{x:300, y:200, fontSize:12, fill:t, textAnchor:'middle', fontWeight:'bold'}, 'D — linijski'),
-    e('rect',{x:230, y:220, width:140, height:120, fill:'none', stroke:t, strokeWidth:1}),
-    e('polyline',{points:'240,235 290,255 350,310', fill:'none', stroke:'#666', strokeWidth:2}),
-    e('polyline',{points:'240,230 290,245 350,300', fill:'none', stroke:'#a8d870', strokeWidth:2})
+    // ---------- naslov pitanja ----------
+    e('text',{x:20, y:24, fontSize:13, fill:t, fontWeight:'bold'},
+      'Koji od ponu\u0111enih grafikona prikazuje podatke iz tablice?'),
+
+    // ---------- tablica podataka ----------
+    e('rect',{x:240, y:44, width:200, height:22, fill:'var(--s2)', stroke:t, strokeWidth:0.8}),
+    e('text',{x:340, y:59, textAnchor:'middle', fontSize:11.5, fill:t, fontWeight:'bold'}, 'Godina'),
+    e('rect',{x:240, y:66, width:100, height:22, fill:'var(--s2)', stroke:t, strokeWidth:0.8}),
+    e('text',{x:290, y:81, textAnchor:'middle', fontSize:11.5, fill:t, fontWeight:'bold'}, '2019.'),
+    e('rect',{x:340, y:66, width:100, height:22, fill:'var(--s2)', stroke:t, strokeWidth:0.8}),
+    e('text',{x:390, y:81, textAnchor:'middle', fontSize:11.5, fill:t, fontWeight:'bold'}, '2020.'),
+    ...GROUPS.map((nm,i)=>e('g',{key:`tr${i}`},
+      e('rect',{x:90, y:88+i*22, width:150, height:22, fill:'var(--s2)', stroke:t, strokeWidth:0.8}),
+      e('text',{x:165, y:103+i*22, textAnchor:'middle', fontSize:11.5, fill:t}, nm),
+      e('rect',{x:240, y:88+i*22, width:100, height:22, fill:'none', stroke:t, strokeWidth:0.8}),
+      e('text',{x:290, y:103+i*22, textAnchor:'middle', fontSize:11.5, fill:t}, V2019[i]),
+      e('rect',{x:340, y:88+i*22, width:100, height:22, fill:'none', stroke:t, strokeWidth:0.8}),
+      e('text',{x:390, y:103+i*22, textAnchor:'middle', fontSize:11.5, fill:t}, V2020[i])
+    )),
+
+    // ---------- A: kruzni dijagram 2019. ----------
+    e('rect',{x:90, y:174, width:300, height:300, fill:'none', stroke:t, strokeWidth:1}),
+    e('text',{x:240, y:198, textAnchor:'middle', fontSize:12.5, fill:t, fontWeight:'bold'}, '2019. godina'),
+    ...slices(240, 310, 78, V2019, 'a'),
+    ...pieLegend(452, 'a'),
+    e('text',{x:82, y:470, textAnchor:'end', fontSize:12.5, fill:t, fontWeight:'bold'}, 'A.'),
+
+    // ---------- B: kruzni dijagram 2020. ----------
+    e('rect',{x:90, y:494, width:300, height:300, fill:'none', stroke:t, strokeWidth:1}),
+    e('text',{x:240, y:518, textAnchor:'middle', fontSize:12.5, fill:t, fontWeight:'bold'}, '2020. godina'),
+    ...slices(240, 630, 78, V2020, 'b'),
+    ...pieLegend(772, 'b'),
+    e('text',{x:82, y:790, textAnchor:'end', fontSize:12.5, fill:t, fontWeight:'bold'}, 'B.'),
+
+    // ---------- C: stupcasti dijagram (tocan odgovor) ----------
+    e('rect',{x:90, y:814, width:360, height:250, fill:'none', stroke:t, strokeWidth:1}),
+    ...axis(985, 'c'),
+    ...GROUPS.map((_,i)=>e('g',{key:`cb${i}`},
+      e('rect',{x:cen(i)-26, y:985-V2019[i]*3.625, width:25, height:V2019[i]*3.625, fill:C3}),
+      e('rect',{x:cen(i)+1,  y:985-V2020[i]*3.625, width:25, height:V2020[i]*3.625, fill:C1})
+    )),
+    ...['2019.','2020.'].map((nm,i)=>e('g',{key:`cl${i}`},
+      e('rect',{x:205+i*90, y:1026, width:10, height:10, fill:SER[i]}),
+      e('text',{x:220+i*90, y:1035, fontSize:10.5, fill:t}, nm)
+    )),
+    e('text',{x:82, y:1060, textAnchor:'end', fontSize:12.5, fill:t, fontWeight:'bold'}, 'C.'),
+
+    // ---------- D: linijski dijagram ----------
+    e('rect',{x:90, y:1084, width:360, height:250, fill:'none', stroke:t, strokeWidth:1}),
+    ...axis(1255, 'd'),
+    e('polyline',{points:V2019.map((v,i)=>`${cen(i)},${1255-v*3.625}`).join(' '),
+      fill:'none', stroke:C3, strokeWidth:2}),
+    e('polyline',{points:D2020.map((v,i)=>`${cen(i)},${1255-v*3.625}`).join(' '),
+      fill:'none', stroke:C1, strokeWidth:2}),
+    ...V2019.map((v,i)=>e('rect',{key:`dm${i}`, x:cen(i)-4, y:1255-v*3.625-4, width:8, height:8,
+      fill:C3, transform:`rotate(45 ${cen(i)} ${1255-v*3.625})`})),
+    ...D2020.map((v,i)=>e('rect',{key:`dn${i}`, x:cen(i)-4, y:1255-v*3.625-4, width:8, height:8, fill:C1})),
+    ...['2019.','2020.'].map((nm,i)=>e('g',{key:`dl${i}`},
+      e('line',{x1:196+i*90, y1:1301, x2:222+i*90, y2:1301, stroke:SER[i], strokeWidth:2}),
+      e('rect',{x:205+i*90, y:1297, width:8, height:8, fill:SER[i],
+        transform:i===0?`rotate(45 ${209+i*90} ${1301})`:undefined}),
+      e('text',{x:228+i*90, y:1305, fontSize:10.5, fill:t}, nm)
+    )),
+    e('text',{x:82, y:1330, textAnchor:'end', fontSize:12.5, fill:t, fontWeight:'bold'}, 'D.')
   );
 }
 

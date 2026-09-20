@@ -254,6 +254,124 @@ describe('validateUserData', () => {
   });
 });
 
+// ─── validateUserData — errorTracker ───────────────────────────────────────────
+describe('validateUserData — errorTracker', () => {
+  const validEntry = { q: 'What is...?', topic: 'grammar', examKey: 'eng2022a', qid: 'q1', count: 3, lastDate: '12.9.2026.' };
+
+  it('keeps a fully valid entry unchanged', () => {
+    const r = validateUserData({ errorTracker: { 'eng2022a_q1': validEntry } });
+    expect(r.errorTracker['eng2022a_q1']).toEqual(validEntry);
+  });
+
+  it('drops entry missing examKey', () => {
+    const { examKey, ...rest } = validEntry;
+    const r = validateUserData({ errorTracker: { k: rest } });
+    expect(r.errorTracker).toEqual({});
+  });
+
+  it('drops entry missing qid', () => {
+    const { qid, ...rest } = validEntry;
+    const r = validateUserData({ errorTracker: { k: rest } });
+    expect(r.errorTracker).toEqual({});
+  });
+
+  it('drops entry missing count', () => {
+    const { count, ...rest } = validEntry;
+    const r = validateUserData({ errorTracker: { k: rest } });
+    expect(r.errorTracker).toEqual({});
+  });
+
+  it('drops entry with non-numeric count', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, count: '3' } } });
+    expect(r.errorTracker).toEqual({});
+  });
+
+  it('drops entry with negative count', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, count: -1 } } });
+    expect(r.errorTracker).toEqual({});
+  });
+
+  it('rounds and clamps count to 9999', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, count: 20000.6 } } });
+    expect(r.errorTracker.k.count).toBe(9999);
+  });
+
+  it('rounds fractional count', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, count: 3.6 } } });
+    expect(r.errorTracker.k.count).toBe(4);
+  });
+
+  it('accepts numeric qid and stringifies it', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, qid: 7 } } });
+    expect(r.errorTracker.k.qid).toBe('7');
+  });
+
+  it('truncates q to 300 chars', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, q: 'x'.repeat(400) } } });
+    expect(r.errorTracker.k.q).toHaveLength(300);
+  });
+
+  it('truncates topic to 60 chars', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, topic: 'y'.repeat(100) } } });
+    expect(r.errorTracker.k.topic).toHaveLength(60);
+  });
+
+  it('truncates examKey to 100 chars', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, examKey: 'z'.repeat(150) } } });
+    expect(r.errorTracker.k.examKey).toHaveLength(100);
+  });
+
+  it('defaults missing topic to "ostalo"', () => {
+    const { topic, ...rest } = validEntry;
+    const r = validateUserData({ errorTracker: { k: rest } });
+    expect(r.errorTracker.k.topic).toBe('ostalo');
+  });
+
+  it('defaults missing q to empty string', () => {
+    const { q, ...rest } = validEntry;
+    const r = validateUserData({ errorTracker: { k: rest } });
+    expect(r.errorTracker.k.q).toBe('');
+  });
+
+  it('omits lastDate when missing', () => {
+    const { lastDate, ...rest } = validEntry;
+    const r = validateUserData({ errorTracker: { k: rest } });
+    expect(r.errorTracker.k.lastDate).toBeUndefined();
+  });
+
+  it('drops lastDate longer than 40 chars', () => {
+    const r = validateUserData({ errorTracker: { k: { ...validEntry, lastDate: 'd'.repeat(50) } } });
+    expect(r.errorTracker.k.lastDate).toBeUndefined();
+  });
+
+  it('drops keys longer than 200 chars', () => {
+    const longKey = 'k'.repeat(201);
+    const r = validateUserData({ errorTracker: { [longKey]: validEntry } });
+    expect(r.errorTracker).toEqual({});
+  });
+
+  it('converts legacy numeric format to { count } and then drops it (no examKey/qid)', () => {
+    const r = validateUserData({ errorTracker: { 'legacy_q1': 5 } });
+    expect(r.errorTracker).toEqual({});
+  });
+
+  it('ignores non-object errorTracker', () => {
+    expect(validateUserData({ errorTracker: 'nope' }).errorTracker).toEqual({});
+    expect(validateUserData({ errorTracker: [1, 2] }).errorTracker).toEqual({});
+  });
+
+  it('caps errorTracker at 2000 entries, keeping the highest counts', () => {
+    const errorTracker = {};
+    for (let i = 0; i < 2100; i++) {
+      errorTracker[`k${i}`] = { q: 'q', topic: 't', examKey: 'e', qid: `${i}`, count: i };
+    }
+    const r = validateUserData({ errorTracker });
+    const counts = Object.values(r.errorTracker).map(e => e.count);
+    expect(counts).toHaveLength(2000);
+    expect(Math.min(...counts)).toBe(100); // top 2000 of 0..2099 → 100..2099
+  });
+});
+
 // ─── validateBookmarks ────────────────────────────────────────────────────────────────────
 describe('validateBookmarks', () => {
   const good = {
