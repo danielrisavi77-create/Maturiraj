@@ -1,5 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 
+function launchConfetti() {
+    const colors = ['#4F7BE8','#CF142B','#52D688','#E8A838','#A78BFA','#C9A227'];
+    for (let i = 0; i < 55; i++) {
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.cssText = `left:${Math.random()*100}vw;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${2+Math.random()*2}s;animation-delay:${Math.random()*.8}s;width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;border-radius:${Math.random()>.5?'50%':'2px'}`;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 4000);
+    }
+  }
+
+
 /* ═══════════════════════════════════════════════════════════════
    MATURIRAJ.HR — ENGLESKI VIŠA RAZINA · POGLAVLJE 05 — CONDITIONALS
    Complete React Component (standalone)
@@ -509,17 +521,6 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
       const newCount = quizCorrect + 1;
       setQuizCorrect(newCount);
       if (newCount === QUIZ_DATA.length) launchConfetti();
-    }
-  };
-
-  const launchConfetti = () => {
-    const colors = ['#4F7BE8','#CF142B','#52D688','#E8A838','#A78BFA','#C9A227'];
-    for (let i = 0; i < 55; i++) {
-      const p = document.createElement('div');
-      p.className = 'confetti-piece';
-      p.style.cssText = `left:${Math.random()*100}vw;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${2+Math.random()*2}s;animation-delay:${Math.random()*.8}s;width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;border-radius:${Math.random()>.5?'50%':'2px'}`;
-      document.body.appendChild(p);
-      setTimeout(() => p.remove(), 4000);
     }
   };
 
