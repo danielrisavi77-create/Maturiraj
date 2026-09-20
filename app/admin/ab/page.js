@@ -36,14 +36,14 @@ function estimateNeededConversions(a_conv, a_total, b_conv, b_total) {
 
 function significanceBadge(chi2, winnerVariant, a_conv, a_total, b_conv, b_total) {
   if (chi2 === null) {
-    return { label: '🔄 Premalo podataka — čekaj na ~50 konverzija po varijanti', color: 'var(--muted)', bg: 'rgba(255,255,255,.04)', border: 'var(--bdr)' }
+    return { label: 'Premalo podataka', color: 'var(--muted)', bg: 'rgba(255,255,255,.04)', border: 'var(--bdr)' }
   }
   const needed = estimateNeededConversions(a_conv, a_total, b_conv, b_total)
   const w = winnerVariant.toUpperCase()
-  if (chi2 >= 10.83) return { label: `⚡ Statistički značajno — variant ${w} wins (p < 0.001)`, color: '#3ecf6e', bg: 'rgba(62,207,110,.1)', border: 'rgba(62,207,110,.25)' }
-  if (chi2 >= 6.63)  return { label: `⚡ Statistički značajno — variant ${w} wins (p < 0.01)`,  color: '#3ecf6e', bg: 'rgba(62,207,110,.08)', border: 'rgba(62,207,110,.2)' }
-  if (chi2 >= 3.84)  return { label: `⚡ Statistički značajno — variant ${w} wins (p < 0.05)`,  color: '#e9b446', bg: 'rgba(233,180,70,.1)', border: 'rgba(233,180,70,.25)' }
-  return { label: `🔄 Još nije dovoljno podataka — čekaj na ~${needed} konverzija po varijanti`, color: 'var(--muted)', bg: 'rgba(255,255,255,.04)', border: 'var(--bdr)' }
+  if (chi2 >= 10.83) return { label: `Variant ${w} wins (p < 0.001)`, color: '#3ecf6e', bg: 'rgba(62,207,110,.1)', border: 'rgba(62,207,110,.25)' }
+  if (chi2 >= 6.63)  return { label: `Variant ${w} wins (p < 0.01)`,  color: '#3ecf6e', bg: 'rgba(62,207,110,.08)', border: 'rgba(62,207,110,.2)' }
+  if (chi2 >= 3.84)  return { label: `Variant ${w} wins (p < 0.05)`,  color: '#e9b446', bg: 'rgba(233,180,70,.1)', border: 'rgba(233,180,70,.25)' }
+  return { label: `Cekaj na ~${needed} konverzija`, color: 'var(--muted)', bg: 'rgba(255,255,255,.04)', border: 'var(--bdr)' }
 }
 
 export default function ABDashboard() {
@@ -62,10 +62,9 @@ export default function ABDashboard() {
       const { data: profile } = await supabase.from('profiles').select('role').eq('id', session.user.id).single()
       if (profile?.role !== 'admin') { setAuthorized(false); return }
       setAuthorized(true)
-
       const { data: exps } = await supabase
         .from('ab_experiments')
-        .select(`*, assignments:ab_assignments(variant)`)
+        .select('*, assignments:ab_assignments(variant)')
         .order('created_at', { ascending: false })
       setExperiments(exps || [])
     })()
@@ -74,7 +73,6 @@ export default function ABDashboard() {
   useEffect(() => {
     if (!selectedExp || !supabase) { setConversions([]); return }
     setLoading(true)
-
     supabase
       .from('analytics_events')
       .select('meta, created_at')
@@ -89,20 +87,36 @@ export default function ABDashboard() {
   }, [selectedExp])
 
   if (authorized === null) return <div style={{padding:40,color:'var(--muted)'}}>Provjera...</div>
-  if (!authorized) return <div style={{padding:40,textAlign:'center'}}>🔒 Nemaš pristup.</div>
+  if (!authorized) return <div style={{padding:40,textAlign:'center'}}>Nemas pristup.</div>
 
   return (
     <div style={{minHeight:'100vh',background:'var(--bg)',padding:'28px 24px',color:'var(--text)',fontFamily:'var(--fb)'}}>
       <div style={{maxWidth:1200,margin:'0 auto'}}>
         <div style={{marginBottom:24}}>
           <div style={{fontSize:11,fontWeight:700,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--muted)',marginBottom:6}}>Admin</div>
-          <h1 style={{fontFamily:'var(--fh)',fontSize:28,fontWeight:800,letterSpacing:'-.02em'}}>
-            A/B Experiments
-          </h1>
-          <p style={{fontSize:13,color:'var(--muted)',marginTop:6}}>Prati eksperimente i uzimaj podatke-based odluke.</p>
+          <h1 style={{fontFamily:'var(--fh)',fontSize:28,fontWeight:800}}>A/B Experiments</h1>
         </div>
-        <div style={{padding:40,color:'var(--muted)',fontSize:13}}>
-          Otvori ovu stranicu u browseru — lista eksperimenata učitava se nakon prijave.
+        <div style={{display:'grid',gridTemplateColumns:'320px 1fr',gap:20}}>
+          <div style={{display:'flex',flexDirection:'column',gap:8}}>
+            {experiments.map(exp => (
+              <div key={exp.id} onClick={() => setSelectedExp(exp)}
+                style={{padding:'12px 14px',borderRadius:11,cursor:'pointer',background:selectedExp?.id === exp.id ? 'rgba(75,123,255,.1)' : 'var(--s1)',border:'1px solid var(--bdr)'}}>
+                <div style={{fontWeight:700,fontSize:13}}>{exp.name}</div>
+                <div style={{fontSize:11,color:'var(--muted)'}}>{exp.id} · {exp.status}</div>
+              </div>
+            ))}
+          </div>
+          <div>
+            {!selectedExp ? (
+              <div style={{padding:60,textAlign:'center',color:'var(--muted)'}}>Odaberi eksperiment</div>
+            ) : (
+              <div>
+                <h2 style={{fontFamily:'var(--fh)',fontSize:20}}>{selectedExp.name}</h2>
+                <p style={{fontSize:12,color:'var(--muted)'}}>{selectedExp.description}</p>
+                {loading ? <div>Ucitavam...</div> : <div style={{fontSize:12,color:'var(--muted)'}}>{conversions.length} konverzija</div>}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
