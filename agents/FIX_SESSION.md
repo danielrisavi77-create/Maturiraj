@@ -2,19 +2,14 @@
 
 Aktivni program: `PLAN_POPRAVAKA_MATURIRAJ.md`
 Faza: T3 Gold path
-Zadatak na redu: **T3.1 ostatak** — `/pro` treba importati `initialBillingFromSearch`; `/prijava` default redirect `/dashboard`
+Zadatak na redu: **T3.2** ručni prolaz (prijava → dashboard → plan/discere)
 Zastavica naplate: **OFF**
 
-## Gotovo na `fix/t1-billing-rls` (PR #4)
+## Zatvoreno na `fix/t1-billing-rls` (PR #4)
 
-- T1 + T2 u gitu
-- T3.1 dashboard već ima PrimaryCard "Što dalje danas"
-- `fromMap`: dashboard, engleski; DEFAULT_FROM = /dashboard
-- `lib/billing/initialBilling.js` spreman za `/pro`
+- T1 + T2
+- T1.5 `/pro` čita `?billing=mj|god`, `isPaid` → portal, 409 → portal, Standard yearly prebacuje na mj
+- T3.1 prijava default `/dashboard`
 
-## Još zalijepiti u istoj fazi
-
-1. `app/pro/page.js`: `useState(initialBillingFromSearch(params))` + `isPaid` → portal + 409
-2. `app/prijava/page.js`: `redirect || '/dashboard'` i signup student → `/dashboard`
-
+T3.2 nije kod. T3.3 sljedeći kod task: exam-check vs klijentski ključevi.
 Ne diraj HrvatskiSimulator / Game Mode / roditelje.
