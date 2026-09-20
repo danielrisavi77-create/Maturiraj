@@ -143,7 +143,7 @@
   window.SoundContext = React.createContext(null);
   window.useSound = function() { return window.SOUND; };
 
-  window.SoundProvider = function(props) {
+  window.SoundProvider = function SoundProvider(props) {
     return React.createElement(React.Fragment, null, props.children);
   };
 

@@ -1,3 +1,6 @@
+// Components are exported by the preceding classic animations script.
+const CroatianHeroComponents = window;
+
 // hrvatski-scenes.jsx — 6 scenes for the maturiraj.hr Hrvatski hero video
 // Mirrors the matematika-scenes template:
 // panic → chaos → clarity → steps → result → CTA
@@ -166,8 +169,8 @@ function Scene1_Panic() {
         </div>
       </div>
 
-      <Sprite start={0.5} end={3.0}>
-        <TextSprite
+      <CroatianHeroComponents.Sprite start={0.5} end={3.0}>
+        <CroatianHeroComponents.TextSprite
           text="Čitaš… ali ne znaš što je bitno?"
           x={960} y={970}
           align="center"
@@ -178,7 +181,7 @@ function Scene1_Panic() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </CroatianHeroComponents.Sprite>
     </>
   );
 }
@@ -333,8 +336,8 @@ function Scene2_Chaos() {
         {timerText}
       </div>
 
-      <Sprite start={3.3} end={6.0}>
-        <TextSprite
+      <CroatianHeroComponents.Sprite start={3.3} end={6.0}>
+        <CroatianHeroComponents.TextSprite
           text="Previše pojmova. Premalo smisla."
           x={960} y={940}
           align="center"
@@ -345,7 +348,7 @@ function Scene2_Chaos() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </CroatianHeroComponents.Sprite>
     </>
   );
 }
@@ -413,8 +416,8 @@ function Scene3_Clarity() {
 
       <PillarLabels t={labelsT} />
 
-      <Sprite start={6.6} end={10.0}>
-        <TextSprite
+      <CroatianHeroComponents.Sprite start={6.6} end={10.0}>
+        <CroatianHeroComponents.TextSprite
           text="Svaki tekst — jedan okvir."
           x={960} y={920}
           align="center"
@@ -425,7 +428,7 @@ function Scene3_Clarity() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </CroatianHeroComponents.Sprite>
     </>
   );
 }
@@ -513,8 +516,8 @@ function Scene4_Steps() {
 
       <AnnotatedPassage localTime={localTime} />
 
-      <Sprite start={10.3} end={15.0}>
-        <TextSprite
+      <CroatianHeroComponents.Sprite start={10.3} end={15.0}>
+        <CroatianHeroComponents.TextSprite
           text="Korak po korak. Bez nagađanja."
           x={960} y={960}
           align="center"
@@ -525,7 +528,7 @@ function Scene4_Steps() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </CroatianHeroComponents.Sprite>
     </>
   );
 }
@@ -780,8 +783,8 @@ function Scene5_Result() {
         </div>
       </div>
 
-      <Sprite start={15.3} end={20.0}>
-        <TextSprite
+      <CroatianHeroComponents.Sprite start={15.3} end={20.0}>
+        <CroatianHeroComponents.TextSprite
           text="Hrvatski koji razumiješ."
           x={960} y={990}
           align="center"
@@ -792,7 +795,7 @@ function Scene5_Result() {
           entryDur={0.4}
           exitDur={0.3}
         />
-      </Sprite>
+      </CroatianHeroComponents.Sprite>
     </>
   );
 }
@@ -944,12 +947,12 @@ function VideoRoot({ cta, accent }) {
 
   return (
     <div ref={rootRef} style={{ position: 'absolute', inset: 0 }}>
-      <Sprite start={0}    end={3.0}>  <Scene1_Panic /></Sprite>
-      <Sprite start={3.0}  end={6.0}>  <Scene2_Chaos /></Sprite>
-      <Sprite start={6.0}  end={10.0}> <Scene3_Clarity /></Sprite>
-      <Sprite start={10.0} end={15.0}> <Scene4_Steps /></Sprite>
-      <Sprite start={15.0} end={20.0}> <Scene5_Result /></Sprite>
-      <Sprite start={20.0} end={25.0}> <Scene6_CTA cta={cta} /></Sprite>
+      <CroatianHeroComponents.Sprite start={0}    end={3.0}>  <Scene1_Panic /></CroatianHeroComponents.Sprite>
+      <CroatianHeroComponents.Sprite start={3.0}  end={6.0}>  <Scene2_Chaos /></CroatianHeroComponents.Sprite>
+      <CroatianHeroComponents.Sprite start={6.0}  end={10.0}> <Scene3_Clarity /></CroatianHeroComponents.Sprite>
+      <CroatianHeroComponents.Sprite start={10.0} end={15.0}> <Scene4_Steps /></CroatianHeroComponents.Sprite>
+      <CroatianHeroComponents.Sprite start={15.0} end={20.0}> <Scene5_Result /></CroatianHeroComponents.Sprite>
+      <CroatianHeroComponents.Sprite start={20.0} end={25.0}> <Scene6_CTA cta={cta} /></CroatianHeroComponents.Sprite>
     </div>
   );
 }
