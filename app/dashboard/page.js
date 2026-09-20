@@ -9,6 +9,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { MATURA_DATE, getGreeting, daysUntil, progressColor, card } from '@/lib/dashboard/helpers'
 import ProBlur from '@/components/dashboard/ProBlur'
+import { isAiEndpointsEnabled, isGameModeEnabled } from '@/lib/config/featureFlags'
 
 const SUBJECT_LABELS = {
   hrv: 'Hrvatski', mat: 'Matematika', 'mat-a': 'Matematika A', 'mat-b': 'Matematika B',
@@ -238,11 +239,13 @@ export default function DashboardHub() {
             <CardCta label={isPaid ? 'Otvori Discere →' : 'Otključaj simulator →'} />
           </HubCard>
 
-          <HubCard icon="🎮" title="Game Mode · Hrvatski" accent="#ff6b35" onClick={() => router.push('/game')}>
-            <div style={{ fontSize: 13, color: 'var(--text)', fontWeight: 600 }}>Brzo ponavljanje iz Discere banke.</div>
-            <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>10 pitanja · post-check · pristupačni način</div>
-            <CardCta label="Pokreni rundu →" />
-          </HubCard>
+          {isGameModeEnabled() && (
+            <HubCard icon="🎮" title="Game Mode · Hrvatski" accent="#ff6b35" onClick={() => router.push('/game')}>
+              <div style={{ fontSize: 13, color: 'var(--text)', fontWeight: 600 }}>Brzo ponavljanje iz Discere banke.</div>
+              <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>10 pitanja · post-check · pristupačni način</div>
+              <CardCta label="Pokreni rundu →" />
+            </HubCard>
+          )}
 
           {/* Skripte */}
           <HubCard icon="📖" title="Skripte" accent="var(--green)" onClick={() => router.push('/skripte')}>
@@ -260,8 +263,8 @@ export default function DashboardHub() {
             <CardCta label={resumeChapter ? 'Nastavi skriptu →' : 'Otvori skripte →'} />
           </HubCard>
 
-          {/* AI Profesor (PRO) */}
-          {isPro ? (
+          {/* AI Profesor (PRO) — sakriven dok AI_ENDPOINTS_ENABLED nije true */}
+          {isAiEndpointsEnabled() && (isPro ? (
             <HubCard icon="🤖" title="AI Profesor" accent="var(--violet)" onClick={() => router.push('/ai-profesor')}>
               <div style={{ fontSize: 13, color: 'var(--text)', fontWeight: 600 }}>Pitaj bilo što, 24/7.</div>
               <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>Objašnjenja, zadaci, savjeti.</div>
@@ -275,7 +278,7 @@ export default function DashboardHub() {
                 <CardCta label="Otključaj uz PRO →" />
               </HubCard>
             </ProBlur>
-          )}
+          ))}
         </div>
       </div>
     </div>

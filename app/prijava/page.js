@@ -3,13 +3,15 @@
 import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { isParentPortalEnabled } from '@/lib/config/featureFlags'
 
 
 function PrijavaContent() {
   const router      = useRouter()
   const params      = useSearchParams()
-  const redirect    = params.get('redirect') || '/'
+  const redirect    = params.get('redirect') || '/dashboard'
   const supabase    = createClient()
+  const parentPortalEnabled = isParentPortalEnabled()
 
   const [mode,     setMode]     = useState('login')   // 'login' | 'register'
   const [role,     setRole]     = useState('student') // 'student' | 'parent'
@@ -23,7 +25,7 @@ function PrijavaContent() {
 
   const handleEmailAuth = async () => {
     if (!email || !password) { setError('Upiši email i lozinku.'); return }
-    if (role === 'parent' && mode === 'register' && !childEmail) { setError('Upiši email djeteta.'); return }
+    if (parentPortalEnabled && role === 'parent' && mode === 'register' && !childEmail) { setError('Upiši email djeteta.'); return }
     setLoading(true); setError(null)
     try {
       if (mode === 'register') {
@@ -32,8 +34,8 @@ function PrijavaContent() {
           email,
           password,
           options: {
-            data: { full_name: name, role, ...(role === 'parent' ? { childEmail } : {}) },
-            emailRedirectTo: `${appUrl}/auth/callback?redirect=${role === 'parent' ? '/roditelji' : '/'}`,
+            data: { full_name: name, role: parentPortalEnabled ? role : 'student', ...(parentPortalEnabled && role === 'parent' ? { childEmail } : {}) },
+            emailRedirectTo: `${appUrl}/auth/callback?redirect=${encodeURIComponent(parentPortalEnabled && role === 'parent' ? '/roditelji' : '/dashboard')}`,
           },
         })
         if (e) throw e
@@ -41,9 +43,9 @@ function PrijavaContent() {
       } else {
         const { data, error: e } = await supabase.auth.signInWithPassword({ email, password })
         if (e) throw e
-        // Provjeri ulogu korisnika nakon login-a
+        // Parent portal nije prod — samo DEV_BYPASS u proxy.js. Ostali → redirect/dashboard.
         const userRole = data?.user?.user_metadata?.role
-        if (userRole === 'parent') {
+        if (parentPortalEnabled && userRole === 'parent') {
           router.push('/roditelji')
         } else {
           router.push(redirect)
@@ -130,24 +132,34 @@ function PrijavaContent() {
           </div>
         </div>
 
-        {/* Uloga toggle */}
-        <div style={{
-          display: 'flex', gap: 3, padding: '4px',
-          background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)',
-          borderRadius: 14, marginBottom: 14,
-        }}>
-          {[['student','Maturant'], ['parent','Roditelj']].map(([r, lbl]) => (
-            <button key={r} onClick={() => setRole(r)}
-              style={{
-                flex: 1, padding: '9px', borderRadius: 10, border: 'none',
-                fontFamily: 'var(--fb)', fontSize: 13, fontWeight: 700, cursor: 'pointer',
-                transition: 'all .18s',
-                background: role === r ? 'linear-gradient(135deg, rgba(75,123,255,.22), rgba(124,92,252,.16))' : 'transparent',
-                color: role === r ? 'var(--text)' : 'var(--muted)',
-              }}
-            >{lbl}</button>
-          ))}
-        </div>
+        {/* Uloga toggle — sakriven dok PARENT_PORTAL_ENABLED nije true */}
+        {parentPortalEnabled ? (
+          <div style={{
+            display: 'flex', gap: 3, padding: '4px',
+            background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)',
+            borderRadius: 14, marginBottom: 14,
+          }}>
+            {[['student','Maturant'], ['parent','Roditelj']].map(([r, lbl]) => (
+              <button key={r} onClick={() => setRole(r)}
+                style={{
+                  flex: 1, padding: '9px', borderRadius: 10, border: 'none',
+                  fontFamily: 'var(--fb)', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                  transition: 'all .18s',
+                  background: role === r ? 'linear-gradient(135deg, rgba(75,123,255,.22), rgba(124,92,252,.16))' : 'transparent',
+                  color: role === r ? 'var(--text)' : 'var(--muted)',
+                }}
+              >{lbl}</button>
+            ))}
+          </div>
+        ) : (
+          <div style={{
+            marginBottom: 14, padding: '10px 12px', borderRadius: 12,
+            background: 'rgba(192,132,252,.08)', border: '1px solid rgba(192,132,252,.2)',
+            fontSize: 12, color: 'var(--muted)', lineHeight: 1.5, textAlign: 'center',
+          }}>
+            Račun za roditelje — <strong style={{ color: 'var(--text)' }}>uskoro</strong>
+          </div>
+        )}
 
         {/* Mode toggle */}
         <div style={{

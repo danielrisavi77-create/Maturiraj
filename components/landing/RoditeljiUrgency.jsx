@@ -1,6 +1,9 @@
 "use client";
 
+import { isParentPortalEnabled } from "@/lib/config/featureFlags";
+
 export default function RoditeljiUrgency({ onRoditelji, onPlan, onSkripte }) {
+  const parentPortalEnabled = isParentPortalEnabled();
   return (
     <section style={{background:"var(--bg)",borderTop:"1px solid var(--bdr)",padding:"96px 0",overflow:"hidden",position:"relative"}}>
       <div style={{position:"absolute",top:"30%",left:"-5%",width:500,height:500,background:"radial-gradient(circle,rgba(233,180,70,.06),transparent 65%)",pointerEvents:"none"}}/>
@@ -30,11 +33,11 @@ export default function RoditeljiUrgency({ onRoditelji, onPlan, onSkripte }) {
                   {ic:"💬", t:"AI profesor 24/7",       d:"Dijete ne mora čekati privatnog učitelja — odgovor dobiva u sekundi, na hrvatskom.", cta:false},
                 ].map((f, i) => (
                   <div key={i}
-                    onClick={f.cta ? onRoditelji : undefined}
+                    onClick={f.cta && parentPortalEnabled ? onRoditelji : undefined}
                     style={{display:"flex",gap:14,alignItems:"flex-start",padding:"14px 16px",borderRadius:12,
                       background:f.cta ? "rgba(233,180,70,.06)" : "transparent",
                       border:f.cta ? "1px solid rgba(233,180,70,.2)" : "1px solid transparent",
-                      transition:"all .15s", cursor:f.cta ? "pointer" : "default"}}
+                      transition:"all .15s", cursor:f.cta && parentPortalEnabled ? "pointer" : "default"}}
                     onMouseEnter={e => { if(f.cta) e.currentTarget.style.background = "rgba(233,180,70,.1)"; }}
                     onMouseLeave={e => { if(f.cta) e.currentTarget.style.background = "rgba(233,180,70,.06)"; }}>
                     <div style={{width:40,height:40,borderRadius:10,background:"rgba(233,180,70,.1)",border:"1px solid rgba(233,180,70,.2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>
@@ -56,7 +59,11 @@ export default function RoditeljiUrgency({ onRoditelji, onPlan, onSkripte }) {
               </div>
 
               <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
-                <button className="btn bo btn-lg" onClick={onRoditelji}>📊 Za roditelje →</button>
+                {parentPortalEnabled ? (
+                  <button className="btn bo btn-lg" onClick={onRoditelji}>📊 Za roditelje →</button>
+                ) : (
+                  <button className="btn bo btn-lg" disabled style={{ opacity: 0.55, cursor: "not-allowed" }}>📊 Za roditelje — uskoro</button>
+                )}
                 <button className="btn bgh btn-lg" onClick={onPlan}>Pogledaj Pro plan</button>
               </div>
             </div>

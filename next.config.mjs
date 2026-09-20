@@ -59,6 +59,14 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  // Expose fail-closed feature flags to client components (same names as
+  // lib/config/featureFlags.js). Empty/missing stays disabled.
+  env: {
+    GAME_MODE_ENABLED: process.env.GAME_MODE_ENABLED || '',
+    AI_ENDPOINTS_ENABLED: process.env.AI_ENDPOINTS_ENABLED || '',
+    PARENT_PORTAL_ENABLED: process.env.PARENT_PORTAL_ENABLED || '',
+  },
+
   // @supabase/ssr uses Web Locks API for token refresh serialization.
   // React Strict Mode double-mounts components in dev, leaving orphaned locks
   // that cause "lock released because another request stole it" errors.
