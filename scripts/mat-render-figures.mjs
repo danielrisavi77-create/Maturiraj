@@ -65,12 +65,25 @@ function cssVarBlock(vars) {
 const lightVarCss = cssVarBlock(lightVars);
 const darkVarCss = cssVarBlock(darkVars);
 
+// parseMath emitira <span class="mfrac|mfrac-num|mfrac-bar|mfrac-den"> bez inline
+// stilova, pa razlomak bez tih pravila u PNG-u ispadne kao dva broja jedan do
+// drugog ("1" pa "2", bez crte). CSS varijable gore nisu dovoljne — povlačimo i
+// sama .mfrac* pravila iz mat-engine.css (izvor istine, da se ne razilaze).
+// (Prolazak po SVIM pravilima pa filtriranje po selektoru — regex koji bi tražio
+// samo mfrac pravila trošio bi zatvarajuću vitičastu prethodnog pravila i preskakao
+// svako drugo podudaranje, pa bi baš .mfrac i .mfrac-bar ispali.)
+const mathCss = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+  .filter(([, sel]) => /\bmfrac/.test(sel))
+  .map(([, sel, body]) => `${sel.trim()}{${body.trim()}}`)
+  .join('\n');
+
 // (Bivši `globalThis.parseMath = () => null` stub je uklonjen.) KoordOs je zvao
 // nedeklarirani `parseMath(label)` i rušio se na "parseMath is not defined" izvan
 // preglednika; sada ga mat-shared-svg.mjs uvozi iz
 // components/simulator/mat/core/parseMath.mjs (obični ESM, bez aliasa i .tsx-a), pa
-// se labeli ispravno iscrtavaju i u ovom headless renderu — bez stuba koji ih je
-// tiho svodio na goli tekst.
+// se labeli iscrtavaju kroz pravi parseMath umjesto da ih stub tiho svodi na null.
+// Tipografiju razlomaka pokriva `mathCss` gore; eksponenti/indeksi nose inline
+// stilove iz parseMath-a, pa im dodatni CSS ne treba.
 
 // Some auto-generated exam files reference bare, never-declared module-level
 // counters for SVG element keys (e.g. `++_s15jk`, `_uid15j()`) — a
@@ -193,6 +206,7 @@ for (const [imgKey, fn] of entries) {
       html,body{margin:0;padding:0;background:${bg};}
       #stage{display:inline-block;width:${vbW}px;padding:16px;background:${bg};${varCss}}
       #stage svg{display:block;width:${vbW}px;height:${vbH}px;}
+      ${mathCss}
     </style></head><body><div id="stage">${markup}</div></body></html>`;
 
     const outPath = path.join(outDir, `${imgKey}.${theme}.png`);

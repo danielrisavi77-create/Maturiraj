@@ -96,7 +96,12 @@ const sharedList = [...shared].filter(n => pool.has(n));
 const sharedBody = sharedList.map(n => pool.get(n)).join('\n\n');
 writeFileSync(join(DIR, 'mat-shared-svg.mjs'),
 `// AUTO-GENERATED — shared SVGs (KoordOs + multi-exam). Do not edit by hand.
+// parseMath se MORA uvesti: KoordOs ga zove za label, a u monolitu je bio globalan.
+// Bez ovog retka regeneriranje vraća ReferenceError "parseMath is not defined"
+// (relativno, s ekstenzijom — ovu datoteku učitava i obični Node, gdje alias '@'
+// nije razrješiv ni .tsx učitljiv).
 import React from 'react';
+import { parseMath } from '../../../components/simulator/mat/core/parseMath.mjs';
 const e = React.createElement;
 
 ${sharedBody}
