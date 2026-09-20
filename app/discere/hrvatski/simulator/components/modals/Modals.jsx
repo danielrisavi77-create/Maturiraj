@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TOPIC_LABELS } from '../../hrvatskiSimulatorData';
 import { e, useModalTrap } from '../../utils/helpers';
 function ProPaywallModal({feature,onClose}){
@@ -222,7 +222,13 @@ const POJMOVNIK_HRV={
 
 function GlossaryModal({onClose,initialTerm}){
   const[search,setSearch]=useState(initialTerm||"");
-  const[selected,setSelected]=useState(null);
+  const[selected,setSelected]=useState(()=>{
+    if(initialTerm){
+      const match=Object.keys(POJMOVNIK_HRV).find(k=>k.toLowerCase().includes(initialTerm.toLowerCase()));
+      if(match) return[match,POJMOVNIK_HRV[match]];
+    }
+    return null;
+  });
   const[filterKat,setFilterKat]=useState("sve");
 
   const KATEGORIJE={
@@ -251,13 +257,6 @@ function GlossaryModal({onClose,initialTerm}){
     }
     return "knj";
   }
-
-  useEffect(()=>{
-    if(initialTerm){
-      const match=Object.keys(POJMOVNIK_HRV).find(k=>k.toLowerCase().includes(initialTerm.toLowerCase()));
-      if(match) setSelected([match,POJMOVNIK_HRV[match]]);
-    }
-  },[]);
 
   const entries=Object.entries(POJMOVNIK_HRV);
   const filtered=entries.filter(([k,v])=>{
@@ -487,12 +486,14 @@ const POJMOVNIK={
 // Flashcard (aktivno prisjećanje) nad zadanim popisom pojmova [ [pojam, definicija], ... ].
 // Samostalno upravlja stanjem; resetira se kad se promijeni veličina špila (filter/pretraga).
 function PojmovnikKartice({deck}){
+  const[rev,setRev]=useState(false); // false: pojam→definicija; true: definicija→pojam
+  return e(PojmovnikKarticeDeck,{key:JSON.stringify([deck.length,rev]),deck,rev,onReverse:()=>setRev(r=>!r)});
+}
+function PojmovnikKarticeDeck({deck,rev,onReverse}){
   const[idx,setIdx]=useState(0);
   const[flip,setFlip]=useState(false);
-  const[rev,setRev]=useState(false); // false: pojam→definicija; true: definicija→pojam
   const[order,setOrder]=useState(null);
   const n=deck.length;
-  useEffect(()=>{setIdx(0);setFlip(false);setOrder(null);},[n,rev]);
   if(!deck||n===0) return e("div",{style:{flex:1,display:"flex",alignItems:"center",justifyContent:"center",color:"var(--muted)",fontSize:13,padding:20}},"Nema pojmova za kartice u ovom filtru.");
   const seq=order||deck.map((_,i)=>i);
   const cur=deck[seq[idx%n]]||deck[0];
@@ -506,8 +507,8 @@ function PojmovnikKartice({deck}){
     e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:12}},
       e("span",{style:{fontSize:12,color:"var(--muted)"}},(idx+1)+" / "+n),
       e("div",{style:{flex:1}}),
-      e("button",{onClick:()=>setRev(r=>!r),style:btn},rev?"definicija → pojam":"pojam → definicija"),
-      e("button",{onClick:shuffle,style:btn},"🔀 Promiješaj")
+      e("button",{onClick:onReverse,style:btn},rev?"definicija → pojam":"pojam → definicija"),
+      React.createElement("button",{onClick:shuffle,style:btn},"🔀 Promiješaj")
     ),
     e("button",{onClick:()=>setFlip(f=>!f),
       style:{flex:1,minHeight:170,width:"100%",boxSizing:"border-box",
@@ -528,7 +529,13 @@ function PojmovnikKartice({deck}){
 
 function PojmovnikModal({onClose,initialTerm}){
   const[search,setSearch]=useState(initialTerm||"");
-  const[selected,setSelected]=useState(null);
+  const[selected,setSelected]=useState(()=>{
+    if(initialTerm){
+      const match=Object.entries(POJMOVNIK).find(([k])=>k.toLowerCase().includes(initialTerm.toLowerCase()));
+      if(match) return match;
+    }
+    return null;
+  });
   const[tab,setTab]=useState("sve"); // sve | knjizevnost | stilska | versif | pravci | pisci
   const[mode,setMode]=useState("browse"); // browse | kartice
   const panelRef=useModalTrap(onClose); // Esc + focus-trap + povrat fokusa
@@ -557,13 +564,6 @@ function PojmovnikModal({onClose,initialTerm}){
         k.toLowerCase().includes(search.toLowerCase())||
         v.toLowerCase().includes(search.toLowerCase()))
     : filteredByTab;
-
-  useEffect(()=>{
-    if(initialTerm){
-      const match=allEntries.find(([k])=>k.toLowerCase().includes(initialTerm.toLowerCase()));
-      if(match) setSelected(match);
-    }
-  },[]);
 
   return e("div",{
     role:"dialog","aria-modal":"true","aria-label":"Pojmovnik",
@@ -864,7 +864,7 @@ function ImporterModal({onClose,onImport}){
                   border:"1px solid var(--bdr)",borderRadius:"var(--r)",color:"var(--text)",
                   fontFamily:"var(--fb)",boxSizing:"border-box"}})
             ),
-            e("button",{className:"btn btn-p",
+            React.createElement("button",{className:"btn btn-p",
               disabled:!mQ.trim()||mOpts.filter(o=>o.trim()).length<2,
               style:{opacity:(!mQ.trim()||mOpts.filter(o=>o.trim()).length<2)?.5:1},
               onClick:addManual},"+ Dodaj pitanje")
