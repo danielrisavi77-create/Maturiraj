@@ -104,7 +104,7 @@ describe('EXAMS — integritet podataka po ispitu', () => {
       "2019_jesen_A": 80, "2019_jesen_B": 80, "2019_ljeto_A": 80, "2019_ljeto_B": 80,
       "2020_ljeto_A": 80, "2020_ljeto_B": 80, "2020_jesen_A": 72, "2020_jesen_B": 72,
       "2021_jesen_A": 80, "2021_jesen_B": 80, "2021_ljeto_A": 80, "2021_ljeto_B": 80,
-      "2022_jesen_B": 80, "2022_jesen_A": 80, "2022_ljeto_A": 50, "2022_ljeto_B": 80,
+      "2022_jesen_B": 80, "2022_jesen_A": 80, "2022_ljeto_A": 80, "2022_ljeto_B": 80,
       "2023_ljeto": 62, "2023_jesen": 62, "2024_jesen": 62, "2024_ljeto": 62,
       "2025_jesen": 62, "2025_ljeto": 62,
     });
