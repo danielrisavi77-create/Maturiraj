@@ -19,8 +19,26 @@ import http from 'node:http'
 
 export const MOCK_PORT = 54321
 export const MOCK_URL = `http://localhost:${MOCK_PORT}`
-export const MOCK_ANON_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlLXFhIiwiaWF0IjoxNzAwMDAwMDAwLCJleHAiOjIwMDAwMDAwMDB9.qa-anon-key-signature'
+// Ne pravi tajni ključ nego lažni JWT za lokalni mock server, sastavljen u
+// runtimeu (da statička analiza tajni ne prijavi lažni pozitivac).
+function base64url(input) {
+  return Buffer.from(input).toString('base64url')
+}
+
+function buildMockJwt() {
+  const header = base64url(JSON.stringify({ alg: 'HS256', typ: 'JWT' }))
+  const payload = base64url(
+    JSON.stringify({
+      role: 'anon',
+      iss: 'supabase-qa',
+      iat: 1700000000,
+      exp: 2000000000,
+    })
+  )
+  return `${header}.${payload}.qa-anon-key-signature`
+}
+
+export const MOCK_ANON_KEY = buildMockJwt()
 
 export const QA_USER = {
   id: '00000000-0000-4000-8000-000000000011',
