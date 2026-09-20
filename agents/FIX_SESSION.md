@@ -2,32 +2,34 @@
 
 Aktivni program: `PLAN_POPRAVAKA_MATURIRAJ.md`
 Faza: T1 Novac i podaci
-Zadatak na redu: **T1.1** `active_user_plan` security_invoker
+Zadatak na redu: **T1.2** RLS `user_prijemni_scores`
 Zastavica naplate: **OFF** (`isBillingCheckoutEnabled`) dok T1 nije zatvoren
+
+## Zadnja sesija (T1.1)
+
+- View `active_user_plan` u gitu već ima `20260718000002_active_user_plan_invoker.sql`.
+- Dodana idempotentna migracija `supabase/migrations/20260920000001_t1_1_active_user_plan_invoker.sql` (CREATE OR REPLACE WITH security_invoker + revoke anon).
+- Branch: `fix/t1-billing-rls`
+- **Nije gotovo na živoj bazi dok se migracija ne pusti.** Checkout i dalje OFF.
 
 ## Token pravila
 
-1. Ne čitaj `vision.md`, `project_brain.md`, `project_status.md`, `roadmap.md`, `QA_AUDIT_*`, stari audit od 542 nalaza.
-2. Ne dumpaj cijeli tree. Otvori samo datoteke navedene u tasku.
-3. Ne predlaži nove featuree. Ne diraj Game Mode, roditelje, nove predmete, `HrvatskiSimulator.jsx`.
-4. Jedan task po sesiji. Ako task nije zatvoren, sljedeća sesija nastavlja isti.
-5. Odgovor: što si promijenio, kako testirati, što je sljedeće — max kratko.
+1. Ne čitaj vision / project_brain / project_status / roadmap / velike audite.
+2. Otvori samo datoteke aktivnog taska.
+3. Ne dodaji featuree. Ne diraj Game Mode, roditelje, nove predmete, HrvatskiSimulator.jsx.
+4. Jedan task po sesiji.
 
 ## Što smiješ čitati
 
 - ovaj file
-- `PLAN_POPRAVAKA_MATURIRAJ.md` samo sekciju aktivnog taska
+- `PLAN_POPRAVAKA_MATURIRAJ.md` samo aktivni task
 - `docs/AUDIT_P0_FIXES.md` za T1 SQL
-- konkretne datoteke taska
+- `supabase/migrations/20260419000003_user_prijemni_scores.sql`
+- `supabase/migrations/20260718000000_fix_scores_rls.sql` (ako postoji)
+- `lib/prijemni/api.js`
 
-## Entitlement (ne izmišljaj)
+## Entitlement
 
 - `useAuth()` = `{ user, planType, isPaid, isPro, loading }` — nema `profile`
-- Discere / simulator = `isPaid`
-- AI = `isPro`
-- Route guard = `proxy.js` (nije `middleware.js`)
-- Checkout zna samo: `starter` mj, `pro` mj, `pro_god`
-
-## Definition of done
-
-Kriterij iz plana za taj task. Nije done “jer izgleda ok”.
+- Discere = `isPaid`; AI = `isPro`; guard = `proxy.js`
+- Checkout: `starter` mj, `pro` mj, `pro_god`
