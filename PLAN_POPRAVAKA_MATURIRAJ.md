@@ -18,7 +18,7 @@ Cilj programa nije “više aplikacije”. Cilj je:
 3. Svaka izmjena entitlements / baze / Stripe ide prvo na **test** (Stripe test mode + staging baza).
 4. Ne dirati `HrvatskiSimulator.jsx` (~20k linija) osim ako task to izričito zahtijeva zbog crasha.
 5. Nakon svakog većeg bloka: login, logout, free / starter / pro, jedan simulator, mobitel.
-6. Dokumentacija (`agents/FIX_SESSION.md`, `agents/bugs.md`) se ažurira istog dana.
+6. Dokumentacija (`agents/FIX_SESSION.md`, `agents/bugs.md`) se ažurira istog dana, inače sljedeća sesija opet krene krivo.
 
 ### Što je izvan ovog programa
 
@@ -43,4 +43,121 @@ Cilj programa nije “više aplikacije”. Cilj je:
 
 Ako T1 nije zatvoren, T2–T4 se ne počinju “usput”.
 
-Puni taskovi T1.1–T4.4 i dnevni ritam ostaju u ovom fileu kako su definirani 20. rujna 2026. Aktivni pokazivač sesije je `agents/FIX_SESSION.md` — čitaj njega prvo, ovaj file samo za aktivni task.
+---
+
+# TJEDAN 1 — Novac i podaci
+
+Osnova: `docs/AUDIT_P0_FIXES.md`  
+Status danas: frontend dijelovi (compare `searchParams`, mat `_META` filter) su već u kodu. **SQL/billing dio nije primijenjen na živu bazu.**
+
+Naplata je trenutno iza `isBillingCheckoutEnabled()`. Ne paliti zastavicu prije kraja T1.
+
+## T1.1 View `active_user_plan` — curenje Stripe ID-eva
+
+**Prioritet:** P0  
+**Datoteke:** nova migracija u `supabase/migrations/`  
+**Problem:** view bez `security_invoker` zaobilazi RLS; prijavljeni korisnik može vidjeti plan i Stripe ID svih korisnika.
+
+**Posao:**
+- `ALTER VIEW public.active_user_plan SET (security_invoker = true);`
+- `REVOKE ALL` od `anon`; `GRANT SELECT` samo `authenticated`
+- Provjera da backend koji namjerno čita sve koristi service-role
+
+**Gotovo kad:**
+- Korisnik A: `select * from active_user_plan` vraća samo svoj red (ili 0)
+- Anon: 0 redova
+- Webhook/sync i dalje radi sa service-role
+
+## T1.2 RLS — `user_prijemni_scores`
+
+**Prioritet:** P0  
+**Datoteke:** nova migracija + `lib/prijemni/api.js` i povezani klijentski pozivi  
+**Problem:** anon politika `(auth.uid() is null and session_id is not null)` otvara SVE gostujuće redove.
+
+**Posao:**
+- Ukloniti anon grane s RLS-a
+- Gost piše/čita samo preko server endpointa (service-role + `session_id` iz httpOnly cookieja)
+- Prijavljeni vidi samo `user_id = auth.uid()`
+
+**Gotovo kad:**
+- Anon `select * from user_prijemni_scores` = 0 redova
+- Gost i dalje može spremiti svoj rezultat kroz API
+- Korisnik ne vidi tuđi rezultat
+
+## T1.3 RLS — `push_subscriptions`
+
+**Prioritet:** P0  
+**Datoteke:** nova migracija + `lib/prijemni/push.ts`  
+**Problem:** isti IDOR obrazac; curenje endpoint/p256dh/auth_key.
+
+**Posao:** isto kao T1.2 — RLS samo za auth user; gost preko servera.
+
+**Gotovo kad:**
+- Anon ne može select/delete tuđe pretplate
+- Registracija push-a za gosta ide kroz API, ne direktno na tablicu
+
+## T1.4 Unique constraint na `subscriptions.stripe_subscription_id`
+
+**Prioritet:** P0 (blocker za uključivanje naplate)  
+**Datoteke:** nova migracija + `lib/billing/subscriptions.js`  
+**Problem:** parcijalni unique indeks + `upsert(..., { onConflict: 'stripe_subscription_id' })` → Postgres 42P10. Korisnik plati, plan se ne upiše.
+
+**Posao:**
+- Vratiti puni `UNIQUE(stripe_subscription_id)`
+- Dva puta pozvati `syncSubscriptionToSupabase` s istim Stripe sub ID
+
+**Gotovo kad:**
+- Drugi sync je UPDATE, ne exception
+- `profiles.plan_type` se postavi
+- Postojeći testovi u `__tests__/security/billing-*.test.js` prolaze i protiv test baze
+
+## T1.5 Cijene = checkout
+
+**Prioritet:** P0  
+**Datoteke:** `components/landing/Cijene.jsx`, `app/Cijene.js`, `app/pro/page.js`, `app/api/checkout/route.js`
+
+**Odluka A:** maknuti 3 mj / 6 mj / Starter-god s UI-ja dok nema Stripe price ID-eva. Default billing = mjesečno. Vidljivo: Starter mj, Pro mj, Pro god. Klik prenosi `/pro?billing=god`. Već pretplaćen vidi portal, ne novi checkout.
+
+**Gotovo kad:** svaki “Odaberi” otvara Checkout za istu cijenu.
+
+## T1.6 Test naplate u test-modu
+
+Webhook samo `/api/stripe/webhook`. Zastavica na produkciji ostaje OFF do reviewa.
+
+### T1 izlazna vrata
+
+- [ ] T1.1–T1.4 migracije na staging
+- [ ] T1.5 UI usklađen
+- [ ] `isBillingCheckoutEnabled` off na produkciji
+
+---
+
+# TJEDAN 2 — Pristup, rute, API
+
+T2.1 `proxy.js`: `/dashboard` login; `/engleski-simulator` paid; post-login → `/dashboard`.
+T2.2 `requirePro` na `/api/ai`; paid/pro na study-plan i ai-simulator.
+T2.3 Exam API stripa `sol` i `exp`.
+T2.4 Cron fail-closed bez `CRON_SECRET`.
+T2.5 Nema `profile` iz `useAuth`.
+
+---
+
+# TJEDAN 3 — Jedan korisnički krug
+
+Gold path: matematika ili hrvatski. Dashboard → simulator → rezultat → plan. Mobitel 390px.
+
+---
+
+# TJEDAN 4 — AI Pro + čišćenje
+
+Važeći Claude model, pravi promptovi, capabilityGate + supabase, obrisati `app/components copy`, launch checklist, tek tad paliti naplatu.
+
+---
+
+# Dnevni ritam
+
+Jedan task dnevno. Commit `fix(t1): ...`. Ažurirati `agents/FIX_SESSION.md`.
+
+# Ne sada
+
+Novi predmeti, Game Mode, roditelji, rebrand, referral.
