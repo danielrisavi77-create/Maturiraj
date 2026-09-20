@@ -31,3 +31,14 @@ it('starts a fresh display interval after reopening and closes once', () => {
   act(() => vi.advanceTimersByTime(250))
   expect(onClose).toHaveBeenCalledTimes(1)
 })
+
+it('keeps the closing deadline and invokes the latest callback after a parent rerender', () => {
+  const originalClose = vi.fn()
+  const latestClose = vi.fn()
+  const view = render(<MaxReachedToast show onClose={originalClose} isPro />)
+  act(() => vi.advanceTimersByTime(4600))
+  view.rerender(<MaxReachedToast show onClose={latestClose} isPro />)
+  act(() => vi.advanceTimersByTime(150))
+  expect(latestClose).toHaveBeenCalledTimes(1)
+  expect(originalClose).not.toHaveBeenCalled()
+})
