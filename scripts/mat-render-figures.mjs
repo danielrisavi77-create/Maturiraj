@@ -65,13 +65,12 @@ function cssVarBlock(vars) {
 const lightVarCss = cssVarBlock(lightVars);
 const darkVarCss = cssVarBlock(darkVars);
 
-// mat-shared-svg.mjs's KoordOs calls an unscoped `parseMath(label)` for the
-// caption when a `label` prop is passed, but that helper lives only inside
-// MatEngineCore.tsx (never imported/exported for SSR use) — a pre-existing
-// bug that throws "parseMath is not defined" outside the browser bundle.
-// Stub it globally so plain-text labels (no math markup) fall through to
-// the `parseMath(label) || label` plain-text branch during headless render.
-globalThis.parseMath = () => null;
+// (Bivši `globalThis.parseMath = () => null` stub je uklonjen.) KoordOs je zvao
+// nedeklarirani `parseMath(label)` i rušio se na "parseMath is not defined" izvan
+// preglednika; sada ga mat-shared-svg.mjs uvozi iz
+// components/simulator/mat/core/parseMath.mjs (obični ESM, bez aliasa i .tsx-a), pa
+// se labeli ispravno iscrtavaju i u ovom headless renderu — bez stuba koji ih je
+// tiho svodio na goli tekst.
 
 // Some auto-generated exam files reference bare, never-declared module-level
 // counters for SVG element keys (e.g. `++_s15jk`, `_uid15j()`) — a

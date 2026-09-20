@@ -1,5 +1,15 @@
-// AUTO-GENERATED — shared SVGs (KoordOs + multi-exam). Do not edit by hand.
+// Izvorno AUTO-GENERATED (colocate-svg.mjs) — shared SVGs (KoordOs + multi-exam).
+// RUČNO DORAĐENO: generator se više ne pokreće bez --force, pa ova datoteka nije
+// više izvedena iz monolita. Ručna izmjena: import parseMath (KoordOs ga zove za
+// label, a generator ga nikad nije uvezao → ReferenceError pri iscrtavanju).
+// Prije regeneriranja provjeri da generator zadržava ovaj import.
+//
+// Putanja je relativna i s ekstenzijom (ne alias "@", ne .tsx): ovu datoteku, preko
+// exam .mjs-ova, uvozi i obični Node (scripts/mat-render-figures.mjs, colocate-svg.mjs),
+// gdje alias nije razrješiv ni .tsx učitljiv. Zato parseMath živi u core/parseMath.mjs
+// (bez React-komponentnih ovisnosti o engineu), a mathText.tsx ga izvozi dalje.
 import React from 'react';
+import { parseMath } from '../../../components/simulator/mat/core/parseMath.mjs';
 const e = React.createElement;
 
 function Svg29_2013Aj(){
