@@ -1,15 +1,9 @@
 # FIX SESSION — Maturiraj
 
-Aktivni program: `PLAN_POPRAVAKA_MATURIRAJ.md`
-Faza: T3 Gold path
-Zadatak na redu: **T3.2** ručni prolaz (prijava → dashboard → plan/discere)
+Faza: čeka staging SQL + T3.2 klik
+Zadatak na redu: **ti** — `supabase/staging/T1_APPLY.sql` u staging SQL editor
 Zastavica naplate: **OFF**
 
-## Zatvoreno na `fix/t1-billing-rls` (PR #4)
+Agent NE MOŽE: pustiti SQL na tvoj Supabase, ulogirati se kao ti, mergeati na main.
 
-- T1 + T2
-- T1.5 `/pro` čita `?billing=mj|god`, `isPaid` → portal, 409 → portal, Standard yearly prebacuje na mj
-- T3.1 prijava default `/dashboard`
-
-T3.2 nije kod. T3.3 sljedeći kod task: exam-check vs klijentski ključevi.
-Ne diraj HrvatskiSimulator / Game Mode / roditelje.
+Sljedeći kod kad staging prođe: T3.3 — EngleskiSimulator ne smije uvoziti `EXAMS` s `sol` na klijent; load preko `/api/exams/[razina]`, ocjena preko `/api/exams/check`.
