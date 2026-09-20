@@ -92,6 +92,11 @@ export default function Page() {
     }
   };
 
+  const goPro = (billing) => {
+    const q = billing === "god" ? "god" : "mj";
+    window.location.href = `/pro?billing=${q}`;
+  };
+
   if (showIntro) {
     return <IntroScreen onFinish={handleFinishIntro} />;
   }
@@ -110,7 +115,7 @@ export default function Page() {
 
       <Hero
         onSkripte={() => (window.location.href = "/skripte")}
-        onPlan={() => (window.location.href = "/pro")}
+        onPlan={() => goPro("mj")}
         onChat={() => (window.location.href = "/ai-profesor")}
         onPrijemni={() => (window.location.href = "/prijemni")}
         onKalkulator={() => (window.location.href = "/kalkulator")}
@@ -125,11 +130,11 @@ export default function Page() {
 
       <Testimonijali />
 
-      <Compare onPlan={() => (window.location.href = "/pro")} />
+      <Compare onPlan={() => goPro("mj")} />
 
       <PlanUcenjaTeaser
         onPlanUcenja={() => (window.location.href = "/plan-ucenja")}
-        onPlan={() => (window.location.href = "/pro")}
+        onPlan={() => goPro("mj")}
       />
 
       <DanasUcim />
@@ -141,25 +146,25 @@ export default function Page() {
 
       <RoditeljiUrgency
         onRoditelji={() => (window.location.href = "/roditelji")}
-        onPlan={() => (window.location.href = "/pro")}
+        onPlan={() => goPro("mj")}
         onSkripte={() => (window.location.href = "/skripte")}
       />
 
       <Cijene
         onSkripte={() => (window.location.href = "/skripte")}
-        onPlan={() => (window.location.href = "/pro")}
+        onPlan={goPro}
       />
 
       <FAQ />
 
       <CTA
         onSkripte={() => (window.location.href = "/skripte")}
-        onPlan={() => (window.location.href = "/pro")}
+        onPlan={() => goPro("mj")}
       />
 
       <Footer
         onSkripte={() => (window.location.href = "/skripte")}
-        onPlan={() => (window.location.href = "/pro")}
+        onPlan={() => goPro("mj")}
         onPrijemni={() => (window.location.href = "/prijemni")}
         onKalkulator={() => (window.location.href = "/kalkulator")}
         onTermini={() => (window.location.href = "/termini")}
