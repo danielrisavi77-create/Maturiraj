@@ -2743,7 +2743,7 @@ function KalkulatorInner() {
             {/* ── TAB: Simulacija ── */}
             {rightTab==="simulacija"&&(
               <>
-                <div className="sim-intro"><strong>Simulacija "što ako"</strong> — pomakni slidere i vidi koji se studiji otključavaju.</div>
+                <div className="sim-intro"><strong>Simulacija &quot;što ako&quot;</strong> — pomakni slidere i vidi koji se studiji otključavaju.</div>
                 {SIM_FIELDS.map(({key,label,step,isFloat,isPrijemni})=>{
                   const cur=scores[key],max=maxGain(key),val=simDelta[key],afterVal=isFloat?(cur+val).toFixed(1):cur+val;
                   return(

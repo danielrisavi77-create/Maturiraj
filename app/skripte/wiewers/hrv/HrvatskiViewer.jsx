@@ -1442,7 +1442,7 @@ function PricingPanel() {
           <div className="pricing-faq-a">Roditelji mogu kreirati svoj račun i povezati se s djetetovim profilom (uz djetetovo dopuštenje). U dashboardu vide vrijeme učenja, napredak po predmetima, rezultate dijagnostika i tjedne sažetke. Dostupno u Standard i Pro tieru.</div>
         </details>
         <details className="pricing-faq-item">
-          <summary className="pricing-faq-q">Što je „Prijemni" u Pro tieru?</summary>
+          <summary className="pricing-faq-q">Što je „Prijemni&quot; u Pro tieru?</summary>
           <div className="pricing-faq-a">Pored mature, Pro tier uključuje pripremu za <strong>fakultetske prijemne ispite</strong> (medicina, pravo, FER, FSB, Filozofski, Ekonomski…). Sadržaj se temelji na arhivi prijemnih ispita iz prošlih godina + AI personalizirani plan vježbanja.</div>
         </details>
       </div>

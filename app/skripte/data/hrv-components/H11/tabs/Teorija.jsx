@@ -130,7 +130,7 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-int">
           <div className="box-int-lbl">🧭 Kontekst: Zašto upravo Dalmacija i Dubrovnik?</div>
           <div className="box-int-txt">
-            Hrvatska renesansa nije nastala u kontinentalnoj Hrvatskoj — nego na <strong>obali i otocima</strong>. Razlog: <em>geografska blizina Italije</em>, razvijene trgovačke i kulturne veze. Gradovi <b>Split, Šibenik, Hvar, Zadar i Dubrovnik</b> bili su prozor u renesansnu Europu. Dubrovnik kao slobodna republika imao je poseban status — vlastela s dovoljno slobodnog vremena i prihoda da podupire kazalište i književnost. „Hrv. jezik" u to doba <em>nije bio normiran</em> — pisalo se na govorima pojedinih gradova (<b>čakavski, štokavski, dubrovački idiom</b>).
+            Hrvatska renesansa nije nastala u kontinentalnoj Hrvatskoj — nego na <strong>obali i otocima</strong>. Razlog: <em>geografska blizina Italije</em>, razvijene trgovačke i kulturne veze. Gradovi <b>Split, Šibenik, Hvar, Zadar i Dubrovnik</b> bili su prozor u renesansnu Europu. Dubrovnik kao slobodna republika imao je poseban status — vlastela s dovoljno slobodnog vremena i prihoda da podupire kazalište i književnost. „Hrv. jezik&quot; u to doba <em>nije bio normiran</em> — pisalo se na govorima pojedinih gradova (<b>čakavski, štokavski, dubrovački idiom</b>).
           </div>
         </div>
 
@@ -183,7 +183,7 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-key">
           <div className="box-key-lbl">⚡ 5 temeljnih obilježja za maturu</div>
           <div className="box-key-txt">
-            <b>(1) Humanizam</b> — čovjek (ne Bog) u centru. Zanimanje za antiku, latinsku i grčku književnost. Pisci su obrazovani u Italiji. <b>(2) Narodni jezik</b> — piše se na <em>narodnom, a ne latinskom</em> jeziku (iako Marulić piše i na latinskom). <b>(3) Petrarkizam</b> — dominantan lirski pravac: ljubavna lirika po uzoru na Petrarcu, motivi nesretne ljubavi, „gospoja". <b>(4) Pastorala</b> — idealizirani seosko-pastirski prostor kao scena za ljubavne radnje i filozofske razgovore. <b>(5) Dvostruko rimovani dvanaesterac</b> — standardni stih hrv. renesanse.
+            <b>(1) Humanizam</b> — čovjek (ne Bog) u centru. Zanimanje za antiku, latinsku i grčku književnost. Pisci su obrazovani u Italiji. <b>(2) Narodni jezik</b> — piše se na <em>narodnom, a ne latinskom</em> jeziku (iako Marulić piše i na latinskom). <b>(3) Petrarkizam</b> — dominantan lirski pravac: ljubavna lirika po uzoru na Petrarcu, motivi nesretne ljubavi, „gospoja&quot;. <b>(4) Pastorala</b> — idealizirani seosko-pastirski prostor kao scena za ljubavne radnje i filozofske razgovore. <b>(5) Dvostruko rimovani dvanaesterac</b> — standardni stih hrv. renesanse.
           </div>
         </div>
 
@@ -202,8 +202,8 @@ export default function Teorija({ onTabSwitch }) {
             <b>Marulić</b> → Vergilije (<em>Eneida</em>), Horacije, Biblija. Piše u tradiciji rimskog epa.<br />
             <b>Menčetić, Džore Držić</b> → Francesco Petrarca (<em>Kanconijer</em>). Čisti petrarkistički repertoar bez formalne discipline soneta.<br />
             <b>Lucić</b> → Petrarca + neoplatonisti (Ficino, Bembo). Ljubav kao duhovna snaga.<br />
-            <b>Zoranić</b> → Jacopo Sannazaro (<em>L'Arcadia</em>), Boccaccio (<em>Ameto</em>). Pastoralni roman kao žanr.<br />
-            <b>Marin Držić</b> → Plautus (<em>Aulularija</em> → <em>Skup</em>), talijanska commedia dell'arte, Boccaccio (<em>Dekameron</em> kao uzor za situacijsku komiku).<br />
+            <b>Zoranić</b> → Jacopo Sannazaro (<em>L&apos;Arcadia</em>), Boccaccio (<em>Ameto</em>). Pastoralni roman kao žanr.<br />
+            <b>Marin Držić</b> → Plautus (<em>Aulularija</em> → <em>Skup</em>), talijanska commedia dell&apos;arte, Boccaccio (<em>Dekameron</em> kao uzor za situacijsku komiku).<br />
             <b>Hektorović</b> → Vergilije (<em>Ekloge</em>, <em>Georgike</em>) za idilični ton, ali ga nadilazi realizmom.
           </div>
         </div>
@@ -212,7 +212,7 @@ export default function Teorija({ onTabSwitch }) {
           <div className="bw-ico">⚠️</div>
           <div className="bw-body">
             <div className="bw-title">Turska opasnost kao stalni kontekst</div>
-            <div className="bw-txt">Sva renesansna književnost nastaje u sjeni <strong>turske opasnosti</strong>. Marulić u Juditi alegorički potiče otpor; Hektorović opisuje opustjele krajeve; čak i Zoranićev putopis nosi tugu za „rasutom bašćinom". Ne zaboravi ovaj kontekst u eseju — <em>to je lokalna specifičnost hrv. renesanse</em> koja je razlikuje od talijanske.</div>
+            <div className="bw-txt">Sva renesansna književnost nastaje u sjeni <strong>turske opasnosti</strong>. Marulić u Juditi alegorički potiče otpor; Hektorović opisuje opustjele krajeve; čak i Zoranićev putopis nosi tugu za „rasutom bašćinom&quot;. Ne zaboravi ovaj kontekst u eseju — <em>to je lokalna specifičnost hrv. renesanse</em> koja je razlikuje od talijanske.</div>
           </div>
         </div>
 
@@ -222,8 +222,8 @@ export default function Teorija({ onTabSwitch }) {
           <div className="box-key-lbl">🔑 Humanizam — 3 aspekta koji ulaze u esej</div>
           <div className="box-key-txt">
             <b>(1) Obrazovni humanizam:</b> Pisci su studirani na antici — čitaju Cicerona, Vergilija, Horacija. Marulić piše latinskim i citira antičke autore. Humanizam nije ateizam — to je orijentacija na antičku mudrost u kršćanskom okviru.<br />
-            <b>(2) Kulturni humanizam:</b> Vjera da književnost može prenijeti vrijednosti i oblikovati zajednicu. Marulić piše Juditu za „sunarodnjake" — kao moralni i politički apel. Hektorović bilježi bugarštice jer smatra da su kulturna vrijednost.<br />
-            <b>(3) Demokratski humanizam:</b> Hektorović sjedi s ribarima kao jednakima — ne promatrač nego sugovornik. To je humanistički program: ni jedan čovjek nije samo „objekt" nego potencijalni sugovornik i nosač vrijednosti.
+            <b>(2) Kulturni humanizam:</b> Vjera da književnost može prenijeti vrijednosti i oblikovati zajednicu. Marulić piše Juditu za „sunarodnjake&quot; — kao moralni i politički apel. Hektorović bilježi bugarštice jer smatra da su kulturna vrijednost.<br />
+            <b>(3) Demokratski humanizam:</b> Hektorović sjedi s ribarima kao jednakima — ne promatrač nego sugovornik. To je humanistički program: ni jedan čovjek nije samo „objekt&quot; nego potencijalni sugovornik i nosač vrijednosti.
           </div>
         </div>
 
@@ -234,7 +234,7 @@ export default function Teorija({ onTabSwitch }) {
             <div className="tl-dot">1</div>
             <div className="tl-body">
               <div className="tl-year">1450.–1524.</div>
-              <div className="tl-title">Marko Marulić — „otac hr. književnosti"</div>
+              <div className="tl-title">Marko Marulić — „otac hr. književnosti&quot;</div>
               <div className="tl-desc">Split. Ep <em>Judita</em> dovršena <strong>1501.</strong>, tiskana 1521. — prvi veliki ep na hrvatskom. Alegorija otpora Turcima. Piše i latinsku prozu (Institucija, Davidijada).</div>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function Teorija({ onTabSwitch }) {
             <div className="tl-dot">6</div>
             <div className="tl-body">
               <div className="tl-year">1508.–1567.</div>
-              <div className="tl-title">Marin Držić — „Vidra" — najveći hrv. dramaturg</div>
+              <div className="tl-title">Marin Držić — „Vidra&quot; — najveći hrv. dramaturg</div>
               <div className="tl-desc">Dubrovnik. <em>Novela od Stanca</em> (1550.) — farsa, pokladna igra. <em>Dundo Maroje</em> (1551.) — najstarija hrv. prozna drama. <em>Skup</em> (1556.) — komedija po uzoru na Plauta. <strong>Obvezatno 2026.</strong></div>
             </div>
           </div>
@@ -367,7 +367,7 @@ export default function Teorija({ onTabSwitch }) {
             <div className="tl-body">
               <div className="tl-year">1526./1527.</div>
               <div className="tl-title">Bitka kod Mohača + osmansko napredovanje</div>
-              <div className="tl-desc">Ugarska propada, Hrvatska ostaje kao <em>reliquiae reliquiarum</em> (ostaci ostataka). Turska opasnost nije apstraktna — to je egzistencijalna prijetnja. <b>Svaki hrv. pisac 16. st. piše u sjeni ovog poraza.</b> Zoranićeva „rasuta bašćina" je odgovor na Mohač.</div>
+              <div className="tl-desc">Ugarska propada, Hrvatska ostaje kao <em>reliquiae reliquiarum</em> (ostaci ostataka). Turska opasnost nije apstraktna — to je egzistencijalna prijetnja. <b>Svaki hrv. pisac 16. st. piše u sjeni ovog poraza.</b> Zoranićeva „rasuta bašćina&quot; je odgovor na Mohač.</div>
             </div>
           </div>
         </div>
@@ -375,7 +375,7 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-key">
           <div className="box-key-lbl">🧠 Filozofija renesanse — što su pisci čitali</div>
           <div className="box-key-txt">
-            <b>Neoplatonizam</b> (Ficino, Pico della Mirandola): ljubav kao duhovna snaga prema Bogu. Utjecaj na Lucića — ljubav nije samo tjelesna. <b>Stoicizam</b>: mudraci vladaju strastima. Utjecaj na Marulića — Judita pobjeđuje zahvaljujući samokontroli i vjeri. <b>Aristotelova poetika</b>: tragedija, komedija, katarza — uvodi se u kazalište. Utjecaj na Držića — Skup je aristotelova komedija. <b>Ciceron</b>: retorika kao temelj humanističkog obrazovanja. Svi pisci educated u latinskom po Ciceronu. <b>Vergilijev rustični ideal</b>: priroda kao mjesto oporavka duše — Planine i Ribanje kao hrv. „Arcadia".
+            <b>Neoplatonizam</b> (Ficino, Pico della Mirandola): ljubav kao duhovna snaga prema Bogu. Utjecaj na Lucića — ljubav nije samo tjelesna. <b>Stoicizam</b>: mudraci vladaju strastima. Utjecaj na Marulića — Judita pobjeđuje zahvaljujući samokontroli i vjeri. <b>Aristotelova poetika</b>: tragedija, komedija, katarza — uvodi se u kazalište. Utjecaj na Držića — Skup je aristotelova komedija. <b>Ciceron</b>: retorika kao temelj humanističkog obrazovanja. Svi pisci educated u latinskom po Ciceronu. <b>Vergilijev rustični ideal</b>: priroda kao mjesto oporavka duše — Planine i Ribanje kao hrv. „Arcadia&quot;.
           </div>
         </div>
 
@@ -420,7 +420,7 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-int">
           <div className="box-int-lbl">💛 Što je petrarkizam</div>
           <div className="box-int-txt">
-            <strong>Petrarkizam</strong> je pjesnički pravac po uzoru na Francesca Petrarcu (<em>Kanconijer</em>, 14. st.). Obilježja: <em>nesretna ljubav, idealizirana „gospoja" koja odbija pjesnika, bol i slast ljubavi, Amor/Kupido kao okrutni bog</em>. Hrv. petrarkisti <b>NE pišu sonete</b> — pišu <em>dvostruko rimovane dvanaesterce</em>. Dijele se na <b>dvije generacije</b>.
+            <strong>Petrarkizam</strong> je pjesnički pravac po uzoru na Francesca Petrarcu (<em>Kanconijer</em>, 14. st.). Obilježja: <em>nesretna ljubav, idealizirana „gospoja&quot; koja odbija pjesnika, bol i slast ljubavi, Amor/Kupido kao okrutni bog</em>. Hrv. petrarkisti <b>NE pišu sonete</b> — pišu <em>dvostruko rimovane dvanaesterce</em>. Dijele se na <b>dvije generacije</b>.
           </div>
         </div>
 
@@ -441,15 +441,15 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-int">
           <div className="box-int-lbl">🔬 Menčetić — analiza stiha <em>Blažen čas i hip</em></div>
           <div className="box-int-txt">
-            <em style={{'color':'var(--gold)'}}>„Blažen čas i hip ki te rodi i mati,<br />blažena kolipka ka te povi u sviti,<br />blažena ti ženska ka te doji i goji<br />i blažen taj zraci ki s tobom se smoji."</em><br /><br />
-            <b>Analiza:</b> Anafora (<em>blažen/blažena</em> — ponavljanje u početku stiha) pojačava euforiju prvog pogleda. Dvostruko rimovani dvanaesterac (cesura po 6. slogu). Lirski subjekt slavi apsolutno sve što je vezano uz „gospoju" — od poroda do dojenja. <em>Senzualni idealizam</em> — gospoja je tjelesno opisana, ali idealizirana. Ovo je Menčetićev prepjev Petrarcinog soneta u hrv. dvanaesterac.
+            <em style={{'color':'var(--gold)'}}>„Blažen čas i hip ki te rodi i mati,<br />blažena kolipka ka te povi u sviti,<br />blažena ti ženska ka te doji i goji<br />i blažen taj zraci ki s tobom se smoji.&quot;</em><br /><br />
+            <b>Analiza:</b> Anafora (<em>blažen/blažena</em> — ponavljanje u početku stiha) pojačava euforiju prvog pogleda. Dvostruko rimovani dvanaesterac (cesura po 6. slogu). Lirski subjekt slavi apsolutno sve što je vezano uz „gospoju&quot; — od poroda do dojenja. <em>Senzualni idealizam</em> — gospoja je tjelesno opisana, ali idealizirana. Ovo je Menčetićev prepjev Petrarcinog soneta u hrv. dvanaesterac.
           </div>
         </div>
 
         <div className="box-int">
           <div className="box-int-lbl">🔬 Lucić — analiza stiha <em>Jur nijedna na svit vila</em></div>
           <div className="box-int-txt">
-            <em style={{'color':'var(--gold)'}}>„Jur nijedna na svit vila<br />ljuvenim me ognjem gori,<br />ka bi meni povoljna bila,<br />da mi srce sav dan gori."</em><br /><br />
+            <em style={{'color':'var(--gold)'}}>„Jur nijedna na svit vila<br />ljuvenim me ognjem gori,<br />ka bi meni povoljna bila,<br />da mi srce sav dan gori.&quot;</em><br /><br />
             <b>Analiza:</b> <strong>Osmesterac</strong> (8 slogova) — odmak od dvanaesterca. Ukrštena rima (ABAB) u prvim 4, obgrljena (ABBA) u sljedećim 4 stihovima svake strofe. <em>Neoplatonistički ton</em> — nijedno zemaljsko biće ne može zadovoljiti lirski subjekt, jer on traži nezemaljsku savršenost. Lucić je dalje od senzualnosti Menčetića — bliže duhovnom idealu. <b>Razlika I. vs. II. gen.:</b> Menčetić žudi za konkretnom gospojom; Lucić tuguje što ne postoji savršena.
           </div>
         </div>
@@ -477,7 +477,7 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-int">
           <div className="box-int-lbl">📊 Petrarca vs. hrv. petrarkisti — što je preuzeto, što izmijenjeno</div>
           <div className="box-int-txt">
-            <b>Preuzeto od Petrarce:</b> tematika nesretne ljubavi, motiv „gospoje", Amor/Kupido kao okrutni bog, usporedba ljepote s prirodom, antiteze (bol i slast ljubavi), kontradikcija osjećaja (<em>„volim i mrzim"</em>).<br />
+            <b>Preuzeto od Petrarce:</b> tematika nesretne ljubavi, motiv „gospoje&quot;, Amor/Kupido kao okrutni bog, usporedba ljepote s prirodom, antiteze (bol i slast ljubavi), kontradikcija osjećaja (<em>„volim i mrzim&quot;</em>).<br />
             <b>Izmijenjeno u hrv. kontekstu:</b> stih — <em>dvostruko rimovani dvanaesterac</em> umjesto soneta; jezik — lokalni idiomi umjesto toskanskog; ton — nešto melodiozniji, manje formalan; kontekst — u pozadini turska opasnost koje u Petrarce nema.<br />
             <b>Specifičnost I. gen.:</b> Menčetić i Džore Držić se razlikuju (<em>senzualnost vs. idealizacija</em>) — hrv. petrarkizam nije jedinstven.<br />
             <b>Specifičnost II. gen.:</b> Lucić uvodi neoplatonizam i mijenja stih (osmesterac) — evolucija, ne kopija.
@@ -528,7 +528,7 @@ export default function Teorija({ onTabSwitch }) {
           <div className="cr"><div className="ck br">ŽANR</div><div className="cv b">DEFINICIJA</div><div className="cv b">HRV. PRIMJER</div><div className="cv b">KLJUČNI POJMOVI</div></div>
           <div className="cr"><div className="ck go">Ep</div><div className="cv">Dugo narativno djelo u stihu, junak koji ostvaruje veliku misiju, invokacija muze, in medias res</div><div className="cv">Marulić: <em>Judita</em> (6 pjev., 2126 dvanaest.)</div><div className="cv">invokacija, in medias res, epski pripovijedač, alegorija</div></div>
           <div className="cr"><div className="ck t">Farsa</div><div className="cv">Kratka komična drama namijenjena pokladama — tipski likovi, gruba situacijska komika, bez moralne pouke</div><div className="cv">Držić: <em>Novela od Stanca</em> (1 čin, 7 prizora)</div><div className="cv">pokladna igra, komika situacije, tipski lik, karnevalska sloboda</div></div>
-          <div className="cr"><div className="ck re">Komedija</div><div className="cv">Dramsko djelo s komičnim zapletom, razrađenim likovima, sretan kraj</div><div className="cv">Držić: <em>Dundo Maroje</em> (5 čin., proza), <em>Skup</em> (5 čin.)</div><div className="cv">commedia erudita, commedia dell'arte, zaplet, rasplet</div></div>
+          <div className="cr"><div className="ck re">Komedija</div><div className="cv">Dramsko djelo s komičnim zapletom, razrađenim likovima, sretan kraj</div><div className="cv">Držić: <em>Dundo Maroje</em> (5 čin., proza), <em>Skup</em> (5 čin.)</div><div className="cv">commedia erudita, commedia dell&apos;arte, zaplet, rasplet</div></div>
           <div className="cr"><div className="ck pa">Roman</div><div className="cv">Duže prozno (ili mješovito) narativno djelo s više likova i zapleta; u renesansi — žanrovski hibrid</div><div className="cv">Zoranić: <em>Planine</em> (~24 pogl., proza+stih)</div><div className="cv">pastoralni roman, alter ego, alegorija, žanrovski hibrid</div></div>
           <div className="cr"><div className="ck g">Putopis / ekloga</div><div className="cv">Opis stvarnog putovanja + idilični ton pastirskog/ribarskog prostora</div><div className="cv">Hektorović: <em>Ribanje</em> (ribarska ekloga + putopis + poslanica)</div><div className="cv">ekloga, poslanica, bugarštica, dokumentarni realizam</div></div>
           <div className="cr"><div className="ck br">Drama s radnjom</div><div className="cv">Drama s razrađenim zapletom, individualnim likovima i moralnom porukom</div><div className="cv">Lucić: <em>Robinja</em> (3 čina, 1530.)</div><div className="cv">individualizirani lik, sukob, rasplet, didaktika</div></div>
@@ -540,9 +540,9 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-key">
           <div className="box-key-lbl">📖 Primjeri stihova za svaki žanr</div>
           <div className="box-key-txt" style={{'fontSize':'13px','lineHeight':'1.9'}}>
-            <b>Ep (Judita):</b> <em style={{'color':'var(--gold)'}}>„Libar Marka Marula Splićanina u kom se uzdarži istorija svete udovice Judit u versih harvacki složena..."</em> — epska invokacija i dvostruki dvanaesterac.<br />
+            <b>Ep (Judita):</b> <em style={{'color':'var(--gold)'}}>„Libar Marka Marula Splićanina u kom se uzdarži istorija svete udovice Judit u versih harvacki složena...&quot;</em> — epska invokacija i dvostruki dvanaesterac.<br />
             <b>Farsa (Novela od Stanca):</b> Dijalog bez pripovijedača — sve je situacija i razgovor. Dvostruki dvanaesterci daju ritmičnost čak i komičnim scenama.<br />
-            <b>Petrarkistička lirika:</b> <em style={{'color':'var(--gold)'}}>„Blažen čas i hip ki te rodi i mati..."</em> — anafora, idealizacija, dvostruki dvanaesterac.<br />
+            <b>Petrarkistička lirika:</b> <em style={{'color':'var(--gold)'}}>„Blažen čas i hip ki te rodi i mati...&quot;</em> — anafora, idealizacija, dvostruki dvanaesterac.<br />
             <b>Roman (Planine):</b> Mješavina proze i stiha — pripovijedanje se izmjenjuje s umješenim lirskim pjesmama vila i pastira.<br />
             <b>Putopis / ekloga (Ribanje):</b> Konkretni topografski opisi (Hvar, Brač, Šolta) + dijalozi ribara + bugarštice. Realizam bez alegorije.<br />
             <b>Drama s radnjom (Robinja):</b> Dijalozi koji razvijaju zaplet — Robinja i Derenčin razgovaraju, Turčin pregovara. Prva hrv. drama s pravim sukobom i rasplatom.
@@ -571,11 +571,11 @@ export default function Teorija({ onTabSwitch }) {
         <div className="sec-hdr"><div className="sec-line"></div><div className="sec-badge">05 · Usporedna tablica pisaca</div><div className="sec-line"></div></div>
 
         <div className="tbl">
-          <div className="cr"><div className="ck br" style={{'minWidth':'80px'}}>PISAC</div><div className="cv"><b>Marko Marulić</b> · Split · 1450.–1524. · „otac hrv. književnosti"<br /><em>Judita</em> (1501.) — ep, 6 pjevanja, 2126 dvanaesteraca; alegorija otpora Turcima. <em>Davidijada</em>, <em>Institucija</em> — latinska proza.</div></div>
+          <div className="cr"><div className="ck br" style={{'minWidth':'80px'}}>PISAC</div><div className="cv"><b>Marko Marulić</b> · Split · 1450.–1524. · „otac hrv. književnosti&quot;<br /><em>Judita</em> (1501.) — ep, 6 pjevanja, 2126 dvanaesteraca; alegorija otpora Turcima. <em>Davidijada</em>, <em>Institucija</em> — latinska proza.</div></div>
           <div className="cr"><div className="ck go" style={{'minWidth':'80px'}}>PISAC</div><div className="cv"><b>Petar Hektorović</b> · Hvar · 1487.–1572.<br /><em>Ribanje i ribarsko prigovaranje</em> (1556.) — ep/putopis/ekloga/poslanica. Zapisuje bugarštice i narodne pjesme. Put Hvar–Brač–Šolta.</div></div>
-          <div className="cr"><div className="ck t" style={{'minWidth':'80px'}}>PISAC</div><div className="cv"><b>Petar Zoranić</b> · Zadar · ~1508.–1569.<br /><em>Planine</em> (nastale oko 1543., tisk. 1569.) — prvi hrv. roman. 24 poglavlja, mješavina proze i stiha. <em>Perivoj od Slave</em> — alegorija hrv. književnosti. Motiv „rasute bašćine".</div></div>
+          <div className="cr"><div className="ck t" style={{'minWidth':'80px'}}>PISAC</div><div className="cv"><b>Petar Zoranić</b> · Zadar · ~1508.–1569.<br /><em>Planine</em> (nastale oko 1543., tisk. 1569.) — prvi hrv. roman. 24 poglavlja, mješavina proze i stiha. <em>Perivoj od Slave</em> — alegorija hrv. književnosti. Motiv „rasute bašćine&quot;.</div></div>
           <div className="cr"><div className="ck pa" style={{'minWidth':'80px'}}>PISAC</div><div className="cv"><b>Hanibal Lucić</b> · Hvar · 1485.–1553.<br /><em>Jur nijedna na svit vila</em> — lirika u osmercima, 10 strofa. <em>Robinja</em> (1530.) — prva hrv. svjetovna drama, 3 čina.</div></div>
-          <div className="cr"><div className="ck re" style={{'minWidth':'80px'}}>PISAC</div><div className="cv"><b>Marin Držić</b> · Dubrovnik · 1508.–1567. · zvan „Vidra"<br /><em>Novela od Stanca</em> (1550.) — farsa/pokladna igra, 1 čin 7 prizora, dvanaesterci. <em>Dundo Maroje</em> (1551.) — prozna komedija, 5 činova. <em>Skup</em> (1556.) — po Plautu. <strong>★ OBVEZATNO 2026.</strong></div></div>
+          <div className="cr"><div className="ck re" style={{'minWidth':'80px'}}>PISAC</div><div className="cv"><b>Marin Držić</b> · Dubrovnik · 1508.–1567. · zvan „Vidra&quot;<br /><em>Novela od Stanca</em> (1550.) — farsa/pokladna igra, 1 čin 7 prizora, dvanaesterci. <em>Dundo Maroje</em> (1551.) — prozna komedija, 5 činova. <em>Skup</em> (1556.) — po Plautu. <strong>★ OBVEZATNO 2026.</strong></div></div>
         </div>
 
         {/* SEC 05a — Književna središta */}
@@ -646,7 +646,7 @@ export default function Teorija({ onTabSwitch }) {
           <div className="cr"><div className="ck br">TEMA</div><div className="cv b">Hrv. renesansa</div><div className="cv b">Talijanska renesansa</div></div>
           <div className="cr"><div className="ck go">Stih</div><div className="cv">Dvostruko rimovani dvanaesterac (AA BB ili AB AB)</div><div className="cv">Sonet (14 stihova), tercine, ottava rima</div></div>
           <div className="cr"><div className="ck t">Lirika</div><div className="cv">Petrarkistički motivi <em>bez</em> soneta — melodiozniji, narodniji</div><div className="cv">Sonet po Petrarci — stroga formalna disciplina</div></div>
-          <div className="cr"><div className="ck pa">Kontekst</div><div className="cv">Turska opasnost, patriotski apeli, „rasuta bašćina"</div><div className="cv">Građanski humanizam, Medici, politika gradova-država</div></div>
+          <div className="cr"><div className="ck pa">Kontekst</div><div className="cv">Turska opasnost, patriotski apeli, „rasuta bašćina&quot;</div><div className="cv">Građanski humanizam, Medici, politika gradova-država</div></div>
           <div className="cr"><div className="ck re">Jezik</div><div className="cv">Čakavski, štokavski, dubrovački idiom — nije normiran</div><div className="cv">Toskansko narječje — Dante, Petrarca, Boccaccio kao norme</div></div>
           <div className="cr"><div className="ck g">Dramu</div><div className="cv">Farsa i komedija — Držić; pastorala — Džore Držić, Lucić</div><div className="cv">Commedia erudita, pastorala — Ariosto, Tasso</div></div>
         </div>
@@ -654,7 +654,7 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-signal">
           <div>
             <div className="box-signal-lbl">💡 Ključna razlika: Marulić vs. Držić</div>
-            <div className="box-signal-txt">Marulić piše <b>ep s biblijsko-kršćanskim temama</b>, namijenjen evangelizaciji i borbi protiv Turaka. Držić piše <b>komediju i farsu</b>, namijenjen dubrovačkim pokladnim svečanostima — komentar lokalnog društva, opreka starosti i mladosti. Oba su „oci" hrv. književnosti u različitim žanrovima.</div>
+            <div className="box-signal-txt">Marulić piše <b>ep s biblijsko-kršćanskim temama</b>, namijenjen evangelizaciji i borbi protiv Turaka. Držić piše <b>komediju i farsu</b>, namijenjen dubrovačkim pokladnim svečanostima — komentar lokalnog društva, opreka starosti i mladosti. Oba su „oci&quot; hrv. književnosti u različitim žanrovima.</div>
           </div>
         </div>
 
@@ -682,16 +682,16 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-key">
           <div className="box-key-lbl">📝 Gotove rečenice za usporedbu hrv. i tal. renesanse u eseju</div>
           <div className="box-key-txt">
-            <em>„Talijanska renesansa slavi čovjeka kao mjeru svih stvari; hrvatska renesansa ne može slaviti — ona tuguje. Dok Italija cvjeta u ekonomskoj i kulturnoj slobodi, Hrvatska umire u podijeljenom teritoriju i stalnoj turskoj prijetnji. Ta razlika nije slabost hrv. renesanse — to je njezina autentičnost."</em><br /><br />
-            <em>„Petrarcu piše sonete jer ima slobodu forme i publike. Hrv. petrarkisti pišu dvostruke dvanaesterce jer nadograđuju vlastitu začinjavačku tradiciju. Oba su petrarkisti — ali različitih tradicija."</em><br /><br />
-            <em>„Jedina hrv. renesansna figura poznata u Europi je Marulić — i to ne po Juditi (hrv.) nego po Instituciji (lat.). Što govori o statusu hrv. u europskom humanizmu 16. st."</em>
+            <em>„Talijanska renesansa slavi čovjeka kao mjeru svih stvari; hrvatska renesansa ne može slaviti — ona tuguje. Dok Italija cvjeta u ekonomskoj i kulturnoj slobodi, Hrvatska umire u podijeljenom teritoriju i stalnoj turskoj prijetnji. Ta razlika nije slabost hrv. renesanse — to je njezina autentičnost.&quot;</em><br /><br />
+            <em>„Petrarcu piše sonete jer ima slobodu forme i publike. Hrv. petrarkisti pišu dvostruke dvanaesterce jer nadograđuju vlastitu začinjavačku tradiciju. Oba su petrarkisti — ali različitih tradicija.&quot;</em><br /><br />
+            <em>„Jedina hrv. renesansna figura poznata u Europi je Marulić — i to ne po Juditi (hrv.) nego po Instituciji (lat.). Što govori o statusu hrv. u europskom humanizmu 16. st.&quot;</em>
           </div>
         </div>
 
         <div className="sec-hdr"><div className="sec-line"></div><div className="sec-badge">07 · Jezik hrvatske renesanse</div><div className="sec-line"></div></div>
 
         <div className="box-int">
-          <div className="box-int-lbl">🗣️ Nije bio „jedan" hrvatski — tri idioma</div>
+          <div className="box-int-lbl">🗣️ Nije bio „jedan&quot; hrvatski — tri idioma</div>
           <div className="box-int-txt">
             U 15.–16. st. <strong>ne postoji normirani hrvatski standard</strong>. Pisci pišu lokalnim govorima — onim koji im je zavičajni. Tri idioma su prisutna u renesansnoj književnosti: <b>čakavski</b> (Split, Hvar, dalmatinski otoci), <b>štokavski</b> (Zadar, kontinentalna Dalmacija) i <b>dubrovački idiom</b> (koji je mješavina štokavice s čakavskim i talijanskim elementima). Svaki pisac je ujedno i svjedok svog lokalnog govora.
           </div>
@@ -699,15 +699,15 @@ export default function Teorija({ onTabSwitch }) {
 
         <div className="tbl">
           <div className="cr"><div className="ck br" style={{'minWidth':'110px'}}>IDIOM</div><div className="cv b">PISCI</div><div className="cv b">KARAKTERISTIKE</div></div>
-          <div className="cr"><div className="ck go" style={{'minWidth':'110px'}}>Čakavski</div><div className="cv">Marulić (Split), Hektorović (Hvar), Lucić (Hvar)</div><div className="cv"><em>Judita</em> pisana splitskom čakavštinom. Marulić u posveti navodi: „versih harvacki složena". Stariji, arhaičniji govor — bliže latinskom leksiku.</div></div>
+          <div className="cr"><div className="ck go" style={{'minWidth':'110px'}}>Čakavski</div><div className="cv">Marulić (Split), Hektorović (Hvar), Lucić (Hvar)</div><div className="cv"><em>Judita</em> pisana splitskom čakavštinom. Marulić u posveti navodi: „versih harvacki složena&quot;. Stariji, arhaičniji govor — bliže latinskom leksiku.</div></div>
           <div className="cr"><div className="ck t" style={{'minWidth':'110px'}}>Štokavski</div><div className="cv">Zoranić (Zadar), Krnarutić (Zadar)</div><div className="cv">Mješavina čakavsko-štokavska u Zoranićevim <em>Planinama</em>. Zadarski pisci na granici dijalekata.</div></div>
-          <div className="cr"><div className="ck re" style={{'minWidth':'110px'}}>Dubrovački idiom</div><div className="cv">Menčetić, Džore Držić, Marin Držić</div><div className="cv">Štokavska osnova s čakavskim i talijanskim elementima. <strong>Postaje de facto književni standard</strong> — Dubrovnik kao kulturni centar nameće svoj idiom kao „prestižni govor".</div></div>
+          <div className="cr"><div className="ck re" style={{'minWidth':'110px'}}>Dubrovački idiom</div><div className="cv">Menčetić, Džore Držić, Marin Držić</div><div className="cv">Štokavska osnova s čakavskim i talijanskim elementima. <strong>Postaje de facto književni standard</strong> — Dubrovnik kao kulturni centar nameće svoj idiom kao „prestižni govor&quot;.</div></div>
         </div>
 
         <div className="box-key">
           <div className="box-key-lbl">⚡ Zašto to znaš za maturu</div>
           <div className="box-key-txt">
-            Ispit može pitati <b>na kojem je jeziku/narječju napisano određeno djelo</b> ili usporediti jezičnu situaciju hrv. renesanse s kasnijim standardiziranjem. Ključne tvrdnje: <em>Judita</em> = splitska čakavština; <em>Ranjinin zbornik</em> = dubrovački idiom; <em>Dundo Maroje</em> = prozna dubrovačka štokavica. Sve su to <b>lokalni govori</b>, nije „standardni" hrv. — standardizacija dolazi tek u 19. st. s Preporodom (Vuk Stefanović Karadžić, Gaj, Babukić).
+            Ispit može pitati <b>na kojem je jeziku/narječju napisano određeno djelo</b> ili usporediti jezičnu situaciju hrv. renesanse s kasnijim standardiziranjem. Ključne tvrdnje: <em>Judita</em> = splitska čakavština; <em>Ranjinin zbornik</em> = dubrovački idiom; <em>Dundo Maroje</em> = prozna dubrovačka štokavica. Sve su to <b>lokalni govori</b>, nije „standardni&quot; hrv. — standardizacija dolazi tek u 19. st. s Preporodom (Vuk Stefanović Karadžić, Gaj, Babukić).
           </div>
         </div>
 
@@ -715,7 +715,7 @@ export default function Teorija({ onTabSwitch }) {
           <div className="bw-ico">⚡</div>
           <div className="bw-body">
             <div className="bw-title">Latinski vs. narodni jezik — ključna napetost</div>
-            <div className="bw-txt">Humanisti 15.–16. st. pišu <strong>i latinski i narodni jezik</strong>. Marulić je savršen primjer: <em>Institucija</em> na latinskom (za europsku publiku), <em>Judita</em> na hrvatskom (za domaću). <b>Paradoks:</b> Marulić je poznatiji u Europi po latinskim djelima. U hrv. književnoj povijesti — Judita je „temelj". Isti autor, dva identiteta.</div>
+            <div className="bw-txt">Humanisti 15.–16. st. pišu <strong>i latinski i narodni jezik</strong>. Marulić je savršen primjer: <em>Institucija</em> na latinskom (za europsku publiku), <em>Judita</em> na hrvatskom (za domaću). <b>Paradoks:</b> Marulić je poznatiji u Europi po latinskim djelima. U hrv. književnoj povijesti — Judita je „temelj&quot;. Isti autor, dva identiteta.</div>
           </div>
         </div>
 
@@ -768,7 +768,7 @@ export default function Teorija({ onTabSwitch }) {
           <div className="sc">
             <span className="sc-ico hchip go">VEZA</span>
             <div className="sc-name">Marin Držić → Europska komedija</div>
-            <div className="sc-desc">Dok je za života bio nepoznat izvan Dubrovnika, Marin Držić je u 20. st. <em>„rehabilitiran"</em> kao jedan od prvih modernih europskih komediografa. Česte usporedbe s Moliéreom (koji piše 100 god. poslije). <b>Lokalni pisac s europskim značajem</b> — ali to su prepoznali tek kasniji generacije.</div>
+            <div className="sc-desc">Dok je za života bio nepoznat izvan Dubrovnika, Marin Držić je u 20. st. <em>„rehabilitiran&quot;</em> kao jedan od prvih modernih europskih komediografa. Česte usporedbe s Moliéreom (koji piše 100 god. poslije). <b>Lokalni pisac s europskim značajem</b> — ali to su prepoznali tek kasniji generacije.</div>
           </div>
         </div>
 
@@ -790,7 +790,7 @@ export default function Teorija({ onTabSwitch }) {
           <div className="sc">
             <span className="sc-ico hchip go">ISPIT</span>
             <div className="sc-name">Pitanja koja se ponavljaju</div>
-            <div className="sc-desc"><em>Tko je autor Judite?</em> <em>Što je bugarštica?</em> <em>Pišu li hrv. petrarkisti sonete?</em> <em>Što je Perivoj od Slave?</em> <em>Što je farsa?</em> <em>Kada je Novela od Stanca praizvedena?</em> <em>Tko je „otac hrv. književnosti"?</em> — sve ovo se pojavljuje redovito.</div>
+            <div className="sc-desc"><em>Tko je autor Judite?</em> <em>Što je bugarštica?</em> <em>Pišu li hrv. petrarkisti sonete?</em> <em>Što je Perivoj od Slave?</em> <em>Što je farsa?</em> <em>Kada je Novela od Stanca praizvedena?</em> <em>Tko je „otac hrv. književnosti&quot;?</em> — sve ovo se pojavljuje redovito.</div>
           </div>
           <div className="sc">
             <span className="sc-ico hchip re">ISPIT</span>
@@ -836,9 +836,9 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-key">
           <div className="box-key-lbl">📝 Rečenice za esej koje koriste kontraste</div>
           <div className="box-key-txt">
-            <em>„Za razliku od Marulića koji kodira domoljubni apel u biblijsku alegoriju, Hektorović bilježi stvarnost izravno — oba su odgovori na istu prijetnju, ali suprotnih poetičkih strategija."</em><br />
-            <em>„Dok Marulić u Juditi nudi eksplicitnu moralnu poruku (pobožnost pobjeđuje), Držić u Noveli od Stanca odbija moralizirati — farsa prikazuje, ne prosuđuje."</em><br />
-            <em>„Zoranić u Planinama spaja ono što drugi hrv. renesansni pisci drže odvojenima: ljubavnu melankoliju i patriotski bol — u njemu su to iste emocije s različitim imenima."</em>
+            <em>„Za razliku od Marulića koji kodira domoljubni apel u biblijsku alegoriju, Hektorović bilježi stvarnost izravno — oba su odgovori na istu prijetnju, ali suprotnih poetičkih strategija.&quot;</em><br />
+            <em>„Dok Marulić u Juditi nudi eksplicitnu moralnu poruku (pobožnost pobjeđuje), Držić u Noveli od Stanca odbija moralizirati — farsa prikazuje, ne prosuđuje.&quot;</em><br />
+            <em>„Zoranić u Planinama spaja ono što drugi hrv. renesansni pisci drže odvojenima: ljubavnu melankoliju i patriotski bol — u njemu su to iste emocije s različitim imenima.&quot;</em>
           </div>
         </div>
 
@@ -860,7 +860,7 @@ export default function Teorija({ onTabSwitch }) {
               <div className="scene-meta">TEORIJA</div>
             </summary>
             <div className="scene-body">
-              <div className="scene-quote">Petrarkizam je lirski pravac inspiriran Petrarcinim Kanconijerom — ljubavna lirika s motivima nesretne ljubavi, idealizirane gospoje, Amora, antiteza boli i slasti. Hrv. petrarkisti preuzimaju tematiku, ali MIJENJAJU FORMU: umjesto Petrarcinog soneta (14 stihova), pišu dvostruko rimovane dvanaesterce. Iznimka: Lucić u „Jur nijedna na svit vila" piše osmerce. Razlog: sonet je nastao iz talijanske lirike — u hrv. tradiciji ne postoji sonetna tradicija, postoji tradicija dvanaesterca (od začinjavaca).</div>
+              <div className="scene-quote">Petrarkizam je lirski pravac inspiriran Petrarcinim Kanconijerom — ljubavna lirika s motivima nesretne ljubavi, idealizirane gospoje, Amora, antiteza boli i slasti. Hrv. petrarkisti preuzimaju tematiku, ali MIJENJAJU FORMU: umjesto Petrarcinog soneta (14 stihova), pišu dvostruko rimovane dvanaesterce. Iznimka: Lucić u „Jur nijedna na svit vila&quot; piše osmerce. Razlog: sonet je nastao iz talijanske lirike — u hrv. tradiciji ne postoji sonetna tradicija, postoji tradicija dvanaesterca (od začinjavaca).</div>
               <div className="scene-why"><b>Ključni pojmovi za odgovor:</b> petrarkizam, sonet, dvostruko rimovani dvanaesterac, osmesterac (Lucić), I. generacija (Menčetić, Džore Držić), II. generacija (Lucić — neoplatonizacija), Ranjinin zbornik.</div>
             </div>
           </details>
@@ -868,12 +868,12 @@ export default function Teorija({ onTabSwitch }) {
           <details className="scene">
             <summary className="scene-sum">
               <div className="scene-num">P2</div>
-              <div className="scene-ttl">Zašto se Marin Držić naziva „Vidrom" i kako je to povezano s njegovim literarnim likom?</div>
+              <div className="scene-ttl">Zašto se Marin Držić naziva „Vidrom&quot; i kako je to povezano s njegovim literarnim likom?</div>
               <div className="scene-meta">PISAC</div>
             </summary>
             <div className="scene-body">
-              <div className="scene-quote">Nadimak „Vidra" (tal. Anguilla) Marin Držić je dobio kao student u Sieni — vjerojatno zbog lukavosti i sposobnosti izvlačenja iz neugodnih situacija (vidra je poznata po klizavosti). Ironično, taj nadimak savršeno opisuje i njegov literarni lik: Držić je čovjek koji se cijeli život izvlačio — iz financijskih problema, iz sukoba s vlastelom, iz kazališnih skandala. Na kraju ipak ne uspijeva — umire sam u Veneciji 1567. Kosmografska poslanica (1566.) je posljednji pokušaj „izvlačenja" — revolucija koja se nije zbila.</div>
-              <div className="scene-why"><b>Ključni pojmovi:</b> Vidra/Anguilla, Siena, Kosmografska poslanica, Cosimo de' Medici, politički angažman, 1567. Venecija.</div>
+              <div className="scene-quote">Nadimak „Vidra&quot; (tal. Anguilla) Marin Držić je dobio kao student u Sieni — vjerojatno zbog lukavosti i sposobnosti izvlačenja iz neugodnih situacija (vidra je poznata po klizavosti). Ironično, taj nadimak savršeno opisuje i njegov literarni lik: Držić je čovjek koji se cijeli život izvlačio — iz financijskih problema, iz sukoba s vlastelom, iz kazališnih skandala. Na kraju ipak ne uspijeva — umire sam u Veneciji 1567. Kosmografska poslanica (1566.) je posljednji pokušaj „izvlačenja&quot; — revolucija koja se nije zbila.</div>
+              <div className="scene-why"><b>Ključni pojmovi:</b> Vidra/Anguilla, Siena, Kosmografska poslanica, Cosimo de&apos; Medici, politički angažman, 1567. Venecija.</div>
             </div>
           </details>
 
@@ -884,7 +884,7 @@ export default function Teorija({ onTabSwitch }) {
               <div className="scene-meta">ŽANR</div>
             </summary>
             <div className="scene-body">
-              <div className="scene-quote">Bugarštica je vrsta hrv. epske narodne pjesme koja se odlikuje dugim stihovima (15–16 slogova) i tužnim, elegičnim tonom (bugarkinja = tuga). Starija je od kasnijih deseteračkih epskih pjesama. Hektorović u Ribanju bilježi dvije bugarštice koje mu pjevaju ribari Nikola Zet i Paskoje Debeli: „Kraljević Marko i brat mu Andrijaš" i „Radosav Siverinac i Vlatko udinski vojvoda". Ovo je NAJSTARIJI ZAPIS bugarštica u hrv. književnosti — bez Hektorovića, te bi pjesme bile zauvijek izgubljene. Ribanje je tako književno djelo I kulturnopovijesni dokument.</div>
+              <div className="scene-quote">Bugarštica je vrsta hrv. epske narodne pjesme koja se odlikuje dugim stihovima (15–16 slogova) i tužnim, elegičnim tonom (bugarkinja = tuga). Starija je od kasnijih deseteračkih epskih pjesama. Hektorović u Ribanju bilježi dvije bugarštice koje mu pjevaju ribari Nikola Zet i Paskoje Debeli: „Kraljević Marko i brat mu Andrijaš&quot; i „Radosav Siverinac i Vlatko udinski vojvoda&quot;. Ovo je NAJSTARIJI ZAPIS bugarštica u hrv. književnosti — bez Hektorovića, te bi pjesme bile zauvijek izgubljene. Ribanje je tako književno djelo I kulturnopovijesni dokument.</div>
               <div className="scene-why"><b>Ključni pojmovi:</b> bugarštica, 15–16 slogova, Nikola Zet, Paskoje Debeli, Kraljević Marko, najstariji zapis, kulturni arhiv.</div>
             </div>
           </details>
@@ -896,7 +896,7 @@ export default function Teorija({ onTabSwitch }) {
               <div className="scene-meta">DJELO</div>
             </summary>
             <div className="scene-body">
-              <div className="scene-quote">Judita je biblijska priča o udovici Juditi koja ubija asirskog vojvodu Holoferna kako bi oslobodila židovski grad Betuliju. Marulić tu priču koristi alegorijski: Holoferno = turska vojska/sultan; Judita = Hrvatska/kršćanski narod; Betulija = hrv. gradovi pod opsadom; Bog Izraelov = kršćanski Bog koji pomaže slabijima; pobjeda Judite = nada u oslobođenje. Alegorija funkcionira jer su strukturne paralele jasne — i Judita i Hrvatska su „slabija strana" koja pobjeđuje uz Božju pomoć. Marulić ne mora ništa reći eksplicitno — čitatelji 16. st. odmah prepoznaju paralelu.</div>
+              <div className="scene-quote">Judita je biblijska priča o udovici Juditi koja ubija asirskog vojvodu Holoferna kako bi oslobodila židovski grad Betuliju. Marulić tu priču koristi alegorijski: Holoferno = turska vojska/sultan; Judita = Hrvatska/kršćanski narod; Betulija = hrv. gradovi pod opsadom; Bog Izraelov = kršćanski Bog koji pomaže slabijima; pobjeda Judite = nada u oslobođenje. Alegorija funkcionira jer su strukturne paralele jasne — i Judita i Hrvatska su „slabija strana&quot; koja pobjeđuje uz Božju pomoć. Marulić ne mora ništa reći eksplicitno — čitatelji 16. st. odmah prepoznaju paralelu.</div>
               <div className="scene-why"><b>Ključni pojmovi:</b> alegorija, Holoferno = Turci, Judita = Hrvatska, Betulija = hrv. gradovi, 6 pjevanja, 2126 dvanaesteraca, splitska čakavština.</div>
             </div>
           </details>
@@ -943,11 +943,11 @@ export default function Teorija({ onTabSwitch }) {
           <div className="cr"><div className="ck re" style={{'minWidth':'100px'}}>Holoferno</div><div className="cv">Marulić, <em>Judita</em></div><div className="cv">Antagonist — asirski vojvoda; okrutan, arogantan, žudan</div><div className="cv">Alegorija: turska vojska/sultan; njegova žudnja = propast</div></div>
           <div className="cr"><div className="ck pa" style={{'minWidth':'100px'}}>Abra</div><div className="cv">Marulić, <em>Judita</em></div><div className="cv">Juditina sluškinja — vjerna pratiteljica; skriva glavu</div><div className="cv">Simbol narodne vjere u Juditino vodstvo</div></div>
           <div className="cr"><div className="ck g" style={{'minWidth':'100px'}}>Ozija</div><div className="cv">Marulić, <em>Judita</em></div><div className="cv">Starješina Betulije — kolebljiv, spreman predati grad</div><div className="cv">Kontrast Juditi: on čeka, ona djeluje</div></div>
-          <div className="cr"><div className="ck br" style={{'minWidth':'100px'}}>Stanec</div><div className="cv">Držić, <em>Novela od Stanca</em></div><div className="cv">Tip „naivnog seljaka" — star, tužan, iz Trebinja</div><div className="cv">★ Žrtva karnevala; žudi za mladošću; tragični element farse</div></div>
-          <div className="cr"><div className="ck go" style={{'minWidth':'100px'}}>Vlaho, Miho, Dživo</div><div className="cv">Držić, <em>Novela od Stanca</em></div><div className="cv">Dubrovački mladići-vlastela — lukavci, traže zabavu</div><div className="cv">Tip „lukave vlastele"; bez moralne osude</div></div>
-          <div className="cr"><div className="ck t" style={{'minWidth':'100px'}}>Dundo Maroje</div><div className="cv">Držić, <em>Dundo Maroje</em></div><div className="cv">Škrti otac — dolazi u Rim po sina Mara i novac</div><div className="cv">Tip „škrtog oca"; pohlepa vs. roditeljska ljubav</div></div>
-          <div className="cr"><div className="ck re" style={{'minWidth':'100px'}}>Pomet (sluga)</div><div className="cv">Držić, <em>Dundo Maroje</em></div><div className="cv">Lukavi sluga — najinteligentniji lik drame</div><div className="cv">Nasljeđe commedia dell'arte (Arlecchino); pobjeđuje lukavošću</div></div>
-          <div className="cr"><div className="ck pa" style={{'minWidth':'100px'}}>Negromant</div><div className="cv">Držić, <em>Dundo Maroje</em> (prolog)</div><div className="cv">Čarobnjak — filozofski uvod drame</div><div className="cv">„Nazbilji" vs. „nahvao" — autorski glas</div></div>
+          <div className="cr"><div className="ck br" style={{'minWidth':'100px'}}>Stanec</div><div className="cv">Držić, <em>Novela od Stanca</em></div><div className="cv">Tip „naivnog seljaka&quot; — star, tužan, iz Trebinja</div><div className="cv">★ Žrtva karnevala; žudi za mladošću; tragični element farse</div></div>
+          <div className="cr"><div className="ck go" style={{'minWidth':'100px'}}>Vlaho, Miho, Dživo</div><div className="cv">Držić, <em>Novela od Stanca</em></div><div className="cv">Dubrovački mladići-vlastela — lukavci, traže zabavu</div><div className="cv">Tip „lukave vlastele&quot;; bez moralne osude</div></div>
+          <div className="cr"><div className="ck t" style={{'minWidth':'100px'}}>Dundo Maroje</div><div className="cv">Držić, <em>Dundo Maroje</em></div><div className="cv">Škrti otac — dolazi u Rim po sina Mara i novac</div><div className="cv">Tip „škrtog oca&quot;; pohlepa vs. roditeljska ljubav</div></div>
+          <div className="cr"><div className="ck re" style={{'minWidth':'100px'}}>Pomet (sluga)</div><div className="cv">Držić, <em>Dundo Maroje</em></div><div className="cv">Lukavi sluga — najinteligentniji lik drame</div><div className="cv">Nasljeđe commedia dell&apos;arte (Arlecchino); pobjeđuje lukavošću</div></div>
+          <div className="cr"><div className="ck pa" style={{'minWidth':'100px'}}>Negromant</div><div className="cv">Držić, <em>Dundo Maroje</em> (prolog)</div><div className="cv">Čarobnjak — filozofski uvod drame</div><div className="cv">„Nazbilji&quot; vs. „nahvao&quot; — autorski glas</div></div>
           <div className="cr"><div className="ck g" style={{'minWidth':'100px'}}>Zoran</div><div className="cv">Zoranić, <em>Planine</em></div><div className="cv">Alter ego pisca — putnik koji liječi ljubavnu bol</div><div className="cv">Pasivni promatrač; pati za Jagom; vidi Perivoj od Slave</div></div>
           <div className="cr"><div className="ck br" style={{'minWidth':'100px'}}>Hrvatska vila</div><div className="cv">Zoranić, <em>Planine</em> (Perivoj od Slave)</div><div className="cv">Alegorija hrv. književnosti — tužna, sramežljiva</div><div className="cv">Jabuke = stanje hrv. književnosti; ključna za manifest</div></div>
           <div className="cr"><div className="ck go" style={{'minWidth':'100px'}}>Nikola Zet + Paskoje Debeli</div><div className="cv">Hektorović, <em>Ribanje</em></div><div className="cv">Ribari — sugovornici, pjevači bugarštica</div><div className="cv">Mudrost svakodnevice; demokratizacija humanizma</div></div>
@@ -976,7 +976,7 @@ export default function Teorija({ onTabSwitch }) {
           <details className="scene">
             <summary className="scene-sum"><div className="scene-num">D</div><div className="scene-ttl">Marin Držić — <em>Vidra · ★ obvezatno 2026.</em></div><div className="scene-meta">DUBROVNIK · 1508.–1567.</div></summary>
             <div className="scene-body">
-              <div className="scene-quote">Dubrovački komediograf (nadimak „Vidra"). Novela od Stanca (1550.): farsa, 1 čin, 7 prizora, dvanaesterci, ★ obvezatno. Dundo Maroje (1551.): najstarija hrv. prozna drama, 5 čin., kraj nedostaje (Kombol). Skup (1556.): po Plautovoj Aululariji. Kosmografska poslanica (1566.): tajna poruka Medicijima. Umire sam u Veneciji 1567.</div>
+              <div className="scene-quote">Dubrovački komediograf (nadimak „Vidra&quot;). Novela od Stanca (1550.): farsa, 1 čin, 7 prizora, dvanaesterci, ★ obvezatno. Dundo Maroje (1551.): najstarija hrv. prozna drama, 5 čin., kraj nedostaje (Kombol). Skup (1556.): po Plautovoj Aululariji. Kosmografska poslanica (1566.): tajna poruka Medicijima. Umire sam u Veneciji 1567.</div>
               <div className="scene-why"><b>Na prstu:</b> Dubrovnik · Vidra · Novela 1550. ★ · 1 čin 7 prizora · Dundo 1551. proza · Skup Plaut · Kosmografska · Venecija 1567.</div>
             </div>
           </details>
@@ -1033,7 +1033,7 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-signal">
           <div>
             <div className="box-signal-lbl">💡 Zašto ovo znaš za maturu</div>
-            <div className="box-signal-txt">Kad pišeš esej o Krleži, Mažuraniću ili suvremenom piscu — možeš referencirati hrv. renesansu kao izvor tradicije. Primjer: <em>„Krležina kritika dubrovačke vlastele u Glembajevima nasljeđuje Držićevu satiričnu dimenziju — ali Držić se smije, Krleža tuguje. Isti predmet, 400 godina i žanrovski preokret."</em></div>
+            <div className="box-signal-txt">Kad pišeš esej o Krleži, Mažuraniću ili suvremenom piscu — možeš referencirati hrv. renesansu kao izvor tradicije. Primjer: <em>„Krležina kritika dubrovačke vlastele u Glembajevima nasljeđuje Držićevu satiričnu dimenziju — ali Držić se smije, Krleža tuguje. Isti predmet, 400 godina i žanrovski preokret.&quot;</em></div>
           </div>
         </div>
 
@@ -1059,7 +1059,7 @@ export default function Teorija({ onTabSwitch }) {
             <b>ZAMKA 1:</b> Hrv. petrarkisti PIŠU sonete — <em>NE, pišu dvostruke dvanaesterce</em>.<br />
             <b>ZAMKA 2:</b> Džore Držić = Marin Držić — <em>NE, Džore je petrarkist (†1501.), Marin je komediograf (†1567.)</em>.<br />
             <b>ZAMKA 3:</b> Judita je tiskana 1501. — <em>NE, dovršena 1501., tiskana 1521.</em><br />
-            <b>ZAMKA 4:</b> Planine su „pravi" roman — <em>NE, žanrovski su hibrid (pastorala+putopis+alegorija+lirika)</em>.<br />
+            <b>ZAMKA 4:</b> Planine su „pravi&quot; roman — <em>NE, žanrovski su hibrid (pastorala+putopis+alegorija+lirika)</em>.<br />
             <b>ZAMKA 5:</b> Hektorović je dubrovački pisac — <em>NE, Hektorović je hvarski, Tvrdalj je u Starom Gradu na Hvaru</em>.
           </div>
         </div>
@@ -1071,8 +1071,8 @@ export default function Teorija({ onTabSwitch }) {
         <div className="box-int">
           <div className="box-int-lbl">🇭🇷 Od lokalnih govora prema književnoj tradiciji</div>
           <div className="box-int-txt">
-            U 15.–16. st. ne postoji „hrv. književnost" kao svjesna kategorija — postoje <em>lokalne književne produkcije</em> u Splitu, Hvaru, Zadru, Dubrovniku. Svaka govori lokalnim idiomom, svaka ima vlastitu publiku. Ono što ih veže: <b>zajednički stih (dvanaesterac), zajednički pritisak (Turci), zajednički uzori (Petrarca, Vergilije, Sannazaro)</b>.<br /><br />
-            Svjesna gradnja <em>hrv. književnog identiteta</em> počinje s Zoranićevim <b>Perivojem od Slave</b> (1543.) — to je prvi tekst koji eksplicitno govori o „hrvatskoj književnosti" kao kategoriji koja zaostaje i mora biti izgrađena. Ovo je ključni moment koji hrv. renesansu čini više od zbroja lokalnih produkcija — čini je <em>početkom nacionalne književne svijesti</em>.
+            U 15.–16. st. ne postoji „hrv. književnost&quot; kao svjesna kategorija — postoje <em>lokalne književne produkcije</em> u Splitu, Hvaru, Zadru, Dubrovniku. Svaka govori lokalnim idiomom, svaka ima vlastitu publiku. Ono što ih veže: <b>zajednički stih (dvanaesterac), zajednički pritisak (Turci), zajednički uzori (Petrarca, Vergilije, Sannazaro)</b>.<br /><br />
+            Svjesna gradnja <em>hrv. književnog identiteta</em> počinje s Zoranićevim <b>Perivojem od Slave</b> (1543.) — to je prvi tekst koji eksplicitno govori o „hrvatskoj književnosti&quot; kao kategoriji koja zaostaje i mora biti izgrađena. Ovo je ključni moment koji hrv. renesansu čini više od zbroja lokalnih produkcija — čini je <em>početkom nacionalne književne svijesti</em>.
           </div>
         </div>
 
@@ -1080,7 +1080,7 @@ export default function Teorija({ onTabSwitch }) {
           <div className="sc">
             <span className="sc-ico hchip br">IDENTITET</span>
             <div className="sc-name">Jezik kao politika</div>
-            <div className="sc-desc">Pisati na „harvacki" (Marulić u posveti Judite) nije samo stilski izbor — to je politički čin. Marulić kaže: hrv. jezik je dovoljan za visoku književnost. U doba kad se sav intelektualni život odvijao na latinskom, to je manifestna gesta.</div>
+            <div className="sc-desc">Pisati na „harvacki&quot; (Marulić u posveti Judite) nije samo stilski izbor — to je politički čin. Marulić kaže: hrv. jezik je dovoljan za visoku književnost. U doba kad se sav intelektualni život odvijao na latinskom, to je manifestna gesta.</div>
           </div>
           <div className="sc">
             <span className="sc-ico hchip go">IDENTITET</span>
@@ -1209,7 +1209,7 @@ export default function Teorija({ onTabSwitch }) {
             <b>Judita:</b> Tab 1 (★ Judita · alegorijska shema) + Tab 2 (01b · Teze za esej o Juditi) — za kontekstualni argument.<br />
             <b>Novela:</b> Tab 1 (★ Novela · 7 prizora) + Tab 2 (01c · Teze 7–9 — napredni) — za dubinsku analizu.<br />
             <b>Kontekst:</b> Sec 02b (Europski kontekst) + Sec 17 (H11 i ostalo gradivo) — za usporedbu s europskom renesansom.<br />
-            <b>Pojmovnik:</b> Tab 4, filter „Likovi" — za brzo ponavljanje svih ključnih likova.
+            <b>Pojmovnik:</b> Tab 4, filter „Likovi&quot; — za brzo ponavljanje svih ključnih likova.
           </div>
         </div>
 

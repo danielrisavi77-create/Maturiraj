@@ -1432,7 +1432,7 @@ export default function HrvatskiIndexPage() {
               fontFamily: 'var(--serif)', fontSize: 13, fontStyle: 'italic',
               color: 'var(--t1)', lineHeight: 1.55, marginBottom: 8,
             }}>
-              "Skripte slijede NCVVO ispitni katalog 2025/26 i pokrivaju sva zadana ispitna djela."
+              &quot;Skripte slijede NCVVO ispitni katalog 2025/26 i pokrivaju sva zadana ispitna djela.&quot;
             </div>
             <div style={{
               fontFamily: 'var(--mono)', fontSize: 9,

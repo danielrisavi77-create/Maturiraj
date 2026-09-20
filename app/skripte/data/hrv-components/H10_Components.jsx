@@ -194,7 +194,7 @@ export function ComparePostModModerna() {
       </div>
       <div className="box-int" style={{marginTop:8}}>
         <div className="box-int-lbl">💡 Za esej — postmoderna nije pesimistična</div>
-        <div className="box-int-txt">Moderna pita: „ima li smisla?" — i trpi zbog odgovora. Postmoderna pita isto — i <strong>smije se</strong>. Kafka i Camus su ozbiljni pred apsurdom. Eco i Pavličić se igraju s njim. Isti problem, drugačiji stav.</div>
+        <div className="box-int-txt">Moderna pita: „ima li smisla?&quot; — i trpi zbog odgovora. Postmoderna pita isto — i <strong>smije se</strong>. Kafka i Camus su ozbiljni pred apsurdom. Eco i Pavličić se igraju s njim. Isti problem, drugačiji stav.</div>
       </div>
     </>
   );

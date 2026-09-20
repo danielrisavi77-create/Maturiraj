@@ -19,7 +19,7 @@ export default function Testimonijali() {
           {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
             <div key={i} className="tcard">
               <div className="stars">★★★★★</div>
-              <p style={{fontSize:13,color:"var(--muted)",lineHeight:1.75,marginBottom:16,flex:1}}>"{t.text}"</p>
+              <p style={{fontSize:13,color:"var(--muted)",lineHeight:1.75,marginBottom:16,flex:1}}>&quot;{t.text}&quot;</p>
               <div style={{display:"inline-flex",alignItems:"center",gap:5,padding:"4px 10px",borderRadius:99,background:`${t.color}10`,border:`1px solid ${t.color}20`,marginBottom:14,alignSelf:"flex-start"}}>
                 <span style={{fontSize:10,color:t.color,fontWeight:700}}>✓</span>
                 <span style={{fontSize:11,color:t.color,fontWeight:600}}>{t.ishod}</span>
@@ -57,7 +57,7 @@ export default function Testimonijali() {
           {[...TESTIMONIALS.slice(4),...TESTIMONIALS.slice(0,4),...TESTIMONIALS.slice(4),...TESTIMONIALS.slice(0,4)].map((t, i) => (
             <div key={i} className="tcard" style={{background:"var(--bg)",borderColor:"rgba(255,255,255,.06)"}}>
               <div className="stars">★★★★★</div>
-              <p style={{fontSize:13,color:"var(--muted)",lineHeight:1.75,marginBottom:16,flex:1}}>"{t.text}"</p>
+              <p style={{fontSize:13,color:"var(--muted)",lineHeight:1.75,marginBottom:16,flex:1}}>&quot;{t.text}&quot;</p>
               <div style={{display:"inline-flex",alignItems:"center",gap:5,padding:"4px 10px",borderRadius:99,background:`${t.color}10`,border:`1px solid ${t.color}20`,marginBottom:14,alignSelf:"flex-start"}}>
                 <span style={{fontSize:10,color:t.color,fontWeight:700}}>✓</span>
                 <span style={{fontSize:11,color:t.color,fontWeight:600}}>{t.ishod}</span>

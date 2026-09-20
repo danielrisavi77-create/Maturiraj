@@ -400,7 +400,7 @@ export default function PojmovnikH11({onBack, onNext}){
       {/* GRID */}
       {filtered.length===0?(
         <div style={{textAlign:"center",padding:"40px 20px",color:"var(--t3,#8c7b72)",fontFamily:"var(--serif,Georgia)",fontSize:14}}>
-          Nema pojmova za „{q}" {catFilter!=="all"?`u kategoriji ${catFilter}`:""}
+          Nema pojmova za „{q}&quot; {catFilter!=="all"?`u kategoriji ${catFilter}`:""}
         </div>
       ):(
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:10}}>

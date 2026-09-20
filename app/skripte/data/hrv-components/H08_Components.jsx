@@ -274,7 +274,7 @@ export function CompareModernaRealizam() {
       </div>
       <div className="box-int" style={{marginTop:8}}>
         <div className="box-int-lbl">💡 Za esej — ključna razlika u jednoj rečenici</div>
-        <div className="box-int-txt">Dostojevski pita <strong>„zašto je Raskoljnikov ubio?"</strong> i odgovara — teorija nadčovjeka, siromaštvo, gordost. Kafka pita <strong>„zašto se Gregor preobrazio?"</strong> i ne odgovara nikad. Taj izostanak uzroka je moderna.</div>
+        <div className="box-int-txt">Dostojevski pita <strong>„zašto je Raskoljnikov ubio?&quot;</strong> i odgovara — teorija nadčovjeka, siromaštvo, gordost. Kafka pita <strong>„zašto se Gregor preobrazio?&quot;</strong> i ne odgovara nikad. Taj izostanak uzroka je moderna.</div>
       </div>
     </>
   );
@@ -320,7 +320,7 @@ export function HeroQuotePreobrazaj() {
       <div className="hq8">
         <div className="hq8-eye">NAJPOZNATIJI POČETAK MODERNISTIČKE PROZE — NAPAMET</div>
         <div className="hq8-text">
-          „Kad se Gregor Samsa jednoga jutra probudio iz nemirnih snova, nađe se u svom krevetu <em>preobražen u golemog kukca</em>."
+          „Kad se Gregor Samsa jednoga jutra probudio iz nemirnih snova, nađe se u svom krevetu <em>preobražen u golemog kukca</em>.&quot;
         </div>
         <div className="hq8-body">Prva rečenica Preobražaja — in medias res, bez uzroka, bez objašnjenja. Kafka ne pita zašto — samo konstatira. Hladan, izvještajan ton opisuje nemoguće. <strong style={{color:'var(--t1)'}}>Ova rečenica mora biti napamet.</strong> Na eseju: citat + napomena da je to prototip moderne parabole = automatski +1 bod.</div>
         <div className="hq8-source">PREOBRAŽAJ (DIE VERWANDLUNG) · F. KAFKA · 1915. · I. DIO · EKSPRESIONIZAM</div>
@@ -427,7 +427,7 @@ export function CompareKafkaDostojevski() {
       </div>
       <div className="box-int" style={{marginTop:8}}>
         <div className="box-int-lbl">💡 Za esej — savršena cross-chapter teza</div>
-        <div className="box-int-txt">„Dostojevski i Kafka prikazuju isti problem — otuđenog modernog čovjeka — ali iz suprotnih kutova: Dostojevski vjeruje da postoji <strong>put van</strong> (iskupljenje, Sonja, Sibir), Kafka tvrdi da <strong>puta nema</strong> (Gregor umire sam, obitelj se smije u tramvaju). Zajedno čine dijagnozu modernog čovjeka — s i bez nade."</div>
+        <div className="box-int-txt">„Dostojevski i Kafka prikazuju isti problem — otuđenog modernog čovjeka — ali iz suprotnih kutova: Dostojevski vjeruje da postoji <strong>put van</strong> (iskupljenje, Sonja, Sibir), Kafka tvrdi da <strong>puta nema</strong> (Gregor umire sam, obitelj se smije u tramvaju). Zajedno čine dijagnozu modernog čovjeka — s i bez nade.&quot;</div>
       </div>
     </>
   );

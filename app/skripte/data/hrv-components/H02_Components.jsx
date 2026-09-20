@@ -127,7 +127,7 @@ export function AuthorCardDante() {
           Rođen u Firenci, <strong>prognan</strong> zbog sukoba s papinskom strankom (Guelfi).
           Umro u egzilu u Raveni. Dante piše na <em>volgare</em> — narodnom talijanskom, ne
           latinskom — što ga čini tvorcem <strong>talijanskog književnog jezika</strong>.</p>
-          <p>S Petrarcom i Boccacciom tvori <em>tre corone</em> — „tri krune" talijanske književnosti.</p>
+          <p>S Petrarcom i Boccacciom tvori <em>tre corone</em> — „tri krune&quot; talijanske književnosti.</p>
           <div className="ac2-works">
             <div className="ac2-works-lbl">Ključna djela</div>
             <div className="ac2-work">
@@ -194,7 +194,7 @@ export function SVGDanteStruktura() {
               <text x="98" y={102+i*28} fontFamily="serif" fontSize="12" fill="#e8c5c3">{v}</text>
             </g>
           ))}
-          <text x="115" y="278" textAnchor="middle" fontFamily="serif" fontSize="10" fill="rgba(220,50,47,.5)" fontStyle="italic">„Lasciate ogne speranza..."</text>
+          <text x="115" y="278" textAnchor="middle" fontFamily="serif" fontSize="10" fill="rgba(220,50,47,.5)" fontStyle="italic">„Lasciate ogne speranza...&quot;</text>
           {/* ČISTILIŠTE */}
           <rect x="235" y="30" width="190" height="260" rx="10" fill="url(#h02-g-cist)" stroke="#8B6D2F" strokeWidth="1.5"/>
           <text x="330" y="56" textAnchor="middle" fontFamily="serif" fontSize="17" fontWeight="700" fill="#d4a843">⛰ ČISTILIŠTE</text>
@@ -218,7 +218,7 @@ export function SVGDanteStruktura() {
               <text x="528" y={102+i*28} fontFamily="serif" fontSize="12" fill="#8ee8b0">{v}</text>
             </g>
           ))}
-          <text x="545" y="278" textAnchor="middle" fontFamily="serif" fontSize="10" fill="rgba(42,122,74,.5)" fontStyle="italic">„L'amor che move il sole..."</text>
+          <text x="545" y="278" textAnchor="middle" fontFamily="serif" fontSize="10" fill="rgba(42,122,74,.5)" fontStyle="italic">„L&apos;amor che move il sole...&quot;</text>
           {/* Strelice */}
           <path d="M212 160 L232 160" stroke="rgba(255,255,255,.3)" strokeWidth="2" markerEnd="url(#h02-arr)"/>
           <path d="M427 160 L447 160" stroke="rgba(255,255,255,.3)" strokeWidth="2" markerEnd="url(#h02-arr)"/>
@@ -365,7 +365,7 @@ export function AuthorCardPretece() {
             </div>
           </div>
           <div className="ac2-body">
-            <p>„Otac humanizma." Putovao Europom tražeći antičke rukopise. Životno djelo <em>Kanconijer</em> — <strong>366 soneta</strong> o ljubavi prema Lauri. Petrarkinski sonet (4+4+3+3) dominira europskom lirikom sljedećih 300 godina — uključujući <strong>hrvatske petrarkiste</strong> (H11).</p>
+            <p>„Otac humanizma.&quot; Putovao Europom tražeći antičke rukopise. Životno djelo <em>Kanconijer</em> — <strong>366 soneta</strong> o ljubavi prema Lauri. Petrarkinski sonet (4+4+3+3) dominira europskom lirikom sljedećih 300 godina — uključujući <strong>hrvatske petrarkiste</strong> (H11).</p>
             <div className="ac2-works">
               <div className="ac2-works-lbl">Ključno djelo</div>
               <div className="ac2-work">
@@ -392,7 +392,7 @@ export function AuthorCardPretece() {
             </div>
           </div>
           <div className="ac2-body">
-            <p>„Tvorac novele." Petrarkin bliski prijatelj. Životno djelo <em>Dekameron</em> (1348.–1353.) — <strong>100 novela</strong> koje 10 mladih priča 10 dana skrivajući se od kuge. <em>Obični čovjek, bez religijske pouke — prvi put.</em></p>
+            <p>„Tvorac novele.&quot; Petrarkin bliski prijatelj. Životno djelo <em>Dekameron</em> (1348.–1353.) — <strong>100 novela</strong> koje 10 mladih priča 10 dana skrivajući se od kuge. <em>Obični čovjek, bez religijske pouke — prvi put.</em></p>
             <div className="ac2-works">
               <div className="ac2-works-lbl">Ključno djelo</div>
               <div className="ac2-work">
@@ -471,7 +471,7 @@ export function KrsniListQuote() {
       <div className="krsni2">
         <div className="krsni2-eye">KLJUČNA REČENICA ZA ESEJ</div>
         <div className="krsni2-text">
-          „Zvonimir, <em>kralj hrvatski</em>" — sintagma koja se u Bašćanskoj ploči (~1100.){' '}
+          „Zvonimir, <em>kralj hrvatski</em>&quot; — sintagma koja se u Bašćanskoj ploči (~1100.){' '}
           pojavljuje prvi put u pisanom obliku na hrvatskom jeziku.
         </div>
         <div className="krsni2-source">Bašćanska ploča · ~1100. · Glagoljica · Crkva sv. Lucije, Jurandvor/Krk</div>
@@ -679,7 +679,7 @@ export function GlagoljicaPanel() {
             <>
               <span className="glag2-tip-char">{al.char}</span>
               <div>
-                <div className="glag2-tip-name">{al.name} → "{al.lat}"</div>
+                <div className="glag2-tip-name">{al.name} → &quot;{al.lat}&quot;</div>
                 <div className="glag2-tip-desc">{al.desc}</div>
               </div>
             </>

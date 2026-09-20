@@ -222,13 +222,13 @@ export default function H07ZlocinTab({ onPrev, onNext }) {
         <div className="sc">
           <span className="sc-ico hchip br">PROTAGONIST</span>
           <div className="sc-name">Rodion Romanovič Raskoljnikov</div>
-          <div className="sc-desc">23 godine, bivši student prava. Napustio studij zbog siromaštva. Bolestan, iscrpljen, intelektualno arogantan. Piše članak <em>„O zločinu"</em> — teorija o „običnim" i „neobičnim" ljudima (tj. nadčovjecima). Ubija iz kombinacije <b>utilitarne logike</b> (pomoći siromasima) i <b>intelektualnog eksperimenta</b> („jesam li Napoleon ili vaš?"). Nakon ubojstva: paranoja, samoća, grižnja. Ime od rus. <em>raskoljnik</em> = <b>raskolnik, skizmatik</b>.</div>
+          <div className="sc-desc">23 godine, bivši student prava. Napustio studij zbog siromaštva. Bolestan, iscrpljen, intelektualno arogantan. Piše članak <em>„O zločinu&quot;</em> — teorija o „običnim&quot; i „neobičnim&quot; ljudima (tj. nadčovjecima). Ubija iz kombinacije <b>utilitarne logike</b> (pomoći siromasima) i <b>intelektualnog eksperimenta</b> („jesam li Napoleon ili vaš?&quot;). Nakon ubojstva: paranoja, samoća, grižnja. Ime od rus. <em>raskoljnik</em> = <b>raskolnik, skizmatik</b>.</div>
         </div>
 
         <div className="sc">
           <span className="sc-ico hchip go">MORALNA VERTIKALA</span>
           <div className="sc-name">Sonja Semjonovna Marmeladova</div>
-          <div className="sc-desc">18 godina. Kći pijanca Marmeladova. <em>Žuta kartica</em> — prisiljena na prostituciju da prehrani obitelj (Katerina Ivanovna + 3 polubrata). Duboko <b>pravoslavna</b>. Raskoljnikovu čita <em>Evanđelje po Ivanu — uskrsnuće Lazara</em>. Njen poziv: <em>„Pati — to je put."</em> <b>Simbol kršćanske ljubavi i iskupljenja.</b> Slijedi Raskoljnikova u Sibir. <em>Moralna vertikala romana</em> (<b>paralela s Tatjanom iz H06 Onjegina</b> — obje moralne vertikale kroz žrtvu).</div>
+          <div className="sc-desc">18 godina. Kći pijanca Marmeladova. <em>Žuta kartica</em> — prisiljena na prostituciju da prehrani obitelj (Katerina Ivanovna + 3 polubrata). Duboko <b>pravoslavna</b>. Raskoljnikovu čita <em>Evanđelje po Ivanu — uskrsnuće Lazara</em>. Njen poziv: <em>„Pati — to je put.&quot;</em> <b>Simbol kršćanske ljubavi i iskupljenja.</b> Slijedi Raskoljnikova u Sibir. <em>Moralna vertikala romana</em> (<b>paralela s Tatjanom iz H06 Onjegina</b> — obje moralne vertikale kroz žrtvu).</div>
         </div>
 
         <div className="sc">
@@ -240,13 +240,13 @@ export default function H07ZlocinTab({ onPrev, onNext }) {
         <div className="sc">
           <span className="sc-ico hchip re">DVOJNIK</span>
           <div className="sc-name">Arkadij Svidrigajlov</div>
-          <div className="sc-desc">Oko 50 godina, bivši poslodavac Dunje. <em>Proganja je.</em> Cinik, razvratnik, možda je otrovao svoju ženu Marfu Petrovnu. <b>Raskoljnikovljev dvojnik</b> — također „nadčovjek" po logici, ali <em>bez moralne grižnje</em>. Prisluškuje Sonju kad R. priznaje — pokušava ucijeniti Dunju. Dunja ga gađa pistoljem, promašuje. Svidrigajlov — svjesan da je gotov — <b>ubija se na mostu</b>. Njegov kraj = <em>što bi se Raskoljnikovu dogodilo bez Sonje</em>.</div>
+          <div className="sc-desc">Oko 50 godina, bivši poslodavac Dunje. <em>Proganja je.</em> Cinik, razvratnik, možda je otrovao svoju ženu Marfu Petrovnu. <b>Raskoljnikovljev dvojnik</b> — također „nadčovjek&quot; po logici, ali <em>bez moralne grižnje</em>. Prisluškuje Sonju kad R. priznaje — pokušava ucijeniti Dunju. Dunja ga gađa pistoljem, promašuje. Svidrigajlov — svjesan da je gotov — <b>ubija se na mostu</b>. Njegov kraj = <em>što bi se Raskoljnikovu dogodilo bez Sonje</em>.</div>
         </div>
 
         <div className="sc">
           <span className="sc-ico hchip pa">SESTRA</span>
-          <div className="sc-name">Avdotja Romanovna „Dunja" Raskoljnikova</div>
-          <div className="sc-desc">Raskoljnikovljeva sestra. Lijepa, ponosna, obrazovana. Namjerava se udati za <b>Petra Petroviča Lužina</b> (odvjetnik, koristoljubiv, želi ženu „podređenu") <em>samo radi brata</em> — da osigura njegov studij. Raskoljnikov odbija tu žrtvu. Dunja raskida s Lužinom. Na kraju se udaje za <b>Razumihina</b> (R.-ov odani prijatelj). Paralela Sonji: <em>obje žrtvuju sebe za druge</em>.</div>
+          <div className="sc-name">Avdotja Romanovna „Dunja&quot; Raskoljnikova</div>
+          <div className="sc-desc">Raskoljnikovljeva sestra. Lijepa, ponosna, obrazovana. Namjerava se udati za <b>Petra Petroviča Lužina</b> (odvjetnik, koristoljubiv, želi ženu „podređenu&quot;) <em>samo radi brata</em> — da osigura njegov studij. Raskoljnikov odbija tu žrtvu. Dunja raskida s Lužinom. Na kraju se udaje za <b>Razumihina</b> (R.-ov odani prijatelj). Paralela Sonji: <em>obje žrtvuju sebe za druge</em>.</div>
         </div>
 
         <div className="sc">
@@ -258,13 +258,13 @@ export default function H07ZlocinTab({ onPrev, onNext }) {
         <div className="sc">
           <span className="sc-ico hchip go">MUČENICA</span>
           <div className="sc-name">Katerina Ivanovna Marmeladova</div>
-          <div className="sc-desc">Sonjina maćeha, druga žena pijanca Marmeladova. Nekad plemkinja, obrazovana, sada živi u ekstremnoj bijedi s <em>tuberkulozom</em>. Ponosna, ludi pomalo od siromaštva. Nagovara Sonju na „žutu karticu" kad više nema što za jelo. <em>Na kraju ludi, iskašljava krv</em>, umire na ulici. Simbol <b>sloma dostojanstva pod bijedom</b>.</div>
+          <div className="sc-desc">Sonjina maćeha, druga žena pijanca Marmeladova. Nekad plemkinja, obrazovana, sada živi u ekstremnoj bijedi s <em>tuberkulozom</em>. Ponosna, ludi pomalo od siromaštva. Nagovara Sonju na „žutu karticu&quot; kad više nema što za jelo. <em>Na kraju ludi, iskašljava krv</em>, umire na ulici. Simbol <b>sloma dostojanstva pod bijedom</b>.</div>
         </div>
 
         <div className="sc">
           <span className="sc-ico hchip re">ŽRTVA</span>
           <div className="sc-name">Alona Ivanovna i Lizaveta</div>
-          <div className="sc-desc"><b>Alona</b> — lihvarica, škrta, okrutna prema sestri. Raskoljnikov je vidi kao <em>„štetnu vaš"</em> — ubija je sjekirom. <b>Lizaveta</b> — njena polusestra, dobra, krotka, jednostavno duhovna. Neplanirana žrtva — Raskoljnikov ju ubija jer ga je vidjela. <em>Dvije žrtve</em> = ubijajući Alonu, ubio je i nevin život. <b>Lizaveta i Sonja su bile prijateljice</b> — ironična koincidencija.</div>
+          <div className="sc-desc"><b>Alona</b> — lihvarica, škrta, okrutna prema sestri. Raskoljnikov je vidi kao <em>„štetnu vaš&quot;</em> — ubija je sjekirom. <b>Lizaveta</b> — njena polusestra, dobra, krotka, jednostavno duhovna. Neplanirana žrtva — Raskoljnikov ju ubija jer ga je vidjela. <em>Dvije žrtve</em> = ubijajući Alonu, ubio je i nevin život. <b>Lizaveta i Sonja su bile prijateljice</b> — ironična koincidencija.</div>
         </div>
       </div>
 
@@ -364,20 +364,20 @@ export default function H07ZlocinTab({ onPrev, onNext }) {
       <div className="sec-hdr"><div className="sec-line"></div><div className="sec-badge">03 · Teorija nadčovjeka — Raskoljnikovljev članak</div><div className="sec-line"></div></div>
 
       <div className="box-int">
-        <div className="box-int-lbl">💡 „O zločinu" — Raskoljnikovljev esej</div>
+        <div className="box-int-lbl">💡 „O zločinu&quot; — Raskoljnikovljev esej</div>
         <div className="box-int-txt">
-          Raskoljnikov je <em>pol godine prije ubojstva</em> objavio članak <b>„O zločinu"</b> u časopisu. U članku tvrdi: <em>ljudi se dijele na „obične" (većina) i „neobične" (nadčovjeci)</em>. Nadčovjeci imaju pravo <b>prekršiti zakon i moralne norme</b> ako vjeruju da time služe višem cilju. Primjeri: Napoleon, Muhamed, Newton. <em>„Napoleon je preko trupa prešao do svoje ideje — i sad ga zovemo velikim."</em> Raskoljnikov primjenjuje tu logiku na sebe: <b>„Jesam li ja vaš ili sam Napoleon?"</b>
+          Raskoljnikov je <em>pol godine prije ubojstva</em> objavio članak <b>„O zločinu&quot;</b> u časopisu. U članku tvrdi: <em>ljudi se dijele na „obične&quot; (većina) i „neobične&quot; (nadčovjeci)</em>. Nadčovjeci imaju pravo <b>prekršiti zakon i moralne norme</b> ako vjeruju da time služe višem cilju. Primjeri: Napoleon, Muhamed, Newton. <em>„Napoleon je preko trupa prešao do svoje ideje — i sad ga zovemo velikim.&quot;</em> Raskoljnikov primjenjuje tu logiku na sebe: <b>„Jesam li ja vaš ili sam Napoleon?&quot;</b>
         </div>
       </div>
 
       <SVGNadcovjek />
 
       <div className="tbl">
-        <div className="cr"><div className="ck br">UTILITARNI ARGUMENT</div><div className="cv"><em>„Lihvarica Alona je parazit — sisa krv siromasima. Ako je ubijem, imam njen novac → mogu nastaviti studij → mogu služiti društvu. Jedan zločin = stotinu dobrih djela."</em> Utilitarna matematika: 1 loš život &lt; 100 spašenih.</div></div>
-        <div className="cr"><div className="ck go">INTELEKTUALNI ARGUMENT</div><div className="cv"><em>„Je li zakon apsolutan? Ili je napravljen samo za obične ljude?"</em> Raskoljnikov želi <b>testirati sebe</b> — je li nadčovjek ili nije. Ubojstvo nije samo čin, nego <em>filozofski eksperiment</em>.</div></div>
-        <div className="cr"><div className="ck t">POSTNAPOLEONSKI KOMPLEKS</div><div className="cv">Raskoljnikov pri kraju priznaje Sonji: <em>„Želio sam biti Napoleon — to je sve."</em> Zločin nije bio za novac (nije ga ni iskoristio), nego <b>za samopotvrdu</b>. Kad shvati da je <em>obični ubojica</em>, a ne nadčovjek, slama se.</div></div>
+        <div className="cr"><div className="ck br">UTILITARNI ARGUMENT</div><div className="cv"><em>„Lihvarica Alona je parazit — sisa krv siromasima. Ako je ubijem, imam njen novac → mogu nastaviti studij → mogu služiti društvu. Jedan zločin = stotinu dobrih djela.&quot;</em> Utilitarna matematika: 1 loš život &lt; 100 spašenih.</div></div>
+        <div className="cr"><div className="ck go">INTELEKTUALNI ARGUMENT</div><div className="cv"><em>„Je li zakon apsolutan? Ili je napravljen samo za obične ljude?&quot;</em> Raskoljnikov želi <b>testirati sebe</b> — je li nadčovjek ili nije. Ubojstvo nije samo čin, nego <em>filozofski eksperiment</em>.</div></div>
+        <div className="cr"><div className="ck t">POSTNAPOLEONSKI KOMPLEKS</div><div className="cv">Raskoljnikov pri kraju priznaje Sonji: <em>„Želio sam biti Napoleon — to je sve.&quot;</em> Zločin nije bio za novac (nije ga ni iskoristio), nego <b>za samopotvrdu</b>. Kad shvati da je <em>obični ubojica</em>, a ne nadčovjek, slama se.</div></div>
         <div className="cr"><div className="ck re">DOSTOJEVSKIJEV ODGOVOR</div><div className="cv"><b>Teorija ne funkcionira.</b> Raskoljnikov <em>psihološki ne može</em> nositi ubojstvo — savjest ga savladava. Čak i nadčovjek ima dušu koja se buni. <em>Čovjek nije samo intelekt</em> — ima osjećaje, vjeru, grižnju. Odbacivanjem moralnih normi, uništava i sebe (Svidrigajlov = self-destruct).</div></div>
-        <div className="cr"><div className="ck pa">NIETZSCHEOVA VEZA</div><div className="cv"><b>Raskoljnikovljeva teorija anticipira Nietzscheovog Übermensch-a</b> (<em>„Tako je govorio Zaratustra"</em>, 1883.). Ironija: Nietzsche je bio obožavatelj Dostojevskog („najdublji psiholog"). <em>Dostojevski kritizira nadčovjeka PRIJE nego ga Nietzsche formulira.</em></div></div>
+        <div className="cr"><div className="ck pa">NIETZSCHEOVA VEZA</div><div className="cv"><b>Raskoljnikovljeva teorija anticipira Nietzscheovog Übermensch-a</b> (<em>„Tako je govorio Zaratustra&quot;</em>, 1883.). Ironija: Nietzsche je bio obožavatelj Dostojevskog („najdublji psiholog&quot;). <em>Dostojevski kritizira nadčovjeka PRIJE nego ga Nietzsche formulira.</em></div></div>
       </div>
 
       {/* 3 PORFIRIJEVA SUSRETA */}
@@ -425,7 +425,7 @@ export default function H07ZlocinTab({ onPrev, onNext }) {
       <div className="box-key">
         <div className="box-key-lbl">📝 Esejska teza (na osnovu NCVVO primjera)</div>
         <div className="box-key-txt">
-          <strong>„Dostojevski u svojemu romanu Zločin i kazna u skladu s realističkom poetikom daje psihološke i socijalne portrete ženskih likova <em>Sonje i Dunje</em> s naglaskom na njihovu plemenitost i žrtvu koju su spremne podnijeti zbog vlastitih obitelji."</strong>
+          <strong>„Dostojevski u svojemu romanu Zločin i kazna u skladu s realističkom poetikom daje psihološke i socijalne portrete ženskih likova <em>Sonje i Dunje</em> s naglaskom na njihovu plemenitost i žrtvu koju su spremne podnijeti zbog vlastitih obitelji.&quot;</strong>
           <br/><br/>
           Ovo je <em>stvarna teza iz NCVVO vodiča za esej</em> — pokazuje što očekuju na maturi. Teza ima <b>3 dijela</b>: (1) realistička poetika, (2) psihološki + socijalni portret, (3) plemenitost + žrtva zbog obitelji.
         </div>
@@ -433,8 +433,8 @@ export default function H07ZlocinTab({ onPrev, onNext }) {
 
       <div className="prose">
         <p><b>Sonja</b> i <b>Dunja</b> su <em>paralelni ženski likovi</em> — obje žrtvuju <em>svoje tijelo i čast</em> za muške članove obitelji.</p>
-        <p><b>Sonja</b> — <em>prostitucija zbog obitelji</em>. Katerina (maćeha) je tjera na „žutu karticu" jer nema za kruh. Sonja pristaje <b>zbog pokornosti, dobrote, i bijede</b>. Njezin odnos prema Raskoljnikovu je <em>spiritualan, ne seksualan</em> — čita mu Bibliju. Ona je <b>njegov moralni vodič</b>.</p>
-        <p><b>Dunja</b> — <em>brak bez ljubavi zbog obitelji</em>. Pristaje na Lužina samo da brat završi studij. Raskoljnikov odbija tu žrtvu — <em>„ne želim da ti budeš moja žrtva."</em> Dunja je <b>ponosnija</b> od Sonje — gađa Svidrigajlova pištoljem kad je ucjenjuje. <em>Aktivnija otpornost</em> nego Sonja, ali jednaka žrtvenost.</p>
+        <p><b>Sonja</b> — <em>prostitucija zbog obitelji</em>. Katerina (maćeha) je tjera na „žutu karticu&quot; jer nema za kruh. Sonja pristaje <b>zbog pokornosti, dobrote, i bijede</b>. Njezin odnos prema Raskoljnikovu je <em>spiritualan, ne seksualan</em> — čita mu Bibliju. Ona je <b>njegov moralni vodič</b>.</p>
+        <p><b>Dunja</b> — <em>brak bez ljubavi zbog obitelji</em>. Pristaje na Lužina samo da brat završi studij. Raskoljnikov odbija tu žrtvu — <em>„ne želim da ti budeš moja žrtva.&quot;</em> Dunja je <b>ponosnija</b> od Sonje — gađa Svidrigajlova pištoljem kad je ucjenjuje. <em>Aktivnija otpornost</em> nego Sonja, ali jednaka žrtvenost.</p>
         <p><b>Povezivanje</b>: <em>Sonja i Dunja su dvije strane iste ideje</em> — žrtva zbog ljubavi prema bližnjima. Za Dostojevskog, to je <b>najviša vrlina</b>. Obje su moralne vertikale — ali Sonja utjelovljuje <em>kršćansku pasivnu žrtvu</em>, Dunja <em>aktivnu moralnost</em>.</p>
       </div>
 
@@ -443,10 +443,10 @@ export default function H07ZlocinTab({ onPrev, onNext }) {
 
       <div className="prose">
         <p>Epilog se odvija <b>1,5 godinu nakon predaje</b>. Raskoljnikov u Sibirskoj katorgi — <em>8 godina</em> kazne. Sonja je došla za njim, radi kao krojačica u obližnjem gradu. Prati ga.</p>
-        <p><b>Ključni trenutak:</b> Raskoljnikov <em>još uvijek odbija</em> priznati zločin kao zločin. Misli: <em>„Nisam pogriješio — pogriješio sam samo što me savjest uhvatila. Jači čovjek bi izdržao."</em> Preziru ga drugi robijaši. On ih ne razumije. <b>Potpuna alienacija.</b></p>
-        <p><em>Bolest.</em> U groznici — <b>san o bezumnim bakterijama</b>. Sanja da je svijet zaražen sitnim bićima koja nose „vlastitu istinu" — svi se <b>uvjeravaju da su u pravu, i međusobno ubijaju</b>. <em>Ovo je Dostojevskijeva proročanska kritika nihilizma, kasnije ideoloških totalitarizama 20. st.</em></p>
+        <p><b>Ključni trenutak:</b> Raskoljnikov <em>još uvijek odbija</em> priznati zločin kao zločin. Misli: <em>„Nisam pogriješio — pogriješio sam samo što me savjest uhvatila. Jači čovjek bi izdržao.&quot;</em> Preziru ga drugi robijaši. On ih ne razumije. <b>Potpuna alienacija.</b></p>
+        <p><em>Bolest.</em> U groznici — <b>san o bezumnim bakterijama</b>. Sanja da je svijet zaražen sitnim bićima koja nose „vlastitu istinu&quot; — svi se <b>uvjeravaju da su u pravu, i međusobno ubijaju</b>. <em>Ovo je Dostojevskijeva proročanska kritika nihilizma, kasnije ideoloških totalitarizama 20. st.</em></p>
         <p><b>Buđenje.</b> Izlazi iz bolnice. Susreće Sonju kraj Sibirske rijeke. <em>Pada joj pred noge, plače</em>. Prvi put osjeća ljubav umjesto teorije. Sonja se osmjehuje, plače. <b>Iskupljenje počinje</b>. Raskoljnikov pokazuje Evanđelje pod jastukom — još nije ga otvorio, ali <em>zna da hoće</em>.</p>
-        <p>Kraj: <b><em>„Nova priča počinje, priča o postupnom preporodu čovjeka... No to je već druga priča."</em></b> — Dostojevski obećava nastavak koji nikad ne napiše. <em>Kraj je otvoren ali simbolično završen</em>.</p>
+        <p>Kraj: <b><em>„Nova priča počinje, priča o postupnom preporodu čovjeka... No to je već druga priča.&quot;</em></b> — Dostojevski obećava nastavak koji nikad ne napiše. <em>Kraj je otvoren ali simbolično završen</em>.</p>
       </div>
 
       <UsporedbaRaskoljnikovOnjegin />

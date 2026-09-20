@@ -29,7 +29,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
           Puškinov <em>Evgenij Onjegin</em> nije samo važan ruski roman — on je{' '}
           <strong>temeljno djelo europskog romantizma</strong> i{' '}
           <em>prvi veliki moderni roman</em> (uz Cervantesa). Stvara arhetip{' '}
-          <b>„suvišnog čovjeka"</b> koji će dominirati ruskom književnošću kroz
+          <b>„suvišnog čovjeka&quot;</b> koji će dominirati ruskom književnošću kroz
           Dostojevskog i Tolstoja (oboje obvezatno čitanje). Uvodi{' '}
           <b>oneginski stih</b> kao jedinstvenu formalnu inovaciju. Na maturi se
           pojavljuje u <em>teoriji književnosti</em> i <em>čitanju književnog teksta</em>.
@@ -52,7 +52,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
           <div className="sc-name">Aleksandar Puškin</div>
           <div className="sc-desc">
             (1799. Moskva – 1837. Sankt-Peterburg, u dvoboju). Najveći ruski pjesnik,{' '}
-            „<em>naše sve</em>". Utemeljuje moderni ruski književni jezik. Tragičan kraj
+            „<em>naše sve</em>&quot;. Utemeljuje moderni ruski književni jezik. Tragičan kraj
             s 38 godina — poginuo u dvoboju braneći čast žene Natalije Gončarove.
           </div>
         </div>
@@ -76,8 +76,8 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
           <div className="sc-desc">
             Hibridna forma — <em>ni ep, ni roman, ni zbirka poezije</em>. Puškin je
             izmišlja i stvara. 8 poglavlja (jedno od originalnih 9 je izbačeno —
-            „Onjeginovo putovanje"). Ukupno 389 onegainskih strofa = 5446 stihova.
-            Zove se i <b>„enciklopedija ruskog života"</b> (Belinski).
+            „Onjeginovo putovanje&quot;). Ukupno 389 onegainskih strofa = 5446 stihova.
+            Zove se i <b>„enciklopedija ruskog života&quot;</b> (Belinski).
           </div>
         </div>
 
@@ -100,7 +100,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
           <div className="sc-desc">
             Neobično: pripovjedač <em>nije lik niti svesveznajući</em> — on je{' '}
             <b>sam Puškin</b>. Obraća se čitatelju, komentira likove
-            („<em>Moj Onjegin…</em>", „<em>Tatjana, voljena Tatjana!</em>"),
+            („<em>Moj Onjegin…</em>&quot;, „<em>Tatjana, voljena Tatjana!</em>&quot;),
             ubacuje digresije o svom životu, Moskvi, književnosti.{' '}
             <b>Puškin kao lik u vlastitom romanu.</b>
           </div>
@@ -238,9 +238,9 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
             { title:'POGLAVLJE I — „Bio je bolestan…"',
               txt:<>
                 <em>Sankt-Peterburg.</em> Onjegin, 26 godina, besposleni dendi,
-                zasićen balovima i svjetovnim životom. „Čita Byrona", nosi portret
+                zasićen balovima i svjetovnim životom. „Čita Byrona&quot;, nosi portret
                 Byrona u sobi. Stric umire, Onjegin nasljeđuje imanje na selu i odlazi
-                tamo. <b>Uvod u „suvišnog čovjeka".</b>
+                tamo. <b>Uvod u „suvišnog čovjeka&quot;.</b>
               </> },
             { title:'POGLAVLJE II — Selo i Lenski.',
               txt:<>
@@ -262,7 +262,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
             { title:'POGLAVLJE IV — Hladno odbijanje.',
               txt:<>
                 U vrtu Onjegin Tatjanu hladno odbija —{' '}
-                <em>„nisam stvoren za brak", „ti ćeš me brzo zaboraviti"</em>.
+                <em>„nisam stvoren za brak&quot;, „ti ćeš me brzo zaboraviti&quot;</em>.
                 Poslovno, moralizirajući, bez topline. Tatjana je duboko povrijeđena.
                 U međuvremenu, <b>Lenski i Olga sretniji no ikad</b> — pišu jedno
                 drugome, planiraju vjenčanje.
@@ -282,7 +282,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
                 (sekundant) forsira dvoboj. Obojica bi mogla odustati — ali ponos
                 i konvencije ne dopuštaju. <b>Onjegin ubija Lenskog</b>. Puškin
                 ironijski nagovještava: „<em>možda bi postao veliki pjesnik — ili
-                samo debeli gospodin s podagrom</em>". Onjegin odlazi iz sela na
+                samo debeli gospodin s podagrom</em>&quot;. Onjegin odlazi iz sela na
                 putovanje.
               </> },
             { title:'POGLAVLJE VII — Tatjana u Onjeginovoj kući · Moskva.',
@@ -290,8 +290,8 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
                 Godina dana kasnije. Olga se brzo udala za husara. Tatjana ostaje
                 u selu. <em>Ulazi u Onjeginovu napuštenu kuću</em> — čita njegove
                 knjige (Byron!), shvaća da je{' '}
-                <b>Onjegin „parodija, sjena, čovjek bez originalnosti"</b>. Majka
-                ju vodi u Moskvu na „tržište nevjesta". Tamo ju primijeti stari
+                <b>Onjegin „parodija, sjena, čovjek bez originalnosti&quot;</b>. Majka
+                ju vodi u Moskvu na „tržište nevjesta&quot;. Tamo ju primijeti stari
                 general — udaje se.
               </> },
             { title:'POGLAVLJE VIII — Finale: Tatjana kao kneginja.',
@@ -301,7 +301,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
                 dostojanstvenu. <em>Zaljubljuje se u nju — sad on piše njoj pisma.</em>
                 Ona ne odgovara. Dolazi u njen salon, pada na koljena. Tatjana ispovijeda
                 da ga <em>još voli</em>, ali:{' '}
-                „<b>Drugomu sam dana i vjerna ću mu biti zauvijek</b>". Onjegin
+                „<b>Drugomu sam dana i vjerna ću mu biti zauvijek</b>&quot;. Onjegin
                 ostaje slomljen. Roman završava otvoreno.
               </> },
           ].map((pg, i) => (
@@ -314,7 +314,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
       </div>
 
       <div className="box-signal">
-        <div className="box-signal-lbl">📍 Struktura romana — zašto ne završava „happy end"</div>
+        <div className="box-signal-lbl">📍 Struktura romana — zašto ne završava „happy end&quot;</div>
         <div className="box-signal-txt">
           Puškin <em>namjerno obrće klišeje</em>. U tipičnom romantičkom romanu ljubavnici
           bi na kraju bili zajedno. Ovdje: <b>Tatjana koja je prva voljela sad odbija</b>.
@@ -343,18 +343,18 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
           { color:'br', name:'EVGENIJ ONJEGIN', txt:<>
             <b>Protagonist, 26 god.</b> Peterburški dendi iz plemićke obitelji.
             Inteligentan, obrazovan (površno), <em>zasićen životom</em>. Nosi portret
-            Byrona, čita Adam Smitha. <b>Arhetip „suvišnog čovjeka"</b> — talentiran ali
+            Byrona, čita Adam Smitha. <b>Arhetip „suvišnog čovjeka&quot;</b> — talentiran ali
             bez svrhe, ciničan, hladan. Odbija Tatjanu hladno, ubije prijatelja u duelu,
             godinama luta — a na kraju pada ponizno. <em>Tatjana ga u VII. poglavlju
-            razotkriva kao „parodiju, sjenu"</em> — to je Puškinova kritika byronizma
+            razotkriva kao „parodiju, sjenu&quot;</em> — to je Puškinova kritika byronizma
             kao poze.
           </> },
           { color:'go', name:'TATJANA LARINA', txt:<>
-            <b>Puškinov „uzvišeni ideal".</b> Starija Larinova, povučena, zaljubljena
+            <b>Puškinov „uzvišeni ideal&quot;.</b> Starija Larinova, povučena, zaljubljena
             u Rusoove sentimentalne romane. Sanja romantičku ljubav — nalazi ju u Onjeginu.
             <em>Piše mu otvoreno pismo</em> — rijedak čin hrabrosti za ženu tog doba.
             Nakon odbijanja sazrijeva. U finalu: dostojanstvena, moralno dosljedna.{' '}
-            <b>Puškin je voli eksplicitno</b> („<em>Tatjana, voljena Tatjana!</em>").
+            <b>Puškin je voli eksplicitno</b> („<em>Tatjana, voljena Tatjana!</em>&quot;).
             Ona je <em>ruska duša, moralna vertikala</em>.
           </> },
           { color:'pa', name:'VLADIMIR LENSKI', txt:<>
@@ -362,7 +362,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
             idealističke filozofije (Kant, Schiller). Zaljubljen u Olgu, piše joj
             sentimentalnu poeziju. <em>Antiteza Onjeginu</em> — vjeruje u ljubav,
             prijateljstvo, budućnost. <b>Umire u duelu</b>. Puškin u VI. poglavlju
-            ironijski pita: bi li postao veliki pjesnik ili „debeli gospodin s podagrom"?
+            ironijski pita: bi li postao veliki pjesnik ili „debeli gospodin s podagrom&quot;?
             — <em>romantizam može ili sazreti u genij, ili propasti u banalnost</em>.
           </> },
           { color:'t', name:'OLGA LARINA', txt:<>
@@ -370,12 +370,12 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
             Zaručena za Lenskog. <em>Ne razumije težinu duela</em> — nakon Lenskove
             smrti brzo se udaje za husara. <b>Antiteza Tatjani</b> — Tatjana kao duboka,
             Olga kao površna; Tatjana vjerna, Olga zaboravlja. Puškin je prikazuje blago
-            ironično — ona je „normalna" djevojka, a ne iznimka poput Tatjane.
+            ironično — ona je „normalna&quot; djevojka, a ne iznimka poput Tatjane.
           </> },
           { color:'re', name:'PUŠKIN KAO PRIPOVJEDAČ', txt:<>
             <b>Sam Puškin kao lik u romanu.</b> Obraća se čitatelju izravno, komentira
-            likove, digresira o svom životu. „<em>Moj Onjegin</em>",{' '}
-            „<em>moja Tatjana</em>". Kaže da je <b>Lenski ugodniji njegovoj duši,
+            likove, digresira o svom životu. „<em>Moj Onjegin</em>&quot;,{' '}
+            „<em>moja Tatjana</em>&quot;. Kaže da je <b>Lenski ugodniji njegovoj duši,
             a Tatjana voljeniji lik</b>. Razlikuje se od Onjegina — Onjegin ne voli
             prirodu, Puškin ju obožava; Onjegin je cinik, Puškin lirski.{' '}
             <em>Puškinova digresijska poetika</em> je ključna inovacija — prvi puta
@@ -441,7 +441,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
           { color:'t', name:'SUKOB 4', txt:<>
             <b>Iluzija vs stvarnost / knjiški romantizam vs život.</b> Tatjana
             voli Onjegina jer vidi u njemu junaka iz Rousseaua/Richardsona. Onjegin
-            je zapravo „parodija, sjena" (Tatjanin uvid u VII. pogl.). Lenski voli
+            je zapravo „parodija, sjena&quot; (Tatjanin uvid u VII. pogl.). Lenski voli
             Olgu jer je vidi kao anđela iz Schillerove poezije.{' '}
             <b>Romantizam kao iluzija — stvarnost razbija ideale.</b> Ovo je zametak
             realizma u Puškinovom djelu.
@@ -470,13 +470,13 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
             { title:'TATJANINO PISMO (III. poglavlje).', txt:<>
               <em>Centralna scena.</em> Tatjana noću piše Onjeginu pismo na
               francuskom — otvoreno priznanje ljubavi. Puškin interpolira pismo kao
-              lirsku pjesmu. „<em>Pišem Vam — što još reći…</em>" Puškin dodaje:
-              „<em>Preda mnom leži pismo njeno; ko svetinja mi ono osta</em>".{' '}
+              lirsku pjesmu. „<em>Pišem Vam — što još reći…</em>&quot; Puškin dodaje:
+              „<em>Preda mnom leži pismo njeno; ko svetinja mi ono osta</em>&quot;.{' '}
               <b>Prva eksplicitna ženska izjava ljubavi u ruskoj književnosti.</b>
             </> },
             { title:'ONJEGINOV ODGOVOR U VRTU (IV. poglavlje).', txt:<>
               Onjegin dolazi Tatjani u vrt i hladno ju odbija: „<em>Nisam stvoren
-              za blaženstvo braka</em>", „<em>brzo ćete me zaboraviti</em>". Ironija:
+              za blaženstvo braka</em>&quot;, „<em>brzo ćete me zaboraviti</em>&quot;. Ironija:
               kasnije će sam padati ničice pred njom. <em>Onjegin kao cinik ovdje
               na vrhuncu</em>.
             </> },
@@ -490,15 +490,15 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
               Rano ujutro, zima, šumski proplanak. Onjegin dolazi kasno (već znak
               nesklada). Zareckij mjeri korake. Lenski puca prvi — promašuje.{' '}
               <b>Onjegin puca — Lenski pada.</b> Puškin lirski opisuje smrt mladog
-              pjesnika: „<em>srce probodeno, krv iz grudi</em>". Ironija scene:
+              pjesnika: „<em>srce probodeno, krv iz grudi</em>&quot;. Ironija scene:
               obojica bi mogla odustati.
             </> },
             { title:'FINALNI SUSRET (VIII. poglavlje).', txt:<>
               Onjegin dolazi Tatjani u salon. Pada na koljena. Ona ustaje, drhti.{' '}
               <em>Dug monolog</em>: „<em>Ja vas ljubim (zašto bih lagala?) Ali
-              drugomu sam dana i vjerna ću mu biti zauvijek.</em>" Ona izlazi.{' '}
+              drugomu sam dana i vjerna ću mu biti zauvijek.</em>&quot; Ona izlazi.{' '}
               <b>Onjegin je slomljen</b>. Puškin zatvara: „<em>Ostavimo ga
-              zauvijek</em>". Otvoren kraj — romantički klišej obrnut.
+              zauvijek</em>&quot;. Otvoren kraj — romantički klišej obrnut.
             </> },
           ].map((sc, i) => (
             <li className="b20-item" key={i}>
@@ -519,7 +519,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
       <div className="con">
         {[
           { color:'br', name:'SUVIŠAN ČOVJEK', txt:<>
-            <b>Glavna tema.</b> Onjegin je <em>prvi „suvišan čovjek"</em> u ruskoj
+            <b>Glavna tema.</b> Onjegin je <em>prvi „suvišan čovjek&quot;</em> u ruskoj
             književnosti. Talentiran, obrazovan, ali bez svrhe. Ne nalazi mjesta u
             društvu. Ne može voljeti kad bi trebao, voli kad je kasno.{' '}
             <b>Arhetip za Pečorina (Ljermontov), Oblomova (Gončarov), Rudina
@@ -542,14 +542,14 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
             <b>Puškin karakterizira likove kroz njihovu lektiru.</b> Onjegin čita
             Byrona, Adam Smitha — površno, ciničko čitanje. Tatjana čita Rousseaua
             i Richardsona — sentimentalno, dušom. Lenski čita Schillera i Kanta —
-            idealistički. <em>„Reci mi što čitaš, reći ću ti tko si"</em> — Puškinov
+            idealistički. <em>„Reci mi što čitaš, reći ću ti tko si&quot;</em> — Puškinov
             princip.
           </> },
           { color:'re', name:'RUSIJA I NJEN IDENTITET', txt:<>
             <b>Puškin se pita: što je Rusija?</b> Odgovor: <em>Tatjana je Rusija</em>.
             Iako čita francuske romane i piše francuskim pismom, ona je u duši ruska
             — voli zimu, narodne pripovijesti, babicu-dadilju.{' '}
-            <b>„Ruska dušom, iako nije znala zašto"</b> — Puškinov stih o Tatjani.
+            <b>„Ruska dušom, iako nije znala zašto&quot;</b> — Puškinov stih o Tatjani.
             Djelo utemeljuje tip <em>ruske žene kao čuvara moralnih vrijednosti</em>.
           </> },
         ].map(tema => (
@@ -592,8 +592,8 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
             <b>Psihološka preciznost</b> (Onjeginov razvoj). <b>Kritika društva</b>
             (prazna peterburška aristokracija). <b>Svakodnevica</b> (opisi imenandana,
             balova, ruske kuhinje, odjeće). <b>Razotkrivanje romantičkih iluzija</b>
-            (Tatjana uviđa da je Onjegin „parodija"). <b>Otvoreni kraj</b>. Belinski:{' '}
-            „<b>enciklopedija ruskog života</b>".
+            (Tatjana uviđa da je Onjegin „parodija&quot;). <b>Otvoreni kraj</b>. Belinski:{' '}
+            „<b>enciklopedija ruskog života</b>&quot;.
           </div>
         </div>
         <div className="sc">
@@ -605,7 +605,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
             (Raskoljnikov kao duhovni nasljednik Onjegina —{' '}
             <em>obvezatno čitanje 2026!</em>), <b>Tolstoj</b> (Ana Karenjina —
             kompozicija paralelnih linija naslijeđena je od Puškina), <b>Turgenjev</b>
-            (svi „suvišni ljudi"). Bez Onjegina ne postoji ruska književnost 19. st.
+            (svi „suvišni ljudi&quot;). Bez Onjegina ne postoji ruska književnost 19. st.
           </div>
         </div>
         <div className="sc">
@@ -613,7 +613,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
           <div className="sc-name">Opera · film · balet</div>
           <div className="sc-desc">
             Puškinov roman trajni izvor inspiracije — tri glavne adaptacije:<br />
-            • <b>Čajkovski — opera „Evgenij Onjegin"</b> (1879.). Najpopularnije rusko
+            • <b>Čajkovski — opera „Evgenij Onjegin&quot;</b> (1879.). Najpopularnije rusko
             operno djelo. <em>Tatjanino pismo</em> i <em>Onjeginov monolog</em> —
             operni klasici.<br />
             • <b>Ralph Fiennes — film</b> (1999.). Fiennes kao Onjegin, Liv Tyler kao
@@ -640,7 +640,7 @@ export default function H06OnjeginTab({ onPrev, onNext }) {
               <strong>Puškinov Onjegin je genetski predak Dostojevskog Raskoljnikova</strong>
               {' '}— a <em>Zločin i kazna</em> je{' '}
               <b>obvezatno ispitno čitanje 2026</b>. U eseju o Dostojevskom možeš
-              citirati Onjegina kao prvo izvorište „suvišnog čovjeka" u ruskoj
+              citirati Onjegina kao prvo izvorište „suvišnog čovjeka&quot; u ruskoj
               književnosti.<br /><br />
               <em>Linija razvoja:</em> Werther (osjećajni individualac, H05) →{' '}
               <b>Onjegin (ciničan, dosadan plemić, H06)</b> → Pečorin (Ljermontov)

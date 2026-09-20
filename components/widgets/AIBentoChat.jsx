@@ -25,7 +25,7 @@ export default function AIBentoChat() {
 
       {/* AI odgovor 1 */}
       <div style={{alignSelf:"flex-start",background:"rgba(255,255,255,.04)",border:"1px solid var(--bdr)",borderRadius:"12px 12px 12px 3px",padding:"8px 12px",fontSize:12,maxWidth:"85%",color:"var(--muted)",lineHeight:1.6}}>
-        Zato što funkcija unutar funkcije mijenja "brzinu promjene" —{" "}
+        Zato što funkcija unutar funkcije mijenja &quot;brzinu promjene&quot; —{" "}
         <strong style={{color:"var(--text)"}}>pravilo lanca</strong> to ispravlja množenjem derivacija izvana × iznutra. Npr. sin(x²)′ = cos(x²) · 2x 🎯
       </div>
 

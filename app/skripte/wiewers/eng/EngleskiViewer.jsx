@@ -1221,7 +1221,7 @@ function Layer2({ data, povezanoGradivo }) {
       {data.ispravljanjeGresaka && <>
         <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
         <div style={{ fontFamily: C.mono, ...secLabel }}>// 🔴 error correction drill — pronađi grešku</div>
-        <p style={prose}>Svaka rečenica sadrži grešku. Klikni "Otkrij grešku" pa pročitaj objašnjenje.</p>
+        <p style={prose}>Svaka rečenica sadrži grešku. Klikni &quot;Otkrij grešku&quot; pa pročitaj objašnjenje.</p>
         <ErrorCorrectionDrill stavke={data.ispravljanjeGresaka} />
       </>}
 

@@ -193,11 +193,11 @@ export function HeroQuoteJudita() {
       <div className="hq12">
         <div className="hq12-eye">INVOKACIJA JUDITE - NAPAMET ZA ANALIZU ULOMKA</div>
         <div className="hq12-text">
-          "Ki hoće slišati čudesa Božja starim,
-          neka posluša <em>Judite kriposti harim</em>."
+          &quot;Ki hoće slišati čudesa Božja starim,
+          neka posluša <em>Judite kriposti harim</em>.&quot;
         </div>
         <ul className="hq12-list">
-          <li>Invokacija čitatelja - antička epska tehnika (Vergilije: <em>"Arma virumque cano"</em>)</li>
+          <li>Invokacija čitatelja - antička epska tehnika (Vergilije: <em>&quot;Arma virumque cano&quot;</em>)</li>
           <li>Invokacija Boga - kršćanski ep, ne antički</li>
           <li>Subjekt: Judita - ženska heroina, neobičan izbor za ep</li>
         </ul>
@@ -281,7 +281,7 @@ export function CompareAlegorijaJudita() {
       <SH12 label="05b - Judita - dvostruko čitanje" />
       <div className="h12i" style={{ marginBottom: 12 }}>
         <div className="h12i-lbl">⚠️ Za ispit - tri razine čitanja</div>
-        <div className="h12i-txt">NCVVO može pitati: "Što Judita simbolizira?" Odgovor mora sadržavati sve tri razine: (1) <strong>Doslovna</strong> = biblijska priča, (2) <strong>Alegorijska</strong> = Hrvatska vs. Turci, (3) <strong>Moralna</strong> = vjera pobjeđuje silu. Marulić sam u posveti objašnjava alegorijsku dimenziju - jedinstven slučaj autorske interpretacije u to doba.</div>
+        <div className="h12i-txt">NCVVO može pitati: &quot;Što Judita simbolizira?&quot; Odgovor mora sadržavati sve tri razine: (1) <strong>Doslovna</strong> = biblijska priča, (2) <strong>Alegorijska</strong> = Hrvatska vs. Turci, (3) <strong>Moralna</strong> = vjera pobjeđuje silu. Marulić sam u posveti objašnjava alegorijsku dimenziju - jedinstven slučaj autorske interpretacije u to doba.</div>
       </div>
       <div className="cmp12">
         <div className="cmp12-side left">
@@ -422,7 +422,7 @@ export function AccordionEsejBridgeH12() {
       <style>{`${CSS_SC12}${CSS_INFO12}`}</style>
       <div className="h12i" style={{ marginBottom: 14 }}>
         <div className="h12i-lbl">📌 Judita NIJE esejsko djelo 2026. - ali je moćan kontekstualni argument</div>
-        <div className="h12i-txt">Svaki esej o obvezatnim djelima može dobiti bonus bod ako se Judita navede kao kontekstualni primjer. Formula: "[Obvezatno djelo] + Marulić Judita = pokazuješ da razumiješ širi kontekst hrv. i europske književnosti."</div>
+        <div className="h12i-txt">Svaki esej o obvezatnim djelima može dobiti bonus bod ako se Judita navede kao kontekstualni primjer. Formula: &quot;[Obvezatno djelo] + Marulić Judita = pokazuješ da razumiješ širi kontekst hrv. i europske književnosti.&quot;</div>
       </div>
       <div className="sc12s">
         {ESEJ_BRIDGE.map((b, i) => (

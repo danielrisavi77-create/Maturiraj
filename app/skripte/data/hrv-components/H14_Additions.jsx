@@ -194,7 +194,7 @@ export function HeroQuoteSmail() {
       <style>{CSS_QUOTE}</style>
       <div className="h14q">
         <div className="h14q-eye">Najpoznatiji citat djela</div>
-        <div className="h14q-text">"Boj se onoga tko je viko bez golema mrijet jada!"</div>
+        <div className="h14q-text">&quot;Boj se onoga tko je viko bez golema mrijet jada!&quot;</div>
         <div className="h14q-meta">Durakov savjet Smail-agi uvodi glavnu moralnu os djela: tiranija ignorira mudrost i ubrzava vlastiti pad.</div>
       </div>
     </>
@@ -382,7 +382,7 @@ export function HeroQuoteNocnik() {
       <div className="h14q" style={{ margin: '10px 0 16px' }}>
         <div className="h14q-eye">Slavenska antiteza</div>
         <div className="h14q-text" style={{ fontSize: 14 }}>
-          "Je li hajduk, il' uhoda turska... Nit je hajduk, nit uhoda turska, već Novica..."
+          &quot;Je li hajduk, il&apos; uhoda turska... Nit je hajduk, nit uhoda turska, već Novica...&quot;
         </div>
       </div>
     </>

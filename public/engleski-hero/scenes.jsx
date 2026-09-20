@@ -159,12 +159,12 @@ function Scene1_Panic() {
           color: C.dim, lineHeight: 1.7,
           filter: `blur(${glitchIntensity * 3}px)`,
         }}>
-          "The <span style={{ textDecoration: 'underline', color: C.text }}>ubiquitous</span> nature
+          &quot;The <span style={{ textDecoration: 'underline', color: C.text }}>ubiquitous</span> nature
           of social media has{' '}
           <span style={{ textDecoration: 'underline', color: C.purple }}>profoundly</span>{' '}
           altered the way young people communicate, raising questions about
           <span style={{ textDecoration: 'underline', color: C.orange }}> authenticity</span> and
-          digital <span style={{ textDecoration: 'underline', color: C.blue }}>discourse</span>."
+          digital <span style={{ textDecoration: 'underline', color: C.blue }}>discourse</span>.&quot;
         </div>
       </div>
 
@@ -577,7 +577,7 @@ function QuestionPanel({ localTime }) {
         fontFamily: FONT_BODY, fontSize: 22,
         color: C.text, lineHeight: 1.6, marginBottom: 28,
       }}>
-        The word <em style={{ color: C.orange, fontStyle: 'normal', fontWeight: 600 }}>"ubiquitous"</em>{' '}
+        The word <em style={{ color: C.orange, fontStyle: 'normal', fontWeight: 600 }}>&quot;ubiquitous&quot;</em>{' '}
         (line 2) is closest in meaning to:
       </div>
 

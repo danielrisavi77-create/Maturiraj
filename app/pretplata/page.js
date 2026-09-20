@@ -820,7 +820,7 @@ export default function PretplataPage() {
           </details>
 
           <details className="pricing-faq-item">
-            <summary className="pricing-faq-question">Što je „Prijemni" u Pro tieru?</summary>
+            <summary className="pricing-faq-question">Što je „Prijemni&quot; u Pro tieru?</summary>
             <div className="pricing-faq-answer">
               Pored mature, Pro tier uključuje pripremu za <strong>fakultetske prijemne ispite</strong> (medicina, pravo, FER, FSB, Filozofski, Ekonomski, ...). Sadržaj se temelji na arhivi prijemnih ispita iz prošlih godina + AI personalizirani plan vježbanja.
             </div>

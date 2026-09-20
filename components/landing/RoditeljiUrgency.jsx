@@ -71,7 +71,7 @@ export default function RoditeljiUrgency({ onRoditelji, onPlan, onSkripte }) {
             {/* Desno */}
             <div style={{display:"flex",flexDirection:"column",gap:14}}>
               <div style={{background:"var(--s1)",border:"1px solid rgba(233,180,70,.2)",borderRadius:20,padding:"28px 30px",position:"relative"}}>
-                <div style={{fontSize:48,color:"var(--gold)",fontFamily:"var(--fh)",lineHeight:.8,marginBottom:16,opacity:.6}}>"</div>
+                <div style={{fontSize:48,color:"var(--gold)",fontFamily:"var(--fh)",lineHeight:.8,marginBottom:16,opacity:.6}}>&quot;</div>
                 <p style={{fontSize:15,lineHeight:1.8,color:"var(--text)",marginBottom:20,fontStyle:"italic"}}>
                   Uložila sam u Maturiraj umjesto u još jednog privatnog učitelja. Kći je imala pristup svim predmetima 24/7 — a ja sam pratila napredak bez da sam je stresirala s pitanjima.
                 </p>

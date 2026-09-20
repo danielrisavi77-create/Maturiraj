@@ -346,7 +346,7 @@ ${prag2023}
           <div>
             {filtered.length === 0 ? (
               <div style={{ padding: 32, textAlign: 'center', color: 'var(--muted)', fontSize: 14 }}>
-                Nema rezultata za "{search}"
+                Nema rezultata za &quot;{search}&quot;
               </div>
             ) : (
               filtered.map((d) => {
@@ -421,7 +421,7 @@ ${prag2023}
         <div className="export-section">
           <div className="export-title">📋 Export za kalkulatorData.js</div>
           <div className="export-sub">
-            Nakon ažuriranja klikni "Sačuvaj sve" pa "Export JSON". Kopiraj generirani kod u <code>STUDIJI_2025</code> array u <code>kalkulatorData.js</code>.
+            Nakon ažuriranja klikni &quot;Sačuvaj sve&quot; pa &quot;Export JSON&quot;. Kopiraj generirani kod u <code>STUDIJI_2025</code> array u <code>kalkulatorData.js</code>.
             <br />
             Za PRAG_2023 objekt — kopiraj odgovarajući dio.
           </div>

@@ -74,7 +74,7 @@ export function HeroQuoteAntigona() {
         <div className="krsni-quote-ornament">⁕ Sofoklo, Antigona · ~441. pr. Kr.</div>
         <div className="krsni-quote-text">
           „Nisam mislila da tvoje naredbe imaju toliku moć da smrtnik može pregaziti{' '}
-          <em>nepisane i nepropadljive zakone bogova.</em>"
+          <em>nepisane i nepropadljive zakone bogova.</em>&quot;
         </div>
         <div className="krsni-quote-source">Antigona → Kreontu</div>
       </div>
@@ -658,7 +658,7 @@ export function AccordionCitatiH01() {
           <details className="scene" key={i}>
             <summary className="scene-sum">
               <div className="scene-num" style={{fontSize:11,color:'var(--bronze)'}}>{i+1}</div>
-              <div className="scene-ttl" style={{fontStyle:'italic',fontSize:13}}>„{c.c.substring(0,55)}…"</div>
+              <div className="scene-ttl" style={{fontStyle:'italic',fontSize:13}}>„{c.c.substring(0,55)}…&quot;</div>
               <span className="scene-meta">{c.tko.split('→')[0].trim()}</span>
               <span className="scene-chevron">▾</span>
             </summary>

@@ -199,7 +199,7 @@ export function AuthorCardDostojevski({context='l0'}) {
               <div>
                 <div className="ac7-work-title">Idiot · Braća Karamazovi</div>
                 <div className="ac7-work-meta">1868. + 1880. · KASNI ROMANI</div>
-                <div className="ac7-work-desc">Idiot = knez Miškin, „pozitivno lijep čovjek". Braća Karamazovi = sinteza svega — vjera, sloboda, ubojstvo, ljubav. Tolstoj: „najveći ikad napisan."</div>
+                <div className="ac7-work-desc">Idiot = knez Miškin, „pozitivno lijep čovjek&quot;. Braća Karamazovi = sinteza svega — vjera, sloboda, ubojstvo, ljubav. Tolstoj: „najveći ikad napisan.&quot;</div>
               </div>
             </div>
             <div className="ac7-work">
@@ -399,8 +399,8 @@ export function HeroQuoteRaskoljnikov() {
       <style>{CSS_QUOTE7}</style>
       <div className="hq7">
         <div className="hq7-eye">RASKOLJNIKOVLJEVA CENTRALNA DILEMA</div>
-        <div className="hq7-text">„<em>Jesam li vaš</em> ili sam Napoleon?"</div>
-        <div className="hq7-body">Raskoljnikov, II. dio. Jedna rečenica = cijela filozofija romana. Ubojstvo Alijone nije bio zločin radi novca — bio je <strong style={{color:'var(--t1)'}}>filozofski eksperiment</strong>: je li Raskoljnikov „neobični čovjek" koji smije kršiti zakone, ili je „obični" — i onda je ubojica? Odgovor koji ga uništava: obični.</div>
+        <div className="hq7-text">„<em>Jesam li vaš</em> ili sam Napoleon?&quot;</div>
+        <div className="hq7-body">Raskoljnikov, II. dio. Jedna rečenica = cijela filozofija romana. Ubojstvo Alijone nije bio zločin radi novca — bio je <strong style={{color:'var(--t1)'}}>filozofski eksperiment</strong>: je li Raskoljnikov „neobični čovjek&quot; koji smije kršiti zakone, ili je „obični&quot; — i onda je ubojica? Odgovor koji ga uništava: obični.</div>
         <div className="hq7-source">ZLOČIN I KAZNA · F. DOSTOJEVSKI · 1866. · II. DIO · PSIHOLOŠKI ROMAN</div>
       </div>
     </>
@@ -512,7 +512,7 @@ export function SVGLikoviZlocin() {
           <circle cx="330" cy="285" r="30" fill="#041a0a" stroke="#3ecf6e" strokeWidth="2"/>
           <text x="330" y="280" textAnchor="middle" fontFamily="serif" fontSize="12" fontWeight="700" fill="#5ecf8a">SONJA</text>
           <text x="330" y="294" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="rgba(62,207,110,.6)">moralna vertikala</text>
-          <text x="330" y="325" textAnchor="middle" fontFamily="serif" fontSize="9" fill="rgba(62,207,110,.4)" fontStyle="italic">„Otići ćemo zajedno"</text>
+          <text x="330" y="325" textAnchor="middle" fontFamily="serif" fontSize="9" fill="rgba(62,207,110,.4)" fontStyle="italic">„Otići ćemo zajedno&quot;</text>
           <circle cx="510" cy="155" r="28" fill="#04061a" stroke="#6b9bff" strokeWidth="2"/>
           <text x="510" y="150" textAnchor="middle" fontFamily="serif" fontSize="11" fontWeight="700" fill="#8baeff">PORFIRIJE</text>
           <text x="510" y="164" textAnchor="middle" fontFamily="monospace" fontSize="7.5" fill="rgba(107,155,255,.6)">istražitelj · mačka</text>
@@ -561,19 +561,19 @@ export function SVGNadcovjek() {
           </defs>
           <rect x="230" y="20" width="200" height="60" rx="10" fill="#1a0a0a" stroke="#e9b446" strokeWidth="2"/>
           <text x="330" y="45" textAnchor="middle" fontFamily="serif" fontSize="15" fontWeight="700" fill="#e9b446">NAPOLEON</text>
-          <text x="330" y="62" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="rgba(232,201,122,.6)">arhetip „neobičnog" čovjeka</text>
+          <text x="330" y="62" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="rgba(232,201,122,.6)">arhetip „neobičnog&quot; čovjeka</text>
           <rect x="140" y="110" width="380" height="60" rx="10" fill="#150505" stroke="rgba(220,50,47,.6)" strokeWidth="1.5"/>
-          <text x="330" y="135" textAnchor="middle" fontFamily="serif" fontSize="14" fontWeight="700" fill="#e87a77">„NEOBIČNI" LJUDI</text>
+          <text x="330" y="135" textAnchor="middle" fontFamily="serif" fontSize="14" fontWeight="700" fill="#e87a77">„NEOBIČNI&quot; LJUDI</text>
           <text x="330" y="152" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="rgba(220,50,47,.5)">Pravo na kršenje zakona za viši cilj</text>
           <text x="230" y="152" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="rgba(220,50,47,.4)">Newton · Muhamed</text>
           <text x="440" y="152" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="rgba(220,50,47,.4)">Lihvarica = prepreka?</text>
           <rect x="60" y="200" width="540" height="45" rx="10" fill="#0a0a0a" stroke="rgba(255,255,255,.1)" strokeWidth="1"/>
-          <text x="330" y="220" textAnchor="middle" fontFamily="serif" fontSize="13" fill="rgba(255,255,255,.6)">„OBIČNI" LJUDI — moraju slijediti zakone</text>
-          <text x="330" y="237" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="rgba(255,255,255,.3)">Masa · Konformisti · „Vaši"</text>
+          <text x="330" y="220" textAnchor="middle" fontFamily="serif" fontSize="13" fill="rgba(255,255,255,.6)">„OBIČNI&quot; LJUDI — moraju slijediti zakone</text>
+          <text x="330" y="237" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="rgba(255,255,255,.3)">Masa · Konformisti · „Vaši&quot;</text>
           <path d="M330 80 L330 108" stroke="rgba(232,201,122,.4)" strokeWidth="1.5" markerEnd="url(#arr-h07)"/>
           <path d="M330 170 L330 198" stroke="rgba(255,255,255,.2)" strokeWidth="1.5" markerEnd="url(#arr-h07)"/>
           <text x="600" y="128" textAnchor="middle" fontFamily="serif" fontSize="11" fontWeight="700" fill="#DC322F">← RASKOLJNIKOV</text>
-          <text x="600" y="143" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="rgba(220,50,47,.6)">„Jesam li vaš?"</text>
+          <text x="600" y="143" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="rgba(220,50,47,.6)">„Jesam li vaš?&quot;</text>
           <text x="330" y="255" textAnchor="middle" fontFamily="serif" fontSize="11" fill="rgba(255,255,255,.3)" fontStyle="italic">
             Teorija se ruši: savjest dokazuje da je OBIČNI. Raskoljnikov se slama.
           </text>
@@ -664,7 +664,7 @@ export function SVGRaskoljnikovArc() {
           <text x="80" y="204" textAnchor="middle" fontFamily="monospace" fontSize="7.5" fill="rgba(255,255,255,.3)">Dio I</text>
           <text x="580" y="204" textAnchor="middle" fontFamily="monospace" fontSize="7.5" fill="rgba(255,255,255,.3)">Epilog</text>
           <text x="330" y="220" textAnchor="middle" fontFamily="serif" fontSize="10" fill="rgba(255,255,255,.25)" fontStyle="italic">
-            „Tko ne trpi, ne može uskrsnuti." — Dostojevski
+            „Tko ne trpi, ne može uskrsnuti.&quot; — Dostojevski
           </text>
         </svg>
       </div>
