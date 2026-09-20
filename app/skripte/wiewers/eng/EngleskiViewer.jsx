@@ -138,7 +138,7 @@ function Layer0({ data, poglavlje }) {
       {/* Mapa skripte */}
       {data.mapaSkripte && (
         <div style={{ marginBottom: 20, padding: '18px 20px', background: C.bgCard, border: `1px solid ${C.bdMid}`, borderRadius: 16 }}>
-          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', color: C.lime, marginBottom: 12 }}>// mapa skripte — gdje sam i kamo idem?</div>
+          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', color: C.lime, marginBottom: 12 }}>{'//'} mapa skripte — gdje sam i kamo idem?</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 12 }}>
             {data.mapaSkripte.grupe.map((g) => (
               <div key={g.kod} style={{ background: C.bgElevated, border: `1px solid ${BOJ[g.boja]?.border}`, borderRadius: 12, padding: '11px 13px' }}>
@@ -149,7 +149,7 @@ function Layer0({ data, poglavlje }) {
             ))}
           </div>
           <div style={{ borderTop: `1px solid ${C.bd}`, paddingTop: 10 }}>
-            <div style={{ fontFamily: C.mono, fontSize: 9.5, color: C.t3, fontWeight: 600, marginBottom: 6 }}>// koliko imaš vremena?</div>
+            <div style={{ fontFamily: C.mono, fontSize: 9.5, color: C.t3, fontWeight: 600, marginBottom: 6 }}>{'//'} koliko imaš vremena?</div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
               {data.mapaSkripte.vremenski.map((v) => (
                 <div key={v.trajanje} style={{ fontSize: 11.5, color: C.t2 }}>
@@ -184,7 +184,7 @@ function Layer0({ data, poglavlje }) {
       </div>
 
       {/* Stats */}
-      <div style={{ fontFamily: C.mono, ...secLabel, marginBottom: 14 }}>// at a glance</div>
+      <div style={{ fontFamily: C.mono, ...secLabel, marginBottom: 14 }}>{'//'} at a glance</div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(168px,1fr))', gap: 10, marginBottom: 28 }}>
         {data.stats.map((s) => (
           <div key={s.kod}
@@ -201,7 +201,7 @@ function Layer0({ data, poglavlje }) {
       {/* Concepts */}
       {data.koncepti?.length > 0 && (
         <>
-      <div style={{ fontFamily: C.mono, ...secLabel, marginBottom: 10 }}>// key concepts</div>
+      <div style={{ fontFamily: C.mono, ...secLabel, marginBottom: 10 }}>{'//'} key concepts</div>
       <div style={{ border: `1px solid ${C.bdMid}`, borderRadius: 12, overflow: 'hidden', marginBottom: 24 }}>
         {data.koncepti.map((k, i) => (
           <div key={i} style={{ display: 'grid', gridTemplateColumns: 'minmax(170px,36%) 1fr', borderBottom: i < data.koncepti.length - 1 ? `1px solid ${C.bd}` : 'none', background: i % 2 === 1 ? 'rgba(255,255,255,.015)' : 'transparent' }}>
@@ -217,11 +217,11 @@ function Layer0({ data, poglavlje }) {
       )}
 
       {/* Panic pravila */}
-      <div style={{ fontFamily: C.mono, ...secLabel }}>// ako zapamtiš samo ovo — 3 pravila</div>
+      <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} ako zapamtiš samo ovo — 3 pravila</div>
       <PanicBox naslov="panic-proof — 3 rules that cover 90% of exam questions" ikona="🧠" stavke={data.panicPravila} />
 
       {/* Recall kartice */}
-      <div style={{ fontFamily: C.mono, ...secLabel }}>// 5-second recall — klikni i provjeri</div>
+      <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} 5-second recall — klikni i provjeri</div>
       {data.recallKartice.map((k, i) => (
         <RevealCard key={i} pitanje={k.pitanje} odgovor={k.odgovor.replace(/\n/g, '<br>')} />
       ))}
@@ -229,7 +229,7 @@ function Layer0({ data, poglavlje }) {
       {/* Panic protokol */}
       {data.panicProtokol?.length > 0 && (
         <>
-          <div style={{ fontFamily: C.mono, ...secLabel, marginTop: 28 }}>// if you panic on the exam — do this</div>
+          <div style={{ fontFamily: C.mono, ...secLabel, marginTop: 28 }}>{'//'} if you panic on the exam — do this</div>
           <PanicBox naslov="exam panic protocol — 5 koraka" ikona="🚨" stavke={data.panicProtokol} />
         </>
       )}
@@ -547,7 +547,7 @@ function NoteCompletionTask({ blok }) {
           </div>
         </div>
         <div style={{ fontSize: 13.5, lineHeight: 1.85, color: C.t2, marginBottom: 16 }} dangerouslySetInnerHTML={html(blok.script_mono)} />
-        <div style={{ fontFamily: C.mono, fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: C.t3, marginBottom: 10 }}>// popuni bilješke prema audio zapisu</div>
+        <div style={{ fontFamily: C.mono, fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: C.t3, marginBottom: 10 }}>{'//'} popuni bilješke prema audio zapisu</div>
         <div style={{ background: C.bgSurface, border: `1px solid ${C.bdMid}`, borderRadius: 10, overflow: 'hidden', marginBottom: 14 }}>
           <div style={{ padding: '10px 16px', background: C.bgInput, borderBottom: `1px solid ${C.bd}`, fontFamily: C.mono, fontSize: 11, fontWeight: 700, color: C.lime }}>City Language Centre — Course Information</div>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -878,7 +878,7 @@ function MultipleChoiceQuiz({ kviz }) {
   return (
     <div>
       <div style={{ background: C.bgCard, border: `1px solid ${C.bdMid}`, borderRadius: 12, padding: '14px 18px', fontSize: 13, color: C.t2, marginBottom: 16, fontFamily: C.mono, lineHeight: 1.65 }}>
-        <strong style={{ color: C.lime }}>// exam mode</strong> · Odaberi točan oblik. Svaki odgovor dolazi s objašnjenjem. Target: <strong style={{ color: C.lime }}>{Math.round(total * 0.8)}/{total}</strong> ili bolje.
+        <strong style={{ color: C.lime }}>{'//'} exam mode</strong> · Odaberi točan oblik. Svaki odgovor dolazi s objašnjenjem. Target: <strong style={{ color: C.lime }}>{Math.round(total * 0.8)}/{total}</strong> ili bolje.
       </div>
 
       {/* Keyboard hint */}
@@ -1137,7 +1137,7 @@ function WeakTracker() {
   return (
     <div style={{ background: C.bgCard, border: `1px solid ${C.bdMid}`, borderRadius: 16, padding: '18px 20px', marginBottom: 28 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-        <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', color: C.lime }}>// moja slaba područja</div>
+        <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', color: C.lime }}>{'//'} moja slaba područja</div>
         {keys.length > 0 && (
           <button onClick={clearAll} style={{ fontFamily: C.mono, fontSize: 9, padding: '3px 8px', color: C.t3, cursor: 'pointer', borderRadius: 6, border: `1px solid ${C.bd}`, background: 'transparent' }}>↺ Reset sve</button>
         )}
@@ -1178,7 +1178,7 @@ function Layer2({ data, povezanoGradivo }) {
 
       {data.praksaUpute && (
         <div style={{ background: C.bgCard, border: `1px solid ${C.bdMid}`, borderRadius: 16, padding: '16px 20px', marginBottom: 28 }}>
-          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', color: C.t3, marginBottom: 14 }}>// kako koristiti practice tab</div>
+          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', color: C.t3, marginBottom: 14 }}>{'//'} kako koristiti practice tab</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {data.praksaUpute.map((p, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
@@ -1197,7 +1197,7 @@ function Layer2({ data, povezanoGradivo }) {
 
       {data.stoDalje && <>
         <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
-        <div style={{ fontFamily: C.mono, ...secLabel }}>// {data.stoDalje.naslov}</div>
+        <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} {data.stoDalje.naslov}</div>
         <p style={{ fontSize: 13, color: C.t2, marginBottom: 14 }}>{data.stoDalje.uvod}</p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 14 }}>
           {data.stoDalje.poglavlja.map((p, i) => (
@@ -1213,41 +1213,41 @@ function Layer2({ data, povezanoGradivo }) {
 
       {data.speedDrill && <>
         <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
-        <div style={{ fontFamily: C.mono, ...secLabel }}>// ⚡ speed recognition drill — PS ili PC?</div>
+        <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} ⚡ speed recognition drill — PS ili PC?</div>
         <p style={prose}>10 rečenica. Odaberi što brže možeš.</p>
         <SpeedDrill drill={data.speedDrill} labels={data.speedDrillLabels} />
       </>}
 
       {data.ispravljanjeGresaka && <>
         <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
-        <div style={{ fontFamily: C.mono, ...secLabel }}>// 🔴 error correction drill — pronađi grešku</div>
+        <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} 🔴 error correction drill — pronađi grešku</div>
         <p style={prose}>Svaka rečenica sadrži grešku. Klikni &quot;Otkrij grešku&quot; pa pročitaj objašnjenje.</p>
         <ErrorCorrectionDrill stavke={data.ispravljanjeGresaka} />
       </>}
 
       {data.popuniPraznine && <>
         <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
-        <div style={{ fontFamily: C.mono, ...secLabel }}>// bonus — fill in the blank</div>
+        <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} bonus — fill in the blank</div>
         <p style={prose}>Upiši ispravni oblik glagola u zagradi. Pazi na pravopis!</p>
         <FillInBlank stavke={data.popuniPraznine} />
       </>}
 
       {data.integriraniKviz && <>
         <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
-        <div style={{ fontFamily: C.mono, ...secLabel }}>// integrirani quiz — sve gramatike ch01–ch07</div>
+        <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} integrirani quiz — sve gramatike ch01–ch07</div>
         <p style={prose}>15 pitanja iz svih prethodnih poglavlja. Finale provjera.</p>
         <MultipleChoiceQuiz kviz={data.integriraniKviz} />
       </>}
 
       {data.checkpointKartice?.length > 0 && <>
         <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
-        <div style={{ fontFamily: C.mono, ...secLabel }}>// checkpoint — znaš li stvarno razliku?</div>
+        <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} checkpoint — znaš li stvarno razliku?</div>
         {data.checkpointKartice.map((k, i) => <RevealCard key={i} pitanje={k.pitanje} odgovor={k.odgovor} />)}
       </>}
 
       {data.finalChecklist && <>
         <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
-        <div style={{ fontFamily: C.mono, ...secLabel }}>// ✅ dan ispita — finale checklist</div>
+        <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} ✅ dan ispita — finale checklist</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: C.bgCard, border: `1px solid ${C.greenBorder}`, borderRadius: 12, padding: '12px 18px', marginBottom: 12 }}>
           <span style={{ fontSize: 20 }}>🧠</span>
           <span style={{ fontSize: 14, fontWeight: 700, color: C.t1 }}>Dan ispita — sve taktike u jednom popisu</span>
@@ -1266,7 +1266,7 @@ function Layer2({ data, povezanoGradivo }) {
       {data.quickExamSummary && (
         <>
           <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
-          <div style={{ fontFamily: C.mono, ...secLabel }}>// quick exam pattern summary</div>
+          <div style={{ fontFamily: C.mono, ...secLabel }}>{'//'} quick exam pattern summary</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '18px 0' }}>
             {data.quickExamSummary.map((s, i) => {
               const boja = s.tip === 'gap' ? 'lime' : s.tip === 'mcq' ? 'violet' : 'red'
@@ -1311,7 +1311,7 @@ function Layer2({ data, povezanoGradivo }) {
 
       {data.ponoviPoglavlje && (
         <div style={{ margin: '28px 0' }}>
-          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 600, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 14, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>// ponovi poglavlje</div>
+          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 600, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 14, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>{'//'} ponovi poglavlje</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
             {data.ponoviPoglavlje.map((p, i) => (
               <div key={i} style={{ background: C.bgCard, border: `1px solid ${C.bdMid}`, borderRadius: 10, padding: '12px 14px', textAlign: 'center' }}>
@@ -1326,7 +1326,7 @@ function Layer2({ data, povezanoGradivo }) {
       {/* Povezano gradivo & sljedeći koraci */}
       {povezanoGradivo?.length > 0 && (
         <div style={{ margin: '28px 0' }}>
-          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 600, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 14, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>// povezano gradivo &amp; sljedeći koraci</div>
+          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 600, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 14, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>{'//'} povezano gradivo &amp; sljedeći koraci</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             {povezanoGradivo.map((p, i) => (
               <div key={i} style={{ background: C.bgCard, border: `1px solid ${C.skyBorder}`, borderRadius: 12, padding: '14px 16px' }}>
@@ -1378,7 +1378,7 @@ function ChapterView({ poglavlje, razina, onSelectChapter, onBack, onDiscere, is
           style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 16px', fontSize: 12, color: C.t2, background: 'transparent', border: 'none', cursor: 'pointer', borderBottom: `1px solid ${C.bd}`, fontFamily: C.mono, transition: 'color .12s' }}>
           ← Natrag na poglavlja
         </button>
-        <div style={{ padding: '12px 16px 6px', fontFamily: C.mono, fontSize: 9, fontWeight: 500, letterSpacing: 1.8, color: C.t3, textTransform: 'uppercase' }}>// poglavlja</div>
+        <div style={{ padding: '12px 16px 6px', fontFamily: C.mono, fontSize: 9, fontWeight: 500, letterSpacing: 1.8, color: C.t3, textTransform: 'uppercase' }}>{'//'} poglavlja</div>
         {(razina?.poglavlja || []).map((p) => {
           const isActive = p.id === poglavlje.id
           return (
@@ -1439,7 +1439,7 @@ function ChapterView({ poglavlje, razina, onSelectChapter, onBack, onDiscere, is
                 <>
                   <hr style={{ border: 'none', borderTop: `1px solid ${C.bd}`, margin: '32px 0' }} />
                   <div style={{ margin: '28px 0' }}>
-                    <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 600, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 14, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>// povezano gradivo &amp; sljedeći koraci</div>
+                    <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 600, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 14, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>{'//'} povezano gradivo &amp; sljedeći koraci</div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                       {poglavlje.povezanoGradivo.map((p, i) => {
                         const linkedCh = razina?.poglavlja?.find(ch => ch.broj === parseInt(p.kod))
@@ -1512,7 +1512,7 @@ function ChapterList({ razina, onOpenChapter, onBack }) {
 
       {groups.map(({ k, items }) => (
         <div key={k} style={{ marginBottom: 32 }}>
-          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 12, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>// {k.toLowerCase()}</div>
+          <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 12, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>{'//'} {k.toLowerCase()}</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {items.map((p) => (
               <button key={p.id} type="button" disabled={!p.implemented}

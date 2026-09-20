@@ -596,30 +596,30 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
       <div className={`mob-drawer ${mobDrawerOpen ? 'open' : ''}`} onClick={(e) => {if(e.target===e.currentTarget) setMobDrawerOpen(false)}}>
         <button className="mob-drawer-close" onClick={() => setMobDrawerOpen(false)}>✕ Zatvori</button>
         <div onClick={() => {setMobDrawerOpen(false); onBack?.()}} style={{display:'flex',alignItems:'center',gap:'8px',padding:'10px 0',fontSize:'12px',fontFamily:'var(--mono)',color:'var(--t3)',cursor:'pointer',borderBottom:'1px solid var(--bd)',marginBottom:'8px'}}><span>←</span> Sva poglavlja</div>
-        <div className="sb-label">// Blok 1 — Start + Ispit</div>
+        <div className="sb-label">{'//'} Blok 1 — Start + Ispit</div>
         <div className="sb-item done-ch" onClick={() => {setMobDrawerOpen(false); onNavigate?.(1)}}><span className="sb-dot"></span>01 · Kako izgleda Engleski A</div>
         <div className="sb-item done-ch" onClick={() => {setMobDrawerOpen(false); onNavigate?.(2)}}><span className="sb-dot"></span>02 · Kako koristiti skriptu</div>
-        <div className="sb-label">// Blok 2 — Grammar Core</div>
+        <div className="sb-label">{'//'} Blok 2 — Grammar Core</div>
         <div className="sb-item done-ch" onClick={() => {setMobDrawerOpen(false); onNavigate?.(3)}}><span className="sb-dot"></span>03 · Vremena koja se miješaju</div>
         <div className="sb-item done-ch" onClick={() => {setMobDrawerOpen(false); onNavigate?.(4)}}><span className="sb-dot"></span>04 · Perfect vremena</div>
         <div className="sb-item active"><span className="sb-dot"></span>05 · Conditionals</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(6)}}><span className="sb-dot"></span>06 · Passive, Reported Speech</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(7)}}><span className="sb-dot"></span>07 · Modals, Articles, Quantifiers</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(8)}}><span className="sb-dot"></span>08 · Prepositions i Linkers</div>
-        <div className="sb-label">// Blok 3 — Use of English</div>
+        <div className="sb-label">{'//'} Blok 3 — Use of English</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(9)}}><span className="sb-dot"></span>09 · Što zadatak testira</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(10)}}><span className="sb-dot"></span>10 · Gap fill i MCQ</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(11)}}><span className="sb-dot"></span>11 · Word formation</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(12)}}><span className="sb-dot"></span>12 · Najčešće zamke</div>
-        <div className="sb-label">// Blok 4 — Writing</div>
+        <div className="sb-label">{'//'} Blok 4 — Writing</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(13)}}><span className="sb-dot"></span>13 · Dobar maturalni esej</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(14)}}><span className="sb-dot"></span>14 · Struktura eseja</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(15)}}><span className="sb-dot"></span>15 · Linking words i vocabulary</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(16)}}><span className="sb-dot"></span>16 · Greške + model essay</div>
-        <div className="sb-label">// Blok 5 — Reading + Listening</div>
+        <div className="sb-label">{'//'} Blok 5 — Reading + Listening</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(17)}}><span className="sb-dot"></span>17 · Reading strategije</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(18)}}><span className="sb-dot"></span>18 · Listening strategije</div>
-        <div className="sb-label">// Blok 6 — Vocab + Exam</div>
+        <div className="sb-label">{'//'} Blok 6 — Vocab + Exam</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(19)}}><span className="sb-dot"></span>19 · Vocabulary for Matura</div>
         <div className="sb-item" onClick={() => {setMobDrawerOpen(false); onNavigate?.(20)}}><span className="sb-dot"></span>20 · Final Exam Survival</div>
       </div>
@@ -632,30 +632,30 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
           <div><div className="sb-name">Maturiraj.hr</div><div className="sb-sub">EN · viša razina</div></div>
         </div>
         <div onClick={() => onBack?.()} style={{display:'flex',alignItems:'center',gap:'8px',padding:'9px 18px',fontSize:'11.5px',fontFamily:'var(--mono)',color:'var(--t3)',cursor:'pointer',borderBottom:'1px solid var(--bd)',transition:'color .12s'}} onMouseOver={e=>e.currentTarget.style.color='var(--t1)'} onMouseOut={e=>e.currentTarget.style.color='var(--t3)'}><span style={{fontSize:'10px'}}>←</span> Sva poglavlja</div>
-        <div className="sb-label">// Blok 1 — Start + Ispit</div>
+        <div className="sb-label">{'//'} Blok 1 — Start + Ispit</div>
         <div className="sb-item done-ch" style={{cursor:'pointer'}} onClick={() => onNavigate?.(1)}><span className="sb-dot"></span>01 · Kako izgleda Engleski A</div>
         <div className="sb-item done-ch" style={{cursor:'pointer'}} onClick={() => onNavigate?.(2)}><span className="sb-dot"></span>02 · Kako koristiti skriptu</div>
-        <div className="sb-label">// Blok 2 — Grammar Core</div>
+        <div className="sb-label">{'//'} Blok 2 — Grammar Core</div>
         <div className="sb-item done-ch" style={{cursor:'pointer'}} onClick={() => onNavigate?.(3)}><span className="sb-dot"></span>03 · Vremena koja se miješaju</div>
         <div className="sb-item done-ch" style={{cursor:'pointer'}} onClick={() => onNavigate?.(4)}><span className="sb-dot"></span>04 · Perfect vremena</div>
         <div className="sb-item active"><span className="sb-dot"></span>05 · Conditionals</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(6)}><span className="sb-dot"></span>06 · Passive, Reported Speech</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(7)}><span className="sb-dot"></span>07 · Modals, Articles, Quantifiers</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(8)}><span className="sb-dot"></span>08 · Prepositions i Linkers</div>
-        <div className="sb-label">// Blok 3 — Use of English</div>
+        <div className="sb-label">{'//'} Blok 3 — Use of English</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(9)}><span className="sb-dot"></span>09 · Što zadatak testira</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(10)}><span className="sb-dot"></span>10 · Gap fill i MCQ</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(11)}><span className="sb-dot"></span>11 · Word formation</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(12)}><span className="sb-dot"></span>12 · Najčešće zamke</div>
-        <div className="sb-label">// Blok 4 — Writing</div>
+        <div className="sb-label">{'//'} Blok 4 — Writing</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(13)}><span className="sb-dot"></span>13 · Dobar maturalni esej</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(14)}><span className="sb-dot"></span>14 · Struktura eseja</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(15)}><span className="sb-dot"></span>15 · Linking words i vocabulary</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(16)}><span className="sb-dot"></span>16 · Greške + model essay</div>
-        <div className="sb-label">// Blok 5 — Reading + Listening</div>
+        <div className="sb-label">{'//'} Blok 5 — Reading + Listening</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(17)}><span className="sb-dot"></span>17 · Reading strategije</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(18)}><span className="sb-dot"></span>18 · Listening strategije</div>
-        <div className="sb-label">// Blok 6 — Vocab + Exam</div>
+        <div className="sb-label">{'//'} Blok 6 — Vocab + Exam</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(19)}><span className="sb-dot"></span>19 · Vocabulary for Matura</div>
         <div className="sb-item" style={{cursor:'pointer'}} onClick={() => onNavigate?.(20)}><span className="sb-dot"></span>20 · Final Exam Survival</div>
         <div className="sb-footer">05 / 20 · grammar core<br/>maturiraj.hr</div>
@@ -714,7 +714,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
               <span className="pill pill-cream">Inverzija</span>
             </div>
 
-            <div className="sec-label">// pet vrsta na jednom pogledu</div>
+            <div className="sec-label">{'//'} pet vrsta na jednom pogledu</div>
             <div className="stat-grid">
               <div className="stat-card">
                 <div className="stat-icon blue">ZERO</div>
@@ -743,7 +743,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
               </div>
             </div>
 
-            <div className="sec-label">// 5 panic-proof pravila</div>
+            <div className="sec-label">{'//'} 5 panic-proof pravila</div>
             <div className="panic-box">
               <div className="panic-hd">🇬🇧 conditionals essentials — zapamti ovo pet</div>
               <div className="panic-body">
@@ -755,7 +755,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
               </div>
             </div>
 
-            <div className="sec-label">// brzi pregled — klikni i provjeri</div>
+            <div className="sec-label">{'//'} brzi pregled — klikni i provjeri</div>
             {[
               {id:'r0',icon:'🔵',title:'Zero vs First — kada koji?',content:<><b>Zero:</b> uvijek točno, zakoni, navike, opće istine → <span className="ok">If you heat water to 100°C, it boils.</span><br/><b>First:</b> realna mogućnost u budućnosti → <span className="ok">If it rains, I will take an umbrella.</span><br/><br/>Razlika: Zero = <b>uvijek</b> se dogodi. First = <b>možda</b> se dogodi.</>},
               {id:'r1',icon:'🟡',title:'Second conditional — hipotetično, were, would',content:<><b>Forma:</b> If + Past Simple, would + infinitiv<br/><span className="ok">If I won the lottery, I would travel the world.</span> (nerealno — nisam na putu da pobjedim)<br/><br/><b>Were za sve subjekte:</b> <span className="ok">If she were taller...</span> / <span className="ok">If I were you...</span><br/><span className="bad">Zamka:</span> <span style={{color:'var(--red)'}}>If I would have money</span> → <span className="ok">If I had money</span> — would se nikad ne stavlja u if-klauzulu!</>},
@@ -823,7 +823,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* Overview Table */}
-            <div id="sec-overview" className="sec-label">// svih 5 vrsta — usporedna tablica</div>
+            <div id="sec-overview" className="sec-label">{'//'} svih 5 vrsta — usporedna tablica</div>
             <table className="cond-table">
               <thead><tr><th>Vrsta</th><th>if-klauzula</th><th>Glavna klauzula</th><th>Značenje</th></tr></thead>
               <tbody>
@@ -836,7 +836,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </table>
 
             {/* Zero Conditional */}
-            <div id="sec-zero" className="sec-label" style={{marginTop:36}}>// zero conditional — opće istine i navike</div>
+            <div id="sec-zero" className="sec-label" style={{marginTop:36}}>{'//'} zero conditional — opće istine i navike</div>
             <div className="cond-block">
               <div className="cond-head">
                 <div className="cond-type zero">ZERO</div>
@@ -867,7 +867,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* First Conditional */}
-            <div id="sec-first" className="sec-label" style={{marginTop:36}}>// first conditional — realna mogućnost</div>
+            <div id="sec-first" className="sec-label" style={{marginTop:36}}>{'//'} first conditional — realna mogućnost</div>
             <div className="cond-block">
               <div className="cond-head">
                 <div className="cond-type first">FIRST</div>
@@ -910,7 +910,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* Unless section */}
-            <div id="sec-unless" className="sec-label" style={{marginTop:36}}>// unless · provided · as long as — varijante if-a</div>
+            <div id="sec-unless" className="sec-label" style={{marginTop:36}}>{'//'} unless · provided · as long as — varijante if-a</div>
             <p className="prose">Na ispitu se uz standardni <em>if</em> pojavljuju i drugi veznici koji uvode kondicionalne klauze. Svi funkcioniraju po istim pravilima — <strong>nikad will iza njih</strong>.</p>
             <div style={{background:'var(--bg-card)',border:'1px solid var(--bd-mid)',borderRadius:'var(--r3)',overflow:'hidden',margin:'14px 0 20px'}}>
               {[
@@ -937,7 +937,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* Second Conditional */}
-            <div id="sec-second" className="sec-label" style={{marginTop:36}}>// second conditional — hipotetično i nerealno</div>
+            <div id="sec-second" className="sec-label" style={{marginTop:36}}>{'//'} second conditional — hipotetično i nerealno</div>
             <div className="cond-block">
               <div className="cond-head">
                 <div className="cond-type second">SECOND</div>
@@ -981,7 +981,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* Third Conditional */}
-            <div id="sec-third" className="sec-label" style={{marginTop:36}}>// third conditional — prošlost koja se nije dogodila</div>
+            <div id="sec-third" className="sec-label" style={{marginTop:36}}>{'//'} third conditional — prošlost koja se nije dogodila</div>
             <div className="cond-block">
               <div className="cond-head">
                 <div className="cond-type third">THIRD</div>
@@ -1015,7 +1015,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* Mixed Conditional */}
-            <div id="sec-mixed" className="sec-label" style={{marginTop:36}}>// mixed conditional — miješanje prošlosti i sadašnjosti</div>
+            <div id="sec-mixed" className="sec-label" style={{marginTop:36}}>{'//'} mixed conditional — miješanje prošlosti i sadašnjosti</div>
             <p className="prose">Mixed conditional nastaje kad if-klauzula i glavna klauzula ne govore o istom vremenskom okviru.</p>
             <div className="cond-block">
               <div className="cond-head">
@@ -1061,7 +1061,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* Inversion */}
-            <div id="sec-inversion" className="sec-label" style={{marginTop:36}}>// inverzija — formalni conditional bez &quot;if&quot;</div>
+            <div id="sec-inversion" className="sec-label" style={{marginTop:36}}>{'//'} inverzija — formalni conditional bez &quot;if&quot;</div>
             <p className="prose">U formalnom pisanju, &quot;if&quot; se može izostaviti inverzijom (zamjenom mjesta subjekta i pomoćnog glagola).</p>
             <table className="cond-table">
               <thead><tr><th>Tip</th><th>S &quot;if&quot;</th><th>Inverzija (bez &quot;if&quot;)</th></tr></thead>
@@ -1080,7 +1080,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* Decision Tree */}
-            <div id="sec-dtree" className="sec-label" style={{marginTop:36}}>// decision tree — koji conditional odabrati</div>
+            <div id="sec-dtree" className="sec-label" style={{marginTop:36}}>{'//'} decision tree — koji conditional odabrati</div>
             <p style={{fontSize:13,color:'var(--t2)',marginBottom:16,fontFamily:'var(--mono)'}}>Tri pitanja, jedan odgovor.</p>
             <div style={{display:'flex',flexDirection:'column',gap:8,marginBottom:24}}>
               <div style={{background:'var(--bg-card)',border:'1px solid var(--bd-mid)',borderRadius:'var(--r3)',padding:'13px 16px',fontSize:13,fontWeight:600,color:'var(--t1)'}}>⏰ Govoriš li o PROŠLOSTI koja se nije dogodila (žaljenje)?</div>
@@ -1121,7 +1121,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
 
           {/* ═══ LAYER 2 — VJEŽBAJ ═══ */}
           <div className={`layer ${activeTab===2?'active':''}`}>
-            <div className="sec-label">// speed drill — koji conditional?</div>
+            <div className="sec-label">{'//'} speed drill — koji conditional?</div>
             <div className="sd-intro">9 zadataka — svaki testira drugačiju distinkciju. Odaberi točan glagolski oblik u praznini.</div>
             
             {/* Progress dots */}
@@ -1187,7 +1187,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             )}
 
             {/* Error Drill */}
-            <div className="sec-label" style={{marginTop:36}}>// ispravi grešku</div>
+            <div className="sec-label" style={{marginTop:36}}>{'//'} ispravi grešku</div>
             <p style={{fontSize:'12.5px',color:'var(--t2)',marginBottom:14,fontFamily:'var(--mono)'}}>Svaka rečenica ima točno jednu grešku. Pronađi je, pa provjeri.</p>
             <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:14,fontFamily:'var(--mono)',fontSize:11,color:'var(--t3)'}}>
               Otvoreno ispravaka: <span style={{color:'var(--blue)',fontWeight:700}}>{errCount < ERROR_ITEMS.length ? `${errCount} / ${ERROR_ITEMS.length}` : ''}</span>
@@ -1207,7 +1207,7 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
             </div>
 
             {/* Quiz */}
-            <div className="sec-label" style={{marginTop:36}}>// kviz — odaberi točan odgovor</div>
+            <div className="sec-label" style={{marginTop:36}}>{'//'} kviz — odaberi točan odgovor</div>
             <div className="quiz-intro"><strong>9 pitanja</strong> — Zero, First, Second, Third, Mixed, inverzija i unless. Svako ima objašnjenje.</div>
 
             {QUIZ_DATA.map((q) => (
