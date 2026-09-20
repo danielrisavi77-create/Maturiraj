@@ -4,19 +4,22 @@
  * Ili kao cron (Vercel/Supabase Edge Function).
  */
 
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import { randomUUID } from 'crypto'
 import { azvoSource } from './sources/azvo'
 import { mefSource } from './sources/mef'
 import { matchScrapedRow, loadStudijiForMatching } from './match'
 import type { ScraperSource, ScrapedRow } from './sources/types'
+import type { ScraperDatabase } from './db-types'
 
 const SOURCES: Record<string, ScraperSource> = {
   azvo_upisi: azvoSource,
   mef_zg_web: mefSource,
 }
 
-type SupabaseAdminClient = ReturnType<typeof createClient>
+// Klijent tipiziran ručno pisanom shemom (scripts/scraper/db-types.ts) — repo nema
+// generirane Supabase tipove, a bez njih se tip svakog reda svodi na `never`.
+type SupabaseAdminClient = SupabaseClient<ScraperDatabase>
 
 let cachedSupabase: SupabaseAdminClient | null = null
 
@@ -33,7 +36,7 @@ function getSupabaseClient(): SupabaseAdminClient {
   }
 
   // Service role — bypass RLS za scraper.
-  cachedSupabase = createClient(supabaseUrl, serviceRoleKey, {
+  cachedSupabase = createClient<ScraperDatabase>(supabaseUrl, serviceRoleKey, {
     auth: { persistSession: false },
   })
 
@@ -103,7 +106,7 @@ export async function runScraper(sourceKey: string, triggeredBy = 'cron') {
       throw new Error('Scraper returned 0 rows — likely structure change')
     }
 
-    const studiji = await loadStudijiForMatching(supabase as any)
+    const studiji = await loadStudijiForMatching(supabase)
 
     // Process each row
     const stagingRows = await Promise.all(rows.map(async (r) => {
