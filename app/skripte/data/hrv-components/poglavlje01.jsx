@@ -1,5 +1,4 @@
 
-import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 /**
  * H01 — Maturiraj.hr — Hrvatski · H01 · Temelji civilizacije i antika
  * Auto-generated from Maturiraj_Hrvatski_H01.html
@@ -16,6 +15,7 @@ import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import ChapterWrapper from './ChapterWrapper';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 import { SHARED_LIT_CSS } from './shared-lit-styles';
 import {
   HeroQuoteAntigona, AuthorCardSofoklo, TimelineAntika,

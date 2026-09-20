@@ -1,5 +1,4 @@
 
-import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 /**
  * H02 — Maturiraj.hr — Hrvatski · H02 · Srednji vijek i hrvatska pismenost
  * Auto-generated from Maturiraj_Hrvatski_H02.html
@@ -16,6 +15,7 @@ import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import ChapterWrapper from './ChapterWrapper';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 import { SHARED_LIT_CSS } from './shared-lit-styles';
 import {
   TimelinePismenost, AuthorCardDante, SVGDanteStruktura,

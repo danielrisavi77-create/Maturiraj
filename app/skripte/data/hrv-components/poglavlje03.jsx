@@ -1,5 +1,4 @@
 
-import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 /**
  * H03 — Maturiraj.hr — Hrvatski · H03 · Renesansa (europska)
  * Auto-generated from Maturiraj_Hrvatski_H03.html
@@ -14,6 +13,7 @@ import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 'use client';
 
 import ChapterWrapper from './ChapterWrapper';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 import { SHARED_LIT_CSS } from './shared-lit-styles';
 import { useState, useEffect } from 'react';
 import CitatnikH03 from './H03_CitatnikTab';
