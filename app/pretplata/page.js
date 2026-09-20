@@ -4,6 +4,10 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/hooks/useAuth'
+import {
+  CHECKOUT_UI_LIVE,
+  CHECKOUT_UNAVAILABLE_COPY,
+} from '@/lib/billing/checkoutPlans'
 
 const PRICING_CSS = `
   .pricing-nav {
@@ -541,6 +545,10 @@ export default function PretplataPage() {
       return
     }
     if (targetTier === tier) return
+    if (!CHECKOUT_UI_LIVE) {
+      alert(CHECKOUT_UNAVAILABLE_COPY)
+      return
+    }
     const planId = targetTier === 'standard' ? 'starter' : 'pro'
     const response = await fetch('/api/checkout', {
       method: 'POST',
@@ -550,6 +558,8 @@ export default function PretplataPage() {
     const data = await response.json()
     if (data.url) {
       window.location.href = data.url
+    } else if (response.status === 503 || data.code === 'FEATURE_DISABLED') {
+      alert(CHECKOUT_UNAVAILABLE_COPY)
     } else if (data.error === 'Nisi prijavljen') {
       window.location.href = '/auth'
     } else {
@@ -582,6 +592,11 @@ export default function PretplataPage() {
           <span className="pricing-hero-feature">✓ Pravi nastavnici</span>
           <span className="pricing-hero-feature">✓ AI Profesor 24/7</span>
         </div>
+        {!CHECKOUT_UI_LIVE && (
+          <div style={{marginTop:20,maxWidth:520,marginLeft:'auto',marginRight:'auto',padding:'12px 16px',borderRadius:14,background:'rgba(255,107,43,.08)',border:'1px solid rgba(255,107,43,.22)',fontSize:13,color:'var(--muted)',lineHeight:1.6}}>
+            ⏳ {CHECKOUT_UNAVAILABLE_COPY}
+          </div>
+        )}
         {tier !== 'free' && (
           <div style={{marginTop:20,display:'inline-flex',alignItems:'center',gap:8,padding:'6px 16px',background:'rgba(107,148,100,.12)',border:'1px solid rgba(107,148,100,.3)',borderRadius:20,fontFamily:'var(--mono)',fontSize:10,fontWeight:700,color:'#6B9464',letterSpacing:1.5,textTransform:'uppercase'}}>
             ✓ Prijavljeni ste kao {tier === 'standard' ? '⭐ Standard' : '💎 Pro'} korisnik

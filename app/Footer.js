@@ -64,7 +64,7 @@ export default function Footer() {
               {l:"Besplatno — Skripte",   sub:"uvijek besplatno",    c:"var(--green)"},
               {l:"Starter — 9,99 €/mj",  sub:"3 predmeta + Discere",c:"var(--blue)"},
               {l:"Pro — 19,99 €/mj",     sub:"sve + AI + roditelji", c:"var(--violet)"},
-              {l:"Godišnji — 120 €/god", sub:"Pro + uštedi 25%",     c:"var(--gold)"},
+              {l:"Pro godišnje — ~120 €", sub:"pro_god · uštedi ~50% · naplata uskoro", c:"var(--gold)"},
             ].map(({l, sub, c}) => (
               <div key={l} onClick={() => window.location.href='/#cijene'} style={{marginBottom:10, cursor:"pointer", padding:"7px 10px", borderRadius:10, transition:"background .15s"}}
                 onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,.03)"}
