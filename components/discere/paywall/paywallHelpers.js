@@ -75,6 +75,19 @@ export function checkResultsAccess(userAccess) {
 }
 
 /**
+ * Hrvatski simulator: rješavanje i ocjena testa su besplatni, ali razrada
+ * rezultata (pregled pitanja, analiza, savjeti, vježbanje grešaka) ide od
+ * Standard plana naviše. Zaseban helper jer checkResultsAccess pokriva
+ * pro-only AI analizu koju dijele i ostali predmeti.
+ *
+ * @param {UserAccess} userAccess
+ * @returns {boolean}
+ */
+export function canSeeHrvAnalysis(userAccess) {
+  return !!userAccess && userAccess.subscriptionTier !== 'free'
+}
+
+/**
  * Returns the minimum plan the user needs to upgrade to.
  * Simulator + AI analysis = Pro only.
  *

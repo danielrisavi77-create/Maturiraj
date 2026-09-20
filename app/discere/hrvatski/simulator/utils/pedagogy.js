@@ -4,6 +4,8 @@
  *           Exam Strategy Coach, Topic Mastery, Pre-exam Warmup
  */
 
+import { chk, qIdentity } from './helpers.js';
+
 // ═══════════════════════════════════════════════════════════
 // 1. SM-2 SPACED REPETITION
 // ═══════════════════════════════════════════════════════════
@@ -82,6 +84,41 @@ export function getDueReviews(errorTracker) {
     })
     .map(([key, entry]) => ({ key, ...entry }))
     .sort((a, b) => (a.interval || 0) - (b.interval || 0)); // newest errors first
+}
+
+
+/**
+ * Izračunava novi errorTracker nakon završenog ispita/sesije: krivi odgovori
+ * ulaze/se ažuriraju preko SM-2 (quality=1), točni odgovori na postojeći zapis
+ * ažuriraju se preko SM-2 (quality=4) i brišu iz trackera kad postanu mastered.
+ * Čista funkcija — ne mutira errorTracker, ovisnost o sm2Update je injektirana
+ * (izbjegava ciklički import iz @/lib/learning/hrv-engine).
+ * @param {Array} qs - pitanja ispita/sesije (koriste _examKey/_srcId za virtualne sesije)
+ * @param {object} answers - result.answers, ključ je q.id
+ * @param {object} errorTracker - trenutni prev.errorTracker
+ * @param {string} examKey - result.examKey (fallback kad q nema _examKey)
+ * @param {function} sm2UpdateFn - sm2Update
+ * @returns {object} novi errorTracker
+ */
+export function buildTrackerUpdate(qs, answers, errorTracker, examKey, sm2UpdateFn) {
+  const tracker = { ...(errorTracker || {}) };
+  const ident = q => qIdentity(q, { key: examKey });
+  (qs || []).forEach(q => {
+    if (q.type !== "mc") return;
+    const outcome = chk(q, answers?.[q.id]);
+    const id = ident(q);
+    const key = id.examKey + "_" + id.qid;
+    if (outcome === false) {
+      const ex = tracker[key] || { count: 0, q: (q.q || "").slice(0, 80), topic: q.topic || "ostalo", examKey: id.examKey, qid: id.qid, ef: 2.5, reps: 0 };
+      const updated = sm2UpdateFn(ex, false, 1);
+      if (updated) tracker[key] = updated;
+    } else if (outcome === true && tracker[key]) {
+      const updated = sm2UpdateFn(tracker[key], true, 4);
+      if (updated === null) delete tracker[key]; // mastered
+      else tracker[key] = updated;
+    }
+  });
+  return tracker;
 }
 
 

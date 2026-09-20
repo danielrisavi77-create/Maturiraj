@@ -190,6 +190,23 @@ function chk(q,a){
   if(q.type==="mat"){if(!a||typeof a!=="object") return null; return q.sol.pairs.every(p=>a[p.l]===p.r);}
   return null;
 }
+// Identitet pitanja: virtualne sesije (dnevni izazov, adaptivni trening, filter, greške,
+// oznake) kopiraju pitanja iz više ispita i renumeriraju im id-eve, pa se izvorni ispit i
+// izvorni id čuvaju u _examKey/_srcId. Sve što se sprema ili traži po ispitu (bookmarci,
+// errorTracker, skripte, distraktori) mora ići preko ovoga, a ne preko exam.key/q.id.
+function qIdentity(q,exam){
+  return{examKey:q?._examKey??exam?.key,qid:q?._srcId??q?.id};
+}
+// Virtualne sesije spajaju pitanja iz više ispita, a id-evi teku 1..N unutar svakog ispita,
+// pa se sudaraju. Kako su answers/rev/qTimes ključani po q.id, jedan odgovor bi inače vrijedio
+// za svako pitanje s tim id-em (i tako lažno skorirao tuđa pitanja u errorTrackeru). Zato
+// sesija dobiva vlastite id-eve, a izvorni identitet ostaje u _examKey/_srcId (v. qIdentity).
+function renumberSessionQs(qs){
+  return(qs||[]).map((q,i)=>({...q,_srcId:q._srcId??q.id,id:i+1}));
+}
+function computeSecLeft(deadlineTs,nowTs){
+  return Math.max(0,Math.ceil((deadlineTs-nowTs)/1000));
+}
 function hasAns(a){
   if(a===undefined||a===null||a==="") return false;
   if(Array.isArray(a)) return a.length>0;
@@ -197,7 +214,7 @@ function hasAns(a){
   return true;
 }
 
-export { e, LL, getLevel, xpProgress, xpToNext, calcXpGain, lsSave, lsGet, useUserData, updateStreak, playSuccessSound, playWrongSound, chk, hasAns, postAi, useModalTrap };
+export { e, LL, getLevel, xpProgress, xpToNext, calcXpGain, lsSave, lsGet, useUserData, updateStreak, playSuccessSound, playWrongSound, chk, hasAns, qIdentity, renumberSessionQs, computeSecLeft, postAi, useModalTrap };
 
 // Matura datumi — promijeni svake akademske godine
 export const MATURA_LJETNI   = new Date(parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_YEAR ||"2026"), parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_MONTH||"5"), parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_DAY||"15"));

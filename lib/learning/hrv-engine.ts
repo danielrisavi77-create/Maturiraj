@@ -6,6 +6,7 @@ export {
   calcTopicMastery,
   generateStrategyTips,
   selectWarmupQuestions,
+  buildTrackerUpdate,
 } from '@/app/discere/hrvatski/simulator/utils/pedagogy.js'
 
 export const EVIDENCE_WEIGHTS = Object.freeze({

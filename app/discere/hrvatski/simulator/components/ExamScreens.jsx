@@ -136,14 +136,12 @@ function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak}){
 
 function TopicFilterScreen({onStart,onBack,userData}){
   const ALL_TOPICS=Object.keys(TOPIC_LABELS);
-  const ALL_TYPES=[{key:"mc",label:"Jedan odgovor"},{key:"sa",label:"Kratki odgovor"},{key:"es",label:"Esej"},{key:"saz",label:"Sažetak"}];
   const ALL_YEARS=[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
   const ALL_DIFF=["sve","nezapoceto","lako","srednje","tesko"];
   const DIFF_LABELS={sve:"Sve",nezapoceto:"Nezapočeto",lako:"Lako",srednje:"Srednje",tesko:"Teško"};
   const DIFF_COLORS={sve:"var(--text)",nezapoceto:"var(--muted)",lako:"var(--green)",srednje:"var(--gold)",tesko:"var(--red)"};
 
   const[selTopics,setSelTopics]=useState(new Set(ALL_TOPICS));
-  const[selTypes,setSelTypes]=useState(new Set(["mc","sa"]));
   const[selYears,setSelYears]=useState(new Set(ALL_YEARS));
   const[selDiff,setSelDiff]=useState("sve");
 
@@ -171,8 +169,9 @@ function TopicFilterScreen({onStart,onBack,userData}){
       if(!selYears.has(exam.year)) return;
       if(!exam.qs?.length) return;
       exam.qs.forEach(q=>{
+        // Samo mc — bodovanje sesije (Sim.submitExam) računa isključivo mc pitanja.
+        if(q.type!=="mc") return;
         if(!selTopics.has(q.topic||"ostalo")) return;
-        if(!selTypes.has(q.type)) return;
         if(selDiff!=="sve"){
           const diff=getQDiff(q,exam.key);
           if(diff!==selDiff) return;
@@ -181,7 +180,7 @@ function TopicFilterScreen({onStart,onBack,userData}){
       });
     });
     return qs;
-  },[selTopics,selTypes,selYears,selDiff,userData?.errorTracker]);
+  },[selTopics,selYears,selDiff,userData?.errorTracker]);
 
   function startSession(){
     if(matchingQs.length===0) return;
@@ -212,16 +211,6 @@ function TopicFilterScreen({onStart,onBack,userData}){
             e("div",{key:t,className:"filter-chip"+(selTopics.has(t)?" sel":""),
               onClick:()=>tog(selTopics,setSelTopics,t)},
               TOPIC_LABELS[t]||t)
-          )
-        )
-      ),
-
-      e("div",{style:secStyle},
-        e("div",{style:labelStyle},e("span",null,"Vrsta pitanja")),
-        e("div",{style:{display:"flex",flexWrap:"wrap",gap:6}},
-          ALL_TYPES.map(({key,label})=>
-            e("div",{key,className:"filter-chip"+(selTypes.has(key)?" sel":""),
-              onClick:()=>tog(selTypes,setSelTypes,key)},label)
           )
         )
       ),
@@ -547,8 +536,10 @@ function BookmarksScreen({onBack,onStartSession}){
     const parts=key.split("__");if(parts.length<2) return null;
     const[examKey,qidStr]=[parts[0],parts[1]];
 
+  // Ključ je uvijek izvorni ispit + izvorni id pitanja (Sim ga gradi preko qIdentity), pa
+  // bookmarci spremljeni u virtualnoj sesiji ovdje razriješe na pravi ispit.
   const exam=EXAMS[examKey];if(!exam) return null;
-    const q=exam.qs.find(q=>String(q.id)===qidStr);if(!q) return null;
+    const q=(exam.qs||[]).find(q=>String(q.id)===qidStr);if(!q) return null;
     return{key,examKey,q,saved};
   }).filter(Boolean);
 
