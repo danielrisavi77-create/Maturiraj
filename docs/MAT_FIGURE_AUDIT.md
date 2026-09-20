@@ -29,12 +29,10 @@ Nema ih. Svi obradeni ispiti imali su dostupan izvorni PDF za usporedbu (iako za
 
 ## Slike koje traze rucnu odluku vlasnika
 
-Ovo su slike kod kojih revizija nije nasla stvarnu geometrijsku/sadrzajnu razliku od originala, ali je nesto oko usporedbe bilo dvosmisleno (npr. originalni PDF nema uopce sliku pa je usporedba nemoguca, ili simulator namjerno prikazuje popunjeni odgovor umjesto praznog predloska iz PDF-a). Sadrzajno u ovim slikama nista nije mijenjano niti treba mijenjati, ali vlasnik moze zeljeti provjeriti odluku:
+Ovo su slike kod kojih revizija nije nasla stvarnu geometrijsku/sadrzajnu razliku od originala, ali je nesto oko usporedbe bilo dvosmisleno (npr. originalni PDF nema uopce sliku pa je usporedba nemoguca, ili simulator namjerno prikazuje popunjeni odgovor umjesto praznog predloska iz PDF-a). Sve su naknadno rijesene na grani `mat-sim/blank-templates`; nista od ovoga vise ne ceka odluku:
 
-- **2018_jesen_B__28.1** (ispit 2018_jesen_B) - bez potrebe za popravkom slike (predlosci/prazni izresci razliciti od gotovih PDF slika)
-- **2018_jesen_B__28.2** (ispit 2018_jesen_B) - bez potrebe za popravkom slike (predlosci/prazni izresci razliciti od gotovih PDF slika)
-- **2018_jesen_B__28.3** (ispit 2018_jesen_B) - bez potrebe za popravkom slike (predlosci/prazni izresci razliciti od gotovih PDF slika)
-- **2020_ljeto_B__23.1** (ispit 2020_ljeto_B) - bez potrebe za popravkom slike (predlosci/prazni izresci razliciti od gotovih PDF slika)
+- **2018_jesen_B__28.1 / 28.2 / 28.3** (ispit 2018_jesen_B) - RIJESENO, bez promjene. Izvornik (PDF str. 18) nema nikakvu sliku: zadatak 28 je u cijelosti tekstualan, svaki poddio zavrsava samo crtom "Odgovor: x = ______". Simulator za 28.1-28.3 takoder nema sliku (nema `img:true` ni unosa u `qImages`), pa je usporedba bila bespredmetna, a ne dvojbena.
+- **2020_ljeto_B__23.1** (ispit 2020_ljeto_B) - POPRAVLJENO. PDF prikazuje PRAZAN koordinatni sustav (mreza 10x10, osi x i y, ishodiste 0, jedinicne oznake 1) u koji ucenik sam crta pravac; simulator je uz pitanje crtao rjesenje y = 2x - 2 s tockama (0, -2) i (3, 4). Slika pitanja je sada prazan predlozak, a popunjena verzija je premjestena u `sol.svgFn`.
 
 ## Tablica po ispitu
 

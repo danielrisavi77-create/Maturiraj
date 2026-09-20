@@ -373,7 +373,10 @@ function Svg3_2020Blj(){
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }
 
-function Svg23a_2020Blj(){
+// Zajednička koordinatna mreža za zadatak 23.1. `solved=false` daje PRAZAN predložak
+// identičan izvorniku (učenik u njega crta); `solved=true` dodaje traženi pravac i
+// koristi se samo u rješenju (sol.svgFn).
+function Svg23aGrid_2020Blj(solved){
   // Koordinatna mreža prerisana po izvorniku: 5 polja lijevo/desno i gore/dolje.
   const W=320, H=320, pad={l:26,r:26,t:24,b:30};
   const _BLUE="var(--blue)",_RED="var(--red)",_GOLD="var(--gold)",_GREEN="var(--green)",_MUTED="var(--muted)";
@@ -402,24 +405,31 @@ function Svg23a_2020Blj(){
   elems.push(e("circle",{key:"u1x",cx:toX(1),cy:toY(0),r:2.4,fill:"none",stroke:"var(--text)",strokeWidth:1.2}));
   elems.push(e("circle",{key:"u1y",cx:toX(0),cy:toY(1),r:2.4,fill:"none",stroke:"var(--text)",strokeWidth:1.2}));
 
-  // Graf y = 2x − 2 (rješenje) — odsječen na rubu mreže, ne izlazi iz nje
-  const f=x=>2*x-2;
-  const gx=x=>Math.min(xMax,Math.max(xMin,x));
-  const lx1=gx((yMin+2)/2), lx2=gx((yMax+2)/2); // x za koje je y unutar [yMin, yMax]
-  elems.push(e("line",{key:"ln",x1:toX(lx1),y1:toY(f(lx1)),x2:toX(lx2),y2:toY(f(lx2)),
-    stroke:"var(--green)",strokeWidth:2.2}));
+  if(solved){
+    // Graf y = 2x − 2 (rješenje) — odsječen na rubu mreže, ne izlazi iz nje
+    const f=x=>2*x-2;
+    const gx=x=>Math.min(xMax,Math.max(xMin,x));
+    const lx1=gx((yMin+2)/2), lx2=gx((yMax+2)/2); // x za koje je y unutar [yMin, yMax]
+    elems.push(e("line",{key:"ln",x1:toX(lx1),y1:toY(f(lx1)),x2:toX(lx2),y2:toY(f(lx2)),
+      stroke:"var(--green)",strokeWidth:2.2}));
 
-  // Ključne točke: f(0) = −2, f(3) = 4 (oznake lijevo od pravca, izvan njega)
-  [[0,-2,"(0, −2)",-10,16],[3,4,"(3, 4)",-10,-8]].forEach(([x,y,l,ox,oy],i)=>{
-    elems.push(e("circle",{key:`p${i}`,cx:toX(x),cy:toY(y),r:4.5,fill:"var(--green)"}));
-    elems.push(e("text",{key:`pl${i}`,x:toX(x)+ox,y:toY(y)+oy,fontSize:11,fill:"var(--green)",textAnchor:"end"},l));
-  });
+    // Ključne točke: f(0) = −2, f(3) = 4 (oznake lijevo od pravca, izvan njega)
+    [[0,-2,"(0, −2)",-10,16],[3,4,"(3, 4)",-10,-8]].forEach(([x,y,l,ox,oy],i)=>{
+      elems.push(e("circle",{key:`p${i}`,cx:toX(x),cy:toY(y),r:4.5,fill:"var(--green)"}));
+      elems.push(e("text",{key:`pl${i}`,x:toX(x)+ox,y:toY(y)+oy,fontSize:11,fill:"var(--green)",textAnchor:"end"},l));
+    });
 
-  // Jednadžba (ispod mreže, bez preklapanja s grafom)
-  elems.push(e("text",{key:"fn",x:W/2,y:H-6,fontSize:12,fill:"var(--blue)",textAnchor:"middle"},"y = 2x − 2"));
+    // Jednadžba (ispod mreže, bez preklapanja s grafom)
+    elems.push(e("text",{key:"fn",x:W/2,y:H-6,fontSize:12,fill:"var(--blue)",textAnchor:"middle"},"y = 2x − 2"));
+  }
 
   return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},elems);
 }
+
+// Slika UZ PITANJE: prazan koordinatni sustav, kao u izvorniku.
+function Svg23a_2020Blj(){ return Svg23aGrid_2020Blj(false); }
+// Slika UZ RJEŠENJE: isti sustav s nacrtanim pravcem y = 2x − 2.
+function Svg23aSol_2020Blj(){ return Svg23aGrid_2020Blj(true); }
 
 export const qs = [
   {id:1,type:"mc",warn:"Pazi: traži broj strogo između −0,5 i 1.",topic:"br",points:1,
@@ -609,7 +619,7 @@ export const qs = [
   {id:23.1,img:true,type:"sa",topic:"fun",points:1,
    context:"Zadatak 23 (1. dio od 2):",
    q:"U zadanome koordinatnom sustavu nacrtajte graf linearne funkcije za koju vrijedi f(0) = -2 i f(3) = 4.",
-   sol:{ans:"y = 2x − 2", alt:["y=2x-2","f(x)=2x-2"]},
+   sol:{ans:"y = 2x − 2", svgFn:()=>e(Svg23aSol_2020Blj,null), alt:["y=2x-2","f(x)=2x-2"]},
    steps:[{txt:"Linearna funkcija s f(0) = −2 i f(3) = 4."},{txt:"Slobodni član: l = f(0) = −2."},{txt:"Nagib: k = (4 − (−2))/(3 − 0) = 6/3 = 2."},{txt:"Formula: f(x) = 2x − 2."},{txt:"Crtaj pravac kroz (0, −2) i (3, 4): raste slijeva-na-desno."},{txt:"Sjecište x-osi: 2x − 2 = 0 → x = 1 → (1, 0)."},{txt:"Provjera: f(1) = 0 ✓; pravac prolazi kroz (0, −2), (1, 0), (3, 4) ✓.",note:"verifikacija",final:true},{txt:"Točan odgovor: y = 2x − 2 ✓",note:"odgovor",final:true},{txt:"Intuicija: pozitivni nagib → raste slijeva-na-desno.",note:"intuicija",final:true},{txt:"Sažetak postupka: Pravilo: linearna funkcija f(x) = kx + l kroz dvije točke; k = (y₂−y₁)/(x₂−x₁), l = f(0).",note:"postupak",final:true}],
    why:["Pravilo: linearna funkcija f(x) = kx + l kroz dvije točke; k = (y₂−y₁)/(x₂−x₁), l = f(0).","Intuicija: pozitivni nagib → raste slijeva-na-desno.","Česta greška: zamijeniti x₁ i x₂ u izračunu nagiba (predznak).","Provjera: pravac kroz (0, −2) i (3, 4) ima nagib 2 i slobodni član −2 ✓.","Provjera: f(x) tablica vrijednosti — usporedba s rezultatom.","Tipičan propust: zanemariti domenu/sliku funkcije; krivo interpretirati graf."]
   },
