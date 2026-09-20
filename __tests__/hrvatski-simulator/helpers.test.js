@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { chk, hasAns, calcXpGain, qIdentity, computeSecLeft } from '../../app/discere/hrvatski/simulator/utils/helpers.js';
+import { chk, hasAns, calcXpGain, qIdentity, computeSecLeft, trimHistory } from '../../app/discere/hrvatski/simulator/utils/helpers.js';
 
 describe('qIdentity', () => {
   it('obično pitanje iz ispita — ključ i id ispita', () => {
@@ -98,5 +98,62 @@ describe('calcXpGain', () => {
   });
   it('zaokružuje rezultat', () => {
     expect(calcXpGain(33, 100)).toBe(Math.round(0.33 * 100 * 2));
+  });
+});
+
+describe('trimHistory', () => {
+  function mk(n, withDetails = true) {
+    return Array.from({ length: n }, (_, i) => ({
+      examKey: '2024_ljeto_A', pct: 80, grade: 4, cor: 8, total: 10,
+      date: '1.1.2024.', mode: 'vježbanje', topic_breakdown: { jezik: { correct: 1, total: 1 } },
+      ...(withDetails ? { answers: { 1: 'A' }, qTimes: { 1: 5 } } : {}),
+    }));
+  }
+
+  it('kraća povijest od limita ostaje netaknuta po broju zapisa', () => {
+    expect(trimHistory(mk(5)).length).toBe(5);
+  });
+
+  it('ne briše zapise — svi ostaju, i najstariji', () => {
+    const h = mk(80).map((entry, i) => ({ ...entry, examKey: 'e' + i }));
+    const trimmed = trimHistory(h, { keepDetails: 10 });
+    expect(trimmed.length).toBe(80);
+    expect(trimmed[0].examKey).toBe('e0');
+    expect(trimmed[79].examKey).toBe('e79');
+  });
+
+  it('već obrezanu povijest vraća kao isti niz (bez nepotrebnog upisa)', () => {
+    const h = mk(20, false);
+    expect(trimHistory(h, { keepDetails: 10 })).toBe(h);
+  });
+
+  it('answers/qTimes ostaju samo na zadnjih keepDetails zapisa', () => {
+    const trimmed = trimHistory(mk(20), { keepDetails: 10 });
+    expect(trimmed.slice(0, 10).every(x => !('answers' in x) && !('qTimes' in x))).toBe(true);
+    expect(trimmed.slice(10).every(x => 'answers' in x && 'qTimes' in x)).toBe(true);
+  });
+
+  it('summary polja ostaju na svim zapisima, i starima i novima', () => {
+    const trimmed = trimHistory(mk(20), { keepDetails: 10 });
+    trimmed.forEach(x => {
+      expect(x.pct).toBe(80);
+      expect(x.grade).toBe(4);
+      expect(x.cor).toBe(8);
+      expect(x.total).toBe(10);
+      expect(x.date).toBe('1.1.2024.');
+      expect(x.mode).toBe('vježbanje');
+      expect(x.examKey).toBe('2024_ljeto_A');
+      expect(x.topic_breakdown).toBeDefined();
+    });
+  });
+
+  it('prazna ili nedefinirana povijest ne baca grešku', () => {
+    expect(trimHistory([])).toEqual([]);
+    expect(trimHistory(undefined)).toEqual([]);
+  });
+
+  it('keepDetails veći od duljine povijesti ne baca grešku — svi zadrže detalje', () => {
+    const trimmed = trimHistory(mk(5), { keepDetails: 10 });
+    expect(trimmed.every(x => 'answers' in x)).toBe(true);
   });
 });

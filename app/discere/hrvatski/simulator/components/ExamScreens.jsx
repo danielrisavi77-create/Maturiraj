@@ -1,11 +1,12 @@
 'use client';
 import React, { useState, useMemo, Fragment } from 'react';
 import { FixedSizeList } from 'react-window';
-import { EXAMS, ESEJI, SAZECI, TOPIC_LABELS } from '../hrvatskiSimulatorData';
+import { EXAMS, ESEJI, SAZECI, TOPIC_LABELS, TOPIC_GROUPS } from '../hrvatskiSimulatorData';
 import { e, LL, chk, lsSave } from '../utils/helpers';
 import { PojmovnikModal } from './modals/Modals';
+import { isHrvFreePracticeExam } from '@/components/discere/paywall/paywallHelpers';
 
-function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak}){
+function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak,isPaid}){
   const[showSimPojmovnik,setShowSimPojmovnik]=useState(false);
   const exam=EXAMS[examKey];
   const baseParts=examKey.split("_");
@@ -81,7 +82,12 @@ function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak}){
 
       e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:"var(--muted)",marginBottom:12}},"Način rješavanja"),
       e("div",{className:"modecard",onClick:()=>onPractice(selectedExamKey)},
-        e("h3",null,"🎯 Vježbanje"),
+        e("div",{style:{display:"flex",alignItems:"center",gap:10}},
+          e("h3",{style:{margin:0}},"🎯 Vježbanje"),
+          isHrvFreePracticeExam(selectedExamKey)&&(isPaid===undefined||!isPaid)&&e("span",{style:{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:99,
+            background:"rgba(62,207,110,.12)",border:"1px solid rgba(62,207,110,.35)",color:"var(--green)"},
+            title:"Sva pitanja su otključana u vježbanju. Razrada rezultata (analiza, pregled pitanja, savjeti) ide od Standard plana."},"🆓 Sva pitanja besplatno")
+        ),
         e("p",null,"Rješavaj bez vremenskog ograničenja. Odmah vidiš točan odgovor i AI objašnjenje. Idealno za učenje.")
       ),
       e("div",{className:"modecard",onClick:()=>onExamMode(selectedExamKey)},
@@ -135,7 +141,17 @@ function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak}){
 }
 
 function TopicFilterScreen({onStart,onBack,userData}){
-  const ALL_TOPICS=Object.keys(TOPIC_LABELS);
+  const ALL_TOPICS=Object.keys(TOPIC_GROUPS);
+  const TOPIC_GROUP_LIST=useMemo(()=>{
+    const groups=[];
+    const byName={};
+    ALL_TOPICS.forEach(t=>{
+      const g=TOPIC_GROUPS[t];
+      if(!byName[g]){byName[g]=[];groups.push({name:g,topics:byName[g]});}
+      byName[g].push(t);
+    });
+    return groups;
+  },[]);
   const ALL_YEARS=[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
   const ALL_DIFF=["sve","nezapoceto","lako","srednje","tesko"];
   const DIFF_LABELS={sve:"Sve",nezapoceto:"Nezapočeto",lako:"Lako",srednje:"Srednje",tesko:"Teško"};
@@ -162,6 +178,14 @@ function TopicFilterScreen({onStart,onBack,userData}){
 
   function tog(set,setFn,val){setFn(prev=>{const next=new Set(prev);next.has(val)?next.delete(val):next.add(val);return next;});}
   function togAll(set,setFn,all){setFn(set.size===all.length?new Set():new Set(all));}
+  function togGroup(groupTopics){
+    setSelTopics(prev=>{
+      const allSel=groupTopics.every(t=>prev.has(t));
+      const next=new Set(prev);
+      groupTopics.forEach(t=>allSel?next.delete(t):next.add(t));
+      return next;
+    });
+  }
 
   const matchingQs=useMemo(()=>{
     const qs=[];
@@ -199,18 +223,20 @@ function TopicFilterScreen({onStart,onBack,userData}){
     ),
     e("div",{className:"screen-enter",style:{maxWidth:720,margin:"0 auto",padding:"24px 16px 80px"}},
 
-      e("div",{style:secStyle},
-        e("div",{style:labelStyle},
-          e("span",null,"Tema"),
-          e("button",{className:"btn btn-g",style:{fontSize:11,padding:"2px 8px"},
-            onClick:()=>togAll(selTopics,setSelTopics,ALL_TOPICS)},
-            selTopics.size===ALL_TOPICS.length?"Ništa":"Sve")
-        ),
-        e("div",{style:{display:"flex",flexWrap:"wrap",gap:6}},
-          ALL_TOPICS.map(t=>
-            e("div",{key:t,className:"filter-chip"+(selTopics.has(t)?" sel":""),
-              onClick:()=>tog(selTopics,setSelTopics,t)},
-              TOPIC_LABELS[t]||t)
+      TOPIC_GROUP_LIST.map(({name,topics})=>
+        e("div",{key:name,style:secStyle},
+          e("div",{style:labelStyle},
+            e("span",null,name),
+            e("button",{className:"btn btn-g",style:{fontSize:11,padding:"2px 8px"},
+              onClick:()=>togGroup(topics)},
+              topics.every(t=>selTopics.has(t))?"Ništa":"Sve")
+          ),
+          e("div",{style:{display:"flex",flexWrap:"wrap",gap:6}},
+            topics.map(t=>
+              e("div",{key:t,className:"filter-chip"+(selTopics.has(t)?" sel":""),
+                onClick:()=>tog(selTopics,setSelTopics,t)},
+                TOPIC_LABELS[t]||t)
+            )
           )
         )
       ),

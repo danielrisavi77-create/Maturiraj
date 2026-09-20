@@ -207,6 +207,25 @@ function renumberSessionQs(qs){
 function computeSecLeft(deadlineTs,nowTs){
   return Math.max(0,Math.ceil((deadlineTs-nowTs)/1000));
 }
+// history u discere_hrv_user raste bez granice (svaki zapis nosi answers+qTimes za ~80
+// pitanja). Zapisi se NE brišu — brojevi riješenih ispita, `usedKeys` na početnom ekranu i
+// značke za napredak nemaju drugi izvor — nego se samo svima osim zadnjih `keepDetails`
+// skida answers/qTimes; ostaje summary (pct, grade, cor, total, topic_breakdown, date,
+// mode, examKey). Ako nema što skinuti, vraća se isti niz da migracija pri mountu ne
+// pokreće nepotreban upis u localStorage i sinkronizaciju na cloud.
+function trimHistory(history,{keepDetails=10}={}){
+  const all=history||[];
+  const detailFrom=all.length-keepDetails;
+  let changed=false;
+  const out=all.map((entry,i)=>{
+    if(i>=detailFrom) return entry;
+    if(!entry||(entry.answers===undefined&&entry.qTimes===undefined)) return entry;
+    changed=true;
+    const{answers,qTimes,...summary}=entry;
+    return summary;
+  });
+  return changed?out:all;
+}
 function hasAns(a){
   if(a===undefined||a===null||a==="") return false;
   if(Array.isArray(a)) return a.length>0;
@@ -214,7 +233,7 @@ function hasAns(a){
   return true;
 }
 
-export { e, LL, getLevel, xpProgress, xpToNext, calcXpGain, lsSave, lsGet, useUserData, updateStreak, playSuccessSound, playWrongSound, chk, hasAns, qIdentity, renumberSessionQs, computeSecLeft, postAi, useModalTrap };
+export { e, LL, getLevel, xpProgress, xpToNext, calcXpGain, lsSave, lsGet, useUserData, updateStreak, playSuccessSound, playWrongSound, chk, hasAns, qIdentity, renumberSessionQs, computeSecLeft, postAi, useModalTrap, trimHistory };
 
 // Matura datumi — promijeni svake akademske godine
 export const MATURA_LJETNI   = new Date(parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_YEAR ||"2026"), parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_MONTH||"5"), parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_DAY||"15"));

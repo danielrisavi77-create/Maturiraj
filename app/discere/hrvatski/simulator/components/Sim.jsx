@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { EXAMS, TOPIC_LABELS, ESEJI, SAZECI, TLBL } from '../hrvatskiSimulatorData';
 import { e, LL, chk, hasAns, lsSave, lsGet, playWrongSound, calcXpGain, xpProgress, getLevel, qIdentity, computeSecLeft } from '../utils/helpers';
 import ShareStoryCard from '@/components/shared/ShareStoryCard';
-import { FREE_LIMIT, canSeeHrvAnalysis } from '@/components/discere/paywall/paywallHelpers';
+import { FREE_LIMIT, canSeeHrvAnalysis, isHrvFreePracticeExam } from '@/components/discere/paywall/paywallHelpers';
 import LockedAnalysisSection from '@/components/discere/paywall/LockedAnalysisSection';
 import { generateStrategyTips } from '../utils/pedagogy';
 import { skriptaZaPitanje, skriptaUrl } from '../data/lektiraSkripta';
@@ -201,6 +201,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   const[shownAnswers,setShownAnswers]=useState({});
   const[confidence,setConfidence]=useState({}); // { qid: 1|2|3 }
   const[xpBarFill,setXpBarFill]=useState(0);
+  const[percentile,setPercentile]=useState(null);
   const[revFilter,setRevFilter]=useState("sve"); // "sve" | "tocni" | "krivi"
   const[revOpen,setRevOpen]=useState(true);
   const[mobGrid,setMobGrid]=useState(false); // mobile question grid sheet
@@ -285,14 +286,14 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
       }
       if(ev.key==="ArrowRight"&&cur<QSX.length-1){ev.preventDefault();recordTime(cur);const nc=cur+1;setCur(nc);setVisited(v=>({...v,[nc]:true}));return;}
       if(ev.key==="ArrowLeft"&&cur>0){ev.preventDefault();recordTime(cur);const nc=cur-1;setCur(nc);setVisited(v=>({...v,[nc]:true}));return;}
-      if(ev.key==="b"||ev.key==="B"){toggleBookmark(curQ);return;}
+      if(!examMode&&(ev.key==="b"||ev.key==="B")){toggleBookmark(curQ);return;}
       if(ev.key==="f"||ev.key==="F"){setFlag(p=>({...p,[curQ.id]:!p[curQ.id]}));return;}
       if(ev.key==="?"||ev.key==="/"){setShowKeys(k=>!k);return;}
       if(ev.key==="Escape"){setShowKeys(false);setModal(false);return;}
     }
     window.addEventListener("keydown",onKey);
     return()=>window.removeEventListener("keydown",onKey);
-  },[cur,answers,rev,done,QSX,practice]);
+  },[cur,answers,rev,done,QSX,practice,examMode]);
 
   function getIspitInfo(exam){
     // Točna bodovna skala prema NCVVO ispitnim katalozima
@@ -313,6 +314,15 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     return 1;
   }
 
+  // Percentil se traži tek nakon predaje pravog ispita u ispitnom modu; tiho izostaje
+  // ako korisnik nije prijavljen, ruta padne ili je uzorak premalen (n<10 → percentile:null).
+  function loadPercentile(pct){
+    fetch("/api/discere/percentile?subject=hrv&examKey="+encodeURIComponent(exam.key)+"&pct="+pct)
+      .then(r=>r.ok?r.json():null)
+      .then(d=>{if(d&&typeof d.percentile==="number")setPercentile(d.percentile);})
+      .catch(()=>{});
+  }
+
   function submitExam(){
     recordTime(cur);
     try{localStorage.removeItem(_lsKey);localStorage.removeItem(_exKey);}catch(e){}
@@ -325,6 +335,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     // Bodovi: cor bodova od ispitInfo.mcBod (skalirano)
     const bodovi=Math.round(cor/Math.max(autoQ.length,1)*ispitInfo.mcBod);
     const g=getOcjena(pct);
+    if(examMode&&!_isVirtual) loadPercentile(pct);
     if(onDone) onDone({examKey:exam.key,examLabel:exam.year+" "+exam.label,pct,grade:g,cor,total:autoQ.length,bodovi,ispitInfo,answers,qTimes,examMode,qs:QSX,confidenceLog:(()=>{
       const log={};
       autoQ.forEach(q=>{
@@ -380,6 +391,8 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           e("span",{style:{fontWeight:700,color:gc}},bodovi+" / "+ispitInfo.mcBod),
           e("span",{style:{color:"var(--muted)",fontSize:11}},"("+cor+" točnih od "+autoQ.length+" pitanja)")
         ),
+        percentile!==null&&e("p",{style:{color:"var(--muted)",fontSize:12.5,marginTop:8}},
+          "Bolji/a od "+percentile+" % maturanata koji su rješavali ovaj ispit"),
       ),
       /* ── XP bar ── */
       e("div",{style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)",overflow:"hidden",padding:"14px 18px 10px",marginBottom:12}},
@@ -410,7 +423,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         score:pct,
         correct:cor,
         total:autoQ.length,
-        percentile:null, // No server-side percentile for local simulator
+        percentile,
         label:"Hrvatski jezik \u2014 test \u2014 "+rok,
         accentColor:gradeAccent,
         emoji:"\ud83d\udcda",
@@ -631,8 +644,8 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     e("button",{className:"btn btn-g",onClick:onExit},"← Natrag")
   );
 
-  // ── Paywall gate — paid-only Discere (W2): no free preview questions ──
-  if (!isPaid && !examMode && !done) {
+  // ── Paywall gate — free users see first FREE_LIMIT questions only (practice mode) ──
+  if (!isPaid && !examMode && !done && cur >= FREE_LIMIT && !isHrvFreePracticeExam(exam?.key)) {
     const _pqsMC = QSX.filter(q=>q.type==="mc").slice(0,FREE_LIMIT);
     const _pCor  = _pqsMC.filter(q=>chk(q,answers[q.id])===true).length;
     const _pPct  = _pqsMC.length>0 ? Math.round(_pCor/_pqsMC.length*100) : 0;
@@ -783,7 +796,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             {k:"A / B / C / D", d:"Odaberi odgovor (MC pitanja)"},
             {k:"Enter", d:"Potvrdi odgovor / Sljedeće pitanje"},
             {k:"→ / ←", d:"Sljedeće / Prethodno pitanje"},
-            {k:"B", d:"Dodaj/ukloni bookmark"},
+            ...(examMode?[]:[{k:"B", d:"Dodaj/ukloni bookmark"}]),
             {k:"F", d:"Označi pitanje (flag)"},
             {k:"? ili /", d:"Otvori/zatvori ove prečace"},
             {k:"Esc", d:"Zatvori overlay"},
@@ -867,9 +880,9 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           e("div",{className:"qmeta"},
             e("span",{className:"qnum"},"Pit. "+(cur+1)+" / "+QSX.length),
             e("span",{className:"qbadge b-"+q.type},TLBL[q.type]||q.type),
-            q.topic&&e("span",{className:"topic-tag"},TOPIC_LABELS[q.topic]||q.topic),
+            !examMode&&q.topic&&e("span",{className:"topic-tag"},TOPIC_LABELS[q.topic]||q.topic),
             e("button",{className:"qflag"+(flag[q.id]?" on":""),onClick:()=>setFlag(p=>({...p,[q.id]:!p[q.id]})),title:"Označi pitanje"},flag[q.id]?"🚩 Označeno":"🚩 Označi"),
-            e("button",{className:"qflag"+(bookmarks[bmKeyOf(q)]?" on":""),onClick:()=>toggleBookmark(q),title:"Spremi pitanje"},bookmarks[bmKeyOf(q)]?"🔖":"🔖 Spremi")
+            !examMode&&e("button",{className:"qflag"+(bookmarks[bmKeyOf(q)]?" on":""),onClick:()=>toggleBookmark(q),title:"Spremi pitanje"},bookmarks[bmKeyOf(q)]?"🔖":"🔖 Spremi")
           ),
           (q.ctx||q.tekst)&&e(ContextPanel,{q}),
           e("div",{className:"qtext"},q.q),
@@ -965,7 +978,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             e("div",null,"🔖 Spremljeno: ",e("strong",null,QSX.filter(qq=>bookmarks[bmKeyOf(qq)]).length))
           ),
           e("div",{style:{marginTop:10,fontSize:11,color:"var(--muted)",lineHeight:1.7}},
-            e("span",{style:{fontWeight:600}},"Prečaci: "),"A–D · Enter · ←→ · B(spremi) · F(označi)"
+            e("span",{style:{fontWeight:600}},"Prečaci: "),examMode?"A–D · Enter · ←→ · F(označi)":"A–D · Enter · ←→ · B(spremi) · F(označi)"
           )
         )
       )

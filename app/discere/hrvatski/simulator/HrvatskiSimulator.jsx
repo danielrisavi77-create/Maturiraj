@@ -6,7 +6,7 @@ import { buildUserAccess } from '@/components/discere/paywall';
 import confetti from 'canvas-confetti';
 import { EXAMS, ESEJI, SAZECI } from './hrvatskiSimulatorData';
 import './hrvatski-simulator-scoped.css';
-import { e, chk, calcXpGain, useUserData, updateStreak, playSuccessSound, renumberSessionQs } from './utils/helpers';
+import { e, chk, calcXpGain, useUserData, updateStreak, playSuccessSound, renumberSessionQs, trimHistory } from './utils/helpers';
 import { sm2Update, generateStrategyTips, calcTopicMastery, getDueReviews, calcTopicWeights, selectWarmupQuestions, selectAdaptiveMix, buildTrackerUpdate } from '@/lib/learning/hrv-engine';
 import { checkNewAchievements } from './utils/achievements';
 import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
@@ -161,6 +161,20 @@ function App(){
   useEffect(()=>{
     if(userData?.onboarded) setShowOnboarding(false);
   },[userData?.onboarded]);
+  // Migracija starih korisnika: history je nekad rastao bez granice (answers+qTimes na
+  // svakom zapisu). Jednom pri mountu obreži na trimHistory pravila ako već nije trimano.
+  const _historyTrimmed=useRef(false);
+  useEffect(()=>{
+    if(_historyTrimmed.current) return;
+    _historyTrimmed.current=true;
+    updateUserData(prev=>{
+      if(!prev.history||!prev.history.length) return prev;
+      const trimmed=trimHistory(prev.history);
+      if(trimmed===prev.history) return prev;
+      return{...prev,history:trimmed};
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
   useEffect(()=>{
     try{localStorage.setItem("discere_sound",soundOn?"1":"0");}catch(e){}
     window._soundOn=soundOn;
@@ -372,7 +386,7 @@ function App(){
         topic_breakdown:topicBreakdown,
         answers:result.answers||{}
       }];
-      return{...updated,xp:(prev.xp||0)+xpGain,history:newHistory,errorTracker,confidenceLog,achievements:newAchievements,totalExams:(prev.totalExams||0)+1};
+      return{...updated,xp:(prev.xp||0)+xpGain,history:trimHistory(newHistory),errorTracker,confidenceLog,achievements:newAchievements,totalExams:(prev.totalExams||0)+1};
     });
     // ── sim_progress red (subject='hrv') za analitiku / roditeljski dashboard ──
     // Samo pravi ispiti (godina_rok_razina); virtualne sesije (daily/adaptive/errors) preskačemo.
@@ -530,8 +544,8 @@ function App(){
     )},
     e("div",{key:screen,className:"screen-slide"},
     screen==="upute"&&e(UputeModal,{onClose:()=>{setScreen(prevScreen);window.scrollTo(0,0);}}),
-    screen==="home"&&e(Home,{key:screen,onExam:goModeSelect,onPractice:goPractice,onFilter:goFilter,onErrors:goErrors,onBookmarks:goBookmarks,onStats:goStats,onBrowse:goBrowse,onEsej:goEsejList,onSazetak:goSazetakList,onShowDisclaimer:()=>setShowDisclaimer(true),onPracticeList:goPracticeList,onLektire:goLektire,onPojmovnik:()=>setShowPojmovnik(true),onImporter:()=>setShowImporter(true),onDDay:()=>setShowDDay(true),onDaily:goDaily,onAdaptive:goAdaptive,onGameMode:isGameModeEnabled()?()=>window.location.assign('/game'):undefined,onWrapped:()=>setShowWrapped(true),onAIPlan:()=>setShowPlan(true),customQs,onClearCustom:clearCustomQs,userData,toggles}),
-    screen==="modeselect"&&e(ModeSelect,{key:screen,examKey:pendingExamKey,onExamMode:goExamMode,onPractice:goPractice,onBack:goHome,onEsej:goEsej,onSazetak:goSazetak}),
+    screen==="home"&&e(Home,{key:screen,onExam:goModeSelect,onPractice:goPractice,onFilter:goFilter,onErrors:goErrors,onBookmarks:goBookmarks,onStats:goStats,onBrowse:goBrowse,onEsej:goEsejList,onSazetak:goSazetakList,onShowDisclaimer:()=>setShowDisclaimer(true),onPracticeList:goPracticeList,onLektire:goLektire,onPojmovnik:()=>setShowPojmovnik(true),onImporter:()=>setShowImporter(true),onDDay:()=>setShowDDay(true),onDaily:goDaily,onAdaptive:goAdaptive,onGameMode:isGameModeEnabled()?()=>window.location.assign('/game'):undefined,onWrapped:()=>setShowWrapped(true),onAIPlan:()=>setShowPlan(true),customQs,onClearCustom:clearCustomQs,userData,toggles,isPaid}),
+    screen==="modeselect"&&e(ModeSelect,{key:screen,examKey:pendingExamKey,onExamMode:goExamMode,onPractice:goPractice,onBack:goHome,onEsej:goEsej,onSazetak:goSazetak,isPaid}),
     screen==="filter"&&e(TopicFilterScreen,{key:screen,onStart:goFilterSession,onBack:goHome,userData}),
     screen==="errors"&&e(ErrorsScreen,{key:screen,userData,onStart:goErrorSession,onBack:goHome}),
     screen==="bookmarks"&&e(BookmarksScreen,{key:screen,onBack:goHome,onStartSession:goBookmarkSession}),
