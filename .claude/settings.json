@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git branch -f *)",
+      "Bash(git branch --force *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git merge --ff-only *)"
+    ]
+  }
+}

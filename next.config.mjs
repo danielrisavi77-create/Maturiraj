@@ -37,6 +37,10 @@ const buildCSP = (allowEval) => [
     + localSupabaseConnectSrc,
   // Canvas toDataURL → data: / video/audio blobs → blob:
   "img-src 'self' data: blob:",
+  // Audio slušanja (engleski simulator): GitHub Release asseti — github.com radi 302 na
+  // *.githubusercontent.com (release-assets / objects); override baze preko NEXT_PUBLIC_ENG_AUDIO_BASE
+  "media-src 'self' blob: https://github.com https://*.githubusercontent.com"
+    + (process.env.NEXT_PUBLIC_ENG_AUDIO_BASE ? ' ' + new URL(process.env.NEXT_PUBLIC_ENG_AUDIO_BASE).origin : ''),
   // No Flash, no plugins
   "object-src 'none'",
   // Prevent base-tag injection attacks
