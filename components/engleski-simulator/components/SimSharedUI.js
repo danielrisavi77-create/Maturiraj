@@ -23,12 +23,18 @@ const TOPIC_TO_TASK_OSN = {
 }
 
 // Čita audio-map.json (oblik: { <examKey>: { intro, tasks: { <taskNum>: { topic,
-// first, repeat, confidence, note } } } }) i vraća URL-ove (preko audioUrl(), koja
-// datoteku spaja s ENG_AUDIO_BASE — GitHub Release, vidi lib/engleski-simulator/audioBase.js).
+// first, repeat, confidence, note } }, extra? } }) i vraća URL-ove (preko
+// audioUrl(), koja datoteku spaja s ENG_AUDIO_BASE — GitHub Release, vidi
+// lib/engleski-simulator/audioBase.js).
 // Prvo traži task čiji je topic jednak zadanom; ako takvog nema u mapi tog ispita,
 // pada natrag na TOPIC_TO_TASK_* mapu po rednom broju. Ako datoteka za task ne
 // postoji (first je null — npr. stariji ispiti s jednom kombiniranom snimkom),
 // vraća null i AudioPlayer neće ništa renderirati.
+// Ispitovo polje 'extra' (dodatni zapisi slušanja koje podaci ispita ne
+// razlikuju kao zasebnu temu) se prikaže SAMO uz zadnji task ispita — da se ne
+// ponavlja uz svaku temu — OSIM ako su SVI taskovi ispita confidence 'low'
+// (nesigurno pozicijsko mapiranje), kad se prikaže uz svaki, jer učenik tada
+// ionako ne može pouzdano znati koji je zapis "glavni".
 export function getAudioTrack(examKey, topic, razina) {
   const exam = AUDIO_MAP[examKey]
   if (!exam || !exam.tasks) return null
@@ -38,12 +44,18 @@ export function getAudioTrack(examKey, topic, razina) {
   if (!taskNum) return null
   const track = exam.tasks[String(taskNum)]
   if (!track || !track.first) return null
+  const isLastTask = taskNum === taskNums[taskNums.length - 1]
+  const allLowConfidence = taskNums.every(n => exam.tasks[String(n)]?.confidence === 'low')
+  const showExtra = Array.isArray(exam.extra) && exam.extra.length > 0 && (isLastTask || allLowConfidence)
   return {
     first: audioUrl(track.first),
     repeat: track.repeat ? audioUrl(track.repeat) : null,
     intro: exam.intro ? audioUrl(exam.intro) : null,
     taskNum,
     confidence: track.confidence || null,
+    extra: showExtra
+      ? exam.extra.map(x => ({ first: audioUrl(x.first), repeat: x.repeat ? audioUrl(x.repeat) : null, note: x.note || '' }))
+      : [],
   }
 }
 
@@ -520,5 +532,11 @@ export function AudioPlayer({ examKey, topic, razina }) {
           })),
       phase === 'done'
         ? e('div', { style: { fontSize: 11, color: 'var(--green)', fontWeight: 600 } }, '✓ Oba slušanja završena — odgovori na pitanja.')
-        : e('div', { className: 'audio-hint' }, phase === 'repeat' ? 'Slušaš ponavljanje. Klikni \'✓ Završio/la\' kad završiš.' : 'Slušaj pažljivo. Klikni \'▶ Ponavljanje\' za drugi put ili \'✓ Završio/la\'.')))
+        : e('div', { className: 'audio-hint' }, phase === 'repeat' ? 'Slušaš ponavljanje. Klikni \'✓ Završio/la\' kad završiš.' : 'Slušaj pažljivo. Klikni \'▶ Ponavljanje\' za drugi put ili \'✓ Završio/la\'.'),
+      audio.extra.length > 0 && e('div', { className: 'audio-extra-wrap', style: { marginTop: 10, paddingTop: 10, borderTop: '1px solid rgba(0,0,0,.08)' } },
+        e('div', { style: { fontSize: 12, fontWeight: 600, marginBottom: 6 } }, '🎧 Dodatni zapisi slušanja'),
+        audio.extra.map((ex, i) => e('div', { key: i, style: { marginBottom: 8 } },
+          ex.note && e('div', { style: { fontSize: 11, color: 'var(--muted)', marginBottom: 4 } }, ex.note),
+          e('audio', { controls: true, preload: 'none', src: ex.first, 'aria-label': 'Dodatni zapis ' + (i + 1) + ' — 1. slušanje', style: { width: '100%', height: 36 } }),
+          ex.repeat && e('audio', { controls: true, preload: 'none', src: ex.repeat, 'aria-label': 'Dodatni zapis ' + (i + 1) + ' — ponavljanje', style: { width: '100%', height: 36, marginTop: 4 } }))))))
 }

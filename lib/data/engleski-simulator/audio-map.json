@@ -278,7 +278,19 @@
     "confidence": "low",
     "note": "track count (9) matches none of the expected patterns for 3 task group(s) from exam data (expected 7 with intro, 6 without intro, or 3 one-per-task); mapped positionally against the standard intro+2xtask template (size 7), extra/missing slots left unfilled."
    }
-  }
+  },
+  "extra": [
+   {
+    "first": "2014_jesen__extra1-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2014_jesen__extra2-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   }
+  ]
  },
  "2014_ljeto": {
   "intro": "2014_ljeto__intro.mp3",
@@ -330,7 +342,29 @@
     "confidence": "low",
     "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
    }
-  }
+  },
+  "extra": [
+   {
+    "first": "2015_jesen__extra1-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2015_jesen__extra2-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2015_jesen__extra3-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2015_jesen__extra4-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   }
+  ]
  },
  "2015_ljeto": {
   "intro": "2015_ljeto__intro.mp3",
@@ -382,7 +416,29 @@
     "confidence": "low",
     "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
    }
-  }
+  },
+  "extra": [
+   {
+    "first": "2016_jesen__extra1-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2016_jesen__extra2-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2016_jesen__extra3-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2016_jesen__extra4-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   }
+  ]
  },
  "2016_ljeto": {
   "intro": "2016_ljeto__intro.mp3",
@@ -401,7 +457,29 @@
     "confidence": "low",
     "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
    }
-  }
+  },
+  "extra": [
+   {
+    "first": "2016_ljeto__extra1-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2016_ljeto__extra2-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2016_ljeto__extra3-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2016_ljeto__extra4-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   }
+  ]
  },
  "2017_jesen": {
   "intro": "2017_jesen__intro.mp3",
@@ -420,7 +498,29 @@
     "confidence": "low",
     "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
    }
-  }
+  },
+  "extra": [
+   {
+    "first": "2017_jesen__extra1-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2017_jesen__extra2-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2017_jesen__extra3-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2017_jesen__extra4-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   }
+  ]
  },
  "2017_ljeto": {
   "intro": "2017_ljeto__intro.mp3",
@@ -439,7 +539,29 @@
     "confidence": "low",
     "note": "track count (9) matches none of the expected patterns for 2 task group(s) from exam data (expected 5 with intro, 4 without intro, or 2 one-per-task); mapped positionally against the standard intro+2xtask template (size 5), extra/missing slots left unfilled."
    }
-  }
+  },
+  "extra": [
+   {
+    "first": "2017_ljeto__extra1-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2017_ljeto__extra2-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2017_ljeto__extra3-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   },
+   {
+    "first": "2017_ljeto__extra4-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   }
+  ]
  },
  "2018_jesen": {
   "intro": "2018_jesen__intro.mp3",
@@ -868,7 +990,14 @@
     "confidence": "low",
     "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
    }
-  }
+  },
+  "extra": [
+   {
+    "first": "2024_jesen__extra1-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   }
+  ]
  },
  "2024_ljeto": {
   "intro": "2024_ljeto__intro.mp3",
@@ -2023,7 +2152,14 @@
     "confidence": "low",
     "note": "track count (10) matches none of the expected patterns for 4 task group(s) from exam data (expected 9 with intro, 8 without intro, or 4 one-per-task); mapped positionally against the standard intro+2xtask template (size 9), extra/missing slots left unfilled."
    }
-  }
+  },
+  "extra": [
+   {
+    "first": "vis_2024_drugi__extra1-1.mp3",
+    "repeat": null,
+    "note": "Dodatni zadatak slušanja koji podaci ispita ne razlikuju kao zasebnu temu"
+   }
+  ]
  },
  "vis_2024_prvi": {
   "intro": "vis_2024_prvi__intro.mp3",
