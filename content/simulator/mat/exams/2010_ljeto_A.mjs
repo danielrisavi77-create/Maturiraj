@@ -377,6 +377,42 @@ function Svg17sol_2010LA(){
   );
 }
 
+function Svg29grid_2010LA(){
+  // Prazna koordinatna mreza kao u originalu (29.5.): x od -8 do 8, y od -7 do 10,
+  // jedinicna celija = 1, bez ikakvog grafa (ucenik sam crta graf).
+  const unit=15;
+  const xMin=-8,xMax=8,yMin=-7,yMax=10;
+  const pad={l:20,r:20,t:13,b:13};
+  const iW=(xMax-xMin)*unit,iH=(yMax-yMin)*unit;
+  const W=iW+pad.l+pad.r,H=iH+pad.t+pad.b;
+  const toX=v=>pad.l+(v-xMin)*unit;
+  const toY=v=>pad.t+(yMax-v)*unit;
+  const ox=toX(0),oy=toY(0);
+  const t="var(--text)",mu="var(--muted)",bg="var(--bg)";
+  // U originalu je najvisa vodoravna crta mreze na y=9, a okomite crte sezu
+  // tek ~0,7 celije iznad nje (do y=9,7).
+  const yTop=yMax-1;
+  const xs=[],ys=[];
+  for(let x=xMin;x<=xMax;x+=1) xs.push(x);
+  for(let y=yMin;y<=yTop;y+=1) ys.push(y);
+
+  return e("svg",{viewBox:`0 0 ${W} ${H}`,style:{width:"100%",maxWidth:W,display:"block"}},
+    ...xs.map(x=>e("line",{key:"gx"+x,x1:toX(x),y1:toY(yTop+0.7),x2:toX(x),y2:pad.t+iH,stroke:mu,strokeWidth:.5,strokeDasharray:"2,3"})),
+    ...ys.map(y=>e("line",{key:"gy"+y,x1:pad.l,y1:toY(y),x2:pad.l+iW,y2:toY(y),stroke:mu,strokeWidth:.5,strokeDasharray:"2,3"})),
+    e("line",{x1:pad.l,y1:oy,x2:W-6,y2:oy,stroke:t,strokeWidth:1.6}),
+    e("line",{x1:ox,y1:6,x2:ox,y2:pad.t+iH,stroke:t,strokeWidth:1.6}),
+    e("polygon",{points:`${W},${oy} ${W-6},${oy-3.2} ${W-6},${oy+3.2}`,fill:t}),
+    e("polygon",{points:`${ox},0 ${ox-3.2},6 ${ox+3.2},6`,fill:t}),
+    e("text",{x:W-2,y:oy+13,textAnchor:"end",fontSize:11,fontStyle:"italic",fill:t},"x"),
+    e("text",{x:ox-6,y:10,textAnchor:"end",fontSize:11,fontStyle:"italic",fill:t},"y"),
+    e("text",{x:ox-4,y:oy+12,textAnchor:"end",fontSize:10,fill:t,fontWeight:600},"0"),
+    e("text",{x:toX(1)+2,y:oy+12,fontSize:10,fill:t,fontWeight:600},"1"),
+    e("text",{x:ox-4,y:toY(1)+4,textAnchor:"end",fontSize:10,fill:t,fontWeight:600},"1"),
+    e("circle",{cx:ox,cy:toY(1),r:1.8,fill:bg,stroke:t,strokeWidth:1}),
+    e("circle",{cx:toX(1),cy:oy,r:1.8,fill:bg,stroke:t,strokeWidth:1})
+  );
+}
+
 export const qs = [
   {
     id: 1,
@@ -2334,4 +2370,5 @@ export const qImages = {
   "2010_ljeto_A__30": () => e(Svg30_2010Alj, null),
   "2010_ljeto_A__7": () => e(Svg7_2010LA, null),
   "2010_ljeto_A__9": () => e(Svg9_2010LA, null),
+  "2010_ljeto_A__29e": () => e(Svg29grid_2010LA, null),
 };
