@@ -2,11 +2,13 @@
 // Articles & Determiners
 // Auto-generated JS modul — sadržaj identičan originalnom HTML fajlu
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 export default function EngleskiNizaPoglavlje14({ onBack, onNext, onPrev, onNavigate }) {
   const navRef = useRef(null);
-  navRef.current = { onBack, onNext, onPrev, onNavigate };
+  useLayoutEffect(() => {
+    navRef.current = { onBack, onNext, onPrev, onNavigate };
+  }, [onBack, onNext, onPrev, onNavigate]);
 
   useEffect(() => {
     const styleId = "skripta-ch14-style";
