@@ -45,15 +45,16 @@ export function buildUserAccess(authState) {
  * @returns {{ canProceed: boolean, reason: 'ok'|'not-logged-in'|'limit-reached' }}
  */
 export function checkSimulatorAccess(userAccess, questionIndex) {
+  // Paid-only Discere (W2): free preview / FREE_LIMIT path is disabled.
+  // Proxy + PlanGate already block free; this keeps client gates honest.
+  void questionIndex
   if (!userAccess?.isLoggedIn) {
     return { canProceed: false, reason: 'not-logged-in' }
   }
   if (userAccess.subscriptionTier !== 'free') {
     return { canProceed: true, reason: 'ok' }
   }
-  return questionIndex < FREE_LIMIT
-    ? { canProceed: true,  reason: 'ok' }
-    : { canProceed: false, reason: 'limit-reached' }
+  return { canProceed: false, reason: 'limit-reached' }
 }
 
 /**
@@ -71,6 +72,33 @@ export function checkResultsAccess(userAccess) {
     canSeePlan:      isPro,
     canAskAI:        isPro,
   }
+}
+
+/**
+ * Hrvatski simulator: rješavanje i ocjena testa su besplatni, ali razrada
+ * rezultata (pregled pitanja, analiza, savjeti, vježbanje grešaka) ide od
+ * Standard plana naviše. Zaseban helper jer checkResultsAccess pokriva
+ * pro-only AI analizu koju dijele i ostali predmeti.
+ *
+ * @param {UserAccess} userAccess
+ * @returns {boolean}
+ */
+export function canSeeHrvAnalysis(userAccess) {
+  return !!userAccess && userAccess.subscriptionTier !== 'free'
+}
+
+/**
+ * Ispiti koji su u cijelosti besplatni u vježbanju (bez FREE_LIMIT gatea).
+ * Ispitni mod je već besplatan za sve ispite — ovo dodatno oslobađa vježbanje.
+ */
+export const HRV_FREE_PRACTICE_EXAMS = ['2016_ljeto_B']
+
+/**
+ * @param {string} examKey
+ * @returns {boolean}
+ */
+export function isHrvFreePracticeExam(examKey) {
+  return HRV_FREE_PRACTICE_EXAMS.includes(examKey)
 }
 
 /**

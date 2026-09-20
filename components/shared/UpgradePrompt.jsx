@@ -15,7 +15,7 @@ const PLAN_CONFIG = {
   starter: {
     emoji:  '⭐',
     name:   'Standard',
-    price:  '6,99€/mj',
+    price:  '9,99€/mj',
     color:  'rgba(255,107,43,1)',
     colorA: 'rgba(255,107,43,.18)',
     colorB: 'rgba(255,107,43,.08)',

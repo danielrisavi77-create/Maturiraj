@@ -4,6 +4,11 @@ import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { FROM_MAP, DEFAULT_FROM } from '@/lib/billing/fromMap'
+import { initialBillingFromSearch } from '@/lib/billing/initialBilling'
+import {
+  CHECKOUT_UI_LIVE,
+  CHECKOUT_UNAVAILABLE_COPY,
+} from '@/lib/billing/checkoutPlans'
 
 const PLANS = [
   {
@@ -70,7 +75,7 @@ function ProContent() {
   const fromInfo    = FROM_MAP[fromKey] || DEFAULT_FROM
   const canceled    = params.get('canceled') === '1'
 
-  const [billing,  setBilling]  = useState('monthly')
+  const [billing,  setBilling]  = useState(() => initialBillingFromSearch(params))
   const [loading,  setLoading]  = useState(null)
   const [error,    setError]    = useState(null)
   const [notice,   setNotice]   = useState(null)
@@ -90,6 +95,11 @@ function ProContent() {
   const handleCheckout = async (plan) => {
     setError(null)
     setNotice(null)
+
+    if (!CHECKOUT_UI_LIVE) {
+      setNotice(CHECKOUT_UNAVAILABLE_COPY)
+      return
+    }
 
     if (!user) {
       // Pamti i "from" kroz login flow
@@ -155,13 +165,18 @@ function ProContent() {
   const getCtaLabel = (plan) => {
     if (loading === plan.id)           return 'Učitavam...'
     if (isPro && plan.id === 'pro')    return 'Upravljaj planom →'
+    if (!CHECKOUT_UI_LIVE)             return 'Naplata uskoro'
+    if (!plan.checkoutPlan[billing] && plan.id === 'starter') return 'Standard samo mjesečno'
     if (!plan.checkoutPlan[billing])   return `Godišnji ${plan.name} uskoro`
     if (fromKey === 'kalkulator' && plan.id === 'pro') return '🔑 Otključaj kalkulator →'
     return `Uzmi ${plan.name} →`
   }
 
-  const isPlanActionAvailable = (plan) =>
-    (isPro && plan.id === 'pro') || Boolean(plan.checkoutPlan[billing])
+  const isPlanActionAvailable = (plan) => {
+    if (isPro && plan.id === 'pro') return true
+    if (!CHECKOUT_UI_LIVE) return false
+    return Boolean(plan.checkoutPlan[billing])
+  }
 
   return (
     <div style={{
@@ -280,6 +295,16 @@ function ProContent() {
             Skripte su besplatne za sve. Kalkulator, Discere, AI profesor i adaptivni plan uz pretplatu.
           </div>
 
+          {!CHECKOUT_UI_LIVE && (
+            <div role="status" style={{
+              maxWidth: 520, margin: '0 auto 20px', padding: '12px 16px', borderRadius: 14,
+              background: 'rgba(255,107,43,.08)', border: '1px solid rgba(255,107,43,.22)',
+              fontSize: 13, color: 'var(--muted)', lineHeight: 1.6, textAlign: 'center',
+            }}>
+              ⏳ {CHECKOUT_UNAVAILABLE_COPY}
+            </div>
+          )}
+
           {/* Billing toggle */}
           <div className="bill-toggle">
             {[
@@ -368,9 +393,14 @@ function ProContent() {
                   </span>
                   <span style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 600 }}>/mj</span>
                 </div>
-                {billing === 'yearly' && (
+                {billing === 'yearly' && plan.id === 'pro' && (
                   <div style={{ fontSize: 11, color: 'var(--green)', fontWeight: 700, marginTop: 4 }}>
-                    Jednokratna godišnja naplata · uštedi 50%
+                    Godišnja pretplata (pro_god) · uštedi ~50%
+                  </div>
+                )}
+                {billing === 'yearly' && plan.id === 'starter' && (
+                  <div style={{ fontSize: 11, color: 'var(--orange)', fontWeight: 700, marginTop: 4 }}>
+                    Standard godišnje nije u checkoutu — odaberi mjesečno
                   </div>
                 )}
               </div>
@@ -420,7 +450,7 @@ function ProContent() {
           fontSize: 12, color: 'var(--muted)', fontWeight: 600,
         }}>
           {[
-            '🔒 Sigurno plaćanje · Stripe',
+            CHECKOUT_UI_LIVE ? '🔒 Sigurno plaćanje · Stripe' : '⏳ Naplata uskoro · Stripe spreman',
             '↩ Otkaži bilo kada',
             '⚡ Pristup odmah',
             fromKey ? `↩ Vraća te na ${fromInfo.label}` : '🇭🇷 HR + BiH podrška',

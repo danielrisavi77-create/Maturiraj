@@ -33,7 +33,7 @@ export async function proxy(request) {
   const { data: { user } } = await supabase.auth.getUser()
 
   // ── Rute koje zahtijevaju samo prijavu (besplatni i placeni) ───
-  const authRequired = ['/plan-ucenja/dashboard', '/game']
+  const authRequired = ['/plan-ucenja/dashboard', '/game', '/dashboard']
   const isAuthRequired = authRequired.some(route =>
     request.nextUrl.pathname.startsWith(route)
   )
@@ -48,6 +48,15 @@ export async function proxy(request) {
   // ── Rute koje zahtijevaju placeni plan (starter ili pro — Discere) ─
   const paidRequired = ['/discere']
   const isPaidRequired = paidRequired.some(route =>
+    request.nextUrl.pathname.startsWith(route)
+  )
+
+  // Hrvatski simulator radi po free-preview modelu: prijavljeni free korisnik smije ući,
+  // a ograničenja su u samoj aplikaciji (FREE_LIMIT u vjezbi, besplatan ispit, zakljucani
+  // rezultati preko canSeeHrvAnalysis). Ovdje mora postojati iznimka jer bi inace proxy
+  // preusmjerio free korisnika na /pro prije nego se stranica uopce renderira.
+  const freePreviewRoutes = ['/discere/hrvatski']
+  const isFreePreview = freePreviewRoutes.some(route =>
     request.nextUrl.pathname.startsWith(route)
   )
 
@@ -79,7 +88,7 @@ export async function proxy(request) {
       return NextResponse.redirect(url)
     }
 
-    if (!isDevBypass && !isPaidTier(await readTier())) {
+    if (!isFreePreview && !isDevBypass && !isPaidTier(await readTier())) {
       const url = request.nextUrl.clone()
       url.pathname = '/pro'
       url.searchParams.set('from', 'discere')
@@ -127,11 +136,20 @@ export async function proxy(request) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  // ── Auth rute — prijavljeni korisnici preusmjeri na početnu ─
+  // ── Auth rute — prijavljeni korisnici → /dashboard (poštuj ?redirect=) ─
   const authRoutes = ['/prijava', '/registracija']
   if (authRoutes.includes(request.nextUrl.pathname) && user) {
     const url = request.nextUrl.clone()
-    url.pathname = '/'
+    const redirectRaw = request.nextUrl.searchParams.get('redirect')
+    const redirect =
+      redirectRaw &&
+      redirectRaw.startsWith('/') &&
+      !redirectRaw.startsWith('//') &&
+      !redirectRaw.startsWith('/\\')
+        ? redirectRaw
+        : '/dashboard'
+    url.pathname = redirect
+    url.search = ''
     return NextResponse.redirect(url)
   }
 

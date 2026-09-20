@@ -278,7 +278,10 @@ function SaAiHelper({q}){
   );
 }
 
-function AnswerHelper({q,show,onToggle,autoExpand,examKey}){
+// qid je izvorni id pitanja (u virtualnim sesijama q.id je prenumeriran), pa distraktori
+// moraju ići po njemu, a ne po q.id.
+function AnswerHelper({q,show,onToggle,autoExpand,examKey,qid}){
+  const _qid=qid!=null?qid:q.id;
   const[aiState,setAiState]=useState("idle");
   const[aiText,setAiText]=useState("");
   const[dState,setDState]=useState("idle"); // analiza distraktora (zašto su ostali krivi)
@@ -288,10 +291,10 @@ function AnswerHelper({q,show,onToggle,autoExpand,examKey}){
   useEffect(()=>{
     let alive=true;
     if(q.type==="mc"&&examKey!=null){
-      import('../data/distraktoriData.js').then(m=>{ if(alive) setStaticD(m.getDistraktori(examKey,q.id)); }).catch(()=>{});
+      import('../data/distraktoriData.js').then(m=>{ if(alive) setStaticD(m.getDistraktori(examKey,_qid)); }).catch(()=>{});
     }
     return ()=>{alive=false;};
-  },[q.id,examKey]);
+  },[_qid,examKey,q.type]);
 
   async function fetchDistractors(){
     setDState("loading");

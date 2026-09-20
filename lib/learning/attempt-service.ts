@@ -3,22 +3,19 @@ import { validateQuestionSet } from '../discere/exam-schema'
 import { scoreQuestion } from '../discere/scoring'
 import { isAssessmentResponse } from './assessment-response'
 
-/** Only the fields this service reads are named. The full question contract
- * lives in the schema; validateQuestionSet remains the sole authority on it,
- * so nothing here may be read as a structural guarantee of validity. */
-type AttemptQuestion = {
-  id: string
-  version: string
-  type: string
-  outcomeIds: string[]
-}
+/** Structural question-set shape (builder module was never landed on main). */
 type QuestionSet = {
   id: string
   version: string
-  lessonId: string
   subjectId: string
   level: string
-  questions: AttemptQuestion[]
+  lessonId: string
+  questions: Array<{
+    id: string
+    version: string
+    type: string
+    outcomeIds: string[]
+  }>
 }
 type AttemptEvent = {
   eventId: string

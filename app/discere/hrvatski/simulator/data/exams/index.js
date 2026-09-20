@@ -17,6 +17,7 @@ import { QS_2022_jesen_B, QS_2022_ljeto_B, QS_2022_ljeto_A, QS_2022_jesen_A, ESE
 import { QS_2023_ljeto_B, QS_2023_jesen_B } from './exam2023.js';
 import { QS_2024_ljeto_B, QS_2024_jesen_B } from './exam2024.js';
 import { QS_2025_ljeto_B, QS_2025_jesen_B } from './exam2025.js';
+import { TOPIC_OVERRIDES } from '../topicOverrides.js';
 
 // ── Constants & helpers ──
 const LL=["A","B","C","D","E","F"];
@@ -31,15 +32,50 @@ const TOPIC_LABELS={
   jez_stil:"Stilistika",
   jez_sint:"Sintaksa",
   jez_tvorba:"Tvorba riječi",
+  jez_versif:"Versifikacija",
+  knj_antika:"Antika i Biblija",
+  knj_srednji_vijek:"Srednji vijek",
+  knj_renesansa:"Renesansa",
+  knj_barok:"Barok i klasicizam",
+  knj_prosvjetiteljstvo:"Prosvjetiteljstvo i predromantizam",
+  knj_romantizam:"Romantizam",
+  knj_realizam:"Realizam i naturalizam",
   knj_moderna:"Moderna",
-  knj_avangarda:"Avangarda",
+  knj_avangarda:"Avangarda i međuratna",
   knj_suvremena:"Suvremena književnost",
+  knj_rodovi:"Rodovi i vrste",
+  knj_figure:"Stilske figure",
+  knj_versif:"Versifikacija",
+  knj_neknjiz:"Neknjiževni tekst",
   knj_svjetska:"Svjetska književnost",
   knj_analiza:"Analiza teksta",
-  knj_versif:"Versifikacija",
   sazetak:"Sažetak teksta",
   esej:"Interpretativni esej",
 };
+const TOPIC_GROUPS={
+  knj_antika:"Književnost — razdoblja",
+  knj_srednji_vijek:"Književnost — razdoblja",
+  knj_renesansa:"Književnost — razdoblja",
+  knj_barok:"Književnost — razdoblja",
+  knj_prosvjetiteljstvo:"Književnost — razdoblja",
+  knj_romantizam:"Književnost — razdoblja",
+  knj_realizam:"Književnost — razdoblja",
+  knj_moderna:"Književnost — razdoblja",
+  knj_avangarda:"Književnost — razdoblja",
+  knj_suvremena:"Književnost — razdoblja",
+  knj_rodovi:"Književnost — teorija",
+  knj_figure:"Književnost — teorija",
+  knj_versif:"Književnost — teorija",
+  knj_neknjiz:"Književnost — teorija",
+  jez_gram:"Jezik",
+  jez_pravopis:"Jezik",
+  jez_leks:"Jezik",
+  jez_stil:"Jezik",
+  jez_sint:"Jezik",
+  jez_tvorba:"Jezik",
+  jez_versif:"Jezik",
+};
+function stripLetterPrefix(str){return typeof str==="string"?str.replace(/^[A-F][.)]\s+/,""):str;}
 function getLevel(xp){let l=0;XP_LEVELS.forEach((v,i)=>{if(xp>=v)l=i;});return l;}
 function xpProgress(xp){const l=getLevel(xp);const cur=XP_LEVELS[l],next=XP_LEVELS[l+1]||XP_LEVELS[l]+500;return Math.min(100,Math.round((xp-cur)/(next-cur)*100));}
 function xpToNext(xp){const l=getLevel(xp);const next=XP_LEVELS[l+1]||XP_LEVELS[l]+500;return Math.max(0,next-xp);}
@@ -112,6 +148,18 @@ const EXAMS={
   "2022_ljeto_A":{key:"2022_ljeto_A",year:2022,season:"ljeto",razina:"A",label:"Ljetni rok — Viša razina (A)",qs:QS_2022_ljeto_A,pravi:true},  
   "2022_ljeto_B":{key:"2022_ljeto_B",year:2022,season:"ljeto",razina:"B",label:"Ljetni rok — Osnovna razina (B)",qs:QS_2022_ljeto_B,pravi:true},
 };
+
+const BROKEN_QS=[];
+for(const k of Object.keys(EXAMS)){
+  EXAMS[k].qs=EXAMS[k].qs.map(q=>q.opts?{...q,opts:q.opts.map(stripLetterPrefix)}:q);
+  const broken=EXAMS[k].qs.filter(q=>q.broken===true);
+  if(broken.length){BROKEN_QS.push(...broken.map(q=>({...q,examKey:k})));}
+  EXAMS[k].qs=EXAMS[k].qs.filter(q=>q.broken!==true);
+  EXAMS[k].qs=EXAMS[k].qs.map(q=>{
+    const topic=TOPIC_OVERRIDES[k]?.[String(q.id)]??q.topic;
+    return topic===q.topic?q:{...q,topic};
+  });
+}
 
 const SAZECI={
   "2023_ljeto":{
@@ -1958,4 +2006,4 @@ Miroslav Krleža, Gospoda Glembajevi`},
 
 };
 
-export { TLBL, XP_LEVELS, LEVEL_NAMES, TOPIC_LABELS, EXAMS, SAZECI, ESEJI };
+export { TLBL, XP_LEVELS, LEVEL_NAMES, TOPIC_LABELS, TOPIC_GROUPS, EXAMS, SAZECI, ESEJI, stripLetterPrefix, BROKEN_QS };

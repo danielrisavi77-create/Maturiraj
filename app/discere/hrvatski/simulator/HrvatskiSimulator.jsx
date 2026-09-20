@@ -6,11 +6,12 @@ import { buildUserAccess } from '@/components/discere/paywall';
 import confetti from 'canvas-confetti';
 import { EXAMS, ESEJI, SAZECI } from './hrvatskiSimulatorData';
 import './hrvatski-simulator-scoped.css';
-import { e, chk, calcXpGain, useUserData, updateStreak, playSuccessSound } from './utils/helpers';
-import { sm2Update, generateStrategyTips, calcTopicMastery, getDueReviews, calcTopicWeights, selectWarmupQuestions, selectAdaptiveMix } from '@/lib/learning/hrv-engine';
+import { e, chk, calcXpGain, useUserData, updateStreak, playSuccessSound, renumberSessionQs, trimHistory } from './utils/helpers';
+import { sm2Update, generateStrategyTips, calcTopicMastery, getDueReviews, calcTopicWeights, selectWarmupQuestions, selectAdaptiveMix, buildTrackerUpdate } from '@/lib/learning/hrv-engine';
 import { checkNewAchievements } from './utils/achievements';
 import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
 import { saveSimResult } from '@/lib/sim-progress';
+import { isGameModeEnabled } from '@/lib/config/featureFlags';
 
 function AchievementToast({ badge, onDismiss }) {
   useEffect(() => {
@@ -31,6 +32,9 @@ function AchievementToast({ badge, onDismiss }) {
     )
   );
 }
+// Ekrani čiji ispit postoji samo u memoriji (nije ključ u EXAMS) — ne smiju se vraćati iz URL-a.
+const VIRTUAL_SESSION_SCREENS=["filter_session","errors_session","bookmark_session","vsession","practice_list_session"];
+
 // ── DDay: odbrojavanje do mature + probna matura (pun nasumičan ispit pod uvjetima) ──
 const HRV_MATURA_ROKOVI=[{m:5,d:1,label:"ljetnog roka mature"},{m:7,d:21,label:"jesenskog roka"}];
 function nextMaturaHrv(){
@@ -157,6 +161,20 @@ function App(){
   useEffect(()=>{
     if(userData?.onboarded) setShowOnboarding(false);
   },[userData?.onboarded]);
+  // Migracija starih korisnika: history je nekad rastao bez granice (answers+qTimes na
+  // svakom zapisu). Jednom pri mountu obreži na trimHistory pravila ako već nije trimano.
+  const _historyTrimmed=useRef(false);
+  useEffect(()=>{
+    if(_historyTrimmed.current) return;
+    _historyTrimmed.current=true;
+    updateUserData(prev=>{
+      if(!prev.history||!prev.history.length) return prev;
+      const trimmed=trimHistory(prev.history);
+      if(trimmed===prev.history) return prev;
+      return{...prev,history:trimmed};
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
   useEffect(()=>{
     try{localStorage.setItem("discere_sound",soundOn?"1":"0");}catch(e){}
     window._soundOn=soundOn;
@@ -239,11 +257,11 @@ function App(){
   function goPracticeList(){setScreen("practice_list");window.scrollTo(0,0);}
   function goExamMode(k){const _k=k||pendingExamKey||"2024_ljeto_A";try{ trackEvent({name:'discere_exam_started',meta:{subject:'hrv',examKey:_k,mode:'ispit'}}); }catch(e){}setExamKey(_k);setScreen("exammode");window.scrollTo(0,0);}
   function goFilter(){setScreen("filter");window.scrollTo(0,0);}
-  function goFilterSession(ve){setVirtualExam(ve);setScreen("filter_session");window.scrollTo(0,0);}
+  function goFilterSession(ve){setVirtualExam({...ve,qs:renumberSessionQs(ve.qs)});setScreen("filter_session");window.scrollTo(0,0);}
   function goErrors(){setScreen("errors");window.scrollTo(0,0);}
-  function goErrorSession(ve){setVirtualExam(ve);setScreen("errors_session");window.scrollTo(0,0);}
+  function goErrorSession(ve){setVirtualExam({...ve,qs:renumberSessionQs(ve.qs)});setScreen("errors_session");window.scrollTo(0,0);}
   function goBookmarks(){setScreen("bookmarks");window.scrollTo(0,0);}
-  function goBookmarkSession(ve){setVirtualExam(ve);setScreen("bookmark_session");window.scrollTo(0,0);}
+  function goBookmarkSession(ve){setVirtualExam({...ve,qs:renumberSessionQs(ve.qs)});setScreen("bookmark_session");window.scrollTo(0,0);}
   function goStats(){setScreen("stats");window.scrollTo(0,0);}
   function handleResetOnboarding(opts){
     if(opts?.resetOnboarding){
@@ -294,7 +312,8 @@ function App(){
     });
   }
   function goPracticeExamErrors(wrongQs,srcExam){
-    const ve={key:"exam_errors_session",year:srcExam.year,season:srcExam.season,label:srcExam.label+" — Greške",qs:[...wrongQs].sort(()=>Math.random()-.5)};
+    const ve={key:"exam_errors_session",year:srcExam.year,season:srcExam.season,label:srcExam.label+" — Greške",
+      qs:renumberSessionQs(wrongQs.map(q=>Object.assign({},q,{_examKey:q._examKey||srcExam.key})).sort(()=>Math.random()-.5))};
     setVirtualExam(ve);setScreen("errors_session");window.scrollTo(0,0);
   }
 
@@ -308,7 +327,7 @@ function App(){
     let qs=selectAdaptiveMix(allMcPool,weights,15);
     if(!qs.length) qs=allMcPool.slice().sort(()=>Math.random()-.5).slice(0,15);
     if(!qs.length) return;
-    qs=qs.map((q,i)=>Object.assign({},q,{id:i+1}));
+    qs=renumberSessionQs(qs);
     setVirtualExam({key:"adaptive_session",year:"Adaptivni trening",season:"session",label:"Adaptivni trening",qs});
     setScreen("vsession");window.scrollTo(0,0);
   }
@@ -320,15 +339,17 @@ function App(){
     if(qs.length<8){ const weights=calcTopicWeights(userData.history); const fill=selectAdaptiveMix(allMcPool,weights,12); fill.forEach(q=>{ const k=q._examKey+"_"+q.id; if(qs.length<8&&!seen.has(k)){seen.add(k);qs.push(q);} }); }
     let out=qs.slice(0,8);
     if(!out.length) return;
-    out=out.map((q,i)=>Object.assign({},q,{id:i+1}));
+    out=renumberSessionQs(out);
     setVirtualExam({key:"daily_session",year:"Dnevni izazov",season:"session",label:"Dnevni izazov",qs:out});
     setScreen("vsession");window.scrollTo(0,0);
   }
   function onExamDone(result){
     try{ trackEvent({name:'discere_exam_completed',meta:{subject:'hrv',examKey:result.examKey,pct:result.pct,grade:result.grade,mode:result.examMode?'ispit':'vjezba'}}); }catch(e){}
     const xpGain=calcXpGain(result.pct,result.total);
-    const examQs=EXAMS[result.examKey]?.qs||[];
-    const wrongAnswers=[];
+    // Virtualne sesije (dnevni izazov, adaptivni trening, filter, greške, oznake) nemaju
+    // svoj ključ u EXAMS, pa pitanja stižu iz rezultata; errorTracker se vodi po izvornom
+    // ispitu i izvornom id-u jer sesije mogu prenumerirati pitanja.
+    const examQs=(result.qs&&result.qs.length)?result.qs:(EXAMS[result.examKey]?.qs||[]);
     // topic breakdown za analytics
     const topicBreakdown={};
     examQs.forEach(q=>{
@@ -337,9 +358,6 @@ function App(){
       if(!topicBreakdown[topic]) topicBreakdown[topic]={correct:0,total:0};
       topicBreakdown[topic].total++;
       if(chk(q,result.answers?.[q.id])===true) topicBreakdown[topic].correct++;
-      if(chk(q,result.answers?.[q.id])===false){
-        wrongAnswers.push({qid:q.id,q:q.q.slice(0,80),topic,examKey:result.examKey,type:q.type});
-      }
     });
     // ── Check achievements (uses current userData snapshot) ──
     const { newAchievements, newBadges } = checkNewAchievements(userData, result, topicBreakdown);
@@ -354,28 +372,7 @@ function App(){
 
     updateUserData(prev=>{
       const updated=updateStreak(prev);
-      const errorTracker={...(prev.errorTracker||{})};
-      const today=new Date().toLocaleDateString("hr");
-      // ── Wrong answers: SM-2 update (quality=1 = wrong) ──
-      wrongAnswers.forEach(w=>{
-        const key=w.examKey+"_"+w.qid;
-        const ex=errorTracker[key]||{count:0,q:w.q,topic:w.topic,examKey:w.examKey,qid:w.qid,ef:2.5,reps:0};
-        const updated=sm2Update(ex,false,1);
-        if(updated) errorTracker[key]=updated;
-      });
-      // ── Correct answers: SM-2 update (quality=4 = correct with hesitation) ──
-      examQs.forEach(q=>{
-        if(q.type!=="mc") return;
-        if(chk(q,result.answers?.[q.id])===true){
-          const key=result.examKey+"_"+q.id;
-          if(errorTracker[key]){
-            const entry=errorTracker[key];
-            const updated=sm2Update(entry,true,4);
-            if(updated===null) delete errorTracker[key]; // mastered
-            else errorTracker[key]=updated;
-          }
-        }
-      });
+      const errorTracker=buildTrackerUpdate(examQs,result.answers,prev.errorTracker,result.examKey,sm2Update);
       // ── Confidence log merge ──
       const confidenceLog={...(prev.confidenceLog||{})};
       if(result.confidenceLog){
@@ -389,7 +386,7 @@ function App(){
         topic_breakdown:topicBreakdown,
         answers:result.answers||{}
       }];
-      return{...updated,xp:(prev.xp||0)+xpGain,history:newHistory,errorTracker,confidenceLog,achievements:newAchievements,totalExams:(prev.totalExams||0)+1};
+      return{...updated,xp:(prev.xp||0)+xpGain,history:trimHistory(newHistory),errorTracker,confidenceLog,achievements:newAchievements,totalExams:(prev.totalExams||0)+1};
     });
     // ── sim_progress red (subject='hrv') za analitiku / roditeljski dashboard ──
     // Samo pravi ispiti (godina_rok_razina); virtualne sesije (daily/adaptive/errors) preskačemo.
@@ -410,7 +407,11 @@ function App(){
 
 
   const exam=EXAMS[examKey];
-  const resolvedExam=(screen==="filter_session"||screen==="errors_session"||screen==="bookmark_session"||screen==="vsession")?virtualExam||exam:screen==="practice_list_session"?activeExam||exam:exam;
+  // Bez fallbacka na EXAMS[examKey]: virtualna sesija koja je izgubila svoja pitanja ne smije
+  // tiho postati neki drugi ispit.
+  const resolvedExam=VIRTUAL_SESSION_SCREENS.includes(screen)?(screen==="practice_list_session"?activeExam:virtualExam):exam;
+  const _sessionRef=useRef(null);
+  _sessionRef.current={virtualExam,activeExam};
 
   const toggles=e("div",{style:{display:"flex",gap:6,marginLeft:"auto"}},
     e("button",{onClick:()=>setShowDisclaimer(true),title:"O aplikaciji",
@@ -474,22 +475,29 @@ function App(){
     const p=new URLSearchParams(window.location.search);
     const s=p.get("s"); const ek=p.get("exam");
     const deepLektira=p.get("lektira");
+    // Sesija je živjela samo u state-u; nakon reloada je nema pa se vraćamo na početnu.
+    const deadSession=!!s&&VIRTUAL_SESSION_SCREENS.includes(s);
     if(deepLektira){
       // Dolazak iz skripte: otvori Lektire na zadanom djelu
       _isPopstate.current=true;
       setLektiraDeep({djelo:deepLektira,autor:p.get("autor")||""});
       setScreen("lektire");
-    } else if(s&&s!=="home"){
+    } else if(s&&s!=="home"&&!deadSession){
       _isPopstate.current=true;
       setScreen(s);
       if(ek){setExamKey(ek);setPendingExamKey(ek);}
     }
-    window.history.replaceState({screen:s||"home",examKey:ek||"2024_ljeto_A"},"",window.location.href);
+    if(deadSession) window.history.replaceState({screen:"home"},"",window.location.pathname);
+    else window.history.replaceState({screen:s||"home",examKey:ek||"2024_ljeto_A"},"",window.location.href);
     const onPop=ev=>{
       const st=ev.state;
       if(!st) return;
       _isPopstate.current=true;
-      if(st.screen) setScreen(st.screen);
+      if(st.screen){
+        const ses=_sessionRef.current||{};
+        const alive=st.screen==="practice_list_session"?!!ses.activeExam:!!ses.virtualExam;
+        setScreen(VIRTUAL_SESSION_SCREENS.includes(st.screen)&&!alive?"home":st.screen);
+      }
       if(st.examKey) setExamKey(st.examKey);
       if(st.pendingExamKey) setPendingExamKey(st.pendingExamKey);
       if(st.esejKey!==undefined) setEsejKey(st.esejKey||null);
@@ -536,8 +544,8 @@ function App(){
     )},
     e("div",{key:screen,className:"screen-slide"},
     screen==="upute"&&e(UputeModal,{onClose:()=>{setScreen(prevScreen);window.scrollTo(0,0);}}),
-    screen==="home"&&e(Home,{key:screen,onExam:goModeSelect,onPractice:goPractice,onFilter:goFilter,onErrors:goErrors,onBookmarks:goBookmarks,onStats:goStats,onBrowse:goBrowse,onEsej:goEsejList,onSazetak:goSazetakList,onShowDisclaimer:()=>setShowDisclaimer(true),onPracticeList:goPracticeList,onLektire:goLektire,onPojmovnik:()=>setShowPojmovnik(true),onImporter:()=>setShowImporter(true),onDDay:()=>setShowDDay(true),onDaily:goDaily,onAdaptive:goAdaptive,onGameMode:()=>window.location.assign('/game'),onWrapped:()=>setShowWrapped(true),onAIPlan:()=>setShowPlan(true),customQs,onClearCustom:clearCustomQs,userData,toggles}),
-    screen==="modeselect"&&e(ModeSelect,{key:screen,examKey:pendingExamKey,onExamMode:goExamMode,onPractice:goPractice,onBack:goHome,onEsej:goEsej,onSazetak:goSazetak}),
+    screen==="home"&&e(Home,{key:screen,onExam:goModeSelect,onPractice:goPractice,onFilter:goFilter,onErrors:goErrors,onBookmarks:goBookmarks,onStats:goStats,onBrowse:goBrowse,onEsej:goEsejList,onSazetak:goSazetakList,onShowDisclaimer:()=>setShowDisclaimer(true),onPracticeList:goPracticeList,onLektire:goLektire,onPojmovnik:()=>setShowPojmovnik(true),onImporter:()=>setShowImporter(true),onDDay:()=>setShowDDay(true),onDaily:goDaily,onAdaptive:goAdaptive,onGameMode:isGameModeEnabled()?()=>window.location.assign('/game'):undefined,onWrapped:()=>setShowWrapped(true),onAIPlan:()=>setShowPlan(true),customQs,onClearCustom:clearCustomQs,userData,toggles,isPaid}),
+    screen==="modeselect"&&e(ModeSelect,{key:screen,examKey:pendingExamKey,onExamMode:goExamMode,onPractice:goPractice,onBack:goHome,onEsej:goEsej,onSazetak:goSazetak,isPaid}),
     screen==="filter"&&e(TopicFilterScreen,{key:screen,onStart:goFilterSession,onBack:goHome,userData}),
     screen==="errors"&&e(ErrorsScreen,{key:screen,userData,onStart:goErrorSession,onBack:goHome}),
     screen==="bookmarks"&&e(BookmarksScreen,{key:screen,onBack:goHome,onStartSession:goBookmarkSession}),

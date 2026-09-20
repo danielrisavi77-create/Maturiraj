@@ -2,13 +2,14 @@
 import React, { useState, useEffect, useMemo, useRef, Fragment } from 'react';
 import confetti from 'canvas-confetti';
 import { EXAMS, TOPIC_LABELS, ESEJI, SAZECI, TLBL } from '../hrvatskiSimulatorData';
-import { e, LL, chk, hasAns, lsSave, lsGet, playWrongSound, calcXpGain, xpProgress, getLevel } from '../utils/helpers';
+import { e, LL, chk, hasAns, lsSave, lsGet, playWrongSound, calcXpGain, xpProgress, getLevel, qIdentity, computeSecLeft } from '../utils/helpers';
 import ShareStoryCard from '@/components/shared/ShareStoryCard';
-import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers';
+import { FREE_LIMIT, canSeeHrvAnalysis, isHrvFreePracticeExam } from '@/components/discere/paywall/paywallHelpers';
 import LockedAnalysisSection from '@/components/discere/paywall/LockedAnalysisSection';
 import { generateStrategyTips } from '../utils/pedagogy';
 import { skriptaZaPitanje, skriptaUrl } from '../data/lektiraSkripta';
 import { EssayGrader, MatQ, SaAiHelper, AnswerHelper, ContextPanel } from './QuestionWidgets';
+import { isGameModeEnabled } from '@/lib/config/featureFlags';
 
 // Compute ambient exam overlay opacities based on time remaining
 function computeAmbientOpacities(secLeft, total) {
@@ -60,6 +61,28 @@ function computeSmartInsights(qTimes, answers, questions) {
   return ins.slice(0, 3);
 }
 
+const HRV_RESULTS_UPGRADE_URL="/pro?from=hrv-results&plan=standard";
+
+// Zamjena za zaključani dio rezultata. Pravi sadržaj se namjerno uopće ne renderira —
+// free korisnik ne smije doći do točnih odgovora ni kopiranjem DOM-a — pa se prikazuju
+// samo zamućeni placeholder redovi ispod overlaya s CTA-om. Placeholder je pozadinski sloj
+// (position:absolute), a CTA je u normalnom toku i diktira visinu — obrnuto bi se, uz
+// minHeight + overflow:hidden na spremniku, gumb odsjekao na užim ekranima.
+function LockedResultsBlock({label,note,rows=4,minHeight=150}){
+  return e("div",{style:{position:"relative",marginBottom:22,borderRadius:"var(--r)",border:"1px solid var(--bdr)",background:"var(--s1)",overflow:"hidden"}},
+    e("div",{"aria-hidden":"true",style:{position:"absolute",inset:0,filter:"blur(6px)",pointerEvents:"none",userSelect:"none",padding:"20px 22px",display:"flex",flexDirection:"column",gap:13}},
+      Array.from({length:rows},(_,i)=>e("div",{key:i,style:{height:12,borderRadius:6,background:"var(--s3)",width:(52+(i*19)%42)+"%"}}))
+    ),
+    e("div",{role:"region","aria-label":label,style:{position:"relative",minHeight,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:9,textAlign:"center",padding:"18px 20px",background:"var(--lock-scrim)"}},
+      e("div",{style:{fontSize:24}},"🔒"),
+      e("div",{style:{fontFamily:"var(--fh)",fontSize:15,fontWeight:800,color:"var(--text)"}},label),
+      e("div",{style:{fontSize:12.5,color:"var(--text)",opacity:.8,maxWidth:380,lineHeight:1.6}},
+        note||"Ocjena, postotak i bodovi ostaju besplatni. Detaljna razrada rezultata dolazi sa Standard planom."),
+      e("a",{href:HRV_RESULTS_UPGRADE_URL,className:"btn btn-gold",style:{textDecoration:"none"}},"Otključaj razradu → Standard")
+    )
+  );
+}
+
 // Shared accessibility props for interactive divs
 const accBtn={role:"button",tabIndex:0,onKeyDown:ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();ev.currentTarget.click();}}};
 
@@ -70,11 +93,40 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   );
   const QSX=exam.qs;
   const _lsKey="discere_prog_"+(exam?.key||"x");
-  const[_saved]=useState(()=>{if(examMode)return null;try{return JSON.parse(localStorage.getItem(_lsKey)||"null");}catch{return null;}});
+  const _exKey="discere_exam_"+(exam?.key||"x");
+  // Virtualne sesije (dnevni izazov, adaptivni trening, filter, greške, oznake, vlastita
+  // pitanja) dijele jedan ključ napretka po tipu, a neke od njih renumeriraju id-eve pitanja
+  // (1..N), pa bi spremljeni odgovori sjeli na posve druga pitanja. Zato se takav zapis pri
+  // mountu odbacuje i sesija uvijek kreće od nule.
+  const _isVirtual=!/^\d{4}_/.test(exam?.key||"");
+  const[_saved]=useState(()=>{
+    if(examMode) return null;
+    if(_isVirtual){try{localStorage.removeItem(_lsKey);}catch(e){}return null;}
+    try{return JSON.parse(localStorage.getItem(_lsKey)||"null");}catch{return null;}
+  });
+  // Ispitni mod ima vlastiti zapis jer uz odgovore nosi i rok (deadline) predaje. Zapisu
+  // kojem je rok istekao (napušten ispit) ne smijemo se vratiti — nastavak bi značio secLeft=0
+  // i trenutnu auto-predaju praznog ispita — pa se briše i ispit kreće ispočetka.
+  const[_savedExam]=useState(()=>{
+    if(!examMode) return null;
+    try{
+      const s=JSON.parse(localStorage.getItem(_exKey)||"null");
+      if(s&&s.deadline&&computeSecLeft(s.deadline,Date.now())>0) return s;
+      localStorage.removeItem(_exKey);
+      return null;
+    }catch{return null;}
+  });
+  // Spremljeni indeks može biti izvan granica (ispit je u međuvremenu izgubio pitanja),
+  // pa se pozicija primarno vraća po id-u pitanja, a indeks se u svakom slučaju ograniči.
+  function _resumeIdx(s){
+    const max=Math.max(0,QSX.length-1);
+    if(s&&s.curId!=null){const i=QSX.findIndex(x=>String(x.id)===String(s.curId));if(i>=0) return i;}
+    return Math.min(Math.max(0,(s&&s.cur)||0),max);
+  }
   const[[_initCur,_initAnswers,_initRev,_initFlag]]=useState(()=>{
-    if(examMode) return[0,{},{},{}];
-    try{const s=JSON.parse(localStorage.getItem(_lsKey)||"null")||{};return[s.cur||0,s.answers||{},s.rev||{},s.flag||{}];}
-    catch{return[0,{},{},{}];}
+    const s=examMode?_savedExam:_saved;
+    if(!s) return[0,{},{},{}];
+    return[_resumeIdx(s),s.answers||{},s.rev||{},s.flag||{}];
   });
   const[cur,setCur]=useState(_initCur);
   useEffect(()=>{
@@ -93,7 +145,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   // Autosave napretka (samo u vježbanju)
   useEffect(()=>{
     if(examMode||done) return;
-    const data={cur,answers,rev,flag};
+    const data={cur,curId:QSX[cur]?.id,answers,rev,flag};
     lsSave(_lsKey,JSON.stringify(data));
   },[cur,answers,rev,flag,examMode,done]);
   const[modal,setModal]=useState(false);
@@ -149,9 +201,9 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   const[shownAnswers,setShownAnswers]=useState({});
   const[confidence,setConfidence]=useState({}); // { qid: 1|2|3 }
   const[xpBarFill,setXpBarFill]=useState(0);
+  const[percentile,setPercentile]=useState(null);
   const[revFilter,setRevFilter]=useState("sve"); // "sve" | "tocni" | "krivi"
   const[revOpen,setRevOpen]=useState(true);
-  const[darkMode]=useState(()=>typeof document!=='undefined'&&document.documentElement.classList.contains("dark-mode"));
   const[mobGrid,setMobGrid]=useState(false); // mobile question grid sheet
   const touchStartX=useRef(0);
   const qStart=useRef(Date.now());
@@ -159,11 +211,13 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   // Timer za ispitni mod — od 2017. ispit traje 100 min, ranije 72 min
   const examMinutes=exam?.year>=2017?100:72;
   const TOTAL_SEC=examMode?examMinutes*60:null;
-  const[secLeft,setSecLeft]=useState(TOTAL_SEC);
+  // Rok predaje je apsolutni timestamp da reload (ili zatvaranje kartice) ne resetira ispit.
+  const[deadline]=useState(()=>examMode?(_savedExam?.deadline||Date.now()+TOTAL_SEC*1000):null);
+  const[secLeft,setSecLeft]=useState(()=>examMode?computeSecLeft(deadline,Date.now()):null);
   const[timerDone,setTimerDone]=useState(false);
   const[calmMode,setCalmMode]=useState(false);
-  // 3-2-1 countdown before exam starts
-  const[examCountdown,setExamCountdown]=useState(examMode?3:null);
+  // 3-2-1 countdown before exam starts — preskače se pri nastavku prekinutog ispita
+  const[examCountdown,setExamCountdown]=useState(examMode&&!_savedExam?3:null);
   useEffect(()=>{
     if(examCountdown===null) return;
     if(examCountdown===0){setExamCountdown(null);return;}
@@ -173,15 +227,33 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   useEffect(()=>{
     if(!examMode||secLeft===null||examCountdown!==null) return;
     if(secLeft<=0){setTimerDone(true);return;}
-    const t=setTimeout(()=>setSecLeft(s=>s-1),1000);
+    const t=setTimeout(()=>setSecLeft(s=>Math.min(s-1,computeSecLeft(deadline,Date.now()))),1000);
     return()=>clearTimeout(t);
-  },[examMode,secLeft,examCountdown]);
+  },[examMode,secLeft,examCountdown,deadline]);
+  // Kartica u pozadini: setTimeout se usporava, pa se pri povratku vrijeme čita iz roka.
+  useEffect(()=>{
+    if(!examMode||!deadline) return;
+    const h=()=>{if(!document.hidden) setSecLeft(computeSecLeft(deadline,Date.now()));};
+    document.addEventListener("visibilitychange",h);
+    return()=>document.removeEventListener("visibilitychange",h);
+  },[examMode,deadline]);
+  // Autosave ispitnog moda — rok + odgovori, da se F5 ne pretvori u novi ispit.
+  useEffect(()=>{
+    if(!examMode||done) return;
+    lsSave(_exKey,JSON.stringify({deadline,cur,curId:QSX[cur]?.id,answers,rev,flag}));
+  },[examMode,done,deadline,cur,answers,rev,flag]);
   function fmtTimer(s){const m=Math.floor(s/60);const ss=s%60;return m+":"+(ss<10?"0":"")+ss;}
 
-  function toggleBookmark(qid){
+  function bmKeyOf(qq){const id=qIdentity(qq,exam);return id.examKey+"__"+id.qid;}
+  // Prima samo pitanje, ne id: u sesijama s pitanjima iz više ispita traženje po id-u vraća
+  // prvo pitanje s tim brojem, pa bi se označilo tuđe pitanje.
+  function toggleBookmark(src){
+    if(!src) return;
+    const id=qIdentity(src,exam);
+    const srcExam=EXAMS[id.examKey]||exam;
     setBookmarks(prev=>{
-      const next={...prev};const key=exam.key+"__"+qid;
-      if(next[key])delete next[key];else next[key]={qid,examKey:exam.key,examLabel:exam.year+" "+exam.season,q:QSX.find(x=>x.id===qid)?.q?.slice(0,80)||""};
+      const next={...prev};const key=id.examKey+"__"+id.qid;
+      if(next[key])delete next[key];else next[key]={qid:id.qid,examKey:id.examKey,examLabel:srcExam.year+" "+srcExam.season,q:src.q?.slice(0,80)||""};
       try{localStorage.setItem("discere_hrv_bookmarks",JSON.stringify(next))}catch(e){}
       return next;
     });
@@ -190,6 +262,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   function recordTime(idx){const elapsed=Math.round((Date.now()-qStart.current)/1000);if(elapsed>0&&elapsed<600)setQTimes(p=>({...p,[QSX[idx]?.id]:elapsed}));qStart.current=Date.now();}
 
   const q=QSX[cur];
+  const qIdent=qIdentity(q,exam);
   const isRev=!!rev[q?.id]||done;
   const answeredCount=Object.keys(answers).filter(k=>hasAns(answers[k])).length;
 
@@ -213,34 +286,27 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
       }
       if(ev.key==="ArrowRight"&&cur<QSX.length-1){ev.preventDefault();recordTime(cur);const nc=cur+1;setCur(nc);setVisited(v=>({...v,[nc]:true}));return;}
       if(ev.key==="ArrowLeft"&&cur>0){ev.preventDefault();recordTime(cur);const nc=cur-1;setCur(nc);setVisited(v=>({...v,[nc]:true}));return;}
-      if(ev.key==="b"||ev.key==="B"){toggleBookmark(curQ.id);return;}
+      if(!examMode&&(ev.key==="b"||ev.key==="B")){toggleBookmark(curQ);return;}
       if(ev.key==="f"||ev.key==="F"){setFlag(p=>({...p,[curQ.id]:!p[curQ.id]}));return;}
       if(ev.key==="?"||ev.key==="/"){setShowKeys(k=>!k);return;}
       if(ev.key==="Escape"){setShowKeys(false);setModal(false);return;}
     }
     window.addEventListener("keydown",onKey);
     return()=>window.removeEventListener("keydown",onKey);
-  },[cur,answers,rev,done,QSX,practice]);
+  },[cur,answers,rev,done,QSX,practice,examMode]);
 
   function getIspitInfo(exam){
     // Točna bodovna skala prema NCVVO ispitnim katalozima
     const y=exam?.year||0;
-    if(y>=2023) return{mcBod:62,esejBod:30,sazBod:18,ukupno:110,mcPitanja:58};
-    if(y>=2017) return{mcBod:80,esejBod:60,ukupno:140,mcPitanja:80};
-    if(y>=2010) return{mcBod:72,esejBod:50,ukupno:122,mcPitanja:72};
-    return{mcBod:60,esejBod:40,ukupno:100,mcPitanja:60};
+    const mcPitanja=(exam?.qs||[]).filter(q=>q.type==="mc").length;
+    if(y>=2023) return{mcBod:62,esejBod:30,sazBod:18,ukupno:110,mcPitanja};
+    if(y>=2017) return{mcBod:80,esejBod:60,ukupno:140,mcPitanja};
+    if(y>=2010) return{mcBod:72,esejBod:50,ukupno:122,mcPitanja};
+    return{mcBod:60,esejBod:40,ukupno:100,mcPitanja};
   }
 
-  function getOcjena(pct,year){
+  function getOcjena(pct){
     // NCVVO ocjenske granice (aproksimacija — variraju po roku)
-    if(year>=2023){
-      if(pct>=90) return 5;
-      if(pct>=75) return 4;
-      if(pct>=60) return 3;
-      if(pct>=50) return 2;
-      return 1;
-    }
-    // Do 2022 — iste granice
     if(pct>=90) return 5;
     if(pct>=75) return 4;
     if(pct>=60) return 3;
@@ -248,9 +314,18 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     return 1;
   }
 
+  // Percentil se traži tek nakon predaje pravog ispita u ispitnom modu; tiho izostaje
+  // ako korisnik nije prijavljen, ruta padne ili je uzorak premalen (n<10 → percentile:null).
+  function loadPercentile(pct){
+    fetch("/api/discere/percentile?subject=hrv&examKey="+encodeURIComponent(exam.key)+"&pct="+pct)
+      .then(r=>r.ok?r.json():null)
+      .then(d=>{if(d&&typeof d.percentile==="number")setPercentile(d.percentile);})
+      .catch(()=>{});
+  }
+
   function submitExam(){
     recordTime(cur);
-    try{localStorage.removeItem(_lsKey);}catch(e){}
+    try{localStorage.removeItem(_lsKey);localStorage.removeItem(_exKey);}catch(e){}
     setDone(true);
     // Compute score (samo za MC)
     const autoQ=QSX.filter(q=>q.type==="mc");
@@ -259,8 +334,9 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     const pct=autoQ.length>0?Math.round(cor/autoQ.length*100):0;
     // Bodovi: cor bodova od ispitInfo.mcBod (skalirano)
     const bodovi=Math.round(cor/Math.max(autoQ.length,1)*ispitInfo.mcBod);
-    const g=getOcjena(pct,exam?.year||2020);
-    if(onDone) onDone({examKey:exam.key,examLabel:exam.year+" "+exam.label,pct,grade:g,cor,total:autoQ.length,bodovi,ispitInfo,answers,qTimes,examMode,confidenceLog:(()=>{
+    const g=getOcjena(pct);
+    if(examMode&&!_isVirtual) loadPercentile(pct);
+    if(onDone) onDone({examKey:exam.key,examLabel:exam.year+" "+exam.label,pct,grade:g,cor,total:autoQ.length,bodovi,ispitInfo,answers,qTimes,examMode,qs:QSX,confidenceLog:(()=>{
       const log={};
       autoQ.forEach(q=>{
         if(confidence[q.id]){
@@ -286,10 +362,13 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     const pct=autoQ.length>0?Math.round(cor/autoQ.length*100):0;
     const ispitInfo=getIspitInfo(exam);
     const bodovi=Math.round(cor/Math.max(autoQ.length,1)*ispitInfo.mcBod);
-    const g=getOcjena(pct,exam?.year||2020);
+    const g=getOcjena(pct);
     const gc={5:"var(--green)",4:"var(--blue)",3:"var(--gold)",2:"var(--gold)",1:"var(--red)"}[g];
     const xpGain=calcXpGain(pct,autoQ.length);
     const wrongAutoQ=autoQ.filter(q=>chk(q,answers[q.id])===false);
+    // Ispitni mod je besplatan; zaključava se samo razrada rezultata.
+    const canSeeAnalysis=canSeeHrvAnalysis(userAccess);
+    const canPracticeErrors=canSeeAnalysis&&wrongAutoQ.length>0&&!!onPracticeErrors;
 
     // ── Grade accent color ──
     const gradeAccent={5:"#3ecf6e",4:"#5b9fff",3:"#e8a830",2:"#f97316",1:"#ef4444"}[g]||"#5b9fff";
@@ -300,10 +379,11 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
       e("div",{className:"reshero"},
         e("div",{className:"gcirc"+(g>=4?" pulsing":""),style:{borderColor:gc,color:gc}},
           e("div",{className:"gnum"},g),
-          e("div",{className:"glbl"},"ocjena")),
+          e("div",{className:"glbl"},"ocjena testa")),
         e("h2",{style:{color:g>=4?"var(--green)":g===3?"var(--gold)":g===2?"#f97316":"var(--red)"}},
           g===5?"Savrseno!":g===4?"Izvrsno!":g===3?"Dobar rezultat!":g===2?"Polozeno — ima napretka":"Za ponavljanje"),
         e("p",{style:{color:"var(--muted)",fontSize:14}},exam.year+" — "+(exam.season==="ljeto"?"Ljetni":exam.season==="zima"?"Zimski":"Jesenski")+" rok",exam.razina&&e("span",{style:{marginLeft:8,fontSize:11,fontWeight:700,padding:"2px 8px",borderRadius:99,background:exam.razina==="A"?"var(--gold-d)":"var(--blue-d)",color:exam.razina==="A"?"var(--gold)":"var(--blue)"}},"Razina "+exam.razina)),
+        manQ.length>0&&e("p",{style:{color:"var(--muted)",fontSize:12,marginTop:2}},"Esej/sažetak nosi dodatne bodove i ocjenjuje se zasebno."),
         e("div",{style:{display:"inline-flex",alignItems:"center",gap:8,marginTop:8,
           background:"var(--s2)",border:"1px solid var(--bdr)",borderRadius:99,
           padding:"5px 16px",fontSize:12}},
@@ -311,6 +391,8 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           e("span",{style:{fontWeight:700,color:gc}},bodovi+" / "+ispitInfo.mcBod),
           e("span",{style:{color:"var(--muted)",fontSize:11}},"("+cor+" točnih od "+autoQ.length+" pitanja)")
         ),
+        percentile!==null&&e("p",{style:{color:"var(--muted)",fontSize:12.5,marginTop:8}},
+          "Bolji/a od "+percentile+" % maturanata koji su rješavali ovaj ispit"),
       ),
       /* ── XP bar ── */
       e("div",{style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)",overflow:"hidden",padding:"14px 18px 10px",marginBottom:12}},
@@ -341,8 +423,8 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         score:pct,
         correct:cor,
         total:autoQ.length,
-        percentile:null, // No server-side percentile for local simulator
-        label:"Hrvatski jezik \u2014 "+rok,
+        percentile,
+        label:"Hrvatski jezik \u2014 test \u2014 "+rok,
         accentColor:gradeAccent,
         emoji:"\ud83d\udcda",
       }),
@@ -354,7 +436,8 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         e("div",{className:"stat"},e("div",{className:"statn",style:{color:gc}},bodovi+"/"+ispitInfo.mcBod),e("div",{className:"statl"},"Bodovi (test)")),
         e("div",{className:"stat"},e("div",{className:"statn"},manQ.length),e("div",{className:"statl"},"Esej/SA/Sažetak")),
       ),      /* Smart Insights */
-      (()=>{
+      !canSeeAnalysis&&e(LockedResultsBlock,{label:"Tvoja analiza",rows:3,minHeight:140}),
+      canSeeAnalysis&&(()=>{
         const ins=computeSmartInsights(qTimes,answers,QSX);
         if(!ins||ins.length===0) return null;
         return e("div",{className:"smart-insights"},
@@ -366,9 +449,11 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             ))
           )
         );
-      })(),      manQ.length>0&&e("div",{style:{background:"var(--gold-d)",border:"1px solid var(--gold-b)",borderRadius:"var(--r)",padding:"12px 16px",marginBottom:22,fontSize:13,color:"var(--gold)"}},
+      })(),      canSeeAnalysis&&manQ.length>0&&e("div",{style:{background:"var(--gold-d)",border:"1px solid var(--gold-b)",borderRadius:"var(--r)",padding:"12px 16px",marginBottom:22,fontSize:13,color:"var(--gold)"}},
         "✏️ "+manQ.length+" otvorenih pitanja (esej, kratki odgovor, sažetak) — provjeri referentne odgovore ispod."),
-      e("div",{
+      !canSeeAnalysis&&e(LockedResultsBlock,{label:"Pregled pitanja",rows:5,minHeight:200,
+        note:"Točni odgovori, obrazloženja i poveznice na skripte dostupni su od Standard plana."}),
+      canSeeAnalysis&&e("div",{
         style:{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:10,
           padding:"10px 14px",background:"var(--s2)",borderRadius:"var(--r)",cursor:"pointer",
           border:"1px solid var(--bdr)"},
@@ -393,7 +478,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           )
         )
       ),
-      revOpen&&e("div",{className:"revlist"},QSX.filter(q=>{
+      canSeeAnalysis&&revOpen&&e("div",{className:"revlist"},QSX.filter(q=>{
         if(revFilter==="sve") return true;
         const isM=q.type!=="mc";
         if(isM) return revFilter==="sve";
@@ -416,7 +501,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
                 qTimes[q.id]&&e("span",{style:{fontSize:10,color:"var(--muted)",background:"var(--s3)",padding:"1px 6px",borderRadius:4}},qTimes[q.id]+"s"),
                 /* Lektira → skripta: detaljna obrada djela na koje se pitanje odnosi.
                    Modal ako postoji opener (ostaje u simulatoru), inače link u novom tabu. */
-                (()=>{const sk=skriptaZaPitanje(exam.key,q.id);if(!sk)return null;
+                (()=>{const _qi=qIdentity(q,exam);const sk=skriptaZaPitanje(_qi.examKey,_qi.qid);if(!sk)return null;
                   const _st={fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:99,textDecoration:"none",
                     background:"rgba(124,92,252,.12)",color:"#a78bfa",whiteSpace:"nowrap",border:"none",cursor:"pointer"};
                   const _ttl="Uči gradivo: "+sk.djelo+" — "+sk.chapter;
@@ -459,6 +544,10 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
 
       /* ── NEXT ACTION CTA ── */
       (()=>{
+        // Za free korisnika CTA koji vodi na greške zaključan je zajedno s greškama.
+        if(!canSeeAnalysis&&onPracticeErrors&&wrongAutoQ.length>0&&g<=3)
+          return e(LockedResultsBlock,{label:"Sljedeći korak",rows:2,minHeight:130,
+            note:"Ciljano ponavljanje tvojih grešaka dostupno je od Standard plana."});
         const nextExamKey=(()=>{
           const yr=exam.year; const razina=exam.razina||"B";
           const candidates=Object.values(EXAMS).filter(ex=>
@@ -480,14 +569,14 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         } else if(g<=2){
           icon="🔁"; title="Ima prostora za poboljšanje";
           desc=wrongAutoQ.length>0?"Imaš "+wrongAutoQ.length+" grešaka — ponavljanje odmah povećava rezultat.":"Probaj vježbanje bez vremenskog ograničenja za bolji dojam gradiva.";
-          actionLabel=wrongAutoQ.length>0&&onPracticeErrors?"🔁 Vježbaj greške sada":"← Na početak";
-          actionFn=wrongAutoQ.length>0&&onPracticeErrors?()=>onPracticeErrors(wrongAutoQ,exam):()=>onExit();
+          actionLabel=canPracticeErrors?"🔁 Vježbaj greške sada":"← Na početak";
+          actionFn=canPracticeErrors?()=>onPracticeErrors(wrongAutoQ,exam):()=>onExit();
           actionClass="btn btn-red";
         } else {
           icon="📈"; title="Solidan rezultat — ima prostora rasti";
           desc="Sada su ti svježe u pamćenju — ponovi "+wrongAutoQ.length+" grešaka za brže učenje.";
-          actionLabel=wrongAutoQ.length>0&&onPracticeErrors?"Ponovi greške ("+wrongAutoQ.length+")":"→ Drugi ispit";
-          actionFn=wrongAutoQ.length>0&&onPracticeErrors?()=>onPracticeErrors(wrongAutoQ,exam):()=>onExit();
+          actionLabel=canPracticeErrors?"Ponovi greške ("+wrongAutoQ.length+")":"→ Drugi ispit";
+          actionFn=canPracticeErrors?()=>onPracticeErrors(wrongAutoQ,exam):()=>onExit();
           actionClass="btn btn-gold";
         }
         return e("div",{className:"next-action-cta"},
@@ -502,13 +591,18 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
 
       e("div",{style:{marginTop:8,textAlign:"center",display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}},
         e("button",{className:"btn btn-g",onClick:onExit},"← Na početak"),
-        wrongAutoQ.length>0&&onPracticeErrors&&e("button",{className:"btn btn-red",onClick:()=>onPracticeErrors(wrongAutoQ,exam)},"🔁 Vježbaj greške ("+wrongAutoQ.length+")"),
-        wrongAutoQ.length>0&&e("button",{className:"btn btn-gold",onClick:()=>window.location.assign('/game?recipe=mistake_review')},"🎮 Ponovi pogreške u Game Modeu"),
+        canPracticeErrors&&e("button",{className:"btn btn-red",onClick:()=>onPracticeErrors(wrongAutoQ,exam)},"🔁 Vježbaj greške ("+wrongAutoQ.length+")"),
+        canSeeAnalysis&&wrongAutoQ.length>0&&isGameModeEnabled()&&e("button",{className:"btn btn-gold",onClick:()=>window.location.assign('/game?recipe=mistake_review')},"🎮 Ponovi pogreške u Game Modeu"),
         e("button",{className:"btn btn-gold",onClick:()=>{onExit();setTimeout(()=>document.getElementById("exams")?.scrollIntoView({behavior:"smooth"}),100);}},"Pokušaj drugi ispit →")
+      ),
+      !canSeeAnalysis&&wrongAutoQ.length>0&&g>=4&&e("div",{style:{marginTop:14}},
+        e(LockedResultsBlock,{label:"Vježbanje grešaka",rows:2,minHeight:130,
+          note:"Ciljano ponavljanje tvojih grešaka dostupno je od Standard plana."})
       ),
       e("div",{style:{marginTop:24}},
         /* ── Strategy Coach ── */
-        (()=>{
+        !canSeeAnalysis&&e(LockedResultsBlock,{label:"Strategijski savjeti",rows:3,minHeight:150}),
+        canSeeAnalysis&&(()=>{
           const tips=generateStrategyTips({qTimes,answers,questions:QSX,pct,grade:g,examMode});
           if(!tips||tips.length===0) return null;
           return e("div",{className:"strat-coach"},
@@ -537,11 +631,12 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         )
       )
     ),
-    e(LockedAnalysisSection,{userAccess,from:"hrv-results"})
+    !canSeeAnalysis&&e(LockedAnalysisSection,{userAccess,from:"hrv-results"})
   );
   }
 
   const hasSavedProgress=!examMode&&!done&&_saved&&_saved.cur>0;
+  const hasExamResume=examMode&&!done&&!!_savedExam;
 
   const isSazOrEs=q?.type==="es"||q?.type==="saz";
   if(!q) return e("div",{style:{padding:40,textAlign:"center",color:"var(--muted)"}},
@@ -550,7 +645,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   );
 
   // ── Paywall gate — free users see first FREE_LIMIT questions only (practice mode) ──
-  if (!isPaid && !examMode && !done && cur >= FREE_LIMIT) {
+  if (!isPaid && !examMode && !done && cur >= FREE_LIMIT && !isHrvFreePracticeExam(exam?.key)) {
     const _pqsMC = QSX.filter(q=>q.type==="mc").slice(0,FREE_LIMIT);
     const _pCor  = _pqsMC.filter(q=>chk(q,answers[q.id])===true).length;
     const _pPct  = _pqsMC.length>0 ? Math.round(_pCor/_pqsMC.length*100) : 0;
@@ -701,7 +796,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             {k:"A / B / C / D", d:"Odaberi odgovor (MC pitanja)"},
             {k:"Enter", d:"Potvrdi odgovor / Sljedeće pitanje"},
             {k:"→ / ←", d:"Sljedeće / Prethodno pitanje"},
-            {k:"B", d:"Dodaj/ukloni bookmark"},
+            ...(examMode?[]:[{k:"B", d:"Dodaj/ukloni bookmark"}]),
             {k:"F", d:"Označi pitanje (flag)"},
             {k:"? ili /", d:"Otvori/zatvori ove prečace"},
             {k:"Esc", d:"Zatvori overlay"},
@@ -750,16 +845,19 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             }),
             calmMode
               ?e("text",{x:18,y:22,textAnchor:"middle",fontSize:13,fill:"var(--muted)"},"⏱️")
-              :e("text",{x:18,y:22,textAnchor:"middle",fontSize:9,fontWeight:700,
-                fill:col,fontFamily:"var(--fb)"},
-                Math.floor(secLeft/60)+":"+(secLeft%60<10?"0":"")+secLeft%60
-              )
+              :(()=>{
+                const timeStr=Math.floor(secLeft/60)+":"+(secLeft%60<10?"0":"")+secLeft%60;
+                return e("text",{x:18,y:22,textAnchor:"middle",fontSize:timeStr.length>=6?8:9,fontWeight:700,
+                  fill:col,fontFamily:"var(--fb)"},
+                  timeStr
+                );
+              })()
           )
         );
       })(),
       e("span",{style:{fontSize:12,color:"var(--muted)",marginLeft:4}},answeredCount+"/"+QSX.length)
     ),
-    hasSavedProgress&&_saved?.cur!=null&&cur===_saved.cur&&e("div",{style:{
+    (hasSavedProgress||hasExamResume)&&cur===_initCur&&e("div",{style:{
       maxWidth:1080,margin:"0 auto",padding:"8px 20px 0"
     }},
       e("div",{style:{
@@ -767,7 +865,9 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         borderRadius:"var(--r)",padding:"8px 14px",fontSize:12,
         display:"flex",alignItems:"center",gap:8,color:"var(--blue)"
       }},
-        "💾 Nastavljaš od pitanja "+(cur+1)+" — napredak je automatski spremljen."
+        hasExamResume
+          ?"⏳ Nastavljaš ispit — preostalo "+Math.ceil((secLeft||0)/60)+" min."
+          :"💾 Nastavljaš od pitanja "+(cur+1)+" — napredak je automatski spremljen."
       )
     ),
     e("div",{className:"exam-layout"},
@@ -783,9 +883,9 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           e("div",{className:"qmeta"},
             e("span",{className:"qnum"},"Pit. "+(cur+1)+" / "+QSX.length),
             e("span",{className:"qbadge b-"+q.type},TLBL[q.type]||q.type),
-            q.topic&&e("span",{className:"topic-tag"},TOPIC_LABELS[q.topic]||q.topic),
+            !examMode&&q.topic&&e("span",{className:"topic-tag"},TOPIC_LABELS[q.topic]||q.topic),
             e("button",{className:"qflag"+(flag[q.id]?" on":""),onClick:()=>setFlag(p=>({...p,[q.id]:!p[q.id]})),title:"Označi pitanje"},flag[q.id]?"🚩 Označeno":"🚩 Označi"),
-            e("button",{className:"qflag"+(bookmarks[exam.key+"__"+q.id]?" on":""),onClick:()=>toggleBookmark(q.id),title:"Spremi pitanje"},bookmarks[exam.key+"__"+q.id]?"🔖":"🔖 Spremi")
+            !examMode&&e("button",{className:"qflag"+(bookmarks[bmKeyOf(q)]?" on":""),onClick:()=>toggleBookmark(q),title:"Spremi pitanje"},bookmarks[bmKeyOf(q)]?"🔖":"🔖 Spremi")
           ),
           (q.ctx||q.tekst)&&e(ContextPanel,{q}),
           e("div",{className:"qtext"},q.q),
@@ -837,7 +937,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             e(EssayGrader,{q,answer:answerText,isPro,onPaywall})
           ),
           /* Answer helper za MC */
-          q.type==="mc"&&(practice||isRev)&&e(AnswerHelper,{q,examKey:exam.key,show:isRev||!!shownAnswers[q.id],autoExpand:isRev,onToggle:()=>setShownAnswers(p=>({...p,[q.id]:true}))}),
+          q.type==="mc"&&(practice||isRev)&&e(AnswerHelper,{q,examKey:qIdent.examKey,qid:qIdent.qid,show:isRev||!!shownAnswers[q.id],autoExpand:isRev,onToggle:()=>setShownAnswers(p=>({...p,[q.id]:true}))}),
           /* Confidence prompt — after MC reveal in practice */
           q.type==="mc"&&practice&&isRev&&!confidence[q.id]&&e("div",{className:"conf-prompt"},
             e("span",{className:"conf-label"},"Koliko si siguran/na u odgovor?"),
@@ -878,10 +978,10 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           e("div",{style:{fontSize:13,color:"var(--muted)",lineHeight:1.8}},
             e("div",null,"📝 Odgovoreno: ",e("strong",null,answeredCount+"/"+QSX.length)),
             e("div",null,"🚩 Označeno: ",e("strong",null,Object.values(flag).filter(Boolean).length)),
-            e("div",null,"🔖 Spremljeno: ",e("strong",null,Object.keys(bookmarks).filter(k=>k.startsWith(exam.key)).length))
+            e("div",null,"🔖 Spremljeno: ",e("strong",null,QSX.filter(qq=>bookmarks[bmKeyOf(qq)]).length))
           ),
           e("div",{style:{marginTop:10,fontSize:11,color:"var(--muted)",lineHeight:1.7}},
-            e("span",{style:{fontWeight:600}},"Prečaci: "),"A–D · Enter · ←→ · B(spremi) · F(označi)"
+            e("span",{style:{fontWeight:600}},"Prečaci: "),examMode?"A–D · Enter · ←→ · F(označi)":"A–D · Enter · ←→ · B(spremi) · F(označi)"
           )
         )
       )
@@ -928,7 +1028,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         e("p",null,"Izaći ćeš iz ispita. Napredak u vježbanju je automatski spremljen."),
         e("div",{className:"mlbtns"},
           e("button",{className:"btn btn-g",onClick:()=>setModal(false)},"Ostani"),
-          e("button",{className:"btn btn-red",onClick:()=>{setModal(false);try{localStorage.removeItem(_lsKey);}catch(e2){}onExit();}},"Izađi")
+          e("button",{className:"btn btn-red",onClick:()=>{setModal(false);try{localStorage.removeItem(_lsKey);localStorage.removeItem(_exKey);}catch(e2){}onExit();}},"Izađi")
         )
       )
     )

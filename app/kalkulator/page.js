@@ -22,6 +22,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/hooks/useAuth";
+import { isAiEndpointsEnabled } from "@/lib/config/featureFlags";
 import { usePageTracking } from "@/lib/hooks/usePageTracking";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
@@ -1818,7 +1819,8 @@ function KalkulatorInner() {
   usePageTracking('kalkulator')
   const router       = useRouter();
   const searchParams = useSearchParams();
-  const { user, isPaid, isPro } = useAuth();
+  const { user, isPaid, isPro } = useAuth()
+  const aiEnabled = isAiEndpointsEnabled();
   const urlData = useMemo(()=>parseShareUrl(),[]);
 
   const [scores, setScores] = useState(()=>urlData?.scores??loadLS(LS_SCORES,{prosjek:4.0,hr:60,mat:50,strani:65,izb1:0,izb2:0,natjecanja:0,sport:0,prijemni:0}));
@@ -2576,6 +2578,7 @@ function KalkulatorInner() {
                   🎯 Otkrijte studij po interesima — AI anketa
                   <span style={{marginLeft:"auto",fontSize:10,opacity:.7}}>{isPro ? "5 pitanja →" : "🔒 Pro"}</span>
                 </button>
+                {aiEnabled && (
                 <div className="ai-plan-section">
                   <div className="ai-plan-header">
                     <div className="ai-plan-icon">🤖</div>
@@ -2586,6 +2589,7 @@ function KalkulatorInner() {
                   </button>
                   {aiPlan&&<div className="ai-plan-output">{aiPlan}</div>}
                 </div>
+                )}
               </>
             )}
 
@@ -2800,7 +2804,7 @@ function KalkulatorInner() {
       {showKb&&<KeyboardShortcutsModal onClose={()=>setShowKb(false)}/>}
 
       {/* ── AI CHAT MODAL ── */}
-      {showChat&&<AIChatModal onClose={()=>setShowChat(false)} totalBodova={totalBodova} scores={scores} allStudiji={allStudiji} favoriti={favoriti}/>}
+      {aiEnabled&&showChat&&<AIChatModal onClose={()=>setShowChat(false)} totalBodova={totalBodova} scores={scores} allStudiji={allStudiji} favoriti={favoriti}/>}
 
       {/* ── PLAN USPOREDBA MODAL ── */}
       {showPlanModal&&<PlanUsporedbaModal onClose={()=>setShowPlanModal(false)} onGoToPro={goToPro}/>}
@@ -2814,10 +2818,12 @@ function KalkulatorInner() {
       {/* ── PRIJEMNI KALKULATOR MODAL ── */}
       {showPrijemni&&<PrijemniKalkulator onClose={()=>setShowPrijemni(false)} totalBodova={totalBodova}/>}
 
-      {/* ── AI CHAT FAB ── */}
+      {/* ── AI CHAT FAB — sakriven dok AI_ENDPOINTS_ENABLED nije true ── */}
+      {aiEnabled && (
       <button className="chat-fab" onClick={()=>{ if(!isPro){ setShowPlanModal(true); return; } setShowChat(true); }} title="Pitaj AI upisnika">
         💬
       </button>
+      )}
 
       {/* ── THEME TOGGLE ── */}
       <button className="theme-toggle" onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} title={theme==="dark"?"Svijetli način":"Tamni način"}>

@@ -1,5 +1,4 @@
-/* Auto-split from hrvatskiSimulatorData.js — year 2011 */
-/* DO NOT EDIT — regenerate with: node scripts/split-simulator-data.mjs */
+/* Pitanja državne mature iz hrvatskoga jezika — 2011. */
 
 const T1_2011_zima=`Slap
 
@@ -325,16 +324,16 @@ A. Bugarkinje — B. Cvjetovi zla — C. Kanconijer — D. Lelek sebra — E. Pj
 Koji je točan raspored?`,
     q:"Koji je točan raspored?",opts:["A. 1F, 2B, 3C, 4A, 5D","B. 1E, 2B, 3C, 4A, 5D","C. 1F, 2B, 3C, 4E, 5D","D. 1A, 2B, 3C, 4D, 5F"],sol:{cl:"A"},exp:"Šimić = Preobraženja (F); Baudelaire = Cvjetovi zla (B); Petrarca = Kanconijer (C); Kranjčević = Bugarkinje (A); Ujević = Lelek sebra (D). Dakle: 1F, 2B, 3C, 4A, 5D."},
   /* ── Alternativni izbor: tekst o čaju — zad. 67–76 ── */
-  {id:67,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Prema legendi, otkrio ga je kineski car Shen-Nong za jednoga od (67.)___ izleta'",opts:["A. mnogobrojnih","B. mnogo brojnih"],sol:{cl:"A"},exp:"'Mnogobrojnih' = složeni pridjev, piše se spojeno. A."},
-  {id:68,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'godine (68.)___'",opts:["A. 2737. pr. kr.","B. 2737. pr. Kr."],sol:{cl:"B"},exp:"'Kr.' = Krist = vlastito ime = veliko slovo = B. '2737. pr. Kr.'"},
-  {id:69,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'dok su sluge prokuhavale (69.)___ vodu'",opts:["A. rječnu","B. riječnu"],sol:{cl:"B"},exp:"'Riječna voda' = od rijeka = 'riječnu' (dugi diftong je-). B."},
-  {id:70,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'voda je (70.)___ boju'",opts:["A. promijenila","B. promjenila"],sol:{cl:"A"},exp:"'Promijenila' = glagol promijeniti (pro+mij eniti) = pravilno s 'o'. A."},
-  {id:71,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Car je popio nekoliko gutljaja (71.)___'",opts:["A. tekućine","B. tekučine"],sol:{cl:"A"},exp:"'Tekućine' = od tekući + -ina = genitiv = 'tekućine'. A."},
-  {id:72,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'čini se da su u čaju prvi uživali budistički (72.)___'",opts:["A. svećenici","B. svećenici"],sol:{cl:"A"},exp:"'Svećenici' = pravilno. A."},
-  {id:73,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'čaj ima zanimljivu priču i u povijesti (73.)___ u događaju koji se odigrao u bostonskoj luci'",opts:["A. SAD-a","B. SADa"],sol:{cl:"A"},exp:"'SAD-a' = genitiv od akronima SAD = s crticom. A."},
-  {id:74,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'u (74.)___ luci'",opts:["A. Bostonskoj","B. bostonskoj"],sol:{cl:"B"},exp:"'Bostonska luka' = bostonska (pridjev od Boston) = malo b u ovom kontekstu (opisni pridjev). B."},
-  {id:75,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje naziva događaja: '(75.)___'",opts:["A. Bostonska čajanka","B. Bostonska čajanka"],sol:{cl:"A"},exp:"'Bostonska čajanka' = ime povijesnog događaja = vlastito ime = veliko B. A."},
-  {id:76,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Ledeni čaj i čaj u (76.)___ tako đer su američki izumi'",opts:["A. vrećicama","B. vrećicama"],sol:{cl:"B"},exp:"'Vrećicama' = instrumental mn. od 'vrećica' = pravilno. B."},
+  {id:67,type:"mc",topic:"jez_pravopis",q:"U rečenici „Prema legendi, otkrio ga je kineski car Shen-Nong za jednoga od ___ izleta“ na prazno mjesto ide:",opts:["A. mnogobrojnih","B. mnogo brojnih"],sol:{cl:"A"},exp:"'Mnogobrojnih' = složeni pridjev, piše se spojeno. A."},
+  {id:68,type:"mc",topic:"jez_pravopis",q:"U rečenici „… godine ___“ na prazno mjesto ide:",opts:["A. 2737. pr. kr.","B. 2737. pr. Kr."],sol:{cl:"B"},exp:"'Kr.' = Krist = vlastito ime = veliko slovo = B. '2737. pr. Kr.'"},
+  {id:69,type:"mc",topic:"jez_pravopis",q:"U rečenici „… dok su sluge prokuhavale ___ vodu“ na prazno mjesto ide:",opts:["A. rječnu","B. riječnu"],sol:{cl:"B"},exp:"'Riječna voda' = od rijeka = 'riječnu' (dugi diftong je-). B."},
+  {id:70,type:"mc",topic:"jez_pravopis",q:"U rečenici „… voda je ___ boju“ na prazno mjesto ide:",opts:["A. promijenila","B. promjenila"],sol:{cl:"A"},exp:"'Promijenila' = glagol promijeniti (pro+mij eniti) = pravilno s 'o'. A."},
+  {id:71,type:"mc",topic:"jez_pravopis",q:"U rečenici „Car je popio nekoliko gutljaja ___“ na prazno mjesto ide:",opts:["A. tekućine","B. tekučine"],sol:{cl:"A"},exp:"'Tekućine' = od tekući + -ina = genitiv = 'tekućine'. A."},
+  {id:72,type:"mc",topic:"jez_pravopis",broken:true,q:"Pravilno pisanje: 'čini se da su u čaju prvi uživali budistički (72.)___'",opts:["A. svećenici","B. svećenici"],sol:{cl:"A"},exp:"'Svećenici' = pravilno. A."},
+  {id:73,type:"mc",topic:"jez_pravopis",q:"U rečenici „… čaj ima zanimljivu priču i u povijesti ___“ na prazno mjesto ide:",opts:["A. SAD-a","B. SADa"],sol:{cl:"A"},exp:"'SAD-a' = genitiv od akronima SAD = s crticom. A."},
+  {id:74,type:"mc",topic:"jez_pravopis",q:"U rečenici „… u događaju koji se odigrao u ___ luci“ na prazno mjesto ide:",opts:["A. Bostonskoj","B. bostonskoj"],sol:{cl:"B"},exp:"'Bostonska luka' = bostonska (pridjev od Boston) = malo b u ovom kontekstu (opisni pridjev). B."},
+  {id:75,type:"mc",topic:"jez_pravopis",broken:true,q:"Pravilno pisanje naziva događaja: '(75.)___'",opts:["A. Bostonska čajanka","B. Bostonska čajanka"],sol:{cl:"A"},exp:"'Bostonska čajanka' = ime povijesnog događaja = vlastito ime = veliko B. A."},
+  {id:76,type:"mc",topic:"jez_pravopis",broken:true,q:"Pravilno pisanje: 'Ledeni čaj i čaj u (76.)___ tako đer su američki izumi'",opts:["A. vrećicama","B. vrećicama"],sol:{cl:"B"},exp:"'Vrećicama' = instrumental mn. od 'vrećica' = pravilno. B."},
 ];
 const T1_2011_ljeto_A=`Antun Gustav Matoš, Pjesnik (sonet)
 
@@ -687,7 +686,7 @@ Djela:
   {id:71,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'Europljani su izbacili ljuti ___'\n— čili ili ćili?",opts:["A. čili","B. ćili","C. čilli","D. čijli"],sol:{cl:"A"},exp:"'Čili' (paprika) = pravilno pisanje s č (ne ć)."},
   {id:72,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'...zahvaljujemo ___ tehničaru Coenradu van Hutenu'\n— nizozemskom ili Nizozemskom?",opts:["A. nizozemskom","B. Nizozemskom","C. holandskom","D. Holandskom"],sol:{cl:"A"},exp:"'Nizozemski' = opisni pridjev (nije dio vlastite imenice) = malo slovo = 'nizozemskom'."},
   {id:73,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'___ čokolada ono je što najčešće konzumiramo'\n— Mlječna ili Mliječna?",opts:["A. Mlječna","B. Mliječna","C. Mlečna","D. Mlijeka"],sol:{cl:"B"},exp:"'Mliječna' = od 'mlijeko' (dugi jat = ije) = 'mliječna' = pravilno."},
-  {id:74,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'...ono što ___ konzumiramo'\n— najčešče ili najčešće?",opts:["A. najčešče","B. najčešće","C. najčeće","D. najčešće"],sol:{cl:"B"},exp:"'Često' → 'češće' → superlativ 'najčešće' = pravilno (ć, ne č)."},
+  {id:74,type:"mc",topic:"jez_pravopis",broken:true,q:"Odaberite točan oblik:\n'...ono što ___ konzumiramo'\n— najčešče ili najčešće?",opts:["A. najčešče","B. najčešće","C. najčeće","D. najčešće"],sol:{cl:"B"},exp:"'Često' → 'češće' → superlativ 'najčešće' = pravilno (ć, ne č)."},
   {id:75,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'Postotak kakao-mase kreće se ___'\n— od 20% do 40% ili od 20% – 40%?",opts:["A. od 20% do 40%","B. od 20% – 40%","C. od 20-40%","D. između 20 i 40%"],sol:{cl:"A"},exp:"'Od... do...' = ispravna konstrukcija za raspon (ne crtica između postotaka)."},
   {id:76,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'Lagano topljenje čokolade potiče ___ endorfina'\n— lučenje ili lućenje?",opts:["A. lučenje","B. lućenje","C. lucenje","D. lučnje"],sol:{cl:"A"},exp:"'Lučiti' (izlučivati) → 'lučenje' = pravilno (č, ne ć)."},
 ];
@@ -825,7 +824,7 @@ Smjerovi:
   {id:68,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik datuma:\n'Proglašen je nacionalnim parkom ___ godine'",opts:["A. 8. travanj 1949.","B. 8. travnja 1949.","C. 8. travnja, 1949.","D. osmog travnja 1949."],sol:{cl:"B"},exp:"Datum u rečenici: redni broj + genitiv = '8. travnja 1949.'"},
   {id:69,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'Unesco ga je proglasio ___ prirodnom baštinom'\n— svjetskom ili svijetskom?",opts:["A. svjetskom","B. svijetskom","C. svjetljom","D. svjetovnom"],sol:{cl:"A"},exp:"'Svjetski' (od 'svijet') = kratki jat = 'svjetskom' (ne 'svijetskom')."},
   {id:70,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik broja:\n'...sastoji se od ___ jezera'\n— šesnaest ili šesnajest?",opts:["A. šesnaest","B. šesnajest","C. šesnajs","D. šesnaeste"],sol:{cl:"A"},exp:"'Šesnaest' = pravilno (šesnajest je razgovorni oblik)."},
-  {id:71,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik glagola:\n'Jezera se stepenasto ___ i silaze jedno u drugo'\n— prelijevaju ili preljevaju?",opts:["A. prelijevaju","B. preljevaju","C. prelijevu","D. prelijevaju"],sol:{cl:"A"},exp:"'Prelijevati' (dugi jat = ije) → 'prelijevaju' = pravilno."},
+  {id:71,type:"mc",topic:"jez_pravopis",broken:true,q:"Odaberite točan oblik glagola:\n'Jezera se stepenasto ___ i silaze jedno u drugo'\n— prelijevaju ili preljevaju?",opts:["A. prelijevaju","B. preljevaju","C. prelijevu","D. prelijevaju"],sol:{cl:"A"},exp:"'Prelijevati' (dugi jat = ije) → 'prelijevaju' = pravilno."},
   {id:72,type:"mc",topic:"jez_pravopis",q:"Odaberite točan zapis:\n'Najveće je ___'\n— Prošćansko jezero ili prošćansko jezero?",opts:["A. Prošćansko jezero","B. prošćansko jezero","C. Proščansko jezero","D. prošćansko Jezero"],sol:{cl:"A"},exp:"'Prošćansko jezero' = vlastito ime = početno veliko slovo."},
   {id:73,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'...u tradicionalnim ličkim ___'\n— specialitetima ili specijalitetima?",opts:["A. specialitetima","B. specijalitetima","C. specijalistima","D. specifitetima"],sol:{cl:"B"},exp:"'Specijalitet' → 'specijalitetima' = pravilno (ne 'specialitet')."},
   {id:74,type:"mc",topic:"jez_pravopis",q:"Odaberite točan oblik:\n'Životinjski svijet čine i brojni ___'\n— Endemi ili endemi?",opts:["A. Endemi","B. endemi","C. endemiti","D. endeme"],sol:{cl:"B"},exp:"'Endemi' = vrsta organizama = obična imenica = malo slovo."},
@@ -1035,16 +1034,16 @@ A. Judita — B. Ribanje i ribarsko prigovaranje — C. Osman — D. Satir iliti
 Koji je točan raspored?`,
     q:"Koji je točan raspored?",opts:["A. 1E, 2A, 3B, 4D, 5F","B. 1C, 2A, 3B, 4D, 5F","C. 1E, 2A, 3B, 4F, 5D","D. 1E, 2D, 3B, 4A, 5F"],sol:{cl:"A"},exp:"Mažuranić = Smrt Smail-age Čengića (E); Marulić = Judita (A); Hektorović = Ribanje i ribarsko prigovaranje (B); Relković = Satir iliti divji čovik (D); Lucić = Jur nijedna na svit vila (F). Dakle: 1E, 2A, 3B, 4D, 5F."},
   /* ── Alternativni izbor: Varaždin — zad. 67–76 ── */
-  {id:67,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Grad se razvio na rubnim dijelovima (67.)___'",opts:["A. Panonske Nizine","B. Panonske nizine"],sol:{cl:"B"},exp:"'Panonska nizina' = geografski naziv = samo N veliko (Panonska nizina, ne Nizina). B."},
-  {id:68,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Povijest Varaždina povezana je s (68.)___ srednjovjekovne'",opts:["A. poviješću","B. povješću"],sol:{cl:"A"},exp:"'Povješću' = nestandardno; 'poviješću' = instrumental od 'povijest'. A."},
-  {id:69,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'povijest (69.)___'",opts:["A. Varaždinske županije","B. varaždinske županije"],sol:{cl:"A"},exp:"'Varaždinska županija' = vlastito ime administrativne jedinice = oba dijela velikim slovom. A."},
-  {id:70,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Krajem (70.)___ postaje'",opts:["A. Srednjega vijeka","B. srednjega vijeka"],sol:{cl:"B"},exp:"'Srednji vijek' = povijesno razdoblje = piše se malo (kao renesansa, barok...). B."},
-  {id:71,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: '(71.)___ grad toga dijela Hrvatske'",opts:["A. najnapučeniji","B. najnapučeniji"],sol:{cl:"A"},exp:"'Najnapučeniji' = superlativ od 'napučen' = složenica, piše se zajedno. A."},
-  {id:72,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje tvrave: '(72.)___'",opts:["A. Stari Grad","B. Stari grad"],sol:{cl:"A"},exp:"'Stari Grad' = ime tvrđave (vlastito ime) = oba dijela velikim slovom. A."},
-  {id:73,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'mnoge barokne (73.)___ palače'",opts:["A. plemićke","B. plemenite"],sol:{cl:"A"},exp:"'Plemićke palače' = posvojni pridjev od 'plemić' = pravilno 'plemićke'. A."},
-  {id:74,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Lisakova kula u (74.)___'",opts:["A. Gajevoj ulici","B. Gajevoj Ulici"],sol:{cl:"A"},exp:"'Gajevoj ulici' = ime ulice: vlastito ime 'Gajevoj' (od Gaj), 'ulici' = opća imenica = malo u. A."},
-  {id:75,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Lančana kula na (75.)___'",opts:["A. Stančevu trgu","B. Stančevu Trgu"],sol:{cl:"A"},exp:"'Stančev trg' = ime trga: vlastito 'Stančev', opće 'trg' = malo t. A."},
-  {id:76,type:"mc",topic:"jez_pravopis",q:"Pravilno pisanje: 'Varaždin poznat u svijetu glazbe po (76.)___'",opts:["A. Varaždinskim baroknim večerima","B. Varaždinskim baroknim Večerima"],sol:{cl:"A"},exp:"'Varaždinski barokni večeri' = ime manifestacije = samo V veliko (prva riječ), ostale malo. A."},
+  {id:67,type:"mc",topic:"jez_pravopis",q:"U rečenici „Grad se razvio na rubnim dijelovima ___“ na prazno mjesto ide:",opts:["A. Panonske Nizine","B. Panonske nizine"],sol:{cl:"B"},exp:"'Panonska nizina' = geografski naziv = samo N veliko (Panonska nizina, ne Nizina). B."},
+  {id:68,type:"mc",topic:"jez_pravopis",q:"U rečenici „Povijest Varaždina povezana je s ___ srednjovjekovne…“ na prazno mjesto ide:",opts:["A. poviješću","B. povješću"],sol:{cl:"A"},exp:"'Povješću' = nestandardno; 'poviješću' = instrumental od 'povijest'. A."},
+  {id:69,type:"mc",topic:"jez_pravopis",q:"U rečenici „… povijest ___“ na prazno mjesto ide:",opts:["A. Varaždinske županije","B. varaždinske županije"],sol:{cl:"A"},exp:"'Varaždinska županija' = vlastito ime administrativne jedinice = oba dijela velikim slovom. A."},
+  {id:70,type:"mc",topic:"jez_pravopis",q:"U rečenici „Krajem ___ postaje…“ na prazno mjesto ide:",opts:["A. Srednjega vijeka","B. srednjega vijeka"],sol:{cl:"B"},exp:"'Srednji vijek' = povijesno razdoblje = piše se malo (kao renesansa, barok...). B."},
+  {id:71,type:"mc",topic:"jez_pravopis",broken:true,q:"Pravilno pisanje: '(71.)___ grad toga dijela Hrvatske'",opts:["A. najnapučeniji","B. najnapučeniji"],sol:{cl:"A"},exp:"'Najnapučeniji' = superlativ od 'napučen' = složenica, piše se zajedno. A."},
+  {id:72,type:"mc",topic:"jez_pravopis",broken:true,q:"Pravilno pisanje tvrave: '(72.)___'",opts:["A. Stari Grad","B. Stari grad"],sol:{cl:"A"},exp:"'Stari Grad' = ime tvrđave (vlastito ime) = oba dijela velikim slovom. A."},
+  {id:73,type:"mc",topic:"jez_pravopis",q:"U rečenici „… mnoge barokne ___ palače“ na prazno mjesto ide:",opts:["A. plemićke","B. plemenite"],sol:{cl:"A"},exp:"'Plemićke palače' = posvojni pridjev od 'plemić' = pravilno 'plemićke'. A."},
+  {id:74,type:"mc",topic:"jez_pravopis",q:"U rečenici „… Lisakova kula u ___“ na prazno mjesto ide:",opts:["A. Gajevoj ulici","B. Gajevoj Ulici"],sol:{cl:"A"},exp:"'Gajevoj ulici' = ime ulice: vlastito ime 'Gajevoj' (od Gaj), 'ulici' = opća imenica = malo u. A."},
+  {id:75,type:"mc",topic:"jez_pravopis",q:"U rečenici „… Lančana kula na ___“ na prazno mjesto ide:",opts:["A. Stančevu trgu","B. Stančevu Trgu"],sol:{cl:"A"},exp:"'Stančev trg' = ime trga: vlastito 'Stančev', opće 'trg' = malo t. A."},
+  {id:76,type:"mc",topic:"jez_pravopis",q:"U rečenici „… Varaždin poznat u svijetu glazbe po ___“ na prazno mjesto ide:",opts:["A. Varaždinskim baroknim večerima","B. Varaždinskim baroknim Večerima"],sol:{cl:"A"},exp:"'Varaždinski barokni večeri' = ime manifestacije = samo V veliko (prva riječ), ostale malo. A."},
 ];
 const ESEJ_T1_2011_zima=`Miroslav Krleža, Gospoda Glembajevi (ulomak za esej)
 

@@ -1,11 +1,12 @@
 'use client';
 import React, { useState, useMemo, Fragment } from 'react';
 import { FixedSizeList } from 'react-window';
-import { EXAMS, ESEJI, SAZECI, TOPIC_LABELS } from '../hrvatskiSimulatorData';
+import { EXAMS, ESEJI, SAZECI, TOPIC_LABELS, TOPIC_GROUPS } from '../hrvatskiSimulatorData';
 import { e, LL, chk, lsSave } from '../utils/helpers';
 import { PojmovnikModal } from './modals/Modals';
+import { isHrvFreePracticeExam } from '@/components/discere/paywall/paywallHelpers';
 
-function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak}){
+function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak,isPaid}){
   const[showSimPojmovnik,setShowSimPojmovnik]=useState(false);
   const exam=EXAMS[examKey];
   const baseParts=examKey.split("_");
@@ -81,7 +82,12 @@ function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak}){
 
       e("div",{style:{fontSize:11,fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:"var(--muted)",marginBottom:12}},"Način rješavanja"),
       e("div",{className:"modecard",onClick:()=>onPractice(selectedExamKey)},
-        e("h3",null,"🎯 Vježbanje"),
+        e("div",{style:{display:"flex",alignItems:"center",gap:10}},
+          e("h3",{style:{margin:0}},"🎯 Vježbanje"),
+          isHrvFreePracticeExam(selectedExamKey)&&(isPaid===undefined||!isPaid)&&e("span",{style:{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:99,
+            background:"rgba(62,207,110,.12)",border:"1px solid rgba(62,207,110,.35)",color:"var(--green)"},
+            title:"Sva pitanja su otključana u vježbanju. Razrada rezultata (analiza, pregled pitanja, savjeti) ide od Standard plana."},"🆓 Sva pitanja besplatno")
+        ),
         e("p",null,"Rješavaj bez vremenskog ograničenja. Odmah vidiš točan odgovor i AI objašnjenje. Idealno za učenje.")
       ),
       e("div",{className:"modecard",onClick:()=>onExamMode(selectedExamKey)},
@@ -135,15 +141,23 @@ function ModeSelect({examKey,onExamMode,onPractice,onBack,onEsej,onSazetak}){
 }
 
 function TopicFilterScreen({onStart,onBack,userData}){
-  const ALL_TOPICS=Object.keys(TOPIC_LABELS);
-  const ALL_TYPES=[{key:"mc",label:"Jedan odgovor"},{key:"sa",label:"Kratki odgovor"},{key:"es",label:"Esej"},{key:"saz",label:"Sažetak"}];
+  const ALL_TOPICS=Object.keys(TOPIC_GROUPS);
+  const TOPIC_GROUP_LIST=useMemo(()=>{
+    const groups=[];
+    const byName={};
+    ALL_TOPICS.forEach(t=>{
+      const g=TOPIC_GROUPS[t];
+      if(!byName[g]){byName[g]=[];groups.push({name:g,topics:byName[g]});}
+      byName[g].push(t);
+    });
+    return groups;
+  },[]);
   const ALL_YEARS=[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
   const ALL_DIFF=["sve","nezapoceto","lako","srednje","tesko"];
   const DIFF_LABELS={sve:"Sve",nezapoceto:"Nezapočeto",lako:"Lako",srednje:"Srednje",tesko:"Teško"};
   const DIFF_COLORS={sve:"var(--text)",nezapoceto:"var(--muted)",lako:"var(--green)",srednje:"var(--gold)",tesko:"var(--red)"};
 
   const[selTopics,setSelTopics]=useState(new Set(ALL_TOPICS));
-  const[selTypes,setSelTypes]=useState(new Set(["mc","sa"]));
   const[selYears,setSelYears]=useState(new Set(ALL_YEARS));
   const[selDiff,setSelDiff]=useState("sve");
 
@@ -164,6 +178,14 @@ function TopicFilterScreen({onStart,onBack,userData}){
 
   function tog(set,setFn,val){setFn(prev=>{const next=new Set(prev);next.has(val)?next.delete(val):next.add(val);return next;});}
   function togAll(set,setFn,all){setFn(set.size===all.length?new Set():new Set(all));}
+  function togGroup(groupTopics){
+    setSelTopics(prev=>{
+      const allSel=groupTopics.every(t=>prev.has(t));
+      const next=new Set(prev);
+      groupTopics.forEach(t=>allSel?next.delete(t):next.add(t));
+      return next;
+    });
+  }
 
   const matchingQs=useMemo(()=>{
     const qs=[];
@@ -171,8 +193,9 @@ function TopicFilterScreen({onStart,onBack,userData}){
       if(!selYears.has(exam.year)) return;
       if(!exam.qs?.length) return;
       exam.qs.forEach(q=>{
+        // Samo mc — bodovanje sesije (Sim.submitExam) računa isključivo mc pitanja.
+        if(q.type!=="mc") return;
         if(!selTopics.has(q.topic||"ostalo")) return;
-        if(!selTypes.has(q.type)) return;
         if(selDiff!=="sve"){
           const diff=getQDiff(q,exam.key);
           if(diff!==selDiff) return;
@@ -181,7 +204,7 @@ function TopicFilterScreen({onStart,onBack,userData}){
       });
     });
     return qs;
-  },[selTopics,selTypes,selYears,selDiff,userData?.errorTracker]);
+  },[selTopics,selYears,selDiff,userData?.errorTracker]);
 
   function startSession(){
     if(matchingQs.length===0) return;
@@ -200,28 +223,20 @@ function TopicFilterScreen({onStart,onBack,userData}){
     ),
     e("div",{className:"screen-enter",style:{maxWidth:720,margin:"0 auto",padding:"24px 16px 80px"}},
 
-      e("div",{style:secStyle},
-        e("div",{style:labelStyle},
-          e("span",null,"Tema"),
-          e("button",{className:"btn btn-g",style:{fontSize:11,padding:"2px 8px"},
-            onClick:()=>togAll(selTopics,setSelTopics,ALL_TOPICS)},
-            selTopics.size===ALL_TOPICS.length?"Ništa":"Sve")
-        ),
-        e("div",{style:{display:"flex",flexWrap:"wrap",gap:6}},
-          ALL_TOPICS.map(t=>
-            e("div",{key:t,className:"filter-chip"+(selTopics.has(t)?" sel":""),
-              onClick:()=>tog(selTopics,setSelTopics,t)},
-              TOPIC_LABELS[t]||t)
-          )
-        )
-      ),
-
-      e("div",{style:secStyle},
-        e("div",{style:labelStyle},e("span",null,"Vrsta pitanja")),
-        e("div",{style:{display:"flex",flexWrap:"wrap",gap:6}},
-          ALL_TYPES.map(({key,label})=>
-            e("div",{key,className:"filter-chip"+(selTypes.has(key)?" sel":""),
-              onClick:()=>tog(selTypes,setSelTypes,key)},label)
+      TOPIC_GROUP_LIST.map(({name,topics})=>
+        e("div",{key:name,style:secStyle},
+          e("div",{style:labelStyle},
+            e("span",null,name),
+            e("button",{className:"btn btn-g",style:{fontSize:11,padding:"2px 8px"},
+              onClick:()=>togGroup(topics)},
+              topics.every(t=>selTopics.has(t))?"Ništa":"Sve")
+          ),
+          e("div",{style:{display:"flex",flexWrap:"wrap",gap:6}},
+            topics.map(t=>
+              e("div",{key:t,className:"filter-chip"+(selTopics.has(t)?" sel":""),
+                onClick:()=>tog(selTopics,setSelTopics,t)},
+                TOPIC_LABELS[t]||t)
+            )
           )
         )
       ),
@@ -233,7 +248,10 @@ function TopicFilterScreen({onStart,onBack,userData}){
             onClick:()=>togAll(selYears,setSelYears,ALL_YEARS)},
             selYears.size===ALL_YEARS.length?"Ništa":"Sve")
         ),
-        e("div",{style:{display:"grid",gridTemplateColumns:"repeat(8,1fr)",gap:6}},
+        // auto-fill, a ne fiksnih 8 stupaca: 1fr je minmax(auto,1fr) pa se stupci ne mogu
+        // stisnuti ispod min-content, a .hrv-sim ima overflow-x:clip — na telefonu bi zadnji
+        // stupac (2017., 2025.) bio odrezan i nedodirljiv.
+        e("div",{style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(62px,1fr))",gap:6}},
           ALL_YEARS.map(y=>
             e("div",{key:y,className:"filter-chip"+(selYears.has(y)?" sel":""),
               style:{textAlign:"center",fontSize:12},
@@ -547,8 +565,10 @@ function BookmarksScreen({onBack,onStartSession}){
     const parts=key.split("__");if(parts.length<2) return null;
     const[examKey,qidStr]=[parts[0],parts[1]];
 
+  // Ključ je uvijek izvorni ispit + izvorni id pitanja (Sim ga gradi preko qIdentity), pa
+  // bookmarci spremljeni u virtualnoj sesiji ovdje razriješe na pravi ispit.
   const exam=EXAMS[examKey];if(!exam) return null;
-    const q=exam.qs.find(q=>String(q.id)===qidStr);if(!q) return null;
+    const q=(exam.qs||[]).find(q=>String(q.id)===qidStr);if(!q) return null;
     return{key,examKey,q,saved};
   }).filter(Boolean);
 

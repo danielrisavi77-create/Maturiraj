@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { XP_LEVELS } from '../hrvatskiSimulatorData';
+// chk i qIdentity zive u qcore.js jer ih uvozi i serverski kod; ovdje se samo prosljeđuju
+// dalje da postojeci uvozi iz helpers.js ostanu netaknuti.
+import { chk, qIdentity } from './qcore.js';
 
 const e = React.createElement;
 const LL = ["A","B","C","D","E","F"];
@@ -184,11 +187,34 @@ function useModalTrap(onClose){
   return ref;
 }
 
-function chk(q,a){
-  if(!a&&a!==0) return null;
-  if(q.type==="mc"){return a===q.sol.cl;}
-  if(q.type==="mat"){if(!a||typeof a!=="object") return null; return q.sol.pairs.every(p=>a[p.l]===p.r);}
-  return null;
+// Virtualne sesije spajaju pitanja iz više ispita, a id-evi teku 1..N unutar svakog ispita,
+// pa se sudaraju. Kako su answers/rev/qTimes ključani po q.id, jedan odgovor bi inače vrijedio
+// za svako pitanje s tim id-em (i tako lažno skorirao tuđa pitanja u errorTrackeru). Zato
+// sesija dobiva vlastite id-eve, a izvorni identitet ostaje u _examKey/_srcId (v. qIdentity).
+function renumberSessionQs(qs){
+  return(qs||[]).map((q,i)=>({...q,_srcId:q._srcId??q.id,id:i+1}));
+}
+function computeSecLeft(deadlineTs,nowTs){
+  return Math.max(0,Math.ceil((deadlineTs-nowTs)/1000));
+}
+// history u discere_hrv_user raste bez granice (svaki zapis nosi answers+qTimes za ~80
+// pitanja). Zapisi se NE brišu — brojevi riješenih ispita, `usedKeys` na početnom ekranu i
+// značke za napredak nemaju drugi izvor — nego se samo svima osim zadnjih `keepDetails`
+// skida answers/qTimes; ostaje summary (pct, grade, cor, total, topic_breakdown, date,
+// mode, examKey). Ako nema što skinuti, vraća se isti niz da migracija pri mountu ne
+// pokreće nepotreban upis u localStorage i sinkronizaciju na cloud.
+function trimHistory(history,{keepDetails=10}={}){
+  const all=history||[];
+  const detailFrom=all.length-keepDetails;
+  let changed=false;
+  const out=all.map((entry,i)=>{
+    if(i>=detailFrom) return entry;
+    if(!entry||(entry.answers===undefined&&entry.qTimes===undefined)) return entry;
+    changed=true;
+    const{answers,qTimes,...summary}=entry;
+    return summary;
+  });
+  return changed?out:all;
 }
 function hasAns(a){
   if(a===undefined||a===null||a==="") return false;
@@ -197,7 +223,7 @@ function hasAns(a){
   return true;
 }
 
-export { e, LL, getLevel, xpProgress, xpToNext, calcXpGain, lsSave, lsGet, useUserData, updateStreak, playSuccessSound, playWrongSound, chk, hasAns, postAi, useModalTrap };
+export { e, LL, getLevel, xpProgress, xpToNext, calcXpGain, lsSave, lsGet, useUserData, updateStreak, playSuccessSound, playWrongSound, chk, hasAns, qIdentity, renumberSessionQs, computeSecLeft, postAi, useModalTrap, trimHistory };
 
 // Matura datumi — promijeni svake akademske godine
 export const MATURA_LJETNI   = new Date(parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_YEAR ||"2026"), parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_MONTH||"5"), parseInt(process.env.NEXT_PUBLIC_MATURA_LJETNI_DAY||"15"));

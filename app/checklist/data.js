@@ -49,7 +49,7 @@ export const CHECKLIST_DATA = [
       { id:'c16',  tekst:'Simulirati pravi ispit u vremenskim uvjetima — bez pomoći, bez prekida',                        vazno:true,  deadline:null, subjects:null, action:{label:'Otvori simulator →',   href:'/discere'} },
       { id:'c17',  tekst:'Pronaći svoje slabe točke i posvetiti im više vremena nego gradivu koje već znaš',              vazno:false, deadline:null, subjects:null },
       { id:'c15',  tekst:'Provjeriti imate li pravo na prilagodbu ispita (produženo vrijeme, čitač...) i podnijeti zahtjev', vazno:false, deadline:'2026-03-01', subjects:null },
-      { id:'cP1',  tekst:'AI analizira tvoje greške iz Discere i kreira prilagođeni tjedni plan učenja',                  vazno:false, deadline:null, subjects:null, pro:true, action:{label:'Otključaj PRO →', href:'/cijene'} },
+      { id:'cP1',  tekst:'AI analizira tvoje greške iz Discere i kreira prilagođeni tjedni plan učenja',                  vazno:false, deadline:null, subjects:null, pro:true, action:{label:'Otključaj PRO →', href:'/pro'} },
     ]
   },
   {

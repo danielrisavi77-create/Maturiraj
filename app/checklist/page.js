@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { isAiEndpointsEnabled } from '@/lib/config/featureFlags'
 import { ALL_SUBJECTS, SUBJECT_GROUPS, CHECKLIST_DATA, MATURA_DATE } from './data'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { usePageTracking } from '@/lib/hooks/usePageTracking'
@@ -119,7 +120,7 @@ function MilestoneToast({ data, onDone }) {
         <div style={{fontWeight:800, fontSize:13, color:data.color}}>{data.title}</div>
         <div style={{fontSize:11, color:'var(--muted)', marginTop:1}}>{data.sub}</div>
         {data.upgrade && (
-          <Link href="/cijene" style={{display:'inline-block', marginTop:6, fontSize:11, fontWeight:700, color:'#fbbf24', textDecoration:'none', letterSpacing:'.02em'}}>Otključaj AI asistenta →</Link>
+          <Link href="/pro" style={{display:'inline-block', marginTop:6, fontSize:11, fontWeight:700, color:'#fbbf24', textDecoration:'none', letterSpacing:'.02em'}}>Otključaj AI asistenta →</Link>
         )}
       </div>
     </div>
@@ -203,7 +204,7 @@ function ConversionModal({ onClose }) {
             <div key={f} style={{fontSize:13, color:'var(--text)', textAlign:'left'}}>{f}</div>
           ))}
         </div>
-        <Link href="/cijene" onClick={onClose} style={{width:'100%', display:'block', padding:'13px', borderRadius:12, background:'#fbbf24', color:'#07090F', fontWeight:800, fontSize:15, textDecoration:'none', textAlign:'center'}}>
+        <Link href="/pro" onClick={onClose} style={{width:'100%', display:'block', padding:'13px', borderRadius:12, background:'#fbbf24', color:'#07090F', fontWeight:800, fontSize:15, textDecoration:'none', textAlign:'center'}}>
           Pogledaj planove — od 9,99 €/mj →
         </Link>
         <button type="button" onClick={onClose} style={{background:'none', border:'none', fontSize:13, color:'var(--muted)', cursor:'pointer', fontFamily:'var(--fb)'}}>
@@ -370,7 +371,7 @@ function ConversionCard({ pct }) {
       <p style={{margin:0, fontSize:13, color:'var(--muted)', lineHeight:1.65}}>
         Na {pct}% pripreme. Pro plan uključuje AI plan učenja s personaliziranim rasporedom do mature.
       </p>
-      <Link href="/cijene" style={{alignSelf:'flex-start', fontSize:12, fontWeight:700, padding:'7px 16px', borderRadius:9, background:'rgba(251,191,36,.15)', border:'1px solid rgba(251,191,36,.35)', color:'#fbbf24', textDecoration:'none'}}>
+      <Link href="/pro" style={{alignSelf:'flex-start', fontSize:12, fontWeight:700, padding:'7px 16px', borderRadius:9, background:'rgba(251,191,36,.15)', border:'1px solid rgba(251,191,36,.35)', color:'#fbbf24', textDecoration:'none'}}>
         Pogledaj Pro plan →
       </Link>
     </div>
@@ -1113,7 +1114,7 @@ export default function Checklist() {
         {hydrated && !user && subjects !== null && (
           <div style={{display:'flex', alignItems:'center', gap:10, marginBottom:16, padding:'11px 16px', borderRadius:11, background:'rgba(129,140,248,.07)', border:'1px solid rgba(129,140,248,.2)', flexWrap:'wrap'}}>
             <span style={{fontSize:13, color:'var(--muted)', flex:1, minWidth:160}}>Napredak se čuva samo u ovom pregledniku.</span>
-            <Link href="/auth/login" style={{fontSize:12, fontWeight:700, color:'#818cf8', textDecoration:'none', padding:'5px 12px', borderRadius:8, background:'rgba(129,140,248,.12)', border:'1px solid rgba(129,140,248,.25)', flexShrink:0, whiteSpace:'nowrap'}}>
+            <Link href="/prijava" style={{fontSize:12, fontWeight:700, color:'#818cf8', textDecoration:'none', padding:'5px 12px', borderRadius:8, background:'rgba(129,140,248,.12)', border:'1px solid rgba(129,140,248,.25)', flexShrink:0, whiteSpace:'nowrap'}}>
               Prijavi se za oblak →
             </Link>
           </div>
@@ -1137,7 +1138,7 @@ export default function Checklist() {
             <div style={{display:'flex', gap:8, justifyContent:'center', flexWrap:'wrap'}}>
               <Link href="/discere" style={{fontSize:13, fontWeight:700, padding:'8px 16px', borderRadius:9, background:'rgba(62,207,110,.15)', border:'1px solid rgba(62,207,110,.3)', color:'var(--green)', textDecoration:'none'}}>Vježbaj na Discere →</Link>
               <Link href="/plan-ucenja" style={{fontSize:13, fontWeight:700, padding:'8px 16px', borderRadius:9, background:'rgba(129,140,248,.1)', border:'1px solid rgba(129,140,248,.25)', color:'#818cf8', textDecoration:'none'}}>Plan učenja →</Link>
-              {isPro && <Link href="/ai-profesor" style={{fontSize:13, fontWeight:700, padding:'8px 16px', borderRadius:9, background:'rgba(251,191,36,.1)', border:'1px solid rgba(251,191,36,.25)', color:'#fbbf24', textDecoration:'none'}}>AI Profesor →</Link>}
+              {isPro && isAiEndpointsEnabled() && <Link href="/ai-profesor" style={{fontSize:13, fontWeight:700, padding:'8px 16px', borderRadius:9, background:'rgba(251,191,36,.1)', border:'1px solid rgba(251,191,36,.25)', color:'#fbbf24', textDecoration:'none'}}>AI Profesor →</Link>}
             </div>
           </div>
         )}
@@ -1228,7 +1229,7 @@ export default function Checklist() {
                             <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', padding:'0 16px', gap:8, background:'rgba(7,9,15,.7)', borderRadius:10, backdropFilter:'blur(2px)'}}>
                               <span style={{fontSize:10, fontWeight:800, color:'#fbbf24', background:'rgba(251,191,36,.14)', border:'1px solid rgba(251,191,36,.3)', borderRadius:6, padding:'2px 7px', flexShrink:0, letterSpacing:'.04em'}}>PRO</span>
                               <span style={{fontSize:12, color:'var(--muted)', flex:1}}>Dostupno u Pro planu · <span style={{color:'#fbbf24', fontWeight:700}}>19,99 €/mj</span></span>
-                              <Link href="/cijene" onClick={e => e.stopPropagation()} style={{fontSize:11, fontWeight:700, padding:'5px 12px', borderRadius:8, background:'rgba(251,191,36,.15)', border:'1px solid rgba(251,191,36,.35)', color:'#fbbf24', textDecoration:'none', flexShrink:0}}>
+                              <Link href="/pro" onClick={e => e.stopPropagation()} style={{fontSize:11, fontWeight:700, padding:'5px 12px', borderRadius:8, background:'rgba(251,191,36,.15)', border:'1px solid rgba(251,191,36,.35)', color:'#fbbf24', textDecoration:'none', flexShrink:0}}>
                                 Otključaj →
                               </Link>
                             </div>

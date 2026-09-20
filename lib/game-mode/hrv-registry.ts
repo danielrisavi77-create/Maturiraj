@@ -2,6 +2,9 @@ import { EXAMS } from '@/app/discere/hrvatski/simulator/data/exams/index.js'
 import { PITANJE_SKRIPTA } from '@/app/discere/hrvatski/simulator/data/lektiraSkripta.js'
 import type { CroatianGameQuestion, ReviewStatus } from './types'
 
+// Teorijske teme bez polaznog teksta — idu u runner pod vlastitim topicId-em.
+// knj_rodovi i knj_figure dodani su uz pretagiranje (TOPIC_OVERRIDES): prije su ta
+// pitanja nosila knj_versif odnosno jez_stil i već su bila u bazenu.
 const RUNNER_TOPICS = new Set([
   'jez_gram',
   'jez_pravopis',
@@ -9,8 +12,20 @@ const RUNNER_TOPICS = new Set([
   'jez_leks',
   'jez_stil',
   'knj_versif',
+  'knj_figure',
+  'knj_rodovi',
 ])
+// Književnopovijesne oznake — sva pitanja iz njih vode se kao 'literature_fact'.
+// Razdoblja su dodana uz pretagiranje: ista pitanja prije su bila knj_svjetska ili
+// knj_analiza. knj_neknjiz namjerno nije ovdje — to su zadatci uz neknjiževni tekst.
 const LITERATURE_TOPICS = new Set([
+  'knj_antika',
+  'knj_srednji_vijek',
+  'knj_renesansa',
+  'knj_barok',
+  'knj_prosvjetiteljstvo',
+  'knj_romantizam',
+  'knj_realizam',
   'knj_moderna',
   'knj_avangarda',
   'knj_suvremena',
@@ -214,7 +229,7 @@ export function getLaunchCroatianQuestions() {
   take((question) => question.topicId === 'jez_pravopis', 60)
   take((question) => question.topicId === 'jez_leks', 40)
   take((question) => question.topicId === 'jez_sint', 30)
-  take((question) => question.topicId === 'jez_stil' || question.topicId === 'knj_versif', 30)
+  take((question) => question.topicId === 'jez_stil' || question.topicId === 'knj_versif' || question.topicId === 'knj_figure' || question.topicId === 'knj_rodovi', 30)
   take((question) => question.topicId === 'literature_fact', 40)
   take(() => true, 400 - selected.length)
   return selected

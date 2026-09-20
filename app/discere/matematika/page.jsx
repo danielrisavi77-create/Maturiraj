@@ -5,9 +5,14 @@
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/hooks/useAuth';
 import DiscereApp from '@/components/discere/mat/DiscereApp';
+import PlanGate from '@/app/discere/hrvatski/simulator/PlanGate';
 
 export default function DiscereMatematika() {
   const router = useRouter();
   const { userTier } = useAuth();
-  return <DiscereApp tier={userTier} onBack={() => router.push('/discere')} />;
+  return (
+    <PlanGate>
+      <DiscereApp tier={userTier} onBack={() => router.push('/discere')} />
+    </PlanGate>
+  );
 }

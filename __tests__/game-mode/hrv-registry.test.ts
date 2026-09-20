@@ -8,7 +8,8 @@ describe('Croatian canonical registry', () => {
     const firstExam: any = Object.values(EXAMS)[0]
     const before = JSON.stringify(firstExam.qs[0])
     const registry = getCroatianQuestionRegistry()
-    expect(registry).toHaveLength(4839)
+    const expectedCount = Object.values(EXAMS).reduce((sum: number, ex: any) => sum + (ex.qs?.length || 0), 0)
+    expect(registry).toHaveLength(expectedCount)
     expect(JSON.stringify(firstExam.qs[0])).toBe(before)
     expect(registry[0].id).toMatch(/^hrv:discere:/)
   })
