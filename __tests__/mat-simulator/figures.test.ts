@@ -15,10 +15,10 @@ const examFiles = readdirSync(dir).filter((f) => f.endsWith('.mjs')).sort();
 // ("37,1"), registar točku ("37.1") — normaliziraj prije usporedbe (1.6).
 const norm = (id: any) => String(id).replace(',', '.');
 
-// Poznati, prihvaćeni orphan (docs/MAT_SIMULATOR_PLAN.md 1.7): SVG postoji, oznaka
-// namjerno izostavljena. Svaki drugi orphan mora biti popravljen (dodaj img:true), ne
-// tiho dopušten ovdje.
-const ALLOWED_ORPHANS = new Set(['2010_jesen_B__28.3']);
+// Nema prihvaćenih orphana: svaki orphan mora biti popravljen (dodaj img:true zadatku
+// ili makni SVG iz qImages), ne tiho dopušten ovdje. Zadnji je bio
+// 2010_jesen_B__28.3 — zadatak 28 u ispitu ima samo 28.1 i 28.2, pa je unos maknut.
+const ALLOWED_ORPHANS = new Set<string>([]);
 
 // Poznati MISSING (img:true bez SVG-a) — čeka Fazu 6 (crtanje prema PDF-u, docs/MAT_SIMULATOR_PLAN.md
 // §1.7 i §6), koja se pokreće tek kad su faze 1–5 spojene; nije u opsegu ovog zadatka (3.3).
