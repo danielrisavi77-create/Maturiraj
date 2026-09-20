@@ -10,7 +10,15 @@ import examsIndex from '../../lib/data/engleski-simulator/exams-index.json'
 // popis promijeni bez svjesne odluke.
 const KNOWN_MISSING = []
 
-const FILENAME_RE = /^[a-z0-9_]+__(task\d+-[12]|intro)\.mp3$/
+const FILENAME_RE = /^[a-z0-9_]+__(task\d+-[12]|extra\d+-[12]|intro)\.mp3$/
+
+// Ispiti kojima je build-audio-C-extra.py (scripts/eng-audio/) dodao 'extra' zapise
+// (sirovi zapisi iz NCVVO zipa koje naši podaci ne razlikuju kao zasebnu temu —
+// vidi napomenu u audio-map.json[key].extra[].note).
+const EXAMS_WITH_EXTRA = [
+  '2014_jesen', '2015_jesen', '2016_jesen', '2016_ljeto',
+  '2017_jesen', '2017_ljeto', '2024_jesen', 'vis_2024_drugi',
+]
 
 const listeningKeys = examsIndex.filter(e => e.hasListening).map(e => e.key)
 const examsByKey = { ...osnovna, ...visa }
@@ -84,18 +92,23 @@ describe('audio-map.json — pokrivenost taskova po temi (topic)', () => {
   })
 })
 
+// Sva imena datoteka jednog zapisa ispita (intro + tasks + extra), bez null-ova.
+function entryNames(entry) {
+  return [
+    entry.intro,
+    ...Object.values(entry.tasks).flatMap(t => [t.first, t.repeat]),
+    ...(entry.extra || []).flatMap(x => [x.first, x.repeat]),
+  ].filter(Boolean)
+}
+
 describe('audio-map.json — nazivi datoteka', () => {
   const allNames = []
   for (const [key, entry] of Object.entries(audioMap)) {
     if (key === '_missing') continue
-    if (entry.intro) allNames.push(entry.intro)
-    for (const task of Object.values(entry.tasks)) {
-      if (task.first) allNames.push(task.first)
-      if (task.repeat) allNames.push(task.repeat)
-    }
+    allNames.push(...entryNames(entry))
   }
 
-  it('svi nazivi datoteka odgovaraju obrascu <examKey>__(task<N>-[12]|intro).mp3', () => {
+  it('svi nazivi datoteka odgovaraju obrascu <examKey>__(task<N>-[12]|extra<M>-[12]|intro).mp3', () => {
     allNames.forEach(name => {
       expect(name, name).toMatch(FILENAME_RE)
     })
@@ -108,7 +121,7 @@ describe('audio-map.json — nazivi datoteka', () => {
     const dupes = []
     for (const [key, entry] of Object.entries(audioMap)) {
       if (key === '_missing') continue
-      const names = new Set([entry.intro, ...Object.values(entry.tasks).flatMap(t => [t.first, t.repeat])].filter(Boolean))
+      const names = new Set(entryNames(entry))
       names.forEach(name => {
         if (owner.has(name) && owner.get(name) !== key) dupes.push(name)
         owner.set(name, key)
@@ -120,8 +133,23 @@ describe('audio-map.json — nazivi datoteka', () => {
   it('naziv datoteke počinje ključem ispita kojem pripada', () => {
     for (const [key, entry] of Object.entries(audioMap)) {
       if (key === '_missing') continue
-      const names = [entry.intro, ...Object.values(entry.tasks).flatMap(t => [t.first, t.repeat])].filter(Boolean)
+      const names = entryNames(entry)
       names.forEach(name => expect(name.startsWith(key + '__'), `${key}: ${name}`).toBe(true))
     }
+  })
+})
+
+describe('audio-map.json — "extra" zapisi (neiskorišteni sirovi zapisi iz zipa)', () => {
+  it.each(EXAMS_WITH_EXTRA)('%s ima neprazno polje extra s jedinstvenim first zapisima', key => {
+    const entry = audioMap[key]
+    expect(entry, key).toBeDefined()
+    expect(Array.isArray(entry.extra), key).toBe(true)
+    expect(entry.extra.length, key).toBeGreaterThan(0)
+    entry.extra.forEach(x => {
+      expect(x.first, key).toMatch(FILENAME_RE)
+      expect(x.note, key).toBeTruthy()
+    })
+    const firsts = entry.extra.map(x => x.first)
+    expect(new Set(firsts).size, key).toBe(firsts.length)
   })
 })
