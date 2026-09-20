@@ -81,25 +81,6 @@ function SelfExplain({val,onChange}){
   );
 }
 const GLOSSARY={"determinanta": "Broj pridružen kvadratnoj matrici; za 2×2 matricu [[a,b],[c,d]] iznosi ad − bc.", "matrica": "Pravokutna tablica brojeva poredanih u retke i stupce.", "vektor": "Veličina određena iznosom (duljinom) i smjerom; u ravnini se piše kao uređeni par (x, y).", "skalar": "Obična brojčana veličina bez smjera, za razliku od vektora.", "derivacija": "Mjera trenutne brzine promjene funkcije; geometrijski je nagib tangente na graf.", "integral": "Operacija suprotna deriviranju; određeni integral daje površinu ispod grafa funkcije.", "limes": "Vrijednost kojoj se funkcija ili niz približava kad se argument približava nekoj vrijednosti.", "asimptota": "Pravac kojem se graf funkcije neograničeno približava, ali ga ne dodiruje.", "logaritam": "Eksponent na koji treba dignuti bazu da se dobije zadani broj: log baze a od b = c znači a^c = b.", "diskriminanta": "Izraz b² − 4ac kod kvadratne jednadžbe; predznak određuje broj realnih rješenja.", "faktorijel": "Umnožak svih prirodnih brojeva do n: n! = 1 · 2 · 3 · … · n.", "permutacija": "Svaki mogući poredak svih elemenata skupa; broj permutacija n elemenata je n!.", "kombinacija": "Izbor elemenata iz skupa kod kojeg poredak NIJE važan.", "varijacija": "Izbor elemenata iz skupa kod kojeg poredak JEST važan.", "vjerojatnost": "Mjera izglednosti događaja, broj od 0 do 1 (povoljni ishodi / svi ishodi).", "tangenta": "Pravac koji dira krivulju u jednoj točki i ima isti nagib kao krivulja u toj točki.", "normala": "Pravac okomit na tangentu u dodirnoj točki krivulje.", "domena": "Skup svih dopuštenih vrijednosti nezavisne varijable (ulaza) funkcije.", "kodomena": "Skup u koji funkcija preslikava — skup mogućih izlaznih vrijednosti.", "parabola": "Graf kvadratne funkcije; skup točaka jednako udaljenih od žarišta i ravnalice.", "hiperbola": "Krivulja s dvije grane; skup točaka kojima je razlika udaljenosti do dvaju žarišta stalna.", "elipsa": "Zatvorena krivulja; skup točaka kojima je zbroj udaljenosti do dvaju žarišta stalan.", "kružnica": "Skup svih točaka u ravnini jednako udaljenih od središta; ta udaljenost je polumjer.", "modul": "Apsolutna vrijednost; za kompleksan broj z = a + bi iznosi √(a² + b²).", "argument": "Kut koji radijvektor kompleksnog broja zatvara s pozitivnim dijelom realne osi.", "aritmetički niz": "Niz u kojem je razlika svaka dva susjedna člana stalna (npr. 2, 5, 8, 11 …).", "geometrijski niz": "Niz u kojem je omjer svaka dva susjedna člana stalan (npr. 3, 6, 12, 24 …).", "radijan": "Mjera kuta; puni kut iznosi 2π radijana (360°).", "sinus": "Trigonometrijska funkcija; u pravokutnom trokutu omjer nasuprotne katete i hipotenuze.", "kosinus": "Trigonometrijska funkcija; u pravokutnom trokutu omjer priležeće katete i hipotenuze.", "tangens": "Trigonometrijska funkcija; omjer sinusa i kosinusa.", "polinom": "Izraz oblika aₙxⁿ + … + a₁x + a₀ s nenegativnim cjelobrojnim eksponentima.", "vjerojatnosti": "Mjera izglednosti događaja, broj od 0 do 1."};
-function GlossaryChips({text}){
-  const low=" "+(text||"").toLowerCase()+" ";
-  const found=[];
-  for(const term in GLOSSARY){
-    const esc=term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
-    const re=new RegExp("(^|[^a-zA-Zšđčćž])"+esc,"i");
-    if(re.test(low)){found.push(term);if(found.length>=4)break;}
-  }
-  const[open,setOpen]=React.useState(false);
-  const[sel,setSel]=React.useState(null);
-  if(found.length===0)return null;
-  return e("div",{style:{margin:"2px 0 12px"}},
-    e("button",{onClick:()=>setOpen(o=>!o),style:{display:"inline-flex",alignItems:"center",gap:6,padding:"5px 12px",borderRadius:99,background:"var(--s2)",border:"1px solid var(--bdr2)",color:"var(--muted)",fontSize:11.5,fontWeight:700,cursor:"pointer",fontFamily:"var(--fb)"}},"📖 Pojmovi u zadatku ("+found.length+")",e("span",{style:{opacity:.7}},open?" ▴":" ▾")),
-    open&&e("div",{style:{display:"flex",flexWrap:"wrap",gap:6,marginTop:9}},
-      found.map((t,i)=>e("button",{key:i,onClick:()=>setSel(sel===t?null:t),style:{padding:"5px 9px",borderRadius:8,border:"1px solid "+(sel===t?"var(--blue-b)":"var(--bdr)"),background:sel===t?"var(--blue-d)":"var(--s1)",color:sel===t?"var(--blue)":"var(--text)",fontSize:12.5,fontWeight:600,cursor:"pointer",fontFamily:"var(--fb)",textTransform:"capitalize"}},t))
-    ),
-    open&&sel&&e("div",{style:{marginTop:10,padding:"11px 14px",borderRadius:"var(--r)",background:"var(--blue-d)",border:"1px solid var(--blue-b)",fontSize:13,lineHeight:1.55,color:"var(--text)"}},e("strong",{style:{color:"var(--blue)",textTransform:"capitalize"}},sel),": "+GLOSSARY[sel])
-  );
-}
 function StuckHelper(){
   const[open,setOpen]=React.useState(false);
   return e("div",{style:{marginTop:14}},
@@ -120,4 +101,4 @@ function WarmupItem({q,a}){
     e("span",{style:{fontSize:14,fontWeight:600,color:"var(--text)"}},q),
     show?e("span",{style:{fontSize:15,fontWeight:800,color:"var(--green)"}},"= "+a):e("span",{style:{fontSize:11.5,color:"var(--muted)",fontWeight:700}},"tap \u2192"));
 }
-export { WeakSpotTips, ERROR_TAGS, ErrorTagger, SelfExplain, GLOSSARY, GlossaryChips, StuckHelper, WarmupItem };
+export { WeakSpotTips, ERROR_TAGS, ErrorTagger, SelfExplain, GLOSSARY, StuckHelper, WarmupItem };

@@ -151,34 +151,6 @@ function AnswerHelper({q,autoExpand,hideToggle}){
     },"▲ Sakrij rješenje")
   );
 }
-function WarnBanner({text,qid}){
-  const[open,setOpen]=useState(false);
-  useEffect(()=>setOpen(false),[qid]);
-  if(!open) return e("button",{
-    onClick:()=>setOpen(true),
-    style:{
-      display:"inline-flex",alignItems:"center",gap:6,
-      fontSize:11,fontWeight:600,padding:"4px 10px",
-      borderRadius:6,border:"1px solid rgba(233,180,70,.35)",
-      background:"rgba(233,180,70,.07)",color:"var(--gold)",
-      cursor:"pointer",marginBottom:10
-    }
-  },"⚠️ Pazi na češću grešku");
-  return e("div",{style:{
-    display:"flex",alignItems:"flex-start",gap:8,
-    padding:"8px 12px",marginBottom:10,borderRadius:"var(--r)",
-    background:"rgba(233,180,70,.07)",
-    border:"1px solid rgba(233,180,70,.3)",
-    fontSize:12,color:"var(--gold)",lineHeight:1.6
-  }},
-    e("span",{style:{flexShrink:0,marginTop:1}},"⚠️"),
-    e("span",{style:{flex:1}},text),
-    e("button",{onClick:()=>setOpen(false),
-      style:{background:"none",border:"none",cursor:"pointer",
-        color:"var(--muted)",fontSize:14,padding:"0 0 0 4px",flexShrink:0}
-    },"✕")
-  );
-}
 function QToolbar({glossaryText,warn,vizKind,qid,onViz}){
   const[panel,setPanel]=useState(null);
   const[selTerm,setSelTerm]=useState(null);
@@ -391,35 +363,6 @@ Ocijeni postupak i vrati ISKLJUČIVO JSON (bez markdown backtickova):
     )
   );
 }
-function McRadniProstor({qid}){
-  const[open,setOpen]=useState(false);
-  const[text,setText]=useState("");
-  useEffect(()=>{setText("");},[qid]);
-  return e("div",{style:{marginTop:12}},
-    e("button",{
-      onClick:()=>setOpen(o=>!o),
-      style:{
-        display:"flex",alignItems:"center",gap:6,
-        fontFamily:"var(--fb)",fontSize:12,fontWeight:600,
-        color:"var(--muted)",background:"none",border:"1px solid var(--bdr)",
-        borderRadius:"var(--r)",padding:"5px 12px",cursor:"pointer",
-        transition:"all .15s",width:"100%",textAlign:"left"
-      }
-    },
-      e("span",null,open?"▲":"▶"),
-      "📝 Radni prostor",
-      e("span",{style:{marginLeft:"auto",fontSize:10,fontWeight:400,fontStyle:"italic"}},"nije bodovano")
-    ),
-    open&&e("textarea",{
-      className:"ta",
-      rows:4,
-      placeholder:"Napiši ovdje skicu postupka ili provjeru odgovora...",
-      value:text,
-      onChange:ev=>setText(ev.target.value),
-      style:{marginTop:6}
-    })
-  );
-}
 const GraphInputM=React.memo(GraphInput);
 function FeedbackBox({q,a,rev,elapsed,avgTime}){
   if(!rev||q.type==="proof") return null;
@@ -497,4 +440,4 @@ function FeedbackBox({q,a,rev,elapsed,avgTime}){
     timingBadge()
   );
 }
-export { MaturaRubric, AnswerHelper, WarnBanner, QToolbar, CalcQuestion, McRadniProstor, FeedbackBox };
+export { MaturaRubric, AnswerHelper, QToolbar, CalcQuestion, FeedbackBox };

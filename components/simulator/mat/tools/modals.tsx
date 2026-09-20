@@ -3,7 +3,7 @@
 /* 5.3: izdvojeno iz components/simulator/MatEngineCore.tsx bez promjene ponasanja.
    Modali i preklapanja: nadogradnja, o aplikaciji, wrapped, odbrojavanje, disclaimer, onboarding, XP i dijeljenje. */
 import React from 'react';
-import { PLAN_NAME, SUBJECT, TOPIC_LABELS, askUpgrade, planCta } from '../core/state';
+import { PLAN_NAME, SUBJECT, askUpgrade, planCta } from '../core/state';
 import { EXAMS, examTitle, nextMatura } from '../core/exams';
 import { LEVEL_NAMES, getLevel, useEscape } from '../core/ui';
 const{createElement:e,useState,useEffect,useMemo,useRef,Fragment}=React;
@@ -148,93 +148,6 @@ function AboutModal({onClose}){
       )
     )
   );
-}
-function _copyText(t){
-  try{navigator.clipboard.writeText(t);return true;}
-  catch(e){try{const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);return true;}catch(e2){return false;}}
-}
-function wrappedToPng(d){
-  return (async()=>{
-    try{if(document.fonts&&document.fonts.ready)await document.fonts.ready;}catch(e){}
-    const W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;
-    const x=c.getContext("2d");if(!x)return false;
-    const g=x.createRadialGradient(W*0.85,-H*0.15,80,W*0.5,H*0.5,H*1.15);
-    g.addColorStop(0,"#2a5cb8");g.addColorStop(.45,"#163769");g.addColorStop(1,"#0a1730");
-    x.fillStyle=g;x.fillRect(0,0,W,H);
-    x.strokeStyle="rgba(255,255,255,.12)";x.lineWidth=2;x.strokeRect(44,44,W-88,H-88);
-    const cx=W/2,serif='"DM Serif Display",Georgia,serif',sans='"Instrument Sans",system-ui,sans-serif';
-    x.textAlign="center";x.textBaseline="alphabetic";
-    x.fillStyle="#8fb4f5";x.font="600 38px "+sans;x.fillText("\u03a3  Discere",cx,140);
-    x.fillStyle="rgba(143,180,245,.9)";x.font="700 24px "+sans;x.fillText("T V O J   M J E S E C",cx,196);
-    x.fillStyle="#fff";x.font="76px "+serif;x.fillText(d.monthName+" "+d.year+".",cx,288);
-    const trio=(val,lbl,px,yv,yl)=>{x.fillStyle="#fff";x.font="78px "+serif;x.fillText(val,px,yv);
-      x.fillStyle="rgba(255,255,255,.6)";x.font="600 22px "+sans;x.fillText(lbl,px,yl);};
-    trio(String(d.ispiti),"ISPITA",W*0.25,470,512);
-    trio(d.mins+"\u2032","MINUTA",W*0.5,470,512);
-    trio(String(d.streak),"DANA NIZ",W*0.75,470,512);
-    trio(d.best+"%","NAJBOLJI",W*0.33,650,692);
-    trio(d.avg+"%","PROSJEK",W*0.67,650,692);
-    x.font="600 32px "+sans;
-    let yy=812;
-    if(d.topT){x.fillStyle="rgba(255,255,255,.92)";x.fillText("Najja\u010da tema:  "+d.topT.t+"  \u00b7  "+d.topT.p+"%",cx,yy);yy+=52;}
-    if(d.weakT){x.fillStyle="rgba(255,255,255,.7)";x.fillText("Fokus za dalje:  "+d.weakT.t+"  \u00b7  "+d.weakT.p+"%",cx,yy);}
-    x.strokeStyle="rgba(255,255,255,.15)";x.lineWidth=1;x.beginPath();x.moveTo(W*0.22,H-268);x.lineTo(W*0.78,H-268);x.stroke();
-    x.fillStyle="#fff";x.font="52px "+serif;x.fillText("maturiraj.hr",cx,H-176);
-    x.fillStyle="#8fb4f5";x.font="italic 30px "+serif;x.fillText("Matura nije sre\u0107a. Matura je priprema.",cx,H-118);
-    return await new Promise(res=>{c.toBlob(b=>{
-      if(!b){res(false);return;}
-      try{const a=document.createElement("a");a.href=URL.createObjectURL(b);
-        a.download="discere-"+String(d.monthName).toLowerCase()+"-"+d.year+".png";
-        document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},100);res(true);}
-      catch(e){res(false);}
-    },"image/png");});
-  })();
-}
-function parseHrDate(str){
-  if(!str)return null;
-  const m=String(str).match(/(\d{1,2})\.\s*(\d{1,2})\.\s*(\d{4})/);
-  return m?{d:+m[1],mo:+m[2],y:+m[3]}:null;
-}
-function WrappedModal({userData,onClose}){
-  useEscape(true,onClose);
-  const[copied,setCopied]=React.useState(null);
-  const H=userData.history||[];
-  const now=new Date();const mm=String(now.getMonth()+1).padStart(2,"0");const yy=now.getFullYear();
-  const MJ=["sije\u010danj","velja\u010da","o\u017eujak","travanj","svibanj","lipanj","srpanj","kolovoz","rujan","listopad","studeni","prosinac"];
-  const month=H.filter(h=>{const p=parseHrDate(h.date);return p&&p.mo===now.getMonth()+1&&p.y===yy;});
-  const mins=Math.round(month.reduce((s,h)=>s+Object.values(h.qTimes||{}).reduce((a,b)=>a+b,0),0)/60);
-  const best=month.length?Math.max(...month.map(h=>h.pct||0)):0;
-  const avg=month.length?Math.round(month.reduce((s,h)=>s+(h.pct||0),0)/month.length):0;
-  const agg={};month.forEach(h=>Object.entries(h.topic_breakdown||{}).forEach(([t,v])=>{const a=agg[t]=agg[t]||{c:0,n:0};a.c+=v.correct||0;a.n+=v.total||0;}));
-  const tl=Object.entries(agg).filter(([,v])=>v.n>=3).map(([t,v])=>({t:TOPIC_LABELS[t]||t,p:Math.round(v.c/v.n*100)})).sort((a,b)=>b.p-a.p);
-  const topT=tl[0],weakT=tl[tl.length-1];
-  const week=H.filter(h=>{const p=parseHrDate(h.date);if(!p)return false;const d=new Date(p.y,p.mo-1,p.d);return (now-d)/86400000<=7;});
-  const wAvg=week.length?Math.round(week.reduce((s,h)=>s+(h.pct||0),0)/week.length):0;
-  const monthTxt="\uD83D\uDCCA Moj "+MJ[now.getMonth()]+" na Discere:\n\u2022 "+month.length+" ispita \u00b7 "+mins+" min u\u010denja\n\u2022 Najbolji rezultat: "+best+"% \u00b7 prosjek "+avg+"%\n\u2022 Streak: "+(userData.streak||0)+" dana \uD83D\uDD25"+(topT?"\n\u2022 Najja\u010da tema: "+topT.t+" ("+topT.p+"%)":"");
-  const parentTxt="Pozdrav!\n\nMoj tjedni napredak u pripremi mature (matematika):\n\u2022 Rije\u0161eno ispita: "+week.length+"\n\u2022 Prosje\u010dni rezultat: "+wAvg+"%\n\u2022 Niz u\u010denja: "+(userData.streak||0)+" dana zaredom"+(weakT?"\n\u2022 Trenutni fokus: "+weakT.t:"")+"\n\n\u2014 poslano iz Discere (maturiraj.hr)";
-  const stat=(v,l)=>e("div",{style:{textAlign:"center",background:"rgba(255,255,255,.07)",border:"1px solid rgba(255,255,255,.14)",borderRadius:12,padding:"12px 6px"}},
-    e("div",{style:{fontFamily:"var(--fh)",fontSize:22,color:"#fff",marginBottom:2}},v),
-    e("div",{style:{fontSize:9.5,letterSpacing:".05em",textTransform:"uppercase",color:"rgba(255,255,255,.6)"}},l));
-  return e("div",{style:{position:"fixed",inset:0,background:"rgba(6,12,24,.66)",backdropFilter:"blur(4px)",zIndex:350,display:"flex",alignItems:"center",justifyContent:"center",padding:16},onClick:ev=>{if(ev.target===ev.currentTarget)onClose();}},
-    e("div",{style:{width:"100%",maxWidth:420,borderRadius:20,overflow:"hidden",border:"1px solid rgba(74,144,217,.4)",boxShadow:"0 30px 70px -20px rgba(0,0,0,.65)",background:"radial-gradient(130% 130% at 85% -15%,#2a5cb8 0%,#163769 45%,#0a1730 100%)",padding:"24px 22px"}},
-      e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:4}},
-        e("div",{style:{fontSize:10.5,fontWeight:800,letterSpacing:".14em",textTransform:"uppercase",color:"#8fb4f5"}},"Discere \u00b7 Tvoj mjesec"),
-        e("button",{onClick:onClose,style:{background:"rgba(255,255,255,.12)",border:"none",borderRadius:8,width:28,height:28,color:"#fff",cursor:"pointer",fontFamily:"var(--fb)"}},"\u2715")),
-      e("div",{style:{fontFamily:"var(--fh)",fontSize:26,color:"#fff",marginBottom:16,textTransform:"capitalize"}},MJ[now.getMonth()]+" "+yy+"."),
-      e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:10}},
-        stat(month.length,"ispita"),stat(mins+"\u2032","u\u010denja"),stat((userData.streak||0)+"\uD83D\uDD25","streak")),
-      e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:14}},
-        stat(best+"%","najbolji"),stat(avg+"%","prosjek")),
-      topT&&e("div",{style:{fontSize:12.5,color:"rgba(255,255,255,.85)",marginBottom:4}},"\uD83D\uDCAA Najja\u010da tema: ",e("strong",null,topT.t+" ("+topT.p+"%)")),
-      weakT&&tl.length>1&&e("div",{style:{fontSize:12.5,color:"rgba(255,255,255,.7)",marginBottom:16}},"\uD83C\uDFAF Fokus za sljede\u0107i mjesec: ",e("strong",null,weakT.t+" ("+weakT.p+"%)")),
-      e("button",{onClick:async()=>{setCopied("img-load");const ok=await wrappedToPng({monthName:MJ[now.getMonth()],year:yy,ispiti:month.length,mins,streak:userData.streak||0,best,avg,topT,weakT});setCopied(ok?"img":"err");},
-        style:{width:"100%",marginBottom:8,background:"linear-gradient(135deg,#e9b446,#ffd56b)",border:"none",borderRadius:10,padding:"12px",fontFamily:"var(--fb)",fontSize:13.5,fontWeight:800,color:"#3a2e0a",cursor:"pointer",boxShadow:"0 6px 18px -6px rgba(233,180,70,.5)"}},
-        copied==="img-load"?"\u23f3 Pripremam sliku\u2026":copied==="img"?"\u2713 Slika spremljena!":"\uD83D\uDCF8 Spremi sliku za dijeljenje"),
-      e("div",{style:{display:"flex",gap:8,flexWrap:"wrap"}},
-        e("button",{onClick:()=>{setCopied(_copyText(monthTxt)?"m":"err");},style:{flex:1,minWidth:140,background:"#fff",border:"none",borderRadius:10,padding:"10px 12px",fontFamily:"var(--fb)",fontSize:12.5,fontWeight:800,color:"#0b1b3a",cursor:"pointer"}},copied==="m"?"\u2713 Kopirano!":"\uD83D\uDCCB Kopiraj tekst"),
-        e("button",{onClick:()=>{const ok=_copyText(parentTxt);setCopied(ok?"p":"err");try{window.location.href="mailto:?subject="+encodeURIComponent("Tjedni napredak \u2014 matura matematika")+"&body="+encodeURIComponent(parentTxt);}catch(e2){}},style:{flex:1,minWidth:140,background:"rgba(255,255,255,.14)",border:"1px solid rgba(255,255,255,.28)",borderRadius:10,padding:"10px 12px",fontFamily:"var(--fb)",fontSize:12.5,fontWeight:800,color:"#fff",cursor:"pointer"}},copied==="p"?"\u2713 Spremno!":"\u2709\uFE0F Tjedni \u2014 roditelju")),
-      copied==="err"&&e("div",{style:{fontSize:11,color:"#fca5a5",marginTop:8}},"Kopiranje nije uspjelo \u2014 ozna\u010di tekst ru\u010dno.")
-    ));
 }
 function __pickDDayExam(razina, history){
   try{
@@ -386,4 +299,4 @@ function OnboardingModal({initialRazina,initialGrade,onSave,onClose,canClose}){
     )
   );
 }
-export { UpgradeModal, XpFloater, AboutModal, WrappedModal, DDayModal, DisclaimerModal, ShareCard, OnboardingModal };
+export { UpgradeModal, XpFloater, AboutModal, DDayModal, DisclaimerModal, ShareCard, OnboardingModal };
