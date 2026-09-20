@@ -15,13 +15,19 @@ numbers ("13") or decimal subtask numbers ("22.1").
 Crops are written to _audit/render/<examId>/<examId>__<qid>.pdf.png
 
 Optional 2nd arg: comma-separated qids to restrict output to (default: all
-found tasks/subtasks). Optional 3rd arg: explicit y-bound overrides as
-"qid=page:top:bottom,qid=page:top:bottom" (page_index is 0-based) for a task
-whose useful content ends earlier/later than the next boundary.
+found tasks/subtasks). Optional 3rd arg: explicit crop overrides as
+"qid=spec,qid=spec" (comma-separated per qid) where spec is
+"page:top:bottom" or "page:top:bottom:left:right" (page_index is 0-based,
+left/right default to the full page width) for a task whose useful content
+ends earlier/later than the next boundary, or needs a narrower/wider column.
+Join several specs for one qid with "+" (e.g. "19=12:272:792+13:0:114") to
+stack crops from consecutive pages vertically — for a task that starts near
+the bottom of one page and continues onto the next.
 """
 import sys
 import re
 import pymupdf as fitz
+from PIL import Image
 
 ZOOM = 2.5  # render resolution multiplier
 MARGIN_TOP = 12  # px above the task-number line to include
@@ -88,6 +94,30 @@ def find_next_boundary_y(doc, page_idx, y_top):
     return next_y
 
 
+def _parse_spec(spec, page_width):
+    """"page:top:bottom" or "page:top:bottom:left:right" -> (page, left, top, right, bottom)."""
+    parts = spec.split(':')
+    p, t, b = int(parts[0]), float(parts[1]), float(parts[2])
+    left = float(parts[3]) if len(parts) > 3 else 0.0
+    right = float(parts[4]) if len(parts) > 4 else page_width
+    return p, left, t, right, b
+
+
+def stack_vertically(images):
+    """Stack same-width-ish PNGs top to bottom into one image (for a task
+    whose content is split across a page break)."""
+    if len(images) == 1:
+        return images[0]
+    w = max(im.width for im in images)
+    h = sum(im.height for im in images)
+    out = Image.new('RGB', (w, h), 'white')
+    y = 0
+    for im in images:
+        out.paste(im, (0, y))
+        y += im.height
+    return out
+
+
 def main():
     if len(sys.argv) < 2:
         print('Usage: python scripts/mat-crop-pdf-figures.py <examId>', file=sys.stderr)
@@ -98,11 +128,10 @@ def main():
         qid_filter = {q for q in sys.argv[2].split(',')}
     overrides = {}
     if len(sys.argv) > 3:
-        # optional: qid=page:top:bottom,qid=page:top:bottom
+        # qid=spec[+spec...],qid=spec[+spec...] — see module docstring
         for part in sys.argv[3].split(','):
             qid, spec = part.split('=')
-            p, t, b = spec.split(':')
-            overrides[qid] = (int(p), float(t), float(b))
+            overrides[qid] = spec.split('+')
 
     pdf_path = f'_audit/pdf/{exam_id}.pdf'
     out_dir = f'_audit/render/{exam_id}'
@@ -118,10 +147,24 @@ def main():
     results = []
     errors = []
     for qid in qids:
-        page_idx, y_top = task_lines[qid]
-        if qid in overrides:
-            page_idx, y_top, y_bottom = overrides[qid]
-        else:
+        try:
+            if qid in overrides:
+                # one or more explicit page:top:bottom[:left:right] specs,
+                # rendered separately and stacked vertically
+                images = []
+                for spec in overrides[qid]:
+                    p, left, top, right, bottom = _parse_spec(spec, doc[int(spec.split(':')[0])].rect.width)
+                    page = doc[p]
+                    rect = fitz.Rect(left, top, right, bottom)
+                    pix = page.get_pixmap(matrix=fitz.Matrix(ZOOM, ZOOM), clip=rect)
+                    images.append(Image.frombytes('RGB', (pix.width, pix.height), pix.samples))
+                img = stack_vertically(images)
+                out_path = f'{out_dir}/{exam_id}__{qid}.pdf.png'
+                img.save(out_path)
+                results.append({'qid': qid, 'page': overrides[qid][0].split(':')[0], 'path': out_path})
+                continue
+
+            page_idx, y_top = task_lines[qid]
             # find the next boundary block (task/subtask marker, left-column
             # option, or "Odgovor:" line) on the same page to bound the crop
             next_y = find_next_boundary_y(doc, page_idx, y_top)
@@ -129,7 +172,6 @@ def main():
             hard_cap = (next_y + 15) if next_y is not None else (page_rect.height - 45)
             y_bottom = (next_y - 6) if next_y is not None else (page_rect.height - 45)
             y_bottom = extend_for_drawings(doc, page_idx, y_top, y_bottom, hard_cap)
-        try:
             page = doc[page_idx]
             rect = fitz.Rect(0, max(0, y_top - MARGIN_TOP), page.rect.width, y_bottom)
             pix = page.get_pixmap(matrix=fitz.Matrix(ZOOM, ZOOM), clip=rect)

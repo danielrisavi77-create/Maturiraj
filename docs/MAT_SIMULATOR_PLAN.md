@@ -96,3 +96,12 @@ Skripte: `.claude/workflows/mat-sim-fixes.js`, `.claude/workflows/mat-sim-figure
 Pokretanje: "run workflow mat-sim-fixes" odnosno "run workflow mat-sim-figure-audit" uz args.
 
 Definicija gotovog za svaku fazu: `npm test` zelen, `npm run build` prolazi, ručni prolaz kroz jedan ispit A i jedan B u svijetloj i tamnoj temi na mobilnoj širini.
+
+## Status 2026-09-20
+
+1. **Faza 1 (P0)** — gotovo, spojeno u `main`.
+2. **Faza 2 (performanse)** — gotovo, spojeno u `main`.
+3. **Faza 3 (kvaliteta podataka i ocjenjivanja)** — gotovo, spojeno u `main`.
+4. **Faza 4 (boje i vidljivost slika)** — gotovo, spojeno u `main`.
+5. **Faza 5 (održivost)** — 5.1, 5.2 i 5.4 gotovi i spojeni; 5.3 (razbijanje enginea po ekranima) ostaje ručno vođen posao, u tijeku, nije bila u workflowima.
+6. **Faza 6 (usporedba slika s NCVVO originalima)** — gotovo za 70/70 ispita s preuzetim originalom (581 slika uspoređeno, 189 odstupanja popravljeno na 56 grana, sve spojeno; izvještaj u `docs/MAT_FIGURE_AUDIT.md`). Ovim workflowom (mat-sim/cleanup) pospremljene su privremene skripte agenata i dodan `_audit/` u `.gitignore`. Otvoreno: 21 zadatak označen `img:true` bez SVG-a (2010 i 2011 A razina, 2013_ljeto_B) — jedan kratki dodatni prolaz; i 4 slike za ručnu odluku iz `docs/MAT_FIGURE_AUDIT.md` (2018_jesen_B 28.1–28.3, 2020_ljeto_B 23.1 — simulator namjerno prikazuje popunjeni predložak, sadržajno nije krivo).

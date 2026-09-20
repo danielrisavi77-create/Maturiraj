@@ -57,3 +57,6 @@ next-env.d.ts
 /tmp/
 /backups/
 /_staged_backup/
+
+# figure-audit PDFs and renders (large, regenerable, not for history)
+_audit/
