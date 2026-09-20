@@ -86,11 +86,16 @@ function LockedResultsBlock({label,note,rows=4,minHeight=150}){
 // Shared accessibility props for interactive divs
 const accBtn={role:"button",tabIndex:0,onKeyDown:ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();ev.currentTarget.click();}}};
 
-function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=false,isPaid=false,userAccess,onPracticeErrors,onStats,onFilter,highlightQid,onOpenSkripta}){
+function Sim(props){
+  const{exam,onExit}=props;
   if(!exam||!exam.qs) return e("div",{style:{padding:40,textAlign:"center",color:"var(--muted)"}},
     e("div",{style:{fontSize:14,marginBottom:12}},"Ispit nije pronađen."),
     e("button",{className:"btn btn-g",onClick:onExit},"← Natrag")
   );
+  return React.createElement(SimSession,props);
+}
+
+function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=false,isPaid=false,userAccess,onPracticeErrors,onStats,onFilter,highlightQid,onOpenSkripta}){
   const QSX=exam.qs;
   const _lsKey="discere_prog_"+(exam?.key||"x");
   const _exKey="discere_exam_"+(exam?.key||"x");
