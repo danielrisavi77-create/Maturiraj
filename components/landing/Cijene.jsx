@@ -3,17 +3,15 @@ import { useState } from "react";
 import { SUBJECTS } from "@/lib/data/subjects";
 
 const BILLING_OPTIONS = [
-  { id:"mj",  label:"Mjesečno",   badge:null,   desc:"naplata svaki mjesec" },
-  { id:"3mj", label:"3 mjeseca",  badge:"−10%", desc:"jednokratna naplata" },
-  { id:"6mj", label:"6 mjeseci",  badge:"−20%", desc:"jednokratna naplata" },
-  { id:"god", label:"Godišnje",   badge:"−50%", desc:"jednokratna naplata" },
+  { id:"mj",  label:"Mjesečno", badge:null,   desc:"naplata svaki mjesec" },
+  { id:"god", label:"Godišnje", badge:"−50%", desc:"godišnja pretplata · samo Pro" },
 ];
 
 const PLANS = [
   {
     id:"free", name:"Besplatno", tag:null,
-    prices:{ mj:"0", "3mj":"0", "6mj":"0", god:"0" },
-    totals:{ mj:null, "3mj":null, "6mj":null, god:null },
+    prices:{ mj:"0", god:"0" },
+    totals:{ mj:null, god:null },
     per:"zauvijek",
     accent:"var(--green)", accentD:"var(--green-d)", accentBdr:"rgba(62,207,110,.22)",
     cta:"Otvori skripte →", ctaCls:"bg",
@@ -29,12 +27,13 @@ const PLANS = [
   },
   {
     id:"starter", name:"Standard", tag:null,
-    prices:{ mj:"9,99", "3mj":"8,99", "6mj":"7,99", god:"6,99" },
-    totals:{ mj:null, "3mj":"26,97", "6mj":"47,94", god:"83,88" },
+    prices:{ mj:"9,99", god:"9,99" },
+    totals:{ mj:null, god:null },
     per:"/mj",
     accent:"var(--orange)", accentD:"rgba(255,107,43,.08)", accentBdr:"rgba(255,107,43,.22)",
     cta:"Počni sa Standardom", ctaCls:"bs",
     tagline:"Za jedan predmet.",
+    monthlyOnly:true,
     feats:[
       {ok:true,  t:"Sve iz Besplatnog"},
       {ok:true,  t:"Discere — 3 predmeta po izboru"},
@@ -46,8 +45,8 @@ const PLANS = [
   },
   {
     id:"pro", name:"Pro", tag:"Najpopularnije",
-    prices:{ mj:"19,99", "3mj":"17,99", "6mj":"15,99", god:"10,00" },
-    totals:{ mj:null, "3mj":"53,97", "6mj":"95,94", god:"120,00" },
+    prices:{ mj:"19,99", god:"9,99" },
+    totals:{ mj:null, god:"119,88" },
     per:"/mj",
     hi:true,
     accent:"var(--blue)", accentD:"var(--blue-d)", accentBdr:"rgba(75,123,255,.35)",
@@ -65,18 +64,12 @@ const PLANS = [
 ];
 
 export default function Cijene({ onSkripte, onPlan }) {
-  // Default "mj": mjesečne cijene imaju checkout (starter+pro). Godišnja/3mj/6mj
-  // Starter nema Stripe price ID → ne defaultati na necupljivu cijenu.
-  // TODO(billing #6): dodaj price ID-eve za 3mj/6mj/starter-god ili ih ukloni iz UI-a.
   const [billing, setBilling] = useState("mj");
-
   const currentOption = BILLING_OPTIONS.find(o => o.id === billing);
 
   return (
     <section id="cijene" className="sec" style={{background:"var(--s1)",borderTop:"1px solid var(--bdr)",borderBottom:"1px solid var(--bdr)",overflow:"hidden"}}>
       <div className="wrap">
-
-        {/* Header */}
         <div style={{textAlign:"center",marginBottom:48}}>
           <div className="eye" style={{marginBottom:12}}>Cijene</div>
           <h2 className="d2" style={{marginBottom:12}}>
@@ -87,7 +80,6 @@ export default function Cijene({ onSkripte, onPlan }) {
             Skripte su <strong style={{color:"var(--green)"}}>uvijek besplatne</strong> za sve. Discere i AI dolaze uz pretplatu — otkaži bilo kada.
           </p>
 
-          {/* Billing toggle */}
           <div className="bill-toggle">
             {BILLING_OPTIONS.map(opt => (
               <button key={opt.id} onClick={() => setBilling(opt.id)}
@@ -102,20 +94,20 @@ export default function Cijene({ onSkripte, onPlan }) {
             ))}
           </div>
 
-          {/* Billing opis */}
           {billing !== "mj" && (
             <div style={{marginTop:10,fontSize:12,color:"var(--muted)"}}>
-              💡 {currentOption.desc} — bez automatskog obnavljanja
+              {currentOption.desc}
             </div>
           )}
         </div>
 
-        {/* Cards */}
         <div className="pgrid" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:14,maxWidth:900,margin:"0 auto 48px"}}>
           {PLANS.map(p => {
             const price = p.prices[billing];
             const total = p.totals[billing];
-            const fn = p.id === "free" ? onSkripte : onPlan;
+            const click = p.id === "free"
+              ? onSkripte
+              : () => onPlan?.(p.monthlyOnly ? "mj" : billing);
 
             return (
               <div key={p.id} className={`price-card${p.hi ? " hi" : ""}${p.id === "starter" ? " std" : ""}`}
@@ -124,7 +116,6 @@ export default function Cijene({ onSkripte, onPlan }) {
                   "--card-accent-bdr": p.accentBdr,
                 }}>
 
-                {/* Tag */}
                 {p.tag && (
                   <div style={{position:"absolute",top:20,right:20,padding:"4px 10px",borderRadius:99,background:"linear-gradient(135deg,#4b7bff,#7c5cfc)",fontSize:10,fontWeight:700,letterSpacing:".04em",color:"#fff",zIndex:1}}>
                     {p.tag}
@@ -132,14 +123,11 @@ export default function Cijene({ onSkripte, onPlan }) {
                 )}
 
                 <div style={{position:"relative",zIndex:1,flex:1,display:"flex",flexDirection:"column"}}>
-
-                  {/* Naziv */}
                   <div style={{marginBottom:20}}>
                     <div style={{fontFamily:"var(--fh)",fontSize:20,fontWeight:900,marginBottom:3}}>{p.name}</div>
                     <div style={{fontSize:12,color:"var(--muted)"}}>{p.tagline}</div>
                   </div>
 
-                  {/* Cijena */}
                   <div style={{marginBottom:24,paddingBottom:24,borderBottom:"1px solid var(--bdr)"}}>
                     <div style={{display:"flex",alignItems:"baseline",gap:4}}>
                       <span style={{fontFamily:"var(--fh)",fontSize:44,fontWeight:900,lineHeight:1,
@@ -151,41 +139,28 @@ export default function Cijene({ onSkripte, onPlan }) {
                       )}
                     </div>
 
-                    {/* Ukupno i opis naplate */}
                     {p.id !== "free" && (
                       <div style={{marginTop:6,display:"flex",flexDirection:"column",gap:3}}>
+                        {p.monthlyOnly && billing === "god" && (
+                          <div style={{fontSize:12,color:"var(--orange)"}}>Standard je samo mjesečno</div>
+                        )}
                         {total && (
                           <div style={{fontSize:12,color:"var(--muted)"}}>
                             Ukupno: <strong style={{color:"var(--text)"}}>{total}€</strong>
-                            {billing === "god" && p.id === "pro" && (
-                              <span style={{marginLeft:6,color:"var(--green)",fontWeight:700}}>← 120€ godišnje</span>
-                            )}
                           </div>
                         )}
                         <div style={{fontSize:11,color:"var(--muted)",opacity:.7}}>
-                          {currentOption.desc}
-                          {billing !== "mj" && " · bez automatskog obnavljanja"}
+                          {p.monthlyOnly ? "naplata svaki mjesec" : currentOption.desc}
                         </div>
-                        {billing !== "mj" && (
-                          <div style={{fontSize:11,color:"var(--muted)",opacity:.6}}>
-                            Umjesto{" "}
-                            <span style={{textDecoration:"line-through"}}>
-                              {(parseFloat(p.prices.mj.replace(",",".")) * (billing==="3mj" ? 3 : billing==="6mj" ? 6 : 12)).toFixed(2).replace(".",",")}€
-                            </span>
-                            {" "}po punoj cijeni
-                          </div>
-                        )}
                       </div>
                     )}
                   </div>
 
-                  {/* CTA */}
-                  <button className={`btn btn-md ${p.ctaCls}`} onClick={fn}
+                  <button className={`btn btn-md ${p.ctaCls}`} onClick={click}
                     style={{width:"100%",justifyContent:"center",marginBottom:22,fontSize:14}}>
                     {p.cta}
                   </button>
 
-                  {/* Features */}
                   <div style={{display:"flex",flexDirection:"column",gap:9,flex:1}}>
                     {p.feats.map((f, j) => (
                       <div key={j} className={`feat-check ${f.ok ? "ok" : "off"}`}>
@@ -199,14 +174,12 @@ export default function Cijene({ onSkripte, onPlan }) {
                       </div>
                     ))}
                   </div>
-
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Guarantee strip */}
         <div style={{maxWidth:900,margin:"0 auto"}}>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:11,marginBottom:28}}>
             {[
@@ -224,7 +197,6 @@ export default function Cijene({ onSkripte, onPlan }) {
             ))}
           </div>
 
-          {/* Discere callout */}
           <div className="upgrade-banner" style={{background:"var(--orange-d)",borderColor:"rgba(255,107,43,.22)"}}>
             <span style={{fontSize:22}}>⭐</span>
             <div style={{flex:1,minWidth:200}}>
@@ -235,12 +207,11 @@ export default function Cijene({ onSkripte, onPlan }) {
                 Arhiva svih zadataka s državnih matura 2010.–2026. · svi predmeti · sve razine · riješeni odgovori + zasebna aplikacija na discere.app
               </div>
             </div>
-            <button className="btn bo btn-sm" onClick={onPlan} style={{flexShrink:0}}>
+            <button className="btn bo btn-sm" onClick={() => onPlan?.(billing)} style={{flexShrink:0}}>
               Pogledaj planove →
             </button>
           </div>
         </div>
-
       </div>
     </section>
   );

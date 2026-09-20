@@ -1,5 +1,5 @@
 // proxy.js  <- ide u ROOT projekta (uz next.config.js)
-// (Next.js nova konvencija — zamjenjuje middleware.js. Logika preuzeta iz middleware.js.)
+// Next.js 16 — zamjenjuje middleware.js.
 
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
@@ -28,33 +28,23 @@ export async function proxy(request) {
     }
   )
 
-  // VAZNO: ne pisati kod između createServerClient i getUser()
   const { data: { user } } = await supabase.auth.getUser()
+  const pathname = request.nextUrl.pathname
 
-  // ── Rute koje zahtijevaju samo prijavu (besplatni i placeni) ───
-  const authRequired = ['/plan-ucenja/dashboard', '/game']
-  const isAuthRequired = authRequired.some(route =>
-    request.nextUrl.pathname.startsWith(route)
-  )
-
-  if (isAuthRequired && !user) {
+  const authRequired = ['/dashboard', '/plan-ucenja/dashboard', '/game']
+  if (authRequired.some(route => pathname.startsWith(route)) && !user) {
     const url = request.nextUrl.clone()
     url.pathname = '/prijava'
-    url.searchParams.set('redirect', request.nextUrl.pathname)
+    url.searchParams.set('redirect', pathname)
     return NextResponse.redirect(url)
   }
 
-  // ── Rute koje zahtijevaju placeni plan (starter ili pro — Discere) ─
-  const paidRequired = ['/discere']
-  const isPaidRequired = paidRequired.some(route =>
-    request.nextUrl.pathname.startsWith(route)
-  )
-
-  if (isPaidRequired) {
+  const paidRequired = ['/discere', '/engleski-simulator']
+  if (paidRequired.some(route => pathname.startsWith(route))) {
     if (!user) {
       const url = request.nextUrl.clone()
       url.pathname = '/prijava'
-      url.searchParams.set('redirect', request.nextUrl.pathname)
+      url.searchParams.set('redirect', pathname)
       return NextResponse.redirect(url)
     }
 
@@ -64,9 +54,7 @@ export async function proxy(request) {
       .eq('id', user.id)
       .single()
 
-    // Dev bypass — owner email zaobilazi plan gate
     const isDevBypass = process.env.DEV_BYPASS_EMAIL && user.email === process.env.DEV_BYPASS_EMAIL
-
     const hasPaid =
       isDevBypass ||
       ((profile?.plan_type === 'pro' || profile?.plan_type === 'starter') &&
@@ -75,22 +63,17 @@ export async function proxy(request) {
     if (!hasPaid) {
       const url = request.nextUrl.clone()
       url.pathname = '/pro'
-      url.searchParams.set('from', 'discere')
+      url.searchParams.set('from', pathname.startsWith('/engleski-simulator') ? 'engleski' : 'discere')
       return NextResponse.redirect(url)
     }
   }
 
-  // ── Rute samo za PRO korisnike ─────────────────────────────────
   const proRoutes = ['/plan-ucenja/pro', '/simulacije', '/ai-profesor']
-  const isProRoute = proRoutes.some(route =>
-    request.nextUrl.pathname.startsWith(route)
-  )
-
-  if (isProRoute) {
+  if (proRoutes.some(route => pathname.startsWith(route))) {
     if (!user) {
       const url = request.nextUrl.clone()
       url.pathname = '/prijava'
-      url.searchParams.set('redirect', request.nextUrl.pathname)
+      url.searchParams.set('redirect', pathname)
       return NextResponse.redirect(url)
     }
 
@@ -111,11 +94,8 @@ export async function proxy(request) {
     }
   }
 
-  // ── Roditeljski portal — samo admin (DEV_BYPASS_EMAIL) za sada ──
-  // TODO: otvoriti za role=parent korisnike kad bude spreman za produkciju
   const isRoditeljiAppRoute =
-    request.nextUrl.pathname.startsWith('/roditelji/') &&
-    request.nextUrl.pathname !== '/roditelji'
+    pathname.startsWith('/roditelji/') && pathname !== '/roditelji'
   if (isRoditeljiAppRoute) {
     const isAdmin = process.env.DEV_BYPASS_EMAIL && user?.email === process.env.DEV_BYPASS_EMAIL
     if (!isAdmin) {
@@ -125,16 +105,14 @@ export async function proxy(request) {
     }
   }
 
-  // ── Admin pragovi — zahtijeva prijavu ──────────────────────────
-  if (request.nextUrl.pathname.startsWith('/admin-pragovi') && !user) {
-    return NextResponse.redirect(new URL('/login', request.url))
+  if (pathname.startsWith('/admin-pragovi') && !user) {
+    return NextResponse.redirect(new URL('/prijava', request.url))
   }
 
-  // ── Auth rute — prijavljeni korisnici preusmjeri na početnu ─
   const authRoutes = ['/prijava', '/registracija']
-  if (authRoutes.includes(request.nextUrl.pathname) && user) {
+  if (authRoutes.includes(pathname) && user) {
     const url = request.nextUrl.clone()
-    url.pathname = '/'
+    url.pathname = '/dashboard'
     return NextResponse.redirect(url)
   }
 
