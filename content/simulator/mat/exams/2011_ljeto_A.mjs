@@ -317,35 +317,43 @@ function Svg21a_2011LjetoA(){
   );
 }
 
-// ── 29.5 ───────────────────────────────────────────────────────────────────
-// Izvornik nudi praznu isprekidanu mrežu u koju učenik sam ucrtava graf.
-// Simulator (kao i kod ostalih "nacrtajte graf" zadataka) prikazuje gotov graf
-// f(x) = x³ − 3x²: nultočke (0, 0) (dvostruka) i (3, 0), max (0, 0),
-// min (2, −4), referentna točka T(1, −2).
-function Svg29e_2011LjetoA(){
-  const xMin=-2,xMax=4,yMin=-5,yMax=4,u=32,padL=28,padT=18;
-  const W=252,H=324;
+// ── 29.5 ──────────────────────────────────────────────────────────────────
+// Izvornik uz 29.5 nudi PRAZAN predložak: isprekidanu mrežu s korakom 0,5
+// jedinice, osi i oznake 0 i 1, bez ijedne točke i bez krivulje — učenik graf
+// sam ucrtava. Zato pitanje dobiva SvgQ29e (prazna mreža), a panel rješenja
+// Svg29e s krivuljom f(x) = x³ − 3x²: nultočke (0, 0) (dvostruka) i (3, 0),
+// max (0, 0), min (2, −4), referentna točka T(1, −2).
+function _svg29e_2011LjetoA(showSolution){
+  const xMin=-5,xMax=5,yMin=-5,yMax=5,u=26,padL=26,padT=22;
+  const W=padL*2+(xMax-xMin)*u, H=padT*2+(yMax-yMin)*u;
   const t="var(--text)",mu="var(--muted)",BG="var(--bg)";
   const PRIM="var(--blue)",ACC="var(--red)";
   const sx=x=>padL+(x-xMin)*u, sy=y=>padT+(yMax-y)*u;
   const ox=sx(0),oy=sy(0);
+  // mreža: isprekidane linije na svakih 0,5 jedinice, kao u izvorniku
   const grid=[];
-  for(let x=xMin;x<=xMax;x++) grid.push(e("line",{key:"gv"+x,x1:sx(x),y1:padT,x2:sx(x),y2:sy(yMin),
-    stroke:mu,strokeWidth:0.7,strokeDasharray:"3,3",opacity:0.65}));
-  for(let y=yMin;y<=yMax;y++) grid.push(e("line",{key:"gh"+y,x1:sx(xMin),y1:sy(y),x2:sx(xMax),y2:sy(y),
-    stroke:mu,strokeWidth:0.7,strokeDasharray:"3,3",opacity:0.65}));
-  // krivulja f(x) = x³ − 3x², odrezana na rub okvira
-  const pts=[];
-  for(let i=0;i<=600;i++){
-    const x=xMin+(xMax-xMin)*i/600;
-    const y=x*x*x-3*x*x;
-    if(y<yMin||y>yMax){ if(pts.length&&pts[pts.length-1]!=="") pts.push(""); continue; }
-    pts.push(sx(x).toFixed(1)+","+sy(y).toFixed(1));
+  for(let k=xMin*2;k<=xMax*2;k++){
+    const gx=sx(k/2);
+    grid.push(e("line",{key:"gv"+k,x1:gx,y1:sy(yMax),x2:gx,y2:sy(yMin),
+      stroke:mu,strokeWidth:0.6,strokeDasharray:"2,3",opacity:0.6}));
   }
-  const segs=pts.join(" ").split(" ").reduce(function(acc,p){
-    if(p===""){ acc.push([]); } else { if(!acc.length) acc.push([]); acc[acc.length-1].push(p); }
-    return acc;
-  },[]).filter(function(s){return s.length>1;});
+  for(let k=yMin*2;k<=yMax*2;k++){
+    const gy=sy(k/2);
+    grid.push(e("line",{key:"gh"+k,x1:sx(xMin),y1:gy,x2:sx(xMax),y2:gy,
+      stroke:mu,strokeWidth:0.6,strokeDasharray:"2,3",opacity:0.6}));
+  }
+  // krivulja f(x) = x³ − 3x², odrezana na rub okvira
+  const segs=[];
+  if(showSolution){
+    let cur=[];
+    for(let i=0;i<=800;i++){
+      const x=xMin+(xMax-xMin)*i/800;
+      const y=x*x*x-3*x*x;
+      if(y<yMin||y>yMax){ if(cur.length>1) segs.push(cur); cur=[]; continue; }
+      cur.push(sx(x).toFixed(1)+","+sy(y).toFixed(1));
+    }
+    if(cur.length>1) segs.push(cur);
+  }
   function mark(x,y,key,txt,dx,dy){
     return e("g",{key:key},
       e("circle",{cx:sx(x),cy:sy(y),r:2.8,fill:BG,stroke:ACC,strokeWidth:1.3}),
@@ -353,6 +361,9 @@ function Svg29e_2011LjetoA(){
     );
   }
   const axEndX=sx(xMax)+14, axEndY=padT-14, axBotY=sy(yMin)+14, axLeftX=sx(xMin)-14;
+  // Oznaka ishodišta: u praznom predlošku dolje-lijevo kao u izvorniku, a u
+  // rješenju gore-lijevo (II. kvadrant je prazan) da je krivulja ne prekrije.
+  const zeroY = showSolution ? oy-6 : oy+15;
   return e("svg",{viewBox:"0 0 "+W+" "+H,style:{width:"100%",maxWidth:W,display:"block",margin:"0 auto"}},
     ...grid,
     // os x
@@ -364,19 +375,23 @@ function Svg29e_2011LjetoA(){
     e("polygon",{points:ox+","+axEndY+" "+(ox-4)+","+(axEndY+8)+" "+(ox+4)+","+(axEndY+8),fill:t}),
     e("text",{x:ox+5,y:axEndY+13,fontSize:12,fill:t,fontStyle:"italic",fontWeight:"700"},"y"),
     // oznake 0 i 1
-    e("text",{x:ox-13,y:oy+15,fontSize:11,fill:t,fontWeight:"700"},"0"),
+    e("text",{x:ox-13,y:zeroY,fontSize:11,fill:t,fontWeight:"700"},"0"),
     e("text",{x:sx(1)-3,y:oy+15,fontSize:11,fill:t,fontWeight:"700"},"1"),
     e("text",{x:ox-13,y:sy(1)+4,fontSize:11,fill:t,fontWeight:"700"},"1"),
-    // graf
+    // graf (samo u rješenju)
     ...segs.map(function(s,i){return e("polyline",{key:"c"+i,points:s.join(" "),fill:"none",
       stroke:PRIM,strokeWidth:2,strokeLinejoin:"round",strokeLinecap:"round"});}),
-    // karakteristične točke
-    mark(0,0,"m0","(0, 0)",7,-6),
-    mark(1,-2,"m1","T(1, −2)",7,4),
-    mark(2,-4,"m2","(2, −4)",6,14),
-    mark(3,0,"m3","(3, 0)",4,-6)
+    // karakteristične točke (samo u rješenju)
+    showSolution?mark(0,0,"m0","(0, 0)",8,-11):null,
+    showSolution?mark(1,-2,"m1","T(1, −2)",7,4):null,
+    showSolution?mark(2,-4,"m2","(2, −4)",6,14):null,
+    showSolution?mark(3,0,"m3","(3, 0)",4,-6):null
   );
 }
+// Pitanje: prazan predložak (bez krivulje i bez točaka) — ne otkriva rješenje.
+function SvgQ29e_2011LjetoA(){ return _svg29e_2011LjetoA(false); }
+// Rješenje: isti koordinatni sustav s ucrtanim grafom.
+function Svg29e_2011LjetoA(){ return _svg29e_2011LjetoA(true); }
 
 export const qs = [
   {
@@ -1748,7 +1763,7 @@ export const qImages = {
   "2011_ljeto_A__7": () => e(Svg7_2011LjetoA, null),
   "2011_ljeto_A__19a": () => e(SvgQ19a_2011LjetoA, null),
   "2011_ljeto_A__21a": () => e(Svg21a_2011LjetoA, null),
-  "2011_ljeto_A__29e": () => e(Svg29e_2011LjetoA, null),
+  "2011_ljeto_A__29e": () => e(SvgQ29e_2011LjetoA, null),
   "2011_ljeto_A__26": () => e(Svg26_2011LjetoA, null),
   "2011_ljeto_A__30": () => e(Svg30_2011LjetoA, null),
 };
