@@ -233,6 +233,48 @@ function SvgSol20_2013Blj(){
   );
 }
 
+function SvgStrjelica8_2013Blj(){
+  // Q8: strjelica na koordinatnoj mrezi (11 x 10 jedinica).
+  // Vrhovi (kao u izvorniku): (1,6) (6,6) (6,7) (8,5) (6,3) (6,4) (1,4)
+  const sc=26, PADL=30, PADT=16, PADR=26, PADB=32;
+  const NX=11, NY=10;
+  const W=PADL+NX*sc+PADR, H=PADT+NY*sc+PADB;
+  const OX=PADL, OY=PADT+NY*sc;
+  const toX=v=>OX+v*sc, toY=v=>OY-v*sc;
+  const _TXT="var(--text)", _MUT="var(--muted)";
+  const verts=[[1,6],[6,6],[6,7],[8,5],[6,3],[6,4],[1,4]];
+  const grid=[];
+  for(let k=0;k<=NX;k++) grid.push(e("line",{key:"gv"+k,
+    x1:toX(k),y1:toY(NY),x2:toX(k),y2:toY(0),
+    stroke:_MUT,strokeOpacity:0.35,strokeWidth:0.7}));
+  for(let k=0;k<=NY;k++) grid.push(e("line",{key:"gh"+k,
+    x1:toX(0),y1:toY(k),x2:toX(NX),y2:toY(k),
+    stroke:_MUT,strokeOpacity:0.35,strokeWidth:0.7}));
+  const mark=(x,y,key)=>e("circle",{key,cx:toX(x),cy:toY(y),r:2.6,
+    fill:"var(--bg)",stroke:_TXT,strokeWidth:1.1});
+  return e("svg",{width:W,height:H,viewBox:`0 0 ${W} ${H}`,
+    style:{display:"block",margin:"0 auto",width:"100%",maxWidth:W}},
+    ...grid,
+    // os x sa strelicom
+    e("line",{x1:OX-8,y1:OY,x2:toX(NX)+12,y2:OY,stroke:_TXT,strokeWidth:1.6}),
+    e("polygon",{points:`${toX(NX)+20},${OY} ${toX(NX)+11},${OY-4} ${toX(NX)+11},${OY+4}`,fill:_TXT}),
+    e("text",{x:toX(NX)+14,y:OY+16,fontSize:12,fill:_TXT,fontStyle:"italic"},"x"),
+    // os y sa strelicom
+    e("line",{x1:OX,y1:OY+8,x2:OX,y2:toY(NY)-12,stroke:_TXT,strokeWidth:1.6}),
+    e("polygon",{points:`${OX},${toY(NY)-20} ${OX-4},${toY(NY)-11} ${OX+4},${toY(NY)-11}`,fill:_TXT}),
+    e("text",{x:OX-14,y:toY(NY)-2,fontSize:12,fill:_TXT,fontStyle:"italic"},"y"),
+    // strjelica
+    e("polygon",{points:verts.map(([x,y])=>`${toX(x)},${toY(y)}`).join(" "),
+      fill:_MUT,fillOpacity:0.35,stroke:_TXT,strokeWidth:2}),
+    ...verts.map(([x,y],i)=>mark(x,y,"v"+i)),
+    // jedinicne oznake
+    mark(0,0,"o0"), mark(1,0,"ox1"), mark(0,1,"oy1"),
+    e("text",{x:OX-11,y:OY+15,fontSize:12,fill:_TXT},"0"),
+    e("text",{x:toX(1)-3,y:OY+15,fontSize:12,fill:_TXT},"1"),
+    e("text",{x:OX-13,y:toY(1)+5,fontSize:12,fill:_TXT},"1")
+  );
+}
+
 export const qs = [
   {id:1,type:"mc",warn:"Pazi: 7/3 ≈ 2,33; otvoreni ⟨−2, 7/3⟩ → cijeli −1, 0, 1, 2 (−2 isključen); broji ih.",topic:"br",points:1,
   q:"Koliko je [B:cijelih] brojeva u intervalu ⟨-2, [FRAC:7|3]⟩?",
@@ -318,14 +360,14 @@ export const qs = [
   q:"Koliko kvadratnih jedinica iznosi površina strjelice prikazane na slici?",
   opts:["13","14","15","16"],
   sol:{cl:"B",alt:["B","b","B)","b)","B.","b.","(B)","(b)"]},
-  exp:"Strjelica = pravokutnik (6×2=12) + trokut (baza 2, visina 2 → 2). Ukupno: 12+2=14.",
+  exp:"Strjelica = pravokutnik (5×2=10) + trokut (baza 4, visina 2 → 4). Ukupno: 10+4=14.",
   steps:[
     {txt:"Strjelica se sastoji od pravokutnog tijela i trokutne glave."},
-    {txt:"Pravokutno tijelo: širina 6, visina 2 → površina = 6×2 = 12 jed²"},
-    {txt:"Trokutna glava: baza (visina) = 4, visina (horizontalno) = 2 → P = 4×2/2 = 4... ali od toga otpadaju 2 pravokutnika; direktan način: trokut osnove 2 i visine 2 → 2 jed²"},
-    {txt:"Ukupno: 12 + 2 = 14 kvadratnih jedinica",final:true},
+    {txt:"Pravokutno tijelo: od x=1 do x=6, od y=4 do y=6 → 5×2 = 10 jed²"},
+    {txt:"Trokutna glava: vrhovi (6,7), (8,5) i (6,3) → baza (okomita) = 4, visina (vodoravna) = 2 → P = 4·2/2 = 4 jed²"},
+    {txt:"Ukupno: 10 + 4 = 14 kvadratnih jedinica",final:true},
     {txt:"Analiza distractora: A(13): precizna greška u broju kvadrata. C/D: prevelika procjena glave.",final:true,note:"diagnostika"},
-    {txt:"Provjera: Ukupna površina = pravokutnik + trokut = 12+2 = 14 ✓",final:true,note:"verifikacija"},{txt:"Točan odgovor: B ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Složene likove dijelimo na jednostavnije (pravokutnik + trokut).",note:"postupak",final:true},{txt:"Intuicija: Česta greška: prebrojavanje kvadratića bez zbrajanja trokuta.",note:"intuicija",final:true}
+    {txt:"Provjera: Ukupna površina = pravokutnik + trokut = 10+4 = 14 ✓",final:true,note:"verifikacija"},{txt:"Točan odgovor: B ✓",note:"odgovor",final:true},{txt:"Sažetak postupka: Složene likove dijelimo na jednostavnije (pravokutnik + trokut).",note:"postupak",final:true},{txt:"Intuicija: Česta greška: prebrojavanje kvadratića bez zbrajanja trokuta.",note:"intuicija",final:true}
   ],
   why:["Složene likove dijelimo na jednostavnije (pravokutnik + trokut).",
        "Česta greška: prebrojavanje kvadratića bez zbrajanja trokuta.","Provjera identitetom: zbroj kutova trokuta = 180°; četverokuta = 360°.","Tipičan propust: zamijeniti opseg i površinu; pomiješati polumjer i promjer.","Veza s gradivom: planimetrija (2D) prethodi stereometriji (3D).","Provjera supstitucijom: uvrsti konkretnu vrijednost u izvornu jednadžbu i provjeri ekvivalentnost."]
@@ -761,6 +803,7 @@ export const qs = [
 ];
 
 export const qImages = {
+  "2013_ljeto_B__8": () => e(SvgStrjelica8_2013Blj, null),
   "2013_ljeto_B__10": () => e(SvgOpcije10_2013Blj, null),
   "2013_ljeto_B__20": () => e(SvgGrid20_2013Blj, null),
   "2013_ljeto_B__22.1": () => e(SvgTablica22_2013Blj, null),
