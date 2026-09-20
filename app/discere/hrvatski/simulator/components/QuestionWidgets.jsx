@@ -257,9 +257,11 @@ function MatQ({q,a,setA,rev}){
 }
 
 function SaAiHelper({q}){
+  return React.createElement(SaAiHelperSession,{key:q.id,q});
+}
+function SaAiHelperSession({q}){
   const[aiState,setAiState]=useState("idle");
   const[aiText,setAiText]=useState("");
-  useEffect(()=>{setAiState("idle");setAiText("");},[q.id]);
   async function fetchAi(){
     setAiState("loading");
     const prompt="Ti si profesor hrvatskog jezika i književnosti. Učenik uči za državnu maturu.\n\nPitanje: \""+q.q+"\"\nReferentni odgovor: "+q.sol?.ans+"\n\nNapiši kratko obrazloženje (2–4 rečenice) na hrvatskom koje objašnjava i proširuje taj odgovor — zašto je točan, koji pojam ili pravilo stoji iza njega. Budi konkretan i educativan.";
@@ -280,14 +282,17 @@ function SaAiHelper({q}){
 
 // qid je izvorni id pitanja (u virtualnim sesijama q.id je prenumeriran), pa distraktori
 // moraju ići po njemu, a ne po q.id.
-function AnswerHelper({q,show,onToggle,autoExpand,examKey,qid}){
+function AnswerHelper(props){
+  const {q,examKey,qid}=props;
+  return React.createElement(AnswerHelperSession,{...props,key:JSON.stringify([examKey??null,qid??q.id,q.id])});
+}
+function AnswerHelperSession({q,show,onToggle,autoExpand,examKey,qid}){
   const _qid=qid!=null?qid:q.id;
   const[aiState,setAiState]=useState("idle");
   const[aiText,setAiText]=useState("");
   const[dState,setDState]=useState("idle"); // analiza distraktora (zašto su ostali krivi)
   const[dText,setDText]=useState("");
   const[staticD,setStaticD]=useState(null); // unaprijed generirani distraktori (lazy-load)
-  useEffect(()=>{setAiState("idle");setAiText("");setDState("idle");setDText("");setStaticD(null);},[q.id]);
   useEffect(()=>{
     let alive=true;
     if(q.type==="mc"&&examKey!=null){
