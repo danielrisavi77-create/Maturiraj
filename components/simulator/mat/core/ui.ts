@@ -18,3 +18,7 @@ export function useEscape(active,onClose){
 export const XP_LEVELS=[0,100,250,450,700,1000,1400,1900,2500,3200,4000];
 export const LEVEL_NAMES={0:"Početnik",1:"Vježbač",2:"Student",3:"Napredni",4:"Stručnjak",5:"Majstor",6:"Ekspert",7:"Prvak",8:"Legenda",9:"Matematičar",10:"Genijalac"};
 export function getLevel(xp){let l=0;for(let i=0;i<XP_LEVELS.length;i++){if(xp>=XP_LEVELS[i])l=i;}return l;}
+/* 5.3 (screens): oznake tipa zadatka i slova opcija - dijele ih engine i mat/screens. */
+export const TLBL={mc:"Jedan odgovor",num:"Numerički",calc:"Izračun",sa:"Kratki odgovor",pa:"Produženi odgovor",proof:"Dokaz/Opis"};
+export const TBDG={mc:"b-mc",num:"b-num",calc:"b-calc",sa:"b-sa",pa:"b-proof",proof:"b-proof"};
+export const LL=["A","B","C","D","E"];
