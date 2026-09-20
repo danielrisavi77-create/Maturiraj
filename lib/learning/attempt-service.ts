@@ -2,9 +2,24 @@ import { validateAttemptEvent } from './outbox'
 import { validateQuestionSet } from '../discere/exam-schema'
 import { scoreQuestion } from '../discere/scoring'
 import { isAssessmentResponse } from './assessment-response'
-import type { buildLessonQuestionSet } from './lesson-question-set'
 
-type QuestionSet = ReturnType<typeof buildLessonQuestionSet>
+/** Only the fields this service reads are named. The full question contract
+ * lives in the schema; validateQuestionSet remains the sole authority on it,
+ * so nothing here may be read as a structural guarantee of validity. */
+type AttemptQuestion = {
+  id: string
+  version: string
+  type: string
+  outcomeIds: string[]
+}
+type QuestionSet = {
+  id: string
+  version: string
+  lessonId: string
+  subjectId: string
+  level: string
+  questions: AttemptQuestion[]
+}
 type AttemptEvent = {
   eventId: string
   sessionId: string
