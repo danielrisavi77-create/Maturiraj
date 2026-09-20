@@ -184,6 +184,7 @@ export default function DailyChallengeScreen({ userData, onDone, onBack, examsMa
           currentQuestionIndex={idx}
           totalQuestions={qs.length}
           from="eng-daily"
+          freePractice
           previewScore={(() => {
             const pqs = qs.slice(0, FREE_LIMIT)
             return { correct: pqs.filter(x => chk(x, answers[x.id !== undefined ? x.id : x.dailyId]) === true).length, total: pqs.length }

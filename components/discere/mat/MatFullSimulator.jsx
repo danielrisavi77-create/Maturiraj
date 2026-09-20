@@ -19,7 +19,7 @@ import { allowedExamKeys } from '@/lib/discere-access';
 import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
 import { saveSimResult } from '@/lib/sim-progress';
 import { isPaidTier, isProTier } from '@/lib/billing/getEffectiveTier';
-import { upgradeOffer } from '@/lib/billing/plans';
+import { PLANS, upgradeOffer } from '@/lib/billing/plans';
 
 const REAL_EXAM = /^\d{4}_[a-zšđčćž]+_[AB]$/; // skip virtual/practice sessions for sim_progress
 
@@ -98,10 +98,13 @@ export default function MatFullSimulator({ tier = 'free' }) {
         if (cancelled) return;
 
         // 2.1: katalog (meta bez pitanja) + loader → engine dohvaća chunk po chunk
+        // locked od sada znači SAMO 'vježbanje je zaključano'. Ispitni mod (pravi ispit s
+        // timerom) besplatan je na svim ispitima — engine ga propušta kad dobije freeExam:true,
+        // a pitanja zaključanog ispita drži u side-storeu da ih cross-exam modovi ne vide.
         const allowed = allowedExamKeys(tier);
         const catalog = (index.exams || []).map((meta) => ({
           ...meta,
-          locked: !allowed.has(meta.key), // free tier → demo only; gate per discere-access
+          locked: !allowed.has(meta.key),
         }));
 
         // saved cross-device state (Supabase) → hydrate engine before App mounts
@@ -124,6 +127,8 @@ export default function MatFullSimulator({ tier = 'free' }) {
         // Tier pravilo dolazi iz lib/billing (isto pravilo kao proxy i requirePro).
         // Engine (r2) čita planName/price iz ove poruke (PLAN_NAME/PLAN_PRICE), pa je
         // promjena PLANS.pro.priceLabel od sada dovoljna — cijena više nije hardkodirana.
+        // standardPlanName/standardPrice idu na zaključano vježbanje i razradu rezultata
+        // (to otključava Standard), a planName/price ostaju za Pro-only AI značajke.
         try {
           const offer = upgradeOffer();
           window.postMessage({
@@ -131,8 +136,11 @@ export default function MatFullSimulator({ tier = 'free' }) {
             tier,
             isPro: isProTier(tier),
             isPaid: isPaidTier(tier),
+            freeExam: true,
             planName: offer.planName,
             price: offer.price,
+            standardPlanName: PLANS.starter.name,
+            standardPrice: PLANS.starter.priceLabel,
           }, '*');
         } catch {}
 
@@ -258,7 +266,16 @@ function setupBridge(saved, router) {
 
   window.__DISCERE_NATIVE_SAVE__ = (msg) => {
     if (!msg) return;
-    if (msg.type === 'DISCERE_UPGRADE') { try { router.push('/pro?from=discere'); } catch {} return; }
+    if (msg.type === 'DISCERE_UPGRADE') {
+      // from/plan iz enginea: povratna ruta s /pro i preselektirani plan (Standard za
+      // vježbanje i razradu, Pro za AI značajke).
+      try {
+        const from = /^[a-z0-9-]{1,32}$/.test(msg.from || '') ? msg.from : 'discere';
+        const plan = msg.plan === 'standard' || msg.plan === 'pro' ? `&plan=${msg.plan}` : '';
+        router.push(`/pro?from=${from}${plan}`);
+      } catch {}
+      return;
+    }
     if (msg.type !== 'DISCERE_SAVE') return; // DISCERE_READY: hydrate/config already pushed
 
     if (msg.value == null) delete buffer[msg.key];
