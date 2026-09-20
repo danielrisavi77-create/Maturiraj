@@ -22,6 +22,31 @@ afterEach(() => {
 });
 
 describe('useLocalStorageJson', () => {
+  it('preserves displayed favorites if access to storage is revoked before a functional update', () => {
+    const storage = window.localStorage;
+    storage.setItem('revoked-storage', JSON.stringify({ existing: true }));
+    const { result } = renderHook(() => useLocalStorageJson('revoked-storage', {}));
+    vi.spyOn(window, 'localStorage', 'get').mockImplementation(() => { throw new Error('SecurityError'); });
+    act(() => result.current[1](previous => ({ ...previous, added: true })));
+    expect(result.current[0]).toEqual({ existing: true, added: true });
+    expect(() => act(() => window.dispatchEvent(new StorageEvent('storage', { key: null, storageArea: storage })))).not.toThrow();
+    expect(result.current[0]).toEqual({});
+  });
+
+  it.each(['write', 'clear'])('invalidates failed-write memory after external %s while every consumer is unmounted', (operation) => {
+    const key = `unmounted-fallback-${operation}`;
+    const first = renderHook(() => useLocalStorageJson(key, 0));
+    vi.spyOn(localStorage, 'setItem').mockImplementationOnce(() => { throw new Error('quota'); });
+    act(() => first.result.current[1](1));
+    expect(first.result.current[0]).toBe(1);
+    first.unmount();
+    if (operation === 'write') localStorage.setItem(key, '9');
+    else localStorage.clear();
+    window.dispatchEvent(new StorageEvent('storage', { key: operation === 'write' ? key : null, storageArea: localStorage }));
+    const second = renderHook(() => useLocalStorageJson(key, 0));
+    expect(second.result.current[0]).toBe(operation === 'write' ? 9 : 0);
+  });
+
   it('refreshes after another tab clears storage and ignores sessionStorage events', () => {
     localStorage.setItem('clearable', '4');
     const { result } = renderHook(() => useLocalStorageJson('clearable', 0));
