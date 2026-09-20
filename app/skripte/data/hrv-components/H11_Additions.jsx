@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLocalStorageText } from '@/lib/hooks/useLocalStorageJson';
 
 const CSS_SECHDR11 = `
   .sh11{display:flex;align-items:center;gap:10px;margin:22px 0 6px}
@@ -570,20 +571,7 @@ export function EssayTipoviPitanjaH11() {
 }
 
 export function EssayWriterNovelaH11() {
-  const [text, setText] = useState('');
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('h11.essay.novela');
-      if (saved) setText(saved);
-    } catch (e) {}
-  }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('h11.essay.novela', text);
-    } catch (e) {}
-  }, [text]);
+  const [text, setText] = useLocalStorageText('h11.essay.novela');
 
   const words = (text.match(/\S+/g) || []).length;
   const chars = text.length;
