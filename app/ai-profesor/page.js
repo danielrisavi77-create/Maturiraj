@@ -115,7 +115,7 @@ export default function AIProfessorPage() {
   // Plan state
   const [plan,        setPlan]        = useState(null)
   const [weeks,       setWeeks]       = useState([])
-  const [loadingPlan, setLoadingPlan] = useState(true)
+  const [loadingPlan, setLoadingPlan] = useState(!!user)
 
   // Chat state
   const [messages,  setMessages]  = useState([])
@@ -128,6 +128,16 @@ export default function AIProfessorPage() {
   const [selSubj,  setSelSubj]  = useState(null)
   const [userPlan, setUserPlan] = useState(null)  // 'pro' | 'starter' | null
   const [usage,    setUsage]    = useState({ used: 0, limit: 150, budgetUsedPct: 0, costUsd: 0 })
+  const [previousUser, setPreviousUser] = useState(user)
+  if (previousUser !== user) {
+    setPreviousUser(user)
+    setPlan(null)
+    setWeeks([])
+    setUserPlan(null)
+    setUsage({ used: 0, limit: 150, budgetUsedPct: 0, costUsd: 0 })
+    setMessages([])
+    setLoadingPlan(!!user)
+  }
 
   const chatBodyRef = useRef(null)
   const inputRef    = useRef(null)
@@ -135,17 +145,17 @@ export default function AIProfessorPage() {
 
   /* ─── Auth + plan check ─────────────────────── */
   useEffect(() => {
-    if (!user) { setLoadingPlan(false); return }
+    if (!user) return
+    let cancelled = false
 
     const init = async () => {
-      setLoadingPlan(true)
-
       // Dohvati plan korisnika
       const { data: profileData } = await supabase
         .from('profiles')
         .select('plan_type')
         .eq('id', user.id)
         .single()
+      if (cancelled) return
 
       const planType = profileData?.plan_type === 'pro' ? 'pro'
         : profileData?.plan_type === 'starter' ? 'starter'
@@ -156,6 +166,7 @@ export default function AIProfessorPage() {
       if (planType === 'pro') {
         const { data: statsData } = await supabase
           .rpc('get_ai_usage_stats', { p_user_id: user.id })
+        if (cancelled) return
 
         if (statsData) {
           setUsage({
@@ -177,6 +188,7 @@ export default function AIProfessorPage() {
         .order('created_at', { ascending: false })
         .limit(1)
         .single()
+      if (cancelled) return
 
       if (planData) {
         setPlan(planData)
@@ -185,17 +197,22 @@ export default function AIProfessorPage() {
           .select('*')
           .eq('plan_id', planData.id)
           .order('week_num', { ascending: true })
+        if (cancelled) return
         setWeeks(weeksData || [])
       }
 
       setLoadingPlan(false)
     }
     init()
+    return () => { cancelled = true }
   }, [user])
 
   /* ─── Welcome poruka ────────────────────────── */
-  useEffect(() => {
-    if (loadingPlan) return
+  const nextWeek = useMemo(() => weeks.find(w => !w.completed) || null, [weeks])
+  const [welcomeContext, setWelcomeContext] = useState(null)
+  if (!welcomeContext || welcomeContext.loadingPlan !== loadingPlan || welcomeContext.selSubj !== selSubj || welcomeContext.userPlan !== userPlan) {
+    setWelcomeContext({ loadingPlan, selSubj, userPlan })
+    if (!loadingPlan) {
 
     let welcomeText
     if (!user) {
@@ -211,13 +228,10 @@ export default function AIProfessorPage() {
     }
 
     setMessages([{ role: 'ai', text: welcomeText, id: 'welcome' }])
-  }, [loadingPlan, selSubj, userPlan])
+    }
+  }
 
   /* ─── Derivirani kontekst plana ─────────────── */
-  const nextWeek = useMemo(() =>
-    weeks.find(w => !w.completed) || null,
-  [weeks])
-
   const analysis = useMemo(() => {
     if (!weeks.length || !plan?.subjects?.length) return null
     return analyzeplan(weeks, plan.subjects, plan.hours_per_week)
