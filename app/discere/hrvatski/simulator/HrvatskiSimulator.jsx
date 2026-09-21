@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
+import { useClientState } from '@/lib/hooks/useClientState';
 import { buildUserAccess } from '@/components/discere/paywall';
 import confetti from 'canvas-confetti';
 import { EXAMS, ESEJI, SAZECI } from './hrvatskiSimulatorData';
@@ -90,6 +91,12 @@ const WrappedCard       = React.lazy(() => import('./components/WrappedCard'));
 const StudyPlanModal    = React.lazy(() => import('./components/StudyPlanModal'));
 
 function App(){
+  const[initialRoute]=useClientState(()=>{
+    const p=new URLSearchParams(window.location.search);
+    const screen=p.get("s");
+    const djelo=p.get("lektira");
+    return{screen,examKey:p.get("exam"),deadSession:!!screen&&VIRTUAL_SESSION_SCREENS.includes(screen),lektira:djelo?{djelo,autor:p.get("autor")||""}:null};
+  },null);
   const[screen,setScreen]=useState("home");
   const[showGlossary,setShowGlossary]=useState(false);
   const[glossaryTerm,setGlossaryTerm]=useState("");
@@ -450,6 +457,20 @@ function App(){
   // ── #5 URL routing — browser back/forward support ──
   const _isPopstate=useRef(false);
   const _screenInited=useRef(false);
+  const[appliedInitialRoute,setAppliedInitialRoute]=useState(null);
+  if(initialRoute!==appliedInitialRoute){
+    setAppliedInitialRoute(initialRoute);
+    if(initialRoute.lektira){
+      setLektiraDeep(initialRoute.lektira);
+      setScreen("lektire");
+    }else if(initialRoute.screen&&initialRoute.screen!=="home"&&!initialRoute.deadSession){
+      setScreen(initialRoute.screen);
+      if(initialRoute.examKey){setExamKey(initialRoute.examKey);setPendingExamKey(initialRoute.examKey);}
+    }
+  }
+  useLayoutEffect(()=>{
+    if(initialRoute&&(initialRoute.lektira||(initialRoute.screen&&initialRoute.screen!=="home"&&!initialRoute.deadSession))) _isPopstate.current=true;
+  },[initialRoute]);
   // Sync screen → URL (push state on every screen change except the very first render)
   useEffect(()=>{
     if(!_screenInited.current){_screenInited.current=true;return;}
@@ -471,19 +492,8 @@ function App(){
     if(typeof window==='undefined') return;
     const p=new URLSearchParams(window.location.search);
     const s=p.get("s"); const ek=p.get("exam");
-    const deepLektira=p.get("lektira");
     // Sesija je živjela samo u state-u; nakon reloada je nema pa se vraćamo na početnu.
     const deadSession=!!s&&VIRTUAL_SESSION_SCREENS.includes(s);
-    if(deepLektira){
-      // Dolazak iz skripte: otvori Lektire na zadanom djelu
-      _isPopstate.current=true;
-      setLektiraDeep({djelo:deepLektira,autor:p.get("autor")||""});
-      setScreen("lektire");
-    } else if(s&&s!=="home"&&!deadSession){
-      _isPopstate.current=true;
-      setScreen(s);
-      if(ek){setExamKey(ek);setPendingExamKey(ek);}
-    }
     if(deadSession) window.history.replaceState({screen:"home"},"",window.location.pathname);
     else window.history.replaceState({screen:s||"home",examKey:ek||"2024_ljeto_A"},"",window.location.href);
     const onPop=ev=>{
