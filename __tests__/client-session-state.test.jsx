@@ -8,8 +8,8 @@ import { useClientState } from '@/lib/hooks/useClientState';
 
 afterEach(cleanup);
 
-function Counter({ read }) {
-  const [value, setValue] = useClientState(read, 0);
+function Counter({ read, resetKey }) {
+  const [value, setValue] = useClientState(read, 0, resetKey);
   return <button onClick={() => { setValue(v => v + 1); setValue(v => v + 1); }}>{value}</button>;
 }
 
@@ -22,6 +22,15 @@ it('reads browser session state once in StrictMode and keeps batched local edits
   view.rerender(<StrictMode><Counter read={() => 100} /></StrictMode>);
   expect(screen.getByRole('button').textContent).toBe('6');
   expect(read).toHaveBeenCalledOnce();
+});
+
+it('starts a new browser snapshot only when its explicit reset key changes', () => {
+  const view = render(<Counter read={() => 4} resetKey="first" />);
+  fireEvent.click(screen.getByRole('button'));
+  view.rerender(<Counter read={() => 20} resetKey="first" />);
+  expect(screen.getByRole('button').textContent).toBe('6');
+  view.rerender(<Counter read={() => 20} resetKey="second" />);
+  expect(screen.getByRole('button').textContent).toBe('20');
 });
 
 it('hydrates the server fallback before reading browser state, without a mismatch', async () => {
