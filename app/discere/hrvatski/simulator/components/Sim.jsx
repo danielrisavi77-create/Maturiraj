@@ -156,26 +156,9 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
   const[modal,setModal]=useState(false);
   const[showKeys,setShowKeys]=useState(false);
   const[showSimPojmovnik,setShowSimPojmovnik]=useState(false);
-  const[confettiFired,setConfettiFired]=useState(false);
-  const[displayPct,setDisplayPct]=useState(0);
+  const confettiFired=useRef(false);
   useEffect(()=>{
-    if(!done) return;
-    const autoQ2=QSX.filter(q=>q.type==="mc");
-    const cor2=autoQ2.filter(q=>chk(q,answers[q.id])===true).length;
-    const target=autoQ2.length>0?Math.round(cor2/autoQ2.length*100):0;
-    if(target===0){setDisplayPct(0);return;}
-    let start=null;const dur=1400;
-    function tick(ts){
-      if(!start) start=ts;
-      const prog=Math.min((ts-start)/dur,1);
-      setDisplayPct(Math.round(prog*target));
-      if(prog<1) requestAnimationFrame(tick);
-    }
-    const raf=requestAnimationFrame(tick);
-    return()=>cancelAnimationFrame(raf);
-  },[done]);
-  useEffect(()=>{
-    if(!done||confettiFired) return;
+    if(!done||confettiFired.current) return;
     const autoQ2=QSX.filter(q=>q.type==="mc");
     const cor2=autoQ2.filter(q=>chk(q,answers[q.id])===true).length;
     const pct2=autoQ2.length>0?Math.round(cor2/autoQ2.length*100):0;
@@ -184,9 +167,9 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     confetti({particleCount:pct2>=90?180:80,spread:pct2>=90?120:80,origin:{y:.55},colors,scalar:pct2>=90?1.2:1});
     const t1=pct2>=90?setTimeout(()=>confetti({particleCount:60,spread:60,origin:{y:.4},colors,angle:60}),350):null;
     const t2=pct2>=90?setTimeout(()=>confetti({particleCount:60,spread:60,origin:{y:.4},colors,angle:120}),500):null;
-    setConfettiFired(true);
+    confettiFired.current=true;
     return()=>{if(t1)clearTimeout(t1);if(t2)clearTimeout(t2);};
-  },[done,confettiFired]);
+  },[done]);
   // XP bar fill animation
   useEffect(()=>{
     if(!done) return;
