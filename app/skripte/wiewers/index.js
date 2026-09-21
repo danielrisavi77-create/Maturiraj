@@ -11,9 +11,9 @@ const EngleskiViewer = dynamic(() => import('./eng/EngleskiViewer'), { ssr: fals
 const SociologijaViewer = dynamic(() => import('./soc/SociologijaViewer'), { ssr: false })
 const MatematikaViewer = dynamic(() => import('./mat/MatematikaViewer'), { ssr: false })
 const StructuredSkriptaViewer = dynamic(() => import('./shared/StructuredSkriptaViewer'), { ssr: false })
-const BasicSubjectViewer = dynamic(() => import('./fallback/BasicSubjectViewer'), { ssr: false })
+export const BasicSubjectViewer = dynamic(() => import('./fallback/BasicSubjectViewer'), { ssr: false })
 
-const SUBJECT_VIEWERS = {
+export const SUBJECT_VIEWERS = {
   hrv: HrvatskiViewer,
   mat: MatematikaViewer,
   kem: KemijaViewer,

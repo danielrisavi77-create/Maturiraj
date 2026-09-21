@@ -1,6 +1,7 @@
 'use client'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { activeFilterCount } from '@/lib/prijemni/searchFilter'
+import { useClientState } from '@/lib/hooks/useClientState'
 
 // #5 — static trending chips (replace with analytics-driven later)
 const TRENDING_CHIPS = [
@@ -60,18 +61,22 @@ const CITY_OPTIONS_FLAT = [
 ]
 
 export default function SearchFilterBar({ filter, setFilter, totalStudiji, defaultFilter, track, isPro = false, forceOpen = false, onForceOpenHandled }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(forceOpen)
+  const [previousForceOpen, setPreviousForceOpen] = useState(forceOpen)
+  if (previousForceOpen !== forceOpen) {
+    setPreviousForceOpen(forceOpen)
+    if (forceOpen) setOpen(true)
+  }
   const inputRef = useRef(null)
   const activeCount = activeFilterCount(filter)
   const hasFilters = activeCount > 0 || filter.query
-  const [savedPresets, setSavedPresets] = useState([])
+  const [savedPresets, setSavedPresets] = useClientState(loadPresets, [])
   const [presetName, setPresetName] = useState('')
   const lastSubmittedQuery = useRef('')
 
   // Open filter panel when parent requests it (#4)
   useEffect(() => {
     if (forceOpen) {
-      setOpen(true)
       onForceOpenHandled?.()
     }
   }, [forceOpen]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -105,11 +110,6 @@ export default function SearchFilterBar({ filter, setFilter, totalStudiji, defau
     const url = params.toString() ? `?${params}` : window.location.pathname
     window.history.replaceState({}, '', url)
   }, [filter])
-
-  // Load saved presets on mount (#6)
-  useEffect(() => {
-    setSavedPresets(loadPresets())
-  }, [])
 
   // Cmd/Ctrl+K to focus search
   useEffect(() => {

@@ -1,6 +1,7 @@
 'use client'
 
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo } from 'react'
+import { useClientState } from '@/lib/hooks/useClientState'
 import { useRouter } from 'next/navigation'
 import { usePageTracking } from '@/lib/hooks/usePageTracking'
 import Link from 'next/link'
@@ -12,7 +13,7 @@ import {
   SUBJECTS_KLASICNI,
   SKRIPTE,
 } from './data'
-import { getSubjectViewer } from './wiewers'
+import { SUBJECT_VIEWERS, BasicSubjectViewer } from './wiewers'
 
 const GROUPS = [
   { title: 'Obvezni predmeti', items: SUBJECTS_OBVEZNI || [] },
@@ -161,7 +162,12 @@ function CatalogView({ onOpenSubject }) {
 export default function Page() {
   usePageTracking('skripte')
   const router = useRouter()
-  const [selectedSubjectId, setSelectedSubjectId] = useState(null)
+  const [selectedSubjectId, setSelectedSubjectId] = useClientState(() => {
+    try {
+      const p = new URLSearchParams(window.location.search).get('sub')
+      return p && SKRIPTE.find(s => s.id === p) ? p : null
+    } catch { return null }
+  }, null)
 
   function handleOpenSubject(id) {
     if (id === 'hrv') {
@@ -171,20 +177,12 @@ export default function Page() {
     setSelectedSubjectId(id)
   }
 
-  // Deep-link: /skripte?sub=hrv auto-opens that subject
-  useEffect(() => {
-    try {
-      const p = new URLSearchParams(window.location.search).get('sub')
-      if (p && SKRIPTE.find(s => s.id === p)) setSelectedSubjectId(p)
-    } catch {}
-  }, []) // eslint-disable-line
-
   const selectedSubject = useMemo(() => {
     if (!selectedSubjectId) return null
     return SKRIPTE.find((item) => item.id === selectedSubjectId) || null
   }, [selectedSubjectId])
 
-  const Viewer = selectedSubject ? getSubjectViewer(selectedSubject.id) : null
+  const Viewer = SUBJECT_VIEWERS[selectedSubject?.id] || BasicSubjectViewer
 
   return (
     <>

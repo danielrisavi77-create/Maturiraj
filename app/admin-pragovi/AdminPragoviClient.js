@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
+import { useClientState } from '@/lib/hooks/useClientState'
 
 const INITIAL_DATA = [
   ["Medicina","Medicinski fakultet","Zagreb",962.0,960.0,962.0],
@@ -121,21 +122,17 @@ function getYearKey(y) {
 }
 
 export default function AdminPragoviClient() {
-  const [data, setData] = useState([])
+  const [data, setData] = useClientState(() => {
+    try {
+      const saved = localStorage.getItem('admin_pragovi')
+      return saved ? JSON.parse(saved) : mapInitialData()
+    } catch { return mapInitialData() }
+  }, [])
   const [activeYear, setActiveYear] = useState('2025')
   const [search, setSearch] = useState('')
   const [lastSave, setLastSave] = useState('Nije sačuvano')
   const [exportText, setExportText] = useState('// Klikni "Sačuvaj sve" za generiranje...')
   const [toast, setToast] = useState(null)
-
-  useEffect(() => {
-    const saved = localStorage.getItem('admin_pragovi')
-    if (saved) {
-      setData(JSON.parse(saved))
-    } else {
-      setData(mapInitialData())
-    }
-  }, [])
 
   function showToast(message, type = 'success') {
     setToast({ message, type })

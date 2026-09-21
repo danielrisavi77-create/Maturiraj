@@ -1,5 +1,6 @@
 'use client'
 import { useState, useCallback, useEffect } from 'react'
+import { useClientState } from '@/lib/hooks/useClientState'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { ENG_NIZA_RAZINA } from '../../data/eng/niza'
@@ -1119,10 +1120,9 @@ const CH_NAMES = {
 }
 
 function WeakTracker() {
-  const [wa, setWa] = useState(null)
-  useEffect(() => {
-    try { setWa(JSON.parse(localStorage.getItem('maturix_weak') || '{}')) } catch { setWa({}) }
-  }, [])
+  const [wa, setWa] = useClientState(() => {
+    try { return JSON.parse(localStorage.getItem('maturix_weak') || '{}') } catch { return {} }
+  }, null)
   const resetOne = (k) => {
     setWa(prev => {
       const next = { ...prev }; delete next[k]
