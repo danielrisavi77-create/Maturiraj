@@ -1,7 +1,7 @@
 // app/pretplata/page.js
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useClientState } from '@/lib/hooks/useClientState'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/hooks/useAuth'
 import {
@@ -510,15 +510,14 @@ const PRICING_CSS = `
 
 function BackButton() {
   const router = useRouter()
-  const [href, setHref] = useState('/skripte')
-
-  useEffect(() => {
+  const [href] = useClientState(() => {
     // If user came from a chapter page, go back there; otherwise fallback to /skripte
     const ref = document.referrer
     if (ref && new URL(ref).hostname === window.location.hostname && ref !== window.location.href) {
-      setHref(ref)
+      return ref
     }
-  }, [])
+    return '/skripte'
+  }, '/skripte')
 
   return (
     <a href={href} className="pricing-nav-link" onClick={(e) => {

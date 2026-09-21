@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useClientState } from "@/lib/hooks/useClientState";
 import { POJMOVI } from "@/lib/data/pojmovi";
 
 const SVI_PREDMETI = [
@@ -56,20 +57,12 @@ function writeLS(key, value) {
 }
 
 export default function DanasUcim() {
-  const [odabraniPredmeti, setOdabraniPredmeti] = useState(["hrv", "mat", "eng"]);
-  const [aktivniPredmet, setAktivniPredmet] = useState("hrv");
+  const [odabraniPredmeti, setOdabraniPredmeti] = useClientState(() => readLS(STORAGE_KEY_PRED, ["hrv", "mat", "eng"]), ["hrv", "mat", "eng"]);
+  const [aktivniOdabir, setAktivniPredmet] = useState(null);
+  const aktivniPredmet = aktivniOdabir ?? odabraniPredmeti[0];
   const [openIdx, setOpenIdx] = useState(null);
-  const [known, setKnown] = useState({});
+  const [known, setKnown] = useClientState(() => readLS(STORAGE_KEY_KNOWN, {}), {});
   const [pokaziPicker, setPokaziPicker] = useState(false);
-
-  // Učitaj iz localStorage nakon mounta
-  useEffect(() => {
-    const savedPred = readLS(STORAGE_KEY_PRED, ["hrv", "mat", "eng"]);
-    const savedKnown = readLS(STORAGE_KEY_KNOWN, {});
-    setOdabraniPredmeti(savedPred);
-    setAktivniPredmet(savedPred[0]);
-    setKnown(savedKnown);
-  }, []);
 
   function togglePredmet(id) {
     setOdabraniPredmeti(prev => {

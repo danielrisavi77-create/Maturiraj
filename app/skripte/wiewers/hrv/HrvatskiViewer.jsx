@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useClientState } from '@/lib/hooks/useClientState'
 import { useRouter } from 'next/navigation'
 import {
   HRV_POGAVLJA_META,
@@ -1481,21 +1482,23 @@ export default function HrvatskiViewer({ onBack }) {
   const firstImplementedId =
     HRV_POGAVLJA_META.find((item) => item.implemented)?.id || 'poglavlje-01'
 
-  const [activeChapterId, setActiveChapterId] = useState('overview')
-  const [activeTab, setActiveTab] = useState(98)
+  const [navigation, setNavigation] = useClientState(() => {
+    try {
+      if (!sessionStorage.getItem('hrv_pricing_seen')) {
+        sessionStorage.setItem('hrv_pricing_seen', '1')
+        return { activeChapterId: 'pretplata', activeTab: 99 }
+      }
+    } catch {}
+    return { activeChapterId: 'overview', activeTab: 98 }
+  }, { activeChapterId: 'overview', activeTab: 98 })
+  const { activeChapterId, activeTab } = navigation
+  const setActiveChapterId = id => setNavigation(prev => ({ ...prev, activeChapterId: id }))
+  const setActiveTab = tab => setNavigation(prev => ({ ...prev, activeTab: tab }))
   const [answers, setAnswers] = useState({})
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   // Lazy-load chapter data on demand — cache to avoid re-fetching
   const chapterCache = useRef({})
-
-  useEffect(() => {
-    if (!sessionStorage.getItem('hrv_pricing_seen')) {
-      sessionStorage.setItem('hrv_pricing_seen', '1')
-      setActiveChapterId('pretplata')
-      setActiveTab(99)
-    }
-  }, [])
 
   const chapterMeta = null
   const chapter = null

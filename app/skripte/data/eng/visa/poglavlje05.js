@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useClientState } from "@/lib/hooks/useClientState";
 
 function launchConfetti() {
     const colors = ['#4F7BE8','#CF142B','#52D688','#E8A838','#A78BFA','#C9A227'];
@@ -369,23 +370,35 @@ const ERROR_ITEMS = [
 
 // ═══ COMPONENT ═══
 export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, onNavigate }) {
+  const [progress, setProgress] = useClientState(() => {
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(PAGE_KEY) || '{}') || {}; } catch {}
+    return {
+      tabsDone: saved.tabs || {}, cgPassed: !!saved.cgPassed,
+      drillDone: !!saved.drillDone, showExport: !!saved.drillDone,
+      drillScore: saved.drillDone ? saved.drillScore || 0 : 0,
+      drillResults: saved.drillDone ? saved.drillResults || [] : [],
+    };
+  }, { tabsDone: {}, cgPassed: false, drillDone: false, showExport: false, drillScore: 0, drillResults: [] });
+  const { tabsDone, cgPassed, drillDone, showExport, drillScore, drillResults } = progress;
+  const setProgressField = (key, update) => setProgress(prev => ({ ...prev, [key]: typeof update === 'function' ? update(prev[key]) : update }));
+  const setTabsDone = update => setProgressField('tabsDone', update);
+  const setCgPassed = update => setProgressField('cgPassed', update);
+  const setDrillDone = update => setProgressField('drillDone', update);
+  const setShowExport = update => setProgressField('showExport', update);
+  const setDrillScore = update => setProgressField('drillScore', update);
+  const setDrillResults = update => setProgressField('drillResults', update);
   const [activeTab, setActiveTab] = useState(0);
-  const [tabsDone, setTabsDone] = useState({});
   const [revealOpen, setRevealOpen] = useState({});
   const [cgAnswered, setCgAnswered] = useState(false);
-  const [cgPassed, setCgPassed] = useState(false);
   const [mobDrawerOpen, setMobDrawerOpen] = useState(false);
   const [showBackTop, setShowBackTop] = useState(false);
   
   // Drill state
   const [drillIdx, setDrillIdx] = useState(0);
-  const [drillScore, setDrillScore] = useState(0);
-  const [drillResults, setDrillResults] = useState([]);
   const [drillAnswered, setDrillAnswered] = useState(false);
   const [drillShowFb, setDrillShowFb] = useState(false);
-  const [drillDone, setDrillDone] = useState(false);
   const [drillPickedIdx, setDrillPickedIdx] = useState(null);
-  const [showExport, setShowExport] = useState(false);
   
   // Error drill state
   const [errOpen, setErrOpen] = useState({});
@@ -403,18 +416,6 @@ export default function EngP05Conditionals({ onBack, onNext, onPrev, onDiscere, 
 
   // Load/save progress
   useEffect(() => {
-    try {
-      const d = JSON.parse(localStorage.getItem(PAGE_KEY) || '{}');
-      if (d.tabs) setTabsDone(d.tabs);
-      if (d.cgPassed) setCgPassed(true);
-      if (d.drillDone) {
-        setDrillDone(true);
-        setDrillScore(d.drillScore || 0);
-        setDrillResults(d.drillResults || []);
-        setShowExport(true);
-      }
-    } catch(e){}
-    
     const handleScroll = () => setShowBackTop(window.scrollY > 400);
     window.addEventListener('scroll', handleScroll, {passive:true});
     return () => window.removeEventListener('scroll', handleScroll);
