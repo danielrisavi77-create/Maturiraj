@@ -43,8 +43,17 @@ function pickNewestPerRazina(ex: any[]) {
 // answer "can this tier open this canonical subject" without mounting a
 // component (e.g. server-side checks, tests) can reuse one source of truth
 // instead of re-deriving it.
-export function canAccessCanonicalSubject(isPaid: boolean, subjectStatus: 'active' | 'qa' | 'soon'): boolean {
-  if (!isPaid) return false
+//
+// `freeExam` is the free-exam policy: a real, timed exam is free for every
+// logged-in user, so the tier question only applies to everything else
+// (practice, and the locked results breakdown). Callers that gate practice or
+// analysis leave it false.
+export function canAccessCanonicalSubject(
+  isPaid: boolean,
+  subjectStatus: 'active' | 'qa' | 'soon',
+  freeExam = false,
+): boolean {
+  if (!isPaid && !freeExam) return false
   if (subjectStatus === 'soon') return false
   // 'qa' subjects (e.g. Biologija) are additionally restricted to
   // non-production at the route level (app/discere/[subject]/page.jsx) —

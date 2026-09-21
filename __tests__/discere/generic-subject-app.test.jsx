@@ -8,6 +8,7 @@ const mocks = vi.hoisted(() => ({
   loadSubjectIndex: vi.fn(),
   loadExam: vi.fn(),
   saveCanonicalSimResult: vi.fn(),
+  useAuth: vi.fn(),
 }))
 
 vi.mock('@/lib/discere/content-loader', () => ({
@@ -16,6 +17,9 @@ vi.mock('@/lib/discere/content-loader', () => ({
 }))
 vi.mock('@/lib/discere/progress', () => ({
   saveCanonicalSimResult: mocks.saveCanonicalSimResult,
+}))
+vi.mock('@/lib/hooks/useAuth', () => ({
+  useAuth: mocks.useAuth,
 }))
 
 import GenericSubjectApp from '@/components/discere/common/GenericSubjectApp'
@@ -38,7 +42,18 @@ describe('GenericSubjectApp', () => {
     })
     mocks.loadExam.mockResolvedValue(fakeExam)
     mocks.saveCanonicalSimResult.mockResolvedValue({ saved:true })
+    mocks.useAuth.mockReturnValue({ user:{ id:'u1' }, isPro:false, isPaid:false, loading:false })
   })
+
+  async function finishExam(subject) {
+    render(<GenericSubjectApp subject={subject} />)
+    const examButton = await screen.findByRole('button', { name:/Ljetni rok 2026/i })
+    await userEvent.click(examButton)
+    await screen.findByRole('heading', { name: 'Pitanje?' })
+    await userEvent.click(screen.getByLabelText('B'))
+    await userEvent.click(screen.getByRole('button', { name:'Predaj ispit' }))
+    await userEvent.click(screen.getByRole('button', { name:'Potvrdi predaju' }))
+  }
 
   it('persists the canonical result after submission', async () => {
     render(<GenericSubjectApp subject={{ id:'bio', name:'Biologija' }} />)
@@ -64,5 +79,20 @@ describe('GenericSubjectApp', () => {
     view.rerender(<GenericSubjectApp subject={{ id:'chem', name:'Kemija' }} />)
     await screen.findByText(/Discere · Kemija/)
     expect(screen.queryByRole('heading', { name:'Pitanje?' })).toBeNull()
+  })
+
+  it('locks the results review for a free user on a freeExam subject', async () => {
+    await finishExam({ id:'bio', name:'Biologija', freeExam:true })
+
+    expect(screen.getByText(/otključaj razradu/i)).toBeTruthy()
+    expect(screen.queryByRole('heading', { name:'Pregled odgovora' })).toBeNull()
+  })
+
+  it('shows the full results review for a standard user on a freeExam subject', async () => {
+    mocks.useAuth.mockReturnValue({ user:{ id:'u1' }, isPro:false, isPaid:true, loading:false })
+    await finishExam({ id:'bio', name:'Biologija', freeExam:true })
+
+    expect(screen.getByRole('heading', { name:'Pregled odgovora' })).toBeTruthy()
+    expect(screen.queryByText(/otključaj razradu/i)).toBeNull()
   })
 })

@@ -2,7 +2,11 @@ import { ImageResponse } from 'next/og'
 import { createClient } from '@supabase/supabase-js'
 
 export const runtime = 'edge'
-export const contentType = 'image/png'
+// NAPOMENA: `size` / `contentType` / `alt` dopušteni su izvozi samo za konvenciju
+// opengraph-image.* (metadata datoteke), ne i za route handler. Next za svaki
+// route.js generira tip koji dopušta samo poznate izvoze, pa je `export const
+// contentType` rušio type-check (Property 'contentType' is incompatible with index
+// signature). ImageResponse ionako sam šalje zaglavlje content-type: image/png.
 
 let cachedSupabase = null
 

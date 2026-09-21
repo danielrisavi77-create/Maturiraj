@@ -28,7 +28,7 @@ export default function PredmetiPrijemni({ onSkripte, onPrijemni }) {
             <div className="eye" style={{marginBottom:10}}>Državna matura</div>
             <h2 className="d2" style={{marginBottom:7}}>{SUBJECTS.length} predmeta</h2>
             <p style={{color:"var(--muted)",fontSize:14,lineHeight:1.78,marginBottom:22}}>
-              Skripte za sve predmete, besplatno. Discere arhiva uz pretplatu.
+              Skripte za sve predmete, besplatno. Discere ispiti s timerom besplatni su uz prijavu, razrada rezultata uz pretplatu.
             </p>
 
             {GRUPE.map(grp => (

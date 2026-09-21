@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import QuestionRenderer from './QuestionRenderer'
 import ExamReview from './ExamReview'
 import AssessmentDialog from './AssessmentDialog'
+import { LockedResultsBlock } from '@/components/discere/paywall'
 import { buildResult, scoreExam } from '@/lib/discere/scoring'
 
 import { responseForQuestion, mergeQuestionResponse } from '@/lib/discere/question-responses'
@@ -17,7 +18,7 @@ function formatTime(totalSeconds) {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
 }
 
-export default function ExamShell({ exam, onExit, onComplete, session }) {
+export default function ExamShell({ exam, onExit, onComplete, session, canSeeReview = true }) {
   const [localIndex, setIndex] = useState(0)
   const [localResponses, setResponses] = useState({})
   const [localFlagged, setFlagged] = useState([])
@@ -113,7 +114,9 @@ export default function ExamShell({ exam, onExit, onComplete, session }) {
           <p style={{fontSize:13, color:'var(--muted)'}}>Neodgovoreno: {result.unansweredCount ?? result.unanswered.length}</p>
           <button type="button" onClick={onExit} aria-label="Izlaz" style={{marginTop:18, padding:'10px 16px', borderRadius:10, border:'1px solid var(--bdr)', background:'var(--s2)', color:'var(--text)', cursor:'pointer'}}>Izlaz</button>
         </div>
-        {!session || session.reviewAvailable === true ? <ExamReview exam={exam} responses={responses} notebooks={notebooks} notebookScope={session ? 'device' : 'page'} /> : <p style={{ maxWidth: 680, margin: '24px auto', lineHeight: 1.65 }}>Pregled nije dostupan za ovu verziju sadržaja. Potvrđeni rezultat ostaje sačuvan.</p>}
+        {canSeeReview === false
+          ? <div style={{maxWidth:680, margin:'24px auto'}}><LockedResultsBlock label="Pregled odgovora" note="Ocjena, postotak i bodovi ostaju besplatni. Pregled odgovora, ključevi i objašnjenja dolaze sa Standard planom." rows={5} minHeight={200} /></div>
+          : (!session || session.reviewAvailable === true ? <ExamReview exam={exam} responses={responses} notebooks={notebooks} notebookScope={session ? 'device' : 'page'} /> : <p style={{ maxWidth: 680, margin: '24px auto', lineHeight: 1.65 }}>Pregled nije dostupan za ovu verziju sadržaja. Potvrđeni rezultat ostaje sačuvan.</p>)}
       </main>
     )
   }

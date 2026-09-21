@@ -5,7 +5,7 @@
    ucitavanje ispita i upis rezultata u korisnicki napredak. */
 import React from 'react';
 import { DS, SUBJECT, TOPIC_LABELS } from '../core/state';
-import { EXAMS, __onExamsChanged, isExamLoaded, allExamsLoaded, loadExam, loadAllExams } from '../core/exams';
+import { EXAMS, __onExamsChanged, isExamLoaded, isExamOnlyLoaded, examOnlyExam, allExamsLoaded, loadExam, loadAllExams } from '../core/exams';
 import { getLevel, LEVEL_NAMES, fireConfetti } from '../core/ui';
 import { chk } from '../core/grading';
 import { calcXpGain, updateStreak } from '../core/progress';
@@ -53,16 +53,19 @@ function App(){
   useEffect(()=>{const t=setTimeout(()=>{loadAllExams().catch(()=>{});},1500);return()=>clearTimeout(t);},[]);
   // Ucitavanje moze pasti (offline, CDN 404, deploy u tijeku) — tada NE ulazimo u ekran s 0 pitanja,
   // nego korisnik dobije poruku i "Pokusaj ponovno".
-  function withExam(k,fn){
-    if(!k||isExamLoaded(k)) return fn();
+  // forExamMode: ulaz u ispitni mod (ili njegov izbornik) smije otvoriti i zakljucan ispit —
+  // tada pitanja zavrsavaju u side-storeu (__EXAM_ONLY), pa je i provjera ucitanosti druga.
+  function withExam(k,fn,forExamMode){
+    const ready=kk=>isExamLoaded(kk)||(forExamMode&&isExamOnlyLoaded(kk));
+    if(!k||ready(k)) return fn();
     setExamLoad({pct:0});setExamErr(null);
-    loadExam(k).then(()=>{
+    loadExam(k,false,forExamMode).then(()=>{
       setExamLoad(null);
-      if(!isExamLoaded(k)) throw new Error("Ispit nije ucitan.");
+      if(!ready(k)) throw new Error("Ispit nije ucitan.");
       fn();
     }).catch(()=>{
       setExamLoad(null);
-      setExamErr({msg:"Ne mogu učitati zadatke ovog ispita. Provjeri internetsku vezu.",retry:()=>withExam(k,fn)});
+      setExamErr({msg:"Ne mogu učitati zadatke ovog ispita. Provjeri internetsku vezu.",retry:()=>withExam(k,fn,forExamMode)});
     });
   }
   function withAllExams(fn){
@@ -101,7 +104,7 @@ function App(){
   const resumeInfo=(()=>{try{const r=JSON.parse(DS.get("mat_resume")||"null");
     return r&&r.key&&EXAMS[r.key]&&Object.keys(r.answers||{}).length>0&&(Date.now()-(r.ts||0)<48*3600*1000)?r:null;}catch(e){return null;}})();
   function goResume(){if(!resumeInfo)return;withExam(resumeInfo.key,()=>{pendingResumeRef.current=resumeInfo;setExamKey(resumeInfo.key);
-    setScreen(resumeInfo.examMode?"exammode":resumeInfo.timedPractice?"practice_timed":resumeInfo.practice?"practice":"exam");window.scrollTo(0,0);});}
+    setScreen(resumeInfo.examMode?"exammode":resumeInfo.timedPractice?"practice_timed":resumeInfo.practice?"practice":"exam");window.scrollTo(0,0);},!!resumeInfo.examMode);}
   function discardResume(){try{DS.set("mat_resume","");}catch(e){}pendingResumeRef.current=null;_bumpResume(x=>x+1);}
 
   useEffect(()=>{
@@ -167,10 +170,11 @@ function App(){
   function goHome(){pendingResumeRef.current=null;navStackRef.current=[];_setScreen("home");window.scrollTo(0,0);}
   function goExam(k){withExam(k,()=>{setExamKey(k);setScreen("exam");window.scrollTo(0,0);});}
   // ModeSelect cita exam.qs (broj zadataka, "Sto te ceka") — zato i ovaj ulaz mora biti gated.
-  function goModeSelect(k){withExam(k,()=>{setPendingExamKey(k);setScreen("modeselect");window.scrollTo(0,0);});}
+  // Ulazi kao ispitni mod: s ove kartice se bira simulacija, koja je besplatna i na zakljucanom ispitu.
+  function goModeSelect(k){withExam(k,()=>{setPendingExamKey(k);setScreen("modeselect");window.scrollTo(0,0);},true);}
   function goPractice(k){const kk=k||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("practice");window.scrollTo(0,0);});}
   function goPracticeTimer(k){const kk=k||pendingExamKey||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("practice_timed");window.scrollTo(0,0);});}
-  function goExamMode(k){const kk=k||pendingExamKey||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("exammode");window.scrollTo(0,0);});}
+  function goExamMode(k){const kk=k||pendingExamKey||Object.keys(EXAMS)[0];withExam(kk,()=>{setExamKey(kk);setScreen("exammode");window.scrollTo(0,0);},true);}
   function goStats(){goAll("stats");}
   function goAdaptive(){goAll("adaptive");}
   function goFormule(){setScreen("formule");window.scrollTo(0,0);}
@@ -407,7 +411,7 @@ function App(){
     screen==="adaptive"&&React.createElement(AdaptiveTrening,{userData,onExit:goBack,onHome:goHome,onStartErrorSession:goErrorSession}),
     screen==="formule"&&React.createElement(FormulaSheet,{onExit:goBack,onHome:goHome}),
     screen==="exam"&&React.createElement(Sim,{exam:EXAMS[examKey],practice:false,examMode:false,timedPractice:false,onExit:goBack,onHome:goHome,onDone:onExamDone,userData,onPracticeErrors:goPracticeExamErrors,onPracticeSimilar:goPracticeSimilar,onStats:goStats,onFilter:goFilter,resume:pendingResumeRef.current,onPatchResult:goPatchResult}),
-    screen==="exammode"&&React.createElement(Sim,{exam:EXAMS[examKey],practice:false,examMode:true,timedPractice:false,onExit:goBack,onHome:goHome,onDone:onExamDone,userData,onPracticeErrors:goPracticeExamErrors,onPracticeSimilar:goPracticeSimilar,onStats:goStats,onFilter:goFilter,resume:pendingResumeRef.current,onPatchResult:goPatchResult}),
+    screen==="exammode"&&React.createElement(Sim,{exam:examOnlyExam(examKey)||EXAMS[examKey],practice:false,examMode:true,timedPractice:false,onExit:goBack,onHome:goHome,onDone:onExamDone,userData,onPracticeErrors:goPracticeExamErrors,onPracticeSimilar:goPracticeSimilar,onStats:goStats,onFilter:goFilter,resume:pendingResumeRef.current,onPatchResult:goPatchResult}),
     screen==="practice"&&React.createElement(Sim,{exam:EXAMS[examKey],practice:true,examMode:false,timedPractice:false,onExit:goBack,onHome:goHome,onDone:onExamDone,userData,onPracticeErrors:goPracticeExamErrors,onPracticeSimilar:goPracticeSimilar,onStats:goStats,onFilter:goFilter,resume:pendingResumeRef.current,onPatchResult:goPatchResult}),
     screen==="practice_timed"&&React.createElement(Sim,{exam:EXAMS[examKey],practice:true,examMode:false,timedPractice:true,onExit:goBack,onHome:goHome,onDone:onExamDone,userData,onPracticeErrors:goPracticeExamErrors,onPracticeSimilar:goPracticeSimilar,onStats:goStats,onFilter:goFilter,resume:pendingResumeRef.current,onPatchResult:goPatchResult}),
     screen==="errors_session"&&React.createElement(Sim,{exam:activeExam,practice:true,examMode:false,timedPractice:false,onExit:goBack,onHome:goHome,onDone:onExamDone,userData,onPracticeErrors:goPracticeExamErrors,onPracticeSimilar:goPracticeSimilar,onStats:goStats,onFilter:goFilter,resume:pendingResumeRef.current,onPatchResult:goPatchResult}),

@@ -15,7 +15,10 @@
   --shadow:0 4px 16px rgba(100,70,30,.12),0 2px 6px rgba(100,70,30,.07);
   --shadow-lg:0 10px 32px rgba(100,70,30,.15),0 4px 10px rgba(100,70,30,.08);
   --r:10px;--rr:14px;--trans:.18s cubic-bezier(.4,0,.2,1);
-  --fb:'DM Sans',system-ui,sans-serif;--fh:'DM Serif Display',Georgia,serif
+  --fb:'DM Sans',system-ui,sans-serif;--fh:'DM Serif Display',Georgia,serif;
+  /* Podloga scrima u LockedResultsBlocku — mora pratiti --s1, inače je tekst
+     zaključanog bloka nečitljiv (fallback komponente je svijetao). */
+  --lock-scrim:rgba(254,252,248,.82)
 }
 .eng-sim, .eng-sim{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100%}
 body.dark-mode .eng-sim{
@@ -29,7 +32,8 @@ body.dark-mode .eng-sim{
   --teal:#2dcfbe;--teal-d:rgba(45,207,190,.1);
   --shadow-sm:0 1px 4px rgba(0,0,0,.35);
   --shadow:0 4px 16px rgba(0,0,0,.4);
-  --shadow-lg:0 10px 32px rgba(0,0,0,.5)
+  --shadow-lg:0 10px 32px rgba(0,0,0,.5);
+  --lock-scrim:rgba(19,21,26,.82)
 }
 .eng-sim{min-height:100vh}
 .eng-sim .nav{position:sticky;top:0;z-index:100;background:var(--s1);box-shadow:var(--shadow-sm);border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px;padding:0 24px;height:58px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
@@ -37,6 +41,8 @@ body.dark-mode .eng-sim{
 .eng-sim .nbadge{background:var(--blue-d);border:1px solid rgba(32,69,184,.22);color:var(--blue);font-size:11px;font-weight:600;padding:2px 9px;border-radius:99px}
 .eng-sim .btn{font-family:var(--fb);font-size:14px;font-weight:600;padding:10px 20px;border-radius:var(--r);cursor:pointer;transition:all var(--trans);border:none;letter-spacing:.01em}
 .eng-sim .btn-g{background:var(--s2);border:1px solid var(--bdr2);color:var(--muted)}.eng-sim .btn-g:hover{color:var(--text)}
+.eng-sim .btn-gold{display:inline-block;background:var(--gold);color:#fff;text-decoration:none}.eng-sim .btn-gold:hover{filter:brightness(1.08)}
+body.dark-mode .eng-sim .btn-gold{color:#160d00}
 .eng-sim .btn-blue{background:var(--blue);color:#fff}.eng-sim .btn-blue:hover{opacity:.9;transform:translateY(-1px)}
 .eng-sim .home{max-width:860px;margin:0 auto;padding:48px 20px 80px;position:relative}
 .eng-sim .hero{text-align:center;margin-bottom:40px;padding-top:8px}

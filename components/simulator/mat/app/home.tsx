@@ -4,13 +4,16 @@
    Pocetni ekran: spremnost za maturu, postignuca, izbor moda i popis ispita. */
 import React from 'react';
 import { useCurrentTime } from '@/lib/hooks/useCurrentTime';
-import { SUBJECT, DS, TOPIC_LABELS, planCta, askUpgrade } from '../core/state';
+import { SUBJECT, DS, TOPIC_LABELS, planCta, standardCta, askUpgrade, isFreeExam } from '../core/state';
 import { EXAMS, examQCount, allExamsLoaded } from '../core/exams';
 import { GC, getLevel, XP_LEVELS, LEVEL_NAMES } from '../core/ui';
 import { AboutModal } from '../tools/modals';
 import { TodayHero } from '../screens/today';
 import { TIER_MEDAL, TIER_NAME, achLevel, achNext, ACHIEVEMENTS } from './achievements';
 const{createElement:e}=React;
+// Ispit je otvoren za prikaz na Pocetnoj ako se smije barem rijesiti kao ispit:
+// zakljucan ispit uz besplatan ispitni mod i dalje ulazi u brojace i pipove.
+function exOpen(ex){ return !!ex && (!ex.locked || isFreeExam()); }
 function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,onFlashcards,onDailyChallenge,onBookmarks,onFilter,onMixed,onSRS,onAIPractice,onDDay,onGuide,onStartErrorSession,razina,onEditRazina,onPrepareExams,resume,onResume,onDiscardResume,onSetGoal,userData,toggles}){
   const now=useCurrentTime();
   const[ioMsg,setIoMsg]=React.useState(null);
@@ -285,14 +288,14 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
           const isOpen=openYear===year;
           const yearExams=Object.values(byYear[year]).flat();
           const done=yearExams.filter(ex=>history.find(h=>h.examKey===ex.key)).length;
-          const total=yearExams.filter(ex=>!ex.locked).length;
+          const total=yearExams.filter(exOpen).length;
 
           return e("div",{key:year,className:"year-card"+(isOpen?" open":"")},
             e("div",{className:"year-card-hdr",onClick:()=>toggleYear(year)},
               e("span",{className:"year-num"},year),
               e("div",{className:"year-meta"},
                 e("div",{className:"year-pips"},
-                  yearExams.filter(ex=>!ex.locked).map(ex=>
+                  yearExams.filter(exOpen).map(ex=>
                     e("span",{key:ex.key,className:"ypip"+(history.find(h=>h.examKey===ex.key)?" done":"")}))),
                 e("span",{className:"year-meta-sub"},
                   (done>0?done+"/"+total+" riješeno · ":total+" ispita · ")+
@@ -320,17 +323,20 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
                     mine&&e("span",{style:{fontSize:9.5,fontWeight:800,letterSpacing:".04em",padding:"2px 7px",borderRadius:99,background:isA?"var(--blue-d)":"var(--teal-d)",border:"1px solid "+(isA?"var(--blue-b)":"rgba(52,209,191,.3)"),textTransform:"uppercase"}},"tvoja razina")),
                   sorted.map(ex=>{
                     const h=history.find(x=>x.examKey===ex.key);
-                    const locked=ex.locked;
+                    // Zakljucan ispit uz besplatan ispitni mod: kartica se otvara (ModeSelect),
+                    // ali su ondje vjezbanje i timed vjezba pod katancem.
+                    const freeExamOnly=ex.locked&&isFreeExam();
+                    const locked=ex.locked&&!isFreeExam();
                     return e("div",{key:ex.key,className:"exam-btn",
-                      title:locked?planCta():undefined,
-                      onClick:locked?()=>askUpgrade():()=>onExam(ex.key),
+                      title:locked?standardCta():undefined,
+                      onClick:locked?()=>askUpgrade("mat-practice","standard"):()=>onExam(ex.key),
                       style:{opacity:locked?.55:1,cursor:"pointer",
                         borderLeft:h?"3px solid var(--green)":undefined}},
                       e("span",{className:"exam-btn-ico"},
                         ex.season==="ljeto"?"☀️":ex.season==="jesen"?"🍂":"❄️"),
                       e("div",{className:"exam-btn-info"},
                         e("strong",null,ex.season==="ljeto"?"Ljetni rok":ex.season==="jesen"?"Jesenski rok":"Zimski rok"),
-                        e("span",null,locked?planCta():examQCount(ex)+" zad. · "+Math.floor(ex.duration/60)+" min")
+                        e("span",null,locked?standardCta():examQCount(ex)+" zad. · "+Math.floor(ex.duration/60)+" min")
                       ),
                       locked
                         ?e("span",{style:{fontSize:10,fontWeight:800,color:"var(--gold)",background:"var(--gold-d)",padding:"2px 8px",borderRadius:99,border:"1px solid var(--gold-b)"}},"🔒 Otključaj")
@@ -338,7 +344,9 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
                           ?e("div",{className:"exam-btn-score"},
                             e("div",{className:"pct",style:{color:GC[h.grade]||"var(--muted)"}},h.pct+"%"),
                             e("div",{className:"dt"},h.date))
-                          :e("span",{style:{fontSize:16,color:"var(--muted)"}},">")
+                          :freeExamOnly
+                            ?e("span",{style:{fontSize:10,fontWeight:800,color:"var(--green)",background:"var(--green-d)",padding:"2px 8px",borderRadius:99,border:"1px solid var(--green-b)",whiteSpace:"nowrap"}},"🎓 Ispit besplatno")
+                            :e("span",{style:{fontSize:16,color:"var(--muted)"}},">")
                     );
                   })
                 );

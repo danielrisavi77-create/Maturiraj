@@ -26,7 +26,7 @@ const PLANS = [
     btnColor:    '#1a0a00',
     description: 'Pravi Discere iskustvo — arhiva zadataka, plan učenja i praćenje napretka.',
     features: [
-      { text: 'Discere simulator (aktivni predmeti)',  included: true },
+      { text: 'Discere — pregled odgovora, obrazloženja i analiza', included: true },
       { text: 'Plan učenja do mature',               included: true },
       { text: 'Kalkulator — puni pregled studija',   included: true },
       { text: 'Praćenje napretka',                   included: true },
@@ -292,7 +292,7 @@ function ProContent() {
           </div>
 
           <div style={{ fontSize: 15, color: 'var(--muted)', lineHeight: 1.7, maxWidth: 500, margin: '0 auto 28px' }}>
-            Skripte su besplatne za sve. Kalkulator, Discere, AI profesor i adaptivni plan uz pretplatu.
+            Skripte i Discere ispiti s timerom su besplatni. Razrada rezultata, kalkulator, AI profesor i adaptivni plan uz pretplatu.
           </div>
 
           {!CHECKOUT_UI_LIVE && (

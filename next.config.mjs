@@ -28,6 +28,12 @@ const buildCSP = (allowEval) => [
   // Next.js bundles + inline hydration + srcDoc iframe inline scripts (+ eval where allowed)
   "script-src 'self' 'unsafe-inline'" + (allowEval ? " 'unsafe-eval'" : "")
     + " https://www.googletagmanager.com https://plausible.io",
+  // Web Workeri: canvas-confetti (public/sim/vendor/canvas-confetti.min.js, useWorker:true)
+  // radi `new Worker(URL.createObjectURL(new Blob([...])))`. Bez worker-src browser pada
+  // natrag na script-src (koji nema blob:), pa konzola javlja
+  // "Creating a worker from blob: ... violates CSP". Držimo blob: samo ovdje da se
+  // script-src ne širi; vrijedi i u devu i u produkciji jer je dio buildCSP-a.
+  "worker-src 'self' blob:",
   // Inline styles + Google Fonts CSS
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   // Google Fonts actual font files

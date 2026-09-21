@@ -3,14 +3,24 @@
 /* 5.3: izdvojeno iz components/simulator/MatEngineCore.tsx bez promjene ponasanja.
    Izbor nacina rada nad ispitom i vodic kroz simulator. */
 import React from 'react';
-import { SUBJECT, TOPIC_LABELS } from '../core/state';
-import { EXAMS, examQCount, examTitle } from '../core/exams';
+import { SUBJECT, TOPIC_LABELS, standardCta, askUpgrade } from '../core/state';
+import { EXAMS, examQCount, examTitle, examOnlyExam } from '../core/exams';
 const{createElement:e,Fragment}=React;
 function ModeSelect({examKey,onExamMode,onPractice,onPracticeTimer,onVirtual,onBack}){
-  const exam=EXAMS[examKey];
+  // Zakljucan ispit u besplatnom ispitnom modu zivi u side-storeu, pa se "Sto te ceka"
+  // i broj zadataka citaju odande; EXAMS[key].qs je za njega namjerno prazan.
+  const exam=examOnlyExam(examKey)||EXAMS[examKey];
   if(!exam) return null;
   const isA=exam.razina==="A";
   const seasonIcon=exam.season==="ljeto"?"☀️":exam.season==="jesen"?"🍂":"❄️";
+  // Ispit je besplatan, vjezbanje nije — svi nacini osim simulacije idu na upgrade (Standard).
+  const practiceLocked=!!exam.locked;
+  const modeProps=(open)=>practiceLocked
+    ?{onClick:()=>askUpgrade("mat-practice","standard"),title:standardCta(),style:{opacity:.62}}
+    :{onClick:open};
+  const lockTag=practiceLocked
+    ?e("div",{className:"mc-tag",style:{background:"var(--gold-d)",border:"1px solid var(--gold-b)",color:"var(--gold)"}},standardCta())
+    :null;
 
   return e(Fragment,null,
     e("div",{className:"nav"},
@@ -67,33 +77,35 @@ function ModeSelect({examKey,onExamMode,onPractice,onPracticeTimer,onVirtual,onB
           ),
           e("div",{className:"mc-tag",
             style:{background:"var(--red-d)",border:"1px solid rgba(248,113,113,.3)",color:"var(--red)"}},
-            "MATURA MODE")
+            practiceLocked?"MATURA MODE · BESPLATNO":"MATURA MODE")
         ),
 
         // Vježbanje
-        e("div",{className:"mode-card vjezba",onClick:()=>onPractice(examKey)},
+        e("div",Object.assign({className:"mode-card vjezba"},modeProps(()=>onPractice(examKey))),
           e("div",{className:"mc-row"},
             e("div",{className:"mc-icon-box"},"📚"),
             e("div",{style:{flex:1}},
-              e("div",{className:"mc-label",style:{color:"var(--blue)"}},"Vježbanje · bez limita"),
+              e("div",{className:"mc-label",style:{color:"var(--blue)"}},practiceLocked?"Vježbanje · zaključano":"Vježbanje · bez limita"),
               e("div",{className:"mc-title"},"Vježbanje"),
               e("div",{className:"mc-desc"},
                 "Odmah vidi je li odgovor točan, provjeri rješenje korak po korak i zatraži AI objašnjenje.")
             )
-          )
+          ),
+          lockTag
         ),
 
         // Vježba s timerom
-        e("div",{className:"mode-card timed",onClick:()=>onPracticeTimer(examKey)},
+        e("div",Object.assign({className:"mode-card timed"},modeProps(()=>onPracticeTimer(examKey))),
           e("div",{className:"mc-row"},
             e("div",{className:"mc-icon-box"},"⚡"),
             e("div",{style:{flex:1}},
-              e("div",{className:"mc-label",style:{color:"var(--gold)"}},"Timed vježba · s pritiskom"),
+              e("div",{className:"mc-label",style:{color:"var(--gold)"}},practiceLocked?"Timed vježba · zaključano":"Timed vježba · s pritiskom"),
               e("div",{className:"mc-title"},"Vježba s timerom"),
               e("div",{className:"mc-desc"},
                 "Vremenski pritisak uz trenutnu povratnu informaciju. Dobra priprema za realne uvjete.")
             )
-          )
+          ),
+          lockTag
         ),
 
         // Separator
@@ -102,16 +114,17 @@ function ModeSelect({examKey,onExamMode,onPractice,onPracticeTimer,onVirtual,onB
         ),
 
         // Virtualni ispit
-        e("div",{className:"mode-card virtual",onClick:()=>onVirtual&&onVirtual(exam.razina)},
+        e("div",Object.assign({className:"mode-card virtual"},modeProps(()=>onVirtual&&onVirtual(exam.razina))),
           e("div",{className:"mc-row"},
             e("div",{className:"mc-icon-box"},"🎲"),
             e("div",{style:{flex:1}},
-              e("div",{className:"mc-label",style:{color:"#b97cf3"}},"Generiran ispit · nasumično"),
+              e("div",{className:"mc-label",style:{color:"#b97cf3"}},practiceLocked?"Generiran ispit · zaključano":"Generiran ispit · nasumično"),
               e("div",{className:"mc-title"},"Virtualni ispit"),
               e("div",{className:"mc-desc"},
                 "~36 nasumičnih zadataka iz svih ispita iste razine  -  nikad isti dvaput.")
             )
-          )
+          ),
+          lockTag
         )
       )
     )

@@ -402,6 +402,12 @@ function App(){
         answers:result.answers||{}, qTimes:result.qTimes||{},
         examMode:!!result.examMode, topic_breakdown:topicBreakdown, errorTags:[],
       }, undefined, 'hrv');
+      // Dual-write u game-mode tablice (learning_attempt_events / user_concept_mastery).
+      // Ruta je fail-closed: bez GAME_MODE_ENABLED='true' (lib/config/featureFlags.js)
+      // vraća 404 {ok:false}. Flag je namjerno isključen dok ne prođu DB migracija i
+      // content QA gate (docs/remediation/FEATURE_FLAGS.md), pa je 404 u devu očekivan,
+      // a ne kvar. Lokalni napredak već je spremljen gore preko saveSimResult(), zato
+      // neuspjeh ovdje tiho gutamo i ne prikazujemo grešku učeniku.
       fetch('/api/game/discere-attempts',{
         method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({attemptId:crypto.randomUUID(),examKey:result.examKey,answers:result.answers||{},qTimes:result.qTimes||{},examMode:!!result.examMode})
