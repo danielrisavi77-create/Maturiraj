@@ -468,11 +468,9 @@ function App(){
       if(initialRoute.examKey){setExamKey(initialRoute.examKey);setPendingExamKey(initialRoute.examKey);}
     }
   }
-  useLayoutEffect(()=>{
-    if(initialRoute&&(initialRoute.lektira||(initialRoute.screen&&initialRoute.screen!=="home"&&!initialRoute.deadSession))) _isPopstate.current=true;
-  },[initialRoute]);
   // Sync screen → URL (push state on every screen change except the very first render)
   useEffect(()=>{
+    if(!initialRoute) return;
     if(!_screenInited.current){_screenInited.current=true;return;}
     if(_isPopstate.current){_isPopstate.current=false;return;}
     if(typeof window==='undefined') return;
@@ -486,7 +484,7 @@ function App(){
       window.history.pushState({screen,examKey,pendingExamKey,esejKey,sazetakKey},"","?"+p.toString());
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[screen]);
+  },[screen,initialRoute]);
   // On mount: init screen from URL + listen for popstate
   useEffect(()=>{
     if(typeof window==='undefined') return;
