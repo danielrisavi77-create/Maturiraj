@@ -1,5 +1,6 @@
 ﻿'use client'
 import { useState, useMemo } from 'react'
+import { useCurrentTime } from '@/lib/hooks/useCurrentTime'
 import { daysUntil, formatDays, pragZona } from './helpers'
 import { getUrgency, urgencyColor, formatDeadlineLabel } from '@/lib/prijemni/urgency'
 import { CSS } from './styles'
@@ -10,8 +11,9 @@ import CompareView from './CompareView'
 import MaxReachedToast from './MaxReachedToast'
 
 function UrgencyDot({ studij }) {
-  if (studij.prijava_do_iso) {
-    const days = Math.ceil((new Date(studij.prijava_do_iso).getTime() - Date.now()) / 86400000)
+  const now = useCurrentTime()
+  if (studij.prijava_do_iso && now !== null) {
+    const days = Math.ceil((new Date(studij.prijava_do_iso).getTime() - now) / 86400000)
     const level = getUrgency(days)
     if (level === 'critical' || level === 'urgent') {
       return (

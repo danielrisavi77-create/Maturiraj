@@ -3,6 +3,7 @@
 /* 5.3: izdvojeno iz components/simulator/MatEngineCore.tsx bez promjene ponasanja.
    Pocetni ekran: spremnost za maturu, postignuca, izbor moda i popis ispita. */
 import React from 'react';
+import { useCurrentTime } from '@/lib/hooks/useCurrentTime';
 import { SUBJECT, DS, TOPIC_LABELS, planCta, askUpgrade } from '../core/state';
 import { EXAMS, examQCount, allExamsLoaded } from '../core/exams';
 import { GC, getLevel, XP_LEVELS, LEVEL_NAMES } from '../core/ui';
@@ -11,6 +12,7 @@ import { TodayHero } from '../screens/today';
 import { TIER_MEDAL, TIER_NAME, achLevel, achNext, ACHIEVEMENTS } from './achievements';
 const{createElement:e}=React;
 function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,onFlashcards,onDailyChallenge,onBookmarks,onFilter,onMixed,onSRS,onAIPractice,onDDay,onGuide,onStartErrorSession,razina,onEditRazina,onPrepareExams,resume,onResume,onDiscardResume,onSetGoal,userData,toggles}){
+  const now=useCurrentTime();
   const[ioMsg,setIoMsg]=React.useState(null);
   React.useEffect(()=>{if(!ioMsg)return;const t=setTimeout(()=>setIoMsg(null),3200);return()=>clearTimeout(t);},[ioMsg]);
   const[navScrolled,setNavScrolled]=React.useState(false);
@@ -48,11 +50,11 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
   const _coveredN=_allTL.filter(l=>_topicCov[l]&&_topicCov[l].n>0).length;
   const _coveragePct=Math.round(_coveredN/_totalTopics*100);
   const _accAll=(()=>{let c=0,n=0;Object.values(_topicCov).forEach(x=>{c+=x.c;n+=x.n;});return n>0?Math.round(c/n*100):(avgPct||0);})();
-  const _lastDays=(()=>{const pp=v=>{if(!v)return null;const a=String(v).replace(/\./g,"").trim().split(/\s+/);if(a.length<3)return null;return new Date(+a[2],+a[1]-1,+a[0]);};let l=null;history.forEach(h=>{const d=pp(h.date);if(d&&(!l||d>l))l=d;});if(!l)return 999;return Math.max(0,Math.round((Date.now()-l.getTime())/86400000));})();
+  const _lastDays=(()=>{const pp=v=>{if(!v)return null;const a=String(v).replace(/\./g,"").trim().split(/\s+/);if(a.length<3)return null;return new Date(+a[2],+a[1]-1,+a[0]);};let l=null;history.forEach(h=>{const d=pp(h.date);if(d&&(!l||d>l))l=d;});if(!l||now===null)return 999;return Math.max(0,Math.round((now-l.getTime())/86400000));})();
   const _recMult=_lastDays<=3?1:_lastDays<=7?0.97:_lastDays<=14?0.92:0.85;
   // 2.1: pokrivenost gradiva ima smisla tek kad su svi (otkljucani) ispiti ucitani — do tada je
   // _allTL prazan pa bi spremnost ispala lazno niska i poslije bez objasnjenja skocila.
-  const _topicsReady=allExamsLoaded()&&_allTL.length>0;
+  const _topicsReady=now!==null&&allExamsLoaded()&&_allTL.length>0;
   const _readiness=history.length===0?0:(_topicsReady?Math.min(100,Math.round((0.55*_accAll+0.45*_coveragePct)*_recMult)):null);
   const _rdReady=_readiness!=null;
   const _rdPct=_rdReady?_readiness:0;

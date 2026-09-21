@@ -444,7 +444,6 @@ export default function HrvatskiIndexPage() {
   const [devMode, setDevMode] = useState(false);
   const [showBtt, setShowBtt] = useState(false);
   const footerClicks = useRef(0);
-  const sessionStart = useRef(Date.now());
   const exitArmed = useRef(false);
 
   // Proactive prefetch — start compiling all chapters in background right away
