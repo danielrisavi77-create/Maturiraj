@@ -210,8 +210,8 @@ export default function AIProfessorPage() {
   /* ─── Welcome poruka ────────────────────────── */
   const nextWeek = useMemo(() => weeks.find(w => !w.completed) || null, [weeks])
   const [welcomeContext, setWelcomeContext] = useState(null)
-  if (!welcomeContext || welcomeContext.loadingPlan !== loadingPlan || welcomeContext.selSubj !== selSubj || welcomeContext.userPlan !== userPlan) {
-    setWelcomeContext({ loadingPlan, selSubj, userPlan })
+  if (!welcomeContext || welcomeContext.user !== user || welcomeContext.loadingPlan !== loadingPlan || welcomeContext.selSubj !== selSubj || welcomeContext.userPlan !== userPlan) {
+    setWelcomeContext({ user, loadingPlan, selSubj, userPlan })
     if (!loadingPlan) {
 
     let welcomeText

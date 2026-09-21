@@ -29,6 +29,16 @@ beforeEach(() => {
 });
 afterEach(() => { cleanup(); state.profiles.clear(); });
 
+it('restores the guest greeting after a free account signs out', async () => {
+  state.user = { id: 'a' };
+  const view = render(<Professor />);
+  await act(async () => state.profiles.get('a').resolve({ data: { plan_type: null } }));
+  expect(view.container.textContent).toContain('AI Profesor je dostupan isključivo uz');
+  state.user = null;
+  view.rerender(<Professor />);
+  expect(view.container.textContent).toContain('moraš biti prijavljen');
+});
+
 it('renders the guest greeting immediately and ignores an obsolete account profile', async () => {
   const view = render(<Professor />);
   expect(view.container.textContent).toContain('moraš biti prijavljen');
