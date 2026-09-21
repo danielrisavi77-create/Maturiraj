@@ -30,7 +30,9 @@ export default function ExitIntentModal({ fakulteti, onAction, track }) {
   const [visible, setVisible] = useState(false)
   const [urgencies, setUrgencies] = useState([])
   const triggeredRef = useRef(false)
-  const timeOnPageRef = useRef(Date.now())
+  const timeOnPageRef = useRef(null)
+
+  useEffect(() => { timeOnPageRef.current = Date.now() }, [])
 
   useEffect(() => {
     if (!fakulteti || alreadyShown()) return
@@ -41,7 +43,6 @@ export default function ExitIntentModal({ fakulteti, onAction, track }) {
     )
     const active = getActiveUrgencies(allStudiji)
     if (active.length === 0) return
-    setUrgencies(active.slice(0, 3))  // top 3
 
     // Trigger:
     // 1. Desktop: mouseleave preko top edge
@@ -57,6 +58,7 @@ export default function ExitIntentModal({ fakulteti, onAction, track }) {
     const handleMouseLeave = (e) => {
       if (e.clientY <= 0 && shouldTrigger()) {
         triggeredRef.current = true
+        setUrgencies(active.slice(0, 3))
         setVisible(true)
         markShown()
         track?.('exit_intent_shown', null, null, null, {
@@ -77,6 +79,7 @@ export default function ExitIntentModal({ fakulteti, onAction, track }) {
       // Fast scroll up (> 100px in < 200ms) near top
       if (dy < -100 && dt < 200 && y < 200 && shouldTrigger()) {
         triggeredRef.current = true
+        setUrgencies(active.slice(0, 3))
         setVisible(true)
         markShown()
         track?.('exit_intent_shown', null, null, null, {
