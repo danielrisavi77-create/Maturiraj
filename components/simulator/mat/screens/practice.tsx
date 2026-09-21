@@ -771,9 +771,9 @@ function AdaptiveTrening({userData,onExit,onHome,onStartErrorSession}){
     askedRef.current[q.id]=1; setCurQ(q); setSel(null);
   }
 
-  if(pool.length<6) return e("div",{className:"home",style:{maxWidth:560,margin:"0 auto",padding:"18px 16px"}},
-    e("button",{className:"btn btn-g",onClick:onExit},"← Natrag"),
-    e("div",{style:{marginTop:24,textAlign:"center",color:"var(--muted)",fontSize:14}},"Nema dovoljno MC zadataka za adaptivni trening na ovoj razini."));
+  if(pool.length<6) return React.createElement("div",{className:"home",style:{maxWidth:560,margin:"0 auto",padding:"18px 16px"}},
+    React.createElement("button",{className:"btn btn-g",onClick:onExit},"← Natrag"),
+    React.createElement("div",{style:{marginTop:24,textAlign:"center",color:"var(--muted)",fontSize:14}},"Nema dovoljno MC zadataka za adaptivni trening na ovoj razini."));
 
   if(done){
     var n=log.length, correct=log.filter(function(x){return x.ok;}).length;
@@ -786,66 +786,66 @@ function AdaptiveTrening({userData,onExit,onHome,onStartErrorSession}){
     var gradeEst=grade(pct);
     var wt={}; log.forEach(function(x){ if(!x.ok&&x.topic){var l=TOPIC_LABELS[x.topic]||x.topic; wt[l]=(wt[l]||0)+1;} });
     var weakArr=Object.keys(wt).sort(function(a,b){return wt[b]-wt[a];}).slice(0,3);
-    return e("div",{className:"home",style:{maxWidth:560,margin:"0 auto",padding:"18px 16px"}},
-      e("div",{className:"nav"},
-        e("button",{className:"btn btn-g",style:{fontSize:13,padding:"6px 12px"},onClick:onExit},"← Natrag"),
-        e("span",{className:"ntitle"},"🎯 Adaptivni rezultat"),
-        e("span",{className:"nsp"})),
-      e("div",{style:{textAlign:"center",padding:"18px 0 8px"}},
-        e("div",{style:{fontFamily:"var(--fh)",fontSize:46,lineHeight:1,color:TIERCOL[stable]}},pct+"%"),
-        e("div",{style:{fontSize:13,color:"var(--muted)",marginTop:6}},correct+"/"+n+" točno · procijenjena ocjena ~"+gradeEst)),
-      e("div",{style:{padding:"14px 16px",borderRadius:14,background:"var(--s2)",border:"1px solid var(--bdr)",margin:"14px 0"}},
-        e("div",{style:{fontSize:13.5,fontWeight:800,color:TIERCOL[stable],marginBottom:4,lineHeight:1.45}},"📊 "+levelTxt),
-        e("div",{style:{display:"flex",gap:8,marginTop:12}},[1,2,3].map(function(t){
+    return React.createElement("div",{className:"home",style:{maxWidth:560,margin:"0 auto",padding:"18px 16px"}},
+      React.createElement("div",{className:"nav"},
+        React.createElement("button",{className:"btn btn-g",style:{fontSize:13,padding:"6px 12px"},onClick:onExit},"← Natrag"),
+        React.createElement("span",{className:"ntitle"},"🎯 Adaptivni rezultat"),
+        React.createElement("span",{className:"nsp"})),
+      React.createElement("div",{style:{textAlign:"center",padding:"18px 0 8px"}},
+        React.createElement("div",{style:{fontFamily:"var(--fh)",fontSize:46,lineHeight:1,color:TIERCOL[stable]}},pct+"%"),
+        React.createElement("div",{style:{fontSize:13,color:"var(--muted)",marginTop:6}},correct+"/"+n+" točno · procijenjena ocjena ~"+gradeEst)),
+      React.createElement("div",{style:{padding:"14px 16px",borderRadius:14,background:"var(--s2)",border:"1px solid var(--bdr)",margin:"14px 0"}},
+        React.createElement("div",{style:{fontSize:13.5,fontWeight:800,color:TIERCOL[stable],marginBottom:4,lineHeight:1.45}},"📊 "+levelTxt),
+        React.createElement("div",{style:{display:"flex",gap:8,marginTop:12}},[1,2,3].map(function(t){
           var b=byT[t];var p=b.n?Math.round(b.c/b.n*100):null;
-          return e("div",{key:t,style:{flex:1,background:"var(--s1)",borderRadius:10,padding:"10px 6px",textAlign:"center",border:"1px solid "+(stable===t?TIERCOL[t]:"var(--bdr)")}},
-            e("div",{style:{fontSize:15,fontWeight:800,color:b.n?TIERCOL[t]:"var(--muted)"}},p==null?"—":p+"%"),
-            e("div",{style:{fontSize:10.5,color:"var(--muted)",marginTop:2}},TIERLBL[t]+(b.n?(" · "+b.n):"")));
+          return React.createElement("div",{key:t,style:{flex:1,background:"var(--s1)",borderRadius:10,padding:"10px 6px",textAlign:"center",border:"1px solid "+(stable===t?TIERCOL[t]:"var(--bdr)")}},
+            React.createElement("div",{style:{fontSize:15,fontWeight:800,color:b.n?TIERCOL[t]:"var(--muted)"}},p==null?"—":p+"%"),
+            React.createElement("div",{style:{fontSize:10.5,color:"var(--muted)",marginTop:2}},TIERLBL[t]+(b.n?(" · "+b.n):"")));
         }))),
-      weakArr.length>0&&e("div",{style:{padding:"12px 15px",borderRadius:12,background:"var(--gold-d)",border:"1px solid var(--gold-b)",marginBottom:14}},
-        e("div",{style:{fontSize:12.5,fontWeight:700,color:"var(--gold)",marginBottom:6}},"🎯 Tu si najviše griješio/la"),
-        e("div",{style:{fontSize:13,color:"var(--text)",lineHeight:1.5}},weakArr.join(" · "))),
-      e("div",{style:{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center"}},
+      weakArr.length>0&&React.createElement("div",{style:{padding:"12px 15px",borderRadius:12,background:"var(--gold-d)",border:"1px solid var(--gold-b)",marginBottom:14}},
+        React.createElement("div",{style:{fontSize:12.5,fontWeight:700,color:"var(--gold)",marginBottom:6}},"🎯 Tu si najviše griješio/la"),
+        React.createElement("div",{style:{fontSize:13,color:"var(--text)",lineHeight:1.5}},weakArr.join(" · "))),
+      React.createElement("div",{style:{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center"}},
         React.createElement("button",{className:"btn btn-blue",onClick:begin},"🔁 Još jednom"),
-        weakArr.length>0&&onStartErrorSession&&e("button",{className:"btn btn-g",onClick:function(){
+        weakArr.length>0&&onStartErrorSession&&React.createElement("button",{className:"btn btn-g",onClick:function(){
           var qs=[]; var labels={}; weakArr.forEach(function(l){labels[l]=1;});
           Object.values(EXAMS).forEach(function(ex){ if(rz&&ex.razina&&ex.razina!==rz)return; (ex.qs||[]).forEach(function(q){ if(q.type==="proof"||q.type==="sa"||q.type==="pa")return; if(labels[TOPIC_LABELS[q.topic]||q.topic]) qs.push(Object.assign({},q,{_examKey:ex.key})); }); });
           qs=qs.sort(function(){return Math.random()-0.5;}).slice(0,12);
           if(qs.length) onStartErrorSession({key:"adaptive_weak",year:"Slabe",season:"session",razina:rz||"B",label:"Slabe teme",qs:qs,duration:qs.length*120});
         }},"📚 Vježbaj slabe teme"),
-        e("button",{className:"btn btn-g",onClick:onHome},"🏠 Početna")));
+        React.createElement("button",{className:"btn btn-g",onClick:onHome},"🏠 Početna")));
   }
 
-  if(!curQ) return e("div",{className:"home",style:{padding:30,textAlign:"center",color:"var(--muted)"}},"Učitavanje…");
+  if(!curQ) return React.createElement("div",{className:"home",style:{padding:30,textAlign:"center",color:"var(--muted)"}},"Učitavanje…");
   var answered=sel!==null;
   var ik=__imgKey(curQ._examKey,curQ);
   var figFn=curQ.img?__MAT.Q_IMAGES[ik]:null;
   var qnum=log.length+1;
-  return e("div",{className:"home",style:{maxWidth:760,margin:"0 auto",padding:"14px 16px"}},
-    e("div",{className:"nav"},
-      e("button",{className:"btn btn-g",style:{fontSize:13,padding:"6px 12px"},onClick:onExit},"✕ Izlaz"),
-      e("span",{className:"ntitle"},"🎯 Adaptivni trening"),
-      e("span",{style:{marginLeft:"auto",fontSize:12,fontWeight:700,padding:"4px 11px",borderRadius:99,background:TIERCOL[tier]+"22",color:TIERCOL[tier],border:"1px solid "+TIERCOL[tier]}},TIERLBL[tier])),
-    e("div",{style:{display:"flex",alignItems:"center",gap:10,margin:"10px 0 16px"}},
-      e("div",{style:{flex:1,height:7,background:"var(--s2)",borderRadius:99,overflow:"hidden"}},e("div",{style:{height:"100%",width:Math.round((qnum-1)/TOTAL*100)+"%",background:"var(--blue)",borderRadius:99,transition:"width .3s"}})),
-      e("span",{style:{fontSize:12,fontWeight:700,color:"var(--muted)",flexShrink:0}},qnum+"/"+TOTAL)),
-    e("div",{className:"qcard",style:{borderLeft:"3px solid "+TIERCOL[curQ._tier]}},
-      e("div",{className:"qmeta-sub",style:{marginBottom:12,color:"var(--muted)",fontSize:12,fontWeight:600}},(TOPIC_LABELS[curQ.topic]||curQ.topic||"Zadatak")+" · "+TIERLBL[curQ._tier]),
-      curQ.context&&e("div",{style:{fontSize:13.5,lineHeight:1.55,color:"var(--muted)",marginBottom:12,paddingLeft:12,borderLeft:"3px solid var(--blue)"}},renderQText(curQ.context)),
-      figFn&&e("div",{style:{margin:"4px 0 12px",padding:10,background:"var(--s2)",border:"1px solid var(--bdr)",borderRadius:10,display:"inline-block",maxWidth:"100%"}},figFn()),
-      e("div",{className:"qtext",style:{marginBottom:14,fontSize:15.5,lineHeight:1.5}},renderQText(curQ.q)),
+  return React.createElement("div",{className:"home",style:{maxWidth:760,margin:"0 auto",padding:"14px 16px"}},
+    React.createElement("div",{className:"nav"},
+      React.createElement("button",{className:"btn btn-g",style:{fontSize:13,padding:"6px 12px"},onClick:onExit},"✕ Izlaz"),
+      React.createElement("span",{className:"ntitle"},"🎯 Adaptivni trening"),
+      React.createElement("span",{style:{marginLeft:"auto",fontSize:12,fontWeight:700,padding:"4px 11px",borderRadius:99,background:TIERCOL[tier]+"22",color:TIERCOL[tier],border:"1px solid "+TIERCOL[tier]}},TIERLBL[tier])),
+    React.createElement("div",{style:{display:"flex",alignItems:"center",gap:10,margin:"10px 0 16px"}},
+      React.createElement("div",{style:{flex:1,height:7,background:"var(--s2)",borderRadius:99,overflow:"hidden"}},React.createElement("div",{style:{height:"100%",width:Math.round((qnum-1)/TOTAL*100)+"%",background:"var(--blue)",borderRadius:99,transition:"width .3s"}})),
+      React.createElement("span",{style:{fontSize:12,fontWeight:700,color:"var(--muted)",flexShrink:0}},qnum+"/"+TOTAL)),
+    React.createElement("div",{className:"qcard",style:{borderLeft:"3px solid "+TIERCOL[curQ._tier]}},
+      React.createElement("div",{className:"qmeta-sub",style:{marginBottom:12,color:"var(--muted)",fontSize:12,fontWeight:600}},(TOPIC_LABELS[curQ.topic]||curQ.topic||"Zadatak")+" · "+TIERLBL[curQ._tier]),
+      curQ.context&&React.createElement("div",{style:{fontSize:13.5,lineHeight:1.55,color:"var(--muted)",marginBottom:12,paddingLeft:12,borderLeft:"3px solid var(--blue)"}},renderQText(curQ.context)),
+      figFn&&React.createElement("div",{style:{margin:"4px 0 12px",padding:10,background:"var(--s2)",border:"1px solid var(--bdr)",borderRadius:10,display:"inline-block",maxWidth:"100%"}},figFn()),
+      React.createElement("div",{className:"qtext",style:{marginBottom:14,fontSize:15.5,lineHeight:1.5}},renderQText(curQ.q)),
       React.createElement("div",{className:"opts"}, curQ.opts.map(function(opt,oi){
         var letter=LL[oi];
         var cls="opt";
         if(sel===letter) cls+=" sel";
         if(answered&&letter===curQ.sol.cl) cls="opt ok";
         else if(answered&&sel===letter&&letter!==curQ.sol.cl) cls="opt bad";
-        return e("div",{key:oi,className:cls,onClick:function(){answer(letter);},style:answered?{cursor:"default"}:null},
-          e("div",{className:"optl"},letter),
-          e("div",{className:"optt"},renderOptContent(opt)));
+        return React.createElement("div",{key:oi,className:cls,onClick:function(){answer(letter);},style:answered?{cursor:"default"}:null},
+          React.createElement("div",{className:"optl"},letter),
+          React.createElement("div",{className:"optt"},renderOptContent(opt)));
       })),
-      answered&&e("div",{style:{marginTop:14}},
-        e(AnswerHelper,{q:curQ,autoExpand:true,hideToggle:true}),
+      answered&&React.createElement("div",{style:{marginTop:14}},
+        React.createElement(AnswerHelper,{q:curQ,autoExpand:true,hideToggle:true}),
         React.createElement("button",{className:"btn btn-blue",style:{marginTop:14,width:"100%"},onClick:nextQ}, log.length>=TOTAL?"Vidi rezultat →":"Sljedeći zadatak →"))
     ));
 }

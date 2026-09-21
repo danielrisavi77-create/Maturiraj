@@ -31,18 +31,6 @@ export default function SimulatorResultsShare({
   const confettiFiredRef            = useRef(false)
   const supabase = createClientComponentClient()
 
-  // Confetti kad score prijeđe MEF/simulator prolaz prag od 55%
-  useEffect(() => {
-    if (confettiFiredRef.current) return
-    if (typeof scorePct !== 'number') return
-    confettiFiredRef.current = true
-    if (scorePct >= 55) {
-      const colors = [accentColor, '#3ecf6e', '#e9b446', '#fff']
-      setTimeout(() => fireDoubleConfetti(colors), 600)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   // Faculty color palette
   const FAC_COLORS = {
     mef:    '#f87171',  // medical red
@@ -62,6 +50,18 @@ export default function SimulatorResultsShare({
   const emoji       = FAK_EMOJI[fakKey]  || FAK_EMOJI.default
   const fakultetShort = studij?.fak_short || studij?.id || null
   const label = `${studij?.naziv || fakultetShort || 'Prijemni'} — Simulator 2026`
+
+  // Confetti kad score prijeđe MEF/simulator prolaz prag od 55%
+  useEffect(() => {
+    if (confettiFiredRef.current) return
+    if (typeof scorePct !== 'number') return
+    confettiFiredRef.current = true
+    if (scorePct >= 55) {
+      const colors = [accentColor, '#3ecf6e', '#e9b446', '#fff']
+      setTimeout(() => fireDoubleConfetti(colors), 600)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Fetch / trigger percentile computation
   useEffect(() => {

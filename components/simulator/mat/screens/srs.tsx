@@ -60,7 +60,8 @@ function SpacedRepetitionScreen({onBack,userData,onUpdateUserData}){
   const[flipped,setFlipped]=React.useState(false);
   const[done,setDone]=React.useState(false);
   const[stats,setStats]=React.useState({easy:0,hard:0,again:0});
-  const[xpGained,setXpGained]=React.useState(0);
+  const answered=stats.easy+stats.hard+stats.again;
+  const xpGained=done&&answered>0?10+answered*2+(stats.easy>=Math.ceil(answered*0.7)?10:0):0;
   const awardedRef=React.useRef(false);
   const[ioMsg,setIoMsg]=React.useState(null);
 
@@ -103,10 +104,8 @@ function SpacedRepetitionScreen({onBack,userData,onUpdateUserData}){
   React.useEffect(()=>{
     if(done&&!awardedRef.current){
       awardedRef.current=true;
-      const answered=stats.easy+stats.hard+stats.again;
       if(answered>0){
-        const gained=10+answered*2+(stats.easy>=Math.ceil(answered*0.7)?10:0);
-        setXpGained(gained);
+        const gained=xpGained;
         window._playSound&&window._playSound("done");
         if(onUpdateUserData) onUpdateUserData(prev=>{const ss=updateStreak(prev);return{...ss,xp:(prev.xp||0)+gained};});
       }
@@ -210,7 +209,7 @@ function SpacedRepetitionScreen({onBack,userData,onUpdateUserData}){
       e("div",{style:{display:"flex",gap:10,justifyContent:"center"}},
         dueCards.length>0
           ?React.createElement("button",{className:"btn btn-gold",style:{padding:"10px 20px"},
-              onClick:()=>{setSessionCards(dueCards.slice(0,20));setCur(0);setFlipped(false);setDone(false);setStats({easy:0,hard:0,again:0});awardedRef.current=false;setXpGained(0);}},
+              onClick:()=>{setSessionCards(dueCards.slice(0,20));setCur(0);setFlipped(false);setDone(false);setStats({easy:0,hard:0,again:0});awardedRef.current=false;}},
               "▶ Nastavi (+"+dueCards.length+")")
           :null,
         e("button",{className:"btn btn-g",style:{padding:"10px 20px"},onClick:onBack},"← Natrag")
