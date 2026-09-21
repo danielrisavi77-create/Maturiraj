@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "id": "readme-research",
+  "description": "Verify the existing documented development setup",
+  "scope": ["README.md"],
+  "acceptance": ["Evidence links to the inspected commit"],
+  "tasks": [{ "id": "inspect-readme", "owner": "grok", "kind": "research", "description": "Read README.md and report the framework and development command without changes", "acceptance": ["Cite the exact README commit"], "files": ["README.md"], "dependsOn": [] }]
+}
