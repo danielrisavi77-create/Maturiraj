@@ -28,6 +28,13 @@ export default function AdminPrijemniPage() {
   const [filter, setFilter] = useState('all')
   const [selectedIds, setSelectedIds] = useState(new Set())
   const [studiji, setStudiji] = useState([])
+  const [previousRun, setPreviousRun] = useState(selectedRun)
+  if (previousRun !== selectedRun) {
+    setPreviousRun(selectedRun)
+    setStagingRows([])
+    setSelectedIds(new Set())
+    setLoading(!!selectedRun)
+  }
 
   // Auth check
   useEffect(() => {
@@ -69,8 +76,8 @@ export default function AdminPrijemniPage() {
 
   // Load staging rows za selected run
   useEffect(() => {
-    if (!selectedRun) { setStagingRows([]); return }
-    setLoading(true)
+    if (!selectedRun) return
+    let cancelled = false
     supabase
       .from('pragovi_staging')
       .select('*')
@@ -78,10 +85,12 @@ export default function AdminPrijemniPage() {
       .order('diff_status')
       .order('fakultet_hint')
       .then(({ data }) => {
+        if (cancelled) return
         setStagingRows(data || [])
         setSelectedIds(new Set())
         setLoading(false)
       })
+    return () => { cancelled = true }
   }, [selectedRun])
 
   const filteredRows = useMemo(() => {

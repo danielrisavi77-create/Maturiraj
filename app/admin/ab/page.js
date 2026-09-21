@@ -51,6 +51,12 @@ export default function ABDashboard() {
   const [selectedExp, setSelectedExp] = useState(null)
   const [conversions, setConversions] = useState([])
   const [loading, setLoading] = useState(false)
+  const [previousExperiment, setPreviousExperiment] = useState(selectedExp)
+  if (previousExperiment !== selectedExp) {
+    setPreviousExperiment(selectedExp)
+    setConversions([])
+    setLoading(!!selectedExp)
+  }
 
   useEffect(() => {
     (async () => {
@@ -69,8 +75,8 @@ export default function ABDashboard() {
   }, [router])
 
   useEffect(() => {
-    if (!selectedExp) { setConversions([]); return }
-    setLoading(true)
+    if (!selectedExp) return
+    let cancelled = false
 
     supabase
       .from('analytics_events')
@@ -80,9 +86,11 @@ export default function ABDashboard() {
       .order('created_at', { ascending: false })
       .limit(500)
       .then(({ data }) => {
+        if (cancelled) return
         setConversions(data || [])
         setLoading(false)
       })
+    return () => { cancelled = true }
   }, [selectedExp])
 
   if (authorized === null) return <div style={{padding:40,color:'var(--muted)'}}>Provjera...</div>
