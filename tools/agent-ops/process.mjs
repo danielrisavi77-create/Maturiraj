@@ -37,7 +37,7 @@ export function run(executable, args, { cwd, env = process.env, input, timeoutMs
       clearTimeout(timer); clearTimeout(deadline); signal?.removeEventListener('abort', terminate);
       try { await killDone; await logQueue; if (recordPath) unlinkSync(recordPath); } catch (e) { reject(e); return; }
       const result = { stdout, stderr, code };
-      if (code !== 0 || killed) { const e = new Error(killed ? 'Process interrupted or timed out; reconcile before retry' : `${executable} exited ${code}: ${stderr.slice(-1800) || stdout.slice(-1800)}`); e.output = stdout + stderr; e.interrupted = killed; e.timedOut = killed && !signal?.aborted; reject(e); }
+      if (code !== 0 || killed) { const e = new Error(killed ? 'Process interrupted or timed out; reconcile before retry' : `${executable} exited ${code}: ${stderr.slice(-1800) || stdout.slice(-1800)}`); e.output = stdout + stderr; e.stdout = stdout; e.stderr = stderr; e.interrupted = killed; e.timedOut = killed && !signal?.aborted; reject(e); }
       else resolve(result);
     });
     child.stdin.end(input ?? '');
