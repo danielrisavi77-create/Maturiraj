@@ -761,12 +761,14 @@ export default function Checklist() {
 
   // ── 50% conversion popup — after pct is computed ──
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    if (!hydrated || isPro || popup50Shown || pct < 50 || pct === 100 || totalChecked === 0) return
+  if (hydrated && !isPro && !popup50Shown && pct >= 50 && pct !== 100 && totalChecked > 0) {
     setShowConvModal(true)
     setPopup50Shown(true)
+  }
+  useEffect(() => {
+    if (!popup50Shown) return
     try { localStorage.setItem(LS_POPUP50, '1') } catch {}
-  }, [pct, hydrated]) // eslint-disable-line
+  }, [popup50Shown])
 
   if (!hydrated) return (
     <div style={{minHeight:'100vh', background:'var(--bg)'}}>
