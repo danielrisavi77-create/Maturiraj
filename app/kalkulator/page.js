@@ -729,6 +729,9 @@ function parseShareUrl() {
   };
 }
 
+const DEFAULT_SCORES = {prosjek:4.0,hr:60,mat:50,strani:65,izb1:0,izb2:0,natjecanja:0,sport:0,prijemni:0};
+const DEFAULT_PROFIL = {ime:"",razred:"4. razred"};
+
 function loadLS(k,fb){
   if(typeof window==="undefined")return fb;
   try{const v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch{return fb;}
@@ -1821,10 +1824,11 @@ function KalkulatorInner() {
   const searchParams = useSearchParams();
   const { user, isPaid, isPro } = useAuth()
   const aiEnabled = isAiEndpointsEnabled();
-  const urlData = useMemo(()=>parseShareUrl(),[]);
-
-  const [scores, setScores] = useState(()=>urlData?.scores??loadLS(LS_SCORES,{prosjek:4.0,hr:60,mat:50,strani:65,izb1:0,izb2:0,natjecanja:0,sport:0,prijemni:0}));
-  const [profil, setProfil] = useState(()=>loadLS(LS_PROFIL,{ime:"",razred:"4. razred"}));
+  // SSR-safe početne vrijednosti — sve što ovisi o pregledniku (URL, localStorage)
+  // učitava se tek nakon montiranja, da prvi klijentski render bude identičan SSR-u.
+  const [hydrated, setHydrated] = useState(false);
+  const [scores, setScores] = useState(DEFAULT_SCORES);
+  const [profil, setProfil] = useState(DEFAULT_PROFIL);
   const [simDelta,    setSimDelta]    = useState({prosjek:0,hr:0,mat:0,strani:0,izb1:0,izb2:0,prijemni:0});
   const [rightTab,    setRightTab]    = useState("pregled");
   const [search,      setSearch]      = useState("");
@@ -1848,10 +1852,7 @@ function KalkulatorInner() {
   const [showPlanModal, setShowPlanModal] = useState(false);
   const [showChat,      setShowChat]      = useState(false);
   const [showKb,        setShowKb]        = useState(false);
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "dark";
-    return localStorage.getItem("maturiraj_theme") || "dark";
-  });
+  const [theme, setTheme] = useState("dark");
   const [radarStudij,  setRadarStudij]  = useState(null);
   const [notifEmail,   setNotifEmail]   = useState("");
   const [voiceActive,  setVoiceActive]  = useState(false);
@@ -1861,15 +1862,22 @@ function KalkulatorInner() {
   const [notifChips,   setNotifChips]   = useState(new Set(["rangliste","rezultati"]));
   const [notifSent,    setNotifSent]    = useState(false);
   const [notifLoading, setNotifLoading] = useState(false);
-  const [showOnboarding, setShowOnboarding] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return !localStorage.getItem("maturiraj_onboarded");
-  });
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [isAmbassador, setIsAmbassador] = useState(false);
 
-  const [favoriti, setFavoriti] = useState(()=>{
-    if(urlData?.favoriti) return urlData.favoriti;
-    return new Set(loadLS(LS_KEY,[]));
-  });
+  const [favoriti, setFavoriti] = useState(()=>new Set());
+
+  // ── Jednokratno učitavanje iz preglednika (URL + localStorage) nakon montiranja ──
+  useEffect(() => {
+    const urlData = parseShareUrl();
+    setScores(urlData?.scores ?? loadLS(LS_SCORES, DEFAULT_SCORES));
+    setProfil(loadLS(LS_PROFIL, DEFAULT_PROFIL));
+    setFavoriti(urlData?.favoriti ?? new Set(loadLS(LS_KEY, [])));
+    try { setTheme(localStorage.getItem("maturiraj_theme") || "dark"); } catch {}
+    try { setShowOnboarding(!localStorage.getItem("maturiraj_onboarded")); } catch {}
+    try { setIsAmbassador(!!JSON.parse(localStorage.getItem(LS_REFERRAL) || "{}").isAmbassador); } catch {}
+    setHydrated(true);
+  }, []);
 
   // ── Keyboard shortcuts ────────────────────────────────────────────────────
   useEffect(() => {
@@ -1891,9 +1899,9 @@ function KalkulatorInner() {
     return () => window.removeEventListener("keydown", handler);
   }, [isPro, theme]);
 
-    useEffect(()=>{try{localStorage.setItem(LS_KEY,JSON.stringify([...favoriti]))}catch{}},[favoriti]);
-  useEffect(()=>{try{localStorage.setItem(LS_SCORES,JSON.stringify(scores))}catch{}},[scores]);
-  useEffect(()=>{try{localStorage.setItem(LS_PROFIL,JSON.stringify(profil))}catch{}},[profil]);
+    useEffect(()=>{if(!hydrated)return;try{localStorage.setItem(LS_KEY,JSON.stringify([...favoriti]))}catch{}},[favoriti,hydrated]);
+  useEffect(()=>{if(!hydrated)return;try{localStorage.setItem(LS_SCORES,JSON.stringify(scores))}catch{}},[scores,hydrated]);
+  useEffect(()=>{if(!hydrated)return;try{localStorage.setItem(LS_PROFIL,JSON.stringify(profil))}catch{}},[profil,hydrated]);
 
   const setScore   = useCallback((k,v)=>setScores(s=>({...s,[k]:v})),[]);
   const toggleFav  = useCallback((k)=>setFavoriti(p=>{const n=new Set(p);n.has(k)?n.delete(k):n.add(k);return n;}),[]);
@@ -1915,8 +1923,9 @@ function KalkulatorInner() {
   },[scores, isPro]);
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    if (!hydrated) return;
     try { localStorage.setItem("maturiraj_theme", theme); } catch {}
-  }, [theme]);
+  }, [theme, hydrated]);
 
   // Praćenje dolaznih referrala — kad netko otvori link s ?ref=kod
   useEffect(() => {
@@ -2180,7 +2189,7 @@ function KalkulatorInner() {
                 <span className="profil-badge">📊 {totalBodova} bod</span>
                 <span className="profil-badge">♥ {counts.fav} favorita</span>
                 {counts.high>0&&<span className="profil-badge" style={{background:"rgba(62,207,110,.12)",color:"var(--green)",borderColor:"rgba(62,207,110,.2)"}}>✓ {counts.high} dobra šansa</span>}
-                {(()=>{try{const r=JSON.parse(localStorage.getItem(LS_REFERRAL)||"{}");return r.isAmbassador?<span className="profil-badge" style={{background:"rgba(124,92,252,.12)",color:"var(--violet)",borderColor:"rgba(124,92,252,.2)"}}>🏅 Ambassador</span>:null;}catch{return null;}})()}
+                {isAmbassador&&<span className="profil-badge" style={{background:"rgba(124,92,252,.12)",color:"var(--violet)",borderColor:"rgba(124,92,252,.2)"}}>🏅 Ambassador</span>}
               </div>
             </div>
 
