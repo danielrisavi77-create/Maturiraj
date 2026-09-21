@@ -1,10 +1,9 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { getPaywallVariant, PAYWALL_COPY } from '@/lib/ab/paywallVariant'
+import { PAYWALL_COPY } from '@/lib/ab/paywallVariant'
+import { usePaywallVariant } from '@/lib/ab/usePaywallVariant'
 
 export default function WeaknessHeatmap({ progress, color, isPro }) {
-  const [variant, setVariant] = useState('control')
-  useEffect(() => { setVariant(getPaywallVariant()) }, [])
+  const variant = usePaywallVariant()
   const copy = PAYWALL_COPY.weaknessLock[variant]
   // Aggregate top weak topics preko svih predmeta
   const allWeak = progress

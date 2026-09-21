@@ -1,13 +1,13 @@
 'use client'
-import { useState, useEffect } from 'react'
-import { getPaywallVariant, PAYWALL_COPY } from '@/lib/ab/paywallVariant'
+import { useState } from 'react'
+import { PAYWALL_COPY } from '@/lib/ab/paywallVariant'
+import { usePaywallVariant } from '@/lib/ab/usePaywallVariant'
 
 export default function SimulatorLauncher({ studij, plan }) {
   const isPro = plan === 'pro'
   const isStandard = plan === 'standard' || isPro
   const [weeklyUsed] = useState(0)  // TODO: fetch from Supabase
-  const [variant, setVariant] = useState('control')
-  useEffect(() => { setVariant(getPaywallVariant()) }, [])
+  const variant = usePaywallVariant()
   const copy = PAYWALL_COPY.simulatorFree[variant]
 
   const canLaunch = isStandard || weeklyUsed < 1

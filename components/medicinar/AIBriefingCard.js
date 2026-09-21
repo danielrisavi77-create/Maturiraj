@@ -1,7 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { getPaywallVariant, PAYWALL_COPY } from '@/lib/ab/paywallVariant'
+import { PAYWALL_COPY } from '@/lib/ab/paywallVariant'
+import { usePaywallVariant } from '@/lib/ab/usePaywallVariant'
 import { getLatestBriefing } from '@/lib/prijemni/medicinarMode'
 import { AIBriefingSkeleton } from '@/components/prijemni/skeletons/ComponentSkeletons'
 
@@ -9,13 +10,12 @@ export default function AIBriefingCard({ studij, isPro, onGenerate }) {
   const [briefing, setBriefing] = useState(null)
   const [loading, setLoading] = useState(true)
   const [generating, setGenerating] = useState(false)
-  const [variant, setVariant] = useState('control')
+  const variant = usePaywallVariant()
 
   useEffect(() => {
     getLatestBriefing(studij?.id).then(b => { setBriefing(b); setLoading(false) })
   }, [studij?.id])
 
-  useEffect(() => { setVariant(getPaywallVariant()) }, [])
   const copy = PAYWALL_COPY.aiBriefing[variant]
 
   if (loading) return <AIBriefingSkeleton/>
