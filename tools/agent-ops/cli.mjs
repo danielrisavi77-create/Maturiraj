@@ -55,7 +55,7 @@ async function main() {
         Object.assign(runRecord, result.telemetry, { outcome: result.status }); s.providerProbes ??= {}; s.providerProbes[provider] = result;
         out({ provider, status: result.status, summary: result.summary, usage: result.telemetry.usage });
         if (result.status !== 'pass') process.exitCode = 1;
-      } catch (e) { runRecord.outcome = 'failed'; runRecord.error = e.message; await store.save(s); throw e; }
+      } catch (e) { Object.assign(runRecord, e.telemetry); runRecord.outcome = 'failed'; runRecord.error = e.message; await store.save(s); throw e; }
     }); return;
   }
   if (command === 'doctor') {
@@ -109,7 +109,9 @@ async function main() {
       const task = { id: 'plan', attemptId: randomUUID(), description: brief.description, files: brief.scope, acceptance: brief.acceptance };
       const schema = JSON.parse(await readFile(fileURLToPath(new URL('./goal.schema.json', import.meta.url)), 'utf8'));
       const s = await store.read(); const record = { provider: 'codex', phase: 'plan', taskId: 'plan', outcome: 'started', usage: null }; s.usage.push(record); await store.save(s);
-      const response = await invoke(c, { provider: 'codex', task, cwd: c.repo, phase: 'plan', schema, prompt: `Produce the smallest ordered task plan. Use only this approved scope and these criteria: ${JSON.stringify(brief)}. Shape example: ${JSON.stringify(template)}. Use Claude for implementation, Grok only for research; Codex may handle tiny edits. Do not execute the plan.` });
+      let response;
+      try { response = await invoke(c, { provider: 'codex', task, cwd: c.repo, phase: 'plan', schema, prompt: `Produce the smallest ordered task plan. Use only this approved scope and these criteria: ${JSON.stringify(brief)}. Shape example: ${JSON.stringify(template)}. Use Claude for implementation, Grok only for research; Codex may handle tiny edits. Do not execute the plan.` }); }
+      catch (e) { Object.assign(record, e.telemetry, { outcome: 'failed', error: e.message }); await store.save(s); throw e; }
       Object.assign(record, response.telemetry, { outcome: 'returned' }); await store.save(s);
       delete response.telemetry; ensure(response.id === brief.id && digest(response.scope) === digest(brief.scope) && digest(response.acceptance) === digest(brief.acceptance), 'Planner changed approved id, scope or acceptance'); validateGoal(response);
       const path = join(stateDir, `${brief.id}.goal.json`); await atomicWrite(path, response); out({ plan: path, next: 'goal --file <plan>, then start' });
