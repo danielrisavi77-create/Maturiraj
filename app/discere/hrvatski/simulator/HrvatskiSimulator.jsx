@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { buildUserAccess } from '@/components/discere/paywall';
 import confetti from 'canvas-confetti';
@@ -129,7 +129,6 @@ function App(){
   const[pendingExamKey,setPendingExamKey]=useState("2024_ljeto_A");
   const[prevScreen,setPrevScreen]=useState("home");
   const[soundOn,setSoundOn]=useState(()=>{try{return typeof localStorage!=='undefined'&&localStorage.getItem("discere_sound")!=="0";}catch(e){return true;}});
-  if(typeof window!=='undefined') window._soundOn=soundOn;
   const[showDisclaimer,setShowDisclaimer]=useState(false);
   const[darkMode,setDarkMode]=useState(()=>{try{return typeof localStorage!=='undefined'&&localStorage.getItem("discere_hrv_dark")==="1";}catch(e){return false;}});
   const[cbMode,setCbMode]=useState(()=>{try{return typeof localStorage!=='undefined'&&localStorage.getItem("discere_hrv_cb")==="1";}catch(e){return false;}});
@@ -158,9 +157,7 @@ function App(){
   useEffect(()=>{
     try{localStorage.setItem("discere_hrv_dys",dysMode?"1":"0");}catch(e){}
   },[dysMode]);
-  useEffect(()=>{
-    if(userData?.onboarded) setShowOnboarding(false);
-  },[userData?.onboarded]);
+  if(showOnboarding&&userData?.onboarded) setShowOnboarding(false);
   // Migracija starih korisnika: history je nekad rastao bez granice (answers+qTimes na
   // svakom zapisu). Jednom pri mountu obreži na trimHistory pravila ako već nije trimano.
   const _historyTrimmed=useRef(false);
@@ -411,7 +408,7 @@ function App(){
   // tiho postati neki drugi ispit.
   const resolvedExam=VIRTUAL_SESSION_SCREENS.includes(screen)?(screen==="practice_list_session"?activeExam:virtualExam):exam;
   const _sessionRef=useRef(null);
-  _sessionRef.current={virtualExam,activeExam};
+  useLayoutEffect(()=>{_sessionRef.current={virtualExam,activeExam};},[virtualExam,activeExam]);
 
   const toggles=e("div",{style:{display:"flex",gap:6,marginLeft:"auto"}},
     e("button",{onClick:()=>setShowDisclaimer(true),title:"O aplikaciji",

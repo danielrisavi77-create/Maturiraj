@@ -28,7 +28,7 @@ export default function Auth() {
     } else {
       const { error } = await supabase.auth.signInWithPassword({ email, password })
       if (error) setGreska('Pogrešan email ili lozinka.')
-      else window.location.href = '/dashboard'
+      else window.location.assign('/dashboard')
     }
     setLoading(false)
   }
