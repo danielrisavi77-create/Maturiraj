@@ -43,3 +43,45 @@ it('can repeat a highlight after it was cleared without resetting manual navigat
   view.rerender(<Sim {...props} highlightQid={2} />);
   expect(document.querySelector('.qtext').textContent).toBe('Timing question 2');
 });
+
+it('auto-submits a resumed exam once with the latest answers and timing', () => {
+  localStorage.setItem('discere_exam_timing', JSON.stringify({ deadline: Date.now() + 3000 }));
+  const onDone = vi.fn();
+  render(<React.StrictMode><Sim exam={exam} examMode isPaid userAccess={access} onDone={onDone} /></React.StrictMode>);
+  fireEvent.keyDown(window, { key: 'a' });
+  act(() => vi.advanceTimersByTime(1000));
+  fireEvent.click(screen.getByText(/Sljedeće/));
+  fireEvent.keyDown(window, { key: 'b' });
+  act(() => vi.advanceTimersByTime(2000));
+  expect(onDone).toHaveBeenCalledOnce();
+  expect(onDone.mock.calls[0][0]).toMatchObject({ answers: { 1: 'A', 2: 'B' }, qTimes: { 1: 1, 2: 2 } });
+  act(() => vi.advanceTimersByTime(5000));
+  expect(onDone).toHaveBeenCalledOnce();
+});
+
+it('expires against the saved deadline when a background tab becomes visible', () => {
+  localStorage.setItem('discere_exam_timing', JSON.stringify({ deadline: Date.now() + 3000 }));
+  const onDone = vi.fn();
+  render(<Sim exam={exam} examMode isPaid userAccess={access} onDone={onDone} />);
+  fireEvent.keyDown(window, { key: 'a' });
+  act(() => {
+    vi.setSystemTime(Date.now() + 5000);
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  expect(onDone).toHaveBeenCalledOnce();
+  expect(onDone.mock.calls[0][0]).toMatchObject({ answers: { 1: 'A' }, qTimes: { 1: 5 } });
+});
+
+it('ends the initial countdown after three seconds and cancels timers on unmount', () => {
+  const onDone = vi.fn();
+  const view = render(<Sim exam={exam} examMode isPaid userAccess={access} onDone={onDone} />);
+  for (const num of ['3', '2', '1']) {
+    expect(document.querySelector('.ecd-num').textContent).toBe(num);
+    act(() => vi.advanceTimersByTime(1000));
+  }
+  expect(document.querySelector('.exam-countdown')).toBeNull();
+  view.unmount();
+  act(() => vi.advanceTimersByTime(6000000));
+  expect(onDone).not.toHaveBeenCalled();
+  expect(vi.getTimerCount()).toBe(0);
+});

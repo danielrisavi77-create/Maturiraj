@@ -4,6 +4,7 @@ import confetti from 'canvas-confetti';
 import { EXAMS, TOPIC_LABELS, ESEJI, SAZECI, TLBL } from '../hrvatskiSimulatorData';
 import { e, LL, chk, hasAns, lsSave, lsGet, playWrongSound, calcXpGain, xpProgress, getLevel, qIdentity, computeSecLeft } from '../utils/helpers';
 import { useQuestionTimes } from '../utils/useQuestionTimes';
+import { useExamDeadline } from '../utils/useExamDeadline';
 import ShareStoryCard from '@/components/shared/ShareStoryCard';
 import { FREE_LIMIT, canSeeHrvAnalysis, isHrvFreePracticeExam } from '@/components/discere/paywall/paywallHelpers';
 import LockedAnalysisSection from '@/components/discere/paywall/LockedAnalysisSection';
@@ -199,8 +200,6 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
   const TOTAL_SEC=examMode?examMinutes*60:null;
   // Rok predaje je apsolutni timestamp da reload (ili zatvaranje kartice) ne resetira ispit.
   const[deadline]=useState(()=>examMode?(_savedExam?.deadline||Date.now()+TOTAL_SEC*1000):null);
-  const[secLeft,setSecLeft]=useState(()=>examMode?computeSecLeft(deadline,Date.now()):null);
-  const[timerDone,setTimerDone]=useState(false);
   const[calmMode,setCalmMode]=useState(false);
   // 3-2-1 countdown before exam starts — preskače se pri nastavku prekinutog ispita
   const[examCountdown,setExamCountdown]=useState(examMode&&!_savedExam?3:null);
@@ -209,19 +208,7 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     const t=setTimeout(()=>setExamCountdown(c=>c<=1?null:c-1),1000);
     return()=>clearTimeout(t);
   },[examCountdown]);
-  useEffect(()=>{
-    if(!examMode||secLeft===null||examCountdown!==null) return;
-    if(secLeft<=0){setTimerDone(true);return;}
-    const t=setTimeout(()=>setSecLeft(s=>Math.min(s-1,computeSecLeft(deadline,Date.now()))),1000);
-    return()=>clearTimeout(t);
-  },[examMode,secLeft,examCountdown,deadline]);
-  // Kartica u pozadini: setTimeout se usporava, pa se pri povratku vrijeme čita iz roka.
-  useEffect(()=>{
-    if(!examMode||!deadline) return;
-    const h=()=>{if(!document.hidden) setSecLeft(computeSecLeft(deadline,Date.now()));};
-    document.addEventListener("visibilitychange",h);
-    return()=>document.removeEventListener("visibilitychange",h);
-  },[examMode,deadline]);
+  const secLeft=useExamDeadline(deadline,examMode&&examCountdown===null&&!done,()=>submitExam());
   // Autosave ispitnog moda — rok + odgovori, da se F5 ne pretvori u novi ispit.
   useEffect(()=>{
     if(!examMode||done) return;
@@ -336,12 +323,6 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     })()});
     window.scrollTo(0,0);
   }
-
-  // Auto-predaja ispita kad istekne vrijeme (timerDone). Guard `!done` sprječava dvostruku predaju.
-  useEffect(()=>{
-    if(timerDone && !done) submitExam();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[timerDone,done]);
 
   if(done){
     const autoQ=QSX.filter(q=>q.type==="mc");
