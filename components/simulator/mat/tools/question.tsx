@@ -182,10 +182,14 @@ function QToolbar({glossaryText,warn,vizKind,qid,onViz}){
     (panel==="warn"&&warn)?e("div",{style:{display:"flex",alignItems:"flex-start",gap:9,padding:"11px 14px",marginBottom:16,borderRadius:"var(--r)",background:"rgba(233,180,70,.08)",border:"1px solid rgba(233,180,70,.32)",fontSize:12.5,color:"var(--gold)",lineHeight:1.62}},e("span",{style:{flexShrink:0,marginTop:1}},"⚠️"),e("span",{style:{flex:1}},warn)):null
   );
 }
+function useAnswerSymbols(answer,onAnswer){
+  const inpRef=React.useRef(null);
+  const insSym=React.useCallback(function insSym(sym){const el=inpRef.current;if(!el){onAnswer((answer||"")+sym);return;}const st=el.selectionStart??(answer||"").length,en=el.selectionEnd??st;const nv=(answer||"").slice(0,st)+sym+(answer||"").slice(en);onAnswer(nv);requestAnimationFrame(()=>{try{el.focus();el.setSelectionRange(st+sym.length,st+sym.length);}catch(e){}});},[answer,onAnswer]);
+  return {inpRef,insSym};
+}
 function CalcQuestion({q,answer,onAnswer,isReviewed,isPractice,isExamMode,onViz}){
   const[postupak,setPostupak]=useState("");
-  const inpRef=React.useRef(null);
-  function insSym(sym){const el=inpRef.current;if(!el){onAnswer((answer||"")+sym);return;}const st=el.selectionStart??(answer||"").length,en=el.selectionEnd??st;const nv=(answer||"").slice(0,st)+sym+(answer||"").slice(en);onAnswer(nv);requestAnimationFrame(()=>{try{el.focus();el.setSelectionRange(st+sym.length,st+sym.length);}catch(e){}});}
+  const {inpRef,insSym}=useAnswerSymbols(answer,onAnswer);
   const[showUpgrade,setShowUpgrade]=useState(false);
   const[aiState,setAiState]=useState("idle");
   const[aiResult,setAiResult]=useState(null);
