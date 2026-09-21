@@ -1,6 +1,7 @@
 ﻿'use client'
 import { useMemo, useState, useEffect } from 'react'
 import { useCurrentTime } from '@/lib/hooks/useCurrentTime'
+import { useCompareDeepLink } from '@/lib/prijemni/useCompareDeepLink'
 import { daysUntil, formatDays, pragZona } from './helpers'
 import { CSS } from './styles'
 import { personalizeFakulteti } from '@/lib/prijemni/personalize'
@@ -59,10 +60,15 @@ export default function PrijemniListView({ fakulteti, onSelect, track, isPro = f
       .finally(() => setLoadingScores(false))
   }, [])
 
-  // Auto-open matcher from onboarding wizard
+  const matcherRequested = autoOpenMatcher && !loadingScores
+  const [previousMatcherRequest, setPreviousMatcherRequest] = useState(matcherRequested)
+  if (matcherRequested !== previousMatcherRequest) {
+    setPreviousMatcherRequest(matcherRequested)
+    if (matcherRequested) setModalOpen(true)
+  }
+  // Acknowledge the request after the dialog has committed.
   useEffect(() => {
     if (autoOpenMatcher && !loadingScores) {
-      setModalOpen(true)
       onMatcherAutoOpenDone?.()
     }
   }, [autoOpenMatcher, loadingScores])
@@ -125,7 +131,7 @@ export default function PrijemniListView({ fakulteti, onSelect, track, isPro = f
 
   // Compare feature
   const compare = useCompare()
-  const [compareOpen, setCompareOpen] = useState(false)
+  const [compareOpen, setCompareOpen] = useCompareDeepLink(track)
   const [maxToast, setMaxToast] = useState(false)
 
   const handleCompareAll = (e, f) => {
@@ -139,17 +145,6 @@ export default function PrijemniListView({ fakulteti, onSelect, track, isPro = f
     if (blocked) setMaxToast(true)
     else track?.('compare_add_all', f.id, null, null, { count: f.studiji.length })
   }
-
-  // Auto-open compare view when arriving from a share deep-link (?openCompare=1)
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('openCompare') === '1') {
-      setCompareOpen(true)
-      window.history.replaceState({}, '', '/prijemni')
-      track?.('compare_deeplink_open')
-    }
-  }, [])
 
   // Build flat studij map for CompareView + CompareDock
   const allStudijiMap = useMemo(() => {

@@ -99,7 +99,8 @@ export default function SearchFilterBar({ filter, setFilter, totalStudiji, defau
   // Sync filter state → URL params (replaceState, no history entry)
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const params = new URLSearchParams()
+    const params = new URLSearchParams(window.location.search)
+    for (const key of ['q', 'prag', 'sort', 'ispit', 'tip', 'city', 'kalk']) params.delete(key)
     if (filter.query) params.set('q', filter.query)
     if (filter.prag_band && filter.prag_band !== 'all') params.set('prag', filter.prag_band)
     if (filter.sort && filter.sort !== 'popular') params.set('sort', filter.sort)
@@ -107,7 +108,7 @@ export default function SearchFilterBar({ filter, setFilter, totalStudiji, defau
     if (filter.tip_upisa && filter.tip_upisa !== 'all') params.set('tip', filter.tip_upisa)
     if (filter.city && filter.city !== 'all') params.set('city', filter.city)
     if (filter.has_kalk) params.set('kalk', '1')
-    const url = params.toString() ? `?${params}` : window.location.pathname
+    const url = window.location.pathname + (params.toString() ? `?${params}` : '') + window.location.hash
     window.history.replaceState({}, '', url)
   }, [filter])
 
