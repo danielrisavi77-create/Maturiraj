@@ -170,25 +170,17 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     confettiFired.current=true;
     return()=>{if(t1)clearTimeout(t1);if(t2)clearTimeout(t2);};
   },[done]);
-  // XP bar fill animation
+  const[xpResult,setXpResult]=useState(null);
+  const[xpBarFill,setXpBarFill]=useState(null);
+  // Animate the reward snapshot captured before the parent updates user data.
   useEffect(()=>{
-    if(!done) return;
-    const autoQ2=QSX.filter(q=>q.type==="mc");
-    const cor2=autoQ2.filter(q=>chk(q,answers[q.id])===true).length;
-    const pct2=autoQ2.length>0?Math.round(cor2/autoQ2.length*100):0;
-    const gain=calcXpGain(pct2,autoQ2.length);
-    const oldXP=userData?.xp||0;
-    const newXP=oldXP+gain;
-    const lvlUp=getLevel(newXP)>getLevel(oldXP);
-    const startProg=lvlUp?0:xpProgress(oldXP);
-    setXpBarFill(startProg);
-    const t=setTimeout(()=>setXpBarFill(xpProgress(newXP)),700);
+    if(!xpResult) return;
+    const t=setTimeout(()=>setXpBarFill(xpResult.end),700);
     return()=>clearTimeout(t);
-  },[done]);
+  },[xpResult]);
   const[qTimes,setQTimes]=useState({});
   const[shownAnswers,setShownAnswers]=useState({});
   const[confidence,setConfidence]=useState({}); // { qid: 1|2|3 }
-  const[xpBarFill,setXpBarFill]=useState(0);
   const[percentile,setPercentile]=useState(null);
   const[revFilter,setRevFilter]=useState("sve"); // "sve" | "tocni" | "krivi"
   const[revOpen,setRevOpen]=useState(true);
@@ -320,6 +312,9 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     const cor=autoQ.filter(q=>chk(q,answers[q.id])===true).length;
     const ispitInfo=getIspitInfo(exam);
     const pct=autoQ.length>0?Math.round(cor/autoQ.length*100):0;
+    const oldXp=userData?.xp||0;
+    const newXp=oldXp+calcXpGain(pct,autoQ.length);
+    setXpResult({oldXp,newXp,start:getLevel(newXp)>getLevel(oldXp)?0:xpProgress(oldXp),end:xpProgress(newXp)});
     // Bodovi: cor bodova od ispitInfo.mcBod (skalirano)
     const bodovi=Math.round(cor/Math.max(autoQ.length,1)*ispitInfo.mcBod);
     const g=getOcjena(pct);
@@ -398,11 +393,11 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
         ),
         e("div",{className:"xp-prog-wrap"},
           e("div",{className:"xp-prog-track"},
-            e("div",{className:"xp-prog-fill",style:{width:xpBarFill+"%"}})
+            e("div",{className:"xp-prog-fill",style:{width:(xpBarFill??xpResult.start)+"%"}})
           ),
           e("div",{style:{display:"flex",justifyContent:"space-between",fontSize:11,color:"var(--muted)",marginTop:4}},
-            e("span",null,"Razina "+(getLevel(userData?.xp||0)+1)),
-            e("span",null,(userData?.xp||0)+" \u2192 "+((userData?.xp||0)+xpGain)+" XP")
+            e("span",null,"Razina "+(getLevel(xpResult.newXp)+1)),
+            e("span",null,xpResult.oldXp+" \u2192 "+xpResult.newXp+" XP")
           )
         )
       ),

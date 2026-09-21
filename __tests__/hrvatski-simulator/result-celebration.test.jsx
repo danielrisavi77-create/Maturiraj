@@ -1,9 +1,10 @@
 // @vitest-environment happy-dom
-import React from 'react';
+import React, { useState } from 'react';
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import confetti from 'canvas-confetti';
 import { Sim } from '@/app/discere/hrvatski/simulator/components/Sim';
+import { calcXpGain, xpProgress } from '@/app/discere/hrvatski/simulator/utils/helpers';
 vi.mock('canvas-confetti', () => ({ default: vi.fn() }));
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn() }) }));
 const exam = { key: 'celebration', year: 2024, label: 'Test', qs: [
@@ -36,4 +37,20 @@ it('does not leave animation frames or delayed bursts after unmount', () => {
   expect(frames.size).toBe(0);
   act(() => vi.advanceTimersByTime(500));
   expect(confetti).toHaveBeenCalledTimes(1);
+});
+
+it('animates one reward even when the parent immediately updates the user XP', () => {
+  const gain = calcXpGain(100, 1);
+  function Parent() {
+    const [userData, setUserData] = useState({ xp: 50 });
+    return <Sim exam={exam} practice isPaid userAccess={{ isLoggedIn: true, subscriptionTier: 'standard' }} userData={userData}
+      onDone={result => setUserData(previous => ({ xp: previous.xp + calcXpGain(result.pct, result.total) }))} />;
+  }
+  const view = render(<Parent />);
+  fireEvent.click(screen.getByText('Correct'));
+  fireEvent.click(screen.getByText(/Završi ispit/));
+  expect(view.container.querySelector('.xp-prog-fill').style.width).toBe(`${xpProgress(50)}%`);
+  act(() => vi.advanceTimersByTime(700));
+  expect(view.container.querySelector('.xp-prog-fill').style.width).toBe(`${xpProgress(50 + gain)}%`);
+  expect(screen.getByText(`50 → ${50 + gain} XP`)).toBeTruthy();
 });
