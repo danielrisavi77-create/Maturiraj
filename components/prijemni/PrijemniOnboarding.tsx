@@ -310,7 +310,6 @@ interface PrijemniOnboardingProps {
 
 export default function PrijemniOnboarding({ onMatcherOpen, onCompareOpen, onBrowse }: PrijemniOnboardingProps) {
   const { shouldShow, complete, skip } = useOnboarding()
-  const [mounted, setMounted] = useState(false)
   const [visible, setVisible] = useState(false)
   const [step, setStep] = useState(0)
   const [draft, setDraft] = useState({
@@ -321,13 +320,12 @@ export default function PrijemniOnboarding({ onMatcherOpen, onCompareOpen, onBro
   })
 
   useEffect(() => {
-    setMounted(true)
     // Slight delay so page content renders first
     const t = setTimeout(() => setVisible(true), 600)
     return () => clearTimeout(t)
   }, [])
 
-  if (!mounted || !shouldShow || !visible) return null
+  if (!shouldShow || !visible) return null
 
   const handleSkip = () => {
     skip()
