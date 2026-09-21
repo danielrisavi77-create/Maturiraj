@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo, useRef, Fragment } from 'react';
 import confetti from 'canvas-confetti';
 import { EXAMS, TOPIC_LABELS, ESEJI, SAZECI, TLBL } from '../hrvatskiSimulatorData';
 import { e, LL, chk, hasAns, lsSave, lsGet, playWrongSound, calcXpGain, xpProgress, getLevel, qIdentity, computeSecLeft } from '../utils/helpers';
+import { useQuestionTimes } from '../utils/useQuestionTimes';
 import ShareStoryCard from '@/components/shared/ShareStoryCard';
 import { FREE_LIMIT, canSeeHrvAnalysis, isHrvFreePracticeExam } from '@/components/discere/paywall/paywallHelpers';
 import LockedAnalysisSection from '@/components/discere/paywall/LockedAnalysisSection';
@@ -133,11 +134,17 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     if(!s) return[0,{},{},{}];
     return[_resumeIdx(s),s.answers||{},s.rev||{},s.flag||{}];
   });
-  const[cur,setCur]=useState(_initCur);
+  const highlightedIndex=(highlightQid&&exam?.qs)?exam.qs.findIndex(q=>q.id===highlightQid):-1;
+  const[cur,setCur]=useState(()=>highlightedIndex>=0?highlightedIndex:_initCur);
+  const[previousHighlight,setPreviousHighlight]=useState(highlightQid);
+  if(highlightQid!==previousHighlight){
+    setPreviousHighlight(highlightQid);
+    if(highlightedIndex>=0) setCur(highlightedIndex);
+  }
   useEffect(()=>{
-    if(highlightQid&&exam?.qs){
-      const idx=exam.qs.findIndex(q=>q.id===highlightQid);
-      if(idx>=0){setCur(idx);setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),100);}
+    if(highlightedIndex>=0){
+      const t=setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),100);
+      return()=>clearTimeout(t);
     }
   },[highlightQid]);
   const[answers,setAnswers]=useState(_initAnswers);
@@ -178,7 +185,7 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     const t=setTimeout(()=>setXpBarFill(xpResult.end),700);
     return()=>clearTimeout(t);
   },[xpResult]);
-  const[qTimes,setQTimes]=useState({});
+  const{qTimes,recordQuestionTime}=useQuestionTimes();
   const[shownAnswers,setShownAnswers]=useState({});
   const[confidence,setConfidence]=useState({}); // { qid: 1|2|3 }
   const[percentile,setPercentile]=useState(null);
@@ -186,7 +193,6 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
   const[revOpen,setRevOpen]=useState(true);
   const[mobGrid,setMobGrid]=useState(false); // mobile question grid sheet
   const touchStartX=useRef(0);
-  const qStart=useRef(Date.now());
 
   // Timer za ispitni mod — od 2017. ispit traje 100 min, ranije 72 min
   const examMinutes=exam?.year>=2017?100:72;
@@ -200,8 +206,7 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
   const[examCountdown,setExamCountdown]=useState(examMode&&!_savedExam?3:null);
   useEffect(()=>{
     if(examCountdown===null) return;
-    if(examCountdown===0){setExamCountdown(null);return;}
-    const t=setTimeout(()=>setExamCountdown(c=>c-1),1000);
+    const t=setTimeout(()=>setExamCountdown(c=>c<=1?null:c-1),1000);
     return()=>clearTimeout(t);
   },[examCountdown]);
   useEffect(()=>{
@@ -239,7 +244,7 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     });
   }
 
-  function recordTime(idx){const elapsed=Math.round((Date.now()-qStart.current)/1000);if(elapsed>0&&elapsed<600)setQTimes(p=>({...p,[QSX[idx]?.id]:elapsed}));qStart.current=Date.now();}
+  function recordTime(idx){return recordQuestionTime(QSX[idx]?.id);}
 
   const q=QSX[cur];
   const qIdent=qIdentity(q,exam);
@@ -304,7 +309,7 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
   }
 
   function submitExam(){
-    recordTime(cur);
+    const finalQTimes=recordTime(cur);
     try{localStorage.removeItem(_lsKey);localStorage.removeItem(_exKey);}catch(e){}
     setDone(true);
     // Compute score (samo za MC)
@@ -319,7 +324,7 @@ function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,is
     const bodovi=Math.round(cor/Math.max(autoQ.length,1)*ispitInfo.mcBod);
     const g=getOcjena(pct);
     if(examMode&&!_isVirtual) loadPercentile(pct);
-    if(onDone) onDone({examKey:exam.key,examLabel:exam.year+" "+exam.label,pct,grade:g,cor,total:autoQ.length,bodovi,ispitInfo,answers,qTimes,examMode,qs:QSX,confidenceLog:(()=>{
+    if(onDone) onDone({examKey:exam.key,examLabel:exam.year+" "+exam.label,pct,grade:g,cor,total:autoQ.length,bodovi,ispitInfo,answers,qTimes:finalQTimes,examMode,qs:QSX,confidenceLog:(()=>{
       const log={};
       autoQ.forEach(q=>{
         if(confidence[q.id]){

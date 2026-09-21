@@ -33,3 +33,13 @@ it('commits a requested highlight before layout observers see the question', () 
   view.rerender(<Parent highlight={1} />);
   expect(committed).toEqual(['Timing question 2', 'Timing question 1']);
 });
+
+it('can repeat a highlight after it was cleared without resetting manual navigation', () => {
+  const props = { exam, practice: true, isPaid: true, userAccess: access };
+  const view = render(<Sim {...props} highlightQid={2} />);
+  view.rerender(<Sim {...props} highlightQid={null} />);
+  fireEvent.click(screen.getByText(/Prethodno/));
+  expect(document.querySelector('.qtext').textContent).toBe('Timing question 1');
+  view.rerender(<Sim {...props} highlightQid={2} />);
+  expect(document.querySelector('.qtext').textContent).toBe('Timing question 2');
+});
