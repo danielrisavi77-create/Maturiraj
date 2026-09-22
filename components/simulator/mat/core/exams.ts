@@ -85,10 +85,52 @@ export function loadExam(key, quiet, forExamMode){
   });
   return __examPending[pk];
 }
-// Postupno ucitavanje svih ispita uz progress (0..1) za cross-exam modove.
+// ── Meta-sazetak ispita (summary.json) ──────────────────────────────────────
+// Po ispitu popis pitanja {id, topic, type, points, img} BEZ sadrzaja (tekst, opcije,
+// rjesenja, koraci). Home iz njega racuna bazen Treninga dana, spremnost i pokrivenost
+// tema, pa ne dohvaca nijedan exam chunk; puni ispit stize tek kad korisnik pokrene
+// sesiju. Sadrzaja nema ni namjerno: sazetak dobiva i free korisnik, a kroz njega ne
+// smije procuriti banka zakljucanih ispita.
+let __SUMMARY = null;
+export function __setSummary(s){
+  const src = (s && s.exams) ? s.exams : (s || null);
+  if(!src){ __SUMMARY = null; __notifyExams(); return; }
+  const next = {};
+  Object.keys(src).forEach(function(k){
+    const rows = Array.isArray(src[k]) ? src[k] : (src[k] && src[k].questions);
+    if(Array.isArray(rows)) next[k] = rows;
+  });
+  __SUMMARY = next;
+  __notifyExams();
+}
+export function getSummary(){ return __SUMMARY; }
+export function hasSummary(){ return !!__SUMMARY; }
+// Meta-pitanja svih ispita koje ovaj korisnik smije vidjeti izvan ispitnog moda.
+// Ucitan ispit ima prednost pred sazetkom (uvezeni/custom ispiti nisu u summary.json),
+// a zakljucani su izostavljeni — isto kao dosad, gdje im je EXAMS[key].qs uvijek prazan.
+export function summaryQuestions(){
+  const out = [];
+  Object.keys(EXAMS).forEach(function(k){
+    const ex = EXAMS[k];
+    if(!ex || isExamLocked(k)) return;
+    const rows = (ex.qs && ex.qs.length) ? ex.qs : (__SUMMARY ? __SUMMARY[k] : null);
+    if(!rows) return;
+    rows.forEach(function(q){
+      if(!q || q._META) return;
+      out.push({ examKey:k, razina:ex.razina, id:q.id, topic:q.topic, type:q.type, points:q.points, img:!!q.img });
+    });
+  });
+  return out;
+}
+// Postupno ucitavanje zadanih ispita uz progress (0..1). Trening dana tako dohvaca samo
+// ispite iz kojih su izabrana pitanja (par chunkova), a ne cijelu banku.
 // Pojedinacni pad ne rusi cijelu seriju — zabiljezi se i nastavlja se dalje.
-export function loadAllExams(onProgress){
-  const keys = __loadableKeys().filter(function(k){ return !isExamLoaded(k); });
+export function loadExams(list, onProgress){
+  const seen = {};
+  const keys = (list||[]).filter(function(k){
+    if(seen[k] || !EXAMS[k] || isExamLocked(k) || isExamLoaded(k)) return false;
+    seen[k] = 1; return true;
+  });
   const total = keys.length;
   if(!total || !__examLoader){ if(onProgress) onProgress(1); return Promise.resolve({total:0,failed:0}); }
   let done = 0, failed = 0;
@@ -102,6 +144,8 @@ export function loadAllExams(onProgress){
   }
   return step(0);
 }
+// Postupno ucitavanje svih ispita uz progress (0..1) za cross-exam modove.
+export function loadAllExams(onProgress){ return loadExams(__loadableKeys(), onProgress); }
 export function __setExams(x) { EXAMS = x || {}; }
 /* 5.3 (tools): rokovi mature i naslov ispita - dijele ih ekrani i mat/tools (DDayModal, ShareCard). */
 export const MATURA_ROKOVI=[

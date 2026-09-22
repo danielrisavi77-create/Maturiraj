@@ -4,7 +4,7 @@
    Ekrani dana: hero na naslovnici, izazov dana i dnevni sazetak. */
 import React from 'react';
 import { DS, TOPIC_LABELS } from '../core/state';
-import { EXAMS, allExamsLoaded, nextMatura } from '../core/exams';
+import { EXAMS, allExamsLoaded, hasSummary, isExamLoaded, nextMatura, summaryQuestions } from '../core/exams';
 import { renderOptContent, renderQText } from '../core/mathText';
 import { LL } from '../core/ui';
 import { calcXpGain, grade, updateStreak } from '../core/progress';
@@ -33,16 +33,17 @@ function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,o
 
   let srsDue=0; try{ srsDue=getSrsDueCards(srsLoad()).length; }catch(e){}
 
-  // Adaptivni skup (mc+sa) iz ciljnih tema, balansiran
+  // Adaptivni skup (mc+sa) iz ciljnih tema, balansiran.
+  // Bazen se racuna iz meta-sazetka (summary.json) — Home tako ne dohvaca nijedan ispit.
+  // Elementi su meta-zapisi (id/topic/type), a ne pitanja; stvarna pitanja se uzimaju tek
+  // na klik, u _materialize, iz ispita koji su do tada ucitani.
   function buildPool(){
     const out=[];
-    Object.values(EXAMS).forEach(ex=>{
-      if(razina && ex.razina!==razina) return;
-      (ex.qs||[]).forEach(q=>{
-        if(q.type!=="mc"&&q.type!=="sa") return;
-        const l=labelOf(q.topic);
-        if(!hasTargets || targetLabels.indexOf(l)>=0) out.push({...q,_examKey:ex.key,_label:l});
-      });
+    summaryQuestions().forEach(q=>{
+      if(razina && q.razina!==razina) return;
+      if(q.type!=="mc"&&q.type!=="sa") return;
+      const l=labelOf(q.topic);
+      if(!hasTargets || targetLabels.indexOf(l)>=0) out.push({...q,_examKey:q.examKey,_label:l});
     });
     return out;
   }
@@ -62,22 +63,40 @@ function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,o
   }
   const trainCount=hasTargets?12:10;
   const session=pickBalanced(pool,targetLabels,trainCount);
-  // 2.1: pool dolazi iz EXAMS, koji je do zavrsetka ucitavanja prazan. Dok nije spremno,
-  // gumb ne laze s "0 pitanja" nego sam pokrene ucitavanje (s progress overlayem) i onda krene.
-  const examsReady=allExamsLoaded();
+  // Bazen je poznat cim stigne sazetak (ili su ispiti vec ucitani), pa gumb odmah pokazuje
+  // tocan broj pitanja; bez oboga ne laze s "0 pitanja" nego pise da priprema zadatke.
+  const examsReady=hasSummary()||allExamsLoaded();
 
   function _launchTraining(qs){
     if(!qs||!qs.length||!onStartErrorSession) return;
     onStartErrorSession({key:"errors_session",year:"Trening",season:"session",razina:razina||"B",
       label:"Trening dana", qs:[...qs], duration:qs.length*120});
   }
+  // Meta-izbor → stvarna pitanja iz ucitanih ispita (isti oblik kao prije: pitanje + _examKey/_label).
+  function _materialize(picks){
+    const out=[];
+    (picks||[]).forEach(p=>{
+      const ex=EXAMS[p._examKey];
+      const q=ex&&ex.qs?ex.qs.find(x=>String(x.id)===String(p.id)):null;
+      if(q) out.push({...q,_examKey:p._examKey,_label:p._label});
+    });
+    return out;
+  }
   function startTraining(){
-    // Provjera na klik (ne iz rendera) — nakon ucitavanja pool se racuna iznova.
-    if(!allExamsLoaded()){
-      if(onPrepareExams) onPrepareExams(function(){ _launchTraining(pickBalanced(buildPool(),targetLabels,trainCount)); });
+    // Izbor se radi na klik (ne iz rendera), pa se ucitavaju samo ispiti iz kojih su
+    // izabrana pitanja — tipicno par chunkova umjesto cijele banke.
+    const picks=pickBalanced(buildPool(),targetLabels,trainCount);
+    if(!picks.length){
+      // Nema ni sazetka ni ucitanih ispita — jedini izlaz je klasicno ucitavanje.
+      if(!examsReady&&onPrepareExams) onPrepareExams(null,function(){ _launchTraining(_materialize(pickBalanced(buildPool(),targetLabels,trainCount))); });
       return;
     }
-    _launchTraining(session);
+    const need=[...new Set(picks.map(p=>p._examKey))].filter(k=>!isExamLoaded(k));
+    if(need.length){
+      if(onPrepareExams) onPrepareExams(need,function(){ _launchTraining(_materialize(picks)); });
+      return;
+    }
+    _launchTraining(_materialize(picks));
   }
 
   const mat=nextMatura(); const days=mat.days;
