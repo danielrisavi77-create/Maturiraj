@@ -2,16 +2,23 @@
 import React, { useState, useMemo, Fragment } from 'react';
 import { EXAMS, TOPIC_LABELS, ESEJI, SAZECI, TLBL } from '../hrvatskiSimulatorData';
 import { e, LL, chk } from '../utils/helpers';
+import { canSeeDiscereAnalysis } from '@/components/discere/paywall/paywallHelpers';
+import LockedResultsBlock from '@/components/discere/paywall/LockedResultsBlock';
 
 const TBDG={mc:"b-mc",sa:"b-sa",es:"b-es",saz:"b-sa",mat:"b-mat"};
 
-function BrowseScreen({onBack,initialSearch,initialGlobal}){
+function BrowseScreen({onBack,initialSearch,initialGlobal,userAccess}){
   const[selExam,setSelExam]=useState(null);
   const[search,setSearch]=useState(typeof initialSearch==="string"?initialSearch:"");
   const[filterTopic,setFilterTopic]=useState("sve");
   const[filterType,setFilterType]=useState("sve");
   const[globalSearch,setGlobalSearch]=useState(!!(initialGlobal||initialSearch));
   const[expanded,setExpanded]=useState({});
+
+  // Pregled ispita je izlog pitanja, ne rješenja: točni odgovori, obrazloženja i
+  // pretraga po tekstu rješenja idu od Standard plana naviše. Zaključani sadržaj se
+  // uopće ne renderira (blur nije zaštita) nego ga zamjenjuje LockedResultsBlock.
+  const canSeeSolutions=canSeeDiscereAnalysis(userAccess);
 
   const exam=selExam?EXAMS[selExam]:null;
 
@@ -32,7 +39,7 @@ function BrowseScreen({onBack,initialSearch,initialGlobal}){
     if(filterType!=="sve"&&q.type!==filterType) return false;
     if(search){
       const s=String(search).toLowerCase();
-      if(!q.q.toLowerCase().includes(s)&&!(q.opts||[]).some(o=>o.toLowerCase().includes(s))&&!(q.sol?.ans||q.sol?.ex||"").toLowerCase().includes(s)&&!(TOPIC_LABELS[q.topic]||"").toLowerCase().includes(s)) return false;
+      if(!q.q.toLowerCase().includes(s)&&!(q.opts||[]).some(o=>o.toLowerCase().includes(s))&&!(canSeeSolutions?(q.sol?.ans||q.sol?.ex||""):"").toLowerCase().includes(s)&&!(TOPIC_LABELS[q.topic]||"").toLowerCase().includes(s)) return false;
     }
     return true;
   });
@@ -54,16 +61,16 @@ function BrowseScreen({onBack,initialSearch,initialGlobal}){
       e("div",{style:{fontSize:13,marginBottom:10,lineHeight:1.6,fontWeight:500}},q.q),
       q.opts&&e("div",{style:{display:"flex",flexDirection:"column",gap:4,marginBottom:10}},
         q.opts.map((opt,j)=>{
-          const marked=q.sol?.cl===LL[j];
+          const marked=canSeeSolutions&&q.sol?.cl===LL[j];
           return e("div",{key:j,style:{fontSize:12,padding:"6px 11px",borderRadius:"var(--r)",background:marked?"var(--green-d)":"var(--s2)",border:"1px solid "+(marked?"rgba(30,122,62,.35)":"var(--bdr)"),color:marked?"var(--green)":"var(--text)",fontWeight:marked?700:400,display:"flex",alignItems:"center",gap:8}},
             marked&&e("span",{style:{fontSize:10}},"✓"),LL[j]+". "+opt
           );
         })
       ),
-      (q.sol?.ans||q.sol?.ex)&&e("div",{style:{fontSize:12,color:"var(--green)",background:"var(--green-d)",border:"1px solid rgba(30,122,62,.25)",borderRadius:"var(--r)",padding:"8px 11px",lineHeight:1.5}},
+      canSeeSolutions&&(q.sol?.ans||q.sol?.ex)&&e("div",{style:{fontSize:12,color:"var(--green)",background:"var(--green-d)",border:"1px solid rgba(30,122,62,.25)",borderRadius:"var(--r)",padding:"8px 11px",lineHeight:1.5}},
         e("span",{style:{fontWeight:700,marginRight:6}},"✓"),(q.sol.ans||q.sol.ex)
       ),
-      q.exp&&e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:8,fontStyle:"italic",borderTop:"1px solid var(--bdr)",paddingTop:6}},"💡 "+q.exp)
+      canSeeSolutions&&q.exp&&e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:8,fontStyle:"italic",borderTop:"1px solid var(--bdr)",paddingTop:6}},"💡 "+q.exp)
     );
   }
 
@@ -99,12 +106,15 @@ function BrowseScreen({onBack,initialSearch,initialGlobal}){
       ),
       (selExam||globalSearch)&&e("div",{style:{fontSize:12,color:"var(--muted)",marginBottom:12}},
         questions.length+" pitanja"+(search||filterTopic!=="sve"||filterType!=="sve"?" (filtrirano)":"")+(globalSearch?" · svi ispiti":"")),
+      (selExam||globalSearch)&&!canSeeSolutions&&e(LockedResultsBlock,{label:"Točni odgovori i obrazloženja",rows:3,minHeight:150,
+        note:"Sva pitanja svih ispita možeš pregledavati i pretraživati besplatno. Točni odgovori, obrazloženja i analiza dolaze sa Standard planom.",
+        upgradeHref:"/pro?from=hrv-browse&plan=standard"}),
       (selExam||globalSearch)&&e("div",{style:{display:"flex",flexDirection:"column",gap:8}},
         questions.slice(0,100).map((q,i)=>renderQuestion(q,i,globalSearch)),
         questions.length>100&&e("div",{style:{textAlign:"center",padding:"16px 0",fontSize:13,color:"var(--muted)"}},"Prikazano 100 od "+questions.length+" — preciznom pretragom smanji broj rezultata.")
       ),
       !selExam&&!globalSearch&&e("div",null,
-        e("div",{style:{fontSize:13,color:"var(--muted)",marginBottom:16}},"Odaberi ispit za pregled svih pitanja i točnih odgovora ili klikni 🔍 za globalnu pretragu:"),
+        e("div",{style:{fontSize:13,color:"var(--muted)",marginBottom:16}},canSeeSolutions?"Odaberi ispit za pregled svih pitanja i točnih odgovora ili klikni 🔍 za globalnu pretragu:":"Odaberi ispit za pregled svih pitanja ili klikni 🔍 za globalnu pretragu. Točni odgovori i obrazloženja otključavaju se Standard planom."),
         years.map(year=>{
           const yExams=examList.filter(ex=>ex.year===year);
           const open=expanded[year]!==false;

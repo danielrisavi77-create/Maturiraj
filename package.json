@@ -21,7 +21,8 @@
     "scrape:test": "tsx scripts/scraper/test.ts",
     "backfill": "tsx scripts/scraper/backfill.ts",
     "backfill:dry": "tsx scripts/scraper/backfill.ts --dry-run",
-    "gen:skripta": "node scripts/gen-skripta.mjs"
+    "gen:skripta": "node scripts/gen-skripta.mjs",
+    "security:secrets": "node scripts/security/exam-secret-scan.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
