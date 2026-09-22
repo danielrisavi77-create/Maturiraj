@@ -18,8 +18,12 @@ import { FormulaModal } from '../tools/formulas';
 import { ERROR_TAGS, ErrorTagger, SelfExplain, StuckHelper, WarmupItem, WeakSpotTips } from '../tools/hints';
 import { ShareCard, UpgradeModal } from '../tools/modals';
 import { AnswerHelper, CalcQuestion, FeedbackBox, MaturaRubric, QToolbar } from '../tools/question';
-import { vc, TYPE_ICON, topicColor, fmt2, CalcQuestionM, TOPIC_FREQ } from './helpers';
+import { TYPE_ICON, topicColor, CalcQuestionM, TOPIC_FREQ } from './helpers';
 import { useExamSession } from './useExamSession';
+// Sim 2/4: zaglavlje, sat i navigacija po pitanjima zive u vlastitim komponentama.
+import { SimHeader } from './SimHeader';
+import { StickyMini, TimerAlert, PaceHint } from './SimTimer';
+import { SimNavSheet, SimSidebar } from './SimNav';
 // Zakljucani placeholder rezultata dijeli se s ostalim predmetima (hrv/eng/soc) umjesto
 // vlastite kopije; engine se bundla kroz Next, pa je obican import u redu.
 import LockedResultsBlock from '@/components/discere/paywall/LockedResultsBlock';
@@ -90,15 +94,6 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
   }
   React.useEffect(()=>{try{if(window.speechSynthesis&&window.speechSynthesis.speaking){window.speechSynthesis.cancel();setSpeaking(false);}}catch(e){}},[cur]);
   React.useEffect(()=>{try{DS.set("mat_read_mode",readMode?"1":"0");}catch(e){}},[readMode]);
-  function navFilterControls(inSheet){
-    const labels=[...new Set(QSX.map(qq=>TOPIC_LABELS[qq.topic]||qq.topic))];
-    if(labels.length<2)return null;
-    return e("div",{className:"nav-filters",style:{display:"flex",flexDirection:"row",gap:8,alignItems:"center",flexWrap:"wrap",marginBottom:14}},
-      e("select",{value:navTopicFilter||"",onChange:ev=>{const v=ev.target.value||null;setNavTopicFilter(v);if(v){const ix=QSX.findIndex(qq=>(TOPIC_LABELS[qq.topic]||qq.topic)===v);if(ix>=0){goTo(ix);if(inSheet)setShowNav(false);}}},style:{flex:"1 1 160px",minWidth:0,padding:"9px 12px",borderRadius:"var(--r)",border:"1px solid var(--bdr2)",background:"var(--s2)",color:"var(--text)",fontSize:13,fontWeight:600,fontFamily:"var(--fb)",cursor:"pointer"}},
-        e("option",{value:""},"\uD83D\uDD0D Filtriraj po temi"),
-        labels.map((l,i)=>e("option",{key:l||("__t"+i),value:l},l))),
-      e("button",{className:"nf-toggle"+(hideSolved?" on":""),onClick:()=>setHideSolved(v=>!v)},(hideSolved?"\u2713 ":"")+"Sakrij rije\u0161ene"));
-  }
   function tokenizeHL(text){const toks=[];let cur="",depth=0;for(const ch of String(text)){if(ch==="[")depth++;else if(ch==="]")depth=Math.max(0,depth-1);if(ch===" "&&depth===0){if(cur)toks.push(cur);toks.push(" ");cur="";}else cur+=ch;}if(cur)toks.push(cur);return toks;}
   function renderHL(text,qid){
     const toks=tokenizeHL(text);const hm=highlights[qid]||{};
@@ -678,10 +673,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
   return e("div",{className:(zen?"zen":"")+(readMode?" read-mode":""),style:{minHeight:"100vh"}},
     showCalc&&e(Calculator,{onClose:()=>setShowCalc(false),warnNoCalc:exam.razina==="A"&&cur<mcCount}),
     solveToast&&e("div",{className:"solve-toast"},solveToast),
-    scrolled&&!done&&e("div",{className:"sticky-mini"},
-      e("span",{className:"sm-q"},"Z "+(cur+1)+"/"+QSX.length),
-      e("div",{className:"sm-prog"},e("div",{className:"sm-fill",style:{width:Math.round((cur+1)/QSX.length*100)+"%"}})),
-      timerDur&&e("span",{className:"sm-timer "+timerCls,style:{color:timerCls==="danger"?"var(--red)":timerCls==="warn"?"var(--gold)":"var(--muted)"}},timer.d)),
+    scrolled&&!done&&e(StickyMini,{cur,QSX,timerDur,timer,timerCls}),
     saved&&!done&&e("div",{className:"save-pulse"},"\u2713 spremljeno"),
     example&&e("div",{className:"ex-overlay",onClick:()=>setExample(null)},
       e("div",{className:"ex-card",onClick:ev=>ev.stopPropagation()},
@@ -732,27 +724,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
             e("button",{onClick:()=>{setShowReview(false);finishExam();},className:"btn btn-gold",style:{flex:1,padding:"11px"}},"Predaj ispit \u2713")))
       );
     })(),
-    showNav&&e("div",{style:{position:"fixed",inset:0,background:"rgba(6,12,24,.6)",backdropFilter:"blur(3px)",zIndex:290,display:"flex",alignItems:"flex-end",justifyContent:"center"},onClick:ev=>{if(ev.target===ev.currentTarget)setShowNav(false);}},
-      e("div",{onClick:ev=>ev.stopPropagation(),style:{background:"var(--s1)",borderTopLeftRadius:20,borderTopRightRadius:20,borderTop:"1px solid var(--bdr)",padding:"18px 18px calc(18px + env(safe-area-inset-bottom))",width:"100%",maxWidth:560,maxHeight:"70vh",overflowY:"auto",boxShadow:"0 -10px 40px -10px rgba(0,0,0,.4)"}},
-        e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}},
-          e("div",{style:{fontFamily:"var(--fh)",fontSize:18}},"Navigator"),
-          e("button",{onClick:()=>setShowNav(false),style:{background:"var(--s2)",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",color:"var(--muted)",fontFamily:"var(--fb)"}},"\u2715")),
-        navFilterControls(true),
-        sections.map((sec,si)=>{
-          const range=QSX.slice(sec.from,sec.to+1);
-          return e("div",{key:si,style:{marginBottom:12}},
-            e("div",{className:"section-divider"},sec.label.split(" - ")[0].trim()),
-            e("div",{className:"qgrid"},range.map((qq,ri)=>{
-              const qi=sec.from+ri;
-              if(hideSolved&&hasAns(answers[qq.id])&&qi!==cur)return null;
-              const isAns=hasAns(answers[qq.id]);const isF=flag[qq.id];const _chk2=done||rev[qq.id];const ok2=_chk2?chk(qq,answers[qq.id]):null;
-              let cls="qgrid-btn";if(ok2===true)cls+=" ok";else if(ok2===false)cls+=" bad";else if(isAns)cls+=" ans";if(qi===cur)cls+=" cur";if(isF)cls+=" flag";if(navTopicFilter&&(TOPIC_LABELS[qq.topic]||qq.topic)!==navTopicFilter)cls+=" nf-dim";
-              return e("button",{key:qi,className:cls,onClick:()=>{goTo(qi);setShowNav(false);}},qi+1,(!examMode&&ok2===null&&!isAns&&qi!==cur&&!isF)&&e("span",{key:"d",className:"qd-dot qd-"+(qq.points>=3?"tesko":qq.points===2?"srednje":"lako")}));
-            })));
-        }),
-        e("div",{style:{marginTop:8,display:"flex",gap:14,flexWrap:"wrap",fontSize:10.5,color:"var(--muted)"}},
-          e("span",null,"\u25a0 rije\u0161eno"),e("span",null,"\u2691 ozna\u010deno"),e("span",null,"\u25cb prazno"),e("span",{style:{display:"inline-flex",alignItems:"center",gap:4}},e("span",{style:{width:7,height:7,borderRadius:"50%",background:"var(--green)"}}),"lako"),e("span",{style:{display:"inline-flex",alignItems:"center",gap:4}},e("span",{style:{width:7,height:7,borderRadius:"50%",background:"var(--gold)"}}),"srednje"),e("span",{style:{display:"inline-flex",alignItems:"center",gap:4}},e("span",{style:{width:7,height:7,borderRadius:"50%",background:"var(--red)"}}),"teško"))
-      )),
+    showNav&&e(SimNavSheet,{QSX,sections,cur,answers,flag,rev,done,examMode,hideSolved,setHideSolved,navTopicFilter,setNavTopicFilter,goTo,onClose:()=>setShowNav(false)}),
     showKbd&&e("div",{style:{position:"fixed",inset:0,background:"rgba(0,0,0,.55)",zIndex:280,display:"flex",alignItems:"center",justifyContent:"center",padding:20},onClick:()=>setShowKbd(false)},
       e("div",{onClick:ev=>ev.stopPropagation(),style:{background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)",padding:"24px 26px",maxWidth:380,width:"100%",boxShadow:"var(--shadow-lg)"}},
         e("div",{style:{fontFamily:"var(--fh)",fontSize:19,marginBottom:14}},"\u2328\uFE0F Pre\u010daci na tipkovnici"),
@@ -766,85 +738,8 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
     showFormulas&&e(FormulaModal,{onClose:()=>setShowFormulas(false),razina:exam&&exam.razina}),
 
     // NAV
-    e("div",{className:"nav"},
-      e("button",{className:"btn btn-g",style:{fontSize:13,padding:"6px 12px"},onClick:()=>setModal(true)},"\u2715",e("span",{className:"nav-btn-txt"}," Izlaz")),
-      e("span",{className:"nav-title-hide",style:{fontFamily:"var(--fh)",fontSize:15,marginLeft:4,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",minWidth:0,flex:"1 1 auto"}},exam.season==="session"?exam.label:exam.year+"  -  "+exam.label),
-      e("span",{style:{fontSize:11,fontWeight:700,padding:"2px 8px",borderRadius:99,
-    background:exam.razina==="B"?"var(--teal-d)":"var(--blue-d)",
-    border:"1px solid "+(exam.razina==="B"?"rgba(45,207,190,.3)":"rgba(74,144,217,.3)"),
-    color:exam.razina==="B"?"var(--teal)":"var(--blue)",
-    marginLeft:4,whiteSpace:"nowrap"
-  }},exam.razina==="B"?e(React.Fragment,null,"B",e("span",{className:"nav-btn-txt"}," \u00b7 osnovna")):e(React.Fragment,null,"A",e("span",{className:"nav-btn-txt"}," \u00b7 vi\u0161a"))),
-      e("span",{className:"nsp"}),
-      e("button",{
-        className:"btn btn-g",title:"Formule",
-        style:{fontSize:12,padding:"5px 9px"},
-        onClick:()=>setShowFormulas(true)
-      },e("svg",{width:18,height:18,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:1.9,strokeLinecap:"round",strokeLinejoin:"round"},e("rect",{x:5,y:3,width:14,height:18,rx:2}),e("path",{d:"M9 8h6M9 12h4M9 16h5"})),e("span",{className:"nav-btn-txt"}," Formule")),
-      e("button",{className:"btn btn-g",title:"Kalkulator",style:{fontSize:12,padding:"5px 9px",background:showCalc?"var(--blue-d)":undefined,borderColor:showCalc?"var(--blue-b)":undefined,color:showCalc?"var(--blue)":undefined},
-        onClick:()=>setShowCalc(v=>!v)},e("svg",{width:18,height:18,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:1.9,strokeLinecap:"round",strokeLinejoin:"round"},e("rect",{x:5,y:3,width:14,height:18,rx:2}),e("path",{d:"M8 7h8"}),e("path",{d:"M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"})),e("span",{className:"nav-btn-txt"}," Kalkulator")),
-      e("div",{style:{position:"relative",display:"inline-flex"}},
-        e("button",{className:"btn btn-g",title:"Više opcija",style:{position:"relative",fontSize:12,padding:"5px 9px"},onClick:()=>setNavMore(v=>!v)},"⋯",
-          !zenSeen&&!zen&&e("span",{style:{position:"absolute",top:-4,right:-4,width:8,height:8,borderRadius:99,background:"var(--red)",border:"1.5px solid var(--s1)",boxShadow:"0 0 0 2px rgba(248,113,113,.25)"}})),
-        navMore&&e("div",{onClick:()=>setNavMore(false),style:{position:"fixed",inset:0,zIndex:55}}),
-        navMore&&e("div",{style:{position:"absolute",top:"112%",left:0,zIndex:56,background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--rr)",boxShadow:"0 12px 32px -8px rgba(0,0,0,.35)",padding:7,display:"flex",flexDirection:"column",gap:2,minWidth:212}},
-          QSX.some(qq=>!hasAns(answers[qq.id]))&&e("button",{key:"blank",onClick:()=>{setNavMore(false);nextBlank();},style:{display:"flex",alignItems:"center",gap:11,padding:"9px 10px",borderRadius:9,border:"none",background:"transparent",color:"var(--text)",fontSize:13,fontWeight:600,cursor:"pointer",textAlign:"left",width:"100%"}},e("span",{style:{fontSize:15,width:20,textAlign:"center"}},"⤵"),"Skoči na neodgovoreni"),
-          practice&&!examMode&&e("button",{key:"pause",onClick:()=>{setNavMore(false);setPaused(true);},style:{display:"flex",alignItems:"center",gap:11,padding:"9px 10px",borderRadius:9,border:"none",background:"transparent",color:"var(--text)",fontSize:13,fontWeight:600,cursor:"pointer",textAlign:"left",width:"100%"}},e("span",{style:{fontSize:15,width:20,textAlign:"center"}},"⏸"),"Pauziraj"),
-          e("button",{key:"zen",onClick:()=>{setNavMore(false);setZen(z=>!z);if(!zenSeen){try{DS.set("mat_zen_seen","1");}catch(e){}setZenSeen(true);}},style:{display:"flex",alignItems:"center",gap:11,padding:"9px 10px",borderRadius:9,border:"none",background:zen?"var(--blue-d)":"transparent",color:zen?"var(--blue)":"var(--text)",fontSize:13,fontWeight:600,cursor:"pointer",textAlign:"left",width:"100%"}},e("span",{style:{fontSize:15,width:20,textAlign:"center"}},"🧘"),zen?"Izađi iz fokus moda":"Fokus mod")
-        )),
-      e("button",{className:"btn btn-g nav-mobile-only",title:"Navigator zadataka",
-        style:{fontSize:12,padding:"5px 9px"},onClick:()=>setShowNav(true)},"\u2630",e("span",{className:"nav-btn-txt"}," "+(cur+1)+"/"+QSX.length)),
-      (!examMode&&_bestPct!=null)&&e("span",{className:"record-pill",title:"Tvoj najbolji rezultat na ovom ispitu"},"\uD83C\uDFC6 "+_bestPct+"%"),
-      practice&&_checkedN>0&&e("div",{className:"acc-ring",title:"To\u010dnost u vje\u017ebi: "+_correctN+"/"+_checkedN},
-        e("svg",{width:30,height:30,viewBox:"0 0 36 36"},
-          e("circle",{cx:18,cy:18,r:15.5,fill:"none",stroke:"var(--bdr2)",strokeWidth:3.2}),
-          e("circle",{cx:18,cy:18,r:15.5,fill:"none",stroke:_accRatio>=0.7?"var(--green)":_accRatio>=0.4?"var(--gold)":"var(--red)",strokeWidth:3.2,strokeDasharray:(_accRatio*97.4).toFixed(1)+" 97.4",strokeLinecap:"round",transform:"rotate(-90 18 18)",style:{transition:"stroke-dasharray .4s"}})),
-        e("span",{className:"acc-ring-txt"},_correctN+"/"+_checkedN)),
-      practice&&_checkedN>=3&&(()=>{const g=grade(Math.round(_accRatio*100));return e("span",{className:"proj-grade",title:"Projicirana ocjena na temelju dosad provjerenog",style:{background:g>=4?"var(--green-d)":g>=3?"var(--gold-d)":"var(--red-d)",borderColor:g>=4?"rgba(61,214,140,.4)":g>=3?"var(--gold-b)":"rgba(248,113,113,.4)",color:g>=4?"var(--green)":g>=3?"var(--gold)":"var(--red)"}},"\u2248 ocjena "+g);})(),
-      practice&&e("span",{className:"nbadge"},"Vježba"),
-      timedPractice&&!examMode&&e("span",{className:"nbadge",style:{background:"var(--gold-d)",borderColor:vc("--gold-b"),color:vc("--gold")}},"Timed"),
-      timerDur&&e("span",{className:"timer "+timerCls},timer.d),
-      
-      timerDur&&!done&&mcCount>0&&mcCount<QSX.length&&!examMode&&(()=>{
-        let p1=0,p2=0,el1=0,el2=0;
-        QSX.forEach((qq,i)=>{const pts=qq.points||1;const t=qTimes[qq.id]||0;if(i<mcCount){p1+=pts;el1+=t;}else{p2+=pts;el2+=t;}});
-        const tot=p1+p2||1;const b1=Math.max(1,Math.round(timerDur*p1/tot/60)),b2=Math.max(1,Math.round(timerDur*p2/tot/60));
-        const m1=Math.round(el1/60),m2=Math.round(el2/60);
-        const seg=(lbl,m,bud)=>{const over=m>bud;const near=m>bud*0.85;return e("div",{className:"tb-seg"},
-          e("span",{className:"tb-lbl"},lbl),e("span",{className:"tb-val",style:{color:over?"var(--red)":near?"var(--gold)":"var(--muted)"}},m+"/"+bud+" min"));};
-        return e("div",{className:"time-budget"},e("span",{className:"tb-title"},"\u23f1\ufe0f Bud\u017eet vremena"),seg("DIO 1",m1,b1),seg("DIO 2",m2,b2));
-      })()
-    ),
-    (()=>{
-      if(!timerDur||done||examMode) return null;
-      const answeredN=QSX.filter(qq=>hasAns(answers[qq.id])).length;
-      if(answeredN<3) return null;
-      const elapsed=timerDur-timer.s;
-      const avg=elapsed/answeredN;
-      const remaining=QSX.length-answeredN;
-      const delta=Math.round((timer.s-remaining*avg)/60);
-      if(remaining===0) return null;
-      const ahead=delta>=0;
-      const lots=delta>Math.round(timerDur/120);
-      let ghostPill=null;
-      if(_ghost&&_ghost.qTimes){
-        let priorSum=0,cnt=0;
-        QSX.forEach(qq=>{if(hasAns(answers[qq.id])&&_ghost.qTimes[qq.id]!=null){priorSum+=_ghost.qTimes[qq.id];cnt++;}});
-        if(cnt>=2){
-          const gd=Math.round(priorSum-elapsed);
-          const gAhead=gd>=0;
-          ghostPill=e("span",{className:"pill"+(gAhead?" pill-blue":"")},
-            gAhead?"\uD83D\uDC7B +"+gd+"s ispred pro\u0161log sebe":"\uD83D\uDC7B "+Math.abs(gd)+"s iza pro\u0161log sebe");
-        }
-      }
-      return e("div",{style:{maxWidth:1100,margin:"0 auto",padding:"6px 20px 0",display:"flex",justifyContent:"flex-end",gap:8,flexWrap:"wrap"}},
-        ghostPill,
-        e("span",{className:"pill "+(ahead?"pill-green":"pill-red")},
-          ahead
-            ?(lots?"⏱ Odličan tempo — imat ćeš vremena za provjeru"
-                  :"⏱ Na ovom tempu završavaš ~"+Math.max(1,delta)+" min ranije")
-            :"⏱ Na ovom tempu kasniš ~"+Math.abs(delta)+" min — ubrzaj"));
-    })(),
+    e(SimHeader,{exam,QSX,cur,answers,qTimes,practice,examMode,timedPractice,done,mcCount,timer,timerDur,timerCls,zen,setZen,zenSeen,setZenSeen,navMore,setNavMore,showCalc,setShowCalc,onExitAsk:()=>setModal(true),onFormulas:()=>setShowFormulas(true),onOpenNav:()=>setShowNav(true),nextBlank,setPaused,bestPct:_bestPct,checkedN:_checkedN,correctN:_correctN,accRatio:_accRatio}),
+    e(PaceHint,{QSX,answers,timerDur,timer,done,examMode,ghost:_ghost}),
 
     // WARMUP (K8) + INTERAKTIVNI VIZUAL (K7)
     vizOpen&&e(VizModal,{kind:vizOpen,onClose:()=>setVizOpen(null)}),
@@ -879,10 +774,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
     ),
 
     // TIMER ALERT
-    timerAlert!==null&&e("div",{
-      style:{position:"fixed",bottom:20,right:20,zIndex:150,background:"var(--s1)",border:"1px solid var(--bdr)",borderRadius:"var(--r)",padding:"12px 18px",fontSize:13,fontWeight:600,color:timerAlert===0?"var(--red)":"var(--gold)",boxShadow:"var(--shadow)"},
-      onClick:()=>setTimerAlert(null)
-    },timerAlert===0?"⏰ Ispit završen!":`⚠️ Preostalo: ${fmt2(timerAlert)}`),
+    timerAlert!==null&&e(TimerAlert,{timerAlert,onDismiss:()=>setTimerAlert(null)}),
 
     // MAIN LAYOUT
     e("div",{className:"exam-layout",style:{background:flashRed?"rgba(196,48,48,.04)":""},onTouchStart:onTouchStart,onTouchEnd:onTouchEnd},
@@ -1158,40 +1050,7 @@ export function Sim({exam,practice,examMode,timedPractice=false,onExit,onDone,us
       ),
 
       // DESNI STUPAC  -  navigator
-      e("div",{className:"sidebar"},
-        e("h4",null,"Navigator"),
-        navFilterControls(false),
-        sections.map((sec,si)=>{
-          const range=QSX.slice(sec.from,sec.to+1);
-          return e("div",{key:si},
-            e("div",{className:"section-divider"},sec.label.split(" - ")[0].trim()),
-            e("div",{className:"qgrid"},
-              range.map((qq,ri)=>{
-                const qi=sec.from+ri;
-                if(hideSolved&&hasAns(answers[qq.id])&&qi!==cur)return null;
-                const isAns=hasAns(answers[qq.id]);
-                const isF=flag[qq.id];
-                const _chk2=done||rev[qq.id];const ok2=_chk2?chk(qq,answers[qq.id]):null;
-                let cls="qgrid-btn";
-                if(ok2===true) cls+=" ok";
-                else if(ok2===false) cls+=" bad";
-                else if(isAns) cls+=" ans";
-                if(qi===cur) cls+=" cur";
-                if(isF) cls+=" flag";
-                if(navTopicFilter&&qq.topic!==navTopicFilter) cls+=" nf-dim";
-                return e("button",{key:qi,className:cls,onClick:()=>goTo(qi)},qi+1,(!examMode&&ok2===null&&!isAns&&qi!==cur&&!isF)&&e("span",{key:"d",className:"qd-dot qd-"+(qq.points>=3?"tesko":qq.points===2?"srednje":"lako")}));
-              })
-            )
-          );
-        }),
-        e("div",{style:{marginTop:14,fontSize:11,color:"var(--muted)",lineHeight:1.7}},
-          e("div",null,"⚑ F  -  označi pitanje"),
-          e("div",null,"🔖 Shift+F  -  spremi za kasnije"),
-          e("div",null,"← → tipke  -  navigacija"),
-          e("div",null,"A/B/C/D  -  odabir opcije"),
-          e("div",null,"Enter  -  provjeri/nastavi")
-        )
-      )
+      e(SimSidebar,{QSX,sections,cur,answers,flag,rev,done,examMode,hideSolved,setHideSolved,navTopicFilter,setNavTopicFilter,goTo})
     )
   );
 }

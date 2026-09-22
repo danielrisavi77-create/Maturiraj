@@ -200,3 +200,82 @@ describe('Sim: puni put kroz ispit (mc + sa + num)', () => {
     expect(container.querySelector('.opt.sel')).toBeTruthy();
   });
 });
+
+// Sim 2/4: zaglavlje (SimHeader), sat (SimTimer) i navigacija po pitanjima (SimNav)
+// zive u zasebnim komponentama. Testovi ispod drze njihovo ponasanje na mjestu.
+function navGridButtons(container) {
+  return [...container.querySelectorAll('.qgrid-btn')].filter((b) => !b.closest('.sidebar'));
+}
+
+describe('Sim: zaglavlje, sat i navigacija', () => {
+  it('zaglavlje prikazuje ispit, razinu i poziciju te otvara izlazni modal', () => {
+    const { container } = renderSim();
+    const nav = container.querySelector('.nav');
+    expect(nav).toBeTruthy();
+    expect(nav.textContent).toContain('2099  -  Ljeto B');
+    expect(nav.textContent).toContain('B · osnovna');
+
+    const navBtn = container.querySelector('button[title="Navigator zadataka"]');
+    expect(navBtn.textContent).toContain('1/3');
+
+    fireEvent.click(nav.querySelector('button'));
+    expect(screen.getByText('Prekid ispita?')).toBeTruthy();
+  });
+
+  it('mobilni navigator skace na zadatak i zatvara se nakon skoka', () => {
+    const { container } = renderSim();
+    expect(navGridButtons(container)).toHaveLength(0);
+
+    fireEvent.click(container.querySelector('button[title="Navigator zadataka"]'));
+    const sheet = navGridButtons(container);
+    expect(sheet).toHaveLength(3);
+
+    fireEvent.click(sheet[1]);
+    expect(screen.getByText('Zadatak 2/3')).toBeTruthy();
+    expect(navGridButtons(container)).toHaveLength(0);
+  });
+
+  it('izbornik "vise opcija" skace na prvi neodgovoreni zadatak', () => {
+    const { container } = renderSim();
+    fireEvent.click(container.querySelectorAll('.opt')[0]);
+
+    fireEvent.click(container.querySelector('button[title="Više opcija"]'));
+    fireEvent.click(screen.getByText('Skoči na neodgovoreni'));
+    expect(screen.getByText('Zadatak 2/3')).toBeTruthy();
+  });
+
+  it('filtar po temi skace na temu, "sakrij rijesene" mice rijesene iz palete', () => {
+    const { container } = renderSim();
+    const sel = container.querySelector('.sidebar .nav-filters select');
+    expect(sel).toBeTruthy();
+    // opcije: placeholder + po jedna tema u redoslijedu zadataka (br, alg, geo)
+    expect(sel.options).toHaveLength(4);
+    fireEvent.change(sel, { target: { value: sel.options[3].value } });
+    expect(screen.getByText('Zadatak 3/3')).toBeTruthy();
+    // Zateceno ponasanje: bocni stupac usporeduje sirovi topic s odabranom OZNAKOM
+    // teme, pa prigusi sve zadatke; donji sheet usporeduje oznaku i prigusi samo druge.
+    expect(container.querySelectorAll('.sidebar .qgrid-btn.nf-dim')).toHaveLength(3);
+    fireEvent.click(container.querySelector('button[title="Navigator zadataka"]'));
+    expect(navGridButtons(container).filter((b) => b.classList.contains('nf-dim'))).toHaveLength(2);
+    fireEvent.click([...container.querySelectorAll('button')].find((b) => b.textContent === '✕'));
+    expect(navGridButtons(container)).toHaveLength(0);
+
+    // odgovori na 3. zadatak, pa se makni s njega i sakrij rijesene
+    fireEvent.change(container.querySelector('input.finp'), { target: { value: '9' } });
+    fireEvent.click(screen.getByText(/Prethodni/));
+    expect(container.querySelectorAll('.sidebar .qgrid-btn')).toHaveLength(3);
+    fireEvent.click(container.querySelector('.sidebar .nf-toggle'));
+    expect(container.querySelectorAll('.sidebar .qgrid-btn')).toHaveLength(2);
+  });
+
+  it('sat: timed vjezba prikazuje tajmer i budzet vremena u zaglavlju', () => {
+    const { container } = renderSim({ practice: true, timedPractice: true });
+    const nav = container.querySelector('.nav');
+    expect(nav.querySelector('.timer')).toBeTruthy();
+    expect(nav.querySelector('.timer').textContent).toMatch(/\d+:\d\d/);
+    const budget = nav.querySelector('.time-budget');
+    expect(budget).toBeTruthy();
+    expect(budget.textContent).toContain('DIO 1');
+    expect(budget.textContent).toContain('DIO 2');
+  });
+});
