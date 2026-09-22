@@ -95,7 +95,11 @@ const PRICING_CSS = `
   }
 
   .pricing-tiers {
-    max-width: 1100px;
+    /* min(): .pricing-page-wrap is a column flex container, and the auto margins
+       below take this item off stretch sizing onto fit-content, which is floored
+       by its own min-content width (3 x 290px columns). Capping at 100% keeps it
+       inside the viewport; on wide screens min() is 1100px, so nothing changes. */
+    max-width: min(1100px, 100%);
     margin: 0 auto;
     padding: 20px 24px 40px;
     display: grid;
@@ -286,7 +290,11 @@ const PRICING_CSS = `
   .pricing-tier-features li strong { color: var(--t1); font-weight: 700; }
 
   .pricing-comparison {
-    max-width: 1100px;
+    /* Same as .pricing-tiers: auto margins make this flex item fit-content, whose
+       floor is the 720px min-width of .pricing-comparison-table. Capping at 100%
+       lets the existing overflow-x on .pricing-comparison-wrap scroll the table
+       instead of the whole page. Resolves to 1100px on wide screens. */
+    max-width: min(1100px, 100%);
     margin: 0 auto;
     padding: 60px 24px;
   }
