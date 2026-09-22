@@ -370,3 +370,97 @@ describe('Sim: kartica zadatka i unos odgovora', () => {
     expect(container.querySelector('.pill.pill-blue')).toBeTruthy();
   });
 });
+
+// Sim 4/4: ekran rezultata (hero, analiza po temama, pregled zadataka sa
+// samoocjenom opisnih, AI analiza i sljedeci koraci). Testovi ispod drze
+// njegov DOM, brojke i callbackove na mjestu.
+function solveAndSubmit(extra = {}) {
+  const utils = renderSim(extra);
+  const { container } = utils;
+
+  // 1. mc tocno, 2. sa odgovoren (ide u samoocjenu), 3. num netocno
+  fireEvent.click(container.querySelectorAll('.opt')[0]);
+  fireEvent.click(screen.getByText(/Sljedeći/));
+  fireEvent.change(container.querySelector('input.finp'), { target: { value: 'x=2' } });
+  fireEvent.click(screen.getByText(/Sljedeći/));
+  fireEvent.change(container.querySelector('input.finp'), { target: { value: '8' } });
+
+  fireEvent.click(screen.getByText(/Završi ispit/));
+  fireEvent.click(screen.getByText(/Predaj ispit/));
+  expect(container.querySelector('.results')).toBeTruthy();
+  return utils;
+}
+
+describe('Sim: ekran rezultata', () => {
+  it('hero, razrada po temama, pregled zadataka i sljedeci koraci', () => {
+    const { container } = solveAndSubmit();
+
+    // hero
+    expect(container.querySelector('.reshero')).toBeTruthy();
+    expect(container.textContent).toContain('1/2 zadataka točno · 1/2 bodova');
+    expect(container.textContent).toContain('+' /* XP znacka */);
+    expect(container.textContent).toContain('XP');
+    expect(container.textContent).toContain('opisni zadatak čeka');
+
+    // analiza po temama (dvije teme u automatskom dijelu: br i geo)
+    expect(container.textContent).toContain('📊 Točnost po temama');
+    expect(container.textContent).toContain('Pregled po temama');
+
+    // pregled zadataka: sva tri zadatka, filtar tabovi
+    expect(container.querySelectorAll('.revlist .revitem')).toHaveLength(3);
+    expect(screen.getByText('Svi (3)')).toBeTruthy();
+    expect(screen.getByText('✗ Netočni (1)')).toBeTruthy();
+    fireEvent.click(screen.getByText('✗ Netočni (1)'));
+    expect(container.querySelectorAll('.revlist .revitem')).toHaveLength(1);
+    fireEvent.click(screen.getByText('Svi (3)'));
+    expect(container.querySelectorAll('.revlist .revitem')).toHaveLength(3);
+
+    // sljedeci koraci
+    const cards = [...container.querySelectorAll('.next-step-card')].map((n) =>
+      n.querySelector('.nsc-title').textContent
+    );
+    expect(cards).toEqual(['Drugi ispit', 'Vježbaj po temi', 'Statistika', 'Bodovi za faks']);
+  });
+
+  it('samoocjena opisnog zadatka ulazi u rezultat i salje onPatchResult', () => {
+    const onPatchResult = vi.fn();
+    const { container } = solveAndSubmit({ onPatchResult });
+
+    expect(onPatchResult).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByText('✓ Riješio/la sam'));
+
+    // bodovi i brojac tocnih rastu za priznati opisni zadatak
+    expect(container.textContent).toContain('2/3 zadataka točno · 2/3 bodova');
+    expect(container.textContent).toContain('Svi opisni zadaci ocijenjeni');
+
+    expect(onPatchResult).toHaveBeenCalledTimes(1);
+    const patch = onPatchResult.mock.calls[0][0];
+    expect(patch.pct).toBe(67);
+    expect(patch.grade).toBe(grade(67));
+    expect(patch.cor).toBe(2);
+    expect(patch.total).toBe(3);
+    expect(patch.topic_breakdown).toEqual({
+      br: { correct: 1, total: 1, points: 1, earned: 1 },
+      alg: { correct: 1, total: 1, points: 1, earned: 1 },
+      geo: { correct: 0, total: 1, points: 1, earned: 0 },
+    });
+
+    // "Nisam" vraca zadatak medu netocne
+    fireEvent.click(screen.getByText('✗ Nisam'));
+    expect(container.textContent).toContain('1/3 zadataka točno · 1/3 bodova');
+    expect(onPatchResult).toHaveBeenCalledTimes(2);
+    expect(onPatchResult.mock.calls[1][0].pct).toBe(33);
+  });
+
+  it('AI analiza rezultata bez Pro plana otvara upgrade modal', () => {
+    const { container } = solveAndSubmit();
+
+    expect(container.textContent).toContain('🤖 AI analiza rezultata');
+    const aiBtns = [...container.querySelectorAll('button')].filter((b) =>
+      /Otključaj uz/.test(b.textContent)
+    );
+    expect(aiBtns).toHaveLength(1);
+    fireEvent.click(aiBtns[0]);
+    expect(screen.getByText('Ne sada')).toBeTruthy();
+  });
+});
