@@ -1639,6 +1639,10 @@ body.dark-mode .eng-sim .home::before{
 .eng-sim .nap-card-src{
   font-size:10px;color:var(--muted)
 }
+a.nap-card-src{
+  text-decoration:underline;text-underline-offset:2px
+}
+a.nap-card-src:hover{color:var(--text)}
 
 /* NCE stats */
 .eng-sim .nap-nce-stats{
@@ -1816,10 +1820,6 @@ body.dark-mode .eng-sim .home::before{
   font-family:var(--fh);font-size:32px;
   font-weight:400;line-height:1;margin-bottom:4px
 }
-.eng-sim .pred-rank{
-  font-size:12px;color:var(--muted)
-}
-.eng-sim .pred-rank strong{color:var(--text)}
 
 /* 4 stat broja */
 .eng-sim .pred-stats{
@@ -1835,43 +1835,6 @@ body.dark-mode .eng-sim .home::before{
 .eng-sim .pred-stat-lbl{
   font-size:10px;color:var(--muted);
   font-weight:600;letter-spacing:.03em
-}
-
-/* NCE distribucija */
-.eng-sim .pred-nce{
-  background:var(--s1);border:1px solid var(--bdr);
-  border-radius:var(--rr);padding:16px 18px
-}
-.eng-sim .pred-nce-title{
-  font-size:10px;font-weight:700;letter-spacing:.07em;
-  text-transform:uppercase;color:var(--muted);margin-bottom:14px
-}
-.eng-sim .pred-nce-chart{
-  display:flex;align-items:flex-end;gap:8px;height:90px
-}
-.eng-sim .pred-nce-col{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;gap:3px
-}
-.eng-sim .pred-nce-pct{font-size:10px;line-height:1}
-.eng-sim .pred-nce-bar-wrap{
-  flex:1;width:100%;display:flex;
-  flex-direction:column;align-items:center;
-  justify-content:flex-end;gap:2px
-}
-.eng-sim .pred-nce-you{
-  font-size:9px;font-weight:700;
-  white-space:nowrap;line-height:1
-}
-.eng-sim .pred-nce-bar{
-  width:100%;border-radius:4px 4px 0 0;
-  border:1.5px solid;
-  transition:height .6s cubic-bezier(.4,0,.2,1);
-  min-height:4px
-}
-.eng-sim .pred-nce-bar-you{border-width:2px}
-.eng-sim .pred-nce-g{
-  font-size:12px;font-weight:600;line-height:1
 }
 
 /* Insight */

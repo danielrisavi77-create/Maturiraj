@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react'
 import { TOPIC_LABELS, GC, GRADE_NOTE, LEVEL_NAMES, getLevel, xpProgress, xpToNext, grade, LL } from '@/lib/engleski-simulator/constants'
 import { chk } from '@/lib/engleski-simulator/scoring'
 import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
+import { pickNcvvoComparison } from '@/lib/engleski-simulator/ncvvoData'
 
 // ── TrendGraph ────────────────────────────────────────────────────
 function TrendGraph({ history }) {
@@ -92,8 +93,6 @@ function GradePrediction({ history }) {
   )
 
   const GNAMES = { 1: 'Nedovoljan', 2: 'Dovoljan', 3: 'Dobar', 4: 'Vrlo dobar', 5: 'Odličan' }
-  // ilustrativna distribucija ocjena — nema navedenog službenog izvora, ne koristi kao stvarne NCVVO podatke
-  const NCE_DIST = { 1: 22, 2: 18, 3: 24, 4: 20, 5: 16 }
   const recent = history.slice(-5)
   const weights = recent.map((_, i) => i + 1)
   const totalW = weights.reduce((a, b) => a + b, 0)
@@ -112,7 +111,6 @@ function GradePrediction({ history }) {
   const worst = Math.min(...history.map(h => h.pct))
   const trendDir = trend > 2 ? '↑ Rasteš' : trend < -2 ? '↓ Padaš' : '→ Stagniraš'
   const trendColor = trend > 2 ? 'var(--green)' : trend < -2 ? 'var(--red)' : 'var(--muted)'
-  const betterThan = Object.entries(NCE_DIST).filter(([gg]) => parseInt(gg) < g).reduce((s, [, p]) => s + p, 0)
 
   return (
     <div className="pred-wrap">
@@ -130,7 +128,6 @@ function GradePrediction({ history }) {
           <div className="pred-grade-name" style={{ color: gc }}>{GNAMES[g]}</div>
           <div className="pred-grade-sub">Predviđena ocjena na maturi</div>
           <div className="pred-pct" style={{ color: gc }}>{predicted}%</div>
-          {betterThan > 0 && <div className="pred-rank">Bolji/a od <strong>{betterThan}%</strong> u ilustrativnoj raspodjeli</div>}
         </div>
       </div>
       <div className="pred-grade-note" style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 10 }}>{GRADE_NOTE}</div>
@@ -147,29 +144,6 @@ function GradePrediction({ history }) {
             <div className="pred-stat-lbl">{label}</div>
           </div>
         ))}
-      </div>
-
-      <div className="pred-nce">
-        <div className="pred-nce-title">Ilustrativna raspodjela ocjena (nije službeni podatak)</div>
-        <div className="pred-nce-chart">
-          {[1, 2, 3, 4, 5].map(gg => {
-            const pct = NCE_DIST[gg]
-            const isYours = gg === g
-            const col = GC[gg]
-            const barH = Math.round(pct / 24 * 64)
-            return (
-              <div key={gg} className="pred-nce-col">
-                <div className="pred-nce-pct" style={{ color: isYours ? col : 'var(--muted)', fontWeight: isYours ? 700 : 400 }}>{pct}%</div>
-                <div className="pred-nce-bar-wrap">
-                  {isYours && <div className="pred-nce-you" style={{ color: col }}>▼ Ti</div>}
-                  <div className={'pred-nce-bar' + (isYours ? ' pred-nce-bar-you' : '')}
-                    style={{ height: barH + 'px', background: isYours ? col : 'var(--s3)', borderColor: isYours ? col : 'var(--bdr)' }} />
-                </div>
-                <div className="pred-nce-g" style={{ color: isYours ? col : 'var(--muted)', fontWeight: isYours ? 700 : 400 }}>{gg}</div>
-              </div>
-            )
-          })}
-        </div>
       </div>
 
       <div className="pred-insight" style={{
@@ -495,32 +469,34 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap })
         {/* ── Tab: Napredak ── */}
         {tab === 'napredak' && (
           <div className="nap-wrap">
-            {/* NCE usporedba */}
-            {history.length > 0 && (() => {
-              // ilustrativni podaci — nema navedenog službenog izvora, ne koristi kao stvarne NCVVO podatke
-              const NCE_DATA = { 2025: { avg: 61, pass: 78, label: '2024./2025.' }, 2024: { avg: 59, pass: 76, label: '2023./2024.' }, 2023: { avg: 57, pass: 74, label: '2022./2023.' }, 2022: { avg: 56, pass: 73, label: '2021./2022.' } }
-              const userAvg = Math.round(history.reduce((s, h) => s + h.pct, 0) / history.length)
-              const latestYear = Math.max(...history.map(h => parseInt(h.examKey) || 0))
-              const nce = NCE_DATA[latestYear] || NCE_DATA[2024]
-              const diff = userAvg - nce.avg
+            {/* Usporedba sa službenim prosjekom NCVVO-a — prikazuje se samo kad za
+                godinu i razinu riješenog ispita postoji objavljen NCVVO podatak. */}
+            {(() => {
+              const nce = pickNcvvoComparison(history)
+              if (!nce) return null
+              const diff = nce.userAvg - Math.round(nce.avg)
               const diffColor = diff >= 10 ? 'var(--green)' : diff >= 0 ? 'var(--teal)' : diff >= -10 ? 'var(--gold)' : 'var(--red)'
-              const msg = diff >= 10 ? '🏆 Značajno iznad orijentacijskog prosjeka!'
-                : diff >= 0 ? `✅ Iznad orijentacijskog prosjeka za ${diff}%.`
-                : diff >= -10 ? `⚠️ Ispod orijentacijskog prosjeka za ${Math.abs(diff)}%.`
-                : '📚 Daleko ispod orijentacijskog prosjeka.'
+              const msg = diff >= 10 ? '🏆 Značajno iznad državnog prosjeka!'
+                : diff >= 0 ? `✅ Iznad državnog prosjeka za ${diff}%.`
+                : diff >= -10 ? `⚠️ Ispod državnog prosjeka za ${Math.abs(diff)}%.`
+                : '📚 Daleko ispod državnog prosjeka.'
               return (
                 <div className="nap-card">
                   <div className="nap-card-hdr">
-                    <div className="nap-card-title">Usporedba s orijentacijskim prosjekom</div>
-                    <span className="nap-card-src">Ilustrativna referenca · {nce.label}</span>
+                    <div className="nap-card-title">Usporedba sa službenim prosjekom NCVVO-a</div>
+                    <a className="nap-card-src" href={nce.pdfUrl} target="_blank" rel="noopener noreferrer"
+                      title={`${nce.sourceLabel} — ${nce.page}`}>
+                      Izvor: NCVVO {nce.schoolYear}
+                    </a>
                   </div>
                   <div className="nap-card-note" style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 10 }}>
-                    Referentne brojke su ilustrativne — nisu službeni podaci NCVVO-a.
+                    Prosječna postotna riješenost ispita iz Engleskoga jezika, {nce.razinaLabel}, ljetni rok {nce.schoolYear}.
+                    Tvoj je prosjek izračunat iz {nce.sampleSize} ispita iste razine u simulatoru.
                   </div>
                   <div className="nap-nce-stats">
                     {[
-                      { val: userAvg + '%', lbl: 'Tvoj prosjek', col: 'var(--blue)' },
-                      { val: nce.avg + '%', lbl: 'Orijentacijski prosjek', col: 'var(--muted)' },
+                      { val: nce.userAvg + '%', lbl: 'Tvoj prosjek', col: 'var(--blue)' },
+                      { val: nce.avg + '%', lbl: 'Državni prosjek', col: 'var(--muted)' },
                     ].map(s => <div key={s.lbl} className="nap-stat-box"><div className="nap-stat-num" style={{ color: s.col }}>{s.val}</div><div className="nap-stat-lbl">{s.lbl}</div></div>)}
                     <div className="nap-stat-box nap-stat-diff" style={{ background: diff >= 0 ? 'var(--green-d)' : 'var(--red-d)', borderColor: diff >= 0 ? 'rgba(30,122,62,.2)' : 'rgba(196,48,48,.2)' }}>
                       <div className="nap-stat-num" style={{ color: diffColor }}>{(diff >= 0 ? '+' : '') + diff}%</div>
@@ -528,7 +504,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap })
                     </div>
                   </div>
                   <div className="nap-bars">
-                    {[{ label: 'Ti', pct: userAvg, color: 'var(--blue)' }, { label: 'Orijentacijski prosjek', pct: nce.avg, color: 'var(--muted)' }, { label: 'Prolaznost', pct: nce.pass, color: 'var(--gold)' }]
+                    {[{ label: 'Ti', pct: nce.userAvg, color: 'var(--blue)' }, { label: 'Državni prosjek', pct: nce.avg, color: 'var(--muted)' }]
                       .map(({ label, pct, color }) => (
                         <div key={label} className="nap-bar-row">
                           <div className="nap-bar-label">{label}</div>

@@ -6,8 +6,9 @@
  *  - Pragovi 85/70/55/40 moraju svugdje gdje se predviđa/objavljuje ocjena nositi
  *    oznaku da su orijentacijski (GRADE_NOTE), ne samo na ResultsScreen i
  *    DailyChallengeScreen.
- *  - Ilustrativne referentne brojke (NCE_DATA / NCE_DIST) ne smiju se korisniku
- *    pripisivati NCVVO-u.
+ *  - Izmišljene referentne brojke (NCE_DATA / NCE_DIST) više ne postoje: kartica
+ *    raspodjele ocjena je uklonjena, a usporedba s prosjekom prikazuje stvarne
+ *    NCVVO podatke iz lib/engleski-simulator/ncvvoData.js (vidi ncvvo-data.test.js).
  *  - 'napredUJEš' → 'napreduješ'.
  *
  * GuideScreen.js i AnalyticsPanelFull.js imaju JSX u .js datoteci, pa import
@@ -53,15 +54,37 @@ describe('Analitika — predviđena ocjena nosi napomenu', () => {
     expect(document.body.textContent).toContain(GRADE_NOTE)
   })
 
-  it('ilustrativne referentne brojke se ne pripisuju NCVVO-u', () => {
+  it('nema više izmišljenih referentnih brojki ni ilustrativne raspodjele ocjena', () => {
     render(e(AnalyticsPanelFull, { userData: { history: historyOf(86, 88, 90) }, defaultTab: 'napredak' }))
     const txt = document.body.textContent
-    expect(txt).toContain('Usporedba s orijentacijskim prosjekom')
-    expect(txt).toContain('Ilustrativna referenca')
-    expect(txt).not.toContain('Izvor: NCVVO')
-    expect(txt).not.toMatch(/NCVVO prosjek/)
-    expect(txt).toMatch(/nisu službeni podaci NCVVO-a/)
-    expect(txt).not.toContain('Distribucija ocjena na maturi (NCVVO)')
+    expect(txt).not.toContain('Usporedba s orijentacijskim prosjekom')
+    expect(txt).not.toContain('Ilustrativna referenca')
+    expect(txt).not.toContain('Ilustrativna raspodjela ocjena')
+    expect(txt).not.toMatch(/ilustrativnoj raspodjeli/)
+    expect(txt).not.toMatch(/nisu službeni podaci NCVVO-a/)
+    expect(APF_SRC).not.toContain('NCE_DIST')
+    expect(APF_SRC).not.toContain('NCE_DATA')
+  })
+
+  it('kartica usporedbe se prikazuje samo uz stvarni NCVVO podatak, s atribucijom', () => {
+    // 2025. NCVVO nije objavio podatke → kartice nema.
+    render(e(AnalyticsPanelFull, {
+      userData: { history: historyOf(86, 88, 90).map(h => ({ ...h, examKey: '2025_ljeto' })) },
+      defaultTab: 'napredak',
+    }))
+    expect(document.body.textContent).not.toContain('Usporedba sa službenim prosjekom NCVVO-a')
+    cleanup()
+
+    // Ljetni rok 2022. (šk. god. 2021./2022.) je objavljen → kartica s izvorom.
+    render(e(AnalyticsPanelFull, {
+      userData: { history: historyOf(86, 88, 90).map(h => ({ ...h, examKey: 'vis_2022_ljeto' })) },
+      defaultTab: 'napredak',
+    }))
+    const txt = document.body.textContent
+    expect(txt).toContain('Usporedba sa službenim prosjekom NCVVO-a')
+    expect(txt).toContain('Izvor: NCVVO 2021./2022.')
+    const link = screen.getByText('Izvor: NCVVO 2021./2022.')
+    expect(link.getAttribute('href')).toMatch(/^https:\/\/www\.ncvvo\.hr\/.*\.pdf$/i)
   })
 })
 

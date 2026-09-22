@@ -247,9 +247,33 @@ Potpun popis je u samom `audio-map.json` (`note` polje svakog ne-`high` task-zap
 
 Popravci skeptičkih nalaza faze 4 (grana `eng/round1`) riješili su 2.1, 2.3, 3.3 i 3.4 (vidi commite na grani). Otvoreno ostaje sljedeće, jer traži odluku o dizajnu/podacima izvan dosega minimalnih izmjena:
 
-- **Referentne brojke u analitici nisu stvarni podaci** (`NCE_DATA`, `NCE_DIST` u `components/engleski-simulator/screens/AnalyticsPanelFull.js`). Sada su u sučelju jasno označene kao ilustrativne i više se ne pripisuju NCVVO-u, ali same brojke (prosjek, prolaznost, raspodjela ocjena) i dalje su izmišljene. Odluka koja se traži: (a) pribaviti i citirati stvarne NCVVO statistike po roku, ili (b) ukloniti usporedbu s „prosjekom” i raspodjelu ocjena iz kartice Napredak. Do odluke kartica stoji s oznakom ilustrativnosti.
+- ~~**Referentne brojke u analitici nisu stvarni podaci** (`NCE_DATA`, `NCE_DIST`).~~ **RIJEŠENO** (grana `eng/ncvvo-data`, 2026-09-23) — vidi „Referentni NCVVO podaci u analitici” niže.
 - **Boje ocjena 2–4 su se promijenile** ujedinjenjem `GC` na `lib/engleski-simulator/constants.js` (nalaz 2.1): ResultsScreen sada za ocjenu 2 koristi `#f97316`, za 3 `var(--gold)`, za 4 `#60a5fa` (prije `var(--gold)` / `var(--blue)` / `var(--teal)`). Uzeta je vrijednost iz `constants.js` jer je nju već koristio AnalyticsPanelFull; ako dizajn želi drugu paletu, mijenja se na jednom mjestu u `constants.js`.
 - **Pragovi 85/70/55/40 ostaju pragovi simulatora.** Svugdje gdje se prikazuje ocjena sada stoji `GRADE_NOTE`, ali stvarni NCVVO pragovi po roku nisu u podacima; preslikavanje postotka u maturalnu ocjenu je i dalje orijentacijsko po dizajnu.
+
+### Referentni NCVVO podaci u analitici — riješeno 2026-09-23 (`eng/ncvvo-data`)
+
+Odluka vlasnika je bila: nabaviti prave službene NCVVO podatke, a ako ih nema — maknuti kartice. Istraživanje ncvvo.hr dalo je različit odgovor za dvije kartice, pa je odluka provedena **po kartici**.
+
+**Što je objavljeno i preuzeto.** NCVVO u „Statističkoj i psihometrijskoj analizi ispita državne mature” objavljuje prosječnu postotnu riješenost (aritmetičku sredinu) po ispitu i razini, za ljetni rok. Preuzete su četiri godine za Engleski jezik (viša A / osnovna B):
+
+| Ljetni rok | Šk. god. | A (viša) | B (osnovna) | Mjesto u izvoru |
+| --- | --- | --- | --- | --- |
+| 2018. | 2017./2018. | 73,40 | 56,10 | Tablica 20., str. 48 · Tablica 24., str. 55 |
+| 2019. | 2018./2019. | 77,45 | 61,93 | Tablica 20., str. 41 · Tablica 24., str. 48 |
+| 2021. | 2020./2021. | 75,50 | 62,77 | Tablica 27., str. 50 · Tablica 34., str. 56 |
+| 2022. | 2021./2022. | 80,57 | 69,19 | str. 26 (A) · str. 29 (B) |
+
+URL-ovi svih izvora i datum dohvata upisani su u komentar iznad konstanti u `lib/engleski-simulator/ncvvoData.js`.
+
+**Što NIJE objavljeno.** Postotak prolaznosti po predmetu i razini te raspodjela ocjena 1–5 po predmetu i razini ne postoje kao brojka ni u jednom NCVVO dokumentu — u godišnjim izvještajima postoje samo kao grafika bez tablice. Šk. god. 2019./2020. ima najavljenu analizu, ali PDF nije javno povezan; za 2022./2023., 2023./2024. i 2024./2025. analiza na dan dohvata nije objavljena.
+
+**Provedeno.**
+
+- Nova datoteka `lib/engleski-simulator/ncvvoData.js` — `NCVVO_ENG_AVG` (samo objavljene godine), `NCVVO_FETCHED_AT`, `parseExamKey`, `getNcvvoAvg`, `pickNcvvoComparison`.
+- Kartica „Usporedba s orijentacijskim prosjekom” → „**Usporedba sa službenim prosjekom NCVVO-a**”: stvarni prosjek za godinu i razinu riješenog ispita, atribucija „Izvor: NCVVO ‹šk. god.›” kao poveznica na PDF s tooltipom (tablica i stranica). Traka „Prolaznost” je uklonjena jer za nju nema izvora. Kartice nema kad za riješene ispite nema objavljenog podatka (npr. samo ispiti iz 2023.–2025.).
+- Kartica „Ilustrativna raspodjela ocjena” **uklonjena** zajedno s `NCE_DIST`, izvedenim `betterThan`/`pred-rank` i pripadajućim CSS-om (`.pred-nce*`, `.pred-rank`).
+- Testovi: novi `__tests__/engleski-simulator/ncvvo-data.test.js` (oblik podataka, URL izvora po godini, zabrana `pass`/`dist` polja, ponašanje pomoćnih funkcija); `grade-note.test.js` ažuriran — sada traži da `NCE_DATA`/`NCE_DIST` više nema u izvoru i da se kartica usporedbe prikazuje samo uz stvarni podatak i s poveznicom na izvor.
 
 ## Status Faza 4 (verifikacija) — 2026-09-22
 
