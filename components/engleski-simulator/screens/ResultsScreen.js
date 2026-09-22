@@ -222,7 +222,9 @@ function ResultsInner({
             e('div', { style: { fontSize: 13, marginBottom: 6, lineHeight: 1.5 } }, q.q),
             q.type === 'mc' && e('div', { style: { fontSize: 12, display: 'flex', flexWrap: 'wrap', gap: 8 } },
               e('span', { style: { color: 'var(--red)' } }, '✗ Tvoj: ' + (answers[q.id] || '—') + ' — ' + (q.opts[LL.indexOf(answers[q.id])] || 'bez odgovora')),
-              e('span', { style: { color: 'var(--green)' } }, '✓ Točno: ' + q.sol.cl + ' — ' + q.opts[LL.indexOf(q.sol.cl)]),
+              // Ključ dolazi samo uz plaćeni payload; bez njega ovaj redak
+              // izostaje umjesto da sruši cijeli ekran (ADR-001).
+              q.sol?.cl && e('span', { style: { color: 'var(--green)' } }, '✓ Točno: ' + q.sol.cl + ' — ' + q.opts[LL.indexOf(q.sol.cl)]),
             ),
             q.exp && e('div', { style: { fontSize: 11, color: 'var(--muted)', marginTop: 6, fontStyle: 'italic', borderTop: '1px solid var(--bdr)', paddingTop: 6 } }, '💡 ' + q.exp),
           )),
@@ -271,7 +273,7 @@ function ResultsInner({
         if (q.type === 'mc' && a) ad = 'Tvoj: ' + a + ' — ' + (q.opts[LL.indexOf(a)] || '')
         if (q.type === 'ms' && (a || []).length) ad = 'Odabrano: ' + a.join(', ')
         if (q.type === 'fb' && a) ad = 'Odgovor: ' + a
-        if (isM) ad = 'Referentni: ' + (q.sol.ans || q.sol.ex || '')
+        if (isM) ad = 'Referentni: ' + (q.sol?.ans || q.sol?.ex || '')
         return e('div', { key: q.id, className: 'revitem ' + cls },
           e('div', { style: { display: 'flex', gap: 10, alignItems: 'flex-start' } },
             e('span', { style: { color: col, fontWeight: 700, fontSize: 14, minWidth: 18 } }, ic),
@@ -283,8 +285,8 @@ function ResultsInner({
               ),
               e('div', { style: { fontSize: 13, lineHeight: 1.55, marginBottom: 5 } }, q.q),
               ad && e('div', { style: { fontSize: 12, color: 'var(--muted)' } }, ad),
-              ok === false && q.type === 'mc' && e('div', { style: { fontSize: 12, color: 'var(--green)', marginTop: 4 } }, '✓ Točno: ' + q.sol.cl + ' — ' + q.opts[LL.indexOf(q.sol.cl)]),
-              ok === false && q.type === 'ms' && e('div', { style: { fontSize: 12, color: 'var(--green)', marginTop: 4 } }, '✓ Točni: ' + q.sol.cls.join(', ')),
+              ok === false && q.type === 'mc' && q.sol?.cl && e('div', { style: { fontSize: 12, color: 'var(--green)', marginTop: 4 } }, '✓ Točno: ' + q.sol.cl + ' — ' + q.opts[LL.indexOf(q.sol.cl)]),
+              ok === false && q.type === 'ms' && q.sol?.cls && e('div', { style: { fontSize: 12, color: 'var(--green)', marginTop: 4 } }, '✓ Točni: ' + q.sol.cls.join(', ')),
               !isM && e(AnswerHelper, { q, show: true, autoExpand: false, onToggle: () => {} }),
             ),
           ),

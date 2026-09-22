@@ -21,11 +21,16 @@
 // Service-role bi tu samo zaobišao RLS bez ikakve dobiti. Admin ključ ostaje
 // gdje mu je mjesto — u checkRateLimit (atomični RPC) i getUserTier.
 //
-// ZAŠTO SE BUDŽET BROJI U sim_progress, BEZ NOVE TABLICE: ova ruta i tako piše
-// po jedan redak po ocijenjenoj predaji, pa je brojanje istog skupa jedini
-// izvor istine koji ne može otići u nesklad. Cijena: brojanje zahvaća i retke
-// koje je za taj ispit upisao naslijeđeni klijentski put (lib/sim-progress.ts),
-// dakle može precijeniti potrošnju — a to je smjer koji pooštrava, ne popušta.
+// ZAŠTO SE BUDŽET NE BROJI U sim_progress: brojanje redaka bilo je dvostruko
+// krhko. (1) Redak nastaje tek nakon uspješnog INSERT-a, a INSERT ruta namjerno
+// prašta — dovoljan je jedan namjerno neispravan `durationSec` ili odgovor s NUL
+// bajtom pa upis padne, brojač nikad ne poraste i budžet se ne potroši.
+// (2) Tablicu korisnik po RLS-u ("for all using auth.uid() = user_id") smije i
+// BRISATI, pa bi budžet resetirao upravo onaj od koga štiti. Zato brojač živi u
+// public.ai_rate_limit, koju piše isključivo service-role (lib/rate-limit.ts),
+// i to kao N "mjesta" s prozorom od 24 h — isti atomični RPC koji drži i razmak
+// od 60 s.
+import { createHash } from 'node:crypto'
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getUserTier } from '@/lib/billing/subscriptions'
@@ -44,7 +49,20 @@ const ATTEMPT_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/
 export const GRADE_MIN_INTERVAL_MS = 60 * 1000
 /** Budžet ocijenjenih predaja po (korisnik, ispit) u 24 h. */
 export const GRADE_DAILY_BUDGET = 5
+/**
+ * Koliko od tih mjesta smije potrošiti vježbanje. Ostatak je rezerviran za
+ * ispitni mod: bez toga pet predaja iz vježbanja ostavi korisnika koji je
+ * navečer odradio 90-minutnu simulaciju bez ijednog rezultata.
+ */
+export const GRADE_PRACTICE_BUDGET = 3
 const DAY_MS = 24 * 60 * 60 * 1000
+
+/** Gornje granice ulaza — sve što ih probije je napad, ne pokušaj. */
+const MAX_ANSWER_ENTRIES = 500
+const MAX_ANSWER_STRING = 2000
+const MAX_NESTED_ENTRIES = 64
+const MAX_DURATION_SEC = 24 * 60 * 60
+const MAX_QTIME_SEC = 24 * 60 * 60
 
 const HEADERS = Object.freeze({
   'Cache-Control': 'private, no-store',
@@ -53,6 +71,8 @@ const HEADERS = Object.freeze({
 
 /** Postgres/PostgREST kodovi kad migracija s attempt_id još nije pokrenuta. */
 const UNKNOWN_COLUMN = new Set(['42703', 'PGRST204'])
+/** Jedinstveni indeks (user_id, attempt_id) — isti pokušaj je već upisan. */
+const UNIQUE_VIOLATION = '23505'
 let warnedMissingAttemptColumn = false
 
 function isUnknownColumn(error) {
@@ -65,11 +85,72 @@ function fail(message, status, extraHeaders) {
   return NextResponse.json({ error: message }, { status, headers: { ...HEADERS, ...extraHeaders } })
 }
 
+/* ── provjera ulaza ────────────────────────────────────────────────────────
+   Sve što ide u `jsonb` mora proći ovdje. Postgres odbija NUL bajt u jsonb-u i
+   vrijednost izvan raspona `int4`, a takav pad INSERT-a je bio besplatan način
+   da se predaja ocijeni bez traga (vidi zaglavlje). */
+
+function isPlainObject(value) {
+  return !!value && typeof value === 'object' && !Array.isArray(value)
+}
+
+function isSafeText(value) {
+  return typeof value === 'string' && value.length <= MAX_ANSWER_STRING && !value.includes('\u0000')
+}
+
+function isSafeScalar(value) {
+  if (value === null || typeof value === 'boolean') return true
+  if (typeof value === 'number') return Number.isFinite(value)
+  return isSafeText(value)
+}
+
+/** Odgovor je skalar, ili plitka struktura skalara (npr. mapa parova kod 'mat'). */
+function isSafeAnswer(value, depth = 0) {
+  if (isSafeScalar(value)) return true
+  if (depth >= 2) return false
+  if (Array.isArray(value)) {
+    return value.length <= MAX_NESTED_ENTRIES && value.every(item => isSafeAnswer(item, depth + 1))
+  }
+  if (isPlainObject(value)) {
+    const keys = Object.keys(value)
+    if (keys.length > MAX_NESTED_ENTRIES) return false
+    return keys.every(key => isSafeText(key) && isSafeAnswer(value[key], depth + 1))
+  }
+  return false
+}
+
+function isSafeAnswerMap(map) {
+  const keys = Object.keys(map)
+  if (keys.length > MAX_ANSWER_ENTRIES) return false
+  return keys.every(key => isSafeText(key) && isSafeAnswer(map[key]))
+}
+
+/** Zadrži samo ključeve koji doista postoje u ovom ispitu. */
+function pickKnown(source, ids, transform) {
+  const out = {}
+  for (const id of ids) {
+    if (!Object.prototype.hasOwnProperty.call(source, id)) continue
+    const value = transform ? transform(source[id]) : source[id]
+    if (value !== undefined) out[id] = value
+  }
+  return out
+}
+
+function asQTime(value) {
+  if (!Number.isFinite(value)) return undefined
+  return Math.min(MAX_QTIME_SEC, Math.max(0, Math.round(value)))
+}
+
 /* ── idempotencija ─────────────────────────────────────────────────────────
-   Dvije razine. Memorija je brza i pokriva ponovni klik u istoj instanci;
-   trajna je provjera nad sim_progress.attempt_id i jedina koja vrijedi kroz
-   instance. Ako migracija s tim stupcem nije pokrenuta, ostaje samo memorija —
-   slabije, ali nikad krivo: u najgorem slučaju se ista predaja ocijeni dvaput.  */
+   Tri razine. Memorija je najbrža i pokriva ponovni klik u istoj instanci;
+   sim_progress.attempt_id je trajan, ali ovisi o pokrenutoj migraciji; zato
+   iznad oboga stoji otisak (attemptId + odgovori) u ai_rate_limit, koji vrijedi
+   kroz instance i bez te migracije.
+
+   Ponovljena predaja ISTIH odgovora ne troši ni razmak ni budžet: rezultat je
+   čista funkcija (ispit, odgovori), pa ponavljanje ne otkriva ni jedan novi bit.
+   Budžet time zapravo broji RAZLIČITE skupove odgovora — upravo ono što oracle
+   napad treba, a legitiman korisnik ne. */
 const ATTEMPT_CACHE_MAX = 500
 const attemptCache = new Map()
 
@@ -86,6 +167,22 @@ function readAttemptCache(key) {
 function writeAttemptCache(key, body) {
   if (attemptCache.size >= ATTEMPT_CACHE_MAX) attemptCache.delete(attemptCache.keys().next().value)
   attemptCache.set(key, { at: Date.now(), body })
+}
+
+/** Stabilan JSON (ključevi po abecedi) — otisak ne smije ovisiti o redoslijedu. */
+function stableStringify(value) {
+  if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`
+  if (isPlainObject(value)) {
+    return `{${Object.keys(value)
+      .sort()
+      .map(key => `${JSON.stringify(key)}:${stableStringify(value[key])}`)
+      .join(',')}}`
+  }
+  return JSON.stringify(value === undefined ? null : value)
+}
+
+function answersFingerprint(answers) {
+  return createHash('sha256').update(stableStringify(answers)).digest('hex').slice(0, 32)
 }
 
 async function findPriorAttempt(db, userId, subject, examKey, attemptId) {
@@ -105,29 +202,38 @@ async function findPriorAttempt(db, userId, subject, examKey, attemptId) {
   return data ?? null
 }
 
-async function countRecentAttempts(db, userId, subject, examKey) {
-  const since = new Date(Date.now() - DAY_MS).toISOString()
-  const { count, error } = await db
-    .from('sim_progress')
-    .select('id', { count: 'exact', head: true })
-    .eq('user_id', userId)
-    .eq('subject', subject)
-    .eq('exam_key', examKey)
-    .gte('created_at', since)
+/**
+ * Potroši jedno mjesto dnevnog budžeta.
+ *
+ * Mjesta su ključevi u ai_rate_limit s prozorom od 24 h, pa je "koliko je
+ * predaja ostalo" izvedeno iz tablice koju korisnik ne smije ni čitati ni
+ * brisati. Vježbanje ide od dna (0…), ispitni mod od vrha (…N-1), pa
+ * GRADE_DAILY_BUDGET - GRADE_PRACTICE_BUDGET mjesta ostaje nedostupno
+ * vježbanju — ispitni pokušaj se ne može potrošiti u vježbanju.
+ */
+async function consumeBudgetSlot(userId, subject, examKey, examMode) {
+  const slots = examMode
+    ? Array.from({ length: GRADE_DAILY_BUDGET }, (_, i) => GRADE_DAILY_BUDGET - 1 - i)
+    : Array.from({ length: GRADE_PRACTICE_BUDGET }, (_, i) => i)
 
-  if (error) {
-    // Fail-open bi ovdje bio pogrešan smjer, ali fail-closed bi zbog jedne
-    // nedostupne tablice svima blokirao predaju. Prijavi i pusti — razmak od
-    // 60 s (atomičan, kroz RPC) i dalje vrijedi.
-    console.error('[sim/grade] brojanje predaja nije uspjelo.', error)
-    return 0
+  let soonest = Number.POSITIVE_INFINITY
+  for (const slot of slots) {
+    const res = await checkRateLimit(userId, `sim-grade-day:${subject}:${examKey}:${slot}`, DAY_MS)
+    if (!res.limited) return { ok: true }
+    soonest = Math.min(soonest, res.retryAfterSec || 0)
   }
-  return count ?? 0
+  return {
+    ok: false,
+    retryAfterSec: Number.isFinite(soonest) && soonest > 0 ? soonest : Math.round(DAY_MS / 1000),
+  }
 }
 
 async function insertProgress(db, row) {
   const { error } = await db.from('sim_progress').insert(row)
   if (!error) return null
+  // Jedinstveni indeks (user_id, attempt_id): isti pokušaj je već upisan, što je
+  // točno ono što idempotencija i traži — nije greška.
+  if (error.code === UNIQUE_VIOLATION) return null
   if (!isUnknownColumn(error) || !('attempt_id' in row)) return error
 
   if (!warnedMissingAttemptColumn) {
@@ -135,7 +241,7 @@ async function insertProgress(db, row) {
     console.warn(
       '[sim/grade] sim_progress.attempt_id ne postoji — pokreni migraciju '
         + 'supabase/migrations/20260922000000_sim_progress_attempt_id.sql. '
-        + 'Do tada je idempotencija samo u memoriji procesa.',
+        + 'Do tada idempotenciju drži otisak pokušaja u ai_rate_limit.',
     )
   }
   const { attempt_id: _ignored, ...withoutAttemptId } = row
@@ -144,10 +250,6 @@ async function insertProgress(db, row) {
 }
 
 /* ── ocjenjivanje ──────────────────────────────────────────────────────────── */
-
-function isPlainObject(value) {
-  return !!value && typeof value === 'object' && !Array.isArray(value)
-}
 
 function clampPct(value) {
   const pct = Math.round(Number(value))
@@ -185,11 +287,15 @@ export async function POST(request, { params } = {}) {
     return fail('Neispravni parametri.', 400)
   }
   if (!isPlainObject(body.answers)) return fail('Nedostaju odgovori.', 400)
+  if (!isSafeAnswerMap(body.answers)) return fail('Neispravni odgovori.', 400)
 
-  const answers = body.answers
+  const sentQTimes = isPlainObject(body.qTimes) ? body.qTimes : {}
   const examMode = body.examMode !== false
-  const qTimes = isPlainObject(body.qTimes) ? body.qTimes : {}
-  const durationSec = Number.isInteger(body.durationSec) ? body.durationSec : null
+  const durationSec = Number.isInteger(body.durationSec)
+    && body.durationSec >= 0
+    && body.durationSec <= MAX_DURATION_SEC
+    ? body.durationSec
+    : null
 
   const supabase = await createClient()
   const { data: auth } = await supabase.auth.getUser()
@@ -211,6 +317,11 @@ export async function POST(request, { params } = {}) {
   if (cached) return NextResponse.json(buildBody(cached, paid), { headers: HEADERS })
 
   const publicQs = stripQuestions(exam.qs, adapter.publicFields)
+  // Odgovori i vremena svedeni na pitanja koja ovaj ispit doista ima: višak
+  // ključeva ocjenjivanje ionako ignorira, a u `jsonb` nema što tražiti.
+  const questionIds = publicQs.map(question => question?.id).filter(id => typeof id === 'string')
+  const answers = pickKnown(body.answers, questionIds)
+  const qTimes = pickKnown(sentQTimes, questionIds, asQTime)
 
   /** Tajni store se čita tek kad je jasno da se doista ocjenjuje. */
   const loadSecretsOrFail = async () => {
@@ -231,6 +342,21 @@ export async function POST(request, { params } = {}) {
     return NextResponse.json(buildBody(replay, paid), { headers: HEADERS })
   }
 
+  // Otisak pokušaja: isti attemptId s istim odgovorima na bilo kojoj instanci.
+  // Prvi poziv ga "zauzme" (RPC je atomičan), svaki sljedeći ga prepozna kao
+  // ponavljanje — pa mrežni retry ne čeka 60 s i ne troši mjesto u budžetu.
+  const replayKey = `sim-grade-attempt:${subject}:${examKey}:${attemptId}:${answersFingerprint(answers)}`
+  const replay = await checkRateLimit(user.id, replayKey, DAY_MS)
+  if (replay.limited) {
+    const secrets = await loadSecretsOrFail()
+    if (!secrets) return fail('Ispit se trenutačno ne može ocijeniti.', 500)
+    const result = await adapter.score(publicQs, secrets, answers)
+    writeAttemptCache(cacheKey, result)
+    // Bez upisa: redak je upisao prvi poziv (ili ga je odbio limit, pa ga ovaj
+    // ponovljeni pokušaj ne smije stvoriti mimo budžeta).
+    return NextResponse.json(buildBody(result, paid), { headers: HEADERS })
+  }
+
   const limit = await checkRateLimit(user.id, `sim-grade:${subject}:${examKey}`, GRADE_MIN_INTERVAL_MS)
   if (limit.limited) {
     return fail(
@@ -240,12 +366,14 @@ export async function POST(request, { params } = {}) {
     )
   }
 
-  const used = await countRecentAttempts(supabase, user.id, subject, examKey)
-  if (used >= GRADE_DAILY_BUDGET) {
+  const budget = await consumeBudgetSlot(user.id, subject, examKey, examMode)
+  if (!budget.ok) {
     return fail(
-      `Iskorišten je dnevni budžet od ${GRADE_DAILY_BUDGET} ocijenjenih predaja za ovaj ispit. Pokušaj ponovno sutra.`,
+      examMode
+        ? `Iskorišten je dnevni budžet od ${GRADE_DAILY_BUDGET} ocijenjenih predaja za ovaj ispit. Pokušaj ponovno sutra.`
+        : `Iskorišten je dnevni budžet od ${GRADE_PRACTICE_BUDGET} ocijenjenih vježbanja za ovaj ispit. Simulacija s timerom i dalje je moguća.`,
       429,
-      { 'Retry-After': String(Math.round(DAY_MS / 1000)) },
+      { 'Retry-After': String(budget.retryAfterSec) },
     )
   }
 
@@ -253,13 +381,19 @@ export async function POST(request, { params } = {}) {
   if (!secrets) return fail('Ispit se trenutačno ne može ocijeniti.', 500)
 
   const result = await adapter.score(publicQs, secrets, answers)
-  const razina = exam.meta?.razina === 'A' || exam.meta?.razina === 'B' ? exam.meta.razina : null
+  // sim_progress.razina zna samo za 'A'/'B'. Predmet čija je vlastita oznaka
+  // razine drukčija (engleski: 'visa'/'osnovna') daje `meta.razinaCode`; bez
+  // njega bi stupac tiho ostao prazan za sve njegove retke.
+  const razinaRaw = exam.meta?.razinaCode ?? exam.meta?.razina
+  const razina = razinaRaw === 'A' || razinaRaw === 'B' ? razinaRaw : null
 
   const insertError = await insertProgress(supabase, {
     user_id: user.id,
     subject,
     exam_key: examKey,
-    exam_label: exam.meta?.label ?? null,
+    // `fullLabel` je naziv kakav predmet piše u povijest ("2024. — Ljetni rok");
+    // `label` je kratak naziv za UI. Predmet koji ih ne razlikuje daje samo label.
+    exam_label: exam.meta?.fullLabel ?? exam.meta?.label ?? null,
     razina,
     pct: clampPct(result?.pct),
     grade: result?.grade ?? null,
@@ -275,6 +409,7 @@ export async function POST(request, { params } = {}) {
   if (insertError) {
     // Rezultat je izračunat i točan; izgubljeno je samo trajno spremanje.
     // Odbiti ga ovdje značilo bi korisniku pojesti pokušaj zbog tuđeg kvara.
+    // Budžet je već potrošen u ai_rate_limit, pa pad upisa ništa ne oslobađa.
     console.error('[sim/grade] upis u sim_progress nije uspio.', insertError)
   }
 

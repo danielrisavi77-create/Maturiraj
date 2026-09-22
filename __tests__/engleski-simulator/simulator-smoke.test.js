@@ -4,17 +4,20 @@
  *
  * Integracijski test cijele komponente EngleskiSimulator — zamjena za ručni
  * smoke test. Prati stvarni tok korisnika: Home → odabir ispita → ModeSelect →
- * Vježbanje → odgovori na prvo pitanje → Provjeri → Vidi rezultate → Results →
+ * Vježbanje → odgovori na prvo pitanje → Vidi rezultate → Results →
  * provjera da je napredak spremljen u localStorage → unmount/remount ("refresh")
  * → Home i dalje pokazuje badge s postotkom.
  *
  * MOCK JE PRIJAVLJENI FREE KORISNIK: prijava je po politici uvijek obavezna
  * (gost ide na /prijava), pa bi uz user:null pitanje ostalo zaključano i tok
- * odgovori → Provjeri → Vidi rezultate ne bi bio izvediv. Prijavljeni free plan
+ * odgovori → Vidi rezultate ne bi bio izvediv. Prijavljeni free plan
  * (isPro:false, isPaid:false) u vježbanju dobiva FREE_LIMIT pitanja — sintetički
  * ispit ima jedno, pa prolazi bez paywalla — dok su rezultati zaključani od
- * Standarda naviše, što test na kraju i provjerava. Guest paywall-lock pokriven
- * je zasebno u exam-play-blocks.test.js / daily-challenge.test.js.
+ * Standarda naviše, što test na kraju i provjerava. Gumba "Provjeri" u toku
+ * NEMA: free payload ne nosi nijedan ključ, pa se gumb koji bez ključa ne može
+ * ništa pokazati ni ne renderira (ExamPlayScreen, `hasKeys`), a ocjenu daje
+ * POST /api/sim/eng/grade. Guest paywall-lock pokriven je zasebno u
+ * exam-play-blocks.test.js / daily-challenge.test.js.
  *
  * NAPOMENA: 'AnalyticsPanelFull.js' (lazy chunk unutar ResultsScreena, prikazan
  * čim postoji povijest) piše pravi JSX u '.js' datoteci (za razliku od ostalih
@@ -28,6 +31,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, cleanup, waitFor, fireEvent } from '@testing-library/react'
 import { createElement as e } from 'react'
+import { installSimApiMock } from './_mockSimApi.js'
 
 vi.mock('@/lib/hooks/useAuth', () => ({
   useAuth: () => ({ user: { id: 'smoke-test-user' }, isPro: false, isPaid: false, loading: false }),
@@ -45,7 +49,7 @@ vi.mock('next/navigation', () => ({
 
 // Sintetički ispiti obje razine — jedan 'osnovna' i jedan 'visa', s ključevima
 // '2024_ljeto' i 'vis_2024_prvi', po jedno 'mc' pitanje (dovoljno za tok
-// Vježbanje → Provjeri → Vidi rezultate).
+// Vježbanje → Vidi rezultate).
 const OSNOVNA_EXAM = {
   key: '2024_ljeto',
   year: 2024,
@@ -72,11 +76,15 @@ const EXAMS_INDEX = [
   { key: VISA_EXAM.key, year: VISA_EXAM.year, season: VISA_EXAM.season, label: VISA_EXAM.label, razina: 'visa', hasListening: true, hasReading: true, qCount: VISA_EXAM.qs.length },
 ]
 
+// Loader ide na /api/sim/eng/exam/<key> (ADR-001); ovdje ga mockamo u cijelosti
+// da smoke test ostane o toku kroz komponentu, a ne o dohvatu.
 vi.mock('@/lib/engleski-simulator/examsLoader', () => ({
   RAZINE: ['osnovna', 'visa'],
   getExamsIndex: () => EXAMS_INDEX,
   razinaForKey: key => (typeof key === 'string' && key.startsWith('vis_') ? 'visa' : 'osnovna'),
+  isExamLoaded: () => true,
   isRazinaLoaded: () => true,
+  loadExamByKey: key => Promise.resolve(EXAMS_MAP[key]),
   loadRazina: () => Promise.resolve(EXAMS_MAP),
   getLoadedSync: () => EXAMS_MAP,
 }))
@@ -84,13 +92,12 @@ vi.mock('@/lib/engleski-simulator/examsLoader', () => ({
 const { default: EngleskiSimulator } = await import('../../components/engleski-simulator/EngleskiSimulator.js?lang.jsx')
 
 describe('EngleskiSimulator — integracijski smoke test', () => {
+  let api
+
   beforeEach(() => {
-    global.fetch = vi.fn((url) => {
-      if (String(url).includes('exam-context.json')) {
-        return Promise.resolve({ json: () => Promise.resolve({}) })
-      }
-      return Promise.resolve({ json: () => Promise.resolve({}) })
-    })
+    // Vježbanje se završava predajom na POST /api/sim/eng/grade; mock računa
+    // istim `chk`-om kao poslužiteljski adapter.
+    api = installSimApiMock({ exams: EXAMS_MAP, tier: 'free' })
     try { localStorage.clear() } catch { /* happy-dom bez localStoragea */ }
     window.confirm = vi.fn(() => true)
   })
@@ -100,7 +107,7 @@ describe('EngleskiSimulator — integracijski smoke test', () => {
     vi.restoreAllMocks()
   })
 
-  it('Home → ModeSelect → Vježbanje → Provjeri → Rezultati → napredak preživljava refresh', async () => {
+  it('Home → ModeSelect → Vježbanje → Rezultati → napredak preživljava refresh', async () => {
     const { unmount } = render(e(EngleskiSimulator))
 
     // Home prikazuje oba ispita iz indeksa (jedan red po ispitu, unutar godišnje
@@ -121,9 +128,8 @@ describe('EngleskiSimulator — integracijski smoke test', () => {
     const radios = await screen.findAllByRole('radio', {}, { timeout: 20000 })
     fireEvent.click(radios[0])
 
-    // 'Provjeri'
-    const checkBtn = await screen.findByRole('button', { name: 'Provjeri' }, { timeout: 20000 })
-    fireEvent.click(checkBtn)
+    // Free payload nema ključeva → gumba 'Provjeri' nema
+    expect(screen.queryByRole('button', { name: 'Provjeri' })).toBeNull()
 
     // 'Vidi rezultate'
     const resultsBtn = await screen.findByRole('button', { name: 'Vidi rezultate' }, { timeout: 20000 })

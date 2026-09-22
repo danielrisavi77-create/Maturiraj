@@ -6,11 +6,16 @@
 //   → { key, meta, texts, qs, keys: 'none' | 'partial' | 'full' }
 //
 // `keys` je opis onoga što je u payloadu, ne zahtjev klijenta:
-//   'full'    — svako pitanje nosi ključ (plaćeni tier; free demo vježbanje)
-//   'partial' — prvih FREE_LIMIT pitanja nosi ključ (free vježbanje)
-//   'none'    — nijedno pitanje nema ključ (free ispitni mod)
+//   'full'    — svako pitanje nosi ključ (plaćeni tier, i to samo za ispite iz
+//               allowedExamKeys tog tiera)
+//   'partial' — dio pitanja nosi ključ (danas ne nastaje: free izuzetak je 0)
+//   'none'    — nijedno pitanje nema ključ (svaki free korisnik, oba načina)
 // Klijentski prekidač ostaje `const hasKeys = qs.some(q => q && q.sol)`, pa mu
 // 'partial' ne treba posebno rukovanje.
+//
+// ODLUKA VLASNIKA: free korisnik NIKAD ne dobiva sol/exp/why/steps. Zato je
+// `freeKeyAllowance` nula i zato ovaj odgovor nema tier-ovisnog izuzetka koji bi
+// se dao pokupiti skupnim dohvatom svih ispita.
 //
 // Tier se čita ISKLJUČIVO iz baze. Ni query string, ni tijelo, ni bridge.
 // Zaglavlja su `private, no-store` + `Vary: Cookie` jer je odgovor tier-ovisan:
@@ -37,6 +42,26 @@ function fail(message, status) {
   return NextResponse.json({ error: message }, { status, headers: HEADERS })
 }
 
+/* ── keš tiera ─────────────────────────────────────────────────────────────
+   Ekrani koji analiziraju cijelu banku dohvaćaju ispite POJEDINAČNO (70
+   zahtjeva, 6 usporedno). Bez keša svaki od njih radi i vlastiti upit nad
+   `subscriptions`, dakle 70 nepotrebnih round-tripova po ulasku u ekran.
+   Prijava (auth.getUser) se ne kešira — ona je provjera identiteta i mora
+   ostati po zahtjevu; kešira se samo tier, i to kratko: promjena plana vidi se
+   najkasnije za TIER_TTL_MS, a keš živi po instanci funkcije. */
+const TIER_TTL_MS = 60 * 1000
+const TIER_CACHE_MAX = 500
+const tierCache = new Map()
+
+async function cachedTier(userId) {
+  const hit = tierCache.get(userId)
+  if (hit && Date.now() - hit.at < TIER_TTL_MS) return hit.tier
+  const tier = normalizeTier(await getUserTier(userId))
+  if (tierCache.size >= TIER_CACHE_MAX) tierCache.delete(tierCache.keys().next().value)
+  tierCache.set(userId, { tier, at: Date.now() })
+  return tier
+}
+
 export async function GET(request, { params } = {}) {
   const resolved = await params
   const subject = resolved?.subject ?? ''
@@ -58,7 +83,7 @@ export async function GET(request, { params } = {}) {
   const exam = await adapter.loadPublic(examKey)
   if (!exam) return fail('Ispit ne postoji.', 404)
 
-  const tier = normalizeTier(await getUserTier(user.id))
+  const tier = await cachedTier(user.id)
 
   // Javni payload se čisti UVIJEK, pa i kad ga adapter već isporučuje čistog.
   // Dok traje migracija predmeta to je jedina stvar koja stoji između

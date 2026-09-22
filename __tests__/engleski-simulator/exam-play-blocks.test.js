@@ -25,6 +25,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent, act, cleanup } from '@testing-library/react'
 import { createElement as e } from 'react'
 import { makeVisaExam, PRO_ACCESS, FREE_ACCESS } from './_synthExam.js'
+import { installSimApiMock } from './_mockSimApi.js'
 import { FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers'
 
 vi.mock('next/navigation', () => ({
@@ -76,6 +77,8 @@ function navTitle() {
 describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
   beforeEach(() => {
     window.confirm = vi.fn(() => true)
+    // Predaja pravog ispita ide na POST /api/sim/eng/grade (ADR-001).
+    installSimApiMock({ exams: { [makeVisaExam().key]: makeVisaExam() }, tier: 'pro' })
     try { localStorage.clear() } catch { /* happy-dom bez localStoragea */ }
   })
   afterEach(() => {
@@ -132,7 +135,7 @@ describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
     expect(screen.getByText('R1-TEXT')).toBeTruthy()
   })
 
-  it('istek bloka prelazi na sljedeći, a istek zadnjeg bloka predaje ispit točno jednom', () => {
+  it('istek bloka prelazi na sljedeći, a istek zadnjeg bloka predaje ispit točno jednom', async () => {
     vi.useFakeTimers()
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
     const { onDone } = renderPlay()
@@ -146,9 +149,13 @@ describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
     expect(onDone).not.toHaveBeenCalled()
 
     act(() => { vi.advanceTimersByTime(LISTENING_S * 1000) })
+    // Predaja sada ide preko POST /api/sim/eng/grade, pa je onDone asinkron;
+    // await propušta mikrozadatke i s lažnim timerima.
+    await act(async () => {})
     expect(onDone).toHaveBeenCalledTimes(1)
     // Timer nakon isteka više ne predaje (expired ref)
     act(() => { vi.advanceTimersByTime(60 * 1000) })
+    await act(async () => {})
     expect(onDone).toHaveBeenCalledTimes(1)
     expect(errorSpy.mock.calls.some(c => String(c[0]).includes('Cannot update a component'))).toBe(false)
     errorSpy.mockRestore()

@@ -100,8 +100,8 @@ export function MCQ({ q, a, setA, rev }) {
   return e('div', { className: 'opts', role: 'radiogroup' }, q.opts.map((opt, i) => {
     const L = LL[i]
     const sel = a === L
-    const ok = rev && L === q.sol.cl
-    const bad = rev && sel && L !== q.sol.cl
+    const ok = rev && L === q.sol?.cl
+    const bad = rev && sel && q.sol?.cl && L !== q.sol.cl
     function handleKey(ev) {
       if (rev) return
       if (ev.key === ' ' || ev.key === 'Enter') {
@@ -135,8 +135,8 @@ export function InsQ({ q, a, setA, rev }) {
     q.opts.map((opt, i) => {
       const letter = String.fromCharCode(65 + i)
       const sel = cur === letter
-      const ok = rev && letter === q.sol.cl
-      const bad = rev && sel && letter !== q.sol.cl
+      const ok = rev && letter === q.sol?.cl
+      const bad = rev && sel && q.sol?.cl && letter !== q.sol.cl
       function handleKey(ev) {
         if (rev) return
         if (ev.key === ' ' || ev.key === 'Enter') {
@@ -220,7 +220,7 @@ export function MatQ({ q, a, setA, rev }) {
           q.items.map((lft, i) => {
             const colIdx = colorMap[lft]
             const col = PAIR_COLORS[colIdx]
-            const cr = q.sol.pairs.find(p => p.l.trim() === lft.trim())?.r
+            const cr = q.sol?.pairs?.find(p => p.l.trim() === lft.trim())?.r
             const ch = cur[lft] || ''
             const isActive = activeLeft === lft
             const isMatched = !!ch
@@ -253,7 +253,7 @@ export function MatQ({ q, a, setA, rev }) {
             const isUsed = usedOpts.has(opt)
             const usedByKey = Object.entries(cur).find(([k, v]) => v === opt)?.[0]
             const isSelectable = !!activeLeft && (!isUsed || usedByKey !== undefined)
-            const ok = rev && q.sol.pairs.some(p => p.r.trim() === opt.trim() && (cur[p.l.trim()] || '').trim() === opt.trim())
+            const ok = rev && !!q.sol?.pairs?.some(p => p.r.trim() === opt.trim() && (cur[p.l.trim()] || '').trim() === opt.trim())
             const bad = rev && isUsed && !ok
             let style = {}
             if (!rev && owner) {
@@ -284,7 +284,7 @@ export function MatQ({ q, a, setA, rev }) {
       e('button', { className: 'mat-clear-btn', onClick: () => { setA({}); setActiveLeft(null) } }, '✕ Poništi sve')),
     rev && e('div', { className: 'mat-pairs-summary', style: { marginTop: 12 } },
       q.items.map((lft, i) => {
-        const cr = q.sol.pairs.find(p => p.l.trim() === lft.trim())?.r
+        const cr = q.sol?.pairs?.find(p => p.l.trim() === lft.trim())?.r
         const ch = cur[lft]
         const ok = (ch || '').trim() === (cr || '').trim()
         return e('div', {
@@ -301,8 +301,8 @@ export function MatQ({ q, a, setA, rev }) {
 }
 
 export function FbQ({ q, a, setA, rev }) {
-  const ac = q.sol.alt || (Array.isArray(q.sol.ans) ? q.sol.ans : [q.sol.ans])
-  const ok = rev && ac.some(x => nrm(x) === nrm(a))
+  const ac = q.sol?.alt || (Array.isArray(q.sol?.ans) ? q.sol.ans : [q.sol?.ans])
+  const ok = rev && !!q.sol && ac.some(x => nrm(x) === nrm(a))
   const bad = rev && !ok && (a || '').trim().length > 0
   return e('input', { className: 'finp' + (ok ? ' ok' : bad ? ' bad' : ''), type: 'text', placeholder: 'Upiši odgovor...', value: a || '', readOnly: rev, 'aria-label': q.q.slice(0, 80), onChange: ev => !rev && setA(ev.target.value) })
 }
@@ -310,12 +310,15 @@ export function FbQ({ q, a, setA, rev }) {
 export function SaQ({ q, a, setA, rev }) {
   return e(Fragment, null,
     e('textarea', { className: 'ta', rows: 4, style: { minHeight: 100 }, placeholder: 'Upiši odgovor...', value: a || '', readOnly: rev, onChange: ev => !rev && setA(ev.target.value) }),
-    rev && e('div', { className: 'fb info' }, e('div', { className: 'fbtitle' }, 'Referentni odgovor'), e('div', { className: 'fbans' }, q.sol.ans)),
+    rev && q.sol?.ans && e('div', { className: 'fb info' }, e('div', { className: 'fbtitle' }, 'Referentni odgovor'), e('div', { className: 'fbans' }, q.sol.ans)),
   )
 }
 
 export function FeedbackBox({ q, a, rev }) {
-  if (!rev || q.type === 'sa') return null
+  // Bez ključa nema povratne informacije — free korisnik ga u ispitnom modu ne
+  // dobiva, a ovaj put se tada uopće ne smije doseći (ADR-001). Ako se doseže,
+  // degradacija mora biti tiha, a ne bijeli ekran.
+  if (!rev || q.type === 'sa' || !q.sol) return null
   if (q.type === 'mat') {
     const nA = Object.fromEntries(Object.entries(a || {}).map(([k, v]) => [k.trim(), (v || '').trim()]))
     const ok = q.sol.pairs.every(p => nA[p.l.trim()] === p.r.trim())
@@ -334,7 +337,7 @@ export function FeedbackBox({ q, a, rev }) {
   if (ok === null) return null
   return e('div', { className: 'fb ' + (ok ? 'ok' : 'bad') },
     e('div', { className: 'fbtitle' }, ok ? '✓ Točno!' : '✗ Netočno'),
-    !ok && q.type === 'mc' && e('div', { className: 'fbtext' }, 'Točan odgovor: ' + q.sol.cl + ' — ' + q.opts[LL.indexOf(q.sol.cl)]),
+    !ok && q.type === 'mc' && q.sol.cl && e('div', { className: 'fbtext' }, 'Točan odgovor: ' + q.sol.cl + ' — ' + q.opts[LL.indexOf(q.sol.cl)]),
     q.exp && e('div', { className: 'fbtext', style: { marginTop: 6, paddingTop: 6, borderTop: '1px solid rgba(0,0,0,.06)', fontStyle: 'italic' } }, q.exp),
   )
 }
@@ -347,6 +350,7 @@ export function AnswerHelper({ q, show, onToggle, autoExpand }) {
   const [aiText, setAiText] = useState('')
 
   function getContent() {
+    if (!q.sol) return null
     if (q.type === 'mc') {
       const idx = LL.indexOf(q.sol.cl)
       return e('div', { className: 'ah-answer-content' }, e('span', { className: 'ah-correct' }, q.sol.cl + ' — '), q.opts[idx] || '')
@@ -409,6 +413,10 @@ export function AnswerHelper({ q, show, onToggle, autoExpand }) {
     }
   }, [q])
 
+  // Bez ključa nema što pokazati — gumb "Pokaži odgovor" vodio bi u prazno. Po
+  // politici je točan odgovor Standard sadržaj, pa se to za free tier izvan
+  // prvih FREE_LIMIT pitanja vježbanja i ne smije dogoditi (ADR-001).
+  if (!q?.sol) return null
   if (!show && !autoExpand) return e('button', { className: 'ah-toggle-btn', onClick: onToggle }, '💡 Pokaži odgovor')
   return e('div', { className: 'ah-wrap' },
     e('div', { className: 'ah-answer' }, e('div', { className: 'ah-answer-label' }, '💡 Točan odgovor'), getContent()),

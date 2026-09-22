@@ -43,7 +43,9 @@ vi.mock('@/lib/engleski-simulator/examsLoader', () => ({
   RAZINE: ['osnovna', 'visa'],
   getExamsIndex: () => EXAMS_INDEX,
   razinaForKey: () => 'osnovna',
+  isExamLoaded: () => true,
   isRazinaLoaded: () => true,
+  loadExamByKey: key => Promise.resolve(EXAMS_MAP[key]),
   loadRazina: () => Promise.resolve(EXAMS_MAP),
   getLoadedSync: () => EXAMS_MAP,
 }))

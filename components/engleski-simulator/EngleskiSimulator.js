@@ -1,17 +1,18 @@
 ﻿'use client'
 
-import React, { useEffect, useState, useMemo, lazy, Suspense } from 'react'
+import React, { useEffect, useState, useMemo, useRef, lazy, Suspense } from 'react'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { SimulatorPreviewGate, LockedAnalysisSection, LockedResultsBlock, buildUserAccess } from '@/components/discere/paywall'
 import { FREE_LIMIT, canSeeDiscereAnalysis } from '@/components/discere/paywall/paywallHelpers'
-import { getExamsIndex, getLoadedSync, isRazinaLoaded, loadRazina, razinaForKey, RAZINE } from '@/lib/engleski-simulator/examsLoader'
-import { chk, grade, calcXpGain, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
+import { getExamsIndex, getLoadedSync, isExamLoaded, isRazinaLoaded, loadExamByKey, loadRazina, RAZINE } from '@/lib/engleski-simulator/examsLoader'
+import { chk, grade, calcXpGain, scoreLookup, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
+import { submitGrade, newAttemptId, gradeErrorMessage } from '@/lib/engleski-simulator/gradeClient'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
 import { useTimer, warnMessage } from '@/lib/engleski-simulator/useTimer'
 import { getExamBlocks, totalMinutes, sectionScores, weightedEstimate } from '@/lib/engleski-simulator/examStructure'
 import { LL, TLBL, TBDG, TOPIC_LABELS, GC, LEVEL_NAMES, getLevel, xpProgress, xpToNext } from '@/lib/engleski-simulator/constants'
 import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
-import { ENG_USER_KEY, ENG_BOOKMARKS_DELETED_KEY, toSimProgressPayload, saveEngSimResult } from '@/lib/engleski-simulator/cloudSync'
+import { ENG_USER_KEY, ENG_BOOKMARKS_DELETED_KEY, isRealExamKey, saveEngSimResult, toSimProgressPayload } from '@/lib/engleski-simulator/cloudSync'
 import { useEngCloudSync } from '@/lib/engleski-simulator/useEngCloudSync'
 
 // Lagani indeks ispita (bez pitanja) — jedini podaci o ispitima u početnom bundleu.
@@ -44,18 +45,29 @@ const FULL_EXAMS_SCREENS = ['stats', 'browse', 'errors', 'bookmarks', 'daily', '
 // Ekrani koji pokazuju točne odgovore, obrazloženja ili analizu cijele banke —
 // po politici su to Standard sadržaj, pa za free tier u njih uopće ne ulazimo:
 // ni ispiti se ne dovlače ni sadržaj ne dolazi u DOM, nego se prikaže placeholder
-// s CTA-om. Ispitni mod i vježbanje (FREE_LIMIT) idu svojim putem i ostaju ovdje.
+// s CTA-om. Ispitni mod i vježbanje idu svojim putem i ostaju ovdje.
 // 'stats' NIJE ovdje: vlastiti rezultati, XP i povijest su besplatni — zaključana je
 // samo analitika unutar njega (AnalyticsPanelBound).
-const PAID_SCREENS = ['browse', 'vocab', 'bookmarks', 'errors', 'analytics', 'pdf_report']
+//
+// Dnevni izazov, virtualni ispit, vježbanje po temi i usporedba slažu sesiju od
+// pitanja iz CIJELE banke i ocjenjuju je lokalno preko `chk`. Otkako free tier
+// ne dobiva ni jedan ključ, taj lokalni put bi im vraćao 0 % i prazan feedback
+// na točne odgovore, a usput bi za svaki ulazak povlačio svih 70 ispita. Politika
+// ih je ionako svrstala u Standard (dizajn: "FREE KORISNIK GUBI FUNKCIJE …
+// preskočiti ih, NE pozvati s praznim ulazom"), pa su odsad ovdje.
+const PAID_SCREENS = ['browse', 'vocab', 'bookmarks', 'errors', 'analytics', 'pdf_report', 'daily', 'filter', 'compare', 'virtual_exam']
 
 const PAID_SCREEN_COPY = {
-  browse:     { label: 'Pregled svih pitanja', note: 'Pregled banke s točnim odgovorima i obrazloženjima dolazi sa Standard planom. Ispiti s timerom ostaju besplatni.' },
-  vocab:      { label: 'Vocabulary vježba', note: 'Vježba s točnim odgovorima i obrazloženjima dolazi sa Standard planom.' },
-  bookmarks:  { label: 'Bookmarci', note: 'Spremljena pitanja s točnim odgovorima dolaze sa Standard planom.' },
-  errors:     { label: 'Greške — ponavljanje', note: 'Vježbanje grešaka s obrazloženjima dolazi sa Standard planom.' },
-  analytics:  { label: 'Analitika', note: 'Analiza po temama i savjeti dolaze sa Standard planom.' },
-  pdf_report: { label: 'PDF izvještaj', note: 'Izvještaj s analizom po temama dolazi sa Standard planom.' },
+  browse:       { label: 'Pregled svih pitanja', note: 'Pregled banke s točnim odgovorima i obrazloženjima dolazi sa Standard planom. Ispiti s timerom ostaju besplatni.' },
+  vocab:        { label: 'Vocabulary vježba', note: 'Vježba s točnim odgovorima i obrazloženjima dolazi sa Standard planom.' },
+  bookmarks:    { label: 'Bookmarci', note: 'Spremljena pitanja s točnim odgovorima dolaze sa Standard planom.' },
+  errors:       { label: 'Greške — ponavljanje', note: 'Vježbanje grešaka s obrazloženjima dolazi sa Standard planom.' },
+  analytics:    { label: 'Analitika', note: 'Analiza po temama i savjeti dolaze sa Standard planom.' },
+  pdf_report:   { label: 'PDF izvještaj', note: 'Izvještaj s analizom po temama dolazi sa Standard planom.' },
+  daily:        { label: 'Dnevni izazov', note: 'Dnevni izazov s povratnom informacijom po pitanju dolazi sa Standard planom. Ispiti s timerom ostaju besplatni.' },
+  filter:       { label: 'Vježbaj po temi', note: 'Sesije po temama s točnim odgovorima i obrazloženjima dolaze sa Standard planom.' },
+  compare:      { label: 'Usporedi ispite', note: 'Usporedba ispita nad cijelom bankom dolazi sa Standard planom.' },
+  virtual_exam: { label: 'Virtualni ispit', note: 'Nasumičan ispit iz cijele banke dolazi sa Standard planom. Pravi ispiti s timerom ostaju besplatni.' },
 }
 
 // Wrapper so AnalyticsPanelFull can be passed as a prop to e()-based screens
@@ -271,22 +283,64 @@ function BlockTimer({ totalSeconds, run, onExpire, onWarn, label }) {
   )
 }
 
+// Nedovršeni pokušaj u localStorageu. Engleski ga dosad nije imao (hrvatski ima
+// `discere_exam_<key>`, matematika `mat_resume`), pa je neuspjela predaja nakon
+// 90-minutne simulacije značila gubitak svega: odgovori su živjeli isključivo u
+// React stanju, a osvježavanje stranice ih je brisalo.
+const EXAM_DRAFT_PREFIX = 'disc_eng_exam_'
+const EXAM_DRAFT_TTL_MS = 6 * 60 * 60 * 1000
+
+function readExamDraft(draftKey) {
+  if (!draftKey) return null
+  try {
+    const raw = localStorage.getItem(draftKey)
+    if (!raw) return null
+    const parsed = JSON.parse(raw)
+    if (!parsed || typeof parsed !== 'object') return null
+    if (!Number.isFinite(parsed.at) || Date.now() - parsed.at > EXAM_DRAFT_TTL_MS) return null
+    return {
+      answers: parsed.answers && typeof parsed.answers === 'object' ? parsed.answers : {},
+      qTimes: parsed.qTimes && typeof parsed.qTimes === 'object' ? parsed.qTimes : {},
+    }
+  } catch { return null }
+}
+
+function clearExamDraft(draftKey) {
+  if (!draftKey) return
+  try { localStorage.removeItem(draftKey) } catch {}
+}
+
 // Named export radi testova blokovske navigacije (exam-play-blocks.test.js) —
 // ponašanje je nepromijenjeno, default export i dalje je EngleskiSimulator.
 export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup, soundOn, onBookmarkChange }) {
   const qs = useMemo(() => exam?.qs || [], [exam])
+  // Samo pravi ispiti: virtualne sesije se pri svakom ulasku slažu iznova, pa bi
+  // im spremljeni odgovori pripadali drugim pitanjima.
+  const draftKey = exam?.key && isRealExamKey(exam.key) ? EXAM_DRAFT_PREFIX + exam.key : null
   const [cur, setCur] = useState(0)
-  const [answers, setAnswers] = useState({})
+  const [answers, setAnswers] = useState(() => readExamDraft(draftKey)?.answers || {})
   const [rev, setRev] = useState({})
-  const [qTimes, setQTimes] = useState({})
+  const [qTimes, setQTimes] = useState(() => readExamDraft(draftKey)?.qTimes || {})
   const [bookmarks, setBookmarks] = useState(() => {
     try { return validateBookmarks(JSON.parse(localStorage.getItem('disc_eng_bookmarks') || '{}')) } catch { return {} }
   })
   const [toast, setToast] = useState(null)
   const [blockIdx, setBlockIdx] = useState(0)
+  // Predaja na poslužiteljsko ocjenjivanje: 'submitting' drži gumb zauzetim,
+  // 'submitError' zadržava odgovore i nudi ponovni pokušaj (nakon isteka timera
+  // druge šanse nema), a 'attemptIdRef' čini ponovni pokušaj idempotentnim —
+  // isti id ne troši budžet od 5 ocijenjenih predaja po ispitu u 24 h.
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
+  const attemptIdRef = useRef(null)
 
   // Simulacija ide blok po blok prema NCVVO strukturi razine (viša 70/75/35,
   // osnovna 75/30); vježbanje i vježbanje s timerom ostaju slobodna navigacija.
+  // Prekidač iz ADR-a: ima li payload ijedan ključ. Bez njega nema ni "Provjeri"
+  // ni AnswerHelpera ni previewScorea — gumb koji tiho ne radi ništa gori je od
+  // gumba kojeg nema, a preview bi tvrdio "0 od 3 točno" i kad su sva tri točna.
+  const hasKeys = useMemo(() => qs.some(x => x && x.sol), [qs])
+
   const blocks = useMemo(() => (examMode ? getExamBlocks(exam) : []), [examMode, exam])
   const block = blocks[blockIdx] || null
   const isLastBlock = !block || blockIdx >= blocks.length - 1
@@ -310,6 +364,16 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       if (elapsed > 0) setQTimes(prev => ({ ...prev, [curQid]: (prev[curQid] || 0) + elapsed }))
     }
   }, [curQid])
+
+  // Odgovori preživljavaju osvježavanje stranice i pad kartice; briše ih tek
+  // uspješna predaja (ili istek TTL-a).
+  useEffect(() => {
+    if (!draftKey) return
+    if (!Object.keys(answers).length && !Object.keys(qTimes).length) return
+    try {
+      localStorage.setItem(draftKey, JSON.stringify({ at: Date.now(), answers, qTimes }))
+    } catch {}
+  }, [draftKey, answers, qTimes])
 
   if (!exam || !qs.length) {
     return (
@@ -405,27 +469,82 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
     if (onBookmarkChange) onBookmarkChange()
   }
 
-  function finish() {
+  /**
+   * Složi rezultat predaje. Uz poslužiteljski odgovor `chkFn` gleda njegovu mapu
+   * točno/netočno umjesto ključa, pa rezultat po cjelinama izlazi isti i kad u
+   * pregledniku nema nijednog `sol` (ADR-001, točka 10).
+   */
+  function buildResult(server) {
+    const chkFn = server ? scoreLookup(server.scores) : chk
     const autoQ = qs.filter(x => x.type !== 'sa' && x.type !== 'es')
-    const cor = autoQ.filter(x => chk(x, answers[x.id]) === true).length
-    const pct = autoQ.length ? Math.round((cor / autoQ.length) * 100) : 0
-    const g = grade(pct)
-    // Rezultat po ispitnim cjelinama s NCVVO ponderima; 'pct' ostaje udio točnih
-    // auto-ocjenjivih pitanja radi kompatibilnosti s povijesti i statistikama.
-    const scores = sectionScores(exam, answers, chk)
-    onDone({
+    const localCor = autoQ.filter(x => chkFn(x, answers[x.id]) === true).length
+    const cor = server ? server.cor : localCor
+    const total = server ? server.total : autoQ.length
+    // 'pct' ostaje udio točnih auto-ocjenjivih pitanja radi kompatibilnosti s
+    // povijesti i statistikama; poslužitelj računa istom formulom.
+    const pct = server ? server.pct : (autoQ.length ? Math.round((localCor / autoQ.length) * 100) : 0)
+    const scores = sectionScores(exam, answers, chkFn)
+    return {
       examKey: exam.key,
       examLabel: `${exam.year}. — ${exam.label}`,
       pct,
-      grade: g,
+      grade: server ? server.grade : grade(pct),
       cor,
-      total: autoQ.length,
+      total,
       answers,
       qTimes,
       examMode,
       sectionScores: scores,
       weighted: weightedEstimate(scores),
-    })
+      // Mapa qid → true|false|null s poslužitelja; virtualne sesije je nemaju.
+      scores: server ? server.scores : null,
+      xpGain: server ? server.xpGain : null,
+      // Je li redak u sim_progress već upisala ocjenjivačka ruta. Kad nije (pad
+      // predaje, a rezultat izračunat lokalno iz ključeva), upisuje ga klijent —
+      // inače bi pokušaj koji korisnik vidi na ekranu nestao iz oblaka.
+      serverSaved: !!server,
+    }
+  }
+
+  // Pravi ispit ocjenjuje poslužitelj. Virtualne sesije (greške, bookmarci,
+  // filter, dnevni izazov) sastavljene su od pitanja iz više ispita i na
+  // poslužitelju ne postoje, pa ostaju na lokalnom putu — a tamo su ključevi
+  // ionako prisutni jer su ti ekrani Standard sadržaj.
+  const gradedOnServer = isRealExamKey(exam?.key)
+
+  async function finish() {
+    if (submitting) return
+    if (!gradedOnServer) { onDone(buildResult(null)); return }
+
+    if (!attemptIdRef.current) attemptIdRef.current = newAttemptId()
+    setSubmitting(true)
+    setSubmitError(null)
+    try {
+      const server = await submitGrade({
+        examKey: exam.key,
+        answers,
+        qTimes,
+        examMode,
+        attemptId: attemptIdRef.current,
+      })
+      setSubmitting(false)
+      clearExamDraft(draftKey)
+      onDone(buildResult(server))
+    } catch (err) {
+      setSubmitting(false)
+      // Ako klijent ima ključeve (plaćeni tier), rezultat se može izračunati
+      // lokalno — pokušaj se ne smije izgubiti zbog mreže ili budžeta. Redak u
+      // sim_progress tada upisuje onExamDone (result.serverSaved === false).
+      if (hasKeys) {
+        showToast(gradeErrorMessage(err) + ' Rezultat je izračunat lokalno.')
+        clearExamDraft(draftKey)
+        onDone(buildResult(null))
+        return
+      }
+      // Bez ključeva rezultat može dati samo poslužitelj. Odgovori ostaju i u
+      // stanju i u localStorageu, pa ni osvježavanje stranice ne pojede pokušaj.
+      setSubmitError(gradeErrorMessage(err))
+    }
   }
 
   return (
@@ -489,10 +608,10 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
         from="eng-simulator"
         freeExam={examMode}
         freePractice={!examMode}
-        previewScore={(() => {
+        previewScore={hasKeys ? (() => {
           const pqs = qs.filter(x => x.type !== 'sa' && x.type !== 'es').slice(0, FREE_LIMIT)
           return { correct: pqs.filter(x => chk(x, answers[x.id]) === true).length, total: pqs.length }
-        })()}
+        })() : null}
       >
         {({ isLocked, openPaywall }) => (
           <div className="card" style={{ marginTop: 14 }}>
@@ -525,15 +644,17 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
                 {(q.type === 'sa' || q.type === 'es') && <SaQ q={q} a={answers[q.id]} setA={setAnswer} rev={!!rev[q.id]} />}
 
                 {!!rev[q.id] && <FeedbackBox q={q} a={answers[q.id]} rev={true} />}
-                {!examMode && <AnswerHelper key={q.id} q={q} show={!!rev[q.id]} autoExpand={false} onToggle={checkAnswer} />}
+                {!examMode && hasKeys && <AnswerHelper key={q.id} q={q} show={!!rev[q.id]} autoExpand={false} onToggle={checkAnswer} />}
               </>
             )}
 
             <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap', alignItems: 'center' }}>
-              {!examMode && !rev[q.id] && <button className="btn btn-g" onClick={isLocked ? openPaywall : checkAnswer}>Provjeri</button>}
+              {/* Bez ključa "Provjeri" ne može ništa pokazati; za zaključano
+                  pitanje ostaje jer vodi na paywall, a to je njegov jedini posao. */}
+              {!examMode && !rev[q.id] && (hasKeys || isLocked) && <button className="btn btn-g" onClick={isLocked ? openPaywall : checkAnswer}>Provjeri</button>}
               <button className="btn btn-g" disabled={pos <= 0} onClick={() => goToPos(pos - 1)}>← Prethodno</button>
               <button className="btn btn-g" disabled={pos < 0 || pos >= visIdx.length - 1} onClick={() => goToPos(pos + 1)}>Sljedeće →</button>
-              <button className="btn btn-gold" style={{ marginLeft: 'auto' }} onClick={() => {
+              <button className="btn btn-gold" style={{ marginLeft: 'auto' }} disabled={submitting} onClick={() => {
                 if (isLocked) { openPaywall(); return }
                 if (examMode && !isLastBlock) {
                   if (!window.confirm('Nakon prelaska ne možeš se vratiti na ovaj dio.')) return
@@ -541,9 +662,20 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
                   return
                 }
                 if (examMode && !window.confirm('Jesi li siguran/na da želiš predati ispit?')) return
-                finish()
-              }}>{examMode ? (isLastBlock ? 'Predaj ispit' : 'Završi dio →') : 'Vidi rezultate'}</button>
+                void finish()
+              }}>{submitting ? 'Predajem…' : examMode ? (isLastBlock ? 'Predaj ispit' : 'Završi dio →') : 'Vidi rezultate'}</button>
             </div>
+
+            {submitError && (
+              <div role="alert" style={{
+                marginTop: 12, background: 'var(--red-d)', border: '1px solid rgba(196,48,48,.3)',
+                borderRadius: 'var(--r)', padding: '12px 14px', fontSize: 13, color: 'var(--red)',
+                display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap',
+              }}>
+                <span style={{ flex: 1, minWidth: 200 }}>{submitError}</span>
+                <button className="btn btn-gold" disabled={submitting} onClick={() => void finish()}>Pokušaj ponovno</button>
+              </div>
+            )}
           </div>
         )}
       </SimulatorPreviewGate>
@@ -598,6 +730,9 @@ export default function EngleskiSimulator() {
   const [examMode, setExamMode] = useState(false)
   const [timedMode, setTimedMode] = useState(false)
   const [examAnswers, setExamAnswers] = useState({})
+  // Mapa točno/netočno po pitanju iz odgovora ocjenjivačke rute. Dok postoji,
+  // Results i sve razrade rade iz nje, a ne iz ključeva — jedini izvor istine.
+  const [examScores, setExamScores] = useState(null)
   const [userData, setUserData] = useState(() => {
     try {
       const stored = localStorage.getItem('engleski_simulator_user')
@@ -619,11 +754,15 @@ export default function EngleskiSimulator() {
   // Učitane razine ispita (spojena mapa iz examsLoader keša) + indikator učitavanja.
   const [examsMap, setExamsMap] = useState(getLoadedSync)
   const [examsLoading, setExamsLoading] = useState(false)
-  // Neuspjelo učitavanje razine ispita — { message, retry } za povratnu informaciju
+  // Neuspjelo učitavanje ispita — { message, retry, signIn? } za povratnu informaciju
   const [examsError, setExamsError] = useState(null)
   const [showGuide, setShowGuide] = useState(false)
 
   const examLookup = useMemo(() => ({ ...examsMap, ...extraExams }), [examsMap, extraExams])
+
+  // Kad je ispit ocijenio poslužitelj, Results i sve razrade gledaju njegovu
+  // mapu točno/netočno; bez nje (virtualne sesije) vrijedi lokalni `chk`.
+  const resultsChk = useMemo(() => (examScores ? scoreLookup(examScores) : chk), [examScores])
 
   // Results i Stats ekrani ne prosljeđuju examsMap analitici, pa ga injektiramo
   // ovdje — inače AnalyticsPanelFull pada na fallback s nepotpunom mapom.
@@ -695,84 +834,128 @@ export default function EngleskiSimulator() {
   const updateUserData = updateFn => setUserData(prev => updateFn(prev || {}))
 
   // Ulaz u ekran s plaćenim sadržajem: za free tier ne dovlačimo ispite i ne
-  // renderiramo ekran, nego zaključani placeholder s CTA-om.
-  const goPaidScreen = target => {
+  // renderiramo ekran, nego zaključani placeholder s CTA-om. `then` dobiva
+  // učitanu mapu ispita (virtualni ispit je iz nje slaže).
+  const goPaidScreen = (target, then) => {
     if (!canSeeAnalysis) {
       setLockedScreen(target)
       navigate('locked')
       return
     }
-    ensureAllExams(() => navigate(target))
+    ensureAllExams(then || (() => navigate(target)))
+  }
+
+  // Skupni dohvat cijele banke (70 zahtjeva) ima smisla samo za tier koji smije
+  // vidjeti njezin sadržaj. Free tier nema nijedan ekran koji ga treba: 'stats'
+  // mu dolazi iz userData, a svi ostali iz FULL_EXAMS_SCREENS su u PAID_SCREENS.
+  function needsFullExams(target) {
+    return FULL_EXAMS_SCREENS.includes(target) && canSeeAnalysis
+  }
+
+  function goStats() {
+    if (!needsFullExams('stats')) { navigate('stats'); return }
+    ensureAllExams(() => navigate('stats'))
   }
 
   const toggles = (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginLeft: 'auto' }}>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setShowGuide(true)} title="Vodič za korištenje" aria-label="Vodič za korištenje">ℹ️</button>
-      <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => ensureAllExams(() => navigate('stats'))} title="Statistike" aria-label="Statistike">📊</button>
+      <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => goStats()} title="Statistike" aria-label="Statistike">📊</button>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setSoundOn(s => !s)} title={soundOn ? 'Isključi zvuk' : 'Uključi zvuk'} aria-label={soundOn ? 'Isključi zvuk' : 'Uključi zvuk'} aria-pressed={!soundOn}>{soundOn ? '🔊' : '🔇'}</button>
       <button className="btn btn-g" style={{ fontSize: 12, padding: '4px 10px' }} onClick={() => setDarkMode(d => !d)} title={darkMode ? 'Svjetli mod' : 'Tamni mod'} aria-label={darkMode ? 'Prebaci na svjetli mod' : 'Prebaci na tamni mod'} aria-pressed={darkMode}>{darkMode ? '☀️' : '🌙'}</button>
     </div>
   )
 
-  // Učitaj tražene razine (keširano i deduplicirano u examsLoaderu) pa izvrši
-  // nastavak — navigaciju. Dok traje učitavanje prikazuje se ScreenLoader.
-  function ensureExams(razine, then) {
-    if (razine.every(r => isRazinaLoaded(r))) {
-      then(getLoadedSync())
-      return
+  // Istekla sesija se ne smije prikazati kao "greška mreže" — korisnik ne bi
+  // znao da mu treba samo ponovna prijava.
+  function describeExamsError(err) {
+    if (err?.status === 401) {
+      return { message: 'Sesija je istekla — prijavi se pa pokušaj ponovno.', signIn: true }
     }
+    return { message: 'Učitavanje ispita nije uspjelo.', signIn: false }
+  }
+
+  function runExamLoad(load, then) {
     setExamsLoading(true)
     setExamsError(null)
-    Promise.all(razine.map(r => loadRazina(r)))
+    load()
       .then(() => {
         const map = getLoadedSync()
         setExamsMap(map)
         setExamsLoading(false)
-        then(map)
+        if (then) then(map)
       })
       .catch(err => {
         console.error('Učitavanje ispita nije uspjelo:', err)
         setExamsLoading(false)
-        setExamsError({ message: 'Učitavanje ispita nije uspjelo.', retry: () => ensureExams(razine, then) })
+        setExamsError({ ...describeExamsError(err), retry: () => runExamLoad(load, then) })
       })
+  }
+
+  // Ulazak u JEDAN ispit povlači samo taj ispit (prije: cijelu razinu, 440-791 KB
+  // s ključevima). 'mode' određuje smije li payload nositi ključeve, pa je dio
+  // identiteta keša — vidi examsLoader.js.
+  function ensureExam(examKey, mode, then) {
+    if (isExamLoaded(examKey, mode)) {
+      then(getLoadedSync())
+      return
+    }
+    runExamLoad(() => loadExamByKey(examKey, mode), then)
   }
 
   // Ekrani koji analiziraju cijelu povijest trebaju obje razine.
   function ensureAllExams(then) {
-    ensureExams(RAZINE, then)
+    if (RAZINE.every(r => isRazinaLoaded(r))) {
+      then(getLoadedSync())
+      return
+    }
+    runExamLoad(() => Promise.all(RAZINE.map(r => loadRazina(r))), then)
   }
 
   // Sigurnosna mreža: ako se na ekran koji treba obje razine dođe putem koji je
   // preskočio ensureAllExams (npr. povratak u povijest ili novi prop), razine se
-  // dovlače ovdje. Za 'results' je dovlačenje u pozadini (bez loadera) jer
-  // analitika na tom ekranu gleda cijelu povijest.
+  // dovlače ovdje. 'results' ih treba samo za analitiku nad cijelom poviješću —
+  // a ona je Standard sadržaj, pa free korisnik nakon predaje više ne dovlači
+  // ništa (prije je svaka predaja povlačila obje razine sa svim ključevima).
   useEffect(() => {
-    if (!FULL_EXAMS_SCREENS.includes(screen) && screen !== 'results') return
+    // Uvjet je ovdje razvijen, a ne kroz needsFullExams(), da efekt ne ovisi o
+    // funkciji koja se pri svakom renderu stvara iznova.
+    const needsBank = (FULL_EXAMS_SCREENS.includes(screen) || screen === 'results') && canSeeAnalysis
+    if (!needsBank) return
     if (RAZINE.every(r => isRazinaLoaded(r))) return
     let cancelled = false
     const load = () => Promise.all(RAZINE.map(r => loadRazina(r)))
       .then(() => { if (!cancelled) setExamsMap(getLoadedSync()) })
       .catch(err => {
         console.error('Učitavanje ispita nije uspjelo:', err)
-        if (!cancelled) setExamsError({ message: 'Učitavanje ispita nije uspjelo.', retry: load })
+        // Na 'results' je ovo POZADINSKI dohvat za analitiku: jedan neuspio
+        // zahtjev od 70 ne smije progutati rezultat koji je korisnik upravo
+        // zaradio i zamijeniti ga karticom o grešci.
+        if (!cancelled && screen !== 'results') setExamsError({ ...describeExamsError(err), retry: load })
       })
     void load()
     return () => { cancelled = true }
-  }, [screen])
+  }, [screen, canSeeAnalysis])
 
   function onModeSelect(examKey) {
-    ensureExams([razinaForKey(examKey)], () => {
+    // Odabir načina otvaramo najužim payloadom (ispitni mod, bez ijednog ključa);
+    // vježbanje svoju inačicu dohvaća tek kad ga korisnik stvarno odabere.
+    ensureExam(examKey, 'exam', () => {
       setSelectedExamKey(examKey)
       navigate('modeselect')
     })
   }
 
   function onStartExam(mode) {
-    setExamMode(mode === 'exam')
-    setTimedMode(mode === 'timed')
-    setExamAnswers({})
-    setQTimes({})
-    navigate('exam')
+    const isExam = mode === 'exam'
+    ensureExam(selectedExamKey, isExam ? 'exam' : 'practice', () => {
+      setExamMode(isExam)
+      setTimedMode(mode === 'timed')
+      setExamAnswers({})
+      setQTimes({})
+      setExamScores(null)
+      navigate('exam')
+    })
   }
 
   function showXpFloat(xpGain) {
@@ -790,6 +973,10 @@ export default function EngleskiSimulator() {
   function onExamDone(result, { navigateTo = 'results' } = {}) {
     setExamAnswers(result.answers || {})
     setQTimes(result.qTimes || {})
+    // Ocjenu je dao poslužitelj → njegova mapa točno/netočno vrijedi svugdje
+    // gdje se prije zvao `chk`. Bez nje (virtualne sesije) ostaje lokalni put.
+    setExamScores(result.scores || null)
+    const chkFn = result.scores ? scoreLookup(result.scores) : chk
     // Build topic_breakdown
     const topic_breakdown = {}
     const ex = result.qs ? { qs: result.qs } : examLookup[result.examKey]
@@ -799,10 +986,10 @@ export default function EngleskiSimulator() {
         const topic = q.topic || 'ostalo'
         if (!topic_breakdown[topic]) topic_breakdown[topic] = { correct: 0, total: 0 }
         topic_breakdown[topic].total++
-        if (chk(q, result.answers?.[q.id]) === true) topic_breakdown[topic].correct++
+        if (chkFn(q, result.answers?.[q.id]) === true) topic_breakdown[topic].correct++
       })
     }
-    const xpGain = calcXpGain(result.pct)
+    const xpGain = Number.isFinite(result.xpGain) ? result.xpGain : calcXpGain(result.pct)
     showXpFloat(xpGain)
     if (soundOn) playSound('done')
     updateUserData(prev => {
@@ -837,7 +1024,7 @@ export default function EngleskiSimulator() {
         ex.qs.forEach(q => {
           if (q.type === 'sa' || q.type === 'es') return
           const ans = result.answers?.[q.id]
-          const ok = chk(q, ans)
+          const ok = chkFn(q, ans)
           const key = `${result.examKey}_${q.id}`
           if (ok === false) {
             const prevErr = errTrack[key] || { q: q.q, topic: q.topic || 'ostalo', examKey: result.examKey, qid: q.id, count: 0 }
@@ -852,12 +1039,16 @@ export default function EngleskiSimulator() {
       return next
     })
 
-    // Pravi ispit (ne virtualna sesija) → jedan red u sim_progress, subject 'eng'.
-    if (user) {
-      try {
-        const payload = toSimProgressPayload(result, topic_breakdown, examLookup[result.examKey]?.razina)
-        if (payload) saveEngSimResult(payload)
-      } catch {}
+    // Redak u sim_progress u pravilu NE piše preglednik: pravi ispit upisuje
+    // sama ocjenjivačka ruta (POST /api/sim/eng/grade), koja ga je i izračunala —
+    // klijentov rezultat se ne uzima na vjeru (ADR-001, odjeljak 5a). Iznimka je
+    // pokušaj koji je ruta odbila (mreža, 429), a klijent ga je s vlastitim
+    // ključevima izračunao lokalno: bez ovoga bi ga korisnik vidio na ekranu, a
+    // u napretku i percentilu ga ne bi bilo. Virtualne sesije odbija sam
+    // toSimProgressPayload (isRealExamKey), pa ovdje nema dodatnog uvjeta.
+    if (result.serverSaved === false) {
+      const payload = toSimProgressPayload(result, topic_breakdown, examLookup[result.examKey]?.razina)
+      if (payload) void saveEngSimResult(payload)
     }
 
     navigate(navigateTo)
@@ -869,17 +1060,19 @@ export default function EngleskiSimulator() {
       <div className="eng-sim"><div className="sim-card" style={{ textAlign: 'center', padding: '32px 24px' }}>
         <div style={{ fontSize: 38, marginBottom: 12 }}>⚠️</div>
         <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>{examsError.message}</div>
-        <div style={{ color: 'var(--muted)', fontSize: 13, marginBottom: 20 }}>Provjeri internetsku vezu pa pokušaj ponovno.</div>
+        <div style={{ color: 'var(--muted)', fontSize: 13, marginBottom: 20 }}>
+          {examsError.signIn ? 'Ispiti se učitavaju tek nakon prijave.' : 'Provjeri internetsku vezu pa pokušaj ponovno.'}
+        </div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+          {examsError.signIn && <a className="btn btn-gold" href="/prijava">Prijavi se</a>}
           <button className="btn btn-gold" onClick={() => { const retry = examsError.retry; setExamsError(null); if (retry) retry() }}>Pokušaj ponovno</button>
           <button className="btn btn-g" onClick={() => { setExamsError(null); goBack() }}>← Natrag</button>
         </div>
       </div></div>
     )
-    // Ekran koji treba obje razine ne renderiramo s nepotpunom mapom — effect
-    // iznad ih dovlači, a dotad stoji loader.
-    if (FULL_EXAMS_SCREENS.includes(screen) && !RAZINE.every(r => isRazinaLoaded(r))) return <ScreenLoader />
-    // Sigurnosna mreža: na plaćeni ekran se za free tier ne ulazi ni jednim putem.
+    // Sigurnosna mreža: na plaćeni ekran se za free tier ne ulazi ni jednim
+    // putem. Ide PRIJE loadera — free tier banku ne dovlači, pa bi ga loader
+    // inače držao zauvijek.
     if (screen === 'locked' || (!canSeeAnalysis && PAID_SCREENS.includes(screen))) {
       const copy = PAID_SCREEN_COPY[screen === 'locked' ? lockedScreen : screen] || PAID_SCREEN_COPY.browse
       return (
@@ -905,13 +1098,13 @@ export default function EngleskiSimulator() {
               toggles={toggles}
               goErrors={() => goPaidScreen('errors')}
               goBookmarks={() => goPaidScreen('bookmarks')}
-              goStats={() => ensureAllExams(() => navigate('stats'))}
+              goStats={() => goStats()}
               goBrowse={() => goPaidScreen('browse')}
-              goDailyChallenge={() => ensureAllExams(() => navigate('daily'))}
-              goVirtualExam={() => ensureAllExams(map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
-              goFilter={() => ensureAllExams(() => navigate('filter'))}
+              goDailyChallenge={() => goPaidScreen('daily')}
+              goVirtualExam={() => goPaidScreen('virtual_exam', map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
+              goFilter={() => goPaidScreen('filter')}
               goVocab={() => goPaidScreen('vocab')}
-              goCompare={() => ensureAllExams(() => navigate('compare'))}
+              goCompare={() => goPaidScreen('compare')}
               visaLoaded={true}
               examsIndex={EXAMS_INDEX}
               levelNames={LEVEL_NAMES}
@@ -980,9 +1173,9 @@ export default function EngleskiSimulator() {
                 setExamMode(false)
                 navigate('exam')
               }}
-              onGoFilter={() => ensureAllExams(() => navigate('filter'))}
-              onGoStats={() => ensureAllExams(() => navigate('stats'))}
-              chk={chk}
+              onGoFilter={() => goPaidScreen('filter')}
+              onGoStats={() => goStats()}
+              chk={resultsChk}
               grade={grade}
               GC={GC}
               TLBL={TLBL}
@@ -1006,7 +1199,7 @@ export default function EngleskiSimulator() {
             <StatsScreen 
               userData={userData}
               onBack={goBack}
-              onFilter={() => ensureAllExams(() => navigate('filter'))}
+              onFilter={() => goPaidScreen('filter')}
               onFilterSession={() => goPaidScreen('errors')}
               onPDFReport={() => goPaidScreen('pdf_report')}
               LEVEL_NAMES={LEVEL_NAMES}
@@ -1139,13 +1332,13 @@ export default function EngleskiSimulator() {
               toggles={toggles}
               goErrors={() => goPaidScreen('errors')}
               goBookmarks={() => goPaidScreen('bookmarks')}
-              goStats={() => ensureAllExams(() => navigate('stats'))}
+              goStats={() => goStats()}
               goBrowse={() => goPaidScreen('browse')}
-              goDailyChallenge={() => ensureAllExams(() => navigate('daily'))}
-              goVirtualExam={() => ensureAllExams(map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
-              goFilter={() => ensureAllExams(() => navigate('filter'))}
+              goDailyChallenge={() => goPaidScreen('daily')}
+              goVirtualExam={() => goPaidScreen('virtual_exam', map => { const v = generateVirtualExam(map); setExtraExams(prev => ({ ...prev, [v.key]: v })); setSelectedExamKey(v.key); navigate('virtual_exam') })}
+              goFilter={() => goPaidScreen('filter')}
               goVocab={() => goPaidScreen('vocab')}
-              goCompare={() => ensureAllExams(() => navigate('compare'))}
+              goCompare={() => goPaidScreen('compare')}
               visaLoaded={true}
               examsIndex={EXAMS_INDEX}
               levelNames={LEVEL_NAMES}

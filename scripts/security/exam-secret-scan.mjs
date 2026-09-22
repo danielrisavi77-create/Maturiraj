@@ -433,7 +433,16 @@ export function countSecretKeys(source) {
   return strong + countMatches(WEAK_KEY_PATTERN, source)
 }
 
-/** Vraća { files: { relPath: count }, totalHits, fileCount, roots }. */
+/**
+ * Vraća { files: { relPath: count }, totalHits, fileCount, roots }.
+ *
+ * Tajni store (`lib/data/<predmet>/secrets/**.json`) se NE broji: to je mjesto
+ * na koje ključeve treba preseliti, pa bi ga ratchet inače kaznio za svaku
+ * uspješnu migraciju i učinio ADR točku 6 ("novi predmet ide u baseline s
+ * vrijednošću 0") neizvedivom. Ta datoteka nije nezaštićena — sloj A gleda
+ * točno isti skup putanja (`isSecretDataPath`) i pada ako je ijedna od njih
+ * dohvatljiva iz klijentskog grafa uvoza.
+ */
 export async function scanSecretKeys({ root = REPO_ROOT, rootDirs } = {}) {
   const files = {}
   let totalHits = 0
@@ -443,10 +452,12 @@ export async function scanSecretKeys({ root = REPO_ROOT, rootDirs } = {}) {
     await walk(path.join(root, dir), {
       extensions: SCAN_EXTENSIONS,
       onFile: async (absPath) => {
+        const rel = toPosix(path.relative(root, absPath))
+        if (isSecretDataPath(rel)) return
         const source = await readFile(absPath, 'utf8').catch(() => '')
         const count = countSecretKeys(source)
         if (count === 0) return
-        files[toPosix(path.relative(root, absPath))] = count
+        files[rel] = count
         totalHits += count
       },
     })
