@@ -11,6 +11,7 @@ import {
   NCVVO_FETCHED_AT,
   parseExamKey,
   getNcvvoAvg,
+  comparablePct,
   pickNcvvoComparison,
 } from '../../lib/engleski-simulator/ncvvoData.js'
 
@@ -61,11 +62,17 @@ describe('NCVVO_ENG_AVG — oblik podataka', () => {
 
 describe('parseExamKey', () => {
   it('prepoznaje osnovnu razinu', () => {
-    expect(parseExamKey('2022_ljeto')).toEqual({ year: 2022, razina: 'osnovna' })
+    expect(parseExamKey('2022_ljeto')).toEqual({ year: 2022, season: 'ljeto', razina: 'osnovna' })
   })
 
   it('prepoznaje višu razinu po prefiksu vis_', () => {
-    expect(parseExamKey('vis_2022_ljeto')).toEqual({ year: 2022, razina: 'visa' })
+    expect(parseExamKey('vis_2022_ljeto')).toEqual({ year: 2022, season: 'ljeto', razina: 'visa' })
+  })
+
+  it('zadržava rok iz ključa — bez toga jesenski ispit dobiva ljetnu brojku', () => {
+    expect(parseExamKey('2018_jesen').season).toBe('jesen')
+    expect(parseExamKey('vis_2012_zima').season).toBe('zima')
+    expect(parseExamKey('vis_2024_prvi').season).toBe('prvi')
   })
 
   it('vraća null za neispravan ključ', () => {
@@ -84,15 +91,46 @@ describe('getNcvvoAvg', () => {
     expect(r.pdfUrl).toMatch(/\.pdf$/i)
   })
 
+  it('pokriva šk. god. 2019./2020. — analiza JE objavljena i povezana s ncvvo.hr', () => {
+    // https://www.ncvvo.hr/.../2021/03/Statisticka-i-psihometrijska-analiza-ispita-drzavne-mature-19-20.pdf
+    // Tablica 28., otisnuta str. 46 (A) i Tablica 36., otisnuta str. 52 (B).
+    expect(getNcvvoAvg('vis_2020_ljeto').avg).toBe(78.26)
+    expect(getNcvvoAvg('2020_ljeto').avg).toBe(63.44)
+    expect(getNcvvoAvg('2020_ljeto').schoolYear).toBe('2019./2020.')
+  })
+
   it('vraća null za godinu bez objavljenog podatka — ništa se ne izmišlja', () => {
     expect(getNcvvoAvg('2025_ljeto')).toBeNull()
     expect(getNcvvoAvg('vis_2024_prvi')).toBeNull()
-    expect(getNcvvoAvg('2020_ljeto')).toBeNull() // šk. god. 2019./2020. nije objavljena
+  })
+
+  it('ne pripisuje ljetnu brojku jesenskom, zimskom ni drugom roku', () => {
+    // Jesenski rok ima vlastite tablice i bitno drukčiju populaciju: u šk. god.
+    // 2019./2020. ljeto je 78,26 (A) i 63,44 (B), a jesen 66,0 i 41,0.
+    for (const key of ['2018_jesen', '2019_jesen', '2020_jesen', '2021_jesen', '2022_jesen',
+      'vis_2018_jesen', 'vis_2019_jesen', 'vis_2020_jesen', 'vis_2021_jesen', 'vis_2022_jesen']) {
+      expect(getNcvvoAvg(key)).toBeNull()
+    }
+    expect(getNcvvoAvg('vis_2012_zima')).toBeNull()
+  })
+})
+
+describe('comparablePct', () => {
+  it('uzima ponderirani rezultat, a ne udio točnih pitanja', () => {
+    expect(comparablePct({ pct: 90, weighted: 61 })).toBe(61)
+    expect(comparablePct({ pct: 90, weighted: { pct: 61 } })).toBe(61)
+  })
+
+  it('vraća null kad zapis nema ponderirani rezultat (stara povijest)', () => {
+    expect(comparablePct({ pct: 90 })).toBeNull()
+    expect(comparablePct({ pct: 90, weighted: null })).toBeNull()
+    expect(comparablePct(null)).toBeNull()
   })
 })
 
 describe('pickNcvvoComparison', () => {
-  const h = (pct, examKey) => ({ pct, examKey })
+  /** Zapis povijesti kakav simulator stvarno sprema. */
+  const h = (weighted, examKey, mode = 'simulacija') => ({ pct: weighted, weighted, examKey, mode })
 
   it('bira najnoviji unos za koji postoji službeni podatak', () => {
     const res = pickNcvvoComparison([h(50, 'vis_2022_ljeto'), h(70, '2025_ljeto')])
@@ -102,11 +140,34 @@ describe('pickNcvvoComparison', () => {
     expect(res.sampleSize).toBe(1)
   })
 
-  it('prosjek računa samo iz ispita iste razine', () => {
-    const res = pickNcvvoComparison([h(40, '2022_ljeto'), h(90, 'vis_2018_ljeto'), h(60, '2019_ljeto')])
+  it('prosjek računa samo iz ispita iste razine I iste godine', () => {
+    // Rezultat iz 2018. ne smije obarati usporedbu s državnim prosjekom za 2022.
+    const res = pickNcvvoComparison([h(40, '2018_ljeto'), h(90, 'vis_2022_ljeto'), h(60, '2022_ljeto')])
     expect(res.razina).toBe('osnovna')
-    expect(res.userAvg).toBe(50) // (40 + 60) / 2
+    expect(res.year).toBe(2022)
+    expect(res.userAvg).toBe(60)
+    expect(res.sampleSize).toBe(1)
+  })
+
+  it('prosječuje više simulacija istoga ispitnog roka i razine', () => {
+    const res = pickNcvvoComparison([h(40, '2022_ljeto'), h(60, '2022_ljeto')])
+    expect(res.userAvg).toBe(50)
     expect(res.sampleSize).toBe(2)
+  })
+
+  it('sesije vježbanja ne ulaze u usporedbu — rješenja su bila otkrivena', () => {
+    expect(pickNcvvoComparison([h(90, '2022_ljeto', 'vježbanje')])).toBeNull()
+    const res = pickNcvvoComparison([h(90, '2022_ljeto', 'vježbanje'), h(50, '2022_ljeto')])
+    expect(res.userAvg).toBe(50)
+    expect(res.sampleSize).toBe(1)
+  })
+
+  it('zapis bez ponderiranog rezultata se preskače umjesto da se usporedi kriva veličina', () => {
+    expect(pickNcvvoComparison([{ pct: 90, examKey: '2022_ljeto', mode: 'simulacija' }])).toBeNull()
+  })
+
+  it('jesenski rezultat se ne uspoređuje s ljetnim prosjekom', () => {
+    expect(pickNcvvoComparison([h(55, '2018_jesen')])).toBeNull()
   })
 
   it('vraća null kad nijedan riješeni ispit nema službeni podatak', () => {

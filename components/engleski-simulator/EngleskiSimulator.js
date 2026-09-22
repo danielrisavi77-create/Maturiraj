@@ -823,6 +823,11 @@ export default function EngleskiSimulator() {
             grade: result.grade,
             cor: result.cor,
             total: result.total,
+            // Rezultat po NCVVO ponderima (bez cjeline Pisanje, ponderi
+            // preračunati na ocijenjene cjeline). Jedina veličina iz zapisa
+            // koja je usporediva sa službenim NCVVO prosjekom — 'pct' to nije
+            // jer cjeline zbraja po broju pitanja. Vidi ncvvoData.comparablePct.
+            weighted: typeof result.weighted?.pct === 'number' ? result.weighted.pct : null,
             mode: result.examMode ? 'simulacija' : result.mode || 'vježbanje',
             qTimes: result.qTimes || {},
             answers: result.answers || {},

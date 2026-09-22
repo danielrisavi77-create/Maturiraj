@@ -5,6 +5,11 @@ import { chk } from '@/lib/engleski-simulator/scoring'
 import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
 import { pickNcvvoComparison } from '@/lib/engleski-simulator/ncvvoData'
 
+/** Postotak u hrvatskom zapisu: decimalni zarez, najviše jedna decimala (80,6 — ne 80.57). */
+function fmtPct(n) {
+  return (Math.round(n * 10) / 10).toString().replace('.', ',') + '%'
+}
+
 // ── TrendGraph ────────────────────────────────────────────────────
 function TrendGraph({ history }) {
   const [tooltip, setTooltip] = useState(null)
@@ -470,11 +475,15 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap })
         {tab === 'napredak' && (
           <div className="nap-wrap">
             {/* Usporedba sa službenim prosjekom NCVVO-a — prikazuje se samo kad za
-                godinu i razinu riješenog ispita postoji objavljen NCVVO podatak. */}
+                godinu, rok i razinu riješenog ispita postoji objavljen NCVVO podatak
+                te kad u povijesti postoji usporediv zapis (simulacija, ljetni rok,
+                rezultat po NCVVO ponderima). Pravila su u lib/.../ncvvoData.js. */}
             {(() => {
               const nce = pickNcvvoComparison(history)
               if (!nce) return null
-              const diff = nce.userAvg - Math.round(nce.avg)
+              // Razlika se računa iz istih vrijednosti koje se i prikazuju, pa
+              // prikazani brojevi uvijek daju prikazanu razliku.
+              const diff = Math.round(nce.userAvg - nce.avg)
               const diffColor = diff >= 10 ? 'var(--green)' : diff >= 0 ? 'var(--teal)' : diff >= -10 ? 'var(--gold)' : 'var(--red)'
               const msg = diff >= 10 ? '🏆 Značajno iznad državnog prosjeka!'
                 : diff >= 0 ? `✅ Iznad državnog prosjeka za ${diff}%.`
@@ -491,12 +500,14 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap })
                   </div>
                   <div className="nap-card-note" style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 10 }}>
                     Prosječna postotna riješenost ispita iz Engleskoga jezika, {nce.razinaLabel}, ljetni rok {nce.schoolYear}.
-                    Tvoj je prosjek izračunat iz {nce.sampleSize} ispita iste razine u simulatoru.
+                    Tvoj je prosjek izračunat iz {nce.sampleSize === 1 ? 'jedne simulacije' : `${nce.sampleSize} simulacija`} istoga
+                    ispitnog roka i razine, po NCVVO ponderima cjelina i bez cjeline Pisanje (nju ocjenjuje ocjenjivač),
+                    pa je procjena, a ne službeni rezultat. Sesije vježbanja ne ulaze u prosjek.
                   </div>
                   <div className="nap-nce-stats">
                     {[
-                      { val: nce.userAvg + '%', lbl: 'Tvoj prosjek', col: 'var(--blue)' },
-                      { val: nce.avg + '%', lbl: 'Državni prosjek', col: 'var(--muted)' },
+                      { val: fmtPct(nce.userAvg), lbl: 'Tvoj prosjek', col: 'var(--blue)' },
+                      { val: fmtPct(nce.avg), lbl: 'Državni prosjek', col: 'var(--muted)' },
                     ].map(s => <div key={s.lbl} className="nap-stat-box"><div className="nap-stat-num" style={{ color: s.col }}>{s.val}</div><div className="nap-stat-lbl">{s.lbl}</div></div>)}
                     <div className="nap-stat-box nap-stat-diff" style={{ background: diff >= 0 ? 'var(--green-d)' : 'var(--red-d)', borderColor: diff >= 0 ? 'rgba(30,122,62,.2)' : 'rgba(196,48,48,.2)' }}>
                       <div className="nap-stat-num" style={{ color: diffColor }}>{(diff >= 0 ? '+' : '') + diff}%</div>
@@ -509,7 +520,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap })
                         <div key={label} className="nap-bar-row">
                           <div className="nap-bar-label">{label}</div>
                           <div className="nap-bar-track"><div className="nap-bar-fill" style={{ width: Math.min(100, pct) + '%', background: color }} /></div>
-                          <div className="nap-bar-pct">{pct}%</div>
+                          <div className="nap-bar-pct">{fmtPct(pct)}</div>
                         </div>
                       ))}
                   </div>

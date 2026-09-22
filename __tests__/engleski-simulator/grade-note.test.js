@@ -34,8 +34,13 @@ function historyOf(...pcts) {
   return pcts.map((pct, i) => ({
     pct, grade: pct >= 85 ? 5 : pct >= 70 ? 4 : pct >= 55 ? 3 : pct >= 40 ? 2 : 1,
     examKey: '2024_ljeto', examLabel: 'Ljetni rok', date: '1.1.2025.', cor: pct, total: 100, mode: 'vježbanje',
+    // Ponderirani rezultat — jedina veličina usporediva s NCVVO prosjekom.
+    weighted: pct,
   }))
 }
+
+/** Zapis kakav nastaje u načinu simulacije (ispitni uvjeti). */
+const asSimulation = (examKey) => h => ({ ...h, examKey, mode: 'simulacija' })
 
 describe('Vodič — ljestvica ocjena je označena kao orijentacijska', () => {
   it('sekcija "Bodovanje i ocjene" prikazuje napomenu o orijentacijskom pragu', () => {
@@ -69,7 +74,7 @@ describe('Analitika — predviđena ocjena nosi napomenu', () => {
   it('kartica usporedbe se prikazuje samo uz stvarni NCVVO podatak, s atribucijom', () => {
     // 2025. NCVVO nije objavio podatke → kartice nema.
     render(e(AnalyticsPanelFull, {
-      userData: { history: historyOf(86, 88, 90).map(h => ({ ...h, examKey: '2025_ljeto' })) },
+      userData: { history: historyOf(86, 88, 90).map(asSimulation('2025_ljeto')) },
       defaultTab: 'napredak',
     }))
     expect(document.body.textContent).not.toContain('Usporedba sa službenim prosjekom NCVVO-a')
@@ -77,7 +82,7 @@ describe('Analitika — predviđena ocjena nosi napomenu', () => {
 
     // Ljetni rok 2022. (šk. god. 2021./2022.) je objavljen → kartica s izvorom.
     render(e(AnalyticsPanelFull, {
-      userData: { history: historyOf(86, 88, 90).map(h => ({ ...h, examKey: 'vis_2022_ljeto' })) },
+      userData: { history: historyOf(86, 88, 90).map(asSimulation('vis_2022_ljeto')) },
       defaultTab: 'napredak',
     }))
     const txt = document.body.textContent
@@ -85,6 +90,35 @@ describe('Analitika — predviđena ocjena nosi napomenu', () => {
     expect(txt).toContain('Izvor: NCVVO 2021./2022.')
     const link = screen.getByText('Izvor: NCVVO 2021./2022.')
     expect(link.getAttribute('href')).toMatch(/^https:\/\/www\.ncvvo\.hr\/.*\.pdf$/i)
+  })
+
+  it('kartice nema za jesenski rok — NCVVO objavljuje samo ljetni', () => {
+    render(e(AnalyticsPanelFull, {
+      userData: { history: historyOf(86, 88, 90).map(asSimulation('vis_2022_jesen')) },
+      defaultTab: 'napredak',
+    }))
+    expect(document.body.textContent).not.toContain('Usporedba sa službenim prosjekom NCVVO-a')
+  })
+
+  it('kartice nema kad su svi zapisi iz načina vježbanja', () => {
+    // historyOf() daje mode 'vježbanje' — rješenja su bila vidljiva prije predaje.
+    render(e(AnalyticsPanelFull, {
+      userData: { history: historyOf(86, 88, 90).map(h => ({ ...h, examKey: 'vis_2022_ljeto' })) },
+      defaultTab: 'napredak',
+    }))
+    expect(document.body.textContent).not.toContain('Usporedba sa službenim prosjekom NCVVO-a')
+  })
+
+  it('brojevi su u hrvatskom zapisu i daju prikazanu razliku', () => {
+    render(e(AnalyticsPanelFull, {
+      userData: { history: historyOf(86, 88, 90).map(asSimulation('vis_2022_ljeto')) },
+      defaultTab: 'napredak',
+    }))
+    const txt = document.body.textContent
+    expect(txt).toContain('80,6%')   // državni prosjek 80,57 → 80,6 (zarez, ne točka)
+    expect(txt).not.toContain('80.57')
+    expect(txt).toContain('88%')     // korisnikov prosjek (86 + 88 + 90) / 3
+    expect(txt).toContain('+7%')     // round(88 − 80,57) = 7
   })
 })
 

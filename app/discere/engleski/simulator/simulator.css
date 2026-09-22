@@ -1639,10 +1639,10 @@ body.dark-mode .eng-sim .home::before{
 .eng-sim .nap-card-src{
   font-size:10px;color:var(--muted)
 }
-a.nap-card-src{
+.eng-sim a.nap-card-src{
   text-decoration:underline;text-underline-offset:2px
 }
-a.nap-card-src:hover{color:var(--text)}
+.eng-sim a.nap-card-src:hover{color:var(--text)}
 
 /* NCE stats */
 .eng-sim .nap-nce-stats{
