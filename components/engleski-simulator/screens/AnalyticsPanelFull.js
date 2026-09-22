@@ -1,6 +1,6 @@
 'use client'
 import { useState, useMemo } from 'react'
-import { TOPIC_LABELS, GC, LEVEL_NAMES, getLevel, xpProgress, xpToNext, grade, LL } from '@/lib/engleski-simulator/constants'
+import { TOPIC_LABELS, GC, GRADE_NOTE, LEVEL_NAMES, getLevel, xpProgress, xpToNext, grade, LL } from '@/lib/engleski-simulator/constants'
 import { chk } from '@/lib/engleski-simulator/scoring'
 import { getLoadedSync } from '@/lib/engleski-simulator/examsLoader'
 
@@ -130,9 +130,10 @@ function GradePrediction({ history }) {
           <div className="pred-grade-name" style={{ color: gc }}>{GNAMES[g]}</div>
           <div className="pred-grade-sub">Predviđena ocjena na maturi</div>
           <div className="pred-pct" style={{ color: gc }}>{predicted}%</div>
-          {betterThan > 0 && <div className="pred-rank">Bolji/a od <strong>{betterThan}%</strong> maturanata</div>}
+          {betterThan > 0 && <div className="pred-rank">Bolji/a od <strong>{betterThan}%</strong> u ilustrativnoj raspodjeli</div>}
         </div>
       </div>
+      <div className="pred-grade-note" style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 10 }}>{GRADE_NOTE}</div>
 
       <div className="pred-stats">
         {[
@@ -149,7 +150,7 @@ function GradePrediction({ history }) {
       </div>
 
       <div className="pred-nce">
-        <div className="pred-nce-title">Distribucija ocjena na maturi (NCVVO)</div>
+        <div className="pred-nce-title">Ilustrativna raspodjela ocjena (nije službeni podatak)</div>
         <div className="pred-nce-chart">
           {[1, 2, 3, 4, 5].map(gg => {
             const pct = NCE_DIST[gg]
@@ -175,7 +176,7 @@ function GradePrediction({ history }) {
         color: trend > 3 ? 'var(--green)' : trend < -3 ? 'var(--red)' : 'var(--muted)',
         borderColor: trend > 3 ? 'rgba(30,122,62,.2)' : trend < -3 ? 'rgba(196,48,48,.2)' : 'var(--bdr)',
       }}>
-        {trend > 3 ? `🚀 Odlično napredUJEš! Ako nastaviš ovim tempom, ocjena ${Math.min(5, g + 1)} je dostižna.`
+        {trend > 3 ? `🚀 Odlično napreduješ! Ako nastaviš ovim tempom, ocjena ${Math.min(5, g + 1)} je dostižna.`
           : trend < -3 ? '⚠️ Pad u rezultatima. Fokusiraj se na slabe teme.'
           : '💪 Stabilan/na si. Za poboljšanje uvježbaj teme ispod 60%.'}
       </div>
@@ -395,7 +396,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap })
     if (avgTime > 45) recs.push({ icon: '⏱', title: 'Radi na brzini', desc: `Prosječno ${avgTime}s po pitanju. Na maturi imaš ~2min po pitanju.`, badge: 'tip' })
     if (history.length < 3) recs.push({ icon: '📄', title: 'Riješi više ispita', desc: 'Cilj: barem 5 ispita.', badge: 'tip' })
     const best = history.length ? Math.max(...history.map(h => h.pct)) : 0
-    if (best >= 85) recs.push({ icon: '🏆', title: 'Odličan rezultat!', desc: `Postigao/la si ${best}% — to odgovara ocjeni 5.`, badge: 'good' })
+    if (best >= 85) recs.push({ icon: '🏆', title: 'Odličan rezultat!', desc: `Postigao/la si ${best}% — to odgovara ocjeni 5. ${GRADE_NOTE}`, badge: 'good' })
     return recs.length ? recs : [{ icon: '📊', title: 'Nastavi vježbati', desc: 'Riješi još ispita za personalizirane preporuke.', badge: 'tip' }]
   }
 
@@ -503,20 +504,23 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap })
               const nce = NCE_DATA[latestYear] || NCE_DATA[2024]
               const diff = userAvg - nce.avg
               const diffColor = diff >= 10 ? 'var(--green)' : diff >= 0 ? 'var(--teal)' : diff >= -10 ? 'var(--gold)' : 'var(--red)'
-              const msg = diff >= 10 ? '🏆 Značajno iznad NCVVO prosjeka!'
-                : diff >= 0 ? `✅ Iznad NCVVO prosjeka za ${diff}%.`
-                : diff >= -10 ? `⚠️ Ispod NCVVO prosjeka za ${Math.abs(diff)}%.`
-                : '📚 Daleko ispod NCVVO prosjeka.'
+              const msg = diff >= 10 ? '🏆 Značajno iznad orijentacijskog prosjeka!'
+                : diff >= 0 ? `✅ Iznad orijentacijskog prosjeka za ${diff}%.`
+                : diff >= -10 ? `⚠️ Ispod orijentacijskog prosjeka za ${Math.abs(diff)}%.`
+                : '📚 Daleko ispod orijentacijskog prosjeka.'
               return (
                 <div className="nap-card">
                   <div className="nap-card-hdr">
-                    <div className="nap-card-title">Usporedba s NCVVO prosjekom</div>
-                    <span className="nap-card-src">Izvor: NCVVO {nce.label}</span>
+                    <div className="nap-card-title">Usporedba s orijentacijskim prosjekom</div>
+                    <span className="nap-card-src">Ilustrativna referenca · {nce.label}</span>
+                  </div>
+                  <div className="nap-card-note" style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 10 }}>
+                    Referentne brojke su ilustrativne — nisu službeni podaci NCVVO-a.
                   </div>
                   <div className="nap-nce-stats">
                     {[
                       { val: userAvg + '%', lbl: 'Tvoj prosjek', col: 'var(--blue)' },
-                      { val: nce.avg + '%', lbl: 'NCVVO prosjek', col: 'var(--muted)' },
+                      { val: nce.avg + '%', lbl: 'Orijentacijski prosjek', col: 'var(--muted)' },
                     ].map(s => <div key={s.lbl} className="nap-stat-box"><div className="nap-stat-num" style={{ color: s.col }}>{s.val}</div><div className="nap-stat-lbl">{s.lbl}</div></div>)}
                     <div className="nap-stat-box nap-stat-diff" style={{ background: diff >= 0 ? 'var(--green-d)' : 'var(--red-d)', borderColor: diff >= 0 ? 'rgba(30,122,62,.2)' : 'rgba(196,48,48,.2)' }}>
                       <div className="nap-stat-num" style={{ color: diffColor }}>{(diff >= 0 ? '+' : '') + diff}%</div>
@@ -524,7 +528,7 @@ export function AnalyticsPanelFull({ userData, defaultTab, onFilter, examsMap })
                     </div>
                   </div>
                   <div className="nap-bars">
-                    {[{ label: 'Ti', pct: userAvg, color: 'var(--blue)' }, { label: 'NCVVO prosjek', pct: nce.avg, color: 'var(--muted)' }, { label: 'Prolaznost', pct: nce.pass, color: 'var(--gold)' }]
+                    {[{ label: 'Ti', pct: userAvg, color: 'var(--blue)' }, { label: 'Orijentacijski prosjek', pct: nce.avg, color: 'var(--muted)' }, { label: 'Prolaznost', pct: nce.pass, color: 'var(--gold)' }]
                       .map(({ label, pct, color }) => (
                         <div key={label} className="nap-bar-row">
                           <div className="nap-bar-label">{label}</div>

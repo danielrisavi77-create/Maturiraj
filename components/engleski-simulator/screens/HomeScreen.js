@@ -156,7 +156,7 @@ export function Home({
             e('div', { className: 'alati-card-ico' }, '⚖'),
             e('div', { className: 'alati-card-body' },
               e('div', { className: 'alati-card-title' }, 'Usporedi ispite'),
-              e('div', { className: 'alati-card-desc' }, 'Ljetni vs jesenski, osnovna vs viša, ja vs NCVVO'),
+              e('div', { className: 'alati-card-desc' }, 'Ljetni vs jesenski, osnovna vs viša, zadnjih 5 vs ukupno'),
             ),
             e('div', { className: 'alati-card-arrow' }, '→'),
           ),

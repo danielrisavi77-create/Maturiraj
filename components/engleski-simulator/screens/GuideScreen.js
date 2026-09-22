@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { GRADE_NOTE } from '@/lib/engleski-simulator/constants'
 
 const GUIDE_SECTIONS = [
   {
@@ -27,9 +28,9 @@ const GUIDE_SECTIONS = [
     id: 'scoring',
     title: '🏆 Bodovanje i ocjene',
     content: [
-      { q: 'NCE bodovanje', a: 'Matura se vrednuje prema Nacionalnim centrom za vanjsko vrednovanje (NCVVO). Svako pitanje nosi određen broj bodova.' },
-      { q: 'Ljestvica ocjena', a: '85%+ = Odličan (5) | 70–84% = Vrlo dobar (4) | 55–69% = Dobar (3) | 40–54% = Dovoljan (2) | <40% = Nedovoljan (1)' },
-      { q: 'Prolazak mature', a: 'Minimalni prag za prolazak: ~40% ukupnog broja bodova. Na ovom simulatoru prolazak = ≥40%.' },
+      { q: 'Bodovanje na maturi', a: 'Maturu vrednuje Nacionalni centar za vanjsko vrednovanje obrazovanja (NCVVO). Svako pitanje nosi određen broj bodova.' },
+      { q: 'Ljestvica ocjena (orijentacijska)', a: 'Pragovi u simulatoru: 85%+ = Odličan (5) | 70–84% = Vrlo dobar (4) | 55–69% = Dobar (3) | 40–54% = Dovoljan (2) | <40% = Nedovoljan (1). ' + GRADE_NOTE },
+      { q: 'Prolazak mature', a: 'U simulatoru prolazak = ≥40% točnih. Orijentacijski prag — službeni prag za svaki rok određuje NCVVO.' },
     ],
   },
   {
