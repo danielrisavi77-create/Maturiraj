@@ -144,6 +144,41 @@ describe('mat-grading: ručni slučajevi', () => {
     });
   }
 
+  // --- klasa: jedinice (simbol i riječ), DMS kutovi, razlomak ↔ decimala u izrazu ---
+  const classCases: Array<[string, string, string, boolean]> = [
+    // jedinice pisane riječju su jedinice, ne dio odgovora
+    ['num', '30°', '30 stupnjeva', true],
+    ['num', '11,5 g', '11,5 grama', true],
+    ['sa', '1967.', '1967. godine', true],
+    ['num', '168 cm2', '168', true],
+    ['num', '20 dag', '20', true],
+    ['num', '2,5 ha', '2,5', true],
+    // brojive imenice NISU jedinice — ostaju dio odgovora
+    ['sa', '90 paketa', '90', false],
+    ['sa', '25 članova', '25', false],
+    ['num', '30 stupnjeva', '31', false],
+    // stupnjevi/minute/sekunde ↔ decimalni stupnjevi
+    ['num', '148°40′17″', '148,67', true],
+    ['num', '31°18′52″', '31,31', true],
+    ['num', '148°40′17″', '148,5', false],
+    ['num', '148°40′17″', '149', false],
+    ['num', '148°40′17″', '40', false],
+    // razlomak ↔ decimala i unutar izraza
+    ['sa', 'x > [FRAC:19|4]', 'x > 4,75', true],
+    ['sa', '3/5', '0,6', true],
+    ['sa', '-7/4x + 17/2', '-1,75x + 8,5', true],
+    ['sa', 'x > 19/4', 'x > 4,7', false],
+    ['num', '1/2', '1/3', false],
+    ['sa', '0,3', '1/3', false],
+    ['sa', 'x > 19/4', 'x < 4,75', false],
+  ];
+
+  for (const [type, ans, input, expected] of classCases) {
+    it(`klasa ${type}: ${JSON.stringify(input)} vs ${JSON.stringify(ans)} → ${expected}`, () => {
+      expect(isAnswerCorrect({ type, sol: { ans } }, input)).toBe(expected);
+    });
+  }
+
   it('normalizeAnswer kanonizira zapis', () => {
     expect(normalizeAnswer('x = 3')).toBe('3');
     expect(normalizeAnswer('y = 1,5')).toBe('1.5');

@@ -28,11 +28,21 @@ const ABS_TOL = 1e-6;
  */
 const LEGACY_ABS_TOL = 0.01;
 
-/** Jedinice koje se brišu s kraja odgovora (nakon uklanjanja razmaka). */
+/**
+ * Jedinice koje se brišu s kraja odgovora (nakon uklanjanja razmaka).
+ *
+ * Uz simbole su i pisani oblici istih jedinica ("30 stupnjeva", "11,5 grama"):
+ * to su mjerne jedinice, ne brojive imenice — "5 čokolada" ili "90 paketa"
+ * namjerno OSTAJU u zapisu jer nose značenje zadatka.
+ */
 const UNITS = [
+  'centimetara', 'kilograma', 'stupnjeva', 'sekundi', 'kilometara',
+  'milimetara', 'decimetara', 'postotaka', 'metara', 'minuta', 'litara',
+  'grama', 'kuna', 'eura', 'posto', 'sati', 'sekundi', 'gram', 'godine', 'godina',
   'cm^3', 'cm^2', 'dm^3', 'dm^2', 'mm^3', 'mm^2', 'm^3', 'm^2', 'km^2',
-  'km/h', 'm/s', 'kwh', 'hrk', 'eur', 'kn', 'kg', 'mg', 'ml',
-  'cm', 'dm', 'mm', 'km', 'mol', 'min', 'rad', 'deg',
+  'cm3', 'cm2', 'dm3', 'dm2', 'mm3', 'mm2', 'm3', 'm2', 'km2',
+  'km/h', 'm/s', 'kwh', 'hrk', 'eur', 'dag', 'kn', 'kg', 'mg', 'ml',
+  'cm', 'dm', 'mm', 'km', 'mol', 'min', 'rad', 'deg', 'ha',
   'm', 'g', 'l', 's', 'h', '%', '€', '$', '°',
 ];
 
@@ -136,16 +146,86 @@ export function normalizeAnswer(s: string): string {
   return t;
 }
 
-/** Striktni parser: cijeli string mora biti broj ili razlomak. */
+/** Stupnjevi/minute/sekunde → decimalni stupnjevi ("148°40'17''" → 148,6714). */
+const DMS_RE = /^([+-]?\d+(?:\.\d+)?)°(?:(\d+(?:\.\d+)?)')?(?:(\d+(?:\.\d+)?)'')?$/;
+function dmsNum(t: string): number {
+  const m = t.match(DMS_RE);
+  if (!m) return NaN;
+  if (m[2] === undefined && m[3] === undefined) return NaN; // goli "30°" pokriva strictNum
+  const sign = m[1].startsWith('-') ? -1 : 1;
+  const deg = Math.abs(Number(m[1]));
+  const min = m[2] === undefined ? 0 : Number(m[2]);
+  const sec = m[3] === undefined ? 0 : Number(m[3]);
+  if (min >= 60 || sec >= 60) return NaN;
+  return sign * (deg + min / 60 + sec / 3600);
+}
+
+/** Striktni parser: cijeli string mora biti broj, razlomak ili DMS kut. */
 function strictNum(t: string): number {
   if (!t) return NaN;
   const m = t.match(/^([+-]?(?:\d+\.?\d*|\.\d+))(?:\/([+-]?(?:\d+\.?\d*|\.\d+)))?$/);
-  if (!m) return NaN;
+  if (!m) return dmsNum(t);
   const a = Number(m[1]);
   if (m[2] === undefined) return a;
   const b = Number(m[2]);
   if (b === 0) return NaN;
   return a / b;
+}
+
+/* ------------------------------------------------------------------ *
+ * Kanonski zapis brojeva unutar izraza
+ *
+ * Svaki brojevni literal (decimalni ili razlomak) prepisuje se u skraćeni
+ * razlomak p/q. Time "4.75" i "19/4" postaju isti niz, a vrijednosti koje
+ * NISU jednake ostaju različite (0,333 ≠ 1/3) — proširenje nikad ne može
+ * prihvatiti krivi broj.
+ * ------------------------------------------------------------------ */
+
+function gcd(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y > 0.5) {
+    const t = x % y;
+    x = y;
+    y = t;
+  }
+  return x || 1;
+}
+
+/** Decimalni zapis → točan par [brojnik, nazivnik] bez zaokruživanja. */
+function decParts(t: string): [number, number] | null {
+  if (!/^\d+(?:\.\d+)?$|^\.\d+$/.test(t)) return null;
+  const dot = t.indexOf('.');
+  if (dot < 0) return [Number(t), 1];
+  const dec = t.length - dot - 1;
+  if (dec > 9) return null; // izvan sigurnog cjelobrojnog raspona
+  const digits = t.slice(0, dot) + t.slice(dot + 1);
+  return [Number(digits), Math.pow(10, dec)];
+}
+
+const NUM_TOKEN = /(\d+(?:\.\d+)?|\.\d+)(\/(\d+(?:\.\d+)?|\.\d+))?/g;
+
+/** "4.75" → "19/4", "0.6" → "3/5", "19/4" → "19/4", "2" → "2". */
+function canonNumbers(s: string): string {
+  return s.replace(NUM_TOKEN, (whole, a: string, _slash: string, b: string | undefined) => {
+    const pa = decParts(a);
+    if (!pa) return whole;
+    let [p, q] = pa;
+    if (b !== undefined) {
+      const pb = decParts(b);
+      if (!pb) return whole;
+      const [r, t] = pb;
+      if (r === 0) return whole;
+      p = p * t;
+      q = q * r;
+    }
+    if (!Number.isFinite(p) || !Number.isFinite(q) || q === 0) return whole;
+    if (Math.abs(p) > Number.MAX_SAFE_INTEGER || Math.abs(q) > Number.MAX_SAFE_INTEGER) return whole;
+    const g = gcd(p, q);
+    p /= g;
+    q /= g;
+    return q === 1 ? String(p) : `${p}/${q}`;
+  });
 }
 
 /**
@@ -190,6 +270,31 @@ function symEquals(a: string, b: string, nd: any): boolean {
   }
 }
 
+/**
+ * Kanonski oblik cijelog izraza: normalizacija + brojevi u skraćene razlomke.
+ * Nad njim rade sve klase ekvivalencije (razlomak ↔ decimala u izrazu,
+ * npr. "x>19/4" i "x>4,75").
+ */
+function canonExpr(s: string): string {
+  return canonNumbers(normalizeAnswer(s));
+}
+
+/**
+ * Jesu li dva zapisa isti odgovor? Prošireno preko doslovne jednakosti, ali
+ * konzervativno: svaka klasa ekvivalencije mora biti matematički istinita.
+ */
+export function answersEquivalent(a: string, b: string): boolean {
+  const na = normalizeAnswer(a);
+  const nb = normalizeAnswer(b);
+  if (!na || !nb) return false;
+  if (na === nb) return true;
+  if (numEquals(a, b)) return true;
+  const ca = canonNumbers(na);
+  const cb = canonNumbers(nb);
+  if (ca === cb) return true;
+  return false;
+}
+
 /** Kanonski oblik slova ponuđenog odgovora: "C)", "(c)", "c." → "c". */
 function normalizeChoice(s: unknown): string {
   return normalizeAnswer(String(s ?? '')).replace(/[^a-z0-9]/g, '');
@@ -230,7 +335,7 @@ export function isAnswerCorrect(
     const alts = altList(sol);
     if (!alts.length) return null;
     const a = String(answer ?? '');
-    if (alts.some((x) => numEquals(x, a))) return true;
+    if (alts.some((x) => answersEquivalent(x, a))) return true;
     if (opts?.nerdamer && alts.some((x) => symEquals(x, a, opts.nerdamer))) return true;
     return false;
   }
@@ -240,8 +345,7 @@ export function isAnswerCorrect(
     if (!alts.length) return null;
     const a = String(answer ?? '');
     const na = normalizeAnswer(a);
-    if (na !== '' && alts.some((x) => normalizeAnswer(x) === na)) return true;
-    if (alts.some((x) => numEquals(x, a))) return true;
+    if (na !== '' && alts.some((x) => answersEquivalent(x, a))) return true;
     // rezerva kompatibilna sa starim nrm-om (brisao je sve točke i zareze)
     const flat = na.replace(/\./g, '');
     if (flat !== '' && alts.some((x) => normalizeAnswer(x).replace(/\./g, '') === flat)) return true;
@@ -253,4 +357,4 @@ export function isAnswerCorrect(
   return null;
 }
 
-export default { isAnswerCorrect, normalizeAnswer, numEquals };
+export default { isAnswerCorrect, normalizeAnswer, numEquals, answersEquivalent };
