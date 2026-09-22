@@ -1,3 +1,6 @@
+// Components are exported by the preceding classic animations script.
+const MathematicsHeroComponents = window;
+
 // matematika-scenes.jsx — 6 scenes for the maturiraj.hr Matematika hero video
 // Story arc: panic → chaos → clarity → step-by-step → result → CTA
 // Palette: deep navy bg + neon blue + neon purple + warm orange accent
@@ -166,8 +169,8 @@ function Scene1_Panic() {
         </div>
       </div>
 
-      <Sprite start={0.5} end={3.0}>
-        <TextSprite
+      <MathematicsHeroComponents.Sprite start={0.5} end={3.0}>
+        <MathematicsHeroComponents.TextSprite
           text="Gledaš zadatak… i nemaš pojma?"
           x={960} y={970}
           align="center"
@@ -178,7 +181,7 @@ function Scene1_Panic() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </MathematicsHeroComponents.Sprite>
     </>
   );
 }
@@ -343,8 +346,8 @@ function Scene2_Chaos() {
         {timerText}
       </div>
 
-      <Sprite start={3.3} end={6.0}>
-        <TextSprite
+      <MathematicsHeroComponents.Sprite start={3.3} end={6.0}>
+        <MathematicsHeroComponents.TextSprite
           text="Previše formula. Premalo smisla."
           x={960} y={940}
           align="center"
@@ -355,7 +358,7 @@ function Scene2_Chaos() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </MathematicsHeroComponents.Sprite>
     </>
   );
 }
@@ -433,8 +436,8 @@ function Scene3_Clarity() {
       {/* Coefficient labels a, b, c dropping in with arrows */}
       <CoefLabels t={labelsT} />
 
-      <Sprite start={6.6} end={10.0}>
-        <TextSprite
+      <MathematicsHeroComponents.Sprite start={6.6} end={10.0}>
+        <MathematicsHeroComponents.TextSprite
           text="Kvadratna funkcija — jedan obrazac."
           x={960} y={920}
           align="center"
@@ -445,7 +448,7 @@ function Scene3_Clarity() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </MathematicsHeroComponents.Sprite>
     </>
   );
 }
@@ -537,8 +540,8 @@ function Scene4_Steps() {
       {/* RIGHT: parabola graph that draws itself */}
       <ParabolaGraph localTime={localTime} />
 
-      <Sprite start={10.3} end={15.0}>
-        <TextSprite
+      <MathematicsHeroComponents.Sprite start={10.3} end={15.0}>
+        <MathematicsHeroComponents.TextSprite
           text="Korak po korak. Bez nagađanja."
           x={960} y={960}
           align="center"
@@ -549,7 +552,7 @@ function Scene4_Steps() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </MathematicsHeroComponents.Sprite>
     </>
   );
 }
@@ -829,8 +832,8 @@ function Scene5_Result() {
         </div>
       </div>
 
-      <Sprite start={15.3} end={20.0}>
-        <TextSprite
+      <MathematicsHeroComponents.Sprite start={15.3} end={20.0}>
+        <MathematicsHeroComponents.TextSprite
           text="Matematika koju razumiješ."
           x={960} y={990}
           align="center"
@@ -841,7 +844,7 @@ function Scene5_Result() {
           entryDur={0.4}
           exitDur={0.3}
         />
-      </Sprite>
+      </MathematicsHeroComponents.Sprite>
     </>
   );
 }
@@ -1037,12 +1040,12 @@ function VideoRoot({ cta, accent }) {
   return (
     <div ref={rootRef} style={{ position: 'absolute', inset: 0 }}>
       <SoundTimeline triggers={MATH_SOUND_TRIGGERS} />
-      <Sprite start={0}    end={3.0}>  <Scene1_Panic /></Sprite>
-      <Sprite start={3.0}  end={6.0}>  <Scene2_Chaos /></Sprite>
-      <Sprite start={6.0}  end={10.0}> <Scene3_Clarity /></Sprite>
-      <Sprite start={10.0} end={15.0}> <Scene4_Steps /></Sprite>
-      <Sprite start={15.0} end={20.0}> <Scene5_Result /></Sprite>
-      <Sprite start={20.0} end={25.0}> <Scene6_CTA cta={cta} /></Sprite>
+      <MathematicsHeroComponents.Sprite start={0}    end={3.0}>  <Scene1_Panic /></MathematicsHeroComponents.Sprite>
+      <MathematicsHeroComponents.Sprite start={3.0}  end={6.0}>  <Scene2_Chaos /></MathematicsHeroComponents.Sprite>
+      <MathematicsHeroComponents.Sprite start={6.0}  end={10.0}> <Scene3_Clarity /></MathematicsHeroComponents.Sprite>
+      <MathematicsHeroComponents.Sprite start={10.0} end={15.0}> <Scene4_Steps /></MathematicsHeroComponents.Sprite>
+      <MathematicsHeroComponents.Sprite start={15.0} end={20.0}> <Scene5_Result /></MathematicsHeroComponents.Sprite>
+      <MathematicsHeroComponents.Sprite start={20.0} end={25.0}> <Scene6_CTA cta={cta} /></MathematicsHeroComponents.Sprite>
     </div>
   );
 }

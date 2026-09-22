@@ -42,19 +42,31 @@ function KnowledgeMap({userData,onTopic}){
     )
   );
 }
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion:reduce)";
+function subscribeReducedMotion(notify){
+  if(!window.matchMedia) return ()=>{};
+  const query=window.matchMedia(REDUCED_MOTION_QUERY);
+  query.addEventListener("change",notify);
+  return ()=>query.removeEventListener("change",notify);
+}
+function reducedMotionSnapshot(){
+  return typeof window!=="undefined"&&!!window.matchMedia?.(REDUCED_MOTION_QUERY).matches;
+}
+const serverReducedMotionSnapshot=()=>false;
 function CountUp({to,duration,suffix}){
   const[v,setV]=React.useState(0);
   const raf=React.useRef(null);
+  const reducedMotion=React.useSyncExternalStore(subscribeReducedMotion,reducedMotionSnapshot,serverReducedMotionSnapshot);
   React.useEffect(()=>{
+    if(reducedMotion) return;
     const target=+to||0,dur=duration||700,t0=performance.now();
-    if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches){setV(target);return;}
     cancelAnimationFrame(raf.current);
     const tick=(t)=>{const p=Math.min(1,(t-t0)/dur);const ease=1-Math.pow(1-p,3);
       setV(Math.round(target*ease));if(p<1)raf.current=requestAnimationFrame(tick);};
     raf.current=requestAnimationFrame(tick);
     return()=>cancelAnimationFrame(raf.current);
-  },[to]);
-  return e(React.Fragment,null,String(v)+(suffix||""));
+  },[to,duration,reducedMotion]);
+  return e(React.Fragment,null,String(reducedMotion?(+to||0):v)+(suffix||""));
 }
 function AnimatedRing({pct,gc,g}){
   const r=54,circ=2*Math.PI*r;

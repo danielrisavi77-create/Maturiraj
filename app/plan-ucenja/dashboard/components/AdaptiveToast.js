@@ -33,6 +33,11 @@ function Toast({ message, level = 'info', onClose, changes = [] }) {
   const style = LEVEL_STYLES[level] || LEVEL_STYLES.info
   const [visible, setVisible] = useState(false)
 
+  const handleClose = () => {
+    setVisible(false)
+    setTimeout(onClose, 350)
+  }
+
   useEffect(() => {
     // Slide in
     requestAnimationFrame(() => setVisible(true))
@@ -40,11 +45,6 @@ function Toast({ message, level = 'info', onClose, changes = [] }) {
     const t = setTimeout(() => handleClose(), 7000)
     return () => clearTimeout(t)
   }, [])
-
-  const handleClose = () => {
-    setVisible(false)
-    setTimeout(onClose, 350)
-  }
 
   return (
     <div style={{

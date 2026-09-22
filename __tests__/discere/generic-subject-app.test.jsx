@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import React from 'react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 const mocks = vi.hoisted(() => ({
@@ -33,6 +33,7 @@ const fakeExam = {
 }
 
 describe('GenericSubjectApp', () => {
+  afterEach(cleanup)
   beforeEach(() => {
     vi.clearAllMocks()
     mocks.loadSubjectIndex.mockResolvedValue({
@@ -68,6 +69,16 @@ describe('GenericSubjectApp', () => {
     expect(mocks.saveCanonicalSimResult.mock.calls[0][0]).toMatchObject({
       subject:'bio', examKey:'2026_ljeto', earnedPoints:1, maxPoints:1, percent:100,
     })
+  })
+
+  it('discards the previous exam when the selected subject changes', async () => {
+    const view = render(<GenericSubjectApp subject={{ id:'bio', name:'Biologija' }} />)
+    await userEvent.click(await screen.findByRole('button', { name:/Ljetni rok 2026/i }))
+    await screen.findByRole('heading', { name:'Pitanje?' })
+    mocks.loadSubjectIndex.mockResolvedValue({ subject:'chem', exams:[] })
+    view.rerender(<GenericSubjectApp subject={{ id:'chem', name:'Kemija' }} />)
+    await screen.findByText(/Discere · Kemija/)
+    expect(screen.queryByRole('heading', { name:'Pitanje?' })).toBeNull()
   })
 
   it('locks the results review for a free user on a freeExam subject', async () => {

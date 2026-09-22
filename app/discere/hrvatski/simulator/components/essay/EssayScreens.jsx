@@ -179,13 +179,14 @@ function EssayMode({ esejKey, onBack, userData, isPro, onPaywall, userAccess }) 
   const [saved, setSaved] = useState(false);
   useEffect(() => {
     if (!tekst) return;
-    setSaved(false);
+    let noticeTimer;
     const t = setTimeout(() => {
-      lsSave("discere_esej_" + esejKey, JSON.stringify(tekst));
-      setSaved(true);
-      setTimeout(() => setSaved(false), 2000);
+      if (lsSave("discere_esej_" + esejKey, JSON.stringify(tekst))) {
+        setSaved(true);
+        noticeTimer = setTimeout(() => setSaved(false), 2000);
+      }
     }, 800);
-    return () => clearTimeout(t);
+    return () => { clearTimeout(t); clearTimeout(noticeTimer); };
   }, [tekst, esejKey]);
 
   // Timer
@@ -390,7 +391,7 @@ Odgovori ISKLJUČIVO u JSON formatu bez ikakvog teksta prije ili poslije:
           placeholder: "Ovdje piši školski esej. Svakako napiši uvod, razradu i zaključak.\n\nMinimalno " + esej.minRijeci + " riječi, maksimalno " + esej.maxRijeci + " riječi.",
           value: tekst,
           disabled: done,
-          onChange: ev => setTekst(ev.target.value)
+          onChange: ev => { setSaved(false); setTekst(ev.target.value); }
         }),
         e("div", { className: "esej-wc" },
           e("span", { className: "esej-wc-count " + wcCls },
@@ -568,14 +569,10 @@ function SazetakMode({ sazetakKey, onBack, isPro, onPaywall, userAccess }) {
   const minOk = wc >= saz.minRijeci;
   const maxOk = wc <= saz.maxRijeci;
 
-  const [saved, setSaved] = useState(false);
   useEffect(() => {
     if (!tekst) return;
-    setSaved(false);
     const t = setTimeout(() => {
       lsSave(lsKey, JSON.stringify(tekst));
-      setSaved(true);
-      setTimeout(() => setSaved(false), 2000);
     }, 800);
     return () => clearTimeout(t);
   }, [tekst, lsKey]);

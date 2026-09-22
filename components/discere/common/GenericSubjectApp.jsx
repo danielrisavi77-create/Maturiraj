@@ -8,6 +8,10 @@ import { useAuth } from '@/lib/hooks/useAuth'
 import { buildUserAccess, canSeeDiscereAnalysis } from '@/components/discere/paywall/paywallHelpers'
 
 export default function GenericSubjectApp({ subject }) {
+  return <SubjectSession key={subject.id} subject={subject} />
+}
+
+function SubjectSession({ subject }) {
   const auth = useAuth()
   // Predmeti bez freeExam idu kroz PlanGate paid-only, pa je pregled ondje
   // već zaključan tierom — canSeeReview je fail-open true. Za freeExam
@@ -21,7 +25,6 @@ export default function GenericSubjectApp({ subject }) {
 
   useEffect(() => {
     let active = true
-    setLoading(true)
     loadSubjectIndex(subject.id)
       .then((data) => {
         if (active) {

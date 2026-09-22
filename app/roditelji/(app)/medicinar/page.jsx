@@ -13,12 +13,12 @@ export default function RoditeljiMedicinarPage() {
   const [formSubmitting, setFormSubmitting] = useState(false)
   const [formError, setFormError] = useState(null)
 
-  const fetchLinks = useCallback(async () => {
-    setLinksLoading(true)
-    const res = await fetch('/api/parent/children')
-    if (res.ok) setLinks(await res.json())
-    setLinksLoading(false)
-  }, [])
+  const fetchLinks = useCallback(() => fetch('/api/parent/children')
+    .then(res => res.ok ? res.json() : null)
+    .then(data => {
+      if (data) setLinks(data)
+      setLinksLoading(false)
+    }), [])
 
   useEffect(() => { fetchLinks() }, [fetchLinks])
 
@@ -48,6 +48,7 @@ export default function RoditeljiMedicinarPage() {
       const json = await res.json()
       if (!res.ok) { setFormError(json.error || 'Greška'); return }
       setFormEmail(''); setFormName(''); setFormOpen(false)
+      setLinksLoading(true)
       await fetchLinks()
     } catch { setFormError('Mrežna greška.') }
     finally { setFormSubmitting(false) }

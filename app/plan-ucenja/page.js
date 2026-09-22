@@ -1,5 +1,6 @@
 'use client'
 import { useMemo, useState, useEffect, useRef } from 'react'
+import { useClientState } from '@/lib/hooks/useClientState'
 import { useRouter } from 'next/navigation'
 import { usePageTracking } from '@/lib/hooks/usePageTracking'
 import StepIndicator from './components/StepIndicator'
@@ -13,7 +14,7 @@ import ProUpsellModal from './components/ProUpsellModal'
 import { buildFreePlan, buildProPlan, PREDMETI_PLAN } from './lib/planGenerator'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { useSavePlan } from '@/lib/hooks/useSavePlan'
-import { canAccess, FEATURES } from '@/lib/entitlements'
+import { canAccess } from '@/lib/entitlements'
 import { card, MATURA_DATE } from '@/lib/dashboard/helpers'
 
 /* ─── Card surface — glass (dijeljeno s dashboardom) ─────────────── */
@@ -182,7 +183,7 @@ export default function PlanUcenja() {
       setShowSaveModal(true)
       return
     }
-    if (!canAccess(FEATURES.STUDY_PLAN_SAVE, { isPaid, isPro, user })) {
+    if (!canAccess('STUDY_PLAN_SAVE', { isPaid, isPro, user })) {
       setSaveError('Spremanje plana zahtijeva Standard plan (9,99 €/mj). Nadogradi na /pro?plan=starter&from=plan-save')
       return
     }
@@ -218,36 +219,44 @@ export default function PlanUcenja() {
 
   /* ─── Restore pending save after OAuth ─────────── */
   const pendingRestoreRef = useRef(false)
-  useEffect(() => {
-    if (authLoading || !user || pendingRestoreRef.current) return
+  const [restoreConsumed, setRestoreConsumed] = useState(false)
+  const restoreUserId = !authLoading && user ? user.id : null
+  const [pendingRestore] = useClientState(() => {
+    if (!restoreUserId) return null
     let flag = null
     let raw = null
     try {
       flag = localStorage.getItem('maturiraj_pending_save')
       raw = localStorage.getItem('maturiraj_pending_plan')
-    } catch { return }
-    if (flag !== '1') return
-    pendingRestoreRef.current = true
+    } catch { return null }
+    if (flag !== '1') return null
 
     let draft = null
     try { draft = raw ? JSON.parse(raw) : null } catch { draft = null }
-
+    return { draft }
+  }, null, restoreUserId)
+  const [appliedRestore, setAppliedRestore] = useState(null)
+  if (!restoreConsumed && pendingRestore && pendingRestore !== appliedRestore) {
+    setAppliedRestore(pendingRestore)
+    const draft = pendingRestore.draft
     if (draft?.selPredmeti?.length) {
       setSelPredmeti(draft.selPredmeti)
       if (typeof draft.satiTjedno === 'number') setSatiTjedno(draft.satiTjedno)
       if (draft.planMode === 'pro' || draft.planMode === 'free') setPlanMode(draft.planMode)
       setCurrentStep(4)
     }
-
-    // Defer save until state commits; clear flag first to avoid loops
-    try {
-      localStorage.removeItem('maturiraj_pending_save')
-    } catch { /* ignore */ }
-
+  }
+  useEffect(() => {
+    if (authLoading || !user || pendingRestoreRef.current || !pendingRestore) return
+    const draft = pendingRestore.draft
     const type = draft?.planMode === 'pro' ? 'pro' : 'free'
     // Use timeout so selPredmeti state is applied before save uses selectedSubjects
     const t = setTimeout(async () => {
-      if (!canAccess(FEATURES.STUDY_PLAN_SAVE, { isPaid, isPro, user })) {
+      if (pendingRestoreRef.current) return
+      pendingRestoreRef.current = true
+      setRestoreConsumed(true)
+      try { localStorage.removeItem('maturiraj_pending_save') } catch {}
+      if (!canAccess('STUDY_PLAN_SAVE', { isPaid, isPro, user })) {
         setSaveError('Prijavljen si — za spremanje plana treba Standard plan. Otvori /pro?plan=starter&from=plan-save')
         return
       }
@@ -280,7 +289,7 @@ export default function PlanUcenja() {
     }, 0)
     return () => clearTimeout(t)
   // eslint-disable-next-line react-hooks/exhaustive-deps -- one-shot OAuth restore
-  }, [authLoading, user, isPaid, isPro])
+  }, [authLoading, user, isPaid, isPro, pendingRestore])
 
   /* ─── Ambient color ────────────────────────────── */
   const ambientColor = useMemo(() => {

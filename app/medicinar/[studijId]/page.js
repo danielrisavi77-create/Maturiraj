@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import PredmetProgressCard from '@/components/medicinar/PredmetProgressCard'
 import WeaknessHeatmap from '@/components/medicinar/WeaknessHeatmap'
@@ -213,7 +214,7 @@ export default function MedicinarDashboard() {
             <section className="mm-widget">
               <div className="mm-widget-title">⚡ Povezano</div>
               <a href="/skripte" className="mm-widget-link">📚 Skripte za sve predmete</a>
-              <a href="/discere" className="mm-widget-link">🎯 Discere simulatori</a>
+              <Link href="/discere" className="mm-widget-link">🎯 Discere simulatori</Link>
               <a href={`/plan-ucenja?target=${studij.id}`} className="mm-widget-link">🗺️ Plan učenja</a>
               <a href={`/prijemni?studij=${studij.id}`} className="mm-widget-link">📋 Detalji prijemnog</a>
               <button

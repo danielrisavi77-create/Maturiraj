@@ -3,6 +3,8 @@ import React, { useState, useEffect, useMemo, useRef, Fragment } from 'react';
 import confetti from 'canvas-confetti';
 import { EXAMS, TOPIC_LABELS, ESEJI, SAZECI, TLBL } from '../hrvatskiSimulatorData';
 import { e, LL, chk, hasAns, lsSave, lsGet, playWrongSound, calcXpGain, xpProgress, getLevel, qIdentity, computeSecLeft } from '../utils/helpers';
+import { useQuestionTimes } from '../utils/useQuestionTimes';
+import { useExamDeadline } from '../utils/useExamDeadline';
 import ShareStoryCard from '@/components/shared/ShareStoryCard';
 import { FREE_LIMIT, canSeeHrvAnalysis, isHrvFreePracticeExam } from '@/components/discere/paywall/paywallHelpers';
 import LockedAnalysisSection from '@/components/discere/paywall/LockedAnalysisSection';
@@ -86,11 +88,16 @@ function LockedResultsBlock({label,note,rows=4,minHeight=150}){
 // Shared accessibility props for interactive divs
 const accBtn={role:"button",tabIndex:0,onKeyDown:ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();ev.currentTarget.click();}}};
 
-function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=false,isPaid=false,userAccess,onPracticeErrors,onStats,onFilter,highlightQid,onOpenSkripta}){
+function Sim(props){
+  const{exam,onExit}=props;
   if(!exam||!exam.qs) return e("div",{style:{padding:40,textAlign:"center",color:"var(--muted)"}},
     e("div",{style:{fontSize:14,marginBottom:12}},"Ispit nije pronađen."),
     e("button",{className:"btn btn-g",onClick:onExit},"← Natrag")
   );
+  return React.createElement(SimSession,props);
+}
+
+function SimSession({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=false,isPaid=false,userAccess,onPracticeErrors,onStats,onFilter,highlightQid,onOpenSkripta}){
   const QSX=exam.qs;
   const _lsKey="discere_prog_"+(exam?.key||"x");
   const _exKey="discere_exam_"+(exam?.key||"x");
@@ -128,11 +135,17 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     if(!s) return[0,{},{},{}];
     return[_resumeIdx(s),s.answers||{},s.rev||{},s.flag||{}];
   });
-  const[cur,setCur]=useState(_initCur);
+  const highlightedIndex=(highlightQid&&exam?.qs)?exam.qs.findIndex(q=>q.id===highlightQid):-1;
+  const[cur,setCur]=useState(()=>highlightedIndex>=0?highlightedIndex:_initCur);
+  const[previousHighlight,setPreviousHighlight]=useState(highlightQid);
+  if(highlightQid!==previousHighlight){
+    setPreviousHighlight(highlightQid);
+    if(highlightedIndex>=0) setCur(highlightedIndex);
+  }
   useEffect(()=>{
-    if(highlightQid&&exam?.qs){
-      const idx=exam.qs.findIndex(q=>q.id===highlightQid);
-      if(idx>=0){setCur(idx);setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),100);}
+    if(highlightedIndex>=0){
+      const t=setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),100);
+      return()=>clearTimeout(t);
     }
   },[highlightQid]);
   const[answers,setAnswers]=useState(_initAnswers);
@@ -151,26 +164,9 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   const[modal,setModal]=useState(false);
   const[showKeys,setShowKeys]=useState(false);
   const[showSimPojmovnik,setShowSimPojmovnik]=useState(false);
-  const[confettiFired,setConfettiFired]=useState(false);
-  const[displayPct,setDisplayPct]=useState(0);
+  const confettiFired=useRef(false);
   useEffect(()=>{
-    if(!done) return;
-    const autoQ2=QSX.filter(q=>q.type==="mc");
-    const cor2=autoQ2.filter(q=>chk(q,answers[q.id])===true).length;
-    const target=autoQ2.length>0?Math.round(cor2/autoQ2.length*100):0;
-    if(target===0){setDisplayPct(0);return;}
-    let start=null;const dur=1400;
-    function tick(ts){
-      if(!start) start=ts;
-      const prog=Math.min((ts-start)/dur,1);
-      setDisplayPct(Math.round(prog*target));
-      if(prog<1) requestAnimationFrame(tick);
-    }
-    const raf=requestAnimationFrame(tick);
-    return()=>cancelAnimationFrame(raf);
-  },[done]);
-  useEffect(()=>{
-    if(!done||confettiFired) return;
+    if(!done||confettiFired.current) return;
     const autoQ2=QSX.filter(q=>q.type==="mc");
     const cor2=autoQ2.filter(q=>chk(q,answers[q.id])===true).length;
     const pct2=autoQ2.length>0?Math.round(cor2/autoQ2.length*100):0;
@@ -179,64 +175,40 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     confetti({particleCount:pct2>=90?180:80,spread:pct2>=90?120:80,origin:{y:.55},colors,scalar:pct2>=90?1.2:1});
     const t1=pct2>=90?setTimeout(()=>confetti({particleCount:60,spread:60,origin:{y:.4},colors,angle:60}),350):null;
     const t2=pct2>=90?setTimeout(()=>confetti({particleCount:60,spread:60,origin:{y:.4},colors,angle:120}),500):null;
-    setConfettiFired(true);
+    confettiFired.current=true;
     return()=>{if(t1)clearTimeout(t1);if(t2)clearTimeout(t2);};
-  },[done,confettiFired]);
-  // XP bar fill animation
-  useEffect(()=>{
-    if(!done) return;
-    const autoQ2=QSX.filter(q=>q.type==="mc");
-    const cor2=autoQ2.filter(q=>chk(q,answers[q.id])===true).length;
-    const pct2=autoQ2.length>0?Math.round(cor2/autoQ2.length*100):0;
-    const gain=calcXpGain(pct2,autoQ2.length);
-    const oldXP=userData?.xp||0;
-    const newXP=oldXP+gain;
-    const lvlUp=getLevel(newXP)>getLevel(oldXP);
-    const startProg=lvlUp?0:xpProgress(oldXP);
-    setXpBarFill(startProg);
-    const t=setTimeout(()=>setXpBarFill(xpProgress(newXP)),700);
-    return()=>clearTimeout(t);
   },[done]);
-  const[qTimes,setQTimes]=useState({});
+  const[xpResult,setXpResult]=useState(null);
+  const[xpBarFill,setXpBarFill]=useState(null);
+  // Animate the reward snapshot captured before the parent updates user data.
+  useEffect(()=>{
+    if(!xpResult) return;
+    const t=setTimeout(()=>setXpBarFill(xpResult.end),700);
+    return()=>clearTimeout(t);
+  },[xpResult]);
+  const{qTimes,recordQuestionTime}=useQuestionTimes();
   const[shownAnswers,setShownAnswers]=useState({});
   const[confidence,setConfidence]=useState({}); // { qid: 1|2|3 }
-  const[xpBarFill,setXpBarFill]=useState(0);
   const[percentile,setPercentile]=useState(null);
   const[revFilter,setRevFilter]=useState("sve"); // "sve" | "tocni" | "krivi"
   const[revOpen,setRevOpen]=useState(true);
   const[mobGrid,setMobGrid]=useState(false); // mobile question grid sheet
   const touchStartX=useRef(0);
-  const qStart=useRef(Date.now());
 
   // Timer za ispitni mod — od 2017. ispit traje 100 min, ranije 72 min
   const examMinutes=exam?.year>=2017?100:72;
   const TOTAL_SEC=examMode?examMinutes*60:null;
   // Rok predaje je apsolutni timestamp da reload (ili zatvaranje kartice) ne resetira ispit.
   const[deadline]=useState(()=>examMode?(_savedExam?.deadline||Date.now()+TOTAL_SEC*1000):null);
-  const[secLeft,setSecLeft]=useState(()=>examMode?computeSecLeft(deadline,Date.now()):null);
-  const[timerDone,setTimerDone]=useState(false);
   const[calmMode,setCalmMode]=useState(false);
   // 3-2-1 countdown before exam starts — preskače se pri nastavku prekinutog ispita
   const[examCountdown,setExamCountdown]=useState(examMode&&!_savedExam?3:null);
   useEffect(()=>{
     if(examCountdown===null) return;
-    if(examCountdown===0){setExamCountdown(null);return;}
-    const t=setTimeout(()=>setExamCountdown(c=>c-1),1000);
+    const t=setTimeout(()=>setExamCountdown(c=>c<=1?null:c-1),1000);
     return()=>clearTimeout(t);
   },[examCountdown]);
-  useEffect(()=>{
-    if(!examMode||secLeft===null||examCountdown!==null) return;
-    if(secLeft<=0){setTimerDone(true);return;}
-    const t=setTimeout(()=>setSecLeft(s=>Math.min(s-1,computeSecLeft(deadline,Date.now()))),1000);
-    return()=>clearTimeout(t);
-  },[examMode,secLeft,examCountdown,deadline]);
-  // Kartica u pozadini: setTimeout se usporava, pa se pri povratku vrijeme čita iz roka.
-  useEffect(()=>{
-    if(!examMode||!deadline) return;
-    const h=()=>{if(!document.hidden) setSecLeft(computeSecLeft(deadline,Date.now()));};
-    document.addEventListener("visibilitychange",h);
-    return()=>document.removeEventListener("visibilitychange",h);
-  },[examMode,deadline]);
+  const secLeft=useExamDeadline(deadline,examMode&&examCountdown===null&&!done,()=>submitExam());
   // Autosave ispitnog moda — rok + odgovori, da se F5 ne pretvori u novi ispit.
   useEffect(()=>{
     if(!examMode||done) return;
@@ -259,7 +231,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     });
   }
 
-  function recordTime(idx){const elapsed=Math.round((Date.now()-qStart.current)/1000);if(elapsed>0&&elapsed<600)setQTimes(p=>({...p,[QSX[idx]?.id]:elapsed}));qStart.current=Date.now();}
+  function recordTime(idx){return recordQuestionTime(QSX[idx]?.id);}
 
   const q=QSX[cur];
   const qIdent=qIdentity(q,exam);
@@ -324,7 +296,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
   }
 
   function submitExam(){
-    recordTime(cur);
+    const finalQTimes=recordTime(cur);
     try{localStorage.removeItem(_lsKey);localStorage.removeItem(_exKey);}catch(e){}
     setDone(true);
     // Compute score (samo za MC)
@@ -332,11 +304,14 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     const cor=autoQ.filter(q=>chk(q,answers[q.id])===true).length;
     const ispitInfo=getIspitInfo(exam);
     const pct=autoQ.length>0?Math.round(cor/autoQ.length*100):0;
+    const oldXp=userData?.xp||0;
+    const newXp=oldXp+calcXpGain(pct,autoQ.length);
+    setXpResult({oldXp,newXp,start:getLevel(newXp)>getLevel(oldXp)?0:xpProgress(oldXp),end:xpProgress(newXp)});
     // Bodovi: cor bodova od ispitInfo.mcBod (skalirano)
     const bodovi=Math.round(cor/Math.max(autoQ.length,1)*ispitInfo.mcBod);
     const g=getOcjena(pct);
     if(examMode&&!_isVirtual) loadPercentile(pct);
-    if(onDone) onDone({examKey:exam.key,examLabel:exam.year+" "+exam.label,pct,grade:g,cor,total:autoQ.length,bodovi,ispitInfo,answers,qTimes,examMode,qs:QSX,confidenceLog:(()=>{
+    if(onDone) onDone({examKey:exam.key,examLabel:exam.year+" "+exam.label,pct,grade:g,cor,total:autoQ.length,bodovi,ispitInfo,answers,qTimes:finalQTimes,examMode,qs:QSX,confidenceLog:(()=>{
       const log={};
       autoQ.forEach(q=>{
         if(confidence[q.id]){
@@ -348,12 +323,6 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     })()});
     window.scrollTo(0,0);
   }
-
-  // Auto-predaja ispita kad istekne vrijeme (timerDone). Guard `!done` sprječava dvostruku predaju.
-  useEffect(()=>{
-    if(timerDone && !done) submitExam();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[timerDone,done]);
 
   if(done){
     const autoQ=QSX.filter(q=>q.type==="mc");
@@ -410,11 +379,11 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         ),
         e("div",{className:"xp-prog-wrap"},
           e("div",{className:"xp-prog-track"},
-            e("div",{className:"xp-prog-fill",style:{width:xpBarFill+"%"}})
+            e("div",{className:"xp-prog-fill",style:{width:(xpBarFill??xpResult.start)+"%"}})
           ),
           e("div",{style:{display:"flex",justifyContent:"space-between",fontSize:11,color:"var(--muted)",marginTop:4}},
-            e("span",null,"Razina "+(getLevel(userData?.xp||0)+1)),
-            e("span",null,(userData?.xp||0)+" \u2192 "+((userData?.xp||0)+xpGain)+" XP")
+            e("span",null,"Razina "+(getLevel(xpResult.newXp)+1)),
+            e("span",null,xpResult.oldXp+" \u2192 "+xpResult.newXp+" XP")
           )
         )
       ),
@@ -873,7 +842,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     e("div",{className:"exam-layout"},
       e("div",null,
         e("div",{className:"prog"},e("div",{className:"progbar",style:{width:((cur+1)/QSX.length*100)+"%"}})),
-        e("div",{className:"qcard",
+        React.createElement("div",{className:"qcard",
           onTouchStart:ev=>{touchStartX.current=ev.touches[0].clientX;},
           onTouchEnd:ev=>{
             const dx=ev.changedTouches[0].clientX-touchStartX.current;
@@ -951,19 +920,19 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
             ["","😟 Nisam siguran/na","🤔 Djelomično siguran/na","😎 Potpuno siguran/na"][confidence[q.id]]
           ),
           e("div",{className:"qnav"},
-            e("button",{className:"btn btn-g",disabled:cur===0,onClick:()=>{recordTime(cur);const nc=cur-1;setCur(nc);setVisited(v=>({...v,[nc]:true}));}},"← Prethodno"),
+            React.createElement("button",{className:"btn btn-g",disabled:cur===0,onClick:()=>{recordTime(cur);const nc=cur-1;setCur(nc);setVisited(v=>({...v,[nc]:true}));}},"← Prethodno"),
             practice&&(q.type==="mc"||q.type==="mat")&&!isRev&&hasAns(answers[q.id])&&
               e("button",{className:"btn btn-chk",onClick:()=>setRev(p=>({...p,[q.id]:true}))},"Provjeri"),
             cur<QSX.length-1
-              ?e("button",{className:"btn btn-gold",onClick:()=>{recordTime(cur);const nc=cur+1;setCur(nc);setVisited(v=>({...v,[nc]:true}));}},"Sljedeće →")
-              :e("button",{className:"btn btn-gold",onClick:submitExam},"Završi ispit ✓")
+              ?React.createElement("button",{className:"btn btn-gold",onClick:()=>{recordTime(cur);const nc=cur+1;setCur(nc);setVisited(v=>({...v,[nc]:true}));}},"Sljedeće →")
+              :React.createElement("button",{className:"btn btn-gold",onClick:submitExam},"Završi ispit ✓")
           )
         )
       ),
       e("div",{className:"sidebar"},
         e("div",{className:"sbcard",style:{marginBottom:12}},
           e("div",{className:"sbtitle"},"Pitanja"),
-          e("div",{className:"qgrid"},
+          React.createElement("div",{className:"qgrid"},
             QSX.map((qi,i)=>{
               const a=answers[qi.id];const isC=cur===i;const rv=rev[qi.id]||done;
               const ok=rv&&chk(qi,a)===true;const bad=rv&&chk(qi,a)===false;
@@ -988,7 +957,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
     ),
     /* ── Mobile bottom navigation bar ── */
     e("div",{className:"mob-nav"},
-      e("button",{className:"mob-nav-btn",disabled:cur===0,
+      React.createElement("button",{className:"mob-nav-btn",disabled:cur===0,
         onClick:()=>{recordTime(cur);const nc=cur-1;setCur(nc);setVisited(v=>({...v,[nc]:true}));},
         "aria-label":"Prethodno pitanje"},"←"),
       e("button",{...accBtn,className:"mob-nav-center",onClick:()=>setMobGrid(g=>!g),
@@ -997,10 +966,10 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
         e("span",{className:"mob-nav-sub"},answeredCount+" odg. ⊞")
       ),
       cur<QSX.length-1
-        ?e("button",{className:"mob-nav-btn",
+        ?React.createElement("button",{className:"mob-nav-btn",
             onClick:()=>{recordTime(cur);const nc=cur+1;setCur(nc);setVisited(v=>({...v,[nc]:true}));},
             "aria-label":"Sljedeće pitanje"},"→")
-        :e("button",{className:"mob-nav-btn mob-nav-end",onClick:submitExam,"aria-label":"Završi ispit"},"✓")
+        :React.createElement("button",{className:"mob-nav-btn mob-nav-end",onClick:submitExam,"aria-label":"Završi ispit"},"✓")
     ),
     /* ── Mobile question grid bottom sheet ── */
     mobGrid&&e("div",{className:"mob-sheet-overlay",onClick:()=>setMobGrid(false),"aria-label":"Zatvori"},
@@ -1011,7 +980,7 @@ function Sim({exam,practice,examMode,onExit,onDone,onGoToExam,userData,isPro=fal
           e("span",{style:{marginLeft:"auto",fontSize:12,color:"var(--muted)"}},answeredCount+"/"+QSX.length+" odgovoreno"),
           e("button",{className:"mob-sheet-close",onClick:()=>setMobGrid(false),"aria-label":"Zatvori"},"×")
         ),
-        e("div",{className:"qgrid mob-sheet-grid"},
+        React.createElement("div",{className:"qgrid mob-sheet-grid"},
           QSX.map((qi,i)=>{
             const a=answers[qi.id];const isC=cur===i;const rv=rev[qi.id]||done;
             const ok=rv&&chk(qi,a)===true;const bad=rv&&chk(qi,a)===false;

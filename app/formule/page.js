@@ -295,7 +295,7 @@ export default function Formule() {
             {filtered.length === 0 && (
               <div style={{textAlign:"center", padding:"48px 20px", color:"var(--muted)"}}>
                 <div style={{fontSize:32, marginBottom:12}}>🔍</div>
-                <div style={{fontWeight:600}}>Nema rezultata za "{search}"</div>
+                <div style={{fontWeight:600}}>Nema rezultata za &quot;{search}&quot;</div>
                 <div style={{fontSize:13, marginTop:6}}>Pokušaj drugačiji izraz</div>
               </div>
             )}

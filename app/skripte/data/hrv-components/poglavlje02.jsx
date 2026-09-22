@@ -1,3 +1,4 @@
+
 /**
  * H02 — Maturiraj.hr — Hrvatski · H02 · Srednji vijek i hrvatska pismenost
  * Auto-generated from Maturiraj_Hrvatski_H02.html
@@ -14,6 +15,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import ChapterWrapper from './ChapterWrapper';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 import { SHARED_LIT_CSS } from './shared-lit-styles';
 import {
   TimelinePismenost, AuthorCardDante, SVGDanteStruktura,
@@ -4978,28 +4980,26 @@ function citSearch(query){
 }`;
 
 
-function H02ReactLayers() {
-  const [anchors, setAnchors] = useState({});
+const H02_ANCHOR_IDS = {
+      timelinePismenost: 'h02-react-timeline-pismenost',
+      authorDante:       'h02-react-author-dante',
+      svgDante:          'h02-react-svg-dante',
+      kantike:           'h02-react-kantike',
+      danteVsHomer:      'h02-react-dante-vs-homer',
+      authorPretece:     'h02-react-author-pretece',
+      krsniList:         'h02-react-krsni-list',
+      statCards:         'h02-react-stat-cards',
+      timelineOtkrice:   'h02-react-timeline-otkrice',
+      tablicaPisama:     'h02-react-tablica-pisama',
+      glagoljica:        'h02-react-glagoljica',
+      geoMapa:           'h02-react-geo-mapa',
+      esejTeze:          'h02-react-esej-teze',
+      citatnik:          'h02-react-citatnik',
+      pojmovnik:         'h02-react-pojmovnik',
+    };
 
-  useEffect(() => {
-    setAnchors({
-      timelinePismenost: document.getElementById('h02-react-timeline-pismenost'),
-      authorDante:       document.getElementById('h02-react-author-dante'),
-      svgDante:          document.getElementById('h02-react-svg-dante'),
-      kantike:           document.getElementById('h02-react-kantike'),
-      danteVsHomer:      document.getElementById('h02-react-dante-vs-homer'),
-      authorPretece:     document.getElementById('h02-react-author-pretece'),
-      krsniList:         document.getElementById('h02-react-krsni-list'),
-      statCards:         document.getElementById('h02-react-stat-cards'),
-      timelineOtkrice:   document.getElementById('h02-react-timeline-otkrice'),
-      tablicaPisama:     document.getElementById('h02-react-tablica-pisama'),
-      glagoljica:        document.getElementById('h02-react-glagoljica'),
-      geoMapa:           document.getElementById('h02-react-geo-mapa'),
-      esejTeze:          document.getElementById('h02-react-esej-teze'),
-      citatnik:          document.getElementById('h02-react-citatnik'),
-      pojmovnik:         document.getElementById('h02-react-pojmovnik'),
-    });
-  }, []);
+function H02ReactLayers() {
+  const anchors = useDomAnchors(H02_ANCHOR_IDS);
 
   return (
     <>

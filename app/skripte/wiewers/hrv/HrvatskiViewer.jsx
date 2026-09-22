@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useClientState } from '@/lib/hooks/useClientState'
 import { useRouter } from 'next/navigation'
 import {
   HRV_POGAVLJA_META,
@@ -1442,7 +1443,7 @@ function PricingPanel() {
           <div className="pricing-faq-a">Roditelji mogu kreirati svoj račun i povezati se s djetetovim profilom (uz djetetovo dopuštenje). U dashboardu vide vrijeme učenja, napredak po predmetima, rezultate dijagnostika i tjedne sažetke. Dostupno u Standard i Pro tieru.</div>
         </details>
         <details className="pricing-faq-item">
-          <summary className="pricing-faq-q">Što je „Prijemni" u Pro tieru?</summary>
+          <summary className="pricing-faq-q">Što je „Prijemni&quot; u Pro tieru?</summary>
           <div className="pricing-faq-a">Pored mature, Pro tier uključuje pripremu za <strong>fakultetske prijemne ispite</strong> (medicina, pravo, FER, FSB, Filozofski, Ekonomski…). Sadržaj se temelji na arhivi prijemnih ispita iz prošlih godina + AI personalizirani plan vježbanja.</div>
         </details>
       </div>
@@ -1481,21 +1482,23 @@ export default function HrvatskiViewer({ onBack }) {
   const firstImplementedId =
     HRV_POGAVLJA_META.find((item) => item.implemented)?.id || 'poglavlje-01'
 
-  const [activeChapterId, setActiveChapterId] = useState('overview')
-  const [activeTab, setActiveTab] = useState(98)
+  const [navigation, setNavigation] = useClientState(() => {
+    try {
+      if (!sessionStorage.getItem('hrv_pricing_seen')) {
+        sessionStorage.setItem('hrv_pricing_seen', '1')
+        return { activeChapterId: 'pretplata', activeTab: 99 }
+      }
+    } catch {}
+    return { activeChapterId: 'overview', activeTab: 98 }
+  }, { activeChapterId: 'overview', activeTab: 98 })
+  const { activeChapterId, activeTab } = navigation
+  const setActiveChapterId = id => setNavigation(prev => ({ ...prev, activeChapterId: id }))
+  const setActiveTab = tab => setNavigation(prev => ({ ...prev, activeTab: tab }))
   const [answers, setAnswers] = useState({})
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   // Lazy-load chapter data on demand — cache to avoid re-fetching
   const chapterCache = useRef({})
-
-  useEffect(() => {
-    if (!sessionStorage.getItem('hrv_pricing_seen')) {
-      sessionStorage.setItem('hrv_pricing_seen', '1')
-      setActiveChapterId('pretplata')
-      setActiveTab(99)
-    }
-  }, [])
 
   const chapterMeta = null
   const chapter = null

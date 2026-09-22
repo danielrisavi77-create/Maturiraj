@@ -330,7 +330,7 @@ export function CompareAlegorijaGundulic() {
       <div className="box-int" style={{ marginBottom: 12 }}>
         <div className="box-int-lbl">Za ispit - uvijek navesti obje razine</div>
         <div className="box-int-txt">
-          NCVVO često pita: "Što Dubravka simbolizira?" Odgovor mora imati obje razine: (1) pastoralna priča o ljubavi Miljenka i Dubravke,
+          NCVVO često pita: &quot;Što Dubravka simbolizira?&quot; Odgovor mora imati obje razine: (1) pastoralna priča o ljubavi Miljenka i Dubravke,
           (2) alegorija dubrovačke slobode i politicke borbe za vlast.
         </div>
       </div>

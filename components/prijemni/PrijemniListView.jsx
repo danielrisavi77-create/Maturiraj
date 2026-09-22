@@ -1,5 +1,7 @@
 ﻿'use client'
 import { useMemo, useState, useEffect } from 'react'
+import { useCurrentTime } from '@/lib/hooks/useCurrentTime'
+import { useCompareDeepLink } from '@/lib/prijemni/useCompareDeepLink'
 import { daysUntil, formatDays, pragZona } from './helpers'
 import { CSS } from './styles'
 import { personalizeFakulteti } from '@/lib/prijemni/personalize'
@@ -58,10 +60,15 @@ export default function PrijemniListView({ fakulteti, onSelect, track, isPro = f
       .finally(() => setLoadingScores(false))
   }, [])
 
-  // Auto-open matcher from onboarding wizard
+  const matcherRequested = autoOpenMatcher && !loadingScores
+  const [previousMatcherRequest, setPreviousMatcherRequest] = useState(matcherRequested)
+  if (matcherRequested !== previousMatcherRequest) {
+    setPreviousMatcherRequest(matcherRequested)
+    if (matcherRequested) setModalOpen(true)
+  }
+  // Acknowledge the request after the dialog has committed.
   useEffect(() => {
     if (autoOpenMatcher && !loadingScores) {
-      setModalOpen(true)
       onMatcherAutoOpenDone?.()
     }
   }, [autoOpenMatcher, loadingScores])
@@ -124,7 +131,7 @@ export default function PrijemniListView({ fakulteti, onSelect, track, isPro = f
 
   // Compare feature
   const compare = useCompare()
-  const [compareOpen, setCompareOpen] = useState(false)
+  const [compareOpen, setCompareOpen] = useCompareDeepLink(track)
   const [maxToast, setMaxToast] = useState(false)
 
   const handleCompareAll = (e, f) => {
@@ -138,17 +145,6 @@ export default function PrijemniListView({ fakulteti, onSelect, track, isPro = f
     if (blocked) setMaxToast(true)
     else track?.('compare_add_all', f.id, null, null, { count: f.studiji.length })
   }
-
-  // Auto-open compare view when arriving from a share deep-link (?openCompare=1)
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('openCompare') === '1') {
-      setCompareOpen(true)
-      window.history.replaceState({}, '', '/prijemni')
-      track?.('compare_deeplink_open')
-    }
-  }, [])
 
   // Build flat studij map for CompareView + CompareDock
   const allStudijiMap = useMemo(() => {
@@ -213,10 +209,8 @@ export default function PrijemniListView({ fakulteti, onSelect, track, isPro = f
   }
 
   // Matura countdown — državna matura 2026 (2. lipnja 2026)
-  const daysToMatura = useMemo(() => {
-    const diff = new Date('2026-06-02T08:00:00').getTime() - Date.now()
-    return Math.ceil(diff / 86400000)
-  }, [])
+  const now = useCurrentTime()
+  const daysToMatura = now === null ? null : Math.ceil((new Date('2026-06-02T08:00:00').getTime() - now) / 86400000)
 
   return (
     <div className="pr-root">
@@ -252,7 +246,7 @@ export default function PrijemniListView({ fakulteti, onSelect, track, isPro = f
             </div>
             <div className="pr-stat-divider"/>
             <div className="pr-stat" title="Državna matura 2026 — 2. lipnja">
-              <div className="pr-stat-n" style={{color: daysToMatura <= 30 ? '#f87171' : daysToMatura <= 60 ? '#fb923c' : 'var(--text)'}}>
+              <div className="pr-stat-n" style={{color: daysToMatura === null ? 'var(--text)' : daysToMatura <= 30 ? '#f87171' : daysToMatura <= 60 ? '#fb923c' : 'var(--text)'}}>
                 {daysToMatura > 0 ? daysToMatura : '—'}
               </div>
               <div className="pr-stat-l">dana do mature</div>

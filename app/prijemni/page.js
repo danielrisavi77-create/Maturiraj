@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { usePageTracking } from '@/lib/hooks/usePageTracking'
+import { useCompareDeepLink } from '@/lib/prijemni/useCompareDeepLink'
 import { getAllFakulteti } from '@/lib/prijemni/api'
 import PrijemniListView from '@/components/prijemni/PrijemniListView'
 import PrijemniStudijiView from '@/components/prijemni/PrijemniStudijiView'
@@ -148,7 +149,11 @@ export default function Prijemni() {
     if (selStudij) track('tab_click', selFak.id, selStudij.id, t)
   }
 
-  useEffect(() => { setSidebarOpen(false) }, [tab])
+  const [previousTab, setPreviousTab] = useState(tab)
+  if (tab !== previousTab) {
+    setPreviousTab(tab)
+    setSidebarOpen(false)
+  }
 
   const { prefs: onboardingPrefs } = useOnboarding()
 
@@ -157,7 +162,7 @@ export default function Prijemni() {
 
   // ── Compare ──────────────────────────────────────────────────
   const compare = useCompare()
-  const [compareOpen, setCompareOpen] = useState(false)
+  const [compareOpen, setCompareOpen] = useCompareDeepLink(track)
   const [maxToast, setMaxToast] = useState(false)
 
   const compareStudiji = useMemo(() => {
@@ -166,17 +171,6 @@ export default function Prijemni() {
     for (const f of fakulteti) for (const s of f.studiji) m.set(s.id, s)
     return compare.ids.map(id => m.get(id)).filter(Boolean)
   }, [fakulteti, compare.ids])
-
-  // Deeplink auto-open
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('openCompare') === '1') {
-      setCompareOpen(true)
-      window.history.replaceState({}, '', '/prijemni')
-      track('compare_deeplink_open')
-    }
-  }, [])
 
   // Navigate to studij from CompareView
   useEffect(() => {

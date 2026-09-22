@@ -180,35 +180,36 @@ function PDFReportScreen({userData,onBack}){
     )
   );
 }
+function calculateScoreForecast(history){
+  var hs=(history||[]).filter(function(h){return typeof h.pct==="number";});
+  if(hs.length<2) return null;
+  var recent=hs.slice(-12);
+  var n=recent.length;
+  var wsum=0,w=0;
+  recent.forEach(function(h,i){var wt=i+1; wsum+=h.pct*wt; w+=wt;});
+  var mu=wsum/w;
+  var trend=recent[n-1].pct-recent[0].pct;
+  mu=Math.max(0,Math.min(100,mu+trend*0.15));
+  var mean=recent.reduce(function(a,h){return a+h.pct;},0)/n;
+  var variance=recent.reduce(function(a,h){return a+(h.pct-mean)*(h.pct-mean);},0)/Math.max(1,n-1);
+  var sd=Math.sqrt(variance);
+  sd=Math.max(6,Math.min(18,sd));
+  var seed=(Math.floor(mu*1000+sd*7+n)>>>0)||1;
+  function rng(){seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}
+  function gauss(){var u=0,v=0;while(u===0)u=rng();while(v===0)v=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  var M=5000, counts={1:0,2:0,3:0,4:0,5:0};
+  for(var k=0;k<M;k++){
+    var x=mu+gauss()*sd; if(x<0)x=0; if(x>100)x=100;
+    var g=x>=85?5:x>=70?4:x>=55?3:x>=40?2:1;
+    counts[g]++;
+  }
+  var pc={}; [1,2,3,4,5].forEach(function(g){pc[g]=Math.round(counts[g]/M*100);});
+  var p4=Math.round((counts[4]+counts[5])/M*100);
+  var likely=[1,2,3,4,5].reduce(function(b,g){return counts[g]>counts[b]?g:b;},1);
+  return {pc:pc,p4:p4,likely:likely,n:n};
+}
 function ScoreForecast({history}){
-  var data=React.useMemo(function(){
-    var hs=(history||[]).filter(function(h){return typeof h.pct==="number";});
-    if(hs.length<2) return null;
-    var recent=hs.slice(-12);
-    var n=recent.length;
-    var wsum=0,w=0;
-    recent.forEach(function(h,i){var wt=i+1; wsum+=h.pct*wt; w+=wt;});
-    var mu=wsum/w;
-    var trend=recent[n-1].pct-recent[0].pct;
-    mu=Math.max(0,Math.min(100,mu+trend*0.15));
-    var mean=recent.reduce(function(a,h){return a+h.pct;},0)/n;
-    var variance=recent.reduce(function(a,h){return a+(h.pct-mean)*(h.pct-mean);},0)/Math.max(1,n-1);
-    var sd=Math.sqrt(variance);
-    sd=Math.max(6,Math.min(18,sd));
-    var seed=(Math.floor(mu*1000+sd*7+n)>>>0)||1;
-    function rng(){seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}
-    function gauss(){var u=0,v=0;while(u===0)u=rng();while(v===0)v=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
-    var M=5000, counts={1:0,2:0,3:0,4:0,5:0};
-    for(var k=0;k<M;k++){
-      var x=mu+gauss()*sd; if(x<0)x=0; if(x>100)x=100;
-      var g=x>=85?5:x>=70?4:x>=55?3:x>=40?2:1;
-      counts[g]++;
-    }
-    var pc={}; [1,2,3,4,5].forEach(function(g){pc[g]=Math.round(counts[g]/M*100);});
-    var p4=Math.round((counts[4]+counts[5])/M*100);
-    var likely=[1,2,3,4,5].reduce(function(b,g){return counts[g]>counts[b]?g:b;},1);
-    return {pc:pc,p4:p4,likely:likely,n:n};
-  },[(history||[]).length,(history||[]).map(function(h){return h.pct;}).join(",")]);
+  var data=React.useMemo(function(){return calculateScoreForecast(history);},[history]);
   if(!data) return null;
   var COL={5:"#50c878",4:"#86c06a",3:"#e9b446",2:"#e08a3c",1:"#e05252"};
   return e("div",{style:{marginBottom:18,padding:"16px 16px 14px",borderRadius:14,background:"var(--s1)",border:"1px solid var(--bdr)"}},

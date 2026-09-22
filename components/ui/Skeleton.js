@@ -33,7 +33,7 @@ export function SkGap({ h = 8 }) {
  */
 export function SkText({ lines = 3, lastWidth = '60%' }) {
   const widths = Array.from({ length: lines }, (_, i) =>
-    i === lines - 1 ? lastWidth : `${70 + Math.floor(Math.random() * 28)}%`
+    i === lines - 1 ? lastWidth : `${70 + (i * 13 + 7) % 28}%`
   )
   return (
     <span style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

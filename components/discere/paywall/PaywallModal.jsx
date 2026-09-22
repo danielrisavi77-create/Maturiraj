@@ -79,7 +79,11 @@ const KEYFRAMES = `
   }
 `
 
-export default function PaywallModal({
+export default function PaywallModal(props) {
+  return props.open ? <PaywallModalSession {...props} /> : null
+}
+
+function PaywallModalSession({
   open               = false,
   onClose,
   copy               = SIMULATOR_COPY,
@@ -95,8 +99,6 @@ export default function PaywallModal({
     if (open) {
       const t = setTimeout(() => setVisible(true), 12)
       return () => clearTimeout(t)
-    } else {
-      setVisible(false)
     }
   }, [open])
 

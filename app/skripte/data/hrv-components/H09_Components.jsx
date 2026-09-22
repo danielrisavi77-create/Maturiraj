@@ -181,9 +181,9 @@ export function AuthorCardCamus({context='l0'}) {
             <div className="ac9-work">
               <div className="ac9-badge">☀️</div>
               <div>
-                <div className="ac9-work-title">Stranac (L'Étranger)</div>
+                <div className="ac9-work-title">Stranac (L&apos;Étranger)</div>
                 <div className="ac9-work-meta">1942. · ROMAN · 2 DIJELA · OBVEZATNO 2026</div>
-                <div className="ac9-work-desc">Meursault ne plače na sahrani majke, ubije Arapina „zbog sunca". <strong>Najčitanija francuska knjiga 20. st.</strong></div>
+                <div className="ac9-work-desc">Meursault ne plače na sahrani majke, ubije Arapina „zbog sunca&quot;. <strong>Najčitanija francuska knjiga 20. st.</strong></div>
               </div>
             </div>
             <div className="ac9-work">
@@ -191,7 +191,7 @@ export function AuthorCardCamus({context='l0'}) {
               <div>
                 <div className="ac9-work-title">Mit o Sizifu · Caligula</div>
                 <div className="ac9-work-meta">1942. · ESEJ + DRAMA · ISTI CIKLUS</div>
-                <div className="ac9-work-desc">Tri žanra, jedna tema: kako živjeti bez metafizičke utjehe. „Treba zamisliti Sizifa sretnim" — završna rečenica eseja.</div>
+                <div className="ac9-work-desc">Tri žanra, jedna tema: kako živjeti bez metafizičke utjehe. „Treba zamisliti Sizifa sretnim&quot; — završna rečenica eseja.</div>
               </div>
             </div>
             <div className="ac9-work">
@@ -262,7 +262,7 @@ export function CompareCamusSartre() {
       <style>{CSS_CMP9}</style>
       <div className="box-int" style={{marginBottom:12}}>
         <div className="box-int-lbl">⚠️ Pazi — česta greška na eseju</div>
-        <div className="box-int-txt">Camus <strong>nije egzistencijalst</strong> u Sartreovom smislu — on sam odbija tu etiketu. Apsurd i egzistencijalizam se preklapaju, ali su različite filozofije. Na eseju: uvijek navedi „filozofija apsurda", ne „egzistencijalizam" kad govoriš o Camusu.</div>
+        <div className="box-int-txt">Camus <strong>nije egzistencijalst</strong> u Sartreovom smislu — on sam odbija tu etiketu. Apsurd i egzistencijalizam se preklapaju, ali su različite filozofije. Na eseju: uvijek navedi „filozofija apsurda&quot;, ne „egzistencijalizam&quot; kad govoriš o Camusu.</div>
       </div>
       <SH9 label="04b · Camus vs Sartre — najčešća greška na eseju"/>
       <div className="cmp9">
@@ -322,10 +322,10 @@ export function HeroQuoteStranac() {
       <div className="hq9">
         <div className="hq9-eye">NAJPOZNATIJI POČETAK FRANCUSKE PROZE 20. ST. — NAPAMET</div>
         <div className="hq9-text">
-          „Danas mi je umrla majka. <em>Možda i jučer, ne znam.</em>"
+          „Danas mi je umrla majka. <em>Možda i jučer, ne znam.</em>&quot;
         </div>
-        <div className="hq9-body">Dvije rečenice koje sadrže sve: ravnodušnost prema datumu, brisanje emocionalne hijerarhije, hladan izvještajni ton. „Možda i jučer" — datum majčine smrti nije važan. To je <strong style={{color:'var(--t1)'}}>najavljeni zločin pred društvom</strong> — Meursault ne laže, ali njegova iskrenost postaje optužnica.</div>
-        <div className="hq9-source">STRANAC (L'ÉTRANGER) · A. CAMUS · 1942. · I. DIO, I. POGLAVLJE · BIJELA PROZA</div>
+        <div className="hq9-body">Dvije rečenice koje sadrže sve: ravnodušnost prema datumu, brisanje emocionalne hijerarhije, hladan izvještajni ton. „Možda i jučer&quot; — datum majčine smrti nije važan. To je <strong style={{color:'var(--t1)'}}>najavljeni zločin pred društvom</strong> — Meursault ne laže, ali njegova iskrenost postaje optužnica.</div>
+        <div className="hq9-source">STRANAC (L&apos;ÉTRANGER) · A. CAMUS · 1942. · I. DIO, I. POGLAVLJE · BIJELA PROZA</div>
       </div>
     </>
   );

@@ -28,7 +28,7 @@
 //   </SimulatorPreviewGate>
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import PaywallModal from './PaywallModal'
 import BlurLockOverlay from './BlurLockOverlay'
@@ -51,15 +51,15 @@ export default function SimulatorPreviewGate({
   const isLocked = !access.canProceed
   const isNotLoggedIn = access.reason === 'not-logged-in'
 
-  const [modalOpen,         setModalOpen]         = useState(false)
+  const [modalOpen,         setModalOpen]         = useState(isLocked)
   const [modalWasDismissed, setModalWasDismissed] = useState(false)
+  const [previousLocked, setPreviousLocked] = useState(isLocked)
 
   // Auto-open once on first lock hit
-  useEffect(() => {
-    if (isLocked && !modalWasDismissed) {
-      setModalOpen(true)
-    }
-  }, [isLocked, modalWasDismissed])
+  if (previousLocked !== isLocked) {
+    setPreviousLocked(isLocked)
+    if (isLocked && !modalWasDismissed) setModalOpen(true)
+  }
 
   const openPaywall  = useCallback(() => setModalOpen(true), [])
   const closePaywall = useCallback(() => {

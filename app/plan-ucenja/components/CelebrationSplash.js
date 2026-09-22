@@ -3,10 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 /* ─── Confetti particle ────────────────────────── */
-function randomBetween(a, b) {
-  return a + Math.random() * (b - a)
-}
-
 const CONFETTI_COLORS = [
   '#4b7bff', '#7c5cfc', '#e9b446', '#f5d170',
   '#3ecf6e', '#2dd4bf', '#f87171', '#c084fc',
@@ -16,18 +12,27 @@ const CONFETTI_COLORS = [
 const CONFETTI_COUNT = 80
 
 function generateParticles() {
+  // Fixed decorative layout keeps server markup and hydration identical.
+  let seed = 61723
+  const random = () => {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
+    return seed / 4294967296
+  }
+  const randomBetween = (a, b) => a + random() * (b - a)
   return Array.from({ length: CONFETTI_COUNT }, (_, i) => ({
     id: i,
     x: randomBetween(5, 95),           // % from left
     delay: randomBetween(0, 1.2),      // s
     duration: randomBetween(2.4, 4.2), // s
     size: randomBetween(6, 13),        // px
-    color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+    color: CONFETTI_COLORS[Math.floor(random() * CONFETTI_COLORS.length)],
     rotation: randomBetween(-180, 180),
-    shape: Math.random() > 0.5 ? 'rect' : 'circle',
+    shape: random() > 0.5 ? 'rect' : 'circle',
     swayX: randomBetween(-60, 60),     // horizontal drift px
   }))
 }
+
+const PARTICLES = generateParticles()
 
 /* ─── Stats card ───────────────────────────────── */
 function StatCard({ icon, label, value, color, delay }) {
@@ -64,19 +69,11 @@ export default function CelebrationSplash({
   const router   = useRouter()
   const [visible, setVisible] = useState(false)
   const [leaving, setLeaving] = useState(false)
-  const particles = useRef(generateParticles())
+  const particles = PARTICLES
   const timerRef  = useRef(null)
 
   const isPro      = planType === 'pro'
   const ukupnoSati = satiTjedno * tjednaDoMature
-
-  useEffect(() => {
-    // Kratka pauza pa prikaži
-    const t = setTimeout(() => setVisible(true), 80)
-    // Auto-redirect nakon 6s
-    timerRef.current = setTimeout(() => handleContinue(), 6200)
-    return () => { clearTimeout(t); clearTimeout(timerRef.current) }
-  }, [])
 
   const handleContinue = () => {
     if (leaving) return
@@ -87,6 +84,14 @@ export default function CelebrationSplash({
       else router.push('/plan-ucenja/dashboard')
     }, 400)
   }
+
+  useEffect(() => {
+    // Kratka pauza pa prikaži
+    const t = setTimeout(() => setVisible(true), 80)
+    // Auto-redirect nakon 6s
+    timerRef.current = setTimeout(() => handleContinue(), 6200)
+    return () => { clearTimeout(t); clearTimeout(timerRef.current) }
+  }, [])
 
   return (
     <>
@@ -150,7 +155,7 @@ export default function CelebrationSplash({
 
         {/* ── Confetti ── */}
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-          {particles.current.map(p => (
+          {particles.map(p => (
             <div key={p.id} style={{
               position: 'absolute',
               left: `${p.x}%`,

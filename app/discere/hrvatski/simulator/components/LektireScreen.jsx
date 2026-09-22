@@ -6,10 +6,17 @@ import { POJMOVNIK, POJMOVNIK_HRV } from '../data/pojmovnikData';
 import { PojmTip } from './OnboardingAndLists';
 import { LEKTIRE, LEKTIRE_PITANJA, PRIMJERI } from '../data/lektireData';
 import { LEKTIRA_SKRIPTA, skriptaUrl } from '../data/lektiraSkripta';
+import { useClientState } from '@/lib/hooks/useClientState';
 
 function LektireScreen({onBack,userData,updateUserData,onGoToExam,initialDjelo,initialAutor,onOpenSkripta}){
+  const deepIndex=initialDjelo?LEKTIRE.findIndex(l=>l.djelo===initialDjelo&&(!initialAutor||l.autor===initialAutor)):-1;
   const[tab,setTab]=React.useState("lektire");
-  const[otvorenaDjelo,setOtvorenaDjelo]=React.useState(null);
+  const[otvorenaDjelo,setOtvorenaDjelo]=React.useState(deepIndex>=0?deepIndex:null);
+  const[previousDeep,setPreviousDeep]=React.useState({initialDjelo,initialAutor});
+  if(previousDeep.initialDjelo!==initialDjelo||previousDeep.initialAutor!==initialAutor){
+    setPreviousDeep({initialDjelo,initialAutor});
+    if(deepIndex>=0){setTab("lektire");setOtvorenaDjelo(deepIndex);}
+  }
 
   // Deep-link iz skripti: otvori zadano djelo (uz default filter "sve" → indeks u
   // filtrirane === indeks u LEKTIRE). Pokreće se jednom, na dolasku iz skripte.
@@ -17,8 +24,6 @@ function LektireScreen({onBack,userData,updateUserData,onGoToExam,initialDjelo,i
     if(!initialDjelo)return;
     const idx=LEKTIRE.findIndex(l=>l.djelo===initialDjelo&&(!initialAutor||l.autor===initialAutor));
     if(idx<0)return;
-    setTab("lektire");
-    setOtvorenaDjelo(idx);
     const t=setTimeout(()=>{
       try{const el=document.getElementById("lektira-"+idx);if(el&&el.scrollIntoView)el.scrollIntoView({behavior:"smooth",block:"center"});}catch(e){}
     },220);
@@ -81,7 +86,7 @@ function LektireScreen({onBack,userData,updateUserData,onGoToExam,initialDjelo,i
   },[filterPeriod,searchLektire]);
 
   // Flashcard shuffle
-  const fcItems=React.useMemo(()=>[...LEKTIRE].sort(()=>Math.random()-.5),[]);
+  const[fcItems]=useClientState(()=>[...LEKTIRE].sort(()=>Math.random()-.5),LEKTIRE);
   const fcCur=fcItems[fcIdx%fcItems.length];
 
 

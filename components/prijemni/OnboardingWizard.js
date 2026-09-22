@@ -12,7 +12,7 @@ export default function OnboardingWizard({ onComplete, onAction, track, forceOpe
   const { shouldShow, complete, skip } = useOnboarding()
   const { getVariant, trackConversion } = useABVariant()
   const variant = getVariant('onboarding_length')  // 'a' | 'b', falls back to 'a' while loading
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(forceOpenProp)
   const [step, setStep] = useState(0)
   const [draft, setDraft] = useState(
     initialDraft ?? {
@@ -23,14 +23,16 @@ export default function OnboardingWizard({ onComplete, onAction, track, forceOpe
     }
   )
 
-  // Force-open from parent (edit mode)
-  useEffect(() => {
+  // Apply an edit request before committing the wizard's previous step.
+  const [previousForceOpen, setPreviousForceOpen] = useState(forceOpenProp)
+  if (previousForceOpen !== forceOpenProp) {
+    setPreviousForceOpen(forceOpenProp)
     if (forceOpenProp) {
       setStep(0)
       if (initialDraft) setDraft(initialDraft)
       setOpen(true)
     }
-  }, [forceOpenProp]) // eslint-disable-line react-hooks/exhaustive-deps
+  }
 
   useEffect(() => {
     if (shouldShow) {

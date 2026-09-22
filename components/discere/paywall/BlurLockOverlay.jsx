@@ -11,7 +11,7 @@
 //   </div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const KEYFRAMES = `
   @keyframes pw-overlay-in {
@@ -30,12 +30,9 @@ export default function BlurLockOverlay({
   onCTAClick,
   ctaLabel    = 'Otključaj',
 }) {
-  const [mounted, setMounted] = useState(false)
-
-  // Defer mount so the entry animation plays reliably
-  useEffect(() => {
-    if (visible) setMounted(true)
-  }, [visible])
+  const [mounted, setMounted] = useState(visible)
+  // Keep the overlay mounted after its first appearance for the exit transition.
+  if (visible && !mounted) setMounted(true)
 
   if (!mounted && !visible) return null
 

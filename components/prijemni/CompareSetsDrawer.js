@@ -47,18 +47,24 @@ const CSS = `
  */
 export default function CompareSetsDrawer({ open, onClose, currentIds = [], isPro = false, onLoad, track }) {
   const [sets, setSets] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(open && isPro)
   const [name, setName] = useState('')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState(null)
+  const [previousAccess, setPreviousAccess] = useState({ open, isPro })
+  if (previousAccess.open !== open || previousAccess.isPro !== isPro) {
+    setPreviousAccess({ open, isPro })
+    setLoading(open && isPro)
+  }
 
   useEffect(() => {
     if (!open || !isPro) return
-    setLoading(true)
+    let cancelled = false
     getCompareSets()
-      .then(setSets)
+      .then(sets => { if (!cancelled) setSets(sets) })
       .catch(() => {})
-      .finally(() => setLoading(false))
+      .finally(() => { if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
   }, [open, isPro])
 
   const handleSave = async () => {

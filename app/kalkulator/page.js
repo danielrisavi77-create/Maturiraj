@@ -20,6 +20,7 @@
 ═══════════════════════════════════════════════════════════════════════════ */
 
 import React, { useState, useMemo, useEffect, useCallback } from "react";
+import { useClientState } from "@/lib/hooks/useClientState";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { isAiEndpointsEnabled } from "@/lib/config/featureFlags";
@@ -1938,22 +1939,42 @@ function KalkulatorInner() {
     window.history.replaceState({}, "", "/kalkulator");
   }, [searchParams]);
 
-  // Restore po povratku s /pro
-  useEffect(() => {
-    if (searchParams.get("restored") !== "1") return;
+  // Read a return snapshot; consume it only after its form values commit.
+  const restoreRequested=searchParams.get("restored")==="1";
+  const[restoreSnapshot]=useClientState(()=>{
+    if(!restoreRequested) return null;
+    const snapshot={complete:false};
     try {
       const s = sessionStorage.getItem("maturiraj_presave_scores");
       const pr = sessionStorage.getItem("maturiraj_presave_profil");
       const fav = sessionStorage.getItem("maturiraj_presave_favoriti");
-      if (s)   setScores(JSON.parse(s));
-      if (pr)  setProfil(JSON.parse(pr));
-      if (fav) setFavoriti(new Set(JSON.parse(fav)));
+      if(s) snapshot.scores=JSON.parse(s);
+      if(pr) snapshot.profil=JSON.parse(pr);
+      if(fav) snapshot.favoriti=new Set(JSON.parse(fav));
+      snapshot.complete=true;
+    }catch{}
+    return snapshot;
+  },null,restoreRequested);
+  const[appliedRestore,setAppliedRestore]=useState(null);
+  if(restoreSnapshot&&restoreSnapshot!==appliedRestore){
+    setAppliedRestore(restoreSnapshot);
+    if('scores' in restoreSnapshot) setScores(restoreSnapshot.scores);
+    if('profil' in restoreSnapshot) setProfil(restoreSnapshot.profil);
+    if('favoriti' in restoreSnapshot) setFavoriti(restoreSnapshot.favoriti);
+  }
+  useEffect(()=>{
+    if(!restoreSnapshot) return;
+    try{
+      if(restoreSnapshot.complete){
       sessionStorage.removeItem("maturiraj_presave_scores");
       sessionStorage.removeItem("maturiraj_presave_profil");
       sessionStorage.removeItem("maturiraj_presave_favoriti");
+      }
     } catch {}
     window.history.replaceState({}, "", "/kalkulator");
-  }, [searchParams]);
+  },[restoreSnapshot]);
+
+  const isAmbassador=(()=>{try{return !!JSON.parse(localStorage.getItem(LS_REFERRAL)||"{}").isAmbassador;}catch{return false;}})();
 
   const {prosjek,hr,mat,strani,izb1,izb2,natjecanja,sport,prijemni}=scores;
   const {prosjek:dp,hr:dhr,mat:dmat,strani:dstr,izb1:di1,izb2:di2,prijemni:dpr}=simDelta;
@@ -2180,7 +2201,7 @@ function KalkulatorInner() {
                 <span className="profil-badge">📊 {totalBodova} bod</span>
                 <span className="profil-badge">♥ {counts.fav} favorita</span>
                 {counts.high>0&&<span className="profil-badge" style={{background:"rgba(62,207,110,.12)",color:"var(--green)",borderColor:"rgba(62,207,110,.2)"}}>✓ {counts.high} dobra šansa</span>}
-                {(()=>{try{const r=JSON.parse(localStorage.getItem(LS_REFERRAL)||"{}");return r.isAmbassador?<span className="profil-badge" style={{background:"rgba(124,92,252,.12)",color:"var(--violet)",borderColor:"rgba(124,92,252,.2)"}}>🏅 Ambassador</span>:null;}catch{return null;}})()}
+                {isAmbassador&&<span className="profil-badge" style={{background:"rgba(124,92,252,.12)",color:"var(--violet)",borderColor:"rgba(124,92,252,.2)"}}>🏅 Ambassador</span>}
               </div>
             </div>
 
@@ -2743,7 +2764,7 @@ function KalkulatorInner() {
             {/* ── TAB: Simulacija ── */}
             {rightTab==="simulacija"&&(
               <>
-                <div className="sim-intro"><strong>Simulacija "što ako"</strong> — pomakni slidere i vidi koji se studiji otključavaju.</div>
+                <div className="sim-intro"><strong>Simulacija &quot;što ako&quot;</strong> — pomakni slidere i vidi koji se studiji otključavaju.</div>
                 {SIM_FIELDS.map(({key,label,step,isFloat,isPrijemni})=>{
                   const cur=scores[key],max=maxGain(key),val=simDelta[key],afterVal=isFloat?(cur+val).toFixed(1):cur+val;
                   return(

@@ -1,3 +1,4 @@
+
 /**
  * H01 — Maturiraj.hr — Hrvatski · H01 · Temelji civilizacije i antika
  * Auto-generated from Maturiraj_Hrvatski_H01.html
@@ -14,6 +15,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import ChapterWrapper from './ChapterWrapper';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 import { SHARED_LIT_CSS } from './shared-lit-styles';
 import {
   HeroQuoteAntigona, AuthorCardSofoklo, TimelineAntika,
@@ -4775,29 +4777,27 @@ function citSearch(query){
 `;
 
 
-function H01ReactLayers() {
-  const [anchors, setAnchors] = useState({});
+const H01_ANCHOR_IDS = {
+      svgBodovi:     'h01-react-svg-bodovi',
+      timeline:      'h01-react-timeline',
+      popKultura:    'h01-react-pop-kultura',
+      crossChapter:  'h01-react-cross-chapter',
+      heroQuote:     'h01-react-hero-quote',
+      statCards:     'h01-react-stat-cards',
+      authorCard:    'h01-react-author-card',
+      compareIsmena: 'h01-react-compare-ismena',
+      svgKreont:     'h01-react-svg-kreont',
+      compareKreont: 'h01-react-compare-kreont',
+      simboli:       'h01-react-simboli',
+      quickRef:      'h01-react-quick-ref',
+      esejTeze:      'h01-react-esej-teze',
+      citati:        'h01-react-citati',
+      citatnik:      'h01-react-citatnik',
+      pojmovnik:     'h01-react-pojmovnik',
+    };
 
-  useEffect(() => {
-    setAnchors({
-      svgBodovi:     document.getElementById('h01-react-svg-bodovi'),
-      timeline:      document.getElementById('h01-react-timeline'),
-      popKultura:    document.getElementById('h01-react-pop-kultura'),
-      crossChapter:  document.getElementById('h01-react-cross-chapter'),
-      heroQuote:     document.getElementById('h01-react-hero-quote'),
-      statCards:     document.getElementById('h01-react-stat-cards'),
-      authorCard:    document.getElementById('h01-react-author-card'),
-      compareIsmena: document.getElementById('h01-react-compare-ismena'),
-      svgKreont:     document.getElementById('h01-react-svg-kreont'),
-      compareKreont: document.getElementById('h01-react-compare-kreont'),
-      simboli:       document.getElementById('h01-react-simboli'),
-      quickRef:      document.getElementById('h01-react-quick-ref'),
-      esejTeze:      document.getElementById('h01-react-esej-teze'),
-      citati:        document.getElementById('h01-react-citati'),
-      citatnik:      document.getElementById('h01-react-citatnik'),
-      pojmovnik:     document.getElementById('h01-react-pojmovnik'),
-    });
-  }, []);
+function H01ReactLayers() {
+  const anchors = useDomAnchors(H01_ANCHOR_IDS);
 
   return (
     <>

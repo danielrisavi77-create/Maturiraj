@@ -119,7 +119,7 @@ export default function EsejAlat({ onTabSwitch }) {
         <div className="sc">
           <span className="sc-ico hchip gr">TEZA 6</span>
           <div className="sc-name">Voda mladosti — mitski motiv</div>
-          <div className="sc-desc">„Voda od mladosti" je renesansni mitski motiv — <em>Fontana della giovinezza</em>. Mladići ga koriste kao instrument prevare, ali Stanac ga prima doslovno. <b>Naivnost vs. sofisticiranost</b>. Motiv otkriva i Stančevu duboku želju za podmlatkom — <em>tragedija unutar komedije</em>: čovjek koji zaista želi biti mlad.</div>
+          <div className="sc-desc">„Voda od mladosti&quot; je renesansni mitski motiv — <em>Fontana della giovinezza</em>. Mladići ga koriste kao instrument prevare, ali Stanac ga prima doslovno. <b>Naivnost vs. sofisticiranost</b>. Motiv otkriva i Stančevu duboku želju za podmlatkom — <em>tragedija unutar komedije</em>: čovjek koji zaista želi biti mlad.</div>
         </div>
       </div>
 
@@ -137,7 +137,7 @@ export default function EsejAlat({ onTabSwitch }) {
         <div className="sc">
           <span className="sc-ico hchip br">TEZA 7</span>
           <div className="sc-name">Dramska ironija kao motor komike</div>
-          <div className="sc-desc">Publika zna što Stanec ne zna — nema „vode od mladosti". Taj jaz između publicnog i Stančeva znanja je mehanizam smijeha, ali i mehanizam empatije: <b>smijemo se, ali i žalimo</b>. Teza: Novela od Stanca koristi dramsku ironiju kao etički instrument — smijeh nije samo zabava, on je moralna refleksija.</div>
+          <div className="sc-desc">Publika zna što Stanec ne zna — nema „vode od mladosti&quot;. Taj jaz između publicnog i Stančeva znanja je mehanizam smijeha, ali i mehanizam empatije: <b>smijemo se, ali i žalimo</b>. Teza: Novela od Stanca koristi dramsku ironiju kao etički instrument — smijeh nije samo zabava, on je moralna refleksija.</div>
         </div>
         <div className="sc">
           <span className="sc-ico hchip go">TEZA 8</span>
@@ -187,7 +187,7 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📝 Uvod eseja o Juditi (model)</div>
         <div className="box-key-txt">
-          <em>„Marko Marulić (1450.–1524.), splitski humanist i najpoznatiji hrv. pisac 16. st. u europskim krugovima, u epu <b>Judita</b> (dovršena 1501., tiskana 1521.) daje prvu veliku hrv. književnu alegoriju turske opasnosti. U 6 pjevanja i 2126 dvostruko rimovanih dvanaesteraca na splitskoj čakavštini, Marulić prepriča biblijsku priču o Juditi i Holofernu kao <em>poziv na otpor</em> — Oloferno su Turci, Judita je Hrvatska, Bog Izraelov je kršćanski Bog koji pomaže slabijima. U ovom eseju pokazat ću kako Marulić koristi <b>alegoriju kao poetičko i političko oruđe</b> — istovremeno književni postupak i domoljubni manifest."</em>
+          <em>„Marko Marulić (1450.–1524.), splitski humanist i najpoznatiji hrv. pisac 16. st. u europskim krugovima, u epu <b>Judita</b> (dovršena 1501., tiskana 1521.) daje prvu veliku hrv. književnu alegoriju turske opasnosti. U 6 pjevanja i 2126 dvostruko rimovanih dvanaesteraca na splitskoj čakavštini, Marulić prepriča biblijsku priču o Juditi i Holofernu kao <em>poziv na otpor</em> — Oloferno su Turci, Judita je Hrvatska, Bog Izraelov je kršćanski Bog koji pomaže slabijima. U ovom eseju pokazat ću kako Marulić koristi <b>alegoriju kao poetičko i političko oruđe</b> — istovremeno književni postupak i domoljubni manifest.&quot;</em>
         </div>
       </div>
 
@@ -197,14 +197,14 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📝 Primjer uvoda (za Tezu 2 — mlado vs. staro)</div>
         <div className="box-key-txt">
-          <em>„Marin Držić (1508.–1567.), dubrovački dramaturg poznat kao <b>„Vidra"</b> i najveći hrv. komediograf, napisao je komediju <b>Novela od Stanca</b> (praizvedena 1550.) kao pokladnu igru — kratku farsu u jednom činu namijenjenoj dubrovačkim karnevalskim svečanostima. U djelu koje se odvija jedne pokladne noći, mladi dubrovački vlastelini nasamare Stanca, starog seljaka iz Trebinja, uvjeravajući ga da ga je voda podmladila. Na taj način Držić postavlja temeljnu dramatsku opreku: <em>mlado vs. staro</em>, vlastela vs. seljak, pamet vs. naivnost. U ovom eseju pokazat ću kako Novela od Stanca nije samo zabavna farsa — nego <b>precizni komentar dubrovačkog društva i pokladnog karnevalskog koda</b> u kojemu je prevara legitimna, a naivnost kažnjiva."</em>
+          <em>„Marin Držić (1508.–1567.), dubrovački dramaturg poznat kao <b>„Vidra&quot;</b> i najveći hrv. komediograf, napisao je komediju <b>Novela od Stanca</b> (praizvedena 1550.) kao pokladnu igru — kratku farsu u jednom činu namijenjenoj dubrovačkim karnevalskim svečanostima. U djelu koje se odvija jedne pokladne noći, mladi dubrovački vlastelini nasamare Stanca, starog seljaka iz Trebinja, uvjeravajući ga da ga je voda podmladila. Na taj način Držić postavlja temeljnu dramatsku opreku: <em>mlado vs. staro</em>, vlastela vs. seljak, pamet vs. naivnost. U ovom eseju pokazat ću kako Novela od Stanca nije samo zabavna farsa — nego <b>precizni komentar dubrovačkog društva i pokladnog karnevalskog koda</b> u kojemu je prevara legitimna, a naivnost kažnjiva.&quot;</em>
         </div>
       </div>
 
       <div className="box-int">
         <div className="box-int-lbl">🎯 Anatomija dobrog uvoda — 5 obaveznih elemenata</div>
         <div className="box-int-txt">
-          <b>(1)</b> <em>Autor + datacija + djelo</em> — „Marin Držić (1508.–1567.), <em>Novela od Stanca</em> (praizvedena 1550.)". <b>(2)</b> <em>Kontekst</em> — pokladna igra, farsa, dubrovačka tradicija. <b>(3)</b> <em>Suženje na temu</em> — „opreka mlado–staro". <b>(4)</b> <em>Središnja tvrdnja</em> — jedna jasna rečenica s tezom. <b>(5)</b> <em>Najava strukture</em> — „u ovom eseju pokazat ću…". <b>Ne počinji s općenitostima. Počinji autorom + djelom + tezom.</b>
+          <b>(1)</b> <em>Autor + datacija + djelo</em> — „Marin Držić (1508.–1567.), <em>Novela od Stanca</em> (praizvedena 1550.)&quot;. <b>(2)</b> <em>Kontekst</em> — pokladna igra, farsa, dubrovačka tradicija. <b>(3)</b> <em>Suženje na temu</em> — „opreka mlado–staro&quot;. <b>(4)</b> <em>Središnja tvrdnja</em> — jedna jasna rečenica s tezom. <b>(5)</b> <em>Najava strukture</em> — „u ovom eseju pokazat ću…&quot;. <b>Ne počinji s općenitostima. Počinji autorom + djelom + tezom.</b>
         </div>
       </div>
 
@@ -214,28 +214,28 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📝 Uvod eseja o Planinama (model)</div>
         <div className="box-key-txt">
-          <em>„Petar Zoranić (~1508.–1569.), zadarski humanist, u djelu <b>Planine</b> (nastale oko 1543., tiskane 1569.) stvara <em>prvi hrv. roman</em> — žanrovski hibrid koji spaja pastoralni roman, putopis, alegoriju i liriku. Protagonist Zoran putuje zadarskim zaleđem kako bi izliječio neuzv. ljubav, ali Zoranić ga iskorištava za nešto veće: kroz epizodu <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić piše <em>prvi eksplicitni manifest hrv. književnosti</em> — 300 godina prije Preporoda. Pokazat ću kako su <b>ljubavna tematika i domoljubni apel</b> u Planinama nerazdvojivi — osobna bol postaje metafora nacionalne tuge."</em>
+          <em>„Petar Zoranić (~1508.–1569.), zadarski humanist, u djelu <b>Planine</b> (nastale oko 1543., tiskane 1569.) stvara <em>prvi hrv. roman</em> — žanrovski hibrid koji spaja pastoralni roman, putopis, alegoriju i liriku. Protagonist Zoran putuje zadarskim zaleđem kako bi izliječio neuzv. ljubav, ali Zoranić ga iskorištava za nešto veće: kroz epizodu <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić piše <em>prvi eksplicitni manifest hrv. književnosti</em> — 300 godina prije Preporoda. Pokazat ću kako su <b>ljubavna tematika i domoljubni apel</b> u Planinama nerazdvojivi — osobna bol postaje metafora nacionalne tuge.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📝 Uvod eseja o Ribanju (model)</div>
         <div className="box-key-txt">
-          <em>„Petar Hektorović (1487.–1572.), hvarski humanist i graditelj Tvrdalja, u djelu <b>Ribanje i ribarsko prigovaranje</b> (1556.) stvara iznimno djelo hrv. renesanse — trodnevno putovanje od Hvara prema Braču i Šolti koje istovremeno jest ep, putopis, ribarska ekloga i poslanica. Za razliku od Marulića koji transformira stvarnost u alegoriju, Hektorović bilježi stvarnost <em>kakva jest</em> — more je stvarno, ribari su stvarni, bugarštice su stvarne. Pokazat ću kako je <b>Hektorovićev dokumentarni realizam</b> revolucionarna novost u hrv. renesansnoj književnosti i zašto je Ribanje dragocjen kulturnopovijesni dokument koji sačuva hrv. usm. tradiciju."</em>
+          <em>„Petar Hektorović (1487.–1572.), hvarski humanist i graditelj Tvrdalja, u djelu <b>Ribanje i ribarsko prigovaranje</b> (1556.) stvara iznimno djelo hrv. renesanse — trodnevno putovanje od Hvara prema Braču i Šolti koje istovremeno jest ep, putopis, ribarska ekloga i poslanica. Za razliku od Marulića koji transformira stvarnost u alegoriju, Hektorović bilježi stvarnost <em>kakva jest</em> — more je stvarno, ribari su stvarni, bugarštice su stvarne. Pokazat ću kako je <b>Hektorovićev dokumentarni realizam</b> revolucionarna novost u hrv. renesansnoj književnosti i zašto je Ribanje dragocjen kulturnopovijesni dokument koji sačuva hrv. usm. tradiciju.&quot;</em>
         </div>
       </div>
 
       <div className="box-int">
         <div className="box-int-lbl">🎯 Usporedna teza — Marulić i Zoranić</div>
         <div className="box-int-txt">
-          <em>„I Marko Marulić u Juditi i Petar Zoranić u Planinama pišu o turskoj prijetnji i domovini — ali iz potpuno različitih poetičkih pozicija. Marulić kodira apel u biblijsku alegoriju (Oloferno = Turci, Judita = Hrvatska); Zoranić ga iskazuje kroz lirsku tugu i alegoriju književnosti (rasuta bašćina, Perivoj od Slave). Oba su jednako politični pisci — samo različitih sredstava. Marulić poziva na borbu mačem (Božjom pomoći); Zoranić poziva na borbu perom (gradnjom hrv. književnosti)."</em>
+          <em>„I Marko Marulić u Juditi i Petar Zoranić u Planinama pišu o turskoj prijetnji i domovini — ali iz potpuno različitih poetičkih pozicija. Marulić kodira apel u biblijsku alegoriju (Oloferno = Turci, Judita = Hrvatska); Zoranić ga iskazuje kroz lirsku tugu i alegoriju književnosti (rasuta bašćina, Perivoj od Slave). Oba su jednako politični pisci — samo različitih sredstava. Marulić poziva na borbu mačem (Božjom pomoći); Zoranić poziva na borbu perom (gradnjom hrv. književnosti).&quot;</em>
         </div>
       </div>
 
       <div className="box-int">
         <div className="box-int-lbl">🎯 Usporedna teza — Hektorović i Marulić</div>
         <div className="box-int-txt">
-          <em>„Dok Marulić u Juditi transformira stvarnost u alegoriju, Hektorović u Ribanju odbija alegoriju i prikazuje stvarnost neposredno. Ova razlika nije slučajna — to su dvije legitimne humanističke poetike. Marulić je „učeni humanist" koji piše za obrazovanu publiku koja čita simbole; Hektorović je „praktični humanist" koji piše za prijatelja Bartučevića i bilježi ono što vidi i čuje. Oba su jednako vrijedno — Judita je kulturni monument, Ribanje je kulturni arhiv."</em>
+          <em>„Dok Marulić u Juditi transformira stvarnost u alegoriju, Hektorović u Ribanju odbija alegoriju i prikazuje stvarnost neposredno. Ova razlika nije slučajna — to su dvije legitimne humanističke poetike. Marulić je „učeni humanist&quot; koji piše za obrazovanu publiku koja čita simbole; Hektorović je „praktični humanist&quot; koji piše za prijatelja Bartučevića i bilježi ono što vidi i čuje. Oba su jednako vrijedno — Judita je kulturni monument, Ribanje je kulturni arhiv.&quot;</em>
         </div>
       </div>
 
@@ -245,28 +245,28 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📄 Uvod (Teza 2 — mlado vs. staro)</div>
         <div className="box-key-txt">
-          <em>„Marin Držić (1508.–1567.), najznačajniji hrv. renesansni dramatičar, u farsi <b>Novela od Stanca</b> (praizvedena 1550.) postavlja jedan od vječnih dramskih sukoba — <b>sudar mladosti i starosti</b>. Stanec, stari seljak iz Trebinja, dolazi u Dubrovnik obilježen tugom i naivnošću; dubrovački mladići — vlastela — dolaze s lukavošću i energijom. Njihov susret u pokladnoj noći nije slučajan — on je dramska slika jednog zakona: u Dubrovniku 16. st., kao i posvuda, <em>pobjeda pripada onima koji znaju pravila igre</em>. U ovom eseju pokazat ću kako Držić koristi opreku mlado–staro kao okvir za širu društvenu sliku."</em>
+          <em>„Marin Držić (1508.–1567.), najznačajniji hrv. renesansni dramatičar, u farsi <b>Novela od Stanca</b> (praizvedena 1550.) postavlja jedan od vječnih dramskih sukoba — <b>sudar mladosti i starosti</b>. Stanec, stari seljak iz Trebinja, dolazi u Dubrovnik obilježen tugom i naivnošću; dubrovački mladići — vlastela — dolaze s lukavošću i energijom. Njihov susret u pokladnoj noći nije slučajan — on je dramska slika jednog zakona: u Dubrovniku 16. st., kao i posvuda, <em>pobjeda pripada onima koji znaju pravila igre</em>. U ovom eseju pokazat ću kako Držić koristi opreku mlado–staro kao okvir za širu društvenu sliku.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 Razrada — Odlomak 1 (Stanac kao tip)</div>
         <div className="box-key-txt">
-          <em>„Stanec nije individualizirani lik s psihološkom dubinom — on je <b>tip „naivnog seljaka"</b> iz kazališne tradicije commedia dell&apos;arte. To što ga ne poznajemo dublje nije Držićev propust — to je žanrovski zahtjev farse. Stanec funkcionira kao nosač opreke: sve što je staro, naivno, ruralno i neiskusno. <b>Njegova tuga za pokojnom ženom na početku</b> jedini je humanizujući detalj — i upravo on objašnjava zašto tako lako prihvaća mit o „vodi od mladosti". Čovjek koji je izgubio svoju ženu i koji stari bez nje — on <em>zaista želi</em> biti mlad. Farsa iskorištava tu čovjekovu slabost bez grižnje savjesti."</em>
+          <em>„Stanec nije individualizirani lik s psihološkom dubinom — on je <b>tip „naivnog seljaka&quot;</b> iz kazališne tradicije commedia dell&apos;arte. To što ga ne poznajemo dublje nije Držićev propust — to je žanrovski zahtjev farse. Stanec funkcionira kao nosač opreke: sve što je staro, naivno, ruralno i neiskusno. <b>Njegova tuga za pokojnom ženom na početku</b> jedini je humanizujući detalj — i upravo on objašnjava zašto tako lako prihvaća mit o „vodi od mladosti&quot;. Čovjek koji je izgubio svoju ženu i koji stari bez nje — on <em>zaista želi</em> biti mlad. Farsa iskorištava tu čovjekovu slabost bez grižnje savjesti.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 Razrada — Odlomak 2 (Mladići kao tip)</div>
         <div className="box-key-txt">
-          <em>„Nasuprot Stancu, dubrovački mladići — Vlaho, Miho i Dživo — predstavljaju sve što Stanec nije: mladi su, urbani, obrazovani, lukavi. Ali ni oni nisu individualizirani — to su tipovi „lukave vlastele". Njihova prevara nije spontana zlonamjerna odluka; to je <b>karnevalska igra</b> koja u pokladno doba postaje legitimna. Važan je detalj: <em>kada odlaze, odlaze u toplinu svojih domova</em> — Stanec ostaje svežan na trgu. Taj kontrast Držić ne komentira; on ga samo prikazuje. I u toj šutnji leži sva oštrost <b>društvene kritike bez moralne pouke</b>."</em>
+          <em>„Nasuprot Stancu, dubrovački mladići — Vlaho, Miho i Dživo — predstavljaju sve što Stanec nije: mladi su, urbani, obrazovani, lukavi. Ali ni oni nisu individualizirani — to su tipovi „lukave vlastele&quot;. Njihova prevara nije spontana zlonamjerna odluka; to je <b>karnevalska igra</b> koja u pokladno doba postaje legitimna. Važan je detalj: <em>kada odlaze, odlaze u toplinu svojih domova</em> — Stanec ostaje svežan na trgu. Taj kontrast Držić ne komentira; on ga samo prikazuje. I u toj šutnji leži sva oštrost <b>društvene kritike bez moralne pouke</b>.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 Zaključak</div>
         <div className="box-key-txt">
-          <em>„Novela od Stanca nije priča o dobrima i zlima — to je priča o tome kako <b>zakoni društva funkcioniraju bez moralne korekture</b>. Mladi pobjeđuju jer posjeduju ono što stari gube: energiju, znanje, pristup. Stanec gubi jer je stranac u gradu koji ne prašta naivnost. Marin Držić ne osuđuje ni jedne ni druge — on nam prikazuje igru i govori: <em>evo kako to ide</em>. Za razliku od Marulića koji u Juditi eksplicitno poziva na otpor i vjeru, ili Zoranića koji u Planinama tuguje za rasutom bašćinom, Držić se samo smije — ali taj smijeh, pažljivo osluškivan, boli."</em>
+          <em>„Novela od Stanca nije priča o dobrima i zlima — to je priča o tome kako <b>zakoni društva funkcioniraju bez moralne korekture</b>. Mladi pobjeđuju jer posjeduju ono što stari gube: energiju, znanje, pristup. Stanec gubi jer je stranac u gradu koji ne prašta naivnost. Marin Držić ne osuđuje ni jedne ni druge — on nam prikazuje igru i govori: <em>evo kako to ide</em>. Za razliku od Marulića koji u Juditi eksplicitno poziva na otpor i vjeru, ili Zoranića koji u Planinama tuguje za rasutom bašćinom, Držić se samo smije — ali taj smijeh, pažljivo osluškivan, boli.&quot;</em>
         </div>
       </div>
 
@@ -276,28 +276,28 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📄 Uvod (Teza: Planine kao književni manifest)</div>
         <div className="box-key-txt">
-          <em>„Petar Zoranić (~1508.–1569.), zadarski humanist, u žanrovski hibridnom djelu <b>Planine</b> (nastale oko 1543., tiskane 1569.) postiže nešto što nitko prije njega nije pokušao u hrv. književnosti: piše <em>manifest za gradnju nacionalne književne tradicije</em>. Kroz alegoriju <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić govori neposredno i rezolutno — <em>hrv. književnost kasni za Europom i to mora biti promijenjeno</em>. U ovom eseju pokazat ću kako Zoranić u Planinama spaja <b>osobnu melankoliju, patriotski apel i književnopovijesnu refleksiju</b> u djelo koje anticipira Ilirski preporod za 300 godina."</em>
+          <em>„Petar Zoranić (~1508.–1569.), zadarski humanist, u žanrovski hibridnom djelu <b>Planine</b> (nastale oko 1543., tiskane 1569.) postiže nešto što nitko prije njega nije pokušao u hrv. književnosti: piše <em>manifest za gradnju nacionalne književne tradicije</em>. Kroz alegoriju <b>Perivoja od Slave</b>, gdje Hrvatska vila jadikuje nad siromašnim jabukama, Zoranić govori neposredno i rezolutno — <em>hrv. književnost kasni za Europom i to mora biti promijenjeno</em>. U ovom eseju pokazat ću kako Zoranić u Planinama spaja <b>osobnu melankoliju, patriotski apel i književnopovijesnu refleksiju</b> u djelo koje anticipira Ilirski preporod za 300 godina.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 Razrada — Perivoj od Slave kao ključna epizoda</div>
         <div className="box-key-txt">
-          <em>„Ključna epizoda Planina je <b>Perivoj od Slave</b> — alegorijski vrt u kojemu četiri vile čuvaju jabučnjake koji simboliziraju nacionalne književnosti. Latina, Grkinja i Kaldejka imaju bujne, lijepe jabuke; Hrvatska vila stoji <em>sramežljivo i tužno</em> s najmalobrojnijim i najlošijim voćem. Ovaj prizor nije dekorativna alegorija — to je <b>književna dijagnoza</b> Zoranićeva doba: hrv. pisci pišu latinskim, zanemaruju vlastiti jezik, nema sustavne kulturne politike. Zoranić ne samo da opisuje problem — on poziva na buđenje. <em>Taj poziv dolazi 1543., puna tri vijeka prije Ilirskog preporoda.</em>"</em>
+          <em>„Ključna epizoda Planina je <b>Perivoj od Slave</b> — alegorijski vrt u kojemu četiri vile čuvaju jabučnjake koji simboliziraju nacionalne književnosti. Latina, Grkinja i Kaldejka imaju bujne, lijepe jabuke; Hrvatska vila stoji <em>sramežljivo i tužno</em> s najmalobrojnijim i najlošijim voćem. Ovaj prizor nije dekorativna alegorija — to je <b>književna dijagnoza</b> Zoranićeva doba: hrv. pisci pišu latinskim, zanemaruju vlastiti jezik, nema sustavne kulturne politike. Zoranić ne samo da opisuje problem — on poziva na buđenje. <em>Taj poziv dolazi 1543., puna tri vijeka prije Ilirskog preporoda.</em>&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 Razrada — Rasuta bašćina i ljubavni gubitak</div>
         <div className="box-key-txt">
-          <em>„Uz književni manifest, Planine nose i drugi bol: <b>rasuta bašćina</b> — rascjepkana domovina pod turskom prijetnjom. Zoranova ljubavna melankolija (ne može oženiti Jagu) i patriotska tuga (ne može zaštititi domovinu) imaju isti emocionalni patos — oboje su gubitci nad kojima nemamo moć. Ova <em>paralela privatnog i javnog bola</em> nije slučajna: Zoranić govori da je osobna nemoć odraz nacionalne nemoći. Time Planine postaju <b>i ljubavni roman i politički esej</b> — žanrovski hibrid koji je jedino mogući odgovor na složenu stvarnost 16. st. Dalmacije."</em>
+          <em>„Uz književni manifest, Planine nose i drugi bol: <b>rasuta bašćina</b> — rascjepkana domovina pod turskom prijetnjom. Zoranova ljubavna melankolija (ne može oženiti Jagu) i patriotska tuga (ne može zaštititi domovinu) imaju isti emocionalni patos — oboje su gubitci nad kojima nemamo moć. Ova <em>paralela privatnog i javnog bola</em> nije slučajna: Zoranić govori da je osobna nemoć odraz nacionalne nemoći. Time Planine postaju <b>i ljubavni roman i politički esej</b> — žanrovski hibrid koji je jedino mogući odgovor na složenu stvarnost 16. st. Dalmacije.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 Zaključak</div>
         <div className="box-key-txt">
-          <em>„Zoranić nije Marulić — ne poziva na oružje niti slavi junaštvo. On tuguje, svjedoči i poziva na budnost. U Planinama je ljubavna tuga samo metafora šire tuge: za domovinom koja se raspada i za književnošću koja zaostaje za Europom. <b>Perivoj od Slave nije samo lijepa alegorija — to je najhrabrija rečenica hrv. renesanse</b>: priznati da zaostajemo i reći: mora biti bolje. To je gesta koja hrv. renesansnu književnost čini aktualnom čak i danas — kad god nacija prepozna vlastitu zaostalost, ona u Zoraniću prepoznaje prvog koji je to glasno rekao."</em>
+          <em>„Zoranić nije Marulić — ne poziva na oružje niti slavi junaštvo. On tuguje, svjedoči i poziva na budnost. U Planinama je ljubavna tuga samo metafora šire tuge: za domovinom koja se raspada i za književnošću koja zaostaje za Europom. <b>Perivoj od Slave nije samo lijepa alegorija — to je najhrabrija rečenica hrv. renesanse</b>: priznati da zaostajemo i reći: mora biti bolje. To je gesta koja hrv. renesansnu književnost čini aktualnom čak i danas — kad god nacija prepozna vlastitu zaostalost, ona u Zoraniću prepoznaje prvog koji je to glasno rekao.&quot;</em>
         </div>
       </div>
 
@@ -307,24 +307,24 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📄 Teza + model argumenta</div>
         <div className="box-key-txt">
-          <b>Teza:</b> <em>„Hektorovićevo Ribanje nije idila — to je humanistički program u ribarskoj odori: demokratizacija spoznaje, arhiviranje kulture i proslava slobodnog razgovora kao najviše vrijednosti."</em>
+          <b>Teza:</b> <em>„Hektorovićevo Ribanje nije idila — to je humanistički program u ribarskoj odori: demokratizacija spoznaje, arhiviranje kulture i proslava slobodnog razgovora kao najviše vrijednosti.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 Model argumenta (TIPS)</div>
         <div className="box-key-txt">
-          <b>T:</b> <em>„Hektorović u Ribanju demokratizira humanistički ideal — pokazuje da mudrost nije privilegija školovane vlastele."</em><br />
-          <b>I:</b> <em>„Ribari Nikola Zet i Paskoje Debeli pjevaju bugarštice koje Hektorović vjerno bilježi — oni nisu obiekt njegova promatranja, oni su <em>njegovi sugovornici</em>."</em><br />
-          <b>P:</b> <em>„Hektorović ne samo da sluša ribare — on ih smatra čuvarima kulturnog blaga koje Marulić i Zoranić, s latinskom i talijanskom naobrazbom, ne bi ni prepoznali kao vrijednost."</em><br />
-          <b>S:</b> <em>„Time Ribanje postaje više od putopisa — to je <b>manifest pluralizma humanizma</b>: i latinski ep i narodna bugarštica su jednako vrijedni dokumenti jedne civilizacije."</em>
+          <b>T:</b> <em>„Hektorović u Ribanju demokratizira humanistički ideal — pokazuje da mudrost nije privilegija školovane vlastele.&quot;</em><br />
+          <b>I:</b> <em>„Ribari Nikola Zet i Paskoje Debeli pjevaju bugarštice koje Hektorović vjerno bilježi — oni nisu obiekt njegova promatranja, oni su <em>njegovi sugovornici</em>.&quot;</em><br />
+          <b>P:</b> <em>„Hektorović ne samo da sluša ribare — on ih smatra čuvarima kulturnog blaga koje Marulić i Zoranić, s latinskom i talijanskom naobrazbom, ne bi ni prepoznali kao vrijednost.&quot;</em><br />
+          <b>S:</b> <em>„Time Ribanje postaje više od putopisa — to je <b>manifest pluralizma humanizma</b>: i latinski ep i narodna bugarštica su jednako vrijedni dokumenti jedne civilizacije.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 Zaključak</div>
         <div className="box-key-txt">
-          <em>„Hektorović ostaje usamljen u hrv. renesansi — nema izravnih nastavljača koji bi preuzeli njegov dokumentarni realizam. Ali <b>posredno utječe na sve buduće bilježitelje hrv. usmene tradicije</b> — od Kaćića Miošića (18. st.) do Vuka Stefanovića Karadžića (19. st.) koji romantičarski sakuplja narodne pjesme. Hektorović je napravio to 300 godina ranije, bez teorijskog okvira, samo iz humanističke ljubavi prema stvarnom. I upravo ta <em>nekonceptualizirana autentičnost</em> čini Ribanje najmodernijim djelom hrv. renesanse."</em>
+          <em>„Hektorović ostaje usamljen u hrv. renesansi — nema izravnih nastavljača koji bi preuzeli njegov dokumentarni realizam. Ali <b>posredno utječe na sve buduće bilježitelje hrv. usmene tradicije</b> — od Kaćića Miošića (18. st.) do Vuka Stefanovića Karadžića (19. st.) koji romantičarski sakuplja narodne pjesme. Hektorović je napravio to 300 godina ranije, bez teorijskog okvira, samo iz humanističke ljubavi prema stvarnom. I upravo ta <em>nekonceptualizirana autentičnost</em> čini Ribanje najmodernijim djelom hrv. renesanse.&quot;</em>
         </div>
       </div>
 
@@ -334,24 +334,24 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📄 TIP A: Djelo iz H11 kao glavni predmet eseja</div>
         <div className="box-key-txt">
-          <em>„[Autor], [djelo] ([godina]), [žanr], jedno je od temeljnih djela hrv. renesanse. [Kratki opis djela u 1 rečenici]. U ovom eseju pokazat ću kako [teza — specifična tvrdnja o djelu]."</em><br />
-          Primjer: <em>„Marin Držić, Novela od Stanca (1550.), farsa, jedno je od temeljnih djela hrv. renesanse. Trodnevna pokladna igra u kojoj mladići varaju starog seljaka Stanca obnavlja stari pitanje: tko pobjeđuje u gradu koji ne prašta naivnost? U ovom eseju pokazat ću kako Držić koristi pokladni kontekst kao dramski uvjet koji čini prevaru komičnom, legitimnom i društveno relevantnom."</em>
+          <em>„[Autor], [djelo] ([godina]), [žanr], jedno je od temeljnih djela hrv. renesanse. [Kratki opis djela u 1 rečenici]. U ovom eseju pokazat ću kako [teza — specifična tvrdnja o djelu].&quot;</em><br />
+          Primjer: <em>„Marin Držić, Novela od Stanca (1550.), farsa, jedno je od temeljnih djela hrv. renesanse. Trodnevna pokladna igra u kojoj mladići varaju starog seljaka Stanca obnavlja stari pitanje: tko pobjeđuje u gradu koji ne prašta naivnost? U ovom eseju pokazat ću kako Držić koristi pokladni kontekst kao dramski uvjet koji čini prevaru komičnom, legitimnom i društveno relevantnom.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 TIP B: H11 pisac kao usporedni kontekst u eseju o drugom djelu</div>
         <div className="box-key-txt">
-          <em>„[Autor s popisa eseja], [djelo], [tema]. Isti [tema] prisutan je i u hrv. renesansi — [hrv. pisac] u [djelu] [kako tretira temu]. Za razliku od [hrv. pisca], [autor s popisa] [razlika]. Ta usporedba otkriva [ono što usporedba otkriva]."</em><br />
-          Primjer: <em>„Francesco Petrarca u Kanconijeru istražuje ljubav kao izvor i strasti i duhovnog uzleta. Isti poetički problem obrađuju i hrv. petrarkisti — Šiško Menčetić preuzima Petrarcinih motiva ali ih piše dvostrukim dvanaestercima umjesto sonetima. Za razliku od Petrarce koji razvija strogu formalnu disciplinu soneta, Menčetić prilagođava petrarkistički repertoar lokalnoj začinjavačkoj tradiciji."</em>
+          <em>„[Autor s popisa eseja], [djelo], [tema]. Isti [tema] prisutan je i u hrv. renesansi — [hrv. pisac] u [djelu] [kako tretira temu]. Za razliku od [hrv. pisca], [autor s popisa] [razlika]. Ta usporedba otkriva [ono što usporedba otkriva].&quot;</em><br />
+          Primjer: <em>„Francesco Petrarca u Kanconijeru istražuje ljubav kao izvor i strasti i duhovnog uzleta. Isti poetički problem obrađuju i hrv. petrarkisti — Šiško Menčetić preuzima Petrarcinih motiva ali ih piše dvostrukim dvanaestercima umjesto sonetima. Za razliku od Petrarce koji razvija strogu formalnu disciplinu soneta, Menčetić prilagođava petrarkistički repertoar lokalnoj začinjavačkoj tradiciji.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📄 TIP C: Usporedba dvaju pisaca iz H11</div>
         <div className="box-key-txt">
-          <em>„[Pisac A] u [djelu A] i [Pisac B] u [djelu B] oba se bave [zajedničkom temom]. Međutim, njihovi pristup su dijametralno različiti: [Pisac A] [pristup A], dok [Pisac B] [pristup B]. U ovom eseju argumentirat ću da [teza koja objašnjava zašto su ta dva pristupa oba legitimna odgovori na isti problem]."</em><br />
-          Primjer: <em>„Marko Marulić u Juditi i Petar Zoranić u Planinama oba govore o turskoj opasnosti i domovini u krizi. Međutim, njihovi pristupi su dijametralno različiti: Marulić alegorijom poziva na oružanu borbu, Zoranić elegijom poziva na buđenje književnosti. U ovom eseju argumentirat ću da su oba pristupa legitimni odgovori na istu prijetnju — jedan mobilizira mač, drugi pero."</em>
+          <em>„[Pisac A] u [djelu A] i [Pisac B] u [djelu B] oba se bave [zajedničkom temom]. Međutim, njihovi pristup su dijametralno različiti: [Pisac A] [pristup A], dok [Pisac B] [pristup B]. U ovom eseju argumentirat ću da [teza koja objašnjava zašto su ta dva pristupa oba legitimna odgovori na isti problem].&quot;</em><br />
+          Primjer: <em>„Marko Marulić u Juditi i Petar Zoranić u Planinama oba govore o turskoj opasnosti i domovini u krizi. Međutim, njihovi pristupi su dijametralno različiti: Marulić alegorijom poziva na oružanu borbu, Zoranić elegijom poziva na buđenje književnosti. U ovom eseju argumentirat ću da su oba pristupa legitimni odgovori na istu prijetnju — jedan mobilizira mač, drugi pero.&quot;</em>
         </div>
       </div>
 
@@ -361,7 +361,7 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📝 Primjer odlomka razrade (Teza 3 — komentar društva)</div>
         <div className="box-key-txt">
-          <em>„Novela od Stanca nije samo zabavna farsa — ona je <b>precizni komentar dubrovačkog društva 16. st.</b> Stanac, seljak iz trebinjskog zaleđa, dolazi u Dubrovnik naivan i pun nade. Dubrovački mladići, vlastela kojoj je karnevalska prevara zabava a ne zločin, iskorištavaju ga s lakoćom. Držić ne osuđuje eksplicitno — ali <em>samo prikazivanje</em> dovoljno je da publika vidi klasnu dinamiku. Kao što Machiavelli opisuje politiku kakva jest (a ne kakva bi trebala biti), Držić prikazuje društvo kakvo jest — <b>u kojemu pamet pobjeđuje naivnost, a klasna pozicija određuje tko smije varati koga</b>. Usporedimo li Novelu s <em>Dundom Marojom</em> — u Marojeu je sukob unutar same vlastele. U Noveli seljak gubi jer nema ni klasu ni pamet. Žanr farse to opravdava: farsa ne zahtijeva moral, zahtijeva smijeh."</em>
+          <em>„Novela od Stanca nije samo zabavna farsa — ona je <b>precizni komentar dubrovačkog društva 16. st.</b> Stanac, seljak iz trebinjskog zaleđa, dolazi u Dubrovnik naivan i pun nade. Dubrovački mladići, vlastela kojoj je karnevalska prevara zabava a ne zločin, iskorištavaju ga s lakoćom. Držić ne osuđuje eksplicitno — ali <em>samo prikazivanje</em> dovoljno je da publika vidi klasnu dinamiku. Kao što Machiavelli opisuje politiku kakva jest (a ne kakva bi trebala biti), Držić prikazuje društvo kakvo jest — <b>u kojemu pamet pobjeđuje naivnost, a klasna pozicija određuje tko smije varati koga</b>. Usporedimo li Novelu s <em>Dundom Marojom</em> — u Marojeu je sukob unutar same vlastele. U Noveli seljak gubi jer nema ni klasu ni pamet. Žanr farse to opravdava: farsa ne zahtijeva moral, zahtijeva smijeh.&quot;</em>
         </div>
       </div>
 
@@ -387,10 +387,10 @@ export default function EsejAlat({ onTabSwitch }) {
       </div>
 
       <div className="tbl">
-        <div className="cr"><div className="ck br" style={{ minWidth: '50px' }}>T</div><div className="cv b">Teza odlomka</div><div className="cv"><em>„Pokladni kontekst u Noveli od Stanca nije dekor — on je dramski uvjet koji čini prevaru mogućom i legitimnom."</em></div></div>
-        <div className="cr"><div className="ck go" style={{ minWidth: '50px' }}>I</div><div className="cv b">Ilustracija</div><div className="cv"><em>„U II. prizoru mladići ugledaju Stanca i spontano odlučuju varati ga — poklade su im to dopustile: u karnevalsko doba vrijede se norme."</em></div></div>
-        <div className="cr"><div className="ck t" style={{ minWidth: '50px' }}>P</div><div className="cv b">Pojašnjenje</div><div className="cv"><em>„Da nije poklada, vlastela ne bi pristupila seljaku niti bi prevara bila prihvaćena kao komičan čin — bila bi moralno problematična."</em></div></div>
-        <div className="cr"><div className="ck re" style={{ minWidth: '50px' }}>S</div><div className="cv b">Sinteza</div><div className="cv"><em>„Time Držić pokazuje da je farsa žanr koji ovisi o kontekstu — bez karnevala nema komedije, bez komedije nema Novele od Stanca."</em></div></div>
+        <div className="cr"><div className="ck br" style={{ minWidth: '50px' }}>T</div><div className="cv b">Teza odlomka</div><div className="cv"><em>„Pokladni kontekst u Noveli od Stanca nije dekor — on je dramski uvjet koji čini prevaru mogućom i legitimnom.&quot;</em></div></div>
+        <div className="cr"><div className="ck go" style={{ minWidth: '50px' }}>I</div><div className="cv b">Ilustracija</div><div className="cv"><em>„U II. prizoru mladići ugledaju Stanca i spontano odlučuju varati ga — poklade su im to dopustile: u karnevalsko doba vrijede se norme.&quot;</em></div></div>
+        <div className="cr"><div className="ck t" style={{ minWidth: '50px' }}>P</div><div className="cv b">Pojašnjenje</div><div className="cv"><em>„Da nije poklada, vlastela ne bi pristupila seljaku niti bi prevara bila prihvaćena kao komičan čin — bila bi moralno problematična.&quot;</em></div></div>
+        <div className="cr"><div className="ck re" style={{ minWidth: '50px' }}>S</div><div className="cv b">Sinteza</div><div className="cv"><em>„Time Držić pokazuje da je farsa žanr koji ovisi o kontekstu — bez karnevala nema komedije, bez komedije nema Novele od Stanca.&quot;</em></div></div>
       </div>
 
       <div className="box-int">
@@ -400,21 +400,21 @@ export default function EsejAlat({ onTabSwitch }) {
           <b>Odlomak 1 (kontekst):</b> Pokladni kontekst čini prevaru mogućom → uspostavi kontekst.<br />
           <b>Odlomak 2 (opreke):</b> Klasna i dobna asimetrija pojačava komički učinak → dodaj društvenu dimenziju.<br />
           <b>Odlomak 3 (žanr):</b> Farsa kao žanr ne traži moral — Držić prikazuje, ne prosuđuje → podigne argument na razinu poetike.<br /><br />
-          <em>Svaki odlomak počinje konektorom: „Uz pokladni kontekst...", „Nadalje, klasna razlika...", „Konačno, žanr farse..."</em>
+          <em>Svaki odlomak počinje konektorom: „Uz pokladni kontekst...&quot;, „Nadalje, klasna razlika...&quot;, „Konačno, žanr farse...&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📝 Model razrade — Odlomak 2 (klasna dinamika)</div>
         <div className="box-key-txt">
-          <em>„Uz pokladni kontekst, Novela od Stanca otkriva i <b>klasnu asimetriju</b> dubrovačkog društva 16. st. Mladići — vlastela — dolaze iz privilegiranog urbanog okruženja i posjeduju „gradski kod": znanje o pravilima igre, imenima i mjestima. Stanec — seljak iz Trebinja — dolazi bez tog znanja i upravo to ga čini lakom metom. Kada mladići <em>vežu ga, opale mu bradu i odlaze u toplinu svojih domova</em>, a Stanec ostaje sam na trgu, Držić nam ne mora ništa reći eksplicitno — slika sama govori. <b>Dubrovnik 16. st. nagrađuje pamet i poznanstvo, ne dobrotu i naivnost.</b> Ovo nije moralna osuda — to je precizna socijalna dijagnoza u formi farse."</em>
+          <em>„Uz pokladni kontekst, Novela od Stanca otkriva i <b>klasnu asimetriju</b> dubrovačkog društva 16. st. Mladići — vlastela — dolaze iz privilegiranog urbanog okruženja i posjeduju „gradski kod&quot;: znanje o pravilima igre, imenima i mjestima. Stanec — seljak iz Trebinja — dolazi bez tog znanja i upravo to ga čini lakom metom. Kada mladići <em>vežu ga, opale mu bradu i odlaze u toplinu svojih domova</em>, a Stanec ostaje sam na trgu, Držić nam ne mora ništa reći eksplicitno — slika sama govori. <b>Dubrovnik 16. st. nagrađuje pamet i poznanstvo, ne dobrotu i naivnost.</b> Ovo nije moralna osuda — to je precizna socijalna dijagnoza u formi farse.&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📝 Model razrade — Odlomak 3 (poetika farse)</div>
         <div className="box-key-txt">
-          <em>„Konačno, da bismo razumjeli Novelu od Stanca, moramo razumjeti što je <b>farsa kao žanr</b>. Farsa ne traži moralnu pouku — to je komedija situacije, ne karaktera. Stanec nije moralno loš čovjek koji zaslužuje kaznu; on je samo naivan u pogrešnom trenutku na pogrešnom mjestu. Mladići nisu moralno dobri ni loši — oni su tipovi koji iskorištavaju trenutak. <em>Držić ne sudi — prikazuje.</em> I upravo ta <b>moralna otvorenost</b> razlikuje Novelu od Stanca od Marulićeve Judite (eksplicitan kršćanski moral) i Zoranićevih Planina (patriotski apel). Držić je, od svih hrv. renesansnih pisaca, najslobodniji od didaktike — i upravo zato najbliži modernom kazalištu."</em>
+          <em>„Konačno, da bismo razumjeli Novelu od Stanca, moramo razumjeti što je <b>farsa kao žanr</b>. Farsa ne traži moralnu pouku — to je komedija situacije, ne karaktera. Stanec nije moralno loš čovjek koji zaslužuje kaznu; on je samo naivan u pogrešnom trenutku na pogrešnom mjestu. Mladići nisu moralno dobri ni loši — oni su tipovi koji iskorištavaju trenutak. <em>Držić ne sudi — prikazuje.</em> I upravo ta <b>moralna otvorenost</b> razlikuje Novelu od Stanca od Marulićeve Judite (eksplicitan kršćanski moral) i Zoranićevih Planina (patriotski apel). Držić je, od svih hrv. renesansnih pisaca, najslobodniji od didaktike — i upravo zato najbliži modernom kazalištu.&quot;</em>
         </div>
       </div>
 
@@ -437,7 +437,7 @@ export default function EsejAlat({ onTabSwitch }) {
         <div className="sc">
           <span className="sc-ico hchip go">III–IV</span>
           <div className="sc-name">Obmana u akciji</div>
-          <div className="sc-desc"><b>Esejska vrijednost:</b> Stanac <em>želi vjerovati</em> u vodu od mladosti — to je tragična dimenzija unutar komedije. Citirati: <em>„Voda od mladosti"</em> kao renesansni mitski motiv (Fontana della giovinezza). Argument: farsa može sadržavati i dublje antropološke motive.</div>
+          <div className="sc-desc"><b>Esejska vrijednost:</b> Stanac <em>želi vjerovati</em> u vodu od mladosti — to je tragična dimenzija unutar komedije. Citirati: <em>„Voda od mladosti&quot;</em> kao renesansni mitski motiv (Fontana della giovinezza). Argument: farsa može sadržavati i dublje antropološke motive.</div>
         </div>
         <div className="sc">
           <span className="sc-ico hchip te">V–VI</span>
@@ -500,8 +500,8 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">💡 Kako umetnuti H11 u esej o drugom djelu</div>
         <div className="box-key-txt">
-          <b>Formula:</b> <em>„[Djelo s popisa] bavi se [temom], što je prisutno i u hrv. renesansnoj književnosti — [pisac] u [djelu] [veza s temom]. Za razliku od [pisce], [autor s popisa] [razlika]."</em><br /><br />
-          <b>Primjer:</b> <em>„Goetheov Faust bavi se žudnjom za spoznajom, što je temeljno humanistički motiv prisutan i u hrv. renesansi. Marulić u <em>Instituciji</em> i <em>Davidijadi</em> stoji pred istim humanističkim idealom — ali za razliku od Fausta koji sklapa pakt s đavlom, Marulić spoznaji pristupa kroz kršćanski intelektualni okvir koji ga štiti od Faustova pada."</em>
+          <b>Formula:</b> <em>„[Djelo s popisa] bavi se [temom], što je prisutno i u hrv. renesansnoj književnosti — [pisac] u [djelu] [veza s temom]. Za razliku od [pisce], [autor s popisa] [razlika].&quot;</em><br /><br />
+          <b>Primjer:</b> <em>„Goetheov Faust bavi se žudnjom za spoznajom, što je temeljno humanistički motiv prisutan i u hrv. renesansi. Marulić u <em>Instituciji</em> i <em>Davidijadi</em> stoji pred istim humanističkim idealom — ali za razliku od Fausta koji sklapa pakt s đavlom, Marulić spoznaji pristupa kroz kršćanski intelektualni okvir koji ga štiti od Faustova pada.&quot;</em>
         </div>
       </div>
 
@@ -512,12 +512,12 @@ export default function EsejAlat({ onTabSwitch }) {
         <div className="box-key-lbl">✅ 10-točka checklist</div>
         <div className="box-key-txt">
           <b>□ 1.</b> Uvod sadrži: autora, naslov, godinu, žanr i jasnu tezu?<br />
-          <b>□ 2.</b> Teza je argumentabilna i specifična — ne trivijalna ("Novela od Stanca je komedija")?<br />
+          <b>□ 2.</b> Teza je argumentabilna i specifična — ne trivijalna (&quot;Novela od Stanca je komedija&quot;)?<br />
           <b>□ 3.</b> Svaki odlomak razrade slijedi TIPS: Tvrdnja → Ilustracija → Pojašnjenje → Sinteza?<br />
           <b>□ 4.</b> Razrada ima min. 2–3 argumenata koji međusobno grade prema zaključku?<br />
           <b>□ 5.</b> Barem jedan citat ili parafraza iz teksta s interpretacijom?<br />
           <b>□ 6.</b> Barem 3–4 književnoteorijska pojma (farsa, pokladna igra, dvanaesterac, alegorija...)?<br />
-          <b>□ 7.</b> Odlomci su vezani konektorima: „Uz to...", „Za razliku od...", „Konačno..."?<br />
+          <b>□ 7.</b> Odlomci su vezani konektorima: „Uz to...&quot;, „Za razliku od...&quot;, „Konačno...&quot;?<br />
           <b>□ 8.</b> Zaključak sinteza argumenata + širi kontekst ili usporedba s drugim djelom?<br />
           <b>□ 9.</b> Esej ima min. 440 riječi? (provjeri brojačem ispod)<br />
           <b>□ 10.</b> Nema prepričavanja bez interpretacijske tvrdnje uz njega?
@@ -554,8 +554,8 @@ export default function EsejAlat({ onTabSwitch }) {
             <div className="scene-meta">TEORIJA</div>
           </summary>
           <div className="scene-body">
-            <div className="scene-quote">Pitanje kao: „Što je petrarkizam?", „Definiraj bugaršticu", „Koji su žanrovi hrv. renesansne drame?", „Što je dvostruko rimovani dvanaesterac?". Kratki odgovori ili višestruki izbor.</div>
-            <div className="scene-why"><b>Taktika:</b> (1) Definicija + primjer = potpun odgovor. (2) Nikad samo definicija bez primjera. (3) Primjer iz konkretnog hrv. teksta je bolji od apstraktnog opisa. Npr.: „Petrarkizam je ljubavna lirika po uzoru na Petrarcu — hrv. primjer: Menčetić (<em>Blažen čas i hip</em>), koji preuzima petrarkistički repertoar ali piše dvanaesterce umjesto soneta."</div>
+            <div className="scene-quote">Pitanje kao: „Što je petrarkizam?&quot;, „Definiraj bugaršticu&quot;, „Koji su žanrovi hrv. renesansne drame?&quot;, „Što je dvostruko rimovani dvanaesterac?&quot;. Kratki odgovori ili višestruki izbor.</div>
+            <div className="scene-why"><b>Taktika:</b> (1) Definicija + primjer = potpun odgovor. (2) Nikad samo definicija bez primjera. (3) Primjer iz konkretnog hrv. teksta je bolji od apstraktnog opisa. Npr.: „Petrarkizam je ljubavna lirika po uzoru na Petrarcu — hrv. primjer: Menčetić (<em>Blažen čas i hip</em>), koji preuzima petrarkistički repertoar ali piše dvanaesterce umjesto soneta.&quot;</div>
           </div>
         </details>
 
@@ -567,7 +567,7 @@ export default function EsejAlat({ onTabSwitch }) {
           </summary>
           <div className="scene-body">
             <div className="scene-quote">Pišeš esej o Petrarci, Calderónu, Goetheu ili Krleži — i hoćeš ubaciti H11 kao kontekstualni argument. Npr. u eseju o Petrarci možeš pokazati kako hrv. petrarkisti preuzimaju tematiku ali mijenjaju formu.</div>
-            <div className="scene-why"><b>Taktika:</b> (1) Formula: „Za razliku od [autor s popisa], hrv. pisac [Menčetić/Marulić/Držić] [sličnost/razlika]." (2) Jedan do dva paragrafa konteksta je dovoljno — ne pišeš esej o Maruliću, pišeš o Petrarci. (3) Interdisciplinarni kontekst = viša ocjena jer pokazuješ šire poznavanje.</div>
+            <div className="scene-why"><b>Taktika:</b> (1) Formula: „Za razliku od [autor s popisa], hrv. pisac [Menčetić/Marulić/Držić] [sličnost/razlika].&quot; (2) Jedan do dva paragrafa konteksta je dovoljno — ne pišeš esej o Maruliću, pišeš o Petrarci. (3) Interdisciplinarni kontekst = viša ocjena jer pokazuješ šire poznavanje.</div>
           </div>
         </details>
       </div>
@@ -578,7 +578,7 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📝 Primjer zaključka (za Tezu 1 — pokladni kontekst)</div>
         <div className="box-key-txt">
-          <em>„Novela od Stanca Marina Držića nije samo pokladna zabava — ona je <b>precizni xray dubrovačkog društva 16. st.</b> smještena u karnevalski okvir koji tu preciznost čini mogućom i legitimnom. Stanec gubi jer je star, naivan i stranac u gradu koji nagrađuje pamet i poznanstvo. Pokladni kontekst nije dekor — on je <b>dramski uvjet i filozofski okvir</b> cijele farse. Upravo zato Novela od Stanca ostaje živim tekstom: ne govori o pokladama — govori o <em>tome tko pobjeđuje i zašto</em>. Dok Marulić u Juditi poziva na otpor alegorijom, a Zoranić u Planinama tuguje nad rasutom bašćinom, Držić se smije — ali taj smijeh bolno točno pogađa."</em>
+          <em>„Novela od Stanca Marina Držića nije samo pokladna zabava — ona je <b>precizni xray dubrovačkog društva 16. st.</b> smještena u karnevalski okvir koji tu preciznost čini mogućom i legitimnom. Stanec gubi jer je star, naivan i stranac u gradu koji nagrađuje pamet i poznanstvo. Pokladni kontekst nije dekor — on je <b>dramski uvjet i filozofski okvir</b> cijele farse. Upravo zato Novela od Stanca ostaje živim tekstom: ne govori o pokladama — govori o <em>tome tko pobjeđuje i zašto</em>. Dok Marulić u Juditi poziva na otpor alegorijom, a Zoranić u Planinama tuguje nad rasutom bašćinom, Držić se smije — ali taj smijeh bolno točno pogađa.&quot;</em>
         </div>
       </div>
 
@@ -596,12 +596,12 @@ export default function EsejAlat({ onTabSwitch }) {
         <div className="sc">
           <span className="sc-ico hchip re">GREŠKA 1</span>
           <div className="sc-name">Prepričavanje radnje</div>
-          <div className="sc-desc">„U Noveli od Stanca mladići prevare Stanca..." — to nije analiza, to je sažetak. <strong>Svaka rečenica mora argumentirati tezu</strong>, ne opisivati što se događa. Ispit traži interpretaciju, ne prepričavanje.</div>
+          <div className="sc-desc">„U Noveli od Stanca mladići prevare Stanca...&quot; — to nije analiza, to je sažetak. <strong>Svaka rečenica mora argumentirati tezu</strong>, ne opisivati što se događa. Ispit traži interpretaciju, ne prepričavanje.</div>
         </div>
         <div className="sc">
           <span className="sc-ico hchip re">GREŠKA 2</span>
           <div className="sc-name">Nepovezani argumenti</div>
-          <div className="sc-desc">Tri odlomka koji ne razgovaraju međusobno. Svaki argument mora <em>graditi prema zaključku</em>. Koristiti konektore: <b>„Nadalje...", „Uz to...", „Što je još važnije..."</b> — ne pisati tri odvojena eseja unutar jednog.</div>
+          <div className="sc-desc">Tri odlomka koji ne razgovaraju međusobno. Svaki argument mora <em>graditi prema zaključku</em>. Koristiti konektore: <b>„Nadalje...&quot;, „Uz to...&quot;, „Što je još važnije...&quot;</b> — ne pisati tri odvojena eseja unutar jednog.</div>
         </div>
         <div className="sc">
           <span className="sc-ico hchip re">GREŠKA 3</span>
@@ -611,12 +611,12 @@ export default function EsejAlat({ onTabSwitch }) {
         <div className="sc">
           <span className="sc-ico hchip re">GREŠKA 4</span>
           <div className="sc-name">Opći uvod bez autora i naslova</div>
-          <div className="sc-desc">„Književnost je oduvijek bila ogledalo društva..." — gubi bodove odmah. <strong>Počni s autorom, naslovom, godinom</strong>. Svaki sekund čitateljevog strpljenja je bitan. NCVVO vrednuje preciznost, ne filozofske uvodne pasuse.</div>
+          <div className="sc-desc">„Književnost je oduvijek bila ogledalo društva...&quot; — gubi bodove odmah. <strong>Počni s autorom, naslovom, godinom</strong>. Svaki sekund čitateljevog strpljenja je bitan. NCVVO vrednuje preciznost, ne filozofske uvodne pasuse.</div>
         </div>
         <div className="sc">
           <span className="sc-ico hchip re">GREŠKA 5</span>
           <div className="sc-name">Zaključak = kopija uvoda</div>
-          <div className="sc-desc">Zaključak koji samo kopira uvod dobiva 0 bodova za tu sastavnicu. <em>Zaključak mora sintetizirati, ne ponavljati</em>. Dodaj širi kontekst ili usporedi s drugim djelom — npr. „Za razliku od Marulića koji alegorijski potiče otpor, Držić se smije..."</div>
+          <div className="sc-desc">Zaključak koji samo kopira uvod dobiva 0 bodova za tu sastavnicu. <em>Zaključak mora sintetizirati, ne ponavljati</em>. Dodaj širi kontekst ili usporedi s drugim djelom — npr. „Za razliku od Marulića koji alegorijski potiče otpor, Držić se smije...&quot;</div>
         </div>
         <div className="sc">
           <span className="sc-ico hchip go">SAVJET</span>
@@ -631,7 +631,7 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-int">
         <div className="box-int-lbl">⚖️ Kad esejsko pitanje traži usporedbu</div>
         <div className="box-int-txt">
-          Interpretacijski esej može biti i <strong>usporedni</strong> — npr. <em>„Usporedi kako Marulić i Držić prikazuju dubrovačko/splitsko društvo"</em> ili <em>„Kako Marulić i Zoranić koriste alegoriju u službi domoljublja"</em>.
+          Interpretacijski esej može biti i <strong>usporedni</strong> — npr. <em>„Usporedi kako Marulić i Držić prikazuju dubrovačko/splitsko društvo&quot;</em> ili <em>„Kako Marulić i Zoranić koriste alegoriju u službi domoljublja&quot;</em>.
         </div>
       </div>
 
@@ -652,7 +652,7 @@ export default function EsejAlat({ onTabSwitch }) {
           <div className="ck t" style={{ minWidth: '100px' }}>Turska tema</div>
           <div className="cv"><em>Eksplicitna alegorija</em> — Oloferno = Turci, poziv na otpor</div>
           <div className="cv"><em>Odsutna</em> — farsa je društvena satira, ne politički apel</div>
-          <div className="cv"><em>Emocionalna</em> — „rasuta bašćina", tuga za domovinom</div>
+          <div className="cv"><em>Emocionalna</em> — „rasuta bašćina&quot;, tuga za domovinom</div>
         </div>
         <div className="cr">
           <div className="ck re" style={{ minWidth: '100px' }}>Alegorija</div>
@@ -677,7 +677,7 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📝 Rečenica za usporedni esej</div>
         <div className="box-key-txt">
-          „Dok Marulić u <em>Juditi</em> koristi <b>biblijsku alegoriju</b> kao eksplicitan poziv na otpor turskoj prijetnji, Zoranić u <em>Planinama</em> istu temu obrađuje kroz <b>elegičnu alegoriju rasute bašćine</b> — oba pisca govore o istoj opasnosti, ali iz različite emocionalne i žanrovske pozicije. Marin Držić pak tu temu potpuno izostavljuje: njegova je komedija <b>socijalna satira</b> dubrovačke svakodnevice, ne politički manifest."
+          „Dok Marulić u <em>Juditi</em> koristi <b>biblijsku alegoriju</b> kao eksplicitan poziv na otpor turskoj prijetnji, Zoranić u <em>Planinama</em> istu temu obrađuje kroz <b>elegičnu alegoriju rasute bašćine</b> — oba pisca govore o istoj opasnosti, ali iz različite emocionalne i žanrovske pozicije. Marin Držić pak tu temu potpuno izostavljuje: njegova je komedija <b>socijalna satira</b> dubrovačke svakodnevice, ne politički manifest.&quot;
         </div>
       </div>
 
@@ -687,7 +687,7 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="sc-grid">
         <div className="sc"><span className="sc-ico hchip br">STIL</span><div className="sc-name">Alegorija</div><div className="sc-desc">Tekst ima doslovno i skriveno značenje. <em>Judita</em>: Holoferno = Turci. <em>Planine</em>: Perivoj od Slave = hrv. književnost. <b>Tipično za Marulića i Zoranića</b> — manje kod Hektorovića i Držića.</div></div>
         <div className="sc"><span className="sc-ico hchip go">STIL</span><div className="sc-name">Dvostruko rimovani dvanaesterac</div><div className="sc-desc">Standardni stih hrv. renesanse. 12 slogova, cesura po 6. Rima: AA BB ili AB AB. Koriste svi osim Lucića (osmesterac u lirici) i Zoranića (mješavina proze i stiha u romanu).</div></div>
-        <div className="sc"><span className="sc-ico hchip te">STIL</span><div className="sc-name">Petrarkistički motivi</div><div className="sc-desc">„Gospoja" idealizirana, ljubav kao bol i slast, Amor/Kupido, usporedba ljepote s prirodom. <b>Standardni repertoar</b> koji svi hrv. petrarkisti dijele — razlikuju se po <em>intenzitetu senzualnosti</em> (Menčetić) ili <em>idealizaciji</em> (Džore Držić).</div></div>
+        <div className="sc"><span className="sc-ico hchip te">STIL</span><div className="sc-name">Petrarkistički motivi</div><div className="sc-desc">„Gospoja&quot; idealizirana, ljubav kao bol i slast, Amor/Kupido, usporedba ljepote s prirodom. <b>Standardni repertoar</b> koji svi hrv. petrarkisti dijele — razlikuju se po <em>intenzitetu senzualnosti</em> (Menčetić) ili <em>idealizaciji</em> (Džore Držić).</div></div>
         <div className="sc"><span className="sc-ico hchip pa">STIL</span><div className="sc-name">Komika situacije (farsa)</div><div className="sc-desc">Ne komika karaktera — Stanac je <em>tip</em>, ne individua. Smijeh dolazi iz situacije (vara ga, opijaju, vežu) a ne iz psihološke dubine lika. <b>Tipično za Držića</b> — razlika od Shakespeareove psihološke komedije.</div></div>
         <div className="sc"><span className="sc-ico hchip re">STIL</span><div className="sc-name">Patriotska jadikovka</div><div className="sc-desc">Emocionalni apel na stanje domovine — <em>Planine</em> (rasuta bašćina), <em>Judita</em> (alegorijski poziv), <em>Vazetje Sigeta</em> (glorifikacija žrtve). Specifičan ton hrv. renesanse — nema analogije u talijanskoj.</div></div>
         <div className="sc"><span className="sc-ico hchip gr">STIL</span><div className="sc-name">Realistični opis (Hektorović)</div><div className="sc-desc">Konkretni detalji puta, krajolika, ribareva razgovora — bez alegorije. Inovativnost: <em>stvarnost je dovoljan književni predmet</em>. Anticipira realizam 19. st. ali ostaje osamljeni glas u hrv. renesansi.</div></div>
@@ -699,18 +699,18 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-int">
         <div className="box-int-lbl">🔬 Formula za analizu stilskog sredstva u eseju</div>
         <div className="box-int-txt">
-          Ne pisat: <em>„Menčetić koristi anaforu."</em> — to je samo identifikacija.<br />
-          Pisat: <em>„Menčetić koristi anaforu (Blažen... blažena... blažena...) — <b>ponavljanjem pojačava emotivni intenzitet euforije</b> prvog pogleda, čineći gospoju sveprisutnom u svim sferama lirskog subjektovog iskustva."</em> — to je analiza.<br /><br />
+          Ne pisat: <em>„Menčetić koristi anaforu.&quot;</em> — to je samo identifikacija.<br />
+          Pisat: <em>„Menčetić koristi anaforu (Blažen... blažena... blažena...) — <b>ponavljanjem pojačava emotivni intenzitet euforije</b> prvog pogleda, čineći gospoju sveprisutnom u svim sferama lirskog subjektovog iskustva.&quot;</em> — to je analiza.<br /><br />
           <b>Formula:</b> [Stilsko sredstvo] + [primjer iz teksta] + [efekt na čitatelja ili značenje u kontekstu].
         </div>
       </div>
 
       <div className="tbl">
         <div className="cr"><div className="ck br">STILSKO SREDSTVO</div><div className="cv b">PRIMJER IZ H11</div><div className="cv b">ŠTO POSTIŽE</div></div>
-        <div className="cr"><div className="ck go">Anafora</div><div className="cv"><em>„Blažen čas i hip... blažena kolipka... blažena ti ženska..."</em> (Menčetić)</div><div className="cv">Pojačava emocionalni intenzitet — gospoja je sveprisutna u svakom aspektu lirskog iskustva</div></div>
+        <div className="cr"><div className="ck go">Anafora</div><div className="cv"><em>„Blažen čas i hip... blažena kolipka... blažena ti ženska...&quot;</em> (Menčetić)</div><div className="cv">Pojačava emocionalni intenzitet — gospoja je sveprisutna u svakom aspektu lirskog iskustva</div></div>
         <div className="cr"><div className="ck t">Alegorija</div><div className="cv">Holoferno = Turci; Judita = Hrvatska (Marulić, <em>Judita</em>)</div><div className="cv">Kodira politički apel u biblijsku naraciju — zaobilazi cenzuru i daje priči vječnost</div></div>
-        <div className="cr"><div className="ck re">Dramska ironija</div><div className="cv">Publika zna da nema „vode od mladosti"; Stanec ne zna (Držić, <em>Novela</em>)</div><div className="cv">Stvara komiku i empatiju istovremeno — publika se smije, ali i žali Stanca</div></div>
-        <div className="cr"><div className="ck pa">Antiteza</div><div className="cv"><em>„volim i mrzim"</em>, bol i slast ljubavi (petrarkistička lirika)</div><div className="cv">Prikazuje paradoks ljubavnog iskustva — unutarnji raskorak kao temelj petrarkizma</div></div>
+        <div className="cr"><div className="ck re">Dramska ironija</div><div className="cv">Publika zna da nema „vode od mladosti&quot;; Stanec ne zna (Držić, <em>Novela</em>)</div><div className="cv">Stvara komiku i empatiju istovremeno — publika se smije, ali i žali Stanca</div></div>
+        <div className="cr"><div className="ck pa">Antiteza</div><div className="cv"><em>„volim i mrzim&quot;</em>, bol i slast ljubavi (petrarkistička lirika)</div><div className="cv">Prikazuje paradoks ljubavnog iskustva — unutarnji raskorak kao temelj petrarkizma</div></div>
         <div className="cr"><div className="ck g">Metafora</div><div className="cv">Jabuke = stanje nacionalnih književnosti (Zoranić, <em>Perivoj od Slave</em>)</div><div className="cv">Apstraktni pojam (stanje književnosti) postaje konkretan i vidljiv kroz sliku</div></div>
         <div className="cr"><div className="ck br">Apostrofa</div><div className="cv">Lirski subjekt direktno govori Amoru, gospoji ili Bogu u petrarkizmu</div><div className="cv">Monolog postaje živ — lirski subjekt komunicira s apstraktnim entitetom, pojačava dramu</div></div>
       </div>
@@ -728,38 +728,38 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">➕ Dodavanje / pojačavanje</div>
         <div className="box-key-txt">
-          <em>„Uz to..."</em> · <em>„Osim toga..."</em> · <em>„Što je još važnije..."</em> · <em>„Nadalje, ..."</em> · <em>„K tome, ..."</em> · <em>„Tome valja dodati..."</em> · <em>„Jednako značajno je..."</em>
+          <em>„Uz to...&quot;</em> · <em>„Osim toga...&quot;</em> · <em>„Što je još važnije...&quot;</em> · <em>„Nadalje, ...&quot;</em> · <em>„K tome, ...&quot;</em> · <em>„Tome valja dodati...&quot;</em> · <em>„Jednako značajno je...&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">⚖️ Kontrast / suprotnost</div>
         <div className="box-key-txt">
-          <em>„Za razliku od [X], [Y]..."</em> · <em>„Dok [X], [Y]..."</em> · <em>„Međutim, ..."</em> · <em>„S druge strane, ..."</em> · <em>„Suprotno od toga, ..."</em> · <em>„No, [Y] ukazuje na drugačije..."</em>
+          <em>„Za razliku od [X], [Y]...&quot;</em> · <em>„Dok [X], [Y]...&quot;</em> · <em>„Međutim, ...&quot;</em> · <em>„S druge strane, ...&quot;</em> · <em>„Suprotno od toga, ...&quot;</em> · <em>„No, [Y] ukazuje na drugačije...&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">🔑 Zaključivanje / sinteza</div>
         <div className="box-key-txt">
-          <em>„Iz navedenog je vidljivo..."</em> · <em>„Ovi primjeri potvrđuju tezu da..."</em> · <em>„Stoga možemo zaključiti..."</em> · <em>„Time [autor] pokazuje..."</em> · <em>„Konačno, ..."</em> · <em>„Sve navedeno ukazuje na..."</em>
+          <em>„Iz navedenog je vidljivo...&quot;</em> · <em>„Ovi primjeri potvrđuju tezu da...&quot;</em> · <em>„Stoga možemo zaključiti...&quot;</em> · <em>„Time [autor] pokazuje...&quot;</em> · <em>„Konačno, ...&quot;</em> · <em>„Sve navedeno ukazuje na...&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">📖 Uvođenje dokaza iz teksta</div>
         <div className="box-key-txt">
-          <em>„To potvrđuje [prizor/stih/lik] u kojemu..."</em> · <em>„Primjer za to je [prizor X] kada..."</em> · <em>„Lik [X] to ilustrira kada..."</em> · <em>„Karakteristično je da [autor] u [prizoru/sceni]..."</em> · <em>„[Autor] to postiže kroz [stilsko sredstvo] —..."</em>
+          <em>„To potvrđuje [prizor/stih/lik] u kojemu...&quot;</em> · <em>„Primjer za to je [prizor X] kada...&quot;</em> · <em>„Lik [X] to ilustrira kada...&quot;</em> · <em>„Karakteristično je da [autor] u [prizoru/sceni]...&quot;</em> · <em>„[Autor] to postiže kroz [stilsko sredstvo] —...&quot;</em>
         </div>
       </div>
 
       <div className="box-key">
         <div className="box-key-lbl">💡 Konkretni primjeri konektora u H11 eseju</div>
         <div className="box-key-txt">
-          <em>„Uz pokladni kontekst kao dramski uvjet, valja razmotriti i klasnu dinamiku Novele..."</em><br />
-          <em>„Za razliku od Marulića koji alegorijom kodira domoljubni apel, Zoranić ga iskazuje kroz elegičnu tugu rasute bašćine..."</em><br />
-          <em>„Nadalje, Hektorovićev dokumentarni realizam — koji bilježi bugarštice ribarâ — govori o posve drugačijem humanizmu od Marulićevog..."</em><br />
-          <em>„Konačno, Novela od Stanca nije moralna pouka nego socijalna dijagnoza — i upravo ta razlika u odnosu na Juditu i Planine čini Držića modernistom avant la lettre."</em>
+          <em>„Uz pokladni kontekst kao dramski uvjet, valja razmotriti i klasnu dinamiku Novele...&quot;</em><br />
+          <em>„Za razliku od Marulića koji alegorijom kodira domoljubni apel, Zoranić ga iskazuje kroz elegičnu tugu rasute bašćine...&quot;</em><br />
+          <em>„Nadalje, Hektorovićev dokumentarni realizam — koji bilježi bugarštice ribarâ — govori o posve drugačijem humanizmu od Marulićevog...&quot;</em><br />
+          <em>„Konačno, Novela od Stanca nije moralna pouka nego socijalna dijagnoza — i upravo ta razlika u odnosu na Juditu i Planine čini Držića modernistom avant la lettre.&quot;</em>
         </div>
       </div>
 
@@ -769,7 +769,7 @@ export default function EsejAlat({ onTabSwitch }) {
       <div className="box-key">
         <div className="box-key-lbl">📄 Model zaključka koji uspoređuje Marulića, Zoranića i Držića</div>
         <div className="box-key-txt">
-          <em>„Hrv. renesansna književnost nema jednu poetiku — ima tri. <b>Marulić</b> alegorijom traži ono čega nema: Božju intervenciju, Juditinu hrabrost, poraz Turaka. <b>Zoranić</b> elegijom oplakuje ono što se gubi: domovinu, književnu tradiciju, identitet. <b>Držić</b> smijehom prikazuje ono što jest: grad bez morala, pobjedu lukavosti, poraz naivnosti. Tri pisca, tri poetike, jedna stvarnost — Hrvatska 16. st. Ovo je bogatstvo hrv. renesanse: da na istu prijetnju i isti gubitak odgovori alegorijom, elegijom i smijehom. I upravo ta trostrukost čini hrv. renesansu ne provincijskim odjecima talijanske, nego originalnom književnom epohom s vlastitim glasom."</em>
+          <em>„Hrv. renesansna književnost nema jednu poetiku — ima tri. <b>Marulić</b> alegorijom traži ono čega nema: Božju intervenciju, Juditinu hrabrost, poraz Turaka. <b>Zoranić</b> elegijom oplakuje ono što se gubi: domovinu, književnu tradiciju, identitet. <b>Držić</b> smijehom prikazuje ono što jest: grad bez morala, pobjedu lukavosti, poraz naivnosti. Tri pisca, tri poetike, jedna stvarnost — Hrvatska 16. st. Ovo je bogatstvo hrv. renesanse: da na istu prijetnju i isti gubitak odgovori alegorijom, elegijom i smijehom. I upravo ta trostrukost čini hrv. renesansu ne provincijskim odjecima talijanske, nego originalnom književnom epohom s vlastitim glasom.&quot;</em>
         </div>
       </div>
 

@@ -90,7 +90,7 @@ function AnswerHelper({q,autoExpand,hideToggle}){
     const _shown=Math.min(stepsShown,_total);
     let num=0;
     return e("div",{className:"ah-steps"},
-      e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:2}},e("div",{className:"ah-steps-label",style:{marginBottom:0}},"📐 Postupak rješavanja"),_total>1&&e("button",{onClick:function(){playing?_stopPlay():_playSteps(_total);},title:playing?"Zaustavi reprodukciju":"Pusti korak po korak",style:{marginLeft:"auto",display:"inline-flex",alignItems:"center",gap:5,padding:"4px 10px",borderRadius:99,border:"1px solid var(--blue-b)",background:"var(--blue-d)",color:"var(--blue)",fontWeight:700,fontSize:11.5,cursor:"pointer",fontFamily:"var(--fb)"}},playing?"⏸ Stop":"▶ Pusti korake")),
+      e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:2}},e("div",{className:"ah-steps-label",style:{marginBottom:0}},"📐 Postupak rješavanja"),_total>1&&React.createElement("button",{onClick:function(){playing?_stopPlay():_playSteps(_total);},title:playing?"Zaustavi reprodukciju":"Pusti korak po korak",style:{marginLeft:"auto",display:"inline-flex",alignItems:"center",gap:5,padding:"4px 10px",borderRadius:99,border:"1px solid var(--blue-b)",background:"var(--blue-d)",color:"var(--blue)",fontWeight:700,fontSize:11.5,cursor:"pointer",fontFamily:"var(--fb)"}},playing?"⏸ Stop":"▶ Pusti korake")),
       q.steps.slice(0,_shown).map((step,i)=>{
         if(step==="───"||step==="---")
           return e("div",{key:i,className:"ah-step-sep"});
@@ -182,10 +182,14 @@ function QToolbar({glossaryText,warn,vizKind,qid,onViz}){
     (panel==="warn"&&warn)?e("div",{style:{display:"flex",alignItems:"flex-start",gap:9,padding:"11px 14px",marginBottom:16,borderRadius:"var(--r)",background:"rgba(233,180,70,.08)",border:"1px solid rgba(233,180,70,.32)",fontSize:12.5,color:"var(--gold)",lineHeight:1.62}},e("span",{style:{flexShrink:0,marginTop:1}},"⚠️"),e("span",{style:{flex:1}},warn)):null
   );
 }
+function useAnswerSymbols(answer,onAnswer){
+  const inpRef=React.useRef(null);
+  const insSym=React.useCallback(function insSym(sym){const el=inpRef.current;if(!el){onAnswer((answer||"")+sym);return;}const st=el.selectionStart??(answer||"").length,en=el.selectionEnd??st;const nv=(answer||"").slice(0,st)+sym+(answer||"").slice(en);onAnswer(nv);requestAnimationFrame(()=>{try{el.focus();el.setSelectionRange(st+sym.length,st+sym.length);}catch(e){}});},[answer,onAnswer]);
+  return {inpRef,insSym};
+}
 function CalcQuestion({q,answer,onAnswer,isReviewed,isPractice,isExamMode,onViz}){
   const[postupak,setPostupak]=useState("");
-  const inpRef=React.useRef(null);
-  function insSym(sym){const el=inpRef.current;if(!el){onAnswer((answer||"")+sym);return;}const st=el.selectionStart??(answer||"").length,en=el.selectionEnd??st;const nv=(answer||"").slice(0,st)+sym+(answer||"").slice(en);onAnswer(nv);requestAnimationFrame(()=>{try{el.focus();el.setSelectionRange(st+sym.length,st+sym.length);}catch(e){}});}
+  const {inpRef,insSym}=useAnswerSymbols(answer,onAnswer);
   const[showUpgrade,setShowUpgrade]=useState(false);
   const[aiState,setAiState]=useState("idle");
   const[aiResult,setAiResult]=useState(null);
@@ -267,11 +271,11 @@ Ocijeni postupak i vrati ISKLJUČIVO JSON (bez markdown backtickova):
       // Konačni odgovor + Provjeri gumb
       needsFinalAnswer&&e("div",null,
         e("div",{style:{fontSize:12,fontWeight:600,color:"var(--muted)",marginBottom:6,textTransform:"uppercase",letterSpacing:".06em"}},"\uD83C\uDFAF Konačni odgovor"),
-        !checked&&!isReviewed&&e("div",{className:"symbar"},
+        !checked&&!isReviewed&&React.createElement("div",{className:"symbar"},
           ["\u221a","\u03c0","\u00b2","\u00b3","\u00b7","\u00f7","\u00b1","\u2264","\u2265","\u00b0","\u221e","\u2208"].map(sym=>
-            e("button",{key:sym,type:"button",className:"symbar-btn",onMouseDown:ev=>ev.preventDefault(),onClick:()=>insSym(sym)},sym))),
+            React.createElement("button",{key:sym,type:"button",className:"symbar-btn",onMouseDown:ev=>ev.preventDefault(),onClick:()=>insSym(sym)},sym))),
         e("div",{style:{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}},
-          e("input",{
+          React.createElement("input",{
             ref:inpRef,
             type:"text",
             inputMode:(q.type==="sa"||q.type==="pa")?"text":"decimal",

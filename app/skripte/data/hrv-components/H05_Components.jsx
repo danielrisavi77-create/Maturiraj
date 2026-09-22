@@ -1,4 +1,6 @@
 'use client';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
+
 
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
@@ -196,8 +198,8 @@ export function AuthorCardGoethe({context='l0'}) {
           </div>
         </div>
         <div className="ac5-body">
-          <p>Najveći njemački pisac svih vremena — cijelo razdoblje njegovog djelovanja naziva se <em>„Goetheovo doba"</em>. S 24 godine napisao <strong>Patnje mladog Werthera</strong> za samo 4 tjedna i preko noći postao europska književna zvijezda. Ministar u Weimaru, prirodoznanstvenik, likovni kritičar — renesansni čovjek kasnog 18. stoljeća.</p>
-          <p>Jedini autor ovog tečaja čije ime označava <strong>cijelu literarnu epohu</strong>. Schiller, Hegel, Beethoven i Napoleon su ga poznavali osobno. Napoleon mu je u Erfurtu 1808. rekao: <em>„Vous êtes un homme!"</em> — „Vi ste čovjek!"</p>
+          <p>Najveći njemački pisac svih vremena — cijelo razdoblje njegovog djelovanja naziva se <em>„Goetheovo doba&quot;</em>. S 24 godine napisao <strong>Patnje mladog Werthera</strong> za samo 4 tjedna i preko noći postao europska književna zvijezda. Ministar u Weimaru, prirodoznanstvenik, likovni kritičar — renesansni čovjek kasnog 18. stoljeća.</p>
+          <p>Jedini autor ovog tečaja čije ime označava <strong>cijelu literarnu epohu</strong>. Schiller, Hegel, Beethoven i Napoleon su ga poznavali osobno. Napoleon mu je u Erfurtu 1808. rekao: <em>„Vous êtes un homme!&quot;</em> — „Vi ste čovjek!&quot;</p>
           <div className="ac5-works">
             <div className="ac5-works-lbl">Ključna djela</div>
             <div className="ac5-work">
@@ -297,7 +299,7 @@ export function AuthorCardVoltaireRousseau() {
             </div>
           </div>
           <div className="ac5-body">
-            <p style={{fontSize:13}}>Najsnažniji glas prosvjetiteljstva. Voltaire = oštrica razuma usmjerena protiv dogme, fanatizma i apsolutizma. Parola: <em>„Écrasez l'infâme!"</em> — „Skrši sramotu!" Deist — vjeruje u Boga kao tvorca, ali ne u crkvu.</p>
+            <p style={{fontSize:13}}>Najsnažniji glas prosvjetiteljstva. Voltaire = oštrica razuma usmjerena protiv dogme, fanatizma i apsolutizma. Parola: <em>„Écrasez l&apos;infâme!&quot;</em> — „Skrši sramotu!&quot; Deist — vjeruje u Boga kao tvorca, ali ne u crkvu.</p>
             <div className="ac5-works">
               <div className="ac5-works-lbl">Ključno djelo</div>
               <div className="ac5-work">
@@ -305,7 +307,7 @@ export function AuthorCardVoltaireRousseau() {
                 <div>
                   <div className="ac5-work-title">Candide ili Optimizam</div>
                   <div className="ac5-work-meta">1759. · FILOZOFSKI ROMAN · SATIRA</div>
-                  <div className="ac5-work-desc">Naivni Candide doživljava sve moguće katastrofe dok mu učitelj Pangloss tvrdi da žive u <em>„najboljem od svih mogućih svjetova"</em>. Satira Leibnizova optimizma. Kraj: <em>„Il faut cultiver notre jardin"</em>.</div>
+                  <div className="ac5-work-desc">Naivni Candide doživljava sve moguće katastrofe dok mu učitelj Pangloss tvrdi da žive u <em>„najboljem od svih mogućih svjetova&quot;</em>. Satira Leibnizova optimizma. Kraj: <em>„Il faut cultiver notre jardin&quot;</em>.</div>
                 </div>
               </div>
             </div>
@@ -325,7 +327,7 @@ export function AuthorCardVoltaireRousseau() {
             </div>
           </div>
           <div className="ac5-body">
-            <p style={{fontSize:13}}>Najkontroverzniji prosvjetitelj — i direktna inspiracija za Goethea i Sturm und Drang. <em>„Čovjek je rođen slobodan, a posvuda je u okovima."</em> Rousseau hvali prirodu i osuđuje civilizaciju — misao koja će oblikovati romantizam, pedagogiku i sve revolucije do danas.</p>
+            <p style={{fontSize:13}}>Najkontroverzniji prosvjetitelj — i direktna inspiracija za Goethea i Sturm und Drang. <em>„Čovjek je rođen slobodan, a posvuda je u okovima.&quot;</em> Rousseau hvali prirodu i osuđuje civilizaciju — misao koja će oblikovati romantizam, pedagogiku i sve revolucije do danas.</p>
             <div className="ac5-works">
               <div className="ac5-works-lbl">Ključna djela</div>
               <div className="ac5-work">
@@ -518,7 +520,7 @@ export function HeroQuoteWerther() {
       <style>{CSS_QUOTE5}</style>
       <div className="hq5">
         <div className="hq5-eye">WERTHEROVA FILOZOFIJA U JEDNOJ REČENICI</div>
-        <div className="hq5-text">„Poznajem se — <em>osjećam previše</em> — i to je moja nesreća."</div>
+        <div className="hq5-text">„Poznajem se — <em>osjećam previše</em> — i to je moja nesreća.&quot;</div>
         <div className="hq5-body">Werther Wilhelmu, jesen 1772. — u trenutku kad Homer ustupa mjesto Ossianu. Jedna rečenica sumira Weltschmerz, Sturm und Drang i cijeli predromantizam: osjetljivost nije dar — ona je <strong style={{color:'var(--t1)'}}>i vrlina i prokletstvo</strong>.</div>
         <div className="hq5-source">PATNJE MLADOG WERTHERA · J.W. GOETHE · 1774. · EPISTOLARNI ROMAN · STURM UND DRANG</div>
       </div>
@@ -801,7 +803,7 @@ export function VerterizamInfografika() {
           <div className="vert5-eye">KULTURNI FENOMEN · 1774.–1800.</div>
           <div className="vert5-title">🎭 Verterizam</div>
           <div className="vert5-body">
-            Mladići Europe oponašaju Werthera: <strong>plavi frak + žuti prsluk</strong>, čitaju Ossiana i Homera, pišu ispovjedna pisma prijateljima, kultiviraju melankoliju. Parfem „Eau de Werther", motivi na kineskom porculanu.<br/><br/>
+            Mladići Europe oponašaju Werthera: <strong>plavi frak + žuti prsluk</strong>, čitaju Ossiana i Homera, pišu ispovjedna pisma prijateljima, kultiviraju melankoliju. Parfem „Eau de Werther&quot;, motivi na kineskom porculanu.<br/><br/>
             <strong>1. pop-kulturni globalni bestseller</strong> — prije interneta, medija i reklamnih kampanja, Werther osvaja Europu isključivo snagom emocionalnog rezonancije.
           </div>
         </div>
@@ -810,13 +812,13 @@ export function VerterizamInfografika() {
           <div className="vert5-title">⚠️ Werther efekt</div>
           <div className="vert5-body">
             Statistički dokumentirani val samoubojstava u Europi nakon 1774. Mladići oponašaju Werthera — čak i u načinu smrti. Neke države (Leipzig, Kopenhagen) <strong>zabranjuju roman</strong>. Goethe je užasnut.<br/><br/>
-            Moderna psihologija (dr. David Phillips, 1974.) imenuje fenomen: medijsko spektakularna prezentacija samoubojstva uzrokuje porast stopa. <strong>WHO ima protokole zaštite</strong> — „Werther protokol" vs „Papageno protokol".
+            Moderna psihologija (dr. David Phillips, 1974.) imenuje fenomen: medijsko spektakularna prezentacija samoubojstva uzrokuje porast stopa. <strong>WHO ima protokole zaštite</strong> — „Werther protokol&quot; vs „Papageno protokol&quot;.
           </div>
         </div>
       </div>
       <div className="box-int" style={{marginTop:4}}>
         <div className="box-int-lbl">⚠️ Goethe NE hvali samoubojstvo — pamti ovo</div>
-        <div className="box-int-txt">Površno čitanje tretira roman kao glorifikaciju. Nije. Goethe je 1787. dodao upozorenje: <em>„I ti budi čovjek i ne slijedi njegov primjer."</em> Roman je klinički prikaz emocionalnog sloma — ne recept. Werther efekt ga je trajno užasavao.</div>
+        <div className="box-int-txt">Površno čitanje tretira roman kao glorifikaciju. Nije. Goethe je 1787. dodao upozorenje: <em>„I ti budi čovjek i ne slijedi njegov primjer.&quot;</em> Roman je klinički prikaz emocionalnog sloma — ne recept. Werther efekt ga je trajno užasavao.</div>
       </div>
     </>
   );
@@ -858,7 +860,7 @@ export function UsporedbaWertherSigismund() {
       </div>
       <div className="box-int" style={{marginTop:8}}>
         <div className="box-int-lbl">💡 Za esej — komparativna teza</div>
-        <div className="box-int-txt">„Sigismund je zatvoren <strong>izvana</strong> (sudbina, otac) i uspijeva pobjeći — Werther je zatvoren <strong>iznutra</strong> (osjećaji) i ne uspijeva. Calderón vjeruje u slobodnu volju — Goethe pokazuje da slobodna volja nije dovoljna kad te unutarnji world ubija."</div>
+        <div className="box-int-txt">„Sigismund je zatvoren <strong>izvana</strong> (sudbina, otac) i uspijeva pobjeći — Werther je zatvoren <strong>iznutra</strong> (osjećaji) i ne uspijeva. Calderón vjeruje u slobodnu volju — Goethe pokazuje da slobodna volja nije dovoljna kad te unutarnji world ubija.&quot;</div>
       </div>
     </>
   );
@@ -933,30 +935,29 @@ export function AccordionEsejTezeH05() {
 /* ============================================================
    H05ReactLayers — portal mount
 ============================================================ */
+const H05_ANCHOR_IDS = {
+      timeline18St:     'h05-react-timeline-18st',
+      authorGoethe:     'h05-react-author-goethe',
+      timelineGoethe:   'h05-react-timeline-goethe',
+      compareSD:        'h05-react-compare-sd',
+      authorVoltaire:   'h05-react-author-voltaire-rousseau',
+      authorKant:       'h05-react-author-kant-lessing',
+      popKultura:       'h05-react-pop-kultura',
+      heroQuote:        'h05-react-hero-quote',
+      statCards:        'h05-react-stat-cards',
+      timelineRadnja:   'h05-react-timeline-radnja',
+      accordionSukobi:  'h05-react-accordion-sukobi',
+      usporedba:        'h05-react-usporedba',
+      accordionKljucne: 'h05-react-accordion-kljucne',
+      svgArc:           'h05-react-svg-arc',
+      verterizam:       'h05-react-verterizam',
+      esejTeze:         'h05-react-accordion-teze',
+      citatnik:         'h05-react-citatnik',
+      pojmovnik:        'h05-react-pojmovnik',
+    };
+
 function H05ReactLayers() {
-  const [anchors, setAnchors] = useState({});
-  useEffect(() => {
-    setAnchors({
-      timeline18St:     document.getElementById('h05-react-timeline-18st'),
-      authorGoethe:     document.getElementById('h05-react-author-goethe'),
-      timelineGoethe:   document.getElementById('h05-react-timeline-goethe'),
-      compareSD:        document.getElementById('h05-react-compare-sd'),
-      authorVoltaire:   document.getElementById('h05-react-author-voltaire-rousseau'),
-      authorKant:       document.getElementById('h05-react-author-kant-lessing'),
-      popKultura:       document.getElementById('h05-react-pop-kultura'),
-      heroQuote:        document.getElementById('h05-react-hero-quote'),
-      statCards:        document.getElementById('h05-react-stat-cards'),
-      timelineRadnja:   document.getElementById('h05-react-timeline-radnja'),
-      accordionSukobi:  document.getElementById('h05-react-accordion-sukobi'),
-      usporedba:        document.getElementById('h05-react-usporedba'),
-      accordionKljucne: document.getElementById('h05-react-accordion-kljucne'),
-      svgArc:           document.getElementById('h05-react-svg-arc'),
-      verterizam:       document.getElementById('h05-react-verterizam'),
-      esejTeze:         document.getElementById('h05-react-accordion-teze'),
-      citatnik:         document.getElementById('h05-react-citatnik'),
-      pojmovnik:        document.getElementById('h05-react-pojmovnik'),
-    });
-  }, []);
+  const anchors = useDomAnchors(H05_ANCHOR_IDS);
   return (
     <>
       {anchors.timeline18St     && createPortal(<Timeline18Stoljece />,              anchors.timeline18St)}

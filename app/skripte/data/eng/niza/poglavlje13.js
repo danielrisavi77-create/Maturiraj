@@ -2,12 +2,14 @@
 // Reported Speech
 // Auto-generated JS modul — sadržaj identičan originalnom HTML fajlu
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 export default function EngleskiNizaPoglavlje13({ onBack, onNext, onPrev, onNavigate }) {
   // Keep latest nav callbacks in ref so interceptor never goes stale
   const navRef = useRef(null);
-  navRef.current = { onBack, onNext, onPrev, onNavigate };
+  useLayoutEffect(() => {
+    navRef.current = { onBack, onNext, onPrev, onNavigate };
+  }, [onBack, onNext, onPrev, onNavigate]);
 
   useEffect(() => {
     // 1. Inject CSS (jednom)

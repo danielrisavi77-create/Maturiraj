@@ -1,3 +1,5 @@
+
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 /* ============================================================
    H04 — Barok · Klasicizam · Život je san
    Svaki komponent self-contained — nosi vlastiti <style>.
@@ -296,7 +298,7 @@ export function AuthorCardCalderon() {
               <div>
                 <div className="ac3-work-title">Veliki svjetski teatar</div>
                 <div className="ac3-work-meta">~1635. · AUTO SACRAMENTAL · ALEGORIJA</div>
-                <div className="ac3-work-desc">Bog kao redatelj, čovjek kao glumac u ulogama (kralj, siromah, ljepotica). Shakespeareova metafora „svijet je pozornica" radikalizirana u teološki sustav.</div>
+                <div className="ac3-work-desc">Bog kao redatelj, čovjek kao glumac u ulogama (kralj, siromah, ljepotica). Shakespeareova metafora „svijet je pozornica&quot; radikalizirana u teološki sustav.</div>
               </div>
             </div>
           </div>
@@ -433,7 +435,7 @@ export function AuthorCardMilton() {
         </div>
         <div className="ac3-body">
           <p>Engleski barokni pjesnik, puritanac, politički aktivist. Studirao u Cambridgeu, putovao po Italiji. Tijekom Engleske građanske revolucije služio Cromwellu kao latinski tajnik. <strong>1652. oslijepio</strong> — ostatak života provodi slijep.</p>
-          <p><em>Paradise Lost</em> (<strong>Izgubljeni raj</strong>, 1667.) pisan je <strong>slijep, diktirajući kćerima</strong> — 10.565 stihova blank versa u 12 knjiga. Lik Sotone postaje najkompleksniji i najtragičniji u djelu — romantičari ga vide kao pravog heroja. Blakeov komentar: <em>„Milton je bio na đavolovoj strani a da to nije znao."</em></p>
+          <p><em>Paradise Lost</em> (<strong>Izgubljeni raj</strong>, 1667.) pisan je <strong>slijep, diktirajući kćerima</strong> — 10.565 stihova blank versa u 12 knjiga. Lik Sotone postaje najkompleksniji i najtragičniji u djelu — romantičari ga vide kao pravog heroja. Blakeov komentar: <em>„Milton je bio na đavolovoj strani a da to nije znao.&quot;</em></p>
           <div className="ac3-works">
             <div className="ac3-works-lbl">Ključno djelo</div>
             <div className="ac3-work">
@@ -475,7 +477,7 @@ export function PopKulturaBarok() {
       <SH3 label="Barok u suvremenoj kulturi" style={{marginTop:24}}/>
       <div className="box-int" style={{marginBottom:14}}>
         <div className="box-int-lbl">💡 Zašto ovo znati</div>
-        <div className="box-int-txt">Barokne ideje nisu mrtve — one se pojavljuju u svakom velikom suvremenom djelu koje pita <strong>„je li ono što doživljavam stvarno?"</strong> Prepoznavanje tih veza na eseju pokazuje ocjenjivaču <em>tematsku dubinu</em>.</div>
+        <div className="box-int-txt">Barokne ideje nisu mrtve — one se pojavljuju u svakom velikom suvremenom djelu koje pita <strong>„je li ono što doživljavam stvarno?&quot;</strong> Prepoznavanje tih veza na eseju pokazuje ocjenjivaču <em>tematsku dubinu</em>.</div>
       </div>
       <div className="pop3">
         {POP_KULTURA_BAROK.map((p,i)=>(
@@ -503,11 +505,11 @@ export function HeroQuoteVitaEsSueno() {
       <div className="hq3">
         <div className="hq3-eye">NAJPOZNATIJI STIH ŠPANJOLSKE KNJIŽEVNOSTI · II. ČIN · CALDERÓN 1635.</div>
         <div className="hq3-text">
-          „<em>O, malen je dar nam dan, / jer sav život — to je san, / a san su i sami snovi.</em>"
+          „<em>O, malen je dar nam dan, / jer sav život — to je san, / a san su i sami snovi.</em>&quot;
         </div>
         <div className="hq3-body">Sigismund izgovara ovaj monolog nakon povratka u tamnicu, uvjeren da je dvorski doživljaj bio san. Calderón u jednoj rečenici sažima cijelu baroknu filozofiju vanitasa: ako je život san, a snovi snovi — jedino što ostaje jest moralno djelovanje. <strong>Prolaznost ne ukida odgovornost — pojačava je.</strong></div>
         <div style={{marginTop:12,padding:'8px 12px',background:'rgba(232,201,122,.06)',borderRadius:'var(--r2)',fontFamily:'var(--serif)',fontSize:12.5,color:'var(--t2)',fontStyle:'italic'}}>
-          Orig. (špa.): „¿Qué es la vida? Un frenesí. / ¿Qué es la vida? Una ilusión, / una sombra, una ficción, / y el mayor bien es pequeño; / que toda la vida es sueño, / y los sueños, sueños son."
+          Orig. (špa.): „¿Qué es la vida? Un frenesí. / ¿Qué es la vida? Una ilusión, / una sombra, una ficción, / y el mayor bien es pequeño; / que toda la vida es sueño, / y los sueños, sueños son.&quot;
         </div>
         <div className="hq3-source">PEDRO CALDERÓN DE LA BARCA · ŽIVOT JE SAN · 1635. · II. ČIN · OSMERAC</div>
       </div>
@@ -615,7 +617,7 @@ export function SVGSigismundFaze() {
           <text x="587" y="220" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="rgba(62,207,110,.7)">III. ČIN</text>
 
           {/* Bottom legend */}
-          <text x="350" y="248" textAnchor="middle" fontFamily="serif" fontSize="11" fill="rgba(255,255,255,.3)" fontStyle="italic">„Moj učitelj bio je san." — Sigismund, finalni monolog</text>
+          <text x="350" y="248" textAnchor="middle" fontFamily="serif" fontSize="11" fill="rgba(255,255,255,.3)" fontStyle="italic">„Moj učitelj bio je san.&quot; — Sigismund, finalni monolog</text>
         </svg>
         <div className="wr3-legend">
           <div className="wr3-legend-item"><div className="wr3-dot" style={{background:'rgba(220,50,47,.6)'}}/><span>I. čin: Zvijer — bez odgoja i iskustva = animalna narav</span></div>
@@ -886,7 +888,7 @@ export function SVGVanitas() {
           <text x="560" y="207" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="rgba(255,255,255,.3)" letterSpacing="1">sve je taština</text>
 
           {/* Central label */}
-          <text x="330" y="260" textAnchor="middle" fontFamily="serif" fontSize="13" fill="rgba(255,255,255,.35)" fontStyle="italic">„Sav život — to je san, a san su i sami snovi." — Calderón, 1635.</text>
+          <text x="330" y="260" textAnchor="middle" fontFamily="serif" fontSize="13" fill="rgba(255,255,255,.35)" fontStyle="italic">„Sav život — to je san, a san su i sami snovi.&quot; — Calderón, 1635.</text>
         </svg>
         <div className="wr3-legend">
           <div className="wr3-legend-item"><div className="wr3-dot" style={{background:'rgba(139,109,47,.6)'}}/><span>Lubanja — memento mori: svi umiremo, rang ne štiti</span></div>
@@ -968,30 +970,29 @@ export function AccordionEsejTezeH04() {
 /* ============================================================
    H04ReactLayers — portal mount
 ============================================================ */
+const H04_ANCHOR_IDS = {
+      compareBarok:         'h04-react-compare-barok-klasicizam',
+      timeline17St:         'h04-react-timeline-17-stoljece',
+      authorCalderon:       'h04-react-author-calderon',
+      timelineCalderon:     'h04-react-timeline-calderon',
+      authorFrancuski:      'h04-react-author-francuski',
+      authorMilton:         'h04-react-author-milton',
+      popKultura:           'h04-react-pop-kultura-barok',
+      heroQuote:            'h04-react-hero-quote-vita',
+      statCards:            'h04-react-stat-cards-zivot',
+      svgSigismund:         'h04-react-svg-sigismund',
+      timelineRadnja:       'h04-react-timeline-radnja',
+      accordionSukobi:      'h04-react-accordion-sukobi',
+      usporedba:            'h04-react-usporedba-zivot-hamlet',
+      accordionKljucne:     'h04-react-accordion-kljucne-scene',
+      svgVanitas:           'h04-react-svg-vanitas',
+      esejTeze:             'h04-react-accordion-esej-teze',
+      citatnik:             'h04-react-citatnik',
+      pojmovnik:            'h04-react-pojmovnik',
+    };
+
 function H04ReactLayers() {
-  const [anchors, setAnchors] = useState({});
-  useEffect(() => {
-    setAnchors({
-      compareBarok:         document.getElementById('h04-react-compare-barok-klasicizam'),
-      timeline17St:         document.getElementById('h04-react-timeline-17-stoljece'),
-      authorCalderon:       document.getElementById('h04-react-author-calderon'),
-      timelineCalderon:     document.getElementById('h04-react-timeline-calderon'),
-      authorFrancuski:      document.getElementById('h04-react-author-francuski'),
-      authorMilton:         document.getElementById('h04-react-author-milton'),
-      popKultura:           document.getElementById('h04-react-pop-kultura-barok'),
-      heroQuote:            document.getElementById('h04-react-hero-quote-vita'),
-      statCards:            document.getElementById('h04-react-stat-cards-zivot'),
-      svgSigismund:         document.getElementById('h04-react-svg-sigismund'),
-      timelineRadnja:       document.getElementById('h04-react-timeline-radnja'),
-      accordionSukobi:      document.getElementById('h04-react-accordion-sukobi'),
-      usporedba:            document.getElementById('h04-react-usporedba-zivot-hamlet'),
-      accordionKljucne:     document.getElementById('h04-react-accordion-kljucne-scene'),
-      svgVanitas:           document.getElementById('h04-react-svg-vanitas'),
-      esejTeze:             document.getElementById('h04-react-accordion-esej-teze'),
-      citatnik:             document.getElementById('h04-react-citatnik'),
-      pojmovnik:            document.getElementById('h04-react-pojmovnik'),
-    });
-  }, []);
+  const anchors = useDomAnchors(H04_ANCHOR_IDS);
   return (
     <>
       {anchors.compareBarok     && createPortal(<CompareBarokKlasicizam />,     anchors.compareBarok)}

@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
+import { useClientState } from '@/lib/hooks/useClientState'
 
 const INITIAL_DATA = [
   ["Medicina","Medicinski fakultet","Zagreb",962.0,960.0,962.0],
@@ -121,21 +122,17 @@ function getYearKey(y) {
 }
 
 export default function AdminPragoviClient() {
-  const [data, setData] = useState([])
+  const [data, setData] = useClientState(() => {
+    try {
+      const saved = localStorage.getItem('admin_pragovi')
+      return saved ? JSON.parse(saved) : mapInitialData()
+    } catch { return mapInitialData() }
+  }, [])
   const [activeYear, setActiveYear] = useState('2025')
   const [search, setSearch] = useState('')
   const [lastSave, setLastSave] = useState('Nije sačuvano')
   const [exportText, setExportText] = useState('// Klikni "Sačuvaj sve" za generiranje...')
   const [toast, setToast] = useState(null)
-
-  useEffect(() => {
-    const saved = localStorage.getItem('admin_pragovi')
-    if (saved) {
-      setData(JSON.parse(saved))
-    } else {
-      setData(mapInitialData())
-    }
-  }, [])
 
   function showToast(message, type = 'success') {
     setToast({ message, type })
@@ -346,7 +343,7 @@ ${prag2023}
           <div>
             {filtered.length === 0 ? (
               <div style={{ padding: 32, textAlign: 'center', color: 'var(--muted)', fontSize: 14 }}>
-                Nema rezultata za "{search}"
+                Nema rezultata za &quot;{search}&quot;
               </div>
             ) : (
               filtered.map((d) => {
@@ -421,7 +418,7 @@ ${prag2023}
         <div className="export-section">
           <div className="export-title">📋 Export za kalkulatorData.js</div>
           <div className="export-sub">
-            Nakon ažuriranja klikni "Sačuvaj sve" pa "Export JSON". Kopiraj generirani kod u <code>STUDIJI_2025</code> array u <code>kalkulatorData.js</code>.
+            Nakon ažuriranja klikni &quot;Sačuvaj sve&quot; pa &quot;Export JSON&quot;. Kopiraj generirani kod u <code>STUDIJI_2025</code> array u <code>kalkulatorData.js</code>.
             <br />
             Za PRAG_2023 objekt — kopiraj odgovarajući dio.
           </div>

@@ -1,3 +1,4 @@
+
 /**
  * H03 — Maturiraj.hr — Hrvatski · H03 · Renesansa (europska)
  * Auto-generated from Maturiraj_Hrvatski_H03.html
@@ -12,6 +13,7 @@
 'use client';
 
 import ChapterWrapper from './ChapterWrapper';
+import { useDomAnchors } from "@/lib/hooks/useDomAnchors";
 import { SHARED_LIT_CSS } from './shared-lit-styles';
 import { useState, useEffect } from 'react';
 import CitatnikH03 from './H03_CitatnikTab';
@@ -5168,30 +5170,29 @@ function citSearch(query){
 }`;
 
 
+const H03_ANCHOR_IDS = {
+      timelineRenesansa:   'h03-react-timeline-renesansa',
+      authorShakespeare:   'h03-react-author-shakespeare',
+      timelineShakespeare: 'h03-react-timeline-shakespeare',
+      cetiriTragedije:     'h03-react-cetiri-tragedije',
+      authorCervantes:     'h03-react-author-cervantes',
+      popKultura:          'h03-react-pop-kultura',
+      heroQuote:           'h03-react-hero-quote',
+      statCards:           'h03-react-stat-cards-hamlet',
+      timelineRadnja:      'h03-react-timeline-radnja',
+      svgLikovi:           'h03-react-svg-likovi',
+      sukobi:              'h03-react-accordion-sukobi',
+      kljucneScene:        'h03-react-accordion-kljucne',
+      usporedbaRomeo:      'h03-react-usporedba-romeo',
+      usporedbaAntigona:   'h03-react-usporedba-antigona',
+      svgGlobe:            'h03-react-svg-globe',
+      esejTeze:            'h03-react-accordion-teze',
+      citatnik:            'h03-react-citatnik',
+      pojmovnik:           'h03-react-pojmovnik',
+    };
+
 function H03ReactLayers() {
-  const [anchors, setAnchors] = useState({});
-  useEffect(() => {
-    setAnchors({
-      timelineRenesansa:   document.getElementById('h03-react-timeline-renesansa'),
-      authorShakespeare:   document.getElementById('h03-react-author-shakespeare'),
-      timelineShakespeare: document.getElementById('h03-react-timeline-shakespeare'),
-      cetiriTragedije:     document.getElementById('h03-react-cetiri-tragedije'),
-      authorCervantes:     document.getElementById('h03-react-author-cervantes'),
-      popKultura:          document.getElementById('h03-react-pop-kultura'),
-      heroQuote:           document.getElementById('h03-react-hero-quote'),
-      statCards:           document.getElementById('h03-react-stat-cards-hamlet'),
-      timelineRadnja:      document.getElementById('h03-react-timeline-radnja'),
-      svgLikovi:           document.getElementById('h03-react-svg-likovi'),
-      sukobi:              document.getElementById('h03-react-accordion-sukobi'),
-      kljucneScene:        document.getElementById('h03-react-accordion-kljucne'),
-      usporedbaRomeo:      document.getElementById('h03-react-usporedba-romeo'),
-      usporedbaAntigona:   document.getElementById('h03-react-usporedba-antigona'),
-      svgGlobe:            document.getElementById('h03-react-svg-globe'),
-      esejTeze:            document.getElementById('h03-react-accordion-teze'),
-      citatnik:            document.getElementById('h03-react-citatnik'),
-      pojmovnik:           document.getElementById('h03-react-pojmovnik'),
-    });
-  }, []);
+  const anchors = useDomAnchors(H03_ANCHOR_IDS);
   return (
     <>
       {anchors.timelineRenesansa   && createPortal(<TimelineRenesansa />,             anchors.timelineRenesansa)}

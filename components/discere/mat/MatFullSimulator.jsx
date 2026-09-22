@@ -13,7 +13,7 @@
 // Data (2.1): the engine's EXAMS/Q_IMAGES were externalized at build. Ovdje se engineu šalje
 // samo katalog iz index.json + loader; pitanja se dohvaćaju na zahtjev (loadExam), a cross-exam
 // modovi kroz loadAllExams uz progress bar. Ulaz više ne čeka svih 70 ispita (7 MB).
-import { useEffect, useRef, useState, createElement as h, Fragment } from 'react';
+import React, { useEffect, useRef, useState, createElement as h, Fragment } from 'react';
 import { useRouter } from 'next/navigation';
 import { allowedExamKeys } from '@/lib/discere-access';
 import { loadSimState, saveSimState } from '@/lib/discere-sim-state';
@@ -33,7 +33,7 @@ function Loader({ label }) {
 export default function MatFullSimulator({ tier = 'free' }) {
   const router = useRouter();
   const [phase, setPhase] = useState('loading'); // loading | ready | error
-  const partsRef = useRef(null); // { App, ErrorBoundary }
+  const [parts, setParts] = useState(null); // { App, ErrorBoundary }
   const [coachTips, setCoachTips] = useState(null); // Strategy coach overlay (post-exam)
   const [importOpen, setImportOpen] = useState(false);
   const [remountKey, setRemountKey] = useState(0); // bump to remount App after importing a custom exam
@@ -149,7 +149,7 @@ export default function MatFullSimulator({ tier = 'free' }) {
           }, '*');
         } catch {}
 
-        partsRef.current = { App: core.App, ErrorBoundary: core.ErrorBoundary };
+        setParts({ App: core.App, ErrorBoundary: core.ErrorBoundary });
         setPhase('ready');
       } catch (e) {
         console.error('[MatFullSimulator] load failed', e);
@@ -188,10 +188,10 @@ export default function MatFullSimulator({ tier = 'free' }) {
   if (phase === 'error') {
     return h(Loader, { label: 'Greška pri učitavanju simulatora. Osvježi stranicu.' });
   }
-  if (phase !== 'ready' || !partsRef.current) {
+  if (phase !== 'ready' || !parts) {
     return h(Loader, { label: 'Učitavam simulator…' });
   }
-  const { App, ErrorBoundary } = partsRef.current;
+  const { App, ErrorBoundary } = parts;
   return h(Fragment, null,
     h(ErrorBoundary, null, h(App, { key: remountKey })),
     coachTips && h(CoachOverlay, { tips: coachTips, onClose: () => setCoachTips(null) }),
@@ -199,7 +199,7 @@ export default function MatFullSimulator({ tier = 'free' }) {
       onClick: () => setImportOpen(true), title: 'Uvezi vlastiti ispit (JSON)',
       style: { position: 'fixed', right: 16, bottom: 'calc(16px + env(safe-area-inset-bottom))', zIndex: 175, width: 44, height: 44, borderRadius: '50%', border: '1px solid var(--bdr)', background: 'var(--s1)', color: 'var(--text)', boxShadow: 'var(--shadow-lg)', cursor: 'pointer', fontSize: 18 },
     }, '📥'),
-    importOpen && h(MatImporter, { onClose: () => setImportOpen(false), onImport: importExam }),
+    importOpen && React.createElement(MatImporter, { onClose: () => setImportOpen(false), onImport: importExam }),
   );
 }
 

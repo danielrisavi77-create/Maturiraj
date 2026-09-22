@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useClientState } from "@/lib/hooks/useClientState";
 
 const TICKER = [
   { t: "Matura 2026" },
@@ -198,7 +199,10 @@ export default function IntroScreen({ onFinish }) {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [eyebrowIndex, setEyebrowIndex] = useState(0);
   const [daysLeft, setDaysLeft] = useState(getCountdownDays());
-  const [onlineNum, setOnlineNum] = useState(220);
+  const [onlineNum, setOnlineNum] = useClientState(() => {
+    const hour = new Date().getHours();
+    return hour >= 8 && hour <= 23 ? 180 + Math.floor(Math.random() * 160) : 40 + Math.floor(Math.random() * 60);
+  }, 220);
   const [obOpen, setObOpen] = useState(false);
   const [obStep, setObStep] = useState(0);
   const [obSelected, setObSelected] = useState(null);
@@ -234,8 +238,6 @@ export default function IntroScreen({ onFinish }) {
     const e = setInterval(() => setEyebrowIndex((prev) => (prev + 1) % eyebrowMessages.length), 3000);
     const c = setInterval(() => setDaysLeft(getCountdownDays()), 60000);
 
-    const hour = new Date().getHours();
-    setOnlineNum(hour >= 8 && hour <= 23 ? 180 + Math.floor(Math.random() * 160) : 40 + Math.floor(Math.random() * 60));
     const o = setInterval(() => {
       setOnlineNum((prev) => Math.max(20, prev + (Math.random() > 0.5 ? 1 : -1) * (Math.random() > 0.85 ? 3 : 1)));
     }, 4500);

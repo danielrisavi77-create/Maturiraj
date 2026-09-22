@@ -95,10 +95,10 @@ export default function ScratchPad() {
           title: 'Boja', style: { width: 22, height: 22, borderRadius: '50%', background: c, cursor: 'pointer', border: color === c ? '2px solid var(--text)' : '1px solid var(--bdr)' },
         })),
         e('span', { style: { marginLeft: 'auto', display: 'flex', gap: 6 } },
-          e('button', { onClick: clear, style: btn(false), title: 'Obriši sve' }, 'Očisti'),
+          React.createElement('button', { onClick: clear, style: btn(false), title: 'Obriši sve' }, 'Očisti'),
           e('button', { onClick: () => setOpen(false), style: btn(false), title: 'Zatvori' }, '✕'))
       ),
-      e('canvas', {
+      React.createElement('canvas', {
         ref: canvasRef,
         onMouseDown: start, onMouseMove: move, onMouseUp: end, onMouseLeave: end,
         onTouchStart: start, onTouchMove: move, onTouchEnd: end,

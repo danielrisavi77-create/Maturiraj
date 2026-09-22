@@ -14,7 +14,7 @@ export default function PrijemniDetailSkeleton({ fakColor = 'var(--blue)' }) {
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '9px 12px', marginBottom: 3 }}>
             <Sk variant="circle" w={8} h={8}/>
-            <Sk h={13} w={`${55 + Math.random() * 30}%`}/>
+            <Sk h={13} w={`${55 + (i * 11 + 5) % 30}%`}/>
           </div>
         ))}
         <SkGap h={18}/>

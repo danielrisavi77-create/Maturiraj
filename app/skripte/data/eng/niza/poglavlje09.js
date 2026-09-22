@@ -1,11 +1,13 @@
 // Maturiraj.hr — Engleski niža razina · Poglavlje 9
 // Auto-generated JS modul — sadržaj identičan originalnom HTML fajlu
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 export default function ENG_NIZA_CH09({ onBack, onNext, onPrev, onNavigate }) {
   const navRef = useRef(null);
-  navRef.current = { onBack, onNext, onPrev, onNavigate };
+  useLayoutEffect(() => {
+    navRef.current = { onBack, onNext, onPrev, onNavigate };
+  }, [onBack, onNext, onPrev, onNavigate]);
 
   useEffect(() => {
     const styleId = "skripta-ch09-style";

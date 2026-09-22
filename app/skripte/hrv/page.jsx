@@ -12,6 +12,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useClientState } from '@/lib/hooks/useClientState';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { CHAPTER_LIST } from '@/app/skripte/data/hrv-components/chapters';
@@ -431,20 +432,44 @@ function ExitIntentModal({ open, onClose, tier }) {
 // ════════════════════════════════════════════════════
 // MAIN PAGE
 // ════════════════════════════════════════════════════
+function readIndexSession() {
+  const session = { days: calcDaysToMatura(), tier: 'free', proVariant: 'A', streak: 0 };
+  try {
+    session.tier = localStorage.getItem('mt.tier') || 'free';
+    let variant = localStorage.getItem('mt.hrv.proVariant');
+    if (!variant) {
+      variant = Math.random() < 0.5 ? 'A' : 'B';
+      localStorage.setItem('mt.hrv.proVariant', variant);
+    }
+    session.proVariant = variant;
+    window.dataLayer?.push({ event: 'pro_card_view', variant });
+    const today = new Date().toDateString();
+    const last = localStorage.getItem('mt.hrv.lastVisit');
+    let streak = parseInt(localStorage.getItem('mt.hrv.streak') || '0', 10);
+    if (last !== today) {
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+      streak = last === yesterday ? streak + 1 : 1;
+      localStorage.setItem('mt.hrv.lastVisit', today);
+      localStorage.setItem('mt.hrv.streak', String(streak));
+    }
+    session.streak = streak;
+  } catch {}
+  return session;
+}
+
 export default function HrvatskiIndexPage() {
   const router = useRouter();
   const [hovered, setHovered] = useState(null);
   const [liveCount, setLiveCount] = useState(1247);
   const [activityIdx, setActivityIdx] = useState(0);
-  const [streak, setStreak] = useState(0);
-  const [days, setDays] = useState(120);
-  const [tier, setTier] = useState('free'); // 'free' | 'standard' | 'pro'
-  const [proVariant, setProVariant] = useState('A'); // A/B test
+  const [session] = useClientState(readIndexSession, { days: 120, tier: 'free', proVariant: 'A', streak: 0 });
+  const { streak, days, proVariant } = session;
+  const [tierOverride, setTier] = useState(null);
+  const tier = tierOverride ?? session.tier;
   const [exitOpen, setExitOpen] = useState(false);
   const [devMode, setDevMode] = useState(false);
   const [showBtt, setShowBtt] = useState(false);
   const footerClicks = useRef(0);
-  const sessionStart = useRef(Date.now());
   const exitArmed = useRef(false);
 
   // Proactive prefetch — start compiling all chapters in background right away
@@ -462,43 +487,6 @@ export default function HrvatskiIndexPage() {
     const t = setTimeout(next, 500);
     return () => clearTimeout(t);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Init: tier + A/B + matura countdown + streak
-  useEffect(() => {
-    setDays(calcDaysToMatura());
-
-    try {
-      // Tier detection
-      const t = localStorage.getItem('mt.tier') || 'free';
-      setTier(t);
-
-      // A/B variant — sticky
-      let v = localStorage.getItem('mt.hrv.proVariant');
-      if (!v) {
-        v = Math.random() < 0.5 ? 'A' : 'B';
-        localStorage.setItem('mt.hrv.proVariant', v);
-      }
-      setProVariant(v);
-
-      // Track variant view
-      if (typeof window !== 'undefined' && window.dataLayer) {
-        window.dataLayer.push({ event: 'pro_card_view', variant: v });
-      }
-
-      // Streak
-      const today = new Date().toDateString();
-      const last = localStorage.getItem('mt.hrv.lastVisit');
-      let s = parseInt(localStorage.getItem('mt.hrv.streak') || '0', 10);
-      if (last !== today) {
-        const yesterday = new Date(Date.now() - 86400000).toDateString();
-        if (last === yesterday) s += 1;
-        else s = 1;
-        localStorage.setItem('mt.hrv.lastVisit', today);
-        localStorage.setItem('mt.hrv.streak', String(s));
-      }
-      setStreak(s);
-    } catch (e) {}
-  }, []);
 
   // Live counter
   useEffect(() => {
@@ -1432,7 +1420,7 @@ export default function HrvatskiIndexPage() {
               fontFamily: 'var(--serif)', fontSize: 13, fontStyle: 'italic',
               color: 'var(--t1)', lineHeight: 1.55, marginBottom: 8,
             }}>
-              "Skripte slijede NCVVO ispitni katalog 2025/26 i pokrivaju sva zadana ispitna djela."
+              &quot;Skripte slijede NCVVO ispitni katalog 2025/26 i pokrivaju sva zadana ispitna djela.&quot;
             </div>
             <div style={{
               fontFamily: 'var(--mono)', fontSize: 9,

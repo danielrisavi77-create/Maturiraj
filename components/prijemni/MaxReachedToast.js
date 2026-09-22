@@ -1,18 +1,27 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 export default function MaxReachedToast({ show, onClose, isPro }) {
-  const [visible, setVisible] = useState(false)
+  if (!show) return null
+  return <VisibleMaxReachedToast onClose={onClose} isPro={isPro} />
+}
+
+function VisibleMaxReachedToast({ onClose, isPro }) {
+  const [visible, setVisible] = useState(true)
+  const closeRef = useRef(onClose)
+  useLayoutEffect(() => { closeRef.current = onClose }, [onClose])
 
   useEffect(() => {
-    if (show) {
-      setVisible(true)
-      const t = setTimeout(() => { setVisible(false); setTimeout(onClose, 250) }, 4500)
-      return () => clearTimeout(t)
+    let closeTimer
+    const displayTimer = setTimeout(() => {
+      setVisible(false)
+      closeTimer = setTimeout(() => closeRef.current(), 250)
+    }, 4500)
+    return () => {
+      clearTimeout(displayTimer)
+      clearTimeout(closeTimer)
     }
-  }, [show, onClose])
-
-  if (!show) return null
+  }, [])
 
   return (
     <>

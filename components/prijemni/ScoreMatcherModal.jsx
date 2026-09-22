@@ -26,22 +26,9 @@ function StepDot({ active, done }) {
   )
 }
 
-export default function ScoreMatcherModal({ open, onClose, initialScores, onSaved, track }) {
-  const [step, setStep] = useState(0)
-  const [saving, setSaving] = useState(false)
-  const [scores, setScores] = useState({
-    prosjek_r1: '', prosjek_r2: '', prosjek_r3: '', prosjek_r4: '',
-    mat_a_pct: '', mat_b_pct: '',
-    hrv_a_pct: '', hrv_b_pct: '',
-    eng_a_pct: '', eng_b_pct: '',
-    izborni: {},
-    posebne_provjere: {},
-  })
-
-  // Load initial scores ako već postoje
-  useEffect(() => {
-    if (initialScores) {
-      setScores({
+function formScores(initialScores = {}) {
+  initialScores = initialScores || {}
+  return {
         prosjek_r1: initialScores.prosjek_r1 ?? '',
         prosjek_r2: initialScores.prosjek_r2 ?? '',
         prosjek_r3: initialScores.prosjek_r3 ?? '',
@@ -54,9 +41,18 @@ export default function ScoreMatcherModal({ open, onClose, initialScores, onSave
         eng_b_pct: initialScores.eng_b_pct ?? '',
         izborni: initialScores.izborni || {},
         posebne_provjere: initialScores.posebne_provjere || {},
-      })
-    }
-  }, [initialScores, open])
+  }
+}
+
+export default function ScoreMatcherModal({ open, onClose, initialScores, onSaved, track }) {
+  const [step, setStep] = useState(0)
+  const [saving, setSaving] = useState(false)
+  const [scores, setScores] = useState(() => formScores(initialScores))
+  const [previousInputs, setPreviousInputs] = useState({ initialScores, open })
+  if (previousInputs.initialScores !== initialScores || previousInputs.open !== open) {
+    setPreviousInputs({ initialScores, open })
+    if (initialScores) setScores(formScores(initialScores))
+  }
 
   // Lock body scroll kada je modal otvoren
   useEffect(() => {

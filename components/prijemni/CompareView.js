@@ -1,5 +1,5 @@
 'use client'
-import { useMemo, useEffect, useState, useRef } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import { getUserScores } from '@/lib/prijemni/scores'
 import { matchStudij, hasMinimumScores } from '@/lib/prijemni/matcher'
 import { daysUntil, formatDays, pragZona } from './helpers'
@@ -20,12 +20,6 @@ export default function CompareView({ open, onClose, studiji, onRemove, onShare,
   const [scoresLoaded, setScoresLoaded] = useState(false)
   const [setsOpen, setSetsOpen] = useState(false)
 
-  // Stable ref to the latest studiji objects so memos can depend on
-  // the ID-key string instead of the unstable array reference.
-  const studijRef = useRef(studiji)
-  studijRef.current = studiji
-  const studijIdsKey = studiji.map(s => s.id).join(',')
-
   useEffect(() => {
     if (!open) return
     getUserScores()
@@ -40,28 +34,25 @@ export default function CompareView({ open, onClose, studiji, onRemove, onShare,
     }
   }, [open])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const matches = useMemo(() => {
     if (!userScores) return {}
     const m = {}
-    studijRef.current.forEach(s => { m[s.id] = matchStudij(s, userScores) })
+    studiji.forEach(s => { m[s.id] = matchStudij(s, userScores) })
     return m
-  }, [studijIdsKey, userScores])
+  }, [studiji, userScores])
 
   // Union predmeta preko svih studija — za overlap highlight
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const allPredmeti = useMemo(() => {
     const set = new Set()
-    studijRef.current.forEach(s => s.predmeti?.forEach(p => set.add(p)))
+    studiji.forEach(s => s.predmeti?.forEach(p => set.add(p)))
     return Array.from(set)
-  }, [studijIdsKey])
+  }, [studiji])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const allGradivo = useMemo(() => {
     const set = new Set()
-    studijRef.current.forEach(s => s.gradivo?.forEach(g => set.add(g)))
+    studiji.forEach(s => s.gradivo?.forEach(g => set.add(g)))
     return Array.from(set)
-  }, [studijIdsKey])
+  }, [studiji])
 
   if (!open) return null
 

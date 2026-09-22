@@ -1,3 +1,6 @@
+// Components are exported by the preceding classic animations script.
+const EnglishHeroComponents = window;
+
 // scenes.jsx — 6 scenes for the maturiraj.hr Engleski hero video
 // Story arc: panic (English exam) → chaos (grammar overload) → clarity (4 parts)
 //            → steps (reading strategy) → result (score) → CTA
@@ -159,17 +162,17 @@ function Scene1_Panic() {
           color: C.dim, lineHeight: 1.7,
           filter: `blur(${glitchIntensity * 3}px)`,
         }}>
-          "The <span style={{ textDecoration: 'underline', color: C.text }}>ubiquitous</span> nature
+          &quot;The <span style={{ textDecoration: 'underline', color: C.text }}>ubiquitous</span> nature
           of social media has{' '}
           <span style={{ textDecoration: 'underline', color: C.purple }}>profoundly</span>{' '}
           altered the way young people communicate, raising questions about
           <span style={{ textDecoration: 'underline', color: C.orange }}> authenticity</span> and
-          digital <span style={{ textDecoration: 'underline', color: C.blue }}>discourse</span>."
+          digital <span style={{ textDecoration: 'underline', color: C.blue }}>discourse</span>.&quot;
         </div>
       </div>
 
-      <Sprite start={0.5} end={3.0}>
-        <TextSprite
+      <EnglishHeroComponents.Sprite start={0.5} end={3.0}>
+        <EnglishHeroComponents.TextSprite
           text="Otvoriš ispit… i ne znaš od kud početi?"
           x={960} y={970}
           align="center"
@@ -180,7 +183,7 @@ function Scene1_Panic() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </EnglishHeroComponents.Sprite>
     </>
   );
 }
@@ -292,8 +295,8 @@ function Scene2_Chaos() {
         {timerText}
       </div>
 
-      <Sprite start={3.3} end={6.0}>
-        <TextSprite
+      <EnglishHeroComponents.Sprite start={3.3} end={6.0}>
+        <EnglishHeroComponents.TextSprite
           text="Previše pravila. Premalo smisla."
           x={960} y={940}
           align="center"
@@ -304,7 +307,7 @@ function Scene2_Chaos() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </EnglishHeroComponents.Sprite>
     </>
   );
 }
@@ -419,8 +422,8 @@ function Scene3_Clarity() {
         </div>
       </div>
 
-      <Sprite start={6.6} end={10.0}>
-        <TextSprite
+      <EnglishHeroComponents.Sprite start={6.6} end={10.0}>
+        <EnglishHeroComponents.TextSprite
           text="Svaki dio — posebna strategija."
           x={960} y={920}
           align="center"
@@ -431,7 +434,7 @@ function Scene3_Clarity() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </EnglishHeroComponents.Sprite>
     </>
   );
 }
@@ -474,8 +477,8 @@ function Scene4_Steps() {
       {/* RIGHT: mock question panel */}
       <QuestionPanel localTime={localTime} />
 
-      <Sprite start={10.3} end={15.0}>
-        <TextSprite
+      <EnglishHeroComponents.Sprite start={10.3} end={15.0}>
+        <EnglishHeroComponents.TextSprite
           text="Strategija umjesto sreće."
           x={960} y={960}
           align="center"
@@ -486,7 +489,7 @@ function Scene4_Steps() {
           entryDur={0.5}
           exitDur={0.3}
         />
-      </Sprite>
+      </EnglishHeroComponents.Sprite>
     </>
   );
 }
@@ -577,7 +580,7 @@ function QuestionPanel({ localTime }) {
         fontFamily: FONT_BODY, fontSize: 22,
         color: C.text, lineHeight: 1.6, marginBottom: 28,
       }}>
-        The word <em style={{ color: C.orange, fontStyle: 'normal', fontWeight: 600 }}>"ubiquitous"</em>{' '}
+        The word <em style={{ color: C.orange, fontStyle: 'normal', fontWeight: 600 }}>&quot;ubiquitous&quot;</em>{' '}
         (line 2) is closest in meaning to:
       </div>
 
@@ -731,8 +734,8 @@ function Scene5_Result() {
         </div>
       </div>
 
-      <Sprite start={15.3} end={20.0}>
-        <TextSprite
+      <EnglishHeroComponents.Sprite start={15.3} end={20.0}>
+        <EnglishHeroComponents.TextSprite
           text="Engleski koji razumiješ."
           x={960} y={990}
           align="center"
@@ -743,7 +746,7 @@ function Scene5_Result() {
           entryDur={0.4}
           exitDur={0.3}
         />
-      </Sprite>
+      </EnglishHeroComponents.Sprite>
     </>
   );
 }
@@ -943,12 +946,12 @@ function VideoRoot({ cta, accent }) {
   return (
     <div ref={rootRef} style={{ position: 'absolute', inset: 0 }}>
       <SoundTimeline triggers={ENG_SOUND_TRIGGERS} />
-      <Sprite start={0}    end={3.0}>  <Scene1_Panic /></Sprite>
-      <Sprite start={3.0}  end={6.0}>  <Scene2_Chaos /></Sprite>
-      <Sprite start={6.0}  end={10.0}> <Scene3_Clarity /></Sprite>
-      <Sprite start={10.0} end={15.0}> <Scene4_Steps /></Sprite>
-      <Sprite start={15.0} end={20.0}> <Scene5_Result /></Sprite>
-      <Sprite start={20.0} end={25.0}> <Scene6_CTA cta={cta} /></Sprite>
+      <EnglishHeroComponents.Sprite start={0}    end={3.0}>  <Scene1_Panic /></EnglishHeroComponents.Sprite>
+      <EnglishHeroComponents.Sprite start={3.0}  end={6.0}>  <Scene2_Chaos /></EnglishHeroComponents.Sprite>
+      <EnglishHeroComponents.Sprite start={6.0}  end={10.0}> <Scene3_Clarity /></EnglishHeroComponents.Sprite>
+      <EnglishHeroComponents.Sprite start={10.0} end={15.0}> <Scene4_Steps /></EnglishHeroComponents.Sprite>
+      <EnglishHeroComponents.Sprite start={15.0} end={20.0}> <Scene5_Result /></EnglishHeroComponents.Sprite>
+      <EnglishHeroComponents.Sprite start={20.0} end={25.0}> <Scene6_CTA cta={cta} /></EnglishHeroComponents.Sprite>
     </div>
   );
 }

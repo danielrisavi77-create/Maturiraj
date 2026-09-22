@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useMemo, useRef } from 'react'
+import { useState, useEffect, useMemo, useSyncExternalStore } from 'react'
 
 const TOUR_KEY = 'medicinar_tour_done_v1'
 
@@ -35,16 +35,44 @@ function getTargetRect(id) {
   const el = document.getElementById(id)
   if (!el) return null
   const r = el.getBoundingClientRect()
-  return { top: r.top, left: r.left, width: r.width, height: r.height }
+  return { top: r.top, left: r.left, width: r.width, height: r.height, viewportWidth: window.innerWidth }
+}
+
+function createTargetRectStore(target) {
+    let rect = null
+    return {
+      getSnapshot: () => rect,
+      subscribe(listener) {
+        if (!target) return () => {}
+        function update() {
+          const next = getTargetRect(target)
+          if (next === null && rect === null) return
+          if (next && rect && ['top', 'left', 'width', 'height', 'viewportWidth'].every(key => next[key] === rect[key])) return
+          rect = next
+          listener()
+        }
+        update()
+        window.addEventListener('resize', update)
+        window.addEventListener('scroll', update, true)
+        return () => {
+          window.removeEventListener('resize', update)
+          window.removeEventListener('scroll', update, true)
+        }
+      },
+    }
+}
+
+function useTargetRect(target) {
+  const store = useMemo(() => createTargetRectStore(target), [target])
+  return useSyncExternalStore(store.subscribe, store.getSnapshot, () => null)
 }
 
 const ARROW_SIZE = 12
 
 export default function MedicinarTour({ isPro }) {
   const [step, setStep] = useState(null) // null = inactive
-  const [rect, setRect] = useState(null)
-
   const steps = useMemo(() => buildSteps(isPro), [isPro])
+  const rect = useTargetRect(step === null ? null : steps[step]?.target)
 
   // Start tour on mount if not done yet
   useEffect(() => {
@@ -64,34 +92,6 @@ export default function MedicinarTour({ isPro }) {
     window.addEventListener('tour:start', handleRestart)
     return () => window.removeEventListener('tour:start', handleRestart)
   }, [])
-
-  // Update popover position when step changes or window resizes/scrolls
-  // Inline `update` inside useEffect — no useCallback needed.
-  // useCallback pattern caused: step changes → new fn ref → effect runs → setRect(new obj)
-  // → re-render → (same step, same steps) → same fn ref → effect doesn't run ✓
-  // BUT: if scroll fires many times synchronously it still created update cascades.
-  // Using a ref for the last known rect avoids re-renders on identical values.
-  const rectRef = useRef(null)
-  useEffect(() => {
-    if (step === null) { setRect(null); return }
-    function update() {
-      const r = getTargetRect(steps[step].target)
-      // Only call setRect if values actually changed — avoids redundant re-renders
-      const prev = rectRef.current
-      if (!r) { if (prev !== null) { rectRef.current = null; setRect(null) }; return }
-      if (!prev || prev.top !== r.top || prev.left !== r.left || prev.width !== r.width || prev.height !== r.height) {
-        rectRef.current = r
-        setRect(r)
-      }
-    }
-    update()
-    window.addEventListener('resize', update)
-    window.addEventListener('scroll', update, true)
-    return () => {
-      window.removeEventListener('resize', update)
-      window.removeEventListener('scroll', update, true)
-    }
-  }, [step, steps])
 
   // Scroll target into view
   useEffect(() => {
@@ -124,7 +124,7 @@ export default function MedicinarTour({ isPro }) {
   const isLast = step === steps.length - 1
 
   // Position popover below target, centred. Clamp to viewport.
-  const vpw = typeof window !== 'undefined' ? window.innerWidth : 1200
+  const vpw = rect.viewportWidth
   const POPOVER_W = 300
   let popLeft = rect.left + rect.width / 2 - POPOVER_W / 2
   popLeft = Math.max(12, Math.min(popLeft, vpw - POPOVER_W - 12))

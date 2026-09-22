@@ -184,7 +184,7 @@ function ChapterList({ razina, onOpenChapter, onBack }) {
       {groups.map(({ k, items }) => (
         <div key={k} style={{ marginBottom: 32 }}>
           <div style={{ fontFamily: C.mono, fontSize: 9.5, fontWeight: 700, letterSpacing: 1.8, textTransform: 'uppercase', color: C.t3, marginBottom: 12, paddingBottom: 8, borderBottom: `1px solid ${C.bd}` }}>
-            // {k.toLowerCase()}
+            {'//'} {k.toLowerCase()}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {items.map((p) => (

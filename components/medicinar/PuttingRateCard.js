@@ -1,6 +1,7 @@
 'use client'
-import { useMemo, useEffect, useState } from 'react'
-import { getPaywallVariant, PAYWALL_COPY } from '@/lib/ab/paywallVariant'
+import { useMemo } from 'react'
+import { PAYWALL_COPY } from '@/lib/ab/paywallVariant'
+import { usePaywallVariant } from '@/lib/ab/usePaywallVariant'
 
 /**
  * Crude ali stvarno informativan estimator vjerojatnosti upisa.
@@ -38,8 +39,7 @@ function estimatePuttingRate(studij, progress, userScores) {
 }
 
 export default function PuttingRateCard({ studij, progress, isPro }) {
-  const [variant, setVariant] = useState('control')
-  useEffect(() => { setVariant(getPaywallVariant()) }, [])
+  const variant = usePaywallVariant()
   const copy = PAYWALL_COPY.puttingRate[variant]
   const rate = useMemo(() => estimatePuttingRate(studij, progress, null), [studij, progress])
 
