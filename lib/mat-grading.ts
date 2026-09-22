@@ -270,13 +270,78 @@ function symEquals(a: string, b: string, nd: any): boolean {
   }
 }
 
+/* ------------------------------------------------------------------ *
+ * Oznake i suvišne zagrade
+ * ------------------------------------------------------------------ */
+
+/** Uvodne riječi kojima autori zapisuju rješenje ("Odgovor: 320"). */
+const LABEL_WORD_RE = /^(odgovor|rezultat|rješenje|rjesenje|rj)/;
+
 /**
- * Kanonski oblik cijelog izraza: normalizacija + brojevi u skraćene razlomke.
- * Nad njim rade sve klase ekvivalencije (razlomak ↔ decimala u izrazu,
- * npr. "x>19/4" i "x>4,75").
+ * Šira inačica LEAD_RE za kanonski sloj: dopušta dulja imena i grčko slovo
+ * kao argument ("sin α = 0,8" → "0,8"). Prvo slovo mora biti latinično —
+ * goli grčki simbol ("φ = 47°") ostaje oznaka veličine, ne skida se.
+ * Znak "^" nije u razredu, pa jednadžba krivulje ("x²/81 + y²/45 = 1")
+ * ostaje cijela.
+ */
+const LEAD2_RE = /^[a-zčćžšđ][a-z0-9α-ωčćžšđ']{0,5}(\([^()]*\))?(=|∈)/u;
+
+/** Oznaka točke ispred koordinata: "B(2, −1)" → "(2, −1)". */
+const POINT_LABEL_RE = /^([a-zčćžšđ]\d*)(\([^a-zčćžšđ()]*\.[^a-zčćžšđ()]*\))$/;
+
+/** Ponavljano skida uvodne oznake dok se zapis mijenja. */
+function stripLabels(t: string): string {
+  let cur = t;
+  for (let i = 0; i < 4; i++) {
+    const before = cur;
+    cur = cur.replace(LABEL_WORD_RE, '');
+    cur = cur.replace(LEAD2_RE, '');
+    cur = cur.replace(POINT_LABEL_RE, '$2');
+    cur = cur.replace(/^[.=]+/, '');
+    if (cur === before) break;
+  }
+  return cur;
+}
+
+/**
+ * Zagrade koje ne mijenjaju vrijednost: oko golog broja/razlomka kad je
+ * skupina koeficijent ili djelitelj ("(3/8)x²" = "3/8x²", "4pr/(ac)" =
+ * "4pr/ac"), te oko argumenta funkcije ("sin(α)" = "sinα").
+ *
+ * Uvjet susjedstva čuva zagrade koje NOSE značenje: interval "(3,5)" i
+ * uređeni par ostaju netaknuti. Slovo "i" se ne računa kao susjedstvo jer
+ * je u ovim podacima veznik ("−2 i 3"), a ne množenje.
+ */
+const PAREN_NUM = /\((-?\d+(?:\.\d+)?(?:\/-?\d+(?:\.\d+)?)?)\)/g;
+const PAREN_WORD = /\(([a-zα-ωčćžšđ]{1,4})\)/gu;
+
+function dropRedundantParens(t: string): string {
+  let cur = t;
+  for (let pass = 0; pass < 3; pass++) {
+    const before = cur;
+    for (const re of [PAREN_NUM, PAREN_WORD]) {
+      cur = cur.replace(re, (whole, inner: string, ...rest: any[]) => {
+        const offset: number = rest[rest.length - 2];
+        const src: string = rest[rest.length - 1];
+        const prev = offset > 0 ? src[offset - 1] : '';
+        const next = src[offset + whole.length] || '';
+        const isLetter = (c: string) => c !== '' && c !== 'i' && /[a-zα-ωčćžšđ]/u.test(c);
+        const attached = isLetter(prev) || prev === '/' || isLetter(next);
+        return attached ? inner : whole;
+      });
+    }
+    if (cur === before) break;
+  }
+  return cur;
+}
+
+/**
+ * Kanonski oblik cijelog izraza: normalizacija, skidanje oznaka i suvišnih
+ * zagrada, brojevi u skraćene razlomke. Nad njim rade sve klase
+ * ekvivalencije (npr. "x>19/4" i "x>4,75").
  */
 function canonExpr(s: string): string {
-  return canonNumbers(normalizeAnswer(s));
+  return canonNumbers(dropRedundantParens(stripLabels(normalizeAnswer(s))));
 }
 
 /**
@@ -289,8 +354,9 @@ export function answersEquivalent(a: string, b: string): boolean {
   if (!na || !nb) return false;
   if (na === nb) return true;
   if (numEquals(a, b)) return true;
-  const ca = canonNumbers(na);
-  const cb = canonNumbers(nb);
+  const ca = canonExpr(na);
+  const cb = canonExpr(nb);
+  if (!ca || !cb) return false;
   if (ca === cb) return true;
   return false;
 }

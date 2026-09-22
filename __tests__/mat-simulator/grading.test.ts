@@ -171,6 +171,24 @@ describe('mat-grading: ručni slučajevi', () => {
     ['num', '1/2', '1/3', false],
     ['sa', '0,3', '1/3', false],
     ['sa', 'x > 19/4', 'x < 4,75', false],
+    // uvodne oznake rješenja
+    ['num', '320', 'Odgovor: 320', true],
+    ['sa', '2x − 2', 'Odgovor: y = 2x − 2', true],
+    ['sa', '(2, −1)', 'B(2, −1)', true],
+    ['sa', 'K(600, 250)', '(600, 250)', true],
+    ['sa', 'sin α = 0,8', '0,8', true],
+    ['num', '320', 'Odgovor: 330', false],
+    ['sa', '(2, −1)', '(−1, 2)', false],
+    // goli grčki simbol ostaje oznaka veličine, ne skida se
+    ['sa', 'φ = 47°', '47', false],
+    // suvišne zagrade oko koeficijenta, djelitelja i argumenta funkcije
+    ['sa', '3/8x² − 3/4x − 3', '(3/8)x² − (3/4)x − 3', true],
+    ['sa', '−(2/3)x − 3/2', '(−2/3)x − 3/2', true],
+    ['sa', '4pr/ac', '4pr/(ac)', true],
+    ['sa', 'sin α', 'sin(α)', true],
+    // zagrade koje nose značenje ostaju: interval ≠ interval s drugom zagradom
+    ['sa', '⟨2, 7⟩', '[2, 7⟩', false],
+    ['sa', '(3/8)x² − 3/4x − 3', '(3/7)x² − 3/4x − 3', false],
   ];
 
   for (const [type, ans, input, expected] of classCases) {
