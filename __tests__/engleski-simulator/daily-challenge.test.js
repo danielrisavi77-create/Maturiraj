@@ -344,7 +344,18 @@ describe('DailyChallengeScreen — paywall (SimulatorPreviewGate)', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Dalje →' }));
     }
 
-    const q = await screen.findByText(new RegExp(`Pitanje broj ${FREE_LIMIT}$`));
-    expect(q).toBeTruthy();
+    // Redoslijed pitanja diktira seed (isto kao u free testu gore), pa se
+    // pitanje NE smije tražiti po literalnoj oznaci iz poola — provjerava se
+    // pozicija u nizu: progress label mora stajati na (FREE_LIMIT + 1)-om pitanju.
+    const label = document.querySelector('.sim-progress-label');
+    expect(label?.textContent).toBe(`${FREE_LIMIT + 1} / 5`);
+
+    // Iznad besplatnog limita Pro korisnik i dalje vidi pravi sadržaj pitanja
+    // i može odgovarati — suprotno od free slučaja gore, gdje oboje nestane.
+    expect(await screen.findByText(/^Pitanje broj \d+$/)).toBeTruthy();
+    expect(screen.getAllByRole('radio').length).toBeGreaterThan(0);
+
+    // I nema paywall CTA-a (BlurLockOverlay / PaywallModal se ne pojavljuju).
+    expect(screen.queryByText('Otključaj simulator')).toBeNull();
   });
 });
