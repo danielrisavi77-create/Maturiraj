@@ -247,9 +247,48 @@ Potpun popis je u samom `audio-map.json` (`note` polje svakog ne-`high` task-zap
 
 Popravci skeptičkih nalaza faze 4 (grana `eng/round1`) riješili su 2.1, 2.3, 3.3 i 3.4 (vidi commite na grani). Otvoreno ostaje sljedeće, jer traži odluku o dizajnu/podacima izvan dosega minimalnih izmjena:
 
-- **Referentne brojke u analitici nisu stvarni podaci** (`NCE_DATA`, `NCE_DIST` u `components/engleski-simulator/screens/AnalyticsPanelFull.js`). Sada su u sučelju jasno označene kao ilustrativne i više se ne pripisuju NCVVO-u, ali same brojke (prosjek, prolaznost, raspodjela ocjena) i dalje su izmišljene. Odluka koja se traži: (a) pribaviti i citirati stvarne NCVVO statistike po roku, ili (b) ukloniti usporedbu s „prosjekom” i raspodjelu ocjena iz kartice Napredak. Do odluke kartica stoji s oznakom ilustrativnosti.
-- **Boje ocjena 2–4 su se promijenile** ujedinjenjem `GC` na `lib/engleski-simulator/constants.js` (nalaz 2.1): ResultsScreen sada za ocjenu 2 koristi `#f97316`, za 3 `var(--gold)`, za 4 `#60a5fa` (prije `var(--gold)` / `var(--blue)` / `var(--teal)`). Uzeta je vrijednost iz `constants.js` jer je nju već koristio AnalyticsPanelFull; ako dizajn želi drugu paletu, mijenja se na jednom mjestu u `constants.js`.
+- ~~**Referentne brojke u analitici nisu stvarni podaci** (`NCE_DATA`, `NCE_DIST`).~~ **RIJEŠENO** (grana `eng/ncvvo-data`, 2026-09-23) — vidi „Referentni NCVVO podaci u analitici” niže.
+- ~~**Boje ocjena 2–4 su se promijenile** ujedinjenjem `GC`...~~ **RIJEŠENO (grana `eng/grade-colors`, 2026-09-23).** Vlasnička odluka: zadržati ljestvicu crvena → narančasta → zlatna → plava → zelena, ali sve kroz CSS varijable teme umjesto dva hardkodirana hexa. `GC` u `lib/engleski-simulator/constants.js` sada je `{1:'var(--red)', 2:'var(--orange)', 3:'var(--gold)', 4:'var(--blue)', 5:'var(--green)'}`. Stvarni izvor tih varijabli za engleski simulator nije `app/globals.css` (koji je jedna, fiksna tamna paleta bez svijetle varijante) nego scopeani `.eng-sim` / `body.dark-mode .eng-sim` blok u `app/discere/engleski/simulator/simulator.css` — to je pravi svijetli/tamni par kojim `EngleskiSimulator.js` prebacuje `document.body.classList` (`eng_dark` u localStorage). `--red`, `--gold`, `--blue`, `--green` su ondje već postojali za oba moda; `--orange` je nedostajao pa je dodan u oba bloka (`--orange:#a3520a` svijetla, `--orange:#fb923c` tamna) s kontrastom ≥4.5:1 na `--bg`/`--s1` i ≥3:1 na `--s3` u oba moda (izračun u evidenciji zadatka). Test `grade-colors.test.js` sada traži `var(--...)` oblik za svih 5 ocjena. Vizualna provjera (ResultsScreen za ocjene 1–5 + AnalyticsPanelFull trend/lista) u oba moda potvrđuje da su boje čitljive na svojim podlogama.
+
+  Naknadni ispravci (isti dan, drugi commit na grani):
+  - **`GC` vrijedi samo u DOM-u pod `.eng-sim`.** `ShareStoryCard` crta na `<canvas>`, koji ne razumije CSS varijable: `ctx.fillStyle = 'var(--orange)'` se tiho ignorira, `parseInt` nad tom vrijednošću daje `NaN`, a `gradient.addColorStop(0, 'var(--orange)')` baca `SyntaxError` (empirijski potvrđeno u Chromiumu). Kako oko crtanja nema `try/catch`, `generate()` je pucao prije `setImgSrc`/`setLoading(false)` i gumb „Generiraj story karticu” ostajao je trajno onemogućen na „Generira...”. Zbog toga je uvedena zasebna hex ljestvica `GC_HEX` (`1:#f87171, 2:#fb923c, 3:#e9b446, 4:#4b7bff, 5:#3ecf6e` — tamni par iz `simulator.css`, jer je podloga story kartice uvijek tamna) i `ResultsScreen` joj šalje `accentColor: GC_HEX[g]`. `ShareStoryCard` dodatno prihvaća samo `#rrggbb` i inače pada na zadanu boju, pa isti scenarij više ne može srušiti generiranje ni iz drugog simulatora.
+  - **Komentar uz `GC` u `constants.js` je ispravljen** — ranije je upućivao na `app/globals.css`, gdje je `--orange` posve druga boja (`#ff6b2b`) i nema svijetle varijante; ispravan izvor je scopeani blok u `simulator.css`.
+  - **Ograda uz razlučivost para 2/3.** Narančasta i zlatna nisu razdvojene zasićenjem ni svjetlinom: svijetlo `#a3520a` (h28 s88% l34%) vs `#a8720a` (h39 s89% l35%) — međusobni kontrast 1.35:1; tamno `#fb923c` (h27 s96% l61%) vs `#e9b446` (h40 s79% l59%) — 1.19:1, najmanji razmak u ljestvici. Razlikuje ih praktički samo nijansa (11–13°). Kontrast prema podlogama je u redu, ali u trend-grafu i listi „Zadnjih 5 ispita” u `AnalyticsPanelFull` točke za ocjene 2 i 3 stoje jedna do druge i teško su razlučive. Ljestvica je vlasnička odluka i ostaje, ali par 2/3 nije vizualno riješen.
 - **Pragovi 85/70/55/40 ostaju pragovi simulatora.** Svugdje gdje se prikazuje ocjena sada stoji `GRADE_NOTE`, ali stvarni NCVVO pragovi po roku nisu u podacima; preslikavanje postotka u maturalnu ocjenu je i dalje orijentacijsko po dizajnu.
+
+### Referentni NCVVO podaci u analitici — riješeno 2026-09-23 (`eng/ncvvo-data`)
+
+Odluka vlasnika je bila: nabaviti prave službene NCVVO podatke, a ako ih nema — maknuti kartice. Istraživanje ncvvo.hr dalo je različit odgovor za dvije kartice, pa je odluka provedena **po kartici**.
+
+**Što je objavljeno i preuzeto.** NCVVO u „Statističkoj i psihometrijskoj analizi ispita državne mature” objavljuje prosječnu postotnu riješenost (aritmetičku sredinu) po ispitu i razini, za **ljetni rok**. Preuzeto je pet godina za Engleski jezik (viša A / osnovna B):
+
+| Ljetni rok | Šk. god. | A (viša) | B (osnovna) | Mjesto u izvoru |
+| --- | --- | --- | --- | --- |
+| 2018. | 2017./2018. | 73,40 | 56,10 | Tablica 20., str. 48 · Tablica 24., str. 55 |
+| 2019. | 2018./2019. | 77,45 | 61,93 | Tablica 20., str. 41 · Tablica 24., str. 48 |
+| 2020. | 2019./2020. | 78,26 | 63,44 | Tablica 28., str. 46 · Tablica 36., str. 52 |
+| 2021. | 2020./2021. | 75,50 | 62,77 | Tablica 27., str. 50 · Tablica 34., str. 56 |
+| 2022. | 2021./2022. | 80,57 | 69,19 | str. 26 (A) · str. 29 (B) |
+
+URL-ovi svih izvora i datum dohvata upisani su u komentar iznad konstanti u `lib/engleski-simulator/ncvvoData.js`.
+
+**Ispravak ranije tvrdnje o 2019./2020.** Prvi prolaz ove grane zapisao je (i u kod i u ovaj dokument) da za šk. god. 2019./2020. „PDF nije javno povezan ni s jedne stranice NCVVO-a”. To je bilo netočno. Objava od 5. 3. 2021. na <https://www.ncvvo.hr/statisticka-i-psihometrijska-analiza-ispita-drzavne-mature-u-sk-god-2019-2020/> izravno vodi na <https://www.ncvvo.hr/wp-content/uploads/2021/03/Statisticka-i-psihometrijska-analiza-ispita-drzavne-mature-19-20.pdf>; brojke su izvučene iz tekstualnoga sloja toga PDF-a (Tablica 28., otisnuta str. 46, 16 969 učenika; Tablica 36., otisnuta str. 52, 10 398 učenika). Simulator ima ispite `2020_ljeto` i `vis_2020_ljeto`, pa su ti korisnici prije ovoga ostajali bez kartice iako podatak postoji.
+
+**Samo ljetni rok — jesenski i zimski se ne smiju usporediti s njim.** Analize obrađuju ljetni rok; jesenski ide u zaseban dodatak s vlastitim tablicama i drukčijom populacijom (uglavnom ponavljači). U šk. god. 2019./2020. ljetni rok daje 78,26 (A) i 63,44 (B), a jesenski 66,0 i 41,0 („Dodatak 2 – Ispiti u jesenskome roku”, otisnute str. 162 i 164) — razlika je 12 do 22 postotna boda. `parseExamKey` zato zadržava rok iz ključa, a `getNcvvoAvg` vraća `null` za `*_jesen`, `*_zima`, `*_prvi` i `*_drugi`.
+
+**Što NIJE objavljeno.** Prolaznost i raspodjela ocjena 1–5 i dalje nisu u podacima, ali **ne** iz ranije navedenog razloga („postoji samo kao grafika bez brojčane tablice, pa se ne može pouzdano pročitati”) — i ta je tvrdnja bila netočna i ovime se povlači. Stvarno stanje, provjereno po svih pet PDF-ova: te veličine postoje samo kao slika „Raspodjela školskih ocjena i ocjena u ispitu”, ali njezine oznake u tekstualnome sloju **za dio godina i razina jesu čitljive** — npr. 2017./2018., viša razina, Slika 20., otisnuta str. 53, stupac OCJENA DM: nedovoljan 1,7 %, dovoljan 10,3 %, dobar 31,3 %, vrlo dobar 32,8 %, odličan 21,8 % (prolaznost = 100 − 1,7 = 98,3 %). Za 2018./2019. (viša) i za cijelu 2021./2022. tih oznaka u tekstualnome sloju nema, pa se niz ne može složiti za sve godine koje modul pokriva. Kartice ostaju uklonjene dok niz ne bude potpun. Za 2022./2023., 2023./2024. i 2024./2025. analiza na dan dohvata nije objavljena.
+
+**Korisnikov rezultat mora biti na istoj skali.** NCVVO-ova aritmetička sredina je ukupan rezultat na skali 0–100, s cjelinom Pisanje uključenom i s ponderima 0,4 : 0,3 : 0,3 (osnovna) odnosno 1/3 (viša). `history[].pct` to nije — on je `cor / autoQ.length`, dakle udio točnih auto-ocjenjivih pitanja, koji cjeline zbraja po broju pitanja. Ispravna mjera već postoji: `weightedEstimate()` iz `examStructure.js`. Simulator je sada sprema u zapis povijesti kao `weighted`, a usporedba uzima nju. Zapisi stariji od ove izmjene nemaju je i preskaču se — radije nema kartice nego kriva brojka. Procjena i dalje izostavlja Pisanje (ponderi su renormalizirani na ocijenjene cjeline), što kartica izrijekom piše.
+
+**Provedeno.**
+
+- `lib/engleski-simulator/ncvvoData.js` — `NCVVO_ENG_AVG` (pet objavljenih godina), `NCVVO_FETCHED_AT`, `NCVVO_SEASON`, `NCVVO_COMPARABLE_MODE`, `parseExamKey` (sada vraća i `season`), `getNcvvoAvg` (samo ljetni rok), `comparablePct`, `pickNcvvoComparison`.
+- Kartica „Usporedba s orijentacijskim prosjekom” → „**Usporedba sa službenim prosjekom NCVVO-a**”: stvarni prosjek za godinu, rok i razinu riješenog ispita, atribucija „Izvor: NCVVO ‹šk. god.›” kao poveznica na PDF s tooltipom (tablica i stranica). Traka „Prolaznost” je uklonjena jer za nju nema izvora. Kartice nema kad za riješene ispite nema objavljenog podatka (npr. samo ispiti iz 2023.–2025.).
+- U prosjek ulaze samo zapisi s `mode: 'simulacija'` i samo ispiti **iste godine i razine** — sesije vježbanja (gdje „Provjeri” otkriva rješenje prije predaje) i rezultati iz drugih godina više ne ulaze u usporedbu.
+- Brojevi na kartici pišu se hrvatskim zapisom (`80,6%`, ne `80.57%`), a razlika se računa iz istih vrijednosti koje se prikazuju, pa prikazani brojevi daju prikazanu razliku.
+- Kartica „Ilustrativna raspodjela ocjena” **uklonjena** zajedno s `NCE_DIST`, izvedenim `betterThan`/`pred-rank` i pripadajućim CSS-om (`.pred-nce*`, `.pred-rank`).
+- `a.nap-card-src` u `app/discere/engleski/simulator/simulator.css` scopean je na `.eng-sim` — bio je jedino nescopeano pravilo u globalnom stylesheetu App Routera.
+- Testovi: `__tests__/engleski-simulator/ncvvo-data.test.js` (oblik podataka, URL izvora po godini, zabrana `pass`/`dist` polja, pokrivenost 2019./2020., odbijanje ne-ljetnih rokova, filtriranje vježbanja, prosjek unutar iste godine); `grade-note.test.js` (kartica samo uz stvarni podatak i poveznicu, nema je za jesenski rok ni za samo-vježbanje, hrvatski zapis brojeva).
 
 ## Status Faza 4 (verifikacija) — 2026-09-22
 
@@ -285,13 +324,35 @@ Grana `eng/round1` (`main` = `d4e0dd0` je njezin predak; diff `main...eng/round1
 
 - **Ispravnost.** `useTimer` sada računa tick preko `sRef` i zove `setS` gotovom vrijednošću, pa updater više ne može pozvati `onExpire`/`onWarn` tijekom tuđeg rendera; semantika reseta se nije promijenila (`tot` se i dalje čita samo pri prvom renderu, reset je remount preko `key`), što je i dokumentirano u samoj datoteci. Prosljeđivanje `q._examKey` je konzistentno s `razina` u istom retku i s `deriveRazina` (kod `mixed` sesije razina se čita po izvornom ispitu), pa audio i razina za isto pitanje sada dolaze iz istog ispita.
 - **Sigurnost / ADR-001.** Diff ne dira `examsLoader`, `exams.js` ni bilo koji put učitavanja ispita, ne uvodi nove statičke importe podataka i ne mijenja gating (`SimulatorPreviewGate`, `case 'virtual_exam'`, dnevni izazov). Tekstualni fallback ne izlaže sadržaj pitanja ni ključ odgovora. Nema regresije u paywallu.
-- **Performanse.** `preload: 'none'` → `'metadata'` na svim `<audio>` elementima znači da preglednik za svako pitanje slušanja dohvati zaglavlje snimke i bez klika na Play. To je cijena da se nedostupnost vidi odmah; po pitanju je riječ o jednom zahtjevu za metapodatke, ali na mobilnoj mreži i dugim sekcijama slušanja to je novi, prije nepostojeći promet. Ako se pokaže kao problem, alternativa je `HEAD`/`fetch` provjera samo prvog zapisa uz zadržan `preload: 'none'`.
+- **Performanse.** `preload: 'none'` → `'metadata'` na svim `<audio>` elementima znači da preglednik za svako pitanje slušanja dohvati zaglavlje snimke i bez klika na Play. To je cijena da se nedostupnost vidi odmah; po pitanju je riječ o jednom zahtjevu za metapodatke, ali na mobilnoj mreži i dugim sekcijama slušanja to je novi, prije nepostojeći promet. Ako se pokaže kao problem, alternativa je `HEAD`/`fetch` provjera samo prvog zapisa uz zadržan `preload: 'none'`. *(Dopuna 2026-09-23: ta je alternativa isprobana na grani `eng/audio-preload` i odbačena — `connect-src` je ne pušta, a GitHub Release nema CORS; vidi „Status Faza 4” niže.)*
 - **Konzistentnost.** `GC` i `GRADE_NOTE` sada imaju po jedan izvor (`lib/engleski-simulator/constants.js`); ResultsScreen i AnalyticsPanelFull daju istu boju za istu ocjenu. Nusposljedica je vidljiva promjena boja ocjena 2–4 u ResultsScreenu (vidi „Status Faza 4 — otvoreno”).
 
 ### Nalazi ovog pregleda (novi, nisu blokirajući)
 
-1. **Tekstualni fallback nema `aria-live`.** `div.audio-fallback` se pojavi tek nakon `onError`, pa ga čitač ekrana ne najavi. Prijedlog: `role="status"` na okviru poruke.
+1. ~~**Tekstualni fallback nema `aria-live`.**~~ Riješeno (grana `eng/audio-preload`): `div.audio-fallback` sada ima `role="status"`.
 2. **Mjerenje chunka za 3.2 i dalje nije napravljeno buildom** — kriterij ostaje dokazan samo statičkom analizom.
 3. **Dio novih testova provjerava izvorni kod regexom** (`audio-fallback.test.js` nad tekstom `EngleskiSimulator.js`/`SimSharedUI.js`). Radi posao, ali puca na bezazleno preoblikovanje koda; kad se ukaže prilika, zamijeniti ponašajnim testom.
 
 **Presuda:** grana je spremna za spajanje uz napomene — kod je zelen na `tsc` i `vitest`, lint je čist u dosegu simulatora, sigurnosnih ni paywall regresija nema; prije objave ostaju ručni smoke test u pregledniku, mjerenje chunka buildom i odluka o `NCE_DATA`/`NCE_DIST`.
+
+## Status Faza 4 (audio: pristupačnost i odbačena HEAD provjera) — 2026-09-23
+
+Grana `eng/audio-preload`. Krenula je kao odgovor na nalaz o performansama iz pregleda 2026-09-22 (`preload: 'metadata'` uvodi promet i bez klika na Play): `preload='none'` + `fetch(url, { method: 'HEAD' })` pri montiranju playera. **Ta je zamjena povučena** — pregled je pokazao da je u jedinoj postojećoj konfiguraciji inertna i da uz to briše postojeću detekciju.
+
+### Zašto je HEAD provjera odbačena
+
+- **CSP je blokira.** `connect-src` u `next.config.mjs` je `'self' https://*.supabase.co https://*.supabase.io https://www.google-analytics.com https://plausible.io` — baza snimaka nije na popisu. `NEXT_PUBLIC_ENG_AUDIO_BASE` se dodaje samo u `media-src`, koji vrijedi za `<audio>`, ne za `fetch`. Zaglavlja iz `headers()` vrijede na svim rutama, u devu i u produkciji, pa je svaki HEAD završavao kao `TypeError` uz violation u konzoli na svakom pitanju slušanja.
+- **CORS je blokira i bez CSP-a.** `curl -I -H 'Origin: https://maturiraj.hr' -L` na release URL vraća `302` s `github.com` **bez** `Access-Control-Allow-Origin`.
+- **Posljedica: provjera je uvijek završavala kao „dostupno”.** `catch` je vraćao `isCrossOrigin(url)`, a baza je cross-origin i u devu i u produkciji (nema `.env` datoteka, `public/audio/eng` sadrži samo README). Fallback se nikad nije mogao prikazati iz provjere.
+- **Uz to je bila regresija.** Učitavanje medija preko `<audio>` nije pod CORS-om (element nema `crossorigin` atribut), pa je `preload='metadata'` stvarno hvatao 404 na GitHub Release-u i prikazivao fallback bez klika. S `preload='none'` + inertnim HEAD-om nedostupnost bi se otkrila tek nakon klika na Play — točno ono protiv čega je postojao komentar u kodu.
+- **Cache je mogao trovati stanje.** `settle(false)` na mrežnoj grešci istog podrijetla upisivao je `false` u modulni `Map` do kraja života stranice; kako fallback zamjenjuje `<audio>`, nije bilo čime ponoviti pokušaj.
+- **Testovi to nisu mogli vidjeti** — svi su ili mockirali `fetch` ili preko `window.happyDOM.setURL` premjestili podrijetlo stranice na `https://github.com`; jedini cross-origin slučaj tvrdio je „player ostaje”, što je upravo inertno ponašanje.
+
+### Stanje na grani
+
+- **`preload='metadata'` je zadržan** na svim `<audio>` elementima; detekcija nedostupnosti ostaje na `onError` samog elementa, kako je bilo na `main`. Razlog i uvjeti pod kojima bi provjera zahtjevom uopće bila moguća (proširen `connect-src` **i** CORS na krajnjem URL-u) dokumentirani su u `NativeAudio` (`components/engleski-simulator/components/SimSharedUI.js`) i u `public/audio/eng/README.md`.
+- **Pristupačnost (nalaz 1 gore)**: okvir tekstualnog fallbacka (`div.audio-fallback`) dobio je `role="status"`, pa ga čitač ekrana najavi kad se pojavi nakon `onError`.
+- **Refaktor bez promjene ponašanja**: četiri gotovo identična `<audio>` + `useState` para (glavni zapis, uvodna snimka, dva `extra` zapisa) svedena su na komponentu `NativeAudio` s `key={src}`; svaki zapis i dalje ima vlastito stanje greške, koje se resetira pri promjeni snimke.
+- **Testovi**: `__tests__/engleski-simulator/audio-fallback.test.js` provjerava `preload='metadata'` na stvarno renderiranim elementima, izolaciju stanja greške po zapisu (greška na uvodnoj snimci ne ruši glavni player), `role="status"`, te da montiranje playera ne šalje nijedan `fetch` zahtjev.
+
+Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — zeleno (poznati flakeovi `asset-integrity` ETIMEDOUT i `mat-simulator/engine-core-smoke` hook timeout ponovljeni zasebno); `npx eslint components/engleski-simulator/components/SimSharedUI.js` — 0 problema.
