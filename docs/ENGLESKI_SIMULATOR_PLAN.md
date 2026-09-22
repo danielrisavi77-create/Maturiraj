@@ -285,7 +285,7 @@ Grana `eng/round1` (`main` = `d4e0dd0` je njezin predak; diff `main...eng/round1
 
 - **Ispravnost.** `useTimer` sada računa tick preko `sRef` i zove `setS` gotovom vrijednošću, pa updater više ne može pozvati `onExpire`/`onWarn` tijekom tuđeg rendera; semantika reseta se nije promijenila (`tot` se i dalje čita samo pri prvom renderu, reset je remount preko `key`), što je i dokumentirano u samoj datoteci. Prosljeđivanje `q._examKey` je konzistentno s `razina` u istom retku i s `deriveRazina` (kod `mixed` sesije razina se čita po izvornom ispitu), pa audio i razina za isto pitanje sada dolaze iz istog ispita.
 - **Sigurnost / ADR-001.** Diff ne dira `examsLoader`, `exams.js` ni bilo koji put učitavanja ispita, ne uvodi nove statičke importe podataka i ne mijenja gating (`SimulatorPreviewGate`, `case 'virtual_exam'`, dnevni izazov). Tekstualni fallback ne izlaže sadržaj pitanja ni ključ odgovora. Nema regresije u paywallu.
-- **Performanse.** `preload: 'none'` → `'metadata'` na svim `<audio>` elementima znači da preglednik za svako pitanje slušanja dohvati zaglavlje snimke i bez klika na Play. To je cijena da se nedostupnost vidi odmah; po pitanju je riječ o jednom zahtjevu za metapodatke, ali na mobilnoj mreži i dugim sekcijama slušanja to je novi, prije nepostojeći promet. Ako se pokaže kao problem, alternativa je `HEAD`/`fetch` provjera samo prvog zapisa uz zadržan `preload: 'none'`.
+- **Performanse.** `preload: 'none'` → `'metadata'` na svim `<audio>` elementima znači da preglednik za svako pitanje slušanja dohvati zaglavlje snimke i bez klika na Play. To je cijena da se nedostupnost vidi odmah; po pitanju je riječ o jednom zahtjevu za metapodatke, ali na mobilnoj mreži i dugim sekcijama slušanja to je novi, prije nepostojeći promet. Ako se pokaže kao problem, alternativa je `HEAD`/`fetch` provjera samo prvog zapisa uz zadržan `preload: 'none'`. *(Dopuna 2026-09-23: ta je alternativa isprobana na grani `eng/audio-preload` i odbačena — `connect-src` je ne pušta, a GitHub Release nema CORS; vidi „Status Faza 4” niže.)*
 - **Konzistentnost.** `GC` i `GRADE_NOTE` sada imaju po jedan izvor (`lib/engleski-simulator/constants.js`); ResultsScreen i AnalyticsPanelFull daju istu boju za istu ocjenu. Nusposljedica je vidljiva promjena boja ocjena 2–4 u ResultsScreenu (vidi „Status Faza 4 — otvoreno”).
 
 ### Nalazi ovog pregleda (novi, nisu blokirajući)
@@ -296,20 +296,24 @@ Grana `eng/round1` (`main` = `d4e0dd0` je njezin predak; diff `main...eng/round1
 
 **Presuda:** grana je spremna za spajanje uz napomene — kod je zelen na `tsc` i `vitest`, lint je čist u dosegu simulatora, sigurnosnih ni paywall regresija nema; prije objave ostaju ručni smoke test u pregledniku, mjerenje chunka buildom i odluka o `NCE_DATA`/`NCE_DIST`.
 
-## Status Faza 4 (audio: promet i pristupačnost) — 2026-09-23
+## Status Faza 4 (audio: pristupačnost i odbačena HEAD provjera) — 2026-09-23
 
-Grana `eng/audio-preload`. Odluka vlasnika na nalaz o performansama iz pregleda 2026-09-22 (`preload: 'none'` → `'metadata'` uvodi promet i bez klika na Play) i na nalaz 1 o pristupačnosti.
+Grana `eng/audio-preload`. Krenula je kao odgovor na nalaz o performansama iz pregleda 2026-09-22 (`preload: 'metadata'` uvodi promet i bez klika na Play): `preload='none'` + `fetch(url, { method: 'HEAD' })` pri montiranju playera. **Ta je zamjena povučena** — pregled je pokazao da je u jedinoj postojećoj konfiguraciji inertna i da uz to briše postojeću detekciju.
 
-- **`preload='none'` je vraćen na svim `<audio>` elementima** u `components/engleski-simulator/components/SimSharedUI.js` (glavni zapis, uvodna snimka, `extra` zapisi). Preglednik prije klika na Play više ne dohvaća ništa.
-- **Dostupnost se provjerava jednim HEAD zahtjevom** (`fetch(url, { method: 'HEAD' })`) pri montiranju playera, samo za URL-ove iz `audio-map.json` za tekuće pitanje. HEAD vraća samo zaglavlja odgovora, dok je `preload='metadata'` dohvaćao zaglavlje same MP3 datoteke — isti broj zahtjeva, bitno manje bajtova.
-- **Pravila odluke** (`useAudioMissing` u istoj datoteci):
-  - ne-OK odgovor (404 i sl.) → odmah postojeći tekstualni fallback, isti kao na `onError`;
-  - `405`/`501` (server ne podržava HEAD) → tretiraj kao dostupno; `onError` na `<audio>` ostaje druga linija obrane;
-  - mrežna greška na **istom podrijetlu** → fallback;
-  - mrežna greška na **cross-origin** izvoru → tretiraj kao dostupno. Produkcijske snimke su na GitHub Release-u (`https://github.com/danielrisavi77-create/maturiraj-eng-audio/releases/download/eng-audio-v1/`, vidi `public/audio/eng/README.md`), koji za HEAD nema CORS zaglavlja, pa bi `TypeError` inače lažno oborio player. Kad se `NEXT_PUBLIC_ENG_AUDIO_BASE` usmjeri na isti origin (lokalni dev, vlastiti CDN), provjera je stvarna.
-  - `AbortController` prekida zahtjev na unmountu (promjena pitanja); prekinuti zahtjev se ne upisuje u cache.
-- **Cache**: `Map` URL → dostupnost u modulu (traje koliko i učitana stranica), pa se HEAD za isti URL ne ponavlja pri remountu playera. `_resetAudioAvailabilityCache()` je izvezen samo za testove.
-- **Pristupačnost**: okvir tekstualnog fallbacka (`div.audio-fallback`) dobio je `role="status"` (nalaz 1 gore).
-- **Testovi**: `__tests__/engleski-simulator/audio-fallback.test.js` (18 testova) mockira `fetch` za 200 / 404 / 405 / mrežnu grešku (same-origin i cross-origin) i abort, provjerava `method: 'HEAD'` i URL, cache (dostupno i nedostupno), `preload='none'` na renderiranim elementima i `role="status"`. `audio-player.test.js` mockira `fetch` da ne ide na mrežu.
+### Zašto je HEAD provjera odbačena
 
-Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — zeleno (poznati flakeovi `asset-integrity` ETIMEDOUT i `mat-simulator/engine-core-smoke` hook timeout ponovljeni zasebno).
+- **CSP je blokira.** `connect-src` u `next.config.mjs` je `'self' https://*.supabase.co https://*.supabase.io https://www.google-analytics.com https://plausible.io` — baza snimaka nije na popisu. `NEXT_PUBLIC_ENG_AUDIO_BASE` se dodaje samo u `media-src`, koji vrijedi za `<audio>`, ne za `fetch`. Zaglavlja iz `headers()` vrijede na svim rutama, u devu i u produkciji, pa je svaki HEAD završavao kao `TypeError` uz violation u konzoli na svakom pitanju slušanja.
+- **CORS je blokira i bez CSP-a.** `curl -I -H 'Origin: https://maturiraj.hr' -L` na release URL vraća `302` s `github.com` **bez** `Access-Control-Allow-Origin`.
+- **Posljedica: provjera je uvijek završavala kao „dostupno”.** `catch` je vraćao `isCrossOrigin(url)`, a baza je cross-origin i u devu i u produkciji (nema `.env` datoteka, `public/audio/eng` sadrži samo README). Fallback se nikad nije mogao prikazati iz provjere.
+- **Uz to je bila regresija.** Učitavanje medija preko `<audio>` nije pod CORS-om (element nema `crossorigin` atribut), pa je `preload='metadata'` stvarno hvatao 404 na GitHub Release-u i prikazivao fallback bez klika. S `preload='none'` + inertnim HEAD-om nedostupnost bi se otkrila tek nakon klika na Play — točno ono protiv čega je postojao komentar u kodu.
+- **Cache je mogao trovati stanje.** `settle(false)` na mrežnoj grešci istog podrijetla upisivao je `false` u modulni `Map` do kraja života stranice; kako fallback zamjenjuje `<audio>`, nije bilo čime ponoviti pokušaj.
+- **Testovi to nisu mogli vidjeti** — svi su ili mockirali `fetch` ili preko `window.happyDOM.setURL` premjestili podrijetlo stranice na `https://github.com`; jedini cross-origin slučaj tvrdio je „player ostaje”, što je upravo inertno ponašanje.
+
+### Stanje na grani
+
+- **`preload='metadata'` je zadržan** na svim `<audio>` elementima; detekcija nedostupnosti ostaje na `onError` samog elementa, kako je bilo na `main`. Razlog i uvjeti pod kojima bi provjera zahtjevom uopće bila moguća (proširen `connect-src` **i** CORS na krajnjem URL-u) dokumentirani su u `NativeAudio` (`components/engleski-simulator/components/SimSharedUI.js`) i u `public/audio/eng/README.md`.
+- **Pristupačnost (nalaz 1 gore)**: okvir tekstualnog fallbacka (`div.audio-fallback`) dobio je `role="status"`, pa ga čitač ekrana najavi kad se pojavi nakon `onError`.
+- **Refaktor bez promjene ponašanja**: četiri gotovo identična `<audio>` + `useState` para (glavni zapis, uvodna snimka, dva `extra` zapisa) svedena su na komponentu `NativeAudio` s `key={src}`; svaki zapis i dalje ima vlastito stanje greške, koje se resetira pri promjeni snimke.
+- **Testovi**: `__tests__/engleski-simulator/audio-fallback.test.js` provjerava `preload='metadata'` na stvarno renderiranim elementima, izolaciju stanja greške po zapisu (greška na uvodnoj snimci ne ruši glavni player), `role="status"`, te da montiranje playera ne šalje nijedan `fetch` zahtjev.
+
+Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — zeleno (poznati flakeovi `asset-integrity` ETIMEDOUT i `mat-simulator/engine-core-smoke` hook timeout ponovljeni zasebno); `npx eslint components/engleski-simulator/components/SimSharedUI.js` — 0 problema.

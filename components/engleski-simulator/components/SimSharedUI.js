@@ -496,91 +496,27 @@ function fallbackBox(note) {
     e('span', { className: 'audio-fallback-icon' }, '⚠️'), note)
 }
 
-// Mali in-memory cache dostupnosti snimke po URL-u; živi koliko i učitana
-// stranica (sesija), pa se HEAD za isti URL ne ponavlja pri svakom remountu
-// playera. true = dostupno (ili neprovjerljivo), false = potvrđeno nedostupno.
-const _audioAvailability = new Map()
-
-// Samo za testove: isprazni cache između slučajeva.
-export function _resetAudioAvailabilityCache() {
-  _audioAvailability.clear()
-}
-
-function isCrossOrigin(url) {
-  try {
-    if (typeof window === 'undefined' || !window.location) return false
-    return new URL(url, window.location.href).origin !== window.location.origin
-  } catch {
-    return false
-  }
-}
-
-// Provjera dostupnosti snimke bez `preload`-a: jedan lagani HEAD zahtjev pri
-// montiranju playera, samo za datoteke iz audio-map.json za tekuće pitanje.
-// `preload='metadata'` bi za svako pitanje slušanja povuklo zaglavlje same
-// snimke i bez klika na Play (nov promet na mobilnoj mreži); HEAD vraća samo
-// zaglavlja odgovora. Pravila:
-//   - ne-OK odgovor (404 i sl.) ili mrežna greška na istom podrijetlu → odmah
-//     tekstualni fallback (isti kao onError),
-//   - 405/501 (server ne podržava HEAD) → tretiraj kao dostupno, `onError` na
-//     <audio> ostaje druga linija obrane,
-//   - cross-origin izvor bez CORS-a (produkcijski GitHub Release, vidi
-//     public/audio/eng/README.md) odbija HEAD kao TypeError — to nije dokaz da
-//     snimke nema, pa player ne blokiramo,
-//   - AbortController prekida zahtjev na unmountu (promjena pitanja).
-function useAudioMissing(url) {
-  const [missing, setMissing] = useState(() => (url ? _audioAvailability.get(url) === false : false))
-
-  useEffect(() => {
-    if (!url) {
-      setMissing(false)
-      return undefined
-    }
-    const cached = _audioAvailability.get(url)
-    if (cached !== undefined) {
-      setMissing(cached === false)
-      return undefined
-    }
-    setMissing(false)
-    if (typeof fetch !== 'function' || typeof AbortController !== 'function') return undefined
-
-    const ctrl = new AbortController()
-    let live = true
-    const settle = available => {
-      _audioAvailability.set(url, available)
-      if (live) setMissing(!available)
-    }
-
-    Promise.resolve()
-      .then(() => fetch(url, { method: 'HEAD', signal: ctrl.signal }))
-      .then(res => {
-        if (!live || ctrl.signal.aborted) return
-        settle(!!res && (res.ok || res.status === 405 || res.status === 501))
-      })
-      .catch(err => {
-        if (!live || ctrl.signal.aborted || (err && err.name === 'AbortError')) return
-        settle(isCrossOrigin(url))
-      })
-
-    return () => {
-      live = false
-      ctrl.abort()
-    }
-  }, [url])
-
-  return missing
-}
-
-// Jedan <audio> element s dvostrukom obranom: HEAD provjera pri montiranju i
-// `onError` na samom elementu. `preload: 'none'` — ništa se ne dohvaća dok
-// učenik ne klikne Play.
+// Jedan <audio> element s tekstualnim fallbackom kad snimke nema.
+//
+// `preload: 'metadata'`, ne `'none'`: nedostupnost snimke otkriva isključivo
+// sam <audio> element. Provjera fetchom (HEAD) ovdje ne radi i ne može raditi:
+//   - `connect-src` u next.config.mjs ne uključuje bazu snimaka, pa CSP odbija
+//     zahtjev prije nego što ode na mrežu (violation u konzoli na svakom
+//     pitanju slušanja);
+//   - produkcijska baza je GitHub Release, čiji `https://github.com/...`
+//     odgovara 302 bez `Access-Control-Allow-Origin`, pa bi fetch pao kao
+//     TypeError i da CSP-a nema.
+// Učitavanje medija preko <audio> nije pod CORS-om (nema `crossorigin`
+// atributa), pa `preload='metadata'` pouzdano hvata 404 i odmah prikazuje
+// fallback — s `'none'` bi se nedostajuća snimka otkrila tek nakon klika na
+// Play. Cijena je zaglavlje MP3-a po pitanju slušanja; detekcija bez klika i
+// zagrijana veza za Play to opravdavaju. Vidi public/audio/eng/README.md.
 function NativeAudio({ src, label, note, style }) {
   const [errored, setErrored] = useState(false)
-  const missing = useAudioMissing(src)
-  if (errored || missing) return fallbackBox(note)
+  if (errored) return fallbackBox(note)
   return e('audio', {
     controls: true,
-    preload: 'none',
+    preload: 'metadata',
     src,
     'aria-label': label,
     onError: () => setErrored(true),

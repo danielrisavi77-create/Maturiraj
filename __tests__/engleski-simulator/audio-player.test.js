@@ -12,24 +12,14 @@
  * '?lang.jsx' sufiks (za razliku od EngleskiSimulator.js — vidi napomenu u
  * simulator-smoke.test.js).
  */
-import { describe, it, expect, afterEach, beforeEach, vi } from 'vitest'
+import { describe, it, expect, afterEach } from 'vitest'
 import { render, screen, cleanup, fireEvent } from '@testing-library/react'
 import { createElement as e } from 'react'
-import { AudioPlayer, _resetAudioAvailabilityCache } from '@/components/engleski-simulator/components/SimSharedUI'
+import { AudioPlayer } from '@/components/engleski-simulator/components/SimSharedUI'
 
 const AUDIO_BASE = 'https://github.com/danielrisavi77-create/maturiraj-eng-audio/releases/download/eng-audio-v1/'
 
-// AudioPlayer pri montiranju šalje HEAD provjeru dostupnosti snimke (vidi
-// audio-fallback.test.js); ovdje je mockamo da testovi ne idu na mrežu.
-beforeEach(() => {
-  _resetAudioAvailabilityCache()
-  vi.stubGlobal('fetch', vi.fn(() => Promise.resolve({ ok: true, status: 200 })))
-})
-
-afterEach(() => {
-  cleanup()
-  vi.unstubAllGlobals()
-})
+afterEach(cleanup)
 
 describe('AudioPlayer — src i baza', () => {
   it('src glavnog <audio> počinje s ENG_AUDIO_BASE i završava datotekom 1. slušanja', () => {
