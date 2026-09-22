@@ -4,7 +4,7 @@ import ShareStoryCard from '@/components/shared/ShareStoryCard'
 import { LockedResultsBlock } from '@/components/discere/paywall'
 import { sectionScores, weightedEstimate, scoringUnits } from '@/lib/engleski-simulator/examStructure'
 import { isRealExamKey } from '@/lib/engleski-simulator/cloudSync'
-import { GRADE_NOTE, GRADE_NOTE_WRITING } from '@/lib/engleski-simulator/constants'
+import { GRADE_NOTE, GRADE_NOTE_WRITING, GC_HEX } from '@/lib/engleski-simulator/constants'
 
 const UPGRADE_HREF = '/pro?from=eng-results&plan=standard'
 
@@ -312,7 +312,9 @@ function ResultsInner({
           total: autoQ.length,
           percentile: null,
           label: 'Engleski jezik \u2014 ' + exam.year + '. ' + exam.label,
-          accentColor: gc || '#5b9fff',
+          // Story kartica crta na <canvas>, koji ne razumije var(--...) — gc odavde
+          // (CSS varijabla) tiho pokvari fillStyle i baca SyntaxError u addColorStop.
+          accentColor: GC_HEX[g] || '#5b9fff',
           emoji: '\uD83C\uDDEC\uD83C\uDDE7',
         }),
       ),
