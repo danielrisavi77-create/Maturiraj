@@ -1,0 +1,11 @@
+[
+  {
+    "id": "ai-route-security-review",
+    "kind": "security",
+    "baseCommit": "HEAD",
+    "goal": "Inspect one AI route for authorization and budget bypasses; return evidence, severity and a narrow patch if warranted.",
+    "allowedPaths": ["app/api/ai/route.js", "__tests__/security/ai-api-contract.test.js"],
+    "checks": ["npx vitest run __tests__/security/ai-api-contract.test.js", "npm run security:secrets"],
+    "risk": "high"
+  }
+]

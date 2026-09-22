@@ -4,6 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 import { requireStandardOrPro } from "@/lib/billing/requirePro";
 import { isAiEndpointsEnabled } from "@/lib/config/featureFlags";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { getUserTier } from "@/lib/billing/subscriptions";
+import { reserveUsage, completeUsage, markUsageUncertain, releaseUsage } from "@/lib/ai-usage/ledger";
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -64,17 +66,36 @@ export async function POST(req) {
     }
 
     // Limit max_tokens to prevent abuse
-    const safeMaxTokens = Math.min(Number(max_tokens) || 600, 2000);
+    if (!Number.isSafeInteger(Number(max_tokens)) || Number(max_tokens) < 1) {
+      return NextResponse.json({ error: 'Invalid max_tokens' }, { status: 400 });
+    }
+    const safeMaxTokens = Math.min(Number(max_tokens), 2000);
 
-    const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+    const model = 'claude-sonnet-4-6';
+    const tier = await getUserTier(user.id);
+    const { requestId } = await reserveUsage({
+      userId: user.id, feature: 'ai-simulator', tier, model,
+      estimatedInputTokens: new TextEncoder().encode(JSON.stringify(messages)).length + 2048,
+      maxOutputTokens: safeMaxTokens,
+    });
+    let response;
+    try {
+      response = await anthropic.messages.create({
+      model,
       max_tokens: safeMaxTokens,
       messages,
-    });
+      });
+      await completeUsage({ requestId, model, usage: response.usage });
+    } catch (error) {
+      if ([400, 401, 403, 429].includes(error?.status)) await releaseUsage({ requestId }).catch(() => {});
+      else await markUsageUncertain({ requestId }).catch(() => {});
+      throw error;
+    }
 
     return NextResponse.json(response);
   } catch (err) {
     console.error("[ai-simulator] Error:", err);
-    return NextResponse.json({ error: "AI request failed" }, { status: 500 });
+    if (err?.code === 'AI_BUDGET_EXCEEDED') return NextResponse.json({ error: 'AI budget exceeded', code: err.code }, { status: 429 });
+    return NextResponse.json({ error: "AI request unavailable" }, { status: 503 });
   }
 }

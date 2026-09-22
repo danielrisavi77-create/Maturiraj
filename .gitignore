@@ -60,3 +60,5 @@ next-env.d.ts
 
 # figure-audit PDFs and renders (large, regenerable, not for history)
 _audit/
+.worktrees/
+scripts/agent-benchmark/runs/

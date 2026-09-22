@@ -4,6 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 import { requirePro, requireStandardOrPro } from "@/lib/billing/requirePro";
 import { isAiEndpointsEnabled } from "@/lib/config/featureFlags";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { getUserTier } from "@/lib/billing/subscriptions";
+import { reserveUsage, completeUsage, markUsageUncertain, releaseUsage } from "@/lib/ai-usage/ledger";
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -130,28 +132,66 @@ export async function POST(req) {
       anthropicMessages = messages;
     }
 
-    const stream = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
-      max_tokens: mode === "profesor" ? 1200 : 600,
+    const model = "claude-sonnet-4-6";
+    const maxTokens = mode === "profesor" ? 1200 : 600;
+    const tier = mode === "profesor" ? "pro" : await getUserTier(user.id);
+    const { requestId } = await reserveUsage({
+      userId: user.id,
+      feature: mode === "profesor" ? "ai-profesor" : "ai-explain",
+      tier,
+      model,
+      // UTF-8 length plus envelope overhead is deliberately conservative.
+      estimatedInputTokens: new TextEncoder().encode(JSON.stringify({ system, messages: anthropicMessages })).length + 2048,
+      maxOutputTokens: maxTokens,
+    });
+
+    let stream;
+    try {
+      stream = await anthropic.messages.create({
+      model,
+      max_tokens: maxTokens,
       system,
       messages: anthropicMessages,
       stream: true,
-    });
+      });
+    } catch (error) {
+      if ([400, 401, 403, 429].includes(error?.status)) await releaseUsage({ requestId });
+      else await markUsageUncertain({ requestId });
+      throw error;
+    }
 
     const encoder = new TextEncoder();
 
+    let cancelled = false;
     const readableStream = new ReadableStream({
       async start(controller) {
-        for await (const event of stream) {
-          if (event.type === "content_block_delta" && event.delta?.text) {
-            const data = `data: ${JSON.stringify({
-              type: "content_block_delta",
-              delta: { text: event.delta.text },
-            })}\n\n`;
-            controller.enqueue(encoder.encode(data));
+        let usage = null;
+        let finalUsageReceived = false;
+        try {
+          for await (const event of stream) {
+            if (cancelled) break;
+            if (event.type === "message_start" && event.message?.usage) usage = { ...event.message.usage };
+            if (event.type === "message_delta" && event.usage) {
+              usage = { ...usage, ...event.usage };
+              finalUsageReceived = true;
+            }
+            if (event.type === "content_block_delta" && event.delta?.text) {
+              const data = `data: ${JSON.stringify({ type: "content_block_delta", delta: { text: event.delta.text } })}\n\n`;
+              controller.enqueue(encoder.encode(data));
+            }
           }
+          if (cancelled) return;
+          if (finalUsageReceived) await completeUsage({ requestId, model, usage });
+          else await markUsageUncertain({ requestId });
+          controller.close();
+        } catch (error) {
+          await markUsageUncertain({ requestId }).catch(() => {});
+          if (!cancelled) controller.error(error);
         }
-        controller.close();
+      },
+      cancel() {
+        cancelled = true;
+        markUsageUncertain({ requestId }).catch(() => {});
       },
     });
 
@@ -163,6 +203,7 @@ export async function POST(req) {
     });
   } catch (err) {
     console.error("[ai] Error:", err);
-    return NextResponse.json({ error: "AI request failed" }, { status: 500 });
+    if (err?.code === 'AI_BUDGET_EXCEEDED') return NextResponse.json({ error: 'AI budget exceeded', code: err.code }, { status: 429 });
+    return NextResponse.json({ error: "AI request unavailable" }, { status: 503 });
   }
 }

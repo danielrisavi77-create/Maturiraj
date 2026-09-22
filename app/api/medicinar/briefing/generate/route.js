@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import Anthropic from '@anthropic-ai/sdk'
+import { reserveUsage, completeUsage, markUsageUncertain, releaseUsage } from '@/lib/ai-usage/ledger'
 import { isAiEndpointsEnabled } from '@/lib/config/featureFlags'
 
 let anthropic
@@ -116,13 +117,21 @@ ${scores ? `Uneseni bodovi: prosjeci ${scores.prosjek_r1 || '-'}/${scores.prosje
 
 Generiraj tjedni briefing.`
 
+  let requestId
+  const model = 'claude-sonnet-4-6'
   try {
+    ({ requestId } = await reserveUsage({
+      userId, feature: 'medicinar-briefing', tier: 'pro', model,
+      estimatedInputTokens: new TextEncoder().encode(systemPrompt + userPrompt).length + 2048,
+      maxOutputTokens: 1200,
+    }))
     const response = await getAnthropic().messages.create({
-      model: 'claude-sonnet-4-6',
+      model,
       max_tokens: 1200,
       system: systemPrompt,
       messages: [{ role: 'user', content: userPrompt }],
     })
+    await completeUsage({ requestId, model, usage: response.usage })
 
     const text = response.content[0].type === 'text' ? response.content[0].text : ''
     let parsed
@@ -149,7 +158,7 @@ Generiraj tjedni briefing.`
       summary: parsed.summary,
       priorities: parsed.priorities,
       encouragement: parsed.encouragement,
-      model: 'claude-sonnet-4-6',
+      model,
       tokens_in: response.usage.input_tokens,
       tokens_out: response.usage.output_tokens,
     }).select().single()
@@ -158,7 +167,10 @@ Generiraj tjedni briefing.`
     return NextResponse.json(data)
 
   } catch (err) {
+    if (requestId && [400, 401, 403, 429].includes(err?.status)) await releaseUsage({ requestId }).catch(() => {})
+    else if (requestId) await markUsageUncertain({ requestId }).catch(() => {})
     console.error('Briefing generation failed:', err)
-    return NextResponse.json({ error: err.message }, { status: 500 })
+    if (err?.code === 'AI_BUDGET_EXCEEDED') return NextResponse.json({ error: 'AI budget exceeded', code: err.code }, { status: 429 })
+    return NextResponse.json({ error: 'AI ili evidencija potrošnje nije dostupna.' }, { status: 503 })
   }
 }
