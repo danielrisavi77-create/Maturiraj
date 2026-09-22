@@ -604,7 +604,7 @@ export const qs = [
   {id:25.2,type:"sa",topic:"kv",points:1,
   context:"Zadatak 25 (2. dio od 2):",
   q:"Koje će godine prema toj procjeni biti [B:najmanji] broj molekula ugljikova monoksida na milijun molekula zraka?",
-  sol:{ans:"2022. godine",alt:["2022","12"]},
+  sol:{ans:"2022. godine",alt:["2022"]},
   exp:"Minimum kvadratne (a>0): t=−b/(2a)=0,24/0,02=12 → 2010+12=2022.",
   steps:[
     {txt:"M(t) = 0,01t² − 0,24t + 4,31; a = 0,01 > 0 → parabola otvorena prema gore → tjeme je MINIMUM"},

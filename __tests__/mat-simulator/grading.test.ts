@@ -101,6 +101,17 @@ describe('mat-grading: goli broj iz nenumeričkog rješenja nije točan', () => 
   });
 });
 
+describe('mat-grading: prikazano rješenje se poklapa s ocjenjivanjem', () => {
+  it('2018_jesen_B q21.1: solFormula pokazuje isti x kao sol.ans', async () => {
+    const qs = await loadExam('2018_jesen_B.mjs');
+    const q: any = qs.find((x: any) => x.id === 21.1);
+    expect(q).toBeTruthy();
+    expect(q.sol.solFormula.frac).toEqual([['7', '10']]);
+    expect(isAnswerCorrect(q, '7/10')).toBe(true);
+    expect(isAnswerCorrect(q, '1/7')).toBe(false);
+  });
+});
+
 describe('mat-grading: ručni slučajevi', () => {
   const cases: Array<[string, string, string, boolean]> = [
     // [tip, točan odgovor u podacima, korisnikov unos, očekivano]
@@ -144,6 +155,112 @@ describe('mat-grading: ručni slučajevi', () => {
     });
   }
 
+  // --- klasa: jedinice (simbol i riječ), DMS kutovi, razlomak ↔ decimala u izrazu ---
+  const classCases: Array<[string, string, string, boolean]> = [
+    // jedinice pisane riječju su jedinice, ne dio odgovora
+    ['num', '30°', '30 stupnjeva', true],
+    ['num', '11,5 g', '11,5 grama', true],
+    ['sa', '1967.', '1967. godine', true],
+    ['num', '168 cm2', '168', true],
+    ['num', '20 dag', '20', true],
+    ['num', '2,5 ha', '2,5', true],
+    // brojive imenice NISU jedinice — ostaju dio odgovora
+    ['sa', '90 paketa', '90', false],
+    ['sa', '25 članova', '25', false],
+    ['num', '30 stupnjeva', '31', false],
+    // stupnjevi/minute/sekunde ↔ decimalni stupnjevi
+    ['num', '148°40′17″', '148,67', true],
+    ['num', '31°18′52″', '31,31', true],
+    ['num', '148°40′17″', '148,5', false],
+    ['num', '148°40′17″', '149', false],
+    ['num', '148°40′17″', '40', false],
+    // razlomak ↔ decimala i unutar izraza
+    ['sa', 'x > [FRAC:19|4]', 'x > 4,75', true],
+    ['sa', '3/5', '0,6', true],
+    ['sa', '-7/4x + 17/2', '-1,75x + 8,5', true],
+    ['sa', 'x > 19/4', 'x > 4,7', false],
+    ['num', '1/2', '1/3', false],
+    ['sa', '0,3', '1/3', false],
+    ['sa', 'x > 19/4', 'x < 4,75', false],
+    // uvodne oznake rješenja
+    ['num', '320', 'Odgovor: 320', true],
+    ['sa', '2x − 2', 'Odgovor: y = 2x − 2', true],
+    ['sa', '(2, −1)', 'B(2, −1)', true],
+    ['sa', 'K(600, 250)', '(600, 250)', true],
+    ['sa', 'sin α = 0,8', '0,8', true],
+    ['num', '320', 'Odgovor: 330', false],
+    ['sa', '(2, −1)', '(−1, 2)', false],
+    // goli grčki simbol ostaje oznaka veličine, ne skida se
+    ['sa', 'φ = 47°', '47', false],
+    // suvišne zagrade oko koeficijenta, djelitelja i argumenta funkcije
+    ['sa', '3/8x² − 3/4x − 3', '(3/8)x² − (3/4)x − 3', true],
+    ['sa', '−(2/3)x − 3/2', '(−2/3)x − 3/2', true],
+    ['sa', '4pr/ac', '4pr/(ac)', true],
+    ['sa', 'sin α', 'sin(α)', true],
+    // zagrade koje nose značenje ostaju: interval ≠ interval s drugom zagradom
+    ['sa', '⟨2, 7⟩', '[2, 7⟩', false],
+    ['sa', '(3/8)x² − 3/4x − 3', '(3/7)x² − 3/4x − 3', false],
+    // intervali ↔ nejednadžbe
+    ['sa', '⟨3, 5⟩', '3 < x < 5', true],
+    ['sa', '⟨3, 5]', '3 < x ≤ 5', true],
+    ['sa', '[−2, +∞⟩', 'x ≥ −2', true],
+    ['sa', 'x ≤ [FRAC:−11|10]', '⟨−∞, −11/10]', true],
+    ['sa', '⟨−∞, 1⟩ ∪ ⟨3, +∞⟩', 'x < 1 ili x > 3', true],
+    ['sa', '⟨3/5, +∞⟩', 'x > 0,6', true],
+    ['sa', '⟨−13, 3⟩', '−13 < k < 3', true],
+    ['sa', '⟨3, 5⟩', '[3, 5⟩', false],
+    ['sa', '⟨3, 5⟩', '3 < x ≤ 5', false],
+    ['sa', 'x ≥ −2', 'x > −2', false],
+    ['sa', '⟨3, 5⟩', '3 < x < 6', false],
+    ['sa', '⟨−∞, 1⟩ ∪ ⟨3, +∞⟩', 'x < 1 ili x > 4', false],
+    ['sa', '⟨−∞, 1⟩ ∪ ⟨3, +∞⟩', 'x < 1', false],
+    // popisi rješenja: redoslijed i zapis veznika ne mijenjaju skup
+    ['sa', 'x₁ = −2, x₂ = 3', '−2 i 3', true],
+    ['sa', 'x₁ = −2, x₂ = 3', '3 i −2', true],
+    ['sa', 'x₁ = −2, x₂ = 3', 'x = −2 ili x = 3', true],
+    ['sa', 'x₁ = π/4, x₂ = π/2', '{π/4, π/2}', true],
+    ['sa', 'x₁ = −3, x₂ = 3', '±3', true],
+    ['sa', 'x₁ = −2, x₂ = 3', '−2 i 4', false],
+    ['sa', 'x₁ = −2, x₂ = 3', '−2', false],
+    ['sa', '±3', '3', false],
+    // uređeni par nije popis — zagrade nose značenje
+    ['sa', '(3, 2)', '(2, 3)', false],
+    ['sa', '{1, 2}', '(1, 2)', false],
+    // n-torke i rubovi intervala s mješovitim zapisom broja
+    ['sa', '[−1/2, 4/3]', '[−0,5, 4/3]', true],
+    ['sa', '[1/2, 3]', '[0,5, 3]', true],
+    ['sa', '(−2, 1/4)', '(−2, 0,25)', true],
+    ['sa', '[1/2, 3]', '[0,5, 4]', false],
+    ['sa', '(−2, 1/4)', '(−2, 0,3)', false],
+    ['sa', '(1, 2, 3)', '(1, 3, 2)', false],
+    // sustav nepoznanica: vrijednost je vezana uz ime, zamjena nije isti odgovor
+    ['sa', 'x = −1, y = [FRAC:1|2]', 'x = −1, y = 1/2', true],
+    ['sa', 'x = −1, y = [FRAC:1|2]', 'y = 0,5, x = −1', true],
+    ['sa', 'x = −1, y = [FRAC:1|2]', 'x = 1/2, y = −1', false],
+    ['sa', 'min = 3, max = 7', 'min = 7, max = 3', false],
+    ['sa', 'a = 3, b = 4, c = 5', 'a = 5, b = 4, c = 3', false],
+    ['sa', 'x = 2, y = 3, z = 4', 'y = 3, z = 4, x = 2', true],
+    // isti indeksirani naziv su korijeni iste nepoznanice — skup ostaje skup
+    ['sa', 'x₁ = −2, x₂ = 3', '3 i −2', true],
+    // jedinica je odgovor kod pretvorbi — ne smije se skidati s obje strane
+    ['num', '55,25 sati', '55,25 minuta', false],
+    ['num', '55,25 sati', '55,25 h', true],
+    ['num', '55,25 sati', '55,25', true],
+    ['num', '168 cm2', '168 cm3', false],
+    ['num', '45 dag', '45 kg', false],
+    ['num', '6 km', '6 godina', false],
+    ['num', '11,5 grama', '11,5 g', true],
+    // zagrada oko slova nestaje samo ako iza nje nema još jednog činitelja
+    ['sa', 'cos(a)b', 'cos(ab)', false],
+    ['sa', 'sin(x)y', 'sin(xy)', false],
+  ];
+
+  for (const [type, ans, input, expected] of classCases) {
+    it(`klasa ${type}: ${JSON.stringify(input)} vs ${JSON.stringify(ans)} → ${expected}`, () => {
+      expect(isAnswerCorrect({ type, sol: { ans } }, input)).toBe(expected);
+    });
+  }
+
   it('normalizeAnswer kanonizira zapis', () => {
     expect(normalizeAnswer('x = 3')).toBe('3');
     expect(normalizeAnswer('y = 1,5')).toBe('1.5');
@@ -178,6 +295,16 @@ describe('mat-grading: ručni slučajevi', () => {
     expect(numEquals('1,76784', '1,77')).toBe(true);
     expect(numEquals('0,333', '0,3333')).toBe(true);
     expect(numEquals('2', '2,02')).toBe(false);
+  });
+
+  it('jedinicu propisuje bilo koja ponuđena varijanta', () => {
+    const q = { type: 'num', sol: { ans: '45', alt: ['45 dag'] } };
+    expect(isAnswerCorrect(q, '45')).toBe(true);
+    expect(isAnswerCorrect(q, '45 dag')).toBe(true);
+    expect(isAnswerCorrect(q, '45 kg')).toBe(false);
+    // kad nijedna varijanta nema jedinicu, jedinica u odgovoru se zanemaruje
+    const bez = { type: 'num', sol: { ans: '45' } };
+    expect(isAnswerCorrect(bez, '45 kg')).toBe(true);
   });
 
   it('prazan odgovor nije točan', () => {

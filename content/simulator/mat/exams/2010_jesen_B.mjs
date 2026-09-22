@@ -563,7 +563,7 @@ export const qs = [
   {id:17,type:"num",topic:"stat",points:1,
   q:"Izračunajte broj od kojega 11% iznosi 35,2.",
   warn:"Pazi: ne računati 11% od 35,2 umjesto tražiti od kojeg broja 11% iznosi 35,2.",
-  sol:{ans:"320",alt:["320,0","odgovor","rezultat"]},
+  sol:{ans:"320",alt:["320,0"]},
   steps:[
     {txt:"Postav: [FRAC:11|100] · x = 35,2",note:"postav"},
     {txt:"Izoliramo x: x = 35,2 · [FRAC:100|11]",note:"izolacija x"},
@@ -928,7 +928,7 @@ export const qs = [
   {id:28.2,img:true,type:"num",img:true,topic:"br",points:1,
   context:"Zadatak 28 (2. dio od 2):",
   q:"Marti je nedostajao 1 bod za ocjenu odličan (5). Koliko je bodova Marta postigla na ispitu?",
-  sol:{ans:"53",alt:["53,0","odgovor","rezultat"]},
+  sol:{ans:"53",alt:["53,0"]},
   steps:[
     {txt:"Prag odličan (5): 90% od 60 = 54 boda (minimum)",note:"prag"},
     {txt:"Marti nedostajao 1 bod → postigla 54 − 1 = 53 boda",final:true},

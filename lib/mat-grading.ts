@@ -28,13 +28,39 @@ const ABS_TOL = 1e-6;
  */
 const LEGACY_ABS_TOL = 0.01;
 
-/** Jedinice koje se brišu s kraja odgovora (nakon uklanjanja razmaka). */
+/**
+ * Jedinice koje se brišu s kraja odgovora (nakon uklanjanja razmaka).
+ *
+ * Uz simbole su i pisani oblici istih jedinica ("30 stupnjeva", "11,5 grama"):
+ * to su mjerne jedinice, ne brojive imenice — "5 čokolada" ili "90 paketa"
+ * namjerno OSTAJU u zapisu jer nose značenje zadatka.
+ */
 const UNITS = [
+  'centimetara', 'kilograma', 'stupnjeva', 'sekundi', 'kilometara',
+  'milimetara', 'decimetara', 'postotaka', 'metara', 'minuta', 'litara',
+  'grama', 'kuna', 'eura', 'posto', 'sati', 'sekundi', 'gram', 'godine', 'godina',
   'cm^3', 'cm^2', 'dm^3', 'dm^2', 'mm^3', 'mm^2', 'm^3', 'm^2', 'km^2',
-  'km/h', 'm/s', 'kwh', 'hrk', 'eur', 'kn', 'kg', 'mg', 'ml',
-  'cm', 'dm', 'mm', 'km', 'mol', 'min', 'rad', 'deg',
+  'cm3', 'cm2', 'dm3', 'dm2', 'mm3', 'mm2', 'm3', 'm2', 'km2',
+  'km/h', 'm/s', 'kwh', 'hrk', 'eur', 'dag', 'kn', 'kg', 'mg', 'ml',
+  'cm', 'dm', 'mm', 'km', 'mol', 'min', 'rad', 'deg', 'ha',
   'm', 'g', 'l', 's', 'h', '%', '€', '$', '°',
 ];
+
+/**
+ * Isti mjerni pojam pisan na više načina → jedan kanonski zapis.
+ * Služi usporedbi jedinica dviju strana; ono što ovdje nije navedeno
+ * uspoređuje se doslovno.
+ */
+const UNIT_CANON: Record<string, string> = {
+  centimetara: 'cm', kilograma: 'kg', stupnjeva: '°', sekundi: 's',
+  kilometara: 'km', milimetara: 'mm', decimetara: 'dm', postotaka: '%',
+  metara: 'm', minuta: 'min', litara: 'l', grama: 'g', gram: 'g',
+  kuna: 'kn', hrk: 'kn', eura: '€', eur: '€', posto: '%', sati: 'h',
+  godine: 'god', godina: 'god',
+  'cm^3': 'cm3', 'cm^2': 'cm2', 'dm^3': 'dm3', 'dm^2': 'dm2',
+  'mm^3': 'mm3', 'mm^2': 'mm2', 'm^3': 'm3', 'm^2': 'm2', 'km^2': 'km2',
+  deg: '°',
+};
 
 /** Preslikavanja pojedinačnih znakova (prije skidanja razmaka). */
 const CHAR_MAP: Record<string, string> = {
@@ -95,8 +121,10 @@ function mapChars(s: string): string {
   return out;
 }
 
-function stripUnits(s: string): string {
+/** Odvaja mjernu jedinicu s kraja zapisa od same vrijednosti. */
+function splitUnits(s: string): { body: string; unit: string } {
   let cur = s;
+  const found: string[] = [];
   for (let i = 0; i < 3; i++) {
     let hit = false;
     for (const u of UNITS) {
@@ -105,20 +133,22 @@ function stripUnits(s: string): string {
         const prev = cur[cur.length - u.length - 1];
         if (/[a-zčćžšđ]/.test(prev) && /[a-z]/.test(u[0])) continue;
         cur = cur.slice(0, cur.length - u.length);
+        found.unshift(UNIT_CANON[u] || u);
         hit = true;
         break;
       }
     }
     if (!hit) break;
   }
-  return cur;
+  return { body: cur, unit: found.join('') };
 }
 
-/**
- * Kanonski oblik odgovora: mala slova, bez razmaka i jedinica, zarezi u točke,
- * unicode minus u "-", eksponenti u "^n", √ u "sqrt", π u "pi".
- */
-export function normalizeAnswer(s: string): string {
+function stripUnits(s: string): string {
+  return splitUnits(s).body;
+}
+
+/** Sve do skidanja oznake i jedinice — zajednička osnova normalizacije. */
+function normalizeBase(s: string): string {
   if (s === null || s === undefined) return '';
   let t = String(s);
   t = expandFrac(t);
@@ -128,24 +158,120 @@ export function normalizeAnswer(s: string): string {
   t = mapChars(t);
   t = t.replace(/,/g, '.');
   t = t.replace(DROP_CHARS, '');
+  return t;
+}
+
+/**
+ * Kanonski oblik odgovora: mala slova, bez razmaka i jedinica, zarezi u točke,
+ * unicode minus u "-", eksponenti u "^n", √ u "sqrt", π u "pi".
+ */
+export function normalizeAnswer(s: string): string {
   // vodeća oznaka nepoznanice ("x=", "f(x)=", "x∈")
-  t = t.replace(LEAD_RE, '');
+  let t = normalizeBase(s).replace(LEAD_RE, '');
   t = stripUnits(t);
   // višak točaka/crtica na rubovima
   t = t.replace(/^[.=]+/, '').replace(/[.]+$/, '');
   return t;
 }
 
-/** Striktni parser: cijeli string mora biti broj ili razlomak. */
+/**
+ * Mjerna jedinica zapisa ("55,25 sati" → "h"), prazan niz kad je nema.
+ *
+ * Kod pretvorbi jedinica ("2 dana 7 sati i 15 minuta u sate") jedinica JEST
+ * odgovor, pa se ne smije skidati s obje strane bez provjere: "55,25 minuta"
+ * nije isto što i "55,25 sati".
+ */
+function unitOf(s: string): string {
+  return splitUnits(normalizeBase(s).replace(LEAD_RE, '')).unit;
+}
+
+/** Jedinica se zanemaruje samo ako je druga strana nema ili ima istu. */
+function unitsCompatible(a: string, b: string): boolean {
+  const ua = unitOf(a);
+  const ub = unitOf(b);
+  return ua === '' || ub === '' || ua === ub;
+}
+
+/** Stupnjevi/minute/sekunde → decimalni stupnjevi ("148°40'17''" → 148,6714). */
+const DMS_RE = /^([+-]?\d+(?:\.\d+)?)°(?:(\d+(?:\.\d+)?)')?(?:(\d+(?:\.\d+)?)'')?$/;
+function dmsNum(t: string): number {
+  const m = t.match(DMS_RE);
+  if (!m) return NaN;
+  if (m[2] === undefined && m[3] === undefined) return NaN; // goli "30°" pokriva strictNum
+  const sign = m[1].startsWith('-') ? -1 : 1;
+  const deg = Math.abs(Number(m[1]));
+  const min = m[2] === undefined ? 0 : Number(m[2]);
+  const sec = m[3] === undefined ? 0 : Number(m[3]);
+  if (min >= 60 || sec >= 60) return NaN;
+  return sign * (deg + min / 60 + sec / 3600);
+}
+
+/** Striktni parser: cijeli string mora biti broj, razlomak ili DMS kut. */
 function strictNum(t: string): number {
   if (!t) return NaN;
   const m = t.match(/^([+-]?(?:\d+\.?\d*|\.\d+))(?:\/([+-]?(?:\d+\.?\d*|\.\d+)))?$/);
-  if (!m) return NaN;
+  if (!m) return dmsNum(t);
   const a = Number(m[1]);
   if (m[2] === undefined) return a;
   const b = Number(m[2]);
   if (b === 0) return NaN;
   return a / b;
+}
+
+/* ------------------------------------------------------------------ *
+ * Kanonski zapis brojeva unutar izraza
+ *
+ * Svaki brojevni literal (decimalni ili razlomak) prepisuje se u skraćeni
+ * razlomak p/q. Time "4.75" i "19/4" postaju isti niz, a vrijednosti koje
+ * NISU jednake ostaju različite (0,333 ≠ 1/3) — proširenje nikad ne može
+ * prihvatiti krivi broj.
+ * ------------------------------------------------------------------ */
+
+function gcd(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y > 0.5) {
+    const t = x % y;
+    x = y;
+    y = t;
+  }
+  return x || 1;
+}
+
+/** Decimalni zapis → točan par [brojnik, nazivnik] bez zaokruživanja. */
+function decParts(t: string): [number, number] | null {
+  if (!/^\d+(?:\.\d+)?$|^\.\d+$/.test(t)) return null;
+  const dot = t.indexOf('.');
+  if (dot < 0) return [Number(t), 1];
+  const dec = t.length - dot - 1;
+  if (dec > 9) return null; // izvan sigurnog cjelobrojnog raspona
+  const digits = t.slice(0, dot) + t.slice(dot + 1);
+  return [Number(digits), Math.pow(10, dec)];
+}
+
+const NUM_TOKEN = /(\d+(?:\.\d+)?|\.\d+)(\/(\d+(?:\.\d+)?|\.\d+))?/g;
+
+/** "4.75" → "19/4", "0.6" → "3/5", "19/4" → "19/4", "2" → "2". */
+function canonNumbers(s: string): string {
+  return s.replace(NUM_TOKEN, (whole, a: string, _slash: string, b: string | undefined) => {
+    const pa = decParts(a);
+    if (!pa) return whole;
+    let [p, q] = pa;
+    if (b !== undefined) {
+      const pb = decParts(b);
+      if (!pb) return whole;
+      const [r, t] = pb;
+      if (r === 0) return whole;
+      p = p * t;
+      q = q * r;
+    }
+    if (!Number.isFinite(p) || !Number.isFinite(q) || q === 0) return whole;
+    if (Math.abs(p) > Number.MAX_SAFE_INTEGER || Math.abs(q) > Number.MAX_SAFE_INTEGER) return whole;
+    const g = gcd(p, q);
+    p /= g;
+    q /= g;
+    return q === 1 ? String(p) : `${p}/${q}`;
+  });
 }
 
 /**
@@ -176,6 +302,7 @@ const SAFE_SYM = /^[0-9a-z+\-*/^().]+$/;
 
 function symEquals(a: string, b: string, nd: any): boolean {
   if (!nd) return false;
+  if (!unitsCompatible(a, b)) return false;
   const na = normalizeAnswer(a);
   const nb = normalizeAnswer(b);
   if (!SAFE_SYM.test(na) || !SAFE_SYM.test(nb)) return false;
@@ -190,6 +317,400 @@ function symEquals(a: string, b: string, nd: any): boolean {
   }
 }
 
+/* ------------------------------------------------------------------ *
+ * Oznake i suvišne zagrade
+ * ------------------------------------------------------------------ */
+
+/** Uvodne riječi kojima autori zapisuju rješenje ("Odgovor: 320"). */
+const LABEL_WORD_RE = /^(odgovor|rezultat|rješenje|rjesenje|rj)/;
+
+/**
+ * Šira inačica LEAD_RE za kanonski sloj: dopušta dulja imena i grčko slovo
+ * kao argument ("sin α = 0,8" → "0,8"). Prvo slovo mora biti latinično —
+ * goli grčki simbol ("φ = 47°") ostaje oznaka veličine, ne skida se.
+ * Znak "^" nije u razredu, pa jednadžba krivulje ("x²/81 + y²/45 = 1")
+ * ostaje cijela.
+ */
+const LEAD2_RE = /^[a-zčćžšđ][a-z0-9α-ωčćžšđ']{0,5}(\([^()]*\))?(=|∈)/u;
+
+/** Oznaka točke ispred koordinata: "B(2, −1)" → "(2, −1)". */
+const POINT_LABEL_RE = /^([a-zčćžšđ]\d*)(\([^a-zčćžšđ()]*\.[^a-zčćžšđ()]*\))$/;
+
+/** Ponavljano skida uvodne oznake dok se zapis mijenja. */
+function stripLabels(t: string): string {
+  let cur = t;
+  for (let i = 0; i < 4; i++) {
+    const before = cur;
+    cur = cur.replace(LABEL_WORD_RE, '');
+    cur = cur.replace(LEAD2_RE, '');
+    cur = cur.replace(POINT_LABEL_RE, '$2');
+    cur = cur.replace(/^[.=]+/, '');
+    if (cur === before) break;
+  }
+  return cur;
+}
+
+/**
+ * Zagrade koje ne mijenjaju vrijednost: oko golog broja/razlomka kad je
+ * skupina koeficijent ili djelitelj ("(3/8)x²" = "3/8x²", "4pr/(ac)" =
+ * "4pr/ac"), te oko argumenta funkcije ("sin(α)" = "sinα").
+ *
+ * Uvjet susjedstva čuva zagrade koje NOSE značenje: interval "(3,5)" i
+ * uređeni par ostaju netaknuti. Slovo "i" se ne računa kao susjedstvo jer
+ * je u ovim podacima veznik ("−2 i 3"), a ne množenje.
+ */
+const PAREN_NUM = /\((-?\d+(?:\.\d+)?(?:\/-?\d+(?:\.\d+)?)?)\)/g;
+const PAREN_WORD = /\(([a-zα-ωčćžšđ]{1,4})\)/gu;
+
+function dropRedundantParens(t: string): string {
+  let cur = t;
+  for (let pass = 0; pass < 3; pass++) {
+    const before = cur;
+    for (const re of [PAREN_NUM, PAREN_WORD]) {
+      const word = re === PAREN_WORD;
+      cur = cur.replace(re, (whole, inner: string, ...rest: any[]) => {
+        const offset: number = rest[rest.length - 2];
+        const src: string = rest[rest.length - 1];
+        const prev = offset > 0 ? src[offset - 1] : '';
+        const next = src[offset + whole.length] || '';
+        const isLetter = (c: string) => c !== '' && c !== 'i' && /[a-zα-ωčćžšđ]/u.test(c);
+        if (word) {
+          // "sin(α)" = "sinα", ali "cos(a)b" ≠ "cos(ab)": zagrada oko slova
+          // smije nestati samo ako iza nje ne slijedi još jedan činitelj
+          if (/[0-9a-zα-ωčćžšđ(]/u.test(next)) return whole;
+          return isLetter(prev) || prev === '/' ? inner : whole;
+        }
+        const attached = isLetter(prev) || prev === '/' || isLetter(next);
+        return attached ? inner : whole;
+      });
+    }
+    if (cur === before) break;
+  }
+  return cur;
+}
+
+/**
+ * Kanonski oblik cijelog izraza: normalizacija, skidanje oznaka i suvišnih
+ * zagrada, brojevi u skraćene razlomke. Nad njim rade sve klase
+ * ekvivalencije (npr. "x>19/4" i "x>4,75").
+ */
+function preCanon(s: string): string {
+  return dropRedundantParens(stripLabels(normalizeAnswer(s)));
+}
+
+function canonExpr(s: string): string {
+  return canonNumbers(preCanon(s));
+}
+
+/* ------------------------------------------------------------------ *
+ * Intervali ↔ nejednadžbe
+ *
+ * "⟨3, 5]" i "3 < x ≤ 5" su isti skup; "[2, 7⟩" i "⟨2, 7⟩" nisu, pa se
+ * vrsta zagrade čuva u kanonskom zapisu.
+ * ------------------------------------------------------------------ */
+
+type Endpoint = { s: string; v: number };
+type Interval = { lo: Endpoint; hi: Endpoint; loIn: boolean; hiIn: boolean };
+
+function parseEndpoint(raw: string): Endpoint | null {
+  if (!raw) return null;
+  if (raw === '-inf') return { s: '-inf', v: -Infinity };
+  if (raw === '+inf' || raw === 'inf') return { s: '+inf', v: Infinity };
+  const v = strictNum(raw);
+  if (isNaN(v)) return null;
+  // rub se kanonizira tek ovdje: canonNumbers bi inače "⟨3, 5⟩" pročitao kao 3,5
+  return { s: canonNumbers(raw), v };
+}
+
+/**
+ * Sva čitanja popisa brojeva odvojenih zarezom. Zarez je nakon normalizacije
+ * točka, a točka je i decimalni separator, pa je "−0,5, 4/3" dvoznačno
+ * (⟨−0,5 ; 4/3⟩ ili ⟨−0 ; 5,4/3⟩). Umjesto pogađanja vraćaju se sva
+ * ispravna čitanja; dva zapisa su isti odgovor ako dijele barem jedno.
+ */
+function numReadings(s: string, depth = 0): Endpoint[][] {
+  const out: Endpoint[][] = [];
+  const whole = parseEndpoint(s);
+  if (whole) out.push([whole]);
+  if (depth > 4) return out;
+  for (let i = 1; i < s.length - 1; i++) {
+    if (s[i] !== '.') continue;
+    const head = parseEndpoint(s.slice(0, i));
+    if (!head) continue;
+    for (const rest of numReadings(s.slice(i + 1), depth + 1)) {
+      out.push([head, ...rest]);
+      if (out.length > 48) return out;
+    }
+  }
+  return out;
+}
+
+const BRACKETED = /^([[({])([^[\]({})]*)([\])}])$/;
+
+/** "[a.b)" → svi ispravni intervali (lo < hi). */
+function intervalLiterals(t: string): Interval[] {
+  const m = t.match(BRACKETED);
+  if (!m || m[1] === '{' || m[3] === '}') return [];
+  const loIn = m[1] === '[';
+  const hiIn = m[3] === ']';
+  const out: Interval[] = [];
+  for (const r of numReadings(m[2])) {
+    if (r.length !== 2) continue;
+    if (r[0].v < r[1].v) out.push({ lo: r[0], hi: r[1], loIn, hiIn });
+  }
+  return out;
+}
+
+/** Uređena n-torka: redoslijed i vrsta zagrade se čuvaju. */
+function tupleForms(t: string): Set<string> {
+  const out = new Set<string>();
+  const m = t.match(BRACKETED);
+  if (!m) return out;
+  for (const r of numReadings(m[2])) {
+    if (r.length < 2) continue;
+    out.add(`${m[1]}${r.map((e) => e.s).join(',')}${m[3]}`);
+  }
+  return out;
+}
+
+const IV_TWO_SIDED = /^(.+?)(<=|<)([a-zčćžšđ])(<=|<)(.+)$/;
+const IV_VAR_LEFT = /^([a-zčćžšđ])(<=|>=|<|>)(.+)$/;
+const IV_VAR_RIGHT = /^(.+?)(<=|>=|<|>)([a-zčćžšđ])$/;
+
+const NEG_INF: Endpoint = { s: '-inf', v: -Infinity };
+const POS_INF: Endpoint = { s: '+inf', v: Infinity };
+
+function parseInequality(t: string): Interval | null {
+  let m = t.match(IV_TWO_SIDED);
+  if (m) {
+    const lo = parseEndpoint(m[1]);
+    const hi = parseEndpoint(m[5]);
+    if (!lo || !hi || lo.v >= hi.v) return null;
+    return { lo, hi, loIn: m[2] === '<=', hiIn: m[4] === '<=' };
+  }
+  m = t.match(IV_VAR_LEFT);
+  let op: string | null = null;
+  let rest: string | null = null;
+  if (m) {
+    op = m[2];
+    rest = m[3];
+  } else {
+    m = t.match(IV_VAR_RIGHT);
+    if (!m) return null;
+    rest = m[1];
+    // "3 < x" je isto što i "x > 3"
+    op = { '<': '>', '<=': '>=', '>': '<', '>=': '<=' }[m[2]] as string;
+  }
+  const e = parseEndpoint(rest);
+  if (!e) return null;
+  if (op === '<') return { lo: NEG_INF, hi: e, loIn: false, hiIn: false };
+  if (op === '<=') return { lo: NEG_INF, hi: e, loIn: false, hiIn: true };
+  if (op === '>') return { lo: e, hi: POS_INF, loIn: false, hiIn: false };
+  if (op === '>=') return { lo: e, hi: POS_INF, loIn: true, hiIn: false };
+  return null;
+}
+
+/** Dijeli uniju: "ili" bilo gdje, "u" samo između zatvorene i otvorene zagrade. */
+function splitUnion(t: string): string[] {
+  const parts: string[] = [];
+  let cur = '';
+  for (let i = 0; i < t.length; i++) {
+    if (t.startsWith('ili', i)) {
+      parts.push(cur);
+      cur = '';
+      i += 2;
+      continue;
+    }
+    if (t[i] === 'u' && i > 0 && /[)\]]/.test(t[i - 1]) && /[([]/.test(t[i + 1] || '')) {
+      parts.push(cur);
+      cur = '';
+      continue;
+    }
+    cur += t[i];
+  }
+  parts.push(cur);
+  return parts;
+}
+
+function ivText(iv: Interval): string {
+  return `${iv.loIn ? '[' : '('}${iv.lo.s},${iv.hi.s}${iv.hiIn ? ']' : ')'}`;
+}
+
+/** Sva kanonska čitanja skupa rješenja; prazan skup kad zapis nije interval. */
+function intervalForms(t: string): Set<string> {
+  const parts = splitUnion(t);
+  const out = new Set<string>();
+  if (!parts.length) return out;
+  let combos: Interval[][] = [[]];
+  for (const p of parts) {
+    const opts = intervalLiterals(p);
+    const ineq = parseInequality(p);
+    if (ineq) opts.push(ineq);
+    if (!opts.length) return new Set();
+    const next: Interval[][] = [];
+    for (const c of combos) for (const o of opts) next.push([...c, o]);
+    combos = next.slice(0, 48);
+  }
+  for (const c of combos) {
+    const sorted = [...c].sort((a, b) => a.lo.v - b.lo.v || a.hi.v - b.hi.v);
+    out.add(sorted.map(ivText).join('u'));
+  }
+  return out;
+}
+
+function shareForm(a: Set<string>, b: Set<string>): boolean {
+  for (const x of a) if (b.has(x)) return true;
+  return false;
+}
+
+/* ------------------------------------------------------------------ *
+ * Popisi rješenja
+ *
+ * "x₁ = −2, x₂ = 3", "−2 i 3", "{−2, 3}" i "±3" su isti skup rješenja,
+ * bez obzira na redoslijed. Uređeni par "(3, 2)" NIJE popis — zagrade
+ * nose značenje, pa takav zapis ne ulazi u ovu klasu.
+ * ------------------------------------------------------------------ */
+
+/** Dubina zagrada po znaku — za dijeljenje samo na najvišoj razini. */
+function depths(t: string): number[] {
+  const out: number[] = [];
+  let d = 0;
+  for (const ch of t) {
+    if (ch === ')' || ch === ']' || ch === '}') d--;
+    out.push(d);
+    if (ch === '(' || ch === '[' || ch === '{') d++;
+  }
+  return out;
+}
+
+const DIGIT = /[0-9]/;
+
+/** Ne dira se zapis u kojem "i" znači imaginarnu jedinicu ili vektor. */
+const COMPLEX_HINT = /sin|cos|cis|j/;
+
+/** Dijeli popis na najvišoj razini: "ili", zarez (ovdje ".") i veznik "i". */
+function splitList(t: string): string[] {
+  const d = depths(t);
+  const parts: string[] = [];
+  let cur = '';
+  const complex = COMPLEX_HINT.test(t);
+  for (let i = 0; i < t.length; i++) {
+    const top = d[i] === 0;
+    if (top && t.startsWith('ili', i)) {
+      parts.push(cur);
+      cur = '';
+      i += 2;
+      continue;
+    }
+    // zarez: točka koja NIJE decimalna (nije okružena znamenkama)
+    if (top && t[i] === '.' && !(DIGIT.test(t[i - 1] || '') && DIGIT.test(t[i + 1] || ''))) {
+      parts.push(cur);
+      cur = '';
+      continue;
+    }
+    // veznik "i" između dviju vrijednosti; "+" iza njega odaje kompleksni zapis
+    if (
+      top &&
+      t[i] === 'i' &&
+      !complex &&
+      cur !== '' &&
+      /[0-9)\]]/.test(t[i - 1] || '') &&
+      /[0-9(a-hk-z√-]/.test(t[i + 1] || '')
+    ) {
+      parts.push(cur);
+      cur = '';
+      continue;
+    }
+    cur += t[i];
+  }
+  parts.push(cur);
+  return parts;
+}
+
+/** Kanonski zapis popisa rješenja, ili null kad zapis nije popis. */
+function listCanon(t: string): string | null {
+  let s = t;
+  const braces = s.match(/^\{(.*)\}$/);
+  if (braces) s = braces[1];
+  const raw = splitList(s);
+  const items: string[] = [];
+  for (const part of raw) {
+    const el = stripLabels(part);
+    if (el === '') return null;
+    if (el.startsWith('±')) {
+      const rest = el.slice(1);
+      if (rest === '') return null;
+      items.push(canonNumbers(rest), canonNumbers('-' + rest));
+      continue;
+    }
+    items.push(canonNumbers(el));
+  }
+  // jedan element nije popis; "±a" se broji kao dva
+  if (items.length < 2) return null;
+  items.sort();
+  return items.join(',');
+}
+
+/* ------------------------------------------------------------------ *
+ * Sustav s više nepoznanica
+ *
+ * "x = −1, y = 1/2" NIJE popis rješenja: vrijednost je vezana uz ime, pa
+ * zamjena vrijednosti dviju nepoznanica ("x = 1/2, y = −1") nije isti
+ * odgovor. Zapisi s istim imenom i indeksom ("x₁, x₂") su korijeni iste
+ * nepoznanice i ostaju skup bez redoslijeda.
+ * ------------------------------------------------------------------ */
+
+const NAMED_RE = /^([a-zčćžšđ][a-z0-9α-ωčćžšđ']{0,5})(?:\([^()]*\))?=(.+)$/u;
+
+/** "x = −1, y = 1/2" → "x=-1,y=1/2"; null kad zapis nije takav sustav. */
+function namedPairs(s: string): string | null {
+  const t = normalizeBase(s);
+  if (!t || t.indexOf('=') < 0) return null;
+  const parts = splitList(t);
+  if (parts.length < 2) return null;
+  const pairs: string[] = [];
+  const bases = new Set<string>();
+  for (const p of parts) {
+    const m = p.match(NAMED_RE);
+    if (!m) return null;
+    const val = canonExpr(m[2]);
+    if (!val) return null;
+    bases.add(m[1].replace(/[0-9]+$/, ''));
+    pairs.push(`${m[1]}=${val}`);
+  }
+  if (bases.size < 2) return null;
+  pairs.sort();
+  return pairs.join(',');
+}
+
+/**
+ * Jesu li dva zapisa isti odgovor? Prošireno preko doslovne jednakosti, ali
+ * konzervativno: svaka klasa ekvivalencije mora biti matematički istinita.
+ */
+export function answersEquivalent(a: string, b: string): boolean {
+  const na = normalizeAnswer(a);
+  const nb = normalizeAnswer(b);
+  if (!na || !nb) return false;
+  if (!unitsCompatible(a, b)) return false;
+  if (na === nb) return true;
+  if (numEquals(a, b)) return true;
+  const ca = canonExpr(na);
+  const cb = canonExpr(nb);
+  if (!ca || !cb) return false;
+  if (ca === cb) return true;
+  const pa = preCanon(na);
+  const pb = preCanon(nb);
+  if (shareForm(intervalForms(pa), intervalForms(pb))) return true;
+  if (shareForm(tupleForms(pa), tupleForms(pb))) return true;
+  // sustav nepoznanica se ne smije svesti na skup vrijednosti bez redoslijeda
+  const ma = namedPairs(a);
+  const mb = namedPairs(b);
+  if (ma !== null || mb !== null) return ma !== null && ma === mb;
+  const la = listCanon(pa);
+  if (la !== null && la === listCanon(pb)) return true;
+  return false;
+}
+
 /** Kanonski oblik slova ponuđenog odgovora: "C)", "(c)", "c." → "c". */
 function normalizeChoice(s: unknown): string {
   return normalizeAnswer(String(s ?? '')).replace(/[^a-z0-9]/g, '');
@@ -202,6 +723,21 @@ function altList(sol: MatSolution): string[] {
     if (x !== undefined && x !== null) out.push(String(x));
   }
   return out;
+}
+
+/**
+ * Smije li odgovor nositi tu jedinicu?
+ *
+ * Kad ijedna ponuđena varijanta ima jedinicu ("45" uz alt "45 dag"), autor je
+ * rekao koja je: upisana jedinica mora biti jedna od njih. Ako je nijedna
+ * varijanta nema, jedinica u odgovoru se i dalje zanemaruje.
+ */
+function unitAccepted(alts: string[], answer: string): boolean {
+  const ua = unitOf(answer);
+  if (ua === '') return true;
+  const known = new Set(alts.map((x) => unitOf(x)).filter((u) => u !== ''));
+  if (known.size === 0) return true;
+  return known.has(ua);
 }
 
 /**
@@ -230,7 +766,8 @@ export function isAnswerCorrect(
     const alts = altList(sol);
     if (!alts.length) return null;
     const a = String(answer ?? '');
-    if (alts.some((x) => numEquals(x, a))) return true;
+    if (!unitAccepted(alts, a)) return false;
+    if (alts.some((x) => answersEquivalent(x, a))) return true;
     if (opts?.nerdamer && alts.some((x) => symEquals(x, a, opts.nerdamer))) return true;
     return false;
   }
@@ -239,12 +776,17 @@ export function isAnswerCorrect(
     const alts = altList(sol);
     if (!alts.length) return null;
     const a = String(answer ?? '');
+    if (!unitAccepted(alts, a)) return false;
     const na = normalizeAnswer(a);
-    if (na !== '' && alts.some((x) => normalizeAnswer(x) === na)) return true;
-    if (alts.some((x) => numEquals(x, a))) return true;
+    if (na !== '' && alts.some((x) => answersEquivalent(x, a))) return true;
     // rezerva kompatibilna sa starim nrm-om (brisao je sve točke i zareze)
     const flat = na.replace(/\./g, '');
-    if (flat !== '' && alts.some((x) => normalizeAnswer(x).replace(/\./g, '') === flat)) return true;
+    if (
+      flat !== '' &&
+      alts.some((x) => unitsCompatible(x, a) && normalizeAnswer(x).replace(/\./g, '') === flat)
+    ) {
+      return true;
+    }
     if (opts?.nerdamer && alts.some((x) => symEquals(x, a, opts.nerdamer))) return true;
     return false;
   }
@@ -253,4 +795,4 @@ export function isAnswerCorrect(
   return null;
 }
 
-export default { isAnswerCorrect, normalizeAnswer, numEquals };
+export default { isAnswerCorrect, normalizeAnswer, numEquals, answersEquivalent };

@@ -924,7 +924,7 @@ export const qs = [
   {id:29.5,type:"pa",topic:"niz",points:3,
   context:"Zadatak 29 (5. dio od 5):",
   q:"Umnožak prvih n prirodnih brojeva je 272 puta veći od umnoška prvih n − 2 prirodnih brojeva. Odredite koeficijent uz x¹⁵ u razvoju binoma (x + 4)ⁿ.",
-  sol:{ans:"2176",alt:["2176","odgovor","rezultat","rješenje"]},exp:"",
+  sol:{ans:"2176",alt:["2176"]},exp:"",
   steps:[
     {txt:"n!/(n−2)! = n(n−1) = 272 → kvadratna: n² − n − 272 = 0"},
     {txt:"D = 1 + 1088 = 1089. √D = 33. n = (1 + 33)/2 = 17. n = 17."},

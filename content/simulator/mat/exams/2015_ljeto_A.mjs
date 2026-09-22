@@ -544,7 +544,7 @@ export const qs = [
   {id:18.2,type:"sa",topic:"komp",points:1,
   context:"Zadatak 18 (2. dio od 2):",
   q:"Zadan je kompleksan broj z = 3(cos(2π/7) + i·sin(2π/7)). Koja je vrijednost argumenta φ broja z⁶?",
-  sol:{ans:"[FRAC:12π|7]",alt:["12pi/7","odgovor: [FRAC:12π|7]","odgovor","rezultat"]},
+  sol:{ans:"[FRAC:12π|7]",alt:["12pi/7","odgovor: [FRAC:12π|7]"]},
   solFormula:[{frac:[["12π","7"]]}],
   steps:[
     {txt:"Identificiraj parametre kompleksnog broja u trigonometrijskom obliku: modul r = 3, argument φ = 2π/7."},
@@ -562,7 +562,7 @@ export const qs = [
   {id:19.1,type:"sa",topic:"exp",points:1,
   context:"Zadatak 19 (1. dio od 2):",
   q:"Napišite algebarski izraz (x^{1,5}·⁴√x)^{1/2} u obliku potencije s bazom x.",
-  sol:{ans:"x^([FRAC:7|8])",alt:["x7/8","odgovor: x^([FRAC:7|8])","odgovor","rezultat"]},
+  sol:{ans:"x^([FRAC:7|8])",alt:["x7/8","odgovor: x^([FRAC:7|8])"]},
   solFormula:[{pre:"x^"},{frac:[["7","8"]]}],
   steps:[
     {txt:"Pretvori sve u potencije s bazom x: x^(1,5) = x^(³⁄₂); ⁴√x = x^(¹⁄₄)."},
@@ -579,7 +579,7 @@ export const qs = [
   {id:19.2,type:"sa",topic:"al",points:1,
   context:"Zadatak 19 (2. dio od 2):",
   q:"Čemu je jednak pojednostavljeni i do kraja skraćeni algebarski izraz (3a − (6a-1)/(3a)) · 1/(3a-1), za a ≠ 0, a ≠ 1/3?",
-  sol:{ans:"[FRAC:3a-1|3a]",alt:["(3a-1)/3a","odgovor: [FRAC:3a-1|3a]","odgovor","rezultat"]},
+  sol:{ans:"[FRAC:3a-1|3a]",alt:["(3a-1)/3a","odgovor: [FRAC:3a-1|3a]"]},
   solFormula:[{frac:[["3a-1","3a"]]}],
   steps:[
     {txt:"Svedi izraz u zagradi na zajednički nazivnik 3a: 3a = (9a²)/(3a), pa 3a − (6a−1)/(3a) = (9a² − (6a−1))/(3a) = (9a² − 6a + 1)/(3a)."},
@@ -678,7 +678,7 @@ export const qs = [
   {id:22.2,img:true,type:"sa",topic:"kv",points:1,img:true,
   context:"Zadatak 22 (2. dio od 2):",
   q:"Nacrtajte graf funkcije f(x) = −(1/2)x² + 3x − 1.",
-  sol:{ans:"parabola prema dolje, tjeme (3, [FRAC:7|2]), nultočke 3±√7",alt:["parabolapremadolje,tjeme(3,[FRAC:7|2]),nultočke3±√7","odgovor: parabola prema dolje, tjeme (3, [FRAC:7|2]), nultočke 3±√7","parabola prema dolje. tjeme (3. [FRAC:7|2]). nultočke 3±√7","odgovor"]},
+  sol:{ans:"parabola prema dolje, tjeme (3, [FRAC:7|2]), nultočke 3±√7",alt:["parabolapremadolje,tjeme(3,[FRAC:7|2]),nultočke3±√7","odgovor: parabola prema dolje, tjeme (3, [FRAC:7|2]), nultočke 3±√7","parabola prema dolje. tjeme (3. [FRAC:7|2]). nultočke 3±√7"]},
   steps:[
     {txt:"Iz prethodnog zadatka (1. dio): tjeme je u (3, 7/2). Parabola se otvara prema dolje (a = −1/2 < 0)."},
     {txt:"Nultočke iz kvadratne formule: x = (−b ± √(b² − 4ac))/(2a). Diskriminanta D = 9 − 4·(−1/2)·(−1) = 9 − 2 = 7. Stoga x = (−3 ± √7)/(−1) = 3 ∓ √7."},
@@ -826,7 +826,7 @@ export const qs = [
   {id:27.1,type:"sa",topic:"niz",points:1,
   context:"Zadatak 27 (1. dio od 3):",
   q:"Zadan je geometrijski niz 3/4, 1/2, 1/3, ... Koji je šesti član zadanoga niza?",
-  sol:{ans:"[FRAC:8|81]",alt:["8/81","odgovor: [FRAC:8|81]","odgovor","rezultat"]},
+  sol:{ans:"[FRAC:8|81]",alt:["8/81","odgovor: [FRAC:8|81]"]},
   solFormula:[{frac:[["8","81"]]}],
   steps:[
     {txt:"Identificiraj prvi član a₁ = 3/4 i kvocijent q = a₂/a₁ = (1/2)/(3/4) = (1/2)·(4/3) = 4/6 = 2/3."},
@@ -874,7 +874,7 @@ export const qs = [
   {id:28.1,type:"sa",topic:"exp",points:1,
   context:"Zadatak 28 (1. dio od 3):",
   q:"Koliko je x ako je log_x(8) = -1/3?",
-  sol:{ans:"[FRAC:1|512]",alt:["1/512","odgovor: [FRAC:1|512]","odgovor","rezultat"]},
+  sol:{ans:"[FRAC:1|512]",alt:["1/512","odgovor: [FRAC:1|512]"]},
   solFormula:[{frac:[["1","512"]]}],
   steps:[
     {txt:"Definicija logaritma: log_x(a) = b ⟺ xᵇ = a (uz x > 0, x ≠ 1, a > 0). Primijeni: log_x(8) = −1/3 znači x^(−1/3) = 8."},

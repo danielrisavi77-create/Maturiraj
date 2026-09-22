@@ -393,7 +393,7 @@ export const qs = [
 {id:18,type:"num",topic:"fin",points:1,
   q:"Nakon unosa podataka na memorijski ključić kapaciteta 8 GB ostalo je 34% slobodnog prostora. Koja je količina podataka na ključiću?",
   warn:"Pazi: ne uzeti 34% od 8 GB (to bi bio slobodni prostor, ne popunjeni).",
-  sol:{ans:"5,28",alt:["5,28","5.28","odgovor"]},
+  sol:{ans:"5,28",alt:["5,28","5.28"]},
   steps:[
     {txt:"Slobodan prostor: 34% → popunjeno: 100% − 34% = 66%"},
     {txt:"Podaci = 66% od 8 GB"},
@@ -453,7 +453,7 @@ export const qs = [
 {id:22.2,type:"num",topic:"fin",points:1,
   q:"Koliko dekagrama govedine treba izmiješati s 30 dag svinjetine?",
   warn:"Pazi: ne računati 40% od 30 umjesto postaviti jednadžbu omjera.",
-  sol:{ans:"45",alt:["45 dag","odgovor","rezultat"]},
+  sol:{ans:"45",alt:["45 dag"]},
   steps:[
     {txt:"Udio svinjetine: 30/(30+x) = 40/100 = 2/5"},
     {txt:"5·30 = 2·(30+x)"},
@@ -466,7 +466,7 @@ export const qs = [
 {id:23.1,type:"num",topic:"lin",points:1,
   q:"Koliko je visok učenik kojemu je podlaktica duljine 26,3 cm?",
   formulaLabel:"Formula",
-  sol:{ans:"172",alt:["172 cm","odgovor","rezultat"]},
+  sol:{ans:"172",alt:["172 cm"]},
   steps:[
     {txt:"Uvrstimo p = 26,3:"},
     {txt:"3v − 20·26,3 + 10 = 0"},
@@ -572,7 +572,7 @@ export const qs = [
   context:"Zadatak 26 (2. dio od 2): Zadani su pravci u koordinatnom sustavu."},
 {id:27.1,img:true,type:"num",topic:"stat",points:1,
   q:"Koliko je učenika postiglo 6 bodova?",
-  sol:{ans:"7",alt:["odgovor","rezultat"]},
+  sol:{ans:"7",alt:[]},
   steps:[
     {txt:"Iz histograma: stupac iznad '6 bodova' ima visinu 7"},
     {txt:"→ Odgovor: 7 učenika",final:true}
@@ -581,7 +581,7 @@ export const qs = [
   context:"Zadatak 27 (1. dio od 3): Nastavnik je rezultate učenika na ispitu prikazao grafom (histogramom). Pogledaj grafički prikaz."},
 {id:27.2,img:true,type:"num",topic:"stat",points:1,
   q:"Koliko je učenika pisalo ispit?",
-  sol:{ans:"30",alt:["30 učenika","odgovor","rezultat"]},
+  sol:{ans:"30",alt:["30 učenika"]},
   steps:[
     {txt:"Zbrojimo sve visine stupaca:"},
     {txt:"1+2+3+1+4+7+0+1+5+0+2+4 = 30"},

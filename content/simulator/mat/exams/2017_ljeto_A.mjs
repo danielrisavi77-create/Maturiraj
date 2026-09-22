@@ -634,7 +634,7 @@ export const qs = [
   {id:20.2,type:"sa",
   context:"Zadatak 20 (2. dio od 2):",topic:"al",points:1,
   q:"Izračunajte 1 + i + i² + i³ + i⁴ + i⁵ + i⁶ + i⁷ + i⁸ + i⁹ gdje je i imaginarna jedinica.",
-  sol:{ans:"1 + i",alt:["drugo","alternativan oblik","1+i"]},exp:"",
+  sol:{ans:"1 + i",alt:["1+i"]},exp:"",
   steps:[
     {txt:"Potencije i: i⁰=1, i¹=i, i²=−1, i³=−i, i⁴=1, ... ciklus 4."},
     {txt:"Pozicije: 1, i, −1, −i, 1, i, −1, −i, 1, i (deset članova k=0..9)"},
@@ -647,7 +647,7 @@ export const qs = [
   {id:21.1,type:"sa",
   context:"Zadatak 21 (1. dio od 2):",topic:"kv",points:1,
   q:"Zadana je kvadratna funkcija f(x) = 0,48x² − 2,4x. Odredite minimalnu vrijednost funkcije f.",
-  sol:{ans:"-3",alt:["provjeri","alt format","-3,0","=-3","-3,0"]},exp:"",
+  sol:{ans:"-3",alt:["-3,0","=-3","-3,0"]},exp:"",
   steps:[
     {txt:"Tjeme parabole: x_t = −b/(2a) = 2,4/(2·0,48) = 2,4/0,96 = 2,5"},
     {txt:"Min: f(2,5) = 0,48·6,25 − 2,4·2,5 = 3 − 6 = −3",final:true},
@@ -659,7 +659,7 @@ export const qs = [
   {id:21.2,img:true,type:"sa",img:true,
   context:"Zadatak 21 (2. dio od 2):",topic:"kv",points:1,
   q:"Zadana je kvadratna funkcija f(x) = 0,48x² − 2,4x. U zadanome koordinatnom sustavu nacrtajte graf funkcije f.",
-  sol:{ans:"parabola: tjeme ([FRAC:5|2],-3), nultočke 0 i 5",alt:["alt","drugi","parabola:tjeme([FRAC:5|2],-3),nultoÄke0i5","parabola: tjeme ([FRAC:5|2].-3). nultoÄke 0 i 5","parabola: tjeme (5/2,-3), nultoÄke 0 i 5","2,5"]},exp:"",
+  sol:{ans:"parabola: tjeme ([FRAC:5|2],-3), nultočke 0 i 5",alt:["parabola:tjeme([FRAC:5|2],-3),nultoÄke0i5","parabola: tjeme ([FRAC:5|2].-3). nultoÄke 0 i 5","parabola: tjeme (5/2,-3), nultoÄke 0 i 5","2,5"]},exp:"",
   steps:[
     {txt:"Iz Q21,1: tjeme (2,5, −3); a = 0,48 > 0 (otvor gore)."},
     {txt:"Nul-točke: f(x) = 0 → 0,48x² = 2,4x → x(0,48x − 2,4) = 0 → x = 0 ili x = 5"},
@@ -703,7 +703,7 @@ export const qs = [
   {id:23.1,type:"sa",
   context:"Zadatak 23 (1. dio od 2):",topic:"al",points:1,
   q:"Riješite jednadžbu √(x + 8) − x = 2.",
-  sol:{ans:"x = 1",alt:["alt","drugi format","1","x=1"]},exp:"",
+  sol:{ans:"x = 1",alt:["1","x=1"]},exp:"",
   steps:[
     {txt:"√(x+8) = x + 2"},
     {txt:"Uvjet: x + 2 ≥ 0 (lijeva nenegativna) → x ≥ −2. Domena: x + 8 ≥ 0 → x ≥ −8."},
@@ -718,7 +718,7 @@ export const qs = [
   {id:23.2,type:"sa",
   context:"Zadatak 23 (2. dio od 2):",topic:"exp",points:1,
   q:"Riješite jednadžbu log₃(log₂(x − 5)) = 1.",
-  sol:{ans:"x = 13",alt:["alt","drugi format","13","x=13"]},exp:"",
+  sol:{ans:"x = 13",alt:["13","x=13"]},exp:"",
   steps:[
     {txt:"log_2(log_3(x − 5)) = 1 ⟺ log_3(x − 5) = 2¹ = 2"},
     {txt:"⟺ x − 5 = 3² = 9 → x = 14"},
@@ -733,7 +733,7 @@ export const qs = [
   {id:24.1,type:"sa",
   context:"Zadatak 24 (1. dio od 2):",topic:"lin",points:1,
   q:"Odredite skup svih vrijednosti (sliku) funkcije f(x) = 2 − √x.",
-  sol:{ans:"⟨−∞, 2]",alt:["alt","⟨-∞, 2]","â¨ââ,2]","â¨ââ. 2]"]},exp:"",
+  sol:{ans:"⟨−∞, 2]",alt:["⟨-∞, 2]","â¨ââ,2]","â¨ââ. 2]"]},exp:"",
   steps:[
     {txt:"Domena: x ≥ 0 (zbog √x)."},
     {txt:"√x ∈ [0, +∞⟩ za x ≥ 0."},
@@ -827,7 +827,7 @@ export const qs = [
   {id:27.2,img:true,type:"sa",
   context:"Zadatak 27 (2. dio od 3):",topic:"anal",points:1,img:true,
   q:"Koja je jednadžba kružnice prikazane na slici?",
-  sol:{ans:"(x+3)²+(y-2)²=13",alt:["alt","drugi"]},exp:"",
+  sol:{ans:"(x+3)²+(y-2)²=13",alt:[]},exp:"",
   steps:[
     {txt:"Iz slike (sol): centar (−3, 2), polumjer √13."},
     {txt:"Jednadžba: (x − (−3))² + (y − 2)² = (√13)² → (x + 3)² + (y − 2)² = 13",final:true},
@@ -839,7 +839,7 @@ export const qs = [
   {id:27.3,type:"sa",
   context:"Zadatak 27 (3. dio od 3):",topic:"anal",points:1,
   q:"Krivulja je zadana jednadžbom 9x² − 16y² = 576. Koliko su udaljeni fokusi te krivulje?",
-  sol:{ans:"20",alt:["alt","drugi","= 20","20,0","20,0"]},exp:"",
+  sol:{ans:"20",alt:["= 20","20,0","20,0"]},exp:"",
   steps:[
     {txt:"Standardni oblik hiperbole: x²/a² − y²/b² = 1. Podijeli s 576: x²/64 − y²/36 = 1"},
     {txt:"a² = 64 → a = 8; b² = 36 → b = 6"},
@@ -898,7 +898,7 @@ export const qs = [
   {id:29.1,type:"pa",topic:"al",points:2,
   context:"Zadatak 29 (1. dio od 4):",
   q:"Odredite područje definicije (domenu) funkcije f(x) = √(4x − x²) + log(2x − 5).",
-  sol:{ans:"⟨[FRAC:5|2], 4]",alt:["⟨5/2, 4]","(5/2, 4]","5/2 < x ≤ 4","rješenje","odgovor"]},
+  sol:{ans:"⟨[FRAC:5|2], 4]",alt:["⟨5/2, 4]","(5/2, 4]","5/2 < x ≤ 4"]},
   solFormula:{pre:"[", frac:[["5","2"]], post:", 4]"},exp:"",
   steps:[
     {txt:"√(4x − x²): treba 4x − x² ≥ 0 → x(4 − x) ≥ 0 → x ∈ [0, 4]"},

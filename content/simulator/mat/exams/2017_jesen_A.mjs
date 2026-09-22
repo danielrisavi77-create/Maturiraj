@@ -571,7 +571,7 @@ export const qs = [
   context:"Zadatak 20 (2. dio od 2):",topic:"al",points:1,
   q:"Odredite B iz izraza A = (B · C + 3) / D.",
   sol:{ans:"B = [FRAC:AD − 3|C]",
-    solFormula:{pre:"B =",frac:[["AD − 3","C"]]},alt:["alt","drugi","B = AD â 3/C","B=[FRAC:ADâ3|C]"]},exp:"",
+    solFormula:{pre:"B =",frac:[["AD − 3","C"]]},alt:["B = AD â 3/C","B=[FRAC:ADâ3|C]"]},exp:"",
   steps:[
     {txt:"A·D = B·C + 3"},
     {txt:"A·D − 3 = B·C"},
@@ -584,7 +584,7 @@ export const qs = [
   {id:21.1,type:"sa",
   context:"Zadatak 21 (1. dio od 2):",topic:"kv",points:1,
   q:"Zadana je kvadratna funkcija f(x) = -4/9·(x+1)(x-5). Odredite maksimalnu vrijednost funkcije f.",
-  sol:{ans:"4",alt:["alt","drugi","4,0","= 4","=4"]},exp:"",
+  sol:{ans:"4",alt:["4,0","= 4","=4"]},exp:"",
   steps:[
     {txt:"Nul-točke: x = −1 i x = 5. Tjeme je SREDINA: x_t = (−1 + 5)/2 = 2"},
     {txt:"Max: f(2) = (−4/9)·(3)·(−3) = (−4/9)·(−9) = 4",final:true},
@@ -596,7 +596,7 @@ export const qs = [
   {id:21.2,img:true,type:"sa",img:true,
   context:"Zadatak 21 (2. dio od 2):",topic:"kv",points:1,
   q:"Zadana je kvadratna funkcija f(x) = -4/9·(x+1)(x-5). U zadanome koordinatnom sustavu nacrtajte graf funkcije f.",
-  sol:{ans:"parabola: tjeme (2,4), nultočke -1 i 5",alt:["alt","drugi","parabola: tjeme (2,4). nultoÄke -1 i 5","parabola:tjeme(2,4),nultoÄke-1i5"]},exp:"",
+  sol:{ans:"parabola: tjeme (2,4), nultočke -1 i 5",alt:["parabola: tjeme (2,4). nultoÄke -1 i 5","parabola:tjeme(2,4),nultoÄke-1i5"]},exp:"",
   steps:[
     {txt:"Iz Q21,1: tjeme (2, 4), nul-točke −1 i 5, a = −4/9 < 0 (otvor dolje)."},
     {txt:"y-presjek: f(0) = (−4/9)·(1)·(−5) = 20/9 ≈ 2,22",final:true},
@@ -654,7 +654,7 @@ export const qs = [
   {id:23.2,type:"sa",
   context:"Zadatak 23 (2. dio od 2):",topic:"lin",points:1,
   q:"Za koji realan broj a funkcija f(x) = ax + 10 ima nultočku (-2, 0)?",
-  sol:{ans:"a = 5",alt:["alt","drugi","5","a=5"]},exp:"",
+  sol:{ans:"a = 5",alt:["5","a=5"]},exp:"",
   steps:[
     {txt:"Nul-točka (−2, 0) znači f(−2) = 0."},
     {txt:"a·(−2) + 10 = 0 → −2a = −10 → a = 5",final:true},
@@ -666,7 +666,7 @@ export const qs = [
   {id:24.1,type:"sa",
   context:"Zadatak 24 (1. dio od 2):",topic:"al",points:1,
   q:"Čemu je jednak izraz 3(2x − y)(x + 5y) + x(x − 27y) nakon svih provedenih računskih operacija?",
-  sol:{ans:"7x² − 15y²",alt:["alt","drugi","7xÂ²â15yÂ²"]},exp:"",
+  sol:{ans:"7x² − 15y²",alt:["7xÂ²â15yÂ²"]},exp:"",
   steps:[
     {txt:"(2x − y)(x + 5y) = 2x² + 10xy − xy − 5y² = 2x² + 9xy − 5y²"},
     {txt:"3·(...) = 6x² + 27xy − 15y²"},
@@ -695,7 +695,7 @@ export const qs = [
   {id:25.1,type:"sa",
   context:"Zadatak 25 (1. dio od 2):",topic:"al",points:1,
   q:"Na plantaži jabuka sedam radnika može obaviti berbu za 22 dana. Nakon četiri dana berbe pokazala se potreba da berba završi za narednih 14 dana. Koliko najmanje novih radnika treba zaposliti od petoga dana?",
-  sol:{ans:"2",alt:["alt","drugi","=2","2,0","2,0"]},exp:"",
+  sol:{ans:"2",alt:["=2","2,0","2,0"]},exp:"",
   steps:[
     {txt:"Ukupno: 7 radnika · 22 dana = 154 čovjek-dana berbe (CD)."},
     {txt:"Već obavljeno (4 dana s 7 radnika): 7 · 4 = 28 CD."},
@@ -710,7 +710,7 @@ export const qs = [
   {id:25.2,type:"sa",
   context:"Zadatak 25 (2. dio od 2):",topic:"br",points:1,
   q:"Marko ima plave i zelene kuglice. Spremi ih je u pet vrećica tako da se u njima nalazilo redom 7, 9, 10, 14 i 19 kuglica. Jednu vrećicu poklonio je Ani i ostalo mu je točno dva puta više plavih nego zelenih kuglica. Koliko je kuglica bilo u vrećici koju je poklonio Ani?",
-  sol:{ans:"14",alt:["alt","drugi","14,0","=14","14,0"]},exp:"",
+  sol:{ans:"14",alt:["14,0","=14","14,0"]},exp:"",
   steps:[
     {txt:"Ukupno kuglica: 7 + 9 + 10 + 14 + 19 = 59"},
     {txt:"Ostalo: 59 − vrećica_Ani."},
@@ -754,7 +754,7 @@ export const qs = [
   {id:27.1,type:"sa",
   context:"Zadatak 27 (1. dio od 3):",topic:"geom",points:1,
   q:"Ako se duljine svih bridova kvadra povećaju tri puta, koliko se puta poveća njegovo oplošje?",
-  sol:{ans:"9",alt:["alt","drugi","9,0","9,0","= 9"]},exp:"",
+  sol:{ans:"9",alt:["9,0","9,0","= 9"]},exp:"",
   steps:[
     {txt:"Oplošje kvadra: O = 2(ab + bc + ac), gdje su a, b, c bridovi."},
     {txt:"Ako se svi bridovi POVEĆAJU 3 PUTA: novi a' = 3a, b' = 3b, c' = 3c."},
@@ -767,7 +767,7 @@ export const qs = [
   {id:27.2,img:true,type:"sa",img:true,
   context:"Zadatak 27 (2. dio od 3):",topic:"anal",points:1,
   q:"Odredite jednadžbu kružnice polumjera 3 sa središtem u točki S(p < 0, q) koja prolazi ishodištem koordinatnoga sustava i dodiruje os ordinatu.",
-  sol:{ans:"(x+3)² + y² = 9",alt:["alt","drugi","(x+3)Â²+yÂ²=9"]},exp:"",
+  sol:{ans:"(x+3)² + y² = 9",alt:["(x+3)Â²+yÂ²=9"]},exp:"",
   steps:[
     {txt:"Polumjer = 3. Centar (p, q), p < 0."},
     {txt:"Dodiruje y-os: udaljenost od centra do y-osi (= |p|) jednaka je polumjeru 3 → |p| = 3 → p = −3 (jer p < 0)"},
@@ -808,7 +808,7 @@ export const qs = [
   {id:28.2,type:"sa",
   context:"Zadatak 28 (2. dio od 3):",topic:"al",points:1,
   q:"U koordinatnome sustavu prikazani su grafovi kvadratnih funkcija f i g definiranih za sve realne brojeve. Napišite rješenja nejednadžbe f(x)·g(x) ≥ 0 uz pomoć intervala.",
-  sol:{ans:"[-4, 1] ∪ [5, 6]",alt:["alt","[-4. 1] âª [5. 6]","[-4,1]âª[5,6]"]},exp:"",
+  sol:{ans:"[-4, 1] ∪ [5, 6]",alt:["[-4. 1] âª [5. 6]","[-4,1]âª[5,6]"]},exp:"",
   steps:[
     {txt:"f(x)·g(x) ≥ 0 znači f i g ISTOG predznaka (oba ≥ 0 ili oba ≤ 0)."},
     {txt:"Iz grafa očitaj nul-točke f i g, te predznake na svakom intervalu."},
@@ -834,7 +834,7 @@ export const qs = [
   {id:29.1,type:"pa",topic:"al",points:2,
   context:"Zadatak 29 (1. dio od 4):",
   q:"Odredite područje definicije (domenu) funkcije f(x) = √(x² − 9) / (5 − x).",
-  sol:{ans:"⟨−∞, -3] ∪ [3, +∞⟩ \\ {5}",alt:["rješenje","odgovor","alt","⟨−∞, -3] ∪ [3, +∞⟩ \\ {5}","U[3, +inf⟩\\{5}"]},exp:"",
+  sol:{ans:"⟨−∞, -3] ∪ [3, +∞⟩ \\ {5}",alt:["⟨−∞, -3] ∪ [3, +∞⟩ \\ {5}","U[3, +inf⟩\\{5}"]},exp:"",
   steps:[
     {txt:"√(x² − 9): treba x² − 9 ≥ 0 → x² ≥ 9 → |x| ≥ 3 → x ≤ −3 ili x ≥ 3"},
     {txt:"Nazivnik 5 − x ≠ 0 → x ≠ 5"},
