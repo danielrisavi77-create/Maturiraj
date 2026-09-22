@@ -9,11 +9,7 @@ import { chk, grade, calcXpGain, updateStreak, validateUserData, validateBookmar
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
 import { useTimer, warnMessage } from '@/lib/engleski-simulator/useTimer'
 import { getExamBlocks, totalMinutes, sectionScores, weightedEstimate } from '@/lib/engleski-simulator/examStructure'
-import { LL, TLBL, TBDG, TOPIC_LABELS, LEVEL_NAMES, getLevel, xpProgress, xpToNext } from '@/lib/engleski-simulator/constants'
-
-// GC ostaje lokalno definiran (ne iz constants.js) jer se boje ocjena 2-4 razlikuju
-// od dijeljene konstante i ne smiju se tiho promijeniti izvan zadatka 2.3
-const GC = { 1: 'var(--red)', 2: 'var(--gold)', 3: 'var(--blue)', 4: 'var(--teal)', 5: 'var(--green)' }
+import { LL, TLBL, TBDG, TOPIC_LABELS, GC, LEVEL_NAMES, getLevel, xpProgress, xpToNext } from '@/lib/engleski-simulator/constants'
 import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
 import { ENG_USER_KEY, ENG_BOOKMARKS_DELETED_KEY, toSimProgressPayload, saveEngSimResult } from '@/lib/engleski-simulator/cloudSync'
 import { useEngCloudSync } from '@/lib/engleski-simulator/useEngCloudSync'
