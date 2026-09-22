@@ -487,19 +487,116 @@ export function ModeSelect({ examKey, examObj, examsMap, onExamMode, onPractice,
             e('div', { className: 'mode-feature off' }, '– Nema objašnjenja tijekom ispita'))))))
 }
 
+const AUDIO_MISSING_NOTE = ' Audio nije dostupan — u stvarnom ispitu slušaš snimku; odgovori su iz ključa NCVVO-a.'
+
+// role="status" (aria-live polite): poruka se pojavi tek nakon neuspjele provjere
+// ili onError, pa je čitač ekrana inače ne bi najavio.
+function fallbackBox(note) {
+  return e('div', { className: 'audio-fallback', role: 'status' },
+    e('span', { className: 'audio-fallback-icon' }, '⚠️'), note)
+}
+
+// Mali in-memory cache dostupnosti snimke po URL-u; živi koliko i učitana
+// stranica (sesija), pa se HEAD za isti URL ne ponavlja pri svakom remountu
+// playera. true = dostupno (ili neprovjerljivo), false = potvrđeno nedostupno.
+const _audioAvailability = new Map()
+
+// Samo za testove: isprazni cache između slučajeva.
+export function _resetAudioAvailabilityCache() {
+  _audioAvailability.clear()
+}
+
+function isCrossOrigin(url) {
+  try {
+    if (typeof window === 'undefined' || !window.location) return false
+    return new URL(url, window.location.href).origin !== window.location.origin
+  } catch {
+    return false
+  }
+}
+
+// Provjera dostupnosti snimke bez `preload`-a: jedan lagani HEAD zahtjev pri
+// montiranju playera, samo za datoteke iz audio-map.json za tekuće pitanje.
+// `preload='metadata'` bi za svako pitanje slušanja povuklo zaglavlje same
+// snimke i bez klika na Play (nov promet na mobilnoj mreži); HEAD vraća samo
+// zaglavlja odgovora. Pravila:
+//   - ne-OK odgovor (404 i sl.) ili mrežna greška na istom podrijetlu → odmah
+//     tekstualni fallback (isti kao onError),
+//   - 405/501 (server ne podržava HEAD) → tretiraj kao dostupno, `onError` na
+//     <audio> ostaje druga linija obrane,
+//   - cross-origin izvor bez CORS-a (produkcijski GitHub Release, vidi
+//     public/audio/eng/README.md) odbija HEAD kao TypeError — to nije dokaz da
+//     snimke nema, pa player ne blokiramo,
+//   - AbortController prekida zahtjev na unmountu (promjena pitanja).
+function useAudioMissing(url) {
+  const [missing, setMissing] = useState(() => (url ? _audioAvailability.get(url) === false : false))
+
+  useEffect(() => {
+    if (!url) {
+      setMissing(false)
+      return undefined
+    }
+    const cached = _audioAvailability.get(url)
+    if (cached !== undefined) {
+      setMissing(cached === false)
+      return undefined
+    }
+    setMissing(false)
+    if (typeof fetch !== 'function' || typeof AbortController !== 'function') return undefined
+
+    const ctrl = new AbortController()
+    let live = true
+    const settle = available => {
+      _audioAvailability.set(url, available)
+      if (live) setMissing(!available)
+    }
+
+    Promise.resolve()
+      .then(() => fetch(url, { method: 'HEAD', signal: ctrl.signal }))
+      .then(res => {
+        if (!live || ctrl.signal.aborted) return
+        settle(!!res && (res.ok || res.status === 405 || res.status === 501))
+      })
+      .catch(err => {
+        if (!live || ctrl.signal.aborted || (err && err.name === 'AbortError')) return
+        settle(isCrossOrigin(url))
+      })
+
+    return () => {
+      live = false
+      ctrl.abort()
+    }
+  }, [url])
+
+  return missing
+}
+
+// Jedan <audio> element s dvostrukom obranom: HEAD provjera pri montiranju i
+// `onError` na samom elementu. `preload: 'none'` — ništa se ne dohvaća dok
+// učenik ne klikne Play.
+function NativeAudio({ src, label, note, style }) {
+  const [errored, setErrored] = useState(false)
+  const missing = useAudioMissing(src)
+  if (errored || missing) return fallbackBox(note)
+  return e('audio', {
+    controls: true,
+    preload: 'none',
+    src,
+    'aria-label': label,
+    onError: () => setErrored(true),
+    style,
+  })
+}
+
 export function AudioPlayer({ examKey, topic, razina }) {
   // Napomena: pozivatelj mora renderirati ovu komponentu s key={examKey + '_' + topic}
-  // da bi se phase/audioError/showIntro ispravno resetirali pri promjeni pitanja (remount).
+  // da bi se phase/showIntro ispravno resetirali pri promjeni pitanja (remount);
+  // stanje greške pojedine snimke živi u NativeAudio i resetira se preko key={src}.
   const audio = getAudioTrack(examKey, topic, razina)
   const [phase, setPhase] = useState('first')
-  const [audioError, setAudioError] = useState(false)
   const [showIntro, setShowIntro] = useState(false)
-  const [introError, setIntroError] = useState(false)
-  const [extraErrors, setExtraErrors] = useState({})
 
-  const missingNote = ' Audio nije dostupan — u stvarnom ispitu slušaš snimku; odgovori su iz ključa NCVVO-a.'
-  const fallbackBox = note => e('div', { className: 'audio-fallback' },
-    e('span', { className: 'audio-fallback-icon' }, '⚠️'), note)
+  const missingNote = AUDIO_MISSING_NOTE
 
   // Nema zapisa u audio-map.json: za pitanje slušanja to je nedostajuća snimka, pa
   // ostaje tekstualni fallback s jasnom oznakom (klauzula plana 3.4). Za ostale
@@ -525,28 +622,25 @@ export function AudioPlayer({ examKey, topic, razina }) {
         }, phase === 'done' ? '✓ Završeno' : phase === 'repeat' ? 'Ponavljanje' : '1. slušanje'),
         phase !== 'done' && e('div', { style: { marginLeft: 'auto', display: 'flex', gap: 6 } },
           audio.intro && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => setShowIntro(s => !s) }, '📋 Upute'),
-          phase === 'first' && audio.repeat && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => { setPhase('repeat'); setAudioError(false) } }, '▶ Ponavljanje'),
+          phase === 'first' && audio.repeat && e('button', { className: 'btn btn-g', style: { fontSize: 11, padding: '3px 10px' }, onClick: () => setPhase('repeat') }, '▶ Ponavljanje'),
           e('button', { className: 'btn', style: { fontSize: 11, padding: '3px 10px', background: 'var(--green-d)', color: 'var(--green)', border: '1px solid rgba(30,122,62,.3)' }, onClick: () => setPhase('done') }, '✓ Završio/la'))),
       showIntro && audio.intro && e('div', { className: 'audio-intro-wrap', style: { marginBottom: 8 } },
         e('div', { style: { fontSize: 11, color: 'var(--muted)', marginBottom: 4 } }, '📋 Upute (uvodna snimka):'),
-        introError
-          ? fallbackBox(' Uvodna snimka nije dostupna.')
-          : e('audio', { controls: true, preload: 'metadata', src: audio.intro, 'aria-label': 'Upute — ' + topic, onError: () => setIntroError(true), style: { width: '100%', height: 36 } })),
+        e(NativeAudio, {
+          key: audio.intro,
+          src: audio.intro,
+          label: 'Upute — ' + topic,
+          note: ' Uvodna snimka nije dostupna.',
+          style: { width: '100%', height: 36 },
+        })),
       e('div', { className: 'audio-native-wrap' },
-        audioError
-          ? fallbackBox(missingNote)
-          : e('audio', {
-            key: src,
-            controls: true,
-            // 'metadata', ne 'none': inače se za nedostajuću datoteku zahtjev ne
-            // šalje dok učenik ne klikne Play, pa onError (i oznaka nedostupnosti)
-            // stigne tek nakon klika.
-            preload: 'metadata',
-            src,
-            'aria-label': 'Audio player — ' + topic,
-            onError: () => setAudioError(true),
-            style: { width: '100%', height: 40 },
-          })),
+        e(NativeAudio, {
+          key: src,
+          src,
+          label: 'Audio player — ' + topic,
+          note: missingNote,
+          style: { width: '100%', height: 40 },
+        })),
       phase === 'done'
         ? e('div', { style: { fontSize: 11, color: 'var(--green)', fontWeight: 600 } }, '✓ Oba slušanja završena — odgovori na pitanja.')
         : e('div', { className: 'audio-hint' }, phase === 'repeat' ? 'Slušaš ponavljanje. Klikni \'✓ Završio/la\' kad završiš.' : 'Slušaj pažljivo. Klikni \'▶ Ponavljanje\' za drugi put ili \'✓ Završio/la\'.'),
@@ -554,10 +648,18 @@ export function AudioPlayer({ examKey, topic, razina }) {
         e('div', { style: { fontSize: 12, fontWeight: 600, marginBottom: 6 } }, '🎧 Dodatni zapisi slušanja'),
         audio.extra.map((ex, i) => e('div', { key: i, style: { marginBottom: 8 } },
           ex.note && e('div', { style: { fontSize: 11, color: 'var(--muted)', marginBottom: 4 } }, ex.note),
-          extraErrors[i + '_first']
-            ? fallbackBox(' Dodatni zapis ' + (i + 1) + ' nije dostupan.')
-            : e('audio', { controls: true, preload: 'metadata', src: ex.first, 'aria-label': 'Dodatni zapis ' + (i + 1) + ' — 1. slušanje', onError: () => setExtraErrors(s => ({ ...s, [i + '_first']: true })), style: { width: '100%', height: 36 } }),
-          ex.repeat && (extraErrors[i + '_repeat']
-            ? fallbackBox(' Ponavljanje dodatnog zapisa ' + (i + 1) + ' nije dostupno.')
-            : e('audio', { controls: true, preload: 'metadata', src: ex.repeat, 'aria-label': 'Dodatni zapis ' + (i + 1) + ' — ponavljanje', onError: () => setExtraErrors(s => ({ ...s, [i + '_repeat']: true })), style: { width: '100%', height: 36, marginTop: 4 } })))))))
+          e(NativeAudio, {
+            key: ex.first,
+            src: ex.first,
+            label: 'Dodatni zapis ' + (i + 1) + ' — 1. slušanje',
+            note: ' Dodatni zapis ' + (i + 1) + ' nije dostupan.',
+            style: { width: '100%', height: 36 },
+          }),
+          ex.repeat && e(NativeAudio, {
+            key: ex.repeat,
+            src: ex.repeat,
+            label: 'Dodatni zapis ' + (i + 1) + ' — ponavljanje',
+            note: ' Ponavljanje dodatnog zapisa ' + (i + 1) + ' nije dostupno.',
+            style: { width: '100%', height: 36, marginTop: 4 },
+          }))))))
 }
