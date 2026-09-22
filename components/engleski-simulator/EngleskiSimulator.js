@@ -511,7 +511,10 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
               </div>
             ) : (
               <>
-                <AudioPlayer key={exam.key + '_' + q.topic} examKey={exam.key} topic={q.topic} razina={exam.razina === 'mixed' ? examLookup?.[q._examKey]?.razina : exam.razina} />
+                {/* Audio se traži po ključu IZVORNOG ispita pitanja: u virtualnom ispitu,
+                    filtriranom vježbanju i sesiji grešaka exam.key je sintetički
+                    ('virtual_…', 'filter_session_…') i nema ga u audio-map.json. */}
+                <AudioPlayer key={(q._examKey || exam.key) + '_' + q.topic} examKey={q._examKey || exam.key} topic={q.topic} razina={exam.razina === 'mixed' ? examLookup?.[q._examKey]?.razina : exam.razina} />
                 <ContextPanel examKey={exam.key} qid={q.id} examContext={examContext} />
                 <div style={{ fontSize: 15, lineHeight: 1.65, marginBottom: 16, whiteSpace: 'pre-wrap' }}>{q.q}</div>
 
@@ -968,7 +971,10 @@ export default function EngleskiSimulator() {
               onBack={goBack}
               onPracticeErrors={(wrongQs, srcExam) => {
                 if (!wrongQs?.length) return
-                const virtual = { key: 'exam_errors_session', year: srcExam.year, season: srcExam.season, label: `${srcExam.label} — Greške`, razina: srcExam.razina, qs: fisherYates([...wrongQs]) }
+                // _examKey zadržava ključ izvornog ispita da AudioPlayer nađe snimku
+                // (ključ sesije 'exam_errors_session' nije u audio-map.json).
+                const tagged = wrongQs.map(q => (q._examKey ? q : { ...q, _examKey: srcExam.key }))
+                const virtual = { key: 'exam_errors_session', year: srcExam.year, season: srcExam.season, label: `${srcExam.label} — Greške`, razina: srcExam.razina, qs: fisherYates(tagged) }
                 setSelectedExamKey(virtual.key)
                 setExtraExams(prev => ({ ...prev, [virtual.key]: virtual }))
                 setExamMode(false)
