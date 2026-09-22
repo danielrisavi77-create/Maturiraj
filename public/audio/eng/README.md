@@ -63,9 +63,14 @@ svaki task ako su svi `confidence: 'low'`) — vidi `scripts/eng-audio/build-aud
   pozicijsko nagađanje uz `note` s objašnjenjem; `first`/`repeat` mogu biti `null`
   kad snimka fizički ne postoji zasebno.
 
-Kad datoteka fizički ne postoji (404) ili joj `first` nedostaje u mapi, `<audio>`
-element u `AudioPlayer` (`components/engleski-simulator/components/SimSharedUI.js`)
-baca `onError` i prikazuje tekstualni fallback umjesto playera.
+Kad datoteka fizički ne postoji (404) ili joj `first` nedostaje u mapi, `AudioPlayer`
+(`components/engleski-simulator/components/SimSharedUI.js`) prikazuje tekstualni
+fallback umjesto playera. `<audio>` elementi imaju `preload='none'` (bez prometa prije
+klika na Play), a nedostupnost se otkriva jednim laganim `HEAD` zahtjevom pri
+montiranju playera; `onError` na `<audio>` ostaje druga linija obrane. Kad je baza
+cross-origin bez CORS-a za `HEAD` (kao GitHub Release), provjera se ne može izvesti pa
+se snimka tretira kao dostupna — postavi `NEXT_PUBLIC_ENG_AUDIO_BASE` na isti origin
+(ili CDN s CORS-om) da provjera bude stvarna.
 
 ## Trenutno stanje (Korak C, 2026-09-20)
 
