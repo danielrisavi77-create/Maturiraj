@@ -250,3 +250,48 @@ Popravci skeptičkih nalaza faze 4 (grana `eng/round1`) riješili su 2.1, 2.3, 3
 - **Referentne brojke u analitici nisu stvarni podaci** (`NCE_DATA`, `NCE_DIST` u `components/engleski-simulator/screens/AnalyticsPanelFull.js`). Sada su u sučelju jasno označene kao ilustrativne i više se ne pripisuju NCVVO-u, ali same brojke (prosjek, prolaznost, raspodjela ocjena) i dalje su izmišljene. Odluka koja se traži: (a) pribaviti i citirati stvarne NCVVO statistike po roku, ili (b) ukloniti usporedbu s „prosjekom” i raspodjelu ocjena iz kartice Napredak. Do odluke kartica stoji s oznakom ilustrativnosti.
 - **Boje ocjena 2–4 su se promijenile** ujedinjenjem `GC` na `lib/engleski-simulator/constants.js` (nalaz 2.1): ResultsScreen sada za ocjenu 2 koristi `#f97316`, za 3 `var(--gold)`, za 4 `#60a5fa` (prije `var(--gold)` / `var(--blue)` / `var(--teal)`). Uzeta je vrijednost iz `constants.js` jer je nju već koristio AnalyticsPanelFull; ako dizajn želi drugu paletu, mijenja se na jednom mjestu u `constants.js`.
 - **Pragovi 85/70/55/40 ostaju pragovi simulatora.** Svugdje gdje se prikazuje ocjena sada stoji `GRADE_NOTE`, ali stvarni NCVVO pragovi po roku nisu u podacima; preslikavanje postotka u maturalnu ocjenu je i dalje orijentacijsko po dizajnu.
+
+## Status Faza 4 (verifikacija) — 2026-09-22
+
+Grana `eng/round1` (`main` = `d4e0dd0` je njezin predak; diff `main...eng/round1` = 12 datoteka, +295/−40). Verifikaciju je vodio skup agenata-skeptika po zadatku, popravci su commitani po nalazu, a ovo je zaključni pregled cijelog diffa.
+
+### Po zadatku
+
+| Zadatak | Skeptik | Stanje nakon popravka | Commit |
+| --- | --- | --- | --- |
+| 1.1 | stoji | stoji | — |
+| 1.2 | stoji | stoji | — |
+| 1.3 | stoji | stoji | — |
+| 1.4 | stoji | stoji | — |
+| 2.1 GC duplikacija | OBOREN | popravljeno — `GC` se uvozi iz `constants.js`, lokalna kopija uklonjena; test `grade-colors.test.js` | `bedfd07` |
+| 2.2 | stoji | stoji | — |
+| 2.3 orijentacijski pragovi + lažna NCVVO atribucija | OBOREN | popravljeno — `GRADE_NOTE` uz predviđenu ocjenu i preporuku, sve NCVVO atribucije u analitici zamijenjene oznakom ilustrativnosti, `napredUJEš` → `napreduješ`; test `grade-note.test.js`. Otvoreno: same brojke `NCE_DATA`/`NCE_DIST` ostaju izmišljene | `6583eeb` |
+| 2.4 | stoji | stoji | — |
+| 2.5 | stoji | stoji | — |
+| 3.1 | stoji | stoji | — |
+| 3.2 chunk simulatora bez ispita | stoji | stoji uz ogradu — dokaz je i dalje grep + statički import indeksa; `next build` nije pokrenut u ovom worktreeu (node_modules je junction, build nije u dosegu), pa mjerenje veličine chunka rute `/discere/engleski/simulator` prije/poslije ostaje nenapravljeno | — |
+| 3.3 pragovi u Vodiču | OBOREN | popravljeno — „Ljestvica ocjena (orijentacijska)” s `GRADE_NOTE`, „Prolazak mature” razdvaja prag simulatora od službenog; `HomeScreen` više ne obećava „ja vs NCVVO” | `6583eeb` |
+| 3.4 audio po ključu izvornog ispita | OBOREN | popravljeno — `examKey={q._examKey || exam.key}`, sesija grešaka označava pitanja `_examKey`, nedostajuća snimka za temu slušanja daje tekstualni fallback, svi `<audio>` imaju `preload: 'metadata'` i `onError`; test `audio-fallback.test.js` (10 testova) | `54232db` |
+
+### Globalne provjere
+
+- `npx tsc --noEmit -p .` — 0 grešaka.
+- `npx vitest run` — 86 datoteka, 1600 prošlo / 4 preskočeno / 6 todo. Jedini pad u punom prolazu je `__tests__/mat-simulator/engine-core-smoke.test.tsx` (`Hook timed out in 30000ms` na hladnom importu) — ponovljen zasebno, 4/4 zeleno; flake, ne regresija ove grane.
+- `npm run lint` — repo-wide 814 grešaka / 157 upozorenja, sve zatečene i izvan dosega ove grane (`public/*-hero/*.jsx`, `app/skripte/**`, `mat-simulator`). `npx eslint components/engleski-simulator lib/engleski-simulator` je čist.
+- `next build` nije pokrenut (vidi 3.2).
+- Ručni smoke test u pregledniku nije napravljen u ovom prolazu — ostaje kao zadatak prije objave.
+
+### Zaključni pregled diffa (ispravnost / sigurnost / performanse / konzistentnost)
+
+- **Ispravnost.** `useTimer` sada računa tick preko `sRef` i zove `setS` gotovom vrijednošću, pa updater više ne može pozvati `onExpire`/`onWarn` tijekom tuđeg rendera; semantika reseta se nije promijenila (`tot` se i dalje čita samo pri prvom renderu, reset je remount preko `key`), što je i dokumentirano u samoj datoteci. Prosljeđivanje `q._examKey` je konzistentno s `razina` u istom retku i s `deriveRazina` (kod `mixed` sesije razina se čita po izvornom ispitu), pa audio i razina za isto pitanje sada dolaze iz istog ispita.
+- **Sigurnost / ADR-001.** Diff ne dira `examsLoader`, `exams.js` ni bilo koji put učitavanja ispita, ne uvodi nove statičke importe podataka i ne mijenja gating (`SimulatorPreviewGate`, `case 'virtual_exam'`, dnevni izazov). Tekstualni fallback ne izlaže sadržaj pitanja ni ključ odgovora. Nema regresije u paywallu.
+- **Performanse.** `preload: 'none'` → `'metadata'` na svim `<audio>` elementima znači da preglednik za svako pitanje slušanja dohvati zaglavlje snimke i bez klika na Play. To je cijena da se nedostupnost vidi odmah; po pitanju je riječ o jednom zahtjevu za metapodatke, ali na mobilnoj mreži i dugim sekcijama slušanja to je novi, prije nepostojeći promet. Ako se pokaže kao problem, alternativa je `HEAD`/`fetch` provjera samo prvog zapisa uz zadržan `preload: 'none'`.
+- **Konzistentnost.** `GC` i `GRADE_NOTE` sada imaju po jedan izvor (`lib/engleski-simulator/constants.js`); ResultsScreen i AnalyticsPanelFull daju istu boju za istu ocjenu. Nusposljedica je vidljiva promjena boja ocjena 2–4 u ResultsScreenu (vidi „Status Faza 4 — otvoreno”).
+
+### Nalazi ovog pregleda (novi, nisu blokirajući)
+
+1. **Tekstualni fallback nema `aria-live`.** `div.audio-fallback` se pojavi tek nakon `onError`, pa ga čitač ekrana ne najavi. Prijedlog: `role="status"` na okviru poruke.
+2. **Mjerenje chunka za 3.2 i dalje nije napravljeno buildom** — kriterij ostaje dokazan samo statičkom analizom.
+3. **Dio novih testova provjerava izvorni kod regexom** (`audio-fallback.test.js` nad tekstom `EngleskiSimulator.js`/`SimSharedUI.js`). Radi posao, ali puca na bezazleno preoblikovanje koda; kad se ukaže prilika, zamijeniti ponašajnim testom.
+
+**Presuda:** grana je spremna za spajanje uz napomene — kod je zelen na `tsc` i `vitest`, lint je čist u dosegu simulatora, sigurnosnih ni paywall regresija nema; prije objave ostaju ručni smoke test u pregledniku, mjerenje chunka buildom i odluka o `NCE_DATA`/`NCE_DIST`.
