@@ -123,6 +123,15 @@ const nextConfig = {
     root: new URL('.', import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1'),
   },
 
+  // Tajni store ispita (lib/data/<predmet>/secrets/*.json) čita se `fs`-om iz
+  // lib/exam-secrets — namjerno, da ga bundler nikad ne uvuče u graf modula
+  // (ADR-001). Cijena je da output tracing te datoteke ne vidi, jer nema
+  // `import`; bez ovoga rute /api/sim/* u produkciji padaju na ENOENT.
+  outputFileTracingIncludes: {
+    '/api/sim/[subject]/exam/[examKey]': ['./lib/data/*/secrets/**'],
+    '/api/sim/[subject]/grade': ['./lib/data/*/secrets/**'],
+  },
+
   // Reduce memory during build
   productionBrowserSourceMaps: false,
 };

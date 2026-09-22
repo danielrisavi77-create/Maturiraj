@@ -3,6 +3,8 @@
 Snapshot: 2026-07-15  
 Scope: svih 42 pronađenih `app/api/**/route.{js,jsx,ts,tsx}` datoteka.
 
+Dopune nakon snapshota: red 25 (`/api/exams/[razina]`) uklonjen je iz koda (ADR-001, Faza 0), a redovi 43–44 dodani su uz zajedničke ispitne rute (ADR-001, Faza 1).
+
 Ovo je statički Phase 0 pregled trenutnog source contracta. Ne potvrđuje produkcijske env vrijednosti, aktivne Stripe webhookove, primijenjene Supabase politike ni ponašanje vanjskih servisa.
 
 ## Legenda
@@ -68,6 +70,8 @@ Rate limit prikazuje ono što je pronađeno u samoj ruti. Stripe potpis ili CDN 
 | 40 | `/api/subscribe-digest` | POST | Javno uz double opt-in i anti-abuse zaštitu | ne | nema | `P1` — placeholder koji vraća uspjeh bez provider zapisa |
 | 41 | `/api/webhook` | POST | Valjani Stripe webhook potpis i idempotentna obrada | da | samo Stripe signature | `P0-contained` — canonical unknown mapping fail-closed; legacy provisioning još mora biti uklonjen |
 | 42 | `/api/webhooks/slack` | POST | Verificirani admin ili zasebni fail-closed job secret | da | nema | `P1` — centralizirati admin/job auth i testirati missing secret |
+| 43 | `/api/sim/[subject]/exam/[examKey]` | GET | Verificirani korisnik; tier isključivo iz baze (`getUserTier` + `normalizeTier`) | posredno kroz `getUserTier` | nema | `R0` — ADR-001; `private, no-store` + `Vary: Cookie`, javni payload se čisti prije spajanja ključeva |
+| 44 | `/api/sim/[subject]/grade` | POST | Verificirani korisnik; ocjenjuje i upisuje server, klijentov rezultat se ignorira | posredno (`checkRateLimit`, `getUserTier`); upis ide korisnikovim klijentom pod RLS-om | 60 s po (user, predmet, ispit) + 5 ocijenjenih predaja / 24 h + `attemptId` idempotencija | `R0` — ADR-001; `cor` ostaje bočni kanal, budžet ga usporava a ne zatvara |
 
 ## P0 veze
 

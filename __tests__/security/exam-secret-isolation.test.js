@@ -65,8 +65,18 @@ describe('ADR-001 SLOJ A — izolacija grafa uvoza (stvarno stablo)', () => {
     expect(roots).not.toContain('__tests__')
   })
 
-  it('u ovoj fazi još nema tajnih modula (marker ni lib/data/*/secrets/**)', () => {
-    expect(report.secretModules).toEqual([])
+  it('tajni moduli su točno oni koje je netko pogledao (marker ni lib/data/*/secrets/**)', () => {
+    // Faza 1: zajednička infrastruktura nosi marker. Popis je zatvoren namjerno —
+    // nova datoteka s markerom mora proći kroz izmjenu ovog testa, pa se tajni
+    // modul ne može tiho pojaviti.
+    expect(report.secretModules).toEqual([
+      'lib/exam-secrets/index.js',
+      'lib/exam-secrets/registry.js',
+    ])
+  })
+
+  it('nijedan tajni modul nije ujedno i klijentski korijen', () => {
+    expect(report.secretModules.filter((file) => report.clientRoots.includes(file))).toEqual([])
   })
 })
 

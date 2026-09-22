@@ -65,6 +65,39 @@ Svaki predmet koristi **iste** rute — bez ad-hoc varijanti po predmetu:
 - Pokušaj korisnika **bez prava** na ključeve ocjenjuje **server**: odgovor sadrži rezultat,
   ne ključ. Klijent nikad ne dobije ključ da bi sam usporedio.
 
+### 5a. Što rute doista rade (Faza 1, zajednička infrastruktura)
+
+`GET /api/sim/<predmet>/exam/<key>?mode=exam|practice` vraća
+`{ key, meta, texts, qs, keys }`, gdje `keys` **opisuje payload**, a ne zahtjev klijenta:
+
+| `keys` | Kad | Što je u `qs` |
+| --- | --- | --- |
+| `full` | plaćeni tier; free vježbanje na demo ispitu | svako pitanje nosi ključ |
+| `partial` | free vježbanje na ostalim ispitima | prvih `FREE_LIMIT` pitanja nosi ključ |
+| `none` | free ispitni mod | nijedno pitanje nema ključ |
+
+Javni payload se čisti **uvijek**, pa i kad ga adapter već isporučuje čistog; ključevi se
+zatim **spajaju natrag** samo za pitanja koja na njih imaju pravo. Legitimni free izuzeci
+žive isključivo u `lib/exam-secrets/free-policy.js`, koji brojke ne duplicira nego ih uvozi
+iz paywalla.
+
+`POST /api/sim/<predmet>/grade` prima `{ examKey, answers, examMode, attemptId }` i vraća
+`{ pct, grade, cor, total, bodovi, xpGain, scores }`, a plaćenom tieru i `topicBreakdown`.
+Odluke vlasnika ugrađene u rutu:
+
+- free **nakon predaje** dobiva točno/netočno po pitanju (`scores`), ali nikad
+  `sol`/`exp`/`why`/`steps` — ruta ključeve ne vraća nikome;
+- **ruta sama** upisuje `sim_progress`; klijentov rezultat se ne uzima na vjeru;
+- najviše **5** ocijenjenih predaja po (korisnik, ispit) u 24 h i najmanje **60 s** razmaka
+  (`checkRateLimit`, ključ `sim-grade:<predmet>:<examKey>`);
+- `attemptId` je **obavezan** i idempotentan: ponovljeni id vraća isti odgovor, ne upisuje
+  novi redak i ne troši budžet. Trajni trag je `sim_progress.attempt_id`
+  (`supabase/migrations/20260922000000_sim_progress_attempt_id.sql`); dok ta migracija nije
+  pokrenuta, idempotencija vrijedi samo unutar jedne instance.
+
+Iskreno o dosegu: `cor` je bočni kanal i uz 5 predaja dnevno napad je usporen, ne spriječen
+(vidi „Posljedice“).
+
 ### 6. Baseline uz svaki novi predmet
 
 Uz svaki novi predmet/ispit ide unos u `scripts/security/exam-secret-baseline.json` s
@@ -95,10 +128,12 @@ Tajni moduli su datoteke s markerom `@exam-secret` u prvih 500 B te JSON pod
 `lib/data/*/secrets/**`. Provjera pada ako je ijedan tajni modul dohvatljiv iz klijentskog
 korijena i ispisuje cijeli lanac uvoza.
 
-Danas u repozitoriju **nema** tajnih modula, pa sloj radi „na prazno“. Da se zna da doista
-hvata, test uz stvarno stablo vrti i lažni primjer u privremenom direktoriju: klijentska
-komponenta koja alias uvozom povuče `lib/exam-secrets` i druga koja dinamičkim uvozom povuče
-`lib/data/hrvatski/secrets/2024.json` — obje moraju biti prijavljene.
+Od Faze 1 tajni moduli postoje: `lib/exam-secrets/index.js` i `lib/exam-secrets/registry.js`.
+Test uz stvarno stablo tvrdi točno taj popis, pa se novi tajni modul ne može pojaviti bez
+izmjene testa. Uz to vrti i lažni primjer u privremenom direktoriju — klijentska komponenta
+koja alias uvozom povuče `lib/exam-secrets` i druga koja dinamičkim uvozom povuče
+`lib/data/hrvatski/secrets/2024.json` — obje moraju biti prijavljene, da se zna da provjera
+doista hvata, a ne samo da je zelena.
 
 ### SLOJ B — ratchet nad izvorom
 
