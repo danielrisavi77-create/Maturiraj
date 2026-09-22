@@ -368,22 +368,55 @@ function parseEndpoint(raw: string): Endpoint | null {
   return { s: canonNumbers(raw), v };
 }
 
-/** "[a.b)" → interval; "." je i decimalna točka, pa se traži jedinstvena podjela. */
-function parseIntervalLiteral(t: string): Interval | null {
-  const m = t.match(/^([[(])(.*)([\])])$/);
-  if (!m) return null;
+/**
+ * Sva čitanja popisa brojeva odvojenih zarezom. Zarez je nakon normalizacije
+ * točka, a točka je i decimalni separator, pa je "−0,5, 4/3" dvoznačno
+ * (⟨−0,5 ; 4/3⟩ ili ⟨−0 ; 5,4/3⟩). Umjesto pogađanja vraćaju se sva
+ * ispravna čitanja; dva zapisa su isti odgovor ako dijele barem jedno.
+ */
+function numReadings(s: string, depth = 0): Endpoint[][] {
+  const out: Endpoint[][] = [];
+  const whole = parseEndpoint(s);
+  if (whole) out.push([whole]);
+  if (depth > 4) return out;
+  for (let i = 1; i < s.length - 1; i++) {
+    if (s[i] !== '.') continue;
+    const head = parseEndpoint(s.slice(0, i));
+    if (!head) continue;
+    for (const rest of numReadings(s.slice(i + 1), depth + 1)) {
+      out.push([head, ...rest]);
+      if (out.length > 48) return out;
+    }
+  }
+  return out;
+}
+
+const BRACKETED = /^([[({])([^[\]({})]*)([\])}])$/;
+
+/** "[a.b)" → svi ispravni intervali (lo < hi). */
+function intervalLiterals(t: string): Interval[] {
+  const m = t.match(BRACKETED);
+  if (!m || m[1] === '{' || m[3] === '}') return [];
   const loIn = m[1] === '[';
   const hiIn = m[3] === ']';
-  const inner = m[2];
-  if (inner.includes('(') || inner.includes(')') || inner.includes('[') || inner.includes(']')) return null;
-  const hits: Interval[] = [];
-  for (let i = 0; i < inner.length; i++) {
-    if (inner[i] !== '.') continue;
-    const lo = parseEndpoint(inner.slice(0, i));
-    const hi = parseEndpoint(inner.slice(i + 1));
-    if (lo && hi && lo.v < hi.v) hits.push({ lo, hi, loIn, hiIn });
+  const out: Interval[] = [];
+  for (const r of numReadings(m[2])) {
+    if (r.length !== 2) continue;
+    if (r[0].v < r[1].v) out.push({ lo: r[0], hi: r[1], loIn, hiIn });
   }
-  return hits.length === 1 ? hits[0] : null;
+  return out;
+}
+
+/** Uređena n-torka: redoslijed i vrsta zagrade se čuvaju. */
+function tupleForms(t: string): Set<string> {
+  const out = new Set<string>();
+  const m = t.match(BRACKETED);
+  if (!m) return out;
+  for (const r of numReadings(m[2])) {
+    if (r.length < 2) continue;
+    out.add(`${m[1]}${r.map((e) => e.s).join(',')}${m[3]}`);
+  }
+  return out;
 }
 
 const IV_TWO_SIDED = /^(.+?)(<=|<)([a-zčćžšđ])(<=|<)(.+)$/;
@@ -445,20 +478,35 @@ function splitUnion(t: string): string[] {
   return parts;
 }
 
-/** Kanonski zapis skupa rješenja, ili null kad zapis nije interval/nejednadžba. */
-function intervalCanon(t: string): string | null {
+function ivText(iv: Interval): string {
+  return `${iv.loIn ? '[' : '('}${iv.lo.s},${iv.hi.s}${iv.hiIn ? ']' : ')'}`;
+}
+
+/** Sva kanonska čitanja skupa rješenja; prazan skup kad zapis nije interval. */
+function intervalForms(t: string): Set<string> {
   const parts = splitUnion(t);
-  if (!parts.length) return null;
-  const ivs: Interval[] = [];
+  const out = new Set<string>();
+  if (!parts.length) return out;
+  let combos: Interval[][] = [[]];
   for (const p of parts) {
-    const iv = parseIntervalLiteral(p) || parseInequality(p);
-    if (!iv) return null;
-    ivs.push(iv);
+    const opts = intervalLiterals(p);
+    const ineq = parseInequality(p);
+    if (ineq) opts.push(ineq);
+    if (!opts.length) return new Set();
+    const next: Interval[][] = [];
+    for (const c of combos) for (const o of opts) next.push([...c, o]);
+    combos = next.slice(0, 48);
   }
-  ivs.sort((a, b) => a.lo.v - b.lo.v || a.hi.v - b.hi.v);
-  return ivs
-    .map((iv) => `${iv.loIn ? '[' : '('}${iv.lo.s},${iv.hi.s}${iv.hiIn ? ']' : ')'}`)
-    .join('u');
+  for (const c of combos) {
+    const sorted = [...c].sort((a, b) => a.lo.v - b.lo.v || a.hi.v - b.hi.v);
+    out.add(sorted.map(ivText).join('u'));
+  }
+  return out;
+}
+
+function shareForm(a: Set<string>, b: Set<string>): boolean {
+  for (const x of a) if (b.has(x)) return true;
+  return false;
 }
 
 /* ------------------------------------------------------------------ *
@@ -565,8 +613,8 @@ export function answersEquivalent(a: string, b: string): boolean {
   if (ca === cb) return true;
   const pa = preCanon(na);
   const pb = preCanon(nb);
-  const ia = intervalCanon(pa);
-  if (ia !== null && ia === intervalCanon(pb)) return true;
+  if (shareForm(intervalForms(pa), intervalForms(pb))) return true;
+  if (shareForm(tupleForms(pa), tupleForms(pb))) return true;
   const la = listCanon(pa);
   if (la !== null && la === listCanon(pb)) return true;
   return false;

@@ -215,6 +215,13 @@ describe('mat-grading: ručni slučajevi', () => {
     // uređeni par nije popis — zagrade nose značenje
     ['sa', '(3, 2)', '(2, 3)', false],
     ['sa', '{1, 2}', '(1, 2)', false],
+    // n-torke i rubovi intervala s mješovitim zapisom broja
+    ['sa', '[−1/2, 4/3]', '[−0,5, 4/3]', true],
+    ['sa', '[1/2, 3]', '[0,5, 3]', true],
+    ['sa', '(−2, 1/4)', '(−2, 0,25)', true],
+    ['sa', '[1/2, 3]', '[0,5, 4]', false],
+    ['sa', '(−2, 1/4)', '(−2, 0,3)', false],
+    ['sa', '(1, 2, 3)', '(1, 3, 2)', false],
   ];
 
   for (const [type, ans, input, expected] of classCases) {
