@@ -4,7 +4,7 @@
    Pocetni ekran: spremnost za maturu, postignuca, izbor moda i popis ispita. */
 import React from 'react';
 import { SUBJECT, DS, TOPIC_LABELS, planCta, standardCta, askUpgrade, isFreeExam } from '../core/state';
-import { EXAMS, examQCount, allExamsLoaded } from '../core/exams';
+import { EXAMS, examQCount, allExamsLoaded, hasSummary, summaryQuestions } from '../core/exams';
 import { GC, getLevel, XP_LEVELS, LEVEL_NAMES } from '../core/ui';
 import { AboutModal } from '../tools/modals';
 import { TodayHero } from '../screens/today';
@@ -45,7 +45,9 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
   // Greške count
   const errCount=userData.errorTracker?Object.keys(userData.errorTracker).filter(k=>userData.errorTracker[k].count>0).length:0;
 
-  const _allTL=(()=>{const set=new Set();Object.values(EXAMS).forEach(ex=>{if(razina&&ex.razina!==razina)return;(ex.qs||[]).forEach(q=>{if(q.topic)set.add(TOPIC_LABELS[q.topic]||q.topic);});});return [...set];})();
+  // Popis tema dolazi iz meta-sazetka (summary.json) — za pokrivenost gradiva treba samo
+  // topic svakog zadatka, pa Home vise ne mora dovuci nijedan ispit.
+  const _allTL=(()=>{const set=new Set();summaryQuestions().forEach(q=>{if(razina&&q.razina!==razina)return;if(q.topic)set.add(TOPIC_LABELS[q.topic]||q.topic);});return [...set];})();
   const _topicCov=(()=>{const o={};_allTL.forEach(l=>o[l]={c:0,n:0});history.forEach(h=>{const tb=h.topic_breakdown||{};Object.keys(tb).forEach(t=>{const l=TOPIC_LABELS[t]||t;if(!o[l])o[l]={c:0,n:0};o[l].c+=tb[t].correct||0;o[l].n+=tb[t].total||0;});});return o;})();
   const _totalTopics=_allTL.length||1;
   const _coveredN=_allTL.filter(l=>_topicCov[l]&&_topicCov[l].n>0).length;
@@ -53,9 +55,10 @@ function Home({onExam,onPractice,onStats,onAdaptive,onFormule,onErrors,onBrowse,
   const _accAll=(()=>{let c=0,n=0;Object.values(_topicCov).forEach(x=>{c+=x.c;n+=x.n;});return n>0?Math.round(c/n*100):(avgPct||0);})();
   const _lastDays=(()=>{const pp=v=>{if(!v)return null;const a=String(v).replace(/\./g,"").trim().split(/\s+/);if(a.length<3)return null;return new Date(+a[2],+a[1]-1,+a[0]);};let l=null;history.forEach(h=>{const d=pp(h.date);if(d&&(!l||d>l))l=d;});if(!l)return 999;return Math.max(0,Math.round((Date.now()-l.getTime())/86400000));})();
   const _recMult=_lastDays<=3?1:_lastDays<=7?0.97:_lastDays<=14?0.92:0.85;
-  // 2.1: pokrivenost gradiva ima smisla tek kad su svi (otkljucani) ispiti ucitani — do tada je
-  // _allTL prazan pa bi spremnost ispala lazno niska i poslije bez objasnjenja skocila.
-  const _topicsReady=allExamsLoaded()&&_allTL.length>0;
+  // 2.1: pokrivenost gradiva ima smisla tek kad je popis tema potpun — do tada je _allTL
+  // prazan pa bi spremnost ispala lazno niska i poslije bez objasnjenja skocila. Sazetak ga
+  // daje odmah; bez sazetka vrijedi stari uvjet (svi otkljucani ispiti ucitani).
+  const _topicsReady=(hasSummary()||allExamsLoaded())&&_allTL.length>0;
   const _readiness=history.length===0?0:(_topicsReady?Math.min(100,Math.round((0.55*_accAll+0.45*_coveragePct)*_recMult)):null);
   const _rdReady=_readiness!=null;
   const _rdPct=_rdReady?_readiness:0;

@@ -88,16 +88,18 @@ export default function MatFullSimulator({ tier = 'free' }) {
     let cancelled = false;
     (async () => {
       try {
-        const [core, loadersMod, indexMod] = await Promise.all([
+        const [core, loadersMod, indexMod, summaryMod] = await Promise.all([
           import('@/components/simulator/MatEngineCore'),
           import('@/content/simulator/mat/exam-loaders'),
           import('@/content/simulator/mat/index.json'),
+          import('@/content/simulator/mat/summary.json'),
         ]);
         // 2.2: nerdamer (436 KB) se više ne učitava unaprijed — engine ga traži tek kad
         // korisnik otvori kalkulator/solver ili provjeri odgovor.
         if (typeof window !== 'undefined') window.__MAT_ENSURE_NERDAMER__ = ensureNerdamer;
         const { examLoaders } = loadersMod;
         const index = indexMod.default || indexMod;
+        const summary = summaryMod.default || summaryMod;
         if (cancelled) return;
 
         // 2.1: katalog (meta bez pitanja) + loader → engine dohvaća chunk po chunk
@@ -122,6 +124,11 @@ export default function MatFullSimulator({ tier = 'free' }) {
         coreRef.current = core;
         core.__setExamLoader((key) => (examLoaders[key] ? examLoaders[key]() : Promise.resolve(null)));
         core.__setExamCatalog(catalog);
+        // Meta-sažetak (summary.json, ~175 KB): po ispitu {id, topic, type, points, img} bez
+        // ijednog znaka sadržaja. Home (Trening dana, spremnost, pokrivenost tema) računa iz
+        // njega, pa više ne dovlači 70 exam chunkova (~7 MB) u pozadini. Sadržaja u njemu
+        // nema ni namjerno — inače bi free korisnik kroz njega dobio banku zaključanih ispita.
+        core.__setSummary(summary);
 
         // merge user-imported custom exams (persisted) so they show in the engine's exam list
         let custom = {};

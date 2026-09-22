@@ -5,7 +5,7 @@
    ucitavanje ispita i upis rezultata u korisnicki napredak. */
 import React from 'react';
 import { DS, SUBJECT, TOPIC_LABELS } from '../core/state';
-import { EXAMS, __onExamsChanged, isExamLoaded, isExamOnlyLoaded, examOnlyExam, allExamsLoaded, loadExam, loadAllExams } from '../core/exams';
+import { EXAMS, __onExamsChanged, isExamLoaded, isExamOnlyLoaded, examOnlyExam, allExamsLoaded, loadExam, loadExams, loadAllExams } from '../core/exams';
 import { getLevel, LEVEL_NAMES, fireConfetti } from '../core/ui';
 import { chk } from '../core/grading';
 import { calcXpGain, updateStreak } from '../core/progress';
@@ -49,8 +49,9 @@ function App(){
   const[examLoad,setExamLoad]=useState(null); // null | {pct}
   const[examErr,setExamErr]=useState(null);   // null | {msg,retry}
   useEffect(()=>__onExamsChanged(()=>_bumpExams(x=>x+1)),[]);
-  // Home je iscrtan iz kataloga; ostatak (bez zakljucanih) se dovlaci u pozadini za cross-exam modove.
-  useEffect(()=>{const t=setTimeout(()=>{loadAllExams().catch(()=>{});},1500);return()=>clearTimeout(t);},[]);
+  // Home se iscrtava iz kataloga i meta-sazetka (summary.json) i NE dohvaca nijedan ispit —
+  // pozadinskog prefetcha svih 70 chunkova (~7 MB) vise nema. Cross-exam ekrani ucitavaju
+  // na ulazak (withAllExams, s progress overlayem), a Trening dana samo svoje ispite.
   // Ucitavanje moze pasti (offline, CDN 404, deploy u tijeku) — tada NE ulazimo u ekran s 0 pitanja,
   // nego korisnik dobije poruku i "Pokusaj ponovno".
   // forExamMode: ulaz u ispitni mod (ili njegov izbornik) smije otvoriti i zakljucan ispit —
@@ -81,6 +82,20 @@ function App(){
     });
   }
   function goAll(sc){ withAllExams(()=>{setScreen(sc);window.scrollTo(0,0);}); }
+  // Trening dana trazi samo ispite iz kojih je izabrao pitanja (keys); bez popisa (null)
+  // pada natrag na sve. Isti overlay i ista poruka o gresci kao withAllExams.
+  function withExams(keys,fn){
+    if(!keys||!keys.length) return withAllExams(fn);
+    setExamLoad({pct:0});setExamErr(null);
+    loadExams(keys,p=>setExamLoad({pct:p})).then((r)=>{
+      setExamLoad(null);
+      if(r&&r.total&&r.failed>=r.total) throw new Error("Nijedan ispit nije ucitan.");
+      fn();
+    }).catch(()=>{
+      setExamLoad(null);
+      setExamErr({msg:"Ne mogu učitati zadatke. Provjeri internetsku vezu.",retry:()=>withExams(keys,fn)});
+    });
+  }
   const[dDayOpen,setDDayOpen]=useState(false);
   const[xpGains,setXpGains]=React.useState([]);
   const[darkMode,setDarkMode]=useState(()=>{try{
@@ -406,7 +421,7 @@ function App(){
       e("div",null,
         e("div",{style:{fontSize:10,fontWeight:800,letterSpacing:".1em",textTransform:"uppercase",color:"#8fb4f5"}},(badgeToast._lv&&badgeToast._lv>1)?("Nova razina \u00b7 "+(TIER_NAME[badgeToast._lv]||"")):"Novo postignu\u0107e"),
         e("div",{style:{fontSize:13.5,fontWeight:800}},badgeToast.name+(badgeToast._lv?" "+TIER_MEDAL[badgeToast._lv]:"")))),
-    screen==="home"&&e(Home,{onExam:goModeSelect,onPrepareExams:(fn)=>withAllExams(fn||(()=>{})),onPractice:goPractice,onStats:goStats,onAdaptive:goAdaptive,onFormule:goFormule,onErrors:goErrors,onBrowse:goBrowse,onFlashcards:goFlashcards,onDailyChallenge:goDailyChallenge,onBookmarks:goBookmarks,onFilter:goFilter,onMixed:goMixedTopics,onSRS:goSRS,onAIPractice:goAIPractice,onDDay:goDDay,onGuide:goGuide,onStartErrorSession:goErrorSession,razina:userRazina,onEditRazina:()=>setShowOnboarding(true),resume:resumeInfo,onResume:goResume,onDiscardResume:discardResume,onSetGoal:(m)=>updateUserData(p=>({...p,dailyGoalMin:m})),userData,toggles}),
+    screen==="home"&&e(Home,{onExam:goModeSelect,onPrepareExams:(keys,fn)=>withExams(keys,fn||(()=>{})),onPractice:goPractice,onStats:goStats,onAdaptive:goAdaptive,onFormule:goFormule,onErrors:goErrors,onBrowse:goBrowse,onFlashcards:goFlashcards,onDailyChallenge:goDailyChallenge,onBookmarks:goBookmarks,onFilter:goFilter,onMixed:goMixedTopics,onSRS:goSRS,onAIPractice:goAIPractice,onDDay:goDDay,onGuide:goGuide,onStartErrorSession:goErrorSession,razina:userRazina,onEditRazina:()=>setShowOnboarding(true),resume:resumeInfo,onResume:goResume,onDiscardResume:discardResume,onSetGoal:(m)=>updateUserData(p=>({...p,dailyGoalMin:m})),userData,toggles}),
     screen==="modeselect"&&e(ModeSelect,{examKey:pendingExamKey,onExamMode:goExamMode,onPractice:goPractice,onPracticeTimer:goPracticeTimer,onVirtual:goVirtualExam,onBack:goBack}),
     screen==="adaptive"&&e(AdaptiveTrening,{userData,onExit:goBack,onHome:goHome,onStartErrorSession:goErrorSession}),
     screen==="formule"&&e(FormulaSheet,{onExit:goBack,onHome:goHome}),

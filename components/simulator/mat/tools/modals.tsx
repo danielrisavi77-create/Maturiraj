@@ -4,7 +4,7 @@
    Modali i preklapanja: nadogradnja, o aplikaciji, wrapped, odbrojavanje, disclaimer, onboarding, XP i dijeljenje. */
 import React from 'react';
 import { PLAN_NAME, SUBJECT, askUpgrade, planCta } from '../core/state';
-import { EXAMS, examTitle, nextMatura } from '../core/exams';
+import { EXAMS, examQCount, examTitle, nextMatura } from '../core/exams';
 import { LEVEL_NAMES, getLevel, useEscape } from '../core/ui';
 const{createElement:e,useState,useEffect,useMemo,useRef,Fragment}=React;
 function UpgradeModal({onClose}){
@@ -183,7 +183,9 @@ function DDayModal(props){
 }
 function DisclaimerModal({onClose}){
   const totalExams=Object.keys(EXAMS).length;
-  const totalQs=Object.values(EXAMS).reduce((s,ex)=>s+ex.qs.length,0);
+  // Modal se otvara s naslovnice, gdje ispiti jos nisu ucitani (qs je prazan), pa broj
+  // zadataka dolazi iz questionCount u index.json — inace bi pisalo "vise od 0 zadataka".
+  const totalQs=Object.values(EXAMS).reduce((s,ex)=>s+examQCount(ex),0);
   return e("div",{className:"disclaimer-modal-overlay",onClick:onClose},
     e("div",{className:"disclaimer-modal",onClick:ev=>ev.stopPropagation()},
       e("div",{className:"dm-tag"},"ℹ️ O aplikaciji"),

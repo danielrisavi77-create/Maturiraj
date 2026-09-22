@@ -132,7 +132,9 @@ function ModeSelect({examKey,onExamMode,onPractice,onPracticeTimer,onVirtual,onB
 }
 function GuideScreen({onBack}){
   const totalExams=Object.keys(EXAMS).length;
-  const totalQs=Object.values(EXAMS).reduce((s,ex)=>s+ex.qs.length,0);
+  // Vodic se otvara s naslovnice (goGuide) bez withAllExams gatea, pa ispiti jos nisu
+  // ucitani; broj zadataka zato dolazi iz questionCount u index.json, a ne iz qs.
+  const totalQs=Object.values(EXAMS).reduce((s,ex)=>s+examQCount(ex),0);
   const[open,setOpen]=React.useState("modovi"); // otvoreno defaultno
 
   const sections=[
