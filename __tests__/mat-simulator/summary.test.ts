@@ -65,4 +65,20 @@ describe('mat-simulator: summary.json ⇔ exams/*.mjs', () => {
     );
     expect(bad).toEqual([]);
   });
+
+  // Trening dana iz sazetka bira meta-zapis, a stvarno pitanje trazi s
+  // ex.qs.find(x=>String(x.id)===String(p.id)). Ponovljen id unutar ispita bi tiho
+  // ubacio krivo pitanje u sesiju, pa id mora biti jedinstven po ispitu.
+  it('id je jedinstven unutar ispita', () => {
+    const dupes: string[] = [];
+    Object.entries(exams).forEach(([k, rows]) => {
+      const seen = new Set<string>();
+      rows.forEach((r) => {
+        const id = String(r.id);
+        if (seen.has(id)) dupes.push(`${k}#${id}`);
+        seen.add(id);
+      });
+    });
+    expect(dupes).toEqual([]);
+  });
 });

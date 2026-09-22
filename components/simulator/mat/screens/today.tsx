@@ -82,21 +82,33 @@ function TodayHero({userData,onStartErrorSession,onSRS,onDailyChallenge,razina,o
     });
     return out;
   }
+  // Nakon dohvata dio ispita je mogao pasti (loadExams po dizajnu ne prekida seriju), pa bi
+  // sam _materialize tiho skratio sesiju. Zato se izbor dopunjuje iz bazena ogranicenog na
+  // stvarno ucitane ispite — sesija ostaje iste velicine kao i prije lijenog ucitavanja.
+  function _resolve(picks){
+    const kept=_materialize(picks);
+    if(kept.length>=trainCount) return kept;
+    const have={}; kept.forEach(q=>{ have[q._examKey+"__"+q.id]=1; });
+    const rest=buildPool().filter(p=>isExamLoaded(p._examKey)&&!have[p._examKey+"__"+p.id]);
+    return kept.concat(_materialize(pickBalanced(rest,targetLabels,trainCount-kept.length)));
+  }
   function startTraining(){
+    // Bez sazetka bazen zna samo za vec ucitane ispite, pa bi izbor na klik uzeo pitanja
+    // iz tog jednog ispita umjesto iz cijele banke — tada se, kao i prije, prvo ucitava sve.
+    if(!examsReady){
+      if(onPrepareExams) onPrepareExams(null,function(){ _launchTraining(_resolve(pickBalanced(buildPool(),targetLabels,trainCount))); });
+      return;
+    }
     // Izbor se radi na klik (ne iz rendera), pa se ucitavaju samo ispiti iz kojih su
     // izabrana pitanja — tipicno par chunkova umjesto cijele banke.
     const picks=pickBalanced(buildPool(),targetLabels,trainCount);
-    if(!picks.length){
-      // Nema ni sazetka ni ucitanih ispita — jedini izlaz je klasicno ucitavanje.
-      if(!examsReady&&onPrepareExams) onPrepareExams(null,function(){ _launchTraining(_materialize(pickBalanced(buildPool(),targetLabels,trainCount))); });
-      return;
-    }
+    if(!picks.length) return;
     const need=[...new Set(picks.map(p=>p._examKey))].filter(k=>!isExamLoaded(k));
     if(need.length){
-      if(onPrepareExams) onPrepareExams(need,function(){ _launchTraining(_materialize(picks)); });
+      if(onPrepareExams) onPrepareExams(need,function(){ _launchTraining(_resolve(picks)); });
       return;
     }
-    _launchTraining(_materialize(picks));
+    _launchTraining(_resolve(picks));
   }
 
   const mat=nextMatura(); const days=mat.days;
