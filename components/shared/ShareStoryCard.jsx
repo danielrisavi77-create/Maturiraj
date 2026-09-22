@@ -13,7 +13,7 @@ import { useCallback, useRef, useState } from 'react'
  *                e.g. 77 → "Top 23%"
  *   label        string  e.g. "Hrvatski jezik — Simulator 2025"
  *   facultyShort string  e.g. "MEF" | "PMF" | "Pravo" | null
- *   accentColor  string  CSS hex color, defaults to '#5b9fff'
+ *   accentColor  string  hex boja #rrggbb (NE CSS varijabla), defaults to '#5b9fff'
  *   emoji        string  single emoji for faculty icon
  *   breakdown    array   [{ subject, correct, total }] optional per-subject rows
  */
@@ -28,6 +28,12 @@ export default function ShareStoryCard({
   emoji = '🎓',
   breakdown = [],
 }) {
+  // Canvas 2D ne razumije CSS varijable: `ctx.fillStyle = 'var(--orange)'` se tiho
+  // ignorira, parseInt nad njom daje NaN, a addColorStop BACA SyntaxError i sruši
+  // generate() prije setImgSrc/setLoading(false) (gumb zauvijek ostane "Generira...").
+  // Isto vrijedi za konkatenaciju s alfa sufiksom u inline stilovima ispod.
+  // Zato se prihvaća samo #rrggbb; sve ostalo pada na zadanu boju.
+  const accent = /^#[0-9a-fA-F]{6}$/.test(String(accentColor)) ? accentColor : '#5b9fff'
   const canvasRef = useRef(null)
   const [imgSrc, setImgSrc]     = useState(null)
   const [loading, setLoading]   = useState(false)
@@ -38,14 +44,14 @@ export default function ShareStoryCard({
   const generate = useCallback(async () => {
     setLoading(true)
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) { setLoading(false); return }
     const W = 1080, H = 1920
     canvas.width = W; canvas.height = H
     const ctx = canvas.getContext('2d')
     try { await document.fonts.ready } catch (_) {}
 
     // Resolve accent RGB for transparency layers
-    const hex = accentColor.replace('#', '')
+    const hex = accent.replace('#', '')
     const r = parseInt(hex.slice(0, 2), 16)
     const g = parseInt(hex.slice(2, 4), 16)
     const b = parseInt(hex.slice(4, 6), 16)
@@ -74,7 +80,7 @@ export default function ShareStoryCard({
 
     // ── 2. Top brand bar ────────────────────────────────────────────────────
     // Logo dot + wordmark
-    ctx.fillStyle = accentColor
+    ctx.fillStyle = accent
     ctx.beginPath(); ctx.arc(92, 82, 8, 0, Math.PI * 2); ctx.fill()
     ctx.fillStyle = 'rgba(255,255,255,0.9)'
     ctx.font = '700 36px -apple-system,Arial,sans-serif'
@@ -87,7 +93,7 @@ export default function ShareStoryCard({
     ctx.lineWidth = 1
     roundRect(ctx, W - 220, 56, 180, 48, 24)
     ctx.fill(); ctx.stroke()
-    ctx.fillStyle = accentColor
+    ctx.fillStyle = accent
     ctx.font = '600 22px -apple-system,Arial,sans-serif'
     ctx.textAlign = 'center'
     ctx.fillText('2026', W - 130, 86)
@@ -130,8 +136,8 @@ export default function ShareStoryCard({
     ctx.beginPath()
     ctx.arc(cx, cy, R, -Math.PI / 2, -Math.PI / 2 + sweep)
     const arcGrad = ctx.createLinearGradient(cx - R, cy, cx + R, cy)
-    arcGrad.addColorStop(0, accentColor)
-    arcGrad.addColorStop(1, lightenHex(accentColor, 60))
+    arcGrad.addColorStop(0, accent)
+    arcGrad.addColorStop(1, lightenHex(accent, 60))
     ctx.strokeStyle = arcGrad
     ctx.lineWidth = 28
     ctx.lineCap = 'round'
@@ -171,7 +177,7 @@ export default function ShareStoryCard({
       ctx.fill(); ctx.stroke()
 
       // "TOP" label
-      ctx.fillStyle = accentColor
+      ctx.fillStyle = accent
       ctx.font = `700 40px -apple-system,Arial,sans-serif`
       ctx.textAlign = 'center'
       ctx.fillText('🏆  TOP', W / 2, py + 44)
@@ -192,7 +198,7 @@ export default function ShareStoryCard({
       ctx.lineWidth = 1.5
       roundRect(ctx, W / 2 - 280, py, 560, 100, 24)
       ctx.fill(); ctx.stroke()
-      ctx.fillStyle = accentColor
+      ctx.fillStyle = accent
       ctx.font = `700 36px -apple-system,Arial,sans-serif`
       ctx.textAlign = 'center'
       ctx.fillText('📚  ' + label, W / 2, py + 64)
@@ -207,7 +213,7 @@ export default function ShareStoryCard({
       breakdown.slice(0, 4).forEach((item, i) => {
         const y = bpy + i * GAP
         const pctB = item.total > 0 ? Math.round(item.correct / item.total * 100) : 0
-        const col = pctB >= 80 ? '#3ecf6e' : pctB >= 60 ? accentColor : '#f87171'
+        const col = pctB >= 80 ? '#3ecf6e' : pctB >= 60 ? accent : '#f87171'
 
         // Track
         ctx.fillStyle = 'rgba(255,255,255,0.08)'
@@ -252,7 +258,7 @@ export default function ShareStoryCard({
 
     // Small dots decoration
     for (let dx = -3; dx <= 3; dx++) {
-      ctx.fillStyle = dx === 0 ? accentColor : 'rgba(255,255,255,0.12)'
+      ctx.fillStyle = dx === 0 ? accent : 'rgba(255,255,255,0.12)'
       ctx.beginPath()
       ctx.arc(W / 2 + dx * 24, H - 62, dx === 0 ? 6 : 4, 0, Math.PI * 2)
       ctx.fill()
@@ -261,7 +267,7 @@ export default function ShareStoryCard({
     const url = canvas.toDataURL('image/png')
     setImgSrc(url)
     setLoading(false)
-  }, [score, correct, total, percentile, label, facultyShort, accentColor, emoji, breakdown])
+  }, [score, correct, total, percentile, label, facultyShort, accent, emoji, breakdown])
 
   // ── Share flow ──────────────────────────────────────────────────────────────
   async function handleShare() {
@@ -331,7 +337,7 @@ export default function ShareStoryCard({
         </div>
       ) : (
         /* Pre-generate teaser card */
-        <div style={{ ...styles.teaser, borderColor: accentColor + '44', background: accentColor + '10' }}>
+        <div style={{ ...styles.teaser, borderColor: accent + '44', background: accent + '10' }}>
           <div style={{ fontSize: 36, marginBottom: 8 }}>📸</div>
           <div style={{ fontFamily: 'var(--fh)', fontSize: 16, fontWeight: 700, marginBottom: 4 }}>
             {topPct !== null
@@ -348,7 +354,7 @@ export default function ShareStoryCard({
       <div style={styles.actions}>
         {!imgSrc ? (
           <button
-            style={{ ...styles.btnPrimary, background: accentColor, opacity: loading ? 0.7 : 1 }}
+            style={{ ...styles.btnPrimary, background: accent, opacity: loading ? 0.7 : 1 }}
             onClick={generate}
             disabled={loading}
           >
@@ -357,7 +363,7 @@ export default function ShareStoryCard({
         ) : (
           <>
             <button
-              style={{ ...styles.btnPrimary, background: shared ? '#3ecf6e' : accentColor }}
+              style={{ ...styles.btnPrimary, background: shared ? '#3ecf6e' : accent }}
               onClick={handleShare}
             >
               {shared ? '✓ Podijeljeno!' : '📱 Podijeli'}
