@@ -340,8 +340,125 @@ function dropRedundantParens(t: string): string {
  * zagrada, brojevi u skraćene razlomke. Nad njim rade sve klase
  * ekvivalencije (npr. "x>19/4" i "x>4,75").
  */
+function preCanon(s: string): string {
+  return dropRedundantParens(stripLabels(normalizeAnswer(s)));
+}
+
 function canonExpr(s: string): string {
-  return canonNumbers(dropRedundantParens(stripLabels(normalizeAnswer(s))));
+  return canonNumbers(preCanon(s));
+}
+
+/* ------------------------------------------------------------------ *
+ * Intervali ↔ nejednadžbe
+ *
+ * "⟨3, 5]" i "3 < x ≤ 5" su isti skup; "[2, 7⟩" i "⟨2, 7⟩" nisu, pa se
+ * vrsta zagrade čuva u kanonskom zapisu.
+ * ------------------------------------------------------------------ */
+
+type Endpoint = { s: string; v: number };
+type Interval = { lo: Endpoint; hi: Endpoint; loIn: boolean; hiIn: boolean };
+
+function parseEndpoint(raw: string): Endpoint | null {
+  if (!raw) return null;
+  if (raw === '-inf') return { s: '-inf', v: -Infinity };
+  if (raw === '+inf' || raw === 'inf') return { s: '+inf', v: Infinity };
+  const v = strictNum(raw);
+  if (isNaN(v)) return null;
+  // rub se kanonizira tek ovdje: canonNumbers bi inače "⟨3, 5⟩" pročitao kao 3,5
+  return { s: canonNumbers(raw), v };
+}
+
+/** "[a.b)" → interval; "." je i decimalna točka, pa se traži jedinstvena podjela. */
+function parseIntervalLiteral(t: string): Interval | null {
+  const m = t.match(/^([[(])(.*)([\])])$/);
+  if (!m) return null;
+  const loIn = m[1] === '[';
+  const hiIn = m[3] === ']';
+  const inner = m[2];
+  if (inner.includes('(') || inner.includes(')') || inner.includes('[') || inner.includes(']')) return null;
+  const hits: Interval[] = [];
+  for (let i = 0; i < inner.length; i++) {
+    if (inner[i] !== '.') continue;
+    const lo = parseEndpoint(inner.slice(0, i));
+    const hi = parseEndpoint(inner.slice(i + 1));
+    if (lo && hi && lo.v < hi.v) hits.push({ lo, hi, loIn, hiIn });
+  }
+  return hits.length === 1 ? hits[0] : null;
+}
+
+const IV_TWO_SIDED = /^(.+?)(<=|<)([a-zčćžšđ])(<=|<)(.+)$/;
+const IV_VAR_LEFT = /^([a-zčćžšđ])(<=|>=|<|>)(.+)$/;
+const IV_VAR_RIGHT = /^(.+?)(<=|>=|<|>)([a-zčćžšđ])$/;
+
+const NEG_INF: Endpoint = { s: '-inf', v: -Infinity };
+const POS_INF: Endpoint = { s: '+inf', v: Infinity };
+
+function parseInequality(t: string): Interval | null {
+  let m = t.match(IV_TWO_SIDED);
+  if (m) {
+    const lo = parseEndpoint(m[1]);
+    const hi = parseEndpoint(m[5]);
+    if (!lo || !hi || lo.v >= hi.v) return null;
+    return { lo, hi, loIn: m[2] === '<=', hiIn: m[4] === '<=' };
+  }
+  m = t.match(IV_VAR_LEFT);
+  let op: string | null = null;
+  let rest: string | null = null;
+  if (m) {
+    op = m[2];
+    rest = m[3];
+  } else {
+    m = t.match(IV_VAR_RIGHT);
+    if (!m) return null;
+    rest = m[1];
+    // "3 < x" je isto što i "x > 3"
+    op = { '<': '>', '<=': '>=', '>': '<', '>=': '<=' }[m[2]] as string;
+  }
+  const e = parseEndpoint(rest);
+  if (!e) return null;
+  if (op === '<') return { lo: NEG_INF, hi: e, loIn: false, hiIn: false };
+  if (op === '<=') return { lo: NEG_INF, hi: e, loIn: false, hiIn: true };
+  if (op === '>') return { lo: e, hi: POS_INF, loIn: false, hiIn: false };
+  if (op === '>=') return { lo: e, hi: POS_INF, loIn: true, hiIn: false };
+  return null;
+}
+
+/** Dijeli uniju: "ili" bilo gdje, "u" samo između zatvorene i otvorene zagrade. */
+function splitUnion(t: string): string[] {
+  const parts: string[] = [];
+  let cur = '';
+  for (let i = 0; i < t.length; i++) {
+    if (t.startsWith('ili', i)) {
+      parts.push(cur);
+      cur = '';
+      i += 2;
+      continue;
+    }
+    if (t[i] === 'u' && i > 0 && /[)\]]/.test(t[i - 1]) && /[([]/.test(t[i + 1] || '')) {
+      parts.push(cur);
+      cur = '';
+      continue;
+    }
+    cur += t[i];
+  }
+  parts.push(cur);
+  return parts;
+}
+
+/** Kanonski zapis skupa rješenja, ili null kad zapis nije interval/nejednadžba. */
+function intervalCanon(t: string): string | null {
+  const parts = splitUnion(t);
+  if (!parts.length) return null;
+  const ivs: Interval[] = [];
+  for (const p of parts) {
+    const iv = parseIntervalLiteral(p) || parseInequality(p);
+    if (!iv) return null;
+    ivs.push(iv);
+  }
+  ivs.sort((a, b) => a.lo.v - b.lo.v || a.hi.v - b.hi.v);
+  return ivs
+    .map((iv) => `${iv.loIn ? '[' : '('}${iv.lo.s},${iv.hi.s}${iv.hiIn ? ']' : ')'}`)
+    .join('u');
 }
 
 /**
@@ -358,6 +475,8 @@ export function answersEquivalent(a: string, b: string): boolean {
   const cb = canonExpr(nb);
   if (!ca || !cb) return false;
   if (ca === cb) return true;
+  const ia = intervalCanon(preCanon(na));
+  if (ia !== null && ia === intervalCanon(preCanon(nb))) return true;
   return false;
 }
 

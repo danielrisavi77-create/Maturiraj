@@ -189,6 +189,20 @@ describe('mat-grading: ručni slučajevi', () => {
     // zagrade koje nose značenje ostaju: interval ≠ interval s drugom zagradom
     ['sa', '⟨2, 7⟩', '[2, 7⟩', false],
     ['sa', '(3/8)x² − 3/4x − 3', '(3/7)x² − 3/4x − 3', false],
+    // intervali ↔ nejednadžbe
+    ['sa', '⟨3, 5⟩', '3 < x < 5', true],
+    ['sa', '⟨3, 5]', '3 < x ≤ 5', true],
+    ['sa', '[−2, +∞⟩', 'x ≥ −2', true],
+    ['sa', 'x ≤ [FRAC:−11|10]', '⟨−∞, −11/10]', true],
+    ['sa', '⟨−∞, 1⟩ ∪ ⟨3, +∞⟩', 'x < 1 ili x > 3', true],
+    ['sa', '⟨3/5, +∞⟩', 'x > 0,6', true],
+    ['sa', '⟨−13, 3⟩', '−13 < k < 3', true],
+    ['sa', '⟨3, 5⟩', '[3, 5⟩', false],
+    ['sa', '⟨3, 5⟩', '3 < x ≤ 5', false],
+    ['sa', 'x ≥ −2', 'x > −2', false],
+    ['sa', '⟨3, 5⟩', '3 < x < 6', false],
+    ['sa', '⟨−∞, 1⟩ ∪ ⟨3, +∞⟩', 'x < 1 ili x > 4', false],
+    ['sa', '⟨−∞, 1⟩ ∪ ⟨3, +∞⟩', 'x < 1', false],
   ];
 
   for (const [type, ans, input, expected] of classCases) {
