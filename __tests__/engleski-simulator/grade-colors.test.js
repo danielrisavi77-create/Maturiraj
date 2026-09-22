@@ -23,6 +23,10 @@ describe('GC — jedan izvor boja ocjena', () => {
     for (const g of [1, 2, 3, 4, 5]) expect(typeof GC[g]).toBe('string')
   })
 
+  it('sve boje ocjena su CSS varijable teme (var(--...)), nema hardkodiranih hex vrijednosti', () => {
+    for (const g of [1, 2, 3, 4, 5]) expect(GC[g]).toMatch(/^var\(--[a-z0-9-]+\)$/)
+  })
+
   it('EngleskiSimulator.js nema lokalnu definiciju GC-a', () => {
     const src = read('components/engleski-simulator/EngleskiSimulator.js')
     expect(src).not.toMatch(/(?:const|let|var)\s+GC\s*=/)
