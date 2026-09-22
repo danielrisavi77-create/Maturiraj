@@ -134,6 +134,7 @@ describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
 
   it('istek bloka prelazi na sljedeći, a istek zadnjeg bloka predaje ispit točno jednom', () => {
     vi.useFakeTimers()
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
     const { onDone } = renderPlay()
 
     act(() => { vi.advanceTimersByTime(READING_S * 1000) })
@@ -149,6 +150,8 @@ describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
     // Timer nakon isteka više ne predaje (expired ref)
     act(() => { vi.advanceTimersByTime(60 * 1000) })
     expect(onDone).toHaveBeenCalledTimes(1)
+    expect(errorSpy.mock.calls.some(c => String(c[0]).includes('Cannot update a component'))).toBe(false)
+    errorSpy.mockRestore()
   })
 
   it('prijavljeni free korisnik nije zaključan ni na pitanju iznad FREE_LIMIT-a', () => {
@@ -173,6 +176,7 @@ describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
 
   it('na 600 s prije kraja prikazuje upozorenje s nazivom ispitne cjeline', () => {
     vi.useFakeTimers()
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
     renderPlay()
     act(() => { vi.advanceTimersByTime((READING_S - 600) * 1000) })
     const toast = document.querySelector('[role="status"]')
@@ -181,5 +185,7 @@ describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
     expect(toast.textContent).toContain('Čitanje')
     // Upozorenje nije predaja ni prelaz bloka
     expect(navTitle()).toContain('Čitanje (1/3)')
+    expect(errorSpy.mock.calls.some(c => String(c[0]).includes('Cannot update a component'))).toBe(false)
+    errorSpy.mockRestore()
   })
 })
