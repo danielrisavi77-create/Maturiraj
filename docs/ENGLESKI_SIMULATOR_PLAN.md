@@ -247,9 +247,43 @@ Potpun popis je u samom `audio-map.json` (`note` polje svakog ne-`high` task-zap
 
 Popravci skeptičkih nalaza faze 4 (grana `eng/round1`) riješili su 2.1, 2.3, 3.3 i 3.4 (vidi commite na grani). Otvoreno ostaje sljedeće, jer traži odluku o dizajnu/podacima izvan dosega minimalnih izmjena:
 
-- **Referentne brojke u analitici nisu stvarni podaci** (`NCE_DATA`, `NCE_DIST` u `components/engleski-simulator/screens/AnalyticsPanelFull.js`). Sada su u sučelju jasno označene kao ilustrativne i više se ne pripisuju NCVVO-u, ali same brojke (prosjek, prolaznost, raspodjela ocjena) i dalje su izmišljene. Odluka koja se traži: (a) pribaviti i citirati stvarne NCVVO statistike po roku, ili (b) ukloniti usporedbu s „prosjekom” i raspodjelu ocjena iz kartice Napredak. Do odluke kartica stoji s oznakom ilustrativnosti.
+- ~~**Referentne brojke u analitici nisu stvarni podaci** (`NCE_DATA`, `NCE_DIST`).~~ **RIJEŠENO** (grana `eng/ncvvo-data`, 2026-09-23) — vidi „Referentni NCVVO podaci u analitici” niže.
 - **Boje ocjena 2–4 su se promijenile** ujedinjenjem `GC` na `lib/engleski-simulator/constants.js` (nalaz 2.1): ResultsScreen sada za ocjenu 2 koristi `#f97316`, za 3 `var(--gold)`, za 4 `#60a5fa` (prije `var(--gold)` / `var(--blue)` / `var(--teal)`). Uzeta je vrijednost iz `constants.js` jer je nju već koristio AnalyticsPanelFull; ako dizajn želi drugu paletu, mijenja se na jednom mjestu u `constants.js`.
 - **Pragovi 85/70/55/40 ostaju pragovi simulatora.** Svugdje gdje se prikazuje ocjena sada stoji `GRADE_NOTE`, ali stvarni NCVVO pragovi po roku nisu u podacima; preslikavanje postotka u maturalnu ocjenu je i dalje orijentacijsko po dizajnu.
+
+### Referentni NCVVO podaci u analitici — riješeno 2026-09-23 (`eng/ncvvo-data`)
+
+Odluka vlasnika je bila: nabaviti prave službene NCVVO podatke, a ako ih nema — maknuti kartice. Istraživanje ncvvo.hr dalo je različit odgovor za dvije kartice, pa je odluka provedena **po kartici**.
+
+**Što je objavljeno i preuzeto.** NCVVO u „Statističkoj i psihometrijskoj analizi ispita državne mature” objavljuje prosječnu postotnu riješenost (aritmetičku sredinu) po ispitu i razini, za **ljetni rok**. Preuzeto je pet godina za Engleski jezik (viša A / osnovna B):
+
+| Ljetni rok | Šk. god. | A (viša) | B (osnovna) | Mjesto u izvoru |
+| --- | --- | --- | --- | --- |
+| 2018. | 2017./2018. | 73,40 | 56,10 | Tablica 20., str. 48 · Tablica 24., str. 55 |
+| 2019. | 2018./2019. | 77,45 | 61,93 | Tablica 20., str. 41 · Tablica 24., str. 48 |
+| 2020. | 2019./2020. | 78,26 | 63,44 | Tablica 28., str. 46 · Tablica 36., str. 52 |
+| 2021. | 2020./2021. | 75,50 | 62,77 | Tablica 27., str. 50 · Tablica 34., str. 56 |
+| 2022. | 2021./2022. | 80,57 | 69,19 | str. 26 (A) · str. 29 (B) |
+
+URL-ovi svih izvora i datum dohvata upisani su u komentar iznad konstanti u `lib/engleski-simulator/ncvvoData.js`.
+
+**Ispravak ranije tvrdnje o 2019./2020.** Prvi prolaz ove grane zapisao je (i u kod i u ovaj dokument) da za šk. god. 2019./2020. „PDF nije javno povezan ni s jedne stranice NCVVO-a”. To je bilo netočno. Objava od 5. 3. 2021. na <https://www.ncvvo.hr/statisticka-i-psihometrijska-analiza-ispita-drzavne-mature-u-sk-god-2019-2020/> izravno vodi na <https://www.ncvvo.hr/wp-content/uploads/2021/03/Statisticka-i-psihometrijska-analiza-ispita-drzavne-mature-19-20.pdf>; brojke su izvučene iz tekstualnoga sloja toga PDF-a (Tablica 28., otisnuta str. 46, 16 969 učenika; Tablica 36., otisnuta str. 52, 10 398 učenika). Simulator ima ispite `2020_ljeto` i `vis_2020_ljeto`, pa su ti korisnici prije ovoga ostajali bez kartice iako podatak postoji.
+
+**Samo ljetni rok — jesenski i zimski se ne smiju usporediti s njim.** Analize obrađuju ljetni rok; jesenski ide u zaseban dodatak s vlastitim tablicama i drukčijom populacijom (uglavnom ponavljači). U šk. god. 2019./2020. ljetni rok daje 78,26 (A) i 63,44 (B), a jesenski 66,0 i 41,0 („Dodatak 2 – Ispiti u jesenskome roku”, otisnute str. 162 i 164) — razlika je 12 do 22 postotna boda. `parseExamKey` zato zadržava rok iz ključa, a `getNcvvoAvg` vraća `null` za `*_jesen`, `*_zima`, `*_prvi` i `*_drugi`.
+
+**Što NIJE objavljeno.** Prolaznost i raspodjela ocjena 1–5 i dalje nisu u podacima, ali **ne** iz ranije navedenog razloga („postoji samo kao grafika bez brojčane tablice, pa se ne može pouzdano pročitati”) — i ta je tvrdnja bila netočna i ovime se povlači. Stvarno stanje, provjereno po svih pet PDF-ova: te veličine postoje samo kao slika „Raspodjela školskih ocjena i ocjena u ispitu”, ali njezine oznake u tekstualnome sloju **za dio godina i razina jesu čitljive** — npr. 2017./2018., viša razina, Slika 20., otisnuta str. 53, stupac OCJENA DM: nedovoljan 1,7 %, dovoljan 10,3 %, dobar 31,3 %, vrlo dobar 32,8 %, odličan 21,8 % (prolaznost = 100 − 1,7 = 98,3 %). Za 2018./2019. (viša) i za cijelu 2021./2022. tih oznaka u tekstualnome sloju nema, pa se niz ne može složiti za sve godine koje modul pokriva. Kartice ostaju uklonjene dok niz ne bude potpun. Za 2022./2023., 2023./2024. i 2024./2025. analiza na dan dohvata nije objavljena.
+
+**Korisnikov rezultat mora biti na istoj skali.** NCVVO-ova aritmetička sredina je ukupan rezultat na skali 0–100, s cjelinom Pisanje uključenom i s ponderima 0,4 : 0,3 : 0,3 (osnovna) odnosno 1/3 (viša). `history[].pct` to nije — on je `cor / autoQ.length`, dakle udio točnih auto-ocjenjivih pitanja, koji cjeline zbraja po broju pitanja. Ispravna mjera već postoji: `weightedEstimate()` iz `examStructure.js`. Simulator je sada sprema u zapis povijesti kao `weighted`, a usporedba uzima nju. Zapisi stariji od ove izmjene nemaju je i preskaču se — radije nema kartice nego kriva brojka. Procjena i dalje izostavlja Pisanje (ponderi su renormalizirani na ocijenjene cjeline), što kartica izrijekom piše.
+
+**Provedeno.**
+
+- `lib/engleski-simulator/ncvvoData.js` — `NCVVO_ENG_AVG` (pet objavljenih godina), `NCVVO_FETCHED_AT`, `NCVVO_SEASON`, `NCVVO_COMPARABLE_MODE`, `parseExamKey` (sada vraća i `season`), `getNcvvoAvg` (samo ljetni rok), `comparablePct`, `pickNcvvoComparison`.
+- Kartica „Usporedba s orijentacijskim prosjekom” → „**Usporedba sa službenim prosjekom NCVVO-a**”: stvarni prosjek za godinu, rok i razinu riješenog ispita, atribucija „Izvor: NCVVO ‹šk. god.›” kao poveznica na PDF s tooltipom (tablica i stranica). Traka „Prolaznost” je uklonjena jer za nju nema izvora. Kartice nema kad za riješene ispite nema objavljenog podatka (npr. samo ispiti iz 2023.–2025.).
+- U prosjek ulaze samo zapisi s `mode: 'simulacija'` i samo ispiti **iste godine i razine** — sesije vježbanja (gdje „Provjeri” otkriva rješenje prije predaje) i rezultati iz drugih godina više ne ulaze u usporedbu.
+- Brojevi na kartici pišu se hrvatskim zapisom (`80,6%`, ne `80.57%`), a razlika se računa iz istih vrijednosti koje se prikazuju, pa prikazani brojevi daju prikazanu razliku.
+- Kartica „Ilustrativna raspodjela ocjena” **uklonjena** zajedno s `NCE_DIST`, izvedenim `betterThan`/`pred-rank` i pripadajućim CSS-om (`.pred-nce*`, `.pred-rank`).
+- `a.nap-card-src` u `app/discere/engleski/simulator/simulator.css` scopean je na `.eng-sim` — bio je jedino nescopeano pravilo u globalnom stylesheetu App Routera.
+- Testovi: `__tests__/engleski-simulator/ncvvo-data.test.js` (oblik podataka, URL izvora po godini, zabrana `pass`/`dist` polja, pokrivenost 2019./2020., odbijanje ne-ljetnih rokova, filtriranje vježbanja, prosjek unutar iste godine); `grade-note.test.js` (kartica samo uz stvarni podatak i poveznicu, nema je za jesenski rok ni za samo-vježbanje, hrvatski zapis brojeva).
 
 ## Status Faza 4 (verifikacija) — 2026-09-22
 
