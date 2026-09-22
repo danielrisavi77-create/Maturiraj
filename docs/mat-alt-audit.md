@@ -61,7 +61,7 @@ Svaka je ručno provjerena uz `steps` i `why` istog zadatka.
 | 2012_ljeto_A | 19.2 | `57` | `y = 9/(k+1)`, `y = 9 / (k + 1)`, `9/(k+1)` | upala iz zadatka 19.1; ovdje je odgovor dvoznamenkasti broj 57 |
 | 2015_jesen_B | 25.2 | `2022. godine` | `12` | `why` istog zadatka izrijekom navodi `12` kao tipičnu grešku ("miješati 'koja godina' s 't' — npr. odgovoriti '12' umjesto '2022.'") |
 | 2018_jesen_B | 20.2 | `0,02` | `0,0` (2×), `0` | razlika je 15 − 14,98 = 0,02; `0` je upravo zabluda koju zadatak ispituje |
-| 2018_jesen_B | 21.1 | `7/10` | `1/7`, `0,14` | rješenje je x = 7/10 = 0,7; 1/7 ≈ 0,143 je zamijenjen brojnik i nazivnik. Oblici `0,7` i `7/10` ostaju. |
+| 2018_jesen_B | 21.1 | `7/10` | `1/7`, `0,14` | rješenje je x = 7/10 = 0,7; 1/7 ≈ 0,143 je zamijenjen brojnik i nazivnik. Oblici `0,7` i `7/10` ostaju. Uz uklanjanje altova ispravljen je i `sol.solFormula` (prikazivao je `x = 1/7`, sada `x = 7/10`) — inače bi ekran s rješenjem prikazivao odgovor koji se ocjenjuje kao netočan. |
 | 2019_ljeto_A | 25.1 | `≈5,30 cm` | `7−13/2` | pokvaren zapis od (7+√13)/2; kako stoji daje 0,5 |
 
 ## Ostavljeno uz bilješku — za ručnu odluku (15 varijanti)

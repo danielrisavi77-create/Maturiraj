@@ -575,7 +575,7 @@ export const qs = [
   context:"Zadatak 21 (1. dio od 2):",
   q:"Riješite jednadžbu 27 − [6 + 4(2x + 5)] = 2(x − 3).",
   sol:{ans:"[FRAC:7|10]",
-    solFormula:{pre:"x =",frac:[["1","7"]]},alt:["0,7","0,7","7/10"]},
+    solFormula:{pre:"x =",frac:[["7","10"]]},alt:["0,7","0,7","7/10"]},
   why:["Pravilo razvoja nested zagrada: idi od UNUTARNJE prema VANJSKOJ. Najprije 4(2x+5), pa razvij vanjsku [6 + 8x + 20].","Pažnja na predznake: 27 − [...] znači da se SVAKI član u zagradi MNOŽI s −1. Tako 27 − [6 + 8x + 20] = 27 − 6 − 8x − 20.","Postupak: 1) razvij unutarnje. 2) sredi (zbroji konstante). 3) razvij vanjske s pravim predznacima. 4) sredi drugu stranu. 5) izoliraj x.","Intuicija: rješenje x = 7/10 = 0,7 je 'lijep' racionalan broj — što sugerira da je problem dobro postavljen.","Česta greška 1: zaboraviti minus distribuirati: 27 − [6 + ...] = 27 − 6 + ... (krivo, treba 27 − 6 − ...). Greška 2: krivo zbrojiti konstante unutar zagrade.","Alt metoda: sve na jednu stranu — 1 − 8x − 2x + 6 = 0 → −10x + 7 = 0 → x = 7/10.","Provjera za x = 0,7: obje strane = −4,6 ✓"],
   steps:[
     {txt:"Razvij unutarnju zagradu: 4(2x + 5) = 8x + 20"},

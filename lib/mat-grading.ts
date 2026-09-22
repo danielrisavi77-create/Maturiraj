@@ -46,6 +46,22 @@ const UNITS = [
   'm', 'g', 'l', 's', 'h', '%', '€', '$', '°',
 ];
 
+/**
+ * Isti mjerni pojam pisan na više načina → jedan kanonski zapis.
+ * Služi usporedbi jedinica dviju strana; ono što ovdje nije navedeno
+ * uspoređuje se doslovno.
+ */
+const UNIT_CANON: Record<string, string> = {
+  centimetara: 'cm', kilograma: 'kg', stupnjeva: '°', sekundi: 's',
+  kilometara: 'km', milimetara: 'mm', decimetara: 'dm', postotaka: '%',
+  metara: 'm', minuta: 'min', litara: 'l', grama: 'g', gram: 'g',
+  kuna: 'kn', hrk: 'kn', eura: '€', eur: '€', posto: '%', sati: 'h',
+  godine: 'god', godina: 'god',
+  'cm^3': 'cm3', 'cm^2': 'cm2', 'dm^3': 'dm3', 'dm^2': 'dm2',
+  'mm^3': 'mm3', 'mm^2': 'mm2', 'm^3': 'm3', 'm^2': 'm2', 'km^2': 'km2',
+  deg: '°',
+};
+
 /** Preslikavanja pojedinačnih znakova (prije skidanja razmaka). */
 const CHAR_MAP: Record<string, string> = {
   '−': '-', // unicode minus
@@ -105,8 +121,10 @@ function mapChars(s: string): string {
   return out;
 }
 
-function stripUnits(s: string): string {
+/** Odvaja mjernu jedinicu s kraja zapisa od same vrijednosti. */
+function splitUnits(s: string): { body: string; unit: string } {
   let cur = s;
+  const found: string[] = [];
   for (let i = 0; i < 3; i++) {
     let hit = false;
     for (const u of UNITS) {
@@ -115,20 +133,22 @@ function stripUnits(s: string): string {
         const prev = cur[cur.length - u.length - 1];
         if (/[a-zčćžšđ]/.test(prev) && /[a-z]/.test(u[0])) continue;
         cur = cur.slice(0, cur.length - u.length);
+        found.unshift(UNIT_CANON[u] || u);
         hit = true;
         break;
       }
     }
     if (!hit) break;
   }
-  return cur;
+  return { body: cur, unit: found.join('') };
 }
 
-/**
- * Kanonski oblik odgovora: mala slova, bez razmaka i jedinica, zarezi u točke,
- * unicode minus u "-", eksponenti u "^n", √ u "sqrt", π u "pi".
- */
-export function normalizeAnswer(s: string): string {
+function stripUnits(s: string): string {
+  return splitUnits(s).body;
+}
+
+/** Sve do skidanja oznake i jedinice — zajednička osnova normalizacije. */
+function normalizeBase(s: string): string {
   if (s === null || s === undefined) return '';
   let t = String(s);
   t = expandFrac(t);
@@ -138,12 +158,38 @@ export function normalizeAnswer(s: string): string {
   t = mapChars(t);
   t = t.replace(/,/g, '.');
   t = t.replace(DROP_CHARS, '');
+  return t;
+}
+
+/**
+ * Kanonski oblik odgovora: mala slova, bez razmaka i jedinica, zarezi u točke,
+ * unicode minus u "-", eksponenti u "^n", √ u "sqrt", π u "pi".
+ */
+export function normalizeAnswer(s: string): string {
   // vodeća oznaka nepoznanice ("x=", "f(x)=", "x∈")
-  t = t.replace(LEAD_RE, '');
+  let t = normalizeBase(s).replace(LEAD_RE, '');
   t = stripUnits(t);
   // višak točaka/crtica na rubovima
   t = t.replace(/^[.=]+/, '').replace(/[.]+$/, '');
   return t;
+}
+
+/**
+ * Mjerna jedinica zapisa ("55,25 sati" → "h"), prazan niz kad je nema.
+ *
+ * Kod pretvorbi jedinica ("2 dana 7 sati i 15 minuta u sate") jedinica JEST
+ * odgovor, pa se ne smije skidati s obje strane bez provjere: "55,25 minuta"
+ * nije isto što i "55,25 sati".
+ */
+function unitOf(s: string): string {
+  return splitUnits(normalizeBase(s).replace(LEAD_RE, '')).unit;
+}
+
+/** Jedinica se zanemaruje samo ako je druga strana nema ili ima istu. */
+function unitsCompatible(a: string, b: string): boolean {
+  const ua = unitOf(a);
+  const ub = unitOf(b);
+  return ua === '' || ub === '' || ua === ub;
 }
 
 /** Stupnjevi/minute/sekunde → decimalni stupnjevi ("148°40'17''" → 148,6714). */
@@ -256,6 +302,7 @@ const SAFE_SYM = /^[0-9a-z+\-*/^().]+$/;
 
 function symEquals(a: string, b: string, nd: any): boolean {
   if (!nd) return false;
+  if (!unitsCompatible(a, b)) return false;
   const na = normalizeAnswer(a);
   const nb = normalizeAnswer(b);
   if (!SAFE_SYM.test(na) || !SAFE_SYM.test(nb)) return false;
@@ -320,12 +367,19 @@ function dropRedundantParens(t: string): string {
   for (let pass = 0; pass < 3; pass++) {
     const before = cur;
     for (const re of [PAREN_NUM, PAREN_WORD]) {
+      const word = re === PAREN_WORD;
       cur = cur.replace(re, (whole, inner: string, ...rest: any[]) => {
         const offset: number = rest[rest.length - 2];
         const src: string = rest[rest.length - 1];
         const prev = offset > 0 ? src[offset - 1] : '';
         const next = src[offset + whole.length] || '';
         const isLetter = (c: string) => c !== '' && c !== 'i' && /[a-zα-ωčćžšđ]/u.test(c);
+        if (word) {
+          // "sin(α)" = "sinα", ali "cos(a)b" ≠ "cos(ab)": zagrada oko slova
+          // smije nestati samo ako iza nje ne slijedi još jedan činitelj
+          if (/[0-9a-zα-ωčćžšđ(]/u.test(next)) return whole;
+          return isLetter(prev) || prev === '/' ? inner : whole;
+        }
         const attached = isLetter(prev) || prev === '/' || isLetter(next);
         return attached ? inner : whole;
       });
@@ -597,6 +651,38 @@ function listCanon(t: string): string | null {
   return items.join(',');
 }
 
+/* ------------------------------------------------------------------ *
+ * Sustav s više nepoznanica
+ *
+ * "x = −1, y = 1/2" NIJE popis rješenja: vrijednost je vezana uz ime, pa
+ * zamjena vrijednosti dviju nepoznanica ("x = 1/2, y = −1") nije isti
+ * odgovor. Zapisi s istim imenom i indeksom ("x₁, x₂") su korijeni iste
+ * nepoznanice i ostaju skup bez redoslijeda.
+ * ------------------------------------------------------------------ */
+
+const NAMED_RE = /^([a-zčćžšđ][a-z0-9α-ωčćžšđ']{0,5})(?:\([^()]*\))?=(.+)$/u;
+
+/** "x = −1, y = 1/2" → "x=-1,y=1/2"; null kad zapis nije takav sustav. */
+function namedPairs(s: string): string | null {
+  const t = normalizeBase(s);
+  if (!t || t.indexOf('=') < 0) return null;
+  const parts = splitList(t);
+  if (parts.length < 2) return null;
+  const pairs: string[] = [];
+  const bases = new Set<string>();
+  for (const p of parts) {
+    const m = p.match(NAMED_RE);
+    if (!m) return null;
+    const val = canonExpr(m[2]);
+    if (!val) return null;
+    bases.add(m[1].replace(/[0-9]+$/, ''));
+    pairs.push(`${m[1]}=${val}`);
+  }
+  if (bases.size < 2) return null;
+  pairs.sort();
+  return pairs.join(',');
+}
+
 /**
  * Jesu li dva zapisa isti odgovor? Prošireno preko doslovne jednakosti, ali
  * konzervativno: svaka klasa ekvivalencije mora biti matematički istinita.
@@ -605,6 +691,7 @@ export function answersEquivalent(a: string, b: string): boolean {
   const na = normalizeAnswer(a);
   const nb = normalizeAnswer(b);
   if (!na || !nb) return false;
+  if (!unitsCompatible(a, b)) return false;
   if (na === nb) return true;
   if (numEquals(a, b)) return true;
   const ca = canonExpr(na);
@@ -615,6 +702,10 @@ export function answersEquivalent(a: string, b: string): boolean {
   const pb = preCanon(nb);
   if (shareForm(intervalForms(pa), intervalForms(pb))) return true;
   if (shareForm(tupleForms(pa), tupleForms(pb))) return true;
+  // sustav nepoznanica se ne smije svesti na skup vrijednosti bez redoslijeda
+  const ma = namedPairs(a);
+  const mb = namedPairs(b);
+  if (ma !== null || mb !== null) return ma !== null && ma === mb;
   const la = listCanon(pa);
   if (la !== null && la === listCanon(pb)) return true;
   return false;
@@ -632,6 +723,21 @@ function altList(sol: MatSolution): string[] {
     if (x !== undefined && x !== null) out.push(String(x));
   }
   return out;
+}
+
+/**
+ * Smije li odgovor nositi tu jedinicu?
+ *
+ * Kad ijedna ponuđena varijanta ima jedinicu ("45" uz alt "45 dag"), autor je
+ * rekao koja je: upisana jedinica mora biti jedna od njih. Ako je nijedna
+ * varijanta nema, jedinica u odgovoru se i dalje zanemaruje.
+ */
+function unitAccepted(alts: string[], answer: string): boolean {
+  const ua = unitOf(answer);
+  if (ua === '') return true;
+  const known = new Set(alts.map((x) => unitOf(x)).filter((u) => u !== ''));
+  if (known.size === 0) return true;
+  return known.has(ua);
 }
 
 /**
@@ -660,6 +766,7 @@ export function isAnswerCorrect(
     const alts = altList(sol);
     if (!alts.length) return null;
     const a = String(answer ?? '');
+    if (!unitAccepted(alts, a)) return false;
     if (alts.some((x) => answersEquivalent(x, a))) return true;
     if (opts?.nerdamer && alts.some((x) => symEquals(x, a, opts.nerdamer))) return true;
     return false;
@@ -669,11 +776,17 @@ export function isAnswerCorrect(
     const alts = altList(sol);
     if (!alts.length) return null;
     const a = String(answer ?? '');
+    if (!unitAccepted(alts, a)) return false;
     const na = normalizeAnswer(a);
     if (na !== '' && alts.some((x) => answersEquivalent(x, a))) return true;
     // rezerva kompatibilna sa starim nrm-om (brisao je sve točke i zareze)
     const flat = na.replace(/\./g, '');
-    if (flat !== '' && alts.some((x) => normalizeAnswer(x).replace(/\./g, '') === flat)) return true;
+    if (
+      flat !== '' &&
+      alts.some((x) => unitsCompatible(x, a) && normalizeAnswer(x).replace(/\./g, '') === flat)
+    ) {
+      return true;
+    }
     if (opts?.nerdamer && alts.some((x) => symEquals(x, a, opts.nerdamer))) return true;
     return false;
   }

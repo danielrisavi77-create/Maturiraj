@@ -101,6 +101,17 @@ describe('mat-grading: goli broj iz nenumeričkog rješenja nije točan', () => 
   });
 });
 
+describe('mat-grading: prikazano rješenje se poklapa s ocjenjivanjem', () => {
+  it('2018_jesen_B q21.1: solFormula pokazuje isti x kao sol.ans', async () => {
+    const qs = await loadExam('2018_jesen_B.mjs');
+    const q: any = qs.find((x: any) => x.id === 21.1);
+    expect(q).toBeTruthy();
+    expect(q.sol.solFormula.frac).toEqual([['7', '10']]);
+    expect(isAnswerCorrect(q, '7/10')).toBe(true);
+    expect(isAnswerCorrect(q, '1/7')).toBe(false);
+  });
+});
+
 describe('mat-grading: ručni slučajevi', () => {
   const cases: Array<[string, string, string, boolean]> = [
     // [tip, točan odgovor u podacima, korisnikov unos, očekivano]
@@ -222,6 +233,26 @@ describe('mat-grading: ručni slučajevi', () => {
     ['sa', '[1/2, 3]', '[0,5, 4]', false],
     ['sa', '(−2, 1/4)', '(−2, 0,3)', false],
     ['sa', '(1, 2, 3)', '(1, 3, 2)', false],
+    // sustav nepoznanica: vrijednost je vezana uz ime, zamjena nije isti odgovor
+    ['sa', 'x = −1, y = [FRAC:1|2]', 'x = −1, y = 1/2', true],
+    ['sa', 'x = −1, y = [FRAC:1|2]', 'y = 0,5, x = −1', true],
+    ['sa', 'x = −1, y = [FRAC:1|2]', 'x = 1/2, y = −1', false],
+    ['sa', 'min = 3, max = 7', 'min = 7, max = 3', false],
+    ['sa', 'a = 3, b = 4, c = 5', 'a = 5, b = 4, c = 3', false],
+    ['sa', 'x = 2, y = 3, z = 4', 'y = 3, z = 4, x = 2', true],
+    // isti indeksirani naziv su korijeni iste nepoznanice — skup ostaje skup
+    ['sa', 'x₁ = −2, x₂ = 3', '3 i −2', true],
+    // jedinica je odgovor kod pretvorbi — ne smije se skidati s obje strane
+    ['num', '55,25 sati', '55,25 minuta', false],
+    ['num', '55,25 sati', '55,25 h', true],
+    ['num', '55,25 sati', '55,25', true],
+    ['num', '168 cm2', '168 cm3', false],
+    ['num', '45 dag', '45 kg', false],
+    ['num', '6 km', '6 godina', false],
+    ['num', '11,5 grama', '11,5 g', true],
+    // zagrada oko slova nestaje samo ako iza nje nema još jednog činitelja
+    ['sa', 'cos(a)b', 'cos(ab)', false],
+    ['sa', 'sin(x)y', 'sin(xy)', false],
   ];
 
   for (const [type, ans, input, expected] of classCases) {
@@ -264,6 +295,16 @@ describe('mat-grading: ručni slučajevi', () => {
     expect(numEquals('1,76784', '1,77')).toBe(true);
     expect(numEquals('0,333', '0,3333')).toBe(true);
     expect(numEquals('2', '2,02')).toBe(false);
+  });
+
+  it('jedinicu propisuje bilo koja ponuđena varijanta', () => {
+    const q = { type: 'num', sol: { ans: '45', alt: ['45 dag'] } };
+    expect(isAnswerCorrect(q, '45')).toBe(true);
+    expect(isAnswerCorrect(q, '45 dag')).toBe(true);
+    expect(isAnswerCorrect(q, '45 kg')).toBe(false);
+    // kad nijedna varijanta nema jedinicu, jedinica u odgovoru se zanemaruje
+    const bez = { type: 'num', sol: { ans: '45' } };
+    expect(isAnswerCorrect(bez, '45 kg')).toBe(true);
   });
 
   it('prazan odgovor nije točan', () => {
