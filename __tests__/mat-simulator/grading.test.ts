@@ -203,6 +203,18 @@ describe('mat-grading: ručni slučajevi', () => {
     ['sa', '⟨3, 5⟩', '3 < x < 6', false],
     ['sa', '⟨−∞, 1⟩ ∪ ⟨3, +∞⟩', 'x < 1 ili x > 4', false],
     ['sa', '⟨−∞, 1⟩ ∪ ⟨3, +∞⟩', 'x < 1', false],
+    // popisi rješenja: redoslijed i zapis veznika ne mijenjaju skup
+    ['sa', 'x₁ = −2, x₂ = 3', '−2 i 3', true],
+    ['sa', 'x₁ = −2, x₂ = 3', '3 i −2', true],
+    ['sa', 'x₁ = −2, x₂ = 3', 'x = −2 ili x = 3', true],
+    ['sa', 'x₁ = π/4, x₂ = π/2', '{π/4, π/2}', true],
+    ['sa', 'x₁ = −3, x₂ = 3', '±3', true],
+    ['sa', 'x₁ = −2, x₂ = 3', '−2 i 4', false],
+    ['sa', 'x₁ = −2, x₂ = 3', '−2', false],
+    ['sa', '±3', '3', false],
+    // uređeni par nije popis — zagrade nose značenje
+    ['sa', '(3, 2)', '(2, 3)', false],
+    ['sa', '{1, 2}', '(1, 2)', false],
   ];
 
   for (const [type, ans, input, expected] of classCases) {

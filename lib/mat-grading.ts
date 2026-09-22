@@ -461,6 +461,94 @@ function intervalCanon(t: string): string | null {
     .join('u');
 }
 
+/* ------------------------------------------------------------------ *
+ * Popisi rješenja
+ *
+ * "x₁ = −2, x₂ = 3", "−2 i 3", "{−2, 3}" i "±3" su isti skup rješenja,
+ * bez obzira na redoslijed. Uređeni par "(3, 2)" NIJE popis — zagrade
+ * nose značenje, pa takav zapis ne ulazi u ovu klasu.
+ * ------------------------------------------------------------------ */
+
+/** Dubina zagrada po znaku — za dijeljenje samo na najvišoj razini. */
+function depths(t: string): number[] {
+  const out: number[] = [];
+  let d = 0;
+  for (const ch of t) {
+    if (ch === ')' || ch === ']' || ch === '}') d--;
+    out.push(d);
+    if (ch === '(' || ch === '[' || ch === '{') d++;
+  }
+  return out;
+}
+
+const DIGIT = /[0-9]/;
+
+/** Ne dira se zapis u kojem "i" znači imaginarnu jedinicu ili vektor. */
+const COMPLEX_HINT = /sin|cos|cis|j/;
+
+/** Dijeli popis na najvišoj razini: "ili", zarez (ovdje ".") i veznik "i". */
+function splitList(t: string): string[] {
+  const d = depths(t);
+  const parts: string[] = [];
+  let cur = '';
+  const complex = COMPLEX_HINT.test(t);
+  for (let i = 0; i < t.length; i++) {
+    const top = d[i] === 0;
+    if (top && t.startsWith('ili', i)) {
+      parts.push(cur);
+      cur = '';
+      i += 2;
+      continue;
+    }
+    // zarez: točka koja NIJE decimalna (nije okružena znamenkama)
+    if (top && t[i] === '.' && !(DIGIT.test(t[i - 1] || '') && DIGIT.test(t[i + 1] || ''))) {
+      parts.push(cur);
+      cur = '';
+      continue;
+    }
+    // veznik "i" između dviju vrijednosti; "+" iza njega odaje kompleksni zapis
+    if (
+      top &&
+      t[i] === 'i' &&
+      !complex &&
+      cur !== '' &&
+      /[0-9)\]]/.test(t[i - 1] || '') &&
+      /[0-9(a-hk-z√-]/.test(t[i + 1] || '')
+    ) {
+      parts.push(cur);
+      cur = '';
+      continue;
+    }
+    cur += t[i];
+  }
+  parts.push(cur);
+  return parts;
+}
+
+/** Kanonski zapis popisa rješenja, ili null kad zapis nije popis. */
+function listCanon(t: string): string | null {
+  let s = t;
+  const braces = s.match(/^\{(.*)\}$/);
+  if (braces) s = braces[1];
+  const raw = splitList(s);
+  const items: string[] = [];
+  for (const part of raw) {
+    const el = stripLabels(part);
+    if (el === '') return null;
+    if (el.startsWith('±')) {
+      const rest = el.slice(1);
+      if (rest === '') return null;
+      items.push(canonNumbers(rest), canonNumbers('-' + rest));
+      continue;
+    }
+    items.push(canonNumbers(el));
+  }
+  // jedan element nije popis; "±a" se broji kao dva
+  if (items.length < 2) return null;
+  items.sort();
+  return items.join(',');
+}
+
 /**
  * Jesu li dva zapisa isti odgovor? Prošireno preko doslovne jednakosti, ali
  * konzervativno: svaka klasa ekvivalencije mora biti matematički istinita.
@@ -475,8 +563,12 @@ export function answersEquivalent(a: string, b: string): boolean {
   const cb = canonExpr(nb);
   if (!ca || !cb) return false;
   if (ca === cb) return true;
-  const ia = intervalCanon(preCanon(na));
-  if (ia !== null && ia === intervalCanon(preCanon(nb))) return true;
+  const pa = preCanon(na);
+  const pb = preCanon(nb);
+  const ia = intervalCanon(pa);
+  if (ia !== null && ia === intervalCanon(pb)) return true;
+  const la = listCanon(pa);
+  if (la !== null && la === listCanon(pb)) return true;
   return false;
 }
 
