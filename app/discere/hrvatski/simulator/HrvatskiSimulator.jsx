@@ -564,11 +564,11 @@ function App(){
           setPendingHighlight({examKey,qid});
           goExamMode(examKey);
         }}),
-    screen==="browse"&&e(BrowseScreen,{key:screen,onBack:goHome,initialSearch:browseSearch,initialGlobal:!!browseSearch}),
+    screen==="browse"&&e(BrowseScreen,{key:screen,onBack:goHome,initialSearch:browseSearch,initialGlobal:!!browseSearch,userAccess}),
     screen==="esej_list"&&e(EssayListScreen,{key:screen,onBack:goHome,onEsej:goEsej}),
-    screen==="esej"&&esejKey&&e(EssayMode,{esejKey,onBack:goEsejList,userData,isPro,onPaywall:(f)=>setPaywallFeature(f)}),
+    screen==="esej"&&esejKey&&e(EssayMode,{esejKey,onBack:goEsejList,userData,isPro,userAccess,onPaywall:(f)=>setPaywallFeature(f)}),
     screen==="sazeci_list"&&e(SazetakListScreen,{key:screen,onBack:goHome,onSazetak:goSazetak}),
-    screen==="sazetak"&&sazetakKey&&e(SazetakMode,{sazetakKey,onBack:goSazetakList,isPro,onPaywall:(f)=>setPaywallFeature(f)}),
+    screen==="sazetak"&&sazetakKey&&e(SazetakMode,{sazetakKey,onBack:goSazetakList,isPro,userAccess,onPaywall:(f)=>setPaywallFeature(f)}),
     screen==="practice_list_session"&&e(Sim,{exam:resolvedExam,practice:true,examMode:false,onExit:goHome,onDone:onExamDone,userData,isPro,isPaid,userAccess,onPracticeErrors:goPracticeExamErrors,onStats:goStats,onFilter:goFilter,highlightQid:null,onOpenSkripta:openSkripta}),
     screen==="filter_session"&&e(Sim,{exam:resolvedExam,practice:true,examMode:false,onExit:goHome,onDone:onExamDone,userData,isPro,isPaid,userAccess,onPracticeErrors:goPracticeExamErrors,onStats:goStats,onFilter:goFilter,highlightQid:null,onOpenSkripta:openSkripta}),
     screen==="errors_session"&&e(Sim,{exam:resolvedExam,practice:true,examMode:false,onExit:goHome,onDone:onExamDone,userData,isPro,isPaid,userAccess,onPracticeErrors:goPracticeExamErrors,onStats:goStats,onFilter:goFilter,highlightQid:null,onOpenSkripta:openSkripta}),

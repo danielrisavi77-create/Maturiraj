@@ -2,6 +2,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { ESEJI, SAZECI } from '../../hrvatskiSimulatorData';
 import { e, lsSave, postAi } from '../../utils/helpers';
+import { canSeeDiscereAnalysis } from '@/components/discere/paywall/paywallHelpers';
+import LockedResultsBlock from '@/components/discere/paywall/LockedResultsBlock';
 
 // ── AI dnevni limit (esej + sažetak dijele isti brojač) ──
 const ESEJ_AI_DNEVNI_LIMIT = 3;
@@ -40,7 +42,10 @@ function EssayTekstCard({ tekst, index }) {
 }
 
 // ── Besplatna povratna informacija (0 API): samoprocjena po smjernicama + model-ključ ──
-function SamoprocjenaPanel({ smjernice, modelKljuc, naslov }) {
+// canSeeKey: model-ključ (puni očekivani odgovor) je Standard sadržaj — free korisniku
+// se ne renderira uopće, nego dobiva LockedResultsBlock s CTA-om. Samoprovjera po
+// smjernicama ostaje besplatna.
+function SamoprocjenaPanel({ smjernice, modelKljuc, naslov, canSeeKey = false }) {
   const [checked, setChecked] = useState({});
   const [showKey, setShowKey] = useState(false);
   const sm = smjernice || [];
@@ -87,7 +92,15 @@ function SamoprocjenaPanel({ smjernice, modelKljuc, naslov }) {
         "Obuhvaćeno: ", e("strong", { style: { color: doneCount === sm.length ? "var(--green)" : "var(--text)" } }, doneCount + " / " + sm.length)),
       /* Model-ključ */
       modelKljuc
-        ? (showKey
+        ? (!canSeeKey
+          ? e(LockedResultsBlock, {
+            label: "Model-ključ za ocjenjivanje",
+            rows: 3,
+            minHeight: 150,
+            note: "Smjernice i samoprovjera ostaju besplatne. Model-odgovor — što se očekivalo — dolazi sa Standard planom.",
+            upgradeHref: "/pro?from=hrv-esej&plan=standard"
+          })
+          : showKey
           ? e("div", { style: { background: "rgba(75,123,255,.05)", border: "1px solid rgba(75,123,255,.2)", borderRadius: "var(--r)", padding: "14px 16px" } },
             e("div", { style: { fontSize: 11, fontWeight: 700, color: "var(--blue)", marginBottom: 8, letterSpacing: ".05em", textTransform: "uppercase" } }, "📖 Što se očekivalo (model-ključ)"),
             e("div", { style: { fontSize: 13, color: "var(--text)", lineHeight: 1.75, whiteSpace: "pre-line" } }, modelKljuc))
@@ -144,8 +157,9 @@ function EssayListScreen({ onBack, onEsej }) {
 }
 
 // ── Pisanje školskog eseja ──
-function EssayMode({ esejKey, onBack, userData, isPro, onPaywall }) {
+function EssayMode({ esejKey, onBack, userData, isPro, onPaywall, userAccess }) {
   const esej = ESEJI[esejKey];
+  const canSeeKljuc = canSeeDiscereAnalysis(userAccess);
   const [tekst, setTekst] = useState(() => {
     try { return JSON.parse(localStorage.getItem("discere_esej_" + esejKey) || "null") || ""; }
     catch (e) { return ""; }
@@ -199,6 +213,9 @@ function EssayMode({ esejKey, onBack, userData, isPro, onPaywall }) {
   async function ocijeniEsej() {
     if (!tekst || wc < 50) return;
     if (aiLimitDostignut) return;
+    // Obrana u dubinu: ključ za ocjenjivanje ulazi u prompt, pa se AI poziv ne smije
+    // sastaviti bez prava na razradu (gumb je već PRO-gated, ovo je druga brava).
+    if (!canSeeKljuc) { onPaywall && onPaywall("esej"); return; }
     setAiState("loading");
     setAiError("");
     // Polazne tekstove kratimo (ključ + smjernice + učenikov esej nose ocjenu) da
@@ -478,7 +495,7 @@ Odgovori ISKLJUČIVO u JSON formatu bez ikakvog teksta prije ili poslije:
         )
       ),
       /* Besplatna povratna informacija — svima, bez API troška */
-      e(SamoprocjenaPanel, { smjernice: esej.smjernice, modelKljuc: esej.ocjenaKljuc })
+      e(SamoprocjenaPanel, { smjernice: esej.smjernice, modelKljuc: esej.ocjenaKljuc, canSeeKey: canSeeKljuc })
     )
   );
 }
@@ -526,8 +543,11 @@ function SazetakListScreen({ onBack, onSazetak }) {
 }
 
 // ── Pisanje sažetka ──
-function SazetakMode({ sazetakKey, onBack, isPro, onPaywall }) {
+function SazetakMode({ sazetakKey, onBack, isPro, onPaywall, userAccess }) {
   const saz = SAZECI[sazetakKey];
+  // SAZECI trenutačno nemaju model-ključ, ali gating se prenosi da ključ ne procuri
+  // ako se podatak doda.
+  const canSeeKljuc = canSeeDiscereAnalysis(userAccess);
   const lsKey = "discere_sazetak_" + sazetakKey;
   const [tekst, setTekst] = useState(() => {
     try { return JSON.parse(localStorage.getItem(lsKey) || "null") || ""; }
@@ -748,7 +768,7 @@ Odgovori ISKLJUČIVO u JSON formatu:
       )
     ),
     /* Besplatna povratna informacija — svima, bez API troška */
-    e(SamoprocjenaPanel, { smjernice: saz.smjernice, modelKljuc: null })
+    e(SamoprocjenaPanel, { smjernice: saz.smjernice, modelKljuc: saz.ocjenaKljuc || null, canSeeKey: canSeeKljuc })
   );
 }
 
