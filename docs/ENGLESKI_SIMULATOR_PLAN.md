@@ -228,7 +228,7 @@ Puni audio za slušanje je pribavljen s NCVVO-a, re-enkodiran i uklopljen u simu
 
 **Format `audio-map.json`** (promjena u odnosu na stariji oblik iz statusa faze 5): `{ "<examKey>": { "intro": "<file>|null", "tasks": { "<taskNum>": { "topic", "first", "repeat", "confidence", "note" } } }, "_missing": [] }`. `lib/engleski-simulator/audioBase.js` spaja imena datoteka s `ENG_AUDIO_BASE` (env `NEXT_PUBLIC_ENG_AUDIO_BASE` override); `legacyDriveId`/Google Drive fallback je uklonjen.
 
-**Pouzdanost mapiranja** (255 task-zapisa ukupno): 160 `confidence: "high"` (ZIP je imao točno uvod + 1. slušanje + ponavljanje po tasku — jednoznačno mapiranje, sve novije godine ~2014–2025), 95 `confidence: "low"`, 0 `medium`. Kod `low` zapisa `first`/`repeat` mogu biti `null` (audio nedostupan za taj task — `AudioPlayer` tad ništa ne renderira, ispitanik dobiva samo tekst pitanja) uz objašnjenje u `note`.
+**Pouzdanost mapiranja** (255 task-zapisa ukupno): 160 `confidence: "high"` (ZIP je imao točno uvod + 1. slušanje + ponavljanje po tasku — jednoznačno mapiranje, sve novije godine ~2014–2025), 95 `confidence: "low"`, 0 `medium`. Kod `low` zapisa `first`/`repeat` mogu biti `null` (audio nedostupan za taj task — `AudioPlayer` tad prikaže tekstualni fallback „Audio nije dostupan…" uz tekst pitanja (nalaz 3.4)) uz objašnjenje u `note`.
 
 **28 nestandardnih ispita** (fallback pozicijsko mapiranje, razlog u zagradi):
 
@@ -242,3 +242,11 @@ Potpun popis je u samom `audio-map.json` (`note` polje svakog ne-`high` task-zap
 **Testovi**: `__tests__/engleski-simulator/audio-map.test.js` — pokrivenost po ispitu, pokrivenost taskova po `topic`-u iz podataka ispita (`first`/`repeat` smiju biti `null` samo uz `confidence: "low"`), jedinstvenost i format naziva datoteka (`/^[a-z0-9_]+__(task\d+-[12]|extra\d+-[12]|intro)\.mp3$/`), pokrivenost `extra` polja za tih 8 ispita, te provjera da je `_missing` prazan (ili svjesno potvrđen popis). `__tests__/engleski-simulator/audio-player.test.js` — render `AudioPlayer`, URL glavnog i extra zapisa, prebacivanje na ponavljanje, prikaz bloka „Dodatni zapisi slušanja”.
 
 **Skripte za regeneraciju**: `scripts/eng-audio/build-audio-A.py` (preuzimanje ZIP-ova s NCVVO-a/Waybacka), `build-audio-B.py` (raspakiravanje, mapiranje na taskove, enkodiranje), `build-audio-C-extra.py` (enkodiranje neiskorištenih zapisa kao `extra`), `upload-audio.sh` (objava na GitHub Release — ručno pokretanje).
+
+## Status Faza 4 — otvoreno
+
+Popravci skeptičkih nalaza faze 4 (grana `eng/round1`) riješili su 2.1, 2.3, 3.3 i 3.4 (vidi commite na grani). Otvoreno ostaje sljedeće, jer traži odluku o dizajnu/podacima izvan dosega minimalnih izmjena:
+
+- **Referentne brojke u analitici nisu stvarni podaci** (`NCE_DATA`, `NCE_DIST` u `components/engleski-simulator/screens/AnalyticsPanelFull.js`). Sada su u sučelju jasno označene kao ilustrativne i više se ne pripisuju NCVVO-u, ali same brojke (prosjek, prolaznost, raspodjela ocjena) i dalje su izmišljene. Odluka koja se traži: (a) pribaviti i citirati stvarne NCVVO statistike po roku, ili (b) ukloniti usporedbu s „prosjekom” i raspodjelu ocjena iz kartice Napredak. Do odluke kartica stoji s oznakom ilustrativnosti.
+- **Boje ocjena 2–4 su se promijenile** ujedinjenjem `GC` na `lib/engleski-simulator/constants.js` (nalaz 2.1): ResultsScreen sada za ocjenu 2 koristi `#f97316`, za 3 `var(--gold)`, za 4 `#60a5fa` (prije `var(--gold)` / `var(--blue)` / `var(--teal)`). Uzeta je vrijednost iz `constants.js` jer je nju već koristio AnalyticsPanelFull; ako dizajn želi drugu paletu, mijenja se na jednom mjestu u `constants.js`.
+- **Pragovi 85/70/55/40 ostaju pragovi simulatora.** Svugdje gdje se prikazuje ocjena sada stoji `GRADE_NOTE`, ali stvarni NCVVO pragovi po roku nisu u podacima; preslikavanje postotka u maturalnu ocjenu je i dalje orijentacijsko po dizajnu.
