@@ -559,7 +559,7 @@ export const qs = [
   {id:20.2,type:"sa",topic:"br",points:1,
   context:"Zadatak 20 (2. dio od 2):",
   q:"Broj 15 podijelite sa 7 i zaokružite rezultat na dvije decimale. Taj zaokruženi rezultat pomnožite sa 7. Kolika je razlika između broja 15 i broja dobivenoga traženim operacijama?",
-  sol:{ans:"0,02",alt:["0,02","−0,02","0,0","0,0","0"]},
+  sol:{ans:"0,02",alt:["0,02","−0,02"]},
   why:["Pravilo zaokruživanja: 0,5 i više zaokružuje se navisè, manje od 0,5 nanizè. 2,142857 → 2,14 (jer 3. decimala je 2 < 5).","Greška zaokruživanja: 15/7 − 2,14 = 2,142857... − 2,14 = 0,002857...","Postupak: 1) podijeli točno. 2) zaokruži. 3) izvrši reverznu operaciju (množenje). 4) izračunaj razliku od izvornog.","Intuicija: 15/7 nije cijeli broj — zaokruživanje gubi preciznost. Razlika od izvornog je proporcionalna zaokruženju.","Česta greška 1: zaokružiti na PRAVOM koraku (možda zaokružiti 14,98 — ali to nije traženo). Greška 2: koristiti TOČNO 15/7 umjesto ZAOKRUŽENO.","Alt metoda: razlika je 7 · 0,002857... = 0,02. Točno 0,02 jer 7 · (15/7 − 2,14) = 15 − 14,98 = 0,02.","Provjera: 14,98 + 0,02 = 15 ✓"],
   steps:[
     {txt:"15/7 = 2,142857..."},
@@ -575,7 +575,7 @@ export const qs = [
   context:"Zadatak 21 (1. dio od 2):",
   q:"Riješite jednadžbu 27 − [6 + 4(2x + 5)] = 2(x − 3).",
   sol:{ans:"[FRAC:7|10]",
-    solFormula:{pre:"x =",frac:[["1","7"]]},alt:["1/7","0,14","0,7","0,7","7/10"]},
+    solFormula:{pre:"x =",frac:[["1","7"]]},alt:["0,7","0,7","7/10"]},
   why:["Pravilo razvoja nested zagrada: idi od UNUTARNJE prema VANJSKOJ. Najprije 4(2x+5), pa razvij vanjsku [6 + 8x + 20].","Pažnja na predznake: 27 − [...] znači da se SVAKI član u zagradi MNOŽI s −1. Tako 27 − [6 + 8x + 20] = 27 − 6 − 8x − 20.","Postupak: 1) razvij unutarnje. 2) sredi (zbroji konstante). 3) razvij vanjske s pravim predznacima. 4) sredi drugu stranu. 5) izoliraj x.","Intuicija: rješenje x = 7/10 = 0,7 je 'lijep' racionalan broj — što sugerira da je problem dobro postavljen.","Česta greška 1: zaboraviti minus distribuirati: 27 − [6 + ...] = 27 − 6 + ... (krivo, treba 27 − 6 − ...). Greška 2: krivo zbrojiti konstante unutar zagrade.","Alt metoda: sve na jednu stranu — 1 − 8x − 2x + 6 = 0 → −10x + 7 = 0 → x = 7/10.","Provjera za x = 0,7: obje strane = −4,6 ✓"],
   steps:[
     {txt:"Razvij unutarnju zagradu: 4(2x + 5) = 8x + 20"},

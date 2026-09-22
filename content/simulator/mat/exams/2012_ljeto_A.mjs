@@ -528,7 +528,7 @@ export const qs = [
   {id:19.2,type:"sa",topic:"al",points:1,
   context:"Zadatak 19 (2. dio od 2):",
   q:"Zbroj znamenaka dvoznamenkastog broja je 12. Ako znamenke tog broja zamijene mjesto, broj se uveća za 18. Koji je početni broj?",
-  sol:{ans:"57",alt:["57","y = 9/(k+1)","y = 9 / (k + 1)","9/(k+1)"]},
+  sol:{ans:"57",alt:["57"]},
   steps:[
     {txt:"Dvoznamenkasti broj: 10a + b, gdje su a, b znamenke (a ∈ {1,…,9}, b ∈ {0,…,9})."},
     {txt:"Uvjet 1: a + b = 12"},

@@ -900,7 +900,7 @@ export const qs = [
   context:"Zadatak 27 (2. dio od 3):",
   q:"Koliko ima županija na slici koje imaju manje od 250 000 stanovnika?",
   warn:"Pazi: BROJI stupce čija je visina manja od oznake 250 000 (na pola između 100 000 i 500 000... ne baš, jer skala nije logaritamska — pažljivo gledaj).",
-  sol:{ans:"4",alt:["4 županije","4 županije od 8","četiri","4/8"]},
+  sol:{ans:"4",alt:["4 županije","4 županije od 8","četiri"]},
   exp:"Stupci niži od 250 000 (između C, F, G, H i sličnih, ovisno o preciznom očitanju): C, F, G, H ili 4 stupca.",
   steps:[
     {txt:"Identificiraj horizontalnu liniju na visini 250 000 (između 100 000 i 500 000)"},

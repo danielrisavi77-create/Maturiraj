@@ -514,7 +514,7 @@ export const qs = [
 },
 {id:17,type:"sa",topic:"stat",points:1,
   q:"U razredu je 27 učenika. Njih 8 je odličnim uspjehom završilo godinu. Izračunajte postotak odličnih učenika i zaokružite ga na dvije decimale.",
-  sol:{ans:"29,63%",alt:["29,63%","rezultat","odgovor"]},
+  sol:{ans:"29,63%",alt:["29,63%"]},
   solFormula:{frac:[["8","27"]]},
   steps:[
     {txt:"Formula: postotak = (dio / cjelina) · 100"},
@@ -531,7 +531,7 @@ export const qs = [
 },
 {id:18,type:"sa",topic:"al",points:1,
   q:"Koliko je c ako je b = (c−2a)/2 ?",
-  sol:{ans:"c = 2b + 2a",alt:["c=2b+2a","rezultat","odgovor"]},
+  sol:{ans:"c = 2b + 2a",alt:["c=2b+2a"]},
   solFormula:{pre:"c = 2b + 2a"},
   steps:[
     {txt:"b = (c−2a)/2"},
@@ -548,7 +548,7 @@ export const qs = [
 },
 {id:19,type:"sa",topic:"al",points:1,
   q:"Sredite i pojednostavnite izraz:  7b\u00b2 + 6b \u2212 3b(b \u2212 2)",
-  sol:{ans:"4b²+12b",alt:["4b²+12b","rezultat","odgovor"]},
+  sol:{ans:"4b²+12b",alt:["4b²+12b"]},
   solFormula:{pre:"4b(b + 3)"},
   steps:[
     {txt:"Razvijamo zagradu: \u22123b(b\u22122) = \u22123b\u00b2 + 6b"},
@@ -585,7 +585,7 @@ export const qs = [
 },
 {id:21,type:"sa",topic:"al",points:1,
   q:"Riješite nejednadžbu 4x − 11 > 9x.",
-  sol:{ans:"x < −[FRAC:11|5]",alt:["x<−[FRAC:11|5]","rezultat","odgovor"]},
+  sol:{ans:"x < −[FRAC:11|5]",alt:["x<−[FRAC:11|5]"]},
   solFormula:{pre:"x < −",frac:[["11","5"]]},
   steps:[
     {txt:"Polazi od: 4x − 11 > 9x. Cilj: izoliraj x na jednoj strani."},
@@ -603,7 +603,7 @@ export const qs = [
 {id:22.1,type:"sa",topic:"fun",points:1,
   context:"Zadatak 22 (1. dio od 2): Cijena (u kunama) iznajmljivanja konferencijske dvorane računa se prema formuli C = 342·s + 20·b, gdje je s broj sati na koliko je dvorana iznajmljena, a b broj osoba koje sudjeluju na konferenciji.",
   q:"Kolika je cijena iznajmljivanja dvorane na 3 sata za 35 osoba?",
-  sol:{ans:"1726 kn",alt:["1726kn","rezultat","odgovor"]},
+  sol:{ans:"1726 kn",alt:["1726kn"]},
   steps:[
     {txt:"Identificiraj: s = 3 (sati), b = 35 (osoba), formula C = 342·s + 20·b."},
     {txt:"Uvrsti: C = 342 · 3 + 20 · 35"},
@@ -621,7 +621,7 @@ export const qs = [
 {id:22.2,type:"sa",topic:"fun",points:1,
   context:"Zadatak 22 (2. dio od 2): Cijena (u kunama) iznajmljivanja konferencijske dvorane računa se prema formuli C = 342·s + 20·b, gdje je s broj sati, a b broj osoba.",
   q:"Na konferenciji su sudjelovale 42 osobe i za to je plaćeno 2892 kune. Koliko je sati dvorana bila iznajmljena?",
-  sol:{ans:"6 h",alt:["6h","rezultat","odgovor"]},
+  sol:{ans:"6 h",alt:["6h"]},
   steps:[
     {txt:"Identificiraj: ukupno C = 2892 kn, b = 42 osobe; tražimo s."},
     {txt:"Uvrsti u formulu: 2892 = 342·s + 20·42 = 342s + 840"},
@@ -715,7 +715,7 @@ export const qs = [
 {id:25.2,type:"sa",topic:"fun",points:1,
   context:"Zadatak 25 (2. dio od 2): Riješite sljedeće zadatke.",
   q:"Za koji realan broj x je 200 · 10¹⁻ˣ = 2?",
-  sol:{ans:"x = 3",alt:["x=3","rezultat","odgovor"]},
+  sol:{ans:"x = 3",alt:["x=3"]},
   steps:[
     {txt:"Polazi od jednadžbe: 200 · 10¹⁻ˣ = 2"},
     {txt:"Izoliraj eksponencijalni član — podijeli obje strane s 200: 10¹⁻ˣ = 2/200 = 1/100"},
@@ -734,7 +734,7 @@ export const qs = [
 {id:26.1,type:"sa",topic:"trig",points:1,
   context:"Zadatak 26 (1. dio od 2): Riješite zadatke s jednakokračnim trokutima.",
   q:"Mjera kuta nasuprot osnovici jednakokračnog trokuta jednaka je 72°12′. Kolika je mjera kuta uz osnovicu?",
-  sol:{ans:"53°54'",alt:["53°54'","rezultat","odgovor"]},
+  sol:{ans:"53°54'",alt:["53°54'"]},
   steps:[
     {txt:"Svojstvo: jednakokračni trokut ima dva jednaka kraka i dva jednaka kuta uz osnovicu (β = γ)."},
     {txt:"Zbroj kuteva trokuta = 180°. Označi kut nasuprot osnovici α = 72°12′."},
@@ -766,7 +766,7 @@ export const qs = [
 {id:27.1,type:"sa",topic:"stat",points:1,
   context:"Zadatak 27 (1. dio od 3): Preračunajte mjerne jedinice u sljedećim zadatcima.",
   q:"Pretvorite 2 dana 7 sati i 15 minuta u sate. Rezultat napišite u decimalnome zapisu.",
-  sol:{ans:"55,25 sati",alt:["55,25sati","rezultat","odgovor"]},
+  sol:{ans:"55,25 sati",alt:["55,25sati"]},
   steps:[
     {txt:"2 dana = 2·24 = 48 sati"},
     {txt:"15 min = 15/60 = 0,25 sati"},
@@ -783,7 +783,7 @@ export const qs = [
 {id:27.2,type:"sa",topic:"stat",points:1,
   context:"Zadatak 27 (2. dio od 3): Preračunajte mjerne jedinice u sljedećim zadatcima.",
   q:"Obujam tijela je 13 cm³. Koliki je obujam toga tijela izražen u mm³?",
-  sol:{ans:"13 000 mm³",alt:["13000mm³","rezultat","odgovor"]},
+  sol:{ans:"13 000 mm³",alt:["13000mm³"]},
   steps:[
     {txt:"Pretvorba 3D jedinice (volumen): koeficijent pretvorbe duljine se digne na 3. potenciju."},
     {txt:"Duljina: 1 cm = 10 mm. Volumen: 1 cm³ = (1 cm)³ = (10 mm)³ = 1000 mm³."},
@@ -799,7 +799,7 @@ export const qs = [
 {id:27.3,type:"sa",topic:"stat",points:1,
   context:"Zadatak 27 (3. dio od 3): Preračunajte mjerne jedinice u sljedećim zadatcima.",
   q:"Brzina vjetra je 248 km / h. Koliko je to čvorova ako se za jedan čvor uzima vrijednost od 0,51444 m / s?",
-  sol:{ans:"≈ 133,91 čvorova",alt:["≈133,91čvorova","rezultat","odgovor"]},
+  sol:{ans:"≈ 133,91 čvorova",alt:["≈133,91čvorova"]},
   steps:[
     {txt:"Korak 1 — pretvori km/h u m/s: 1 km = 1000 m, 1 h = 3600 s, pa 1 km/h = 1000/3600 = 1/3,6 m/s."},
     {txt:"248 km/h = 248 / 3,6 ≈ 68,889 m/s. (Alternativno: 248 000 m / 3600 s ≈ 68,889 m/s.)"},
@@ -817,7 +817,7 @@ export const qs = [
 {id:28.1,img:true,type:"sa",img:true,topic:"stat",points:1,
   context:"Zadatak 28 (1. dio od 2): U tablicama je prikazan izvod iz cjenika za slanje poštanskih pošiljaka. Osnovni cjenik (do 20 g: 3,60 kn; iznad 20 do 100 g: 7,50 kn; iznad 100 do 250 g: 13,50 kn; iznad 250 do 500 g: 24,50 kn; iznad 500 do 1000 g: 40,00 kn; iznad 1000 do 2000 g: 60,00 kn). Dopunska cijena za zrakoplovne pošiljke za svakih 20 g (Europa: 1,00 kn; Sjeverna i Srednja Amerika: 1,50 kn; Južna Amerika: 1,70 kn). Primjer: pošiljka 41 g za Europu plaća dopunsku 3 kn, 60 g također 3 kn, 61 g plaća 4 kn.",
   q:"Kolika je cijena slanja knjige mase 325 g zrakoplovom u Sjevernu Ameriku?",
-  sol:{ans:"50 kn",alt:["50kn","rezultat","odgovor"]},
+  sol:{ans:"50 kn",alt:["50kn"]},
   steps:[
     {txt:"Osnovna cijena za 325 g (iznad 250g do 500g): 24,50 kn (iz tablice)"},
     {txt:"Dopunska cijena Sj. Amerika: 1,50 kn za svakih 20g"},
@@ -836,7 +836,7 @@ export const qs = [
 {id:28.2,img:true,type:"sa",img:true,topic:"stat",points:1,
   context:"Zadatak 28 (2. dio od 2): Cjenik kao u Q28.1. Dopunska cijena Europa = 1,00 kn / 20 g; Južna Amerika = 1,70 kn / 20 g.",
   q:"Dvije knjige jednakih masa poslane su zrakoplovom, jedna u Europu, a druga u Južnu Ameriku. Razlika u cijeni slanja bila je 39,90 kn. U kojem je rasponu masa jedne knjige?",
-  sol:{ans:"Iznad 1120 g do 1140 g",alt:["Iznad1120gdo1140g","rezultat","odgovor"]},
+  sol:{ans:"Iznad 1120 g do 1140 g",alt:["Iznad1120gdo1140g"]},
   steps:[
     {txt:"Dopunska razlika po 20g: Juz.Amerika(1,70) − Europa(1,00) = 0,70 kn/20g"},
     {txt:"n·0,70 = 39,90 ⇒ n = 57 segmenata"},

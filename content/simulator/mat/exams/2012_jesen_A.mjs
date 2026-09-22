@@ -536,7 +536,7 @@ export const qs = [
   {id:18.1,type:"sa",topic:"al",points:1,
   context:"Zadatak 18 (1. dio od 2):",
   q:"Koliki je zbroj rješenja jednadžbe 9 = 5x² − 15x?",
-  sol:{ans:"3",alt:["3","a = −3/4","−3/4","−3/4","a=−0,75","a = −0,75"]},
+  sol:{ans:"3",alt:["3"]},
   steps:[
     {txt:"Sređujemo: 5x² − 15x − 9 = 0"},
     {txt:"Vièteova formula za zbroj korijena: x₁ + x₂ = −[FRAC:b|a] = [FRAC:15|5] = 3",final:true},
@@ -691,7 +691,7 @@ export const qs = [
   {id:24.1,type:"sa",topic:"al",points:1,
   context:"Zadatak 24 (1. dio od 2):",
   q:"Koliki je koeficijent uz x² u razvoju potencije binoma (2x + 1)⁶?",
-  sol:{ans:"60",alt:["60","a = 2","a=2","2"]},
+  sol:{ans:"60",alt:["60"]},
   steps:[
     {txt:"Opći član binomnog razvoja: C(6, k) · (2x)^(6−k) · 1^k = C(6, k) · 2^(6−k) · x^(6−k)"},
     {txt:"Za x²: 6 − k = 2 ⇒ k = 4"},

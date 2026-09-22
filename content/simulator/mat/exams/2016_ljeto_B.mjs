@@ -547,7 +547,7 @@ export const qs = [
   ,"Alt metoda: provjeri brojčano supstitucijom ili drugačijim postupkom.","Postupak: razdvoji brojnik i nazivnik, pretvori u istu jedinicu, izračunaj."]},
   {id:19,type:"sa",topic:"al",points:1,
   q:"Oduzmite razlomke (b+1)/b² − 1/b.",
-  sol:{ans:"[FRAC:1|b²]",alt:["1/b²","odgovor: [FRAC:1|b²]","odgovor","rezultat"]},
+  sol:{ans:"[FRAC:1|b²]",alt:["1/b²","odgovor: [FRAC:1|b²]"]},
   solFormula:{frac:[["1","b²"]]},
   exp:"Zajednički nazivnik je b². (b+1)/b² − b/b² = (b+1−b)/b² = 1/b².",
   steps:[

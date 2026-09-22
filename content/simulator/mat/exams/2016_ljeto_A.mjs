@@ -297,7 +297,7 @@ export const qs = [
   why:["Pravilo: za f(t) = A·sin(Bt − C) + D, max je D+A, min je D−A; razlika max−min = 2A; sredina = D.","Intuicija: min = 300 (t=5), max = 920 (t=9). 2A = 920−300 = 620 → A = 310. D = (300+920)/2 = 610.","Česta greška: računati D = max−min ili miješati amplitudu (A) i sredinu (D).","Alt metoda: period T = 4·(t_max − t_min) = 4·4 = 16, B = 2π/16 = π/8 — ali pitanje pita za vrijednost na t=18, ne za B.","Provjera: f(18) = A·sin(π/8·18 − 7π/4) + D = 310·sin(18π/8 − 14π/8) + 610 = 310·sin(4π/8) + 610 = 310·sin(π/2)+610 = 310·1+610 = wait — opcija C je 830 ≠ 920. Provjera s ispravnijim B: max f = 920, min = 300, daje 830 u sredini između min i max ako je T/4 = 4 godine → opcija C ✓","Diagnostic: A) 680; B) 750; C) 830 ✓; D) 910."]},
   {id:16,type:"sa",topic:"al",points:1,
   q:"Izračunajte √(288 · ∛5832).",
-  sol:{ans:"72",alt:["72","72,0","∜+"]},exp:"",
+  sol:{ans:"72",alt:["72","72,0"]},exp:"",
   steps:[
     {txt:"Pojednostavni izraz: ∛5832 = 18 (jer 18³ = 5832); razlomak nije potreban."},
     {txt:"√(288·18) = √5184 = 72",final:true},{txt:"Provjera: 72² = 5184 = 288·18 = 288·∛5832",final:true,note:"verifikacija"},{txt:"Alt metoda: provjeri rezultat drugačijim pristupom.",final:true,note:"alt"},{txt:"Logička provjera: redoslijed operacija i znakovi konzistentni ✓",final:true,note:"verifikacija"},{txt:"Postupak: identificiraj tip zadatka, primijeni odgovarajuću formulu, izračunaj.",final:true,note:"postupak"},{txt:"Intuicija: ∛5832 = 18 (jer 18³ = 5832). Zatim 288·18 = 5184 = 72² → √5184 = 72.",note:"intuicija",final:true},{txt:"Točan odgovor: 72 ✓",note:"odgovor",final:true}],
