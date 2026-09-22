@@ -1,6 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { NextResponse } from 'next/server'
 import { requirePro } from '@/lib/billing/requirePro'
+import { createClient } from '@/lib/supabase/server'
+import { reserveUsage, completeUsage, markUsageUncertain, releaseUsage } from '@/lib/ai-usage/ledger'
 import { isAiEndpointsEnabled } from '@/lib/config/featureFlags'
 
 // POST /api/prijemni/compare-insight
@@ -92,15 +94,30 @@ export async function POST(req) {
     `Uspoređujem ${studiji.length} studija:\n${studijiLines}\n\n${scoresLine}\n\n` +
     'Napiši 2-3 rečenice: koji studij mi najviše odgovara i zašto, ili koji je ključni kriterij koji bi trebao odlučiti moj izbor.'
 
-  const msg = await getAnthropic().messages.create({
-    model:      'claude-haiku-4-5',
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const model = 'claude-haiku-4-5'
+  let requestId
+  try {
+    ({ requestId } = await reserveUsage({ userId: user.id, feature: 'compare-insight', tier: 'pro', model,
+      estimatedInputTokens: new TextEncoder().encode(SYSTEM_PROMPT + userMessage).length + 2048, maxOutputTokens: 220 }))
+    const msg = await getAnthropic().messages.create({
+    model,
     max_tokens: 220,
     system:     SYSTEM_PROMPT,
     messages:   [{ role: 'user', content: userMessage }],
-  })
+    })
+    await completeUsage({ requestId, model, usage: msg.usage })
 
-  const insight = msg.content?.[0]?.text?.trim() ?? ''
-  if (!insight) return NextResponse.json({ error: 'AI nije vratio odgovor.' }, { status: 502 })
+    const insight = msg.content?.[0]?.text?.trim() ?? ''
+    if (!insight) return NextResponse.json({ error: 'AI nije vratio odgovor.' }, { status: 502 })
 
-  return NextResponse.json({ insight })
+    return NextResponse.json({ insight })
+  } catch (error) {
+    if (requestId && [400, 401, 403, 429].includes(error?.status)) await releaseUsage({ requestId }).catch(() => {})
+    else if (requestId) await markUsageUncertain({ requestId }).catch(() => {})
+    if (error?.code === 'AI_BUDGET_EXCEEDED') return NextResponse.json({ error: 'AI budget exceeded', code: error.code }, { status: 429 })
+    return NextResponse.json({ error: 'AI ili evidencija potrošnje nije dostupna.' }, { status: 503 })
+  }
 }

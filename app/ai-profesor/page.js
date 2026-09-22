@@ -127,11 +127,32 @@ export default function AIProfessorPage() {
   // Sidebar state
   const [selSubj,  setSelSubj]  = useState(null)
   const [userPlan, setUserPlan] = useState(null)  // 'pro' | 'starter' | null
-  const [usage,    setUsage]    = useState({ used: 0, limit: 150, budgetUsedPct: 0, costUsd: 0 })
+  const [usage,    setUsage]    = useState({ used: 0, limit: 150, budgetUsedPct: 0, costUsd: 0, budgetUsd: 0, available: false })
 
   const chatBodyRef = useRef(null)
   const inputRef    = useRef(null)
   const abortRef    = useRef(null)
+
+  const refreshUsage = useCallback(async () => {
+    try {
+      const response = await fetch('/api/ai/usage', { cache: 'no-store' })
+      if (!response.ok) throw new Error('Usage unavailable')
+      const stats = await response.json()
+      const budget = Number(stats.budgetMicroUsd)
+      const spent = Number(stats.usedMicroUsd)
+      if (!Number.isFinite(budget) || budget <= 0 || !Number.isFinite(spent)) throw new Error('Invalid usage')
+      setUsage({
+        used: Number(stats.messageCount) || 0,
+        limit: Number(stats.messageLimit) || 150,
+        budgetUsedPct: Math.min(100, Math.round(100 * (spent + Number(stats.reservedMicroUsd || 0)) / budget)),
+        costUsd: spent / 1000000,
+        budgetUsd: budget / 1000000,
+        available: true,
+      })
+    } catch {
+      setUsage(prev => ({ ...prev, available: false }))
+    }
+  }, [])
 
   /* ─── Auth + plan check ─────────────────────── */
   useEffect(() => {
@@ -152,21 +173,7 @@ export default function AIProfessorPage() {
         : null
       setUserPlan(planType)
 
-      // Miesečni usage stats (samo za PRO)
-      if (planType === 'pro') {
-        const { data: statsData } = await supabase
-          .rpc('get_ai_usage_stats', { p_user_id: user.id })
-
-        if (statsData) {
-          setUsage({
-            used:          statsData.message_count || 0,
-            limit:         statsData.limit || 150,
-            budgetUsedPct: statsData.budget_used_pct || 0,
-            costUsd:       statsData.cost_usd || 0,
-            resetsAt:      statsData.resets_at,
-          })
-        }
-      }
+      if (planType === 'pro') await refreshUsage()
 
       // Plan učenja
       const { data: planData } = await supabase
@@ -191,7 +198,7 @@ export default function AIProfessorPage() {
       setLoadingPlan(false)
     }
     init()
-  }, [user])
+  }, [user, supabase, refreshUsage])
 
   /* ─── Welcome poruka ────────────────────────── */
   useEffect(() => {
@@ -277,7 +284,11 @@ export default function AIProfessorPage() {
       setMessages(m => [...m, { role: 'ai', text: 'AI Profesor je dostupan uz **PRO plan** (19,99 €/mj). Nadogradi na /pro.', id: Date.now() }])
       return
     }
-    if (usage.used >= usage.limit) {
+    if (!usage.available) {
+      setMessages(m => [...m, { role: 'ai', text: 'Podaci o AI potrošnji trenutno nisu dostupni. Pokušaj ponovo.', id: Date.now(), isLimit: true }])
+      return
+    }
+    if (usage.used >= usage.limit || usage.budgetUsedPct >= 100) {
       setMessages(m => [...m, { role: 'ai', text: `Dostigao si miesečni limit od **${usage.limit} poruka**. Resetira se 1. u miesecu. 🌙`, id: Date.now(), isLimit: true }])
       return
     }
@@ -287,43 +298,6 @@ export default function AIProfessorPage() {
     const userMsg = { role: 'user', text: q, id: Date.now() }
     setMessages(m => [...m, userMsg])
     setLoading(true)
-
-    // Rate limit + token tracking
-    try {
-      const estimatedInput  = 400 + (messages.slice(1).slice(-8).reduce((s, m) => s + m.text.length, 0) / 4) + (q.length / 4)
-      const estimatedOutput = 300
-
-      const { data: rpcResult, error: rpcErr } = await supabase.rpc('check_and_increment_ai_usage', {
-        p_user_id:       user.id,
-        p_input_tokens:  Math.round(estimatedInput),
-        p_output_tokens: estimatedOutput,
-      })
-      if (rpcErr) throw rpcErr
-
-      if (!rpcResult.allowed) {
-        const reason = rpcResult.reason
-        const msg = reason === 'budget_limit'
-          ? `Dostigao si miesečni AI budžet ($3). Limit se resetira 1. u miesecu. 🌙`
-          : reason === 'message_limit'
-          ? `Dostigao si limit od **${rpcResult.limit} poruka** ovaj miesec. Resetira se 1. u miesecu. 🌙`
-          : 'Nemaš aktivan PRO plan za AI Profesor.'
-
-        setMessages(m => [...m, { role: 'ai', text: msg, id: Date.now(), isLimit: true }])
-        setLoading(false)
-        return
-      }
-
-      setUsage(prev => ({
-        ...prev,
-        used:          rpcResult.message_count,
-        budgetUsedPct: rpcResult.budget_used_pct || prev.budgetUsedPct,
-        costUsd:       rpcResult.cost_usd || prev.costUsd,
-      }))
-    } catch {
-      setMessages(m => [...m, { role: 'ai', text: 'Greška pri provjeri limita. Pokušaj ponovo.', id: Date.now() }])
-      setLoading(false)
-      return
-    }
 
     // Build history — preskoči welcome (index 0), zadrži zadnjih 8
     const allMsgs    = [...messages, userMsg]
@@ -397,8 +371,9 @@ export default function AIProfessorPage() {
 
     setLoading(false)
     setStreaming(false)
+    await refreshUsage()
     setTimeout(() => inputRef.current?.focus(), 50)
-  }, [input, messages, loading, user, userPlan, usage, buildSystemPrompt, supabase])
+  }, [input, messages, loading, user, userPlan, usage, buildSystemPrompt, refreshUsage])
 
   /* ─── Abort ─────────────────────────────────── */
   const abort = () => {
@@ -411,7 +386,7 @@ export default function AIProfessorPage() {
   const remaining  = Math.max(usage.limit - usage.used, 0)
   const usagePct   = usage.limit > 0 ? Math.min((usage.used / usage.limit) * 100, 100) : 0
   const usageColor = usagePct >= 90 ? '#f87171' : usagePct >= 70 ? '#e9b446' : '#3ecf6e'
-  const canSend    = !!user && userPlan === 'pro' && usage.used < usage.limit && !loading
+  const canSend    = !!user && userPlan === 'pro' && usage.available && usage.used < usage.limit && usage.budgetUsedPct < 100 && !loading
 
   /* ─── Loading ───────────────────────────────── */
   if (loadingPlan) return (
@@ -487,15 +462,15 @@ export default function AIProfessorPage() {
           {userPlan === 'pro' && (
             <div style={{ marginTop: 'auto', paddingTop: 16, borderTop: '1px solid rgba(255,255,255,.06)' }}>
               <div style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 6 }}>
-                <span style={{ color: usageColor, fontWeight: 700 }}>{remaining}</span> poruka preostalo
+                <span style={{ color: usageColor, fontWeight: 700 }}>{usage.available ? remaining : '—'}</span> poruka preostalo
               </div>
               <div style={{ height: 3, background: 'rgba(255,255,255,.06)', borderRadius: 99, overflow: 'hidden', marginBottom: 4 }}>
                 <div style={{ width: `${usagePct}%`, height: '100%', background: usageColor, borderRadius: 99, transition: 'width .4s' }} />
               </div>
-              {usage.budgetUsedPct > 0 && (
+              {usage.available && (
                 <>
                   <div style={{ fontSize: 10, color: 'var(--muted)', marginBottom: 3, marginTop: 6 }}>
-                    AI budžet: ${usage.costUsd?.toFixed(2) || '0.00'} / $3.00
+                    AI budžet: ${usage.costUsd.toFixed(2)} / ${usage.budgetUsd.toFixed(2)}
                   </div>
                   <div style={{ height: 3, background: 'rgba(255,255,255,.06)', borderRadius: 99, overflow: 'hidden', marginBottom: 4 }}>
                     <div style={{ width: `${usage.budgetUsedPct}%`, height: '100%', background: usage.budgetUsedPct > 80 ? '#f87171' : usageColor, borderRadius: 99, transition: 'width .4s' }} />
@@ -503,7 +478,7 @@ export default function AIProfessorPage() {
                 </>
               )}
               <div style={{ fontSize: 10, color: 'var(--muted)', marginTop: 2 }}>
-                PRO · 150 poruka/mj · $3 budžet · Reset 1. u mj.
+                PRO · {usage.limit} poruka/mj · {usage.available ? `$${usage.budgetUsd.toFixed(2)} budžet` : 'potrošnja nedostupna'} · Reset 1. u mj.
               </div>
             </div>
           )}
@@ -621,6 +596,7 @@ export default function AIProfessorPage() {
               placeholder={
                 !user                  ? 'Prijavi se za pristup...' :
                 userPlan !== 'pro'     ? 'AI Profesor je dostupan uz PRO plan...' :
+                !usage.available       ? 'Potrošnja trenutno nije dostupna' :
                 remaining === 0        ? 'Miesečni limit dostignut — resetira se 1. u miesecu' :
                 selSubj                ? `Pitaj o ${selSubj.name}...` :
                                          'Postavi pitanje o gradivu mature...'
@@ -662,7 +638,7 @@ export default function AIProfessorPage() {
             <span>Enter za slanje · Shift+Enter novi red</span>
             {userPlan === 'pro' && (
               <span style={{ color: remaining <= 10 ? '#f87171' : 'var(--muted)' }}>
-                {remaining} / {usage.limit} poruka ovaj mj.
+                {usage.available ? remaining : '—'} / {usage.limit} poruka ovaj mj.
                 {usage.costUsd > 0 && ` · $${usage.costUsd?.toFixed(2)}`}
               </span>
             )}

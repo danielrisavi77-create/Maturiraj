@@ -18,6 +18,7 @@ const securityMocks = vi.hoisted(() => ({
   createAdminClient: vi.fn(),
   requirePro: vi.fn(),
 }))
+vi.mock('server-only', () => ({}))
 
 vi.mock('@anthropic-ai/sdk', () => ({
   default: class AnthropicMock {
