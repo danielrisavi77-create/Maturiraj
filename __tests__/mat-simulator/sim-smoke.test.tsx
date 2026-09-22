@@ -279,3 +279,94 @@ describe('Sim: zaglavlje, sat i navigacija', () => {
     expect(budget.textContent).toContain('DIO 2');
   });
 });
+
+// Sim 3/4: kartica zadatka (QuestionPanel) i unos odgovora po tipu (AnswerInput)
+// zive u SimQuestion.tsx. Testovi ispod drze njihov DOM i ponasanje na mjestu.
+function examWithAids() {
+  const ex = FIX_EXAM();
+  ex.qs[0].context = 'Uvod uz prvi zadatak.';
+  ex.qs[0].steps = [{ txt: 'Zbroji.' }, { txt: 'Zapisi rezultat.' }];
+  return ex;
+}
+
+describe('Sim: kartica zadatka i unos odgovora', () => {
+  it('kartica prikazuje meta podatke, kontekst i tekst zadatka', () => {
+    const { container } = renderSim({ exam: examWithAids() });
+
+    const card = container.querySelector('.qcard');
+    expect(card).toBeTruthy();
+    expect(card.querySelector('.qnum').textContent).toBe('Zadatak 1/3');
+    expect(card.querySelector('.qmeta-sub').textContent).toContain('Skupovi i brojevi');
+    expect(card.textContent).toContain('Kontekst');
+    expect(card.textContent).toContain('Uvod uz prvi zadatak.');
+    expect(card.querySelector('.qtext').textContent).toContain('Koliko je 2 + 2?');
+    expect(card.querySelector('.qtext').style.fontSize).toBe('15px');
+  });
+
+  it('izbornik alata pali marker i mijenja velicinu teksta', () => {
+    const { container } = renderSim();
+    const openTools = () =>
+      fireEvent.click(container.querySelector('button[title="Više alata"]'));
+
+    openTools();
+    fireEvent.click(screen.getByText('Marker — označi ključno'));
+    expect(container.querySelector('.qtext.hl-mode')).toBeTruthy();
+    expect(container.querySelector('.hl-hint')).toBeTruthy();
+
+    // izbornik se zatvara nakon odabira, pa ga za mjerilo teksta treba opet otvoriti
+    openTools();
+    fireEvent.click(container.querySelector('button[title="Povećaj"]'));
+    expect(container.querySelector('.qtext').style.fontSize).toBe('16.5px');
+    fireEvent.click(container.querySelector('button[title="Smanji"]'));
+    expect(container.querySelector('.qtext').style.fontSize).toBe('15px');
+
+    // mjerilo teksta ne zatvara izbornik, pa je jos otvoren
+    fireEvent.click(screen.getByText('Lakše čitanje'));
+    expect(container.querySelector('.read-mode')).toBeTruthy();
+  });
+
+  it('MC: precrtavanje opcije se pamti i vraca, radni prostor je uz opcije', () => {
+    const { container } = renderSim();
+    const optB = container.querySelectorAll('.opt')[1];
+
+    fireEvent.click(optB.querySelector('.opt-elim'));
+    expect(container.querySelectorAll('.opt')[1].className).toContain('elim');
+    // klik na precrtanu opciju je vraca umjesto da je odabere
+    fireEvent.click(container.querySelectorAll('.opt')[1]);
+    expect(container.querySelectorAll('.opt')[1].className).not.toContain('elim');
+    expect(container.querySelector('.opt.sel')).toBeNull();
+
+    expect(container.textContent).toContain('Radni prostor');
+  });
+
+  it('unos po tipu: MC nema polje odgovora, sa i num ga imaju', () => {
+    const { container } = renderSim();
+    expect(container.querySelector('input.finp')).toBeNull();
+
+    fireEvent.click(screen.getByText(/Sljedeći/));
+    expect(container.querySelector('input.finp')).toBeTruthy();
+    expect(container.querySelectorAll('.opt')).toHaveLength(0);
+
+    fireEvent.click(screen.getByText(/Sljedeći/));
+    const num = container.querySelector('input.finp');
+    fireEvent.change(num, { target: { value: '9' } });
+    expect(container.querySelector('input.finp').value).toBe('9');
+  });
+
+  it('vjezba: samopouzdanje i ljestvica pomoci uz zadatak', () => {
+    const { container } = renderSim({ practice: true, exam: examWithAids() });
+
+    fireEvent.click(screen.getByText(/Pomoć i alati/));
+    expect(screen.getByText(/Otkrij prvi korak/)).toBeTruthy();
+    fireEvent.click(screen.getByText(/Otkrij prvi korak/));
+    expect(container.querySelectorAll('.ah-step')).toHaveLength(1);
+    expect(container.textContent).toContain('Zbroji.');
+    expect(screen.getByText(/Otkrij sljedeći korak/)).toBeTruthy();
+
+    expect(screen.queryByText('Koliko si siguran/na?')).toBeNull();
+    fireEvent.click(container.querySelectorAll('.opt')[0]);
+    expect(screen.getByText('Koliko si siguran/na?')).toBeTruthy();
+    fireEvent.click(screen.getByText(/Pogađam/));
+    expect(container.querySelector('.pill.pill-blue')).toBeTruthy();
+  });
+});
