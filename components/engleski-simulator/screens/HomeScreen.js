@@ -18,10 +18,43 @@ export function DisclaimerModal({ onClose }) {
   )
 }
 
+/**
+ * Kartica nedovršene sesije. Sve je već formatirano u EngleskiSimulatoru
+ * (Date.now() ne smije u render) — ovdje samo prikaz i dvije akcije.
+ *
+ * 'submitOnResume' znači da je rok zadnje cjeline istekao: klik tada ne nastavlja
+ * ispit nego ga predaje, pa i gumb mora tako pisati (istekla cjelina koja nije
+ * zadnja i dalje se NASTAVLJA sljedećom).
+ *
+ * @param {{resumeCard: {label: string, modeLabel: string, answered: number,
+ *   total: number, timeLabel: string|null, expired: boolean, submitOnResume: boolean},
+ *   onResume: Function, onDiscard: Function}} props
+ */
+function ResumeCard({ resumeCard, onResume, onDiscard }) {
+  const { label, modeLabel, answered, total, timeLabel, expired, submitOnResume } = resumeCard
+  return e('div', { className: 'resume-card' + (expired ? ' expired' : '') },
+    e('div', { className: 'resume-card-ico' }, expired ? '⌛' : '⏸'),
+    e('div', { className: 'resume-card-body' },
+      e('div', { className: 'resume-card-title' }, submitOnResume ? 'Ispit čeka predaju' : 'Nastavi ispit'),
+      e('div', { className: 'resume-card-sub' },
+        label + ' · ' + modeLabel + ' · ' + answered + '/' + (total || '?'),
+      ),
+      timeLabel && e('div', { className: 'resume-card-time' }, timeLabel),
+    ),
+    e('div', { className: 'resume-card-actions' },
+      e('button', { className: 'btn btn-gold', onClick: onResume }, submitOnResume ? 'Predaj i vidi rezultat' : 'Nastavi'),
+      e('button', { className: 'btn btn-g', onClick: onDiscard }, 'Odbaci'),
+    ),
+  )
+}
+
 export function Home({
   onModeSelect,
   userData,
   toggles,
+  resumeCard,
+  onResumeSession,
+  onDiscardSession,
   goErrors,
   goBookmarks,
   goStats,
@@ -99,6 +132,7 @@ export function Home({
         e('h1', null, 'Engleski jezik ', e('em', null, '— Simulator mature')),
         e('p', null, 'Vježbaj stvarne ispite državne mature iz engleskog jezika. Sva pitanja s originalnih NCVVO ispita za obje razine — s točnim odgovorima i objašnjenjima.'),
       ),
+      resumeCard && e(ResumeCard, { resumeCard, onResume: onResumeSession, onDiscard: onDiscardSession }),
       userData && userData.xp >= 0 && (userData.history || []).length > 0 && e('div', { style: { maxWidth: 480, margin: '-16px auto 36px', padding: '0 4px' } },
         e('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 8 } },
           e('div', { className: 'level-badge' }, '⭐ ' + (levelNames[getLevel(userData.xp)] || 'Početnik')),
