@@ -5,6 +5,7 @@ exports[`MODES > snapshot tablice modova 1`] = `
   "adaptive": {
     "feature": "adaptive",
     "keysForFree": 0,
+    "previewFeature": null,
     "resumable": false,
     "syntheticKeyPrefix": "adaptive_",
     "timer": false,
@@ -13,6 +14,7 @@ exports[`MODES > snapshot tablice modova 1`] = `
   "daily": {
     "feature": "daily",
     "keysForFree": 0,
+    "previewFeature": null,
     "resumable": false,
     "syntheticKeyPrefix": "daily_",
     "timer": true,
@@ -21,6 +23,7 @@ exports[`MODES > snapshot tablice modova 1`] = `
   "errors": {
     "feature": "errors",
     "keysForFree": 0,
+    "previewFeature": null,
     "resumable": false,
     "syntheticKeyPrefix": "errors_session",
     "timer": false,
@@ -29,6 +32,7 @@ exports[`MODES > snapshot tablice modova 1`] = `
   "exam": {
     "feature": "exam",
     "keysForFree": 0,
+    "previewFeature": null,
     "resumable": true,
     "syntheticKeyPrefix": null,
     "timer": true,
@@ -37,6 +41,7 @@ exports[`MODES > snapshot tablice modova 1`] = `
   "filter": {
     "feature": "practice",
     "keysForFree": 0,
+    "previewFeature": null,
     "resumable": false,
     "syntheticKeyPrefix": "filter_session_",
     "timer": false,
@@ -45,6 +50,7 @@ exports[`MODES > snapshot tablice modova 1`] = `
   "practice": {
     "feature": "practice",
     "keysForFree": 3,
+    "previewFeature": "practice_preview",
     "resumable": true,
     "syntheticKeyPrefix": null,
     "timer": false,
@@ -53,6 +59,7 @@ exports[`MODES > snapshot tablice modova 1`] = `
   "practice_timed": {
     "feature": "practice",
     "keysForFree": 3,
+    "previewFeature": "practice_preview",
     "resumable": true,
     "syntheticKeyPrefix": null,
     "timer": true,
@@ -61,6 +68,7 @@ exports[`MODES > snapshot tablice modova 1`] = `
   "srs": {
     "feature": "srs",
     "keysForFree": 0,
+    "previewFeature": null,
     "resumable": false,
     "syntheticKeyPrefix": "srs_session",
     "timer": false,

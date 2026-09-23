@@ -10,9 +10,10 @@ import { gradeStatus, pctOf } from '@/lib/discere/grade-scale'
 export { FREE_LIMIT }
 
 /**
- * Tier u `userAccess` je kanonski ('starter'), ali stariji pozivatelji i testovi
- * još šalju povijesni 'standard'. Sve provjere ovdje idu kroz normalizeTier, pa
- * oba oblika znače isto, a nepoznato pada na 'free' (fail closed).
+ * `userAccess.subscriptionTier` je UI oblik tiera i povijesno nosi 'standard' za
+ * plan koji billing zove 'starter'. Kanonsko nazivlje živi u lib/billing i
+ * lib/discere; ovdje sve provjere idu kroz normalizeTier, pa oba oblika znače
+ * isto, a nepoznato pada na 'free' (fail closed).
  *
  * @typedef {'free'|'starter'|'standard'|'pro'} SubscriptionTier
  *
@@ -32,6 +33,14 @@ export { FREE_LIMIT }
  * Maps useAuth hook output → UserAccess tier string.
  * Call this once at the page level.
  *
+ * Plaćeni ne-Pro plan ovdje namjerno ostaje 'standard', a ne kanonski 'starter':
+ * potrošači ovog objekta (SubscriptionGate, ResultsSummary, PaywallModal, hrv i
+ * eng ekrani) uspoređuju doslovni niz 'standard'. Kad bi ova funkcija vratila
+ * 'starter', SubscriptionGate bi plaćenog Standard korisnika rangirao kao free i
+ * zaključao mu sadržaj, a kartica rezultata bi mu izgubila oznaku plana.
+ * Preslikavanje na kanonsko nazivlje radi normalizeTier na ulazu u svaku
+ * provjeru prava, pa 'standard' i 'starter' ovdje imaju identična prava.
+ *
  * @param {{ user: any, isPro: boolean, isPaid: boolean }} authState
  * @returns {UserAccess}
  */
@@ -39,7 +48,7 @@ export function buildUserAccess(authState) {
   const isLoggedIn = !!authState.user
   let subscriptionTier = 'free'
   if (authState.isPro)       subscriptionTier = 'pro'
-  else if (authState.isPaid) subscriptionTier = 'starter'
+  else if (authState.isPaid) subscriptionTier = 'standard'
   return { subscriptionTier, isLoggedIn }
 }
 
