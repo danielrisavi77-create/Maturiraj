@@ -140,7 +140,7 @@ describe('canonical Discere exam schema', () => {
   it('supports audio groups with a referenced audio asset', () => {
     const question = {
       id: 'g1', type: 'audio_group', prompt: 'Poslušaj zapis.', points: 1, topic: 'jezik', sourceRef,
-      assets: [{ type: 'audio', src: '/discere/test/audio.mp3', source: 'official' }], explanation: null,
+      assets: [{ type: 'audio', src: '/discere/test/audio.mp3' }], explanation: null,
       children: [{ ...mc, id: 'g1.1', sourceRef: { page: 3, task: '1.1' } }],
     }
     expect(validateExam(wrap(question)).valid).toBe(true)

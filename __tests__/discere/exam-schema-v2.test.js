@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { SCHEMA_VERSION, upgradeExam, validateExam } from '@/lib/discere/exam-schema'
+import { matchesNumericAnswer } from '@/lib/discere/numeric-answer'
 
 function baseMeta(overrides = {}, questionCount = 1, maxPoints = 1) {
   return {
@@ -184,19 +185,23 @@ describe('schema v2 — odgovori i stimulusi', () => {
     }
   }
 
-  it('prihvaća relativeTolerance uz absoluteTolerance', () => {
+  it('prihvaća numerički ključ s absoluteTolerance', () => {
+    expect(validateExam(wrap(shortQuestion({ absoluteTolerance: '0.01' }))).valid).toBe(true)
+  })
+
+  it('odbija relativeTolerance dok ga ocjenjivanje ne primjenjuje', () => {
     const question = shortQuestion({ absoluteTolerance: '0.01', relativeTolerance: '0.02' })
+    expect(codes(wrap(question))).toContain('RELATIVE_TOLERANCE_UNSUPPORTED')
+    expect(codes(wrap(shortQuestion({ relativeTolerance: '0.02' })))).toContain('RELATIVE_TOLERANCE_UNSUPPORTED')
+  })
+
+  // Veza sheme i ocjenjivanja: ključ koji shema proglasi valjanim mora dobiti svoje bodove.
+  it('numerički ključ koji shema prihvaća ocjenjivanje priznaje', () => {
+    const question = shortQuestion({ absoluteTolerance: '0.01' })
     expect(validateExam(wrap(question)).valid).toBe(true)
-  })
-
-  it('odbija negativan relativeTolerance', () => {
-    const question = shortQuestion({ absoluteTolerance: '0.01', relativeTolerance: '-0.02' })
-    expect(codes(wrap(question))).toContain('INVALID_RELATIVE_TOLERANCE')
-  })
-
-  it('odbija relativeTolerance koji nije broj', () => {
-    const question = shortQuestion({ relativeTolerance: 'dva posto' })
-    expect(codes(wrap(question))).toContain('INVALID_RELATIVE_TOLERANCE')
+    expect(matchesNumericAnswer('2.5', question.answer)).toBe(true)
+    expect(matchesNumericAnswer('2.505', question.answer)).toBe(true)
+    expect(matchesNumericAnswer('2.7', question.answer)).toBe(false)
   })
 
   function fillQuestion(extra) {
@@ -284,15 +289,29 @@ describe('schema v2 — assets i prava', () => {
     expect(codes(wrap(mediaQuestion({ ...imageAsset, rights: { holder: 'NCVVO' } })))).toContain('INVALID_ASSET_RIGHTS')
   })
 
-  it('traži source na audio assetu', () => {
-    const question = {
-      id: 'g1', type: 'audio_group', prompt: 'Poslušaj.', points: 1, topic: 'jezik', sourceRef,
-      assets: [{ type: 'audio', src: '/discere/test/audio.mp3' }],
-      children: [{ ...mc, id: 'g1.1', sourceRef: { page: 3, task: '1.1' } }],
-    }
-    expect(codes(wrap(question))).toContain('AUDIO_ASSET_SOURCE_REQUIRED')
-    const fixed = { ...question, assets: [{ ...question.assets[0], source: 'tts' }] }
+  const audioQuestion = {
+    id: 'g1', type: 'audio_group', prompt: 'Poslušaj.', points: 1, topic: 'jezik', sourceRef,
+    assets: [{ type: 'audio', src: '/discere/test/audio.mp3' }],
+    children: [{ ...mc, id: 'g1.1', sourceRef: { page: 3, task: '1.1' } }],
+  }
+
+  it('traži source na audio assetu u v2', () => {
+    expect(codes(wrap(audioQuestion))).toContain('AUDIO_ASSET_SOURCE_REQUIRED')
+    const fixed = { ...audioQuestion, assets: [{ ...audioQuestion.assets[0], source: 'tts' }] }
     expect(validateExam(wrap(fixed)).valid).toBe(true)
+  })
+
+  it('ne traži source na audio assetu u v1 ispitu', () => {
+    const exam = wrap(audioQuestion)
+    exam.meta.schemaVersion = 1
+    expect(validateExam(exam).valid).toBe(true)
+  })
+
+  // upgradeExam ne izmišlja podrijetlo zapisa: prijelaz na v2 traži svjesnu dopunu.
+  it('upgradeExam v1 audio asset ostavlja bez source-a, pa v2 traži dopunu', () => {
+    const v1 = wrap(audioQuestion)
+    v1.meta.schemaVersion = 1
+    expect(codes(upgradeExam(v1))).toContain('AUDIO_ASSET_SOURCE_REQUIRED')
   })
 })
 

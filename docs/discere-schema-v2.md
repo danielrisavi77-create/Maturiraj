@@ -18,8 +18,9 @@ Testovi: `__tests__/discere/exam-schema.test.js` (v1 ugovor), `__tests__/discere
   Mapiranje izvora: `official → official`, `maturiraj|maturiraj-reviewed → maturiraj`,
   `ai|ai-draft → ai-draft`, `ai-opus-reviewed → ai-opus-reviewed`, ostalo → `maturiraj`.
   Ispit koji je već v2 vraća se nepromijenjen (ista referenca), kao i ispit s nepodržanom verzijom.
-  `upgradeExam` ne izmišlja `assets[].source` — v1 ispit s audio assetom traži ručnu dopunu
-  (danas takvog sadržaja nema).
+  `upgradeExam` ne izmišlja `assets[].source` (podrijetlo zapisa nije izvedivo iz sadržaja), pa
+  nadograđeni v1 ispit s audio assetom traži svjesnu dopunu tog polja. Dok ostaje v1, valjan je
+  bez ijedne izmjene.
 
 ## Nova polja zadatka
 
@@ -60,15 +61,20 @@ solution: {
 - `explanation {text, source}` iz v1 i dalje je dopušten i validira se (`INVALID_EXPLANATION`);
   čitači ga tretiraju kao `solution.summary`.
 
-### `answer.numeric.relativeTolerance`
+### `answer.numeric.relativeTolerance` — rezervirano, zasad odbijeno
 
-Uz postojeći `absoluteTolerance`; string koji `parseRational` čita kao nenegativan broj ili
-razlomak (`'0.02'`, `'1/50'`). Greška: `INVALID_RELATIVE_TOLERANCE`.
+Polje je predviđeno planom, ali ga shema **odbija** (`RELATIVE_TOLERANCE_UNSUPPORTED`) jer
+ocjenjivanje još ne zna za njega:
 
-Shema ga validira odvojeno od `lib/discere/numeric-answer.js` (koji prihvaća samo svoj skup
-ključeva), pa se polje prije `isNumericAnswer` provjere ukloni iz kopije pravila.
-**Napomena:** `matchesNumericAnswer` još ne primjenjuje relativnu toleranciju pri ocjenjivanju —
-to je izmjena u `numeric-answer.js`, izvan ove grupe.
+- `lib/discere/numeric-answer.js` (`isNumericAnswer`) dopušta samo ključeve `absoluteTolerance`,
+  `domain` i `unit`; nepoznat ključ ruši provjeru cijeloga pravila.
+- Zato bi `matchesNumericAnswer` vratio `false` za **svaki** odgovor, uključujući službeni ključ,
+  pa bi zadatak s relativnom tolerancijom bio neocjenjiv (0 bodova u `lib/discere/scoring.js`).
+
+Autoru je jedina ispravna tolerancija danas `absoluteTolerance`. Kad `numeric-answer.js` dobije
+relativnu toleranciju (zasebna grupa), ovdje se zamjenjuje odbijanje provjerom oblika
+(nenegativan decimalni ili razlomački string, `'0.02'`, `'1/50'`) i dodaje test koji veže polje
+uz ocjenjivanje.
 
 ### Stimulusi
 
@@ -91,7 +97,10 @@ assets: [{ type: 'audio', src: '…', source: 'tts', rights: { holder: 'Maturira
 ```
 
 - `source`: `official | maturiraj | tts` (`INVALID_ASSET_SOURCE`).
-- Audio asset **mora** imati `source` (`AUDIO_ASSET_SOURCE_REQUIRED`); za ostale je opcionalan.
+- Audio asset **mora** imati `source` (`AUDIO_ASSET_SOURCE_REQUIRED`) — pravilo vrijedi samo za
+  `meta.schemaVersion === 2` (i za `validateQuestionSet` bez mete, koji se ravna po aktualnoj
+  verziji). v1 ispit s audiom ostaje valjan bez izmjena; `source` se dopunjuje kad se ispit
+  prevede na v2. Za ostale vrste asseta `source` je opcionalan.
 - `rights` traži `holder` i `basis` kad je prisutan (`INVALID_ASSET_RIGHTS`).
 - Pravilo za `image.alt` ostaje nepromijenjeno.
 
