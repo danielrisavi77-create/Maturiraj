@@ -186,8 +186,8 @@ vrijednošću **0**. Baseline smije **samo padati**.
 ### 7. Regeneracijski lanci
 
 Ako predmet ima regeneracijski lanac (`colocate-svg.mjs`, `build-engine.mjs`, sociološki
-monolit `content/discere/soc.html`), razdvajanje javnog i tajnog dijela mora biti **korak u
-tom lancu** — ne ručni zahvat nakon generiranja. Inače prva sljedeća regeneracija vrati
+monolit `public/sim/sociologija.html`), razdvajanje javnog i tajnog dijela mora biti **korak
+u tom lancu** — ne ručni zahvat nakon generiranja. Inače prva sljedeća regeneracija vrati
 ključeve u javni payload.
 
 ### 8. Stanje po predmetima
@@ -197,7 +197,116 @@ ključeve u javni payload.
 | engleski (`eng`) | **migriran** (Faza 1) | `content/eng/exams/<examKey>.json` | `lib/data/eng/secrets/<examKey>.json` |
 | hrvatski (`hrv`) | nije migriran | statički uvoz u `HrvatskiSimulator.jsx` | — |
 | matematika (`mat`) | nije migriran | `content/simulator/mat/exams/*.mjs` (uz `qImages`) | — |
-| sociologija (`soc`) | nije migriran | monolitni HTML u `public/` | — |
+| sociologija (`soc`) | **migriran** (Faza 2) | `content/soc/exams/<examKey>.json` | `lib/data/soc/secrets/<examKey>.json` |
+
+#### Sociologija — što se točno promijenilo
+
+Sociologija nije modul nego JEDAN statički HTML (`public/sim/sociologija.html`, 1,06 MB) koji
+se poslužuje iz `public/` bez ijedne provjere: 32 ispita, 1718 pitanja, 1715 `sol:` i 721
+`exp:` bili su dohvatljivi običnim GET-om. Monolit je usto postojao u **dvije** kopije —
+`content/discere/soc.html` nije imao nijednog čitatelja u kodu (samo `docs/` i baseline), bio
+je stariji od one u `public/` (sadržavao je pitanja ispravljena u auditu) i **obrisan je**:
+dvije kopije banke su dvostruko curenje i nejasan izvor istine.
+
+`scripts/soc-split-solutions.mjs` acornom nalazi `const EXAMS={…}` i 32 `QS_*` niza u inline
+scriptu, evaluira ih u `vm`-u i razdvaja na javni payload (`content/soc/exams/<key>.json`) i
+tajni store (`lib/data/soc/secrets/<key>.json`), a u HTML-u ostavlja `let EXAMS={}` uz inline
+`SOC_EXAM_META` (ključevi, godine, rokovi, trajanje, broj pitanja i MC pitanja — ništa od
+toga ne otkriva rješenje, a Home ekran to treba prije prvog dohvata). Rez ide isključivo po
+granicama izjava iz AST-a (balance-safe), skripta ima `--dry-run`, idempotentna je i na kraju
+obavezno provjerava: broj ispita i pitanja nepromijenjen, nijedno pitanje u javnom payloadu
+nema tajno polje ni na kojoj dubini, tajni store ima unos za svaki `qid`, HTML se i dalje
+parsira. HTML je pao s 1 065 370 na 467 089 znakova.
+
+`EXAM_CONTEXT` (kontekstni ulomci, 105 KB) ostaje inline: izvorni NCVVO materijal bez
+ključeva. `qid` se normalizira u string — ocjenjivačka ruta zadržava samo odgovore čiji je id
+string, pa bi brojčani id iz monolita tiho dao nula točnih. Za `ms` pitanja se emitira
+izvedeni `nsel` (`sol.cls.length`), jer MSQ bezuvjetno ispisuje „Odaberi N odgovora“.
+
+Ocjenjivanje je prijepis `chk`/`grade`/`calcXpGain` iz istog HTML-a u
+`lib/sociologija/scoring.js` (HTML ih zadržava jer plaćeni tier ocjenjuje lokalno).
+`__tests__/discere/soc-scoring-parity.test.js` izvlači referentne funkcije acornom ravno iz
+isporučenog HTML-a i uspoređuje ih s modulom nad sva 32 ispita i 3 skupa odgovora — 5154
+usporedbi po pitanju plus `cor/total/pct/ocjena` po ispitu. Poznata iznimka: 2018_jesen ima
+tri `mc` pitanja (33_1, 34_1, 35_1) bez `sol` u izvoru; i modul i engine za njih vraćaju
+`null`, a test ih nabraja poimence. Čuvar `if(!q||!q.sol) return null` u engineu nije
+kozmetika: free korisnik u ispitnom modu dobiva SVA pitanja bez ključa, pa bi bez njega
+prvo renderiranje ispita bilo TypeError.
+
+`SOC_FREE_DEMO` (`2025_ljeto`, `2025_jesen`) preselio je iz
+`app/discere/sociologija/SociologijaClient.jsx` u `lib/exam-secrets/free-policy.js`, pa ga
+sada iz istog izvora čitaju i klijent (`DISCERE_CONFIG.allowed`) i poslužitelj
+(`allowedExamKeys(tier, 'soc')`).
+
+#### Sociologija — most: engine u iframeu nikad ne zove mrežu
+
+Ostali predmeti su moduli i sami dohvaćaju svoj ispit. Sociologija je statički asset iz
+`public/`, pa bi dohvat iz njega značio da o tome što se traži s poslužitelja odlučuje
+datoteka koju svatko može otvoriti izravno. Zato mrežu drži **isključivo**
+`app/discere/sociologija/SociologijaClient.jsx` (iza `PlanGate`-a), a engine s njim
+razgovara postMessageom — isti most koji je već nosio `DISCERE_CONFIG`/`DISCERE_SAVE`:
+
+| poruka | smjer | značenje |
+| --- | --- | --- |
+| `DISCERE_NEED_EXAM {key, mode}` | iframe → parent | daj mi ispit (`key:"*"` = cijela banka) |
+| `DISCERE_EXAMS {key, exam}` | parent → iframe | envelope rute `GET /api/sim/soc/exam/<key>` |
+| `DISCERE_EXAM_ERROR {key, mode, status, error}` | parent → iframe | dohvat nije uspio |
+| `DISCERE_EXAMS_DONE {delivered, total}` | parent → iframe | kraj skupnog dohvata |
+| `DISCERE_SUBMIT {examKey, answers, qTimes, examMode, attemptId, durationSec?}` | iframe → parent | predaja |
+| `DISCERE_GRADE {attemptId, result}` | parent → iframe | odgovor `POST /api/sim/soc/grade` |
+| `DISCERE_GRADE_ERROR {attemptId, status, retryAfterSec, error}` | parent → iframe | predaja odbijena |
+
+Posljedice koje nisu očite iz popisa poruka:
+
+- **Način rada je dio ključa keša**, i kod roditelja i u engineu. Isti ispit u vježbanju
+  smije nositi ključ za prvih `FREE_LIMIT` pitanja, a u ispitnom modu nijedan; kad bi se
+  payload iz vježbanja upotrijebio u simulaciji, prekidač `qs.some(q => q.sol)` bi lagao.
+- **Timer ne kreće prije pitanja.** Ulazak u ispit (`goExam`/`goModeSelect`/`goExamMode`/
+  `goPractice`/`goPracticeTimer`) prvo traži ispit i prikazuje ekran čekanja; `Sim` se
+  montira tek kad pitanja stignu, pa timer ne može krenuti ranije.
+- **Free nikad ne radi skupni dohvat.** `socFeatureGate()` stoji PRIJE `withAllExams(…)` u
+  svakom ekranu nad cijelom bankom (Pregled, Filter, Greške, Bookmarci, Flashcards, Dnevni
+  izazov, SRS, Virtualni ispit), a roditelj `key:"*"` za free odbija s 403. Home i
+  ModeSelect popis ispita čitaju iz `SOC_EXAM_META`, pa ne traže ništa.
+- **Predaja uvijek ide na poslužitelj.** S punim ključevima (`keys:"full"`) engine smije
+  ocijeniti lokalno radi trenutnog prikaza, ali povijest, XP i `sim_progress` idu po
+  rezultatu iz `DISCERE_GRADE`. Kod `keys:"partial"` lokalni rezultat ne bi bio nepotpun
+  nego KRIV (pitanju bez ključa `chk` vraća `null`, pa ispada iz brojnika a ostaje u
+  nazivniku), pa se tada čeka poslužitelja.
+- **`sim_progress` piše ruta.** `DISCERE_RESULT` nosi `serverSaved`; preglednik upisuje
+  redak samo kad je `false` — dakle kad je ruta predaju odbila (mreža, 429), a engine je s
+  vlastitim ključevima izračunao rezultat lokalno. Taj rezervni upis nosi i **`attemptId`**
+  (`saveSimResult` ga šalje kao `attempt_id`): „ruta je odbila“ i „ruta je ocijenila, ali se
+  odgovor izgubio“ izvana izgledaju isto, pa je djelomični jedinstveni indeks
+  `(user_id, attempt_id)` jedino što u drugom slučaju sprječava drugi redak za isti pokušaj.
+  Bez otiska bi upis prošao kao `NULL` redak (indeks vrijedi samo `where attempt_id is not
+  null`) i ispit bi se brojao dvaput u povijesti, napretku i percentilu.
+- **Nacrt ispita** (`disc_soc_exam_<key>_<exam|practice|practice_timed|plain>`, TTL 6 h) nosi
+  `answers`, `qTimes`, `cur`, **`deadline`** i `attemptId`. Rok je apsolutan trenutak, ne
+  preostale sekunde: bez njega osvježavanje vrati pun timer i 90-minutna simulacija se
+  produljuje unedogled. Istekao rok predaje ispit sam. Način rada je dio ključa **uključujući
+  timer**: vježbanje otkriva točan odgovor po pitanju, pa bi zajednički nacrt prenio već
+  viđena rješenja u vježbanje s timerom, a njegov rok u netimirano vježbanje. `attemptId` se
+  zapisuje **prije** prelaska na ekran rezultata — efekt koji nacrt piše izlazi na `done`, pa
+  bi otisak stvoren kasnije nestao s osvježavanjem i ista bi predaja dobila novi id, potrošila
+  još jedno mjesto dnevnog budžeta i upisala drugi redak.
+- **Prazan `EXAMS` nije prazan rezultat.** Banka stiže s poslužitelja, pa svaki izračun nad
+  njom mora razlikovati „nema grešaka“ od „nemam podatke“: Statistika za plaćeni tier
+  dohvaća banku prije ulaska (`goStats` → `withAllExams`; za free je po ODLUCI 4 nikad ne
+  traži), blokovi koji je trebaju bez nje pišu poruku umjesto nule, prečaci na slabu temu
+  predaju **recept** za virtualnu vježbu koji se izvršava tek nakon dohvata (inače `Sim`
+  dobije `qs:[]` i sruši se), a brojač dospjelih SRS kartica na Home ekranu računa se iz
+  `SOC_EXAM_META` (`socSrsDueCount`), ne iz banke.
+- **Standalone otvaranje je fail-closed.** Bez roditelja nema odakle dobiti pitanja, pa
+  `/sim/sociologija.html` otvoren izravno pokaže poruku da se simulator otvara kroz
+  aplikaciju, a ne prazan ekran ni vječno „Učitavamo…“.
+
+Testovi: `__tests__/discere/soc-bridge.test.js` (roditelj u happy-domu + statička sidra nad
+HTML-om i nad redoslijedom `socFeatureGate` → `withAllExams`) i
+`__tests__/discere/soc-engine-flow.test.js`, koji **pokreće sam engine** (React iz
+`public/sim/vendor/` + inline skripta u happy-dom prozoru) i odigra cijeli put free i
+plaćenog korisnika, nastavak iz nacrta, auto-predaju po isteku roka i standalone slučaj.
+U tom testu je `window.fetch` mina, pa bi svaki mrežni poziv iz enginea srušio test.
 
 #### Engleski — što se točno promijenilo
 
@@ -409,4 +518,8 @@ serversku isporuku.
   i `exams-visa.json` su obrisani, pa je baseline pao s 59 532 na 50 496 pogodaka. Preostali
   veliki unos `lib/engleski-simulator/exams.js` (9036) je **izvor istine generatora**, nije u
   klijentskom grafu uvoza i test to zasebno tvrdi.
+- Sociologija je migrirana (Faza 2, vidi odjeljak 8): ključevi su izašli iz
+  `public/sim/sociologija.html` (4133 → 0 pogodaka), a druga kopija monolita
+  `content/discere/soc.html` (4133) je obrisana — baseline je pao s 50 496 na 42 230 pogodaka
+  u 172 datoteke.
 - Novi predmet koji pokuša ugurati ključ u javni payload pada na CI-ju, ne u produkciji.

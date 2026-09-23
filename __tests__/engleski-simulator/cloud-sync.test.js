@@ -261,6 +261,21 @@ describe('toSimProgressPayload', () => {
   it('bez topic_breakdown koristi prazan objekt', () => {
     expect(toSimProgressPayload(result, null, 'osnovna').topic_breakdown).toEqual({})
   })
+
+  // Rezervni upis (serverSaved === false) ide TEK kad ocjenjivačka ruta nije
+  // odgovorila — a ona je pokušaj možda ipak ocijenila i upisala. Djelomični
+  // jedinstveni indeks (user_id, attempt_id) vrijedi samo `where attempt_id is
+  // not null`, pa payload bez otiska prolazi i pokušaj se broji dvaput.
+  it('nosi attemptId do sim_progressa', () => {
+    const p = toSimProgressPayload({ ...result, attemptId: 'eng-attempt-42' }, tb, 'osnovna')
+    expect(p.attemptId).toBe('eng-attempt-42')
+  })
+
+  it('bez otiska šalje null, ne undefined polje', () => {
+    expect(toSimProgressPayload(result, tb, 'osnovna').attemptId).toBeNull()
+    expect(toSimProgressPayload({ ...result, attemptId: '' }, tb, 'osnovna').attemptId).toBeNull()
+    expect(toSimProgressPayload({ ...result, attemptId: 7 }, tb, 'osnovna').attemptId).toBeNull()
+  })
 })
 
 describe('shouldCloudSave (zaštita od spremanja prije hidracije)', () => {

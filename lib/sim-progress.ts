@@ -19,6 +19,14 @@ export type SimResult = {
   examMode: boolean
   topic_breakdown: Record<string, { correct: number; total: number; points: number; earned: number }>
   errorTags: unknown
+  /**
+   * Otisak pokušaja (ADR-001). Preglednik upisuje redak samo kad ocjenjivačka
+   * ruta nije odgovorila — a ona je pokušaj možda ipak ocijenila i upisala.
+   * S attempt_id djelomični jedinstveni indeks (user_id, attempt_id) tada odbije
+   * duplikat; bez njega NULL redak prolazi i pokušaj se broji dvaput (povijest,
+   * totalExams, percentil). Neobavezno je: predmeti koji otisak nemaju šalju null.
+   */
+  attemptId?: string | null
 }
 
 export async function saveSimResult(r: SimResult, durationSec?: number, subject = 'mat') {
@@ -41,12 +49,17 @@ export async function saveSimResult(r: SimResult, durationSec?: number, subject 
     topic_breakdown: r.topic_breakdown,
     error_tags: (r.errorTags ?? []),
     duration_sec: durationSec ?? null,
+    attempt_id: (typeof r.attemptId === 'string' && r.attemptId) ? r.attemptId : null,
   })
   if (error) {
     const code = (error as any)?.code
     const msg = ((error as any)?.message || '') + ((error as any)?.details || '')
     if (code === '42P01' || code === 'PGRST205' || /does not exist|schema cache|could not find the table/i.test(msg)) {
       console.warn('[sim-progress] sim_progress not migrated yet — attempt not persisted')
+    } else if (code === '23505') {
+      // Jedinstveni indeks (user_id, attempt_id): redak je već upisala
+      // ocjenjivačka ruta. To je ispravan ishod, ne kvar — pokušaj je spremljen.
+      console.warn('[sim-progress] pokušaj je već spremljen (attempt_id) — preskačem')
     } else {
       console.error('saveSimResult', error)
     }

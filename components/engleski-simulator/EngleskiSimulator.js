@@ -667,7 +667,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
   /** Rezultat slaže zajednički modul — isti zapis daje i automatska predaja
    * istekle sesije u roditelju (lib/engleski-simulator/examResult.js). */
   function buildResult(server) {
-    return buildExamResult(exam, answers, qTimes, examMode, server)
+    return buildExamResult(exam, answers, qTimes, examMode, server, attemptIdRef.current)
   }
 
   // Predaja je kraj sesije — snapshot i nacrt više nemaju što nastaviti. Briše
@@ -1250,7 +1250,7 @@ export default function EngleskiSimulator() {
         attemptId: id,
       })
       autoSubmitRef.current = false
-      finishExpiredSession(ex, snap, map, server)
+      finishExpiredSession(ex, snap, map, server, id)
     } catch (err) {
       const wait = err?.status === 429 ? err.retryAfterSec || 0 : 0
       // Razmak od 60 s nije odbijen pokušaj nego „pričekaj” — odbrojimo i
@@ -1266,7 +1266,7 @@ export default function EngleskiSimulator() {
       // sim_progress tada upisuje onExamDone (result.serverSaved === false).
       if (hasFullKeys(ex)) {
         setNotice(gradeErrorMessage(err) + ' Rezultat je izračunat lokalno.')
-        finishExpiredSession(ex, snap, map, null)
+        finishExpiredSession(ex, snap, map, null, id)
         return
       }
       // Bez ključeva rezultat može dati samo poslužitelj: snapshot OSTAJE, pa
@@ -1275,14 +1275,14 @@ export default function EngleskiSimulator() {
     }
   }
 
-  function finishExpiredSession(ex, snap, map, server) {
+  function finishExpiredSession(ex, snap, map, server, attemptId) {
     clearActiveSession()
     clearExamDraftsFor(ex.key)
     setResumeCard(null)
     setResumeFor(null)
     setExamScores(server?.scores || null)
     setNotice('Vrijeme je isteklo dok te nije bilo — ispit je predan s odgovorima koji su bili spremljeni.')
-    onExamDone(buildExamResult(ex, snap.answers || {}, {}, true, server), { exams: map })
+    onExamDone(buildExamResult(ex, snap.answers || {}, {}, true, server, attemptId), { exams: map })
   }
 
   function onResumeSession() {

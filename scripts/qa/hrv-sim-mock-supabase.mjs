@@ -217,6 +217,16 @@ const CORS = {
 /** Plan koji `subscriptions`/`profiles` prijavljuju za pojedini tier. */
 const PLAN_BY_TIER = { free: null, standard: 'starter', pro: 'pro' }
 
+// Namjerno kasnjenje odgovora na upite o planu (profiles/subscriptions).
+// U produkciji Supabase odgovara preko mreze, pa useAuth plan sazna TEK nakon
+// nekoliko stotina milisekundi do sekunde, dok lokalni iframe handshake
+// (DISCERE_READY) posalje odmah. Bez ovog kasnjenja mock odgovara u ~1 ms i
+// utrka se nikad ne dogodi, pa bi QA prolaz lazno tvrdio da je tier-gate
+// otporan. Ukljucuje se s QA_PLAN_DELAY_MS (npr. 1500).
+const PLAN_DELAY_MS = Number(process.env.QA_PLAN_DELAY_MS || 0)
+const PLAN_PATHS = new Set(['/rest/v1/profiles', '/rest/v1/subscriptions'])
+const wait = (ms) => new Promise((r) => setTimeout(r, ms))
+
 export function createMockSupabase({ onCall } = {}) {
   return http.createServer(async (req, res) => {
     const url = new URL(req.url, MOCK_URL)
@@ -230,6 +240,7 @@ export function createMockSupabase({ onCall } = {}) {
       res.writeHead(204, CORS)
       return res.end()
     }
+    if (PLAN_DELAY_MS > 0 && PLAN_PATHS.has(url.pathname)) await wait(PLAN_DELAY_MS)
 
     const session = userFromRequest(req)
     const tier = session ? session.tier : null
