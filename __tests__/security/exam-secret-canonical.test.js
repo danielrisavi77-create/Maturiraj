@@ -184,6 +184,77 @@ describe('lib/exam-secrets — rekurzija po children', () => {
     expect(mergeSecrets(group, null)).toBe(group)
   })
 
+  it('spajanje je DUBOKO — tajna na ugniježđenoj putanji ne briše javni stimulus', async () => {
+    const { mergeSecrets } = await import('@/lib/exam-secrets')
+    // Tajni zapis grupe realno ima samo transkript: stripQuestion ga skida na
+    // putanji stimulus.listening.transcript, pa je to jedino što ide u store.
+    // Plitki spread bi cijeli `stimulus` zamijenio ovim objektom i odnio tekst
+    // ulomka i maxPlays — plaćeni korisnik bi dobio ispit koji se ne da riješiti.
+    const group = {
+      id: 'g1',
+      type: 'audio_group',
+      stimulus: { text: 'JAVNI-TEKST', listening: { maxPlays: 2, src: '/audio/g1.mp3' } },
+      children: [{ id: 'g1q1', type: 'mc', points: 1, options: [{ id: 'A' }] }],
+    }
+    const secrets = {
+      g1: { stimulus: { listening: { transcript: 'TRANSKRIPT' } } },
+      g1q1: { answer: { correct: ['A'] } },
+    }
+
+    const merged = mergeSecrets(group, secrets)
+
+    expect(merged.stimulus.text).toBe('JAVNI-TEKST')
+    expect(merged.stimulus.listening.maxPlays).toBe(2)
+    expect(merged.stimulus.listening.src).toBe('/audio/g1.mp3')
+    expect(merged.stimulus.listening.transcript).toBe('TRANSKRIPT')
+    expect(merged.children[0].answer).toEqual({ correct: ['A'] })
+    // Javni objekt ostaje netaknut (kopija, ne mutacija).
+    expect(group.stimulus.listening.transcript).toBeUndefined()
+  })
+
+  it('grupna tajna se NE spaja dok svi listovi grupe nisu unutar kvote', async () => {
+    const { mergeSecretsWithAllowance } = await import('@/lib/exam-secrets')
+    // audio_group od 6 listova, kvota 3. Transkript je ključ SVIH šest zadataka
+    // (ADR-001 §2), pa bi ga spajanje zbog prva tri lista dalo dvostruko više
+    // nego što kvota dopušta.
+    const group = {
+      id: 'g1',
+      type: 'audio_group',
+      stimulus: { listening: { maxPlays: 2 } },
+      children: Array.from({ length: 6 }, (_, i) => ({ id: `g1q${i + 1}`, type: 'mc', points: 1 })),
+    }
+    const secrets = { g1: { stimulus: { listening: { transcript: 'CIJELI TEKST SNIMKE' } } } }
+    for (let i = 1; i <= 6; i += 1) secrets[`g1q${i}`] = { answer: { correct: ['A'] } }
+
+    const partial = mergeSecretsWithAllowance([group], secrets, 3)
+    expect(partial.mergedLeaves).toBe(3)
+    expect(partial.qs[0].stimulus.listening.transcript).toBeUndefined()
+    expect(JSON.stringify(partial.qs)).not.toContain('CIJELI TEKST SNIMKE')
+
+    // Cijela grupa unutar kvote → transkript je legitiman.
+    const whole = mergeSecretsWithAllowance([group], secrets, 6)
+    expect(whole.qs[0].stimulus.listening.transcript).toBe('CIJELI TEKST SNIMKE')
+    expect(whole.qs[0].stimulus.listening.maxPlays).toBe(2)
+  })
+
+  it('list bez unosa u tajnom storeu troši kvotu i ne drži grupu zatvorenom', async () => {
+    const { mergeSecretsWithAllowance } = await import('@/lib/exam-secrets')
+    const group = {
+      id: 'g1',
+      type: 'audio_group',
+      stimulus: { listening: {} },
+      children: [
+        { id: 'g1q1', type: 'mc', points: 1 },
+        { id: 'g1q2', type: 'essay', points: 1 },
+      ],
+    }
+    const secrets = { g1: { stimulus: { listening: { transcript: 'T' } } }, g1q1: { answer: { correct: ['A'] } } }
+
+    const { qs, mergedLeaves } = mergeSecretsWithAllowance([group], secrets, 2)
+    expect(mergedLeaves).toBe(1) // samo g1q1 ima što spojiti
+    expect(qs[0].stimulus.listening.transcript).toBe('T')
+  })
+
   it('brojanje listova i qid-ova ne ovisi o dubini', async () => {
     const { countLeavesIn, collectQuestionIds } = await import('@/lib/exam-secrets')
     expect(countLeavesIn(PUBLIC_QS)).toBe(GROUP_COUNT * LEAVES_PER_GROUP)
@@ -215,7 +286,11 @@ describe('GET /api/sim/[subject]/exam/[examKey] — kvota po listovima', () => {
     expect(payload.qs[1].stimulus?.listening?.transcript).toBeUndefined()
     expect(payload.qs[2].stimulus?.listening?.transcript).toBeUndefined()
     expect(raw).not.toContain('TAJNA-RAZRADA-1-4')
-    expect(raw).not.toContain('TAJNA-TRANSKRIPT-2')
+    // I PRVA grupa: kvota je pokrila 3 od 5 njezinih listova, a transkript je
+    // ključ svih pet — spojiti ga zbog prva tri znači tiho podići kvotu.
+    expect(payload.qs[0].stimulus?.listening?.transcript).toBeUndefined()
+    expect(payload.qs[0].stimulus?.text).toBe('Tekst ulomka 1.') // javni dio ostaje
+    for (let i = 1; i <= GROUP_COUNT; i += 1) expect(raw).not.toContain(`TAJNA-TRANSKRIPT-${i}`)
   })
 
   it('free ispitni mod ne otključava nijedan list i ne dira tajni store', async () => {
@@ -240,6 +315,11 @@ describe('GET /api/sim/[subject]/exam/[examKey] — kvota po listovima', () => {
 
     expect(payload.keys).toBe('full')
     expect(leafIdsWithKey(payload.qs)).toHaveLength(GROUP_COUNT * LEAVES_PER_GROUP)
+    // Cijela grupa je unutar kvote → transkript ide, ali javni stimulus OSTAJE:
+    // bez teksta ulomka plaćeni korisnik ispit ne može riješiti.
+    expect(payload.qs[0].stimulus.listening.transcript).toBe('TAJNA-TRANSKRIPT-1')
+    expect(payload.qs[0].stimulus.text).toBe('Tekst ulomka 1.')
+    expect(payload.qs[0].stimulus.listening.maxPlays).toBe(2)
   })
 })
 
@@ -310,6 +390,44 @@ describe('createCanonicalAdapter — ocjenjivanje', () => {
     expect(result.pct).toBe(100)
     expect(result.grade).toBe(grade(100))
     expect(result.grade).toBe(5)
+  })
+
+  it('osnovica ocjene je AUTOMATSKI dio — esej s earned=0 ne deflatira postotak', async () => {
+    const { createCanonicalAdapter } = await import('@/lib/exam-secrets/subjects/canonical')
+    const { grade } = await import('@/lib/engleski-simulator/scoring')
+    const adapter = createCanonicalAdapter('fil')
+
+    // Filozofija: 40 bodova automatski + esej 20 (33 % ispita). Učenik točno
+    // riješi SVE automatski ocjenjivo i napiše esej.
+    const auto = Array.from({ length: 40 }, (_, i) => ({
+      id: `a${i + 1}`,
+      type: 'mc',
+      points: 1,
+      options: [{ id: 'A' }, { id: 'B' }],
+    }))
+    const essay = { id: 'e1', type: 'essay', points: 20 }
+    const secrets = { e1: { rubric: 'R' } }
+    const answers = { e1: 'Esej.' }
+    for (const question of auto) {
+      secrets[question.id] = { answer: { kind: 'choice', correct: ['A'] } }
+      answers[question.id] = 'A'
+    }
+
+    const result = adapter.score([...auto, essay], secrets, answers)
+
+    // Po summary.percent bilo bi 40/60 = 67 → ocjena 2, iako učenik nije
+    // pogriješio ništa što se automatski ocjenjuje. eng adapter za istu izvedbu
+    // daje 100 (MANUAL_TYPES ne ulaze u nazivnik) — ljestvica je zajednička, pa
+    // mora biti i osnovica.
+    expect(result.pct).toBe(100)
+    expect(result.grade).toBe(grade(100))
+    expect(result.grade).toBe(5)
+    expect(result.progressRow.score_pct).toBe(100)
+    // Puni zbroj bodova ostaje zapisan — po njemu se rezultat poslije ručnog
+    // pregleda može dopuniti.
+    expect(result.progressRow.max_points).toBe(60)
+    expect(result.progressRow.earned_points).toBe(40)
+    expect(result.progressRow.manual_pending).toBe(true)
   })
 
   it('allowedExamKeys je null (bez popisa po ispitu), a nepostojeći ispit daje null', async () => {

@@ -527,6 +527,47 @@ export function baselineMissingKeys(baseline) {
   return SECRET_KEYS.filter((key) => !known.has(key))
 }
 
+/* ------------------------------------------------------------------ */
+/* Sloj B2 — javni ispitni payload, nulta tolerancija                  */
+/* ------------------------------------------------------------------ */
+
+/** Javni ispitni payload: `content/<predmet>/exams/<key>.json` (i pod-mape). */
+export function isPublicExamPayloadPath(relPosixPath) {
+  return /^content\/.+\/exams\/.+\.json$/i.test(relPosixPath)
+}
+
+/**
+ * Javni ispitni payload mjeri se PUNIM, današnjim popisom ključeva i smije imati
+ * TOČNO 0 pogodaka.
+ *
+ * Ratchet (sloj B) mjeri popisom pod kojim je baseline zapisan, inače bi svako
+ * proširenje izgledalo kao regresija u svakoj zatečenoj datoteci. Posljedica je
+ * da canonical ključevi (answer, explanation, solution, rubricDetails,
+ * officialText, transcript) u toj provjeri broje 0 sve do regeneracije
+ * baselinea — pa bi `content/<id>/exams/<key>.json` koji slučajno zadrži
+ * `answer`/`solution` prošao zeleno: točno ona vrsta curenja zbog koje su ti
+ * ključevi i dodani.
+ *
+ * Zato ove datoteke imaju vlastito pravilo, bez baselinea i bez ratcheta: to je
+ * payload koji ruta šalje u preglednik, ključ u njemu nikad nije zatečeno
+ * stanje nego kvar generatora (ADR-001 §3 i §6).
+ */
+export async function scanPublicExamPayloads({ root = REPO_ROOT } = {}) {
+  const leaks = []
+  await walk(path.join(root, 'content'), {
+    extensions: ['.json'],
+    onFile: async (absPath) => {
+      const rel = toPosix(path.relative(root, absPath))
+      if (!isPublicExamPayloadPath(rel)) return
+      const source = await readFile(absPath, 'utf8').catch(() => '')
+      const count = countSecretKeys(source, DEFAULT_MATCHERS)
+      if (count > 0) leaks.push({ file: rel, count })
+    },
+  })
+  leaks.sort((a, b) => a.file.localeCompare(b.file))
+  return { leaks, ok: leaks.length === 0, keys: [...SECRET_KEYS] }
+}
+
 export async function loadBaseline(baselinePath = BASELINE_PATH) {
   const raw = await readFile(baselinePath, 'utf8')
   const parsed = JSON.parse(raw)
@@ -626,11 +667,14 @@ export async function runScan({ root = REPO_ROOT } = {}) {
     baseline = null
   }
   // Ratchet mjeri istom mjerom kojom je baseline zapisan; prošireni popis
-  // ključeva je zaseban događaj (`pendingKeys`), ne regresija.
+  // ključeva je zaseban događaj (`pendingKeys`), ne regresija. Zato canonical
+  // ključevi do regeneracije baselinea u ratchetu broje 0 — a javni ispitni
+  // payload zbog toga ima vlastitu provjeru punim popisom (`payloads`).
   const pendingKeys = baselineMissingKeys(baseline)
   const keys = await scanSecretKeys({ root, keys: baseline?.keys })
+  const payloads = await scanPublicExamPayloads({ root })
   const ratchet = baseline ? compareToBaseline(keys, baseline) : null
-  return { isolation, keys, ratchet, pendingKeys }
+  return { isolation, keys, payloads, ratchet, pendingKeys }
 }
 
 const isDirectRun = process.argv[1]
@@ -645,13 +689,9 @@ if (isDirectRun) {
   } catch {
     existingBaseline = null
   }
-  const pendingKeys = baselineMissingKeys(existingBaseline)
-  // Provjera mjeri ključevima baselinea; regeneracija uvijek punim popisom.
-  const keys = argv.includes('--write-baseline')
-    ? await scanSecretKeys()
-    : await scanSecretKeys({ keys: existingBaseline?.keys })
-
   if (argv.includes('--write-baseline')) {
+    // Regeneracija uvijek punim popisom.
+    const keys = await scanSecretKeys()
     try {
       const payload = await writeBaseline(keys, BASELINE_PATH, { allowIncrease: argv.includes('--allow-increase') })
       process.stdout.write(
@@ -667,17 +707,19 @@ if (isDirectRun) {
     }
   }
 
-  const isolation = await scanImportIsolation()
   const baseline = existingBaseline
   if (!baseline) {
     process.stderr.write('GREŠKA: baseline ne postoji. Pokreni s --write-baseline.\n')
     process.exit(1)
   }
-  const ratchet = compareToBaseline(keys, baseline)
+  // Ista mjera koju vraća runScan (i koju provjerava test) — CLI i programski
+  // put ne smiju mjeriti različito.
+  const { isolation, keys, payloads, ratchet, pendingKeys } = await runScan()
+  const ok = () => isolation.violations.length === 0 && ratchet.ok && payloads.ok
 
   if (argv.includes('--json')) {
-    process.stdout.write(`${JSON.stringify({ isolation, keys, ratchet, pendingKeys }, null, 2)}\n`)
-    process.exit(isolation.violations.length === 0 && ratchet.ok ? 0 : 1)
+    process.stdout.write(`${JSON.stringify({ isolation, keys, payloads, ratchet, pendingKeys }, null, 2)}\n`)
+    process.exit(ok() ? 0 : 1)
   }
 
   const top = Object.entries(keys.files)
@@ -714,5 +756,11 @@ if (isDirectRun) {
   }
   if (ratchet.ok) process.stdout.write('  OK — nijedna datoteka ne premašuje baseline.\n')
 
-  process.exit(isolation.violations.length === 0 && ratchet.ok ? 0 : 1)
+  process.stdout.write('\n— SLOJ B2: javni ispitni payload (puni popis ključeva, nulta tolerancija) —\n')
+  for (const leak of payloads.leaks) {
+    process.stdout.write(`  PAD: ${leak.file} nosi ${leak.count} ispitnih ključeva — javni payload mora biti čist.\n`)
+  }
+  if (payloads.ok) process.stdout.write('  OK — nijedan content/<predmet>/exams/**.json ne nosi ključ.\n')
+
+  process.exit(ok() ? 0 : 1)
 }

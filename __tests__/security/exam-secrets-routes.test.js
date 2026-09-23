@@ -619,6 +619,123 @@ describe('POST /api/sim/[subject]/grade', () => {
   })
 })
 
+/* ── canonical dodaci: bodovi po pitanju i stupci rezultata v2 ─────────────── */
+
+describe('POST /api/sim/[subject]/grade — bodovi po pitanju (canonical adapter)', () => {
+  const V2_COLUMNS = ['result_version', 'score_pct', 'earned_points', 'max_points', 'manual_pending', 'unanswered']
+
+  /** Adapter koji, kao canonical, vraća `points`, `progressRow` i `review`. */
+  function canonicalAdapter() {
+    return makeAdapter({
+      score: vi.fn(() => ({
+        // q1 je `fill` s 4 praznine: pogođene 3 → djelomični bodovi.
+        scores: { q1: false, q2: true, q4: null },
+        points: {
+          q1: { earned: 0.75, possible: 1 },
+          q2: { earned: 1, possible: 1 },
+          q4: { earned: 0, possible: 8 },
+        },
+        cor: 1,
+        total: 2,
+        pct: 50,
+        grade: 'dovoljan',
+        bodovi: 1.75,
+        xpGain: 10,
+        topicBreakdown: { Grammar: { earned: 1.75, possible: 10 } },
+        progressRow: {
+          result_version: 2,
+          score_pct: 50,
+          earned_points: 1.75,
+          max_points: 10,
+          manual_pending: true,
+          unanswered: ['q3'],
+        },
+        review: { manual: { q4: { rubric: 'Rubrika', points: 8 } } },
+      })),
+    })
+  }
+
+  it('free dobiva bodove SAMO ručnih zadataka — djelomični bodovi automatskog su oracle', async () => {
+    const { POST } = await loadRoutes(canonicalAdapter())
+
+    const payload = await (await POST(...postRequest(baseBody()))).json()
+
+    // `scores[q1] = false` uz `points.q1.earned = 0.75` rekao bi točan BROJ
+    // pogođenih praznina — bitno više od ugovora točno/netočno, i to uz samo 5
+    // predaja dnevno. Amandman ADR §5a pokriva samo RUČNE zadatke.
+    expect(payload.points).toEqual({ q4: { earned: 0, possible: 8 } })
+    expect(payload.scores).toEqual({ q1: false, q2: true, q4: null })
+    expect(payload.review.manual.q4).toEqual({ rubric: 'Rubrika', points: 8 })
+  })
+
+  it('plaćeni tier dobiva bodove svih pitanja (ključeve ionako ima u pregledniku)', async () => {
+    mocks.getUserTier.mockResolvedValue('pro')
+    const { POST } = await loadRoutes(canonicalAdapter())
+
+    const payload = await (await POST(...postRequest(baseBody()))).json()
+
+    expect(payload.points.q1).toEqual({ earned: 0.75, possible: 1 })
+    expect(payload.points.q4).toEqual({ earned: 0, possible: 8 })
+  })
+
+  it('progressRow ulazi u sim_progress kao stupci rezultata v2', async () => {
+    const supabase = makeSupabase()
+    mocks.createClient.mockResolvedValue(supabase.client)
+    const { POST } = await loadRoutes(canonicalAdapter())
+
+    await POST(...postRequest(baseBody()))
+
+    expect(supabase.inserts).toHaveLength(1)
+    expect(supabase.inserts[0]).toMatchObject({
+      result_version: 2,
+      earned_points: 1.75,
+      max_points: 10,
+      manual_pending: true,
+      unanswered: ['q3'],
+      attempt_id: 'attempt-0001',
+    })
+  })
+
+  it('greška o nedostajućem attempt_id ne briše stupce rezultata v2', async () => {
+    // Okruženje s migracijom stupaca v2, ali bez migracije za attempt_id.
+    // Fallback koji gleda SAMO error.code prvo skida extras, pa redak na kraju
+    // ostane i bez attempt_id-a i bez ijednog stupca rezultata — iako ti stupci
+    // u bazi postoje — uz upozorenje koje vodi na krivu migraciju.
+    const supabase = makeSupabase({
+      insertError: {
+        code: '42703',
+        message: 'column "attempt_id" of relation "sim_progress" does not exist',
+      },
+    })
+    mocks.createClient.mockResolvedValue(supabase.client)
+    const { POST } = await loadRoutes(canonicalAdapter())
+
+    const res = await POST(...postRequest(baseBody()))
+
+    expect(res.status).toBe(200)
+    expect(supabase.inserts).toHaveLength(2)
+    expect(supabase.inserts[1].attempt_id).toBeUndefined()
+    for (const column of V2_COLUMNS) expect(supabase.inserts[1], column).toHaveProperty(column)
+  })
+
+  it('greška o nedostajućem stupcu rezultata v2 ne briše attempt_id', async () => {
+    const supabase = makeSupabase({
+      insertError: {
+        code: 'PGRST204',
+        message: "Could not find the 'earned_points' column of 'sim_progress' in the schema cache",
+      },
+    })
+    mocks.createClient.mockResolvedValue(supabase.client)
+    const { POST } = await loadRoutes(canonicalAdapter())
+
+    await POST(...postRequest(baseBody()))
+
+    expect(supabase.inserts).toHaveLength(2)
+    expect(supabase.inserts[1].attempt_id).toBe('attempt-0001')
+    for (const column of V2_COLUMNS) expect(supabase.inserts[1], column).not.toHaveProperty(column)
+  })
+})
+
 describe('registry — ugovor adaptera', () => {
   it('odbija adapter bez obavezne metode', async () => {
     const registry = await import('@/lib/exam-secrets/registry')

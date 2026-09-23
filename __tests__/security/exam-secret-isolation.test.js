@@ -13,10 +13,12 @@ import {
   countSecretKeys,
   extractImportSpecifiers,
   hasLeadingUseClient,
+  isPublicExamPayloadPath,
   isSecretDataPath,
   listScanRootDirs,
   loadBaseline,
   scanImportIsolation,
+  scanPublicExamPayloads,
   scanSecretKeys,
   writeBaseline,
 } from '../../scripts/security/exam-secret-scan.mjs'
@@ -302,7 +304,19 @@ describe('ADR-001 SLOJ B — ratchet nad izvorom', () => {
     // regeneracijom — `baselineMissingKeys` ga imenuje, a ratchet do tada mjeri
     // istom mjerom kojom je baseline nastao (ADR-001 §6).
     expect(baseline.keys.every((key) => SECRET_KEYS.includes(key))).toBe(true)
-    expect(baselineMissingKeys(baseline).every((key) => SECRET_KEYS.includes(key))).toBe(true)
+    // Razlika se IMENUJE, a ne samo tvrdi da postoji: `baselineMissingKeys` je po
+    // konstrukciji podskup SECRET_KEYS, pa je `.every(k => SECRET_KEYS.includes(k))`
+    // uvijek istina — i kad je baseline prazan i kad je zastario za deset ključeva.
+    // Ovaj oblik pada i kad netko regenerira baseline ispustivši `answer`, i kad ga
+    // regenerira punim popisom (tada popis treba isprazniti i ovdje i u ADR-u §6).
+    expect(baselineMissingKeys(baseline)).toEqual([
+      'answer',
+      'explanation',
+      'solution',
+      'rubricDetails',
+      'officialText',
+      'transcript',
+    ])
     expect(baseline.roots).toContain('hooks')
     expect(Object.keys(baseline.files).length).toBeGreaterThan(0)
     expect(baseline.totalHits).toBe(
@@ -339,6 +353,48 @@ describe('ADR-001 SLOJ B — ratchet nad izvorom', () => {
     expect(compareToBaseline({ files: { 'lib/a.js': 0 } }, baseline).ok).toBe(true)
     expect(compareToBaseline({ files: {} }, baseline).ok).toBe(true)
   })
+})
+
+describe('ADR-001 SLOJ B2 — javni ispitni payload mjeri se PUNIM popisom ključeva', () => {
+  it('prepoznaje content/<predmet>/exams/**.json, a ne i ostale JSON-e', () => {
+    expect(isPublicExamPayloadPath('content/eng/exams/2010_ljeto.json')).toBe(true)
+    expect(isPublicExamPayloadPath('content/discere/bio/exams/2026_ljeto.json')).toBe(true)
+    expect(isPublicExamPayloadPath('content/eng/exams/nested/dio1.json')).toBe(true)
+    expect(isPublicExamPayloadPath('content/eng/meta.json')).toBe(false)
+    expect(isPublicExamPayloadPath('lib/data/eng/secrets/2010_ljeto.json')).toBe(false)
+  })
+
+  it('canonical ključ u javnom payloadu je PAD, iako ga ratchet (mjera baselinea) ne vidi', async () => {
+    const dir = await mkdtemp(path.join(tmpdir(), 'exam-payload-'))
+    try {
+      const leaking = JSON.stringify({
+        meta: { key: '2026_ljeto' },
+        questions: [{ id: 'q1', type: 'mc', answer: { correct: ['C'] }, solution: { modelAnswer: 'x' } }],
+      })
+      await writeFixtureFile(dir, 'content/bio/exams/2026_ljeto.json', leaking)
+      await writeFixtureFile(dir, 'content/bio/exams/2025_ljeto.json', JSON.stringify({
+        meta: { key: '2025_ljeto' },
+        questions: [{ id: 'q1', type: 'mc', options: [{ id: 'A' }] }],
+      }))
+
+      const payloads = await scanPublicExamPayloads({ root: dir })
+      expect(payloads.ok).toBe(false)
+      expect(payloads.leaks).toEqual([{ file: 'content/bio/exams/2026_ljeto.json', count: 2 }])
+
+      // Ista datoteka pod popisom ključeva iz baselinea (bez canonical imena)
+      // broji 0 — zbog toga sloj B2 i postoji.
+      const baselineKeys = (await loadBaseline()).keys
+      const asRatchetSeesIt = await scanSecretKeys({ root: dir, rootDirs: ['content'], keys: baselineKeys })
+      expect(asRatchetSeesIt.files).toEqual({})
+    } finally {
+      await rm(dir, { recursive: true, force: true })
+    }
+  })
+
+  it('stvarni repozitorij: nijedan javni ispitni payload ne nosi ključ', async () => {
+    const payloads = await scanPublicExamPayloads()
+    expect(payloads.leaks).toEqual([])
+  }, 180000)
 })
 
 describe('ADR-001 — mrtve rute s ispitnim sadržajem su uklonjene', () => {

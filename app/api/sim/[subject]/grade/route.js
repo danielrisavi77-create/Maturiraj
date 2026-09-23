@@ -92,11 +92,25 @@ const PROGRESS_ROW_COLUMNS = Object.freeze([
   'unanswered',
 ])
 
+/**
+ * Je li greška "taj stupac ne postoji", i to za JEDAN OD navedenih stupaca?
+ *
+ * Ime stupca je obavezan dio provjere, ne dodatak uz kod. Okruženje zna imati
+ * pokrenutu jednu migraciju, a drugu ne: greška o nedostajućem `attempt_id`
+ * koja se prepozna samo po kodu (42703/PGRST204) prvo obriše stupce rezultata
+ * v2, pa upis prođe tek nakon što ispadnu i oni i attempt_id — redak ostane bez
+ * stupaca koji u bazi postoje, uz upozorenje koje vodi na krivu migraciju.
+ * Postgres i PostgREST u poruci uvijek imenuju stupac ("column \"x\" of
+ * relation …", "Could not find the 'x' column …"), pa je usporedba imena
+ * pouzdana i sužava fallback na točno onaj skup stupaca koji doista nedostaje.
+ */
 function isUnknownColumn(error, columns = ['attempt_id']) {
   if (!error) return false
-  if (error.code && UNKNOWN_COLUMN.has(error.code)) return true
-  const text = `${error.message ?? ''}${error.details ?? ''}`
-  return columns.some((column) => text.includes(column))
+  const text = `${error.message ?? ''} ${error.details ?? ''} ${error.hint ?? ''}`
+  if (!columns.some((column) => text.includes(column))) return false
+  if (error.code) return UNKNOWN_COLUMN.has(error.code)
+  // Bez koda (neki klijenti ga ne prosljeđuju) ostaje samo poruka.
+  return /column|schema cache|ne postoji|does not exist/i.test(text)
 }
 
 function fail(message, status, extraHeaders) {
@@ -271,9 +285,11 @@ async function insertProgress(db, row, extraColumns = []) {
         + 'Do tada idempotenciju drži otisak pokušaja u ai_rate_limit.',
     )
   }
+  // `extraColumns` se PRENOSI dalje: u okruženju bez obje migracije Postgres
+  // prijavi jedan stupac po pokušaju, pa drugi krug mora još uvijek znati koje
+  // stupce smije ispustiti.
   const { attempt_id: _ignored, ...withoutAttemptId } = row
-  const retry = await db.from('sim_progress').insert(withoutAttemptId)
-  return retry.error ?? null
+  return insertProgress(db, withoutAttemptId, extraColumns)
 }
 
 /* ── ocjenjivanje ──────────────────────────────────────────────────────────── */
@@ -282,6 +298,21 @@ function clampPct(value) {
   const pct = Math.round(Number(value))
   if (!Number.isFinite(pct)) return 0
   return Math.min(100, Math.max(0, pct))
+}
+
+/**
+ * Bodovi samo onih pitanja koja nemaju automatsku ocjenu (`scores[qid] === null`
+ * — ručni ili neispravan tip). Za njih `possible` i `earned` ne otkrivaju ništa
+ * što `scores` već ne kaže, a bez njih free korisnik nakon eseja nema ni broj
+ * bodova uz rubriku.
+ */
+function manualOnlyPoints(result) {
+  const scores = isPlainObject(result?.scores) ? result.scores : {}
+  const out = {}
+  for (const [qid, value] of Object.entries(result.points)) {
+    if (scores[qid] === null || scores[qid] === undefined) out[qid] = value
+  }
+  return out
 }
 
 function buildBody(result, paid) {
@@ -296,7 +327,18 @@ function buildBody(result, paid) {
   }
   // Bodovi po pitanju (canonical: { earned, possible }). Predmet koji ih nema
   // (engleski nema bodove po pitanju) polje ne dobiva.
-  if (isPlainObject(result?.points)) body.points = result.points
+  //
+  // FREE dobiva bodove samo RUČNIH zadataka. Djelomični bodovi automatski
+  // ocijenjenog zadatka su oracle jači od ugovora `scores: true/false`: kod
+  // `fill` s četiri praznine `points[qid].earned = 0.75` uz `scores[qid] = false`
+  // kaže točan BROJ pogođenih praznina, isto za `matching` i `true_false`. To je
+  // po predaji bitno više bitova nego točno/netočno, a amandman ADR §5a
+  // („slobodan tekst, ponavljanje ne otkriva novi bit") pokriva samo ručne
+  // zadatke — oni automatske usporedbe nemaju, pa im bodovi nisu oracle.
+  // Plaćeni tier iste ključeve već ima u pregledniku, pa njemu ne uzima ništa.
+  if (isPlainObject(result?.points)) {
+    body.points = paid ? result.points : manualOnlyPoints(result)
+  }
   // AMANDMAN ADR §5a: rubrika, model odgovora i bodovi RUČNIH zadataka idu svim
   // tierovima nakon predaje. Nisu oracle — ručni zadatak nema automatske
   // usporedbe, pa bez njih free korisnik nema nikakvu povratnu informaciju.
