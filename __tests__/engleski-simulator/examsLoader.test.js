@@ -1,5 +1,18 @@
 import { describe, it, expect, vi } from 'vitest'
-import { createExamsLoader, getExamsIndex, razinaForKey, RAZINE } from '../../lib/engleski-simulator/examsLoader.js'
+import {
+  createExamsLoader,
+  examKeysForRazina,
+  getExamsIndex,
+  razinaForKey,
+  toExam,
+  RAZINE,
+} from '../../lib/engleski-simulator/examsLoader.js'
+
+/**
+ * Ispit više ne dolazi dinamičkim uvozom cijele razine, nego s
+ * `GET /api/sim/eng/exam/<key>?mode=…` — po ispitu (ADR-001). Loader se i dalje
+ * testira injektiranim dohvatom, pa ovi testovi ne diraju mrežu.
+ */
 
 // Kontrolirani promise za testiranje istovremenih poziva
 function deferred() {
@@ -8,117 +21,191 @@ function deferred() {
   return { promise, resolve, reject }
 }
 
-const OSNOVNA = { '2024_ljeto': { key: '2024_ljeto', razina: 'osnovna', qs: [] } }
-const VISA = { vis_2024_ljeto: { key: 'vis_2024_ljeto', razina: 'visa', qs: [] } }
+const makeExam = (key, mode) => ({ key, razina: razinaForKey(key), mode, qs: [] })
 
-// Simulira dinamički import JSON-a (modul s default exportom)
-function fakeImporter() {
-  return vi.fn(razina => Promise.resolve({ default: razina === 'visa' ? VISA : OSNOVNA }))
+function fakeFetcher() {
+  return vi.fn((key, mode) => Promise.resolve(makeExam(key, mode)))
 }
 
-describe('createExamsLoader', () => {
-  it('učita razinu i vrati mapu ispita', async () => {
-    const importer = fakeImporter()
-    const loader = createExamsLoader(importer)
+describe('createExamsLoader — dohvat po ispitu', () => {
+  it('učita jedan ispit i zabilježi ga u getLoadedSync', async () => {
+    const fetchExam = fakeFetcher()
+    const loader = createExamsLoader(fetchExam)
 
-    expect(loader.isRazinaLoaded('osnovna')).toBe(false)
-    const map = await loader.loadRazina('osnovna')
-    expect(map).toEqual(OSNOVNA)
-    expect(loader.isRazinaLoaded('osnovna')).toBe(true)
-    expect(importer).toHaveBeenCalledWith('osnovna')
+    expect(loader.isExamLoaded('2024_ljeto')).toBe(false)
+    const exam = await loader.loadExamByKey('2024_ljeto', 'exam')
+    expect(exam.key).toBe('2024_ljeto')
+    expect(fetchExam).toHaveBeenCalledWith('2024_ljeto', 'exam')
+    expect(loader.isExamLoaded('2024_ljeto')).toBe(true)
+    expect(Object.keys(loader.getLoadedSync())).toEqual(['2024_ljeto'])
   })
 
-  it('deduplicira istovremene pozive — importer se zove jednom', async () => {
+  it('ulazak u ispit NE povlači ostale ispite razine', async () => {
+    const fetchExam = fakeFetcher()
+    const loader = createExamsLoader(fetchExam)
+
+    await loader.loadExamByKey('vis_2024_prvi', 'exam')
+    expect(fetchExam).toHaveBeenCalledTimes(1)
+    expect(Object.keys(loader.getLoadedSync())).toHaveLength(1)
+  })
+
+  it('deduplicira istovremene pozive — dohvat se izvrši jednom', async () => {
     const { promise, resolve } = deferred()
-    const importer = vi.fn(() => promise)
-    const loader = createExamsLoader(importer)
+    const fetchExam = vi.fn(() => promise)
+    const loader = createExamsLoader(fetchExam)
 
-    const p1 = loader.loadRazina('osnovna')
-    const p2 = loader.loadRazina('osnovna')
-    const p3 = loader.loadRazina('osnovna')
-    expect(importer).toHaveBeenCalledTimes(1)
+    const p1 = loader.loadExamByKey('2024_ljeto', 'exam')
+    const p2 = loader.loadExamByKey('2024_ljeto', 'exam')
+    const p3 = loader.loadExamByKey('2024_ljeto', 'exam')
+    expect(fetchExam).toHaveBeenCalledTimes(1)
 
-    resolve({ default: OSNOVNA })
+    resolve(makeExam('2024_ljeto', 'exam'))
     const [m1, m2, m3] = await Promise.all([p1, p2, p3])
     expect(m1).toBe(m2)
     expect(m2).toBe(m3)
-    expect(m1).toEqual(OSNOVNA)
   })
 
-  it('kešira razinu — drugi poziv ne radi novi import', async () => {
-    const importer = fakeImporter()
-    const loader = createExamsLoader(importer)
+  it('kešira ispit — drugi poziv u istom modu ne radi novi dohvat', async () => {
+    const fetchExam = fakeFetcher()
+    const loader = createExamsLoader(fetchExam)
 
-    await loader.loadRazina('visa')
-    await loader.loadRazina('visa')
-    expect(importer).toHaveBeenCalledTimes(1)
+    await loader.loadExamByKey('2024_ljeto', 'practice')
+    await loader.loadExamByKey('2024_ljeto', 'practice')
+    expect(fetchExam).toHaveBeenCalledTimes(1)
   })
 
-  it('učita razine neovisno i spoji ih u getLoadedSync', async () => {
-    const importer = fakeImporter()
-    const loader = createExamsLoader(importer)
+  it('promjena moda traži novi dohvat — payload vježbanja ne smije u ispitni mod', async () => {
+    const fetchExam = fakeFetcher()
+    const loader = createExamsLoader(fetchExam)
 
-    expect(loader.getLoadedSync()).toEqual({})
-    await loader.loadRazina('osnovna')
-    expect(Object.keys(loader.getLoadedSync())).toEqual(['2024_ljeto'])
+    await loader.loadExamByKey('2024_ljeto', 'practice')
+    expect(loader.isExamLoaded('2024_ljeto', 'exam')).toBe(false)
 
-    const all = await loader.loadAllRazine()
-    expect(Object.keys(all).sort()).toEqual(['2024_ljeto', 'vis_2024_ljeto'])
-    expect(importer).toHaveBeenCalledTimes(2)
-    // Identitet spojene mape je stabilan dok se ne učita nova razina
-    expect(loader.getLoadedSync()).toBe(loader.getLoadedSync())
-  })
-
-  it('loadExamByKey izvodi razinu iz ključa', async () => {
-    const importer = fakeImporter()
-    const loader = createExamsLoader(importer)
-
-    const visaExam = await loader.loadExamByKey('vis_2024_ljeto')
-    expect(visaExam.razina).toBe('visa')
-    expect(importer).toHaveBeenCalledWith('visa')
-    expect(importer).toHaveBeenCalledTimes(1)
-
-    const osnExam = await loader.loadExamByKey('2024_ljeto')
-    expect(osnExam.razina).toBe('osnovna')
-    expect(importer).toHaveBeenCalledWith('osnovna')
+    const exam = await loader.loadExamByKey('2024_ljeto', 'exam')
+    expect(exam.mode).toBe('exam')
+    expect(fetchExam).toHaveBeenCalledTimes(2)
+    expect(fetchExam).toHaveBeenLastCalledWith('2024_ljeto', 'exam')
+    // Keš drži samo najnoviju inačicu tog ispita.
+    expect(loader.getLoadedSync()['2024_ljeto'].mode).toBe('exam')
   })
 
   it('greška se propagira i dopušta retry', async () => {
-    const err = new Error('chunk load failed')
-    const importer = vi.fn()
+    const err = new Error('mreža je pukla')
+    const fetchExam = vi.fn()
       .mockRejectedValueOnce(err)
-      .mockResolvedValueOnce({ default: OSNOVNA })
-    const loader = createExamsLoader(importer)
+      .mockResolvedValueOnce(makeExam('2024_ljeto', 'exam'))
+    const loader = createExamsLoader(fetchExam)
 
-    await expect(loader.loadRazina('osnovna')).rejects.toThrow('chunk load failed')
-    expect(loader.isRazinaLoaded('osnovna')).toBe(false)
+    await expect(loader.loadExamByKey('2024_ljeto', 'exam')).rejects.toThrow('mreža je pukla')
+    expect(loader.isExamLoaded('2024_ljeto')).toBe(false)
 
-    const map = await loader.loadRazina('osnovna')
-    expect(map).toEqual(OSNOVNA)
-    expect(importer).toHaveBeenCalledTimes(2)
+    const exam = await loader.loadExamByKey('2024_ljeto', 'exam')
+    expect(exam.key).toBe('2024_ljeto')
+    expect(fetchExam).toHaveBeenCalledTimes(2)
   })
 
   it('svi istovremeni pozivi dobiju istu grešku', async () => {
     const err = new Error('boom')
     const { promise, reject } = deferred()
-    const importer = vi.fn(() => promise)
-    const loader = createExamsLoader(importer)
+    const fetchExam = vi.fn(() => promise)
+    const loader = createExamsLoader(fetchExam)
 
-    const p1 = loader.loadRazina('visa').catch(e => e)
-    const p2 = loader.loadRazina('visa').catch(e => e)
+    const p1 = loader.loadExamByKey('vis_2024_prvi', 'exam').catch(e => e)
+    const p2 = loader.loadExamByKey('vis_2024_prvi', 'exam').catch(e => e)
     reject(err)
     expect(await p1).toBe(err)
     expect(await p2).toBe(err)
-    expect(importer).toHaveBeenCalledTimes(1)
+    expect(fetchExam).toHaveBeenCalledTimes(1)
   })
 
   it('reset čisti keš', async () => {
-    const importer = fakeImporter()
-    const loader = createExamsLoader(importer)
-    await loader.loadRazina('osnovna')
+    const fetchExam = fakeFetcher()
+    const loader = createExamsLoader(fetchExam)
+    await loader.loadExamByKey('2024_ljeto', 'exam')
     loader.reset()
-    expect(loader.isRazinaLoaded('osnovna')).toBe(false)
+    expect(loader.isExamLoaded('2024_ljeto')).toBe(false)
     expect(loader.getLoadedSync()).toEqual({})
+  })
+})
+
+describe('createExamsLoader — skupni dohvat za ekrane nad cijelom bankom', () => {
+  it('loadRazina dohvati sve ispite te razine i ništa više', async () => {
+    const fetchExam = fakeFetcher()
+    const loader = createExamsLoader(fetchExam)
+
+    expect(loader.isRazinaLoaded('osnovna')).toBe(false)
+    const map = await loader.loadRazina('osnovna')
+    const osnovnaKeys = examKeysForRazina('osnovna')
+
+    expect(osnovnaKeys).toHaveLength(35)
+    expect(fetchExam).toHaveBeenCalledTimes(35)
+    expect(Object.keys(map).sort()).toEqual([...osnovnaKeys].sort())
+    expect(loader.isRazinaLoaded('osnovna')).toBe(true)
+    expect(loader.isRazinaLoaded('visa')).toBe(false)
+  })
+
+  it('jedan pali dohvat od 35 ne ruši ostalih 34 (allSettled, ne Promise.all)', async () => {
+    // Skupni dohvat se pokreće i u pozadini ekrana rezultata: s Promise.all je
+    // jedan 500 ili timeout znao korisniku zamijeniti upravo zarađen rezultat
+    // karticom "Učitavanje ispita nije uspjelo".
+    const pali = examKeysForRazina('osnovna')[7]
+    const fetchExam = vi.fn((key, mode) =>
+      key === pali ? Promise.reject(new Error('500')) : Promise.resolve(makeExam(key, mode)))
+    const loader = createExamsLoader(fetchExam)
+
+    const map = await loader.loadRazina('osnovna')
+
+    expect(Object.keys(map)).toHaveLength(34)
+    expect(map[pali]).toBeUndefined()
+    // Razina NIJE proglašena učitanom, pa sljedeći ulazak dohvati samo ono što
+    // nedostaje — ostalo je već u kešu.
+    expect(loader.isRazinaLoaded('osnovna')).toBe(false)
+
+    fetchExam.mockImplementation((key, mode) => Promise.resolve(makeExam(key, mode)))
+    const retry = await loader.loadRazina('osnovna')
+    expect(Object.keys(retry)).toHaveLength(35)
+    expect(loader.isRazinaLoaded('osnovna')).toBe(true)
+    expect(fetchExam).toHaveBeenCalledTimes(36)
+  })
+
+  it('kad ne stigne nijedan ispit, loadRazina odbija (ekran mora ponuditi retry)', async () => {
+    const err = new Error('sesija je istekla')
+    const fetchExam = vi.fn(() => Promise.reject(err))
+    const loader = createExamsLoader(fetchExam)
+
+    await expect(loader.loadRazina('osnovna')).rejects.toThrow('sesija je istekla')
+    expect(loader.isRazinaLoaded('osnovna')).toBe(false)
+  })
+
+  it('loadAllRazine spoji obje razine, a identitet mape je stabilan', async () => {
+    const fetchExam = fakeFetcher()
+    const loader = createExamsLoader(fetchExam)
+
+    const all = await loader.loadAllRazine()
+    expect(Object.keys(all)).toHaveLength(70)
+    expect(fetchExam).toHaveBeenCalledTimes(70)
+    expect(loader.getLoadedSync()).toBe(loader.getLoadedSync())
+  })
+})
+
+describe('toExam — envelope rute → oblik ispita', () => {
+  it('meta se raspakira na vrh, qs i texts ostaju', () => {
+    const exam = toExam('2024_ljeto', {
+      key: '2024_ljeto',
+      meta: { year: 2024, label: 'Ljetni rok', razina: 'osnovna' },
+      texts: { t1: 'Ulomak.' },
+      qs: [{ id: 'r1', type: 'mc' }],
+    })
+    expect(exam.year).toBe(2024)
+    expect(exam.label).toBe('Ljetni rok')
+    expect(exam.razina).toBe('osnovna')
+    expect(exam.qs).toHaveLength(1)
+    expect(exam.texts).toEqual({ t1: 'Ulomak.' })
+  })
+
+  it('pokvaren odgovor daje prazan ispit umjesto iznimke', () => {
+    expect(toExam('2024_ljeto', null).qs).toEqual([])
+    expect(toExam('2024_ljeto', {}).key).toBe('2024_ljeto')
   })
 })
 
@@ -141,5 +228,13 @@ describe('indeks i razinaForKey', () => {
     expect(razinaForKey('2024_ljeto')).toBe('osnovna')
     // Nepoznat ključ (virtualna sesija) → osnovna kao siguran fallback
     expect(razinaForKey('virtual_12345')).toBe('osnovna')
+  })
+
+  it('examKeysForRazina dijeli 70 ispita na dvije razine bez preklapanja', () => {
+    const osnovna = examKeysForRazina('osnovna')
+    const visa = examKeysForRazina('visa')
+    expect(osnovna).toHaveLength(35)
+    expect(visa).toHaveLength(35)
+    expect(osnovna.filter(k => visa.includes(k))).toEqual([])
   })
 })

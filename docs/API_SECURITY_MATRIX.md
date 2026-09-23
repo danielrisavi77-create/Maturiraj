@@ -3,6 +3,10 @@
 Snapshot: 2026-07-15  
 Scope: svih 42 pronađenih `app/api/**/route.{js,jsx,ts,tsx}` datoteka.
 
+Dopune nakon snapshota: redovi 25 (`/api/exams/[razina]`) i 26 (`/api/exams/check`) uklonjeni su iz koda
+(ADR-001, Faza 0 odnosno Faza 1) — cijelo stablo `app/api/exams/` više ne postoji; zamjenjuju ih redovi
+43–44 uz zajedničke ispitne rute (ADR-001, Faza 1).
+
 Ovo je statički Phase 0 pregled trenutnog source contracta. Ne potvrđuje produkcijske env vrijednosti, aktivne Stripe webhookove, primijenjene Supabase politike ni ponašanje vanjskih servisa.
 
 ## Legenda
@@ -50,8 +54,8 @@ Rate limit prikazuje ono što je pronađeno u samoj ruti. Stripe potpis ili CDN 
 | 22 | `/api/discere/ask-ai` | POST | Verificirani Pro korisnik + AI quota | posredno kroz billing helper | nema | `P1` — placeholder; input i cost limit |
 | 23 | `/api/discere/check-access` | POST | Verificirani korisnik + server-side entitlement | posredno kroz billing helper | nema | `R0` — auth postoji; entitlement source ovisi o `SEC-P0-01` |
 | 24 | `/api/email/unsubscribe` | GET | Potpisan, vremenski ograničen i po mogućnosti jednokratan token | da | nema | `P1` — sadašnji Base64 token nije autentikacija |
-| 25 | `/api/exams/[razina]` | GET | Javno, samo answer-stripped sadržaj | ne | nema; public cache | `R0` — provjeriti da fallback nikada ne izloži rješenja |
-| 26 | `/api/exams/check` | POST | Verificirani korisnik | ne | nema | `P1` — dodati user/IP volume limit i body size cap |
+| 25 | ~~`/api/exams/[razina]`~~ | GET | **UKLONJENA** (ADR-001, Faza 0) — bila javna, bez prijave, uz `public, max-age=3600` | ne | nema | zamijenjena redom 43 |
+| 26 | ~~`/api/exams/check`~~ | POST | **UKLONJENA** (ADR-001, Faza 1) — vraćala točno/netočno po pitanju bez rate limita, uz vlastiti `checkQ` s dvije greške (`mat` bez `.trim()`, nepostojeći tip `ms`) | ne | nema | zamijenjena redom 44 |
 | 27 | `/api/generate-study-plan` | POST | Verificirani korisnik + entitlement + quota | ne | nema | `P1` — iza AI flaga; AI cost, prompt limit i provider error leakage |
 | 28 | `/api/medicinar/briefing/generate` | POST | Verificirani korisnik ili zasebni potpisani job identitet | da; service-role klijent i bearer usporedba | tjedna idempotencija, nije rate limit | `P1` — iza AI flaga; ne koristiti service-role ključ kao bearer |
 | 29 | `/api/og/compare` | GET | Javno, ograničen broj validiranih ID-eva | ne; anon client | nema | `R0` — 2–4 ID-a ograničena; dodati cache/abuse monitoring |
@@ -68,6 +72,8 @@ Rate limit prikazuje ono što je pronađeno u samoj ruti. Stripe potpis ili CDN 
 | 40 | `/api/subscribe-digest` | POST | Javno uz double opt-in i anti-abuse zaštitu | ne | nema | `P1` — placeholder koji vraća uspjeh bez provider zapisa |
 | 41 | `/api/webhook` | POST | Valjani Stripe webhook potpis i idempotentna obrada | da | samo Stripe signature | `P0-contained` — canonical unknown mapping fail-closed; legacy provisioning još mora biti uklonjen |
 | 42 | `/api/webhooks/slack` | POST | Verificirani admin ili zasebni fail-closed job secret | da | nema | `P1` — centralizirati admin/job auth i testirati missing secret |
+| 43 | `/api/sim/[subject]/exam/[examKey]` | GET | Verificirani korisnik; tier isključivo iz baze (`getUserTier` + `normalizeTier`, keš 60 s po korisniku) | posredno kroz `getUserTier` | 30 dohvata/sat po korisniku — **samo free** (plaćeni radi 70 dohvata banke odjednom) | `R0` — ADR-001; `private, no-store` + `Vary: Cookie`, javni payload se čisti prije spajanja ključeva; free u vježbanju dobiva ključ za prvih `FREE_LIMIT` pitanja, u ispitnom modu nijedan |
+| 44 | `/api/sim/[subject]/grade` | POST | Verificirani korisnik; ocjenjuje i upisuje server, klijentov rezultat se ignorira | posredno (`checkRateLimit`, `getUserTier`); upis ide korisnikovim klijentom pod RLS-om (`select`+`insert`) | 60 s po (user, predmet, ispit) za sve tierove; 5 ocijenjenih predaja / 24 h **samo za free** (3 od njih smije vježbanje); otisak pokušaja (`attemptId` + hash odgovora) čini ponavljanje istih odgovora besplatnim | `R0` — ADR-001; `cor`/`scores` ostaju bočni kanal, budžet ga usporava a ne zatvara |
 
 ## P0 veze
 

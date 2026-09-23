@@ -17,7 +17,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import { Results } from '@/components/engleski-simulator/screens/ResultsScreen';
-import { chk, grade } from '@/lib/engleski-simulator/scoring';
+import { chk, grade, scoreLookup } from '@/lib/engleski-simulator/scoring';
 import { LL, TLBL, TOPIC_LABELS, LEVEL_NAMES, getLevel } from '@/lib/engleski-simulator/constants';
 import { checkSimulatorAccess, FREE_LIMIT } from '@/components/discere/paywall/paywallHelpers';
 import { FREE_ACCESS, PRO_ACCESS } from './_synthExam.js';
@@ -57,10 +57,18 @@ const ANSWERS = { R1: 'A', R2: 'B', L1: 'A' };
 const AnswerHelper = ({ q }) => <div>{'HELPER:' + q.id}</div>;
 const AnalyticsPanel = () => <div>ANALYTICS-PANEL</div>;
 
-function renderResults(canSeeAnalysis) {
+// Ono što free korisnik stvarno dobije nakon ADR-001: pitanja BEZ ključa i
+// obrazloženja, a točno/netočno po pitanju iz odgovora ocjenjivačke rute.
+const STRIPPED_EXAM = {
+  ...EXAM,
+  qs: EXAM.qs.map(({ sol, exp, ...rest }) => rest),
+};
+const SERVER_SCORES = { R1: true, R2: false, L1: true };
+
+function renderResults(canSeeAnalysis, { exam = EXAM, chkFn = chk } = {}) {
   return render(
     <Results
-      exam={EXAM}
+      exam={exam}
       answers={ANSWERS}
       qTimes={{}}
       userData={{ history: [{ examKey: EXAM.key, pct: 67 }] }}
@@ -68,7 +76,7 @@ function renderResults(canSeeAnalysis) {
       onPracticeErrors={() => {}}
       onGoFilter={() => {}}
       onGoStats={() => {}}
-      chk={chk}
+      chk={chkFn}
       grade={grade}
       GC={GC}
       TLBL={TLBL}
@@ -108,6 +116,16 @@ describe('ResultsScreen — gating razrade po planu', () => {
     expect(screen.queryByText('ANALYTICS-PANEL')).toBeNull();
     expect(container.querySelector('.revlist')).toBeNull();
 
+    // Jedan bit po pitanju smije se vidjeti: mrežica ✓/✗ bez ijednog teksta pitanja.
+    expect(screen.getByText('Po pitanjima')).toBeTruthy();
+    expect(screen.getByText('Točan odgovor i obrazloženje dolaze uz Standard.')).toBeTruthy();
+    const cells = container.querySelectorAll('.res-qgrid .res-qcell');
+    expect(cells.length).toBe(3);
+    cells.forEach((c) => {
+      expect(c.querySelector('.res-qcell-mark').textContent).toMatch(/^[✓✗–]$/);
+      expect(c.textContent).not.toMatch(/-TEXT|-opt/);
+    });
+
     const cta = container.querySelector('a[href^="/pro?from=eng-results"]');
     expect(cta).toBeTruthy();
     expect(cta.textContent).toBe('Otključaj razradu → Standard');
@@ -124,7 +142,63 @@ describe('ResultsScreen — gating razrade po planu', () => {
     expect(screen.getByText('ANALYTICS-PANEL')).toBeTruthy();
     expect(container.querySelector('.revlist')).toBeTruthy();
 
+    // Plaćeni prikaz je nepromijenjen — kompaktna mrežica je samo free zamjena.
+    expect(container.querySelector('.res-qgrid')).toBeNull();
+    expect(screen.queryByText('Po pitanjima')).toBeNull();
+    expect(screen.queryByText(/dolaze uz Standard\./)).toBeNull();
+
     expect(container.querySelector('a[href^="/pro?from=eng-results"]')).toBeNull();
+  });
+});
+
+describe('ResultsScreen — free ekran bez ijednog ključa u pitanjima', () => {
+  beforeEach(() => {
+    window.scrollTo = vi.fn();
+  });
+  afterEach(() => cleanup());
+
+  it('prsten, statovi i obje kartice rade iz serverskih scores, bez sol/exp', () => {
+    const { container } = renderResults(false, {
+      exam: STRIPPED_EXAM,
+      chkFn: scoreLookup(SERVER_SCORES),
+    });
+
+    // Ni jedno pitanje nema ključ — to je payload koji free korisnik doista dobiva.
+    expect(JSON.stringify(STRIPPED_EXAM)).not.toMatch(/"(sol|exp)"\s*:/);
+
+    expect(container.querySelector('.score-ring-pct').textContent).toBe('67%');
+    expect(screen.getByText('Po ispitnim cjelinama')).toBeTruthy();
+    expect(screen.getByText('Rezultati po tipu pitanja')).toBeTruthy();
+    // 2 od 3 točna: Čitanje 1/2, Slušanje 1/1
+    expect(screen.getByText('1 / 2')).toBeTruthy();
+    expect(screen.getByText('1 / 1')).toBeTruthy();
+
+    // Mrežica po pitanjima: jedna stavka po automatski ocjenjivom pitanju,
+    // oznaka ✓/✗ točno prema serverskim scores (R1 ✓, R2 ✗, L1 ✓).
+    const cells = container.querySelectorAll('.res-qgrid .res-qcell');
+    expect(cells.length).toBe(STRIPPED_EXAM.qs.filter((q) => q.type !== 'sa' && q.type !== 'es').length);
+    expect([...cells].map((c) => c.querySelector('.res-qcell-mark').textContent)).toEqual(['✓', '✗', '✓']);
+    expect([...cells].map((c) => c.className)).toEqual(['res-qcell ok', 'res-qcell bad', 'res-qcell ok']);
+    expect([...cells].map((c) => c.querySelector('.res-qcell-num').textContent)).toEqual(['1', '2', '3']);
+    // ...ali i dalje ni teksta pitanja, ni opcija, ni obrazloženja.
+    const gridText = container.querySelector('.res-qgrid').textContent;
+    expect(gridText).not.toMatch(/-TEXT|-opt/);
+    expect(screen.queryByText('R1-TEXT')).toBeNull();
+
+    expect(screen.queryByText(/Obrazloženje za/)).toBeNull();
+    expect(screen.queryByText(/Točno: A/)).toBeNull();
+    expect(container.querySelector('a[href^="/pro?from=eng-results"]')).toBeTruthy();
+  });
+
+  it('paid razrada nad okljaštrenim ispitom ne pada, samo izostavi ključ', () => {
+    // Ne bi se smjelo dogoditi (paid dobiva keys:"full"), ali degradacija mora
+    // biti tiha — prije bi `q.sol.cl` ovdje srušio cijeli ekran.
+    expect(() => renderResults(true, {
+      exam: STRIPPED_EXAM,
+      chkFn: scoreLookup(SERVER_SCORES),
+    })).not.toThrow();
+    expect(screen.getByText('Pregled svih pitanja')).toBeTruthy();
+    expect(screen.queryByText(/✓ Točno: A/)).toBeNull();
   });
 });
 

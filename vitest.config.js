@@ -27,6 +27,12 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
+      // `server-only` nije zaseban paket u ovom repou: Next ga razrješava na
+      // vlastitu ugrađenu kopiju (next/dist/compiled/server-only), pa produkcijski
+      // build radi bez instalacije. Vite to ne zna, a bez aliasa svaki test koji
+      // dotakne lib/exam-secrets pada na "Cannot find module 'server-only'".
+      // empty.js je ista prazna varijanta koju Next koristi u poslužiteljskom sloju.
+      'server-only': path.resolve(__dirname, 'node_modules/next/dist/compiled/server-only/empty.js'),
     },
   },
 });

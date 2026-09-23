@@ -123,3 +123,35 @@ export async function checkRateLimit(
     return fallback(route, userId, windowMs, err);
   }
 }
+
+/**
+ * Kvota od N prolaza u jednom prozoru, složena od N "mjesta".
+ *
+ * `checkRateLimit` je po dizajnu jedan prolaz po ključu unutar prozora. Kvota
+ * ("najviše 5 ocijenjenih predaja u 24 h", "najviše 30 dohvata ispita na sat")
+ * se zato slaže od N zasebnih ključeva: prolazi prvi slobodan, a kad su svi
+ * zauzeti, kvota je potrošena. Sve živi u `public.ai_rate_limit`, koju piše samo
+ * service-role — korisnik svoju kvotu ne može ni pročitati ni obrisati.
+ *
+ * Cijena je k provjera za k-ti zahtjev unutar prozora, pa kvote drži malima.
+ *
+ * @param slots  redoslijed kojim se mjesta zauzimaju (npr. [0,1,2] ili [4,3,2,1,0])
+ * @param keyFor mjesto → ključ rute
+ */
+export async function consumeRateLimitSlots(
+  userId: string,
+  slots: number[],
+  keyFor: (slot: number) => string,
+  windowMs: number
+): Promise<{ ok: boolean; retryAfterSec: number }> {
+  let soonest = Number.POSITIVE_INFINITY;
+  for (const slot of slots) {
+    const res = await checkRateLimit(userId, keyFor(slot), windowMs);
+    if (!res.limited) return { ok: true, retryAfterSec: 0 };
+    soonest = Math.min(soonest, res.retryAfterSec || 0);
+  }
+  return {
+    ok: false,
+    retryAfterSec: Number.isFinite(soonest) && soonest > 0 ? soonest : Math.round(windowMs / 1000),
+  };
+}

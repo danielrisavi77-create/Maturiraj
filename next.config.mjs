@@ -123,6 +123,20 @@ const nextConfig = {
     root: new URL('.', import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1'),
   },
 
+  // Tajni store ispita (lib/data/<predmet>/secrets/*.json) čita se `fs`-om iz
+  // lib/exam-secrets — namjerno, da ga bundler nikad ne uvuče u graf modula
+  // (ADR-001). Cijena je da output tracing te datoteke ne vidi, jer nema
+  // `import`; bez ovoga rute /api/sim/* u produkciji padaju na ENOENT.
+  // Javni payload po ispitu (content/<predmet>/exams/<key>.json) čita se istim
+  // putem: putanja je poznata tek u runtimeu (70 ispita po predmetu), pa ga
+  // tracing isto ne vidi bez ovog popisa. Namjerno samo `*.json`: širi obrazac
+  // bi u iste dvije funkcije uvukao i content/simulator/mat/exams/*.mjs (7,1 MB
+  // pitanja i SVG komponenti), koje ove rute ne čitaju.
+  outputFileTracingIncludes: {
+    '/api/sim/[subject]/exam/[examKey]': ['./lib/data/*/secrets/**', './content/*/exams/*.json'],
+    '/api/sim/[subject]/grade': ['./lib/data/*/secrets/**', './content/*/exams/*.json'],
+  },
+
   // Reduce memory during build
   productionBrowserSourceMaps: false,
 };

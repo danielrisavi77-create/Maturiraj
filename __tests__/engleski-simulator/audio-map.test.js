@@ -1,8 +1,15 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
 import audioMap from '../../lib/data/engleski-simulator/audio-map.json'
-import osnovna from '../../lib/data/engleski-simulator/exams-osnovna.json'
-import visa from '../../lib/data/engleski-simulator/exams-visa.json'
 import examsIndex from '../../lib/data/engleski-simulator/exams-index.json'
+
+// Javni payload živi po ispitu pod content/eng/exams/ (ADR-001); čitamo ga s
+// diska jer 70 statičkih uvoza ništa ne bi dobilo.
+const EXAMS_DIR = path.resolve(process.cwd(), 'content', 'eng', 'exams')
+function readExam(key) {
+  return JSON.parse(readFileSync(path.join(EXAMS_DIR, key + '.json'), 'utf8'))
+}
 
 // Poznat popis ispita bez audio zapisa u audio-map.json (vidi audio-map.json._missing).
 // Kad build-audio-B.py (scripts/eng-audio/) ponovno objavi audio-map.json, ovaj popis
@@ -21,7 +28,7 @@ const EXAMS_WITH_EXTRA = [
 ]
 
 const listeningKeys = examsIndex.filter(e => e.hasListening).map(e => e.key)
-const examsByKey = { ...osnovna, ...visa }
+const examsByKey = Object.fromEntries(examsIndex.map(e => [e.key, readExam(e.key)]))
 
 // Contiguous run-ovi jednakog 'topic' polja medju pitanjima section === 'listening',
 // istim algoritmom kao build-audio-B.py (jedan run = jedan task).

@@ -65,8 +65,26 @@ describe('ADR-001 SLOJ A — izolacija grafa uvoza (stvarno stablo)', () => {
     expect(roots).not.toContain('__tests__')
   })
 
-  it('u ovoj fazi još nema tajnih modula (marker ni lib/data/*/secrets/**)', () => {
-    expect(report.secretModules).toEqual([])
+  it('moduli s markerom su točno oni koje je netko pogledao', () => {
+    // Popis je zatvoren namjerno — nova datoteka s markerom mora proći kroz
+    // izmjenu ovog testa, pa se tajni modul ne može tiho pojaviti.
+    const marked = report.secretModules.filter((file) => !file.endsWith('.json'))
+    expect(marked).toEqual([
+      'lib/exam-secrets/index.js',
+      'lib/exam-secrets/registry.js',
+      'lib/exam-secrets/subjects/eng.js',
+    ])
+  })
+
+  it('tajni store je samo pod lib/data/<predmet>/secrets/ — engleski ima 70 ispita', () => {
+    const data = report.secretModules.filter((file) => file.endsWith('.json'))
+    expect(data.every((file) => isSecretDataPath(file))).toBe(true)
+    expect(data.filter((file) => file.startsWith('lib/data/eng/secrets/'))).toHaveLength(70)
+    expect(data.filter((file) => !file.startsWith('lib/data/eng/secrets/'))).toEqual([])
+  })
+
+  it('nijedan tajni modul nije ujedno i klijentski korijen', () => {
+    expect(report.secretModules.filter((file) => report.clientRoots.includes(file))).toEqual([])
   })
 })
 
@@ -300,10 +318,34 @@ describe('ADR-001 SLOJ B — ratchet nad izvorom', () => {
   })
 })
 
-describe('ADR-001 — mrtva javna ruta s ispitnim sadržajem je uklonjena', () => {
-  it('app/api/exams/[razina]/route.js više ne postoji', async () => {
+describe('ADR-001 — mrtve rute s ispitnim sadržajem su uklonjene', () => {
+  it('cijelo stablo app/api/exams više ne postoji', async () => {
     const { access } = await import('node:fs/promises')
-    const dead = path.resolve(process.cwd(), 'app', 'api', 'exams', '[razina]', 'route.js')
-    await expect(access(dead)).rejects.toThrow()
+    // [razina]/route.js je bio javan i bez prijave; check/route.js je vraćao
+    // točno/netočno po pitanju uz vlastiti, pogrešan `checkQ`. Oboje zamjenjuju
+    // /api/sim/[subject]/exam/[examKey] i /api/sim/[subject]/grade.
+    for (const dead of [
+      path.resolve(process.cwd(), 'app', 'api', 'exams'),
+      path.resolve(process.cwd(), 'app', 'api', 'exams', '[razina]', 'route.js'),
+      path.resolve(process.cwd(), 'app', 'api', 'exams', 'check', 'route.js'),
+    ]) {
+      await expect(access(dead), dead).rejects.toThrow()
+    }
   })
+})
+
+describe('ADR-001 SLOJ B — tajni store se ne broji u ratchetu', () => {
+  it('lib/data/<predmet>/secrets/** nije u baselineu, iako je pun ključeva', async () => {
+    const baseline = await loadBaseline()
+    const inBaseline = Object.keys(baseline.files).filter((file) => isSecretDataPath(file))
+    // To je mjesto na koje ključeve treba PRESELITI; da ih ratchet broji,
+    // svaka uspješna migracija bila bi "porast". Sloj A gleda točno isti skup
+    // putanja i pada ako je ijedna dohvatljiva iz klijenta.
+    expect(inBaseline).toEqual([])
+  })
+
+  it('sken preskače tajni store, ali ne i ostatak lib/data', async () => {
+    const current = await scanSecretKeys()
+    expect(Object.keys(current.files).filter((file) => isSecretDataPath(file))).toEqual([])
+  }, 180000)
 })
