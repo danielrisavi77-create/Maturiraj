@@ -135,6 +135,10 @@ Ruta `app/api/ai-simulator/route.js` s `mode: explain|grade|analysis`, tijelo `{
 | Izvlačenje pitanja, ključ, razrada, refuter po pitanju, alt tekstovi, sudac slika, taksonomija | Opus 5 |
 | Portovi lib-ova, CSS, generatori, fetch/render/izrez, validacija, ledger, Playwright, usporedba slika prvi prolaz | Sonnet 5 |
 | Orkestracija, čitanje izvještaja, merge odluke, push | glavna sesija (Fable), ne kodira |
+| Drugi refuter razrade i ključeva (2 % uzorak + svi sporni slučajevi), druga obitelj modela | **Codex CLI** (`codex exec`, ChatGPT pretplata, već instaliran i prijavljen) |
+| Treći refuter istog tipa, kad se Codex i Opus ne slažu | **Grok Build CLI** (`@xai-official/grok`, SuperGrok/X Premium+ pretplata, OAuth `grok login`) |
+
+Codex i Grok nisu Workflow agenti (Workflow pokreće samo Claude modele) nego alati koje stage zove iz ljuske neinteraktivno, s pitanjem, ključem i razradom u promptu i JSON izlazom istog oblika kao Opus refuter (`VERDICT_SCHEMA`). Ne mijenjaju datoteke u repou; njihovi nalazi idu Opus sucu kao i ostali. Većina od tri (Opus, Codex, Grok) odlučuje za sporne slučajeve. Integracija: `scripts/ai/external-refuter.mjs` s adapterima `codex` i `grok`, provjera dostupnosti (`codex --version`, `grok --version`, auth datoteke) na početku workflowa; ako CLI nije prijavljen, stage pada natrag na drugog Opusa i to zabilježi u ledger. "Opus" u workflowima je alias, pa noviji Opus (npr. 5.5 ako izađe) ulazi automatski; prvi agent svakog workflowa izvještava koji model ID stvarno vrti.
 
 Pravila: agenti rade samo u svom worktreeu, referentni `mat-sim-round4` samo za build/dev server; commit poruke bez BOM-a; `Date.now()` zabranjen u workflow skriptama; nastavak nakon limita kroz resume + ledger.
 
