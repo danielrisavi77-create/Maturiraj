@@ -667,7 +667,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
   /** Rezultat slaže zajednički modul — isti zapis daje i automatska predaja
    * istekle sesije u roditelju (lib/engleski-simulator/examResult.js). */
   function buildResult(server) {
-    return buildExamResult(exam, answers, qTimes, examMode, server)
+    return buildExamResult(exam, answers, qTimes, examMode, server, attemptIdRef.current)
   }
 
   // Predaja je kraj sesije — snapshot i nacrt više nemaju što nastaviti. Briše
@@ -1282,7 +1282,7 @@ export default function EngleskiSimulator() {
     setResumeFor(null)
     setExamScores(server?.scores || null)
     setNotice('Vrijeme je isteklo dok te nije bilo — ispit je predan s odgovorima koji su bili spremljeni.')
-    onExamDone(buildExamResult(ex, snap.answers || {}, {}, true, server), { exams: map })
+    onExamDone(buildExamResult(ex, snap.answers || {}, {}, true, server, id), { exams: map })
   }
 
   function onResumeSession() {
