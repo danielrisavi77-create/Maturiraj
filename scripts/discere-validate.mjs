@@ -1,8 +1,9 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { validateExam } from '../lib/discere/exam-schema.js'
+import { validateExam, upgradeExam } from '../lib/discere/exam-schema.js'
 import { validateExamAssets } from './discere-asset-integrity.mjs'
+import { buildPublicExam, buildSecrets, renameAltForDisk } from './gen-discere-exams.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 
@@ -32,13 +33,47 @@ function subjectDirs(contentRoot, requestedSubject) {
     .sort()
 }
 
-export async function validateSubjectDirectory(subjectDir, { publicRoot = resolve(subjectDir, '../../../public') } = {}) {
+/**
+ * Provjera drifta (npm skripta discere:gen): ako generirane datoteke već
+ * postoje na disku, moraju biti bajt-identične onome što bi generator upravo
+ * sada proizveo iz kanonskog izvora. Pad znači da je netko ručno diraona
+ * generirano ili zaboravio pokrenuti `npm run discere:gen` nakon izmjene
+ * kanonskog sadržaja.
+ */
+function checkGeneratedDrift(subjectId, entry, rawExam, cwd) {
+  const issues = []
+  const publicPath = join(cwd, 'content', subjectId, 'exams', `${entry.key}.json`)
+  const secretsPath = join(cwd, 'lib', 'data', subjectId, 'secrets', `${entry.key}.json`)
+  if (!existsSync(publicPath) && !existsSync(secretsPath)) return issues
+
+  const upgraded = upgradeExam(rawExam)
+  const publicExam = buildPublicExam(upgraded)
+  const diskExam = { ...publicExam, qs: renameAltForDisk(publicExam.qs) }
+  const { secrets } = buildSecrets(upgraded.questions)
+
+  if (existsSync(publicPath)) {
+    const expected = `${JSON.stringify(diskExam, null, 2)}\n`
+    if (readFileSync(publicPath, 'utf8') !== expected) {
+      issues.push({ code: 'GENERATED_PUBLIC_DRIFT', path: relative(cwd, publicPath), message: `content/${subjectId}/exams/${entry.key}.json ne odgovara generatoru — pokreni npm run discere:gen.` })
+    }
+  }
+  if (existsSync(secretsPath)) {
+    const expected = `${JSON.stringify(secrets, null, 2)}\n`
+    if (readFileSync(secretsPath, 'utf8') !== expected) {
+      issues.push({ code: 'GENERATED_SECRETS_DRIFT', path: relative(cwd, secretsPath), message: `lib/data/${subjectId}/secrets/${entry.key}.json ne odgovara generatoru — pokreni npm run discere:gen.` })
+    }
+  }
+  return issues
+}
+
+export async function validateSubjectDirectory(subjectDir, { publicRoot = resolve(subjectDir, '../../../public'), cwd = resolve(subjectDir, '../../..') } = {}) {
   const indexPath = join(subjectDir, 'index.json')
   if (!existsSync(indexPath)) {
     return { subject: subjectDir.split(sep).at(-1), skipped: true, exams: [], errors: [], warnings: [] }
   }
 
   const index = JSON.parse(readFileSync(indexPath, 'utf8'))
+  const subjectId = index.subject || subjectDir.split(sep).at(-1)
   const paths = examModulePathsForSubject(subjectDir, index)
   const exams = []
   const errors = []
@@ -71,13 +106,20 @@ export async function validateSubjectDirectory(subjectDir, { publicRoot = resolv
     const result = validateExam(imported.exam)
     const media = await validateExamAssets(imported.exam, { publicRoot })
     result.errors.push(...media.errors)
+    let driftIssues = []
+    try {
+      driftIssues = checkGeneratedDrift(subjectId, entry, imported.exam, cwd)
+    } catch (error) {
+      driftIssues = [{ code: 'GENERATED_DRIFT_CHECK_FAILED', path: entry.file, message: error?.message || String(error) }]
+    }
+    result.errors.push(...driftIssues)
     result.valid = result.errors.length === 0
     exams.push({ key: entry.key, valid: result.valid, errorCount: result.errors.length, warningCount: result.warnings.length, assets: media.assets })
     result.errors.forEach((error) => errors.push({ ...error, examKey: entry.key }))
     result.warnings.forEach((warning) => warnings.push({ ...warning, examKey: entry.key }))
   }
 
-  return { subject: index.subject || subjectDir.split(sep).at(-1), skipped: false, exams, errors, warnings }
+  return { subject: subjectId, skipped: false, exams, errors, warnings }
 }
 
 function printReport(report) {
@@ -109,7 +151,7 @@ export async function runDiscereValidation({ cwd = process.cwd(), subject = null
   const dirs = subjectDirs(contentRoot, subject)
 
   if (subject && dirs.length === 1 && !existsSync(join(dirs[0], 'index.json'))) {
-    const report = await validateSubjectDirectory(dirs[0])
+    const report = await validateSubjectDirectory(dirs[0], { cwd })
     report.skipped = false
     report.errors.push({ code: 'SUBJECT_INDEX_MISSING', path: join(dirs[0], 'index.json'), message: `Requested subject ${subject} has no canonical index.` })
     printReport(report)
@@ -123,7 +165,7 @@ export async function runDiscereValidation({ cwd = process.cwd(), subject = null
 
   const reports = []
   for (const dir of dirs) {
-    const report = await validateSubjectDirectory(dir, { publicRoot: join(cwd, 'public') })
+    const report = await validateSubjectDirectory(dir, { publicRoot: join(cwd, 'public'), cwd })
     reports.push(report)
     printReport(report)
   }
