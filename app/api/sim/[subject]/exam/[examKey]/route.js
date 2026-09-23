@@ -8,14 +8,19 @@
 // `keys` je opis onoga što je u payloadu, ne zahtjev klijenta:
 //   'full'    — svako pitanje nosi ključ (plaćeni tier, i to samo za ispite iz
 //               allowedExamKeys tog tiera)
-//   'partial' — dio pitanja nosi ključ (danas ne nastaje: free izuzetak je 0)
-//   'none'    — nijedno pitanje nema ključ (svaki free korisnik, oba načina)
+//   'partial' — dio pitanja nosi ključ (free vježbanje: prvih FREE_LIMIT)
+//   'none'    — nijedno pitanje nema ključ (free ispitni mod)
 // Klijentski prekidač ostaje `const hasKeys = qs.some(q => q && q.sol)`, pa mu
 // 'partial' ne treba posebno rukovanje.
 //
-// ODLUKA VLASNIKA: free korisnik NIKAD ne dobiva sol/exp/why/steps. Zato je
-// `freeKeyAllowance` nula i zato ovaj odgovor nema tier-ovisnog izuzetka koji bi
-// se dao pokupiti skupnim dohvatom svih ispita.
+// ODLUKE VLASNIKA (1) i (5): u ISPITNOM modu free korisnik nikad ne dobiva
+// sol/exp/why/steps — ocjenu daje ocjenjivačka ruta. U VJEŽBANJU dobiva pune
+// podatke za prvih FREE_LIMIT pitanja tog ispita, jer je to isti javni preview
+// koji mu paywall ionako pokazuje (dalje od FREE_LIMIT ne može ni doći).
+//
+// Da taj izuzetak ne postane skupni ispis banke, drže ga tri stvari: skupni
+// dohvat ide s `mode=exam` (examsLoader BULK_MODE), ekrani nad cijelom bankom su
+// za free zaključani, a ovdje free korisnik ima kvotu dohvata ispita po satu.
 //
 // Tier se čita ISKLJUČIVO iz baze. Ni query string, ni tijelo, ni bridge.
 // Zaglavlja su `private, no-store` + `Vary: Cookie` jer je odgovor tier-ovisan:
@@ -27,6 +32,11 @@ import { normalizeTier, isPaidTier } from '@/lib/billing/getEffectiveTier'
 import { asKeySet, getAdapter } from '@/lib/exam-secrets/registry'
 import { mergeSecrets, stripQuestions } from '@/lib/exam-secrets'
 import { freeKeyAllowance } from '@/lib/exam-secrets/free-policy'
+import { consumeRateLimitSlots } from '@/lib/rate-limit'
+import {
+  FREE_EXAM_FETCH_LIMIT,
+  FREE_EXAM_FETCH_WINDOW_MS,
+} from '@/lib/exam-secrets/grade-policy'
 
 export const dynamic = 'force-dynamic'
 
@@ -38,8 +48,8 @@ const HEADERS = Object.freeze({
   Vary: 'Cookie',
 })
 
-function fail(message, status) {
-  return NextResponse.json({ error: message }, { status, headers: HEADERS })
+function fail(message, status, extraHeaders) {
+  return NextResponse.json({ error: message }, { status, headers: { ...HEADERS, ...extraHeaders } })
 }
 
 /* ── keš tiera ─────────────────────────────────────────────────────────────
@@ -84,6 +94,27 @@ export async function GET(request, { params } = {}) {
   if (!exam) return fail('Ispit ne postoji.', 404)
 
   const tier = await cachedTier(user.id)
+  const paid = isPaidTier(tier)
+
+  // Kvota dohvata za free: vježbanje mu nosi ključ za prvih FREE_LIMIT pitanja
+  // (ODLUKA 5), pa bez stropa isti preview postaje ispis cijele banke — 70 poziva
+  // = 210 punih rješenja. Plaćeni tier nije ograničen: ekrani nad cijelom bankom
+  // rade 70 dohvata odjednom i to im je zadano ponašanje.
+  if (!paid) {
+    const quota = await consumeRateLimitSlots(
+      user.id,
+      Array.from({ length: FREE_EXAM_FETCH_LIMIT }, (_, i) => i),
+      slot => `sim-exam-get:${subject}:${slot}`,
+      FREE_EXAM_FETCH_WINDOW_MS,
+    )
+    if (!quota.ok) {
+      return fail(
+        `Previše dohvata ispita u kratkom vremenu. Pokušaj ponovno za ${Math.ceil(quota.retryAfterSec / 60)} min.`,
+        429,
+        { 'Retry-After': String(quota.retryAfterSec) },
+      )
+    }
+  }
 
   // Javni payload se čisti UVIJEK, pa i kad ga adapter već isporučuje čistog.
   // Dok traje migracija predmeta to je jedina stvar koja stoji između
@@ -91,7 +122,7 @@ export async function GET(request, { params } = {}) {
   const publicQs = stripQuestions(exam.qs, adapter.publicFields)
 
   const allowed = asKeySet(adapter.allowedExamKeys(tier))
-  const paidMayHaveKeys = isPaidTier(tier) && (allowed === null || allowed.has(examKey))
+  const paidMayHaveKeys = paid && (allowed === null || allowed.has(examKey))
   const allowance = paidMayHaveKeys ? publicQs.length : freeKeyAllowance(subject, examKey, mode)
 
   let qs = publicQs

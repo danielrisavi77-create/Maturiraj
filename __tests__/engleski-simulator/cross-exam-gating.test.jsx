@@ -39,14 +39,17 @@ const EXAMS_INDEX = [
   { key: OSNOVNA_EXAM.key, year: 2024, season: 'ljeto', label: 'Ljetni rok', razina: 'osnovna', hasListening: true, hasReading: true, qCount: 1 },
 ]
 
+/** Brojač skupnih dohvata — free korisnik ne smije okinuti nijedan. */
+const bulk = { razina: 0 }
+
 vi.mock('@/lib/engleski-simulator/examsLoader', () => ({
   RAZINE: ['osnovna', 'visa'],
   getExamsIndex: () => EXAMS_INDEX,
   razinaForKey: () => 'osnovna',
   isExamLoaded: () => true,
-  isRazinaLoaded: () => true,
+  isRazinaLoaded: () => false,
   loadExamByKey: key => Promise.resolve(EXAMS_MAP[key]),
-  loadRazina: () => Promise.resolve(EXAMS_MAP),
+  loadRazina: () => { bulk.razina += 1; return Promise.resolve(EXAMS_MAP) },
   getLoadedSync: () => EXAMS_MAP,
 }))
 
@@ -62,6 +65,7 @@ describe('EngleskiSimulator — cross-exam ekrani iza Standarda', () => {
   beforeEach(() => {
     auth.isPro = false
     auth.isPaid = false
+    bulk.razina = 0
     global.fetch = vi.fn(() => Promise.resolve({ json: () => Promise.resolve({}) }))
     try { localStorage.clear() } catch { /* happy-dom bez localStoragea */ }
   })
@@ -82,6 +86,31 @@ describe('EngleskiSimulator — cross-exam ekrani iza Standarda', () => {
     expect(screen.queryByText('Tajno pitanje jedan')).toBeNull()
     expect(screen.queryByText(/Tajni točan odgovor/)).toBeNull()
     expect(screen.queryByText(/Tajno obrazloženje/)).toBeNull()
+  }, 120000)
+
+  /**
+   * Dnevni izazov, Virtualni ispit, Vježbaj po temi i Usporedba slažu sesiju od
+   * pitanja iz CIJELE banke i ocjenjuju je lokalno. Free korisnik za njih nema
+   * ključeve, pa bi mu vraćali 0 % i prazan feedback, a usput povlačili svih 70
+   * ispita. Politika ih svrstava u vježbanje (Standard), pa su zaključani —
+   * isto kao u hrvatskom i matematici.
+   */
+  it.each(['Virtualni ispit', 'Vježbaj po temi', 'Usporedi ispite', 'Dnevni izazov'])(
+    'free korisnik: %s je zaključan i ne povlači cijelu banku', async (label) => {
+    render(e(EngleskiSimulator))
+    // Naslov kartice je unutar gumba — klik se propagira na njega.
+    fireEvent.click(await screen.findByText(label, {}, { timeout: 30000 }))
+
+    await waitFor(() => {
+      expect(document.querySelector('a[href^="/pro?from=eng-feature"]')).toBeTruthy()
+    }, { timeout: 30000 })
+
+    expect(screen.getByText(label)).toBeTruthy()
+    // Ni jedno pitanje iz banke nije došlo u DOM…
+    expect(screen.queryByText('Tajno pitanje jedan')).toBeNull()
+    expect(screen.queryByText(/Tajni točan odgovor/)).toBeNull()
+    // …i nijedan skupni dohvat od 70 ispita nije ni pokrenut.
+    expect(bulk.razina).toBe(0)
   }, 120000)
 
   it('plaćeni korisnik i dalje ulazi u pregled svih pitanja', async () => {

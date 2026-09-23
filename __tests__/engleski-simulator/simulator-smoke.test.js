@@ -128,8 +128,13 @@ describe('EngleskiSimulator — integracijski smoke test', () => {
     const radios = await screen.findAllByRole('radio', {}, { timeout: 20000 })
     fireEvent.click(radios[0])
 
-    // Free payload nema ključeva → gumba 'Provjeri' nema
-    expect(screen.queryByRole('button', { name: 'Provjeri' })).toBeNull()
+    // ODLUKA VLASNIKA (5): free vježbanje dobiva pun feedback za prvih FREE_LIMIT
+    // pitanja, pa 'Provjeri' na prvom pitanju POSTOJI i doista nešto pokaže.
+    const checkBtn = screen.getByRole('button', { name: 'Provjeri' })
+    fireEvent.click(checkBtn)
+    await waitFor(() => {
+      expect(screen.queryByRole('button', { name: 'Provjeri' })).toBeNull()
+    }, { timeout: 20000 })
 
     // 'Vidi rezultate'
     const resultsBtn = await screen.findByRole('button', { name: 'Vidi rezultate' }, { timeout: 20000 })

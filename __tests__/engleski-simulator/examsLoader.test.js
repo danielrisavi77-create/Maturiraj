@@ -144,6 +144,39 @@ describe('createExamsLoader — skupni dohvat za ekrane nad cijelom bankom', () 
     expect(loader.isRazinaLoaded('visa')).toBe(false)
   })
 
+  it('jedan pali dohvat od 35 ne ruši ostalih 34 (allSettled, ne Promise.all)', async () => {
+    // Skupni dohvat se pokreće i u pozadini ekrana rezultata: s Promise.all je
+    // jedan 500 ili timeout znao korisniku zamijeniti upravo zarađen rezultat
+    // karticom "Učitavanje ispita nije uspjelo".
+    const pali = examKeysForRazina('osnovna')[7]
+    const fetchExam = vi.fn((key, mode) =>
+      key === pali ? Promise.reject(new Error('500')) : Promise.resolve(makeExam(key, mode)))
+    const loader = createExamsLoader(fetchExam)
+
+    const map = await loader.loadRazina('osnovna')
+
+    expect(Object.keys(map)).toHaveLength(34)
+    expect(map[pali]).toBeUndefined()
+    // Razina NIJE proglašena učitanom, pa sljedeći ulazak dohvati samo ono što
+    // nedostaje — ostalo je već u kešu.
+    expect(loader.isRazinaLoaded('osnovna')).toBe(false)
+
+    fetchExam.mockImplementation((key, mode) => Promise.resolve(makeExam(key, mode)))
+    const retry = await loader.loadRazina('osnovna')
+    expect(Object.keys(retry)).toHaveLength(35)
+    expect(loader.isRazinaLoaded('osnovna')).toBe(true)
+    expect(fetchExam).toHaveBeenCalledTimes(36)
+  })
+
+  it('kad ne stigne nijedan ispit, loadRazina odbija (ekran mora ponuditi retry)', async () => {
+    const err = new Error('sesija je istekla')
+    const fetchExam = vi.fn(() => Promise.reject(err))
+    const loader = createExamsLoader(fetchExam)
+
+    await expect(loader.loadRazina('osnovna')).rejects.toThrow('sesija je istekla')
+    expect(loader.isRazinaLoaded('osnovna')).toBe(false)
+  })
+
   it('loadAllRazine spoji obje razine, a identitet mape je stabilan', async () => {
     const fetchExam = fakeFetcher()
     const loader = createExamsLoader(fetchExam)

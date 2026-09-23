@@ -10,7 +10,9 @@
  *   - istek timera bloka prelazi na sljedeći blok, a istek zadnjeg predaje ispit,
  *   - upozorenje na 600 s nosi naziv ispitne cjeline,
  *   - paywall: prijavljeni free korisnik rješava cijeli ispit (ispitni mod je
- *     besplatan), a u vježbanju ostaje zaključan od FREE_LIMIT-og pitanja.
+ *     besplatan), a u vježbanju ostaje zaključan od FREE_LIMIT-og pitanja,
+ *   - nacrt pokušaja: rok i indeks cjeline preživljavaju osvježavanje stranice,
+ *     nacrt vježbanja ne ulazi u simulaciju, a potvrđeni izlazak ga briše.
  *
  * MCQ i SimulatorPreviewGate su pravi (ne mockani) — testiramo stvarni DOM.
  * Mockani su samo next/navigation (router ne postoji izvan Nexta) i useAuth
@@ -194,5 +196,90 @@ describe('ExamPlayScreen — blokovska navigacija simulacije', () => {
     expect(navTitle()).toContain('Čitanje (1/3)')
     expect(errorSpy.mock.calls.some(c => String(c[0]).includes('Cannot update a component'))).toBe(false)
     errorSpy.mockRestore()
+  })
+})
+
+describe('ExamPlayScreen — nacrt pokušaja u localStorageu', () => {
+  const EXAM_KEY = makeVisaExam().key
+  // Način rada je dio ključa: vježbanje i simulacija istog ispita ne dijele nacrt.
+  const EXAM_DRAFT = `disc_eng_exam_${EXAM_KEY}_exam`
+  const PRACTICE_DRAFT = `disc_eng_exam_${EXAM_KEY}_practice`
+
+  beforeEach(() => {
+    window.confirm = vi.fn(() => true)
+    try { localStorage.clear() } catch { /* happy-dom bez localStoragea */ }
+  })
+  afterEach(() => {
+    cleanup()
+    vi.useRealTimers()
+  })
+
+  it('simulacija zapiše rok i indeks cjeline čim počne', () => {
+    vi.useFakeTimers()
+    installSimApiMock({ exams: { [EXAM_KEY]: makeVisaExam() }, tier: 'pro' })
+    renderPlay()
+    const draft = JSON.parse(localStorage.getItem(EXAM_DRAFT))
+    expect(draft.blockIdx).toBe(0)
+    expect(draft.deadline).toBe(Date.now() + READING_S * 1000)
+  })
+
+  it('osvježavanje nastavlja odbrojavanje od zapisanog roka, u zapisanoj cjelini', () => {
+    vi.useFakeTimers()
+    installSimApiMock({ exams: { [EXAM_KEY]: makeVisaExam() }, tier: 'pro' })
+    localStorage.setItem(EXAM_DRAFT, JSON.stringify({
+      at: Date.now(),
+      answers: { W1: 'nacrt' },
+      qTimes: {},
+      deadline: Date.now() + 5 * 60 * 1000,
+      blockIdx: 1,
+    }))
+    renderPlay()
+    // Ne 75:00 (puno trajanje Pisanja) nego ostatak iz nacrta — inače bi F5 vraćao
+    // pun timer uz netaknute odgovore, dakle ispit bez vremenskog ograničenja.
+    expect(screen.getByRole('timer').textContent).toBe('05:00')
+    // I zatvoreni se blok ne otvara ponovno.
+    expect(navTitle()).toContain('Pisanje (2/3)')
+  })
+
+  it('nacrt vježbanja ne ulazi u simulaciju istog ispita', async () => {
+    const { calls } = installSimApiMock({ exams: { [EXAM_KEY]: makeVisaExam() }, tier: 'pro' })
+    localStorage.setItem(PRACTICE_DRAFT, JSON.stringify({
+      at: Date.now(),
+      answers: { R1: 'A', R2: 'A', L1: 'A', L2: 'A' },
+      qTimes: {},
+    }))
+    renderPlay()
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Predaj ispit' }))
+    await act(async () => {})
+    expect(calls.grade).toHaveLength(1)
+    // Odgovori iz vježbanja (gdje „Provjeri“ pokazuje točan odgovor) ne smiju se
+    // predati kao regularan ispitni pokušaj.
+    expect(calls.grade[0].answers).toEqual({})
+    expect(JSON.parse(localStorage.getItem(PRACTICE_DRAFT)).answers).toEqual({ R1: 'A', R2: 'A', L1: 'A', L2: 'A' })
+  })
+
+  it('potvrđeni izlazak iz simulacije briše nacrt, otkazani ga čuva', () => {
+    installSimApiMock({ exams: { [EXAM_KEY]: makeVisaExam() }, tier: 'pro' })
+    window.confirm = vi.fn(() => false)
+    const { onExit } = renderPlay()
+    expect(localStorage.getItem(EXAM_DRAFT)).not.toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: '← Natrag' }))
+    expect(onExit).not.toHaveBeenCalled()
+    expect(localStorage.getItem(EXAM_DRAFT)).not.toBeNull()
+
+    window.confirm = vi.fn(() => true)
+    fireEvent.click(screen.getByRole('button', { name: '← Natrag' }))
+    expect(onExit).toHaveBeenCalledTimes(1)
+    // Potvrda obećava da napredak nestaje — inače bi se odgovori vratili pri
+    // sljedećem ulasku u isti ispit.
+    expect(localStorage.getItem(EXAM_DRAFT)).toBeNull()
+  })
+
+  it('vježbanje ne piše u ispitni ključ i ne dobiva rok', () => {
+    installSimApiMock({ exams: { [EXAM_KEY]: makeVisaExam() }, tier: 'pro' })
+    renderPlay({ examMode: false })
+    expect(localStorage.getItem(EXAM_DRAFT)).toBeNull()
   })
 })

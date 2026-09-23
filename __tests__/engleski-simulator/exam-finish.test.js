@@ -31,7 +31,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import { createElement as e } from 'react';
 import { chk, grade, timerTick } from '../../lib/engleski-simulator/scoring.js';
-import { makeVisaExam, PRO_ACCESS } from './_synthExam.js';
+import { makeVisaExam, PRO_ACCESS, FREE_ACCESS } from './_synthExam.js';
 import { installSimApiMock } from './_mockSimApi.js';
 
 vi.mock('next/navigation', () => ({
@@ -321,5 +321,76 @@ describe('finish() — rezultat pravog ispita nosi sectionScores i weighted', ()
     // Ponderi se renormaliziraju na pokrivene cjeline: (1/3·50 + 1/3·0) / (2/3) = 25
     expect(result.weighted.pct).toBe(25);
     expect(result.weighted.coveredWeight).toBeCloseTo(2 / 3, 10);
+  });
+});
+
+// ─── 429 od ocjenjivačke rute: odbrojavanje, pa ista predaja ──────────────────
+//
+// ODLUKA VLASNIKA (3): razmak od 60 s nije odbijen pokušaj nego "pričekaj".
+// Klijent zato odbrojava i šalje ISTI attemptId — lokalni izračun bi rezultat
+// ostavio samo na ekranu, bez retka u sim_progress (napredak, percentil).
+
+describe('predaja odbijena razmakom (429 + Retry-After)', () => {
+  let api;
+  beforeEach(() => {
+    window.confirm = vi.fn(() => true);
+    api = installSimApiMock({
+      exams: { [makeVisaExam().key]: makeVisaExam() },
+      tier: 'free',
+      gradeStatus: 429,
+      gradeRetryAfterSec: 1,
+    });
+    try { localStorage.clear(); } catch { /* happy-dom bez localStoragea */ }
+  });
+  afterEach(() => cleanup());
+
+  function renderFreeExam(onDone) {
+    // Free ispitni payload NEMA ključeva — točno kao iz rute (keys:'none').
+    const exam = makeVisaExam();
+    const stripped = { ...exam, qs: exam.qs.map(({ sol, exp, ...rest }) => rest) };
+    render(e(ExamPlayScreen, {
+      exam: stripped,
+      examMode: true,
+      timedMode: false,
+      examContext: {},
+      onExit: vi.fn(),
+      onDone,
+      userAccess: FREE_ACCESS,
+      isPro: false,
+      examLookup: {},
+      soundOn: false,
+    }));
+  }
+
+  it('prikaže odbrojavanje umjesto rezultata i ne završi ispit', async () => {
+    const onDone = vi.fn();
+    renderFreeExam(onDone);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Predaj ispit' }));
+
+    await waitFor(() => expect(screen.getByRole('alert')).toBeTruthy());
+    expect(screen.getByRole('alert').textContent).toMatch(/Ponovna predaja za \d+ s/);
+    expect(onDone).not.toHaveBeenCalled();
+  });
+
+  it('nakon odbrojavanja ponovi predaju s ISTIM attemptId i tek tada završi', async () => {
+    const onDone = vi.fn();
+    renderFreeExam(onDone);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Predaj ispit' }));
+
+    await waitFor(() => expect(api.calls.grade).toHaveLength(1));
+    api.setGradeOutcome(200);
+
+    await waitFor(() => expect(onDone).toHaveBeenCalledTimes(1), { timeout: 5000 });
+    expect(api.calls.grade).toHaveLength(2);
+    // Isti pokušaj: ruta ga prepozna kao ponavljanje i ne troši budžet.
+    expect(api.calls.grade[1].attemptId).toBe(api.calls.grade[0].attemptId);
+    // Odgovori su isti, pa je i otisak pokušaja isti.
+    expect(api.calls.grade[1].answers).toEqual(api.calls.grade[0].answers);
   });
 });

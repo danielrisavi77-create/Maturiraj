@@ -23,7 +23,23 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock('@/lib/supabase/server', () => ({ createClient: mocks.createClient }))
 vi.mock('@/lib/billing/subscriptions', () => ({ getUserTier: mocks.getUserTier }))
-vi.mock('@/lib/rate-limit', () => ({ checkRateLimit: mocks.checkRateLimit }))
+// Mjesta kvote troši consumeRateLimitSlots, pa i on mora postojati u dvojniku —
+// implementiran preko istog mocka, da test vidi svaki ključ koji ruta zauzme.
+vi.mock('@/lib/rate-limit', () => ({
+  checkRateLimit: mocks.checkRateLimit,
+  consumeRateLimitSlots: async (userId, slots, keyFor, windowMs) => {
+    let soonest = Number.POSITIVE_INFINITY
+    for (const slot of slots) {
+      const res = await mocks.checkRateLimit(userId, keyFor(slot), windowMs)
+      if (!res.limited) return { ok: true, retryAfterSec: 0 }
+      soonest = Math.min(soonest, res.retryAfterSec || 0)
+    }
+    return {
+      ok: false,
+      retryAfterSec: Number.isFinite(soonest) && soonest > 0 ? soonest : Math.round(windowMs / 1000),
+    }
+  },
+}))
 
 /** Pitanja onako kako ih adapter danas vraća — s ključem i obrazloženjem. */
 const RAW_QS = [
@@ -111,12 +127,20 @@ function makeSupabase({ user = { id: 'u1' }, count = 0, prior = null, insertErro
   }
 }
 
-/** Ista registracija, ali vraća i konstante budžeta iz same rute. */
+/**
+ * Ista registracija, ali vraća i konstante politike.
+ *
+ * Konstante NISU u datoteci rute: Next iz datoteke rute prihvaća samo HTTP
+ * metode i poznate konfiguracijske izvoze, pa je svaki dodatni `export` greška
+ * builda. Žive u lib/exam-secrets/grade-policy.js i test ih uzima odande.
+ */
 async function loadGradeRoute(adapter) {
   const registry = await import('@/lib/exam-secrets/registry')
   registry.resetRegistry()
   if (adapter) registry.registerSubject(SUBJECT, adapter)
-  return import('@/app/api/sim/[subject]/grade/route')
+  const route = await import('@/app/api/sim/[subject]/grade/route')
+  const policy = await import('@/lib/exam-secrets/grade-policy')
+  return { ...policy, POST: route.POST }
 }
 
 async function loadRoutes(adapter) {
@@ -241,21 +265,63 @@ describe('GET /api/sim/[subject]/exam/[examKey]', () => {
     expect(mocks.getUserTier).toHaveBeenCalledWith('u1')
   })
 
-  it('ni free vježbanje ne otključava nijedan ključ (odluka vlasnika)', async () => {
+  it('free vježbanje otključava TOČNO prvih FREE_LIMIT pitanja i ni jedno više', async () => {
+    const { FREE_LIMIT, freeKeyAllowance } = await import('@/lib/exam-secrets/free-policy')
+    const adapter = makeAdapter()
+    const { GET } = await loadRoutes(adapter)
+
+    const payload = await (await GET(...getRequest('practice'))).json()
+
+    // ODLUKA VLASNIKA (5): namjeran, ograničen javni preview — isti onaj koji
+    // paywall ionako pokazuje (dalje od FREE_LIMIT free korisnik ne može doći).
+    expect(freeKeyAllowance(SUBJECT, EXAM_KEY, 'practice')).toBe(FREE_LIMIT)
+    expect(payload.keys).toBe('partial')
+    expect(payload.qs.filter((question) => question.sol !== undefined)).toHaveLength(FREE_LIMIT)
+    // Iza granice nema ničega — ni ključa ni obrazloženja.
+    for (const question of payload.qs.slice(FREE_LIMIT)) {
+      expect(question.sol).toBeUndefined()
+      expect(question.exp).toBeUndefined()
+      expect(question.why).toBeUndefined()
+    }
+  })
+
+  it('ispitni mod free korisniku ne otključava ništa ni kad vježbanje smije', async () => {
     const { freeKeyAllowance } = await import('@/lib/exam-secrets/free-policy')
     const adapter = makeAdapter()
     const { GET } = await loadRoutes(adapter)
 
-    const res = await GET(...getRequest('practice'))
+    const res = await GET(...getRequest('exam'))
     const raw = await res.text()
-    const payload = JSON.parse(raw)
 
-    expect(freeKeyAllowance(SUBJECT, EXAM_KEY, 'practice')).toBe(0)
-    expect(payload.keys).toBe('none')
-    expect(payload.qs.every((question) => question.sol === undefined)).toBe(true)
+    expect(freeKeyAllowance(SUBJECT, EXAM_KEY, 'exam')).toBe(0)
+    expect(JSON.parse(raw).keys).toBe('none')
     for (const sentinel of SENTINELS) expect(raw).not.toContain(sentinel)
     // Tajni store se u tom slučaju uopće ne dira.
     expect(adapter.loadSecrets).not.toHaveBeenCalled()
+  })
+
+  it('free korisnik ima kvotu dohvata ispita po satu, plaćeni nema', async () => {
+    const { FREE_EXAM_FETCH_LIMIT } = await import('@/lib/exam-secrets/grade-policy')
+    const { GET } = await loadRoutes(makeAdapter())
+
+    // Kvota je potrošena (svih FREE_EXAM_FETCH_LIMIT mjesta zauzeto).
+    for (let slot = 0; slot < FREE_EXAM_FETCH_LIMIT; slot += 1) {
+      rateLimitSeen.add(`u1|sim-exam-get:${SUBJECT}:${slot}`)
+    }
+    const blocked = await GET(...getRequest('practice'))
+    expect(blocked.status).toBe(429)
+    expect(blocked.headers.get('Retry-After')).toBe('42')
+
+    // Isti, potpuno potrošeni prozor — plaćenog tiera se ne tiče: skupni dohvat
+    // cijele banke je 70 zahtjeva i to mu je zadano ponašanje. (Drugi korisnik
+    // jer se tier kešira 60 s po korisniku, kao i u produkciji.)
+    mocks.getUserTier.mockResolvedValue('pro')
+    mocks.createClient.mockResolvedValue(makeSupabase({ user: { id: 'u2' } }).client)
+    for (let slot = 0; slot < FREE_EXAM_FETCH_LIMIT; slot += 1) {
+      rateLimitSeen.add(`u2|sim-exam-get:${SUBJECT}:${slot}`)
+    }
+    const paid = await GET(...getRequest('practice'))
+    expect(paid.status).toBe(200)
   })
 
   it('neregistriran predmet i nepostojeći ispit vraćaju 404', async () => {
@@ -354,6 +420,39 @@ describe('POST /api/sim/[subject]/grade', () => {
     expect(mocks.checkRateLimit).toHaveBeenCalledWith('u1', `sim-grade:${SUBJECT}:${EXAM_KEY}`, 60000)
   })
 
+  it('plaćeni tier nije podložan dnevnom budžetu (budžet štiti od oraclea, a on ima ključeve)', async () => {
+    mocks.getUserTier.mockResolvedValue('standard')
+    const supabase = makeSupabase()
+    mocks.createClient.mockResolvedValue(supabase.client)
+    const { GRADE_DAILY_BUDGET, POST } = await loadGradeRoute(makeAdapter())
+    consumeBudget(Array.from({ length: GRADE_DAILY_BUDGET }, (_, i) => i))
+
+    const res = await POST(...postRequest(baseBody()))
+
+    expect(res.status).toBe(200)
+    expect(supabase.inserts).toHaveLength(1)
+    // Nijedno mjesto budžeta nije ni traženo — samo razmak od 60 s i otisak pokušaja.
+    const routes = mocks.checkRateLimit.mock.calls.map(([, route]) => route)
+    expect(routes.some(route => route.startsWith('sim-grade-day:'))).toBe(false)
+    expect(routes).toContain(`sim-grade:${SUBJECT}:${EXAM_KEY}`)
+  })
+
+  it('razmak od 60 s vrijedi i za plaćeni tier (zaštita od dvostruke predaje)', async () => {
+    mocks.getUserTier.mockResolvedValue('pro')
+    const supabase = makeSupabase()
+    mocks.createClient.mockResolvedValue(supabase.client)
+    const { POST } = await loadRoutes(makeAdapter())
+
+    const first = await POST(...postRequest(baseBody('attempt-P001')))
+    const second = await POST(...postRequest(baseBody('attempt-P002')))
+
+    expect(first.status).toBe(200)
+    expect(second.status).toBe(429)
+    // Retry-After nosi odbrojavanje koje klijent prikaže prije ponovne predaje.
+    expect(second.headers.get('Retry-After')).toBe('42')
+    expect(supabase.inserts).toHaveLength(1)
+  })
+
   it('prekoračen dnevni budžet po (korisnik, ispit) vraća 429', async () => {
     const supabase = makeSupabase()
     mocks.createClient.mockResolvedValue(supabase.client)
@@ -441,11 +540,38 @@ describe('POST /api/sim/[subject]/grade', () => {
     const rejected = await POST(...postRequest(baseBody('attempt-RETRY')))
     expect(rejected.status).toBe(429)
 
-    // Isti pokušaj i isti odgovori: rezultat je ista čista funkcija, pa ga ruta
-    // vrati bez novog mjesta u budžetu — i bez retka, jer ga prvi poziv nije upisao.
+    // Isti pokušaj i isti odgovori, nakon isteka razmaka od 60 s: rezultat je
+    // ista čista funkcija, pa ga ruta vrati bez novog mjesta u budžetu — i bez
+    // retka, jer ga prvi poziv nije upisao (budžet ga je odbio).
+    rateLimitSeen.delete('u1|sim-grade:' + SUBJECT + ':' + EXAM_KEY)
     const retry = await POST(...postRequest(baseBody('attempt-RETRY')))
     expect(retry.status).toBe(200)
     expect(supabase.inserts).toHaveLength(0)
+  })
+
+  it('predaja odbijena RAZMAKOM, ponovljena nakon čekanja, ipak se upiše', async () => {
+    // Razlika prema budžetu: razmak nije odbijen pokušaj nego "pričekaj". Otisak
+    // se zato zauzima TEK nakon razmaka — inače bi ponovljena predaja vratila
+    // ocjenu koju korisnik vidi na ekranu, a retka u sim_progress ne bi bilo.
+    const supabase = makeSupabase()
+    mocks.createClient.mockResolvedValue(supabase.client)
+    const { POST } = await loadRoutes(makeAdapter())
+
+    // Tuđa ranija predaja istog ispita potrošila je razmak.
+    rateLimitSeen.add('u1|sim-grade:' + SUBJECT + ':' + EXAM_KEY)
+
+    const rejected = await POST(...postRequest(baseBody('attempt-WAIT')))
+    expect(rejected.status).toBe(429)
+    expect(rejected.headers.get('Retry-After')).toBe('42')
+    expect(supabase.inserts).toHaveLength(0)
+
+    // Klijent odbroji i pošalje ISTI attemptId; sada prolazi kao prva predaja.
+    rateLimitSeen.delete('u1|sim-grade:' + SUBJECT + ':' + EXAM_KEY)
+    const retry = await POST(...postRequest(baseBody('attempt-WAIT')))
+
+    expect(retry.status).toBe(200)
+    expect(supabase.inserts).toHaveLength(1)
+    expect(supabase.inserts[0].attempt_id).toBe('attempt-WAIT')
   })
 
   it('isti attemptId daje isti odgovor, bez novog upisa i bez trošenja limita', async () => {
@@ -577,16 +703,17 @@ describe('rute nad pravim engleskim adapterom', () => {
     expect(res.headers.get('Vary')).toBe('Cookie')
   })
 
-  it('free + vježbanje: ni jedan ključ, keys:"none"', async () => {
+  it('free + vježbanje: ključ samo za prvih FREE_LIMIT pitanja', async () => {
+    const { FREE_LIMIT } = await import('@/lib/exam-secrets/free-policy')
     const { GET } = await loadEngRoutes()
 
-    const res = await GET(...engGetRequest('practice'))
-    const raw = await res.text()
-    const payload = JSON.parse(raw)
+    const payload = await (await GET(...engGetRequest('practice'))).json()
 
-    expect(payload.keys).toBe('none')
-    expect(payload.qs.every(q => q.sol === undefined && q.exp === undefined)).toBe(true)
-    expect(raw).not.toMatch(SECRET_KEY_RE)
+    expect(payload.keys).toBe('partial')
+    expect(payload.qs.filter(q => q.sol !== undefined)).toHaveLength(FREE_LIMIT)
+    expect(payload.qs.slice(FREE_LIMIT).every(q => q.sol === undefined && q.exp === undefined)).toBe(true)
+    // 3 od 43 pitanja jednog ispita — svjesna iznimka, ne curenje banke.
+    expect(payload.qs.length).toBe(43)
   })
 
   it('plaćeni tier dobiva pun payload (politika to izričito dopušta)', async () => {

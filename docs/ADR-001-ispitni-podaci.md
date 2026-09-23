@@ -82,18 +82,32 @@ Svaki predmet koristi **iste** rute — bez ad-hoc varijanti po predmetu:
 | `keys` | Kad | Što je u `qs` |
 | --- | --- | --- |
 | `full` | plaćeni tier, i to samo za ispite iz `allowedExamKeys` tog tiera | svako pitanje nosi ključ |
-| `partial` | danas ne nastaje (free izuzetak je 0) | dio pitanja nosi ključ |
-| `none` | **svaki** free korisnik, oba načina rada | nijedno pitanje nema ključ |
+| `partial` | free **vježbanje** (prvih `FREE_LIMIT` pitanja tog ispita) | dio pitanja nosi ključ |
+| `none` | free **ispitni mod** | nijedno pitanje nema ključ |
 
 Javni payload se čisti **uvijek**, pa i kad ga adapter već isporučuje čistog; ključevi se
 zatim **spajaju natrag** samo za pitanja koja na njih imaju pravo. Legitimni free izuzeci
-žive isključivo u `lib/exam-secrets/free-policy.js` — i danas ih **nema**:
-`freeKeyAllowance` vraća 0. Odluka vlasnika je da free korisnik nikad ne dobije
-`sol`/`exp`/`why`/`steps`, a dok god izuzetak postoji, dovoljno ga je zatražiti za svih 70
-ispita (jedan klik na ekran koji traži cijelu banku) da free korisnik ima stotine punih
-rješenja bez ijedne provjere prava na te ispite. Posljedica u UI-ju je namjerna: bez ključa
-nema gumba „Provjeri“ ni AnswerHelpera u free vježbanju (`hasKeys` u `ExamPlayScreen`), a
-`previewScore` paywall modala je `null` umjesto lažnih „0 od 3 točno“.
+žive isključivo u `lib/exam-secrets/free-policy.js`.
+
+**Svjesna iznimka: free vježbanje pravog ispita.** `freeKeyAllowance` vraća `FREE_LIMIT`
+(3) za `mode=practice`, a **0** za `mode=exam`. To je isti javni preview koji paywall ionako
+pokazuje: u vježbanju free korisnik dalje od trećeg pitanja ne može ni doći
+(`checkSimulatorAccess`, `freePractice`), pa bi mu bez ključa gumb „Provjeri“ i AnswerHelper
+tiho ne radili ništa, a `previewScore` bi tvrdio „0 od 3 točno“ i kad su sva tri točna.
+Cijena je 3 od ~43 pitanja po ispitu; dobitak je da besplatni preview uopće ima smisla.
+
+Iznimka je izvediva **samo zato što je vezana uz pojedinačan dohvat** i drže je tri stvari:
+
+1. skupni dohvat cijele banke ide s `mode=exam` (`BULK_MODE` u `examsLoader.js`), pa
+   70 ispita × 3 ključa ne postoji ni kao slučajna posljedica;
+2. svaki ekran koji traži cijelu banku za free je zaključan (`PAID_SCREENS`);
+3. free korisnik ima **kvotu dohvata ispita**: `FREE_EXAM_FETCH_LIMIT` (30) na sat, mjesta u
+   `ai_rate_limit` (`sim-exam-get:<predmet>:<mjesto>`). Bez nje bi ručnih 70 `curl` poziva
+   dalo 210 punih rješenja u minuti. Plaćeni tier kvote nema — njegovi ekrani nad cijelom
+   bankom rade 70 dohvata odjednom i to im je zadano ponašanje.
+
+U ISPITNOM modu free korisnik i dalje ne dobiva ništa: ispit rješava naslijepo, a ocjenu
+(uz točno/netočno po pitanju) daje ocjenjivačka ruta.
 
 `POST /api/sim/<predmet>/grade` prima `{ examKey, answers, examMode, attemptId }` i vraća
 `{ pct, grade, cor, total, bodovi, xpGain, scores }`, a plaćenom tieru i `topicBreakdown`.
@@ -102,8 +116,15 @@ Odluke vlasnika ugrađene u rutu:
 - free **nakon predaje** dobiva točno/netočno po pitanju (`scores`), ali nikad
   `sol`/`exp`/`why`/`steps` — ruta ključeve ne vraća nikome;
 - **ruta sama** upisuje `sim_progress`; klijentov rezultat se ne uzima na vjeru;
-- najviše **5** ocijenjenih predaja po (korisnik, ispit) u 24 h i najmanje **60 s** razmaka
-  (`checkRateLimit`, ključ `sim-grade:<predmet>:<examKey>`);
+- dnevni budžet od **5** ocijenjenih predaja po (korisnik, ispit) vrijedi **samo za free**.
+  Budžet je zaštita od oraclea, a oracle postoji samo za onoga tko ključ nema: plaćeni tier
+  iste ključeve već drži u pregledniku (`keys: 'full'`), pa mu ruta ne otkriva ništa novo —
+  budžet bi mu samo pojeo legitiman pokušaj i, gore, ostavio taj pokušaj bez retka u
+  `sim_progress`;
+- razmak od **60 s** (`checkRateLimit`, ključ `sim-grade:<predmet>:<examKey>`) vrijedi za
+  **sve** tierove: on je zaštita od dvostruke predaje, ne od napada. Klijent na takav 429
+  ne računa lokalno nego prikaže odbrojavanje i pošalje **isti** `attemptId`
+  (`GRADE_AUTO_RETRY_MAX_SEC`), pa rezultat završi i u bazi, ne samo na ekranu;
 - `attemptId` je **obavezan** i idempotentan: ponovljeni id vraća isti odgovor, ne upisuje
   novi redak i ne troši budžet.
 
@@ -123,13 +144,39 @@ brojilo ostane na nuli i budžet se nikad ne potroši); i sam korisnik je po RLS
   odradio 90-minutnu simulaciju bez ijednog rezultata;
 - idempotencija ne ovisi o pokrenutoj migraciji `attempt_id`: iznad nje stoji **otisak
   pokušaja** (`attemptId` + stabilan hash odgovora) kao ključ u `ai_rate_limit`, koji vrijedi
-  kroz instance. Ponovljena predaja **istih** odgovora ne troši ni razmak ni budžet i ne
-  upisuje redak — rezultat je čista funkcija (ispit, odgovori), pa ponavljanje ne otkriva
-  nijedan novi bit. Budžet time zapravo broji **različite skupove odgovora**, što je točno
-  ono što oracle napad troši, a legitiman korisnik ne.
+  kroz instance. Ponovljena predaja **istih** odgovora ne troši budžet i ne upisuje drugi
+  redak — rezultat je čista funkcija (ispit, odgovori), pa ponavljanje ne otkriva nijedan novi
+  bit. Budžet time zapravo broji **različite skupove odgovora**, što je točno ono što oracle
+  napad troši, a legitiman korisnik ne;
+- **redoslijed provjera je dio ugovora**: razmak ide PRIJE otiska. Predaja odbijena razmakom
+  nije dovršen pokušaj (nije ocijenjena, nije upisana), pa joj se otisak ne smije zauzeti —
+  inače bi klijentov ponovni pokušaj bio prepoznat kao ponavljanje i vratio ocjenu **bez
+  retka** u `sim_progress`. Ovako ponovni pokušaj nakon isteka razmaka prolazi kao prvi.
+  Predaja odbijena **budžetom** je druga priča: tamo ponovljeni otisak namjerno vraća rezultat
+  bez upisa, jer je budžet doista potrošen.
 
-Iskreno o dosegu: `cor` i `scores` su bočni kanal i uz 5 različitih predaja dnevno napad je
-usporen, ne spriječen (vidi „Posljedice“).
+**Gdje žive brojke.** `GRADE_MIN_INTERVAL_MS`, `GRADE_DAILY_BUDGET`, `GRADE_PRACTICE_BUDGET`,
+`FREE_EXAM_FETCH_LIMIT` i `GRADE_AUTO_RETRY_MAX_SEC` su u `lib/exam-secrets/grade-policy.js`,
+ne u datoteci rute: Next iz `app/**/route.js` prihvaća samo HTTP metode i poznate
+konfiguracijske izvoze, pa je svaki dodatni `export` **greška builda**. Modul je namjerno
+bez ijednog uvoza — brojke čita i klijent (odbrojavanje u `ExamPlayScreenu`), a uvoz
+`lib/rate-limit` bi povukao service-role klijent u klijentski graf. Samo trošenje mjesta je
+zato `consumeRateLimitSlots` u `lib/rate-limit.ts`.
+
+**Iskreno o dosegu — što `scores` po pitanju stvarno košta.** Free korisnik nakon predaje
+dobiva mapu `qid → true|false|null` (odluka vlasnika 1). To je 1 bit po pitanju, ne ključ,
+ali je bočni kanal: tko svaki put pošalje isto slovo na sva pitanja, nakon *k* **različitih**
+predaja zna ključ svakog pitanja s najviše *k+1* opcija. Za ispit s 3 ponuđena odgovora to je
+2 predaje, dakle unutar dnevnog budžeta; za 4 opcije 3 predaje. Original dizajna je
+pretpostavljao ~4×N poziva jer je free dobivao samo agregat — s per-question mapom napad je
+desetak puta jeftiniji.
+
+Odluka vlasnika je da se to prihvati: povratna informacija po pitanju je proizvodno vrijedna,
+a `scores` ne nosi ni `sol` ni `exp` (obrazloženje, koje je glavnina vrijednosti, ostaje
+nedostupno). Ono što napad **stvarno** košta jest otisak pokušaja: ponovljena predaja ISTIH
+odgovora je besplatna i idempotentna, pa budžet od 5 zapravo broji **različite skupove
+odgovora** — točno ono što napadač troši, a legitiman korisnik ne. Zaključak ostaje:
+usporeno, ne spriječeno. Napadač s više računa i strpljenjem i dalje prolazi.
 
 ### 6. Baseline uz svaki novi predmet
 
@@ -171,6 +218,15 @@ Skupni dohvat cijele banke ide s `mode=exam` (najuži payload) i pokreće ga sam
 smije vidjeti njezin sadržaj — free korisnik nema ekran koji je traži, pa 70 zahtjeva za
 njega više ne postoji.
 
+Tih 70 zahtjeva ide kroz `mapWithLimit` sa semantikom `allSettled`: jedan 500 ili timeout
+preskače se, ne ruši ostalih 69. S `Promise.all` je jedan pali zahtjev odbijao cijeli
+`loadRazina` — a poziva se i u **pozadini ekrana rezultata**, pa je korisniku znao zamijeniti
+upravo zarađen rezultat karticom „Učitavanje ispita nije uspjelo“. Razina se u tom slučaju ne
+proglašava učitanom, pa sljedeći ulazak dohvati samo ono što nedostaje (ostalo je u kešu);
+odbija se tek kad ne stigne **nijedan** ispit, jer je to prava greška (istekla sesija, mreža).
+Tier se na poslužitelju kešira 60 s po korisniku (`cachedTier`), pa 70 dohvata ne znači i 70
+upita nad `subscriptions`; sama prijava (`auth.getUser`) se ne kešira.
+
 Ocjenjivanje: `POST /api/sim/eng/grade` ocjenjuje **postojećim** `chk` iz
 `lib/engleski-simulator/scoring.js` — istim koji koristi i preglednik, pa se ocjena ne može
 razići. Klijent iz vraćene mape `scores` (qid → true|false|null) izvodi sve što je prije
@@ -182,22 +238,48 @@ ruta; ostaje samo kao rezerva kad ruta predaju odbije, a klijent rezultat izrač
 (vidi niže).
 
 Što free korisnik **gubi** i zašto je to svjesna odluka: dnevni izazov, virtualni ispit,
-vježbanje po temi i usporedba ispita slože sesiju od pitanja iz cijele banke i ocjenjuju je
-lokalno preko `chk`. Bez ijednog ključa taj put vraća `null` za svako pitanje, dakle 0 % i
-prazan feedback, a usput bi za svaki ulazak povukao svih 70 ispita. Ti su ekrani zato u
-`PAID_SCREENS` (dizajn: „preskočiti ih, NE pozvati s praznim ulazom“). Pravi ispiti s timerom
-i vježbanje po ispitu ostaju besplatni.
+vježbanje po temi i usporedba ispita slože sesiju od pitanja iz **cijele banke** i ocjenjuju
+je lokalno preko `chk`. Bez ključeva taj put vraća `null` za svako pitanje, dakle 0 % upisanih
+u povijest i prazan feedback na točan odgovor, a usput bi za svaki ulazak povukao svih 70
+ispita. Ti su ekrani zato u `PAID_SCREENS` (dizajn: „preskočiti ih, NE pozvati s praznim
+ulazom“) — isto kao u hrvatskom i matematici, s `goPaidScreen`/`LockedResultsBlock` i CTA-om
+umjesto ekrana. Politika ih ionako svrstava u vježbanje, koje je Standard sadržaj.
 
-Nedovršeni pokušaj živi u `localStorage` pod `disc_eng_exam_<key>` (TTL 6 h), kao što
-hrvatski ima `discere_exam_<key>`, a matematika `mat_resume`. Bez toga je pad predaje nakon
-90-minutne simulacije značio gubitak svih odgovora: postojali su samo u React stanju.
+Pravi ispiti s timerom i vježbanje **po ispitu** ostaju besplatni, i u vježbanju free korisnik
+zadržava punu povratnu informaciju na prva `FREE_LIMIT` pitanja — „Provjeri“, AnswerHelper i
+istinit `previewScore` (vidi 5a). `hasKeys` (ima li payload ijedan ključ) upravlja tim
+prikazom; za **lokalni izračun cijele ocjene** vrijedi stroži uvjet `fullKeys` (ključ na
+svakom auto-ocjenjivom pitanju), inače bi plaćeni fallback s tri ključa od 43 pitanja dao
+rezultat od 7 %.
 
-Ako ruta odbije predaju (mreža, 401, iskorišten budžet) **a klijent ima ključeve** (plaćeni
-tier), rezultat se izračuna lokalno: pokušaj se ne smije izgubiti zbog tuđeg kvara. Redak u
-`sim_progress` tada upisuje klijent (`result.serverSaved === false` → `saveEngSimResult`),
-jer bi ga inače korisnik vidio na ekranu, a u napretku i percentilu ga ne bi bilo. Free
-korisnik dobiva poruku i gumb za ponovni pokušaj; odgovori ostaju u stanju **i u
-`localStorage`**, a `attemptId` je isti, pa ponovni pokušaj ne troši budžet.
+Nedovršeni pokušaj živi u `localStorage` pod `disc_eng_exam_<key>_<exam|practice>` (TTL 6 h),
+kao što hrvatski ima `discere_exam_<key>`, a matematika `mat_resume`. Bez toga je pad predaje
+nakon 90-minutne simulacije značio gubitak svih odgovora: postojali su samo u React stanju.
+
+Nacrt nosi **odgovore, `qTimes`, apsolutni rok tekuće cjeline i njezin indeks**, i to zajedno:
+odgovori koji prežive osvježavanje stranice, a rok koji ne preživi, daju ispit bez vremenskog
+ograničenja (F5 remounta `BlockTimer` s punim trajanjem i ponovno otvara blok koji je
+jednosmjerna navigacija već zatvorila), a takav pokušaj ocjenjivačka ruta upisuje u
+`sim_progress` kao regularan — iz njega se računaju napredak i percentil.
+
+**Način rada je dio ključa.** Vježbanje istog ispita free korisniku pokazuje točan odgovor na
+prvih `FREE_LIMIT` pitanja („Provjeri“/AnswerHelper), a plaćenom na svima; sa zajedničkim
+ključem bi se ti odgovori vratili pri ulasku u simulaciju i predali kao regularan pokušaj sa
+100 %. Iz istog razloga potvrđeni izlazak iz simulacije („Napredak neće biti spremljen“) doista
+briše nacrt — poruka inače laže.
+
+Neuspjela predaja ima **tri** puta, po tome što se stvarno dogodilo:
+
+1. **429 s kratkim `Retry-After`** (razmak od 60 s) — klijent prikaže odbrojavanje i sam
+   ponovi predaju s istim `attemptId`. Lokalni izračun bi ovdje bio gori i za plaćenog
+   korisnika: rezultat bi vidio na ekranu, a u `sim_progress` (napredak, percentil) ga ne bi
+   bilo, dok ga ponovljena predaja uredno upiše.
+2. **Mreža ili trajna greška, a klijent ima ključeve za sva pitanja** (`fullKeys`, plaćeni
+   tier) — rezultat se izračuna lokalno: pokušaj se ne smije izgubiti zbog tuđeg kvara. Redak
+   u `sim_progress` tada upisuje klijent (`result.serverSaved === false` → `saveEngSimResult`).
+3. **Inače** (free, ili iskorišten dnevni budžet) — poruka i gumb za ponovni pokušaj.
+   Odgovori ostaju u stanju **i u `localStorage`**, a `attemptId` je isti, pa ponovni pokušaj
+   ne troši ni razmak ni budžet.
 
 Mrežni pozivi imaju strop (`AbortSignal.timeout`: 20 s za dohvat ispita, 30 s za predaju).
 Bez njega `fetch` nad vezom koja nestane bez RST-a nikad ne razriješi promise, pa gumb
@@ -283,6 +365,41 @@ npm run security:secrets -- --write-baseline --allow-increase
 ```
 
 Koristi se samo uz izmjenu popisa ključeva ili skeniranih mapa (kao pri uvođenju pravila).
+
+### SLOJ C — prolaz kroz preglednik
+
+Prva dva sloja tvrde da ključa nema u izvoru i da tajni modul nije dohvatljiv iz klijentskog
+grafa uvoza. Nijedan ne tvrdi da **ruta** doista ne pošalje ključ prijavljenom free korisniku:
+to ovisi o tieru iz baze, načinu rada (`exam`/`practice`), free izuzetku i rate limitu — dakle
+o runtimeu, ne o izvoru.
+
+Taj dio pokriva `scripts/qa/eng-secrets-visual.mjs` — Playwright prolaz **bez `DEV_BYPASS_EMAIL`**
+(free korisnik prolazi sam, ne kroz owner bypass u `proxy.js`) nad lažnim Supabaseom
+`scripts/qa/hrv-sim-mock-supabase.mjs`. Mock je zbog ovih ruta dobio ono što one doista zovu:
+`subscriptions` (tier čita **admin** klijent, kojemu korisnikov token uopće ne stiže, pa svaki
+tier ima vlastiti `user_id`), RPC `ai_rate_limit_try` i `sim_progress` s jedinstvenim
+`(user_id, attempt_id)` — oboje sa stanjem u memoriji (`mockState`), da druga predaja doista
+vidi prvu.
+
+Prolaz presreće **svaki** mrežni odgovor kartice i za free tvrdi da nijedno tijelo ne nosi
+`sol`/`exp`/`why`/`steps`, uz jedini dopušteni izuzetak iz `free-policy.js` (vježbanje, prvih
+`FREE_LIMIT` pitanja). Uz to provjerava: `keys:"none"` u ispitnom modu za free i `keys:"full"`
+za plaćeni tier; da ocjenu daje ruta i da redak u `sim_progress` upisuje poslužitelj; da free
+rezultati nemaju ni `.revlist` ni tekst obrazloženja iz tajnog storea u `outerHTML`-u; da
+Dnevni izazov / Virtualni ispit / Vježbaj po temi za free ne povuku **nijedan** dohvat ispita;
+da druga predaja istog ispita unutar 60 s vrati 429 s odbrojavanjem; i da osvježavanje stranice
+usred ispita sačuva odgovore (`disc_eng_exam_<key>_<mode>`).
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321 \
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<JWT-oblik string> \
+SUPABASE_SERVICE_ROLE_KEY=<JWT-oblik string> \
+npx next dev --webpack -p 3012
+node scripts/qa/eng-secrets-visual.mjs --base http://localhost:3012 --out ./.qa-shots
+```
+
+Nije dio CI-ja (traži dev server i preglednik) — vrti se uz svaki predmet koji prelazi na
+serversku isporuku.
 
 ## Posljedice
 

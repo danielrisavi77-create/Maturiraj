@@ -11,9 +11,13 @@
 //     sol/exp/why/steps — ruta ključeve ne vraća nikome;
 //   • rezultat se NE uzima na vjeru od klijenta: ruta ocjenjuje i SAMA upisuje
 //     red u sim_progress;
-//   • najviše 5 ocijenjenih predaja po (korisnik, ispit) u 24 h i najmanje 60 s
-//     razmaka. Bez toga je serversko ocjenjivanje kozmetika: `cor` je oracle iz
-//     kojeg se ključ izvlači mijenjanjem jednog odgovora po zahtjevu.
+//   • dnevni budžet od 5 ocijenjenih predaja po (korisnik, ispit) vrijedi SAMO
+//     za free: `cor`/`scores` su za njega oracle iz kojeg se ključ izvlači
+//     mijenjanjem jednog odgovora po zahtjevu. Plaćeni tier iste ključeve već ima
+//     u pregledniku, pa mu budžet ne bi uzeo ništa napadaču, a njemu bi pojeo
+//     legitiman pokušaj;
+//   • razmak od 60 s vrijedi za sve — to je zaštita od dvostruke predaje, ne od
+//     napada. Ponovljeni attemptId s ISTIM odgovorima ga ne osjeti.
 //
 // ZAŠTO KORISNIKOV KLIJENT, A NE ADMIN: RLS politika na sim_progress
 // (supabase/migrations/20260627000000_sim_progress.sql) dopušta korisniku
@@ -35,27 +39,22 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getUserTier } from '@/lib/billing/subscriptions'
 import { normalizeTier, isPaidTier } from '@/lib/billing/getEffectiveTier'
-import { checkRateLimit } from '@/lib/rate-limit'
+import { checkRateLimit, consumeRateLimitSlots } from '@/lib/rate-limit'
 import { getAdapter } from '@/lib/exam-secrets/registry'
 import { stripQuestions } from '@/lib/exam-secrets'
+import {
+  DAY_MS,
+  GRADE_DAILY_BUDGET,
+  GRADE_MIN_INTERVAL_MS,
+  GRADE_PRACTICE_BUDGET,
+  budgetSlots,
+} from '@/lib/exam-secrets/grade-policy'
 
 export const dynamic = 'force-dynamic'
 
 const SUBJECT_PATTERN = /^[a-z]{2,16}$/
 const EXAM_KEY_PATTERN = /^[A-Za-z0-9_-]{1,64}$/
 const ATTEMPT_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/
-
-/** Najmanji razmak između dvije ocijenjene predaje istog ispita. */
-export const GRADE_MIN_INTERVAL_MS = 60 * 1000
-/** Budžet ocijenjenih predaja po (korisnik, ispit) u 24 h. */
-export const GRADE_DAILY_BUDGET = 5
-/**
- * Koliko od tih mjesta smije potrošiti vježbanje. Ostatak je rezerviran za
- * ispitni mod: bez toga pet predaja iz vježbanja ostavi korisnika koji je
- * navečer odradio 90-minutnu simulaciju bez ijednog rezultata.
- */
-export const GRADE_PRACTICE_BUDGET = 3
-const DAY_MS = 24 * 60 * 60 * 1000
 
 /** Gornje granice ulaza — sve što ih probije je napad, ne pokušaj. */
 const MAX_ANSWER_ENTRIES = 500
@@ -211,21 +210,13 @@ async function findPriorAttempt(db, userId, subject, examKey, attemptId) {
  * GRADE_DAILY_BUDGET - GRADE_PRACTICE_BUDGET mjesta ostaje nedostupno
  * vježbanju — ispitni pokušaj se ne može potrošiti u vježbanju.
  */
-async function consumeBudgetSlot(userId, subject, examKey, examMode) {
-  const slots = examMode
-    ? Array.from({ length: GRADE_DAILY_BUDGET }, (_, i) => GRADE_DAILY_BUDGET - 1 - i)
-    : Array.from({ length: GRADE_PRACTICE_BUDGET }, (_, i) => i)
-
-  let soonest = Number.POSITIVE_INFINITY
-  for (const slot of slots) {
-    const res = await checkRateLimit(userId, `sim-grade-day:${subject}:${examKey}:${slot}`, DAY_MS)
-    if (!res.limited) return { ok: true }
-    soonest = Math.min(soonest, res.retryAfterSec || 0)
-  }
-  return {
-    ok: false,
-    retryAfterSec: Number.isFinite(soonest) && soonest > 0 ? soonest : Math.round(DAY_MS / 1000),
-  }
+function consumeBudgetSlot(userId, subject, examKey, examMode) {
+  return consumeRateLimitSlots(
+    userId,
+    budgetSlots(examMode),
+    slot => `sim-grade-day:${subject}:${examKey}:${slot}`,
+    DAY_MS,
+  )
 }
 
 async function insertProgress(db, row) {
@@ -342,21 +333,14 @@ export async function POST(request, { params } = {}) {
     return NextResponse.json(buildBody(replay, paid), { headers: HEADERS })
   }
 
-  // Otisak pokušaja: isti attemptId s istim odgovorima na bilo kojoj instanci.
-  // Prvi poziv ga "zauzme" (RPC je atomičan), svaki sljedeći ga prepozna kao
-  // ponavljanje — pa mrežni retry ne čeka 60 s i ne troši mjesto u budžetu.
-  const replayKey = `sim-grade-attempt:${subject}:${examKey}:${attemptId}:${answersFingerprint(answers)}`
-  const replay = await checkRateLimit(user.id, replayKey, DAY_MS)
-  if (replay.limited) {
-    const secrets = await loadSecretsOrFail()
-    if (!secrets) return fail('Ispit se trenutačno ne može ocijeniti.', 500)
-    const result = await adapter.score(publicQs, secrets, answers)
-    writeAttemptCache(cacheKey, result)
-    // Bez upisa: redak je upisao prvi poziv (ili ga je odbio limit, pa ga ovaj
-    // ponovljeni pokušaj ne smije stvoriti mimo budžeta).
-    return NextResponse.json(buildBody(result, paid), { headers: HEADERS })
-  }
-
+  // Razmak od 60 s ide PRIJE otiska pokušaja, i to je bitno.
+  //
+  // Predaja odbijena razmakom NIJE dovršen pokušaj: nije ocijenjena i nije
+  // upisana. Kad bi otisak bio zauzet prije ove provjere, klijentov ponovni
+  // pokušaj (isti attemptId, isti odgovori) prepoznao bi se kao ponavljanje i
+  // vratio rezultat BEZ upisa — korisnik bi ocjenu vidio na ekranu, a u
+  // sim_progressu (napredak, percentil) je ne bi bilo. Ovako ponovni pokušaj
+  // nakon isteka razmaka prolazi kao prvi: ocijeni se i upiše.
   const limit = await checkRateLimit(user.id, `sim-grade:${subject}:${examKey}`, GRADE_MIN_INTERVAL_MS)
   if (limit.limited) {
     return fail(
@@ -366,7 +350,30 @@ export async function POST(request, { params } = {}) {
     )
   }
 
-  const budget = await consumeBudgetSlot(user.id, subject, examKey, examMode)
+  // Otisak pokušaja: isti attemptId s istim odgovorima na bilo kojoj instanci.
+  // Prvi poziv koji je prošao razmak "zauzme" ga (RPC je atomičan), pa ga svaki
+  // sljedeći prepozna kao ponavljanje — mrežni retry tako ne stvara drugi redak
+  // ni na drugoj instanci (gdje in-memory keš ne pomaže) i ne troši mjesto u
+  // budžetu. Rezultat je čista funkcija (ispit, odgovori), pa ponavljanje ne
+  // otkriva nijedan novi bit.
+  const replayKey = `sim-grade-attempt:${subject}:${examKey}:${attemptId}:${answersFingerprint(answers)}`
+  const replay = await checkRateLimit(user.id, replayKey, DAY_MS)
+  if (replay.limited) {
+    const secrets = await loadSecretsOrFail()
+    if (!secrets) return fail('Ispit se trenutačno ne može ocijeniti.', 500)
+    const result = await adapter.score(publicQs, secrets, answers)
+    writeAttemptCache(cacheKey, result)
+    // Bez upisa: redak je upisao prvi poziv (ili ga je odbio budžet, pa ga ovaj
+    // ponovljeni pokušaj ne smije stvoriti mimo budžeta).
+    return NextResponse.json(buildBody(result, paid), { headers: HEADERS })
+  }
+
+  // ODLUKA VLASNIKA (3): budžet je zaštita od oraclea, a oracle postoji samo za
+  // free korisnika. Plaćeni tier iste ključeve dobiva u pregledniku (keys:'full'),
+  // pa mu ova ruta ne otkriva ništa novo — budžet bi mu samo pojeo legitimne
+  // pokušaje i, još gore, ostavio pokušaj bez retka u sim_progress. Razmak od
+  // 60 s ostaje za sve: on je zaštita od dvostrukog klika, ne od napada.
+  const budget = paid ? { ok: true } : await consumeBudgetSlot(user.id, subject, examKey, examMode)
   if (!budget.ok) {
     return fail(
       examMode

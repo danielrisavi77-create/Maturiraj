@@ -7,6 +7,7 @@ import { FREE_LIMIT, canSeeDiscereAnalysis } from '@/components/discere/paywall/
 import { getExamsIndex, getLoadedSync, isExamLoaded, isRazinaLoaded, loadExamByKey, loadRazina, RAZINE } from '@/lib/engleski-simulator/examsLoader'
 import { chk, grade, calcXpGain, scoreLookup, updateStreak, validateUserData, validateBookmarks } from '@/lib/engleski-simulator/scoring'
 import { submitGrade, newAttemptId, gradeErrorMessage } from '@/lib/engleski-simulator/gradeClient'
+import { GRADE_AUTO_RETRY_MAX_SEC } from '@/lib/exam-secrets/grade-policy'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
 import { useTimer, warnMessage } from '@/lib/engleski-simulator/useTimer'
 import { getExamBlocks, totalMinutes, sectionScores, weightedEstimate } from '@/lib/engleski-simulator/examStructure'
@@ -272,8 +273,15 @@ function AnalyticsPanel({ userData, defaultTab, onFilter, onFilterSession }) {
 // Timer jedne ispitne cjeline. Roditelj ga MORA renderirati s key={blockIdx} —
 // useTimer čita 'totalSeconds' samo pri mountu, pa je remount preko keya način
 // resetiranja odbrojavanja bez setState-a u efektu (React Compiler pravila).
-function BlockTimer({ totalSeconds, run, onExpire, onWarn, label }) {
-  const { d, cls } = useTimer(totalSeconds, run, onExpire, [600, 300], onWarn)
+// 'deadline' je apsolutni trenutak isteka tekuće cjeline iz nacrta: preostalo
+// vrijeme se iz njega računa JEDNOM, u inicijalizatoru stanja, pa Date.now() ne
+// ulazi u render roditelja (pravilo čistoće), a osvježavanje stranice ne vrati
+// pun timer. Bez roka (vježbanje, prvi ulazak) vrijedi 'totalSeconds'.
+function BlockTimer({ totalSeconds, deadline, run, onExpire, onWarn, label }) {
+  const [tot] = useState(() => (
+    Number.isFinite(deadline) ? Math.max(0, Math.round((deadline - Date.now()) / 1000)) : totalSeconds
+  ))
+  const { d, cls } = useTimer(tot, run, onExpire, [600, 300], onWarn)
   return (
     <span
       className={`timer${cls ? ' ' + cls : ''}`}
@@ -287,6 +295,8 @@ function BlockTimer({ totalSeconds, run, onExpire, onWarn, label }) {
 // `discere_exam_<key>`, matematika `mat_resume`), pa je neuspjela predaja nakon
 // 90-minutne simulacije značila gubitak svega: odgovori su živjeli isključivo u
 // React stanju, a osvježavanje stranice ih je brisalo.
+// Pun ključ je `disc_eng_exam_<key>_<exam|practice>` — način rada je dio ključa
+// jer vježbanje i simulacija istog ispita ne smiju dijeliti odgovore.
 const EXAM_DRAFT_PREFIX = 'disc_eng_exam_'
 const EXAM_DRAFT_TTL_MS = 6 * 60 * 60 * 1000
 
@@ -301,6 +311,10 @@ function readExamDraft(draftKey) {
     return {
       answers: parsed.answers && typeof parsed.answers === 'object' ? parsed.answers : {},
       qTimes: parsed.qTimes && typeof parsed.qTimes === 'object' ? parsed.qTimes : {},
+      // Apsolutni trenutak isteka tekuće cjeline i njezin indeks: bez njih bi
+      // osvježavanje vratilo pun timer i ponovno otvorilo već zatvoreni blok.
+      deadline: Number.isFinite(parsed.deadline) ? parsed.deadline : null,
+      blockIdx: Number.isInteger(parsed.blockIdx) && parsed.blockIdx > 0 ? parsed.blockIdx : 0,
     }
   } catch { return null }
 }
@@ -316,23 +330,42 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
   const qs = useMemo(() => exam?.qs || [], [exam])
   // Samo pravi ispiti: virtualne sesije se pri svakom ulasku slažu iznova, pa bi
   // im spremljeni odgovori pripadali drugim pitanjima.
-  const draftKey = exam?.key && isRealExamKey(exam.key) ? EXAM_DRAFT_PREFIX + exam.key : null
+  // NAČIN RADA JE DIO KLJUČA: bez njega vježbanje (u kojem „Provjeri“ pokazuje
+  // točan odgovor) ostavi popunjene odgovore, a simulacija istog ispita ih pri
+  // montiranju pokupi kao svoje i preda kao regularan pokušaj.
+  const draftKey = exam?.key && isRealExamKey(exam.key)
+    ? EXAM_DRAFT_PREFIX + exam.key + (examMode ? '_exam' : '_practice')
+    : null
+  // Nacrt se čita JEDNOM, pri montiranju — inicijalizator stanja se izvrši samo
+  // tada, pa localStorage i Date.now() ne ulaze u svaki render.
+  const [draft] = useState(() => readExamDraft(draftKey))
   const [cur, setCur] = useState(0)
-  const [answers, setAnswers] = useState(() => readExamDraft(draftKey)?.answers || {})
+  const [answers, setAnswers] = useState(() => draft?.answers || {})
   const [rev, setRev] = useState({})
-  const [qTimes, setQTimes] = useState(() => readExamDraft(draftKey)?.qTimes || {})
+  const [qTimes, setQTimes] = useState(() => draft?.qTimes || {})
   const [bookmarks, setBookmarks] = useState(() => {
     try { return validateBookmarks(JSON.parse(localStorage.getItem('disc_eng_bookmarks') || '{}')) } catch { return {} }
   })
   const [toast, setToast] = useState(null)
-  const [blockIdx, setBlockIdx] = useState(0)
+  // Indeks tekuće cjeline preživljava osvježavanje: navigacija je jednosmjerna
+  // („Nakon prelaska ne možeš se vratiti na ovaj dio“), pa bi povratak na nulu
+  // ponovno otvorio zatvoreni blok.
+  const [rawBlockIdx, setBlockIdx] = useState(() => (examMode ? draft?.blockIdx || 0 : 0))
+  // Apsolutni trenutak isteka tekuće cjeline (ms). Postoji samo u simulaciji.
+  const [deadline, setDeadline] = useState(() => (examMode ? draft?.deadline ?? null : null))
   // Predaja na poslužiteljsko ocjenjivanje: 'submitting' drži gumb zauzetim,
   // 'submitError' zadržava odgovore i nudi ponovni pokušaj (nakon isteka timera
   // druge šanse nema), a 'attemptIdRef' čini ponovni pokušaj idempotentnim —
   // isti id ne troši budžet od 5 ocijenjenih predaja po ispitu u 24 h.
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState(null)
+  // Odbrojavanje do ponovne predaje. Ruta pušta jednu ocijenjenu predaju istog
+  // ispita svakih 60 s; tada NE računamo lokalno (rezultat bi postojao samo na
+  // ekranu, bez retka u sim_progress), nego pričekamo i pošaljemo ISTI attemptId.
+  const [retryIn, setRetryIn] = useState(0)
+  const [autoRetry, setAutoRetry] = useState(false)
   const attemptIdRef = useRef(null)
+  const finishRef = useRef(null)
 
   // Simulacija ide blok po blok prema NCVVO strukturi razine (viša 70/75/35,
   // osnovna 75/30); vježbanje i vježbanje s timerom ostaju slobodna navigacija.
@@ -340,8 +373,20 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
   // ni AnswerHelpera ni previewScorea — gumb koji tiho ne radi ništa gori je od
   // gumba kojeg nema, a preview bi tvrdio "0 od 3 točno" i kad su sva tri točna.
   const hasKeys = useMemo(() => qs.some(x => x && x.sol), [qs])
+  // `hasKeys` je dovoljan za "Provjeri"/AnswerHelper: free vježbanje dobiva ključ
+  // za prvih FREE_LIMIT pitanja, a dalje od njih paywall ionako ne pušta.
+  // Za LOKALNI IZRAČUN cijele ocjene to nije dovoljno — s tri ključa od 43 pitanja
+  // ispao bi rezultat od 7 %. Zato lokalni put traži ključ na SVAKOM
+  // auto-ocjenjivom pitanju (plaćeni tier, keys:'full').
+  const fullKeys = useMemo(() => {
+    const auto = qs.filter(x => x && x.type !== 'sa' && x.type !== 'es')
+    return auto.length > 0 && auto.every(x => x.sol)
+  }, [qs])
 
   const blocks = useMemo(() => (examMode ? getExamBlocks(exam) : []), [examMode, exam])
+  // Nacrt može nositi indeks iz strukture koja više ne postoji — stežemo ga na
+  // postojeći raspon da restauracija nikad ne ostavi ekran bez bloka.
+  const blockIdx = blocks.length ? Math.min(rawBlockIdx, blocks.length - 1) : 0
   const block = blocks[blockIdx] || null
   const isLastBlock = !block || blockIdx >= blocks.length - 1
   // Globalni indeksi pitanja koja su trenutno dostupna (u simulaciji samo tekući blok)
@@ -365,15 +410,43 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
     }
   }, [curQid])
 
-  // Odgovori preživljavaju osvježavanje stranice i pad kartice; briše ih tek
-  // uspješna predaja (ili istek TTL-a).
+  // Odgovori, rok tekuće cjeline i njezin indeks preživljavaju osvježavanje
+  // stranice i pad kartice; briše ih tek uspješna predaja, potvrđeni izlazak iz
+  // simulacije ili istek TTL-a.
   useEffect(() => {
     if (!draftKey) return
-    if (!Object.keys(answers).length && !Object.keys(qTimes).length) return
+    if (!Object.keys(answers).length && !Object.keys(qTimes).length && !deadline) return
     try {
-      localStorage.setItem(draftKey, JSON.stringify({ at: Date.now(), answers, qTimes }))
+      localStorage.setItem(draftKey, JSON.stringify({ at: Date.now(), answers, qTimes, deadline, blockIdx }))
     } catch {}
-  }, [draftKey, answers, qTimes])
+  }, [draftKey, answers, qTimes, deadline, blockIdx])
+
+  // Simulacija dobiva rok čim počne. Bez zapisanog roka osvježavanje stranice
+  // remounta BlockTimer s punim trajanjem, pa bi se ispit s netaknutim odgovorima
+  // mogao produljivati unedogled — a takav pokušaj ocjenjivačka ruta upisuje u
+  // sim_progress kao regularan (iz njega se računaju napredak i percentil).
+  useEffect(() => {
+    if (!examMode || !draftKey || deadline) return
+    setDeadline(Date.now() + timerSeconds * 1000)
+  }, [examMode, draftKey, deadline, timerSeconds])
+
+  // Odbrojavanje do ponovne predaje. Hookovi moraju stajati PRIJE ranog izlaza
+  // niže; `finish` je deklaracija funkcije u tijelu komponente, pa je hoistan i
+  // efekt ga vidi. Ref drži najnoviju verziju — zatvaranje nad starim renderom
+  // slalo bi stare odgovore.
+  useEffect(() => { finishRef.current = finish })
+
+  useEffect(() => {
+    if (retryIn <= 0) return undefined
+    const t = setTimeout(() => setRetryIn(n => (n > 0 ? n - 1 : 0)), 1000)
+    return () => clearTimeout(t)
+  }, [retryIn])
+
+  useEffect(() => {
+    if (!autoRetry || retryIn > 0) return
+    setAutoRetry(false)
+    void finishRef.current?.()
+  }, [autoRetry, retryIn])
 
   if (!exam || !qs.length) {
     return (
@@ -405,6 +478,9 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
     if (!nb) return
     setBlockIdx(next)
     setCur(nb.qIdx[0])
+    // Novi rok ide zajedno s indeksom: BlockTimer se remounta preko keya i uzme
+    // upravo ovo trajanje, a nacrt ga zapiše za slučaj osvježavanja.
+    setDeadline(Date.now() + nb.minutes * 60 * 1000)
   }
 
   function showToast(msg) {
@@ -528,21 +604,34 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
         attemptId: attemptIdRef.current,
       })
       setSubmitting(false)
+      setRetryIn(0)
+      setAutoRetry(false)
       clearExamDraft(draftKey)
       onDone(buildResult(server))
     } catch (err) {
       setSubmitting(false)
-      // Ako klijent ima ključeve (plaćeni tier), rezultat se može izračunati
-      // lokalno — pokušaj se ne smije izgubiti zbog mreže ili budžeta. Redak u
+      const wait = err?.status === 429 ? err.retryAfterSec || 0 : 0
+      // Razmak od 60 s nije odbijen pokušaj nego "pričekaj": odbrojimo i pošaljemo
+      // ISTI attemptId. Lokalni izračun bi ovdje bio gori i za plaćenog korisnika —
+      // rezultat bi vidio na ekranu, a u sim_progressu (napredak, percentil) ga
+      // ne bi bilo, dok ga ponovljena predaja uredno upiše.
+      if (wait > 0 && wait <= GRADE_AUTO_RETRY_MAX_SEC) {
+        setSubmitError(gradeErrorMessage(err))
+        setRetryIn(wait)
+        setAutoRetry(true)
+        return
+      }
+      // Ako klijent ima ključeve za SVA pitanja (plaćeni tier), rezultat se može
+      // izračunati lokalno — pokušaj se ne smije izgubiti zbog mreže. Redak u
       // sim_progress tada upisuje onExamDone (result.serverSaved === false).
-      if (hasKeys) {
+      if (fullKeys) {
         showToast(gradeErrorMessage(err) + ' Rezultat je izračunat lokalno.')
         clearExamDraft(draftKey)
         onDone(buildResult(null))
         return
       }
-      // Bez ključeva rezultat može dati samo poslužitelj. Odgovori ostaju i u
-      // stanju i u localStorageu, pa ni osvježavanje stranice ne pojede pokušaj.
+      // Bez punih ključeva rezultat može dati samo poslužitelj. Odgovori ostaju i
+      // u stanju i u localStorageu, pa ni osvježavanje stranice ne pojede pokušaj.
       setSubmitError(gradeErrorMessage(err))
     }
   }
@@ -559,7 +648,12 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       )}
       <div className="nav">
         <button className="btn btn-g" style={{ fontSize: 13, padding: '6px 12px' }} onClick={() => {
-          if (examMode && !window.confirm('Izaći bez predaje? Napredak neće biti spremljen.')) return
+          if (examMode) {
+            if (!window.confirm('Izaći bez predaje? Napredak neće biti spremljen.')) return
+            // Potvrda doslovno obećava da napredak nestaje; bez brisanja bi se
+            // odgovori vratili pri sljedećem ulasku u isti ispit.
+            clearExamDraft(draftKey)
+          }
           onExit()
         }}>← Natrag</button>
         <span className="ntitle">{examMode
@@ -569,6 +663,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
           <BlockTimer
             key={examMode ? 'block_' + blockIdx : 'all'}
             totalSeconds={timerSeconds}
+            deadline={examMode ? deadline : null}
             run={true}
             onExpire={onTimerExpire}
             onWarn={onTimerWarn}
@@ -609,7 +704,10 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
         freeExam={examMode}
         freePractice={!examMode}
         previewScore={hasKeys ? (() => {
-          const pqs = qs.filter(x => x.type !== 'sa' && x.type !== 'es').slice(0, FREE_LIMIT)
+          // Samo pitanja koja doista nose ključ: bez tog filtra bi pitanje bez
+          // `sol` dalo chk() === null i modal bi tvrdio "0 od 3 točno" i kad su
+          // sva tri točna.
+          const pqs = qs.filter(x => x.type !== 'sa' && x.type !== 'es' && x.sol).slice(0, FREE_LIMIT)
           return { correct: pqs.filter(x => chk(x, answers[x.id]) === true).length, total: pqs.length }
         })() : null}
       >
@@ -672,8 +770,15 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
                 borderRadius: 'var(--r)', padding: '12px 14px', fontSize: 13, color: 'var(--red)',
                 display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap',
               }}>
-                <span style={{ flex: 1, minWidth: 200 }}>{submitError}</span>
-                <button className="btn btn-gold" disabled={submitting} onClick={() => void finish()}>Pokušaj ponovno</button>
+                <span style={{ flex: 1, minWidth: 200 }}>
+                  {submitError}
+                  {retryIn > 0 && ` Ponovna predaja za ${retryIn} s…`}
+                </span>
+                <button
+                  className="btn btn-gold"
+                  disabled={submitting || retryIn > 0}
+                  onClick={() => void finish()}
+                >{retryIn > 0 ? `Čekam ${retryIn} s` : 'Pokušaj ponovno'}</button>
               </div>
             )}
           </div>

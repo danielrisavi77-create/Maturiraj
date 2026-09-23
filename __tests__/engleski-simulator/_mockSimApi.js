@@ -9,16 +9,17 @@
 // (lib/exam-secrets/subjects/eng.js), pa mock ne može tiho odstupiti od rute.
 import { vi } from 'vitest'
 import { chk, grade as gradeFor, calcXpGain } from '../../lib/engleski-simulator/scoring.js'
+import { freeKeyAllowance } from '../../lib/exam-secrets/free-policy.js'
 
 /** Polja pitanja koja smiju u klijent — allowlista iz generatora i adaptera. */
 const PUBLIC_FIELDS = ['id', 'section', 'type', 'topic', 'q', 'opts', 'items', 'rights', 'note']
 
 /**
- * Koliko pitanja free korisnik smije dobiti s ključem — nijedno, ni u vježbanju.
- * Odluka vlasnika: free nakon predaje dobiva točno/netočno po pitanju, ali nikad
- * sol/exp (lib/exam-secrets/free-policy.js → freeKeyAllowance).
+ * Koliko pitanja free korisnik smije dobiti s ključem — mock ne izmišlja vlastiti
+ * broj nego pita isto pravilo koje pita i ruta (lib/exam-secrets/free-policy.js):
+ * ispitni mod 0, vježbanje prvih FREE_LIMIT.
  */
-export const MOCK_FREE_LIMIT = 0
+export const mockFreeAllowance = (mode, key = '2024_ljeto') => freeKeyAllowance('eng', key, mode)
 
 export function gradeExam(exam, answers) {
   const scores = {}
@@ -43,17 +44,20 @@ export function gradeExam(exam, answers) {
   return { scores, cor, total, pct, grade: gradeFor(pct), bodovi: null, xpGain: calcXpGain(pct), topicBreakdown }
 }
 
-function jsonResponse(body, status = 200) {
+function jsonResponse(body, status = 200, headers = {}) {
   return Promise.resolve({
     ok: status >= 200 && status < 300,
     status,
+    // Klijent iz Retry-After izvodi odbrojavanje do ponovne predaje, pa dvojnik
+    // mora imati `headers.get` kao i pravi Response.
+    headers: { get: name => headers[name] ?? null },
     json: () => Promise.resolve(body),
   })
 }
 
 /** Envelope GET rute: javni payload + ključevi natrag samo gdje smiju. */
 function examEnvelope(exam, mode, tier) {
-  const allowance = tier === 'free' ? MOCK_FREE_LIMIT : exam.qs.length
+  const allowance = tier === 'free' ? mockFreeAllowance(mode, exam.key) : exam.qs.length
   const qs = exam.qs.map((q, index) => {
     const pub = {}
     for (const field of PUBLIC_FIELDS) if (q[field] !== undefined) pub[field] = q[field]
@@ -72,10 +76,12 @@ function examEnvelope(exam, mode, tier) {
 }
 
 /**
- * @param {{exams?: Record<string, object>, tier?: 'free'|'standard'|'pro', context?: object, gradeStatus?: number}} options
+ * @param {{exams?: Record<string, object>, tier?: 'free'|'standard'|'pro', context?: object, gradeStatus?: number, gradeRetryAfterSec?: number}} options
  */
-export function installSimApiMock({ exams = {}, tier = 'free', context = {}, gradeStatus = 200 } = {}) {
+export function installSimApiMock({ exams = {}, tier = 'free', context = {}, gradeStatus = 200, gradeRetryAfterSec = 0 } = {}) {
   const calls = { exam: [], grade: [] }
+  // Ocjenjivanje se mijenja usred testa (429 pa 200), pa status živi u varijabli.
+  const grade = { status: gradeStatus, retryAfterSec: gradeRetryAfterSec }
 
   const fetchMock = vi.fn((input, init) => {
     const url = typeof input === 'string' ? input : String(input?.url ?? input)
@@ -95,7 +101,13 @@ export function installSimApiMock({ exams = {}, tier = 'free', context = {}, gra
     if (url.includes('/api/sim/eng/grade')) {
       const body = init?.body ? JSON.parse(init.body) : {}
       calls.grade.push(body)
-      if (gradeStatus !== 200) return jsonResponse({ error: 'Ocjenjivanje nije uspjelo.' }, gradeStatus)
+      if (grade.status !== 200) {
+        return jsonResponse(
+          { error: 'Ocjenjivanje nije uspjelo.' },
+          grade.status,
+          grade.retryAfterSec ? { 'Retry-After': String(grade.retryAfterSec) } : {},
+        )
+      }
       const exam = exams[body.examKey]
       if (!exam) return jsonResponse({ error: 'Ispit ne postoji.' }, 404)
       const result = gradeExam(exam, body.answers)
@@ -108,5 +120,10 @@ export function installSimApiMock({ exams = {}, tier = 'free', context = {}, gra
   })
 
   global.fetch = fetchMock
-  return { calls, fetchMock }
+  /** Promijeni ishod ocjenjivanja usred testa (npr. 429 → 200 nakon odbrojavanja). */
+  const setGradeOutcome = (status, retryAfterSec = 0) => {
+    grade.status = status
+    grade.retryAfterSec = retryAfterSec
+  }
+  return { calls, fetchMock, setGradeOutcome }
 }
