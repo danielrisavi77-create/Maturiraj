@@ -4,8 +4,12 @@
 // A/B test: swap values here without touching any component.
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Brojka živi u lib/discere/entitlements.js (jedini izvor istine); ovdje je
+// samo re-export pod zatečenim imenom koje paywall i free-policy već uvoze.
+import { FREE_PRACTICE_LIMIT } from '@/lib/discere/entitlements'
+
 /** Broj besplatnih pitanja u vježbanju (pravi ispit s timerom nema ograničenje). */
-export const FREE_LIMIT = 3
+export const FREE_LIMIT = FREE_PRACTICE_LIMIT
 
 // ── Simulator paywall ─────────────────────────────────────────────────────────
 

@@ -4,11 +4,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { FREE_LIMIT } from './paywallCopy'
+import { normalizeTier, upgradeTargetFor } from '@/lib/discere/entitlements'
+import { gradeStatus, pctOf } from '@/lib/discere/grade-scale'
 
 export { FREE_LIMIT }
 
 /**
- * @typedef {'free'|'standard'|'pro'} SubscriptionTier
+ * `userAccess.subscriptionTier` je UI oblik tiera i povijesno nosi 'standard' za
+ * plan koji billing zove 'starter'. Kanonsko nazivlje živi u lib/billing i
+ * lib/discere; ovdje sve provjere idu kroz normalizeTier, pa oba oblika znače
+ * isto, a nepoznato pada na 'free' (fail closed).
+ *
+ * @typedef {'free'|'starter'|'standard'|'pro'} SubscriptionTier
  *
  * @typedef {{ subscriptionTier: SubscriptionTier, isLoggedIn: boolean }} UserAccess
  *
@@ -25,6 +32,14 @@ export { FREE_LIMIT }
 /**
  * Maps useAuth hook output → UserAccess tier string.
  * Call this once at the page level.
+ *
+ * Plaćeni ne-Pro plan ovdje namjerno ostaje 'standard', a ne kanonski 'starter':
+ * potrošači ovog objekta (SubscriptionGate, ResultsSummary, PaywallModal, hrv i
+ * eng ekrani) uspoređuju doslovni niz 'standard'. Kad bi ova funkcija vratila
+ * 'starter', SubscriptionGate bi plaćenog Standard korisnika rangirao kao free i
+ * zaključao mu sadržaj, a kartica rezultata bi mu izgubila oznaku plana.
+ * Preslikavanje na kanonsko nazivlje radi normalizeTier na ulazu u svaku
+ * provjeru prava, pa 'standard' i 'starter' ovdje imaju identična prava.
  *
  * @param {{ user: any, isPro: boolean, isPaid: boolean }} authState
  * @returns {UserAccess}
@@ -54,7 +69,7 @@ export function checkSimulatorAccess(userAccess, questionIndex, { freeExam = fal
   if (!userAccess?.isLoggedIn) {
     return { canProceed: false, reason: 'not-logged-in' }
   }
-  if (userAccess.subscriptionTier !== 'free') {
+  if (normalizeTier(userAccess.subscriptionTier) !== 'free') {
     return { canProceed: true, reason: 'ok' }
   }
   if (freeExam) {
@@ -74,7 +89,7 @@ export function checkSimulatorAccess(userAccess, questionIndex, { freeExam = fal
  * @returns {{ canSeeAnalysis: boolean, canSeeWeakAreas: boolean, canSeePlan: boolean, canAskAI: boolean }}
  */
 export function checkResultsAccess(userAccess) {
-  const isPro = userAccess?.subscriptionTier === 'pro'
+  const isPro = normalizeTier(userAccess?.subscriptionTier) === 'pro'
   return {
     canSeeAnalysis:  isPro,
     canSeeWeakAreas: isPro,
@@ -93,7 +108,7 @@ export function checkResultsAccess(userAccess) {
  * @returns {boolean}
  */
 export function canSeeDiscereAnalysis(userAccess) {
-  return !!userAccess && userAccess.subscriptionTier !== 'free'
+  return !!userAccess && normalizeTier(userAccess.subscriptionTier) !== 'free'
 }
 
 export const canSeeHrvAnalysis = canSeeDiscereAnalysis
@@ -102,6 +117,9 @@ export const canSeeHrvAnalysis = canSeeDiscereAnalysis
  * Ispiti koji su u cijelosti besplatni u vježbanju (bez FREE_LIMIT gatea), po
  * predmetu. Ispitni mod je već besplatan za sve ispite — ovo dodatno oslobađa
  * vježbanje na dogovorenom demo skupu.
+ *
+ * PRIVREMENO: popis ostaje ovdje samo dok registar predmeta ne dobije polje
+ * `freePracticeExams`; tada je ovo fallback za predmete koji ga nemaju.
  */
 export const FREE_PRACTICE_EXAMS = {
   hrv: ['2016_ljeto_B'],
@@ -124,15 +142,18 @@ export function isHrvFreePracticeExam(examKey) {
 }
 
 /**
- * Returns the minimum plan the user needs to upgrade to.
- * Simulator + AI analysis = Pro only.
+ * Najniži plan koji korisniku otključava traženu značajku.
+ *
+ * Prije je ova funkcija uvijek vraćala 'pro', pa je i razrada rezultata (koja
+ * ide od Standarda) nudila Pro. Sada odlučuje matrica iz lib/discere/entitlements.
+ * Bez značajke zadržava staro ponašanje (Pro-only AI analiza).
  *
  * @param {SubscriptionTier} currentTier
- * @returns {'pro'|'standard'|null}
+ * @param {string} [feature] ključ iz FEATURES
+ * @returns {'starter'|'pro'|null}  null = korisnik već ima pristup
  */
-export function getUpgradeTarget(currentTier) {
-  if (currentTier === 'pro') return null
-  return 'pro'
+export function getUpgradeTarget(currentTier, feature = 'ai_analysis') {
+  return upgradeTargetFor(feature, currentTier)
 }
 
 /**
@@ -142,12 +163,8 @@ export function getUpgradeTarget(currentTier) {
  * @returns {{ label: string, color: string, emoji: string }}
  */
 export function getScoreStatus({ score, totalQuestions }) {
-  const pct = (score / Math.max(1, totalQuestions)) * 100
-  if (pct >= 85) return { label: 'Odlično',        color: '#3ecf6e', emoji: '🏆' }
-  if (pct >= 70) return { label: 'Vrlo dobro',      color: '#2dcfbe', emoji: '✨' }
-  if (pct >= 55) return { label: 'Dobro',           color: '#4b7bff', emoji: '👍' }
-  if (pct >= 40) return { label: 'Dovoljno',        color: '#e9b446', emoji: '📘' }
-  return             { label: 'Potrebna vježba', color: '#f87171', emoji: '💪' }
+  // Ljestvica 85/70/55/40 dolazi iz lib/discere/grade-scale (jedna za sve predmete).
+  return gradeStatus(pctOf(score, Math.max(1, totalQuestions)))
 }
 
 /**
