@@ -10,10 +10,15 @@ import { submitGrade, newAttemptId, gradeErrorMessage } from '@/lib/engleski-sim
 import { GRADE_AUTO_RETRY_MAX_SEC } from '@/lib/exam-secrets/grade-policy'
 import { MCQ, InsQ, MatQ, FbQ, SaQ, FeedbackBox, AnswerHelper, ContextPanel, AudioPlayer, ModeSelect as EngModeSelect } from './components/SimSharedUI'
 import { useTimer, warnMessage } from '@/lib/engleski-simulator/useTimer'
-import { getExamBlocks, totalMinutes, sectionScores, weightedEstimate } from '@/lib/engleski-simulator/examStructure'
+import { getExamBlocks, totalMinutes, blockCountFromIndex } from '@/lib/engleski-simulator/examStructure'
 import { LL, TLBL, TBDG, TOPIC_LABELS, GC, LEVEL_NAMES, getLevel, xpProgress, xpToNext } from '@/lib/engleski-simulator/constants'
 import { deriveRazina } from '@/lib/engleski-simulator/sessionRazina'
 import { ENG_USER_KEY, ENG_BOOKMARKS_DELETED_KEY, isRealExamKey, saveEngSimResult, toSimProgressPayload } from '@/lib/engleski-simulator/cloudSync'
+import { buildExamResult, hasFullKeys } from '@/lib/engleski-simulator/examResult'
+import {
+  isResumableExamKey, buildSnapshot, writeActiveSession, readActiveSession, clearActiveSession,
+  clearActiveSessionFor, answeredCount, remainingSeconds, formatRemaining,
+} from '@/lib/engleski-simulator/resumeSession'
 import { useEngCloudSync } from '@/lib/engleski-simulator/useEngCloudSync'
 
 // Lagani indeks ispita (bez pitanja) — jedini podaci o ispitima u početnom bundleu.
@@ -291,6 +296,18 @@ function BlockTimer({ totalSeconds, deadline, run, onExpire, onWarn, label }) {
   )
 }
 
+// ── Dva zapisa nedovršenog ispita, s različitim poslom ──
+// 1. NACRT (`disc_eng_exam_<key>_<mode>`, ADR-001) je sigurnosna mreža SAMOG
+//    ispitnog ekrana: drži odgovore, izmjerena vremena po pitanju i rok tekuće
+//    cjeline, pa ni osvježavanje stranice ni pala predaja ne pojedu pokušaj.
+// 2. SNAPSHOT (`eng_active_session`, resumeSession.js) je ono što vidi Home:
+//    sanitiziran zapis iz kojeg se slaže kartica „Nastavi ispit”. Jedini je koji
+//    čita roditelj i jedini koji smije preživjeti izlazak s ekrana.
+// Nacrt se upotrebljava samo kad ispit NIJE otvoren kroz nastavak (bez 'resume'
+// propa); nastavak ide isključivo kroz snapshot, pa se dva zapisa ne natežu oko
+// istog stanja. Oba nestaju na istim mjestima: predaja, „← Natrag” uz potvrdu i
+// „Odbaci” na kartici.
+
 // Nedovršeni pokušaj u localStorageu. Engleski ga dosad nije imao (hrvatski ima
 // `discere_exam_<key>`, matematika `mat_resume`), pa je neuspjela predaja nakon
 // 90-minutne simulacije značila gubitak svega: odgovori su živjeli isključivo u
@@ -299,6 +316,13 @@ function BlockTimer({ totalSeconds, deadline, run, onExpire, onWarn, label }) {
 // jer vježbanje i simulacija istog ispita ne smiju dijeliti odgovore.
 const EXAM_DRAFT_PREFIX = 'disc_eng_exam_'
 const EXAM_DRAFT_TTL_MS = 6 * 60 * 60 * 1000
+
+function examDraftKey(examKey, examMode) {
+  // Samo pravi ispiti: virtualne sesije se pri svakom ulasku slažu iznova, pa bi
+  // im spremljeni odgovori pripadali drugim pitanjima.
+  if (!examKey || !isRealExamKey(examKey)) return null
+  return EXAM_DRAFT_PREFIX + examKey + (examMode ? '_exam' : '_practice')
+}
 
 function readExamDraft(draftKey) {
   if (!draftKey) return null
@@ -324,23 +348,40 @@ function clearExamDraft(draftKey) {
   try { localStorage.removeItem(draftKey) } catch {}
 }
 
+/**
+ * Obriši nacrt tog ispita u OBA načina rada. Koristi „Odbaci” na kartici
+ * „Nastavi ispit”: bez ovoga bi snapshot nestao, a nacrt preživio i pri
+ * sljedećem ulasku u isti ispit vratio upravo one odgovore koje je korisnik
+ * maloprije odbacio.
+ */
+function clearExamDraftsFor(examKey) {
+  clearExamDraft(examDraftKey(examKey, true))
+  clearExamDraft(examDraftKey(examKey, false))
+}
+
+// Razmak između dva zapisa snapshota aktivne sesije (spec: ≤ 500 ms).
+const SNAPSHOT_DEBOUNCE_MS = 400
+
 // Named export radi testova blokovske navigacije (exam-play-blocks.test.js) —
 // ponašanje je nepromijenjeno, default export i dalje je EngleskiSimulator.
-export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup, soundOn, onBookmarkChange }) {
+//
+// 'resume' je snapshot nedovršene sesije (lib/engleski-simulator/resumeSession.js)
+// iz kojeg se podižu početni odgovori i pozicija; 'resumeSeconds' je preostalo
+// vrijeme tekuće ispitne cjeline, već izračunato u roditelju (endsAt − now) da se
+// Date.now() ne zove tijekom rendera.
+export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit, onDone, userAccess, isPro, examLookup, soundOn, onBookmarkChange, resume = null, resumeSeconds = null }) {
   const qs = useMemo(() => exam?.qs || [], [exam])
-  // Samo pravi ispiti: virtualne sesije se pri svakom ulasku slažu iznova, pa bi
-  // im spremljeni odgovori pripadali drugim pitanjima.
   // NAČIN RADA JE DIO KLJUČA: bez njega vježbanje (u kojem „Provjeri“ pokazuje
   // točan odgovor) ostavi popunjene odgovore, a simulacija istog ispita ih pri
   // montiranju pokupi kao svoje i preda kao regularan pokušaj.
-  const draftKey = exam?.key && isRealExamKey(exam.key)
-    ? EXAM_DRAFT_PREFIX + exam.key + (examMode ? '_exam' : '_practice')
-    : null
+  const draftKey = examDraftKey(exam?.key, examMode)
   // Nacrt se čita JEDNOM, pri montiranju — inicijalizator stanja se izvrši samo
-  // tada, pa localStorage i Date.now() ne ulaze u svaki render.
-  const [draft] = useState(() => readExamDraft(draftKey))
-  const [cur, setCur] = useState(0)
-  const [answers, setAnswers] = useState(() => draft?.answers || {})
+  // tada, pa localStorage i Date.now() ne ulaze u svaki render. Kad se u ispit
+  // ulazi kroz nastavak ('resume'), nacrt se ne čita: mjerodavan je snapshot
+  // koji je korisnik vidio na kartici, a ne usput zatečen zapis.
+  const [draft] = useState(() => (resume ? null : readExamDraft(draftKey)))
+  const [cur, setCur] = useState(() => (Number.isFinite(resume?.cur) ? resume.cur : 0))
+  const [answers, setAnswers] = useState(() => (resume?.answers ? { ...resume.answers } : draft?.answers || {}))
   const [rev, setRev] = useState({})
   const [qTimes, setQTimes] = useState(() => draft?.qTimes || {})
   const [bookmarks, setBookmarks] = useState(() => {
@@ -349,8 +390,10 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
   const [toast, setToast] = useState(null)
   // Indeks tekuće cjeline preživljava osvježavanje: navigacija je jednosmjerna
   // („Nakon prelaska ne možeš se vratiti na ovaj dio“), pa bi povratak na nulu
-  // ponovno otvorio zatvoreni blok.
-  const [rawBlockIdx, setBlockIdx] = useState(() => (examMode ? draft?.blockIdx || 0 : 0))
+  // ponovno otvorio zatvoreni blok. Pri nastavku ga daje snapshot.
+  const [blockIdx, setBlockIdx] = useState(() => (
+    Number.isFinite(resume?.blockIdx) ? resume.blockIdx : examMode ? draft?.blockIdx || 0 : 0
+  ))
   // Apsolutni trenutak isteka tekuće cjeline (ms). Postoji samo u simulaciji.
   const [deadline, setDeadline] = useState(() => (examMode ? draft?.deadline ?? null : null))
   // Predaja na poslužiteljsko ocjenjivanje: 'submitting' drži gumb zauzetim,
@@ -378,25 +421,91 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
   // Za LOKALNI IZRAČUN cijele ocjene to nije dovoljno — s tri ključa od 43 pitanja
   // ispao bi rezultat od 7 %. Zato lokalni put traži ključ na SVAKOM
   // auto-ocjenjivom pitanju (plaćeni tier, keys:'full').
-  const fullKeys = useMemo(() => {
-    const auto = qs.filter(x => x && x.type !== 'sa' && x.type !== 'es')
-    return auto.length > 0 && auto.every(x => x.sol)
-  }, [qs])
+  const fullKeys = useMemo(() => hasFullKeys(exam), [exam])
 
   const blocks = useMemo(() => (examMode ? getExamBlocks(exam) : []), [examMode, exam])
-  // Nacrt može nositi indeks iz strukture koja više ne postoji — stežemo ga na
-  // postojeći raspon da restauracija nikad ne ostavi ekran bez bloka.
-  const blockIdx = blocks.length ? Math.min(rawBlockIdx, blocks.length - 1) : 0
-  const block = blocks[blockIdx] || null
-  const isLastBlock = !block || blockIdx >= blocks.length - 1
+  // Nacrt ili snapshot mogu nositi blockIdx izvan raspona (struktura se
+  // promijenila, zapis je tuđ/star) — izvedena vrijednost je uvijek u rasponu,
+  // pa restauracija nikad ne ostavi ekran bez bloka.
+  const bIdx = blocks.length ? Math.min(Math.max(0, blockIdx), blocks.length - 1) : 0
+  const block = blocks[bIdx] || null
+  const isLastBlock = !block || bIdx >= blocks.length - 1
   // Globalni indeksi pitanja koja su trenutno dostupna (u simulaciji samo tekući blok)
   const visIdx = useMemo(() => (block ? block.qIdx : qs.map((_, i) => i)), [block, qs])
   // Ako 'cur' ne pripada tekućem bloku (npr. početna nula u ispitu bez čitanja),
   // vrijedi prvo pitanje bloka — izvedena vrijednost, bez setState-a u efektu
   const curIdx = block && !block.qIdx.includes(cur) ? block.qIdx[0] : cur
   // Trajanje timera: po cjelini u simulaciji, ukupno propisano trajanje u timed vježbanju
-  const timerSeconds = (block ? block.minutes : totalMinutes(exam) || 90) * 60
+  const fullSeconds = (block ? block.minutes : totalMinutes(exam) || 90) * 60
+  // Nastavak mjerenog moda (simulacija ili „Vježbanje ⏱”): cjelina u kojoj je
+  // korisnik stao kreće od preostalog vremena (endsAt − now, izračunato u
+  // roditelju), sve sljedeće od punog. Vrijednost se ne mijenja kroz život
+  // komponente — useTimer ionako čita trajanje samo pri mountu, a BlockTimer se
+  // remounta preko keya. (useRef zadrži samo prvu vrijednost — 'bIdx' je ovdje
+  // uvijek onaj iz snapshota.)
+  //
+  // KAPA: nikad više od punog propisanog trajanja. 'endsAt' je apsolutno
+  // vrijeme, pa bi pomicanje sistemskog sata unatrag inače poklonilo proizvoljno
+  // mnogo vremena; legitiman nastavak nikad nema više od punog.
+  const resumedTimer = useRef(
+    (examMode || timedMode) && Number.isFinite(resumeSeconds)
+      ? { blockIdx: bIdx, seconds: Math.min(Math.max(0, resumeSeconds), fullSeconds) }
+      : null,
+  ).current
+  const timerSeconds = resumedTimer && resumedTimer.blockIdx === bIdx ? resumedTimer.seconds : fullSeconds
   const curQid = qs[curIdx]?.id
+
+  // ── Snapshot aktivne sesije ──
+  // Rok cjeline ('endsAt') živi u refu, ne u stanju: prikaz ga ne treba (sat
+  // vodi useTimer preko 'timerSeconds'), služi samo zapisu. Tako ni Date.now()
+  // ne ulazi u render ni u dodatni ciklus renderiranja.
+  const resumable = isResumableExamKey(exam?.key)
+  const endsAtRef = useRef(null)
+  const startedAtRef = useRef(Number.isFinite(resume?.startedAt) ? resume.startedAt : null)
+  const abandonedRef = useRef(false)
+  // Koja je cjelina zadnja zapisana — prelazak cjeline se ne smije debounceati.
+  const savedBlockRef = useRef(null)
+
+  useEffect(() => {
+    if (!resumable || abandonedRef.current) return
+    let endsAt = null
+    if (examMode || timedMode) {
+      // Svaka cjelina dobiva svoj rok pri ulasku u nju; cjelina iz koje se
+      // nastavlja zadržava rok iz snapshota — inače bi nastavak vratio puno
+      // vrijeme i refresh bi bio način da se sat resetira. Iznimka je nastavak
+      // kojem je vrijeme bilo kapirano (pomaknut sistemski sat): tada stari rok
+      // više ne vrijedi i računa se novi iz kapiranog trajanja.
+      if (endsAtRef.current === null || endsAtRef.current.blockIdx !== bIdx) {
+        const keep = resumedTimer && resumedTimer.blockIdx === bIdx
+          && Number.isFinite(resume?.endsAt) && resumedTimer.seconds === Math.max(0, resumeSeconds)
+        endsAtRef.current = { blockIdx: bIdx, endsAt: keep ? resume.endsAt : Date.now() + timerSeconds * 1000 }
+      }
+      endsAt = endsAtRef.current.endsAt
+    }
+    if (startedAtRef.current === null) startedAtRef.current = Date.now()
+    const save = () => {
+      if (abandonedRef.current) return
+      writeActiveSession(buildSnapshot({
+        examKey: exam.key, examMode, timedMode, answers,
+        cur: curIdx, blockIdx: bIdx, startedAt: startedAtRef.current, endsAt,
+      }))
+    }
+    // Ulazak u ispit I svaki prelazak cjeline bilježe se ODMAH: novi rok ne smije
+    // 400 ms visjeti neupisan, jer bi refresh u tom prozoru našao zapis sa starom
+    // cjelinom i rokom koji je upravo istekao pa bi nastavak predao cijeli ispit.
+    // Ostale promjene (odgovor, pomak po pitanjima) su debounceane.
+    if (savedBlockRef.current !== bIdx) { savedBlockRef.current = bIdx; save(); return }
+    const id = setTimeout(save, SNAPSHOT_DEBOUNCE_MS)
+    return () => clearTimeout(id)
+  }, [resumable, exam?.key, examMode, timedMode, answers, curIdx, bIdx]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Svjestan izlazak iz ispita (predaja ili „← Natrag”) briše snapshot;
+  // refresh/zatvaranje kartice ga NE dira — u tome je cijela poanta.
+  function abandonSession() {
+    abandonedRef.current = true
+    // Briše se samo VLASTITI zapis — nikad nedovršen ispit druge kartice.
+    if (resumable) clearActiveSessionFor(exam?.key)
+  }
 
   // Vrijeme po pitanju mjerimo u efektu — Date.now() se ne smije zvati tijekom
   // rendera (React Compiler, pravilo čistoće). Cleanup se izvrši kad se pitanje
@@ -417,9 +526,9 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
     if (!draftKey) return
     if (!Object.keys(answers).length && !Object.keys(qTimes).length && !deadline) return
     try {
-      localStorage.setItem(draftKey, JSON.stringify({ at: Date.now(), answers, qTimes, deadline, blockIdx }))
+      localStorage.setItem(draftKey, JSON.stringify({ at: Date.now(), answers, qTimes, deadline, blockIdx: bIdx }))
     } catch {}
-  }, [draftKey, answers, qTimes, deadline, blockIdx])
+  }, [draftKey, answers, qTimes, deadline, bIdx])
 
   // Simulacija dobiva rok čim počne. Bez zapisanog roka osvježavanje stranice
   // remounta BlockTimer s punim trajanjem, pa bi se ispit s netaknutim odgovorima
@@ -503,7 +612,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
     if (!block) { finish(); return }
     showToast('Vrijeme za ' + block.label + ' je isteklo')
     if (isLastBlock) finish()
-    else goToBlock(blockIdx + 1)
+    else goToBlock(bIdx + 1)
   }
 
   function checkAnswer() {
@@ -545,41 +654,18 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
     if (onBookmarkChange) onBookmarkChange()
   }
 
-  /**
-   * Složi rezultat predaje. Uz poslužiteljski odgovor `chkFn` gleda njegovu mapu
-   * točno/netočno umjesto ključa, pa rezultat po cjelinama izlazi isti i kad u
-   * pregledniku nema nijednog `sol` (ADR-001, točka 10).
-   */
+  /** Rezultat slaže zajednički modul — isti zapis daje i automatska predaja
+   * istekle sesije u roditelju (lib/engleski-simulator/examResult.js). */
   function buildResult(server) {
-    const chkFn = server ? scoreLookup(server.scores) : chk
-    const autoQ = qs.filter(x => x.type !== 'sa' && x.type !== 'es')
-    const localCor = autoQ.filter(x => chkFn(x, answers[x.id]) === true).length
-    const cor = server ? server.cor : localCor
-    const total = server ? server.total : autoQ.length
-    // 'pct' ostaje udio točnih auto-ocjenjivih pitanja radi kompatibilnosti s
-    // povijesti i statistikama; poslužitelj računa istom formulom.
-    const pct = server ? server.pct : (autoQ.length ? Math.round((localCor / autoQ.length) * 100) : 0)
-    const scores = sectionScores(exam, answers, chkFn)
-    return {
-      examKey: exam.key,
-      examLabel: `${exam.year}. — ${exam.label}`,
-      pct,
-      grade: server ? server.grade : grade(pct),
-      cor,
-      total,
-      answers,
-      qTimes,
-      examMode,
-      sectionScores: scores,
-      weighted: weightedEstimate(scores),
-      // Mapa qid → true|false|null s poslužitelja; virtualne sesije je nemaju.
-      scores: server ? server.scores : null,
-      xpGain: server ? server.xpGain : null,
-      // Je li redak u sim_progress već upisala ocjenjivačka ruta. Kad nije (pad
-      // predaje, a rezultat izračunat lokalno iz ključeva), upisuje ga klijent —
-      // inače bi pokušaj koji korisnik vidi na ekranu nestao iz oblaka.
-      serverSaved: !!server,
-    }
+    return buildExamResult(exam, answers, qTimes, examMode, server)
+  }
+
+  // Predaja je kraj sesije — snapshot i nacrt više nemaju što nastaviti. Briše
+  // se tek kad je rezultat u rukama: pala predaja mora ostaviti oba zapisa, pa
+  // ni osvježavanje stranice nakon nje ne pojede pokušaj.
+  function endSession() {
+    clearExamDraft(draftKey)
+    abandonSession()
   }
 
   // Pravi ispit ocjenjuje poslužitelj. Virtualne sesije (greške, bookmarci,
@@ -590,7 +676,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
 
   async function finish() {
     if (submitting) return
-    if (!gradedOnServer) { onDone(buildResult(null)); return }
+    if (!gradedOnServer) { endSession(); onDone(buildResult(null)); return }
 
     if (!attemptIdRef.current) attemptIdRef.current = newAttemptId()
     setSubmitting(true)
@@ -606,7 +692,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       setSubmitting(false)
       setRetryIn(0)
       setAutoRetry(false)
-      clearExamDraft(draftKey)
+      endSession()
       onDone(buildResult(server))
     } catch (err) {
       setSubmitting(false)
@@ -626,12 +712,13 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       // sim_progress tada upisuje onExamDone (result.serverSaved === false).
       if (fullKeys) {
         showToast(gradeErrorMessage(err) + ' Rezultat je izračunat lokalno.')
-        clearExamDraft(draftKey)
+        endSession()
         onDone(buildResult(null))
         return
       }
       // Bez punih ključeva rezultat može dati samo poslužitelj. Odgovori ostaju i
-      // u stanju i u localStorageu, pa ni osvježavanje stranice ne pojede pokušaj.
+      // u stanju i u oba zapisa (nacrt i snapshot), pa ni osvježavanje stranice
+      // ne pojede pokušaj — korisnik ga nastavi s Homea i ponovno preda.
       setSubmitError(gradeErrorMessage(err))
     }
   }
@@ -648,20 +735,20 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       )}
       <div className="nav">
         <button className="btn btn-g" style={{ fontSize: 13, padding: '6px 12px' }} onClick={() => {
-          if (examMode) {
-            if (!window.confirm('Izaći bez predaje? Napredak neće biti spremljen.')) return
-            // Potvrda doslovno obećava da napredak nestaje; bez brisanja bi se
-            // odgovori vratili pri sljedećem ulasku u isti ispit.
-            clearExamDraft(draftKey)
-          }
+          if (examMode && !window.confirm('Izaći bez predaje? Napredak neće biti spremljen.')) return
+          // Svjestan izlazak — za razliku od refresha, sesija se ne nudi za
+          // nastavak. Potvrda doslovno obećava da napredak nestaje, pa nestaju
+          // oba zapisa: bez brisanja nacrta odgovori bi se vratili pri sljedećem
+          // ulasku u isti ispit.
+          endSession()
           onExit()
         }}>← Natrag</button>
         <span className="ntitle">{examMode
-          ? 'Simulacija' + (block ? ` · ${block.label} (${blockIdx + 1}/${blocks.length})` : '')
+          ? 'Simulacija' + (block ? ` · ${block.label} (${bIdx + 1}/${blocks.length})` : '')
           : timedMode ? 'Vježbanje ⏱' : 'Vježbanje'}</span>
         {(examMode || timedMode) && (
           <BlockTimer
-            key={examMode ? 'block_' + blockIdx : 'all'}
+            key={examMode ? 'block_' + bIdx : 'all'}
             totalSeconds={timerSeconds}
             deadline={examMode ? deadline : null}
             run={true}
@@ -682,7 +769,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       {examMode && blocks.length > 1 && (
         <div role="list" style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 12 }}>
           {blocks.map((b, i) => {
-            const state = i < blockIdx ? 'done' : i === blockIdx ? 'active' : 'todo'
+            const state = i < bIdx ? 'done' : i === bIdx ? 'active' : 'todo'
             const col = state === 'done' ? 'var(--green)' : state === 'active' ? 'var(--blue)' : 'var(--muted)'
             return (
               <span key={b.id} role="listitem" aria-current={state === 'active' ? 'step' : undefined} style={{
@@ -756,7 +843,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
                 if (isLocked) { openPaywall(); return }
                 if (examMode && !isLastBlock) {
                   if (!window.confirm('Nakon prelaska ne možeš se vratiti na ovaj dio.')) return
-                  goToBlock(blockIdx + 1)
+                  goToBlock(bIdx + 1)
                   return
                 }
                 if (examMode && !window.confirm('Jesi li siguran/na da želiš predati ispit?')) return
@@ -855,6 +942,14 @@ export default function EngleskiSimulator() {
   const [darkMode, setDarkMode] = useState(() => { try { return localStorage.getItem('eng_dark') === '1' } catch { return false } })
   const [soundOn, setSoundOn] = useState(() => { try { return localStorage.getItem('eng_sound') !== '0' } catch { return true } })
   const [filteredExam, setFilteredExam] = useState(null)
+  // Nedovršena sesija: 'resumeCard' je ono što Home prikazuje (već formatirano,
+  // bez Date.now() u renderu), 'resumeFor' je snapshot proslijeđen ExamPlayScreenu.
+  const [resumeCard, setResumeCard] = useState(null)
+  const [resumeFor, setResumeFor] = useState(null)
+  // Automatska predaja istekle sesije je u tijeku (ili čeka razmak od 60 s) —
+  // dvostruki klik na „Predaj i vidi rezultat” ne smije poslati dvije predaje.
+  const autoSubmitRef = useRef(false)
+  const [notice, setNotice] = useState(null)
   const [extraExams, setExtraExams] = useState({})
   // Učitane razine ispita (spojena mapa iz examsLoader keša) + indikator učitavanja.
   const [examsMap, setExamsMap] = useState(getLoadedSync)
@@ -1059,6 +1154,170 @@ export default function EngleskiSimulator() {
       setExamAnswers({})
       setQTimes({})
       setExamScores(null)
+      // Ulazak kroz izbornik nije nastavak: snapshot se ne prosljeđuje, nego ga
+      // prepisuje prvi zapis iz ExamPlayScreena. (Nacrt istog ispita i načina
+      // rada se i dalje podiže — to je sigurnosna mreža iz ADR-001 koja čuva
+      // rok cjeline, pa osvježavanje ne dijeli novih 70 minuta.)
+      setResumeFor(null)
+      setResumeCard(null)
+      navigate('exam')
+    })
+  }
+
+  // ── Nedovršena sesija (nastavak nakon refresha) ──
+  // Kartica se osvježava pri svakom povratku na Home. Čitanje localStoragea i
+  // sata je izlet u vanjski sustav (kao i dohvat exam-context.json niže), pa se
+  // radi u callbacku, ne sinkrono u tijelu efekta — render ostaje čist i nema
+  // kaskadnog renderiranja iz efekta.
+  useEffect(() => {
+    if (screen !== 'home') return
+    let cancelled = false
+    Promise.resolve().then(() => {
+      if (cancelled) return
+      const snap = readActiveSession()
+      const rec = snap ? EXAMS_INDEX.find(r => r.key === snap.examKey) : null
+      // Ispit kojeg nema u indeksu ne može se nastaviti — zapis je bezvrijedan.
+      if (snap && !rec) clearActiveSession()
+      if (!snap || !rec) { setResumeCard(null); return }
+      const left = remainingSeconds(snap)
+      // Istekla cjelina koja NIJE zadnja nastavlja se sljedećom (kao i uživo),
+      // pa „Nastavi” ondje doista nastavlja. Samo kad je istekla zadnja cjelina
+      // klik predaje ispit — tada i gumb tako piše, da radnja ne iznenadi.
+      const blocksLen = snap.mode === 'simulacija' ? blockCountFromIndex(rec) : 0
+      const lastBlock = !blocksLen || (Number.isFinite(snap.blockIdx) ? snap.blockIdx : 0) >= blocksLen - 1
+      setResumeCard({
+        examKey: snap.examKey,
+        label: `${rec.year}. — ${rec.label}`,
+        modeLabel: snap.mode === 'simulacija' ? 'Simulacija' : snap.timedMode ? 'Vježbanje ⏱' : 'Vježbanje',
+        answered: answeredCount(snap.answers),
+        total: rec.qCount || 0,
+        timeLabel: left === null ? null : left > 0 ? 'Preostalo ' + formatRemaining(left) : 'Vrijeme je isteklo',
+        expired: left === 0,
+        submitOnResume: left === 0 && snap.mode === 'simulacija' && lastBlock,
+      })
+    })
+    return () => { cancelled = true }
+  }, [screen])
+
+  // Poruka („vrijeme je isteklo dok te nije bilo”) sama nestane.
+  useEffect(() => {
+    if (!notice) return
+    const id = setTimeout(() => setNotice(null), 8000)
+    return () => clearTimeout(id)
+  }, [notice])
+
+  function onDiscardSession() {
+    const snap = readActiveSession()
+    clearActiveSession()
+    // „Odbaci” mora obrisati i nacrt tog ispita — inače bi snapshot nestao, a
+    // nacrt pri sljedećem ulasku vratio odgovore koje je korisnik odbacio.
+    if (snap?.examKey) clearExamDraftsFor(snap.examKey)
+    setResumeCard(null)
+    setResumeFor(null)
+  }
+
+  /**
+   * Automatska predaja simulacije kojoj je rok istekao dok korisnika nije bilo.
+   *
+   * Ide ISTIM putem kao predaja iz ispita (ExamPlayScreen.finish): POST na
+   * `/api/sim/eng/grade` preko submitGrade(), isti oblik odgovora (scores, cor,
+   * total, pct, grade, xpGain), isti zapis iz buildExamResult() i isto rukovanje
+   * greškom — kratki razmak od 60 s se odčeka pa ponovi s ISTIM attemptId, pun
+   * ključ dopušta lokalni izračun, a inače se pokušaj ne gubi: snapshot ostaje i
+   * kartica i dalje nudi „Predaj i vidi rezultat”. Klijent ovdje nema ključeve,
+   * pa bez poslužitelja rezultata ni nema (ADR-001, odjeljak 5a).
+   */
+  async function submitExpiredSession(ex, snap, map, attemptId) {
+    if (autoSubmitRef.current) return
+    autoSubmitRef.current = true
+    const id = attemptId || newAttemptId()
+    try {
+      const server = await submitGrade({
+        examKey: ex.key,
+        answers: snap.answers || {},
+        qTimes: {},
+        examMode: true,
+        attemptId: id,
+      })
+      autoSubmitRef.current = false
+      finishExpiredSession(ex, snap, map, server)
+    } catch (err) {
+      const wait = err?.status === 429 ? err.retryAfterSec || 0 : 0
+      // Razmak od 60 s nije odbijen pokušaj nego „pričekaj” — odbrojimo i
+      // pošaljemo isti attemptId, kao i ExamPlayScreen.
+      if (wait > 0 && wait <= GRADE_AUTO_RETRY_MAX_SEC) {
+        setNotice(gradeErrorMessage(err) + ` Ponovna predaja za ${wait} s…`)
+        autoSubmitRef.current = false
+        setTimeout(() => { void submitExpiredSession(ex, snap, map, id) }, wait * 1000)
+        return
+      }
+      autoSubmitRef.current = false
+      // Pun ključ (plaćeni tier) → pokušaj se ne gubi zbog mreže; redak u
+      // sim_progress tada upisuje onExamDone (result.serverSaved === false).
+      if (hasFullKeys(ex)) {
+        setNotice(gradeErrorMessage(err) + ' Rezultat je izračunat lokalno.')
+        finishExpiredSession(ex, snap, map, null)
+        return
+      }
+      // Bez ključeva rezultat može dati samo poslužitelj: snapshot OSTAJE, pa
+      // kartica na Homeu i dalje nudi predaju kad mreža proradi.
+      setNotice(gradeErrorMessage(err))
+    }
+  }
+
+  function finishExpiredSession(ex, snap, map, server) {
+    clearActiveSession()
+    clearExamDraftsFor(ex.key)
+    setResumeCard(null)
+    setResumeFor(null)
+    setExamScores(server?.scores || null)
+    setNotice('Vrijeme je isteklo dok te nije bilo — ispit je predan s odgovorima koji su bili spremljeni.')
+    onExamDone(buildExamResult(ex, snap.answers || {}, {}, true, server), { exams: map })
+  }
+
+  function onResumeSession() {
+    const snap = readActiveSession()
+    if (!snap) { setResumeCard(null); return }
+    const isSim = snap.mode === 'simulacija'
+    // Ispit se dovlači istim putem kao iz izbornika: samo taj ispit i u načinu
+    // rada koji određuje smije li payload nositi ključeve (ADR-001).
+    ensureExam(snap.examKey, isSim ? 'exam' : 'practice', map => {
+      const ex = map[snap.examKey]
+      if (!ex) { onDiscardSession(); return }
+      const left = remainingSeconds(snap)
+      setSelectedExamKey(snap.examKey)
+      setExamMode(isSim)
+      setTimedMode(!!snap.timedMode)
+      setExamAnswers(snap.answers || {})
+      setQTimes({})
+      setExamScores(null)
+      if (isSim && left === 0) {
+        // 'endsAt' je rok TEKUĆE cjeline, ne cijelog ispita — pa se istek dok
+        // korisnika nije bilo rješava isto kao istek uživo (onTimerExpire):
+        // nije li to bila zadnja cjelina, prelazi se na sljedeću s punim
+        // vremenom; tek istek ZADNJE cjeline predaje ispit. Bez toga bi
+        // „nastavak unutar 24 h” za simulaciju vrijedio samo unutar trajanja
+        // jedne cjeline, a dvije trećine ispita bile bi ocijenjene kao
+        // neodgovorene.
+        const blocks = getExamBlocks(ex)
+        const bIdx = blocks.length ? Math.min(Math.max(0, snap.blockIdx || 0), blocks.length - 1) : 0
+        const nextBlock = blocks[bIdx + 1]
+        if (nextBlock) {
+          setNotice(`Vrijeme za cjelinu ${blocks[bIdx].label} isteklo je dok te nije bilo — nastavljaš s cjelinom ${nextBlock.label}.`)
+          setResumeCard(null)
+          setResumeFor({ snap: { ...snap, blockIdx: bIdx + 1, cur: nextBlock.qIdx[0] }, seconds: null })
+          navigate('exam')
+          return
+        }
+        // Zadnja cjelina: ispit se predaje spremljenim odgovorima (isti ishod
+        // kao istek timera uživo) — refresh ne smije biti pauza. Ocjenjuje
+        // poslužitelj, istim putem kao predaja iz ispita.
+        void submitExpiredSession(ex, snap, map)
+        return
+      }
+      // 'left' je null kad zapis nema rok (nemjereno vježbanje); mjereno
+      // vježbanje nastavlja od preostalog vremena, jednako kao simulacija.
+      setResumeFor({ snap, seconds: left })
       navigate('exam')
     })
   }
@@ -1075,16 +1334,29 @@ export default function EngleskiSimulator() {
   // navigateTo: kamo nakon spremanja rezultata. Dnevni izazov ima vlastiti
   // prikaz rezultata pa ide na 'home' — ekran 'results' bez odabranog ispita bi
   // prikazao tuđi/nepostojeći ispit.
-  function onExamDone(result, { navigateTo = 'results' } = {}) {
+  // 'exams' je mapa ispita svježije od examLookupa (ensureExams je razinu tek
+  // učitao, pa je stanje u ovom zatvaranju još staro) — bez nje bi nastavak
+  // istekle sesije ostao bez razrade po temama i bez praćenja grešaka.
+  function onExamDone(result, { navigateTo = 'results', exams = null } = {}) {
+    const lookup = exams ? { ...examLookup, ...exams } : examLookup
     setExamAnswers(result.answers || {})
     setQTimes(result.qTimes || {})
     // Ocjenu je dao poslužitelj → njegova mapa točno/netočno vrijedi svugdje
     // gdje se prije zvao `chk`. Bez nje (virtualne sesije) ostaje lokalni put.
     setExamScores(result.scores || null)
     const chkFn = result.scores ? scoreLookup(result.scores) : chk
+    // Sesija je gotova — nema više što nastaviti. Briše se SAMO zapis ovog
+    // ispita: kroz onExamDone prolaze i sintetičke sesije (dnevni izazov,
+    // virtualni ispit, greške, filtrirano vježbanje), a one po dizajnu ne smiju
+    // ni pisati ni brisati snapshot nedovršene simulacije. Isto vrijedi za
+    // predaju u drugoj kartici preglednika.
+    if (clearActiveSessionFor(result.examKey)) {
+      setResumeCard(null)
+      setResumeFor(null)
+    }
     // Build topic_breakdown
     const topic_breakdown = {}
-    const ex = result.qs ? { qs: result.qs } : examLookup[result.examKey]
+    const ex = result.qs ? { qs: result.qs } : lookup[result.examKey]
     if (ex) {
       ex.qs.forEach(q => {
         if (q.type === 'sa' || q.type === 'es') return
@@ -1129,7 +1401,7 @@ export default function EngleskiSimulator() {
       }
 
       const errTrack = { ...(next.errorTracker || {}) }
-      const ex = examLookup[result.examKey]
+      const ex = lookup[result.examKey]
       if (ex) {
         ex.qs.forEach(q => {
           if (q.type === 'sa' || q.type === 'es') return
@@ -1157,7 +1429,9 @@ export default function EngleskiSimulator() {
     // u napretku i percentilu ga ne bi bilo. Virtualne sesije odbija sam
     // toSimProgressPayload (isRealExamKey), pa ovdje nema dodatnog uvjeta.
     if (result.serverSaved === false) {
-      const payload = toSimProgressPayload(result, topic_breakdown, examLookup[result.examKey]?.razina)
+      // 'lookup' je svježiji od examLookupa kad je razina tek učitana (nastavak
+      // istekle sesije) — inače bi razina ispala prazna.
+      const payload = toSimProgressPayload(result, topic_breakdown, lookup[result.examKey]?.razina)
       if (payload) void saveEngSimResult(payload)
     }
 
@@ -1206,6 +1480,9 @@ export default function EngleskiSimulator() {
               onModeSelect={onModeSelect}
               userData={userData}
               toggles={toggles}
+              resumeCard={resumeCard}
+              onResumeSession={onResumeSession}
+              onDiscardSession={onDiscardSession}
               goErrors={() => goPaidScreen('errors')}
               goBookmarks={() => goPaidScreen('bookmarks')}
               goStats={() => goStats()}
@@ -1244,7 +1521,11 @@ export default function EngleskiSimulator() {
               examMode={examMode}
               timedMode={timedMode}
               examContext={examContext}
-              onExit={goBack}
+              // Snapshot vrijedi samo za ispit iz kojeg je nastao — sesija
+              // grešaka i filtrirano vježbanje ulaze na isti ekran s drugim ključem.
+              resume={resumeFor && resumeFor.snap.examKey === selectedExamKey ? resumeFor.snap : null}
+              resumeSeconds={resumeFor && resumeFor.snap.examKey === selectedExamKey ? resumeFor.seconds : null}
+              onExit={() => { setResumeFor(null); goBack() }}
               onDone={onExamDone}
               userAccess={userAccess}
               isPro={isPro}
@@ -1440,6 +1721,9 @@ export default function EngleskiSimulator() {
               onModeSelect={onModeSelect}
               userData={userData}
               toggles={toggles}
+              resumeCard={resumeCard}
+              onResumeSession={onResumeSession}
+              onDiscardSession={onDiscardSession}
               goErrors={() => goPaidScreen('errors')}
               goBookmarks={() => goPaidScreen('bookmarks')}
               goStats={() => goStats()}
@@ -1469,6 +1753,12 @@ export default function EngleskiSimulator() {
 
   return (
     <div className="eng-sim">
+      {notice && (
+        <div className="sim-notice" role="status" aria-live="polite">
+          <span>{notice}</span>
+          <button className="sim-notice-x" onClick={() => setNotice(null)} aria-label="Zatvori obavijest">✕</button>
+        </div>
+      )}
       {renderScreen()}
       {xpFloaters.map(f => <XpFloater key={f.id} amount={f.amount} x={f.x} y={f.y} />)}
       <div aria-live="polite" aria-atomic="true" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>{xpLiveMsg}</div>

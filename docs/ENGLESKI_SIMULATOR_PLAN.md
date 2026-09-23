@@ -335,6 +335,46 @@ Grana `eng/round1` (`main` = `d4e0dd0` je njezin predak; diff `main...eng/round1
 
 **Presuda:** grana je spremna za spajanje uz napomene — kod je zelen na `tsc` i `vitest`, lint je čist u dosegu simulatora, sigurnosnih ni paywall regresija nema; prije objave ostaju ručni smoke test u pregledniku, mjerenje chunka buildom i odluka o `NCE_DATA`/`NCE_DIST`.
 
+## Status Faza 4 — Nastavak sesije (implementirano) — 2026-09-23
+
+Grana `eng/resume-session`. **Nova značajka, ne popravak.** Dijagnostički prolaz je pokazao da nedovršen ispit nestaje nakon refresha jer `EngleskiSimulator.js` drži ekran, odabrani ispit, mod, odgovore, poziciju i sat u običnom `useState` bez ikakvog zapisa — nastavak nikad nije bio ni specificiran ni obećan (faza 3.1 obećava samo da preživi *agregirani* napredak, i to radi). Vlasnička odluka je bila da se nastavak uvede.
+
+**Što je napravljeno.**
+
+- **Snapshot aktivne sesije** (`lib/engleski-simulator/resumeSession.js`) pod ključem `eng_active_session`: `{ v, examKey, mode, timedMode, answers, cur, blockIdx, startedAt, endsAt, savedAt, ttl }`. Piše se odmah pri ulasku u ispit, a zatim debounceano (400 ms) pri svakoj promjeni odgovora, pitanja ili ispitne cjeline. Zapis stariji od 24 h se pri čitanju ignorira i briše, kao i zapis krive verzije ili pokvaren JSON.
+- **Privatnost (ADR-001)**: u zapis ulaze samo korisnikovi odgovori i indeksi. `sanitizeAnswers` je jedina vrata i propušta primitive te plitke `mat` mape čije su vrijednosti kratke (slova); tekst pitanja, opcije i rješenja tako ne mogu ući ni slučajno (ni kad bi netko proslijedio cijeli objekt pitanja kao „odgovor”).
+- **Sat u simulaciji ide preko `endsAt`** — apsolutnog roka **tekuće ispitne cjeline**. Pri nastavku se preostalo vrijeme računa kao `endsAt − now` (izračun je u roditelju, u rukovatelju klika, da `Date.now()` ne uđe u render), pa refresh ne može poslužiti kao pauza. Ako je rok prošao dok korisnika nije bilo, u ispit se uopće ne ulazi: sesija se predaje spremljenim odgovorima (isti izračun kao kod isteka timera) i korisnik ide na rezultate uz poruku da je vrijeme isteklo. Sljedeća cjelina nakon nastavka kreće od punog propisanog vremena i dobiva novi rok.
+- **`useTimer` nije mijenjan.** Trajanje već čita samo pri mountu, a `BlockTimer` se resetira preko `key={blockIdx}` — dovoljno je da cjelina iz koje se nastavlja dobije preostalo vrijeme umjesto punog. Time je izbjegnut povratak `setState`-a u render updater (ono što je maknuo `177e3c0`).
+- **Nema automatskog vraćanja u ispit.** Home prikazuje karticu „Nastavi ispit” s nazivom ispita, modom, napretkom (`5/46`) i, za simulaciju, preostalim vremenom ili „Vrijeme je isteklo”, te gumbima „Nastavi” i „Odbaci”. Stil je u `simulator.css`, scopean pod `.eng-sim`, s tamnom varijantom i mobilnim prijelomom.
+- **Brisanje snapshota**: pri predaji ispita, pri „Odbaci”, pri svjesnom izlasku kroz „← Natrag” (refresh ga, naravno, ne dira) i implicitno pri pokretanju novog ispita (prvi zapis prepisuje stari).
+- **Izvan opsega, po specifikaciji**: dnevni izazov, virtualni ispit, filtrirano vježbanje i sesija grešaka. Njihovi ključevi (`daily_`, `virtual_`, `filter_session_`, `exam_errors_session`) ne mogu ni napisati ni obrisati snapshot — skup pitanja tih sesija je nasumičan i nakon refresha se ne može rekonstruirati, a tuđi zapis ne smiju pokvariti.
+
+**Odluka o satu u vježbanju s timerom.** `endsAt` se piše samo za simulaciju; vježbanje (sa ili bez timera) pri nastavku dobiva svjež sat. Razlog: simulacija je mod koji imitira ispitne uvjete i ondje je mjerenje dio sadržaja, dok je vježbanje s timerom samostalna vježba gdje bi „resetirani sat” bio šteta samo za korisnika. Ako se pokaže da je i to potrebno, isti mehanizam pokriva i taj slučaj bez izmjene oblika zapisa.
+
+**Refaktor uz put**: izračun rezultata iz `ExamPlayScreen.finish()` izdvojen je u `lib/engleski-simulator/examResult.js` (`buildExamResult`) jer ga sada trebaju dva puta do rezultata — predaja iz ispita i automatska predaja istekle sesije. Ponašanje je nepromijenjeno. `onExamDone` prima i neobaveznu mapu ispita (`exams`) za slučaj kad je razina tek učitana, pa stanje u zatvaranju još nema taj ispit.
+
+**Testovi**: `__tests__/engleski-simulator/resume-session.test.js` (19 testova) — TTL, pokvaren/tuđi zapis, privatnost zapisa, sintetičke sesije; remount s istim `localStorage`-om vraća isto pitanje i iste odgovore u oba moda; simulacija nastavlja s `endsAt − now` i istječe nakon preostalog, ne punog vremena; predaja i „← Natrag” brišu snapshot, a refresh ne; novi ispit prepisuje; Home kartica, „Odbaci”, istekao TTL, automatska predaja istekle simulacije i dnevni izazov bez snapshota.
+
+Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — 96/96 datoteka, 1869 testova zeleno (bez ponavljanja, poznati flakeovi se ovaj put nisu javili).
+
+### Sanacija nalaza pregleda — 2026-09-23
+
+Pregled prve izvedbe oborio je četiri stvari; sve su popravljene u istoj grani, uz dvije odluke koje mijenjaju ranije zapisano.
+
+- **Brisanje snapshota vezano je uz ispit.** `onExamDone` je zvao `clearActiveSession()` bezuvjetno, pa je dovršetak dnevnog izazova, virtualnog ispita, sesije grešaka ili filtriranog vježbanja brisao nedovršenu simulaciju — točno ono što je odluka o sintetičkim sesijama trebala spriječiti (zaštita je postojala samo na pisanju). Uvedena je `clearActiveSessionFor(examKey)`: briše samo zapis koji pripada tom ispitu. Time je pokriven i scenarij s dvije kartice preglednika — predaja u jednoj ne briše nedovršen ispit druge.
+- **Istek roka dok je kartica bila zatvorena ponaša se kao istek uživo.** `endsAt` je rok **tekuće** cjeline, a nastavak ga je tumačio kao rok cijelog ispita i sve odmah predavao. Sada: istekne li cjelina koja nije zadnja, nastavlja se sljedećom s punim propisanim vremenom uz poruku (isto što radi `onTimerExpire`), a predaje se samo kad je istekla zadnja. Bez toga bi „nastavak unutar 24 h” za višeblokovnu simulaciju vrijedio samo unutar trajanja jedne cjeline.
+- **Prelazak cjeline zapisuje se odmah**, ne kroz 400 ms debounce. Refresh u tom prozoru inače bi zatekao zapis sa starom cjelinom i rokom koji je upravo istekao pa bi nastavak predao cijeli ispit iako je korisnik legitimno upravo dobio novu cjelinu.
+- **Kartica više ne zove „Nastavi” ono što je predaja.** Kad je istekla zadnja cjelina, kartica piše „Ispit čeka predaju” i gumb „Predaj i vidi rezultat” (broj cjelina za taj natpis procjenjuje se iz laganog indeksa preko `blockCountFromIndex`; pravu odluku i dalje donosi `getExamBlocks` nad učitanim ispitom).
+- **Ispravak sanitizacije `mat` odgovora.** Vrijednost `mat` odgovora nije slovo nego **cijeli tekst desne opcije** — s njim uspoređuje `chk`. Stari limit od 16 znakova odbacivao je 636 od 1101 stvarne opcije, pa su se sparivanja tiho gubila, a na putu istekle simulacije i krivo ocjenjivala. Limit je podignut na 200 (najdulja stvarna opcija ima 73 znaka) i vrijednost se nikad ne reže — odrezan tekst više ne bi bio jednak točnom odgovoru. Privatnost (ADR-001) sada čuva **oblik, ne duljina**: mapa koja nosi ijedno polje objekta pitanja (`q`, `sol`, `opts`, `exp`, …) nije odgovor nego slučajno proslijeđen objekt pitanja i cijela otpada.
+
+**Promijenjena odluka o satu u vježbanju s timerom.** Ranije zapisano „vježbanje pri nastavku dobiva svjež sat” **više ne vrijedi**: refresh je ondje bio najjeftiniji način da se s dvije preostale minute vrati punih 90, uz zadržane odgovore — dakle mjerena vježba prestaje biti mjerena. `endsAt` se sada piše i za „Vježbanje ⏱”, pa nastavak kreće od preostalog vremena. Nemjereno vježbanje i dalje nema rok, jer ondje sat ni ne postoji.
+
+**Pomicanje sistemskog sata.** `endsAt` je apsolutno vrijeme, pa bi pomak sata unatrag poklonio proizvoljno mnogo vremena. Preostalo vrijeme se pri nastavku zato kapa na puno propisano trajanje cjeline (i novi rok se računa iz kapirane vrijednosti, da se prednost ne prenese na sljedeći refresh). Ostatak posljedica pomaknutog sata — TTL koji tada ne okine, odnosno pomak unaprijed koji obriše svjež zapis — ostaje svjesno neriješen: za lokalni trenažer cijena monotonog mjerenja ne isplati se.
+
+**Testovi** (`resume-session.test.js`, sada 25): puni tekst `mat` opcije preživi zapis; brisanje vezano uz ključ (sintetička sesija i druga kartica ne diraju tuđi zapis); prelazak cjeline se zapisuje odmah; kapa na pomaknut sistemski sat; „Vježbanje ⏱” nastavlja od preostalog vremena; istekla cjelina koja nije zadnja vodi u sljedeću s punim vremenom; istekla zadnja cjelina predaje ispit i gumb tako piše.
+
+Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — 96/96 datoteka, 1875 testova zeleno / 6 todo.
+
 ## Status Faza 4 (audio: pristupačnost i odbačena HEAD provjera) — 2026-09-23
 
 Grana `eng/audio-preload`. Krenula je kao odgovor na nalaz o performansama iz pregleda 2026-09-22 (`preload: 'metadata'` uvodi promet i bez klika na Play): `preload='none'` + `fetch(url, { method: 'HEAD' })` pri montiranju playera. **Ta je zamjena povučena** — pregled je pokazao da je u jedinoj postojećoj konfiguraciji inertna i da uz to briše postojeću detekciju.
@@ -356,3 +396,52 @@ Grana `eng/audio-preload`. Krenula je kao odgovor na nalaz o performansama iz pr
 - **Testovi**: `__tests__/engleski-simulator/audio-fallback.test.js` provjerava `preload='metadata'` na stvarno renderiranim elementima, izolaciju stanja greške po zapisu (greška na uvodnoj snimci ne ruši glavni player), `role="status"`, te da montiranje playera ne šalje nijedan `fetch` zahtjev.
 
 Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — zeleno (poznati flakeovi `asset-integrity` ETIMEDOUT i `mat-simulator/engine-core-smoke` hook timeout ponovljeni zasebno); `npx eslint components/engleski-simulator/components/SimSharedUI.js` — 0 problema.
+---
+
+## Spajanje: nastavak sesije × ADR-001 Faza 1 — 2026-09-23
+
+Grana `eng/round3` (nastavak sesije) nastala je nad stanjem prije PR-a #16, u kojem je
+klijent još imao ključeve i sam računao ocjenu. Spajanje je moralo zadržati obje
+namjere, a jedno mjesto ih je izravno sudaralo.
+
+**Ocjenjivanje pri automatskoj predaji.** Nastavak simulacije kojoj je rok zadnje
+cjeline istekao dok korisnika nije bilo više ne računa rezultat na klijentu. Ide
+istim putem kao i predaja iz ispita: `POST /api/sim/eng/grade` preko
+`submitGrade()` (isti `attemptId`, `examMode: true`, isti oblik odgovora
+`{ pct, grade, cor, total, xpGain, scores }`), a ruta ujedno upisuje redak u
+`sim_progress`. Rukovanje greškom je isto kao u `ExamPlayScreenu`:
+
+- **429 s razmakom ≤ `GRADE_AUTO_RETRY_MAX_SEC`** — poruka s odbrojavanjem pa
+  ponovna predaja s **istim** `attemptId` (ne troši budžet od 5 predaja / 24 h),
+- **pad uz pune ključeve** (plaćeni tier, `hasFullKeys`) — lokalni izračun uz
+  poruku; redak u `sim_progress` tada upisuje `onExamDone` (`serverSaved === false`),
+- **pad bez ključeva** — poruka, **snapshot se NE briše** i kartica i dalje nudi
+  „Predaj i vidi rezultat”. Klijent bez ključeva ne smije izmisliti rezultat; jedini
+  pošten ishod je da pokušaj ostane sačuvan.
+
+`buildExamResult` je zato proširen petim argumentom (`server`) i preuzeo je posao
+dotadašnjeg `buildResult` iz `ExamPlayScreena` — sada je doista jedan izvor istine
+za oba puta do rezultata, s poslužiteljskim `scoreLookup` umjesto `chk` kad odgovor
+rute postoji. Uz njega je izdvojen i `hasFullKeys(exam)`.
+
+**Dva zapisa nedovršenog ispita.** Obje grane su uvele svoj, i oba su zadržana s
+podijeljenim poslom: nacrt (`disc_eng_exam_<key>_<mode>`, ADR-001) ostaje sigurnosna
+mreža samog ispitnog ekrana (odgovori, `qTimes`, rok cjeline — preživi refresh i
+palu predaju), a snapshot (`eng_active_session`) je sanitiziran zapis iz kojeg Home
+slaže karticu „Nastavi ispit”. Nacrt se čita samo kad ispit NIJE otvoren kroz
+nastavak (`resume` prop), pa se dva zapisa ne natežu oko istog stanja. Brišu se
+zajedno: predaja (tek nakon rezultata, ne prije), „← Natrag” uz potvrdu i „Odbaci”
+na kartici.
+
+**Ostalo iz spajanja.** Nastavak dovlači ispit preko `ensureExam(key, mode)` (jedan
+ispit, način rada dio identiteta keša), a ne više cijelu razinu. `onExamDone` piše u
+`sim_progress` samo kad ruta to nije učinila, i to s razinom iz svježije mape
+(`lookup`). Testovi iz `resume-session.test.js` koji su mockali klijentsko
+ocjenjivanje sada dižu dvojnika rute (`_mockSimApi.js`), a dodana su i dva nova:
+pala predaja iz ispita čuva snapshot, te pala automatska predaja bez ključeva ne
+gubi pokušaj.
+
+Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — 1958 prošlo / 6 todo
+(flake `asset-integrity` ETIMEDOUT ponovljen zasebno, zeleno); `npx eslint` nad
+dirnutim datotekama — bez novih nalaza (dva postojeća `react-hooks/set-state-in-effect`
+u `EngleskiSimulator.js` postoje i na `main`, nisu iz ovog spajanja).
