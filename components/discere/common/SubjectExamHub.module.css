@@ -1,0 +1,55 @@
+/* Raspored specifičan za ekran odabira ispita; boje/tipografija idu kroz
+   dsc-* tokene i klase iz discere-canonical.css. */
+.intro {
+  max-width: 620px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-top: 8px;
+}
+
+.title {
+  font-family: var(--fh);
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 8px 0;
+}
+
+.empty {
+  margin-top: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.exam {
+  text-align: left;
+  display: block;
+  width: 100%;
+}
+
+.examLabel {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.examMeta {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.examStatus {
+  display: block;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.examStatus.available { color: var(--green); }
+.examStatus.pending { color: var(--muted); }

@@ -1,0 +1,279 @@
+/*
+ * Discere canonical dizajn sustav — jedan izgled za sve predmete na
+ * `runtime: 'canonical'` engineu. Sva pravila (i tokeni i komponente) skopirana
+ * su pod `.dsc-root` da se ne prelijevaju u legacy simulatore (hrv/mat/soc)
+ * niti u ostatak aplikacije — datoteka se uvozi globalno (nije CSS modul), pa
+ * bi neskopirani `.dsc-card` hvatao i elemente izvan ljuske. Nazivi tokena
+ * namjerno prate content/simulator/mat/styles/mat-engine.css i app/globals.css
+ * (--bg --s1 --s2 --s3 --bdr --text --muted --blue --green --red --gold --teal
+ * --fh --fb), uz predmetni akcent (--accent*) i --content-font koje postavlja
+ * lib/discere/theme.js iz subject-themes.js.
+ *
+ * Provjere ovih pravila (skopiranost, --content-font, [data-dys], 44 px meta,
+ * učitanost fontova) žive u __tests__/discere/theme.test.js.
+ */
+
+.dsc-root {
+  /* Tamno je zadano (v. docs/PREDMETI_PLAN.md, Odluke vlasnika). Vrijednosti su
+     mat-engine.css .dark-mode paleta, da svi predmeti dijele jedan "look". */
+  --bg: #0d0e11; --s1: #161820; --s2: #1e2028; --s3: #272a35;
+  --bdr: rgba(255,255,255,.06); --bdr2: rgba(255,255,255,.12);
+  --text: #e8eaf2; --muted: #8a90a8;
+  --gold: #e8a830; --gold-d: rgba(232,168,48,.1); --gold-b: rgba(232,168,48,.2);
+  --green: #34d47a; --green-d: rgba(52,212,122,.1); --green-b: rgba(52,212,122,.2);
+  --red: #f06a6a; --red-d: rgba(240,106,106,.1); --red-b: rgba(240,106,106,.3);
+  --blue: #6ba3f5; --blue-d: rgba(107,163,245,.12); --blue-b: rgba(107,163,245,.24);
+  --teal: #28c4b4; --teal-d: rgba(40,196,180,.1); --teal-b: rgba(40,196,180,.2);
+  /* Obitelji fontova moraju biti one koje app/layout.jsx stvarno učitava
+     (Fraunces / DM Sans), inače /discere/<predmet> padne na generički serif i
+     system-ui — mat-engine.css @font-face blokovi vrijede samo na /sim ruti. */
+  --fh: 'Fraunces', serif; --fb: 'DM Sans', system-ui, sans-serif;
+  --r: 10px; --rr: 14px;
+
+  /* Predmetni akcent — zadana vrijednost prije nego JS postavi --accent iz
+     subjectThemeStyle(); drži se na --blue da nijedan predmet nikad ne
+     ostane bez akcentne boje. */
+  --accent: var(--blue);
+  --accent-soft: var(--blue-d);
+  --accent-border: var(--blue-b);
+  --content-font: var(--fb);
+
+  color-scheme: dark;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--fb);
+  min-height: 100vh;
+}
+
+/* Svjetla tema — vrijednosti su mat-engine.css .light-mode paleta 1:1, da
+   dvije teme ostanu par (isti izvor, ne novi dizajn). */
+.dsc-root[data-theme="light"] {
+  --bg: #f4f5f7; --s1: #ffffff; --s2: #eef0f3; --s3: #e2e5ea;
+  --bdr: rgba(15,20,40,.08); --bdr2: rgba(15,20,40,.15);
+  --text: #0f1428; --muted: #6b7490;
+  --gold: #c17d2a; --gold-d: rgba(193,125,42,.1); --gold-b: rgba(193,125,42,.22);
+  --green: #1a7a4a; --green-d: rgba(26,122,74,.1); --green-b: rgba(26,122,74,.22);
+  --red: #c0392b; --red-d: rgba(192,57,43,.1); --red-b: rgba(192,57,43,.3);
+  --blue: #2d6ad4; --blue-d: rgba(45,106,212,.1); --blue-b: rgba(45,106,212,.24);
+  --teal: #0a7a6e; --teal-d: rgba(10,122,110,.1); --teal-b: rgba(10,122,110,.22);
+  color-scheme: light;
+}
+
+/* Kolorblind mod — zeleno/crveno (točno/netočno) zamjenjuje plavo/narančasto
+   (Okabe–Ito par, isti kao mat body.cb-mode) i dodaje ✓/✗ ikone, da se
+   ispravnost ne oslanja isključivo na boju. */
+.dsc-root[data-cb] {
+  --green: #0072B2; --green-d: rgba(0,114,178,.14); --green-b: rgba(0,114,178,.5);
+  --red: #E69F00; --red-d: rgba(230,159,0,.16); --red-b: rgba(230,159,0,.5);
+}
+.dsc-root[data-cb] .dsc-correct::before { content: "✓ "; }
+.dsc-root[data-cb] .dsc-incorrect::before { content: "✗ "; }
+
+/* Disleksija mod — po mat .dys-mode obrascu (mat-engine.css:924-925): i zamjena
+   pisma (Atkinson Hyperlegible → Trebuchet/Comic Sans kao fallback) i veći
+   razmak/redak. Font ide ispred --content-font (predmetni serif/mono ovdje
+   odstupa), zato selektori pokrivaju i .dsc-main koji postavlja --content-font. */
+.dsc-root[data-dys],
+.dsc-root[data-dys] .dsc-main,
+.dsc-root[data-dys] .dsc-text,
+.dsc-root[data-dys] .dsc-card,
+.dsc-root[data-dys] p {
+  font-family: "Atkinson Hyperlegible", "Trebuchet MS", "Comic Sans MS", var(--fb);
+  letter-spacing: .04em;
+  word-spacing: .13em;
+  line-height: 1.85;
+}
+/* Kurziv je za disleksiju teško čitljiv — mat ga zamjenjuje podebljanjem. */
+.dsc-root[data-dys] em,
+.dsc-root[data-dys] i {
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* ── Osnovne komponente ── */
+
+.dsc-root .dsc-card {
+  background: var(--s1);
+  border: 1px solid var(--bdr);
+  border-radius: var(--rr);
+  padding: 18px;
+}
+
+.dsc-root .dsc-btn {
+  font-family: var(--fb);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 18px;
+  min-height: 44px;
+  border-radius: var(--r);
+  border: 1px solid var(--bdr);
+  background: var(--s1);
+  color: var(--text);
+  cursor: pointer;
+  transition: background .15s, border-color .15s, opacity .15s;
+}
+.dsc-root .dsc-btn:hover { background: var(--s2); border-color: var(--bdr2); }
+.dsc-root .dsc-btn:active { transform: translateY(1px); }
+.dsc-root .dsc-btn:disabled { opacity: .55; cursor: default; pointer-events: none; }
+.dsc-root .dsc-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.dsc-root .dsc-btn-primary {
+  border: none;
+  background: var(--accent);
+  color: #fff;
+}
+.dsc-root .dsc-btn-primary:hover { filter: brightness(1.08); }
+
+/* Sticky zaglavlje predmeta — natrag / naziv+simbol / toggle teme. */
+.dsc-root .dsc-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 8px 16px;
+  background: color-mix(in srgb, var(--s1) 85%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--bdr);
+}
+@supports (padding-top: env(safe-area-inset-top)) {
+  .dsc-root .dsc-header { padding-top: calc(8px + env(safe-area-inset-top)); }
+}
+.dsc-root .dsc-header-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--r);
+  border: 1px solid var(--bdr);
+  background: var(--s2);
+  color: var(--text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.dsc-root .dsc-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+  font-family: var(--fh);
+  font-size: 16px;
+}
+.dsc-root .dsc-header-sym {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.dsc-root .dsc-header-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dsc-root .dsc-header-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+/* Sadržajna zona nosi predmetno pismo (--content-font iz subject-themes.js:
+   serif za lat/pov/fil, mono za inf, inače --fb). Kontrole ostaju na --fb jer
+   .dsc-btn i .dsc-header-title postavljaju vlastitu obitelj. */
+.dsc-root .dsc-main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px 18px calc(24px + env(safe-area-inset-bottom));
+  font-family: var(--content-font);
+}
+
+.dsc-root .dsc-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dsc-root .dsc-timer {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 14px;
+  background: var(--s2);
+  border: 1px solid var(--bdr);
+  padding: 6px 14px;
+  border-radius: var(--r);
+  letter-spacing: .05em;
+}
+.dsc-root .dsc-timer.dsc-timer-warn { color: var(--gold); border-color: var(--gold-b); }
+.dsc-root .dsc-timer.dsc-timer-danger { color: var(--red); border-color: var(--red-b); }
+
+/* Navigator zadataka. Traka je vizualno tanka (5 px), ali svaki korak nosi
+   nevidljivi ::before sloj visine 44 px da dodir zadovolji minimalnu metu;
+   okomite margine .dsc-steps drže taj sloj podalje od susjednog sadržaja. */
+.dsc-root .dsc-steps {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  margin: 20px 0;
+}
+.dsc-root .dsc-step {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 5px;
+  border: none;
+  padding: 0;
+  border-radius: 3px;
+  background: var(--bdr2);
+  cursor: pointer;
+  transition: height .15s, background .15s;
+}
+.dsc-root .dsc-step::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 44px;
+}
+.dsc-root .dsc-step.dsc-step-answered { background: var(--accent); }
+.dsc-root .dsc-step.dsc-step-current { height: 12px; box-shadow: 0 0 0 1.5px var(--accent); }
+
+.dsc-root .dsc-locked {
+  padding: 18px;
+  border: 1px dashed var(--bdr2);
+  border-radius: var(--rr);
+  background: var(--s1);
+  color: var(--muted);
+  text-align: center;
+}
+
+.dsc-root .dsc-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Mobilni prikaz (390 px referentna širina) ── */
+@media (max-width: 480px) {
+  .dsc-root .dsc-main { padding: 16px 14px calc(16px + env(safe-area-inset-bottom)); }
+  .dsc-root .dsc-header { padding-left: 12px; padding-right: 12px; }
+  .dsc-root .dsc-header-title { font-size: 15px; }
+  .dsc-root .dsc-card { padding: 14px; }
+}
