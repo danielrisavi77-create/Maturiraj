@@ -48,7 +48,6 @@ describe('audio-map.json — pokrivenost ispita', () => {
 
   it('_missing je prazan ILI identičan poznatom (svjesno prihvaćenom) popisu', () => {
     if (missing.length > 0) {
-      // eslint-disable-next-line no-console
       console.warn('audio-map.json._missing nije prazan: ' + JSON.stringify(missing))
     }
     expect([...missing].sort()).toEqual([...KNOWN_MISSING].sort())
