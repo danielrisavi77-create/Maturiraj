@@ -60,6 +60,17 @@ export const STRONG_SECRET_KEYS = Object.freeze([
   'rubric',
   'distraktori',
   'svgFn',
+  // Canonical shema (lib/discere/exam-schema.js) — ista uloga, druga imena.
+  // `answer` nosi ključ, `solution`/`explanation` razradu, `rubricDetails`
+  // bodovnu shemu, `officialText` doslovni službeni odgovor, `transcript`
+  // tekst snimke zadatka slušanja. Bez njih sloj B nije vidio nijedan canonical
+  // ispit (ADR-001 §2, rizik "curenje kroz children/transkript").
+  'answer',
+  'explanation',
+  'solution',
+  'rubricDetails',
+  'officialText',
+  'transcript',
 ])
 
 /**
@@ -78,6 +89,33 @@ const keyPattern = (keys) => new RegExp(`(?:^|[{,\\[])\\s*["']?(${keys.join('|')
 export const SECRET_KEY_PATTERN = keyPattern(SECRET_KEYS)
 const STRONG_KEY_PATTERN = keyPattern(STRONG_SECRET_KEYS)
 const WEAK_KEY_PATTERN = keyPattern(WEAK_SECRET_KEYS)
+
+/**
+ * Brojači za PODSKUP ključeva. Ratchet uspoređuje s baselineom, a baseline je
+ * zapisan pod nekim popisom ključeva (`baseline.keys`): kad se popis proširi,
+ * usporedba starih brojeva s novima nije regresija nego druga mjera. Zato se
+ * sken može pokrenuti nad točno onim ključevima pod kojima je baseline nastao,
+ * a proširenje se prijavljuje kao ono što jest — zahtjev za regeneracijom
+ * baselinea (ADR-001 §6).
+ *
+ * @param {readonly string[]} keys
+ */
+export function makeKeyMatchers(keys) {
+  const wanted = new Set(keys)
+  const strong = STRONG_SECRET_KEYS.filter((key) => wanted.has(key))
+  const weak = WEAK_SECRET_KEYS.filter((key) => wanted.has(key))
+  return {
+    keys: [...strong, ...weak],
+    strong: strong.length ? keyPattern(strong) : null,
+    weak: weak.length ? keyPattern(weak) : null,
+  }
+}
+
+const DEFAULT_MATCHERS = Object.freeze({
+  keys: [...SECRET_KEYS],
+  strong: STRONG_KEY_PATTERN,
+  weak: WEAK_KEY_PATTERN,
+})
 /** Datoteka oblika ispita: ima pitanje ili ponuđene odgovore kao svojstvo. */
 const EXAM_SHAPE_PATTERN = keyPattern(['q', 'opts', 'items', 'rights', 'qs'])
 
@@ -427,10 +465,10 @@ export function isExamShaped(source) {
  * `{ exp: 120 }` u XP logici ne ruši provjeru, a pravi ispitni payload — koji
  * uvijek nosi q:/opts: — i dalje broji svaki ključ.
  */
-export function countSecretKeys(source) {
-  const strong = countMatches(STRONG_KEY_PATTERN, source)
+export function countSecretKeys(source, matchers = DEFAULT_MATCHERS) {
+  const strong = matchers.strong ? countMatches(matchers.strong, source) : 0
   if (strong === 0 && !isExamShaped(source)) return 0
-  return strong + countMatches(WEAK_KEY_PATTERN, source)
+  return strong + (matchers.weak ? countMatches(matchers.weak, source) : 0)
 }
 
 /**
@@ -443,7 +481,8 @@ export function countSecretKeys(source) {
  * točno isti skup putanja (`isSecretDataPath`) i pada ako je ijedna od njih
  * dohvatljiva iz klijentskog grafa uvoza.
  */
-export async function scanSecretKeys({ root = REPO_ROOT, rootDirs } = {}) {
+export async function scanSecretKeys({ root = REPO_ROOT, rootDirs, keys } = {}) {
+  const matchers = keys ? makeKeyMatchers(keys) : DEFAULT_MATCHERS
   const files = {}
   let totalHits = 0
   const dirs = rootDirs ?? (await listScanRootDirs(root))
@@ -455,7 +494,7 @@ export async function scanSecretKeys({ root = REPO_ROOT, rootDirs } = {}) {
         const rel = toPosix(path.relative(root, absPath))
         if (isSecretDataPath(rel)) return
         const source = await readFile(absPath, 'utf8').catch(() => '')
-        const count = countSecretKeys(source)
+        const count = countSecretKeys(source, matchers)
         if (count === 0) return
         files[rel] = count
         totalHits += count
@@ -466,7 +505,26 @@ export async function scanSecretKeys({ root = REPO_ROOT, rootDirs } = {}) {
   const sorted = {}
   for (const key of Object.keys(files).sort()) sorted[key] = files[key]
 
-  return { files: sorted, totalHits, fileCount: Object.keys(sorted).length, roots: [...dirs] }
+  return {
+    files: sorted,
+    totalHits,
+    fileCount: Object.keys(sorted).length,
+    roots: [...dirs],
+    keys: [...matchers.keys],
+  }
+}
+
+/**
+ * Ključevi koje sken danas poznaje, a baseline ih još ne broji. Prazan popis =
+ * baseline je zapisan pod istim pravilima pod kojima se sada mjeri.
+ *
+ * @param {object|null} baseline
+ * @returns {string[]}
+ */
+export function baselineMissingKeys(baseline) {
+  const known = Array.isArray(baseline?.keys) ? new Set(baseline.keys) : null
+  if (!known) return []
+  return SECRET_KEYS.filter((key) => !known.has(key))
 }
 
 export async function loadBaseline(baselinePath = BASELINE_PATH) {
@@ -510,7 +568,7 @@ export function buildBaselinePayload(current) {
   return {
     schemaVersion: 2,
     note: 'ADR-001: ratchet ispitnih tajni. Vrijednosti smiju samo padati. Regeneriraj s `npm run security:secrets -- --write-baseline`; porast prolazi samo uz --allow-increase i izmjenu ADR-a.',
-    keys: [...SECRET_KEYS],
+    keys: Array.isArray(current.keys) ? [...current.keys] : [...SECRET_KEYS],
     strongKeys: [...STRONG_SECRET_KEYS],
     roots: current.roots ?? [],
     totalHits: current.totalHits,
@@ -561,15 +619,18 @@ export async function writeBaseline(current, baselinePath = BASELINE_PATH, { all
 
 export async function runScan({ root = REPO_ROOT } = {}) {
   const isolation = await scanImportIsolation({ root })
-  const keys = await scanSecretKeys({ root })
   let baseline = null
   try {
     baseline = await loadBaseline()
   } catch {
     baseline = null
   }
+  // Ratchet mjeri istom mjerom kojom je baseline zapisan; prošireni popis
+  // ključeva je zaseban događaj (`pendingKeys`), ne regresija.
+  const pendingKeys = baselineMissingKeys(baseline)
+  const keys = await scanSecretKeys({ root, keys: baseline?.keys })
   const ratchet = baseline ? compareToBaseline(keys, baseline) : null
-  return { isolation, keys, ratchet }
+  return { isolation, keys, ratchet, pendingKeys }
 }
 
 const isDirectRun = process.argv[1]
@@ -578,7 +639,17 @@ const isDirectRun = process.argv[1]
 
 if (isDirectRun) {
   const argv = process.argv.slice(2)
-  const keys = await scanSecretKeys()
+  let existingBaseline = null
+  try {
+    existingBaseline = await loadBaseline()
+  } catch {
+    existingBaseline = null
+  }
+  const pendingKeys = baselineMissingKeys(existingBaseline)
+  // Provjera mjeri ključevima baselinea; regeneracija uvijek punim popisom.
+  const keys = argv.includes('--write-baseline')
+    ? await scanSecretKeys()
+    : await scanSecretKeys({ keys: existingBaseline?.keys })
 
   if (argv.includes('--write-baseline')) {
     try {
@@ -597,17 +668,15 @@ if (isDirectRun) {
   }
 
   const isolation = await scanImportIsolation()
-  let baseline = null
-  try {
-    baseline = await loadBaseline()
-  } catch {
+  const baseline = existingBaseline
+  if (!baseline) {
     process.stderr.write('GREŠKA: baseline ne postoji. Pokreni s --write-baseline.\n')
     process.exit(1)
   }
   const ratchet = compareToBaseline(keys, baseline)
 
   if (argv.includes('--json')) {
-    process.stdout.write(`${JSON.stringify({ isolation, keys, ratchet }, null, 2)}\n`)
+    process.stdout.write(`${JSON.stringify({ isolation, keys, ratchet, pendingKeys }, null, 2)}\n`)
     process.exit(isolation.violations.length === 0 && ratchet.ok ? 0 : 1)
   }
 
@@ -628,6 +697,12 @@ if (isDirectRun) {
 
   process.stdout.write('\n— SLOJ B: ratchet nad izvorom —\n')
   process.stdout.write(`  ukupno pogodaka: ${keys.totalHits} u ${keys.fileCount} datoteka (baseline: ${baseline.totalHits ?? '?'})\n`)
+  if (pendingKeys.length) {
+    process.stdout.write(
+      `  NAPOMENA: baseline ne broji ključeve ${pendingKeys.join(', ')} — mjeri se popisom pod kojim je zapisan.\n`
+        + '           Regeneriraj s `--write-baseline --allow-increase` (ADR-001 §6: prvi upis novog popisa je promjena politike).\n',
+    )
+  }
   process.stdout.write('  top 5:\n')
   for (const [file, count] of top) process.stdout.write(`       ${count.toString().padStart(6)}  ${file}\n`)
   for (const item of ratchet.newFiles) process.stdout.write(`  PAD: nova datoteka bez baseline unosa: ${item.file} (${item.count})\n`)

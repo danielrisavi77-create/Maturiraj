@@ -178,10 +178,55 @@ odgovora je besplatna i idempotentna, pa budžet od 5 zapravo broji **različite
 odgovora** — točno ono što napadač troši, a legitiman korisnik ne. Zaključak ostaje:
 usporeno, ne spriječeno. Napadač s više računa i strpljenjem i dalje prolazi.
 
+### 5a-amandman (2026-09-23) — grupni zadaci i ručno ocjenjivanje
+
+Canonical engine uvodi dvije stvari kojih legacy predmeti nemaju, pa §5a dobiva dva
+dodatka. Oba žive u kodu na jednom mjestu: `lib/exam-secrets/free-policy.js`.
+
+**(a) Kvota se broji po LISTOVIMA, ne po stavkama na vrhu popisa.** Canonical shema ima
+grupne zadatke (`passage_group`, `audio_group`, `media_response`) čija su prava pitanja u
+`children`. Doslovno „prvih `FREE_LIMIT` pitanja“ kod jezika značilo bi prva tri ULOMKA,
+dakle ~15 pitanja s ključem umjesto tri — peterostruko popuštanje politike zbog oblika
+podataka, a ne zbog ičije odluke. Zato:
+
+- `freeLeafAllowance(subject, examKey, mode)` vraća broj **listova** koji smiju nositi ključ;
+- `stripQuestion`/`stripQuestions`, `mergeSecrets` i kvota su **rekurzivni po `children`**
+  (`mergeSecretsWithAllowance` u `lib/exam-secrets/index.js`), a allowlista `publicFields`
+  vrijedi i za djecu — zato u njoj mora stajati `children`;
+- `keys: 'full'` znači „svaki LIST nosi ključ“, pa se vrijednost ne mijenja zbog grupiranja;
+- predmeti bez djece (eng, soc) dobivaju **identičan** rezultat kao i prije.
+
+Grupa svoju tajnu (npr. `stimulus.listening.transcript`) dobiva samo ako je ijedan njezin
+list doista dobio ključ — inače bi free preview otvorio transkript cijele snimke zbog
+jednog lista iza granice. Transkript je uz to i **ugniježđeno** tajno polje: `stripQuestion`
+ga skida na svakoj razini (`NESTED_SECRET_PATHS`), neovisno o allowlisti.
+
+**(b) Rubrika i model odgovora RUČNIH zadataka idu svim tierovima nakon predaje.**
+`manualReviewFields` (rubrika, `rubricDetails`, model odgovora, bodovi) vraća se u
+`review.manual[qid]` iz ocjenjivačke rute **svim** tierovima, uključujući free.
+
+To nije iznimka od pravila „ruta ne vraća ključeve“ nego posljedica toga što ručni zadatak
+**nema** automatske usporedbe: `scores[qid]` je za njega `null`, pa ruta korisniku ne može
+reći ni je li pogodio. Bez rubrike i modela free korisnik nakon predaje eseja ne dobiva
+ništa — ni ocjenu ni uputu. Oracle iz toga ne nastaje: odgovor je slobodan tekst, pa
+ponovljena predaja ne otkriva nijedan novi bit i budžet od 5 ne kupuje ništa.
+
+Razrada (`solution.steps`, `explanation`, `why`) i dalje je Standard sadržaj i u
+`review.manual` je **nema** — popis polja je zatvorena allowlista (`MANUAL_REVIEW_FIELDS`).
+
 ### 6. Baseline uz svaki novi predmet
 
 Uz svaki novi predmet/ispit ide unos u `scripts/security/exam-secret-baseline.json` s
 vrijednošću **0**. Baseline smije **samo padati**.
+
+**Proširenje popisa ključeva nije regresija nego regeneracija.** Sloj B od canonical sheme
+broji i `answer`, `explanation`, `solution`, `rubricDetails`, `officialText` i `transcript`
+(prije su postojala samo legacy imena `sol`, `exp`, `why`…). Brojevi zapisani pod starim
+popisom i brojevi izmjereni pod novim nisu ista mjera, pa ih ratchet ne uspoređuje:
+baseline pamti popis pod kojim je nastao (`baseline.keys`) i provjera mjeri **tim**
+popisom, a `baselineMissingKeys` imenuje ključeve koje baseline još ne broji. Prvi upis
+novog popisa ide s `--write-baseline --allow-increase` i promjena je politike, dakle ide uz
+izmjenu ovog dokumenta.
 
 ### 7. Regeneracijski lanci
 

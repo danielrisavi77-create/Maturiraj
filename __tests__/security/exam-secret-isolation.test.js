@@ -6,6 +6,7 @@ import {
   BASELINE_PATH,
   BaselineIncreaseError,
   SECRET_KEYS,
+  baselineMissingKeys,
   STRONG_SECRET_KEYS,
   WEAK_SECRET_KEYS,
   compareToBaseline,
@@ -72,9 +73,14 @@ describe('ADR-001 SLOJ A — izolacija grafa uvoza (stvarno stablo)', () => {
     expect(marked).toEqual([
       'lib/exam-secrets/index.js',
       'lib/exam-secrets/registry.js',
+      'lib/exam-secrets/subjects/canonical.js',
       'lib/exam-secrets/subjects/eng.js',
       'lib/exam-secrets/subjects/soc.js',
     ])
+    // public-store.js NEMA marker namjerno: čita samo content/<id>/exams/*.json,
+    // dakle javni materijal. Marker bi ga pretvorio u tajni modul i time zabranio
+    // svaki (legitiman) put iz klijentskog grafa do javnog ispita.
+    expect(marked).not.toContain('lib/exam-secrets/public-store.js')
   })
 
   it('tajni store je samo pod lib/data/<predmet>/secrets/ — eng 70, soc 32 ispita', () => {
@@ -247,6 +253,15 @@ describe('ADR-001 SLOJ B — ratchet nad izvorom', () => {
     for (const required of ['ex', 'alt', 'svgFn']) expect(SECRET_KEYS).toContain(required)
   })
 
+  it('broji i ključeve canonical sheme, i to kao JAKE (sami po sebi otkrivaju rješenje)', () => {
+    for (const key of ['answer', 'explanation', 'solution', 'rubricDetails', 'officialText', 'transcript']) {
+      expect(STRONG_SECRET_KEYS, key).toContain(key)
+      // Jaki ključ se broji i izvan datoteke oblika ispita — canonical ispit nema
+      // ni `q:` ni `opts:`, nego `prompt:`/`options:`.
+      expect(countSecretKeys(`{ "${key}": { "correct": ["C"] } }`), key).toBeGreaterThan(0)
+    }
+  })
+
   it('generički ključevi izvan oblika ispita nisu pogodak (wizard steps, XP exp, className cl)', () => {
     expect(countSecretKeys('const wizard = { steps: ["Odaberi plan", "Unesi podatke", "Potvrdi"] }')).toBe(0)
     expect(countSecretKeys('const reward = { exp: 120, cl: "btn" }')).toBe(0)
@@ -282,7 +297,12 @@ describe('ADR-001 SLOJ B — ratchet nad izvorom', () => {
   it('baseline postoji, generiran je skriptom i nije prazan', async () => {
     const baseline = await loadBaseline()
     expect(baseline.schemaVersion).toBe(2)
-    expect(baseline.keys).toEqual([...SECRET_KEYS])
+    // Baseline pamti popis ključeva pod kojim je zapisan. Proširenje popisa
+    // (canonical: answer, explanation, solution…) nije regresija nego zahtjev za
+    // regeneracijom — `baselineMissingKeys` ga imenuje, a ratchet do tada mjeri
+    // istom mjerom kojom je baseline nastao (ADR-001 §6).
+    expect(baseline.keys.every((key) => SECRET_KEYS.includes(key))).toBe(true)
+    expect(baselineMissingKeys(baseline).every((key) => SECRET_KEYS.includes(key))).toBe(true)
     expect(baseline.roots).toContain('hooks')
     expect(Object.keys(baseline.files).length).toBeGreaterThan(0)
     expect(baseline.totalHits).toBe(
@@ -293,8 +313,8 @@ describe('ADR-001 SLOJ B — ratchet nad izvorom', () => {
   })
 
   it('nijedna datoteka ne premašuje baseline i nema nove datoteke bez unosa', async () => {
-    const current = await scanSecretKeys()
     const baseline = await loadBaseline()
+    const current = await scanSecretKeys({ keys: baseline.keys })
     const diff = compareToBaseline(current, baseline)
 
     expect(diff.regressions, `Baseline: ${BASELINE_PATH}`).toEqual([])
