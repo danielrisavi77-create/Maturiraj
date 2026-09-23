@@ -3,7 +3,9 @@
 // ADR-001: JEDNA ruta za ocjenjivanje svih predmeta.
 //
 //   POST /api/sim/<predmet>/grade   { examKey, answers, examMode, attemptId, qTimes? }
-//   → free: { pct, grade, cor, total, bodovi, xpGain, scores }
+//   → free: { pct, grade, cor, total, bodovi, xpGain, scores } (+ points, review
+//            kad ih adapter da — amandman ADR §5a: rubrika i model odgovora
+//            RUČNIH zadataka idu svim tierovima nakon predaje)
 //     paid: …isto… + { topicBreakdown }
 //
 // ODLUKE VLASNIKA ugrađene ovdje:
@@ -41,7 +43,7 @@ import { getUserTier } from '@/lib/billing/subscriptions'
 import { normalizeTier, isPaidTier } from '@/lib/billing/getEffectiveTier'
 import { checkRateLimit, consumeRateLimitSlots } from '@/lib/rate-limit'
 import { getAdapter } from '@/lib/exam-secrets/registry'
-import { stripQuestions } from '@/lib/exam-secrets'
+import { collectQuestionIds, stripQuestions } from '@/lib/exam-secrets'
 import {
   DAY_MS,
   GRADE_DAILY_BUDGET,
@@ -68,16 +70,47 @@ const HEADERS = Object.freeze({
   Vary: 'Cookie',
 })
 
-/** Postgres/PostgREST kodovi kad migracija s attempt_id još nije pokrenuta. */
+/** Postgres/PostgREST kodovi kad migracija sa stupcem još nije pokrenuta. */
 const UNKNOWN_COLUMN = new Set(['42703', 'PGRST204'])
 /** Jedinstveni indeks (user_id, attempt_id) — isti pokušaj je već upisan. */
 const UNIQUE_VIOLATION = '23505'
 let warnedMissingAttemptColumn = false
+let warnedMissingResultColumns = false
 
-function isUnknownColumn(error) {
+/**
+ * Stupci koje adapter smije dodati u `sim_progress` preko `result.progressRow`.
+ * Allowlista: adapter ne smije pisati u user_id, subject ni pct. Vrijednosti se
+ * provjeravaju prije upisa (isti razlog kao za `answers` — pad INSERT-a ruta
+ * prašta, pa bi neispravan tip tiho pojeo redak).
+ */
+const PROGRESS_ROW_COLUMNS = Object.freeze([
+  'result_version',
+  'score_pct',
+  'earned_points',
+  'max_points',
+  'manual_pending',
+  'unanswered',
+])
+
+/**
+ * Je li greška "taj stupac ne postoji", i to za JEDAN OD navedenih stupaca?
+ *
+ * Ime stupca je obavezan dio provjere, ne dodatak uz kod. Okruženje zna imati
+ * pokrenutu jednu migraciju, a drugu ne: greška o nedostajućem `attempt_id`
+ * koja se prepozna samo po kodu (42703/PGRST204) prvo obriše stupce rezultata
+ * v2, pa upis prođe tek nakon što ispadnu i oni i attempt_id — redak ostane bez
+ * stupaca koji u bazi postoje, uz upozorenje koje vodi na krivu migraciju.
+ * Postgres i PostgREST u poruci uvijek imenuju stupac ("column \"x\" of
+ * relation …", "Could not find the 'x' column …"), pa je usporedba imena
+ * pouzdana i sužava fallback na točno onaj skup stupaca koji doista nedostaje.
+ */
+function isUnknownColumn(error, columns = ['attempt_id']) {
   if (!error) return false
-  if (error.code && UNKNOWN_COLUMN.has(error.code)) return true
-  return /attempt_id/.test(`${error.message ?? ''}${error.details ?? ''}`)
+  const text = `${error.message ?? ''} ${error.details ?? ''} ${error.hint ?? ''}`
+  if (!columns.some((column) => text.includes(column))) return false
+  if (error.code) return UNKNOWN_COLUMN.has(error.code)
+  // Bez koda (neki klijenti ga ne prosljeđuju) ostaje samo poruka.
+  return /column|schema cache|ne postoji|does not exist/i.test(text)
 }
 
 function fail(message, status, extraHeaders) {
@@ -219,12 +252,29 @@ function consumeBudgetSlot(userId, subject, examKey, examMode) {
   )
 }
 
-async function insertProgress(db, row) {
+async function insertProgress(db, row, extraColumns = []) {
   const { error } = await db.from('sim_progress').insert(row)
   if (!error) return null
   // Jedinstveni indeks (user_id, attempt_id): isti pokušaj je već upisan, što je
   // točno ono što idempotencija i traži — nije greška.
   if (error.code === UNIQUE_VIOLATION) return null
+
+  // Stupci rezultata v2 (result_version, earned_points…) dolaze iz migracije
+  // koja u starijem okruženju možda nije pokrenuta. Rezultat je ipak točan, pa
+  // se redak upisuje bez njih umjesto da se izgubi.
+  if (extraColumns.length && isUnknownColumn(error, extraColumns)) {
+    if (!warnedMissingResultColumns) {
+      warnedMissingResultColumns = true
+      console.warn(
+        `[sim/grade] sim_progress nema stupce rezultata v2 (${extraColumns.join(', ')}) — `
+          + 'redak se upisuje bez njih. Pokreni migraciju sim_progress za canonical predmete.',
+      )
+    }
+    const reduced = { ...row }
+    for (const column of extraColumns) delete reduced[column]
+    return insertProgress(db, reduced)
+  }
+
   if (!isUnknownColumn(error) || !('attempt_id' in row)) return error
 
   if (!warnedMissingAttemptColumn) {
@@ -235,9 +285,11 @@ async function insertProgress(db, row) {
         + 'Do tada idempotenciju drži otisak pokušaja u ai_rate_limit.',
     )
   }
+  // `extraColumns` se PRENOSI dalje: u okruženju bez obje migracije Postgres
+  // prijavi jedan stupac po pokušaju, pa drugi krug mora još uvijek znati koje
+  // stupce smije ispustiti.
   const { attempt_id: _ignored, ...withoutAttemptId } = row
-  const retry = await db.from('sim_progress').insert(withoutAttemptId)
-  return retry.error ?? null
+  return insertProgress(db, withoutAttemptId, extraColumns)
 }
 
 /* ── ocjenjivanje ──────────────────────────────────────────────────────────── */
@@ -246,6 +298,21 @@ function clampPct(value) {
   const pct = Math.round(Number(value))
   if (!Number.isFinite(pct)) return 0
   return Math.min(100, Math.max(0, pct))
+}
+
+/**
+ * Bodovi samo onih pitanja koja nemaju automatsku ocjenu (`scores[qid] === null`
+ * — ručni ili neispravan tip). Za njih `possible` i `earned` ne otkrivaju ništa
+ * što `scores` već ne kaže, a bez njih free korisnik nakon eseja nema ni broj
+ * bodova uz rubriku.
+ */
+function manualOnlyPoints(result) {
+  const scores = isPlainObject(result?.scores) ? result.scores : {}
+  const out = {}
+  for (const [qid, value] of Object.entries(result.points)) {
+    if (scores[qid] === null || scores[qid] === undefined) out[qid] = value
+  }
+  return out
 }
 
 function buildBody(result, paid) {
@@ -258,10 +325,51 @@ function buildBody(result, paid) {
     xpGain: Number(result?.xpGain) || 0,
     scores: isPlainObject(result?.scores) ? result.scores : {},
   }
+  // Bodovi po pitanju (canonical: { earned, possible }). Predmet koji ih nema
+  // (engleski nema bodove po pitanju) polje ne dobiva.
+  //
+  // FREE dobiva bodove samo RUČNIH zadataka. Djelomični bodovi automatski
+  // ocijenjenog zadatka su oracle jači od ugovora `scores: true/false`: kod
+  // `fill` s četiri praznine `points[qid].earned = 0.75` uz `scores[qid] = false`
+  // kaže točan BROJ pogođenih praznina, isto za `matching` i `true_false`. To je
+  // po predaji bitno više bitova nego točno/netočno, a amandman ADR §5a
+  // („slobodan tekst, ponavljanje ne otkriva novi bit") pokriva samo ručne
+  // zadatke — oni automatske usporedbe nemaju, pa im bodovi nisu oracle.
+  // Plaćeni tier iste ključeve već ima u pregledniku, pa njemu ne uzima ništa.
+  if (isPlainObject(result?.points)) {
+    body.points = paid ? result.points : manualOnlyPoints(result)
+  }
+  // AMANDMAN ADR §5a: rubrika, model odgovora i bodovi RUČNIH zadataka idu svim
+  // tierovima nakon predaje. Nisu oracle — ručni zadatak nema automatske
+  // usporedbe, pa bez njih free korisnik nema nikakvu povratnu informaciju.
+  // Razrada (`solution`, `explanation`) i dalje ostaje Standard sadržaj.
+  if (isPlainObject(result?.review)) body.review = result.review
   // topicBreakdown je razrada po temama — Standard sadržaj. Server ga svejedno
   // izračuna jer ga upisuje u sim_progress, ali free korisniku ne izlazi.
   if (paid) body.topicBreakdown = isPlainObject(result?.topicBreakdown) ? result.topicBreakdown : {}
   return body
+}
+
+/**
+ * Dodatni stupci `sim_progress` koje je dao adapter. Nepoznat ključ i neispravan
+ * tip se tiho ispuštaju — upis ne smije pasti zbog adaptera.
+ *
+ * @param {object} result
+ * @returns {Record<string, unknown>}
+ */
+function progressExtras(result) {
+  const source = result?.progressRow
+  if (!isPlainObject(source)) return {}
+  const out = {}
+  for (const column of PROGRESS_ROW_COLUMNS) {
+    const value = source[column]
+    if (value === undefined) continue
+    if (typeof value === 'boolean') out[column] = value
+    else if (typeof value === 'number') { if (Number.isFinite(value)) out[column] = value }
+    else if (Array.isArray(value)) out[column] = value.filter((item) => isSafeText(item)).slice(0, MAX_ANSWER_ENTRIES)
+    else if (isSafeText(value)) out[column] = value
+  }
+  return out
 }
 
 export async function POST(request, { params } = {}) {
@@ -310,7 +418,9 @@ export async function POST(request, { params } = {}) {
   const publicQs = stripQuestions(exam.qs, adapter.publicFields)
   // Odgovori i vremena svedeni na pitanja koja ovaj ispit doista ima: višak
   // ključeva ocjenjivanje ionako ignorira, a u `jsonb` nema što tražiti.
-  const questionIds = publicQs.map(question => question?.id).filter(id => typeof id === 'string')
+  // Rekurzivno: kod grupnih zadataka (passage_group…) odgovori stoje pod qid-om
+  // LISTA, pa bi popis samo s vrha popisa izbacio sve odgovore iz retka.
+  const questionIds = collectQuestionIds(publicQs)
   const answers = pickKnown(body.answers, questionIds)
   const qTimes = pickKnown(sentQTimes, questionIds, asQTime)
 
@@ -394,6 +504,10 @@ export async function POST(request, { params } = {}) {
   const razinaRaw = exam.meta?.razinaCode ?? exam.meta?.razina
   const razina = razinaRaw === 'A' || razinaRaw === 'B' ? razinaRaw : null
 
+  // Dodatni stupci rezultata v2 stižu samo od adaptera koji ih daje (canonical);
+  // engleski i sociologija upisuju isti redak kao i prije.
+  const extras = progressExtras(result)
+
   const insertError = await insertProgress(supabase, {
     user_id: user.id,
     subject,
@@ -412,7 +526,8 @@ export async function POST(request, { params } = {}) {
     topic_breakdown: isPlainObject(result?.topicBreakdown) ? result.topicBreakdown : {},
     duration_sec: durationSec,
     attempt_id: attemptId,
-  })
+    ...extras,
+  }, Object.keys(extras))
   if (insertError) {
     // Rezultat je izračunat i točan; izgubljeno je samo trajno spremanje.
     // Odbiti ga ovdje značilo bi korisniku pojesti pokušaj zbog tuđeg kvara.

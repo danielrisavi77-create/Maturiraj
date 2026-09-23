@@ -178,10 +178,92 @@ odgovora je besplatna i idempotentna, pa budžet od 5 zapravo broji **različite
 odgovora** — točno ono što napadač troši, a legitiman korisnik ne. Zaključak ostaje:
 usporeno, ne spriječeno. Napadač s više računa i strpljenjem i dalje prolazi.
 
+### 5a-amandman (2026-09-23) — grupni zadaci i ručno ocjenjivanje
+
+Canonical engine uvodi dvije stvari kojih legacy predmeti nemaju, pa §5a dobiva dva
+dodatka. Oba žive u kodu na jednom mjestu: `lib/exam-secrets/free-policy.js`.
+
+**(a) Kvota se broji po LISTOVIMA, ne po stavkama na vrhu popisa.** Canonical shema ima
+grupne zadatke (`passage_group`, `audio_group`, `media_response`) čija su prava pitanja u
+`children`. Doslovno „prvih `FREE_LIMIT` pitanja“ kod jezika značilo bi prva tri ULOMKA,
+dakle ~15 pitanja s ključem umjesto tri — peterostruko popuštanje politike zbog oblika
+podataka, a ne zbog ičije odluke. Zato:
+
+- `freeLeafAllowance(subject, examKey, mode)` vraća broj **listova** koji smiju nositi ključ;
+- `stripQuestion`/`stripQuestions`, `mergeSecrets` i kvota su **rekurzivni po `children`**
+  (`mergeSecretsWithAllowance` u `lib/exam-secrets/index.js`), a allowlista `publicFields`
+  vrijedi i za djecu — zato u njoj mora stajati `children`;
+- `keys: 'full'` znači „svaki LIST nosi ključ“, pa se vrijednost ne mijenja zbog grupiranja;
+- predmeti bez djece (eng, soc) dobivaju **identičan** rezultat kao i prije.
+
+Grupa svoju tajnu (npr. `stimulus.listening.transcript`) dobiva samo ako su **SVI** njezini
+listovi unutar kvote. Nije dovoljno da je ijedan dobio ključ: transkript je ključ **svih**
+zadataka te snimke, pa bi `audio_group` od šest listova uz `FREE_LIMIT = 3` dala tekst koji
+rješava i preostala tri — dvostruko više nego što kvota dopušta. Broji se *dodijeljenost*
+(list je stao u kvotu), ne spajanje, da list bez unosa u tajnom storeu ne drži grupu
+zatvorenom. Transkript je uz to i **ugniježđeno** tajno polje: `stripQuestion` ga skida na
+svakoj razini (`NESTED_SECRET_PATHS`), neovisno o allowlisti.
+
+Zato je i `mergeSecrets` **dubok**: tajni zapis grupe je `{ stimulus: { listening: {
+transcript } } }`, pa bi plitki spread zamijenio cijeli javni `stimulus` i odnio tekst
+ulomka i `maxPlays` — plaćeni korisnik bi dobio ispit koji se ne može riješiti, a
+ocjenjivanje bi izgubilo `gaps`/`left`. Objekti se spajaju rekurzivno, nizovi i skalari iz
+tajne zamjenjuju javne.
+
+**(a2) Osnovica ocjene je AUTOMATSKI ocijenjeni dio.** `scoreExam` u `percent` dijeli s
+`maxPoints`, u kojem su i bodovi ručnih zadataka koji u trenutku predaje nose `earned = 0`.
+Učenik koji točno riješi sve automatski ocjenjivo i napiše esej vrijedan trećine ispita
+dobio bi 67 % i ocjenu 2, dok eng adapter za istu izvedbu daje 100 % i 5 (`MANUAL_TYPES` ne
+ulaze u nazivnik). Ljestvica 85/70/55/40 je zajednička, pa mora biti i osnovica: canonical
+adapter uzima `summary.autoPercent` kad ispit ima ručne zadatke, inače `summary.percent`
+(koji poštuje `meta.maxPoints`). `progressRow.max_points` ostaje **puni** zbroj — po njemu
+se rezultat nakon ručnog pregleda dopunjuje.
+
+**(b) Rubrika i model odgovora RUČNIH zadataka idu svim tierovima nakon predaje.**
+`manualReviewFields` (rubrika, `rubricDetails`, model odgovora, bodovi) vraća se u
+`review.manual[qid]` iz ocjenjivačke rute **svim** tierovima, uključujući free.
+
+To nije iznimka od pravila „ruta ne vraća ključeve“ nego posljedica toga što ručni zadatak
+**nema** automatske usporedbe: `scores[qid]` je za njega `null`, pa ruta korisniku ne može
+reći ni je li pogodio. Bez rubrike i modela free korisnik nakon predaje eseja ne dobiva
+ništa — ni ocjenu ni uputu. Oracle iz toga ne nastaje: odgovor je slobodan tekst, pa
+ponovljena predaja ne otkriva nijedan novi bit i budžet od 5 ne kupuje ništa.
+
+Razrada (`solution.steps`, `explanation`, `why`) i dalje je Standard sadržaj i u
+`review.manual` je **nema** — popis polja je zatvorena allowlista (`MANUAL_REVIEW_FIELDS`).
+
+**(b2) Bodovi po pitanju (`points`) free korisniku idu samo za RUČNE zadatke.** Amandman
+pod (b) opravdava rubriku i model odgovora time što ručni zadatak nema automatske usporedbe.
+Djelomični bodovi automatski ocijenjenog zadatka su, naprotiv, oracle **jači** od ugovora
+`scores: true/false`: kod `fill` s četiri praznine `points[qid].earned = 0.75` uz
+`scores[qid] = false` odaje točan **broj** pogođenih praznina (isto za `matching` i
+`true_false`), dakle više bitova po predaji nego točno/netočno — a budžet od 5 predaja je
+odmjeren prema tom užem ugovoru. Zato ruta free korisniku vraća `points` samo za pitanja
+kojima je `scores[qid] === null`. Plaćeni tier dobiva sve: iste ključeve ionako ima u
+pregledniku.
+
 ### 6. Baseline uz svaki novi predmet
 
 Uz svaki novi predmet/ispit ide unos u `scripts/security/exam-secret-baseline.json` s
 vrijednošću **0**. Baseline smije **samo padati**.
+
+**Proširenje popisa ključeva nije regresija nego regeneracija.** Sloj B od canonical sheme
+broji i `answer`, `explanation`, `solution`, `rubricDetails`, `officialText` i `transcript`
+(prije su postojala samo legacy imena `sol`, `exp`, `why`…). Brojevi zapisani pod starim
+popisom i brojevi izmjereni pod novim nisu ista mjera, pa ih ratchet ne uspoređuje:
+baseline pamti popis pod kojim je nastao (`baseline.keys`) i provjera mjeri **tim**
+popisom, a `baselineMissingKeys` imenuje ključeve koje baseline još ne broji. Prvi upis
+novog popisa ide s `--write-baseline --allow-increase` i promjena je politike, dakle ide uz
+izmjenu ovog dokumenta.
+
+**Posljedica koju je trebalo zatvoriti: do te regeneracije canonical ključevi u ratchetu
+broje 0.** Datoteka koja bi ih donijela prošla bi sloj B zeleno — točno ona vrsta curenja
+zbog koje su ključevi i dodani. Zato javni ispitni payload (`content/<predmet>/exams/**.json`
+— ono što ruta doista šalje u preglednik) ima **sloj B2**: mjeri se uvijek **punim,
+današnjim** popisom ključeva i smije imati **0** pogodaka, bez baselinea i bez ratcheta.
+Ključ u toj datoteci nikad nije zatečeno stanje nego kvar generatora (grupa A6).
+Implementacija: `scanPublicExamPayloads` u `scripts/security/exam-secret-scan.mjs`; CLI i
+`runScan` pada na svaki pogodak.
 
 ### 7. Regeneracijski lanci
 
