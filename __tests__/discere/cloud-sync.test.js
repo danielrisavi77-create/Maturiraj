@@ -91,6 +91,14 @@ describe('shouldHydrateFromCloud', () => {
     expect(shouldHydrateFromCloud(0, 0)).toBe(false)
     expect(shouldHydrateFromCloud(null, 0)).toBe(false)
   })
+  it('nema lokalnog sync-a → true (prva prijava na uređaju)', () => {
+    expect(shouldHydrateFromCloud(5, 0)).toBe(true)
+  })
+  it('nevalidan lokalni timestamp se tretira kao 0', () => {
+    expect(shouldHydrateFromCloud(5, NaN)).toBe(true)
+    expect(shouldHydrateFromCloud(5, null)).toBe(true)
+    expect(shouldHydrateFromCloud(5, 'smeće')).toBe(true)
+  })
 })
 
 describe('mergeUserData', () => {
@@ -114,10 +122,46 @@ describe('mergeUserData', () => {
     expect(mergeUserData({ ...baseUser, xp: 50 }, { ...baseUser, xp: 900 }).xp).toBe(900)
   })
 
+  it('isti ispit drugog datuma nije duplikat', () => {
+    const cloud = { ...baseUser, history: [{ ...baseUser.history[0], date: '11. 9. 2026.' }] }
+    expect(mergeUserData(baseUser, cloud).history).toHaveLength(2)
+  })
+
+  it('prazno lokalno → preuzima cloud stanje', () => {
+    const out = mergeUserData(null, baseUser)
+    expect(out.xp).toBe(120)
+    expect(out.history).toHaveLength(1)
+    expect(out.totalExams).toBe(1)
+  })
+
+  it('streak dolazi od strane s novijim lastDate', () => {
+    const local = { ...baseUser, streak: 2, lastDate: '10. 9. 2026.' }
+    const cloud = { ...baseUser, streak: 9, lastDate: '12. 9. 2026.' }
+    const out = mergeUserData(local, cloud)
+    expect(out.streak).toBe(9)
+    expect(out.lastDate).toBe('12. 9. 2026.')
+    // Simetrično: strana s novijim datumom pobjeđuje bez obzira na redoslijed argumenata.
+    const out2 = mergeUserData(cloud, local)
+    expect(out2.streak).toBe(9)
+    expect(out2.lastDate).toBe('12. 9. 2026.')
+  })
+
+  it('kod jednakog lastDate uzima veći streak', () => {
+    const out = mergeUserData({ ...baseUser, streak: 4 }, { ...baseUser, streak: 7 })
+    expect(out.streak).toBe(7)
+    expect(out.lastDate).toBe(baseUser.lastDate)
+  })
+
   it('errorTracker unija s max count', () => {
     const cloud = { ...baseUser, errorTracker: { '2026_ljeto_q1': { ...baseUser.errorTracker['2026_ljeto_q1'], count: 5 } } }
     const out = mergeUserData(baseUser, cloud)
     expect(out.errorTracker['2026_ljeto_q1'].count).toBe(5)
+  })
+
+  it('totalExams je duljina unije povijesti, ne zbroj brojača', () => {
+    const local = { ...baseUser, totalExams: 40 }
+    const cloud = { ...baseUser, totalExams: 40 }
+    expect(mergeUserData(local, cloud).totalExams).toBe(1)
   })
 
   it('oba prazna → čisto početno stanje', () => {
@@ -168,9 +212,40 @@ describe('mergeBookmarks (tombstone brisanja)', () => {
     expect(out.bookmarks).toEqual({})
   })
 
+  it('obrisano pa ponovno dodano NOVIJE (addedAt > tombstone) preživi', () => {
+    const cloudDel = { k1: now() - 2000 }
+    const local = { k1: { qid: 'q1', examKey: 'e', addedAt: now() - 1000 } }
+    const out = mergeBookmarks(local, {}, {}, cloudDel)
+    expect(out.bookmarks.k1).toBeTruthy()
+    // Tombstone se i dalje pamti (merge s max vremenom), ali ne briše noviji bookmark.
+    expect(out.deleted.k1).toBe(cloudDel.k1)
+  })
+
+  it('bookmark bez addedAt gubi od bilo kojeg tombstone-a (tretira se kao star)', () => {
+    const local = { k1: { qid: 'q1', examKey: 'e' } } // bez addedAt
+    const out = mergeBookmarks(local, {}, {}, { k1: now() - 500 })
+    expect(out.bookmarks).toEqual({})
+  })
+
+  it('tombstone-i se spajaju s max vremenom kad postoje na oba uređaja', () => {
+    const cloudDel = { k1: now() - 1000 }
+    const out = mergeBookmarks({}, { k1: now() - 5000 }, {}, cloudDel)
+    expect(out.deleted.k1).toBe(cloudDel.k1)
+  })
+
   it('tombstone stariji od 90 dana se čisti', () => {
     const out = mergeBookmarks({}, { k1: now() - 91 * DAY }, {}, {})
     expect(out.deleted).toEqual({})
+  })
+
+  it('tombstone star točno 89 dana se i dalje čuva', () => {
+    const recentAt = now() - 89 * DAY
+    const out = mergeBookmarks({}, { k1: recentAt }, {}, {})
+    expect(out.deleted.k1).toBe(recentAt)
+  })
+
+  it('podnosi prazne/nedostajuće argumente', () => {
+    expect(mergeBookmarks(undefined, undefined, undefined, undefined)).toEqual({ bookmarks: {}, deleted: {} })
   })
 
   it('isti ključ u oba izvora: pobjeđuje noviji addedAt', () => {
@@ -206,11 +281,62 @@ describe('validateUserData / validateBookmarks', () => {
 })
 
 describe('mergeUserData — limiti (validateUserData na kraju)', () => {
+  it('history je ograničen na 1000 zapisa', () => {
+    const mk = (n, tag) => Array.from({ length: n }, (_, i) => ({
+      examKey: '2026_ljeto', examLabel: 'x', date: tag + i, pct: 50, grade: 3, cor: 5, total: 10,
+    }))
+    const out = mergeUserData({ ...baseUser, history: mk(700, 'a') }, { ...baseUser, history: mk(700, 'b') })
+    expect(out.history).toHaveLength(1000)
+    expect(out.totalExams).toBe(1000)
+  })
+
+  it('bookmarks su ograničeni na 500', () => {
+    const mk = (n, tag) => Array.from({ length: n }, (_, i) => ({ id: tag + i }))
+    const out = mergeUserData({ ...baseUser, bookmarks: mk(400, 'a') }, { ...baseUser, bookmarks: mk(400, 'b') })
+    expect(out.bookmarks).toHaveLength(500)
+  })
+
   it('errorTracker je ograničen na 2000 unosa', () => {
     const mk = (n, tag) => Object.fromEntries(Array.from({ length: n }, (_, i) => [
       tag + i, { q: 'Pitanje', topic: 't', examKey: '2026_ljeto', qid: 'q' + i, count: 1 },
     ]))
     const out = mergeUserData({ ...baseUser, errorTracker: mk(1500, 'a') }, { ...baseUser, errorTracker: mk(1500, 'b') })
     expect(Object.keys(out.errorTracker)).toHaveLength(2000)
+  })
+})
+
+describe("mergeUserData — identitet zapisa po 'at'", () => {
+  const withAt = (at, pct = 80) => ({ examKey: '2026_ljeto', examLabel: 'x', date: '10. 9. 2026.', pct, grade: 4, cor: 8, total: 10, at })
+  const legacy = { examKey: '2026_ljeto', examLabel: 'x', date: '10. 9. 2026.', pct: 80, grade: 4, cor: 8, total: 10 }
+
+  it('isti at → jedan zapis', () => {
+    const out = mergeUserData({ ...baseUser, history: [withAt(1000)] }, { ...baseUser, history: [withAt(1000)] })
+    expect(out.history).toHaveLength(1)
+  })
+
+  it('zapis s at je jedinstven i kad ga cloud ponavlja (identitet, ne multiset)', () => {
+    // Bez grane `hasAt` u mergeUserData ovdje bi multiset brojanje propustilo
+    // drugu kopiju i korisnik bi dobio duplirani pokušaj u povijesti.
+    const out = mergeUserData({ ...baseUser, history: [withAt(1000)] }, { ...baseUser, history: [withAt(1000), withAt(1000)] })
+    expect(out.history).toHaveLength(1)
+    expect(out.totalExams).toBe(1)
+  })
+
+  it('dva pokušaja istog ispita isti dan s istim pct se ne gube (različit at)', () => {
+    const out = mergeUserData({ ...baseUser, history: [withAt(1000)] }, { ...baseUser, history: [withAt(1000), withAt(2000)] })
+    expect(out.history).toHaveLength(2)
+    expect(out.history.map(h => h.at)).toEqual([1000, 2000])
+  })
+
+  it('stari zapisi bez at: multiset brojanje zadržava max broj pojavljivanja', () => {
+    const out = mergeUserData({ ...baseUser, history: [legacy] }, { ...baseUser, history: [legacy, { ...legacy }] })
+    expect(out.history).toHaveLength(2)
+    const out2 = mergeUserData({ ...baseUser, history: [legacy, { ...legacy }] }, { ...baseUser, history: [legacy] })
+    expect(out2.history).toHaveLength(2)
+  })
+
+  it('zapis bez at i zapis s at nisu isti identitet', () => {
+    const out = mergeUserData({ ...baseUser, history: [legacy] }, { ...baseUser, history: [withAt(1000)] })
+    expect(out.history).toHaveLength(2)
   })
 })
