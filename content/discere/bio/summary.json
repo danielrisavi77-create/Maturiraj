@@ -1,0 +1,567 @@
+{
+  "subject": "bio",
+  "exams": {
+    "2026_ljeto": [
+      {
+        "id": "1",
+        "topic": "biokemija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "2",
+        "topic": "biokemija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "3",
+        "topic": "stanica",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "4",
+        "topic": "fiziologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "5",
+        "topic": "sistematika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "6",
+        "topic": "sistematika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "7",
+        "topic": "stanica",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "8",
+        "topic": "stanica",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "9",
+        "topic": "metabolizam",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "10",
+        "topic": "fiziologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "11",
+        "topic": "fiziologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "12",
+        "topic": "fiziologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "13",
+        "topic": "fiziologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "14",
+        "topic": "botanika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "15",
+        "topic": "ekologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "16",
+        "topic": "ekologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "17",
+        "topic": "sistematika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "18",
+        "topic": "zoologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "19",
+        "topic": "genetika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "20",
+        "topic": "genetika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "21",
+        "topic": "genetika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "22",
+        "topic": "genetika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "23",
+        "topic": "genetika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "24",
+        "topic": "genetika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "25",
+        "topic": "genetika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "26",
+        "topic": "biotehnologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "27",
+        "topic": "botanika",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "28",
+        "topic": "evolucija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "29",
+        "topic": "evolucija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "30",
+        "topic": "ekologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "31",
+        "topic": "ekologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "32",
+        "topic": "ekologija",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "33",
+        "topic": "metabolizam",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "34",
+        "topic": "metabolizam",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "35",
+        "topic": "metabolizam",
+        "type": "mc",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "36.1",
+        "topic": "ekologija",
+        "type": "short",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "36.2",
+        "topic": "ekologija",
+        "type": "fill",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "37.1",
+        "topic": "evolucija",
+        "type": "fill",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "37.2",
+        "topic": "evolucija",
+        "type": "matching",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "38.1",
+        "topic": "metabolizam",
+        "type": "short",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "38.2",
+        "topic": "metabolizam",
+        "type": "short",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "39.1",
+        "topic": "fiziologija",
+        "type": "short",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "39.2",
+        "topic": "fiziologija",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": true,
+        "manual": true
+      },
+      {
+        "id": "40.1",
+        "topic": "genetika",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": true,
+        "manual": true
+      },
+      {
+        "id": "40.2",
+        "topic": "genetika",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": true,
+        "manual": true
+      },
+      {
+        "id": "40.3",
+        "topic": "genetika",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": true,
+        "manual": true
+      },
+      {
+        "id": "41.1",
+        "topic": "fiziologija",
+        "type": "short",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "41.2",
+        "topic": "fiziologija",
+        "type": "ordering",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "41.3",
+        "topic": "fiziologija",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": true,
+        "manual": true
+      },
+      {
+        "id": "42.1",
+        "topic": "fiziologija",
+        "type": "short",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "42.2",
+        "topic": "fiziologija",
+        "type": "short",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "42.3",
+        "topic": "fiziologija",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": false,
+        "manual": true
+      },
+      {
+        "id": "43.1",
+        "topic": "fiziologija",
+        "type": "fill",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "43.2",
+        "topic": "fiziologija",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": false,
+        "manual": true
+      },
+      {
+        "id": "43.3",
+        "topic": "fiziologija",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": false,
+        "manual": true
+      },
+      {
+        "id": "44.1",
+        "topic": "botanika",
+        "type": "short",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "44.2",
+        "topic": "botanika",
+        "type": "fill",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "44.3",
+        "topic": "botanika",
+        "type": "short",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "45.1",
+        "topic": "biotehnologija",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": true,
+        "manual": true
+      },
+      {
+        "id": "45.2",
+        "topic": "biotehnologija",
+        "type": "short",
+        "points": 1,
+        "hasAssets": true,
+        "manual": false
+      },
+      {
+        "id": "45.3",
+        "topic": "biotehnologija",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": true,
+        "manual": true
+      },
+      {
+        "id": "46.1",
+        "topic": "genetika",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": false,
+        "manual": true
+      },
+      {
+        "id": "46.2",
+        "topic": "genetika",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": false,
+        "manual": true
+      },
+      {
+        "id": "46.3",
+        "topic": "genetika",
+        "type": "short",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "47.1",
+        "topic": "genetika",
+        "type": "short",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "47.2",
+        "topic": "genetika",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": false,
+        "manual": true
+      },
+      {
+        "id": "47.3",
+        "topic": "genetika",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": false,
+        "manual": true
+      },
+      {
+        "id": "48.1",
+        "topic": "biotehnologija",
+        "type": "short",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      },
+      {
+        "id": "48.2",
+        "topic": "biotehnologija",
+        "type": "essay",
+        "points": 1,
+        "hasAssets": false,
+        "manual": true
+      },
+      {
+        "id": "48.3",
+        "topic": "biotehnologija",
+        "type": "short",
+        "points": 1,
+        "hasAssets": false,
+        "manual": false
+      }
+    ]
+  }
+}

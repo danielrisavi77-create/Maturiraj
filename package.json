@@ -13,6 +13,7 @@
     "agent:benchmark:test": "node --test __tests__/agent-benchmark/*.node.mjs",
     "test:coverage": "vitest run --coverage",
     "discere:validate": "tsx scripts/discere-validate.mjs",
+    "discere:gen": "node scripts/gen-discere-exams.mjs",
     "game:content-report": "tsx scripts/game-content-report.ts",
     "supabase:start": "supabase start --ignore-health-check",
     "supabase:stop": "supabase stop",

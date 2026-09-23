@@ -3,6 +3,7 @@ import { dirname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { validateExam } from '../lib/discere/exam-schema.js'
 import { validateExamAssets } from './discere-asset-integrity.mjs'
+import { buildSubjectArtifacts, serializeArtifact } from './gen-discere-exams.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 
@@ -32,17 +33,93 @@ function subjectDirs(contentRoot, requestedSubject) {
     .sort()
 }
 
-export async function validateSubjectDirectory(subjectDir, { publicRoot = resolve(subjectDir, '../../../public') } = {}) {
+/**
+ * Datoteka na disku mora biti identična očekivanom artefaktu (ako postoji).
+ * Prijelomi redaka se normaliziraju: generator uvijek piše LF, ali git s
+ * `core.autocrlf=true` (Windows) na checkoutu napravi CRLF, pa bi doslovna
+ * usporedba bajtova prijavila drift na svakom svježem klonu. JSON.stringify
+ * escapea stvarni CR unutar niza (\r), pa normalizacija ne može sakriti razliku
+ * u sadržaju.
+ */
+function compareArtifact(absPath, expectedValue, { code, message, cwd, examKey = null }) {
+  if (!existsSync(absPath)) return []
+  const onDisk = readFileSync(absPath, 'utf8').replace(/\r\n/g, '\n')
+  if (onDisk === serializeArtifact(expectedValue)) return []
+  return [{ code, path: relative(cwd, absPath), message, examKey }]
+}
+
+/**
+ * Provjera drifta (npm skripta discere:gen): ako generirane datoteke već
+ * postoje na disku, moraju biti bajt-identične onome što bi generator upravo
+ * sada proizveo iz kanonskog izvora. Pad znači da je netko ručno dirao
+ * generirano ili zaboravio pokrenuti `npm run discere:gen` nakon izmjene
+ * kanonskog sadržaja.
+ *
+ * Pokriva SVE generirane artefakte, ne samo javni ispit i tajni store: bez
+ * summary.json, topics.json i index.json bi ručna izmjena tih datoteka prošla
+ * validaciju, a sljedeći `discere:gen` bi je nijemo poništio.
+ */
+function checkGeneratedDrift(subjectId, subjectDir, index, rawExams, cwd) {
+  const artifacts = buildSubjectArtifacts(subjectId, index, rawExams)
+  const issues = []
+
+  for (const built of artifacts.exams) {
+    issues.push(...compareArtifact(
+      join(cwd, 'content', subjectId, 'exams', `${built.key}.json`),
+      built.publicExam,
+      { code: 'GENERATED_PUBLIC_DRIFT', message: `content/${subjectId}/exams/${built.key}.json ne odgovara generatoru — pokreni npm run discere:gen.`, cwd, examKey: built.key },
+    ))
+    issues.push(...compareArtifact(
+      join(cwd, 'lib', 'data', subjectId, 'secrets', `${built.key}.json`),
+      built.secrets,
+      { code: 'GENERATED_SECRETS_DRIFT', message: `lib/data/${subjectId}/secrets/${built.key}.json ne odgovara generatoru — pokreni npm run discere:gen.`, cwd, examKey: built.key },
+    ))
+  }
+
+  issues.push(...compareArtifact(join(subjectDir, 'summary.json'), artifacts.summary, {
+    code: 'GENERATED_SUMMARY_DRIFT', message: `content/discere/${subjectId}/summary.json ne odgovara generatoru — pokreni npm run discere:gen.`, cwd,
+  }))
+  issues.push(...compareArtifact(join(subjectDir, 'topics.json'), artifacts.topics, {
+    code: 'GENERATED_TOPICS_DRIFT', message: `content/discere/${subjectId}/topics.json ne odgovara generatoru — pokreni npm run discere:gen.`, cwd,
+  }))
+  // index.json je RUČNO pisan (label, durationSec, file) s generiranim poljima
+  // unutra, pa se ne uspoređuje bajt po bajt — samo polja koja generator
+  // izvodi iz izvora, i to samo ako ih datoteka uopće ima (novi predmet ih
+  // dobiva tek prvim `discere:gen`).
+  const GENERATED_INDEX_FIELDS = ['questionCount', 'maxPoints', 'qaStatus']
+  const onDiskEntries = Array.isArray(index.exams) ? index.exams : []
+  for (let i = 0; i < onDiskEntries.length; i += 1) {
+    const onDisk = onDiskEntries[i]
+    const expected = artifacts.index.exams[i]
+    if (!onDisk || !expected) continue
+    for (const field of GENERATED_INDEX_FIELDS) {
+      if (onDisk[field] === undefined) continue
+      if (onDisk[field] === expected[field]) continue
+      issues.push({
+        code: 'GENERATED_INDEX_DRIFT',
+        path: relative(cwd, join(subjectDir, 'index.json')),
+        message: `exams[${i}].${field} je ${JSON.stringify(onDisk[field])}, a izvor daje ${JSON.stringify(expected[field])} — pokreni npm run discere:gen.`,
+        examKey: onDisk.key ?? null,
+      })
+    }
+  }
+
+  return issues
+}
+
+export async function validateSubjectDirectory(subjectDir, { publicRoot = resolve(subjectDir, '../../../public'), cwd = resolve(subjectDir, '../../..') } = {}) {
   const indexPath = join(subjectDir, 'index.json')
   if (!existsSync(indexPath)) {
     return { subject: subjectDir.split(sep).at(-1), skipped: true, exams: [], errors: [], warnings: [] }
   }
 
   const index = JSON.parse(readFileSync(indexPath, 'utf8'))
+  const subjectId = index.subject || subjectDir.split(sep).at(-1)
   const paths = examModulePathsForSubject(subjectDir, index)
   const exams = []
   const errors = []
   const warnings = []
+  const rawExams = new Array(paths.length).fill(null)
 
   for (let i = 0; i < paths.length; i += 1) {
     const modulePath = paths[i]
@@ -68,6 +145,7 @@ export async function validateSubjectDirectory(subjectDir, { publicRoot = resolv
       continue
     }
 
+    rawExams[i] = imported.exam
     const result = validateExam(imported.exam)
     const media = await validateExamAssets(imported.exam, { publicRoot })
     result.errors.push(...media.errors)
@@ -77,7 +155,26 @@ export async function validateSubjectDirectory(subjectDir, { publicRoot = resolv
     result.warnings.forEach((warning) => warnings.push({ ...warning, examKey: entry.key }))
   }
 
-  return { subject: index.subject || subjectDir.split(sep).at(-1), skipped: false, exams, errors, warnings }
+  // Drift se provjerava nad CIJELIM predmetom (summary/topics/index su jedan
+  // artefakt za sve ispite), pa tek kad su svi kanonski moduli uspješno učitani.
+  if (paths.length > 0 && rawExams.every(Boolean)) {
+    let driftIssues = []
+    try {
+      driftIssues = checkGeneratedDrift(subjectId, subjectDir, index, rawExams, cwd)
+    } catch (error) {
+      driftIssues = [{ code: 'GENERATED_DRIFT_CHECK_FAILED', path: relative(cwd, subjectDir), message: error?.message || String(error), examKey: null }]
+    }
+    for (const issue of driftIssues) {
+      errors.push(issue)
+      const target = issue.examKey ? exams.find((exam) => exam.key === issue.examKey) : null
+      if (target) {
+        target.errorCount += 1
+        target.valid = false
+      }
+    }
+  }
+
+  return { subject: subjectId, skipped: false, exams, errors, warnings }
 }
 
 function printReport(report) {
@@ -109,7 +206,7 @@ export async function runDiscereValidation({ cwd = process.cwd(), subject = null
   const dirs = subjectDirs(contentRoot, subject)
 
   if (subject && dirs.length === 1 && !existsSync(join(dirs[0], 'index.json'))) {
-    const report = await validateSubjectDirectory(dirs[0])
+    const report = await validateSubjectDirectory(dirs[0], { cwd })
     report.skipped = false
     report.errors.push({ code: 'SUBJECT_INDEX_MISSING', path: join(dirs[0], 'index.json'), message: `Requested subject ${subject} has no canonical index.` })
     printReport(report)
@@ -123,7 +220,7 @@ export async function runDiscereValidation({ cwd = process.cwd(), subject = null
 
   const reports = []
   for (const dir of dirs) {
-    const report = await validateSubjectDirectory(dir, { publicRoot: join(cwd, 'public') })
+    const report = await validateSubjectDirectory(dir, { publicRoot: join(cwd, 'public'), cwd })
     reports.push(report)
     printReport(report)
   }
