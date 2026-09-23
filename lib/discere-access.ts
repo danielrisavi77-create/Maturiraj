@@ -5,28 +5,41 @@
 //   pro      → all exams
 import matIndex from '@/content/simulator/mat/index.json'
 import engIndex from '@/lib/data/engleski-simulator/exams-index.json'
+import socIndex from '@/lib/data/soc/exams-index.json'
+import { SOC_FREE_DEMO } from '@/lib/exam-secrets/free-policy'
 
 type Tier = 'free' | 'standard' | 'pro'
 export type PrirodniSubject = 'mat' | 'fiz' | 'kem' | 'bio'
 // Predmeti izvan Prirodni obitelji koji dijele ISTO pitanje ("koje ispite ovaj
-// tier smije otključati"). Engleski ga koristi iz poslužiteljskog adaptera
-// (lib/exam-secrets/subjects/eng.js), gdje odlučuje smije li payload nositi
-// ključeve — isti popis koji klijentski paywall koristi za `locked`.
-export type GatedSubject = PrirodniSubject | 'eng'
+// tier smije otključati"). Engleski i sociologija ga koriste iz poslužiteljskih
+// adaptera (lib/exam-secrets/subjects/*.js), gdje odlučuje smije li payload
+// nositi ključeve — isti popis koji klijent koristi za `locked` odnosno socGate.
+export type GatedSubject = PrirodniSubject | 'eng' | 'soc'
 
 // Explicit per-subject map (mirrors content/simulator/mat/exam-loaders.ts's
 // explicit-map convention) — add an entry here as each new subject's
 // index.json is authored; a subject with no entry yet has no exams to gate.
-// Engleski index je plosnato polje ispita, pa se omota u isti { exams } oblik.
+// Engleski i sociologija imaju plosnato polje ispita, pa se omotaju u { exams }.
 const INDEXES: Partial<Record<GatedSubject, { exams: any[] }>> = {
   mat: matIndex,
   eng: { exams: engIndex },
+  soc: { exams: socIndex },
+}
+
+// Predmeti čiji free popis NIJE izvediv iz indeksa (sociologija nema ni `demo`
+// zastavicu ni razinu iz koje bi se izvukao najnoviji ispit po razini), nego je
+// izričita politika. Po ADR-001 točki 7 takav popis živi na točno jednom mjestu:
+// lib/exam-secrets/free-policy.js.
+const FREE_KEYS: Partial<Record<GatedSubject, readonly string[]>> = {
+  soc: SOC_FREE_DEMO,
 }
 
 export function allowedExamKeys(tier: Tier, subject: GatedSubject = 'mat'): Set<string> {
   const index = INDEXES[subject]
   if (!index) return new Set()
   if (tier !== 'free') return new Set(index.exams.map((e: any) => e.key))
+  const explicit = FREE_KEYS[subject]
+  if (explicit) return new Set(explicit)
   const flagged = index.exams.filter((e: any) => e.demo)
   const pool = flagged.length ? flagged : pickNewestPerRazina(index.exams)
   return new Set(pool.map((e: any) => e.key))

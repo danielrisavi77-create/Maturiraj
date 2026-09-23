@@ -73,14 +73,17 @@ describe('ADR-001 SLOJ A — izolacija grafa uvoza (stvarno stablo)', () => {
       'lib/exam-secrets/index.js',
       'lib/exam-secrets/registry.js',
       'lib/exam-secrets/subjects/eng.js',
+      'lib/exam-secrets/subjects/soc.js',
     ])
   })
 
-  it('tajni store je samo pod lib/data/<predmet>/secrets/ — engleski ima 70 ispita', () => {
+  it('tajni store je samo pod lib/data/<predmet>/secrets/ — eng 70, soc 32 ispita', () => {
     const data = report.secretModules.filter((file) => file.endsWith('.json'))
     expect(data.every((file) => isSecretDataPath(file))).toBe(true)
     expect(data.filter((file) => file.startsWith('lib/data/eng/secrets/'))).toHaveLength(70)
-    expect(data.filter((file) => !file.startsWith('lib/data/eng/secrets/'))).toEqual([])
+    expect(data.filter((file) => file.startsWith('lib/data/soc/secrets/'))).toHaveLength(32)
+    const other = data.filter((file) => !/^lib\/data\/(eng|soc)\/secrets\//.test(file))
+    expect(other).toEqual([])
   })
 
   it('nijedan tajni modul nije ujedno i klijentski korijen', () => {
