@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+// Bez shebanga: __tests__/discere/generated-drift.test.js uvozi ovaj modul kroz vite,
+// a vite na Windows checkoutu (core.autocrlf=true, CRLF) na "#!...\r" pada sa "SyntaxError: Invalid or unexpected token".
 // Generator kanonskih (Discere) ispita — ADR-001 (docs/ADR-001-ispitni-podaci.md).
 //
 // Uzor: scripts/gen-eng-exams-json.mjs. Izvor istine je content/discere/<id>/
