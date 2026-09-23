@@ -2722,3 +2722,51 @@ body.dark-mode .eng-sim .home::before{
   .eng-sim .audio-progress-fill{transition:none;}
   .eng-sim *{animation-duration:.01ms!important;transition-duration:.01ms!important;}
 }
+
+/* ── NASTAVAK NEDOVRŠENE SESIJE (Home kartica + obavijest) ──── */
+/* Kartica se pojavljuje samo kad u localStorageu postoji snapshot aktivne
+   sesije (lib/engleski-simulator/resumeSession.js). Namjerno stoji odmah ispod
+   heroa, iznad XP trake — nastavak ispita je najvažnija radnja na Homeu. */
+.eng-sim .resume-card{
+  display:flex;align-items:center;gap:14px;
+  max-width:640px;margin:-16px auto 28px;
+  padding:14px 18px;
+  background:linear-gradient(135deg,rgba(168,114,10,.08),rgba(168,114,10,.03));
+  border:1.5px solid var(--gold-b);
+  border-radius:var(--rr)
+}
+.eng-sim .resume-card.expired{
+  background:linear-gradient(135deg,rgba(220,38,38,.07),rgba(220,38,38,.03));
+  border-color:rgba(196,48,48,.35)
+}
+.eng-sim .resume-card-ico{font-size:24px;flex-shrink:0;line-height:1}
+.eng-sim .resume-card-body{flex:1;min-width:0}
+.eng-sim .resume-card-title{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:3px}
+.eng-sim .resume-card.expired .resume-card-title{color:var(--red)}
+.eng-sim .resume-card-sub{font-size:12px;color:var(--muted);line-height:1.45;
+  overflow:hidden;text-overflow:ellipsis}
+.eng-sim .resume-card-time{font-size:12px;font-weight:700;color:var(--text);margin-top:3px}
+.eng-sim .resume-card.expired .resume-card-time{color:var(--red)}
+.eng-sim .resume-card-actions{display:flex;gap:8px;flex-shrink:0}
+.eng-sim .resume-card-actions .btn{font-size:13px;padding:7px 14px}
+
+.eng-sim .sim-notice{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:9999;
+  display:flex;align-items:center;gap:10px;max-width:min(560px,92vw);
+  background:var(--gold-d);border:1px solid var(--gold-b);color:var(--gold);
+  border-radius:var(--r);padding:10px 14px;font-size:13px;font-weight:600;
+  box-shadow:0 4px 16px rgba(0,0,0,.2)
+}
+.eng-sim .sim-notice-x{
+  background:none;border:none;color:inherit;cursor:pointer;
+  font-size:13px;line-height:1;padding:2px 4px;flex-shrink:0
+}
+
+body.dark-mode .eng-sim .resume-card{background:rgba(168,114,10,.1)}
+body.dark-mode .eng-sim .resume-card.expired{background:rgba(220,38,38,.1)}
+
+@media(max-width:600px){
+  .eng-sim .resume-card{flex-wrap:wrap;padding:12px 14px}
+  .eng-sim .resume-card-actions{width:100%}
+  .eng-sim .resume-card-actions .btn{flex:1}
+}

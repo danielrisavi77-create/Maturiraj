@@ -18,10 +18,39 @@ export function DisclaimerModal({ onClose }) {
   )
 }
 
+/**
+ * Kartica nedovršene sesije. Sve je već formatirano u EngleskiSimulatoru
+ * (Date.now() ne smije u render) — ovdje samo prikaz i dvije akcije.
+ *
+ * @param {{resumeCard: {label: string, modeLabel: string, answered: number,
+ *   total: number, timeLabel: string|null, expired: boolean},
+ *   onResume: Function, onDiscard: Function}} props
+ */
+function ResumeCard({ resumeCard, onResume, onDiscard }) {
+  const { label, modeLabel, answered, total, timeLabel, expired } = resumeCard
+  return e('div', { className: 'resume-card' + (expired ? ' expired' : '') },
+    e('div', { className: 'resume-card-ico' }, expired ? '⌛' : '⏸'),
+    e('div', { className: 'resume-card-body' },
+      e('div', { className: 'resume-card-title' }, 'Nastavi ispit'),
+      e('div', { className: 'resume-card-sub' },
+        label + ' · ' + modeLabel + ' · ' + answered + '/' + (total || '?'),
+      ),
+      timeLabel && e('div', { className: 'resume-card-time' }, timeLabel),
+    ),
+    e('div', { className: 'resume-card-actions' },
+      e('button', { className: 'btn btn-gold', onClick: onResume }, 'Nastavi'),
+      e('button', { className: 'btn btn-g', onClick: onDiscard }, 'Odbaci'),
+    ),
+  )
+}
+
 export function Home({
   onModeSelect,
   userData,
   toggles,
+  resumeCard,
+  onResumeSession,
+  onDiscardSession,
   goErrors,
   goBookmarks,
   goStats,
@@ -99,6 +128,7 @@ export function Home({
         e('h1', null, 'Engleski jezik ', e('em', null, '— Simulator mature')),
         e('p', null, 'Vježbaj stvarne ispite državne mature iz engleskog jezika. Sva pitanja s originalnih NCVVO ispita za obje razine — s točnim odgovorima i objašnjenjima.'),
       ),
+      resumeCard && e(ResumeCard, { resumeCard, onResume: onResumeSession, onDiscard: onDiscardSession }),
       userData && userData.xp >= 0 && (userData.history || []).length > 0 && e('div', { style: { maxWidth: 480, margin: '-16px auto 36px', padding: '0 4px' } },
         e('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 8 } },
           e('div', { className: 'level-badge' }, '⭐ ' + (levelNames[getLevel(userData.xp)] || 'Početnik')),

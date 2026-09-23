@@ -335,6 +335,28 @@ Grana `eng/round1` (`main` = `d4e0dd0` je njezin predak; diff `main...eng/round1
 
 **Presuda:** grana je spremna za spajanje uz napomene — kod je zelen na `tsc` i `vitest`, lint je čist u dosegu simulatora, sigurnosnih ni paywall regresija nema; prije objave ostaju ručni smoke test u pregledniku, mjerenje chunka buildom i odluka o `NCE_DATA`/`NCE_DIST`.
 
+## Status Faza 4 — Nastavak sesije (implementirano) — 2026-09-23
+
+Grana `eng/resume-session`. **Nova značajka, ne popravak.** Dijagnostički prolaz je pokazao da nedovršen ispit nestaje nakon refresha jer `EngleskiSimulator.js` drži ekran, odabrani ispit, mod, odgovore, poziciju i sat u običnom `useState` bez ikakvog zapisa — nastavak nikad nije bio ni specificiran ni obećan (faza 3.1 obećava samo da preživi *agregirani* napredak, i to radi). Vlasnička odluka je bila da se nastavak uvede.
+
+**Što je napravljeno.**
+
+- **Snapshot aktivne sesije** (`lib/engleski-simulator/resumeSession.js`) pod ključem `eng_active_session`: `{ v, examKey, mode, timedMode, answers, cur, blockIdx, startedAt, endsAt, savedAt, ttl }`. Piše se odmah pri ulasku u ispit, a zatim debounceano (400 ms) pri svakoj promjeni odgovora, pitanja ili ispitne cjeline. Zapis stariji od 24 h se pri čitanju ignorira i briše, kao i zapis krive verzije ili pokvaren JSON.
+- **Privatnost (ADR-001)**: u zapis ulaze samo korisnikovi odgovori i indeksi. `sanitizeAnswers` je jedina vrata i propušta primitive te plitke `mat` mape čije su vrijednosti kratke (slova); tekst pitanja, opcije i rješenja tako ne mogu ući ni slučajno (ni kad bi netko proslijedio cijeli objekt pitanja kao „odgovor”).
+- **Sat u simulaciji ide preko `endsAt`** — apsolutnog roka **tekuće ispitne cjeline**. Pri nastavku se preostalo vrijeme računa kao `endsAt − now` (izračun je u roditelju, u rukovatelju klika, da `Date.now()` ne uđe u render), pa refresh ne može poslužiti kao pauza. Ako je rok prošao dok korisnika nije bilo, u ispit se uopće ne ulazi: sesija se predaje spremljenim odgovorima (isti izračun kao kod isteka timera) i korisnik ide na rezultate uz poruku da je vrijeme isteklo. Sljedeća cjelina nakon nastavka kreće od punog propisanog vremena i dobiva novi rok.
+- **`useTimer` nije mijenjan.** Trajanje već čita samo pri mountu, a `BlockTimer` se resetira preko `key={blockIdx}` — dovoljno je da cjelina iz koje se nastavlja dobije preostalo vrijeme umjesto punog. Time je izbjegnut povratak `setState`-a u render updater (ono što je maknuo `177e3c0`).
+- **Nema automatskog vraćanja u ispit.** Home prikazuje karticu „Nastavi ispit” s nazivom ispita, modom, napretkom (`5/46`) i, za simulaciju, preostalim vremenom ili „Vrijeme je isteklo”, te gumbima „Nastavi” i „Odbaci”. Stil je u `simulator.css`, scopean pod `.eng-sim`, s tamnom varijantom i mobilnim prijelomom.
+- **Brisanje snapshota**: pri predaji ispita, pri „Odbaci”, pri svjesnom izlasku kroz „← Natrag” (refresh ga, naravno, ne dira) i implicitno pri pokretanju novog ispita (prvi zapis prepisuje stari).
+- **Izvan opsega, po specifikaciji**: dnevni izazov, virtualni ispit, filtrirano vježbanje i sesija grešaka. Njihovi ključevi (`daily_`, `virtual_`, `filter_session_`, `exam_errors_session`) ne mogu ni napisati ni obrisati snapshot — skup pitanja tih sesija je nasumičan i nakon refresha se ne može rekonstruirati, a tuđi zapis ne smiju pokvariti.
+
+**Odluka o satu u vježbanju s timerom.** `endsAt` se piše samo za simulaciju; vježbanje (sa ili bez timera) pri nastavku dobiva svjež sat. Razlog: simulacija je mod koji imitira ispitne uvjete i ondje je mjerenje dio sadržaja, dok je vježbanje s timerom samostalna vježba gdje bi „resetirani sat” bio šteta samo za korisnika. Ako se pokaže da je i to potrebno, isti mehanizam pokriva i taj slučaj bez izmjene oblika zapisa.
+
+**Refaktor uz put**: izračun rezultata iz `ExamPlayScreen.finish()` izdvojen je u `lib/engleski-simulator/examResult.js` (`buildExamResult`) jer ga sada trebaju dva puta do rezultata — predaja iz ispita i automatska predaja istekle sesije. Ponašanje je nepromijenjeno. `onExamDone` prima i neobaveznu mapu ispita (`exams`) za slučaj kad je razina tek učitana, pa stanje u zatvaranju još nema taj ispit.
+
+**Testovi**: `__tests__/engleski-simulator/resume-session.test.js` (19 testova) — TTL, pokvaren/tuđi zapis, privatnost zapisa, sintetičke sesije; remount s istim `localStorage`-om vraća isto pitanje i iste odgovore u oba moda; simulacija nastavlja s `endsAt − now` i istječe nakon preostalog, ne punog vremena; predaja i „← Natrag” brišu snapshot, a refresh ne; novi ispit prepisuje; Home kartica, „Odbaci”, istekao TTL, automatska predaja istekle simulacije i dnevni izazov bez snapshota.
+
+Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — 96/96 datoteka, 1869 testova zeleno (bez ponavljanja, poznati flakeovi se ovaj put nisu javili).
+
 ## Status Faza 4 (audio: pristupačnost i odbačena HEAD provjera) — 2026-09-23
 
 Grana `eng/audio-preload`. Krenula je kao odgovor na nalaz o performansama iz pregleda 2026-09-22 (`preload: 'metadata'` uvodi promet i bez klika na Play): `preload='none'` + `fetch(url, { method: 'HEAD' })` pri montiranju playera. **Ta je zamjena povučena** — pregled je pokazao da je u jedinoj postojećoj konfiguraciji inertna i da uz to briše postojeću detekciju.
