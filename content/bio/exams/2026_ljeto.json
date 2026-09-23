@@ -1,0 +1,2148 @@
+{
+  "key": "2026_ljeto",
+  "meta": {
+    "subject": "bio",
+    "key": "2026_ljeto",
+    "year": 2026,
+    "season": "ljeto",
+    "level": null,
+    "label": "Biologija - 1. rok 2026.",
+    "durationSec": 9000,
+    "questionCount": 48,
+    "maxPoints": 70,
+    "razinaCode": null,
+    "fullLabel": "2026. — Biologija - 1. rok 2026."
+  },
+  "texts": {},
+  "qs": [
+    {
+      "id": "1",
+      "type": "mc",
+      "prompt": "Koje se molekule monomera biološki važnih spojeva međusobno povezuju peptidnom vezom?",
+      "topic": "biokemija",
+      "sourceRef": {
+        "task": "1",
+        "pdfPage": 6,
+        "printedPage": 4,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "nukleotidi"
+        },
+        {
+          "id": "B",
+          "text": "monosaharidi"
+        },
+        {
+          "id": "C",
+          "text": "aminokiseline"
+        },
+        {
+          "id": "D",
+          "text": "masne kiseline"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "2",
+      "type": "mc",
+      "prompt": "Koja od navedenih tvrdnja točno uspoređuje gustoću vode u tekućemu agregacijskom stanju pri 20 °C u odnosu na 4 °C i koji je razlog takve gustoće?",
+      "topic": "biokemija",
+      "sourceRef": {
+        "task": "2",
+        "pdfPage": 6,
+        "printedPage": 4,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "Veća je gustoća vode pri 20 °C zbog veće adhezije između molekula vode."
+        },
+        {
+          "id": "B",
+          "text": "Manja je gustoća vode pri 20 °C zbog manje adhezije između molekula vode."
+        },
+        {
+          "id": "C",
+          "text": "Veća je gustoća vode pri 20 °C zbog veće kohezije između molekula vode."
+        },
+        {
+          "id": "D",
+          "text": "Manja je gustoća vode pri 20 °C zbog manje kohezije između molekula vode."
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "3",
+      "type": "mc",
+      "prompt": "U tablici su navedena i brojevima označena pojedina obilježja stanica. Vennov dijagram prikazuje navedena obilježja za tri stanice označene slovima F, G i H koje pripadaju organizmima različitih carstava.",
+      "topic": "stanica",
+      "sourceRef": {
+        "task": "3",
+        "pdfPage": 7,
+        "printedPage": 5,
+        "keyPdfPage": 1,
+        "textAdaptation": "Source table preserved as captioned data with row/column headers; captions and flattened header labels are digital presentation labels."
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q03.webp",
+          "altText": "Vennov dijagram obilježja triju stanica F, G i H."
+        }
+      ],
+      "stimulus": {
+        "table": {
+          "caption": "Obilježja stanica",
+          "columns": [
+            "Broj u Vennovom dijagramu",
+            "Obilježje stanice"
+          ],
+          "rows": [
+            [
+              "1",
+              "centriol"
+            ],
+            [
+              "2",
+              "heterotrofnost"
+            ],
+            [
+              "3",
+              "nukleoid"
+            ],
+            [
+              "4",
+              "stanična membrana"
+            ],
+            [
+              "5",
+              "mitohondrij"
+            ],
+            [
+              "6",
+              "stanična stijenka"
+            ],
+            [
+              "7",
+              "vakuola"
+            ]
+          ]
+        },
+        "afterText": "Kojemu carstvu pripada stanica označena slovom G?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "biljkama"
+        },
+        {
+          "id": "B",
+          "text": "protistima"
+        },
+        {
+          "id": "C",
+          "text": "životinjama"
+        },
+        {
+          "id": "D",
+          "text": "bakterijama"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "4",
+      "type": "mc",
+      "prompt": "Slika prikazuje model stanica epitela jednoga organa čovjeka. Koja je uloga stanica epitela prikazanih na slici i u kojemu se organu nalazi takav epitel?",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "4",
+        "pdfPage": 8,
+        "printedPage": 6,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q04.webp",
+          "altText": "Model stanica epitela s trepetljikama."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "izlučivanje loja u koži"
+        },
+        {
+          "id": "B",
+          "text": "reapsorpcija vode u bubregu"
+        },
+        {
+          "id": "C",
+          "text": "proizvodnja probavnih enzima u gušterači"
+        },
+        {
+          "id": "D",
+          "text": "hvatanje čestica prašine iz zraka u dušniku"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "5",
+      "type": "mc",
+      "prompt": "Koja od navedenih sistematskih kategorija nije zajednička vrstama Panthera uncia Schreber (snježni leopard) i Puma concolor Linné (puma)?",
+      "topic": "sistematika",
+      "sourceRef": {
+        "task": "5",
+        "pdfPage": 8,
+        "printedPage": 6,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "red"
+        },
+        {
+          "id": "B",
+          "text": "rod"
+        },
+        {
+          "id": "C",
+          "text": "razred"
+        },
+        {
+          "id": "D",
+          "text": "porodica"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "6",
+      "type": "mc",
+      "prompt": "U tablici su navedena obilježja pauka križara, crvenoga koralja, ovčjega metilja i uhatoga klobuka označenih brojevima od 1 do 4.",
+      "topic": "sistematika",
+      "sourceRef": {
+        "task": "6",
+        "pdfPage": 9,
+        "printedPage": 7,
+        "keyPdfPage": 1,
+        "textAdaptation": "Source table preserved as captioned data with row/column headers; captions and flattened header labels are digital presentation labels."
+      },
+      "assets": [],
+      "stimulus": {
+        "table": {
+          "caption": "Obilježja životinjskih vrsta",
+          "columns": [
+            "Obilježje / vrsta",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "rows": [
+            [
+              "probavilo",
+              "neprohodno",
+              "neprohodno",
+              "neprohodno",
+              "prohodno"
+            ],
+            [
+              "skelet",
+              "vapnenasti egzoskelet",
+              "hidroskelet",
+              "hidroskelet",
+              "polisaharidni egzoskelet"
+            ],
+            [
+              "simetrija",
+              "zrakasta",
+              "zrakasta",
+              "dvobočna",
+              "dvobočna"
+            ],
+            [
+              "disanje",
+              "površinom tijela",
+              "površinom tijela",
+              "površinom tijela",
+              "uzdušnicama"
+            ]
+          ]
+        },
+        "afterText": "Koja od navedenih tvrdnja točno povezuje broj u tablici s vrstom životinje i međusobnu srodnost vrsta?"
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Vrsta 1 je crveni koralj i najsrodniji je vrsti 2."
+        },
+        {
+          "id": "B",
+          "text": "Vrsta 2 je uhati klobuk i najsrodniji je vrsti 4."
+        },
+        {
+          "id": "C",
+          "text": "Vrsta 3 je pauk križar i najsrodniji je vrsti 4."
+        },
+        {
+          "id": "D",
+          "text": "Vrsta 4 je ovčji metilj i najsrodniji je vrsti 1."
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "7",
+      "type": "mc",
+      "prompt": "U istraživanju stanica korišten je spoj koji inhibira funkciju tilakoidnih membrana. Na koji je stanični dio taj spoj izravno djelovao?",
+      "topic": "stanica",
+      "sourceRef": {
+        "task": "7",
+        "pdfPage": 9,
+        "printedPage": 7,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "na jezgru"
+        },
+        {
+          "id": "B",
+          "text": "na vakuolu"
+        },
+        {
+          "id": "C",
+          "text": "na kloroplast"
+        },
+        {
+          "id": "D",
+          "text": "na mitohondrij"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "8",
+      "type": "mc",
+      "prompt": "Zašto papučica mora neprestano izbacivati suvišak vode iz organizma?",
+      "topic": "stanica",
+      "sourceRef": {
+        "task": "8",
+        "pdfPage": 10,
+        "printedPage": 8,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "Živi u hipertoničnome okolišu pa voda neprestano ulazi u tijelo."
+        },
+        {
+          "id": "B",
+          "text": "Živi u vodama koje su hipotonične u odnosu na njezinu citoplazmu."
+        },
+        {
+          "id": "C",
+          "text": "Probavom u papučici nastaje puno metaboličke vode koju treba izbacivati."
+        },
+        {
+          "id": "D",
+          "text": "Citoplazma stanice joj je hipotonična u odnosu na vodeni okoliš u kojemu živi."
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "9",
+      "type": "mc",
+      "prompt": "Slika prikazuje reakcijsku shemu glikolize i mliječno-kiselinskoga vrenja u mišićnoj stanici. Kako povećana koncentracija laktata, koja zaustavlja mliječno-kiselinsko vrenje, utječe na daljnji intenzitet glikolize u mišićnoj stanici u uvjetima bez dostupnoga kisika i zašto?",
+      "topic": "metabolizam",
+      "sourceRef": {
+        "task": "9",
+        "pdfPage": 10,
+        "printedPage": 8,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q09.webp",
+          "altText": "Reakcijska shema glikolize i mliječno-kiselinskoga vrenja."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "Smanjuje intenzitet glikolize jer se smanjuje koncentracija NAD+."
+        },
+        {
+          "id": "B",
+          "text": "Povećava intenzitet glikolize jer se povećava koncentracija NAD+."
+        },
+        {
+          "id": "C",
+          "text": "Smanjuje intenzitet glikolize jer se smanjuje koncentracija piruvata."
+        },
+        {
+          "id": "D",
+          "text": "Povećava intenzitet glikolize jer se smanjuje koncentracija piruvata."
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "10",
+      "type": "mc",
+      "prompt": "Slika prikazuje rezultate zgrušavanja (aglutinacije) prilikom određivanja krvne grupe osobi koja treba primiti krv. Krv koje krvne grupe smije primiti osoba iz primjera, a da ne dođe do transfuzijske reakcije?",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "10",
+        "pdfPage": 11,
+        "printedPage": 9,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q10.webp",
+          "altText": "Rezultati aglutinacije s reagensima anti A, anti B, anti AB i anti Rh."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "krv krvne grupe A− i 0−"
+        },
+        {
+          "id": "B",
+          "text": "krv krvne grupe B− i 0−"
+        },
+        {
+          "id": "C",
+          "text": "krv krvne grupe B+ i AB+"
+        },
+        {
+          "id": "D",
+          "text": "krv krvne grupe B− i AB−"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "11",
+      "type": "mc",
+      "prompt": "Slika prikazuje dio reakcije imunosnoga sustava. Jedna stanica označena je brojem 1. Koji je naziv stanice označene brojem 1?",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "11",
+        "pdfPage": 11,
+        "printedPage": 9,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q11.webp",
+          "altText": "Shema reakcije imunosnoga sustava sa stanicom označenom brojem 1."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "neutrofil"
+        },
+        {
+          "id": "B",
+          "text": "limfocit T"
+        },
+        {
+          "id": "C",
+          "text": "makrofag"
+        },
+        {
+          "id": "D",
+          "text": "plazma-stanica"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "12",
+      "type": "mc",
+      "prompt": "Koji je dio refleksnoga luka odgovoran za izravni prijenos živčanoga impulsa na biceps nadlaktice?",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "12",
+        "pdfPage": 12,
+        "printedPage": 10,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "receptor"
+        },
+        {
+          "id": "B",
+          "text": "međuneuron"
+        },
+        {
+          "id": "C",
+          "text": "osjetilni neuron"
+        },
+        {
+          "id": "D",
+          "text": "motorički neuron"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "13",
+      "type": "mc",
+      "prompt": "U kojemu se od navedenih dijelova uha čovjeka nalaze mehanoreceptori i koja im je uloga?",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "13",
+        "pdfPage": 12,
+        "printedPage": 10,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "u bubnjiću; prenose zvučne podražaje"
+        },
+        {
+          "id": "B",
+          "text": "u vanjskome uhu; primaju zvučne podražaje"
+        },
+        {
+          "id": "C",
+          "text": "u unutarnjemu uhu; primaju mehaničke vibracije"
+        },
+        {
+          "id": "D",
+          "text": "u slušnim koščicama; prenose mehaničke vibracije"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "14",
+      "type": "mc",
+      "prompt": "Slika prikazuje promjenu u pučima neke biljke. Koji od navedenih uvjeta uzrokuju prikazanu promjenu?",
+      "topic": "botanika",
+      "sourceRef": {
+        "task": "14",
+        "pdfPage": 12,
+        "printedPage": 10,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q14.webp",
+          "altText": "Prikaz promjene otvorenosti puči biljke."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "nedostatak svjetlosti i povećan osmotski tlak u stanicama"
+        },
+        {
+          "id": "B",
+          "text": "nedostatak svjetlosti i smanjen osmotski tlak u stanicama"
+        },
+        {
+          "id": "C",
+          "text": "dovoljna količina svjetlosti i povećan osmotski tlak u stanicama"
+        },
+        {
+          "id": "D",
+          "text": "dovoljna količina svjetlosti i smanjen osmotski tlak u stanicama"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "15",
+      "type": "mc",
+      "prompt": "Koja od navedenih tjelesnih obilježja omogućuju organizmima koji žive u toploj klimi sprječavanje pregrijavanja tijela?",
+      "topic": "ekologija",
+      "sourceRef": {
+        "task": "15",
+        "pdfPage": 13,
+        "printedPage": 11,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "duži tjelesni nastavci; veći omjer površine i volumena tijela"
+        },
+        {
+          "id": "B",
+          "text": "duži tjelesni nastavci; manji omjer površine i volumena tijela"
+        },
+        {
+          "id": "C",
+          "text": "kraći tjelesni nastavci; veći omjer površine i volumena tijela"
+        },
+        {
+          "id": "D",
+          "text": "kraći tjelesni nastavci; manji omjer površine i volumena tijela"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "16",
+      "type": "mc",
+      "prompt": "Koja od navedenih pojava nije uzrok ugroženosti oprašivača na Zemlji?",
+      "topic": "ekologija",
+      "sourceRef": {
+        "task": "16",
+        "pdfPage": 13,
+        "printedPage": 11,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "dugotrajne suše"
+        },
+        {
+          "id": "B",
+          "text": "učestale poplave"
+        },
+        {
+          "id": "C",
+          "text": "odgođena košnja travnjaka do ljeta"
+        },
+        {
+          "id": "D",
+          "text": "intenzivan uzgoj biljaka u monokulturi"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "17",
+      "type": "mc",
+      "prompt": "Slike prikazuju različite životinjske vrste označene brojevima od 1 do 6. Kojim su brojevima označene životinjske vrste s vanjskom oplodnjom?",
+      "topic": "sistematika",
+      "sourceRef": {
+        "task": "17",
+        "pdfPage": 13,
+        "printedPage": 11,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q17.webp",
+          "altText": "Šest fotografija različitih životinjskih vrsta označenih brojevima 1 do 6."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "brojevima 1, 4 i 5"
+        },
+        {
+          "id": "B",
+          "text": "brojevima 1, 3 i 6"
+        },
+        {
+          "id": "C",
+          "text": "brojevima 2, 3 i 6"
+        },
+        {
+          "id": "D",
+          "text": "brojevima 2, 4 i 5"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "18",
+      "type": "mc",
+      "prompt": "Koja od navedenih vrsta riba ima izraženu brigu za potomstvo?",
+      "topic": "zoologija",
+      "sourceRef": {
+        "task": "18",
+        "pdfPage": 14,
+        "printedPage": 12,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "tuna"
+        },
+        {
+          "id": "B",
+          "text": "riba list"
+        },
+        {
+          "id": "C",
+          "text": "grdobina"
+        },
+        {
+          "id": "D",
+          "text": "morski konjic"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "19",
+      "type": "mc",
+      "prompt": "Koji od navedenih procesa tijekom spermatogeneze uzrokuju gensku raznolikost spermija?",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "19",
+        "pdfPage": 14,
+        "printedPage": 12,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "kromatidna izmjena i udvostručenje kromosoma"
+        },
+        {
+          "id": "B",
+          "text": "kromatidna izmjena i slučajna orijentacija bivalenata"
+        },
+        {
+          "id": "C",
+          "text": "replikacija molekula DNA i udvostručenje kromosoma"
+        },
+        {
+          "id": "D",
+          "text": "replikacija molekula DNA i slučajna orijentacija bivalenata"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "20",
+      "type": "mc",
+      "prompt": "Koji je slijed nukleotida komplementaran slijedu 3’ GCC 5’ u molekuli DNA?",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "20",
+        "pdfPage": 14,
+        "printedPage": 12,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "5’ GCC 3’"
+        },
+        {
+          "id": "B",
+          "text": "3’ GCC 5’"
+        },
+        {
+          "id": "C",
+          "text": "5’ CGG 3’"
+        },
+        {
+          "id": "D",
+          "text": "3’ CGG 5’"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "21",
+      "type": "mc",
+      "prompt": "Koja je od navedenih tvrdnja točna za broj kromosoma i molekula DNA tijekom diobe tjelesnih stanica čimpanze koje imaju 48 kromosoma?",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "21",
+        "pdfPage": 14,
+        "printedPage": 12,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "U profazi stanice sadrže 96 kromosoma i 96 molekula DNA."
+        },
+        {
+          "id": "B",
+          "text": "U anafazi stanice sadrže 48 kromosoma i 48 molekula DNA."
+        },
+        {
+          "id": "C",
+          "text": "U metafazi stanice sadrže 96 kromosoma i 96 molekula DNA."
+        },
+        {
+          "id": "D",
+          "text": "Citokinezom nastaju stanice s 48 kromosoma i 48 molekula DNA."
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "22",
+      "type": "mc",
+      "prompt": "Slike označene brojevima 1 i 2 prikazuju kromosomske regije nekih kromosoma u populacijama sivoga vuka i njemačkoga ovčara u Europi. Kromosomi su označeni slovima od a do g. Sivi vukovi se najčešće razmnožavaju u divljini, a njemački ovčari u uzgoju. Koja je od navedenih tvrdnja o prikazanim slikama točna?",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "22",
+        "pdfPage": 15,
+        "printedPage": 13,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q22.webp",
+          "altText": "Usporedba kromosomskih regija u dvjema populacijama."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "Slika 1 odgovara sivomu vuku zbog manje genske raznolikosti, što ukazuje na veću ukupnu heterozigotnost u odnosu na njemačkoga ovčara."
+        },
+        {
+          "id": "B",
+          "text": "Slika 1 odgovara njemačkomu ovčaru zbog manje genske raznolikosti, što ukazuje na veću ukupnu homozigotnost u odnosu na sivoga vuka."
+        },
+        {
+          "id": "C",
+          "text": "Slika 2 odgovara sivomu vuku zbog veće genske raznolikosti, što ukazuje na veću ukupnu homozigotnost u odnosu na njemačkoga ovčara."
+        },
+        {
+          "id": "D",
+          "text": "Slika 2 odgovara njemačkom ovčaru zbog manje genske raznolikosti, što ukazuje na veću ukupnu heterozigotnost u odnosu na sivoga vuka."
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "23",
+      "type": "mc",
+      "prompt": "Genetski uzrok koje od navedenih bolesti je vidljiv svjetlosnim mikroskopom?",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "23",
+        "pdfPage": 15,
+        "printedPage": 13,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "hemofilije"
+        },
+        {
+          "id": "B",
+          "text": "daltonizma"
+        },
+        {
+          "id": "C",
+          "text": "srpaste anemije"
+        },
+        {
+          "id": "D",
+          "text": "Downova sindroma"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "24",
+      "type": "mc",
+      "prompt": "Aleli za boju perja u nekih ptica u nepotpuno su dominantnome odnosu. Križanjem mužjaka crnoga perja (genotip e₁e₁) i ženke bijeloga perja (genotip e₂e₂) opaženo je da svi potomci u leglu imaju sivo perje. Kojega su genotipa navedeni potomci?",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "24",
+        "pdfPage": 16,
+        "printedPage": 14,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "ee"
+        },
+        {
+          "id": "B",
+          "text": "e₁e₁"
+        },
+        {
+          "id": "C",
+          "text": "e₁e₂"
+        },
+        {
+          "id": "D",
+          "text": "e₂e₂"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "25",
+      "type": "mc",
+      "prompt": "Tijekom druge mejotičke diobe u spermatogenezi čovjeka nije došlo do razdvajanja kromatida kromosoma X. Jednim od četiriju nastalih spermija oplođena je haploidna jajna stanica. Kolika je vjerojatnost da u opisanome slučaju nastane zigota s 46 kromosoma?",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "25",
+        "pdfPage": 16,
+        "printedPage": 14,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "0 %"
+        },
+        {
+          "id": "B",
+          "text": "25 %"
+        },
+        {
+          "id": "C",
+          "text": "50 %"
+        },
+        {
+          "id": "D",
+          "text": "100 %"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "26",
+      "type": "mc",
+      "prompt": "Koja je od navedenih biljnih vrsta genetički modificirana i komercijalno se masovno uzgaja u Sjevernoj Americi?",
+      "topic": "biotehnologija",
+      "sourceRef": {
+        "task": "26",
+        "pdfPage": 16,
+        "printedPage": 14,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "banana"
+        },
+        {
+          "id": "B",
+          "text": "breskva"
+        },
+        {
+          "id": "C",
+          "text": "kukuruz"
+        },
+        {
+          "id": "D",
+          "text": "borovnica"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "27",
+      "type": "mc",
+      "prompt": "Slika prikazuje stanice alge mužocije (Mougeotia scalaris). Svaka stanica te alge sadrži jedan pločasti kloroplast. Položaji kloroplasta alge mužocije ovise o intenzitetu osvjetljenja i označeni su brojevima 1 i 2. Smjer osvjetljenja okomit je na ravninu slike. Kojim je brojem označen položaj kloroplasta pri preintenzivnome osvjetljenju i koji je razlog takvoga položaja?",
+      "topic": "botanika",
+      "sourceRef": {
+        "task": "27",
+        "pdfPage": 17,
+        "printedPage": 15,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q27.webp",
+          "altText": "Stanice alge mužocije s dvama položajima pločastoga kloroplasta."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "brojem 1, radi bolje apsorpcije svjetlosti"
+        },
+        {
+          "id": "B",
+          "text": "brojem 1, radi zaštite kloroplasta od oštećenja"
+        },
+        {
+          "id": "C",
+          "text": "brojem 2, radi bolje apsorpcije svjetlosti"
+        },
+        {
+          "id": "D",
+          "text": "brojem 2, radi zaštite kloroplasta od oštećenja"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "28",
+      "type": "mc",
+      "prompt": "Slika prikazuje dva pretka čovjeka označena brojevima 1 i 2. Fosilni ostatci kostiju koje vrste su pronađeni na Hušnjakovu brdu i kojim je brojem označena ta vrsta?",
+      "topic": "evolucija",
+      "sourceRef": {
+        "task": "28",
+        "pdfPage": 18,
+        "printedPage": 16,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q28.webp",
+          "altText": "Prikaz dvaju predaka čovjeka označenih brojevima 1 i 2."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "kromanjonca; brojem 1"
+        },
+        {
+          "id": "B",
+          "text": "kromanjonca; brojem 2"
+        },
+        {
+          "id": "C",
+          "text": "neandertalca; brojem 1"
+        },
+        {
+          "id": "D",
+          "text": "neandertalca; brojem 2"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "29",
+      "type": "mc",
+      "prompt": "Slike prikazuju dvije životinjske vrste označene brojevima 1 i 2. Kojim je brojem označena vrsta srodnija vodozemcima i koje od navedenih obilježja to potvrđuje?",
+      "topic": "evolucija",
+      "sourceRef": {
+        "task": "29",
+        "pdfPage": 19,
+        "printedPage": 17,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q29.webp",
+          "altText": "Dvije životinjske vrste označene brojevima 1 i 2."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "brojem 1; koža s ljuskama"
+        },
+        {
+          "id": "B",
+          "text": "brojem 1; raspored kostiju u prsnim perajama"
+        },
+        {
+          "id": "C",
+          "text": "brojem 2; koža s ljuskama"
+        },
+        {
+          "id": "D",
+          "text": "brojem 2; raspored kostiju u prsnim perajama"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "30",
+      "type": "mc",
+      "prompt": "Koje su od navedenih skupina organizama u kompeticiji?",
+      "topic": "ekologija",
+      "sourceRef": {
+        "task": "30",
+        "pdfPage": 19,
+        "printedPage": 17,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "lisne uši i breze u parku"
+        },
+        {
+          "id": "B",
+          "text": "bumbari i pčele na livadi"
+        },
+        {
+          "id": "C",
+          "text": "leptiri i mravi na travnjaku"
+        },
+        {
+          "id": "D",
+          "text": "lišajevi i stabla hrasta u šumi"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "31",
+      "type": "mc",
+      "prompt": "Dijagram prikazuje uspješnost preživljavanja populacija vrsta 1 i 2 u staništima različitih kolebanja (promjena) temperature. Koja od navedenih tvrdnja točno uspoređuje širinu ekološke valencije i utjecaj promjene temperature na preživljavanje vrsta 1 i 2?",
+      "topic": "ekologija",
+      "sourceRef": {
+        "task": "31",
+        "pdfPage": 20,
+        "printedPage": 18,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q31.webp",
+          "altText": "Stupčasti dijagram uspješnosti preživljavanja dviju vrsta pri različitim kolebanjima temperature."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "Vrsta 2 ima užu ekološku valenciju i teže podnosi promjene temperature od vrste 1."
+        },
+        {
+          "id": "B",
+          "text": "Vrsta 2 ima širu ekološku valenciju i teže podnosi promjene temperature od vrste 1."
+        },
+        {
+          "id": "C",
+          "text": "Vrsta 2 ima užu ekološku valenciju i lakše podnosi promjene temperature od vrste 1."
+        },
+        {
+          "id": "D",
+          "text": "Vrsta 2 ima širu ekološku valenciju i lakše podnosi promjene temperature od vrste 1."
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "32",
+      "type": "mc",
+      "prompt": "U kojemu su od navedenih parova životinja obje vrste invazivne u Republici Hrvatskoj?",
+      "topic": "ekologija",
+      "sourceRef": {
+        "task": "32",
+        "pdfPage": 20,
+        "printedPage": 18,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "šaran i hlap"
+        },
+        {
+          "id": "B",
+          "text": "bezupka i som"
+        },
+        {
+          "id": "C",
+          "text": "jastog i obična sumporača"
+        },
+        {
+          "id": "D",
+          "text": "školjkaš raznolika trokutnjača i signalni rak"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "33",
+      "type": "mc",
+      "prompt": "Koji su metabolički procesi i okolišni uvjeti specifični za ekstremofilne bakterije u dubokomorskim termalnim vrelima?",
+      "topic": "metabolizam",
+      "sourceRef": {
+        "task": "33",
+        "pdfPage": 21,
+        "printedPage": 19,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "fotosinteza i aerobni uvjeti"
+        },
+        {
+          "id": "B",
+          "text": "fotosinteza i anaerobni uvjeti"
+        },
+        {
+          "id": "C",
+          "text": "kemosinteza i aerobni uvjeti"
+        },
+        {
+          "id": "D",
+          "text": "kemosinteza i anaerobni uvjeti"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "34",
+      "type": "mc",
+      "prompt": "Koji se od navedenih metaboličkih procesa događa u matriksu mitohondrija?",
+      "topic": "metabolizam",
+      "sourceRef": {
+        "task": "34",
+        "pdfPage": 21,
+        "printedPage": 19,
+        "keyPdfPage": 1
+      },
+      "assets": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "glikoliza"
+        },
+        {
+          "id": "B",
+          "text": "dišni lanac"
+        },
+        {
+          "id": "C",
+          "text": "Krebsov ciklus"
+        },
+        {
+          "id": "D",
+          "text": "Calvinov ciklus"
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "35",
+      "type": "mc",
+      "prompt": "Slika prikazuje jedan stanični organel na kojemu su neki dijelovi označeni brojevima 1 i 2. Koja od navedenih tvrdnja točno povezuje metaboličku ulogu dijela organela s brojem kojim je taj dio označen?",
+      "topic": "metabolizam",
+      "sourceRef": {
+        "task": "35",
+        "pdfPage": 21,
+        "printedPage": 19,
+        "keyPdfPage": 1
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q35.webp",
+          "altText": "Shema mitohondrija s dijelovima označenim brojevima 1 i 2."
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "text": "Oksidacija H₂O događa se na dijelu 1."
+        },
+        {
+          "id": "B",
+          "text": "Redukcija CO₂ događa se na dijelu 1."
+        },
+        {
+          "id": "C",
+          "text": "Oksidacija O₂ događa se u dijelu 2."
+        },
+        {
+          "id": "D",
+          "text": "Redukcija NAD⁺ događa se u dijelu 2."
+        }
+      ],
+      "points": 1
+    },
+    {
+      "id": "36",
+      "type": "media_response",
+      "prompt": "Slika prikazuje ekološku povezanost različitih organizama.",
+      "topic": "ekologija",
+      "sourceRef": {
+        "task": "36",
+        "pdfPage": 22,
+        "printedPage": 20
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q36.webp",
+          "altText": "Shema ekološke povezanosti hrasta, tartufa i voluharice."
+        }
+      ],
+      "children": [
+        {
+          "id": "36.1",
+          "type": "short",
+          "prompt": "Kako se naziva mutualistički odnos između hrasta i tartufa?",
+          "topic": "ekologija",
+          "sourceRef": {
+            "task": "36.1",
+            "pdfPage": 22,
+            "printedPage": 20,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "36.2",
+          "type": "fill",
+          "prompt": "Koju korist imaju voluharice i tartufi u njihovu biotičkom odnosu?",
+          "topic": "ekologija",
+          "sourceRef": {
+            "task": "36.2",
+            "pdfPage": 22,
+            "printedPage": 20,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "gaps": [
+            {
+              "id": "tartufi",
+              "label": "Tartufi"
+            },
+            {
+              "id": "voluharice",
+              "label": "Voluharice"
+            }
+          ],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "37",
+      "type": "media_response",
+      "prompt": "Kladogram prikazuje srodstvene odnose živućih kopnenih kralježnjaka i pojavu nekih njihovih obilježja označenih brojevima od 1 do 4.",
+      "topic": "evolucija",
+      "sourceRef": {
+        "task": "37",
+        "pdfPage": 23,
+        "printedPage": 21
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q37.webp",
+          "altText": "Kladogram kopnenih kralježnjaka s obilježjima označenima brojevima 1 do 4."
+        }
+      ],
+      "children": [
+        {
+          "id": "37.1",
+          "type": "fill",
+          "prompt": "Slova kojima su označene pojedine skupine živućih kopnenih kralježnjaka (A – gmazovi, B – ptice, C – sisavci i D – vodozemci) upišite u odgovarajuća prazna polja na kladogramu tako da točno prikazuju evolucijske odnose navedenih skupina.",
+          "topic": "evolucija",
+          "sourceRef": {
+            "task": "37.1",
+            "pdfPage": 23,
+            "printedPage": 21,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "gaps": [
+            {
+              "id": "left1",
+              "label": "1. polje slijeva"
+            },
+            {
+              "id": "left2",
+              "label": "2. polje slijeva"
+            },
+            {
+              "id": "left3",
+              "label": "3. polje slijeva"
+            },
+            {
+              "id": "left4",
+              "label": "4. polje slijeva"
+            }
+          ],
+          "points": 1
+        },
+        {
+          "id": "37.2",
+          "type": "matching",
+          "prompt": "U tablici su navedena obilježja živućih kopnenih kralježnjaka čija je pojava prikazana kladogramom. Obilježjima u tablici pridružite odgovarajući broj s kladograma.",
+          "topic": "evolucija",
+          "sourceRef": {
+            "task": "37.2",
+            "pdfPage": 23,
+            "printedPage": 21,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "left": [
+            {
+              "id": "amnion",
+              "text": "amnion"
+            },
+            {
+              "id": "perje",
+              "text": "perje"
+            },
+            {
+              "id": "pluca",
+              "text": "pluća"
+            },
+            {
+              "id": "mlijecne",
+              "text": "mliječne žlijezde"
+            }
+          ],
+          "right": [
+            {
+              "id": "1",
+              "text": "1"
+            },
+            {
+              "id": "2",
+              "text": "2"
+            },
+            {
+              "id": "3",
+              "text": "3"
+            },
+            {
+              "id": "4",
+              "text": "4"
+            }
+          ],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "38",
+      "type": "passage_group",
+      "prompt": "Molekule ATP-a glavni su prijenosnici energije u stanicama.",
+      "topic": "metabolizam",
+      "sourceRef": {
+        "task": "38",
+        "pdfPage": 24,
+        "printedPage": 22
+      },
+      "assets": [],
+      "children": [
+        {
+          "id": "38.1",
+          "type": "short",
+          "prompt": "Koja se promjena molekule ATP-a događa tijekom oslobađanja kemijske energije?",
+          "topic": "metabolizam",
+          "sourceRef": {
+            "task": "38.1",
+            "pdfPage": 24,
+            "printedPage": 22,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "38.2",
+          "type": "short",
+          "prompt": "Cijanidi su otrovi koji se vežu na jedan od enzima na unutarnjoj membrani mitohondrija i onemogućuju sintezu ATP-a. Koji je metabolički proces staničnoga disanja na unutarnjoj membrani mitohondrija time izravno onemogućen?",
+          "topic": "metabolizam",
+          "sourceRef": {
+            "task": "38.2",
+            "pdfPage": 24,
+            "printedPage": 22,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "39",
+      "type": "media_response",
+      "prompt": "Učenici su istraživali zastupljenost krvnih grupa AB0 sustava 400 stanovnika jednoga mjesta. U tablici su prikazani rezultati istraživanja.",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "39",
+        "pdfPage": 25,
+        "printedPage": 23,
+        "textAdaptation": "Source table preserved as captioned data with row/column headers; captions and flattened header labels are digital presentation labels."
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q39.webp",
+          "altText": "Linijski dijagram zastupljenosti krvnih grupa prema spolu."
+        }
+      ],
+      "stimulus": {
+        "table": {
+          "caption": "Rezultati istraživanja",
+          "columns": [
+            "Krvna grupa AB0 sustava",
+            "Broj ispitanika: žene",
+            "Broj ispitanika: muškarci"
+          ],
+          "rows": [
+            [
+              "A",
+              "100",
+              "60"
+            ],
+            [
+              "B",
+              "20",
+              "40"
+            ],
+            [
+              "AB",
+              "18",
+              "22"
+            ],
+            [
+              "0",
+              "60",
+              "80"
+            ]
+          ]
+        }
+      },
+      "children": [
+        {
+          "id": "39.1",
+          "type": "short",
+          "prompt": "Izračunajte udio stanovnika obaju spolova krvne grupe A izražen u postotcima.",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "39.1",
+            "pdfPage": 25,
+            "printedPage": 23,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "39.2",
+          "type": "essay",
+          "prompt": "Učenik je podatke iz tablice prikazao sljedećim dijagramom. Zašto ovakav oblik dijagrama nije prikladan za prikazivanje rezultata ovoga istraživanja?",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "39.2",
+            "pdfPage": 25,
+            "printedPage": 23,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "type": "media_response",
+      "prompt": "Shema prikazuje jedan stanični proces. Neke strukture označene su brojevima 1, 2 i 3.",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "40",
+        "pdfPage": 26,
+        "printedPage": 24
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q40.webp",
+          "altText": "Shema staničnoga procesa s molekulama označenima brojevima 1, 2 i 3."
+        }
+      ],
+      "children": [
+        {
+          "id": "40.1",
+          "type": "essay",
+          "prompt": "Navedite nazive četiriju različitih dušičnih baza koje se nalaze u sastavu molekule označene brojem 1.",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "40.1",
+            "pdfPage": 26,
+            "printedPage": 24,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "40.2",
+          "type": "essay",
+          "prompt": "Koje su tri razlike u građi i strukturi molekula označenih brojevima 1 i 2?",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "40.2",
+            "pdfPage": 26,
+            "printedPage": 24,
+            "keyPdfPage": 2
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "40.3",
+          "type": "essay",
+          "prompt": "Koja je uloga dijela molekule označenoga brojem 3 u procesu prikazanome na slici?",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "40.3",
+            "pdfPage": 26,
+            "printedPage": 24,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "41",
+      "type": "media_response",
+      "prompt": "Slika prikazuje optok krvi u tijelu čovjeka. Na slici su neke krvne žile označene brojevima od 1 do 7.",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "41",
+        "pdfPage": 27,
+        "printedPage": 25
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q41.webp",
+          "altText": "Shema optoka krvi u tijelu čovjeka s krvnim žilama označenima brojevima 1 do 7."
+        }
+      ],
+      "children": [
+        {
+          "id": "41.1",
+          "type": "short",
+          "prompt": "Koji je naziv krvne žile označene brojem 4?",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "41.1",
+            "pdfPage": 27,
+            "printedPage": 25,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "41.2",
+          "type": "ordering",
+          "prompt": "Koristeći se brojevima sa slike, navedite slijed protoka krvi kroz krvne žile u malome optoku krvi počevši od srca.",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "41.2",
+            "pdfPage": 27,
+            "printedPage": 25,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "items": [
+            {
+              "id": "1",
+              "text": "1"
+            },
+            {
+              "id": "2",
+              "text": "2"
+            },
+            {
+              "id": "3",
+              "text": "3"
+            }
+          ],
+          "points": 1
+        },
+        {
+          "id": "41.3",
+          "type": "essay",
+          "prompt": "Koja komora srca ima najdeblju mišićnu stijenku? Objasnite odgovor s obzirom na tlak krvi i udaljenost organa koje opskrbljuje.",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "41.3",
+            "pdfPage": 27,
+            "printedPage": 25,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "42",
+      "type": "passage_group",
+      "prompt": "Vitamini imaju važnu ulogu u održavanju homeostaze organizma.",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "42",
+        "pdfPage": 28,
+        "printedPage": 26
+      },
+      "assets": [],
+      "children": [
+        {
+          "id": "42.1",
+          "type": "short",
+          "prompt": "Koji se vitamin metabolizmom pretvara u pigment nužan za apsorpciju svjetlosti u receptorskim stanicama mrežnice oka?",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "42.1",
+            "pdfPage": 28,
+            "printedPage": 26,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "42.2",
+          "type": "short",
+          "prompt": "Dugotrajni nedostatak kojega vitamina u organizmu uzrokuje pojavu skorbuta, bolesti od koje su u prošlosti često obolijevali moreplovci tijekom dugih plovidbi?",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "42.2",
+            "pdfPage": 28,
+            "printedPage": 26,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "42.3",
+          "type": "essay",
+          "prompt": "U kojemu se tkivu čovjeka mogu skladištiti vitamini A, D, E i K? Objasnite odgovor i povežite ga s polarnosti molekula tih spojeva.",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "42.3",
+            "pdfPage": 28,
+            "printedPage": 26,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "43",
+      "type": "passage_group",
+      "prompt": "Organizmi se na različite načine prilagođavaju promjenama u okolišu.",
+      "topic": "fiziologija",
+      "sourceRef": {
+        "task": "43",
+        "pdfPage": 29,
+        "printedPage": 27
+      },
+      "assets": [],
+      "children": [
+        {
+          "id": "43.1",
+          "type": "fill",
+          "prompt": "Navedite po jednu različitu fiziološku prilagodbu vjeverice i pingvina kojima se ti organizmi prilagođavaju dugotrajnim niskim temperaturama u okolišu. Odgovore upišite u priloženu tablicu.",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "43.1",
+            "pdfPage": 29,
+            "printedPage": 27,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "gaps": [
+            {
+              "id": "vjeverica",
+              "label": "vjeverica"
+            },
+            {
+              "id": "pingvin",
+              "label": "pingvin"
+            }
+          ],
+          "points": 1
+        },
+        {
+          "id": "43.2",
+          "type": "essay",
+          "prompt": "Koja je prilagodba u građi srca omogućila homeotermnost pticama i sisavcima? Objasnite odgovor povezujući građu srca ptica i sisavaca i opskrbljenost tkiva kisikom.",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "43.2",
+            "pdfPage": 29,
+            "printedPage": 27,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "43.3",
+          "type": "essay",
+          "prompt": "Navedite dvije promjene fizioloških procesa u smeđega medvjeda tijekom hibernacije.",
+          "topic": "fiziologija",
+          "sourceRef": {
+            "task": "43.3",
+            "pdfPage": 29,
+            "printedPage": 27,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "44",
+      "type": "media_response",
+      "prompt": "Slika prikazuje životni ciklus kritosjemenjače. Brojevima od 1 do 5 označeni su neki procesi u životnome ciklusu, a slovom A jedan životni stadij.",
+      "topic": "botanika",
+      "sourceRef": {
+        "task": "44",
+        "pdfPage": 30,
+        "printedPage": 28
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q44.webp",
+          "altText": "Životni ciklus kritosjemenjače s procesima 1 do 5 i stadijem A."
+        }
+      ],
+      "children": [
+        {
+          "id": "44.1",
+          "type": "short",
+          "prompt": "Kojim su dvama brojevima označeni procesi u prikazanome životnom ciklusu koji uključuju mitozu?",
+          "topic": "botanika",
+          "sourceRef": {
+            "task": "44.1",
+            "pdfPage": 30,
+            "printedPage": 28,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "44.2",
+          "type": "fill",
+          "prompt": "Koliko kromosoma sadrže i od koliko su kromatida građeni kromosomi jedne stanice označene slovom A u profazi I? Haploidni je broj kromosoma biljke sedam.",
+          "topic": "botanika",
+          "sourceRef": {
+            "task": "44.2",
+            "pdfPage": 30,
+            "printedPage": 28,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "gaps": [
+            {
+              "id": "kromosomi",
+              "label": "Broj kromosoma"
+            },
+            {
+              "id": "kromatide",
+              "label": "Broj kromatida"
+            }
+          ],
+          "points": 1
+        },
+        {
+          "id": "44.3",
+          "type": "short",
+          "prompt": "Navedite jedan biljni organ koji predstavlja evolucijsku prednost u životnome ciklusu kritosjemenjača u usporedbi s golosjemenjačama.",
+          "topic": "botanika",
+          "sourceRef": {
+            "task": "44.3",
+            "pdfPage": 30,
+            "printedPage": 28,
+            "keyPdfPage": 3
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "45",
+      "type": "media_response",
+      "prompt": "Inducirane pluripotentne matične stanice su vrsta matičnih stanica koje mogu nastati iz odraslih stanica, što im omogućuje reprogramiranje u stanje slično embrijskomu. Slika prikazuje postupak reprogramiranja odraslih stanica u inducirane pluripotentne stanice.",
+      "topic": "biotehnologija",
+      "sourceRef": {
+        "task": "45",
+        "pdfPage": 31,
+        "printedPage": 29
+      },
+      "assets": [
+        {
+          "type": "image",
+          "src": "/discere/bio/2026_ljeto/q45.webp",
+          "altText": "Shema reprogramiranja tjelesne stanice u induciranu pluripotentnu matičnu stanicu."
+        }
+      ],
+      "children": [
+        {
+          "id": "45.1",
+          "type": "essay",
+          "prompt": "Kako postupkom reprogramiranja prikazanim na slici nastaje pluripotentna stanica iz odrasle stanice?",
+          "topic": "biotehnologija",
+          "sourceRef": {
+            "task": "45.1",
+            "pdfPage": 31,
+            "printedPage": 29,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "45.2",
+          "type": "short",
+          "prompt": "Koji je naziv postupka kojim se u laboratoriju može uzgojiti veći broj stanica iz induciranih pluripotentnih stanica?",
+          "topic": "biotehnologija",
+          "sourceRef": {
+            "task": "45.2",
+            "pdfPage": 31,
+            "printedPage": 29,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "45.3",
+          "type": "essay",
+          "prompt": "Koja medicinska dobrobit proizlazi iz uzgoja induciranih pluripotentnih stanica?",
+          "topic": "biotehnologija",
+          "sourceRef": {
+            "task": "45.3",
+            "pdfPage": 31,
+            "printedPage": 29,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "46",
+      "type": "passage_group",
+      "prompt": "Istraživanja su pokazala da postoji specifična točka u razvoju određenih organizama, poznata kao termosenzitivno razdoblje, tijekom koje tkivo spolnih žlijezda reagira na temperaturu. Potomci jedne vrste kornjača pri temperaturi inkubacije od 23 °C do 27 °C razvijaju sjemenike, a na temperaturama višima od 27 °C i nižima od 23 °C svi potomci razvijaju jajnike.",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "46",
+        "pdfPage": 32,
+        "printedPage": 30
+      },
+      "assets": [],
+      "children": [
+        {
+          "id": "46.1",
+          "type": "essay",
+          "prompt": "Na koji način različite temperature, uz jednaku gensku uputu, dovode do razvoja kornjača različitih spolova?",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "46.1",
+            "pdfPage": 32,
+            "printedPage": 30,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "46.2",
+          "type": "essay",
+          "prompt": "Zašto će dugotrajno povišenje temperature u staništu uslijed globalnoga zatopljenja smanjiti biomasu kornjača? Objasnite odgovor povezujući učinak povišene temperature na određivanje spola u populaciji s razmnožavanjem kornjača.",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "46.2",
+            "pdfPage": 32,
+            "printedPage": 30,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "46.3",
+          "type": "short",
+          "prompt": "Navedite jedan primjer ponašanja koji kornjače primjenjuju u svrhu preživljavanja niskih temperatura u jezerima i rijekama.",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "46.3",
+            "pdfPage": 32,
+            "printedPage": 30,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "47",
+      "type": "passage_group",
+      "prompt": "Gen za boju dlake kod mačaka nalazi se na kromosomu X. Kombinacijom alela toga gena krzno mačaka može biti žuto, žuto-crno (calico) ili samo crno.",
+      "topic": "genetika",
+      "sourceRef": {
+        "task": "47",
+        "pdfPage": 33,
+        "printedPage": 31
+      },
+      "assets": [],
+      "children": [
+        {
+          "id": "47.1",
+          "type": "short",
+          "prompt": "Koji su sve genotipovi gameta koje stvara mužjak crne dlake? Alel za žutu dlaku označite s Xᴬ, a za crnu s Xᴮ.",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "47.1",
+            "pdfPage": 33,
+            "printedPage": 31,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "47.2",
+          "type": "essay",
+          "prompt": "Navedite sve moguće fenotipove prve generacije potomaka u križanju ženke crne dlake s mužjakom žute dlake s obzirom na spol i boju dlake. Alel za žutu dlaku označite s Xᴬ, a za crnu s Xᴮ.",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "47.2",
+            "pdfPage": 33,
+            "printedPage": 31,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "47.3",
+          "type": "essay",
+          "prompt": "Zašto su sve mačke žuto-crne (calico) boje dlake i normalnoga broja kromosoma ženskoga spola?",
+          "topic": "genetika",
+          "sourceRef": {
+            "task": "47.3",
+            "pdfPage": 33,
+            "printedPage": 31,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "48",
+      "type": "passage_group",
+      "prompt": "HB4 pšenica je genetički modificirana sorta pšenice s boljom otpornosti na sušu za razliku od genetički nemodificirane pšenice.",
+      "topic": "biotehnologija",
+      "sourceRef": {
+        "task": "48",
+        "pdfPage": 34,
+        "printedPage": 32
+      },
+      "assets": [],
+      "children": [
+        {
+          "id": "48.1",
+          "type": "short",
+          "prompt": "Kako učestale suše utječu na veličinu areala HB4 pšenice u odnosu na areal nemodificirane sorte pšenice?",
+          "topic": "biotehnologija",
+          "sourceRef": {
+            "task": "48.1",
+            "pdfPage": 34,
+            "printedPage": 32,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "48.2",
+          "type": "essay",
+          "prompt": "U kojemu će području prinos HB4 pšenice biti veći od prinosa nemodificirane pšenice – u Dalmaciji ili u Hrvatskome zagorju? Objasnite odgovor.",
+          "topic": "biotehnologija",
+          "sourceRef": {
+            "task": "48.2",
+            "pdfPage": 34,
+            "printedPage": 32,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        },
+        {
+          "id": "48.3",
+          "type": "short",
+          "prompt": "Navedite jednu od kontrolnih varijabli u znanstvenome istraživanju kojim je utvrđena veća otpornost modificirane sorte pšenice na sušu.",
+          "topic": "biotehnologija",
+          "sourceRef": {
+            "task": "48.3",
+            "pdfPage": 34,
+            "printedPage": 32,
+            "keyPdfPage": 4
+          },
+          "assets": [],
+          "points": 1
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2
+}

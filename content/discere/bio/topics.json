@@ -1,0 +1,60 @@
+{
+  "subject": "bio",
+  "topics": [
+    {
+      "code": "biokemija",
+      "label": "Biokemija",
+      "count": 2
+    },
+    {
+      "code": "biotehnologija",
+      "label": "Biotehnologija",
+      "count": 7
+    },
+    {
+      "code": "botanika",
+      "label": "Botanika",
+      "count": 5
+    },
+    {
+      "code": "ekologija",
+      "label": "Ekologija",
+      "count": 7
+    },
+    {
+      "code": "evolucija",
+      "label": "Evolucija",
+      "count": 4
+    },
+    {
+      "code": "fiziologija",
+      "label": "Fiziologija",
+      "count": 16
+    },
+    {
+      "code": "genetika",
+      "label": "Genetika",
+      "count": 16
+    },
+    {
+      "code": "metabolizam",
+      "label": "Metabolizam",
+      "count": 6
+    },
+    {
+      "code": "sistematika",
+      "label": "Sistematika",
+      "count": 3
+    },
+    {
+      "code": "stanica",
+      "label": "Stanica",
+      "count": 3
+    },
+    {
+      "code": "zoologija",
+      "label": "Zoologija",
+      "count": 1
+    }
+  ]
+}
