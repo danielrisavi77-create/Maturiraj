@@ -30,8 +30,8 @@ import { createClient } from '@/lib/supabase/server'
 import { getUserTier } from '@/lib/billing/subscriptions'
 import { normalizeTier, isPaidTier } from '@/lib/billing/getEffectiveTier'
 import { asKeySet, getAdapter } from '@/lib/exam-secrets/registry'
-import { mergeSecrets, stripQuestions } from '@/lib/exam-secrets'
-import { freeKeyAllowance } from '@/lib/exam-secrets/free-policy'
+import { countLeavesIn, mergeSecretsWithAllowance, stripQuestions } from '@/lib/exam-secrets'
+import { UNLIMITED, freeLeafAllowance } from '@/lib/exam-secrets/free-policy'
 import { consumeRateLimitSlots } from '@/lib/rate-limit'
 import {
   FREE_EXAM_FETCH_LIMIT,
@@ -121,25 +121,28 @@ export async function GET(request, { params } = {}) {
   // poluprebačenog adaptera i free korisnika s ključevima u pregledniku.
   const publicQs = stripQuestions(exam.qs, adapter.publicFields)
 
+  // Kvota i `keys` se broje po LISTOVIMA, ne po stavkama na vrhu popisa: jedna
+  // canonical `passage_group` nosi pet pitanja, pa bi brojanje po vrhu od „prva
+  // 3 pitanja“ tiho napravilo 15. Predmeti bez djece (eng, soc) time dobivaju
+  // isti rezultat kao i prije.
+  const totalLeaves = countLeavesIn(publicQs)
+
   const allowed = asKeySet(adapter.allowedExamKeys(tier))
   const paidMayHaveKeys = paid && (allowed === null || allowed.has(examKey))
-  const allowance = paidMayHaveKeys ? publicQs.length : freeKeyAllowance(subject, examKey, mode)
+  const allowance = paidMayHaveKeys ? UNLIMITED : freeLeafAllowance(subject, examKey, mode)
 
   let qs = publicQs
   let merged = 0
   if (allowance > 0) {
     const secrets = await adapter.loadSecrets(examKey)
     if (secrets) {
-      qs = publicQs.map((question, index) => {
-        if (index >= allowance) return question
-        const withSecrets = mergeSecrets(question, secrets)
-        if (withSecrets !== question) merged += 1
-        return withSecrets
-      })
+      const result = mergeSecretsWithAllowance(publicQs, secrets, allowance)
+      qs = result.qs
+      merged = result.mergedLeaves
     }
   }
 
-  const keys = merged === 0 ? 'none' : merged >= publicQs.length ? 'full' : 'partial'
+  const keys = merged === 0 ? 'none' : merged >= totalLeaves ? 'full' : 'partial'
 
   return NextResponse.json(
     { key: exam.key ?? examKey, meta: exam.meta ?? {}, texts: exam.texts ?? {}, qs, keys },
