@@ -394,8 +394,6 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
   const [blockIdx, setBlockIdx] = useState(() => (
     Number.isFinite(resume?.blockIdx) ? resume.blockIdx : examMode ? draft?.blockIdx || 0 : 0
   ))
-  // Apsolutni trenutak isteka tekuće cjeline (ms). Postoji samo u simulaciji.
-  const [deadline, setDeadline] = useState(() => (examMode ? draft?.deadline ?? null : null))
   // Predaja na poslužiteljsko ocjenjivanje: 'submitting' drži gumb zauzetim,
   // 'submitError' zadržava odgovore i nudi ponovni pokušaj (nakon isteka timera
   // druge šanse nema), a 'attemptIdRef' čini ponovni pokušaj idempotentnim —
@@ -406,7 +404,10 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
   // ispita svakih 60 s; tada NE računamo lokalno (rezultat bi postojao samo na
   // ekranu, bez retka u sim_progress), nego pričekamo i pošaljemo ISTI attemptId.
   const [retryIn, setRetryIn] = useState(0)
-  const [autoRetry, setAutoRetry] = useState(false)
+  // Čeka li odbrojavanje na automatsku ponovnu predaju drži REF, ne stanje:
+  // prikaz o tome ne ovisi (gumb i poruka čitaju samo 'retryIn'), a okidanje se
+  // događa u callbacku odbrojavanja — ne u tijelu efekta.
+  const autoRetryRef = useRef(false)
   const attemptIdRef = useRef(null)
   const finishRef = useRef(null)
 
@@ -453,6 +454,20 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       : null,
   ).current
   const timerSeconds = resumedTimer && resumedTimer.blockIdx === bIdx ? resumedTimer.seconds : fullSeconds
+  // Apsolutni trenutak isteka tekuće cjeline (ms). Postoji samo u simulaciji.
+  // Simulacija dobiva rok ČIM POČNE, još u inicijalizatoru stanja — ne u efektu:
+  // bez zapisanog roka osvježavanje stranice remounta BlockTimer s punim
+  // trajanjem, pa bi se ispit s netaknutim odgovorima mogao produljivati
+  // unedogled, a takav pokušaj ocjenjivačka ruta upisuje u sim_progress kao
+  // regularan (iz njega se računaju napredak i percentil). Inicijalizator se
+  // izvrši samo pri montiranju, pa Date.now() ne ulazi u svaki render; dalje rok
+  // postavlja goToBlock, tj. handler prijelaza na sljedeću cjelinu.
+  // Deklaracija stoji OVDJE, ispod 'timerSeconds', jer joj treba njegova
+  // vrijednost (nastavak kreće od preostalog, ne od punog vremena).
+  const [deadline, setDeadline] = useState(() => {
+    if (!examMode || !draftKey) return null
+    return draft?.deadline ?? Date.now() + timerSeconds * 1000
+  })
   const curQid = qs[curIdx]?.id
 
   // ── Snapshot aktivne sesije ──
@@ -530,32 +545,27 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
     } catch {}
   }, [draftKey, answers, qTimes, deadline, bIdx])
 
-  // Simulacija dobiva rok čim počne. Bez zapisanog roka osvježavanje stranice
-  // remounta BlockTimer s punim trajanjem, pa bi se ispit s netaknutim odgovorima
-  // mogao produljivati unedogled — a takav pokušaj ocjenjivačka ruta upisuje u
-  // sim_progress kao regularan (iz njega se računaju napredak i percentil).
-  useEffect(() => {
-    if (!examMode || !draftKey || deadline) return
-    setDeadline(Date.now() + timerSeconds * 1000)
-  }, [examMode, draftKey, deadline, timerSeconds])
-
   // Odbrojavanje do ponovne predaje. Hookovi moraju stajati PRIJE ranog izlaza
   // niže; `finish` je deklaracija funkcije u tijelu komponente, pa je hoistan i
   // efekt ga vidi. Ref drži najnoviju verziju — zatvaranje nad starim renderom
   // slalo bi stare odgovore.
   useEffect(() => { finishRef.current = finish })
 
+  // Sekunda odbrojavanja; na zadnjoj se, ako je odbrojavanje krenulo zbog 429,
+  // odmah šalje ponovna predaja. Oboje se događa u callbacku timera — stanje se
+  // mijenja zbog proteka vremena, ne kao posljedica prethodnog renderiranja.
   useEffect(() => {
     if (retryIn <= 0) return undefined
-    const t = setTimeout(() => setRetryIn(n => (n > 0 ? n - 1 : 0)), 1000)
+    const t = setTimeout(() => {
+      if (retryIn > 1) { setRetryIn(retryIn - 1); return }
+      setRetryIn(0)
+      if (autoRetryRef.current) {
+        autoRetryRef.current = false
+        void finishRef.current?.()
+      }
+    }, 1000)
     return () => clearTimeout(t)
   }, [retryIn])
-
-  useEffect(() => {
-    if (!autoRetry || retryIn > 0) return
-    setAutoRetry(false)
-    void finishRef.current?.()
-  }, [autoRetry, retryIn])
 
   if (!exam || !qs.length) {
     return (
@@ -691,7 +701,7 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       })
       setSubmitting(false)
       setRetryIn(0)
-      setAutoRetry(false)
+      autoRetryRef.current = false
       endSession()
       onDone(buildResult(server))
     } catch (err) {
@@ -703,8 +713,8 @@ export function ExamPlayScreen({ exam, examMode, timedMode, examContext, onExit,
       // ne bi bilo, dok ga ponovljena predaja uredno upiše.
       if (wait > 0 && wait <= GRADE_AUTO_RETRY_MAX_SEC) {
         setSubmitError(gradeErrorMessage(err))
+        autoRetryRef.current = true
         setRetryIn(wait)
-        setAutoRetry(true)
         return
       }
       // Ako klijent ima ključeve za SVA pitanja (plaćeni tier), rezultat se može
