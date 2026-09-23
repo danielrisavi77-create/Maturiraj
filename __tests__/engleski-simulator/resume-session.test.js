@@ -22,8 +22,8 @@ import { createElement as e } from 'react'
 import { makeVisaExam, PRO_ACCESS } from './_synthExam.js'
 import {
   ENG_ACTIVE_SESSION_KEY, ACTIVE_SESSION_TTL_MS, buildSnapshot, writeActiveSession,
-  readActiveSession, clearActiveSession, isResumableExamKey, answeredCount,
-  remainingSeconds, formatRemaining, sanitizeAnswers,
+  readActiveSession, clearActiveSession, clearActiveSessionFor, isResumableExamKey,
+  answeredCount, remainingSeconds, formatRemaining, sanitizeAnswers,
 } from '@/lib/engleski-simulator/resumeSession'
 
 vi.mock('next/navigation', () => ({
@@ -51,9 +51,15 @@ const OSN_EXAM = {
     { id: 'o2', section: 'reading', type: 'mc', topic: 'reading', q: 'Osnovna pitanje 2', opts: ['A opcija', 'B opcija', 'C opcija'], sol: { cl: 'B' } },
   ],
 }
-const EXAMS_MAP = { [OSN_EXAM.key]: OSN_EXAM }
+// Ispit više razine s tri cjeline (Čitanje/Pisanje/Slušanje) — za nastavak
+// simulacije kojoj je istekla cjelina koja NIJE zadnja.
+const VIS_EXAM = makeVisaExam()
+const EXAMS_MAP = { [OSN_EXAM.key]: OSN_EXAM, [VIS_EXAM.key]: VIS_EXAM }
+// 'hasListening: false' odgovara OSN_EXAM-u koji ima samo pitanja čitanja — indeks
+// i banka moraju biti u skladu, inače kartica krivo procijeni broj cjelina.
 const EXAMS_INDEX = [
-  { key: OSN_EXAM.key, year: 2024, season: 'ljeto', label: 'Ljetni rok', razina: 'osnovna', hasListening: true, hasReading: true, qCount: 2 },
+  { key: OSN_EXAM.key, year: 2024, season: 'ljeto', label: 'Ljetni rok', razina: 'osnovna', hasListening: false, hasReading: true, qCount: 2 },
+  { key: VIS_EXAM.key, year: 9999, season: 'test', label: 'Testni rok', razina: 'visa', hasListening: true, hasReading: true, qCount: 6 },
 ]
 
 vi.mock('@/lib/engleski-simulator/examsLoader', () => ({
@@ -150,10 +156,39 @@ describe('resumeSession — zapis u localStorageu', () => {
     expect(sanitizeAnswers({ a: () => {} })).toEqual({})
   })
 
-  it('vježbanje nema rok, simulacija ga ima', () => {
+  it('sparivanje (mat) preživi zapis s punim tekstom opcije', () => {
+    // Vrijednost 'mat' odgovora je CIJELI tekst desne opcije (SimSharedUI), a
+    // ocjenjivanje uspoređuje upravo njega — kratiti ga ili odbaciti značilo bi
+    // tiho izgubljeno sparivanje i nižu ocjenu.
+    const dugo = 'A — To teach their children responsibility.'
+    const ans = { q1: { 'Why do people get dogs?': dugo, 'Short': 'D — Daniel' } }
+    expect(sanitizeAnswers(ans)).toEqual(ans)
+    expect(answeredCount(sanitizeAnswers(ans))).toBe(1)
+    // Apsurdno dug niz (nije opcija nego tuđi sadržaj) i dalje otpada
+    expect(sanitizeAnswers({ q1: { l: 'x'.repeat(500) } })).toEqual({})
+    // Objekt pitanja se prepoznaje po poljima, ne po duljini teksta
+    expect(sanitizeAnswers({ q1: { q: 'Tekst pitanja', l: 'A — Alec' } })).toEqual({})
+  })
+
+  it('brisanje je vezano uz ispit — sintetička sesija i drugi tab ne diraju tuđi zapis', () => {
+    writeActiveSession(buildSnapshot({ examKey: '2024_ljeto', examMode: true, answers: { o1: 'A' } }))
+    const before = snap()
+    for (const k of ['daily_20321', 'virtual_1', 'filter_session_9', 'exam_errors_session', '2023_ljeto', null]) {
+      expect(clearActiveSessionFor(k)).toBe(false)
+    }
+    expect(snap()).toEqual(before)
+    expect(clearActiveSessionFor('2024_ljeto')).toBe(true)
+    expect(snap()).toBeNull()
+  })
+
+  it('nemjereno vježbanje nema rok; simulacija i „Vježbanje ⏱” ga imaju', () => {
     const end = Date.now() + 60_000
     expect(buildSnapshot({ examKey: 'k', examMode: false, endsAt: end }).endsAt).toBeNull()
     expect(buildSnapshot({ examKey: 'k', examMode: true, endsAt: end }).endsAt).toBe(end)
+    // Mjereno vježbanje: rok se pamti, pa refresh ne vraća puni sat
+    expect(buildSnapshot({ examKey: 'k', examMode: false, timedMode: true, endsAt: end }).endsAt).toBe(end)
+    writeActiveSession(buildSnapshot({ examKey: '2024_ljeto', examMode: false, timedMode: true, endsAt: end }))
+    expect(readActiveSession().endsAt).toBe(end)
     const s = { endsAt: end }
     expect(remainingSeconds(s, end - 90_000)).toBe(90)
     expect(remainingSeconds(s, end + 5_000)).toBe(0)
@@ -251,6 +286,44 @@ describe('ExamPlayScreen — snapshot i nastavak', () => {
     errorSpy.mockRestore()
   })
 
+  it('prelazak cjeline se zapisuje ODMAH, ne kroz debounce', () => {
+    // Inače bi refresh u tih 400 ms našao zapis sa starom cjelinom i rokom koji
+    // je upravo istekao → nastavak bi predao cijeli ispit.
+    vi.useFakeTimers()
+    renderPlay()
+    const before = snap()
+    fireEvent.click(screen.getByRole('button', { name: 'Završi dio →' }))
+    const after = snap()
+    expect(after.blockIdx).toBe(1)
+    expect(after.endsAt).toBeGreaterThan(before.endsAt)
+  })
+
+  it('pomaknut sistemski sat ne može dati više od punog vremena cjeline', () => {
+    vi.useFakeTimers()
+    const tooMuch = 999 * 60
+    renderPlay({
+      resume: { examKey: 'vis_9999_test', cur: 0, blockIdx: 0, answers: {}, endsAt: Date.now() + tooMuch * 1000 },
+      resumeSeconds: tooMuch,
+    })
+    expect(document.querySelector('.timer').textContent).toBe('70:00')
+    // I zapisani rok je kapiran, pa se prednost ne prenosi na sljedeći refresh
+    expect(snap().endsAt - Date.now()).toBeLessThanOrEqual(READING_S * 1000)
+  })
+
+  it('mjereno vježbanje („Vježbanje ⏱”) nastavlja od preostalog vremena, ne od punog', () => {
+    vi.useFakeTimers()
+    const first = renderPlay({ examMode: false, timedMode: true })
+    const saved = snap()
+    expect(saved.mode).toBe('vjezbanje')
+    expect(typeof saved.endsAt).toBe('number')
+    first.unmount()
+
+    const resume = readActiveSession()
+    const left = remainingSeconds(resume, resume.endsAt - 5 * 60 * 1000)
+    renderPlay({ examMode: false, timedMode: true, resume, resumeSeconds: left })
+    expect(document.querySelector('.timer').textContent).toBe('05:00')
+  })
+
   it('nova sesija bez snapshota kreće od punog vremena bloka (nepromijenjeno ponašanje)', () => {
     vi.useFakeTimers()
     renderPlay()
@@ -302,6 +375,9 @@ describe('ExamPlayScreen — snapshot i nastavak', () => {
     const sess = renderPlay({ exam: errs, examMode: false })
     fireEvent.click(screen.getAllByRole('radio')[0])
     act(() => { vi.advanceTimersByTime(1000) })
+    expect(snap()).toEqual(before)
+    // Ni PREDAJA te sesije ne smije obrisati tuđi zapis (brisanje je vezano uz ključ)
+    fireEvent.click(screen.getByRole('button', { name: 'Vidi rezultate' }))
     expect(snap()).toEqual(before)
     // Ni izlazak iz te sesije ne smije obrisati tuđi zapis
     fireEvent.click(screen.getByRole('button', { name: '← Natrag' }))
@@ -358,16 +434,41 @@ describe('EngleskiSimulator — Home kartica „Nastavi ispit”', () => {
     expect(snap()).toBeNull()
   }, 60000)
 
-  it('istekao rok simulacije → automatska predaja spremljenih odgovora i poruka', async () => {
+  it('istekla cjelina koja NIJE zadnja → nastavak sljedeće cjeline s punim vremenom', async () => {
+    // Rok u snapshotu je rok TEKUĆE cjeline. Istek Čitanja dok korisnika nije
+    // bilo mora završiti isto kao istek uživo: Pisanje s punih 75 min, a ne
+    // predaja ispita u kojem dvije trećine nisu ni ponuđene.
+    writeActiveSession(buildSnapshot({
+      examKey: VIS_EXAM.key, examMode: true, answers: { R1: 'A' }, cur: 0, blockIdx: 0,
+      endsAt: Date.now() - 60 * 1000,
+    }))
+    render(e(EngleskiSimulator))
+    await screen.findByText('Nastavi ispit', {}, { timeout: 20000 })
+    // Nije zadnja cjelina → gumb doista nastavlja
+    fireEvent.click(screen.getByRole('button', { name: 'Nastavi' }))
+
+    await waitFor(() => expect(document.querySelector('.ntitle')).toBeTruthy(), { timeout: 20000 })
+    expect(document.querySelector('.ntitle').textContent).toContain('Pisanje (2/3)')
+    expect(document.querySelector('.timer').textContent).toBe('75:00')
+    expect(document.querySelector('[role="status"]').textContent).toContain('Pisanje')
+    // Zapis je odmah osvježen na novu cjelinu, s novim rokom i zadržanim odgovorom
+    const s = snap()
+    expect(s.blockIdx).toBe(1)
+    expect(s.answers).toEqual({ R1: 'A' })
+    expect(s.endsAt).toBeGreaterThan(Date.now())
+  }, 60000)
+
+  it('istekla ZADNJA cjelina → automatska predaja spremljenih odgovora i poruka', async () => {
     writeActiveSession(buildSnapshot({
       examKey: OSN_EXAM.key, examMode: true, answers: { o1: 'A' }, cur: 0,
       endsAt: Date.now() - 5 * 60 * 1000,
     }))
     render(e(EngleskiSimulator))
-    await screen.findByText('Nastavi ispit', {}, { timeout: 20000 })
+    await screen.findByText('Ispit čeka predaju', {}, { timeout: 20000 })
     expect(screen.getByText('Vrijeme je isteklo')).toBeTruthy()
 
-    fireEvent.click(screen.getByRole('button', { name: 'Nastavi' }))
+    // Gumb piše ono što doista radi — predaju, ne nastavak
+    fireEvent.click(screen.getByRole('button', { name: 'Predaj i vidi rezultat' }))
     // Ne ulazi se u ispit — ide se ravno na rezultate (nema ni sata ni predaje)
     await waitFor(() => expect(document.querySelector('.score-ring-pct')).toBeTruthy(), { timeout: 40000 })
     expect(document.querySelector('.timer')).toBeNull()

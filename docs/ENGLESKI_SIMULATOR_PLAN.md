@@ -357,6 +357,24 @@ Grana `eng/resume-session`. **Nova značajka, ne popravak.** Dijagnostički prol
 
 Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — 96/96 datoteka, 1869 testova zeleno (bez ponavljanja, poznati flakeovi se ovaj put nisu javili).
 
+### Sanacija nalaza pregleda — 2026-09-23
+
+Pregled prve izvedbe oborio je četiri stvari; sve su popravljene u istoj grani, uz dvije odluke koje mijenjaju ranije zapisano.
+
+- **Brisanje snapshota vezano je uz ispit.** `onExamDone` je zvao `clearActiveSession()` bezuvjetno, pa je dovršetak dnevnog izazova, virtualnog ispita, sesije grešaka ili filtriranog vježbanja brisao nedovršenu simulaciju — točno ono što je odluka o sintetičkim sesijama trebala spriječiti (zaštita je postojala samo na pisanju). Uvedena je `clearActiveSessionFor(examKey)`: briše samo zapis koji pripada tom ispitu. Time je pokriven i scenarij s dvije kartice preglednika — predaja u jednoj ne briše nedovršen ispit druge.
+- **Istek roka dok je kartica bila zatvorena ponaša se kao istek uživo.** `endsAt` je rok **tekuće** cjeline, a nastavak ga je tumačio kao rok cijelog ispita i sve odmah predavao. Sada: istekne li cjelina koja nije zadnja, nastavlja se sljedećom s punim propisanim vremenom uz poruku (isto što radi `onTimerExpire`), a predaje se samo kad je istekla zadnja. Bez toga bi „nastavak unutar 24 h” za višeblokovnu simulaciju vrijedio samo unutar trajanja jedne cjeline.
+- **Prelazak cjeline zapisuje se odmah**, ne kroz 400 ms debounce. Refresh u tom prozoru inače bi zatekao zapis sa starom cjelinom i rokom koji je upravo istekao pa bi nastavak predao cijeli ispit iako je korisnik legitimno upravo dobio novu cjelinu.
+- **Kartica više ne zove „Nastavi” ono što je predaja.** Kad je istekla zadnja cjelina, kartica piše „Ispit čeka predaju” i gumb „Predaj i vidi rezultat” (broj cjelina za taj natpis procjenjuje se iz laganog indeksa preko `blockCountFromIndex`; pravu odluku i dalje donosi `getExamBlocks` nad učitanim ispitom).
+- **Ispravak sanitizacije `mat` odgovora.** Vrijednost `mat` odgovora nije slovo nego **cijeli tekst desne opcije** — s njim uspoređuje `chk`. Stari limit od 16 znakova odbacivao je 636 od 1101 stvarne opcije, pa su se sparivanja tiho gubila, a na putu istekle simulacije i krivo ocjenjivala. Limit je podignut na 200 (najdulja stvarna opcija ima 73 znaka) i vrijednost se nikad ne reže — odrezan tekst više ne bi bio jednak točnom odgovoru. Privatnost (ADR-001) sada čuva **oblik, ne duljina**: mapa koja nosi ijedno polje objekta pitanja (`q`, `sol`, `opts`, `exp`, …) nije odgovor nego slučajno proslijeđen objekt pitanja i cijela otpada.
+
+**Promijenjena odluka o satu u vježbanju s timerom.** Ranije zapisano „vježbanje pri nastavku dobiva svjež sat” **više ne vrijedi**: refresh je ondje bio najjeftiniji način da se s dvije preostale minute vrati punih 90, uz zadržane odgovore — dakle mjerena vježba prestaje biti mjerena. `endsAt` se sada piše i za „Vježbanje ⏱”, pa nastavak kreće od preostalog vremena. Nemjereno vježbanje i dalje nema rok, jer ondje sat ni ne postoji.
+
+**Pomicanje sistemskog sata.** `endsAt` je apsolutno vrijeme, pa bi pomak sata unatrag poklonio proizvoljno mnogo vremena. Preostalo vrijeme se pri nastavku zato kapa na puno propisano trajanje cjeline (i novi rok se računa iz kapirane vrijednosti, da se prednost ne prenese na sljedeći refresh). Ostatak posljedica pomaknutog sata — TTL koji tada ne okine, odnosno pomak unaprijed koji obriše svjež zapis — ostaje svjesno neriješen: za lokalni trenažer cijena monotonog mjerenja ne isplati se.
+
+**Testovi** (`resume-session.test.js`, sada 25): puni tekst `mat` opcije preživi zapis; brisanje vezano uz ključ (sintetička sesija i druga kartica ne diraju tuđi zapis); prelazak cjeline se zapisuje odmah; kapa na pomaknut sistemski sat; „Vježbanje ⏱” nastavlja od preostalog vremena; istekla cjelina koja nije zadnja vodi u sljedeću s punim vremenom; istekla zadnja cjelina predaje ispit i gumb tako piše.
+
+Provjere: `npx tsc --noEmit -p .` — 0 grešaka; `npx vitest run` — 96/96 datoteka, 1875 testova zeleno / 6 todo.
+
 ## Status Faza 4 (audio: pristupačnost i odbačena HEAD provjera) — 2026-09-23
 
 Grana `eng/audio-preload`. Krenula je kao odgovor na nalaz o performansama iz pregleda 2026-09-22 (`preload: 'metadata'` uvodi promet i bez klika na Play): `preload='none'` + `fetch(url, { method: 'HEAD' })` pri montiranju playera. **Ta je zamjena povučena** — pregled je pokazao da je u jedinoj postojećoj konfiguraciji inertna i da uz to briše postojeću detekciju.
