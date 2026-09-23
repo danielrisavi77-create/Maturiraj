@@ -551,7 +551,16 @@ export function isPublicExamPayloadPath(relPosixPath) {
  * Zato ove datoteke imaju vlastito pravilo, bez baselinea i bez ratcheta: to je
  * payload koji ruta šalje u preglednik, ključ u njemu nikad nije zatečeno
  * stanje nego kvar generatora (ADR-001 §3 i §6).
+ *
+ * Jedina iznimka je slabi ključ `alt`: pristupačni opis slike koji u javnom
+ * payloadu postoji namjerno — bez njega slika nema tekstualnu alternativu, pa
+ * ga generator svjesno zadržava. `alt` ne smije odavati odgovor, ali to je
+ * svojstvo teksta koje provjerava audit slika iz pipelinea, ne ovaj sken
+ * imena ključeva; kad bi se brojao ovdje, svaki canonical ispit sa slikama bio
+ * bi prijavljen kao curenje. Svi ostali ključevi, jaki i slabi, ostaju 0.
  */
+const PUBLIC_PAYLOAD_MATCHERS = makeKeyMatchers(SECRET_KEYS.filter((key) => key !== 'alt'))
+
 export async function scanPublicExamPayloads({ root = REPO_ROOT } = {}) {
   const leaks = []
   await walk(path.join(root, 'content'), {
@@ -560,12 +569,12 @@ export async function scanPublicExamPayloads({ root = REPO_ROOT } = {}) {
       const rel = toPosix(path.relative(root, absPath))
       if (!isPublicExamPayloadPath(rel)) return
       const source = await readFile(absPath, 'utf8').catch(() => '')
-      const count = countSecretKeys(source, DEFAULT_MATCHERS)
+      const count = countSecretKeys(source, PUBLIC_PAYLOAD_MATCHERS)
       if (count > 0) leaks.push({ file: rel, count })
     },
   })
   leaks.sort((a, b) => a.file.localeCompare(b.file))
-  return { leaks, ok: leaks.length === 0, keys: [...SECRET_KEYS] }
+  return { leaks, ok: leaks.length === 0, keys: [...PUBLIC_PAYLOAD_MATCHERS.keys] }
 }
 
 export async function loadBaseline(baselinePath = BASELINE_PATH) {

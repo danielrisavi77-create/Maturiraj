@@ -1,7 +1,23 @@
 import { describe, expect, it } from 'vitest'
 import { DISCERE_SUBJECTS, getDiscereSubject } from '@/lib/discere/subject-registry'
-import { loadExam, loadSubjectIndex, registeredCanonicalSubjects } from '@/lib/discere/content-loader'
+import { loadSubjectIndex, registeredCanonicalSubjects } from '@/lib/discere/content-loader'
+import { examModulePathsForSubject } from '@/scripts/discere-validate.mjs'
+import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { validateExam } from '@/lib/discere/exam-schema'
+
+// ADR-001: kanonski izvor (content/discere/<id>/exams/*.mjs) nosi answer/solution i
+// ne smije biti dohvatljiv iz klijentskog grafa, pa ga ni ovaj sadržajni gate ne
+// učitava kroz lib/discere/content-loader.js (klijentski modul) nego izravno, s diska.
+async function loadExamFromSource(subjectId, index, examKey) {
+  const subjectDir = resolve(process.cwd(), 'content', 'discere', subjectId)
+  const paths = examModulePathsForSubject(subjectDir, index)
+  const position = index.exams.findIndex((entry) => entry.key === examKey)
+  if (position < 0) throw new Error(`Unknown exam for ${subjectId}: ${examKey}`)
+  const examModule = await import(/* @vite-ignore */ pathToFileURL(paths[position]).href)
+  if (!examModule?.exam) throw new Error(`Exam module does not export exam: ${subjectId}/${examKey}`)
+  return examModule.exam
+}
 
 describe('active canonical Discere content gate', () => {
   it('requires a registered loader for every active canonical runtime', () => {
@@ -22,7 +38,7 @@ describe('active canonical Discere content gate', () => {
       expect(index.subject).toBe(id)
       expect(index.exams.length).toBeGreaterThan(0)
       for (const entry of index.exams) {
-        const exam = await loadExam(id, entry.key)
+        const exam = await loadExamFromSource(id, index, entry.key)
         expect(exam.meta.subject).toBe(id)
         expect(exam.meta.key).toBe(entry.key)
         expect(validateExam(exam).errors).toEqual([])

@@ -90,7 +90,8 @@ describe('ADR-001 SLOJ A — izolacija grafa uvoza (stvarno stablo)', () => {
     expect(data.every((file) => isSecretDataPath(file))).toBe(true)
     expect(data.filter((file) => file.startsWith('lib/data/eng/secrets/'))).toHaveLength(70)
     expect(data.filter((file) => file.startsWith('lib/data/soc/secrets/'))).toHaveLength(32)
-    const other = data.filter((file) => !/^lib\/data\/(eng|soc)\/secrets\//.test(file))
+    expect(data.filter((file) => file.startsWith('lib/data/bio/secrets/'))).toHaveLength(1)
+    const other = data.filter((file) => !/^lib\/data\/(eng|soc|bio)\/secrets\//.test(file))
     expect(other).toEqual([])
   })
 
