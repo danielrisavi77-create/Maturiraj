@@ -1,9 +1,9 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { validateExam, upgradeExam } from '../lib/discere/exam-schema.js'
+import { validateExam } from '../lib/discere/exam-schema.js'
 import { validateExamAssets } from './discere-asset-integrity.mjs'
-import { buildPublicExam, buildSecrets, renameAltForDisk } from './gen-discere-exams.mjs'
+import { buildSubjectArtifacts, serializeArtifact } from './gen-discere-exams.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 
@@ -34,35 +34,76 @@ function subjectDirs(contentRoot, requestedSubject) {
 }
 
 /**
+ * Datoteka na disku mora biti identična očekivanom artefaktu (ako postoji).
+ * Prijelomi redaka se normaliziraju: generator uvijek piše LF, ali git s
+ * `core.autocrlf=true` (Windows) na checkoutu napravi CRLF, pa bi doslovna
+ * usporedba bajtova prijavila drift na svakom svježem klonu. JSON.stringify
+ * escapea stvarni CR unutar niza (\r), pa normalizacija ne može sakriti razliku
+ * u sadržaju.
+ */
+function compareArtifact(absPath, expectedValue, { code, message, cwd, examKey = null }) {
+  if (!existsSync(absPath)) return []
+  const onDisk = readFileSync(absPath, 'utf8').replace(/\r\n/g, '\n')
+  if (onDisk === serializeArtifact(expectedValue)) return []
+  return [{ code, path: relative(cwd, absPath), message, examKey }]
+}
+
+/**
  * Provjera drifta (npm skripta discere:gen): ako generirane datoteke već
  * postoje na disku, moraju biti bajt-identične onome što bi generator upravo
- * sada proizveo iz kanonskog izvora. Pad znači da je netko ručno diraona
+ * sada proizveo iz kanonskog izvora. Pad znači da je netko ručno dirao
  * generirano ili zaboravio pokrenuti `npm run discere:gen` nakon izmjene
  * kanonskog sadržaja.
+ *
+ * Pokriva SVE generirane artefakte, ne samo javni ispit i tajni store: bez
+ * summary.json, topics.json i index.json bi ručna izmjena tih datoteka prošla
+ * validaciju, a sljedeći `discere:gen` bi je nijemo poništio.
  */
-function checkGeneratedDrift(subjectId, entry, rawExam, cwd) {
+function checkGeneratedDrift(subjectId, subjectDir, index, rawExams, cwd) {
+  const artifacts = buildSubjectArtifacts(subjectId, index, rawExams)
   const issues = []
-  const publicPath = join(cwd, 'content', subjectId, 'exams', `${entry.key}.json`)
-  const secretsPath = join(cwd, 'lib', 'data', subjectId, 'secrets', `${entry.key}.json`)
-  if (!existsSync(publicPath) && !existsSync(secretsPath)) return issues
 
-  const upgraded = upgradeExam(rawExam)
-  const publicExam = buildPublicExam(upgraded)
-  const diskExam = { ...publicExam, qs: renameAltForDisk(publicExam.qs) }
-  const { secrets } = buildSecrets(upgraded.questions)
+  for (const built of artifacts.exams) {
+    issues.push(...compareArtifact(
+      join(cwd, 'content', subjectId, 'exams', `${built.key}.json`),
+      built.publicExam,
+      { code: 'GENERATED_PUBLIC_DRIFT', message: `content/${subjectId}/exams/${built.key}.json ne odgovara generatoru — pokreni npm run discere:gen.`, cwd, examKey: built.key },
+    ))
+    issues.push(...compareArtifact(
+      join(cwd, 'lib', 'data', subjectId, 'secrets', `${built.key}.json`),
+      built.secrets,
+      { code: 'GENERATED_SECRETS_DRIFT', message: `lib/data/${subjectId}/secrets/${built.key}.json ne odgovara generatoru — pokreni npm run discere:gen.`, cwd, examKey: built.key },
+    ))
+  }
 
-  if (existsSync(publicPath)) {
-    const expected = `${JSON.stringify(diskExam, null, 2)}\n`
-    if (readFileSync(publicPath, 'utf8') !== expected) {
-      issues.push({ code: 'GENERATED_PUBLIC_DRIFT', path: relative(cwd, publicPath), message: `content/${subjectId}/exams/${entry.key}.json ne odgovara generatoru — pokreni npm run discere:gen.` })
+  issues.push(...compareArtifact(join(subjectDir, 'summary.json'), artifacts.summary, {
+    code: 'GENERATED_SUMMARY_DRIFT', message: `content/discere/${subjectId}/summary.json ne odgovara generatoru — pokreni npm run discere:gen.`, cwd,
+  }))
+  issues.push(...compareArtifact(join(subjectDir, 'topics.json'), artifacts.topics, {
+    code: 'GENERATED_TOPICS_DRIFT', message: `content/discere/${subjectId}/topics.json ne odgovara generatoru — pokreni npm run discere:gen.`, cwd,
+  }))
+  // index.json je RUČNO pisan (label, durationSec, file) s generiranim poljima
+  // unutra, pa se ne uspoređuje bajt po bajt — samo polja koja generator
+  // izvodi iz izvora, i to samo ako ih datoteka uopće ima (novi predmet ih
+  // dobiva tek prvim `discere:gen`).
+  const GENERATED_INDEX_FIELDS = ['questionCount', 'maxPoints', 'qaStatus']
+  const onDiskEntries = Array.isArray(index.exams) ? index.exams : []
+  for (let i = 0; i < onDiskEntries.length; i += 1) {
+    const onDisk = onDiskEntries[i]
+    const expected = artifacts.index.exams[i]
+    if (!onDisk || !expected) continue
+    for (const field of GENERATED_INDEX_FIELDS) {
+      if (onDisk[field] === undefined) continue
+      if (onDisk[field] === expected[field]) continue
+      issues.push({
+        code: 'GENERATED_INDEX_DRIFT',
+        path: relative(cwd, join(subjectDir, 'index.json')),
+        message: `exams[${i}].${field} je ${JSON.stringify(onDisk[field])}, a izvor daje ${JSON.stringify(expected[field])} — pokreni npm run discere:gen.`,
+        examKey: onDisk.key ?? null,
+      })
     }
   }
-  if (existsSync(secretsPath)) {
-    const expected = `${JSON.stringify(secrets, null, 2)}\n`
-    if (readFileSync(secretsPath, 'utf8') !== expected) {
-      issues.push({ code: 'GENERATED_SECRETS_DRIFT', path: relative(cwd, secretsPath), message: `lib/data/${subjectId}/secrets/${entry.key}.json ne odgovara generatoru — pokreni npm run discere:gen.` })
-    }
-  }
+
   return issues
 }
 
@@ -78,6 +119,7 @@ export async function validateSubjectDirectory(subjectDir, { publicRoot = resolv
   const exams = []
   const errors = []
   const warnings = []
+  const rawExams = new Array(paths.length).fill(null)
 
   for (let i = 0; i < paths.length; i += 1) {
     const modulePath = paths[i]
@@ -103,20 +145,33 @@ export async function validateSubjectDirectory(subjectDir, { publicRoot = resolv
       continue
     }
 
+    rawExams[i] = imported.exam
     const result = validateExam(imported.exam)
     const media = await validateExamAssets(imported.exam, { publicRoot })
     result.errors.push(...media.errors)
-    let driftIssues = []
-    try {
-      driftIssues = checkGeneratedDrift(subjectId, entry, imported.exam, cwd)
-    } catch (error) {
-      driftIssues = [{ code: 'GENERATED_DRIFT_CHECK_FAILED', path: entry.file, message: error?.message || String(error) }]
-    }
-    result.errors.push(...driftIssues)
     result.valid = result.errors.length === 0
     exams.push({ key: entry.key, valid: result.valid, errorCount: result.errors.length, warningCount: result.warnings.length, assets: media.assets })
     result.errors.forEach((error) => errors.push({ ...error, examKey: entry.key }))
     result.warnings.forEach((warning) => warnings.push({ ...warning, examKey: entry.key }))
+  }
+
+  // Drift se provjerava nad CIJELIM predmetom (summary/topics/index su jedan
+  // artefakt za sve ispite), pa tek kad su svi kanonski moduli uspješno učitani.
+  if (paths.length > 0 && rawExams.every(Boolean)) {
+    let driftIssues = []
+    try {
+      driftIssues = checkGeneratedDrift(subjectId, subjectDir, index, rawExams, cwd)
+    } catch (error) {
+      driftIssues = [{ code: 'GENERATED_DRIFT_CHECK_FAILED', path: relative(cwd, subjectDir), message: error?.message || String(error), examKey: null }]
+    }
+    for (const issue of driftIssues) {
+      errors.push(issue)
+      const target = issue.examKey ? exams.find((exam) => exam.key === issue.examKey) : null
+      if (target) {
+        target.errorCount += 1
+        target.valid = false
+      }
+    }
   }
 
   return { subject: subjectId, skipped: false, exams, errors, warnings }

@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { upgradeExam, validateExam } from '@/lib/discere/exam-schema'
-import { buildPublicExam, buildSecrets, buildSummaryLeaves, renameAltForDisk } from '@/scripts/gen-discere-exams.mjs'
+import { buildPublicExam, buildSecrets, buildSummaryLeaves, buildTopics } from '@/scripts/gen-discere-exams.mjs'
 
 const ROOT = resolve(__dirname, '..', '..')
 
@@ -20,9 +20,8 @@ describe('Discere generator drift (bio)', () => {
     expect(validateExam(exam).errors).toEqual([])
 
     const publicExam = buildPublicExam(exam)
-    const diskExam = { ...publicExam, qs: renameAltForDisk(publicExam.qs) }
     const onDiskPublic = readJson('content/bio/exams/2026_ljeto.json')
-    expect(diskExam).toEqual(onDiskPublic)
+    expect(publicExam).toEqual(onDiskPublic)
 
     const { secrets, leafCount } = buildSecrets(exam.questions)
     const onDiskSecrets = readJson('lib/data/bio/secrets/2026_ljeto.json')
@@ -33,6 +32,9 @@ describe('Discere generator drift (bio)', () => {
     const onDiskSummary = readJson('content/discere/bio/summary.json')
     expect(summaryLeaves).toEqual(onDiskSummary.exams['2026_ljeto'])
     expect(summaryLeaves).toHaveLength(leafCount)
+
+    // topics.json i index.json su isto generirani artefakti — i oni moraju pratiti izvor.
+    expect(buildTopics('bio', onDiskSummary.exams)).toEqual(readJson('content/discere/bio/topics.json'))
   })
 
   it('public payload never carries answer/solution/explanation, even nested in children', async () => {
@@ -48,22 +50,54 @@ describe('Discere generator drift (bio)', () => {
     for (const question of onDiskPublic.qs) assertNoSecrets(question)
   })
 
-  it('the pre-rename question set (alt still named alt) passes public-mode schema validation', async () => {
+  it('the payload ON DISK passes public-mode schema validation (isporučeno, ne međurezultat)', async () => {
     const { exam: rawExam } = await import('@/content/discere/bio/exams/2026_ljeto.mjs')
     const exam = upgradeExam(rawExam)
-    const publicExam = buildPublicExam(exam)
-    const publicResult = validateExam({ meta: { ...exam.meta, ...publicExam.meta }, questions: publicExam.qs }, { public: true })
+    const onDiskPublic = readJson('content/bio/exams/2026_ljeto.json')
+    // Ruta serviranja sastavlja meta iz kanonskog zapisa i javne omotnice — isto radi generator.
+    const publicResult = validateExam(
+      { meta: { ...exam.meta, ...onDiskPublic.meta }, questions: onDiskPublic.qs },
+      { public: true },
+    )
     expect(publicResult.errors).toEqual([])
+  })
+
+  it('svaka slika u isporučenom payloadu zadržava alt tekst (renderer čita asset.alt)', () => {
+    const onDiskPublic = readJson('content/bio/exams/2026_ljeto.json')
+    const assets = []
+    const collect = (question) => {
+      for (const asset of question.assets || []) assets.push(asset)
+      for (const child of question.children || []) collect(child)
+    }
+    for (const question of onDiskPublic.qs) collect(question)
+
+    expect(assets.length).toBeGreaterThan(0)
+    for (const asset of assets) {
+      if (asset.type && asset.type !== 'image') continue
+      expect(typeof asset.alt).toBe('string')
+      expect(asset.alt.trim().length).toBeGreaterThan(0)
+      expect(asset).not.toHaveProperty('altText')
+    }
   })
 
   it('every leaf question has exactly one secret entry (broj listova == broj tajnih unosa)', async () => {
     const { exam: rawExam } = await import('@/content/discere/bio/exams/2026_ljeto.mjs')
     const exam = upgradeExam(rawExam)
-    const { secrets } = buildSecrets(exam.questions)
+    const { secrets, leafCount } = buildSecrets(exam.questions)
+
+    // Broj listova, NE zbroj bodova: list vrijedan 2 boda ne smije rušiti ovu tvrdnju.
+    const countLeafQuestions = (questions) => (questions || []).reduce(
+      (sum, q) => sum + (Array.isArray(q.children) && q.children.length ? countLeafQuestions(q.children) : 1),
+      0,
+    )
+    const expectedLeaves = countLeafQuestions(exam.questions)
     const secretLeaves = Object.values(secrets).filter((entry) => entry.points !== undefined)
-    expect(secretLeaves).toHaveLength(exam.meta.maxPoints)
+
+    expect(leafCount).toBe(expectedLeaves)
+    expect(secretLeaves).toHaveLength(expectedLeaves)
     for (const entry of secretLeaves) {
-      expect(entry.answer !== undefined || entry.type === undefined).toBeTruthy()
+      expect(entry.type).toBeTruthy()
+      expect(entry.answer).toBeDefined()
     }
   })
 
@@ -74,10 +108,20 @@ describe('Discere generator drift (bio)', () => {
     expect(entry.maxPoints).toBe(70)
   })
 
-  it('content/bio/exams/2026_ljeto.json scores 0 on the ADR-001 secret-key regex', async () => {
+  it('content/bio/exams/2026_ljeto.json nema tajnih ključeva osim alt teksta koji shema traži', async () => {
     const { countSecretKeys } = await import('@/scripts/security/exam-secret-scan.mjs')
     const raw = readFileSync(resolve(ROOT, 'content/bio/exams/2026_ljeto.json'), 'utf8')
-    expect(countSecretKeys(raw)).toBe(0)
+    const altHits = (raw.match(/"alt":/g) || []).length
+
+    // Bez `alt` (slabi ključ pred-A2 skena, a shema ga zahtijeva na slici) payload
+    // ne smije imati nijedan pogodak. Ostane li išta, to je pravo curenje.
+    const withoutAlt = raw.replace(/"alt":/g, '"altOpisSlike":')
+    expect(countSecretKeys(withoutAlt)).toBe(0)
+
+    // Baseline unos je točno broj alt tekstova — ne ostavlja prostor pravom curenju.
+    const baseline = readJson('scripts/security/exam-secret-baseline.json')
+    expect(baseline.files['content/bio/exams/2026_ljeto.json']).toBe(altHits)
+    expect(countSecretKeys(raw)).toBe(altHits)
   })
 
   it('lib/data/bio/secrets/2026_ljeto.json is not reachable from any client root (spot check)', () => {

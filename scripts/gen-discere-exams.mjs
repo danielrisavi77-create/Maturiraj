@@ -96,26 +96,6 @@ function buildPublicQuestion(question) {
   return out
 }
 
-/**
- * `alt` je u pred-A2 exam-secret-scan.mjs slabi ključ (mišljen za CSS
- * className, ne za opisni tekst slike), pa bi svaka slika na exam-shaped
- * datoteci (ima `qs:`) lažno pala kao "curenje". Shema (exam-schema.js)
- * zahtijeva `asset.alt` pa se struktura validira PRIJE ovoga; tek zapis na
- * disk preimenuje `alt` → `altText`, samo u javnoj omotnici. Kanonski izvor i
- * tajni store i dalje čuvaju izvorno `alt` polje iz sheme. Ukloniti kad A2
- * doda alt na dopuštene/jake ključeve exam-secret-scan.mjs.
- */
-function renameAltForDisk(questions) {
-  return (questions || []).map((question) => {
-    const next = { ...question }
-    if (Array.isArray(next.assets)) {
-      next.assets = next.assets.map(({ alt, ...rest }) => (alt !== undefined ? { ...rest, altText: alt } : rest))
-    }
-    if (Array.isArray(next.children)) next.children = renameAltForDisk(next.children)
-    return next
-  })
-}
-
 function buildPublicMeta(meta) {
   const out = pick(meta, PUBLIC_META_FIELDS)
   // Isti par kao eng generator: klijent i sim_progress rade s A/B, kataloški level već jest A/B/null.
@@ -188,9 +168,78 @@ function buildSummaryLeaves(questions, inheritedAssets = false) {
   return out
 }
 
+/** Brojanje tema za topics.json — determinističan poredak po kodu (hr). */
+function buildTopics(subjectId, summaryExams) {
+  const topicCounts = new Map()
+  for (const leaves of Object.values(summaryExams)) {
+    for (const leaf of leaves) {
+      if (!leaf.topic) continue
+      topicCounts.set(leaf.topic, (topicCounts.get(leaf.topic) ?? 0) + 1)
+    }
+  }
+  const topics = [...topicCounts.entries()]
+    .sort((a, b) => a[0].localeCompare(b[0], 'hr'))
+    .map(([code, count]) => ({ code, label: code.charAt(0).toLocaleUpperCase('hr-HR') + code.slice(1), count }))
+  return { subject: subjectId, topics }
+}
+
+/** Jedini oblik zapisa generiranih datoteka — isti niz mora dati i drift provjera. */
+export function serializeArtifact(data) {
+  return `${JSON.stringify(data, null, 2)}\n`
+}
+
+/**
+ * ČISTA jezgra generatora: iz kanonskog indeksa i učitanih modula ispita gradi
+ * SVE generirane artefakte (javni ispiti, tajni store, summary, topics,
+ * osvježeni index) bez ikakvog dodira diska. Tako `discere-validate.mjs` može
+ * provjeriti drift svih artefakata istim kodom kojim ih generator piše —
+ * nema druge, zaostale implementacije.
+ */
+export function buildSubjectArtifacts(subjectId, rawIndex, rawExams) {
+  const index = JSON.parse(JSON.stringify(rawIndex))
+  const entries = Array.isArray(index.exams) ? index.exams : []
+  const exams = []
+  const summaryExams = {}
+
+  for (let i = 0; i < entries.length; i += 1) {
+    const entry = entries[i]
+    const exam = upgradeExam(rawExams[i])
+    const publicExam = buildPublicExam(exam)
+    const { secrets, leafCount } = buildSecrets(exam.questions)
+
+    summaryExams[entry.key] = buildSummaryLeaves(exam.questions)
+
+    // Osvježi index.json unos iz stvarnog (nakon-upgrade) sadržaja.
+    entry.qaStatus = exam.meta.qa?.status ?? entry.qaStatus
+    entry.questionCount = exam.questions.length
+    entry.maxPoints = exam.questions.reduce((sum, q) => sum + effectivePoints(q), 0)
+
+    exams.push({ key: entry.key, exam, publicExam, secrets, leafCount })
+  }
+
+  return {
+    index,
+    summary: { subject: subjectId, exams: summaryExams },
+    topics: buildTopics(subjectId, summaryExams),
+    exams,
+  }
+}
+
+/**
+ * `alt` je u pred-A2 exam-secret-scan.mjs SLAB ključ (mišljen za CSS `cl`/`alt`
+ * kratice u legacy ispitima), a shema (exam-schema.js IMAGE_ALT_REQUIRED) ga
+ * zahtijeva na svakoj slici i renderer ga čita kao `asset.alt`. Zato ga ova
+ * sonda ne broji — sve ostale ključeve broji. Preimenovanje polja u javnom
+ * payloadu NIJE opcija: izgubio bi se alt tekst u isporuci. Ukloniti izuzetak
+ * kad A2 makne `alt` iz WEAK_SECRET_KEYS.
+ */
+function leakProbe(value) {
+  return JSON.stringify(value, (key, val) => (key === 'alt' ? undefined : val))
+}
+
 function write(dir, name, data) {
   mkdirSync(dir, { recursive: true })
-  writeFileSync(path.join(dir, name), `${JSON.stringify(data, null, 2)}\n`, 'utf8')
+  writeFileSync(path.join(dir, name), serializeArtifact(data), 'utf8')
 }
 
 function pruneStale(dir, keep) {
@@ -241,85 +290,66 @@ async function loadExamModule(subjectDir, entry) {
 async function generateSubject(subjectDir) {
   const subjectId = path.basename(subjectDir)
   const indexPath = path.join(subjectDir, 'index.json')
-  const index = JSON.parse(readFileSync(indexPath, 'utf8'))
+  const rawIndex = JSON.parse(readFileSync(indexPath, 'utf8'))
 
   const publicDir = path.join(ROOT, 'content', subjectId, 'exams')
   const secretsDir = path.join(ROOT, 'lib', 'data', subjectId, 'secrets')
 
+  const rawExams = []
+  for (const entry of rawIndex.exams) rawExams.push(await loadExamModule(subjectDir, entry))
+
+  const artifacts = buildSubjectArtifacts(subjectId, rawIndex, rawExams)
+
   const keys = new Set()
-  const summaryExams = {}
   let totalQuestions = 0
   let totalSecrets = 0
 
-  for (const entry of index.exams) {
-    const rawExam = await loadExamModule(subjectDir, entry)
-    const exam = upgradeExam(rawExam)
+  for (const built of artifacts.exams) {
+    const { key, exam, publicExam, secrets, leafCount } = built
 
     // Kanonski izvor (s ključevima) mora proći PUNU validaciju prije razdvajanja.
     const canonicalResult = validateExam(exam)
     if (!canonicalResult.valid) {
       const details = canonicalResult.errors.map((e) => `  ${e.code} ${e.path}: ${e.message}`).join('\n')
-      throw new Error(`[gen-discere-exams] ${subjectId}/${entry.key}: kanonski ispit ne prolazi validaciju:\n${details}`)
+      throw new Error(`[gen-discere-exams] ${subjectId}/${key}: kanonski ispit ne prolazi validaciju:\n${details}`)
     }
 
-    const publicExam = buildPublicExam(exam)
-
-    // Javni ispit mora proći public-mode validaciju (bez answer/solution/explanation/transkripta).
+    // Javni ispit — točno ono što se piše na disk — mora proći public-mode
+    // validaciju (bez answer/solution/explanation/transkripta, s alt tekstom).
     const publicResult = validateExam(
       { meta: { ...exam.meta, ...publicExam.meta }, questions: publicExam.qs },
       { public: true },
     )
     if (!publicResult.valid) {
       const details = publicResult.errors.map((e) => `  ${e.code} ${e.path}: ${e.message}`).join('\n')
-      throw new Error(`[gen-discere-exams] ${subjectId}/${entry.key}: javni ispit propušta tajno polje:\n${details}`)
+      throw new Error(`[gen-discere-exams] ${subjectId}/${key}: javni ispit ne prolazi javnu shemu:\n${details}`)
     }
 
-    // Omotnica koja se stvarno piše na disk (alt -> altText, vidi renameAltForDisk).
-    const diskExam = { ...publicExam, qs: renameAltForDisk(publicExam.qs) }
-
-    // Dvostruka provjera protiv istog regexa kao ADR-001 sigurnosni sken — 0 pogodaka.
-    const leakHits = countSecretKeys(JSON.stringify(diskExam))
+    // Dvostruka provjera protiv istog regexa kao ADR-001 sigurnosni sken (bez `alt`, v. leakProbe).
+    const leakHits = countSecretKeys(leakProbe(publicExam))
     if (leakHits > 0) {
-      throw new Error(`[gen-discere-exams] ${subjectId}/${entry.key}: javni payload sadrži ${leakHits} pogodaka na tajne ključeve (exam-secret-scan regex).`)
+      throw new Error(`[gen-discere-exams] ${subjectId}/${key}: javni payload sadrži ${leakHits} pogodaka na tajne ključeve (exam-secret-scan regex).`)
     }
 
-    const { secrets, leafCount } = buildSecrets(exam.questions)
     const secretLeafCount = Object.values(secrets).filter((entryValue) => entryValue.points !== undefined).length
     if (leafCount !== secretLeafCount) {
-      throw new Error(`[gen-discere-exams] ${subjectId}/${entry.key}: ${leafCount} listova naspram ${secretLeafCount} tajnih unosa.`)
+      throw new Error(`[gen-discere-exams] ${subjectId}/${key}: ${leafCount} listova naspram ${secretLeafCount} tajnih unosa.`)
     }
 
-    write(publicDir, `${entry.key}.json`, diskExam)
-    write(secretsDir, `${entry.key}.json`, secrets)
-    keys.add(entry.key)
+    write(publicDir, `${key}.json`, publicExam)
+    write(secretsDir, `${key}.json`, secrets)
+    keys.add(key)
 
-    summaryExams[entry.key] = buildSummaryLeaves(exam.questions)
     totalQuestions += exam.questions.length
     totalSecrets += Object.keys(secrets).length
-
-    // Osvježi index.json unos iz stvarnog (nakon-upgrade) sadržaja.
-    entry.qaStatus = exam.meta.qa?.status ?? entry.qaStatus
-    entry.questionCount = exam.questions.length
-    entry.maxPoints = exam.questions.reduce((sum, q) => sum + effectivePoints(q), 0)
   }
 
   const prunedPublic = pruneStale(publicDir, keys)
   const prunedSecrets = pruneStale(secretsDir, keys)
 
-  write(subjectDir, 'index.json', index)
-  write(subjectDir, 'summary.json', { subject: subjectId, exams: summaryExams })
-
-  const topicCounts = new Map()
-  for (const leaves of Object.values(summaryExams)) {
-    for (const leaf of leaves) {
-      if (!leaf.topic) continue
-      topicCounts.set(leaf.topic, (topicCounts.get(leaf.topic) ?? 0) + 1)
-    }
-  }
-  const topics = [...topicCounts.entries()]
-    .sort((a, b) => a[0].localeCompare(b[0], 'hr'))
-    .map(([code, count]) => ({ code, label: code.charAt(0).toLocaleUpperCase('hr-HR') + code.slice(1), count }))
-  write(subjectDir, 'topics.json', { subject: subjectId, topics })
+  write(subjectDir, 'index.json', artifacts.index)
+  write(subjectDir, 'summary.json', artifacts.summary)
+  write(subjectDir, 'topics.json', artifacts.topics)
 
   console.log(`[gen-discere-exams] ${subjectId}: ${keys.size} ispita, ${totalQuestions} pitanja, ${totalSecrets} tajnih unosa`)
   if (prunedPublic || prunedSecrets) {
@@ -359,4 +389,4 @@ if (isDirectRun) {
   })
 }
 
-export { buildPublicExam, buildSecrets, buildSummaryLeaves, buildPublicMeta, buildPublicQuestion, renameAltForDisk, countLeaves, generateSubject }
+export { buildPublicExam, buildSecrets, buildSummaryLeaves, buildPublicMeta, buildPublicQuestion, buildTopics, countLeaves, generateSubject }

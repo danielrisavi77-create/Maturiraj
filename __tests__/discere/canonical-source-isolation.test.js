@@ -1,36 +1,35 @@
 // ADR-001 / A6: kanonski izvor content/discere/<id>/exams/** nosi answer/
-// solution/explanation (i transkript) i ne smije biti dohvatljiv iz klijenta —
-// isporuka klijentu ide preko generiranog content/<id>/exams/<key>.json.
+// solution/explanation (i transkript) i ne smije završiti u isporuci —
+// klijent dobiva generirani content/<id>/exams/<key>.json preko rute.
 //
-// Isti pristup kao SLOJ A u scripts/security/exam-secret-scan.mjs (BFS iz
-// klijentskih korijena kroz graf uvoza), ali cilj nije "@exam-secret" marker
-// nego bilo koja datoteka pod content/discere/<predmet>/exams/**.
+// Tvrdnja je STROŽA od "nije dohvatljiv iz klijenta": nijedna datoteka u
+// izvršnom stablu (sve korijenske mape osim scripts/__tests__/docs/… — isti
+// popis kao SLOJ A skena) ne smije uopće uvoziti kanonski izvor. Zato ovdje
+// NEMA kopije BFS-a i razrješivača uvoza iz scripts/security/exam-secret-scan.mjs:
+// kopija bi s vremenom divergirala od originala (i već je bila bez SKIP_DIRS
+// zaštite), a ovdje je dovoljan jedan prolaz nad specifikatorima uvoza.
 import { describe, expect, it } from 'vitest'
-import { readdir, readFile, stat } from 'node:fs/promises'
+import { readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import {
   REPO_ROOT,
   extractImportSpecifiers,
-  hasLeadingUseClient,
   listScanRootDirs,
   loadAliases,
 } from '@/scripts/security/exam-secret-scan.mjs'
 
-const GRAPH_EXTENSIONS = ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs', '.json']
-const RESOLVE_EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json']
+const GRAPH_EXTENSIONS = ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs']
+
+/** Mape koje nikad ne obilazimo — inače bi ugniježđeni node_modules/.next usporili prolaz. */
+const SKIP_DIRS = new Set(['node_modules', '.next', '.git', 'coverage', 'dist', 'build', '.turbo', '.vercel'])
 
 function toPosix(relPath) {
   return relPath.split(path.sep).join('/')
 }
 
-/** Kanonski izvor ispita — nosi answer/solution/explanation, nikad javno. */
+/** Kanonski izvor ispita — nosi answer/solution/explanation, nikad u isporuku. */
 function isCanonicalExamPath(relPosixPath) {
-  return /^content\/discere\/[^/]+\/exams\/.+/.test(relPosixPath)
-}
-
-function isClientRootPath(relPosixPath) {
-  return /^app\/.*\/(page|layout)\.(js|jsx|ts|tsx|mjs)$/.test(relPosixPath)
-    || /^app\/(page|layout)\.(js|jsx|ts|tsx|mjs)$/.test(relPosixPath)
+  return /^content\/discere\/[^/]+\/exams(\/|$)/.test(relPosixPath)
 }
 
 async function walk(dir, onFile) {
@@ -42,6 +41,7 @@ async function walk(dir, onFile) {
   }
   for (const entry of entries) {
     if (entry.isDirectory()) {
+      if (SKIP_DIRS.has(entry.name)) continue
       await walk(path.join(dir, entry.name), onFile)
       continue
     }
@@ -51,118 +51,57 @@ async function walk(dir, onFile) {
   }
 }
 
-async function isFile(absPath) {
-  try {
-    return (await stat(absPath)).isFile()
-  } catch {
-    return false
+/**
+ * Kamo specifikator pokazuje, bez dodira diska: relativni put se razrješava
+ * prema mapi datoteke, alias prema tsconfig `paths` (isti izvor kao sken).
+ * Zanima nas samo pokazuje li U mapu kanonskih ispita.
+ */
+function specifierTargets(specifier, fromFile, { root, aliases }) {
+  if (!specifier) return []
+  if (specifier.startsWith('.')) return [path.resolve(path.dirname(fromFile), specifier)]
+  for (const alias of aliases) {
+    if (specifier.startsWith(alias.prefix)) {
+      const rest = specifier.slice(alias.prefix.length)
+      return alias.targets.map((target) => path.resolve(target, rest))
+    }
   }
+  return []
 }
 
-async function resolveSpecifier(specifier, fromFile, { root, aliases }) {
-  if (!specifier) return null
-  let candidates = null
-
-  if (specifier.startsWith('.')) {
-    candidates = [path.resolve(path.dirname(fromFile), specifier)]
-  } else {
-    for (const alias of aliases) {
-      if (specifier.startsWith(alias.prefix)) {
-        const rest = specifier.slice(alias.prefix.length)
-        candidates = alias.targets.map((target) => path.resolve(target, rest))
-        break
-      }
-    }
-  }
-  if (!candidates) return null
-
-  for (const candidate of candidates) {
-    if (!candidate.startsWith(root)) continue
-    if (path.extname(candidate) && (await isFile(candidate))) return candidate
-    for (const ext of RESOLVE_EXTENSIONS) {
-      const withExt = `${candidate}${ext}`
-      if (await isFile(withExt)) return withExt
-    }
-    for (const ext of RESOLVE_EXTENSIONS) {
-      const indexFile = path.join(candidate, `index${ext}`)
-      if (await isFile(indexFile)) return indexFile
-    }
-  }
-  return null
-}
-
-async function findClientReachableCanonicalExams(root = REPO_ROOT) {
+async function findCanonicalExamImporters(root = REPO_ROOT) {
   const aliases = await loadAliases(root)
   const dirs = await listScanRootDirs(root)
   const files = []
   for (const dir of dirs) await walk(path.join(root, dir), (absPath) => files.push(absPath))
 
-  const clientRoots = []
+  const violations = []
   for (const absPath of files) {
     const rel = toPosix(path.relative(root, absPath))
-    if (path.extname(absPath) === '.json') continue
-    const head = await readFile(absPath, 'utf8').catch(() => '')
-    if (hasLeadingUseClient(head.slice(0, 4096))) {
-      clientRoots.push(rel)
-    } else if (isClientRootPath(rel) && !/["']server-only["']/.test(head.slice(0, 4096))) {
-      clientRoots.push(rel)
-    }
-  }
-
-  const visited = new Set()
-  const parent = new Map()
-  const queue = []
-  const violations = []
-  const sources = new Map()
-
-  for (const rel of clientRoots) {
-    if (visited.has(rel)) continue
-    visited.add(rel)
-    parent.set(rel, null)
-    queue.push(rel)
-  }
-
-  let cursor = 0
-  while (cursor < queue.length) {
-    const rel = queue[cursor++]
-    if (isCanonicalExamPath(rel)) {
-      const chain = []
-      for (let node = rel; node != null; node = parent.get(node) ?? null) chain.unshift(node)
-      violations.push({ file: rel, chain })
-      continue
-    }
-    const absPath = path.join(root, rel)
-    if (path.extname(absPath) === '.json') continue
-
-    let source = sources.get(rel)
-    if (source === undefined) {
-      source = await readFile(absPath, 'utf8').catch(() => '')
-      sources.set(rel, source)
-    }
-
+    if (isCanonicalExamPath(rel)) continue // kanonski moduli smiju uvoziti jedan drugoga
+    const source = await readFile(absPath, 'utf8').catch(() => '')
     for (const specifier of extractImportSpecifiers(source)) {
-      const resolved = await resolveSpecifier(specifier, absPath, { root, aliases })
-      if (!resolved) continue
-      const relChild = toPosix(path.relative(root, resolved))
-      if (relChild.startsWith('..')) continue
-      if (visited.has(relChild)) continue
-      visited.add(relChild)
-      parent.set(relChild, rel)
-      queue.push(relChild)
+      for (const target of specifierTargets(specifier, absPath, { root, aliases })) {
+        const relTarget = toPosix(path.relative(root, target))
+        if (relTarget.startsWith('..')) continue
+        if (isCanonicalExamPath(relTarget)) violations.push({ file: rel, specifier })
+      }
     }
   }
-
   return violations
 }
 
 describe('Discere canonical source isolation (ADR-001)', () => {
-  it('nijedna klijentska datoteka ne uvozi content/discere/<predmet>/exams/**', async () => {
-    const violations = await findClientReachableCanonicalExams()
-    if (violations.length) {
-      const details = violations.map((v) => `${v.file} preko: ${v.chain.join(' -> ')}`).join('\n')
-      throw new Error(`Kanonski izvor dohvatljiv iz klijenta:\n${details}`)
-    }
-    expect(violations).toEqual([])
+  it('nijedna datoteka izvršnog stabla ne uvozi content/discere/<predmet>/exams/**', async () => {
+    const violations = await findCanonicalExamImporters()
+    const details = violations.map((v) => `${v.file} -> ${v.specifier}`).join('\n')
+    expect(violations, `Kanonski izvor se uvozi iz isporučivog koda:\n${details}`).toEqual([])
+  })
+
+  it('provjera doista hvata uvoz kanonskog izvora (lažni primjer)', () => {
+    const aliases = [{ prefix: '@/', targets: [REPO_ROOT] }]
+    const targets = specifierTargets('@/content/discere/bio/exams/2026_ljeto.mjs', path.join(REPO_ROOT, 'lib', 'x.js'), { root: REPO_ROOT, aliases })
+    expect(targets).toHaveLength(1)
+    expect(isCanonicalExamPath(toPosix(path.relative(REPO_ROOT, targets[0])))).toBe(true)
   })
 
   it('content/discere/bio/loaders.js ne izvozi examLoaders (samo index/topics/summary)', async () => {

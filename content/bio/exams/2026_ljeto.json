@@ -95,7 +95,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q03.webp",
-          "altText": "Vennov dijagram obilježja triju stanica F, G i H."
+          "alt": "Vennov dijagram obilježja triju stanica F, G i H."
         }
       ],
       "stimulus": {
@@ -173,7 +173,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q04.webp",
-          "altText": "Model stanica epitela s trepetljikama."
+          "alt": "Model stanica epitela s trepetljikama."
         }
       ],
       "options": [
@@ -383,7 +383,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q09.webp",
-          "altText": "Reakcijska shema glikolize i mliječno-kiselinskoga vrenja."
+          "alt": "Reakcijska shema glikolize i mliječno-kiselinskoga vrenja."
         }
       ],
       "options": [
@@ -421,7 +421,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q10.webp",
-          "altText": "Rezultati aglutinacije s reagensima anti A, anti B, anti AB i anti Rh."
+          "alt": "Rezultati aglutinacije s reagensima anti A, anti B, anti AB i anti Rh."
         }
       ],
       "options": [
@@ -459,7 +459,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q11.webp",
-          "altText": "Shema reakcije imunosnoga sustava sa stanicom označenom brojem 1."
+          "alt": "Shema reakcije imunosnoga sustava sa stanicom označenom brojem 1."
         }
       ],
       "options": [
@@ -561,7 +561,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q14.webp",
-          "altText": "Prikaz promjene otvorenosti puči biljke."
+          "alt": "Prikaz promjene otvorenosti puči biljke."
         }
       ],
       "options": [
@@ -663,7 +663,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q17.webp",
-          "altText": "Šest fotografija različitih životinjskih vrsta označenih brojevima 1 do 6."
+          "alt": "Šest fotografija različitih životinjskih vrsta označenih brojevima 1 do 6."
         }
       ],
       "options": [
@@ -829,7 +829,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q22.webp",
-          "altText": "Usporedba kromosomskih regija u dvjema populacijama."
+          "alt": "Usporedba kromosomskih regija u dvjema populacijama."
         }
       ],
       "options": [
@@ -995,7 +995,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q27.webp",
-          "altText": "Stanice alge mužocije s dvama položajima pločastoga kloroplasta."
+          "alt": "Stanice alge mužocije s dvama položajima pločastoga kloroplasta."
         }
       ],
       "options": [
@@ -1033,7 +1033,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q28.webp",
-          "altText": "Prikaz dvaju predaka čovjeka označenih brojevima 1 i 2."
+          "alt": "Prikaz dvaju predaka čovjeka označenih brojevima 1 i 2."
         }
       ],
       "options": [
@@ -1071,7 +1071,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q29.webp",
-          "altText": "Dvije životinjske vrste označene brojevima 1 i 2."
+          "alt": "Dvije životinjske vrste označene brojevima 1 i 2."
         }
       ],
       "options": [
@@ -1141,7 +1141,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q31.webp",
-          "altText": "Stupčasti dijagram uspješnosti preživljavanja dviju vrsta pri različitim kolebanjima temperature."
+          "alt": "Stupčasti dijagram uspješnosti preživljavanja dviju vrsta pri različitim kolebanjima temperature."
         }
       ],
       "options": [
@@ -1275,7 +1275,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q35.webp",
-          "altText": "Shema mitohondrija s dijelovima označenim brojevima 1 i 2."
+          "alt": "Shema mitohondrija s dijelovima označenim brojevima 1 i 2."
         }
       ],
       "options": [
@@ -1312,7 +1312,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q36.webp",
-          "altText": "Shema ekološke povezanosti hrasta, tartufa i voluharice."
+          "alt": "Shema ekološke povezanosti hrasta, tartufa i voluharice."
         }
       ],
       "children": [
@@ -1370,7 +1370,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q37.webp",
-          "altText": "Kladogram kopnenih kralježnjaka s obilježjima označenima brojevima 1 do 4."
+          "alt": "Kladogram kopnenih kralježnjaka s obilježjima označenima brojevima 1 do 4."
         }
       ],
       "children": [
@@ -1515,7 +1515,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q39.webp",
-          "altText": "Linijski dijagram zastupljenosti krvnih grupa prema spolu."
+          "alt": "Linijski dijagram zastupljenosti krvnih grupa prema spolu."
         }
       ],
       "stimulus": {
@@ -1595,7 +1595,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q40.webp",
-          "altText": "Shema staničnoga procesa s molekulama označenima brojevima 1, 2 i 3."
+          "alt": "Shema staničnoga procesa s molekulama označenima brojevima 1, 2 i 3."
         }
       ],
       "children": [
@@ -1657,7 +1657,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q41.webp",
-          "altText": "Shema optoka krvi u tijelu čovjeka s krvnim žilama označenima brojevima 1 do 7."
+          "alt": "Shema optoka krvi u tijelu čovjeka s krvnim žilama označenima brojevima 1 do 7."
         }
       ],
       "children": [
@@ -1855,7 +1855,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q44.webp",
-          "altText": "Životni ciklus kritosjemenjače s procesima 1 do 5 i stadijem A."
+          "alt": "Životni ciklus kritosjemenjače s procesima 1 do 5 i stadijem A."
         }
       ],
       "children": [
@@ -1927,7 +1927,7 @@
         {
           "type": "image",
           "src": "/discere/bio/2026_ljeto/q45.webp",
-          "altText": "Shema reprogramiranja tjelesne stanice u induciranu pluripotentnu matičnu stanicu."
+          "alt": "Shema reprogramiranja tjelesne stanice u induciranu pluripotentnu matičnu stanicu."
         }
       ],
       "children": [
