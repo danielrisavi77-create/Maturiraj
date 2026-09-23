@@ -116,6 +116,16 @@ describe('ResultsScreen — gating razrade po planu', () => {
     expect(screen.queryByText('ANALYTICS-PANEL')).toBeNull();
     expect(container.querySelector('.revlist')).toBeNull();
 
+    // Jedan bit po pitanju smije se vidjeti: mrežica ✓/✗ bez ijednog teksta pitanja.
+    expect(screen.getByText('Po pitanjima')).toBeTruthy();
+    expect(screen.getByText('Točan odgovor i obrazloženje dolaze uz Standard.')).toBeTruthy();
+    const cells = container.querySelectorAll('.res-qgrid .res-qcell');
+    expect(cells.length).toBe(3);
+    cells.forEach((c) => {
+      expect(c.querySelector('.res-qcell-mark').textContent).toMatch(/^[✓✗–]$/);
+      expect(c.textContent).not.toMatch(/-TEXT|-opt/);
+    });
+
     const cta = container.querySelector('a[href^="/pro?from=eng-results"]');
     expect(cta).toBeTruthy();
     expect(cta.textContent).toBe('Otključaj razradu → Standard');
@@ -131,6 +141,11 @@ describe('ResultsScreen — gating razrade po planu', () => {
     expect(screen.getByText(/Vježbaj greške/)).toBeTruthy();
     expect(screen.getByText('ANALYTICS-PANEL')).toBeTruthy();
     expect(container.querySelector('.revlist')).toBeTruthy();
+
+    // Plaćeni prikaz je nepromijenjen — kompaktna mrežica je samo free zamjena.
+    expect(container.querySelector('.res-qgrid')).toBeNull();
+    expect(screen.queryByText('Po pitanjima')).toBeNull();
+    expect(screen.queryByText(/dolaze uz Standard\./)).toBeNull();
 
     expect(container.querySelector('a[href^="/pro?from=eng-results"]')).toBeNull();
   });
@@ -157,6 +172,18 @@ describe('ResultsScreen — free ekran bez ijednog ključa u pitanjima', () => {
     // 2 od 3 točna: Čitanje 1/2, Slušanje 1/1
     expect(screen.getByText('1 / 2')).toBeTruthy();
     expect(screen.getByText('1 / 1')).toBeTruthy();
+
+    // Mrežica po pitanjima: jedna stavka po automatski ocjenjivom pitanju,
+    // oznaka ✓/✗ točno prema serverskim scores (R1 ✓, R2 ✗, L1 ✓).
+    const cells = container.querySelectorAll('.res-qgrid .res-qcell');
+    expect(cells.length).toBe(STRIPPED_EXAM.qs.filter((q) => q.type !== 'sa' && q.type !== 'es').length);
+    expect([...cells].map((c) => c.querySelector('.res-qcell-mark').textContent)).toEqual(['✓', '✗', '✓']);
+    expect([...cells].map((c) => c.className)).toEqual(['res-qcell ok', 'res-qcell bad', 'res-qcell ok']);
+    expect([...cells].map((c) => c.querySelector('.res-qcell-num').textContent)).toEqual(['1', '2', '3']);
+    // ...ali i dalje ni teksta pitanja, ni opcija, ni obrazloženja.
+    const gridText = container.querySelector('.res-qgrid').textContent;
+    expect(gridText).not.toMatch(/-TEXT|-opt/);
+    expect(screen.queryByText('R1-TEXT')).toBeNull();
 
     expect(screen.queryByText(/Obrazloženje za/)).toBeNull();
     expect(screen.queryByText(/Točno: A/)).toBeNull();

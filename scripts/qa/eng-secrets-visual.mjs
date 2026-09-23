@@ -435,15 +435,21 @@ async function runFlow(browser, tier, vp, probes) {
         !/Točan odgovor:|✓ Točno:/.test(html),
         `outerHTML sadrži natpis točnog odgovora: ${/Točan odgovor:|✓ Točno:/.test(html)}`,
       )
-      // Per-question ✓/✗: poslužitelj ga šalje u `scores`, ali ga free ekran
-      // rezultata danas ne iscrtava (pregled pitanja je iza canSeeAnalysis).
-      const perQuestionMarks = await page.locator('.revitem, .qgrid-btn.ok, .qgrid-btn.bad').count()
+      // Per-question ✓/✗: poslužitelj ga šalje u `scores`, a free ekran ga od
+      // sada iscrtava kao kompaktnu mrežicu (.res-qgrid) — jedan bit po pitanju,
+      // bez teksta pitanja, ključa i obrazloženja.
+      const perQuestionMarks = await page.locator('.res-qgrid .res-qcell.ok, .res-qgrid .res-qcell.bad').count()
       add(
         'rezultati-per-question-oznake',
-        perQuestionMarks > 0 ? true : null,
-        `vidljivih oznaka po pitanju na free rezultatima: ${perQuestionMarks}. `
-          + `Poslužitelj šalje scores za ${scoreCount} pitanja, ali ResultsScreen pregled pitanja renderira samo uz canSeeAnalysis — `
-          + 'free vidi zbroj (Točnih/Netočnih), po cjelinama i po tipu pitanja, ne i oznaku uz svako pitanje.',
+        perQuestionMarks > 0,
+        `vidljivih ✓/✗ oznaka po pitanju na free rezultatima: ${perQuestionMarks} `
+          + `(poslužitelj je poslao scores za ${scoreCount} pitanja; očekivano > 0).`,
+      )
+      const gridText = await page.locator('.res-qgrid').first().innerText().catch(() => '')
+      add(
+        'rezultati-mrezica-bez-teksta-pitanja',
+        /^[\s\d✓✗–]*$/.test(gridText),
+        `mrežica po pitanjima sadrži samo brojeve i oznake: ${JSON.stringify(gridText.slice(0, 80))}`,
       )
     } else {
       add('rezultati-pregled-pitanja', revlist > 0, `popisa .revlist na rezultatima: ${revlist} (mora biti > 0)`)

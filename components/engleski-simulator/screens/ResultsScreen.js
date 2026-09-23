@@ -248,6 +248,39 @@ function ResultsInner({
         ),
       ),
       canSeeAnalysis && manQ.length > 0 && e('div', { style: { background: 'var(--gold-d)', border: '1px solid var(--gold-b)', borderRadius: 'var(--r)', padding: '12px 16px', marginBottom: 22, fontSize: 13, color: 'var(--gold)' } }, '✏️ ' + manQ.length + ' pitanja (kratki odgovori i eseji) — provjeri referentne odgovore ispod.'),
+      // Free nakon predaje: jedan bit po pitanju (točno/netočno/neocijenjeno) iz
+      // serverskih 'scores' — bez teksta pitanja, opcija, ključa i obrazloženja.
+      // Vizualno prati navigator pitanja iz ExamPlayScreena (kvadratići 44 px,
+      // tokeni --green/--red, wrap da stane i na ~400 px).
+      !canSeeAnalysis && autoQ.length > 0 && e('div', { style: { marginBottom: 22 } },
+        e('div', { className: 'results-section-title' }, 'Po pitanjima'),
+        e('div', { className: 'res-qgrid', role: 'list', style: { display: 'flex', flexWrap: 'wrap', gap: 4 } },
+          autoQ.map((q, i) => {
+            const ok = chk(q, answers[q.id])
+            const st = ok === true ? 'ok' : ok === false ? 'bad' : 'none'
+            const col = ok === true ? 'var(--green)' : ok === false ? 'var(--red)' : 'var(--muted)'
+            const bg = ok === true ? 'var(--green-d)' : ok === false ? 'var(--red-d)' : 'var(--s2)'
+            const ic = ok === true ? '✓' : ok === false ? '✗' : '–'
+            return e('div', {
+              key: q.id,
+              role: 'listitem',
+              className: 'res-qcell ' + st,
+              title: (i + 1) + '. pitanje — ' + (ok === true ? 'točno' : ok === false ? 'netočno' : 'nije ocijenjeno'),
+              style: {
+                minWidth: 44, minHeight: 44, borderRadius: 6,
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                gap: 1, fontSize: 11, fontWeight: 600, lineHeight: 1.1,
+                border: '1px solid', borderColor: st === 'none' ? 'var(--bdr)' : col, background: bg, color: col,
+              },
+            },
+              e('span', { className: 'res-qcell-num' }, i + 1),
+              e('span', { className: 'res-qcell-mark', style: { fontSize: 13, fontWeight: 700 } }, ic),
+            )
+          }),
+        ),
+        e('div', { style: { marginTop: 8, fontSize: 11, color: 'var(--muted)', lineHeight: 1.55 } },
+          'Točan odgovor i obrazloženje dolaze uz Standard.'),
+      ),
       !canSeeAnalysis && e(LockedResultsBlock, {
         label: 'Pregled pitanja i razrada',
         rows: 5,
