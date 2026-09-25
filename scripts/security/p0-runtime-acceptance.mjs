@@ -387,14 +387,10 @@ async function testParentConsentV2(ctx) {
     parentClient.from('profiles').select('id').eq('id', child.id)
   )
 
-  const { data: remaining, error: remainingError } = await admin
-    .from('parent_children')
-    .select('id')
-    .eq('id', invitation.id)
-
-  if (remainingError || (remaining || []).length !== 0) {
-    fail('SEC-P0-02 invitation remains after revoke')
-  }
+  await expectInvisible(
+    'SEC-P0-02 parent still sees invitation after revoke',
+    parentClient.from('parent_children').select('id').eq('id', invitation.id)
+  )
 
   return {
     pendingInvitation: 'verified',
