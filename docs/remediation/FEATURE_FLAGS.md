@@ -5,7 +5,7 @@ Aktualno source usklađivanje: **2026-09-25** (`main` @ `0d2bb0d3be7b37f99e18130
 
 Napomena: izvorni Phase 0 dizajn imao je Parent V2 hard-disabled. Aktualni source sada sadrži consent-based V2 implementaciju, ali produkcijska aktivacija i dalje ostaje fail-closed dok runtime acceptance ne prođe.
 
-Svih šest flagova je fail-closed. Samo točna vrijednost stringa `true` uključuje poznati flag; nedostajuća, pogrešno napisana ili drukčije kapitalizirana vrijednost znači `false`.
+Svih sedam dokumentiranih flagova je fail-closed. Samo točna vrijednost stringa `true` uključuje poznati flag; nedostajuća, pogrešno napisana ili drukčije kapitalizirana vrijednost znači `false`.
 
 | Flag | Default | Područje | Dodatna ovisnost za aktivaciju |
 |---|---:|---|---|
