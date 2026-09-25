@@ -66,6 +66,9 @@ jobs:
             echo "P0_SUPABASE_URL=$P0_URL"
             echo "P0_SUPABASE_ANON_KEY=$P0_PUBLIC"
             echo "P0_SUPABASE_SERVICE_ROLE_KEY=$P0_SECRET"
+            echo "NEXT_PUBLIC_SUPABASE_URL=$P0_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$P0_PUBLIC"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$P0_SECRET"
           } >> "$GITHUB_ENV"
 
       - name: Run real P0 RLS and consent acceptance
@@ -75,9 +78,15 @@ jobs:
         run: >-
           npx vitest run
           __tests__/security/p0-runtime-harness-contract.test.js
+          __tests__/security/migration-versions.test.js
           __tests__/security/entitlement-rls.test.js
           __tests__/security/parent-consent-v2.test.js
           __tests__/security/billing-webhook-v2.test.js
+
+      - name: Production build against local Supabase configuration
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: npm run build
 
       - name: Stop local Supabase
         if: always()
@@ -115,7 +124,3 @@ jobs:
       - name: Full test suite
         run: npm test
 
-      - name: Production build
-        env:
-          NODE_OPTIONS: --max-old-space-size=4096
-        run: npm run build
