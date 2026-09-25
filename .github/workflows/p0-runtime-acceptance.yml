@@ -41,6 +41,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate canonical migration filename probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx supabase migration new p0_profiles_data_api_grants
+          file="$(ls -1 supabase/migrations/*_p0_profiles_data_api_grants.sql | tail -n 1)"
+          echo "MIGRATION_PROBE=$(basename "$file")"
+          rm "$file"
+
       - name: Start local Supabase
         run: npm run supabase:start
 
