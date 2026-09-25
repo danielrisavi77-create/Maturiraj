@@ -7,11 +7,15 @@ const url =
   process.env.NEXT_PUBLIC_SUPABASE_URL ||
   process.env.SUPABASE_URL
 const anonKey =
+  process.env.P0_SUPABASE_PUBLISHABLE_KEY ||
   process.env.P0_SUPABASE_ANON_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
   process.env.SUPABASE_ANON_KEY
 const serviceKey =
+  process.env.P0_SUPABASE_SECRET_KEY ||
   process.env.P0_SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.SUPABASE_SECRET_KEY ||
   process.env.SUPABASE_SERVICE_ROLE_KEY
 
 function fail(message) {
