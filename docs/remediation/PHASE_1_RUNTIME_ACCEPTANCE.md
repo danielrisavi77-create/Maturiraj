@@ -9,11 +9,33 @@ Ovaj dokument ne mijenja frozen Phase 0 snapshot. Svrha mu je dokazati aktualne 
 
 | Paket | Source status | Preostali dokaz |
 |---|---|---|
-| SEC-P0-01 | review | stvarni RLS/column/trigger acceptance |
-| SEC-P0-02 | review | stvarni parent/child cross-account, consent, replay i revoke |
-| BIL-P0-01 | review | Stripe test-mode/staging lifecycle |
+| SEC-P0-01 | done | Local Supabase runtime acceptance prošao na PR #18 run #10 |
+| SEC-P0-02 | done | Local Supabase runtime acceptance prošao na PR #18 run #10 |
+| BIL-P0-01 | review | Stripe test-mode/staging lifecycle još nije izvršen |
 
-Ni jedan paket ne postaje done samo zato što source testovi prolaze.
+Source testovi sami nisu dovoljni za `done`. Za SEC-P0-01 i SEC-P0-02 dodatno je izvršen stvarni local Supabase runtime gate.
+
+## Evidencija izvršenog runtime acceptancea
+
+- GitHub PR: `#18`
+- Actions workflow: `P0 Runtime Acceptance`
+- Uspješni run: `#10` / run ID `36150970437`
+- Testirani head: `6d3686dc4509946a1561cbcece834e80fba35115`
+- Fresh `supabase db reset`: **PASS**
+- SEC-P0-01: **PASS**
+  - `tier`, `plan_type`, `pro_expires_at`, `role`, `email` mutation: odbijene
+  - trusted service-role entitlement write: verificiran
+- SEC-P0-02: **PASS**
+  - pending invitation: verificiran
+  - child-only consent: verificiran
+  - replay: odbijen
+  - cross-account read: blokiran
+  - revoke: verificiran
+- P0 source contract suite: **56 passed**, 3 frozen/history `todo`
+- Production build s local Supabase envom: **PASS**, 120/120 statičkih stranica
+- Puni regression job: **PASS**
+
+Ovaj dokaz ne zatvara `BIL-P0-01`; za njega je i dalje potreban Stripe test-mode/staging lifecycle iz odjeljka 3.
 
 ## 1. Lokalni Supabase
 
@@ -136,8 +158,8 @@ Ako puni lint/test/build nije izvediv zbog potvrđenog nepovezanog problema, sta
 
 Tek nakon dokaza:
 
-- SEC-P0-01: review -> done
-- SEC-P0-02: review -> done
-- BIL-P0-01: review -> done
+- SEC-P0-01: **done** — runtime dokaz zabilježen iznad
+- SEC-P0-02: **done** — runtime dokaz zabilježen iznad
+- BIL-P0-01: review -> done tek nakon Stripe test-mode/staging dokaza
 
 Feature flagovi se ne pale automatski ovom promjenom statusa. Produkcijski release ostaje zaseban REL-01 gate.
