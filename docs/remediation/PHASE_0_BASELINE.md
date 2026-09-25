@@ -4,6 +4,8 @@
 
 Ovaj dokument zamrzava provjereno stanje projekta prije funkcionalnih Phase 1 popravaka. Služi kao dokazna početna točka, a ne kao tvrdnja da je projekt spreman za produkciju.
 
+> **Povijesni snapshot:** ovaj dokument se ne ažurira retroaktivno na današnji source contract. Aktualno stanje Phase 1 popravaka i runtime acceptance vodi se u `docs/remediation/STATUS.md` i `docs/remediation/PHASE_1_RUNTIME_ACCEPTANCE.md`. Na 25. 9. 2026. source implementacije SEC-P0-01, SEC-P0-02 i BIL-P0-01 postoje, ali ostaju u `review` statusu dok non-production runtime/staging acceptance ne prođe.
+
 Baseline je prikupljen bez poziva prema živom Stripeu, Supabaseu, AI providerima ili produkcijskom deploymentu. Vrijednosti tajni nisu pregledane ni zapisane.
 
 ## Referentni snapshot

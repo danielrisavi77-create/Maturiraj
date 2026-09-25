@@ -7,7 +7,11 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const migrationsDir = join(root, 'supabase', 'migrations')
 const vulnerableMigration = '20260627000000_sim_progress.sql'
 const guardMigration = '20260715010000_profile_entitlement_guard.sql'
+const dataApiGrantMigration = '20260925144744_p0_profiles_data_api_grants.sql'
 const guardSql = readFileSync(join(migrationsDir, guardMigration), 'utf8')
+const dataApiGrantSql = readFileSync(join(migrationsDir, dataApiGrantMigration), 'utf8')
+  .replace(/\s+/g, ' ')
+  .toLowerCase()
 const vulnerableSql = readFileSync(join(migrationsDir, vulnerableMigration), 'utf8')
 const normalizedSql = guardSql.replace(/\s+/g, ' ').toLowerCase()
 
@@ -33,6 +37,20 @@ function staticGuardDecision({ role, changedColumns }) {
     ? 'deny'
     : 'allow'
 }
+
+describe('SEC-P0-01 Data API grants', () => {
+  it('keeps anon reads closed while enabling RLS-scoped application reads', () => {
+    expect(dataApiGrantSql).toContain(
+      'revoke select on table public.profiles from public, anon;'
+    )
+    expect(dataApiGrantSql).toContain(
+      'grant select on table public.profiles to authenticated, service_role;'
+    )
+    expect(dataApiGrantSql).not.toContain(
+      'grant select on table public.profiles to anon;'
+    )
+  })
+})
 
 describe('SEC-P0-01 static SQL contract (no live Supabase)', () => {
   it('runs after the migration that introduced the vulnerable broad policy', () => {

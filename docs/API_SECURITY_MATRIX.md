@@ -3,6 +3,8 @@
 Snapshot: 2026-07-15  
 Scope: svih 42 pronađenih `app/api/**/route.{js,jsx,ts,tsx}` datoteka.
 
+Aktualno source usklađivanje: **2026-09-25** (`main` @ `0d2bb0d3be7b37f99e18130b8d4906dbda3b8e5f`). Redci zadržavaju Phase 0 povijesni kontekst, ali P0 rute ispod su osvježene prema aktualnoj implementaciji. To i dalje nije dokaz primijenjenih migracija ili produkcijskih env vrijednosti.
+
 Dopune nakon snapshota: redovi 25 (`/api/exams/[razina]`) i 26 (`/api/exams/check`) uklonjeni su iz koda
 (ADR-001, Faza 0 odnosno Faza 1) — cijelo stablo `app/api/exams/` više ne postoji; zamjenjuju ih redovi
 43–44 uz zajedničke ispitne rute (ADR-001, Faza 1).
@@ -59,8 +61,8 @@ Rate limit prikazuje ono što je pronađeno u samoj ruti. Stripe potpis ili CDN 
 | 27 | `/api/generate-study-plan` | POST | Verificirani korisnik + entitlement + quota | ne | nema | `P1` — iza AI flaga; AI cost, prompt limit i provider error leakage |
 | 28 | `/api/medicinar/briefing/generate` | POST | Verificirani korisnik ili zasebni potpisani job identitet | da; service-role klijent i bearer usporedba | tjedna idempotencija, nije rate limit | `P1` — iza AI flaga; ne koristiti service-role ključ kao bearer |
 | 29 | `/api/og/compare` | GET | Javno, ograničen broj validiranih ID-eva | ne; anon client | nema | `R0` — 2–4 ID-a ograničena; dodati cache/abuse monitoring |
-| 30 | `/api/parent/child-dashboard/[childId]` | GET | Budući verificirani parent + server-potvrđen consent link | ne; handler odmah vraća 503 | nije primjenjivo | `P0-contained` — hard-disabled neovisno o env flagovima; RLS consent contract ostaje otvoren |
-| 31 | `/api/parent/children` | GET, POST, DELETE | GET/DELETE: verificirani parent; POST: nedostupan do consent-based V2 | ne | nema za GET/DELETE; POST odmah 503 | `P0-contained` — POST hard-disabled; portal flag kontrolira samo GET/DELETE; broad UPDATE RLS ostaje |
+| 30 | `/api/parent/child-dashboard/[childId]` | GET | Verificirani parent + child-approved V2 consent link | da, ali admin klijent tek nakon običnog RLS ownership/consent dokaza | nema | `P0-contained` — V2 source implementiran; produkcijski gate ostaje zatvoren do runtime cross-account/consent acceptancea |
+| 31 | `/api/parent/children` | GET, POST, DELETE | Verificirani parent; POST smije stvoriti samo detached pending invitation | ne | nema | `P0-contained` — Parent V2 source implementiran i UPDATE revokean; runtime RLS/IDOR/consent acceptance još nije evidentiran |
 | 32 | `/api/prijemni/compare-insight` | POST | Verificirani Pro korisnik + AI quota | posredno kroz billing helper | nema | `P1` — iza AI flaga; AI cost limit i aktualnost modela |
 | 33 | `/api/prijemni/compare-suggestions` | GET | Javno samo ako je agregat anonimiziran i k-thresholdan | da | samo query limit 500 redaka | `P1` — javni service-role aggregation i privacy threshold |
 | 34 | `/api/push/send-deadline-reminders` | GET | Poseban fail-closed job identitet | da | idempotency window, nije request limiter | `P1` — `CRON-01`; secret i notification volume |
@@ -68,9 +70,9 @@ Rate limit prikazuje ono što je pronađeno u samoj ruti. Stripe potpis ili CDN 
 | 36 | `/api/session` | GET | Verificirani korisnik; session mora pripadati njemu | ne | nema | `P1` — javni Stripe session lookup bez ownership provjere |
 | 37 | `/api/stripe/checkout` | POST | Trajno onemogućen; samo canonical `/api/checkout` smije biti aktivan | ne | nije primjenjivo | `P0-contained` — lokalni hard 410, ukloniti nakon konsolidacije |
 | 38 | `/api/stripe/portal` | POST | Verificirani korisnik koji posjeduje Stripe customer | ne | nema | `R0` — auth postoji; dodati rate limit i kanonski customer mapping test |
-| 39 | `/api/stripe/webhook` | POST | Ukloniti ili, do uklanjanja, valjani Stripe potpis | da | samo Stripe signature | `P0` — unknown price pada na Pro; drugi webhook contract |
+| 39 | `/api/stripe/webhook` | POST | Trajno onemogućen legacy endpoint | ne | nije primjenjivo | `P0-contained` — unconditional HTTP 410; nema Stripe/admin importa |
 | 40 | `/api/subscribe-digest` | POST | Javno uz double opt-in i anti-abuse zaštitu | ne | nema | `P1` — placeholder koji vraća uspjeh bez provider zapisa |
-| 41 | `/api/webhook` | POST | Valjani Stripe webhook potpis i idempotentna obrada | da | samo Stripe signature | `P0-contained` — canonical unknown mapping fail-closed; legacy provisioning još mora biti uklonjen |
+| 41 | `/api/webhook` | POST | Valjani Stripe webhook potpis, allowlisted price mapping i idempotentna obrada | da | samo Stripe signature | `P0-contained` — canonical mapping fail-closed + claim/complete/fail ledger; preostaje test-mode/staging lifecycle acceptance |
 | 42 | `/api/webhooks/slack` | POST | Verificirani admin ili zasebni fail-closed job secret | da | nema | `P1` — centralizirati admin/job auth i testirati missing secret |
 | 43 | `/api/sim/[subject]/exam/[examKey]` | GET | Verificirani korisnik; tier isključivo iz baze (`getUserTier` + `normalizeTier`, keš 60 s po korisniku) | posredno kroz `getUserTier` | 30 dohvata/sat po korisniku — **samo free** (plaćeni radi 70 dohvata banke odjednom) | `R0` — ADR-001; `private, no-store` + `Vary: Cookie`, javni payload se čisti prije spajanja ključeva; free u vježbanju dobiva ključ za prvih `FREE_LIMIT` pitanja, u ispitnom modu nijedan |
 | 44 | `/api/sim/[subject]/grade` | POST | Verificirani korisnik; ocjenjuje i upisuje server, klijentov rezultat se ignorira | posredno (`checkRateLimit`, `getUserTier`); upis ide korisnikovim klijentom pod RLS-om (`select`+`insert`) | 60 s po (user, predmet, ispit) za sve tierove; 5 ocijenjenih predaja / 24 h **samo za free** (3 od njih smije vježbanje); otisak pokušaja (`attemptId` + hash odgovora) čini ponavljanje istih odgovora besplatnim | `R0` — ADR-001; `cor`/`scores` ostaju bočni kanal, budžet ga usporava a ne zatvara |
@@ -88,6 +90,13 @@ POST `/api/parent/children` i child dashboard hard-disabled su u handlerima te i
 ### `BIL-P0-01` — billing provisioning
 
 `/api/stripe/checkout` hard-disabled je s HTTP 410. Canonical `/api/checkout` i `/api/billing/refresh` iza su oba billing flaga, a canonical unknown/conflicting plan-price mapping fail-closed je prije prvog DB writea. `/api/stripe/webhook` još sadrži legacy unknown-price-to-Pro contract. Produkcija i billing zato ostaju **NO-GO**; Phase 1 zahtijeva jedan checkout, jedan webhook, server allowlist, idempotentan entitlement sync i negativne acceptance testove.
+
+## Aktualna P0 reconciliation bilješka — 2026-09-25
+
+- **SEC-P0-01:** `20260715010000_profile_entitlement_guard.sql` i `__tests__/security/entitlement-rls.test.js` postoje. Source contract je implementiran; runtime Postgres acceptance ostaje obavezan prije `done`.
+- **SEC-P0-02:** Parent Consent V2 postoji kroz pending invitation, child-only consent RPC, V2 RLS i dashboard proof-before-admin-read; `__tests__/security/parent-consent-v2.test.js` pokriva source/API contract. Preostaje runtime cross-account/replay/revoke acceptance.
+- **BIL-P0-01:** legacy webhook je trajno 410; canonical webhook odbija unknown/missing/mismatched price prije entitlement writea i koristi idempotency ledger. `__tests__/security/billing-webhook-v2.test.js` pokriva source/API contract. Preostaje Stripe test-mode/staging lifecycle acceptance.
+- Produkcijski status ostaje **NO-GO** dok runtime/staging dokazi nisu zabilježeni. Frozen Phase 0 snapshot ne prepisuje se retroaktivno.
 
 ## Obvezni nastavak matrice
 

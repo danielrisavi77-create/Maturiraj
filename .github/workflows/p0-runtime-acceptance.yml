@@ -1,0 +1,140 @@
+name: P0 Runtime Acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/security/p0-runtime-acceptance.mjs'
+      - '__tests__/security/p0-runtime-harness-contract.test.js'
+      - '__tests__/security/entitlement-rls.test.js'
+      - '__tests__/security/parent-consent-v2.test.js'
+      - '__tests__/security/billing-webhook-v2.test.js'
+      - '__tests__/security/billing-runtime-local.test.js'
+      - 'docs/remediation/**'
+      - 'docs/API_SECURITY_MATRIX.md'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'supabase/**'
+      - '.github/workflows/p0-runtime-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p0-runtime-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  p0-runtime:
+    name: Supabase runtime gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start local Supabase
+        run: npm run supabase:start
+
+      - name: Reset database and apply migrations
+        run: npm run supabase:reset
+
+      - name: Capture local Supabase credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx supabase status -o env > /tmp/supabase.env
+          set -a
+          source /tmp/supabase.env
+          set +a
+          P0_URL="${API_URL:-http://127.0.0.1:54321}"
+          P0_PUBLIC="${ANON_KEY:-${PUBLISHABLE_KEY:-}}"
+          P0_SECRET="${SERVICE_ROLE_KEY:-${SECRET_KEY:-}}"
+          test -n "$P0_PUBLIC"
+          test -n "$P0_SECRET"
+          {
+            echo 'P0_ACCEPTANCE_TARGET=local'
+            echo 'P0_ACCEPTANCE_CONFIRM=I_UNDERSTAND_NONPROD_ONLY'
+            echo "P0_SUPABASE_URL=$P0_URL"
+            echo "P0_SUPABASE_ANON_KEY=$P0_PUBLIC"
+            echo "P0_SUPABASE_SERVICE_ROLE_KEY=$P0_SECRET"
+            echo "NEXT_PUBLIC_SUPABASE_URL=$P0_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$P0_PUBLIC"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$P0_SECRET"
+          } >> "$GITHUB_ENV"
+
+      - name: Run real P0 RLS and consent acceptance
+        run: npm run security:p0:runtime
+
+      - name: Run P0 source contract suites
+        run: >-
+          npx vitest run
+          __tests__/security/p0-runtime-harness-contract.test.js
+          __tests__/security/migration-versions.test.js
+          __tests__/security/profile-data-api-grants.test.js
+          __tests__/security/subscriptions-data-api-grants.test.js
+          __tests__/security/entitlement-rls.test.js
+          __tests__/security/parent-consent-v2.test.js
+          __tests__/security/billing-webhook-v2.test.js
+
+      - name: Run signed local Stripe webhook acceptance
+        env:
+          P0_BILLING_RUNTIME: '1'
+          BILLING_V2_ENABLED: 'true'
+          STRIPE_SECRET_KEY: sk_test_p0_local_only
+          STRIPE_WEBHOOK_SECRET: whsec_p0_local_only
+          NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PRICE_ID: price_starter_p0_local
+          NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PRICE_ID: price_pro_p0_local
+          NEXT_PUBLIC_STRIPE_PRO_YEARLY_PRICE_ID: price_pro_yearly_p0_local
+        run: npx vitest run __tests__/security/billing-runtime-local.test.js
+
+      - name: Production build against local Supabase configuration
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: npm run build
+
+      - name: Stop local Supabase
+        if: always()
+        run: npm run supabase:stop
+
+  offline-regression:
+    name: Security and build regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint new executable code
+        run: >-
+          npx eslint
+          scripts/security/p0-runtime-acceptance.mjs
+          __tests__/security/p0-runtime-harness-contract.test.js
+
+      - name: Exam secret security scan
+        run: npm run security:secrets
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Full test suite
+        run: npm test
+
