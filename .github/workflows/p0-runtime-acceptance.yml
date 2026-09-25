@@ -42,15 +42,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate canonical subscriptions grant migration filename
-        shell: bash
-        run: |
-          set -euo pipefail
-          npx supabase migration new p0_subscriptions_data_api_grants
-          file="$(ls -1 supabase/migrations/*_p0_subscriptions_data_api_grants.sql | tail -n 1)"
-          echo "SUBSCRIPTIONS_MIGRATION_PROBE=$(basename "$file")"
-          rm "$file"
-
       - name: Start local Supabase
         run: npm run supabase:start
 
@@ -90,6 +81,7 @@ jobs:
           __tests__/security/p0-runtime-harness-contract.test.js
           __tests__/security/migration-versions.test.js
           __tests__/security/profile-data-api-grants.test.js
+          __tests__/security/subscriptions-data-api-grants.test.js
           __tests__/security/entitlement-rls.test.js
           __tests__/security/parent-consent-v2.test.js
           __tests__/security/billing-webhook-v2.test.js
