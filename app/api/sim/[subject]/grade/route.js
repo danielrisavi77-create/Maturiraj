@@ -281,7 +281,7 @@ async function insertProgress(db, row, extraColumns = []) {
     warnedMissingAttemptColumn = true
     console.warn(
       '[sim/grade] sim_progress.attempt_id ne postoji — pokreni migraciju '
-        + 'supabase/migrations/20260922000000_sim_progress_attempt_id.sql. '
+        + 'supabase/migrations/20260923052035_sim_progress_attempt_id.sql. '
         + 'Do tada idempotenciju drži otisak pokušaja u ai_rate_limit.',
     )
   }
