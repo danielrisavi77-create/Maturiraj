@@ -96,6 +96,7 @@ async function signIn(user) {
 }
 
 async function waitForProfile(admin, userId) {
+  let lastError = null
   for (let i = 0; i < 20; i += 1) {
     const { data, error } = await admin
       .from('profiles')
@@ -104,10 +105,16 @@ async function waitForProfile(admin, userId) {
       .maybeSingle()
 
     if (!error && data) return data
+    if (error) lastError = safeError(error)
     await new Promise(resolve => setTimeout(resolve, 150))
   }
 
-  fail('profiles row was not created for ' + userId + '; are all migrations/triggers applied?')
+  fail(
+    'profiles bootstrap/read failed for ' +
+      userId +
+      '; last database error=' +
+      JSON.stringify(lastError)
+  )
 }
 
 async function expectRejected(label, queryPromise) {
