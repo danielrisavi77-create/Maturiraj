@@ -2,7 +2,10 @@
 
 ## Status snapshot
 
-Datum: 2026-07-15
+Datum početnog registra: 2026-07-15
+
+Aktualno usklađivanje source stanja: **2026-09-25** (`main` @ `0d2bb0d3be7b37f99e18130b8d4906dbda3b8e5f`).
+Phase 0 snapshot ostaje povijesni dokaz početnog stanja; statusi u tablici ispod odražavaju aktualni source. `review` znači da je popravak implementiran i pokriven source/API contract testovima, ali još nema potpun runtime/staging acceptance dokaz.
 
 Dozvoljeni statusi:
 
@@ -20,9 +23,9 @@ Paket se ne smije označiti kao `done` samo zato što postoji lokalna izmjena. P
 |---:|---|---|---|---|---|
 | 1 | `CFG-00` | Phase 0 baseline, statusni registar i koordinacijska pravila | 0 | `done` | Baseline i 29 paketa verificirani |
 | 2 | `SEC-00` | API security matrica i offline P0 contract harness | 0 | `done` | 42/42 API rute i prolazan offline test |
-| 3 | `SEC-P0-01` | Onemogućiti samostalnu promjenu entitlement stupaca | 1 | `pending` | Negativni RLS test za `tier`/plan entitlemente |
-| 4 | `SEC-P0-02` | Siguran parent-child consent i uklanjanje IDOR lanca | 1 | `pending` | Parent ne može sam potvrditi link niti čitati tuđe podatke |
-| 5 | `BIL-P0-01` | Jedan Stripe checkout/webhook, price allowlist i fail-closed provisioning | 1 | `pending` | Unknown price ne daje entitlement; jedan aktivni webhook contract |
+| 3 | `SEC-P0-01` | Onemogućiti samostalnu promjenu entitlement stupaca | 1 | `review` | Guard migracija + statički contract test postoje; preostaje runtime RLS acceptance protiv lokalnog/staging Postgresa |
+| 4 | `SEC-P0-02` | Siguran parent-child consent i uklanjanje IDOR lanca | 1 | `review` | Parent Consent V2 + API contract testovi postoje; preostaje runtime cross-account/consent/revoke acceptance |
+| 5 | `BIL-P0-01` | Jedan Stripe checkout/webhook, price allowlist i fail-closed provisioning | 1 | `review` | Legacy webhook je 410, canonical webhook fail-closed i testiran; preostaje Stripe test-mode/staging acceptance cijelog lifecyclea |
 | 6 | `PROD-01` | Ukloniti lažne success, feedback i placeholder product flowove | 1 | `pending` | UI ne potvrđuje radnju koju server nije verificirao |
 | 7 | `AUTH-01` | Centralni auth/admin/tier API guardovi i `getUser` validacija | 2 | `pending` | Sve privatne rute koriste odgovarajući centralni guard |
 | 8 | `RLS-01` | Potpuni RLS, RPC i SECURITY DEFINER pregled | 2 | `pending` | Negativni cross-account testovi prolaze |
@@ -53,9 +56,9 @@ Sažetak trenutnog stanja:
 | Status | Broj |
 |---|---:|
 | `in_progress` | 0 |
-| `pending` | 27 |
+| `pending` | 24 |
 | `blocked` | 0 |
-| `review` | 0 |
+| `review` | 3 |
 | `done` | 2 |
 | **Ukupno** | **29** |
 
@@ -67,9 +70,9 @@ Sažetak trenutnog stanja:
 | Write scope | `.codex/`, `docs/`, `scripts/security/`, `__tests__/security/` i uski fail-closed containment na postojećim API/UI putanjama |
 | Acceptance | 29/29 paketa u registru, 42/42 API rute u matrici, 6/6 flagova, 3/3 zamrznuta P0 source contracta i četiri projektna Terra agenta |
 | Provjere | 340 testova prolazi, 3 Phase 1 acceptance testa su namjerno `todo`; scoped ESLint, `git diff --check` i produkcijski build s 4 GB heapom (113/113 stranica) prolaze |
-| Poznati rizici | `SEC-P0-01`, `SEC-P0-02` i legacy dio `BIL-P0-01` ostaju otvoreni za Fazu 1; produkcijski status ostaje NO-GO |
+| Poznati rizici | Source implementacije za `SEC-P0-01`, `SEC-P0-02` i `BIL-P0-01` postoje, ali runtime/staging acceptance još nije evidentiran; produkcijski status zato ostaje NO-GO |
 | Rollback | Flagovi su default-false; parent linking/dashboard i legacy checkout hard-disabled; nema live konfiguracijskih ni produkcijskih promjena |
-| Commit/PR | Nije izrađen; promjene su lokalne i necommitane |
+| Commit/PR | Phase 0 redak je povijesni snapshot; aktualni source popravci nalaze se na kasnijem `main`u. Reconciliation/runtime acceptance vodi se zasebnim Phase 1 PR-om. |
 
 ## Valovi subagenata
 
