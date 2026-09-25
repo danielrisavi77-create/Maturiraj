@@ -21,6 +21,13 @@ describe('P0 runtime acceptance harness safety contract', () => {
     expect(source).toContain('refuses non-local Supabase host')
   })
 
+  it('supports both current and legacy Supabase API key names', () => {
+    expect(source).toContain('P0_SUPABASE_PUBLISHABLE_KEY')
+    expect(source).toContain('P0_SUPABASE_SECRET_KEY')
+    expect(source).toContain('P0_SUPABASE_ANON_KEY')
+    expect(source).toContain('P0_SUPABASE_SERVICE_ROLE_KEY')
+  })
+
   it('uses temporary admin-created users and best-effort cleanup', () => {
     expect(source).toContain('admin.auth.admin.createUser')
     expect(source).toContain('email_confirm: true')
