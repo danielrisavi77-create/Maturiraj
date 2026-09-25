@@ -55,7 +55,7 @@ Sljedećih osam ruta zahtijeva oba AI/agent flaga:
 ## Release zabrane
 
 - Billing flagovi ne smiju se uključiti prije prolaska `BIL-P0-01` Phase 1 acceptance gatea.
-- Parent flagovi ne smiju se uključiti u produkciji prije prolaska `SEC-P0-02` runtime RLS/IDOR/consent/revoke acceptance gatea.
+- Parent V2 local runtime RLS/IDOR/consent/revoke acceptance prošao je na PR #18 run #10. Parent flagovi ipak ostaju default-false i ne smiju se uključiti u produkciji bez zasebnog staging/release (`REL-01`) odobrenja.
 - Agent flagovi ne smiju se uključiti prije `AI-01` i `AGENT-01` auth, input, quota i capability testova.
 - Flag nije zamjena za RLS, ownership provjeru ili server-side entitlement kontrolu.
 - Produkcijske vrijednosti flagova nisu potvrđene ovim dokumentom.
