@@ -23,8 +23,8 @@ Paket se ne smije označiti kao `done` samo zato što postoji lokalna izmjena. P
 |---:|---|---|---|---|---|
 | 1 | `CFG-00` | Phase 0 baseline, statusni registar i koordinacijska pravila | 0 | `done` | Baseline i 29 paketa verificirani |
 | 2 | `SEC-00` | API security matrica i offline P0 contract harness | 0 | `done` | 42/42 API rute i prolazan offline test |
-| 3 | `SEC-P0-01` | Onemogućiti samostalnu promjenu entitlement stupaca | 1 | `review` | Guard migracija + statički contract test postoje; preostaje runtime RLS acceptance protiv lokalnog/staging Postgresa |
-| 4 | `SEC-P0-02` | Siguran parent-child consent i uklanjanje IDOR lanca | 1 | `review` | Parent Consent V2 + API contract testovi postoje; preostaje runtime cross-account/consent/revoke acceptance |
+| 3 | `SEC-P0-01` | Onemogućiti samostalnu promjenu entitlement stupaca | 1 | `done` | Local Supabase runtime acceptance: zaštićeni `tier`, `plan_type`, `pro_expires_at`, `role`, `email` odbijeni; service-role write verificiran (PR #18 run #10) |
+| 4 | `SEC-P0-02` | Siguran parent-child consent i uklanjanje IDOR lanca | 1 | `done` | Local Supabase runtime acceptance: pending invitation, child-only consent, replay reject, cross-account block i revoke verificirani (PR #18 run #10) |
 | 5 | `BIL-P0-01` | Jedan Stripe checkout/webhook, price allowlist i fail-closed provisioning | 1 | `review` | Legacy webhook je 410, canonical webhook fail-closed i testiran; preostaje Stripe test-mode/staging acceptance cijelog lifecyclea |
 | 6 | `PROD-01` | Ukloniti lažne success, feedback i placeholder product flowove | 1 | `pending` | UI ne potvrđuje radnju koju server nije verificirao |
 | 7 | `AUTH-01` | Centralni auth/admin/tier API guardovi i `getUser` validacija | 2 | `pending` | Sve privatne rute koriste odgovarajući centralni guard |
@@ -58,8 +58,8 @@ Sažetak trenutnog stanja:
 | `in_progress` | 0 |
 | `pending` | 24 |
 | `blocked` | 0 |
-| `review` | 3 |
-| `done` | 2 |
+| `review` | 1 |
+| `done` | 4 |
 | **Ukupno** | **29** |
 
 ## Dokaz završetka Faze 0
@@ -70,7 +70,7 @@ Sažetak trenutnog stanja:
 | Write scope | `.codex/`, `docs/`, `scripts/security/`, `__tests__/security/` i uski fail-closed containment na postojećim API/UI putanjama |
 | Acceptance | 29/29 paketa u registru, 42/42 API rute u matrici, 6/6 flagova, 3/3 zamrznuta P0 source contracta i četiri projektna Terra agenta |
 | Provjere | 340 testova prolazi, 3 Phase 1 acceptance testa su namjerno `todo`; scoped ESLint, `git diff --check` i produkcijski build s 4 GB heapom (113/113 stranica) prolaze |
-| Poznati rizici | Source implementacije za `SEC-P0-01`, `SEC-P0-02` i `BIL-P0-01` postoje, ali runtime/staging acceptance još nije evidentiran; produkcijski status zato ostaje NO-GO |
+| Poznati rizici | `SEC-P0-01` i `SEC-P0-02` imaju reproducibilan local runtime acceptance dokaz; `BIL-P0-01` još nema Stripe test-mode/staging lifecycle dokaz. Produkcijski status zato ostaje NO-GO. |
 | Rollback | Flagovi su default-false; parent linking/dashboard i legacy checkout hard-disabled; nema live konfiguracijskih ni produkcijskih promjena |
 | Commit/PR | Phase 0 redak je povijesni snapshot; aktualni source popravci nalaze se na kasnijem `main`u. Reconciliation/runtime acceptance vodi se zasebnim Phase 1 PR-om. |
 
