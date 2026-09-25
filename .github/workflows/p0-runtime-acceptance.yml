@@ -8,6 +8,7 @@ on:
       - '__tests__/security/entitlement-rls.test.js'
       - '__tests__/security/parent-consent-v2.test.js'
       - '__tests__/security/billing-webhook-v2.test.js'
+      - '__tests__/security/billing-runtime-local.test.js'
       - 'docs/remediation/**'
       - 'docs/API_SECURITY_MATRIX.md'
       - 'package.json'
@@ -83,6 +84,17 @@ jobs:
           __tests__/security/entitlement-rls.test.js
           __tests__/security/parent-consent-v2.test.js
           __tests__/security/billing-webhook-v2.test.js
+
+      - name: Run signed local Stripe webhook acceptance
+        env:
+          P0_BILLING_RUNTIME: '1'
+          BILLING_V2_ENABLED: 'true'
+          STRIPE_SECRET_KEY: sk_test_p0_local_only
+          STRIPE_WEBHOOK_SECRET: whsec_p0_local_only
+          NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PRICE_ID: price_starter_p0_local
+          NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PRICE_ID: price_pro_p0_local
+          NEXT_PUBLIC_STRIPE_PRO_YEARLY_PRICE_ID: price_pro_yearly_p0_local
+        run: npx vitest run __tests__/security/billing-runtime-local.test.js
 
       - name: Production build against local Supabase configuration
         env:
