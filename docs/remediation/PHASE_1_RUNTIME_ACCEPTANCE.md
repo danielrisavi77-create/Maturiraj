@@ -28,9 +28,11 @@ Vrijednosti iz zadnje naredbe mapiraj u privremeni PowerShell:
     $env:P0_ACCEPTANCE_TARGET = "local"
     $env:P0_ACCEPTANCE_CONFIRM = "I_UNDERSTAND_NONPROD_ONLY"
     $env:P0_SUPABASE_URL = "http://127.0.0.1:54321"
-    $env:P0_SUPABASE_PUBLISHABLE_KEY = "<publishable key; legacy anon je također podržan>"
-    $env:P0_SUPABASE_SECRET_KEY = "<secret key; legacy service-role je također podržan>"
+    $env:P0_SUPABASE_ANON_KEY = "<anon key iz supabase status>"
+    $env:P0_SUPABASE_SERVICE_ROLE_KEY = "<service role key iz supabase status>"
     npm run security:p0:runtime
+
+Lokalni CLI tipično vraća legacy anon/service-role ključeve, zato su oni u primjeru iznad. Harness također prihvaća P0_SUPABASE_PUBLISHABLE_KEY i P0_SUPABASE_SECRET_KEY; njih preferiraj za hosted staging kada su dostupni.
 
 Harness:
 - stvara samo privremene testne korisnike;
