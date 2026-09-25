@@ -69,8 +69,8 @@ Isti harness smije se pokrenuti samo na eksplicitno non-production projektu:
     $env:P0_ACCEPTANCE_TARGET = "staging"
     $env:P0_ACCEPTANCE_CONFIRM = "I_UNDERSTAND_NONPROD_ONLY"
     $env:P0_SUPABASE_URL = "<staging project URL>"
-    $env:P0_SUPABASE_ANON_KEY = "<staging anon>"
-    $env:P0_SUPABASE_SERVICE_ROLE_KEY = "<staging service role>"
+    $env:P0_SUPABASE_PUBLISHABLE_KEY = "<staging publishable>"
+    $env:P0_SUPABASE_SECRET_KEY = "<staging secret>"
     npm run security:p0:runtime
 
 Ne stavljati service-role vrijednost u log, PR body ili artefakte.
