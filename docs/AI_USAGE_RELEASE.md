@@ -19,6 +19,22 @@ Datum: 22. rujna 2026. Prva etapa obračunava stvarne Anthropic API tokene u mil
 
 `/api/ai/usage` vraća `coverage: "partial"` sve dok postoje nepokriveni naplativi putovi. To polje nije potvrda ukupnog organizacijskog troška. Za pristup pregledniku nije dopušten proizvoljan ID korisnika.
 
+## Offline provjera budžeta
+
+`npm test` uključuje sedam SQL testova u `__tests__/security/ai-usage-ledger.test.js`.
+Za ciljani prolaz pokrenuti:
+
+```bash
+npm test -- __tests__/security/ai-usage-ledger.test.js
+```
+
+Testovi izvršavaju migraciju u zasebnoj PGlite bazi po testu i zatvaraju je u
+`finally` bloku. Provjeravaju rezervaciju budžeta, idempotentan obračun,
+statistiku, zadržavanje neizvjesne potrošnje, privilegije browser uloga,
+ograničenje broja poruka i brisanje korisnika. Ne zovu AI pružatelja ni vanjsku
+bazu. Taj prolaz ne potvrđuje primijenjene staging/produkcijske migracije,
+PostgREST ni stvarnu mrežnu konkurentnost; provjere u nastavku i dalje vrijede.
+
 ## Konfiguracija i redoslijed
 
 1. Potvrditi koja je Supabase baza povezana s ovom aplikacijom. Trenutačni repozitorij ne sadržava migracije za stari browser RPC `check_and_increment_ai_usage`; provjeriti stvarnu bazu prije promjene. Ne pokretati migraciju na produkciji bez pregleda rezultata na izoliranoj grani/staging bazi.
